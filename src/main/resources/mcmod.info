@@ -1,0 +1,16 @@
+[
+{
+  "modid": "gtclassic",
+  "name": "Gregtech Classic",
+  "description": "an experiment with Forge 1.12.2",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["e99999"],
+  "credits": "e99999",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
