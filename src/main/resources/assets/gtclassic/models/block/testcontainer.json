@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "gtclassic:blocks/testcontainer",
+    "down": "gtclassic:blocks/machine_bottom",
+    "up": "gtclassic:blocks/machine_top",
+    "east": "gtclassic:blocks/machine_side",
+    "west": "gtclassic:blocks/machine_side",
+    "north": "gtclassic:blocks/testcontainer",
+    "south": "gtclassic:blocks/machine_side"
+  }
+}

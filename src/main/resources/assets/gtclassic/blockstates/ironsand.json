@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": { "all": "helloworld:blocks/ironsand"}
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

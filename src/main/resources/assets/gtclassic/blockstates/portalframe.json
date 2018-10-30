@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": { "all": "gtclassic:blocks/portalframe"}
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

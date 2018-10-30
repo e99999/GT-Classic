@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "gtclassic:testdimension_portal_ew"
+    },
+    "axis=x": {
+      "model": "gtclassic:testdimension_portal_ns"
+    },
+    "inventory": {
+      "model": "gtclassic:testdimension_portal_ns"
+    }
+  }
+}
