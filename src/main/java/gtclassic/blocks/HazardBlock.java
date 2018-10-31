@@ -1,6 +1,6 @@
 package gtclassic.blocks;
 
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.ModItems;
 
 import net.minecraft.block.Block;
@@ -19,7 +19,7 @@ public class HazardBlock extends Block {
     //basic information about this block
 	public HazardBlock() {
         super(Material.ROCK);
-        setUnlocalizedName(GTMod.MODID + ".hazardblock");
+        setUnlocalizedName(ModCore.MODID + ".hazardblock");
         setRegistryName("hazardblock");
         setCreativeTab(ModItems.tabGTClassic);
         setHardness(5.0F);

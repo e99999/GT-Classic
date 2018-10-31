@@ -1,6 +1,6 @@
 package gtclassic.blocks.ores;
 
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.ModItems;
 
 import net.minecraft.block.BlockFalling;
@@ -16,7 +16,7 @@ public class IronSand extends BlockFalling {
 	
 	public IronSand() {
 		super(Material.SAND);
-		setUnlocalizedName(GTMod.MODID + ".ironsand");
+		setUnlocalizedName(ModCore.MODID + ".ironsand");
         setRegistryName("ironsand");
         setCreativeTab(ModItems.tabGTClassic);
         setHardness(0.5F);

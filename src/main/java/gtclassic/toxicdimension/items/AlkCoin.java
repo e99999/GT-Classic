@@ -1,6 +1,6 @@
 package gtclassic.toxicdimension.items;
 
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.ModBlocks;
 import gtclassic.ModItems;
 
@@ -28,7 +28,7 @@ public class AlkCoin extends Item {
 		this.maxStackSize = 1;
 		this.setMaxDamage(64);
 		setRegistryName("alkcoin");      
-        setUnlocalizedName(GTMod.MODID + ".alkcoin");
+        setUnlocalizedName(ModCore.MODID + ".alkcoin");
         setCreativeTab(ModItems.tabGTClassic);
     }
     

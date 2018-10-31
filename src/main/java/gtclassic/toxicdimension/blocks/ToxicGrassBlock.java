@@ -2,7 +2,7 @@ package gtclassic.toxicdimension.blocks;
 
 import java.util.Random;
 
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.ModItems;
 
 import net.minecraft.block.Block;
@@ -30,13 +30,13 @@ public class ToxicGrassBlock extends Block {
 	
 	public ToxicGrassBlock() {
 		super(Material.GRASS);
-		setUnlocalizedName(GTMod.MODID + ".toxicgrassblock");
+		setUnlocalizedName(ModCore.MODID + ".toxicgrassblock");
         setRegistryName("toxicgrassblock");
         setCreativeTab(ModItems.tabGTClassic);
         setHardness(1.0F);
         setSoundType(SoundType.GROUND);
         setHarvestLevel("shovel", 0);
-        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+       
 	}
 	
 	@Override
@@ -49,33 +49,4 @@ public class ToxicGrassBlock extends Block {
     public void initModel() {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     }
-
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        world.setBlockState(pos, state.withProperty(FACING, getFacingFromEntity(pos, placer)), 2);
-    }
-
-    public static EnumFacing getFacingFromEntity(BlockPos clickedBlock, EntityLivingBase entity) {
-        return EnumFacing.getFacingFromVector(
-             (float) (entity.posX - clickedBlock.getX()),
-             (float) (entity.posY - clickedBlock.getY()),
-             (float) (entity.posZ - clickedBlock.getZ()));
-    }
-
-    @Override
-    @Deprecated 
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7));
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING);
-    }
-
 }

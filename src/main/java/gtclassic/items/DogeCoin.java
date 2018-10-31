@@ -1,6 +1,6 @@
 package gtclassic.items;
 
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.ModItems;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -14,7 +14,7 @@ public class DogeCoin extends Item {
     //basic information about this item
 	public DogeCoin() {
         setRegistryName("dogecoin");        // The unique name (within your mod) that identifies this item
-        setUnlocalizedName(GTMod.MODID + ".dogecoin");     // Used for localization (en_US.lang)
+        setUnlocalizedName(ModCore.MODID + ".dogecoin");     // Used for localization (en_US.lang)
         setCreativeTab(ModItems.tabGTClassic);
     }
     

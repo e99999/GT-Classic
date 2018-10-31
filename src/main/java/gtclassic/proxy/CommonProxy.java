@@ -1,7 +1,7 @@
 package gtclassic.proxy;
 
 import gtclassic.Config;
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.ModBiomes;
 import gtclassic.ModBlocks;
 import gtclassic.ModDimensions;
@@ -50,7 +50,7 @@ public class CommonProxy {
 
 
     public void init(FMLInitializationEvent e) {
-    	NetworkRegistry.INSTANCE.registerGuiHandler(GTMod.instance, new GuiProxy());
+    	NetworkRegistry.INSTANCE.registerGuiHandler(ModCore.instance, new GuiProxy());
     	ModBiomes.init();
     }
 
@@ -66,11 +66,11 @@ public class CommonProxy {
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
     	
     	//register blocks
-    	GTMod.logger.info("Registering Blocks");
+    	ModCore.logger.info("Registering Blocks");
     	event.getRegistry().register(new HazardBlock());
         event.getRegistry().register(new TestContainerBlock());
         //TODO use new method to register this te
-        GameRegistry.registerTileEntity(TestContainerTileEntity.class, GTMod.MODID + "_testcontainerblock");
+        GameRegistry.registerTileEntity(TestContainerTileEntity.class, ModCore.MODID + "_testcontainerblock");
         
         //register ores
         event.getRegistry().register(new IronSand());
@@ -87,13 +87,13 @@ public class CommonProxy {
     public static void registerItems(RegistryEvent.Register<Item> event) {
     	
     	//items
-    	GTMod.logger.info("Registering Items");
+    	ModCore.logger.info("Registering Items");
     	event.getRegistry().register(new DogeCoin());
     	event.getRegistry().register(new AlkCoin());
     	event.getRegistry().register(new IronMultiTool());
     	
     	//blocks as items
-    	GTMod.logger.info("Registering Blocks as Items");
+    	ModCore.logger.info("Registering Blocks as Items");
     	event.getRegistry().register(new ItemBlock(ModBlocks.hazardBlock).setRegistryName(ModBlocks.hazardBlock.getRegistryName()));
     	event.getRegistry().register(new ItemBlock(ModBlocks.testContainerBlock).setRegistryName(ModBlocks.testContainerBlock.getRegistryName()));
     	

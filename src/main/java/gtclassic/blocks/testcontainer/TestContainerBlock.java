@@ -1,6 +1,6 @@
 package gtclassic.blocks.testcontainer;
 
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.ModItems;
 
 import net.minecraft.block.Block;
@@ -35,7 +35,7 @@ public class TestContainerBlock extends Block implements ITileEntityProvider {
     
     public TestContainerBlock() {
         super(Material.IRON);
-        setUnlocalizedName(GTMod.MODID + ".testcontainerblock");
+        setUnlocalizedName(ModCore.MODID + ".testcontainerblock");
         setRegistryName("testcontainerblock");
         setCreativeTab(ModItems.tabGTClassic);
         setHardness(5.0F);
@@ -93,7 +93,7 @@ public class TestContainerBlock extends Block implements ITileEntityProvider {
         if (!(te instanceof TestContainerTileEntity)) {
             return false;
         }
-        player.openGui(GTMod.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(ModCore.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
     

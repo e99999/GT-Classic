@@ -15,7 +15,7 @@ public class ModDimensions {
     }
 
     private static void registerDimensionTypes() {
-        testDimensionType = DimensionType.register(GTMod.MODID, "_test", Config.dimensionId, ToxicWorldProvider.class, false);
+        testDimensionType = DimensionType.register(ModCore.MODID, "_test", Config.dimensionId, ToxicWorldProvider.class, false);
     }
 
     private static void registerDimensions() {

@@ -12,8 +12,8 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = GTMod.MODID, name = GTMod.MODNAME, version = GTMod.MODVERSION, dependencies = "required-after:forge@[14.23.5.2772,)", useMetadata = true)
-public class GTMod {
+@Mod(modid = ModCore.MODID, name = ModCore.MODNAME, version = ModCore.MODVERSION, dependencies = "required-after:forge@[14.23.5.2772,)", useMetadata = true)
+public class ModCore {
 
     public static final String MODID = "gtclassic";
     public static final String MODNAME = "Gregtech Classic";
@@ -23,7 +23,7 @@ public class GTMod {
     public static CommonProxy proxy;
 
     @Mod.Instance
-    public static GTMod instance;
+    public static ModCore instance;
     public static Logger logger;
 
     //below sets up your mod in 3 stages then triggers each even from common proxy

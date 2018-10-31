@@ -1,6 +1,6 @@
 package gtclassic.toxicdimension.blocks;
 
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.ModItems;
 
 import net.minecraft.block.Block;
@@ -16,7 +16,7 @@ public class ToxicPortalFrameBlock extends Block {
     //basic information about this block
 	public ToxicPortalFrameBlock() {
         super(Material.IRON);
-        setUnlocalizedName(GTMod.MODID + ".portalframe");
+        setUnlocalizedName(ModCore.MODID + ".portalframe");
         setRegistryName("portalframe");
         setCreativeTab(ModItems.tabGTClassic);
         setHardness(3.0F);

@@ -1,7 +1,7 @@
 package gtclassic.commands;
 
 import com.google.common.collect.Lists;
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -20,7 +20,7 @@ import java.util.List;
 public class TeleportCommand extends CommandBase {
 
     public TeleportCommand(){
-        aliases = Lists.newArrayList(GTMod.MODID, "TP", "tp");
+        aliases = Lists.newArrayList(ModCore.MODID, "TP", "tp");
     }
 
     private final List<String> aliases;

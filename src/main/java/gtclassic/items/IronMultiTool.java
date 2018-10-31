@@ -1,6 +1,6 @@
 package gtclassic.items;
 
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.Materials;
 import gtclassic.ModItems;
 
@@ -15,7 +15,7 @@ public class IronMultiTool extends ItemSword {
 	public IronMultiTool() {
 		super(Materials.IRON);
 		setRegistryName("ironmultitool");        // The unique name (within your mod) that identifies this item
-        setUnlocalizedName(GTMod.MODID + ".ironmultitool");     // Used for localization (en_US.lang)
+        setUnlocalizedName(ModCore.MODID + ".ironmultitool");     // Used for localization (en_US.lang)
         setCreativeTab(ModItems.tabGTClassic);
     }
 	

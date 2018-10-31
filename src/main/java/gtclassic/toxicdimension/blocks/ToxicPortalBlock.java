@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.google.common.cache.LoadingCache;
 import gtclassic.Config;
-import gtclassic.GTMod;
+import gtclassic.ModCore;
 import gtclassic.ModBlocks;
 import gtclassic.toxicdimension.world.ToxicTeleporter;
 
@@ -38,7 +38,7 @@ public class ToxicPortalBlock extends BlockPortal {
 
 	public ToxicPortalBlock() {
 		super();
-		setUnlocalizedName(GTMod.MODID + ".testdimension_portal");
+		setUnlocalizedName(ModCore.MODID + ".testdimension_portal");
 		setRegistryName("testdimension_portal");
 		setHardness(-1.0F);
 		setLightLevel(0.75F);

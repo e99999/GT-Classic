@@ -20,12 +20,7 @@ public class ModItems {
 			return new ItemStack(ModItems.dogeCoin);
 		}
 		
-		@Override
-		public boolean hasSearchBar() {
-			return true;
-		}
-		
-	}.setBackgroundImageName("item_search.png");
+	};
 	
 	//not required stored references to items
 	@GameRegistry.ObjectHolder("gtclassic:dogecoin")
