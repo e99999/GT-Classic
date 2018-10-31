@@ -6,9 +6,9 @@ import gtclassic.ModBiomes;
 import gtclassic.ModBlocks;
 import gtclassic.ModDimensions;
 import gtclassic.blocks.HazardBlock;
+import gtclassic.blocks.cabinet.CabinetBlock;
+import gtclassic.blocks.cabinet.CabinetTileEntity;
 import gtclassic.blocks.ores.IronSand;
-import gtclassic.blocks.testcontainer.TestContainerBlock;
-import gtclassic.blocks.testcontainer.TestContainerTileEntity;
 import gtclassic.items.DogeCoin;
 import gtclassic.items.IronMultiTool;
 import gtclassic.toxicdimension.blocks.ToxicPortalFrameBlock;
@@ -68,9 +68,9 @@ public class CommonProxy {
     	//register blocks
     	ModCore.logger.info("Registering Blocks");
     	event.getRegistry().register(new HazardBlock());
-        event.getRegistry().register(new TestContainerBlock());
+        event.getRegistry().register(new CabinetBlock());
         //TODO use new method to register this te
-        GameRegistry.registerTileEntity(TestContainerTileEntity.class, ModCore.MODID + "_testcontainerblock");
+        GameRegistry.registerTileEntity(CabinetTileEntity.class, ModCore.MODID + "_cabinetblock");
         
         //register ores
         event.getRegistry().register(new IronSand());
@@ -95,7 +95,7 @@ public class CommonProxy {
     	//blocks as items
     	ModCore.logger.info("Registering Blocks as Items");
     	event.getRegistry().register(new ItemBlock(ModBlocks.hazardBlock).setRegistryName(ModBlocks.hazardBlock.getRegistryName()));
-    	event.getRegistry().register(new ItemBlock(ModBlocks.testContainerBlock).setRegistryName(ModBlocks.testContainerBlock.getRegistryName()));
+    	event.getRegistry().register(new ItemBlock(ModBlocks.cabinetBlock).setRegistryName(ModBlocks.cabinetBlock.getRegistryName()));
     	
     	//ore blocks as items
     	event.getRegistry().register(new ItemBlock(ModBlocks.ironSand).setRegistryName(ModBlocks.ironSand.getRegistryName()));

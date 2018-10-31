@@ -1,9 +1,8 @@
 package gtclassic.proxy;
 
-import gtclassic.blocks.testcontainer.TestContainer;
-import gtclassic.blocks.testcontainer.TestContainerGui;
-import gtclassic.blocks.testcontainer.TestContainerTileEntity;
-
+import gtclassic.blocks.cabinet.CabinetContainer;
+import gtclassic.blocks.cabinet.CabinetGui;
+import gtclassic.blocks.cabinet.CabinetTileEntity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -16,8 +15,8 @@ public class GuiProxy implements IGuiHandler {
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity te = world.getTileEntity(pos);
-        if (te instanceof TestContainerTileEntity) {
-            return new TestContainer(player.inventory, (TestContainerTileEntity) te);
+        if (te instanceof CabinetTileEntity) {
+            return new CabinetContainer(player.inventory, (CabinetTileEntity) te);
         }
         return null;
     }
@@ -26,9 +25,9 @@ public class GuiProxy implements IGuiHandler {
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         BlockPos pos = new BlockPos(x, y, z);
         TileEntity te = world.getTileEntity(pos);
-        if (te instanceof TestContainerTileEntity) {
-            TestContainerTileEntity containerTileEntity = (TestContainerTileEntity) te;
-            return new TestContainerGui(containerTileEntity, new TestContainer(player.inventory, containerTileEntity));
+        if (te instanceof CabinetTileEntity) {
+            CabinetTileEntity containerTileEntity = (CabinetTileEntity) te;
+            return new CabinetGui(containerTileEntity, new CabinetContainer(player.inventory, containerTileEntity));
         }
         return null;
     }

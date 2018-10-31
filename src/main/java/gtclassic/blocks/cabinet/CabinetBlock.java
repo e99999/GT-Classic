@@ -1,4 +1,4 @@
-package gtclassic.blocks.testcontainer;
+package gtclassic.blocks.cabinet;
 
 import gtclassic.ModCore;
 import gtclassic.ModItems;
@@ -27,18 +27,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TestContainerBlock extends Block implements ITileEntityProvider {
+public class CabinetBlock extends Block implements ITileEntityProvider {
 
     public static final int GUI_ID = 1;
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     
-    public TestContainerBlock() {
+    public CabinetBlock() {
         super(Material.IRON);
-        setUnlocalizedName(ModCore.MODID + ".testcontainerblock");
-        setRegistryName("testcontainerblock");
+        setUnlocalizedName(ModCore.MODID + ".cabinetblock");
+        setRegistryName("cabinetblock");
         setCreativeTab(ModItems.tabGTClassic);
-        setHardness(5.0F);
+        setHardness(10.0F);
         setResistance(40.0F);
         setSoundType(SoundType.METAL);
         setHarvestLevel("pickaxe", 1);
@@ -81,7 +81,7 @@ public class TestContainerBlock extends Block implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TestContainerTileEntity();
+        return new CabinetTileEntity();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class TestContainerBlock extends Block implements ITileEntityProvider {
             return true;
         }
         TileEntity te = world.getTileEntity(pos);
-        if (!(te instanceof TestContainerTileEntity)) {
+        if (!(te instanceof CabinetTileEntity)) {
             return false;
         }
         player.openGui(ModCore.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
@@ -100,7 +100,7 @@ public class TestContainerBlock extends Block implements ITileEntityProvider {
     //code below gives items back after breaking the blocks
     public void breakBlock( World worldIn, BlockPos pos, IBlockState state ){
         TileEntity te = worldIn.getTileEntity( pos );
-        if( te instanceof TestContainerTileEntity ){
+        if( te instanceof CabinetTileEntity ){
             ItemStackHandler ish = (ItemStackHandler)te.getCapability( CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP );
             for( int i=0; i<ish.getSlots(); i++ ){
                 if( ish.getStackInSlot( i ) != null ){

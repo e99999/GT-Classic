@@ -1,17 +1,17 @@
-package gtclassic.blocks.testcontainer;
+package gtclassic.blocks.cabinet;
 
 import gtclassic.ModCore;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 
-public class TestContainerGui extends GuiContainer {
+public class CabinetGui extends GuiContainer {
     public static final int WIDTH = 180;
     public static final int HEIGHT = 152;
 
-    private static final ResourceLocation background = new ResourceLocation(ModCore.MODID, "textures/gui/testcontainer.png");
+    private static final ResourceLocation background = new ResourceLocation(ModCore.MODID, "textures/gui/cabinetgui.png");
 
-    public TestContainerGui(TestContainerTileEntity tileEntity, TestContainer container) {
+    public CabinetGui(CabinetTileEntity tileEntity, CabinetContainer container) {
         super(container);
 
         xSize = WIDTH;

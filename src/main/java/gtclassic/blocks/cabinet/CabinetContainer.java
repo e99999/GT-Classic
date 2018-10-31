@@ -1,4 +1,4 @@
-package gtclassic.blocks.testcontainer;
+package gtclassic.blocks.cabinet;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -9,11 +9,11 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class TestContainer extends Container {
+public class CabinetContainer extends Container {
 
-    private TestContainerTileEntity te;
+    private CabinetTileEntity te;
 
-    public TestContainer(IInventory playerInventory, TestContainerTileEntity te) {
+    public CabinetContainer(IInventory playerInventory, CabinetTileEntity te) {
         this.te = te;
 
         // This container references items out of our own inventory (the 27 slots we hold ourselves)
@@ -69,11 +69,11 @@ public class TestContainer extends Container {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (index < TestContainerTileEntity.SIZE) {
-                if (!this.mergeItemStack(itemstack1, TestContainerTileEntity.SIZE, this.inventorySlots.size(), true)) {
+            if (index < CabinetTileEntity.SIZE) {
+                if (!this.mergeItemStack(itemstack1, CabinetTileEntity.SIZE, this.inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 0, TestContainerTileEntity.SIZE, false)) {
+            } else if (!this.mergeItemStack(itemstack1, 0, CabinetTileEntity.SIZE, false)) {
                 return ItemStack.EMPTY;
             }
 

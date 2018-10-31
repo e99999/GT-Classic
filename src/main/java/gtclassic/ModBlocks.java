@@ -1,8 +1,8 @@
 package gtclassic;
 
 import gtclassic.blocks.HazardBlock;
+import gtclassic.blocks.cabinet.CabinetBlock;
 import gtclassic.blocks.ores.IronSand;
-import gtclassic.blocks.testcontainer.TestContainerBlock;
 import gtclassic.toxicdimension.blocks.ToxicPortalFrameBlock;
 import gtclassic.toxicdimension.blocks.ToxicGrassBlock;
 import gtclassic.toxicdimension.blocks.ToxicPortalBlock;
@@ -17,11 +17,15 @@ public class ModBlocks {
 	@GameRegistry.ObjectHolder("gtclassic:hazardblock")
     public static HazardBlock hazardBlock;
 	
-	@GameRegistry.ObjectHolder("gtclassic:testcontainerblock")
-    public static TestContainerBlock testContainerBlock;
+	@GameRegistry.ObjectHolder("gtclassic:cabinetblock")
+    public static CabinetBlock cabinetBlock;
+	
+	
 	
 	@GameRegistry.ObjectHolder("gtclassic:ironsand")
     public static IronSand ironSand;
+	
+	
 	
 	@GameRegistry.ObjectHolder("gtclassic:testdimension_portal")
 	public static ToxicPortalBlock portal;
@@ -38,7 +42,8 @@ public class ModBlocks {
     public static void initModels() {
     	//blocks
     	hazardBlock.initModel();
-    	testContainerBlock.initModel();
+    	cabinetBlock.initModel();
+    	
     	ironSand.initModel();
     	
     	portal.initModel();

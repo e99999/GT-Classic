@@ -1,4 +1,4 @@
-package gtclassic.blocks.testcontainer;
+package gtclassic.blocks.cabinet;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,7 +8,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TestContainerTileEntity extends TileEntity {
+public class CabinetTileEntity extends TileEntity {
 
     public static final int SIZE = 27;
 
@@ -18,7 +18,7 @@ public class TestContainerTileEntity extends TileEntity {
         protected void onContentsChanged(int slot) {
             // We need to tell the tile entity that something has changed so
             // that the chest contents is persisted
-            TestContainerTileEntity.this.markDirty();
+            CabinetTileEntity.this.markDirty();
         }
     };
 

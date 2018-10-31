@@ -3,7 +3,8 @@ item.gtclassic.alkcoin.name=Alkalus Credit
 item.gtclassic.ironmultitool.name=Iron Multi Tool
 
 tile.gtclassic.hazardblock.name=Hazard Block
-tile.gtclassic.testcontainerblock.name=Test Container
+tile.gtclassic.cabinetblock.name=Metal Cabinet
+
 tile.gtclassic.ironsand.name=Black Sand
 
 tile.gtclassic.portalframe.name=Containment Frame

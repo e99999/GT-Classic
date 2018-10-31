@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "gtclassic:testcontainer"
+    "model": "gtclassic:cabinetblock"
   },
   "variants": {
     "normal": [{}],
