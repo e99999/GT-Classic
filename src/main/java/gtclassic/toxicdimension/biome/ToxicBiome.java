@@ -21,6 +21,7 @@ public class ToxicBiome {
 		customProps.setBaseHeight(0.0F);
 		customProps.setHeightVariation(0.25F);
 		customProps.setWaterColor(-13421824);
+		//customProps.setTemperature(2.0F);
 		biome = new BiomeGenCustom(customProps);
 	}
 

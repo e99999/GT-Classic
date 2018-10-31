@@ -19,6 +19,7 @@ import gtclassic.toxicdimension.blocks.ToxicPortalBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -52,6 +53,7 @@ public class CommonProxy {
     public void init(FMLInitializationEvent e) {
     	NetworkRegistry.INSTANCE.registerGuiHandler(ModCore.instance, new GuiProxy());
     	ModBiomes.init();
+    	ModBiomes.initBiomeDict();
     }
 
     //check if the config is changed and save current on post init
@@ -69,8 +71,8 @@ public class CommonProxy {
     	ModCore.logger.info("Registering Blocks");
     	event.getRegistry().register(new HazardBlock());
         event.getRegistry().register(new CabinetBlock());
-        //TODO use new method to register this te
-        GameRegistry.registerTileEntity(CabinetTileEntity.class, ModCore.MODID + "_cabinetblock");
+
+        registerTileEntity(CabinetTileEntity.class, "_cabinetblock");
         
         //register ores
         event.getRegistry().register(new IronSand());
@@ -105,6 +107,11 @@ public class CommonProxy {
     	event.getRegistry().register(new ItemBlock(ModBlocks.toxicgrassBlock).setRegistryName(ModBlocks.toxicgrassBlock.getRegistryName()));
     	event.getRegistry().register(new ItemBlock(ModBlocks.portal).setRegistryName(ModBlocks.portal.getRegistryName()));  	
     }
+    
+   
+    private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
+		GameRegistry.registerTileEntity(tileEntityClass, ModCore.MODID + ":" + name);
+	}
 
     
 }
