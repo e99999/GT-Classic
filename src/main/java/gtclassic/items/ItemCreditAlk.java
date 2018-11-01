@@ -1,8 +1,8 @@
 package gtclassic.items;
 
-import gtclassic.ModCore;
-import gtclassic.ModBlocks;
-import gtclassic.ModItems;
+import gtclassic.GTMod;
+import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,8 +28,8 @@ public class ItemCreditAlk extends Item {
 		this.maxStackSize = 1;
 		this.setMaxDamage(64);
 		setRegistryName("alk_credit");      
-        setUnlocalizedName(ModCore.MODID + ".creditAlk");
-        setCreativeTab(ModItems.tabGTClassic);
+        setUnlocalizedName(GTMod.MODID + ".creditAlk");
+        setCreativeTab(GTItems.tabGTClassic);
     }
     
     //init texture
@@ -60,7 +60,7 @@ public class ItemCreditAlk extends Item {
 		} else {
 			if (world.isAirBlock(pos)) {
 				world.playSound(entity, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-				ModBlocks.portal.trySpawnPortal(world, pos);
+				GTBlocks.toxicPortal.trySpawnPortal(world, pos);
 			}
 			itemstack.damageItem(1, entity);
 			return EnumActionResult.SUCCESS;

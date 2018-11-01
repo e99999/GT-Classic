@@ -1,8 +1,8 @@
 {
   "textures": {
-    "particle": "gtclassic:blocks/portalfixed",
-    "portal": "gtclassic:blocks/portalfixed",
-    "inventory": "gtclassic:blocks/portalfixed"
+    "particle": "gtclassic:blocks/toxic_portal",
+    "portal": "gtclassic:blocks/toxic_portal",
+    "inventory": "gtclassic:blocks/toxic_portal"
   },
   "elements": [
     {

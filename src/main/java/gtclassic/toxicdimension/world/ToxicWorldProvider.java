@@ -1,6 +1,6 @@
 package gtclassic.toxicdimension.world;
 
-import gtclassic.ModDimensions;
+import gtclassic.GTDimensions;
 import gtclassic.toxicdimension.biome.BiomeProviderCustom;
 
 import net.minecraft.util.math.Vec3d;
@@ -19,7 +19,7 @@ public class ToxicWorldProvider extends WorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return ModDimensions.testDimensionType;
+        return GTDimensions.testDimensionType;
     }
 
     @Override

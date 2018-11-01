@@ -1,6 +1,6 @@
 package gtclassic.toxicdimension.biome;
 
-import gtclassic.ModBlocks;
+import gtclassic.GTBlocks;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +30,7 @@ public class ToxicBiome {
 		public BiomeGenCustom(Biome.BiomeProperties properties) {
 			super(properties);
 			setRegistryName("toxicBiome");
-			topBlock = ModBlocks.grassToxic.getDefaultState();
+			topBlock = GTBlocks.grassToxic.getDefaultState();
 			fillerBlock = Blocks.STONE.getDefaultState();
 			decorator.generateFalls = true;
 			decorator.treesPerChunk = 0;

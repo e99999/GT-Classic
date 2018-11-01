@@ -1,7 +1,7 @@
 package gtclassic.commands;
 
 import com.google.common.collect.Lists;
-import gtclassic.ModCore;
+import gtclassic.GTMod;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -17,10 +17,10 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-public class TeleportCommand extends CommandBase {
+public class CommandTeleport extends CommandBase {
 
-    public TeleportCommand(){
-        aliases = Lists.newArrayList(ModCore.MODID, "TP", "tp");
+    public CommandTeleport(){
+        aliases = Lists.newArrayList(GTMod.MODID, "TP", "tp");
     }
 
     private final List<String> aliases;
@@ -58,7 +58,7 @@ public class TeleportCommand extends CommandBase {
         }
 
         if (sender instanceof EntityPlayer) {
-            CustomTeleporter.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
+            CommandTeleporter.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
         }
     }
 

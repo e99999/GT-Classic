@@ -3,7 +3,7 @@ package gtclassic;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 
-public class Materials {
+public class GTMaterials {
 	
 	//default values for vanilla materials
 	public static final ToolMaterial DIAMOND = EnumHelper.addToolMaterial("DIAMOND", 3, 1561, 8.0f, 3.0f, 12);

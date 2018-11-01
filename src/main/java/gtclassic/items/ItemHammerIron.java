@@ -1,8 +1,8 @@
 package gtclassic.items;
 
-import gtclassic.ModCore;
-import gtclassic.Materials;
-import gtclassic.ModItems;
+import gtclassic.GTMod;
+import gtclassic.GTMaterials;
+import gtclassic.GTItems;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemPickaxe;
@@ -13,11 +13,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemHammerIron extends ItemPickaxe {
 	
 	public ItemHammerIron() {
-		super(Materials.IRON);
+		super(GTMaterials.IRON);
 		this.setMaxDamage(500);
 		setRegistryName("iron_hammer");        // The unique name (within your mod) that identifies this item
-        setUnlocalizedName(ModCore.MODID + ".hammerIron");     // Used for localization (en_US.lang)
-        setCreativeTab(ModItems.tabGTClassic);
+        setUnlocalizedName(GTMod.MODID + ".hammerIron");     // Used for localization (en_US.lang)
+        setCreativeTab(GTItems.tabGTClassic);
     }
 	
 	//init texture

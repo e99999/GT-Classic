@@ -1,10 +1,10 @@
 package gtclassic.proxy;
 
-import gtclassic.Config;
-import gtclassic.ModCore;
-import gtclassic.ModBiomes;
-import gtclassic.ModBlocks;
-import gtclassic.ModDimensions;
+import gtclassic.GTConfig;
+import gtclassic.GTMod;
+import gtclassic.GTBiomes;
+import gtclassic.GTBlocks;
+import gtclassic.GTDimensions;
 import gtclassic.blocks.BlockHazard;
 import gtclassic.blocks.cabinet.BlockCabinet;
 import gtclassic.blocks.cabinet.TileEntityCabinet;
@@ -36,7 +36,7 @@ import java.io.File;
 //in many cases you can use CommonProxy for the server side since most things you want to init on the server you have to init client side as well 
 
 @Mod.EventBusSubscriber
-public class CommonProxy {
+public class ProxyCommon {
 
     //config instance
     public static Configuration config;
@@ -45,15 +45,15 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent e) {
         File directory = e.getModConfigurationDirectory();
         config = new Configuration(new File(directory.getPath(), "GTMod.cfg"));
-		Config.readConfig();
-        ModDimensions.init();  
+		GTConfig.readConfig();
+        GTDimensions.init();  
     }
 
 
     public void init(FMLInitializationEvent e) {
-    	NetworkRegistry.INSTANCE.registerGuiHandler(ModCore.instance, new GuiProxy());
-    	ModBiomes.init();
-    	ModBiomes.initBiomeDict();
+    	NetworkRegistry.INSTANCE.registerGuiHandler(GTMod.instance, new ProxyGui());
+    	GTBiomes.init();
+    	GTBiomes.initBiomeDict();
     }
 
     //check if the config is changed and save current on post init
@@ -63,12 +63,11 @@ public class CommonProxy {
         }
     }
     
-    @SuppressWarnings("deprecation")
 	@SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
     	
     	//register blocks
-    	ModCore.logger.info("Registering Blocks");
+    	GTMod.logger.info("Registering Blocks");
     	event.getRegistry().register(new BlockHazard());
         event.getRegistry().register(new BlockCabinet());
 
@@ -79,8 +78,8 @@ public class CommonProxy {
         
         //register toxic world stuff
         event.getRegistry().register(new BlockToxicPortalFrame());
-        event.getRegistry().register(new BlockToxicGrass());
         event.getRegistry().register(new BlockToxicPortal());
+        event.getRegistry().register(new BlockToxicGrass());
         
     }
 
@@ -89,28 +88,28 @@ public class CommonProxy {
     public static void registerItems(RegistryEvent.Register<Item> event) {
     	
     	//items
-    	ModCore.logger.info("Registering Items");
+    	GTMod.logger.info("Registering Items");
     	event.getRegistry().register(new ItemCreditDoge());
     	event.getRegistry().register(new ItemCreditAlk());
     	event.getRegistry().register(new ItemHammerIron());
     	
     	//blocks as items
-    	ModCore.logger.info("Registering Blocks as Items");
-    	event.getRegistry().register(new ItemBlock(ModBlocks.blockHazard).setRegistryName(ModBlocks.blockHazard.getRegistryName()));
-    	event.getRegistry().register(new ItemBlock(ModBlocks.blockCabinet).setRegistryName(ModBlocks.blockCabinet.getRegistryName()));
+    	GTMod.logger.info("Registering Blocks as Items");
+    	event.getRegistry().register(new ItemBlock(GTBlocks.blockHazard).setRegistryName(GTBlocks.blockHazard.getRegistryName()));
+    	event.getRegistry().register(new ItemBlock(GTBlocks.blockCabinet).setRegistryName(GTBlocks.blockCabinet.getRegistryName()));
     	
     	//ore blocks as items
-    	event.getRegistry().register(new ItemBlock(ModBlocks.sandIron).setRegistryName(ModBlocks.sandIron.getRegistryName()));
+    	event.getRegistry().register(new ItemBlock(GTBlocks.sandIron).setRegistryName(GTBlocks.sandIron.getRegistryName()));
     	
     	//toxic world stuff
-    	event.getRegistry().register(new ItemBlock(ModBlocks.toxicPortalFrame).setRegistryName(ModBlocks.toxicPortalFrame.getRegistryName()));
-    	event.getRegistry().register(new ItemBlock(ModBlocks.grassToxic).setRegistryName(ModBlocks.grassToxic.getRegistryName()));
-    	event.getRegistry().register(new ItemBlock(ModBlocks.portal).setRegistryName(ModBlocks.portal.getRegistryName()));  	
+    	event.getRegistry().register(new ItemBlock(GTBlocks.toxicPortalFrame).setRegistryName(GTBlocks.toxicPortalFrame.getRegistryName()));
+    	event.getRegistry().register(new ItemBlock(GTBlocks.toxicPortal).setRegistryName(GTBlocks.toxicPortal.getRegistryName()));  
+    	event.getRegistry().register(new ItemBlock(GTBlocks.grassToxic).setRegistryName(GTBlocks.grassToxic.getRegistryName()));	
     }
     
    
     private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
-		GameRegistry.registerTileEntity(tileEntityClass, ModCore.MODID + ":" + name);
+		GameRegistry.registerTileEntity(tileEntityClass, GTMod.MODID + ":" + name);
 	}
 
     

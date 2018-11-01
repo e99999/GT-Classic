@@ -3,9 +3,9 @@ package gtclassic.toxicdimension.blocks;
 import java.util.Random;
 
 import com.google.common.cache.LoadingCache;
-import gtclassic.Config;
-import gtclassic.ModCore;
-import gtclassic.ModBlocks;
+import gtclassic.GTConfig;
+import gtclassic.GTMod;
+import gtclassic.GTBlocks;
 import gtclassic.toxicdimension.world.ToxicTeleporter;
 
 import net.minecraft.block.Block;
@@ -38,8 +38,8 @@ public class BlockToxicPortal extends BlockPortal {
 
 	public BlockToxicPortal() {
 		super();
-		setRegistryName("testdimension_portal");
-		setUnlocalizedName(ModCore.MODID + ".testdimension_portal");
+		setRegistryName("toxic_portal"); //texture
+		setUnlocalizedName(GTMod.MODID + ".toxicPortal"); //lang
 		setHardness(-1.0F);
 		setLightLevel(0.75F);
 		setSoundType(SoundType.GLASS);	
@@ -164,10 +164,10 @@ public class BlockToxicPortal extends BlockPortal {
 				EntityPlayerMP thePlayer = (EntityPlayerMP) entityIn;
 				if (entityIn.timeUntilPortal > 0) {
 					entityIn.timeUntilPortal = 10;
-				} else if (entityIn.dimension != Config.dimensionId) {
+				} else if (entityIn.dimension != GTConfig.dimensionId) {
 					entityIn.timeUntilPortal = 10;
-					thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, Config.dimensionId,
-							getTeleporterForDimension(thePlayer, pos, Config.dimensionId));
+					thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, GTConfig.dimensionId,
+							getTeleporterForDimension(thePlayer, pos, GTConfig.dimensionId));
 				} else {
 					entityIn.timeUntilPortal = 10;
 					thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, getTeleporterForDimension(thePlayer, pos, 0));
@@ -175,19 +175,19 @@ public class BlockToxicPortal extends BlockPortal {
 			} else if (!(entityIn instanceof EntityPlayer) && !(entityIn instanceof EntityPlayerSP)) {
 				if (entityIn.timeUntilPortal > 0) {
 					entityIn.timeUntilPortal = 10;
-				} else if (entityIn.dimension != Config.dimensionId) {
+				} else if (entityIn.dimension != GTConfig.dimensionId) {
 					entityIn.timeUntilPortal = 10;
-					entityIn.changeDimension(Config.dimensionId, getTeleporterForDimension(entityIn, pos, Config.dimensionId));
+					entityIn.changeDimension(GTConfig.dimensionId, getTeleporterForDimension(entityIn, pos, GTConfig.dimensionId));
 				} else {
 					entityIn.timeUntilPortal = 10;
-					entityIn.changeDimension(Config.dimensionId, getTeleporterForDimension(entityIn, pos, 0));
+					entityIn.changeDimension(GTConfig.dimensionId, getTeleporterForDimension(entityIn, pos, 0));
 				}
 			}
 		}
 	}
 
 	private ToxicTeleporter getTeleporterForDimension(Entity entity, BlockPos pos, int dimid) {
-		BlockPattern.PatternHelper blockpatternpatternhelper = ModBlocks.portal.createPatternHelper(entity.world, new BlockPos(pos));
+		BlockPattern.PatternHelper blockpatternpatternhelper = GTBlocks.toxicPortal.createPatternHelper(entity.world, new BlockPos(pos));
 		double d0 = blockpatternpatternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double) blockpatternpatternhelper
 				.getFrontTopLeft().getZ() : (double) blockpatternpatternhelper.getFrontTopLeft().getX();
 		double d1 = blockpatternpatternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? entity.posZ : entity.posX;
@@ -243,12 +243,12 @@ public class BlockToxicPortal extends BlockPortal {
 			for (i = 0; i < 22; ++i) {
 				BlockPos blockpos = distblockpos.offset(distfacing, i);
 				if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock())
-						|| this.world.getBlockState(blockpos.down()).getBlock() != ModBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
+						|| this.world.getBlockState(blockpos.down()).getBlock() != GTBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
 					break;
 				}
 			}
 			Block block = this.world.getBlockState(distblockpos.offset(distfacing, i)).getBlock();
-			return block == ModBlocks.toxicPortalFrame.getDefaultState().getBlock() ? i : 0;
+			return block == GTBlocks.toxicPortalFrame.getDefaultState().getBlock() ? i : 0;
 		}
 
 		public int getHeight() {
@@ -267,24 +267,24 @@ public class BlockToxicPortal extends BlockPortal {
 					if (!this.isEmptyBlock(block)) {
 						break label56;
 					}
-					if (block == ModBlocks.portal) {
+					if (block == GTBlocks.toxicPortal) {
 						++this.portalBlockCount;
 					}
 					if (i == 0) {
 						block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
-						if (block != ModBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
+						if (block != GTBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
 							break label56;
 						}
 					} else if (i == this.width - 1) {
 						block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
-						if (block != ModBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
+						if (block != GTBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
 							break label56;
 						}
 					}
 				}
 			}
 			for (int j = 0; j < this.width; ++j) {
-				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != ModBlocks.toxicPortalFrame
+				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != GTBlocks.toxicPortalFrame
 						.getDefaultState().getBlock()) {
 					this.height = 0;
 					break;
@@ -301,7 +301,7 @@ public class BlockToxicPortal extends BlockPortal {
 		}
 
 		protected boolean isEmptyBlock(Block blockIn) {
-			return blockIn.getDefaultState().getMaterial() == Material.AIR || blockIn == Blocks.FIRE || blockIn == ModBlocks.portal;
+			return blockIn.getDefaultState().getMaterial() == Material.AIR || blockIn == Blocks.FIRE || blockIn == GTBlocks.toxicPortal;
 		}
 
 		public boolean isValid() {
@@ -312,7 +312,7 @@ public class BlockToxicPortal extends BlockPortal {
 			for (int i = 0; i < this.width; ++i) {
 				BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 				for (int j = 0; j < this.height; ++j) {
-					this.world.setBlockState(blockpos.up(j), ModBlocks.portal.getDefaultState().withProperty(BlockPortal.AXIS, this.axis), 2);
+					this.world.setBlockState(blockpos.up(j), GTBlocks.toxicPortal.getDefaultState().withProperty(BlockPortal.AXIS, this.axis), 2);
 				}
 			}
 		}

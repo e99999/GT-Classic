@@ -1,7 +1,7 @@
 package gtclassic;
 
-import gtclassic.commands.TeleportCommand;
-import gtclassic.proxy.CommonProxy;
+import gtclassic.commands.CommandTeleport;
+import gtclassic.proxy.ProxyCommon;
 import gtclassic.world.OreGen;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -12,18 +12,18 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = ModCore.MODID, name = ModCore.MODNAME, version = ModCore.MODVERSION, dependencies = "required-after:forge@[14.23.5.2772,)", useMetadata = true)
-public class ModCore {
+@Mod(modid = GTMod.MODID, name = GTMod.MODNAME, version = GTMod.MODVERSION, dependencies = "required-after:forge@[14.23.5.2772,)", useMetadata = true)
+public class GTMod {
 
     public static final String MODID = "gtclassic";
     public static final String MODNAME = "GregTech Classic";
     public static final String MODVERSION= "0.0.1";
 
     @SidedProxy(clientSide = "gtclassic.proxy.ClientProxy", serverSide = "gtclassic.proxy.ServerProxy")
-    public static CommonProxy proxy;
+    public static ProxyCommon proxy;
 
     @Mod.Instance
-    public static ModCore instance;
+    public static GTMod instance;
     public static Logger logger;
 
     //below sets up your mod in 3 stages then triggers each even from common proxy
@@ -49,6 +49,6 @@ public class ModCore {
 
     @Mod.EventHandler
     public void serverLoad(FMLServerStartingEvent event) {
-        event.registerServerCommand(new TeleportCommand());
+        event.registerServerCommand(new CommandTeleport());
     }
 }

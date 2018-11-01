@@ -1,7 +1,7 @@
 package gtclassic.blocks.cabinet;
 
-import gtclassic.ModCore;
-import gtclassic.ModItems;
+import gtclassic.GTMod;
+import gtclassic.GTItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -36,8 +36,8 @@ public class BlockCabinet extends Block implements ITileEntityProvider {
     public BlockCabinet() {
         super(Material.IRON);
         setRegistryName("cabinet_block"); //texture
-        setUnlocalizedName(ModCore.MODID + ".blockCabinet"); //lang
-        setCreativeTab(ModItems.tabGTClassic);
+        setUnlocalizedName(GTMod.MODID + ".blockCabinet"); //lang
+        setCreativeTab(GTItems.tabGTClassic);
         setHardness(10.0F);
         setResistance(40.0F);
         setSoundType(SoundType.METAL);
@@ -93,7 +93,7 @@ public class BlockCabinet extends Block implements ITileEntityProvider {
         if (!(te instanceof TileEntityCabinet)) {
             return false;
         }
-        player.openGui(ModCore.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(GTMod.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
     

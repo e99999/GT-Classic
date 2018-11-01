@@ -10,13 +10,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 
-public class ModItems {
+public class GTItems {
 	
 	public static final CreativeTabs tabGTClassic = new CreativeTabs("tabGTClassic") {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(ModItems.creditDoge);
+			return new ItemStack(GTItems.creditDoge);
 		}
 		
 	};

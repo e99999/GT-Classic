@@ -2,11 +2,11 @@ package gtclassic;
 
 import org.apache.logging.log4j.Level;
 
-import gtclassic.proxy.CommonProxy;
+import gtclassic.proxy.ProxyCommon;
 
 import net.minecraftforge.common.config.Configuration;
 
-public class Config {
+public class GTConfig {
 
     private static final String CATEGORY_GENERAL = "general";
     private static final String CATEGORY_DIMENSIONS = "dimensions";
@@ -20,13 +20,13 @@ public class Config {
     // exist yet and read the values if it does exist.
     
     public static void readConfig() {
-        Configuration cfg = CommonProxy.config;
+        Configuration cfg = ProxyCommon.config;
         try {
             cfg.load();
             initGeneralConfig(cfg);
             initDimensionConfig(cfg);
         } catch (Exception e1) {
-            ModCore.logger.log(Level.ERROR, "Problem loading config file!", e1);
+            GTMod.logger.log(Level.ERROR, "Problem loading config file!", e1);
         } finally {
             if (cfg.hasChanged()) {
                 cfg.save();

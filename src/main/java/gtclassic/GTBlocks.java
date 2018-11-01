@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ModBlocks {
+public class GTBlocks {
 
     //not required but useful stored references to blocks
 	@GameRegistry.ObjectHolder("gtclassic:hazard_block")
@@ -27,11 +27,11 @@ public class ModBlocks {
 	
 	
 	
-	@GameRegistry.ObjectHolder("gtclassic:testdimension_portal")
-	public static BlockToxicPortal portal;
-	
 	@GameRegistry.ObjectHolder("gtclassic:toxic_portal_frame")
     public static BlockToxicPortalFrame toxicPortalFrame;
+	
+	@GameRegistry.ObjectHolder("gtclassic:toxic_portal")
+	public static BlockToxicPortal toxicPortal;
 	
 	@GameRegistry.ObjectHolder("gtclassic:toxic_grass")
     public static BlockToxicGrass grassToxic;
@@ -46,8 +46,8 @@ public class ModBlocks {
     	
     	sandIron.initModel();
     	
-    	portal.initModel();
     	toxicPortalFrame.initModel();
+    	toxicPortal.initModel();
     	grassToxic.initModel();
     	}
 }

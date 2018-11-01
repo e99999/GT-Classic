@@ -2,8 +2,8 @@ package gtclassic.toxicdimension.blocks;
 
 import java.util.Random;
 
-import gtclassic.ModCore;
-import gtclassic.ModItems;
+import gtclassic.GTMod;
+import gtclassic.GTItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
@@ -31,8 +31,8 @@ public class BlockToxicGrass extends Block {
 	public BlockToxicGrass() {
 		super(Material.GRASS);
 		setRegistryName("toxic_grass");
-		setUnlocalizedName(ModCore.MODID + ".grassToxic");
-        setCreativeTab(ModItems.tabGTClassic);
+		setUnlocalizedName(GTMod.MODID + ".grassToxic");
+        setCreativeTab(GTItems.tabGTClassic);
         setHardness(1.0F);
         setSoundType(SoundType.GROUND);
         setHarvestLevel("shovel", 0);
