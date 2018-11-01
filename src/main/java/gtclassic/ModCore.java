@@ -16,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 public class ModCore {
 
     public static final String MODID = "gtclassic";
-    public static final String MODNAME = "Gregtech Classic";
+    public static final String MODNAME = "GregTech Classic";
     public static final String MODVERSION= "0.0.1";
 
     @SidedProxy(clientSide = "gtclassic.proxy.ClientProxy", serverSide = "gtclassic.proxy.ServerProxy")

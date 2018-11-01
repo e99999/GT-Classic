@@ -5,16 +5,16 @@ import gtclassic.ModCore;
 import gtclassic.ModBiomes;
 import gtclassic.ModBlocks;
 import gtclassic.ModDimensions;
-import gtclassic.blocks.HazardBlock;
-import gtclassic.blocks.cabinet.CabinetBlock;
-import gtclassic.blocks.cabinet.CabinetTileEntity;
-import gtclassic.blocks.ores.IronSand;
-import gtclassic.items.DogeCoin;
-import gtclassic.items.IronMultiTool;
-import gtclassic.toxicdimension.blocks.ToxicPortalFrameBlock;
-import gtclassic.toxicdimension.items.AlkCoin;
-import gtclassic.toxicdimension.blocks.ToxicGrassBlock;
-import gtclassic.toxicdimension.blocks.ToxicPortalBlock;
+import gtclassic.blocks.BlockHazard;
+import gtclassic.blocks.cabinet.BlockCabinet;
+import gtclassic.blocks.cabinet.TileEntityCabinet;
+import gtclassic.blocks.ores.BlockSandIron;
+import gtclassic.items.ItemCreditAlk;
+import gtclassic.items.ItemCreditDoge;
+import gtclassic.items.ItemHammerIron;
+import gtclassic.toxicdimension.blocks.BlockToxicPortalFrame;
+import gtclassic.toxicdimension.blocks.BlockToxicGrass;
+import gtclassic.toxicdimension.blocks.BlockToxicPortal;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -69,18 +69,18 @@ public class CommonProxy {
     	
     	//register blocks
     	ModCore.logger.info("Registering Blocks");
-    	event.getRegistry().register(new HazardBlock());
-        event.getRegistry().register(new CabinetBlock());
+    	event.getRegistry().register(new BlockHazard());
+        event.getRegistry().register(new BlockCabinet());
 
-        registerTileEntity(CabinetTileEntity.class, "_cabinetblock");
+        registerTileEntity(TileEntityCabinet.class, "_cabinetblock");
         
         //register ores
-        event.getRegistry().register(new IronSand());
+        event.getRegistry().register(new BlockSandIron());
         
         //register toxic world stuff
-        event.getRegistry().register(new ToxicPortalFrameBlock());
-        event.getRegistry().register(new ToxicGrassBlock());
-        event.getRegistry().register(new ToxicPortalBlock());
+        event.getRegistry().register(new BlockToxicPortalFrame());
+        event.getRegistry().register(new BlockToxicGrass());
+        event.getRegistry().register(new BlockToxicPortal());
         
     }
 
@@ -90,21 +90,21 @@ public class CommonProxy {
     	
     	//items
     	ModCore.logger.info("Registering Items");
-    	event.getRegistry().register(new DogeCoin());
-    	event.getRegistry().register(new AlkCoin());
-    	event.getRegistry().register(new IronMultiTool());
+    	event.getRegistry().register(new ItemCreditDoge());
+    	event.getRegistry().register(new ItemCreditAlk());
+    	event.getRegistry().register(new ItemHammerIron());
     	
     	//blocks as items
     	ModCore.logger.info("Registering Blocks as Items");
-    	event.getRegistry().register(new ItemBlock(ModBlocks.hazardBlock).setRegistryName(ModBlocks.hazardBlock.getRegistryName()));
-    	event.getRegistry().register(new ItemBlock(ModBlocks.cabinetBlock).setRegistryName(ModBlocks.cabinetBlock.getRegistryName()));
+    	event.getRegistry().register(new ItemBlock(ModBlocks.blockHazard).setRegistryName(ModBlocks.blockHazard.getRegistryName()));
+    	event.getRegistry().register(new ItemBlock(ModBlocks.blockCabinet).setRegistryName(ModBlocks.blockCabinet.getRegistryName()));
     	
     	//ore blocks as items
-    	event.getRegistry().register(new ItemBlock(ModBlocks.ironSand).setRegistryName(ModBlocks.ironSand.getRegistryName()));
+    	event.getRegistry().register(new ItemBlock(ModBlocks.sandIron).setRegistryName(ModBlocks.sandIron.getRegistryName()));
     	
     	//toxic world stuff
-    	event.getRegistry().register(new ItemBlock(ModBlocks.portalFrame).setRegistryName(ModBlocks.portalFrame.getRegistryName()));
-    	event.getRegistry().register(new ItemBlock(ModBlocks.toxicgrassBlock).setRegistryName(ModBlocks.toxicgrassBlock.getRegistryName()));
+    	event.getRegistry().register(new ItemBlock(ModBlocks.toxicPortalFrame).setRegistryName(ModBlocks.toxicPortalFrame.getRegistryName()));
+    	event.getRegistry().register(new ItemBlock(ModBlocks.grassToxic).setRegistryName(ModBlocks.grassToxic.getRegistryName()));
     	event.getRegistry().register(new ItemBlock(ModBlocks.portal).setRegistryName(ModBlocks.portal.getRegistryName()));  	
     }
     

@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "model": "cube_all",
-    "textures": { "all": "gtclassic:blocks/portalframe"}
+    "textures": { "all": "gtclassic:blocks/toxic_portal_frame"}
   },
   "variants": {
     "normal": [{}],

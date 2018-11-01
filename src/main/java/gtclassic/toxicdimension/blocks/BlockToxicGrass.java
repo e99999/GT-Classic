@@ -24,14 +24,14 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ToxicGrassBlock extends Block {
+public class BlockToxicGrass extends Block {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 	
-	public ToxicGrassBlock() {
+	public BlockToxicGrass() {
 		super(Material.GRASS);
-		setUnlocalizedName(ModCore.MODID + ".toxicgrassblock");
-        setRegistryName("toxicgrassblock");
+		setRegistryName("toxic_grass");
+		setUnlocalizedName(ModCore.MODID + ".grassToxic");
         setCreativeTab(ModItems.tabGTClassic);
         setHardness(1.0F);
         setSoundType(SoundType.GROUND);

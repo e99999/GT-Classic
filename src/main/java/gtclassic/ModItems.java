@@ -1,9 +1,8 @@
 package gtclassic;
 
-import gtclassic.items.DogeCoin;
-import gtclassic.items.IronMultiTool;
-import gtclassic.toxicdimension.items.AlkCoin;
-
+import gtclassic.items.ItemCreditAlk;
+import gtclassic.items.ItemCreditDoge;
+import gtclassic.items.ItemHammerIron;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -17,28 +16,28 @@ public class ModItems {
 
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(ModItems.dogeCoin);
+			return new ItemStack(ModItems.creditDoge);
 		}
 		
 	};
 	
 	//not required stored references to items
-	@GameRegistry.ObjectHolder("gtclassic:dogecoin")
-    public static DogeCoin dogeCoin;
+	@GameRegistry.ObjectHolder("gtclassic:doge_credit")
+    public static ItemCreditDoge creditDoge;
 	
 	//not required stored references to items
-	@GameRegistry.ObjectHolder("gtclassic:alkcoin")
-	public static AlkCoin alkCoin;
+	@GameRegistry.ObjectHolder("gtclassic:alk_credit")
+	public static ItemCreditAlk creditAlk;
 	
 	//not required stored references to items
-	@GameRegistry.ObjectHolder("gtclassic:ironmultitool")
-	public static IronMultiTool ironMultiTool;
+	@GameRegistry.ObjectHolder("gtclassic:iron_hammer")
+	public static ItemHammerIron hammerIron;
 	
 	//inits textures for items
 	@SideOnly(Side.CLIENT)
     public static void initModels() {
-        dogeCoin.initModel();
-        alkCoin.initModel();
-        ironMultiTool.initModel();
+        creditDoge.initModel();
+        creditAlk.initModel();
+        hammerIron.initModel();
     }
 }

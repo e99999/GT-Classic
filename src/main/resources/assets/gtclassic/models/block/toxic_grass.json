@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "gtclassic:blocks/toxic_grass_side",
+    "down": "gtclassic:blocks/toxic_grass_bottom",
+    "up": "gtclassic:blocks/toxic_grass_top",
+    "east": "gtclassic:blocks/toxic_grass_side",
+    "west": "gtclassic:blocks/toxic_grass_side",
+    "north": "gtclassic:blocks/toxic_grass_side",
+    "south": "gtclassic:blocks/toxic_grass_side"
+  }
+}

@@ -9,11 +9,11 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class CabinetContainer extends Container {
+public class ContainerCabinet extends Container {
 
-    private CabinetTileEntity te;
+    private TileEntityCabinet te;
 
-    public CabinetContainer(IInventory playerInventory, CabinetTileEntity te) {
+    public ContainerCabinet(IInventory playerInventory, TileEntityCabinet te) {
         this.te = te;
 
         // This container references items out of our own inventory (the 27 slots we hold ourselves)
@@ -69,11 +69,11 @@ public class CabinetContainer extends Container {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if (index < CabinetTileEntity.SIZE) {
-                if (!this.mergeItemStack(itemstack1, CabinetTileEntity.SIZE, this.inventorySlots.size(), true)) {
+            if (index < TileEntityCabinet.SIZE) {
+                if (!this.mergeItemStack(itemstack1, TileEntityCabinet.SIZE, this.inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 0, CabinetTileEntity.SIZE, false)) {
+            } else if (!this.mergeItemStack(itemstack1, 0, TileEntityCabinet.SIZE, false)) {
                 return ItemStack.EMPTY;
             }
 

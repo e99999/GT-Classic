@@ -34,12 +34,12 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ToxicPortalBlock extends BlockPortal {
+public class BlockToxicPortal extends BlockPortal {
 
-	public ToxicPortalBlock() {
+	public BlockToxicPortal() {
 		super();
-		setUnlocalizedName(ModCore.MODID + ".testdimension_portal");
 		setRegistryName("testdimension_portal");
+		setUnlocalizedName(ModCore.MODID + ".testdimension_portal");
 		setHardness(-1.0F);
 		setLightLevel(0.75F);
 		setSoundType(SoundType.GLASS);	
@@ -57,12 +57,12 @@ public class ToxicPortalBlock extends BlockPortal {
 
 	@Override
 	public boolean trySpawnPortal(World worldIn, BlockPos pos) {
-		ToxicPortalBlock.Size blockportalsize = new ToxicPortalBlock.Size(worldIn, pos, EnumFacing.Axis.X);
+		BlockToxicPortal.Size blockportalsize = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
 		if (blockportalsize.isValid() && blockportalsize.portalBlockCount == 0) {
 			blockportalsize.placePortalBlocks();
 			return true;
 		} else {
-			ToxicPortalBlock.Size blockportalsize1 = new ToxicPortalBlock.Size(worldIn, pos, EnumFacing.Axis.Z);
+			BlockToxicPortal.Size blockportalsize1 = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
 			if (blockportalsize1.isValid() && blockportalsize1.portalBlockCount == 0) {
 				blockportalsize1.placePortalBlocks();
 				return true;
@@ -77,13 +77,13 @@ public class ToxicPortalBlock extends BlockPortal {
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		EnumFacing.Axis enumfacingaxis = (EnumFacing.Axis) state.getValue(AXIS);
 		if (enumfacingaxis == EnumFacing.Axis.X) {
-			ToxicPortalBlock.Size blockportalsize = new ToxicPortalBlock.Size(worldIn, pos, EnumFacing.Axis.X);
+			BlockToxicPortal.Size blockportalsize = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
 			if (!blockportalsize.isValid() || blockportalsize.portalBlockCount < blockportalsize.width * blockportalsize.height) {
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 				portalDestroyed(worldIn, pos);
 			}
 		} else if (enumfacingaxis == EnumFacing.Axis.Z) {
-			ToxicPortalBlock.Size blockportalsize1 = new ToxicPortalBlock.Size(worldIn, pos, EnumFacing.Axis.Z);
+			BlockToxicPortal.Size blockportalsize1 = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
 			if (!blockportalsize1.isValid() || blockportalsize1.portalBlockCount < blockportalsize1.width * blockportalsize1.height) {
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 				portalDestroyed(worldIn, pos);
@@ -119,11 +119,11 @@ public class ToxicPortalBlock extends BlockPortal {
 	@Override
 	public BlockPattern.PatternHelper createPatternHelper(World worldIn, BlockPos pos) {
 		EnumFacing.Axis enumfacingaxis = EnumFacing.Axis.Z;
-		ToxicPortalBlock.Size blockportalsize = new ToxicPortalBlock.Size(worldIn, pos, EnumFacing.Axis.X);
+		BlockToxicPortal.Size blockportalsize = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
 		LoadingCache<BlockPos, BlockWorldState> loadingcache = BlockPattern.createLoadingCache(worldIn, true);
 		if (!blockportalsize.isValid()) {
 			enumfacingaxis = EnumFacing.Axis.X;
-			blockportalsize = new ToxicPortalBlock.Size(worldIn, pos, EnumFacing.Axis.Z);
+			blockportalsize = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
 		}
 		if (!blockportalsize.isValid()) {
 			return new BlockPattern.PatternHelper(pos, EnumFacing.NORTH, EnumFacing.UP, loadingcache, 1, 1, 1);
@@ -243,12 +243,12 @@ public class ToxicPortalBlock extends BlockPortal {
 			for (i = 0; i < 22; ++i) {
 				BlockPos blockpos = distblockpos.offset(distfacing, i);
 				if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock())
-						|| this.world.getBlockState(blockpos.down()).getBlock() != ModBlocks.portalFrame.getDefaultState().getBlock()) {
+						|| this.world.getBlockState(blockpos.down()).getBlock() != ModBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
 					break;
 				}
 			}
 			Block block = this.world.getBlockState(distblockpos.offset(distfacing, i)).getBlock();
-			return block == ModBlocks.portalFrame.getDefaultState().getBlock() ? i : 0;
+			return block == ModBlocks.toxicPortalFrame.getDefaultState().getBlock() ? i : 0;
 		}
 
 		public int getHeight() {
@@ -272,19 +272,19 @@ public class ToxicPortalBlock extends BlockPortal {
 					}
 					if (i == 0) {
 						block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
-						if (block != ModBlocks.portalFrame.getDefaultState().getBlock()) {
+						if (block != ModBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
 							break label56;
 						}
 					} else if (i == this.width - 1) {
 						block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
-						if (block != ModBlocks.portalFrame.getDefaultState().getBlock()) {
+						if (block != ModBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
 							break label56;
 						}
 					}
 				}
 			}
 			for (int j = 0; j < this.width; ++j) {
-				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != ModBlocks.portalFrame
+				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != ModBlocks.toxicPortalFrame
 						.getDefaultState().getBlock()) {
 					this.height = 0;
 					break;

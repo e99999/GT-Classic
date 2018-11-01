@@ -1,4 +1,4 @@
-package gtclassic.toxicdimension.items;
+package gtclassic.items;
 
 import gtclassic.ModCore;
 import gtclassic.ModBlocks;
@@ -20,15 +20,15 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class AlkCoin extends Item {
+public class ItemCreditAlk extends Item {
 
     //basic information about this item
-	public AlkCoin() {
+	public ItemCreditAlk() {
 		
 		this.maxStackSize = 1;
 		this.setMaxDamage(64);
-		setRegistryName("alkcoin");      
-        setUnlocalizedName(ModCore.MODID + ".alkcoin");
+		setRegistryName("alk_credit");      
+        setUnlocalizedName(ModCore.MODID + ".creditAlk");
         setCreativeTab(ModItems.tabGTClassic);
     }
     

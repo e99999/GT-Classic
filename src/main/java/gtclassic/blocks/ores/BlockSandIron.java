@@ -12,12 +12,12 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class IronSand extends BlockFalling {
+public class BlockSandIron extends BlockFalling {
 	
-	public IronSand() {
+	public BlockSandIron() {
 		super(Material.SAND);
-		setUnlocalizedName(ModCore.MODID + ".ironsand");
-        setRegistryName("ironsand");
+		setRegistryName("iron_sand");
+		setUnlocalizedName(ModCore.MODID + ".sandIron");
         setCreativeTab(ModItems.tabGTClassic);
         setHardness(0.5F);
         setSoundType(SoundType.SAND);

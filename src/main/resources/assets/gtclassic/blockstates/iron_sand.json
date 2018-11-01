@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "model": "cube_all",
-    "textures": { "all": "gtclassic:blocks/ironsand"}
+    "textures": { "all": "gtclassic:blocks/iron_sand"}
   },
   "variants": {
     "normal": [{}],

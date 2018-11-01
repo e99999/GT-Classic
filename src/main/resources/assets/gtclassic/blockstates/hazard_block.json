@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "gtclassic:hazardblock"
+    "model": "gtclassic:hazard_block"
   },
   "variants": {
     "normal": [{}],

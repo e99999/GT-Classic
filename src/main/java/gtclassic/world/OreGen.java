@@ -39,7 +39,7 @@ public class OreGen implements IWorldGenerator {
 			//Ore gen for the overworld
 		case 0:
 			//if you use gold for pipes and shit add the gold gravel ore in oceans again - files are saved just need to be put in modblocks and proxy
-			runGenerator(ModBlocks.ironSand.getDefaultState(), 32, 2, 48, 63, BlockMatcher.forBlock(Blocks.SAND), world, random, chunkX, chunkZ);
+			runGenerator(ModBlocks.sandIron.getDefaultState(), 32, 2, 48, 63, BlockMatcher.forBlock(Blocks.SAND), world, random, chunkX, chunkZ);
 			break;
 		
 			//Ore gen for the end

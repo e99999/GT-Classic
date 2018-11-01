@@ -1,11 +1,11 @@
 package gtclassic;
 
-import gtclassic.blocks.HazardBlock;
-import gtclassic.blocks.cabinet.CabinetBlock;
-import gtclassic.blocks.ores.IronSand;
-import gtclassic.toxicdimension.blocks.ToxicPortalFrameBlock;
-import gtclassic.toxicdimension.blocks.ToxicGrassBlock;
-import gtclassic.toxicdimension.blocks.ToxicPortalBlock;
+import gtclassic.blocks.BlockHazard;
+import gtclassic.blocks.cabinet.BlockCabinet;
+import gtclassic.blocks.ores.BlockSandIron;
+import gtclassic.toxicdimension.blocks.BlockToxicPortalFrame;
+import gtclassic.toxicdimension.blocks.BlockToxicGrass;
+import gtclassic.toxicdimension.blocks.BlockToxicPortal;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -14,40 +14,40 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModBlocks {
 
     //not required but useful stored references to blocks
-	@GameRegistry.ObjectHolder("gtclassic:hazardblock")
-    public static HazardBlock hazardBlock;
+	@GameRegistry.ObjectHolder("gtclassic:hazard_block")
+    public static BlockHazard blockHazard;
 	
-	@GameRegistry.ObjectHolder("gtclassic:cabinetblock")
-    public static CabinetBlock cabinetBlock;
+	@GameRegistry.ObjectHolder("gtclassic:cabinet_block")
+    public static BlockCabinet blockCabinet;
 	
 	
 	
-	@GameRegistry.ObjectHolder("gtclassic:ironsand")
-    public static IronSand ironSand;
+	@GameRegistry.ObjectHolder("gtclassic:iron_sand")
+    public static BlockSandIron sandIron;
 	
 	
 	
 	@GameRegistry.ObjectHolder("gtclassic:testdimension_portal")
-	public static ToxicPortalBlock portal;
+	public static BlockToxicPortal portal;
 	
-	@GameRegistry.ObjectHolder("gtclassic:portalframe")
-    public static ToxicPortalFrameBlock portalFrame;
+	@GameRegistry.ObjectHolder("gtclassic:toxic_portal_frame")
+    public static BlockToxicPortalFrame toxicPortalFrame;
 	
-	@GameRegistry.ObjectHolder("gtclassic:toxicgrassblock")
-    public static ToxicGrassBlock toxicgrassBlock;
+	@GameRegistry.ObjectHolder("gtclassic:toxic_grass")
+    public static BlockToxicGrass grassToxic;
 	
 	
 	//inits block models all blocks should be listed
     @SideOnly(Side.CLIENT)
     public static void initModels() {
     	//blocks
-    	hazardBlock.initModel();
-    	cabinetBlock.initModel();
+    	blockHazard.initModel();
+    	blockCabinet.initModel();
     	
-    	ironSand.initModel();
+    	sandIron.initModel();
     	
     	portal.initModel();
-    	portalFrame.initModel();
-    	toxicgrassBlock.initModel();
+    	toxicPortalFrame.initModel();
+    	grassToxic.initModel();
     	}
 }

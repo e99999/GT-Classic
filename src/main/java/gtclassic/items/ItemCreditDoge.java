@@ -9,12 +9,12 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class DogeCoin extends Item {
+public class ItemCreditDoge extends Item {
 
     //basic information about this item
-	public DogeCoin() {
-        setRegistryName("dogecoin");        // The unique name (within your mod) that identifies this item
-        setUnlocalizedName(ModCore.MODID + ".dogecoin");     // Used for localization (en_US.lang)
+	public ItemCreditDoge() {
+        setRegistryName("doge_credit");        // The unique name (within your mod) that identifies this item
+        setUnlocalizedName(ModCore.MODID + ".creditDoge");     // Used for localization (en_US.lang)
         setCreativeTab(ModItems.tabGTClassic);
     }
     

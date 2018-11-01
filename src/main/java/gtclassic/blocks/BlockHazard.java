@@ -1,4 +1,4 @@
-package gtclassic.toxicdimension.blocks;
+package gtclassic.blocks;
 
 import gtclassic.ModCore;
 import gtclassic.ModItems;
@@ -6,23 +6,25 @@ import gtclassic.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.item.Item;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ToxicPortalFrameBlock extends Block {
+public class BlockHazard extends Block {
 
     //basic information about this block
-	public ToxicPortalFrameBlock() {
-        super(Material.IRON);
-        setUnlocalizedName(ModCore.MODID + ".portalframe");
-        setRegistryName("portalframe");
-        setCreativeTab(ModItems.tabGTClassic);
-        setHardness(3.0F);
-        setResistance(40.0F);
+	public BlockHazard() {
+        super(Material.ROCK);
+        setRegistryName("hazard_block");
+        setUnlocalizedName(ModCore.MODID + ".blockHazard");
+        setHardness(5.0F);
+        setResistance(60.0F);
         setHarvestLevel("pickaxe", 2);
-        this.setLightLevel(0.5F);  
+        setCreativeTab(ModItems.tabGTClassic);
     }
     
     //initializes the block texture as an item texture
@@ -30,5 +32,10 @@ public class ToxicPortalFrameBlock extends Block {
     public void initModel() {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
     
+    }
+    
+    //this makes the block wither proof
+    public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
+        return !(entity instanceof EntityWither);
     }
 }

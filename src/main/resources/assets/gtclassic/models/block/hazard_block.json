@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "gtclassic:blocks/hazardblock"
+    "all": "gtclassic:blocks/hazard_block"
   }
 }

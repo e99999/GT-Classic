@@ -1,7 +1,7 @@
 [
 {
   "modid": "gtclassic",
-  "name": "Gregtech Classic",
+  "name": "GregTech Classic",
   "description": "an experiment with Forge 1.12.2.",
   "version": "${version}",
   "mcversion": "${mcversion}",

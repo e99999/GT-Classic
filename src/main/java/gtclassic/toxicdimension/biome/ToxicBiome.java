@@ -30,7 +30,7 @@ public class ToxicBiome {
 		public BiomeGenCustom(Biome.BiomeProperties properties) {
 			super(properties);
 			setRegistryName("toxicBiome");
-			topBlock = ModBlocks.toxicgrassBlock.getDefaultState();
+			topBlock = ModBlocks.grassToxic.getDefaultState();
 			fillerBlock = Blocks.STONE.getDefaultState();
 			decorator.generateFalls = true;
 			decorator.treesPerChunk = 0;

@@ -5,17 +5,18 @@ import gtclassic.Materials;
 import gtclassic.ModItems;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class IronMultiTool extends ItemSword {
+public class ItemHammerIron extends ItemPickaxe {
 	
-	public IronMultiTool() {
+	public ItemHammerIron() {
 		super(Materials.IRON);
-		setRegistryName("ironmultitool");        // The unique name (within your mod) that identifies this item
-        setUnlocalizedName(ModCore.MODID + ".ironmultitool");     // Used for localization (en_US.lang)
+		this.setMaxDamage(500);
+		setRegistryName("iron_hammer");        // The unique name (within your mod) that identifies this item
+        setUnlocalizedName(ModCore.MODID + ".hammerIron");     // Used for localization (en_US.lang)
         setCreativeTab(ModItems.tabGTClassic);
     }
 	

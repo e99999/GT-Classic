@@ -27,16 +27,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class CabinetBlock extends Block implements ITileEntityProvider {
+public class BlockCabinet extends Block implements ITileEntityProvider {
 
     public static final int GUI_ID = 1;
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     
-    public CabinetBlock() {
+    public BlockCabinet() {
         super(Material.IRON);
-        setUnlocalizedName(ModCore.MODID + ".cabinetblock");
-        setRegistryName("cabinetblock");
+        setRegistryName("cabinet_block"); //texture
+        setUnlocalizedName(ModCore.MODID + ".blockCabinet"); //lang
         setCreativeTab(ModItems.tabGTClassic);
         setHardness(10.0F);
         setResistance(40.0F);
@@ -81,7 +81,7 @@ public class CabinetBlock extends Block implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new CabinetTileEntity();
+        return new TileEntityCabinet();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class CabinetBlock extends Block implements ITileEntityProvider {
             return true;
         }
         TileEntity te = world.getTileEntity(pos);
-        if (!(te instanceof CabinetTileEntity)) {
+        if (!(te instanceof TileEntityCabinet)) {
             return false;
         }
         player.openGui(ModCore.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
@@ -100,7 +100,7 @@ public class CabinetBlock extends Block implements ITileEntityProvider {
     //code below gives items back after breaking the blocks
     public void breakBlock( World worldIn, BlockPos pos, IBlockState state ){
         TileEntity te = worldIn.getTileEntity( pos );
-        if( te instanceof CabinetTileEntity ){
+        if( te instanceof TileEntityCabinet ){
             ItemStackHandler ish = (ItemStackHandler)te.getCapability( CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP );
             for( int i=0; i<ish.getSlots(); i++ ){
                 if( ish.getStackInSlot( i ) != null ){

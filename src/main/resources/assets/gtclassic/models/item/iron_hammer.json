@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gtclassic:items/dogecoin"
+    "layer0": "gtclassic:items/iron_hammer"
   }
 }

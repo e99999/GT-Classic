@@ -1,14 +1,14 @@
-item.gtclassic.dogecoin.name=Doge Credit
-item.gtclassic.alkcoin.name=Alkalus Credit
-item.gtclassic.ironmultitool.name=Iron Multi Tool
+item.gtclassic.creditDoge.name=Doge Credit
+item.gtclassic.creditAlk.name=Alkalus Credit
+item.gtclassic.hammerIron.name=Iron Hammer
 
-tile.gtclassic.hazardblock.name=Hazard Block
-tile.gtclassic.cabinetblock.name=Metal Cabinet
+tile.gtclassic.blockHazard.name=Hazard Block
+tile.gtclassic.blockCabinet.name=Metal Cabinet
 
-tile.gtclassic.ironsand.name=Black Sand
+tile.gtclassic.sandIron.name=Black Sand
 
-tile.gtclassic.portalframe.name=Containment Frame
-tile.gtclassic.toxicgrassblock.name=Unstable Earth
+tile.gtclassic.toxicPortalFrame.name=Containment Frame
+tile.gtclassic.grassToxic.name=Unstable Earth
 tile.gtclassic.testdimension_portal.name=A Glimpse Into A Dark Future...
 
-itemGroup.tabGTClassic=Gregtech Classic
+itemGroup.tabGTClassic=GregTech Classic
