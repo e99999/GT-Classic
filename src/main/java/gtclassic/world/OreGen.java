@@ -32,18 +32,14 @@ public class OreGen implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
 		switch(world.provider.getDimension()) {
-		//Ore gen for the nether
-		case -1:
+		case -1: //Ore gen for the nether
 			break;
 		
-			//Ore gen for the overworld
-		case 0:
-			//if you use gold for pipes and shit add the gold gravel ore in oceans again - files are saved just need to be put in modblocks and proxy
+		case 0://Ore gen for the overworld
 			runGenerator(GTBlocks.sandIron.getDefaultState(), 32, 2, 48, 63, BlockMatcher.forBlock(Blocks.SAND), world, random, chunkX, chunkZ);
 			break;
 		
-			//Ore gen for the end
-		case 1:
+		case 1: //Ore gen for the end
 			break;
 		}
 	}

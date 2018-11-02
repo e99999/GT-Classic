@@ -19,14 +19,13 @@ public class GTMod {
     public static final String MODNAME = "GregTech Classic";
     public static final String MODVERSION= "0.0.1";
 
-    @SidedProxy(clientSide = "gtclassic.proxy.ClientProxy", serverSide = "gtclassic.proxy.ServerProxy")
+    @SidedProxy(clientSide = "gtclassic.proxy.ProxyClient", serverSide = "gtclassic.proxy.ProxyServer")
     public static ProxyCommon proxy;
 
     @Mod.Instance
     public static GTMod instance;
     public static Logger logger;
 
-    //below sets up your mod in 3 stages then triggers each even from common proxy
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
@@ -35,7 +34,6 @@ public class GTMod {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
-        //registers the oregen file
         GameRegistry.registerWorldGenerator(new OreGen(), 0);
         proxy.init(e);
     }
