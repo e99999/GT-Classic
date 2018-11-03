@@ -14,10 +14,10 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockHazard extends Block {
+public class GTBlockHazard extends Block {
 
     //basic information about this block
-	public BlockHazard() {
+	public GTBlockHazard() {
         super(Material.ROCK);
         setRegistryName("hazard_block");
         setUnlocalizedName(GTMod.MODID + ".blockHazard");

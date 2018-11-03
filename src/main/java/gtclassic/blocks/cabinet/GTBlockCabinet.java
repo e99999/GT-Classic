@@ -27,13 +27,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class BlockCabinet extends Block implements ITileEntityProvider {
+public class GTBlockCabinet extends Block implements ITileEntityProvider {
 
     public static final int GUI_ID = 1;
 
     public static final PropertyDirection FACING = PropertyDirection.create("facing");
     
-    public BlockCabinet() {
+    public GTBlockCabinet() {
         super(Material.IRON);
         setRegistryName("cabinet_block"); //texture
         setUnlocalizedName(GTMod.MODID + ".blockCabinet"); //lang

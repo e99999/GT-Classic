@@ -5,10 +5,10 @@ import gtclassic.GTMod;
 import gtclassic.GTBiomes;
 import gtclassic.GTBlocks;
 import gtclassic.GTDimensions;
-import gtclassic.blocks.BlockHazard;
-import gtclassic.blocks.cabinet.BlockCabinet;
+import gtclassic.blocks.GTBlockHazard;
+import gtclassic.blocks.cabinet.GTBlockCabinet;
 import gtclassic.blocks.cabinet.TileEntityCabinet;
-import gtclassic.blocks.ores.BlockSandIron;
+import gtclassic.blocks.resources.GTBlockSandIron;
 import gtclassic.items.ItemCreditAlk;
 import gtclassic.items.ItemCreditDoge;
 import gtclassic.items.ItemHammerIron;
@@ -63,54 +63,54 @@ public class ProxyCommon {
         }
     }
     
-	@SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-    	
-    	//register blocks
-    	GTMod.logger.info("Registering Blocks");
-    	event.getRegistry().register(new BlockHazard());
-        event.getRegistry().register(new BlockCabinet());
-
-        registerTileEntity(TileEntityCabinet.class, "_cabinetblock");
-        
-        //register ores
-        event.getRegistry().register(new BlockSandIron());
-        
-        //register toxic world stuff
-        event.getRegistry().register(new BlockToxicPortalFrame());
-        event.getRegistry().register(new BlockToxicPortal());
-        event.getRegistry().register(new BlockToxicGrass());
-        
-    }
-
-    //register items first then register items for blocks
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-    	
-    	//items
-    	GTMod.logger.info("Registering Items");
-    	event.getRegistry().register(new ItemCreditDoge());
-    	event.getRegistry().register(new ItemCreditAlk());
-    	event.getRegistry().register(new ItemHammerIron());
-    	
-    	//blocks as items
-    	GTMod.logger.info("Registering Blocks as Items");
-    	event.getRegistry().register(new ItemBlock(GTBlocks.blockHazard).setRegistryName(GTBlocks.blockHazard.getRegistryName()));
-    	event.getRegistry().register(new ItemBlock(GTBlocks.blockCabinet).setRegistryName(GTBlocks.blockCabinet.getRegistryName()));
-    	
-    	//ore blocks as items
-    	event.getRegistry().register(new ItemBlock(GTBlocks.sandIron).setRegistryName(GTBlocks.sandIron.getRegistryName()));
-    	
-    	//toxic world stuff
-    	event.getRegistry().register(new ItemBlock(GTBlocks.toxicPortalFrame).setRegistryName(GTBlocks.toxicPortalFrame.getRegistryName()));
-    	event.getRegistry().register(new ItemBlock(GTBlocks.toxicPortal).setRegistryName(GTBlocks.toxicPortal.getRegistryName()));  
-    	event.getRegistry().register(new ItemBlock(GTBlocks.grassToxic).setRegistryName(GTBlocks.grassToxic.getRegistryName()));	
-    }
-    
-   
-    private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
-		GameRegistry.registerTileEntity(tileEntityClass, GTMod.MODID + ":" + name);
-	}
+//	@SubscribeEvent
+//    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+//
+//    	//register blocks
+//    	GTMod.logger.info("Registering Blocks");
+//    	event.getRegistry().register(new GTBlockHazard());
+//        event.getRegistry().register(new GTBlockCabinet());
+//
+//        registerTileEntity(TileEntityCabinet.class, "_cabinetblock");
+//
+//        //register resources
+//        event.getRegistry().register(new GTBlockSandIron());
+//
+//        //register toxic world stuff
+//        event.getRegistry().register(new BlockToxicPortalFrame());
+//        event.getRegistry().register(new BlockToxicPortal());
+//        event.getRegistry().register(new BlockToxicGrass());
+//
+//    }
+//
+//    //register items first then register items for blocks
+//    @SubscribeEvent
+//    public static void registerItems(RegistryEvent.Register<Item> event) {
+//
+//    	//items
+//    	GTMod.logger.info("Registering Items");
+//    	event.getRegistry().register(new ItemCreditDoge());
+//    	event.getRegistry().register(new ItemCreditAlk());
+//    	event.getRegistry().register(new ItemHammerIron());
+//
+//    	//blocks as items
+//    	GTMod.logger.info("Registering Blocks as Items");
+//    	event.getRegistry().register(new ItemBlock(GTBlocks.blockHazard).setRegistryName(GTBlocks.blockHazard.getRegistryName()));
+//    	event.getRegistry().register(new ItemBlock(GTBlocks.blockCabinet).setRegistryName(GTBlocks.blockCabinet.getRegistryName()));
+//
+//    	//ore blocks as items
+//    	event.getRegistry().register(new ItemBlock(GTBlocks.sandIron).setRegistryName(GTBlocks.sandIron.getRegistryName()));
+//
+//    	//toxic world stuff
+//    	event.getRegistry().register(new ItemBlock(GTBlocks.toxicPortalFrame).setRegistryName(GTBlocks.toxicPortalFrame.getRegistryName()));
+//    	event.getRegistry().register(new ItemBlock(GTBlocks.toxicPortal).setRegistryName(GTBlocks.toxicPortal.getRegistryName()));
+//    	event.getRegistry().register(new ItemBlock(GTBlocks.grassToxic).setRegistryName(GTBlocks.grassToxic.getRegistryName()));
+//    }
+//
+//
+//    private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
+//		GameRegistry.registerTileEntity(tileEntityClass, GTMod.MODID + ":" + name);
+//	}
 
     
 }

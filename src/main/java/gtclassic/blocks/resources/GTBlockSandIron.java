@@ -1,4 +1,4 @@
-package gtclassic.blocks.ores;
+package gtclassic.blocks.resources;
 
 import gtclassic.GTMod;
 import gtclassic.GTItems;
@@ -12,9 +12,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockSandIron extends BlockFalling {
+public class GTBlockSandIron extends BlockFalling {
 	
-	public BlockSandIron() {
+	public GTBlockSandIron() {
 		super(Material.SAND);
 		setRegistryName("iron_sand");
 		setUnlocalizedName(GTMod.MODID + ".sandIron");

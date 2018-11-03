@@ -1,4 +1,4 @@
-package gtclassic.blocks.ores;
+package gtclassic.blocks.resources;
 
 import gtclassic.GTItems;
 import gtclassic.GTMod;
@@ -11,23 +11,24 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockGTMetals extends Block {
-    public enum BlockGTMetalsVariants{
-        RUBY, SAPPHIRE, ALUMINUM, TITANIUM, CHROME, STEEL, BRASS, LEAD, ELECTRUM, ZINC, OLIVINE, GREEN_SAPPHIRE, PLATINUM, TUNGSTEN, NICKEL, TUNGSTENSTEEL, IRIDIUM_REINFORCED_TUNGSTENSTEEL, INVAR, OSMIUM, IRIDIUM
+public class GTBlockOre extends Block {
+    public enum GTBlockOreVariants{
+        GALENA, IRIDIUM, RUBY, SAPPHIRE, BAUXITE, PYRITE, CINNABAR, SPHALERITE, TUNGSTATE, SHELDONITE, OLIVINE, SODALITE;
     }
 
-    BlockGTMetalsVariants variant;
-    public BlockGTMetals(BlockGTMetalsVariants variant){
+    GTBlockOreVariants variant;
+    public GTBlockOre(GTBlockOreVariants variant) {
         super(Material.ROCK);
         this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_block");
-        setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_block");
+        setRegistryName(variant.toString().toLowerCase() + "_ore");
+        setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_ore");
         setCreativeTab(GTItems.tabGTClassic);
         setHardness(5.0F);
         setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 1);
     }
 
+    //initializes the block texture as an item texture
     @SideOnly(Side.CLIENT)
     public void initModel() {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
