@@ -1,8 +1,7 @@
 package gtclassic.items;
 
-import gtclassic.GTMod;
+import gtclassic.GTClassic;
 import gtclassic.GTBlocks;
-import gtclassic.GTItems;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,8 +27,8 @@ public class ItemCreditAlk extends Item {
 		this.maxStackSize = 1;
 		this.setMaxDamage(64);
 		setRegistryName("alk_credit");      
-        setUnlocalizedName(GTMod.MODID + ".creditAlk");
-        setCreativeTab(GTItems.tabGTClassic);
+        setUnlocalizedName(GTClassic.MODID + ".creditAlk");
+        setCreativeTab(GTClassic.creativeTabGT);
     }
     
     //init texture

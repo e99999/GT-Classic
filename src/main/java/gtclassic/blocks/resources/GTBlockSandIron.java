@@ -1,7 +1,6 @@
 package gtclassic.blocks.resources;
 
-import gtclassic.GTMod;
-import gtclassic.GTItems;
+import gtclassic.GTClassic;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
@@ -17,8 +16,8 @@ public class GTBlockSandIron extends BlockFalling {
 	public GTBlockSandIron() {
 		super(Material.SAND);
 		setRegistryName("iron_sand");
-		setUnlocalizedName(GTMod.MODID + ".sandIron");
-        setCreativeTab(GTItems.tabGTClassic);
+		setUnlocalizedName(GTClassic.MODID + ".sandIron");
+        setCreativeTab(GTClassic.creativeTabGT);
         setHardness(0.5F);
         setSoundType(SoundType.SAND);
         setHarvestLevel("shovel", 0);

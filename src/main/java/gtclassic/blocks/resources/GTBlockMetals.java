@@ -1,7 +1,6 @@
 package gtclassic.blocks.resources;
 
-import gtclassic.GTItems;
-import gtclassic.GTMod;
+import gtclassic.GTClassic;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,8 +20,8 @@ public class GTBlockMetals extends Block {
         super(Material.ROCK);
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase() + "_block");
-        setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_block");
-        setCreativeTab(GTItems.tabGTClassic);
+        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_block");
+        setCreativeTab(GTClassic.creativeTabGT);
         setHardness(5.0F);
         setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 1);

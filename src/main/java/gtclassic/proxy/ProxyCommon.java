@@ -1,34 +1,16 @@
 package gtclassic.proxy;
 
 import gtclassic.GTConfig;
-import gtclassic.GTMod;
+import gtclassic.GTClassic;
 import gtclassic.GTBiomes;
-import gtclassic.GTBlocks;
 import gtclassic.GTDimensions;
-import gtclassic.blocks.GTBlockHazard;
-import gtclassic.blocks.cabinet.GTBlockCabinet;
-import gtclassic.blocks.cabinet.TileEntityCabinet;
-import gtclassic.blocks.resources.GTBlockSandIron;
-import gtclassic.items.ItemCreditAlk;
-import gtclassic.items.ItemCreditDoge;
-import gtclassic.items.ItemHammerIron;
-import gtclassic.toxicdimension.blocks.BlockToxicPortalFrame;
-import gtclassic.toxicdimension.blocks.BlockToxicGrass;
-import gtclassic.toxicdimension.blocks.BlockToxicPortal;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.io.File;
 
@@ -44,14 +26,14 @@ public class ProxyCommon {
     //create config on pre load
     public void preInit(FMLPreInitializationEvent e) {
         File directory = e.getModConfigurationDirectory();
-        config = new Configuration(new File(directory.getPath(), "GTMod.cfg"));
+        config = new Configuration(new File(directory.getPath(), "GTClassic.cfg"));
 		GTConfig.readConfig();
         GTDimensions.init();  
     }
 
 
     public void init(FMLInitializationEvent e) {
-    	NetworkRegistry.INSTANCE.registerGuiHandler(GTMod.instance, new ProxyGui());
+    	NetworkRegistry.INSTANCE.registerGuiHandler(GTClassic.instance, new ProxyGui());
     	GTBiomes.init();
     	GTBiomes.initBiomeDict();
     }
@@ -67,7 +49,7 @@ public class ProxyCommon {
 //    public static void registerBlocks(RegistryEvent.Register<Block> event) {
 //
 //    	//register blocks
-//    	GTMod.logger.info("Registering Blocks");
+//    	GTClassic.logger.info("Registering Blocks");
 //    	event.getRegistry().register(new GTBlockHazard());
 //        event.getRegistry().register(new GTBlockCabinet());
 //
@@ -88,13 +70,13 @@ public class ProxyCommon {
 //    public static void registerItems(RegistryEvent.Register<Item> event) {
 //
 //    	//items
-//    	GTMod.logger.info("Registering Items");
+//    	GTClassic.logger.info("Registering Items");
 //    	event.getRegistry().register(new ItemCreditDoge());
 //    	event.getRegistry().register(new ItemCreditAlk());
 //    	event.getRegistry().register(new ItemHammerIron());
 //
 //    	//blocks as items
-//    	GTMod.logger.info("Registering Blocks as Items");
+//    	GTClassic.logger.info("Registering Blocks as Items");
 //    	event.getRegistry().register(new ItemBlock(GTBlocks.blockHazard).setRegistryName(GTBlocks.blockHazard.getRegistryName()));
 //    	event.getRegistry().register(new ItemBlock(GTBlocks.blockCabinet).setRegistryName(GTBlocks.blockCabinet.getRegistryName()));
 //
@@ -109,7 +91,7 @@ public class ProxyCommon {
 //
 //
 //    private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
-//		GameRegistry.registerTileEntity(tileEntityClass, GTMod.MODID + ":" + name);
+//		GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
 //	}
 
     

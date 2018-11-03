@@ -3,8 +3,8 @@ package gtclassic.toxicdimension.blocks;
 import java.util.Random;
 
 import com.google.common.cache.LoadingCache;
+import gtclassic.GTClassic;
 import gtclassic.GTConfig;
-import gtclassic.GTMod;
 import gtclassic.GTBlocks;
 import gtclassic.toxicdimension.world.ToxicTeleporter;
 
@@ -39,7 +39,7 @@ public class BlockToxicPortal extends BlockPortal {
 	public BlockToxicPortal() {
 		super();
 		setRegistryName("toxic_portal"); //texture
-		setUnlocalizedName(GTMod.MODID + ".toxicPortal"); //lang
+		setUnlocalizedName(GTClassic.MODID + ".toxicPortal"); //lang
 		setHardness(-1.0F);
 		setLightLevel(0.75F);
 		setSoundType(SoundType.GLASS);	

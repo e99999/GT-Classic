@@ -26,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
 
-@ObjectHolder(GTMod.MODID)
+@ObjectHolder(GTClassic.MODID)
 public class GTBlocks {
 
     //not required but useful stored references to blocks
@@ -59,7 +59,7 @@ public class GTBlocks {
     public static final BlockToxicPortalFrame toxicPortalFrame = new BlockToxicPortalFrame();
 	public static final BlockToxicPortal toxicPortal = new BlockToxicPortal();
     public static final BlockToxicGrass grassToxic = new BlockToxicGrass();
-    @Mod.EventBusSubscriber(modid = GTMod.MODID)
+    @Mod.EventBusSubscriber(modid = GTClassic.MODID)
     public static class RegistrationHandler {
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event){
@@ -78,15 +78,14 @@ public class GTBlocks {
                     new ItemBlock(sapphireBlock), new ItemBlock(aluminumBlock),
                     new ItemBlock(titaniumBlock), new ItemBlock(chromeBlock),
                     new ItemBlock(steelBlock), new ItemBlock(brassBlock),
-                    new ItemBlock(brassBlock), new ItemBlock(leadBlock),
-                    new ItemBlock(electrumBlock), new ItemBlock(zincBlock),
-                    new ItemBlock(olivineBlock), new ItemBlock(greenSapphireBlock),
-                    new ItemBlock(platinumBlock), new ItemBlock(tungstenBlock),
-                    new ItemBlock(nickelBlock), new ItemBlock(tungstensteelBlock),
-                    new ItemBlock(iridiumReinforcedTungstensteelBlock), new ItemBlock(invarBlock),
-                    new ItemBlock(osmiumBlock), new ItemBlock(iridiumBlock),
-                    new ItemBlock(toxicPortalFrame), new ItemBlock(toxicPortal),
-                    new ItemBlock(grassToxic)
+                    new ItemBlock(leadBlock), new ItemBlock(electrumBlock),
+                    new ItemBlock(zincBlock), new ItemBlock(olivineBlock),
+                    new ItemBlock(greenSapphireBlock), new ItemBlock(platinumBlock),
+                    new ItemBlock(tungstenBlock), new ItemBlock(nickelBlock),
+                    new ItemBlock(tungstensteelBlock), new ItemBlock(iridiumReinforcedTungstensteelBlock),
+                    new ItemBlock(invarBlock), new ItemBlock(osmiumBlock),
+                    new ItemBlock(iridiumBlock), new ItemBlock(toxicPortalFrame),
+                    new ItemBlock(toxicPortal), new ItemBlock(grassToxic)
             };
             final IForgeRegistry<Item> registry = event.getRegistry();
             for (final ItemBlock item : items) {
@@ -94,11 +93,11 @@ public class GTBlocks {
                 final ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(),
                         "Block %s has null registry name", block);
                 registry.register(item.setRegistryName(registryName));
-                item.setCreativeTab(GTItems.tabGTClassic);
+                item.setCreativeTab(GTClassic.creativeTabGT);
             }
         }
         private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
-            GameRegistry.registerTileEntity(tileEntityClass, GTMod.MODID + ":" + name);
+            GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
         }
     }
 	

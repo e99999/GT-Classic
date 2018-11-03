@@ -1,7 +1,6 @@
 package gtclassic.blocks;
 
-import gtclassic.GTMod;
-import gtclassic.GTItems;
+import gtclassic.GTClassic;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -20,11 +19,11 @@ public class GTBlockHazard extends Block {
 	public GTBlockHazard() {
         super(Material.ROCK);
         setRegistryName("hazard_block");
-        setUnlocalizedName(GTMod.MODID + ".blockHazard");
+        setUnlocalizedName(GTClassic.MODID + ".blockHazard");
         setHardness(5.0F);
         setResistance(60.0F);
         setHarvestLevel("pickaxe", 2);
-        setCreativeTab(GTItems.tabGTClassic);
+        setCreativeTab(GTClassic.creativeTabGT);
     }
     
     //initializes the block texture as an item texture

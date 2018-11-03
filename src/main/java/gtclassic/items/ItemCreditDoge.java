@@ -1,7 +1,6 @@
 package gtclassic.items;
 
-import gtclassic.GTMod;
-import gtclassic.GTItems;
+import gtclassic.GTClassic;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -14,8 +13,8 @@ public class ItemCreditDoge extends Item {
     //basic information about this item
 	public ItemCreditDoge() {
         setRegistryName("doge_credit");        // The unique name (within your mod) that identifies this item
-        setUnlocalizedName(GTMod.MODID + ".creditDoge");     // Used for localization (en_US.lang)
-        setCreativeTab(GTItems.tabGTClassic);
+        setUnlocalizedName(GTClassic.MODID + ".creditDoge");     // Used for localization (en_US.lang)
+        setCreativeTab(GTClassic.creativeTabGT);
     }
     
     //init texture

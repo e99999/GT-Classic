@@ -15,7 +15,7 @@ public class GTDimensions {
     }
 
     private static void registerDimensionTypes() {
-        testDimensionType = DimensionType.register(GTMod.MODID, "_test", GTConfig.dimensionId, ToxicWorldProvider.class, false);
+        testDimensionType = DimensionType.register(GTClassic.MODID, "_test", GTConfig.dimensionId, ToxicWorldProvider.class, false);
     }
 
     private static void registerDimensions() {

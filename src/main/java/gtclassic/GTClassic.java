@@ -3,6 +3,7 @@ package gtclassic;
 import gtclassic.commands.CommandTeleport;
 import gtclassic.proxy.ProxyCommon;
 import gtclassic.world.OreGen;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -12,18 +13,18 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = GTMod.MODID, name = GTMod.MODNAME, version = GTMod.MODVERSION, dependencies = "required-after:forge@[14.23.5.2772,)", useMetadata = true)
-public class GTMod {
+@Mod(modid = GTClassic.MODID, name = GTClassic.MODNAME, version = GTClassic.MODVERSION, dependencies = "required-after:forge@[14.23.5.2772,)", useMetadata = true)
+public class GTClassic {
 
     public static final String MODID = "gtclassic";
     public static final String MODNAME = "GregTech Classic";
-    public static final String MODVERSION= "0.0.1";
-
+    public static final String MODVERSION= "@VERSION@";
+    public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
     @SidedProxy(clientSide = "gtclassic.proxy.ProxyClient", serverSide = "gtclassic.proxy.ProxyServer")
     public static ProxyCommon proxy;
 
     @Mod.Instance
-    public static GTMod instance;
+    public static GTClassic instance;
     public static Logger logger;
 
     @Mod.EventHandler
