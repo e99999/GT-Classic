@@ -6,11 +6,13 @@ import gtclassic.blocks.GTBlockHazard;
 import gtclassic.blocks.cabinet.GTBlockCabinet;
 import gtclassic.blocks.cabinet.TileEntityCabinet;
 import gtclassic.blocks.resources.GTBlockMetals;
+import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
 import gtclassic.toxicdimension.blocks.BlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.BlockToxicGrass;
 import gtclassic.toxicdimension.blocks.BlockToxicPortal;
 import gtclassic.blocks.resources.GTBlockMetals.GTBlockMetalsVariants;
+import gtclassic.blocks.resources.GTBlockOre.GTBlockOreVariants;
 
 
 import net.minecraft.block.Block;
@@ -57,6 +59,21 @@ public class GTBlocks {
 	osmiumBlock = new GTBlockMetals(GTBlockMetalsVariants.OSMIUM),
 	iridiumBlock = new GTBlockMetals(GTBlockMetalsVariants.IRIDIUM);
 
+	public static final GTBlockOre
+    galenaOre = new GTBlockOre(GTBlockOreVariants.GALENA),
+    iridiumOreGT = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
+    rubyOre = new GTBlockOre(GTBlockOreVariants.RUBY),
+    sapphireOre = new GTBlockOre(GTBlockOreVariants.SAPPHIRE),
+    bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE),
+    pyriteOre = new GTBlockOre(GTBlockOreVariants.PYRITE),
+    cinnabarOre = new GTBlockOre(GTBlockOreVariants.CINNABAR),
+    sphaleriteOre = new GTBlockOre(GTBlockOreVariants.SPHALERITE),
+    tungstateOre = new GTBlockOre(GTBlockOreVariants.TUNGSTATE),
+    sheldoniteOre = new GTBlockOre(GTBlockOreVariants.SHELDONITE),
+    olivineOre = new GTBlockOre(GTBlockOreVariants.OLIVINE),
+    sodaliteOre = new GTBlockOre(GTBlockOreVariants.SODALITE);
+
+
     public static final BlockToxicPortalFrame toxicPortalFrame = new BlockToxicPortalFrame();
 	public static final BlockToxicPortal toxicPortal = new BlockToxicPortal();
     public static final BlockToxicGrass grassToxic = new BlockToxicGrass();
@@ -86,6 +103,18 @@ public class GTBlocks {
                 invarBlock,
                 osmiumBlock,
                 iridiumBlock,
+                galenaOre,
+                iridiumOreGT,
+                rubyOre,
+                sapphireOre,
+                bauxiteOre,
+                pyriteOre,
+                cinnabarOre,
+                sphaleriteOre,
+                tungstateOre,
+                sheldoniteOre,
+                olivineOre,
+                sodaliteOre,
                 toxicPortalFrame,
                 toxicPortal,
                 grassToxic
