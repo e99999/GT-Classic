@@ -5,7 +5,7 @@ import java.util.Random;
 import com.google.common.cache.LoadingCache;
 import gtclassic.GTClassic;
 import gtclassic.GTConfig;
-import gtclassic.GTBlocks;
+import gtclassic.util.GTBlocks;
 import gtclassic.toxicdimension.world.ToxicTeleporter;
 
 import net.minecraft.block.Block;

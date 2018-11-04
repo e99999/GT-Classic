@@ -1,7 +1,7 @@
 package gtclassic.items;
 
 import gtclassic.GTClassic;
-import gtclassic.GTBlocks;
+import gtclassic.util.GTBlocks;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;

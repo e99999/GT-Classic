@@ -2,6 +2,7 @@ package gtclassic;
 
 import gtclassic.commands.CommandTeleport;
 import gtclassic.proxy.ProxyCommon;
+import gtclassic.util.GTCreativeTab;
 import gtclassic.world.OreGen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;

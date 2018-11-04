@@ -3,7 +3,7 @@ package gtclassic.world;
 import java.util.Random;
 
 import com.google.common.base.Predicate;
-import gtclassic.GTBlocks;
+import gtclassic.util.GTBlocks;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
