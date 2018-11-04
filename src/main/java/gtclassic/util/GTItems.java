@@ -1,5 +1,6 @@
-package gtclassic;
+package gtclassic.util;
 
+import gtclassic.GTClassic;
 import gtclassic.items.ItemCreditAlk;
 import gtclassic.items.ItemCreditDoge;
 import gtclassic.items.ItemHammerIron;

@@ -1,6 +1,7 @@
-package gtclassic;
+package gtclassic.util;
 
 import com.google.common.base.Preconditions;
+import gtclassic.GTClassic;
 import gtclassic.blocks.GTBlockHazard;
 import gtclassic.blocks.cabinet.GTBlockCabinet;
 import gtclassic.blocks.cabinet.TileEntityCabinet;

@@ -1,7 +1,7 @@
 package gtclassic.proxy;
 
-import gtclassic.GTBlocks;
-import gtclassic.GTItems;
+import gtclassic.util.GTBlocks;
+import gtclassic.util.GTItems;
 
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
