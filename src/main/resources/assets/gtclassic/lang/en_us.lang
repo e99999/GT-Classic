@@ -7,8 +7,30 @@ tile.gtclassic.blockCabinet.name=Metal Cabinet
 
 tile.gtclassic.sandIron.name=Black Sand
 
+tile.gtclassic.lead_block.name=Lead Block
+tile.gtclassic.titanium_block.name=Titanium Block
+tile.gtclassic.olivine_block.name=Olivine Block
+tile.gtclassic.green_sapphire_block.name=Green Sapphire Block
+tile.gtclassic.aluminum_block.name=Aluminum Block
+tile.gtclassic.zinc_block.name=Zinc Block
+tile.gtclassic.iridium_reinforced_tungstensteel_block.name=Iridium Reinforced Tungstensteel Block
+tile.gtclassic.invar_block.name=Invar Block
+tile.gtclassic.ruby_block.name=Ruby Block
+tile.gtclassic.iridium_block.name=Iridium Block
+tile.gtclassic.tungsten_block.name=Tungsten Block
+tile.gtclassic.electrum_block.name=Electrum Block
+tile.gtclassic.brass_block.name=Brass Block
+tile.gtclassic.sapphire_block.name=Sapphire Block
+tile.gtclassic.osmium_block.name=Osmium Block
+tile.gtclassic.platinum_block.name=Platinum Block
+tile.gtclassic.steel_block.name=Steel Block
+tile.gtclassic.nickel_block.name=Nickel Block
+tile.gtclassic.tungstensteel_block.name=Tungstensteel Block
+tile.gtclassic.chrome_block.name=Chrome Block
+
 tile.gtclassic.toxicPortalFrame.name=Containment Frame
 tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
 tile.gtclassic.grassToxic.name=Unstable Earth
 
-itemGroup.tabGTClassic=GregTech Classic
+
+itemGroup.gtclassic=GregTech Classic

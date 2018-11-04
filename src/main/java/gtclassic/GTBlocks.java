@@ -61,39 +61,47 @@ public class GTBlocks {
     public static final BlockToxicGrass grassToxic = new BlockToxicGrass();
     @Mod.EventBusSubscriber(modid = GTClassic.MODID)
     public static class RegistrationHandler {
+        public static final Block[] blocks = {
+                blockHazard,
+                blockCabinet,
+                sandIron,
+                rubyBlock,
+                sapphireBlock,
+                aluminumBlock,
+                titaniumBlock,
+                chromeBlock,
+                steelBlock,
+                brassBlock,
+                leadBlock,
+                electrumBlock,
+                zincBlock,
+                olivineBlock,
+                greenSapphireBlock,
+                platinumBlock,
+                tungstenBlock,
+                nickelBlock,
+                tungstensteelBlock,
+                iridiumReinforcedTungstensteelBlock,
+                invarBlock,
+                osmiumBlock,
+                iridiumBlock,
+                toxicPortalFrame,
+                toxicPortal,
+                grassToxic
+        };
         @SubscribeEvent
         public static void registerBlocks(RegistryEvent.Register<Block> event){
-            event.getRegistry().registerAll(blockHazard, blockCabinet, sandIron, rubyBlock, sapphireBlock,
-                    aluminumBlock, titaniumBlock, chromeBlock, steelBlock, brassBlock, leadBlock,
-                    electrumBlock, zincBlock, olivineBlock, greenSapphireBlock, platinumBlock,
-                    tungstenBlock, nickelBlock, tungstensteelBlock, iridiumReinforcedTungstensteelBlock,
-                    invarBlock, osmiumBlock, iridiumBlock, toxicPortalFrame, toxicPortal, grassToxic);
+            IForgeRegistry registry = event.getRegistry();
+            for (Block block : blocks){
+                registry.register(block);
+            }
             registerTileEntity(TileEntityCabinet.class, "_cabinetblock");
         }
         @SubscribeEvent
         public static void registerItemBlocks(RegistryEvent.Register<Item> event){
-            final ItemBlock[] items = {
-                    new ItemBlock(blockHazard), new ItemBlock(blockCabinet),
-                    new ItemBlock(sandIron), new ItemBlock(rubyBlock),
-                    new ItemBlock(sapphireBlock), new ItemBlock(aluminumBlock),
-                    new ItemBlock(titaniumBlock), new ItemBlock(chromeBlock),
-                    new ItemBlock(steelBlock), new ItemBlock(brassBlock),
-                    new ItemBlock(leadBlock), new ItemBlock(electrumBlock),
-                    new ItemBlock(zincBlock), new ItemBlock(olivineBlock),
-                    new ItemBlock(greenSapphireBlock), new ItemBlock(platinumBlock),
-                    new ItemBlock(tungstenBlock), new ItemBlock(nickelBlock),
-                    new ItemBlock(tungstensteelBlock), new ItemBlock(iridiumReinforcedTungstensteelBlock),
-                    new ItemBlock(invarBlock), new ItemBlock(osmiumBlock),
-                    new ItemBlock(iridiumBlock), new ItemBlock(toxicPortalFrame),
-                    new ItemBlock(toxicPortal), new ItemBlock(grassToxic)
-            };
-            final IForgeRegistry<Item> registry = event.getRegistry();
-            for (final ItemBlock item : items) {
-                final Block block = item.getBlock();
-                final ResourceLocation registryName = Preconditions.checkNotNull(block.getRegistryName(),
-                        "Block %s has null registry name", block);
-                registry.register(item.setRegistryName(registryName));
-                item.setCreativeTab(GTClassic.creativeTabGT);
+            final IForgeRegistry registry = event.getRegistry();
+            for (Block block : blocks) {
+                registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTClassic.creativeTabGT));
             }
         }
         private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
