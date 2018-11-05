@@ -27,7 +27,7 @@ public class GTItemTinyDusts extends Item implements ITexturedItem {
     public GTItemTinyDusts(GTItemTinyDustTypes variant){
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase() + "_tiny_dust");
-        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_dust");
+        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_tiny_dust");
         setCreativeTab(GTClassic.creativeTabGT);
     }
 
