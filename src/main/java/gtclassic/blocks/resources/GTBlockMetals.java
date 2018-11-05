@@ -21,7 +21,16 @@ import java.util.List;
 
 public class GTBlockMetals extends Block implements ITexturedBlock {
     public enum GTBlockMetalsVariants{
-        RUBY, SAPPHIRE, ALUMINUM, TITANIUM, CHROME, STEEL, BRASS, LEAD, ELECTRUM, ZINC, OLIVINE, GREEN_SAPPHIRE, PLATINUM, TUNGSTEN, NICKEL, TUNGSTENSTEEL, IRIDIUM_REINFORCED_TUNGSTENSTEEL, INVAR, OSMIUM, IRIDIUM
+        RUBY(0), SAPPHIRE(16), ALUMINUM(32), TITANIUM(48), CHROME(64), STEEL(80), BRASS(96), LEAD(112), ELECTRUM(128), ZINC(144), OLIVINE(160), GREEN_SAPPHIRE(176), PLATINUM(192), TUNGSTEN(208), NICKEL(224), TUNGSTENSTEEL(240), IRIDIUM_REINFORCED_TUNGSTENSTEEL(1), INVAR(17), OSMIUM(33), IRIDIUM(49);
+        private int id;
+
+        GTBlockMetalsVariants(int id){
+            this.id = id;
+        }
+
+        public int getID(){
+            return id;
+        }
     }
 
     GTBlockMetalsVariants variant;
@@ -47,7 +56,7 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
 //        for (int i = 0; i < 20; i++){
 //            return Ic2Icons.getTextures("gtclassic_blocks")[16 * i];
 //        }
-        return Ic2Icons.getTextures("gtclassic_blocks")[16];
+        return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
     }
 
     @Override
