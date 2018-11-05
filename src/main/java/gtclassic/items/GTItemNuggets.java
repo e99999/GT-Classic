@@ -2,14 +2,16 @@ package gtclassic.items;
 
 import gtclassic.GTClassic;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import ic2.core.platform.textures.obj.ITexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class GTItemNuggets extends Item implements ITexturedItem {
+public class GTItemNuggets extends Item implements IStaticTexturedItem {
     public enum GTItemNuggetTypes{
         IRIDIUM(0), SILVER(1), ALUMINUM(2), TITANIUM(3), CHROME(4), ELECTRUM(5), TUNGSTEN(6), LEAD(7), ZINC(8), BRASS(9), STEEL(10), PLATINUM(11), NICKEL(12), INVAR(13), OSMIUM(14), COPPER(15), TIN(16), BRONZE(17);
         private int id;
@@ -32,12 +34,12 @@ public class GTItemNuggets extends Item implements ITexturedItem {
     }
 
     @Override
-    public List<ItemStack> getValidItemVariants() {
-        return null;
+    public List<Integer> getValidVariants() {
+        return Arrays.asList(0);
     }
 
     @Override
-    public TextureAtlasSprite getTexture(ItemStack itemStack) {
+    public TextureAtlasSprite getTexture(int i) {
         return Ic2Icons.getTextures("gtclassic_nuggets")[variant.getID()];
     }
 }
