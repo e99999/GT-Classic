@@ -1,11 +1,9 @@
 package gtclassic.util;
 
 import gtclassic.GTClassic;
-import gtclassic.items.GTItemCreditAlk;
-import gtclassic.items.GTItemCreditDoge;
-import gtclassic.items.GTItemDusts;
+import gtclassic.items.*;
 import gtclassic.items.GTItemDusts.GTItemDustTypes;
-import gtclassic.items.GTItemHammerIron;
+import gtclassic.items.GTItemTinyDusts.GTItemTinyDustTypes;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -76,6 +74,75 @@ public class GTItems {
 	dustBasalt = new GTItemDusts(GTItemDustTypes.BASALT),
 	dustThoriumGT = new GTItemDusts(GTItemDustTypes.THORIUM),
 	dustPlutoniumGT = new GTItemDusts(GTItemDustTypes.PLUTONIUM);
+
+	public static final GTItemTinyDusts
+	tinyDustEnderpearl = new GTItemTinyDusts(GTItemTinyDustTypes.ENDERPEARL),
+    tinyDustEnderEye = new GTItemTinyDusts(GTItemTinyDustTypes.ENDER_EYE),
+	tinyDustLazurite = new GTItemTinyDusts(GTItemTinyDustTypes.LAZURITE),
+	tinyDustPyrite = new GTItemTinyDusts(GTItemTinyDustTypes.PYRITE),
+	tinyDustCalcite = new GTItemTinyDusts(GTItemTinyDustTypes.CALCITE),
+	tinyDustSodalite = new GTItemTinyDusts(GTItemTinyDustTypes.SODALITE),
+	tinyDustNetherrack = new GTItemTinyDusts(GTItemTinyDustTypes.NETHERRACK),
+	tinyDustFlintGT = new GTItemTinyDusts(GTItemTinyDustTypes.FLINT),
+	tinyDustSulfurGT = new GTItemTinyDusts(GTItemTinyDustTypes.SULFUR),
+	tinyDustSaltpeterGT = new GTItemTinyDusts(GTItemTinyDustTypes.SALTPETER),
+	tinyDustEndstone = new GTItemTinyDusts(GTItemTinyDustTypes.ENDSTONE),
+	tinyDustCinnabar = new GTItemTinyDusts(GTItemTinyDustTypes.CINNABAR),
+	tinyDustMaganese = new GTItemTinyDusts(GTItemTinyDustTypes.MAGANESE),
+	tinyDustMagnesiumGT = new GTItemTinyDusts(GTItemTinyDustTypes.MAGNESIUM),
+	tinyDustSphalerite = new GTItemTinyDusts(GTItemTinyDustTypes.SPHALERITE),
+	tinyDustWoodPulp = new GTItemTinyDusts(GTItemTinyDustTypes.WOOD_PULP),
+	tinyDustUraniumGT = new GTItemTinyDusts(GTItemTinyDustTypes.URANIUM),
+	tinyDustBauxiteGT = new GTItemTinyDusts(GTItemTinyDustTypes.BAUXITE),
+	tinyDustAluminum = new GTItemTinyDusts(GTItemTinyDustTypes.ALUMINUM),
+	tinyDustTitaniumGT = new GTItemTinyDusts(GTItemTinyDustTypes.TITANIUM),
+	tinyDustChrome = new GTItemTinyDusts(GTItemTinyDustTypes.CHROME),
+	tinyDustElectrumGT = new GTItemTinyDusts(GTItemTinyDustTypes.ELECTRUM),
+	tinyDustTungstenGT = new GTItemTinyDusts(GTItemTinyDustTypes.TUNGSTEN),
+	tinyDustLeadGT = new GTItemTinyDusts(GTItemTinyDustTypes.LEAD),
+	tinyDustZincGT = new GTItemTinyDusts(GTItemTinyDustTypes.ZINC),
+	tinyDustBrassGT = new GTItemTinyDusts(GTItemTinyDustTypes.BRASS),
+	tinyDustSteelGT = new GTItemTinyDusts(GTItemTinyDustTypes.STEEL),
+	tinyDustPlatinumGT = new GTItemTinyDusts(GTItemTinyDustTypes.PLATINUM),
+	tinyDustNickelGT = new GTItemTinyDusts(GTItemTinyDustTypes.NICKEL),
+	tinyDustInvarGT = new GTItemTinyDusts(GTItemTinyDustTypes.INVAR),
+	tinyDustOsmiumGT = new GTItemTinyDusts(GTItemTinyDustTypes.OSMIUM),
+	tinyDustRubyGT = new GTItemTinyDusts(GTItemTinyDustTypes.RUBY),
+	tinyDustSapphireGT = new GTItemTinyDusts(GTItemTinyDustTypes.SAPPHIRE),
+	tinyDustGreenSapphireGT = new GTItemTinyDusts(GTItemTinyDustTypes.GREEN_SAPPHIRE),
+	tinyDustEmerald = new GTItemTinyDusts(GTItemTinyDustTypes.EMERALD),
+	tinyDustDiamondGT = new GTItemTinyDusts(GTItemTinyDustTypes.DIAMOND),
+	tinyDustOlivine = new GTItemTinyDusts(GTItemTinyDustTypes.OLIVINE),
+	tinyDustGalena = new GTItemTinyDusts(GTItemTinyDustTypes.GALENA),
+	tinyDustPhosphor = new GTItemTinyDusts(GTItemTinyDustTypes.PHOSPHOR),
+	tinyDustObsidian = new GTItemTinyDusts(GTItemTinyDustTypes.OBSIDIAN),
+	tinyDustCharcoal = new GTItemTinyDusts(GTItemTinyDustTypes.CHARCOAL),
+	tinyDustRedGarnet = new GTItemTinyDusts(GTItemTinyDustTypes.RED_GARNET),
+	tinyDustYellowGarnet = new GTItemTinyDusts(GTItemTinyDustTypes.YELLOW_GARNET),
+	tinyDustPyrope = new GTItemTinyDusts(GTItemTinyDustTypes.PYROPE),
+	tinyDustAlmandine = new GTItemTinyDusts(GTItemTinyDustTypes.ALMANDINE),
+	tinyDustSpessartine = new GTItemTinyDusts(GTItemTinyDustTypes.SPESSARTINE),
+	tinyDustAndradite = new GTItemTinyDusts(GTItemTinyDustTypes.ANDRADITE),
+	tinyDustGrossular = new GTItemTinyDusts(GTItemTinyDustTypes.GROSSULAR),
+	tinyDustUvarovite = new GTItemTinyDusts(GTItemTinyDustTypes.UVAROVITE),
+	tinyDustAshes = new GTItemTinyDusts(GTItemTinyDustTypes.ASHES),
+	tinyDustDarkAshes = new GTItemTinyDusts(GTItemTinyDustTypes.DARK_ASHES),
+	tinyDustRedRock = new GTItemTinyDusts(GTItemTinyDustTypes.REDROCK),
+	tinyDustMarble = new GTItemTinyDusts(GTItemTinyDustTypes.MARBLE),
+	tinyDustBasalt = new GTItemTinyDusts(GTItemTinyDustTypes.BASALT),
+	tinyDustThoriumGT = new GTItemTinyDusts(GTItemTinyDustTypes.THORIUM),
+	tinyDustPlutoniumGT = new GTItemTinyDusts(GTItemTinyDustTypes.PLUTONIUM),
+	tinyDustCoal = new GTItemTinyDusts(GTItemTinyDustTypes.COAL),
+	tinyDustIron = new GTItemTinyDusts(GTItemTinyDustTypes.IRON),
+	tinyDustGold = new GTItemTinyDusts(GTItemTinyDustTypes.GOLD),
+	tinyDustCopper = new GTItemTinyDusts(GTItemTinyDustTypes.COPPER),
+	tinyDustTin = new GTItemTinyDusts(GTItemTinyDustTypes.TIN),
+	tinyDustBronze = new GTItemTinyDusts(GTItemTinyDustTypes.BRONZE),
+	tinyDustSilver = new GTItemTinyDusts(GTItemTinyDustTypes.SILVER),
+	tinyDustClay = new GTItemTinyDusts(GTItemTinyDustTypes.CLAY),
+	tinyDustGunpowder = new GTItemTinyDusts(GTItemTinyDustTypes.GUNPOWDER),
+	tinyDustRedstone = new GTItemTinyDusts(GTItemTinyDustTypes.REDSTONE),
+	tinyDustGlowstone = new GTItemTinyDusts(GTItemTinyDustTypes.GLOWSTONE);
 
 
 	@Mod.EventBusSubscriber(modid = GTClassic.MODID)
