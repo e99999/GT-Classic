@@ -21,7 +21,7 @@ import java.util.List;
 
 public class GTBlockMetals extends Block implements ITexturedBlock {
     public enum GTBlockMetalsVariants{
-        RUBY(0), SAPPHIRE(16), ALUMINUM(32), TITANIUM(48), CHROME(64), STEEL(80), BRASS(96), LEAD(112), ELECTRUM(128), ZINC(144), OLIVINE(160), GREEN_SAPPHIRE(176), PLATINUM(192), TUNGSTEN(208), NICKEL(224), TUNGSTENSTEEL(240), IRIDIUM_REINFORCED_TUNGSTENSTEEL(1), INVAR(17), OSMIUM(33), IRIDIUM(49);
+        RUBY(0), SAPPHIRE(1), ALUMINUM(2), TITANIUM(3), CHROME(4), STEEL(5), BRASS(6), LEAD(7), ELECTRUM(8), ZINC(9), OLIVINE(10), GREEN_SAPPHIRE(11), PLATINUM(12), TUNGSTEN(13), NICKEL(14), TUNGSTENSTEEL(15), IRIDIUM_REINFORCED_TUNGSTENSTEEL(16), INVAR(17), OSMIUM(18), IRIDIUM(19);
         private int id;
 
         GTBlockMetalsVariants(int id){
@@ -53,9 +53,6 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-//        for (int i = 0; i < 20; i++){
-//            return Ic2Icons.getTextures("gtclassic_blocks")[16 * i];
-//        }
         return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
     }
 
@@ -73,11 +70,4 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
     public IBlockState getStateFromStack(ItemStack stack) {
         return this.getStateFromMeta(stack.getMetadata());
     }
-
-//    @SideOnly(Side.CLIENT)
-//    public void initModel() {
-//
-//        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-//
-//    }
 }

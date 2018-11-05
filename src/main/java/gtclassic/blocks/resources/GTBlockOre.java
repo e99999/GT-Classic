@@ -1,18 +1,36 @@
 package gtclassic.blocks.resources;
 
 import gtclassic.GTClassic;
+import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockOre extends Block {
+import java.util.List;
+
+public class GTBlockOre extends Block implements ITexturedBlock {
     public enum GTBlockOreVariants{
-        GALENA, IRIDIUM, RUBY, SAPPHIRE, BAUXITE, PYRITE, CINNABAR, SPHALERITE, TUNGSTATE, SHELDONITE, OLIVINE, SODALITE;
+        GALENA(96), IRIDIUM(97), RUBY(98), SAPPHIRE(99), BAUXITE(100), PYRITE(101), CINNABAR(102), SPHALERITE(103), TUNGSTATE(104), SHELDONITE(105), OLIVINE(106), SODALITE(107);
+        private int id;
+
+        GTBlockOreVariants(int id){
+            this.id = id;
+        }
+
+        public int getID(){
+            return id;
+        }
     }
 
     GTBlockOreVariants variant;
@@ -27,10 +45,29 @@ public class GTBlockOre extends Block {
         setHarvestLevel("pickaxe", 1);
     }
 
-    //initializes the block texture as an item texture
-    @SideOnly(Side.CLIENT)
-    public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+    @Override
+    public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
+        return FULL_BLOCK_AABB;
+    }
 
+    @SideOnly(Side.CLIENT)
+    @Override
+    public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
+        return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
+    }
+
+    @Override
+    public TextureAtlasSprite getParticleTexture(IBlockState state) {
+        return this.getTextureFromState(state, EnumFacing.SOUTH);
+    }
+
+    @Override
+    public List<IBlockState> getValidStates() {
+        return this.blockState.getValidStates();
+    }
+
+    @Override
+    public IBlockState getStateFromStack(ItemStack stack) {
+        return this.getStateFromMeta(stack.getMetadata());
     }
 }
