@@ -4,11 +4,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class GenLayerBiomesCustom extends GenLayer {
+public class GTGenLayerBiomesCustom extends GenLayer {
 
-	private Biome[] allowedBiomes = {ToxicBiome.biome,};
+	private Biome[] allowedBiomes = {GTToxicBiome.biome,};
 
-	public GenLayerBiomesCustom(long seed) {
+	public GTGenLayerBiomesCustom(long seed) {
 		super(seed);
 	}
 

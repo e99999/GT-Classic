@@ -2,7 +2,7 @@ package gtclassic;
 
 import org.apache.logging.log4j.Level;
 
-import gtclassic.proxy.ProxyCommon;
+import gtclassic.proxy.GTProxyCommon;
 
 import net.minecraftforge.common.config.Configuration;
 
@@ -20,7 +20,7 @@ public class GTConfig {
     // exist yet and read the values if it does exist.
     
     public static void readConfig() {
-        Configuration cfg = ProxyCommon.config;
+        Configuration cfg = GTProxyCommon.config;
         try {
             cfg.load();
             initGeneralConfig(cfg);

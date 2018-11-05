@@ -14,15 +14,15 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
-public class ToxicChunkGenerator implements IChunkGenerator {
+public class GTToxicChunkGenerator implements IChunkGenerator {
 
     private final World worldObj;
     private Random random;
     private Biome[] biomesForGeneration;
 
-    private ToxicTerrainGenerator terraingen = new ToxicTerrainGenerator();
+    private GTToxicTerrainGenerator terraingen = new GTToxicTerrainGenerator();
 
-    public ToxicChunkGenerator(World worldObj) {
+    public GTToxicChunkGenerator(World worldObj) {
         this.worldObj = worldObj;
         long seed = worldObj.getSeed();
         this.random = new Random((seed + 516) * 314);

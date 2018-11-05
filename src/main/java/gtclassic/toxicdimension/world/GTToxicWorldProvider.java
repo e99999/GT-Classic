@@ -1,7 +1,7 @@
 package gtclassic.toxicdimension.world;
 
 import gtclassic.GTDimensions;
-import gtclassic.toxicdimension.biome.BiomeProviderCustom;
+import gtclassic.toxicdimension.biome.GTBiomeProviderCustom;
 
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
@@ -10,7 +10,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ToxicWorldProvider extends WorldProvider {
+public class GTToxicWorldProvider extends WorldProvider {
 	
 	@Override
 	public boolean hasSkyLight() {
@@ -29,12 +29,12 @@ public class ToxicWorldProvider extends WorldProvider {
 
     @Override
     public IChunkGenerator createChunkGenerator() {
-        return new ToxicChunkGenerator(world);
+        return new GTToxicChunkGenerator(world);
     }
     
     @Override
 	public void init() {
-		this.biomeProvider = new BiomeProviderCustom(this.world.getSeed());
+		this.biomeProvider = new GTBiomeProviderCustom(this.world.getSeed());
 	}
 
     @Override

@@ -4,13 +4,13 @@ import com.google.common.base.Preconditions;
 import gtclassic.GTClassic;
 import gtclassic.blocks.GTBlockHazard;
 import gtclassic.blocks.cabinet.GTBlockCabinet;
-import gtclassic.blocks.cabinet.TileEntityCabinet;
+import gtclassic.blocks.cabinet.GTTileEntityCabinet;
 import gtclassic.blocks.resources.GTBlockMetals;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
-import gtclassic.toxicdimension.blocks.BlockToxicPortalFrame;
-import gtclassic.toxicdimension.blocks.BlockToxicGrass;
-import gtclassic.toxicdimension.blocks.BlockToxicPortal;
+import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
+import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
+import gtclassic.toxicdimension.blocks.GTBlockToxicPortal;
 import gtclassic.blocks.resources.GTBlockMetals.GTBlockMetalsVariants;
 import gtclassic.blocks.resources.GTBlockOre.GTBlockOreVariants;
 
@@ -74,9 +74,9 @@ public class GTBlocks {
     sodaliteOre = new GTBlockOre(GTBlockOreVariants.SODALITE);
 
 
-    public static final BlockToxicPortalFrame toxicPortalFrame = new BlockToxicPortalFrame();
-	public static final BlockToxicPortal toxicPortal = new BlockToxicPortal();
-    public static final BlockToxicGrass grassToxic = new BlockToxicGrass();
+    public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
+	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
+    public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
     @Mod.EventBusSubscriber(modid = GTClassic.MODID)
     public static class RegistrationHandler {
         public static final Block[] blocks = {
@@ -125,7 +125,7 @@ public class GTBlocks {
             for (Block block : blocks){
                 registry.register(block);
             }
-            registerTileEntity(TileEntityCabinet.class, "_cabinetblock");
+            registerTileEntity(GTTileEntityCabinet.class, "_cabinetblock");
         }
         @SubscribeEvent
         public static void registerItemBlocks(RegistryEvent.Register<Item> event){

@@ -1,10 +1,10 @@
 package gtclassic;
 
-import gtclassic.commands.CommandTeleport;
-import gtclassic.proxy.ProxyCommon;
+import gtclassic.commands.GTCommandTeleport;
+import gtclassic.proxy.GTProxyCommon;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTIcons;
-import gtclassic.world.OreGen;
+import gtclassic.world.GTOreGen;
 import ic2.api.classic.addon.IC2Plugin;
 import ic2.api.classic.addon.PluginBase;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,8 +27,8 @@ public class GTClassic {
     public static final String MODVERSION= "@VERSION@";
     public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;required-after:forge@[14.23.5.2772,)";
     public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
-    @SidedProxy(clientSide = "gtclassic.proxy.ProxyClient", serverSide = "gtclassic.proxy.ProxyServer")
-    public static ProxyCommon proxy;
+    @SidedProxy(clientSide = "gtclassic.proxy.GTProxyClient", serverSide = "gtclassic.proxy.GTProxyServer")
+    public static GTProxyCommon proxy;
 
     @Mod.Instance
     public static GTClassic instance;
@@ -43,7 +43,7 @@ public class GTClassic {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
-        GameRegistry.registerWorldGenerator(new OreGen(), 0);
+        GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
         proxy.init(e);
     }
 
@@ -56,6 +56,6 @@ public class GTClassic {
 
     @Mod.EventHandler
     public void serverLoad(FMLServerStartingEvent event) {
-        event.registerServerCommand(new CommandTeleport());
+        event.registerServerCommand(new GTCommandTeleport());
     }
 }

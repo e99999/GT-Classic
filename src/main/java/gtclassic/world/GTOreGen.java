@@ -15,7 +15,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class OreGen implements IWorldGenerator {
+public class GTOreGen implements IWorldGenerator {
 	
 	/*The block to generate. (IBlockState)
 	The amount of blocks to generate. (int)

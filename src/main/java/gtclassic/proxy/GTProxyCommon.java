@@ -18,7 +18,7 @@ import java.io.File;
 //in many cases you can use CommonProxy for the server side since most things you want to init on the server you have to init client side as well 
 
 @Mod.EventBusSubscriber
-public class ProxyCommon {
+public class GTProxyCommon {
 
     //config instance
     public static Configuration config;
@@ -33,7 +33,7 @@ public class ProxyCommon {
 
 
     public void init(FMLInitializationEvent e) {
-    	NetworkRegistry.INSTANCE.registerGuiHandler(GTClassic.instance, new ProxyGui());
+    	NetworkRegistry.INSTANCE.registerGuiHandler(GTClassic.instance, new GTProxyGui());
     	GTBiomes.init();
     	GTBiomes.initBiomeDict();
     }

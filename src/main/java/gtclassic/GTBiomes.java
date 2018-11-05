@@ -1,6 +1,6 @@
 package gtclassic;
 
-import gtclassic.toxicdimension.biome.ToxicBiome;
+import gtclassic.toxicdimension.biome.GTToxicBiome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
@@ -10,13 +10,14 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class GTBiomes {
 	
 	public static void init() {
-		ForgeRegistries.BIOMES.register(ToxicBiome.biome);
+		ForgeRegistries.BIOMES.register(GTToxicBiome.biome);
 	}
 	
 	public static void initBiomeDict() {
-		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(ToxicBiome.biome, 10));
-		BiomeDictionary.addTypes(ToxicBiome.biome,
-				BiomeDictionary.Type.WASTELAND
+		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(GTToxicBiome.biome, 10));
+		BiomeDictionary.addTypes(GTToxicBiome.biome,
+				BiomeDictionary.Type.WASTELAND,
+				BiomeDictionary.Type.DEAD
                 );
 		
 	}

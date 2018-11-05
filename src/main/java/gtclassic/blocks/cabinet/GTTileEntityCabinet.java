@@ -8,7 +8,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityCabinet extends TileEntity {
+public class GTTileEntityCabinet extends TileEntity {
 
     public static final int SIZE = 27;
 
@@ -18,7 +18,7 @@ public class TileEntityCabinet extends TileEntity {
         protected void onContentsChanged(int slot) {
             // We need to tell the tile entity that something has changed so
             // that the chest contents is persisted
-            TileEntityCabinet.this.markDirty();
+            GTTileEntityCabinet.this.markDirty();
         }
     };
 

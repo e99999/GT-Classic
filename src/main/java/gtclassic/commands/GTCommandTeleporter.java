@@ -10,9 +10,9 @@ import net.minecraft.world.WorldServer;
 
 import javax.annotation.Nonnull;
 
-public class CommandTeleporter extends Teleporter {
+public class GTCommandTeleporter extends Teleporter {
 
-    public CommandTeleporter(WorldServer world, double x, double y, double z) {
+    public GTCommandTeleporter(WorldServer world, double x, double y, double z) {
         super(world);
         this.worldServer = world;
         this.x = x;
@@ -47,7 +47,7 @@ public class CommandTeleporter extends Teleporter {
             throw new IllegalArgumentException("Dimension: "+dimension+" doesn't exist!");
         }
 
-        worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension, new CommandTeleporter(worldServer, x, y, z));
+        worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension, new GTCommandTeleporter(worldServer, x, y, z));
         player.setPositionAndUpdate(x, y, z);
         if (oldDimension == 1) {
             // For some reason teleporting out of the end does weird things.

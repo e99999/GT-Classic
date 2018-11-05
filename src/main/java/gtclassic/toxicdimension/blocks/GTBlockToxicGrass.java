@@ -17,11 +17,11 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockToxicGrass extends Block {
+public class GTBlockToxicGrass extends Block {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 	
-	public BlockToxicGrass() {
+	public GTBlockToxicGrass() {
 		super(Material.GRASS);
 		setRegistryName("toxic_grass");
 		setUnlocalizedName(GTClassic.MODID + ".grassToxic");

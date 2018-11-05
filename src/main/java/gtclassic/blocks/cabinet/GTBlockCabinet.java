@@ -80,7 +80,7 @@ public class GTBlockCabinet extends Block implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityCabinet();
+        return new GTTileEntityCabinet();
     }
 
     @Override
@@ -89,7 +89,7 @@ public class GTBlockCabinet extends Block implements ITileEntityProvider {
             return true;
         }
         TileEntity te = world.getTileEntity(pos);
-        if (!(te instanceof TileEntityCabinet)) {
+        if (!(te instanceof GTTileEntityCabinet)) {
             return false;
         }
         player.openGui(GTClassic.instance, GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
@@ -99,7 +99,7 @@ public class GTBlockCabinet extends Block implements ITileEntityProvider {
     //code below gives items back after breaking the blocks
     public void breakBlock( World worldIn, BlockPos pos, IBlockState state ){
         TileEntity te = worldIn.getTileEntity( pos );
-        if( te instanceof TileEntityCabinet ){
+        if( te instanceof GTTileEntityCabinet ){
             ItemStackHandler ish = (ItemStackHandler)te.getCapability( CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP );
             for( int i=0; i<ish.getSlots(); i++ ){
                 if( ish.getStackInSlot( i ) != null ){

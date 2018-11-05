@@ -5,13 +5,13 @@ import gtclassic.GTClassic;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiCabinet extends GuiContainer {
+public class GTGuiCabinet extends GuiContainer {
     public static final int WIDTH = 180;
     public static final int HEIGHT = 152;
 
     private static final ResourceLocation background = new ResourceLocation(GTClassic.MODID, "textures/gui/cabinetgui.png");
 
-    public GuiCabinet(TileEntityCabinet tileEntity, ContainerCabinet container) {
+    public GTGuiCabinet(GTTileEntityCabinet tileEntity, GTContainerCabinet container) {
         super(container);
 
         xSize = WIDTH;

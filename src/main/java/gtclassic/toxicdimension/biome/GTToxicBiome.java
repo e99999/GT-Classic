@@ -11,7 +11,7 @@ import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityPigZombie;
 
-public class ToxicBiome {
+public class GTToxicBiome {
 
 	public static BiomeGenCustom biome;
 	public static Object instance;

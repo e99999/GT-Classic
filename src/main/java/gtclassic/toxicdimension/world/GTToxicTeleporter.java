@@ -17,12 +17,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 
-public class ToxicTeleporter extends Teleporter {
+public class GTToxicTeleporter extends Teleporter {
 
 	private Vec3d lastPortalVec;
 	private EnumFacing teleportDirection;
 
-	public ToxicTeleporter(WorldServer worldServer, Vec3d lastPortalVec, EnumFacing teleportDirection) {
+	public GTToxicTeleporter(WorldServer worldServer, Vec3d lastPortalVec, EnumFacing teleportDirection) {
 		super(worldServer);
 		this.lastPortalVec = lastPortalVec;
 		this.teleportDirection = teleportDirection;

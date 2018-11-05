@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
-public class ProxyClient extends ProxyCommon {
+public class GTProxyClient extends GTProxyCommon {
     @Override
     public void preInit(FMLPreInitializationEvent e) {
         super.preInit(e);

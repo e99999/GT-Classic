@@ -10,10 +10,10 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockToxicPortalFrame extends Block {
+public class GTBlockToxicPortalFrame extends Block {
 
     //basic information about this block
-	public BlockToxicPortalFrame() {
+	public GTBlockToxicPortalFrame() {
         super(Material.IRON);
         setRegistryName("toxic_portal_frame");
         setUnlocalizedName(GTClassic.MODID + ".toxicPortalFrame");

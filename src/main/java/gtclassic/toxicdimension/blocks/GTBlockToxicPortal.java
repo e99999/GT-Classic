@@ -6,7 +6,7 @@ import com.google.common.cache.LoadingCache;
 import gtclassic.GTClassic;
 import gtclassic.GTConfig;
 import gtclassic.util.GTBlocks;
-import gtclassic.toxicdimension.world.ToxicTeleporter;
+import gtclassic.toxicdimension.world.GTToxicTeleporter;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
@@ -34,9 +34,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockToxicPortal extends BlockPortal {
+public class GTBlockToxicPortal extends BlockPortal {
 
-	public BlockToxicPortal() {
+	public GTBlockToxicPortal() {
 		super();
 		setRegistryName("toxic_portal"); //texture
 		setUnlocalizedName(GTClassic.MODID + ".toxicPortal"); //lang
@@ -57,12 +57,12 @@ public class BlockToxicPortal extends BlockPortal {
 
 	@Override
 	public boolean trySpawnPortal(World worldIn, BlockPos pos) {
-		BlockToxicPortal.Size blockportalsize = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
+		GTBlockToxicPortal.Size blockportalsize = new GTBlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
 		if (blockportalsize.isValid() && blockportalsize.portalBlockCount == 0) {
 			blockportalsize.placePortalBlocks();
 			return true;
 		} else {
-			BlockToxicPortal.Size blockportalsize1 = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
+			GTBlockToxicPortal.Size blockportalsize1 = new GTBlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
 			if (blockportalsize1.isValid() && blockportalsize1.portalBlockCount == 0) {
 				blockportalsize1.placePortalBlocks();
 				return true;
@@ -77,13 +77,13 @@ public class BlockToxicPortal extends BlockPortal {
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		EnumFacing.Axis enumfacingaxis = (EnumFacing.Axis) state.getValue(AXIS);
 		if (enumfacingaxis == EnumFacing.Axis.X) {
-			BlockToxicPortal.Size blockportalsize = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
+			GTBlockToxicPortal.Size blockportalsize = new GTBlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
 			if (!blockportalsize.isValid() || blockportalsize.portalBlockCount < blockportalsize.width * blockportalsize.height) {
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 				portalDestroyed(worldIn, pos);
 			}
 		} else if (enumfacingaxis == EnumFacing.Axis.Z) {
-			BlockToxicPortal.Size blockportalsize1 = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
+			GTBlockToxicPortal.Size blockportalsize1 = new GTBlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
 			if (!blockportalsize1.isValid() || blockportalsize1.portalBlockCount < blockportalsize1.width * blockportalsize1.height) {
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 				portalDestroyed(worldIn, pos);
@@ -119,11 +119,11 @@ public class BlockToxicPortal extends BlockPortal {
 	@Override
 	public BlockPattern.PatternHelper createPatternHelper(World worldIn, BlockPos pos) {
 		EnumFacing.Axis enumfacingaxis = EnumFacing.Axis.Z;
-		BlockToxicPortal.Size blockportalsize = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
+		GTBlockToxicPortal.Size blockportalsize = new GTBlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
 		LoadingCache<BlockPos, BlockWorldState> loadingcache = BlockPattern.createLoadingCache(worldIn, true);
 		if (!blockportalsize.isValid()) {
 			enumfacingaxis = EnumFacing.Axis.X;
-			blockportalsize = new BlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
+			blockportalsize = new GTBlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
 		}
 		if (!blockportalsize.isValid()) {
 			return new BlockPattern.PatternHelper(pos, EnumFacing.NORTH, EnumFacing.UP, loadingcache, 1, 1, 1);
@@ -186,7 +186,7 @@ public class BlockToxicPortal extends BlockPortal {
 		}
 	}
 
-	private ToxicTeleporter getTeleporterForDimension(Entity entity, BlockPos pos, int dimid) {
+	private GTToxicTeleporter getTeleporterForDimension(Entity entity, BlockPos pos, int dimid) {
 		BlockPattern.PatternHelper blockpatternpatternhelper = GTBlocks.toxicPortal.createPatternHelper(entity.world, new BlockPos(pos));
 		double d0 = blockpatternpatternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double) blockpatternpatternhelper
 				.getFrontTopLeft().getZ() : (double) blockpatternpatternhelper.getFrontTopLeft().getX();
@@ -196,7 +196,7 @@ public class BlockToxicPortal extends BlockPortal {
 				d0, d0 - (double) blockpatternpatternhelper.getWidth()));
 		double d2 = MathHelper.pct(entity.posY - 1.0D, (double) blockpatternpatternhelper.getFrontTopLeft().getY(),
 				(double) (blockpatternpatternhelper.getFrontTopLeft().getY() - blockpatternpatternhelper.getHeight()));
-		return new ToxicTeleporter(entity.getServer().getWorld(dimid), new Vec3d(d1, d2, 0.0D), blockpatternpatternhelper.getForwards());
+		return new GTToxicTeleporter(entity.getServer().getWorld(dimid), new Vec3d(d1, d2, 0.0D), blockpatternpatternhelper.getForwards());
 	}
 
 	public static class Size {

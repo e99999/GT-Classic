@@ -17,9 +17,9 @@ import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-public class CommandTeleport extends CommandBase {
+public class GTCommandTeleport extends CommandBase {
 
-    public CommandTeleport(){
+    public GTCommandTeleport(){
         aliases = Lists.newArrayList(GTClassic.MODID, "TP", "tp");
     }
 
@@ -58,7 +58,7 @@ public class CommandTeleport extends CommandBase {
         }
 
         if (sender instanceof EntityPlayer) {
-            CommandTeleporter.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
+            GTCommandTeleporter.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
         }
     }
 

@@ -14,24 +14,24 @@ import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 
-public class BiomeProviderCustom extends BiomeProvider {
+public class GTBiomeProviderCustom extends BiomeProvider {
 
 	private GenLayer genBiomes;
 	private GenLayer biomeIndexLayer;
 	private BiomeCache biomeCache;
 
-	public BiomeProviderCustom() {
+	public GTBiomeProviderCustom() {
 		this.biomeCache = new BiomeCache(this);
 	}
 
-	public BiomeProviderCustom(long seed) {
+	public GTBiomeProviderCustom(long seed) {
 		this();
-		GenLayer[] agenlayer = GenLayerFix.makeTheWorld(seed);
+		GenLayer[] agenlayer = GTGenLayerFix.makeTheWorld(seed);
 		this.genBiomes = agenlayer[0];
 		this.biomeIndexLayer = agenlayer[1];
 	}
 
-	public BiomeProviderCustom(World world) {
+	public GTBiomeProviderCustom(World world) {
 		this(world.getSeed());
 	}
 

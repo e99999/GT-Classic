@@ -1,6 +1,6 @@
 package gtclassic;
 
-import gtclassic.toxicdimension.world.ToxicWorldProvider;
+import gtclassic.toxicdimension.world.GTToxicWorldProvider;
 
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
@@ -15,7 +15,7 @@ public class GTDimensions {
     }
 
     private static void registerDimensionTypes() {
-        testDimensionType = DimensionType.register(GTClassic.MODID, "_test", GTConfig.dimensionId, ToxicWorldProvider.class, false);
+        testDimensionType = DimensionType.register(GTClassic.MODID, "_test", GTConfig.dimensionId, GTToxicWorldProvider.class, false);
     }
 
     private static void registerDimensions() {
