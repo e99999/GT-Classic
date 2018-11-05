@@ -16,8 +16,7 @@ public class GTBiomes {
 	public static void initBiomeDict() {
 		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(GTToxicBiome.biome, 10));
 		BiomeDictionary.addTypes(GTToxicBiome.biome,
-				BiomeDictionary.Type.WASTELAND,
-				BiomeDictionary.Type.DEAD
+				BiomeDictionary.Type.WASTELAND
                 );
 		
 	}

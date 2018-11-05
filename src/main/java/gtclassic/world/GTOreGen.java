@@ -3,6 +3,8 @@ package gtclassic.world;
 import java.util.Random;
 
 import com.google.common.base.Predicate;
+
+import gtclassic.GTDimensions;
 import gtclassic.util.GTBlocks;
 
 import net.minecraft.block.state.IBlockState;
@@ -31,16 +33,20 @@ public class GTOreGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
-		switch(world.provider.getDimension()) {
-		case -1: //Ore gen for the nether
+		switch(world.provider.getDimensionType()) {
+		case NETHER:
+			runGenerator(GTBlocks.cinnabarOre.getDefaultState(), 16, 2, 20, 80, BlockMatcher.forBlock(Blocks.NETHERRACK), world, random, chunkX, chunkZ);
 			break;
 		
-		case 0://Ore gen for the overworld
+		default:
 			runGenerator(GTBlocks.sandIron.getDefaultState(), 32, 2, 48, 63, BlockMatcher.forBlock(Blocks.SAND), world, random, chunkX, chunkZ);
 			break;
 		
-		case 1: //Ore gen for the end
+		case THE_END:
+			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 2, 20, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			break;
+			
+		//TODO add toxic dim case after fixing name from "testdimension"
 		}
 	}
 	
