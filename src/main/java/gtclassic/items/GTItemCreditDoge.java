@@ -8,10 +8,10 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemCreditDoge extends Item {
+public class GTItemCreditDoge extends Item {
 
     //basic information about this item
-	public ItemCreditDoge() {
+	public GTItemCreditDoge() {
         setRegistryName("doge_credit");        // The unique name (within your mod) that identifies this item
         setUnlocalizedName(GTClassic.MODID + ".creditDoge");     // Used for localization (en_US.lang)
         setCreativeTab(GTClassic.creativeTabGT);

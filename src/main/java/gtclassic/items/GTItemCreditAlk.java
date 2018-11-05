@@ -19,10 +19,10 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemCreditAlk extends Item {
+public class GTItemCreditAlk extends Item {
 
     //basic information about this item
-	public ItemCreditAlk() {
+	public GTItemCreditAlk() {
 		
 		this.maxStackSize = 1;
 		this.setMaxDamage(64);

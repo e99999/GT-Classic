@@ -71,9 +71,9 @@ public class ProxyCommon {
 //
 //    	//items
 //    	GTClassic.logger.info("Registering Items");
-//    	event.getRegistry().register(new ItemCreditDoge());
-//    	event.getRegistry().register(new ItemCreditAlk());
-//    	event.getRegistry().register(new ItemHammerIron());
+//    	event.getRegistry().register(new GTItemCreditDoge());
+//    	event.getRegistry().register(new GTItemCreditAlk());
+//    	event.getRegistry().register(new GTItemHammerIron());
 //
 //    	//blocks as items
 //    	GTClassic.logger.info("Registering Blocks as Items");

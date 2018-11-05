@@ -9,9 +9,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemHammerIron extends ItemPickaxe {
+public class GTItemHammerIron extends ItemPickaxe {
 	
-	public ItemHammerIron() {
+	public GTItemHammerIron() {
 		super(GTMaterials.IRON);
 		this.setMaxDamage(500);
 		setRegistryName("iron_hammer");        // The unique name (within your mod) that identifies this item
