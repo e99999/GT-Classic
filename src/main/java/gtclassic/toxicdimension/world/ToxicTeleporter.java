@@ -1,7 +1,7 @@
 package gtclassic.toxicdimension.world;
 
 
-import gtclassic.GTBlocks;
+import gtclassic.util.GTBlocks;
 
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;

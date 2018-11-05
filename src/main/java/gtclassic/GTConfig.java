@@ -26,7 +26,7 @@ public class GTConfig {
             initGeneralConfig(cfg);
             initDimensionConfig(cfg);
         } catch (Exception e1) {
-            GTMod.logger.log(Level.ERROR, "Problem loading config file!", e1);
+            GTClassic.logger.log(Level.ERROR, "Problem loading config file!", e1);
         } finally {
             if (cfg.hasChanged()) {
                 cfg.save();

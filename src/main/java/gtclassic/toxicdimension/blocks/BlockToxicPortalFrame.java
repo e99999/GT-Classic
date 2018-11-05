@@ -1,7 +1,6 @@
 package gtclassic.toxicdimension.blocks;
 
-import gtclassic.GTMod;
-import gtclassic.GTItems;
+import gtclassic.GTClassic;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -17,8 +16,8 @@ public class BlockToxicPortalFrame extends Block {
 	public BlockToxicPortalFrame() {
         super(Material.IRON);
         setRegistryName("toxic_portal_frame");
-        setUnlocalizedName(GTMod.MODID + ".toxicPortalFrame");
-        setCreativeTab(GTItems.tabGTClassic);
+        setUnlocalizedName(GTClassic.MODID + ".toxicPortalFrame");
+        setCreativeTab(GTClassic.creativeTabGT);
         setHardness(3.0F);
         setResistance(40.0F);
         setHarvestLevel("pickaxe", 2);

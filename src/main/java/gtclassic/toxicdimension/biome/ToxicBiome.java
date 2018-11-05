@@ -1,6 +1,6 @@
 package gtclassic.toxicdimension.biome;
 
-import gtclassic.GTBlocks;
+import gtclassic.util.GTBlocks;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
