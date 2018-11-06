@@ -51,6 +51,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
         this.setHarvestLevel("axe", 2);
         this.setRegistryName("advanced_chainsaw");
         this.setUnlocalizedName(GTClassic.MODID + ".advancedChainsaw");
+        this.setCreativeTab(GTClassic.creativeTabGT);
     }
 
     @Override
