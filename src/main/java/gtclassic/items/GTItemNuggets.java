@@ -3,10 +3,8 @@ package gtclassic.items;
 import gtclassic.GTClassic;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
-import ic2.core.platform.textures.obj.ITexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;
 import java.util.List;

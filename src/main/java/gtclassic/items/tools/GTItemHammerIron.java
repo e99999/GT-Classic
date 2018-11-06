@@ -1,4 +1,4 @@
-package gtclassic.items;
+package gtclassic.items.tools;
 
 import gtclassic.GTClassic;
 import gtclassic.GTMaterials;
