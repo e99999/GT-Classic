@@ -5,6 +5,7 @@ import gtclassic.items.*;
 import gtclassic.items.GTItemDusts.GTItemDustTypes;
 import gtclassic.items.GTItemTinyDusts.GTItemTinyDustTypes;
 import gtclassic.items.GTItemNuggets.GTItemNuggetTypes;
+import gtclassic.items.GTItemMaterials.GTItemMaterialTypes;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -164,6 +165,59 @@ public class GTItems {
 	nuggetCopperGT = new GTItemNuggets(GTItemNuggetTypes.COPPER),
 	nuggetTin = new GTItemNuggets(GTItemNuggetTypes.TIN),
 	nuggetBronze = new GTItemNuggets(GTItemNuggetTypes.BRONZE);
+
+	public static final GTItemMaterials
+	ingotIridiumAlloy = new GTItemMaterials(GTItemMaterialTypes.IRIDIUM_ALLOY_INGOT),
+	ingotHotTungstensteel = new GTItemMaterials(GTItemMaterialTypes.HOT_TUNGSTENSTEEL_INGOT),
+	ingotTungstensteel = new GTItemMaterials(GTItemMaterialTypes.TUNGSTENSTEEL_INGOT),
+	ingotIridiumGT = new GTItemMaterials(GTItemMaterialTypes.IRIDIUM_INGOT),
+	ingotAluminum = new GTItemMaterials(GTItemMaterialTypes.ALUMINUM_INGOT),
+	ingotTitaniumGT = new GTItemMaterials(GTItemMaterialTypes.TITANIUM_INGOT),
+	ingotChromeGT = new GTItemMaterials(GTItemMaterialTypes.CHROME_INGOT),
+	ingotElectrumGT = new GTItemMaterials(GTItemMaterialTypes.ELECTRUM_INGOT),
+	ingotTungstenGT = new GTItemMaterials(GTItemMaterialTypes.TUNGSTEN_INGOT),
+	ingotLeadGT = new GTItemMaterials(GTItemMaterialTypes.LEAD_INGOT),
+	ingotZincGT = new GTItemMaterials(GTItemMaterialTypes.ZINC_INGOT),
+	ingotBrassGT = new GTItemMaterials(GTItemMaterialTypes.BRASS_INGOT),
+	ingotSteelGT = new GTItemMaterials(GTItemMaterialTypes.STEEL_INGOT),
+	ingotPlatinumGT = new GTItemMaterials(GTItemMaterialTypes.PLATINUM_INGOT),
+	ingotNickelGT = new GTItemMaterials(GTItemMaterialTypes.NICKEL_INGOT),
+	ingotInvarGT = new GTItemMaterials(GTItemMaterialTypes.INVAR_INGOT),
+	ingotOsmiumGT = new GTItemMaterials(GTItemMaterialTypes.OSMIUM_INGOT),
+	rubyGT = new GTItemMaterials(GTItemMaterialTypes.RUBY),
+	sapphireGT = new GTItemMaterials(GTItemMaterialTypes.SAPPHIRE),
+	greenSapphire = new GTItemMaterials(GTItemMaterialTypes.GREEN_SAPPHIRE),
+	lazuriteChunk = new GTItemMaterials(GTItemMaterialTypes.LAZURITE_CHUNK),
+	plateSiliconGT = new GTItemMaterials(GTItemMaterialTypes.SILICON_PLATE),
+	olivine = new GTItemMaterials(GTItemMaterialTypes.OLIVINE),
+	ingotThoriumGT = new GTItemMaterials(GTItemMaterialTypes.THORIUM_INGOT),
+	ingotPlutoniumGT = new GTItemMaterials(GTItemMaterialTypes.PLUTONIUM_INGOT),
+	redGarnet = new GTItemMaterials(GTItemMaterialTypes.RED_GARNET),
+	yellowGarnet = new GTItemMaterials(GTItemMaterialTypes.YELLOW_GARNET),
+	plateIronGT = new GTItemMaterials(GTItemMaterialTypes.IRON_PLATE),
+	plateGold = new GTItemMaterials(GTItemMaterialTypes.GOLD_PLATE),
+	plateRefinedIronGT = new GTItemMaterials(GTItemMaterialTypes.REFINED_IRON_PLATE),
+	plateTin = new GTItemMaterials(GTItemMaterialTypes.TIN_PLATE),
+	plateCopperGT = new GTItemMaterials(GTItemMaterialTypes.COPPER_PLATE),
+	plateSilver = new GTItemMaterials(GTItemMaterialTypes.SILVER_PLATE),
+	plateBronzeGT = new GTItemMaterials(GTItemMaterialTypes.BRONZE_PLATE),
+	plateElectrumGT = new GTItemMaterials(GTItemMaterialTypes.ELECTRUM_PLATE),
+	plateNickel = new GTItemMaterials(GTItemMaterialTypes.NICKEL_PLATE),
+	plateInvar = new GTItemMaterials(GTItemMaterialTypes.INVAR_PLATE),
+	plateLead = new GTItemMaterials(GTItemMaterialTypes.LEAD_PLATE),
+	plateAluminum = new GTItemMaterials(GTItemMaterialTypes.ALUMINUM_PLATE),
+	plateChrome = new GTItemMaterials(GTItemMaterialTypes.CHROME_PLATE),
+	plateTitaniumGT = new GTItemMaterials(GTItemMaterialTypes.TITANIUM_PLATE),
+	plateSteelGT = new GTItemMaterials(GTItemMaterialTypes.STEEL_PLATE),
+	platePlatinumGT = new GTItemMaterials(GTItemMaterialTypes.PLATINUM_PLATE),
+	plateTungstenGT = new GTItemMaterials(GTItemMaterialTypes.TUNGSTEN_PLATE),
+	plateBrassGT = new GTItemMaterials(GTItemMaterialTypes.BRASS_PLATE),
+	plateZinc = new GTItemMaterials(GTItemMaterialTypes.ZINC_PLATE),
+	plateTungstensteel = new GTItemMaterials(GTItemMaterialTypes.TUNGSTENSTEEL_PLATE),
+	plateOsmium = new GTItemMaterials(GTItemMaterialTypes.OSMIUM_PLATE),
+	plateMagnaliumGT = new GTItemMaterials(GTItemMaterialTypes.MAGNALIUM_PLATE),
+	flour = new GTItemMaterials(GTItemMaterialTypes.FLOUR),
+	plateWood = new GTItemMaterials(GTItemMaterialTypes.WOOD_PLATE);
 
 	@Mod.EventBusSubscriber(modid = GTClassic.MODID)
 	public static class RegistrationHandler {
