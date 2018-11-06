@@ -46,9 +46,9 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
         this.hasSubtypes = true;
         this.setUnlocalizedName(GTClassic.MODID + ".advancedDrill");
         this.attackDamage = 8.0F;
-        this.maxCharge = 128000;
+        this.maxCharge = 100000;
         this.transferLimit = 150;
-        this.tier = 2;
+        this.tier = 3;
         this.setCreativeTab(GTClassic.creativeTabGT);
     }
 
@@ -64,26 +64,17 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
 
     @Override
     public int getHarvestLevel(ItemStack stack, String toolClass, EntityPlayer player, IBlockState blockState) {
-        if (!toolClass.equals("pickaxe") && !toolClass.equals("shovel")) {
-            return -1;
-        } else {
-            int metadata = stack.getMetadata();
-            return metadata == 0 ? 3 : 3;
-        }
+        return 3;
     }
 
     @Override
     public int getEnergyCost(ItemStack stack) {
-        if (stack.getMetadata() == 0) {
-            return 250;
-        } else {
-            return StackUtil.getNbtData(stack).getBoolean("Rockcutter") ? 20 : 80;
-        }
+         return 200;  
     }
 
     @Override
     public float getMiningSpeed(ItemStack stack) {
-        return stack.getMetadata() == 0 ? 16.0F : 16.0F;
+        return 16.0F;
     }
 
     @Override
@@ -94,7 +85,6 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         ItemStack stack = playerIn.getHeldItem(handIn);
-        if (stack.getMetadata() == 0) {
             if (IC2.keyboard.isModeSwitchKeyDown(playerIn)) {
                 if (IC2.platform.isRendering()) {
                     return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
@@ -110,7 +100,7 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
             if (IC2.keyboard.isAltKeyDown(playerIn) && !this.getScanner(playerIn.inventory).isEmpty()) {
                 return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
             }
-        }
+        
 
         return ActionResult.newResult(EnumActionResult.PASS, stack);
     }
@@ -206,7 +196,6 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
 
     @Override
     public void onSortedItemToolTip(ItemStack stack, EntityPlayer player, boolean debugTooltip, List<String> tooltip, Map<ToolTipType, List<String>> sortedTooltip) {
-        if (stack.getMetadata() == 0) {
             NBTTagCompound nbt = StackUtil.getNbtData(stack);
             tooltip.add((nbt.getBoolean("dirtMode") ? Ic2InfoLang.enableDrillMode : Ic2InfoLang.disableDrillMode).getLocalized());
             if (nbt.getBoolean("Rockcutter")) {
@@ -219,19 +208,18 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
             ctrlTip.add("");
             ctrlTip.add(Ic2Lang.onBlockClick.getLocalized());
             ctrlTip.add(Ic2Lang.pressTo.getLocalizedFormatted(new Object[]{IC2.keyboard.getKeyName(0), Ic2InfoLang.drillProbing.getLocalized()}));
-        }
-
+     
     }
 
     @Override
     public boolean isBasicDrill(ItemStack d) {
-        return d.getMetadata() == 0 && !d.isItemEnchantable();
+        return !d.isItemEnchantable();
     }
 
     @Override
     public int getExtraSpeed(ItemStack d) {
         int pointBoost = this.getPointBoost(d);
-        return d.getMetadata() == 0 ? 3 + pointBoost : 0 + pointBoost;
+        return 0 + pointBoost;
     }
 
     private int getPointBoost(ItemStack drill) {
