@@ -6,6 +6,7 @@ import gtclassic.items.GTItemDusts.GTItemDustTypes;
 import gtclassic.items.GTItemTinyDusts.GTItemTinyDustTypes;
 import gtclassic.items.GTItemNuggets.GTItemNuggetTypes;
 import gtclassic.items.GTItemMaterials.GTItemMaterialTypes;
+import gtclassic.items.GTItemComponents.GTItemComponentTypes;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -218,6 +219,31 @@ public class GTItems {
 	plateMagnaliumGT = new GTItemMaterials(GTItemMaterialTypes.MAGNALIUM_PLATE),
 	flour = new GTItemMaterials(GTItemMaterialTypes.FLOUR),
 	plateWood = new GTItemMaterials(GTItemMaterialTypes.WOOD_PLATE);
+
+	public static final GTItemComponents
+	energyFlowCircuit = new GTItemComponents(GTItemComponentTypes.ENERGY_FLOW_CIRCUIT),
+	dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
+	superConductor = new GTItemComponents(GTItemComponentTypes.SUPERCONDUCTOR),
+	dataStorageCircuit = new GTItemComponents(GTItemComponentTypes.DATA_STORAGE_CIRCUIT),
+	computerMonitor = new GTItemComponents(GTItemComponentTypes.COMPUTER_MONITOR),
+	conveyorModule = new GTItemComponents(GTItemComponentTypes.CONVEYOR_MODULE),
+	braintechAerospaceARDT = new GTItemComponents(GTItemComponentTypes.BRAINTECH_AEROSPACE_ARDT),
+	diamondSawblade = new GTItemComponents(GTItemComponentTypes.DIAMOND_SAWBLADE),
+	diamondGrinder = new GTItemComponents(GTItemComponentTypes.DIAMOND_GRINDER),
+	kanthalHeatingCoil = new GTItemComponents(GTItemComponentTypes.KANTHAL_HEATING_COIL),
+	nichromeHeatingCoil = new GTItemComponents(GTItemComponentTypes.NICHROME_HEATING_COIL),
+	cupronickelHeatingCoil = new GTItemComponents(GTItemComponentTypes.CUPRONICKEL_HEATING_COIL),
+	machineParts = new GTItemComponents(GTItemComponentTypes.MACHINE_PARTS),
+	wolframiumGrinder = new GTItemComponents(GTItemComponentTypes.WOLFRAMIUM_GRINDER),
+	advancedCircuitParts = new GTItemComponents(GTItemComponentTypes.ADVANCED_CIRCUIT_PARTS),
+	aluminumMachineHull = new GTItemComponents(GTItemComponentTypes.ALUMINUM_MACHINE_HULL),
+	bronzeMachineHull = new GTItemComponents(GTItemComponentTypes.BRONZE_MACHINE_HULL),
+	brassMachineHull = new GTItemComponents(GTItemComponentTypes.BRASS_MACHINE_HULL),
+	steelMachineHull = new GTItemComponents(GTItemComponentTypes.STEEL_MACHINE_HULL),
+	titaniumMachineHull = new GTItemComponents(GTItemComponentTypes.TITANIUM_MACHINE_HULL),
+	basicCircuitBoard = new GTItemComponents(GTItemComponentTypes.BASIC_CIRCUIT_BOARD),
+	advancedCircuitBoard = new GTItemComponents(GTItemComponentTypes.ADVANCED_CIRCUIT_BOARD),
+	eliteCircuitBoard = new GTItemComponents(GTItemComponentTypes.ELITE_CIRCUIT_BOARD);
 
 	@Mod.EventBusSubscriber(modid = GTClassic.MODID)
 	public static class RegistrationHandler {
