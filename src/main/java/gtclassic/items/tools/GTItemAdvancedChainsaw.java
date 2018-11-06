@@ -2,6 +2,7 @@ package gtclassic.items.tools;
 
 import gtclassic.GTClassic;
 import ic2.api.item.ElectricItem;
+import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
 import ic2.core.audio.AudioSource;
 import ic2.core.item.base.ItemElectricTool;
@@ -133,13 +134,42 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
         }
     }
 
-    @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos, EntityLivingBase entityLiving) {
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos, EntityLivingBase entityLiving, EntityPlayer player) {
         if (entityLiving instanceof EntityPlayer) {
             IC2.achievements.issueStat((EntityPlayer)entityLiving, "blocksSawed");
         }
+        if (!player.isSneaking()){
+            for (int i = 1; i < 10; i++) {
+                BlockPos nextPos = pos.up(i);
+                IBlockState nextState = worldIn.getBlockState(nextPos);
+                if(nextState.getBlock().isWood(worldIn, nextPos)){
+                    breakBlock(nextPos, stack, worldIn, entityLiving, pos);
+                }
+            }
+        }
 
         return super.onBlockDestroyed(stack, worldIn, blockIn, pos, entityLiving);
+    }
+
+    public void breakBlock(BlockPos pos, ItemStack saw, World world, EntityLivingBase entityLiving, BlockPos oldPos) {
+        if (oldPos == pos) {
+            return;
+        }
+        //IEnergyStorage capEnergy = stack.getCapability(CapabilityEnergy.ENERGY, null);
+        if (!ElectricItem.manager.canUse(saw, (double)this.getEnergyCost(saw))) {
+            return;
+        }
+        IBlockState blockState = world.getBlockState(pos);
+        if (blockState.getBlockHardness(world, pos) == -1.0F) {
+            return;
+        }
+        if(!(entityLiving instanceof EntityPlayer)){
+            return;
+        }
+        //capEnergy.extractEnergy(cost, false);
+        blockState.getBlock().harvestBlock(world, (EntityPlayer) entityLiving, pos, blockState, world.getTileEntity(pos), saw);
+        world.setBlockToAir(pos);
+        world.removeTileEntity(pos);
     }
 
     @Override
