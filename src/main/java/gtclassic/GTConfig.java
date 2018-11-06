@@ -17,9 +17,9 @@ public class GTConfig {
     public static boolean isThisAGoodGregtech = true;
     public static String yourRealName = "Steve";
     
-    public static boolean genNetherOres = true;
-    public static boolean genOverworldOres = true;
-    public static boolean genEndOres = true;
+    public static boolean genNetherPyrite = true;
+    public static boolean genNetherCinnabar = true;
+    public static boolean genNetherSphalerite = true;
     
     public static int dimensionId = 100;
 
@@ -51,9 +51,9 @@ public class GTConfig {
     
     private static void initGenerationConfig(Configuration cfg) {
         cfg.addCustomCategoryComment(CATEGORY_GEN, "World generation configuration");
-        genNetherOres = cfg.getBoolean("genNetherOres", CATEGORY_GEN, genNetherOres, "Generate Nether GregTech Ores");
-        genOverworldOres = cfg.getBoolean("genOverworldOres", CATEGORY_GEN, genOverworldOres, "Generate Overworld GregTech Ores");
-        genEndOres = cfg.getBoolean("genEndOres", CATEGORY_GEN, genEndOres, "Generate End GregTech Ores");
+        genNetherPyrite = cfg.getBoolean("genNetherPyrite", CATEGORY_GEN, genNetherPyrite, "Generate Nether Pyrite Ore");
+        genNetherCinnabar = cfg.getBoolean("genNetherCinnabar", CATEGORY_GEN, genNetherCinnabar, "Generate Nether Cinnabar Ore");
+        genNetherSphalerite = cfg.getBoolean("genNetherSphalerite", CATEGORY_GEN, genNetherSphalerite, "Generate Nether Sphalerite Ore");
     }
 
     private static void initDimensionConfig(Configuration cfg) {

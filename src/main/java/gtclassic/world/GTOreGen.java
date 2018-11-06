@@ -35,14 +35,20 @@ public class GTOreGen implements IWorldGenerator {
 			IChunkProvider chunkProvider) {
 		switch(world.provider.getDimensionType()) {
 		case NETHER:
+			if (GTConfig.genNetherPyrite){
 			runGenerator(GTBlocks.pyriteOre.getDefaultState(), 16, 2, 0, 64, BlockMatcher.forBlock(Blocks.NETHERRACK), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genNetherCinnabar){
 			runGenerator(GTBlocks.cinnabarOre.getDefaultState(), 16, 2, 64, 128, BlockMatcher.forBlock(Blocks.NETHERRACK), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genNetherSphalerite){
 			runGenerator(GTBlocks.sphaleriteOre.getDefaultState(), 16, 2, 32, 96, BlockMatcher.forBlock(Blocks.NETHERRACK), world, random, chunkX, chunkZ);
+			}
 			break;
 		
 		case THE_END:
 			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 2, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			runGenerator(GTBlocks.sheldoniteOre.getDefaultState(), 16, 2, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.sheldoniteOre.getDefaultState(), 8, 2, 10, 40, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 2, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.olivineOre.getDefaultState(), 16, 2, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			break;
