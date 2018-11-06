@@ -22,7 +22,7 @@ public class GTIcons {
         addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 6, 12, 7));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_dusts", 0, 0, 16, 4));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_duststiny", 0, 0, 16, 6));
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_nuggets", 0, 0, 16, 1));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_nuggets", 0, 0, 16, 2));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_materials", 0, 0, 16, 4));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_components", 0, 0, 16, 3));
     }

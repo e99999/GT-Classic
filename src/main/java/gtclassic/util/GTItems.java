@@ -7,6 +7,7 @@ import gtclassic.items.GTItemTinyDusts.GTItemTinyDustTypes;
 import gtclassic.items.GTItemNuggets.GTItemNuggetTypes;
 import gtclassic.items.GTItemMaterials.GTItemMaterialTypes;
 import gtclassic.items.GTItemComponents.GTItemComponentTypes;
+import gtclassic.items.tools.GTItemAdvancedChainsaw;
 import gtclassic.items.tools.GTItemAdvancedDrill;
 import gtclassic.items.tools.GTItemHammerIron;
 import net.minecraft.item.Item;
@@ -25,6 +26,7 @@ public class GTItems {
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
+	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();
 	public static final GTItemDusts
 	dustEnderpearl = new GTItemDusts(GTItemDustTypes.ENDERPEARL),
     dustEnderEye = new GTItemDusts(GTItemDustTypes.ENDER_EYE),
@@ -255,6 +257,7 @@ public class GTItems {
 				creditAlk,
 				hammerIron,
 				advancedDrill,
+				advancedChainsaw,
 				
 				dustEnderpearl,
 			    dustEnderEye,
