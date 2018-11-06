@@ -4,6 +4,7 @@ import gtclassic.GTClassic;
 import gtclassic.items.*;
 import gtclassic.items.GTItemDusts.GTItemDustTypes;
 import gtclassic.items.GTItemTinyDusts.GTItemTinyDustTypes;
+import gtclassic.items.GTItemNuggets.GTItemNuggetTypes;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -144,6 +145,25 @@ public class GTItems {
 	tinyDustRedstone = new GTItemTinyDusts(GTItemTinyDustTypes.REDSTONE),
 	tinyDustGlowstone = new GTItemTinyDusts(GTItemTinyDustTypes.GLOWSTONE);
 
+	public static final GTItemNuggets
+	nuggetIridium = new GTItemNuggets(GTItemNuggetTypes.IRIDIUM),
+	nuggetSilver = new GTItemNuggets(GTItemNuggetTypes.SILVER),
+	nuggetAluminum = new GTItemNuggets(GTItemNuggetTypes.ALUMINUM),
+	nuggetTitanium = new GTItemNuggets(GTItemNuggetTypes.TITANIUM),
+	nuggetChrome = new GTItemNuggets(GTItemNuggetTypes.CHROME),
+	nuggetElectrum = new GTItemNuggets(GTItemNuggetTypes.ELECTRUM),
+	nuggetTungsten = new GTItemNuggets(GTItemNuggetTypes.TUNGSTEN),
+	nuggetLead = new GTItemNuggets(GTItemNuggetTypes.LEAD),
+	nuggetZinc = new GTItemNuggets(GTItemNuggetTypes.ZINC),
+	nuggetBrass = new GTItemNuggets(GTItemNuggetTypes.BRASS),
+	nuggetSteel = new GTItemNuggets(GTItemNuggetTypes.STEEL),
+	nuggetPlatinum = new GTItemNuggets(GTItemNuggetTypes.PLATINUM),
+	nuggetNickel = new GTItemNuggets(GTItemNuggetTypes.NICKEL),
+	nuggetInvar = new GTItemNuggets(GTItemNuggetTypes.INVAR),
+	nuggetOsmium = new GTItemNuggets(GTItemNuggetTypes.OSMIUM),
+	nuggetCopperGT = new GTItemNuggets(GTItemNuggetTypes.COPPER),
+	nuggetTin = new GTItemNuggets(GTItemNuggetTypes.TIN),
+	nuggetBronze = new GTItemNuggets(GTItemNuggetTypes.BRONZE);
 
 	@Mod.EventBusSubscriber(modid = GTClassic.MODID)
 	public static class RegistrationHandler {
