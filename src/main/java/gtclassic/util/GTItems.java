@@ -7,6 +7,7 @@ import gtclassic.items.GTItemTinyDusts.GTItemTinyDustTypes;
 import gtclassic.items.GTItemNuggets.GTItemNuggetTypes;
 import gtclassic.items.GTItemMaterials.GTItemMaterialTypes;
 import gtclassic.items.GTItemComponents.GTItemComponentTypes;
+import gtclassic.items.tools.GTItemAdvancedDrill;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,6 +23,7 @@ public class GTItems {
     public static final GTItemCreditDoge creditDoge = new GTItemCreditDoge();
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
+	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
 	public static final GTItemDusts
 	dustEnderpearl = new GTItemDusts(GTItemDustTypes.ENDERPEARL),
     dustEnderEye = new GTItemDusts(GTItemDustTypes.ENDER_EYE),
@@ -251,6 +253,7 @@ public class GTItems {
 				creditDoge,
 				creditAlk,
 				hammerIron,
+				advancedDrill
 		};
 		@SubscribeEvent
 		public static void registerItems(RegistryEvent.Register<Item> event) {
