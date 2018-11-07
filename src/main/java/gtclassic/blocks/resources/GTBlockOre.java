@@ -11,20 +11,17 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class GTBlockOre extends Block implements ITexturedBlock {
     public enum GTBlockOreVariants{
@@ -52,55 +49,47 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         setHarvestLevel("pickaxe", 1);
     }
     
-    //TODO switch to get drops list
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-    	if (this == GTBlocks.pyriteOre)
+    
+    public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune){
+        ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+        
+        if (this == GTBlocks.cinnabarOre) 
         {
-            return GTItems.dustPyrite;
+        drops.add(new ItemStack(GTItems.dustCinnabar, 2));
+        drops.add(new ItemStack(Items.REDSTONE, 1));
         }
-    	if (this == GTBlocks.cinnabarOre)
+        
+        if (this == GTBlocks.pyriteOre) 
         {
-            return  GTItems.dustCinnabar;
+        drops.add(new ItemStack(GTItems.dustPyrite, 2));
         }
-    	if (this == GTBlocks.sphaleriteOre)
+        
+        if (this == GTBlocks.sphaleriteOre) 
         {
-            return GTItems.dustSphalerite;
+        drops.add(new ItemStack(GTItems.dustSphalerite, 1));
+        	if(RANDOM.nextFloat()<0.25f) {
+        		drops.add(new ItemStack(GTItems.dustZincGT, 1));
+        	}
+        	if(RANDOM.nextFloat()<0.125f) {
+        		drops.add(new ItemStack(GTItems.yellowGarnet, 1));
+        	}
         }
-		
-    	return Item.getItemFromBlock(this);
+        
+        return drops;
     }
     
-    public int quantityDropped(Random random)
-    {
-    	if (this == (GTBlocks.pyriteOre))
-        {
-            return 2;
-        }
-    	if (this == (GTBlocks.cinnabarOre))
-        {
-            return 2;
-        }
-    	return 1;
-    }
     
     @Override
     public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune)
     {
-        Random rand = world instanceof World ? ((World)world).rand : new Random();
-        if (this.getItemDropped(state, rand, fortune) != Item.getItemFromBlock(this))
-        {
-            int i = 0;
-
             if (this == GTBlocks.sphaleriteOre)
             {
-                i = MathHelper.getInt(rand, 0, 2);
+                return 1;
             }
             
-            return i;
-        }
-        return 0;
-    }
+            return 0;
+    }       
+  
 
     @Override
     public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
