@@ -17,7 +17,7 @@ public class GTBlockAlloySmelter extends BlockLVMachine {
     public GTBlockAlloySmelter(){
         this.setCreativeTab(GTClassic.creativeTabGT);
         this.setRegistryName("alloy_smelter");
-        this.setRegistryName(GTClassic.MODID + ".alloySmelter");
+        this.setUnlocalizedName(GTClassic.MODID + ".alloySmelter");
     }
 
     @Override
