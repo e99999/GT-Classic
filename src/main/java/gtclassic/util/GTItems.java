@@ -7,6 +7,8 @@ import gtclassic.items.GTItemTinyDusts.GTItemTinyDustTypes;
 import gtclassic.items.GTItemNuggets.GTItemNuggetTypes;
 import gtclassic.items.GTItemMaterials.GTItemMaterialTypes;
 import gtclassic.items.GTItemComponents.GTItemComponentTypes;
+import gtclassic.items.eustorage.GTItemLapotronicEnergyOrb;
+import gtclassic.items.eustorage.GTItemLitiumBattery;
 import gtclassic.items.tools.GTItemAdvancedChainsaw;
 import gtclassic.items.tools.GTItemAdvancedDrill;
 import gtclassic.items.tools.GTItemHammerIron;
@@ -27,6 +29,8 @@ public class GTItems {
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
 	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();
+	public static final GTItemLitiumBattery lithiumBattery = new GTItemLitiumBattery();
+	public static final GTItemLapotronicEnergyOrb lapotronicEnergyOrb = new GTItemLapotronicEnergyOrb();
 	public static final GTItemDusts
 	dustEnderpearl = new GTItemDusts(GTItemDustTypes.ENDERPEARL),
     dustEnderEye = new GTItemDusts(GTItemDustTypes.ENDER_EYE),
@@ -258,6 +262,8 @@ public class GTItems {
 				hammerIron,
 				advancedDrill,
 				advancedChainsaw,
+				lithiumBattery,
+				lapotronicEnergyOrb,
 				
 				dustEnderpearl,
 			    dustEnderEye,
