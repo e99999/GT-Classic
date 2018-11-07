@@ -47,10 +47,15 @@ public class GTOreGen implements IWorldGenerator {
 			break;
 		
 		case THE_END:
-			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 2, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			runAsteroidGenerator(Blocks.END_STONE.getDefaultState(), 64, 1, 80, 127, BlockMatcher.forBlock(Blocks.AIR), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.olivineOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			
+			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.sheldoniteOre.getDefaultState(), 8, 2, 10, 40, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 2, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			runGenerator(GTBlocks.olivineOre.getDefaultState(), 16, 2, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.olivineOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			break;
 			
 		default:
@@ -70,16 +75,32 @@ public class GTOreGen implements IWorldGenerator {
 	
 	private void runGenerator(IBlockState blockToGen, int blockAmount,  int chancesToSpawn, int minHeight, int maxHeight, Predicate<IBlockState> blockToReplace, World world, Random rand, int chunkX, int chunkZ){
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
-			throw new IllegalArgumentException("Illegal Height Arguments for WorldGenerator");
+			throw new IllegalArgumentException("Illegal Height Arguments for OreGenerator");
 
 		WorldGenMinable generator = new WorldGenMinable(blockToGen, blockAmount, blockToReplace);
 		int heightdiff = maxHeight - minHeight +1;
 		for (int i=0; i<chancesToSpawn; i++){
-			int x = chunkX * 16 +rand.nextInt(16);
+			int x = chunkX * 16 + rand.nextInt(16);
 			int y = minHeight + rand.nextInt(heightdiff);
 			int z = chunkZ * 16 + rand.nextInt(16);
 
 			generator.generate(world, rand, new BlockPos(x, y, z));
+		}
+	}
+	
+	private void runAsteroidGenerator(IBlockState blockToGen, int blockAmount,  int chancesToSpawn, int minHeight, int maxHeight, Predicate<IBlockState> blockToReplace, World world, Random rand, int chunkX, int chunkZ){
+		
+		WorldGenMinable generator = new WorldGenMinable(blockToGen, blockAmount, blockToReplace);
+		int heightdiff = maxHeight - minHeight +1;
+		for (int i=0; i<chancesToSpawn; i++){
+			int var1 = rand.nextInt(128);
+			if (var1 == 0) {
+			int x = chunkX * 16 + rand.nextInt(16);
+			int y = minHeight + rand.nextInt(heightdiff);
+			int z = chunkZ * 16 + rand.nextInt(16);
+			
+			generator.generate(world, rand, new BlockPos(x, y, z));
+			}
 		}
 	}
 }

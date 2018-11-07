@@ -11,6 +11,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -36,7 +38,8 @@ public class GTBlockOre extends Block implements ITexturedBlock {
             return id;
         }
     }
-
+    
+    
     GTBlockOreVariants variant;
     public GTBlockOre(GTBlockOreVariants variant) {
         super(Material.ROCK);
@@ -45,6 +48,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_ore");
         setCreativeTab(GTClassic.creativeTabGT);
         setHardness(3.0F);
+        setResistance(10.0F);
         setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 1);
     }
@@ -53,19 +57,17 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune){
         ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
         
-        if (this == GTBlocks.cinnabarOre) 
-        {
+        //Nether Ores
+        if (this == GTBlocks.cinnabarOre) {
         drops.add(new ItemStack(GTItems.dustCinnabar, 2));
         drops.add(new ItemStack(Items.REDSTONE, 1));
         }
         
-        if (this == GTBlocks.pyriteOre) 
-        {
+        if (this == GTBlocks.pyriteOre) {
         drops.add(new ItemStack(GTItems.dustPyrite, 2));
         }
         
-        if (this == GTBlocks.sphaleriteOre) 
-        {
+        if (this == GTBlocks.sphaleriteOre) {
         drops.add(new ItemStack(GTItems.dustSphalerite, 1));
         	if(RANDOM.nextFloat()<0.25f) {
         		drops.add(new ItemStack(GTItems.dustZincGT, 1));
@@ -75,20 +77,70 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         	}
         }
         
+        //End Ores
+        if (this == GTBlocks.tungstateOre) {
+        drops.add(new ItemStack(GTBlocks.tungstateOre, 1));
+        }
+        
+        if (this == GTBlocks.sheldoniteOre) {
+        drops.add(new ItemStack(GTBlocks.sheldoniteOre, 1));
+        }
+        
+        if (this == GTBlocks.sodaliteOre) {
+        drops.add(new ItemStack(GTBlocks.sodaliteOre, 1));
+        }
+        
+        if (this == GTBlocks.olivineOre) {
+        drops.add(new ItemStack(GTItems.olivine, 1));
+        }
+        
+        
+        //Default Ores
+        if (this == GTBlocks.galenaOre) {
+        drops.add(new ItemStack(GTBlocks.galenaOre, 1));
+        }
+        
+        if (this == GTBlocks.iridiumOreGT) {
+        drops.add(new ItemStack(GTBlocks.iridiumOreGT, 1));
+        }
+        
+        if (this == GTBlocks.rubyOre) {
+        	if(RANDOM.nextFloat()>0.10f) {
+        		drops.add(new ItemStack(GTItems.rubyGT, 1));
+        		}
+        	else {
+        		drops.add(new ItemStack(GTItems.redGarnet, 1));
+        	}
+        }
+        
+        if (this == GTBlocks.sapphireOre) {
+        	if(RANDOM.nextFloat()>0.10f) {
+        		drops.add(new ItemStack(GTItems.sapphireGT, 1));
+        		}
+        	else {
+        		drops.add(new ItemStack(GTItems.greenSapphire, 1));
+        	}
+        }
+        
+        if (this == GTBlocks.bauxiteOre) {
+            drops.add(new ItemStack(GTBlocks.bauxiteOre, 1));
+            }
+        
         return drops;
     }
     
     
     @Override
-    public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune)
-    {
-            if (this == GTBlocks.sphaleriteOre)
-            {
+    public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune){
+            if (this == GTBlocks.sphaleriteOre){
                 return 1;
             }
-            
             return 0;
-    }       
+    }
+    
+    public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
+        return !(entity instanceof EntityDragon);
+    }
   
 
     @Override
