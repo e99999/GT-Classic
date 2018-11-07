@@ -14,23 +14,26 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemLithiumBatpack extends ItemIC2AdvArmorBase implements IDamagelessElectricItem {
+public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamagelessElectricItem {
     String texture;
     int maxEnergy;
     int tier;
     int transferlimit;
     EnumRarity rare;
 
-    public GTItemLithiumBatpack() {
-        super(0, EntityEquipmentSlot.CHEST);
+    int index;
+
+    public GTItemEnergyPack(int index, String tex, int max, String reg, String unl, int lvl, int limit) {
+        super(index, EntityEquipmentSlot.CHEST);
+        this.index = index;
         this.setMaxDamage(0);
-        this.texture = "gtclassic:textures/models/armor/lithiumbatpack";
-        this.maxEnergy = 600000;
-        this.setRegistryName("lithium_batpack");
-        this.setUnlocalizedName(GTClassic.MODID + ".lithiumBatpack");
+        this.texture =  tex; //"gtclassic:textures/models/armor/lithiumbatpack";
+        this.maxEnergy = max; //600000;
+        this.setRegistryName(reg); //("lithium_batpack");
+        this.setUnlocalizedName(GTClassic.MODID + unl); //(GTClassic.MODID + ".lithiumBatpack");
         this.setCreativeTab(GTClassic.creativeTabGT);
-        this.tier = 1;
-        this.transferlimit = 200;
+        this.tier = lvl; //1;
+        this.transferlimit = limit; //200;
         this.rare = EnumRarity.COMMON;
     }
 
@@ -38,7 +41,7 @@ public class GTItemLithiumBatpack extends ItemIC2AdvArmorBase implements IDamage
     //int index, int maxDamage, String tex, int max, String reg, String unl, int lvl, int limit
 
 
-    public GTItemLithiumBatpack setRarity(EnumRarity newValue) {
+    public GTItemEnergyPack setRarity(EnumRarity newValue) {
         this.rare = newValue;
         return this;
     }
@@ -93,6 +96,6 @@ public class GTItemLithiumBatpack extends ItemIC2AdvArmorBase implements IDamage
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTexture(int meta){
-        return Ic2Icons.getTextures("gtclassic_items")[58];
+        return Ic2Icons.getTextures("gtclassic_items")[this.index];
     }
 }
