@@ -5,6 +5,10 @@ import gtclassic.GTClassic;
 import gtclassic.GTBiomes;
 import gtclassic.GTDimensions;
 
+import gtclassic.tileentity.GTTileEntityAlloySmelter;
+import gtclassic.util.GTBlocks;
+import gtclassic.util.GTItems;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -14,7 +18,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import java.io.File;
 
-@Mod.EventBusSubscriber
 public class GTProxyCommon {
 
     //config instance
@@ -26,7 +29,10 @@ public class GTProxyCommon {
         config = new Configuration(new File(directory.getPath(), "GTClassic.cfg"));
 		GTConfig.readConfig();
 		config.save();
-        GTDimensions.init();  
+        GTDimensions.init();
+        MinecraftForge.EVENT_BUS.register(GTBlocks.class);
+        GTBlocks.registerTiles();
+        MinecraftForge.EVENT_BUS.register(GTItems.class);
     }
 
 
@@ -34,6 +40,7 @@ public class GTProxyCommon {
     	NetworkRegistry.INSTANCE.registerGuiHandler(GTClassic.instance, new GTProxyGui());
     	GTBiomes.init();
     	GTBiomes.initBiomeDict();
+        GTTileEntityAlloySmelter.init();
     }
 
     

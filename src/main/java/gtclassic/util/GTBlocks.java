@@ -4,9 +4,11 @@ import gtclassic.GTClassic;
 import gtclassic.blocks.GTBlockHazard;
 import gtclassic.blocks.cabinet.GTBlockCabinet;
 import gtclassic.blocks.cabinet.GTTileEntityCabinet;
+import gtclassic.blocks.machines.lv.GTBlockAlloySmelter;
 import gtclassic.blocks.resources.GTBlockMetals;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
+import gtclassic.tileentity.GTTileEntityAlloySmelter;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortal;
@@ -18,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -27,13 +30,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
 
-@ObjectHolder(GTClassic.MODID)
 public class GTBlocks {
 
     //not required but useful stored references to blocks
     public static final GTBlockHazard blockHazard = new GTBlockHazard();
     public static final GTBlockCabinet blockCabinet = new GTBlockCabinet();
     public static final GTBlockSandIron sandIron = new GTBlockSandIron();
+    public static final GTBlockAlloySmelter alloySmelter = new GTBlockAlloySmelter();
 
 	public static final GTBlockMetals
 	rubyBlock = new GTBlockMetals(GTBlockMetalsVariants.RUBY),
@@ -75,66 +78,67 @@ public class GTBlocks {
     public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
 	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
     public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
-    @Mod.EventBusSubscriber(modid = GTClassic.MODID)
-    public static class RegistrationHandler {
-        public static final Block[] blocks = {
-                blockHazard,
-                blockCabinet,
-                sandIron,
-                rubyBlock,
-                sapphireBlock,
-                aluminumBlock,
-                titaniumBlock,
-                chromeBlock,
-                steelBlock,
-                brassBlock,
-                leadBlock,
-                electrumBlock,
-                zincBlock,
-                olivineBlock,
-                greenSapphireBlock,
-                platinumBlock,
-                tungstenBlock,
-                nickelBlock,
-                tungstensteelBlock,
-                iridiumReinforcedTungstensteelBlock,
-                invarBlock,
-                osmiumBlock,
-                iridiumBlock,
-                galenaOre,
-                iridiumOreGT,
-                rubyOre,
-                sapphireOre,
-                bauxiteOre,
-                pyriteOre,
-                cinnabarOre,
-                sphaleriteOre,
-                tungstateOre,
-                sheldoniteOre,
-                olivineOre,
-                sodaliteOre,
-                toxicPortalFrame,
-                toxicPortal,
-                grassToxic
-        };
-        @SubscribeEvent
-        public static void registerBlocks(RegistryEvent.Register<Block> event){
-            IForgeRegistry registry = event.getRegistry();
-            for (Block block : blocks){
-                registry.register(block);
-            }
-            registerTileEntity(GTTileEntityCabinet.class, "_cabinetblock");
+    public static final Block[] blocks = {
+            blockHazard,
+            blockCabinet,
+            alloySmelter,
+            sandIron,
+            rubyBlock,
+            sapphireBlock,
+            aluminumBlock,
+            titaniumBlock,
+            chromeBlock,
+            steelBlock,
+            brassBlock,
+            leadBlock,
+            electrumBlock,
+            zincBlock,
+            olivineBlock,
+            greenSapphireBlock,
+            platinumBlock,
+            tungstenBlock,
+            nickelBlock,
+            tungstensteelBlock,
+            iridiumReinforcedTungstensteelBlock,
+            invarBlock,
+            osmiumBlock,
+            iridiumBlock,
+            galenaOre,
+            iridiumOreGT,
+            rubyOre,
+            sapphireOre,
+            bauxiteOre,
+            pyriteOre,
+            cinnabarOre,
+            sphaleriteOre,
+            tungstateOre,
+            sheldoniteOre,
+            olivineOre,
+            sodaliteOre,
+            toxicPortalFrame,
+            toxicPortal,
+            grassToxic
+    };
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event){
+        IForgeRegistry registry = event.getRegistry();
+        for (Block block : blocks){
+            registry.register(block);
         }
-        @SubscribeEvent
-        public static void registerItemBlocks(RegistryEvent.Register<Item> event){
-            final IForgeRegistry registry = event.getRegistry();
-            for (Block block : blocks) {
-                registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTClassic.creativeTabGT));
-            }
+        registerTileEntity(GTTileEntityCabinet.class, "_cabinetblock");
+    }
+    @SubscribeEvent
+    public static void registerItemBlocks(RegistryEvent.Register<Item> event){
+        final IForgeRegistry registry = event.getRegistry();
+        for (Block block : blocks) {
+            registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTClassic.creativeTabGT));
         }
-        private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
-            GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
-        }
+    }
+    public static void registerTiles(){
+        GameRegistry.registerTileEntity(GTTileEntityAlloySmelter.class, new ResourceLocation(GTClassic.MODID, "tileEntityAloySmelter"));
+    }
+    private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
+        GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
     }
 	
 	//inits block models all blocks should be listed
