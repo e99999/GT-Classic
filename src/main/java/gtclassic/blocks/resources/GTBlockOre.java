@@ -50,10 +50,9 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         setHardness(3.0F);
         setResistance(10.0F);
         setSoundType(SoundType.STONE);
-        setHarvestLevel("pickaxe", 1);
+        //setHarvestLevel("pickaxe", 2);
     }
-    
-    
+
     public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune){
         ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
         
@@ -87,7 +86,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         }
         
         if (this == GTBlocks.sodaliteOre) {
-        drops.add(new ItemStack(GTBlocks.sodaliteOre, 1));
+        drops.add(new ItemStack(GTItems.dustSodalite, 6));
         }
         
         if (this == GTBlocks.olivineOre) {
@@ -113,7 +112,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         	}
         }
         
-        if (this == GTBlocks.sapphireOre) {
+        if (this == GTBlocks.sapphireOre) {//iron and add xp
         	if(RANDOM.nextFloat()>0.10f) {
         		drops.add(new ItemStack(GTItems.sapphireGT, 1));
         		}
@@ -122,7 +121,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         	}
         }
         
-        if (this == GTBlocks.bauxiteOre) {
+        if (this == GTBlocks.bauxiteOre) {//stone
             drops.add(new ItemStack(GTBlocks.bauxiteOre, 1));
             }
         
@@ -135,8 +134,18 @@ public class GTBlockOre extends Block implements ITexturedBlock {
             if (this == GTBlocks.sphaleriteOre){
                 return 1;
             }
+            if (this == GTBlocks.iridiumOreGT){
+                return 3;
+            }
+            if (this == GTBlocks.rubyOre){
+                return 2;
+            }
+            if (this == GTBlocks.sapphireOre){
+                return 2;
+            }
             return 0;
     }
+    
     
     public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
         return !(entity instanceof EntityDragon);

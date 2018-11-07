@@ -51,6 +51,7 @@ public class GTOreGen implements IWorldGenerator {
 			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.olivineOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			//runGenerator(Blocks.OBSIDIAN.getDefaultState(), 8, 96, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			
 			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.sheldoniteOre.getDefaultState(), 8, 2, 10, 40, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);

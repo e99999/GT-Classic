@@ -2,6 +2,7 @@ package gtclassic;
 
 import gtclassic.commands.GTCommandTeleport;
 import gtclassic.proxy.GTProxyCommon;
+import gtclassic.util.GTBlocks;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTIcons;
 import gtclassic.world.GTOreGen;
@@ -44,6 +45,7 @@ public class GTClassic {
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
         GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
+        GTBlocks.initHarvestLevel();
         proxy.init(e);
     }
 
