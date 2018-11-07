@@ -46,7 +46,8 @@ tile.gtclassic.grassToxic.name=Unstable Earth
 
 item.gtclassic.advancedDrill.name=Advanced Drill
 item.gtclassic.advancedChainsaw.name=Advanced Chainsaw
-item.gtclassic.lithiumBattery=Lithium Battery
+item.gtclassic.lithiumBattery.name=Lithium Battery
+item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 
 #dust
