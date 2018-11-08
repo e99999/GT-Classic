@@ -12,6 +12,7 @@ import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IRecipeMachine;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.classic.tile.machine.IProgressMachine;
+import ic2.api.energy.EnergyNet;
 import ic2.api.network.INetworkTileEntityEventListener;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
@@ -101,7 +102,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
     public static final int slotOutput2 = 4;
 
     public GTTileEntityAlloySmelter() {
-        this(5, 1, 400, 32);
+        this(9, 1, 400, 32);
     }
 
     public GTTileEntityAlloySmelter(int slots, int energyPerTick, int maxProgress, int maxInput)
@@ -303,6 +304,65 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         this.updateComparators();
     }
 
+    public void handleModifiers(IMachineRecipeList.RecipeEntry entry)
+    {
+        if (entry != null && entry.getOutput().getMetadata() != null)
+        {
+            NBTTagCompound nbt = entry.getOutput().getMetadata();
+            double energyMod = nbt.hasKey("RecipeEnergyModifier") ? nbt.getDouble("RecipeEnergyModifier") : 1.0D;
+            int newEnergy = applyModifier(this.energyConsume, nbt.getInteger("RecipeEnergy"), energyMod);
+            if (newEnergy != this.recipeEnergy)
+            {
+                this.recipeEnergy = newEnergy;
+                if (this.recipeEnergy < 1)
+                {
+                    this.recipeEnergy = 1;
+                }
+
+                this.getNetwork().updateTileGuiField(this, "recipeEnergy");
+            }
+
+            double progMod = nbt.hasKey("RecipeTimeModifier") ? nbt.getDouble("RecipeTimeModifier") : 1.0D;
+            int newProgress = applyModifier(this.operationLength, nbt.getInteger("RecipeTime"), progMod);
+            if (newProgress != this.recipeOperation)
+            {
+                this.recipeOperation = newProgress;
+                if (this.recipeOperation < 1)
+                {
+                    this.recipeOperation = 1;
+                }
+
+                this.getNetwork().updateTileGuiField(this, "recipeOperation");
+            }
+
+        }
+        else
+        {
+            if (this.recipeEnergy != this.energyConsume)
+            {
+                this.recipeEnergy = this.energyConsume;
+                if (this.recipeEnergy < 1)
+                {
+                    this.recipeEnergy = 1;
+                }
+
+                this.getNetwork().updateTileGuiField(this, "recipeEnergy");
+            }
+
+            if (this.recipeOperation != this.operationLength)
+            {
+                this.recipeOperation = this.operationLength;
+                if (this.recipeOperation < 1)
+                {
+                    this.recipeOperation = 1;
+                }
+
+                this.getNetwork().updateTileGuiField(this, "recipeOperation");
+            }
+
+        }
+    }
+
     public void operate(IMachineRecipeList.RecipeEntry entry)
     {
         IRecipeInput input = entry.getInput();
@@ -341,7 +401,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
-        //list.addAll(output.getRecipeOutput(this.getMachineWorld().rand));
+        //list.addAll(output.getRecipeOutput(this.getMachineWorld().rand,));
         if (!(input instanceof INullableRecipeInput) || !((ItemStack) this.inventory.get(slotInput)).isEmpty())
         {
             if (((ItemStack) this.inventory.get(slotInput)).getItem().hasContainerItem((ItemStack) this.inventory.get(slotInput)))
@@ -583,13 +643,106 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return ret;
     }
 
+    public void setOverclockRates()
+    {
+        this.lastRecipe = null;
+        int extraProcessSpeed = 0;
+        double processingSpeedMultiplier = 1.0D;
+        int extraProcessTime = 0;
+        double processTimeMultiplier = 1.0D;
+        int extraEnergyDemand = 0;
+        double energyDemandMultiplier = 1.0D;
+        int extraEnergyStorage = 0;
+        double energyStorageMultiplier = 1.0D;
+        int extraTier = 0;
+        float soundModfier = 1.0F;
+        boolean redstonePowered = false;
+        this.redstoneSensitive = this.defaultSensitive;
+
+        for (int i = 0; i < 4; ++i)
+        {
+            ItemStack item = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            if (item.getItem() instanceof IMachineUpgradeItem)
+            {
+                IMachineUpgradeItem upgrade = (IMachineUpgradeItem) item.getItem();
+                upgrade.onInstalling(item, this);
+                extraProcessSpeed += upgrade.getExtraProcessSpeed(item, this) * item.getCount();
+                processingSpeedMultiplier *= Math.pow(upgrade.getProcessSpeedMultiplier(item, this), (double) item.getCount());
+                extraProcessTime += upgrade.getExtraProcessTime(item, this) * item.getCount();
+                processTimeMultiplier *= Math.pow(upgrade.getProcessTimeMultiplier(item, this), (double) item.getCount());
+                extraEnergyDemand += upgrade.getExtraEnergyDemand(item, this) * item.getCount();
+                energyDemandMultiplier *= Math.pow(upgrade.getEnergyDemandMultiplier(item, this), (double) item.getCount());
+                extraEnergyStorage += upgrade.getExtraEnergyStorage(item, this) * item.getCount();
+                energyStorageMultiplier *= Math.pow(upgrade.getEnergyStorageMultiplier(item, this), (double) item.getCount());
+                soundModfier = (float) ((double) soundModfier * Math.pow((double) upgrade.getSoundVolumeMultiplier(item, this), (double) item.getCount()));
+                extraTier += upgrade.getExtraTier(item, this) * item.getCount();
+                if (upgrade.useRedstoneInverter(item, this))
+                {
+                    redstonePowered = true;
+                }
+            }
+        }
+
+        this.redstoneInverted = redstonePowered;
+        this.progressPerTick = applyFloatModifier(1, extraProcessSpeed, processingSpeedMultiplier);
+        this.energyConsume = applyModifier(this.defaultEnergyConsume, extraEnergyDemand, energyDemandMultiplier);
+        this.operationLength = applyModifier(this.defaultOperationLength, extraProcessTime, processTimeMultiplier);
+        this.setMaxEnergy(applyModifier(this.defaultEnergyStorage, extraEnergyStorage, energyStorageMultiplier));
+        this.tier = this.baseTier + extraTier;
+        if (this.tier > 13)
+        {
+            this.tier = 13;
+        }
+
+        this.maxInput = (int) EnergyNet.instance.getPowerFromTier(this.tier);
+        if (this.energy > this.maxEnergy)
+        {
+            this.energy = this.maxEnergy;
+        }
+
+        this.soundLevel = soundModfier;
+        if (this.progressPerTick < 0.01F)
+        {
+            this.progressPerTick = 0.01F;
+        }
+
+        if (this.operationLength < 1)
+        {
+            this.operationLength = 1;
+        }
+
+        if (this.energyConsume < 1)
+        {
+            this.energyConsume = 1;
+        }
+
+        this.handleModifiers(this.lastRecipe);
+        this.getNetwork().updateTileEntityField(this, "redstoneInverted");
+        this.getNetwork().updateTileEntityField(this, "redstoneSensitive");
+        this.getNetwork().updateTileEntityField(this, "soundLevel");
+        this.getNetwork().updateTileGuiField(this, "maxInput");
+        this.getNetwork().updateTileGuiField(this, "energy");
+    }
+
+    static int applyModifier(int base, int extra, double multiplier)
+    {
+        long ret = Math.round((double) (base + extra) * multiplier);
+        return ret > 2147483647L ? 2147483647 : (int) ret;
+    }
+
+    static float applyFloatModifier(int base, int extra, double multiplier)
+    {
+        double ret = (double) Math.round((double) (base + extra) * multiplier);
+        return ret > 2.147483648E9D ? 2.14748365E9F : (float) ret;
+    }
+
     public void onLoaded()
     {
         super.onLoaded();
-//        if (this.isSimulating())
-//        {
-//            this.setOverclockRates();
-//        }
+        if (this.isSimulating())
+        {
+            this.setOverclockRates();
+        }
 
     }
 
