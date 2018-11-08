@@ -404,13 +404,16 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         list.addAll(output.getRecipeOutput(this.getMachineWorld().rand, getTileData()));
         if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput1).isEmpty())
         {
-            if (this.inventory.get(slotInput1).getItem().hasContainerItem(this.inventory.get(slotInput1)))
+            if (this.inventory.get(slotInput1).getItem().hasContainerItem(this.inventory.get(slotInput1)) && 
+            		(this.inventory.get(slotInput2).getItem().hasContainerItem(this.inventory.get(slotInput2))))
             {
                 this.inventory.set(slotInput1, this.inventory.get(slotInput1).getItem().getContainerItem(this.inventory.get(slotInput1)));
+                this.inventory.set(slotInput2, this.inventory.get(slotInput2).getItem().getContainerItem(this.inventory.get(slotInput2)));
             }
             else
             {
                 this.inventory.get(slotInput1).shrink(input.getAmount());
+                this.inventory.get(slotInput2).shrink(input.getAmount());
             }
 
         }
@@ -487,7 +490,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     private IMachineRecipeList.RecipeEntry getRecipe()
     {
-        if (this.inventory.get(slotInput1).isEmpty() && !this.canWorkWithoutItems())
+        if (this.inventory.get(slotInput1).isEmpty() &&  (this.inventory.get(slotInput2).isEmpty()) && !this.canWorkWithoutItems())
         {
             return null;
         }
@@ -498,14 +501,14 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
                 IRecipeInput recipe = this.lastRecipe.getInput();
                 if (recipe instanceof INullableRecipeInput)
                 {
-                    if (!recipe.matches(this.inventory.get(slotInput1)))
+                    if (!recipe.matches(this.inventory.get(slotInput1)) && (!recipe.matches(this.inventory.get(slotInput2))))
                     {
                         this.lastRecipe = null;
                     }
                 }
-                else if (!this.inventory.get(slotInput1).isEmpty() && recipe.matches(this.inventory.get(0)))
+                else if (!this.inventory.get(slotInput1).isEmpty() && (!this.inventory.get(slotInput2).isEmpty()) && recipe.matches(this.inventory.get(0)))
                 {
-                    if (recipe.getAmount() > this.inventory.get(slotInput1).getCount())
+                    if (recipe.getAmount() > this.inventory.get(slotInput1).getCount() && (recipe.getAmount() > this.inventory.get(slotInput2).getCount()))
                     {
                         return null;
                     }
@@ -525,6 +528,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
                 }
 
                 this.lastRecipe = out;
+               
                 //this.handleModifiers(out);
             }
 
@@ -937,9 +941,9 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     public static void init(){
 
-        addRecipe((new RecipeInputOreDict("ingotCopper", 4)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
+        //addRecipe((new RecipeInputOreDict("ingotCopper", 4)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
         //example recipe
-//        addRecipe((new RecipeInputOreDict("ingotCopper", 3), new RecipeInputOreDict("ingotZinc", 1)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
+       addRecipe((new RecipeInputOreDict("ingotCopper", 3), new RecipeInputOreDict("ingotZinc", 1)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f, "tinItemCasingRolling");
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 2), 0.7f, "silverItemCasingRolling");
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 3), 0.7f, "leadItemCasingRolling");
