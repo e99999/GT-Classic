@@ -28,7 +28,7 @@ public class GTContainerAlloySmelter extends ContainerTileComponent<GTTileEntity
 
         for(int i = 0; i < 4; ++i)
         {
-            this.addSlotToContainer(new SlotUpgrade((IMachine) tile, 4 + i, 152, 8 + i * 18));
+            this.addSlotToContainer(new SlotUpgrade((IMachine) tile, 5 + i, 152, 8 + i * 18));
         }
 
         this.addPlayerInventory(player);

@@ -941,7 +941,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     public static void init(){
 
-        //addRecipe((new RecipeInputOreDict("ingotCopper", 4)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
+        addRecipe((new RecipeInputOreDict("ingotCopper", 4)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
         //example recipe
 //        addRecipe((new RecipeInputOreDict("ingotCopper", 3), new RecipeInputOreDict("ingotZinc", 1)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f, "tinItemCasingRolling");
