@@ -401,7 +401,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
-        //list.addAll(output.getRecipeOutput(this.getMachineWorld().rand,));
+        list.addAll(output.getRecipeOutput(this.getMachineWorld().rand, getTileData()));
         if (!(input instanceof INullableRecipeInput) || !((ItemStack) this.inventory.get(slotInput)).isEmpty())
         {
             if (((ItemStack) this.inventory.get(slotInput)).getItem().hasContainerItem((ItemStack) this.inventory.get(slotInput)))
