@@ -5,6 +5,8 @@ item.gtclassic.hammerIron.name=Iron Hammer
 tile.gtclassic.blockHazard.name=Hazard Block
 tile.gtclassic.blockCabinet.name=Metal Cabinet
 
+tile.gtclassic.alloySmelter.name=Alloy Smelter
+
 tile.gtclassic.sandIron.name=Black Sand
 
 tile.gtclassic.lead_block.name=Lead Block
