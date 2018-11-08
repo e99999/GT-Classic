@@ -12,6 +12,7 @@ import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IRecipeMachine;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.classic.tile.machine.IProgressMachine;
+import ic2.api.energy.EnergyNet;
 import ic2.api.network.INetworkTileEntityEventListener;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
@@ -94,14 +95,14 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
     public AudioSource audioSource;
     public IFilter filter;
 
-    public static final int slotInput = 0;
+    public static final int slotInput1 = 0;
     public static final int slotInput2 = 1;
     public static final int slotFuel = 2;
     public static final int slotOutput = 3;
     public static final int slotOutput2 = 4;
 
     public GTTileEntityAlloySmelter() {
-        this(5, 1, 400, 32);
+        this(9, 1, 400, 32);
     }
 
     public GTTileEntityAlloySmelter(int slots, int energyPerTick, int maxProgress, int maxInput)
@@ -116,9 +117,9 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         this.defaultMaxInput = this.maxInput;
         this.defaultEnergyStorage = energyPerTick * maxProgress;
         this.defaultSensitive = false;
-        this.addNetworkFields(new String[]{"soundLevel", "redstoneInverted", "redstoneSensitive"});
-        this.addGuiFields(new String[]{"recipeOperation", "recipeEnergy", "progress"});
-        this.addInfos(new InfoComponent[]{new EnergyUsageInfo(this), new ProgressInfo(this)});
+        this.addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
+        this.addGuiFields("recipeOperation", "recipeEnergy", "progress");
+        this.addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
     }
 
     public MachineType getType() {
@@ -153,16 +154,16 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
     protected void addSlots(InventoryHandler handler) {
         this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-        handler.registerDefaultSlotAccess(AccessRule.Both, new int[]{slotFuel});
-        handler.registerDefaultSlotAccess(AccessRule.Import, new int[]{slotInput, slotInput2});
-        handler.registerDefaultSlotAccess(AccessRule.Export, new int[]{slotOutput, slotOutput2});
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), new int[]{0, 2, 4});
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), new int[]{1, 3});
-        handler.registerInputFilter(new ArrayFilter(new IFilter[]{CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)}), new int[]{slotFuel});
-        handler.registerOutputFilter(CommonFilters.NotDischargeEU, new int[]{slotFuel});
-        handler.registerSlotType(SlotType.Fuel, new int[]{slotFuel});
-        handler.registerSlotType(SlotType.Input, new int[]{slotInput, slotInput2});
-        handler.registerSlotType(SlotType.Output, new int[]{slotOutput, slotOutput2});
+        handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
+        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput1, slotInput2);
+        handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2);
+        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 0, 2, 4);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 1, 3);
+        handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
+        handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
+        handler.registerSlotType(SlotType.Fuel, slotFuel);
+        handler.registerSlotType(SlotType.Input, slotInput1, slotInput2);
+        handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2);
     }
 
     @Override
@@ -293,7 +294,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack item = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack item = this.inventory.get(i + this.inventory.size() - 4);
             if (item.getItem() instanceof IMachineUpgradeItem)
             {
                 ((IMachineUpgradeItem) item.getItem()).onTick(item, this);
@@ -303,6 +304,65 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         this.updateComparators();
     }
 
+    public void handleModifiers(IMachineRecipeList.RecipeEntry entry)
+    {
+        if (entry != null && entry.getOutput().getMetadata() != null)
+        {
+            NBTTagCompound nbt = entry.getOutput().getMetadata();
+            double energyMod = nbt.hasKey("RecipeEnergyModifier") ? nbt.getDouble("RecipeEnergyModifier") : 1.0D;
+            int newEnergy = applyModifier(this.energyConsume, nbt.getInteger("RecipeEnergy"), energyMod);
+            if (newEnergy != this.recipeEnergy)
+            {
+                this.recipeEnergy = newEnergy;
+                if (this.recipeEnergy < 1)
+                {
+                    this.recipeEnergy = 1;
+                }
+
+                this.getNetwork().updateTileGuiField(this, "recipeEnergy");
+            }
+
+            double progMod = nbt.hasKey("RecipeTimeModifier") ? nbt.getDouble("RecipeTimeModifier") : 1.0D;
+            int newProgress = applyModifier(this.operationLength, nbt.getInteger("RecipeTime"), progMod);
+            if (newProgress != this.recipeOperation)
+            {
+                this.recipeOperation = newProgress;
+                if (this.recipeOperation < 1)
+                {
+                    this.recipeOperation = 1;
+                }
+
+                this.getNetwork().updateTileGuiField(this, "recipeOperation");
+            }
+
+        }
+        else
+        {
+            if (this.recipeEnergy != this.energyConsume)
+            {
+                this.recipeEnergy = this.energyConsume;
+                if (this.recipeEnergy < 1)
+                {
+                    this.recipeEnergy = 1;
+                }
+
+                this.getNetwork().updateTileGuiField(this, "recipeEnergy");
+            }
+
+            if (this.recipeOperation != this.operationLength)
+            {
+                this.recipeOperation = this.operationLength;
+                if (this.recipeOperation < 1)
+                {
+                    this.recipeOperation = 1;
+                }
+
+                this.getNetwork().updateTileGuiField(this, "recipeOperation");
+            }
+
+        }
+    }
+
     public void operate(IMachineRecipeList.RecipeEntry entry)
     {
         IRecipeInput input = entry.getInput();
@@ -310,7 +370,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack itemStack = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
             if (itemStack.getItem() instanceof IMachineUpgradeItem)
             {
                 IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
@@ -323,7 +383,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack itemStack = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
             if (itemStack.getItem() instanceof IMachineUpgradeItem)
             {
                 IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
@@ -341,16 +401,16 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
-        //list.addAll(output.getRecipeOutput(this.getMachineWorld().rand));
-        if (!(input instanceof INullableRecipeInput) || !((ItemStack) this.inventory.get(slotInput)).isEmpty())
+        list.addAll(output.getRecipeOutput(this.getMachineWorld().rand, getTileData()));
+        if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput1).isEmpty())
         {
-            if (((ItemStack) this.inventory.get(slotInput)).getItem().hasContainerItem((ItemStack) this.inventory.get(slotInput)))
+            if (this.inventory.get(slotInput1).getItem().hasContainerItem(this.inventory.get(slotInput1)))
             {
-                this.inventory.set(slotInput, ((ItemStack) this.inventory.get(slotInput)).getItem().getContainerItem((ItemStack) this.inventory.get(slotInput)));
+                this.inventory.set(slotInput1, this.inventory.get(slotInput1).getItem().getContainerItem(this.inventory.get(slotInput1)));
             }
             else
             {
-                ((ItemStack) this.inventory.get(slotInput)).shrink(input.getAmount());
+                this.inventory.get(slotInput1).shrink(input.getAmount());
             }
 
         }
@@ -366,19 +426,19 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         {
             for (int i = 0; i < this.results.size(); ++i)
             {
-                ItemStack item = (ItemStack) this.results.get(i);
+                ItemStack item = this.results.get(i);
                 if (item.isEmpty())
                 {
                     this.results.remove(i--);
                 }
-                else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
+                else if (this.inventory.get(slotOutput).isEmpty())
                 {
                     this.inventory.set(slotOutput, item.copy());
                     this.results.remove(i--);
                 }
-                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput), item, false, false))
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput), item, false, false))
                 {
-                    int left = ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput)).getCount();
+                    int left = this.inventory.get(slotOutput).getMaxStackSize() - this.inventory.get(slotOutput).getCount();
                     if (left <= 0)
                     {
                         break;
@@ -388,21 +448,21 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
                     {
                         int itemLeft = item.getCount() - left;
                         item.setCount(itemLeft);
-                        ((ItemStack) this.inventory.get(slotOutput)).setCount(((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize());
+                        this.inventory.get(slotOutput).setCount(this.inventory.get(slotOutput).getMaxStackSize());
                         break;
                     }
 
-                    ((ItemStack) this.inventory.get(slotOutput)).grow(item.getCount());
+                    this.inventory.get(slotOutput).grow(item.getCount());
                     this.results.remove(i--);
                 }
-                else if (((ItemStack) this.inventory.get(slotOutput2)).isEmpty())
+                else if (this.inventory.get(slotOutput2).isEmpty())
                 {
                     this.inventory.set(slotOutput2, item.copy());
                     this.results.remove(i--);
                 }
-                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput2), item, false, false))
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput2), item, false, false))
                 {
-                    int left = ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput2)).getCount();
+                    int left = this.inventory.get(slotOutput2).getMaxStackSize() - this.inventory.get(slotOutput2).getCount();
                     if (left <= 0)
                     {
                         break;
@@ -412,11 +472,11 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
                     {
                         int itemLeft = item.getCount() - left;
                         item.setCount(itemLeft);
-                        ((ItemStack) this.inventory.get(slotOutput2)).setCount(((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize());
+                        this.inventory.get(slotOutput2).setCount(this.inventory.get(slotOutput2).getMaxStackSize());
                         break;
                     }
 
-                    ((ItemStack) this.inventory.get(slotOutput2)).grow(item.getCount());
+                    this.inventory.get(slotOutput2).grow(item.getCount());
                     this.results.remove(i--);
                 }
             }
@@ -427,7 +487,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     private IMachineRecipeList.RecipeEntry getRecipe()
     {
-        if (((ItemStack) this.inventory.get(slotInput)).isEmpty() && !this.canWorkWithoutItems())
+        if (this.inventory.get(slotInput1).isEmpty() && !this.canWorkWithoutItems())
         {
             return null;
         }
@@ -438,14 +498,14 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
                 IRecipeInput recipe = this.lastRecipe.getInput();
                 if (recipe instanceof INullableRecipeInput)
                 {
-                    if (!recipe.matches((ItemStack) this.inventory.get(slotInput)))
+                    if (!recipe.matches(this.inventory.get(slotInput1)))
                     {
                         this.lastRecipe = null;
                     }
                 }
-                else if (!((ItemStack) this.inventory.get(slotInput)).isEmpty() && recipe.matches((ItemStack) this.inventory.get(0)))
+                else if (!this.inventory.get(slotInput1).isEmpty() && recipe.matches(this.inventory.get(0)))
                 {
-                    if (recipe.getAmount() > ((ItemStack) this.inventory.get(slotInput)).getCount())
+                    if (recipe.getAmount() > this.inventory.get(slotInput1).getCount())
                     {
                         return null;
                     }
@@ -458,7 +518,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
             if (this.lastRecipe == null)
             {
-                IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack) this.inventory.get(slotInput)).copy());
+                IMachineRecipeList.RecipeEntry out = this.getOutputFor(this.inventory.get(slotInput1).copy());
                 if (out == null)
                 {
                     return null;
@@ -472,15 +532,15 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput)).getCount() >= ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize())
+            else if (this.inventory.get(slotOutput).getCount() >= this.inventory.get(slotOutput).getMaxStackSize())
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput2)).getCount() >= ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize())
+            else if (this.inventory.get(slotOutput2).getCount() >= this.inventory.get(slotOutput2).getMaxStackSize())
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
+            else if (this.inventory.get(slotOutput).isEmpty())
             {
                 return this.lastRecipe;
             }
@@ -498,7 +558,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
                     output = (ItemStack) var4.next();
                 }
-                while (!StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput), output, false, true));
+                while (!StackUtil.isStackEqual(this.inventory.get(slotOutput), output, false, true));
 
                 return this.lastRecipe;
             }
@@ -507,7 +567,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     public boolean canWork()
     {
-        return !this.redstoneSensitive ? true : this.isRedstonePowered();
+        return !this.redstoneSensitive || this.isRedstonePowered();
     }
 
     public boolean isRedstonePowered()
@@ -583,13 +643,106 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return ret;
     }
 
+    public void setOverclockRates()
+    {
+        this.lastRecipe = null;
+        int extraProcessSpeed = 0;
+        double processingSpeedMultiplier = 1.0D;
+        int extraProcessTime = 0;
+        double processTimeMultiplier = 1.0D;
+        int extraEnergyDemand = 0;
+        double energyDemandMultiplier = 1.0D;
+        int extraEnergyStorage = 0;
+        double energyStorageMultiplier = 1.0D;
+        int extraTier = 0;
+        float soundModfier = 1.0F;
+        boolean redstonePowered = false;
+        this.redstoneSensitive = this.defaultSensitive;
+
+        for (int i = 0; i < 4; ++i)
+        {
+            ItemStack item = this.inventory.get(i + this.inventory.size() - 4);
+            if (item.getItem() instanceof IMachineUpgradeItem)
+            {
+                IMachineUpgradeItem upgrade = (IMachineUpgradeItem) item.getItem();
+                upgrade.onInstalling(item, this);
+                extraProcessSpeed += upgrade.getExtraProcessSpeed(item, this) * item.getCount();
+                processingSpeedMultiplier *= Math.pow(upgrade.getProcessSpeedMultiplier(item, this), (double) item.getCount());
+                extraProcessTime += upgrade.getExtraProcessTime(item, this) * item.getCount();
+                processTimeMultiplier *= Math.pow(upgrade.getProcessTimeMultiplier(item, this), (double) item.getCount());
+                extraEnergyDemand += upgrade.getExtraEnergyDemand(item, this) * item.getCount();
+                energyDemandMultiplier *= Math.pow(upgrade.getEnergyDemandMultiplier(item, this), (double) item.getCount());
+                extraEnergyStorage += upgrade.getExtraEnergyStorage(item, this) * item.getCount();
+                energyStorageMultiplier *= Math.pow(upgrade.getEnergyStorageMultiplier(item, this), (double) item.getCount());
+                soundModfier = (float) ((double) soundModfier * Math.pow((double) upgrade.getSoundVolumeMultiplier(item, this), (double) item.getCount()));
+                extraTier += upgrade.getExtraTier(item, this) * item.getCount();
+                if (upgrade.useRedstoneInverter(item, this))
+                {
+                    redstonePowered = true;
+                }
+            }
+        }
+
+        this.redstoneInverted = redstonePowered;
+        this.progressPerTick = applyFloatModifier(1, extraProcessSpeed, processingSpeedMultiplier);
+        this.energyConsume = applyModifier(this.defaultEnergyConsume, extraEnergyDemand, energyDemandMultiplier);
+        this.operationLength = applyModifier(this.defaultOperationLength, extraProcessTime, processTimeMultiplier);
+        this.setMaxEnergy(applyModifier(this.defaultEnergyStorage, extraEnergyStorage, energyStorageMultiplier));
+        this.tier = this.baseTier + extraTier;
+        if (this.tier > 13)
+        {
+            this.tier = 13;
+        }
+
+        this.maxInput = (int) EnergyNet.instance.getPowerFromTier(this.tier);
+        if (this.energy > this.maxEnergy)
+        {
+            this.energy = this.maxEnergy;
+        }
+
+        this.soundLevel = soundModfier;
+        if (this.progressPerTick < 0.01F)
+        {
+            this.progressPerTick = 0.01F;
+        }
+
+        if (this.operationLength < 1)
+        {
+            this.operationLength = 1;
+        }
+
+        if (this.energyConsume < 1)
+        {
+            this.energyConsume = 1;
+        }
+
+        this.handleModifiers(this.lastRecipe);
+        this.getNetwork().updateTileEntityField(this, "redstoneInverted");
+        this.getNetwork().updateTileEntityField(this, "redstoneSensitive");
+        this.getNetwork().updateTileEntityField(this, "soundLevel");
+        this.getNetwork().updateTileGuiField(this, "maxInput");
+        this.getNetwork().updateTileGuiField(this, "energy");
+    }
+
+    static int applyModifier(int base, int extra, double multiplier)
+    {
+        long ret = Math.round((double) (base + extra) * multiplier);
+        return ret > 2147483647L ? 2147483647 : (int) ret;
+    }
+
+    static float applyFloatModifier(int base, int extra, double multiplier)
+    {
+        double ret = (double) Math.round((double) (base + extra) * multiplier);
+        return ret > 2.147483648E9D ? 2.14748365E9F : (float) ret;
+    }
+
     public void onLoaded()
     {
         super.onLoaded();
-//        if (this.isSimulating())
-//        {
-//            this.setOverclockRates();
-//        }
+        if (this.isSimulating())
+        {
+            this.setOverclockRates();
+        }
 
     }
 
@@ -731,13 +884,13 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
     @Override
     public IHasInventory getOutputInventory()
     {
-        return new RangedInventoryWrapper(this, new int[]{slotOutput, slotOutput2});
+        return new RangedInventoryWrapper(this, slotOutput, slotOutput2);
     }
 
     @Override
     public IHasInventory getInputInventory()
     {
-        return new RangedInventoryWrapper(this, new int[]{slotInput, slotInput2});
+        return new RangedInventoryWrapper(this, slotInput1, slotInput2);
     }
 
 
@@ -779,7 +932,9 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     public static void init(){
 
-        addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotCopper", 4)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
+        addRecipe((new RecipeInputOreDict("ingotCopper", 4)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
+        //example recipe
+//        addRecipe((new RecipeInputOreDict("ingotCopper", 3), new RecipeInputOreDict("ingotZinc", 1)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f, "tinItemCasingRolling");
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 2), 0.7f, "silverItemCasingRolling");
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 3), 0.7f, "leadItemCasingRolling");
@@ -789,27 +944,27 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
     }
 
     public static void addRecipe(ItemStack input, ItemStack output) {
-        addRecipe((IRecipeInput)(new RecipeInputItemStack(input)), output);
+        addRecipe((new RecipeInputItemStack(input)), output);
     }
 
     public static void addRecipe(ItemStack input, int stacksize, ItemStack output) {
-        addRecipe((IRecipeInput)(new RecipeInputItemStack(input, stacksize)), output);
+        addRecipe((new RecipeInputItemStack(input, stacksize)), output);
     }
 
     public static void addRecipe(String input, int stacksize, ItemStack output) {
-        addRecipe((IRecipeInput)(new RecipeInputOreDict(input, stacksize)), output);
+        addRecipe((new RecipeInputOreDict(input, stacksize)), output);
     }
 
     public static void addRecipe(ItemStack input, ItemStack output, float exp) {
-        addRecipe((IRecipeInput)(new RecipeInputItemStack(input)), output, exp);
+        addRecipe((new RecipeInputItemStack(input)), output, exp);
     }
 
     public static void addRecipe(ItemStack input, int stacksize, ItemStack output, float exp) {
-        addRecipe((IRecipeInput)(new RecipeInputItemStack(input, stacksize)), output, exp);
+        addRecipe((new RecipeInputItemStack(input, stacksize)), output, exp);
     }
 
     public static void addRecipe(String input, int stacksize, ItemStack output, float exp) {
-        addRecipe((IRecipeInput)(new RecipeInputOreDict(input, stacksize)), output, exp);
+        addRecipe((new RecipeInputOreDict(input, stacksize)), output, exp);
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output) {
