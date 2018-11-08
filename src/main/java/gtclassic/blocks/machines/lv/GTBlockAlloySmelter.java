@@ -21,13 +21,11 @@ public class GTBlockAlloySmelter extends BlockLVMachine {
     }
 
     @Override
-    public void onLoad()
-    {}
-
     public List<Integer> getValidMetas() {
         return Arrays.asList(0);
     }
 
+    @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
         return new GTTileEntityAlloySmelter();

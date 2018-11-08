@@ -21,11 +21,11 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
     int transferlimit;
     EnumRarity rare;
 
-    int index;
+    int indexitem;
 
     public GTItemEnergyPack(int index, String tex, int max, String reg, String unl, int lvl, int limit) {
         super(index, EntityEquipmentSlot.CHEST);
-        this.index = index;
+        this.indexitem = index;
         this.setMaxDamage(0);
         this.texture =  tex; //"gtclassic:textures/models/armor/lithiumbatpack";
         this.maxEnergy = max; //600000;
@@ -70,10 +70,12 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
         return (double)this.transferlimit;
     }
 
-    public EnumRarity func_77613_e(ItemStack stack) {
-        return this.rare;
-    }
+    @Override
+	public EnumRarity getRarity(ItemStack thisItem) {
+		return EnumRarity.RARE;
+	}
 
+    @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
         if (this.isInCreativeTab(tab)) {
             ItemStack empty = new ItemStack(this);
@@ -85,10 +87,12 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
         }
     }
 
+    @Override
     public boolean showDurabilityBar(ItemStack stack) {
         return true;
     }
 
+    @Override
     public double getDurabilityForDisplay(ItemStack stack) {
         return 1.0D - ElectricItem.manager.getCharge(stack) / this.getMaxCharge(stack);
     }
@@ -96,6 +100,6 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTexture(int meta){
-        return Ic2Icons.getTextures("gtclassic_items")[this.index];
+        return Ic2Icons.getTextures("gtclassic_items")[this.indexitem];
     }
 }

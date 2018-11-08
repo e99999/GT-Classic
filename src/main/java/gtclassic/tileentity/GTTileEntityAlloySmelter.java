@@ -18,7 +18,6 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.audio.AudioSource;
-import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.util.comparator.ComparatorManager;
 import ic2.core.block.base.util.comparator.comparators.ComparatorProgress;
@@ -34,7 +33,6 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -47,7 +45,6 @@ import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IOutputMachine;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -130,6 +127,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return new ResourceLocation(GTClassic.MODID, "textures/guisprites/guialloysmelter.png");
     }
 
+    @Override
     public LocaleComp getBlockName() {
         return new LangComponentHolder.LocaleBlockComp("tile.alloySmelter");
     }
@@ -192,6 +190,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return Ic2Sounds.interruptingSound;
     }
 
+    @Override
     public double getWrenchDropRate() {
         return 0.8500000238418579D;
     }
@@ -215,6 +214,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return true;
     }
 
+    @Override
     public boolean needsInitialRedstoneUpdate()
     {
         return true;
@@ -391,7 +391,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
             }
         }
 
-        if (list.size() > 0)
+        if (!list.isEmpty())
         {
             this.results.addAll(list);
             this.addToInventory();
@@ -481,7 +481,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
                 }
             }
 
-            return this.results.size() > 0;
+            return !this.results.isEmpty();
         }
     }
 
@@ -570,6 +570,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return !this.redstoneSensitive || this.isRedstonePowered();
     }
 
+    @Override
     public boolean isRedstonePowered()
     {
         if (this.redstoneInverted)
@@ -582,6 +583,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         }
     }
 
+    @Override
     public void handleRedstone()
     {
         if (this.redstoneSensitive)
@@ -736,6 +738,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return ret > 2.147483648E9D ? 2.14748365E9F : (float) ret;
     }
 
+    @Override
     public void onLoaded()
     {
         super.onLoaded();
@@ -746,6 +749,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     }
 
+    @Override
     public void onUnloaded()
     {
         if (this.isRendering() && this.audioSource != null)
@@ -795,6 +799,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     }
 
+    @Override
     public void onNetworkUpdate(String field)
     {
         if (field.equals("isActive") && this.getActive())
@@ -872,7 +877,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
     @Override
     public void onGuiClosed(EntityPlayer entityPlayer)
     {
-
+    	//needed for construction
     }
 
     @Override

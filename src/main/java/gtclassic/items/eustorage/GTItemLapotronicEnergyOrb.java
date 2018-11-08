@@ -1,7 +1,6 @@
 package gtclassic.items.eustorage;
 
 import gtclassic.GTClassic;
-import ic2.api.item.ElectricItem;
 import ic2.core.item.base.ItemBatteryBase;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
@@ -24,23 +23,27 @@ public class GTItemLapotronicEnergyOrb extends ItemBatteryBase {
         this.setCreativeTab(GTClassic.creativeTabGT);
     }
 
+    @Override
     public int getItemStackLimit(ItemStack stack) {
         return 1;
     }
 
+    @Override
     public boolean isDamaged(ItemStack stack) {
         return true;
     }
 
-
+    @Override
     public boolean showDurabilityBar(ItemStack stack) {
         return true;
     }
 
+    @Override
     public boolean wantsToPlay(ItemStack stack) {
         return true;
     }
 
+    @Override
     public ResourceLocation createSound(ItemStack stack) {
         return Ic2Sounds.batteryUse;
     }
