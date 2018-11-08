@@ -11,12 +11,14 @@ public class GTIcons {
     @SideOnly(Side.CLIENT)
     public static void loadSprites(){
         addSprite(new Sprites.SpriteData("gtclassic_blocks", "gtclassic:textures/sprites/blocks.png", new Sprites.SpriteInfo(16, 16)));
+        addSprite(new Sprites.SpriteData("gtclassic_terrain", "gtclassic:textures/sprites/terrain.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("gtclassic_items", "gtclassic:textures/sprites/items.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("gtclassic_dusts", "gtclassic:textures/sprites/dusts.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("gtclassic_duststiny", "gtclassic:textures/sprites/duststiny.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("gtclassic_nuggets", "gtclassic:textures/sprites/nuggets.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("gtclassic_materials", "gtclassic:textures/sprites/materials.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("gtclassic_components", "gtclassic:textures/sprites/components.png", new Sprites.SpriteInfo(16, 16)));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_terrain", 0, 0, 16, 16));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_items", 0, 0, 16, 4));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 0, 16, 2));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 6, 12, 7));
