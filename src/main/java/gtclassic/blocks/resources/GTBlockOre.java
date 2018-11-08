@@ -69,7 +69,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         if (this == GTBlocks.sphaleriteOre) {
         drops.add(new ItemStack(GTItems.dustSphalerite, 1));
         	if(RANDOM.nextFloat()<0.25f) {
-        		drops.add(new ItemStack(GTItems.dustZincGT, 1));
+        		drops.add(new ItemStack(GTItems.dustZinc, 1));
         	}
         	if(RANDOM.nextFloat()<0.125f) {
         		drops.add(new ItemStack(GTItems.yellowGarnet, 1));
@@ -99,13 +99,13 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         drops.add(new ItemStack(GTBlocks.galenaOre, 1));
         }
         
-        if (this == GTBlocks.iridiumOreGT) {
-        drops.add(new ItemStack(GTBlocks.iridiumOreGT, 1));
+        if (this == GTBlocks.iridiumOre) {
+        drops.add(new ItemStack(GTBlocks.iridiumOre, 1));
         }
         
         if (this == GTBlocks.rubyOre) {
         	if(RANDOM.nextFloat()>0.10f) {
-        		drops.add(new ItemStack(GTItems.rubyGT, 1));
+        		drops.add(new ItemStack(GTItems.ruby, 1));
         		}
         	else {
         		drops.add(new ItemStack(GTItems.redGarnet, 1));
@@ -114,7 +114,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         
         if (this == GTBlocks.sapphireOre) {//iron and add xp
         	if(RANDOM.nextFloat()>0.10f) {
-        		drops.add(new ItemStack(GTItems.sapphireGT, 1));
+        		drops.add(new ItemStack(GTItems.sapphire, 1));
         		}
         	else {
         		drops.add(new ItemStack(GTItems.greenSapphire, 1));
@@ -134,7 +134,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
             if (this == GTBlocks.sphaleriteOre){
                 return 1;
             }
-            if (this == GTBlocks.iridiumOreGT){
+            if (this == GTBlocks.iridiumOre){
                 return 3;
             }
             if (this == GTBlocks.rubyOre){
