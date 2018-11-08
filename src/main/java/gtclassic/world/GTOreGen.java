@@ -83,7 +83,7 @@ public class GTOreGen implements IWorldGenerator {
 			
 		default:
 			runGenerator(GTBlocks.galenaOre.getDefaultState(), 16, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-			runGenerator(GTBlocks.iridiumOreGT.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.rubyOre.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.sapphireOre.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.bauxiteOre.getDefaultState(), 16, 4, 0, 112, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
@@ -92,7 +92,7 @@ public class GTOreGen implements IWorldGenerator {
 		}
 		
 		if (world.provider.getDimension() == GTConfig.dimensionId) { //ores for toxic dim go here
-			runGenerator(GTBlocks.iridiumOreGT.getDefaultState(), 3, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.iridiumOre.getDefaultState(), 3, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 	}
 	

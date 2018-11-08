@@ -62,7 +62,7 @@ public class GTBlocks {
 
 	public static final GTBlockOre
     galenaOre = new GTBlockOre(GTBlockOreVariants.GALENA),
-    iridiumOreGT = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
+    iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
     rubyOre = new GTBlockOre(GTBlockOreVariants.RUBY),
     sapphireOre = new GTBlockOre(GTBlockOreVariants.SAPPHIRE),
     bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE),
@@ -104,7 +104,7 @@ public class GTBlocks {
             osmiumBlock,
             iridiumBlock,
             galenaOre,
-            iridiumOreGT,
+            iridiumOre,
             rubyOre,
             sapphireOre,
             bauxiteOre,
@@ -170,7 +170,7 @@ public class GTBlocks {
     	olivineOre.setHarvestLevel("pickaxe", diamond);
     	
     	galenaOre.setHarvestLevel("pickaxe", stone);
-    	iridiumOreGT.setHarvestLevel("pickaxe", diamond);
+    	iridiumOre.setHarvestLevel("pickaxe", diamond);
     	rubyOre.setHarvestLevel("pickaxe", iron);
     	sapphireOre.setHarvestLevel("pickaxe", iron);
     	bauxiteOre.setHarvestLevel("pickaxe", stone);
