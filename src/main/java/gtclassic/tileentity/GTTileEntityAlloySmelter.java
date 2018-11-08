@@ -9,7 +9,7 @@ import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
-import ic2.api.classic.tile.IRecipeMachine;
+import ic2.api.classic.tile.IMachine;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.energy.EnergyNet;
@@ -50,15 +50,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
 
-public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements ITickable, IProgressMachine, IRecipeMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser {
+public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements ITickable, IProgressMachine, IMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser {
     @NetworkField(index = 7)
     public float progress = 0.0F;
 
@@ -230,7 +228,6 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return true;
     }
 
-    @Override
     public IMachineRecipeList getRecipeList() {
         return alloySmelter;
     }
