@@ -47,16 +47,38 @@ public class GTOreGen implements IWorldGenerator {
 			break;
 		
 		case THE_END:
+			if (GTConfig.genEndAsteroids){
 			runAsteroidGenerator(Blocks.END_STONE.getDefaultState(), 64, 1, 80, 127, BlockMatcher.forBlock(Blocks.AIR), world, random, chunkX, chunkZ);
+			runAsteroidGenerator(Blocks.OBSIDIAN.getDefaultState(), 32, 2, 80, 127, BlockMatcher.forBlock(Blocks.AIR), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genEndAsteroids && GTConfig.genEndTungstate){
 			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genEndAsteroids && GTConfig.genEndSheldonite){
+			runGenerator(GTBlocks.sheldoniteOre.getDefaultState(), 8, 8, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genEndAsteroids && GTConfig.genEndSodalite){
 			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genEndAsteroids && GTConfig.genEndOlivine){
 			runGenerator(GTBlocks.olivineOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			//runGenerator(Blocks.OBSIDIAN.getDefaultState(), 8, 96, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genEndAsteroids){
+			runGenerator(Blocks.OBSIDIAN.getDefaultState(), 4, 2048, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
 			
+			if (GTConfig.genEndTungstate) {
 			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genEndSheldonite) {
 			runGenerator(GTBlocks.sheldoniteOre.getDefaultState(), 8, 2, 10, 40, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genEndSodalite) {
 			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genEndOlivine) {
 			runGenerator(GTBlocks.olivineOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
 			break;
 			
 		default:

@@ -13,7 +13,6 @@ public class GTConfig {
     private static final String CATEGORY_DIMENSIONS = "dimensions";
     
 
-    // This values below you can access elsewhere in your mod:
     public static boolean isThisAGoodGregtech = true;
     public static String yourRealName = "Steve";
     
@@ -21,11 +20,14 @@ public class GTConfig {
     public static boolean genNetherCinnabar = true;
     public static boolean genNetherSphalerite = true;
     
+    public static boolean genEndAsteroids = true;
+    public static boolean genEndTungstate = true;
+    public static boolean genEndSheldonite = true;
+    public static boolean genEndSodalite = true;
+    public static boolean genEndOlivine = true;
+    
     public static int dimensionId = 100;
 
-    // Call this from CommonProxy.preInit(). It will create our config if it doesn't
-    // exist yet and read the values if it does exist.
-    
     public static void readConfig() {
         Configuration cfg = GTProxyCommon.config;
         try {
@@ -44,7 +46,6 @@ public class GTConfig {
 
     private static void initGeneralConfig(Configuration cfg) {
         cfg.addCustomCategoryComment(CATEGORY_GENERAL, "General configuration");
-        // cfg.getBoolean() will get the value in the config if it is already specified there. If not it will create the value.
         isThisAGoodGregtech = cfg.getBoolean("goodPort", CATEGORY_GENERAL, isThisAGoodGregtech, "Is this a good GregTech port?");
         yourRealName = cfg.getString("realName", CATEGORY_GENERAL, yourRealName, "Set your real name here");
     }
@@ -54,6 +55,14 @@ public class GTConfig {
         genNetherPyrite = cfg.getBoolean("genNetherPyrite", CATEGORY_GEN, genNetherPyrite, "Generate Nether Pyrite Ore");
         genNetherCinnabar = cfg.getBoolean("genNetherCinnabar", CATEGORY_GEN, genNetherCinnabar, "Generate Nether Cinnabar Ore");
         genNetherSphalerite = cfg.getBoolean("genNetherSphalerite", CATEGORY_GEN, genNetherSphalerite, "Generate Nether Sphalerite Ore");
+        
+        genEndAsteroids = cfg.getBoolean("genEndAsteroids", CATEGORY_GEN, genEndAsteroids, "Generate End Asteroids");
+        genEndTungstate = cfg.getBoolean("genEndTungstate", CATEGORY_GEN, genEndTungstate, "Generate End Tungstate Ore");
+        genEndSheldonite = cfg.getBoolean("genEndSheldonite", CATEGORY_GEN, genEndSheldonite, "Generate End Sheldonite");
+        genEndSodalite = cfg.getBoolean("genEndSodalite", CATEGORY_GEN, genEndSodalite, "Generate End Sodalite");
+        genEndOlivine = cfg.getBoolean("genEndOlivine", CATEGORY_GEN, genEndOlivine, "Generate End Olivine");
+        
+        
     }
 
     private static void initDimensionConfig(Configuration cfg) {
