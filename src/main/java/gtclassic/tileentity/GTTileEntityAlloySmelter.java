@@ -9,7 +9,7 @@ import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
-import ic2.api.classic.tile.IRecipeMachine;
+import ic2.api.classic.tile.IMachine;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.energy.EnergyNet;
@@ -50,15 +50,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.*;
 
-public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements ITickable, IProgressMachine, IRecipeMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser {
+public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements ITickable, IProgressMachine, IMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser {
     @NetworkField(index = 7)
     public float progress = 0.0F;
 
@@ -123,7 +121,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return MachineType.macerator;
     }
 
-    public ResourceLocation getGuiTexture() {
+    public static ResourceLocation getGuiTexture() {
         return new ResourceLocation(GTClassic.MODID, "textures/guisprites/guialloysmelter.png");
     }
 
@@ -182,11 +180,11 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return (float) this.recipeOperation;
     }
 
-    public ResourceLocation getStartSoundFile() {
+    public static ResourceLocation getStartSoundFile() {
         return Ic2Sounds.maceratorOp;
     }
 
-    public ResourceLocation getInterruptSoundFile() {
+    public static ResourceLocation getInterruptSoundFile() {
         return Ic2Sounds.interruptingSound;
     }
 
@@ -230,7 +228,6 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return true;
     }
 
-    @Override
     public IMachineRecipeList getRecipeList() {
         return alloySmelter;
     }
@@ -941,7 +938,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     public static void init(){
 
-        //addRecipe((new RecipeInputOreDict("ingotCopper", 4)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
+        addRecipe((new RecipeInputOreDict("ingotCopper", 4)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
         //example recipe
 //        addRecipe((new RecipeInputOreDict("ingotCopper", 3), new RecipeInputOreDict("ingotZinc", 1)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f, "tinItemCasingRolling");
