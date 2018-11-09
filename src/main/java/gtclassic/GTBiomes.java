@@ -9,6 +9,10 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class GTBiomes {
 	
+	private GTBiomes() {
+	    throw new IllegalStateException("Biome Class");
+	  }
+
 	public static void init() {
 		ForgeRegistries.BIOMES.register(GTToxicBiome.biome);
 	}
