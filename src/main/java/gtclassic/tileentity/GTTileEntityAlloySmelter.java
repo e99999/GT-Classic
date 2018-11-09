@@ -122,7 +122,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
     }
 
     public ResourceLocation getGuiTexture() {
-        return new ResourceLocation(GTClassic.MODID, "textures/guisprites/guialloysmelter.png");
+        return new ResourceLocation(GTClassic.MODID, "textures/gui/guialloysmelter.png");
     }
 
     @Override

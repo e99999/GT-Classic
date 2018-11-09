@@ -9,7 +9,7 @@ public class GTGuiCabinet extends GuiContainer {
     public static final int WIDTH = 180;
     public static final int HEIGHT = 152;
 
-    private static final ResourceLocation background = new ResourceLocation(GTClassic.MODID, "textures/guisprites/cabinetgui.png");
+    private static final ResourceLocation background = new ResourceLocation(GTClassic.MODID, "textures/gui/cabinetgui.png");
 
     public GTGuiCabinet(GTTileEntityCabinet tileEntity, GTContainerCabinet container) {
         super(container);

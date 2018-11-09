@@ -1,4 +1,4 @@
-package gtclassic.blocks.machines.lv;
+package gtclassic.blocks.machines;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityAlloySmelter;

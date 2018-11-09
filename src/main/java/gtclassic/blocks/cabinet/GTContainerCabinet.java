@@ -53,7 +53,7 @@ public class GTContainerCabinet extends Container {
             addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
             slotIndex++;
             x += 18;
-            //this code is fucking gross as shit and I will rewrite it very soon
+            //TODO this code is fucking gross as shit and I will rewrite it very soon
             if (slotIndex < 8) {y = 6; x = leftMargin + (slotIndex * (18));}
             if (slotIndex < 17 && slotIndex > 8) {y = 24; x = leftMargin + ((slotIndex - 9) * (18));}
             if (slotIndex < 26 && slotIndex > 17) {y = 42; x = leftMargin + ((slotIndex - 18) * (18));}
