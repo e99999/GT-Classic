@@ -35,6 +35,6 @@ public class GTBlockAlloySmelter extends BlockLVMachine {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        return Ic2Icons.getTextures("gtclassic_terrain");
+        return Ic2Icons.getTextures("gtclassic_blocklv");
     }
 }

@@ -135,7 +135,73 @@ Alloy Smelter
 9 iron/copper/tin/silver/lead/steel/gold/aluminum/titanium/chrome/electrum/tungsten/zinc/brass/platinum/nickel/invar/bronze nugget = 1 respective ingot
 
 Assembling Machine
-todo
+
+advanced circuit board + 2 advanced circuit parts = advanced circuit
+elite circuit board + data storage circuit = data control circuit
+elite circuit board + lapotron crystal = energy flow circuit
+data control circuit + 8 data storage circuit = 4 data orb
+sonictron block + 4 data storage circuit = sonictron item
+2 water mill = generator
+generator + 4 carbon plate = windmill
+3 stone slab + railcraft rebar = railcraft stone tie
+lithium batpack = 6 lithium battery
+batpack = 6 re-battery
+iron/steel/invar gear + generator = pneumatic generator upgrade
+hv-transformer + transformer upgrade = hv-transformer upgrade
+full energy cell frame + energy storage upgrade = rs-energy cell upgrade
+4 wooden tie = wooden railbed
+4 stone tie = stone railbed
+wooden railbed + 6 standard rail = 32 track
+wooden railbed + 6 wooden rail = 32 wooden track
+stone railbed + 6 reinforced rail = 32 reinforced track
+stone railbed + 6 h.s. rail = 32 h.s. track
+electronic circuit + frequency transmitter = gregtech sensor kit
+gregtech sensor card = 2 electronic circuits
+stick + cobblestone = lever
+stick + coal = 4 torches
+stick + resin = 4 torches
+stick + redstone = redstone torch
+stone gear + 4 iron ingot = iron gear
+4 iron + redstone = compass
+iron gear + 4 gold ingot = gold gear
+4 gold + redstone = clock
+stone gear + 4 bronze ingot = bronze gear
+stone gear + 4 copper ingot = copper gear
+8 refined iron ingots = machine block
+stone gear + 4 tin ingot = tin gear
+uninsulated copper cable + rubber = insulated copper cable
+uninsulated gold cable + 2 rubber = 2xinsulated gold cable
+uninsulated hv cable + 3 rubber = 4xinsulated hv cable
+insulated gold cable + rubber = 2xinsulated gold cable
+insulated hv cable + 2 rubber = 4xinsulated hv cable
+2xinsulated hv cable + rubber = 4xinsulated hv cable
+stone gear + 4 invar ingot = invar gear
+stone gear + 4 steel ingot = steel gear
+stone gear + 4 brass ingot = brass gear
+gold gear + 4 diamonds/diamod dusts = diamond gear
+8 emeralds/emerald dusts + advanced circuit = 4 data storage circuit
+stone gear + 4 gold nugget = gold plated gear
+lapis + glowstone = 2 advanced circuit parts
+lazurite dust + glowstone = 2 advanced circuit parts
+8 steel plates + machine parts = steel machine hull
+generator + 2 magnalium plate = windmill
+silicon plate + 4 electrum plates = advanced circuit board
+8 olivine/olivine dust + advanced circuit = 4 data storage circuit
+2 refined iron plates + electronic circuit = 4 machine parts
+refined iron plate + 2 electrum plates = 2 basic circuit boards
+8 bronze plates + machine parts = bronze machine hull
+electronic circuit + 2 electrum plates = advanced circuit board
+electrum plate + 2 electrum plates = 2 basic circuit boards
+lithium battery + 4 aluminum plates = lithium battery upgrade
+2 aluminum plates + electronic circuit = 3 machine parts
+8 aluminum plates + machine parts = aluminum machine hull
+generator + 4 aluminum plates = 2 water mill
+8 titanium plates + machine parts = titanium machine hull
+platinum plate + advanced circuit = elite circuit board
+8 brass plates + machine parts = brass machine hull
+lithium battery + cropnalyzer = portable scanner
+basic circuit board + 3 insulated copper cable = electronic circuit
+electronic circuit + insulated copper cable = frequency transmitter
 
 Industrial Cnetrifuge
 todo
