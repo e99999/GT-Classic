@@ -97,7 +97,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
     public static final int slotOutput2 = 4;
 
     public GTTileEntityAlloySmelter() {
-        this(9, 1, 400, 32);
+        this(9, 1, 98, 32);
     }
 
     public GTTileEntityAlloySmelter(int slots, int energyPerTick, int maxProgress, int maxInput)
@@ -181,11 +181,11 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
     }
 
     public static ResourceLocation getStartSoundFile() {
-        return Ic2Sounds.maceratorOp;
+        return Ic2Sounds.electricFurnaceLoop;
     }
 
     public static ResourceLocation getInterruptSoundFile() {
-        return Ic2Sounds.interruptingSound;
+        return Ic2Sounds.electricFurnaceStop;
     }
 
     @Override
