@@ -121,6 +121,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return MachineType.macerator;
     }
 
+
     public static ResourceLocation getGuiTexture() {
         return new ResourceLocation(GTClassic.MODID, "textures/gui/guialloysmelter.png");
     }
@@ -180,11 +181,11 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return (float) this.recipeOperation;
     }
 
-    public static ResourceLocation getStartSoundFile() {
+    public ResourceLocation getStartSoundFile() {
         return Ic2Sounds.electricFurnaceLoop;
     }
 
-    public static ResourceLocation getInterruptSoundFile() {
+    public ResourceLocation getInterruptSoundFile() {
         return Ic2Sounds.electricFurnaceStop;
     }
 
@@ -220,7 +221,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
 
     @Override
     public String getName() {
-        return "AlloySmelter";
+        return "Alloy Smelter";
     }
 
     @Override
