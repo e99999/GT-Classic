@@ -57,8 +57,8 @@ public class GTBiomeProviderCustom extends BiomeProvider {
 				par1ArrayOfBiome[i] = Biome.getBiome(aint[i]);
 			}
 			return par1ArrayOfBiome;
-		} catch (Throwable throwable) {
-			CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
+		} catch (RuntimeException exception) {
+			CrashReport crashreport = CrashReport.makeCrashReport(exception, "Invalid Biome id");
 			CrashReportCategory crashreportcategory = crashreport.makeCategory("RawBiomeBlock");
 			crashreportcategory.addCrashSection("biomes[] size", par1ArrayOfBiome.length);
 			crashreportcategory.addCrashSection("x", par2);
@@ -111,8 +111,8 @@ public class GTBiomeProviderCustom extends BiomeProvider {
 				}
 			}
 			return true;
-		} catch (Throwable throwable) {
-			CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
+		} catch (RuntimeException exception) {
+			CrashReport crashreport = CrashReport.makeCrashReport(exception, "Invalid Biome id");
 			CrashReportCategory crashreportcategory = crashreport.makeCategory("Layer");
 			crashreportcategory.addCrashSection("Layer", this.genBiomes.toString());
 			crashreportcategory.addCrashSection("x", x);
@@ -124,8 +124,7 @@ public class GTBiomeProviderCustom extends BiomeProvider {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public BlockPos findBiomePosition(int x, int z, int range, List biomes, Random random) {
+	public BlockPos findBiomePosition(int x, int z, int range, List<Biome> biomes, Random random) {
 		IntCache.resetIntCache();
 		int l = x - range >> 2;
 		int i1 = z - range >> 2;

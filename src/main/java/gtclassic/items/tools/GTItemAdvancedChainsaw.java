@@ -6,7 +6,6 @@ import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
 import ic2.core.audio.AudioSource;
 import ic2.core.item.base.ItemElectricTool;
-import ic2.core.platform.lang.storage.Ic2ItemLang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.Block;
@@ -40,7 +39,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticTexturedItem {
-    public static ItemStack ironAxe;
+    public static final ItemStack ironAxe;
     AudioSource lastSource;
     public GTItemAdvancedChainsaw(){
         super(0.0F, 0.0F, ToolMaterial.IRON);
