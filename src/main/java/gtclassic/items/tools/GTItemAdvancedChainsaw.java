@@ -17,6 +17,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentDamage;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -97,8 +98,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
         }
     }
 
-    @Override
-    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
+    public boolean onBlockStartBreak(ItemStack itemstack, World worldIn, EntityLivingBase entityLiving, BlockPos pos, EntityPlayer player) {
         if (!player.world.isRemote && !player.capabilities.isCreativeMode) {
             Block block = player.world.getBlockState(pos).getBlock();
             if (block instanceof IShearable) {
@@ -130,6 +130,15 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
 
             return false;
         } else {
+            if (!player.isSneaking()){
+                for (int i = 1; i < 30; i++) {
+                    BlockPos nextPos = pos.up(i);
+                    IBlockState nextState = worldIn.getBlockState(nextPos);
+                    if(nextState.getBlock().isWood(worldIn, nextPos)){
+                        breakBlock(nextPos, itemstack, worldIn, entityLiving, pos);
+                    }
+                }
+            }
             return false;
         }
     }
@@ -138,16 +147,6 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
         if (entityLiving instanceof EntityPlayer) {
             IC2.achievements.issueStat((EntityPlayer)entityLiving, "blocksSawed");
         }
-        if (!player.isSneaking()){
-            for (int i = 1; i < 10; i++) {
-                BlockPos nextPos = pos.up(i);
-                IBlockState nextState = worldIn.getBlockState(nextPos);
-                if(nextState.getBlock().isWood(worldIn, nextPos)){
-                    breakBlock(nextPos, stack, worldIn, entityLiving, pos);
-                }
-            }
-        }
-
         return super.onBlockDestroyed(stack, worldIn, blockIn, pos, entityLiving);
     }
 
