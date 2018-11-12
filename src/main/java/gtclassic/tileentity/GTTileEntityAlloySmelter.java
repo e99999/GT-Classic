@@ -121,6 +121,7 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         return MachineType.macerator;
     }
 
+
     public ResourceLocation getGuiTexture() {
         return new ResourceLocation(GTClassic.MODID, "textures/gui/guialloysmelter.png");
     }

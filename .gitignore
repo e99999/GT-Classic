@@ -70,6 +70,7 @@ local.properties
 
 /out/
 eclipse/
+classes
 *.bat
 
 ### Minecraft ###
