@@ -99,41 +99,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
 
     @Override
     public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
-//        if (!player.world.isRemote && !player.capabilities.isCreativeMode) {
-//            Block block = player.world.getBlockState(pos).getBlock();
-//            if (block instanceof IShearable) {
-//                IShearable target = (IShearable)block;
-//                if (target.isShearable(itemstack, player.world, pos) && ElectricItem.manager.canUse(itemstack, (double)this.getEnergyCost(itemstack))) {
-//                    List<ItemStack> drops = target.onSheared(itemstack, player.world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
-//                    Iterator var7 = drops.iterator();
-//
-//                    while(var7.hasNext()) {
-//                        ItemStack stack = (ItemStack)var7.next();
-//                        float f = 0.7F;
-//                        double d = (double)(player.world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
-//                        double d1 = (double)(player.world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
-//                        double d2 = (double)(player.world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
-//                        EntityItem entityitem = new EntityItem(player.world, (double)pos.getX() + d, (double)pos.getY() + d1, (double)pos.getZ() + d2, stack);
-//                        entityitem.setDefaultPickupDelay();
-//                        player.world.spawnEntity(entityitem);
-//                    }
-//
-//                    ElectricItem.manager.use(itemstack, (double)this.getEnergyCost(itemstack), player);
-//                    player.addStat(StatList.getBlockStats(block));
-//                    if (block == Blocks.WEB) {
-//                        player.world.setBlockToAir(pos);
-//                        IC2.achievements.issueStat(player, "blocksSawed");
-//                        return true;
-//                    }
-//                }
-//            }
-//
-//            return false;
-//        } else {
-//            return false;
-//        }
         World worldIn = player.world;
-
         if (!player.isSneaking()){
             for (int i = 1; i < 60; i++) {
                 BlockPos nextPos = pos.up(i);
@@ -142,8 +108,38 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
                     breakBlock(nextPos, itemstack, worldIn, pos, player);
                 }
             }
+        }
+        if (!player.world.isRemote && !player.capabilities.isCreativeMode) {
+            Block block = player.world.getBlockState(pos).getBlock();
+            if (block instanceof IShearable) {
+                IShearable target = (IShearable)block;
+                if (target.isShearable(itemstack, player.world, pos) && ElectricItem.manager.canUse(itemstack, (double)this.getEnergyCost(itemstack))) {
+                    List<ItemStack> drops = target.onSheared(itemstack, player.world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
+                    Iterator var7 = drops.iterator();
+
+                    while(var7.hasNext()) {
+                        ItemStack stack = (ItemStack)var7.next();
+                        float f = 0.7F;
+                        double d = (double)(player.world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+                        double d1 = (double)(player.world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+                        double d2 = (double)(player.world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
+                        EntityItem entityitem = new EntityItem(player.world, (double)pos.getX() + d, (double)pos.getY() + d1, (double)pos.getZ() + d2, stack);
+                        entityitem.setDefaultPickupDelay();
+                        player.world.spawnEntity(entityitem);
+                    }
+
+                    ElectricItem.manager.use(itemstack, (double)this.getEnergyCost(itemstack), player);
+                    player.addStat(StatList.getBlockStats(block));
+                    if (block == Blocks.WEB) {
+                        player.world.setBlockToAir(pos);
+                        IC2.achievements.issueStat(player, "blocksSawed");
+                        return true;
+                    }
+                }
+            }
+
             return false;
-        }else{
+        } else {
             return false;
         }
     }
