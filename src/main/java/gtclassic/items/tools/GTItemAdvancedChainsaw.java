@@ -135,7 +135,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
         World worldIn = player.world;
 
         if (!player.isSneaking()){
-            for (int i = 1; i < 30; i++) {
+            for (int i = 1; i < 60; i++) {
                 BlockPos nextPos = pos.up(i);
                 IBlockState nextState = worldIn.getBlockState(nextPos);
                 if(nextState.getBlock().isWood(worldIn, nextPos)){
