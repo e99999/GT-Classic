@@ -171,7 +171,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
 //        if(!(entityLiving instanceof EntityPlayer)){
 //            return;
 //        }
-        //capEnergy.extractEnergy(cost, false);
+        ElectricItem.manager.use(saw, (double)this.getEnergyCost(saw), player);
         blockState.getBlock().harvestBlock(world, player, pos, blockState, world.getTileEntity(pos), saw);
         world.setBlockToAir(pos);
         world.removeTileEntity(pos);
