@@ -97,7 +97,8 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
         }
     }
 
-    public boolean onBlockStartBreak(ItemStack itemstack, World worldIn, EntityLivingBase entityLiving, BlockPos pos, EntityPlayer player) {
+    @Override
+    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
 //        if (!player.world.isRemote && !player.capabilities.isCreativeMode) {
 //            Block block = player.world.getBlockState(pos).getBlock();
 //            if (block instanceof IShearable) {
@@ -131,12 +132,14 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
 //        } else {
 //            return false;
 //        }
+        World worldIn = player.world;
+
         if (!player.isSneaking()){
             for (int i = 1; i < 30; i++) {
                 BlockPos nextPos = pos.up(i);
                 IBlockState nextState = worldIn.getBlockState(nextPos);
                 if(nextState.getBlock().isWood(worldIn, nextPos)){
-                    breakBlock(nextPos, itemstack, worldIn, entityLiving, pos);
+                    breakBlock(nextPos, itemstack, worldIn, pos, player);
                 }
             }
             return false;
@@ -145,14 +148,15 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
         }
     }
 
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos, EntityLivingBase entityLiving, EntityPlayer player) {
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos, EntityLivingBase entityLiving) {
         if (entityLiving instanceof EntityPlayer) {
             IC2.achievements.issueStat((EntityPlayer)entityLiving, "blocksSawed");
         }
         return super.onBlockDestroyed(stack, worldIn, blockIn, pos, entityLiving);
     }
 
-    public void breakBlock(BlockPos pos, ItemStack saw, World world, EntityLivingBase entityLiving, BlockPos oldPos) {
+    public void breakBlock(BlockPos pos, ItemStack saw, World world, BlockPos oldPos, EntityPlayer player) {
         if (oldPos == pos) {
             return;
         }
@@ -164,11 +168,11 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
         if (blockState.getBlockHardness(world, pos) == -1.0F) {
             return;
         }
-        if(!(entityLiving instanceof EntityPlayer)){
-            return;
-        }
+//        if(!(entityLiving instanceof EntityPlayer)){
+//            return;
+//        }
         //capEnergy.extractEnergy(cost, false);
-        blockState.getBlock().harvestBlock(world, (EntityPlayer) entityLiving, pos, blockState, world.getTileEntity(pos), saw);
+        blockState.getBlock().harvestBlock(world, player, pos, blockState, world.getTileEntity(pos), saw);
         world.setBlockToAir(pos);
         world.removeTileEntity(pos);
     }
