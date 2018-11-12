@@ -46,7 +46,7 @@ public class GTClassic {
     public void init(FMLInitializationEvent e) {
         GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
         GTBlocks.initHarvestLevel();
-        GTRecipes.initSmeltingRecipes();
+        GTRecipes.init();
         proxy.init(e);
     }
 
