@@ -28,10 +28,12 @@ public class GTItemLitiumBattery extends ItemBatteryBase implements IAdvancedTex
         this.setCreativeTab(GTClassic.creativeTabGT);
     }
 
+    @Override
     public int getItemStackLimit(ItemStack stack) {
         return this.shouldBeStackable(stack) ? 16 : 1;
     }
 
+    @Override
     public boolean isDamaged(ItemStack stack) {
         return !this.shouldBeStackable(stack);
     }
@@ -40,14 +42,17 @@ public class GTItemLitiumBattery extends ItemBatteryBase implements IAdvancedTex
         return !stack.hasTagCompound() || ElectricItem.manager.getCharge(stack) == 0.0D;
     }
 
+    @Override
     public boolean showDurabilityBar(ItemStack stack) {
         return this.shouldBeStackable(stack) ? false : super.showDurabilityBar(stack);
     }
 
+    @Override
     public boolean wantsToPlay(ItemStack stack) {
         return true;
     }
 
+    @Override
     public ResourceLocation createSound(ItemStack stack) {
         return Ic2Sounds.batteryUse;
     }

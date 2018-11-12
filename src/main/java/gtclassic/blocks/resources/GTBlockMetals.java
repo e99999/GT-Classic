@@ -8,6 +8,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -39,7 +41,7 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
         setCreativeTab(GTClassic.creativeTabGT);
         setHardness(5.0F);
         setSoundType(SoundType.STONE);
-        setHarvestLevel("pickaxe", 1);
+        setHarvestLevel("pickaxe", 2);
     }
 
     @Override
@@ -53,6 +55,19 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
         return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
     }
 
+    @Override
+    @Deprecated
+    public boolean canEntitySpawn(IBlockState state, Entity entityIn)
+    {
+        return false;
+    }
+    
+    
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean isAdvanced) {
+    	//TODO add tooltip to say it cant spawn mobs
+    }
+    
     @Override
     public TextureAtlasSprite getParticleTexture(IBlockState state) {
         return this.getTextureFromState(state, EnumFacing.SOUTH);

@@ -19,12 +19,12 @@ public class GTToxicWorldProvider extends WorldProvider {
 
     @Override
     public DimensionType getDimensionType() {
-        return GTDimensions.testDimensionType;
+        return GTDimensions.toxicDimensionType;
     }
 
     @Override
     public String getSaveFolder() {
-        return "TEST";
+        return "TOXIC";
     }
 
     @Override

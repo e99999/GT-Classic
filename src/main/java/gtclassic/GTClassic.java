@@ -5,6 +5,7 @@ import gtclassic.proxy.GTProxyCommon;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTIcons;
+import gtclassic.util.GTRecipes;
 import gtclassic.world.GTOreGen;
 import ic2.api.classic.addon.IC2Plugin;
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,6 +46,7 @@ public class GTClassic {
     public void init(FMLInitializationEvent e) {
         GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
         GTBlocks.initHarvestLevel();
+        GTRecipes.initSmeltingRecipes();
         proxy.init(e);
     }
 

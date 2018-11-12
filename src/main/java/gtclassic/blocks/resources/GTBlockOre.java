@@ -18,11 +18,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class GTBlockOre extends Block implements ITexturedBlock {
@@ -50,11 +53,10 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         setHardness(3.0F);
         setResistance(10.0F);
         setSoundType(SoundType.STONE);
-        //setHarvestLevel("pickaxe", 2);
     }
 
     public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune){
-        ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+        ArrayList<ItemStack> drops = new ArrayList<>();
         
         //Nether Ores
         if (this == GTBlocks.cinnabarOre) {
@@ -131,19 +133,22 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     
     @Override
     public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune){
-            if (this == GTBlocks.sphaleriteOre){
-                return 1;
+    	Random rand = world instanceof World ? ((World)world).rand : new Random();    
+    	int xp = 0;
+    	
+    		if (this == GTBlocks.sphaleriteOre){
+    			xp = MathHelper.getInt(rand, 0, 2);
             }
-            if (this == GTBlocks.iridiumOre){
-                return 3;
+    		else if (this == GTBlocks.iridiumOre){
+            	xp = MathHelper.getInt(rand, 3, 7);
             }
-            if (this == GTBlocks.rubyOre){
-                return 2;
+    		else if (this == GTBlocks.rubyOre){
+    			xp = MathHelper.getInt(rand, 2, 5);
             }
-            if (this == GTBlocks.sapphireOre){
-                return 2;
+    		else if (this == GTBlocks.sapphireOre){
+    			xp = MathHelper.getInt(rand, 2, 5);
             }
-            return 0;
+            return xp;
     }
     
     

@@ -7,7 +7,7 @@ import net.minecraftforge.common.DimensionManager;
 
 public class GTDimensions {
 
-    public static DimensionType testDimensionType;
+    public static DimensionType toxicDimensionType;
 
     public static void init() {
         registerDimensionTypes();
@@ -15,11 +15,11 @@ public class GTDimensions {
     }
 
     private static void registerDimensionTypes() {
-        testDimensionType = DimensionType.register(GTClassic.MODID, "_test", GTConfig.dimensionId, GTToxicWorldProvider.class, false);
+    	toxicDimensionType = DimensionType.register(GTClassic.MODID, "_toxic", GTConfig.dimensionId, GTToxicWorldProvider.class, false);
     }
 
     private static void registerDimensions() {
-        DimensionManager.registerDimension(GTConfig.dimensionId, testDimensionType);
+        DimensionManager.registerDimension(GTConfig.dimensionId, toxicDimensionType);
     }
 
 }

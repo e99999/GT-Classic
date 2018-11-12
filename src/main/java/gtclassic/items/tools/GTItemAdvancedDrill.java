@@ -147,12 +147,13 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
                         BlockPos check = (BlockPos)var18.next();
                         value += (double)item.getOreValue(scanner, worldIn.getBlockState(check));
                     }
-
+                    if (found != 0) {
                     IC2.platform.messagePlayer(player, Ic2InfoLang.drillProbeResult.getLocalizedFormatted(new Object[]{3 + range, (int)(value / found * 1000.0D)}));
                     return EnumActionResult.SUCCESS;
-                }
-            }
-        }
+                    	}
+                    }
+            	}
+        	}
 
         return EnumActionResult.PASS;
     }
