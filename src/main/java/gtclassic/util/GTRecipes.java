@@ -2,6 +2,7 @@ package gtclassic.util;
 
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -17,22 +18,92 @@ public class GTRecipes {
 	
 	public static void initSmeltingRecipes() {
 		//ore smelting recipes
-		GameRegistry.addSmelting(GTBlocks.pyriteOre, new ItemStack(Items.IRON_INGOT, 1), 7.0F);
-		GameRegistry.addSmelting(GTBlocks.tungstateOre, new ItemStack(GTItems.dustTungsten, 1), 1.0F);
-		GameRegistry.addSmelting(GTBlocks.sheldoniteOre, new ItemStack(GTItems.ingotPlatinum, 1), 1.0F);
-		GameRegistry.addSmelting(GTBlocks.sandIron, new ItemStack(Items.IRON_NUGGET, 3), 7.0F);
+		GameRegistry.addSmelting(GTBlocks.pyriteOre, new ItemStack(Items.IRON_INGOT, 1), 0.1F);
+		GameRegistry.addSmelting(GTBlocks.tungstateOre, new ItemStack(GTItems.dustTungsten, 1), 0.3F);
+		GameRegistry.addSmelting(GTBlocks.sheldoniteOre, new ItemStack(GTItems.ingotPlatinum, 1), 0.6F);
+		GameRegistry.addSmelting(GTBlocks.sandIron, new ItemStack(Items.IRON_NUGGET, 3), 0.1F);
+		
+		//dust to ingots
+		GameRegistry.addSmelting(GTItems.dustBrass, new ItemStack(GTItems.ingotBrass, 1), 0.2F);
 
 	}
 	
+	static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
+	
 	public static void initShaplessRecipes () {
-		ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 		
-		recipes.addShapelessRecipe(new ItemStack(GTItems.dustZinc, 1),
-				new Object[]{GTItems.mortarFlint, GTItems.ingotZinc});
+		recipes.addShapelessRecipe(new ItemStack(GTItems.dustBrass, 4),
+				new Object[]{Ic2Items.copperDust, Ic2Items.copperDust, Ic2Items.copperDust, GTItems.dustZinc});
+		
+		//flint mortar
+		recipes.addShapelessRecipe(Ic2Items.coalDust,
+				new Object[]{GTItems.mortarFlint, Items.COAL});
+		
+		recipes.addShapelessRecipe(Ic2Items.goldDust,
+				new Object[]{GTItems.mortarFlint, Items.GOLD_INGOT});
+		
+		recipes.addShapelessRecipe(Ic2Items.clayDust,
+				new Object[]{GTItems.mortarFlint, Blocks.CLAY});
+		
+		recipes.addShapelessRecipe(Ic2Items.copperDust,
+				new Object[]{GTItems.mortarFlint, Ic2Items.copperIngot});
+		
+		recipes.addShapelessRecipe(Ic2Items.tinDust,
+				new Object[]{GTItems.mortarFlint, Ic2Items.tinIngot});
+		
+		recipes.addShapelessRecipe(Ic2Items.silverDust,
+				new Object[]{GTItems.mortarFlint, Ic2Items.silverIngot});
+		
+		recipes.addShapelessRecipe(new ItemStack(GTItems.dustElectrum, 1),
+				new Object[]{GTItems.mortarFlint, GTItems.ingotElectrum});
+		
+		recipes.addShapelessRecipe(Ic2Items.flour,
+				new Object[]{GTItems.mortarFlint, Items.WHEAT});
+		
+		//iron mortar
+		recipes.addShapelessRecipe(Ic2Items.coalDust,
+				new Object[]{GTItems.mortarIron, Items.COAL});
+		
+		recipes.addShapelessRecipe(Ic2Items.goldDust,
+				new Object[]{GTItems.mortarIron, Items.GOLD_INGOT});
+		
+		recipes.addShapelessRecipe(Ic2Items.clayDust,
+				new Object[]{GTItems.mortarIron, Blocks.CLAY});
+		
+		recipes.addShapelessRecipe(Ic2Items.copperDust,
+				new Object[]{GTItems.mortarIron, Ic2Items.copperIngot});
+		
+		recipes.addShapelessRecipe(Ic2Items.tinDust,
+				new Object[]{GTItems.mortarIron, Ic2Items.tinIngot});
+		
+		recipes.addShapelessRecipe(Ic2Items.silverDust,
+				new Object[]{GTItems.mortarIron, Ic2Items.silverIngot});
+		
+		recipes.addShapelessRecipe(new ItemStack(GTItems.dustElectrum, 1),
+				new Object[]{GTItems.mortarIron, GTItems.ingotElectrum});
+		
+		recipes.addShapelessRecipe(Ic2Items.flour,
+				new Object[]{GTItems.mortarIron, Items.WHEAT});
+		
+		recipes.addShapelessRecipe(new ItemStack(Items.FLINT, 1),
+				new Object[]{GTItems.mortarIron, Blocks.GRAVEL});
+		
+		recipes.addShapelessRecipe(Ic2Items.ironDust,
+				new Object[]{GTItems.mortarIron, Items.IRON_INGOT});
+		
+		recipes.addShapelessRecipe(Ic2Items.ironDust,
+				new Object[]{GTItems.mortarIron, Ic2Items.refinedIronIngot});
+		
+		recipes.addShapelessRecipe(Ic2Items.bronzeDust,
+				new Object[]{GTItems.mortarIron, Ic2Items.bronzeIngot});
+		
+		recipes.addShapelessRecipe(new ItemStack(GTItems.dustBrass, 1),
+				new Object[]{GTItems.mortarIron, GTItems.ingotBrass});
+		
+
 	}
 	
 	public static void initShapedRecipes () {
-		ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 		
 		recipes.addRecipe(new ItemStack(GTItems.mortarFlint, 1),
 				new Object[]{" F ", 
@@ -56,11 +127,11 @@ public class GTRecipes {
 							 'S', Items.STICK,});
 		
 		
-		recipes.addRecipe(new ItemStack(GTBlocks.zincBlock, 1),
+		recipes.addRecipe(new ItemStack(GTBlocks.platinumBlock, 1),
 				new Object[]{"III", 
 							 "III", 
 							 "III", 
-							 'I', GTItems.ingotZinc});
+							 'I', GTItems.ingotPlatinum});
 	}
 
 }

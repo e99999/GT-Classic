@@ -506,6 +506,5 @@ public class GTItems {
     public static void initModels() {
         creditDoge.initModel();
         creditAlk.initModel();
-        hammerIron.initModel();
     }
 }

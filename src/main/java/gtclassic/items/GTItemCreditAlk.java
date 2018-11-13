@@ -1,9 +1,13 @@
 package gtclassic.items;
 
+import java.util.List;
+
 import gtclassic.GTClassic;
 import gtclassic.util.GTBlocks;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumRarity;
@@ -14,6 +18,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
@@ -48,6 +53,12 @@ public class GTItemCreditAlk extends Item {
 	public EnumRarity getRarity(ItemStack thisItem) {
 		return EnumRarity.EPIC;
 	}
+    
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    	tooltip.add(TextFormatting.GREEN + I18n.format("Shines the way, towards the far away Everglades."));
+    	tooltip.add("Uses Left: " + (stack.getMaxDamage() - stack.getItemDamage()));
+    }
     
     @Override
 	public EnumActionResult onItemUse(EntityPlayer entity, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY,

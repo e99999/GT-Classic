@@ -1,15 +1,20 @@
 package gtclassic.items.tools;
 
+import java.util.Arrays;
+import java.util.List;
+
 import gtclassic.GTClassic;
 import gtclassic.GTMaterials;
-
+import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemHammerIron extends ItemPickaxe {
+public class GTItemHammerIron extends ItemPickaxe implements IStaticTexturedItem {
 	
 	public GTItemHammerIron() {
 		super(GTMaterials.IRON);
@@ -19,10 +24,15 @@ public class GTItemHammerIron extends ItemPickaxe {
         setCreativeTab(GTClassic.creativeTabGT);
     }
 	
-	//init texture
+	@Override
+    public List<Integer> getValidVariants() {
+        return Arrays.asList(0);
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
-    public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+    public TextureAtlasSprite getTexture(int meta) {
+        return Ic2Icons.getTextures("gtclassic_items")[29];
     }
 
 }
