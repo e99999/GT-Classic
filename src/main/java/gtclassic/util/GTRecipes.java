@@ -38,7 +38,7 @@ public class GTRecipes {
 		//flint mortar
 		recipes.addShapelessRecipe(Ic2Items.coalDust,
 				new Object[]{GTItems.mortarFlint, Items.COAL});
-		
+
 		recipes.addShapelessRecipe(Ic2Items.goldDust,
 				new Object[]{GTItems.mortarFlint, Items.GOLD_INGOT});
 		
@@ -132,6 +132,12 @@ public class GTRecipes {
 							 "III", 
 							 "III", 
 							 'I', GTItems.ingotPlatinum});
+		
+		recipes.addRecipe(new ItemStack(GTBlocks.brassBlock, 1),
+				new Object[]{"III", 
+							 "III", 
+							 "III", 
+							 'I', GTItems.ingotBrass});
 	}
 
 }

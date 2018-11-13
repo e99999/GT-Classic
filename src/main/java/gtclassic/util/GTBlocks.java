@@ -1,14 +1,14 @@
 package gtclassic.util;
 
 import gtclassic.GTClassic;
+import gtclassic.blocks.GTBlockCabinet;
 import gtclassic.blocks.GTBlockHazard;
-import gtclassic.blocks.cabinet.GTBlockCabinet;
-import gtclassic.blocks.cabinet.GTTileEntityCabinet;
 import gtclassic.blocks.machines.GTBlockAlloySmelter;
 import gtclassic.blocks.resources.GTBlockMetals;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
 import gtclassic.tileentity.GTTileEntityAlloySmelter;
+import gtclassic.tileentity.GTTileEntityCabinet;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortal;

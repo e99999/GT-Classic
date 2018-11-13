@@ -10,7 +10,6 @@ import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IMachine;
-import ic2.api.classic.tile.MachineType;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.energy.EnergyNet;
 import ic2.api.network.INetworkTileEntityEventListener;
@@ -116,11 +115,6 @@ public class GTTileEntityAlloySmelter extends TileEntityElecMachine implements I
         this.addGuiFields("recipeOperation", "recipeEnergy", "progress");
         this.addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
     }
-
-    public MachineType getType() {
-        return MachineType.macerator;
-    }
-
 
     public ResourceLocation getGuiTexture() {
         return new ResourceLocation(GTClassic.MODID, "textures/gui/guialloysmelter.png");

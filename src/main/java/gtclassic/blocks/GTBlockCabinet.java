@@ -1,7 +1,7 @@
-package gtclassic.blocks.cabinet;
+package gtclassic.blocks;
 
 import gtclassic.GTClassic;
-
+import gtclassic.tileentity.GTTileEntityCabinet;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -34,13 +34,13 @@ public class GTBlockCabinet extends Block implements ITileEntityProvider {
     
     public GTBlockCabinet() {
         super(Material.IRON);
-        setRegistryName("cabinet_block"); //texture
-        setUnlocalizedName(GTClassic.MODID + ".blockCabinet"); //lang
+        setRegistryName("cabinet_block"); 
+        setUnlocalizedName(GTClassic.MODID + ".blockCabinet");
         setCreativeTab(GTClassic.creativeTabGT);
         setHardness(10.0F);
         setResistance(40.0F);
         setSoundType(SoundType.METAL);
-        setHarvestLevel("pickaxe", 1);
+        setHarvestLevel("pickaxe", 2);
         
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         

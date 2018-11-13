@@ -43,11 +43,11 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
     AudioSource lastSource;
     public GTItemAdvancedChainsaw(){
         super(0.0F, 0.0F, ToolMaterial.IRON);
-        this.attackDamage = 1.0F;
-        this.maxCharge = 128000;
+        this.attackDamage = 8.0F;
+        this.maxCharge = 100000;
         this.transferLimit = 150;
         this.operationEnergyCost = 50;
-        this.tier = 1;
+        this.tier = 3;
         this.efficiency = 12.0F;
         this.setHarvestLevel("axe", 2);
         this.setRegistryName("advanced_chainsaw");

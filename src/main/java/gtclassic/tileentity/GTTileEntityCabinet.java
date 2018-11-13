@@ -1,4 +1,4 @@
-package gtclassic.blocks.cabinet;
+package gtclassic.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

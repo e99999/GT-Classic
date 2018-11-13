@@ -1,9 +1,12 @@
-package gtclassic.blocks.cabinet;
+package gtclassic.gui;
 
 import gtclassic.GTClassic;
-
+import gtclassic.container.GTContainerCabinet;
+import gtclassic.tileentity.GTTileEntityCabinet;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
+
+//TODO refactor and delete this package using ic2c methods for gui handling
 
 public class GTGuiCabinet extends GuiContainer {
     public static final int WIDTH = 180;

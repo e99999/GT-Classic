@@ -1,8 +1,8 @@
 package gtclassic.proxy;
 
-import gtclassic.blocks.cabinet.GTContainerCabinet;
-import gtclassic.blocks.cabinet.GTGuiCabinet;
-import gtclassic.blocks.cabinet.GTTileEntityCabinet;
+import gtclassic.container.GTContainerCabinet;
+import gtclassic.gui.GTGuiCabinet;
+import gtclassic.tileentity.GTTileEntityCabinet;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

@@ -1,5 +1,6 @@
-package gtclassic.blocks.cabinet;
+package gtclassic.container;
 
+import gtclassic.tileentity.GTTileEntityCabinet;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;

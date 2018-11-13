@@ -36,7 +36,7 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
 
     GTBlockMetalsVariants variant;
     public GTBlockMetals(GTBlockMetalsVariants variant){
-        super(Material.ROCK);
+        super(Material.IRON);
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase() + "_block");
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_block");
