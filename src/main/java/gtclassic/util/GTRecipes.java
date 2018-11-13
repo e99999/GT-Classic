@@ -32,6 +32,9 @@ public class GTRecipes {
 	
 	public static void initShaplessRecipes () {
 		
+		recipes.addShapelessRecipe(new ItemStack(GTBlocks.blockCabinet, 1),
+				new Object[]{Ic2Items.machine, Blocks.CHEST});
+		
 		recipes.addShapelessRecipe(new ItemStack(GTItems.dustBrass, 4),
 				new Object[]{Ic2Items.copperDust, Ic2Items.copperDust, Ic2Items.copperDust, GTItems.dustZinc});
 		

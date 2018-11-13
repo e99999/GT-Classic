@@ -2,6 +2,8 @@ package gtclassic.util;
 
 import gtclassic.GTClassic;
 import gtclassic.blocks.GTBlockCabinet;
+import gtclassic.blocks.GTBlockCasings;
+import gtclassic.blocks.GTBlockCasings.GTBlockCasingsVariants;
 import gtclassic.blocks.GTBlockHazard;
 import gtclassic.blocks.machines.GTBlockAlloySmelter;
 import gtclassic.blocks.resources.GTBlockMetals;
@@ -38,7 +40,15 @@ public class GTBlocks {
     public static final GTBlockSandIron sandIron = new GTBlockSandIron();
     public static final GTBlockAlloySmelter alloySmelter = new GTBlockAlloySmelter();
 
-	public static final GTBlockMetals
+    public static final GTBlockCasings
+	fusionCasing = new GTBlockCasings(GTBlockCasingsVariants.FUSION),
+	lesuCasing = new GTBlockCasings(GTBlockCasingsVariants.LESU),
+	standardCasing = new GTBlockCasings(GTBlockCasingsVariants.STANDARD),
+	reinforcedCasing = new GTBlockCasings(GTBlockCasingsVariants.REINFORCED),
+	advancedCasing = new GTBlockCasings(GTBlockCasingsVariants.ADVANCED),
+	highlyadvancedCasing = new GTBlockCasings(GTBlockCasingsVariants.HIGHLYADVANCED);
+    
+    public static final GTBlockMetals
 	rubyBlock = new GTBlockMetals(GTBlockMetalsVariants.RUBY),
 	sapphireBlock = new GTBlockMetals(GTBlockMetalsVariants.SAPPHIRE),
 	aluminumBlock = new GTBlockMetals(GTBlockMetalsVariants.ALUMINUM),
@@ -78,11 +88,21 @@ public class GTBlocks {
     public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
 	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
     public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
+    
     public static final Block[] blocks = {
             blockHazard,
             blockCabinet,
             alloySmelter,
             sandIron,
+            
+            fusionCasing,
+            lesuCasing,
+            standardCasing,
+            reinforcedCasing,
+            advancedCasing,
+            highlyadvancedCasing,
+            toxicPortalFrame,
+            
             rubyBlock,
             sapphireBlock,
             aluminumBlock,
@@ -103,6 +123,7 @@ public class GTBlocks {
             invarBlock,
             osmiumBlock,
             iridiumBlock,
+            
             galenaOre,
             iridiumOre,
             rubyOre,
@@ -115,7 +136,7 @@ public class GTBlocks {
             sheldoniteOre,
             olivineOre,
             sodaliteOre,
-            toxicPortalFrame,
+            
             toxicPortal,
             grassToxic
     };
@@ -141,7 +162,7 @@ public class GTBlocks {
         GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
     }
 	
-	//inits block models all blocks should be listed
+	//TODO refactor and remove everything below into the sprite system
     @SideOnly(Side.CLIENT)
     public static void initModels() {
     	//blocks
@@ -150,11 +171,12 @@ public class GTBlocks {
     	
     	sandIron.initModel();
     	
-    	toxicPortalFrame.initModel();
+    	//toxicPortalFrame.initModel();
     	toxicPortal.initModel();
     	grassToxic.initModel();
     	}
     
+    //TODO refactor this information into ore blocks enums
     public static void initHarvestLevel() {
     	int stone = 1;
     	int iron = 2;

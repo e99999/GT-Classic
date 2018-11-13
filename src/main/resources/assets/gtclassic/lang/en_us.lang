@@ -8,6 +8,13 @@ tile.gtclassic.alloySmelter.name=Alloy Smelter
 
 tile.gtclassic.sandIron.name=Black Sand
 
+tile.gtclassic.fusioncasing_block.name=Fusion Coil
+tile.gtclassic.lesucasing_block.name=LESU-Block
+tile.gtclassic.standardcasing_block.name=Standard Machine Casing
+tile.gtclassic.reinforcedcasing_block.name=Reinforced Machine Casing
+tile.gtclassic.advancedcasing_block.name=Advanced Machine Casing
+tile.gtclassic.highlyadvancedcasing_block.name=Highly Advanced Machine Casing
+
 tile.gtclassic.lead_block.name=Lead Block
 tile.gtclassic.titanium_block.name=Titanium Block
 tile.gtclassic.olivine_block.name=Olivine Block
@@ -41,7 +48,7 @@ tile.gtclassic.pyrite_ore.name=Pyrite Ore
 tile.gtclassic.cinnabar_ore.name=Cinnabar Ore
 tile.gtclassic.sphalerite_ore.name=Sphalerite Ore
 
-tile.gtclassic.toxicPortalFrame.name=Containment Frame
+tile.gtclassic.toxicPortalFrame.name=Containment Casing
 tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
 tile.gtclassic.grassToxic.name=Unstable Earth
 

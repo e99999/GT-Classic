@@ -1,47 +1,56 @@
-package gtclassic.toxicdimension.blocks;
-
-import java.util.List;
+package gtclassic.blocks;
 
 import gtclassic.GTClassic;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockToxicPortalFrame extends Block implements ITexturedBlock{
+import java.util.List;
 
-	public GTBlockToxicPortalFrame() {
+public class GTBlockCasings extends Block implements ITexturedBlock {
+    public enum GTBlockCasingsVariants{
+        FUSION(21), 
+        LESU(23), 
+        STANDARD(24), 
+        REINFORCED(25), 
+        ADVANCED(26), 
+        HIGHLYADVANCED(27);
+        private int id;
+
+        GTBlockCasingsVariants(int id){
+            this.id = id;
+        }
+
+        public int getID(){
+            return id;
+        }
+    }
+
+    GTBlockCasingsVariants variant;
+    public GTBlockCasings(GTBlockCasingsVariants variant){
         super(Material.IRON);
-        setRegistryName("toxic_portal_frame");
-        setUnlocalizedName(GTClassic.MODID + ".toxicPortalFrame");
+        this.variant = variant;
+        setRegistryName(variant.toString().toLowerCase() + "casing_block");
+        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "casing_block");
         setCreativeTab(GTClassic.creativeTabGT);
-        setHardness(3.0F);
-        setResistance(40.0F);
+        setHardness(5.0F);
+        setSoundType(SoundType.METAL);
         setHarvestLevel("pickaxe", 2);
-        this.setLightLevel(0.5F);  
     }
-    
-	@Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	tooltip.add(TextFormatting.GREEN + I18n.format("Used to build portals to terrible places..."));
-    	
-    }
-	
-	@Override
+
+    @Override
     public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
         return FULL_BLOCK_AABB;
     }
@@ -49,9 +58,22 @@ public class GTBlockToxicPortalFrame extends Block implements ITexturedBlock{
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-        return Ic2Icons.getTextures("gtclassic_blocks")[31];
+        return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
     }
-	
+
+    @Override
+    @Deprecated
+    public boolean canEntitySpawn(IBlockState state, Entity entityIn)
+    {
+        return false;
+    }
+    
+    
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    	tooltip.add("Mobs can't spawn on this Block");
+    }
+    
     @Override
     public TextureAtlasSprite getParticleTexture(IBlockState state) {
         return this.getTextureFromState(state, EnumFacing.SOUTH);
@@ -66,5 +88,5 @@ public class GTBlockToxicPortalFrame extends Block implements ITexturedBlock{
     public IBlockState getStateFromStack(ItemStack stack) {
         return this.getStateFromMeta(stack.getMetadata());
     }
-    
 }
+

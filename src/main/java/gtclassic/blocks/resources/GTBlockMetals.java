@@ -10,7 +10,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -42,7 +41,7 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_block");
         setCreativeTab(GTClassic.creativeTabGT);
         setHardness(5.0F);
-        setSoundType(SoundType.STONE);
+        setSoundType(SoundType.METAL);
         setHarvestLevel("pickaxe", 2);
     }
 

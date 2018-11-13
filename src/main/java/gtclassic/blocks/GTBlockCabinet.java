@@ -1,5 +1,7 @@
 package gtclassic.blocks;
 
+import java.util.List;
+
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityCabinet;
 import net.minecraft.block.Block;
@@ -10,6 +12,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,6 +71,11 @@ public class GTBlockCabinet extends Block implements ITileEntityProvider {
         return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7));
     }
 
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    	tooltip.add("Decorative item storage");
+    }
+    
     @Override
     public int getMetaFromState(IBlockState state) {
         return state.getValue(FACING).getIndex();
