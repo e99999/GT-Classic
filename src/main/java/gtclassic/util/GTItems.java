@@ -13,10 +13,8 @@ import gtclassic.items.eustorage.GTItemLitiumBattery;
 import gtclassic.items.tools.GTItemAdvancedChainsaw;
 import gtclassic.items.tools.GTItemAdvancedDrill;
 import gtclassic.items.tools.GTItemHammerIron;
-import gtclassic.items.tools.GTItemMortarFlint;
-import gtclassic.items.tools.GTItemMortarIron;
+import gtclassic.items.tools.GTItemMortar;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,8 +25,8 @@ public class GTItems {
 
     public static final GTItemCreditDoge creditDoge = new GTItemCreditDoge();
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
-	public static final GTItemMortarIron mortarIron = new GTItemMortarIron();
-	public static final GTItemMortarFlint mortarFlint = new GTItemMortarFlint();
+	public static final GTItemMortar mortarIron = new GTItemMortar(95, "iron_mortar", "mortarIron", 30);
+	public static final GTItemMortar mortarFlint = new GTItemMortar(7, "flint_mortar", "mortarFlint", 31);
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
 	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();

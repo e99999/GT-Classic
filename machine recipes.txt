@@ -203,7 +203,7 @@ lithium battery + cropnalyzer = portable scanner
 basic circuit board + 3 insulated copper cable = electronic circuit
 electronic circuit + insulated copper cable = frequency transmitter
 
-Industrial Cnetrifuge
+Industrial Centrifuge
 todo
 
 Industrial Electrolyzer
