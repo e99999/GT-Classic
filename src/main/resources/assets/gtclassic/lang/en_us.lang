@@ -1,6 +1,5 @@
 item.gtclassic.creditDoge.name=Doge Credit
 item.gtclassic.creditAlk.name=Alkalus Credit
-item.gtclassic.hammerIron.name=Iron Hammer
 
 tile.gtclassic.blockHazard.name=Hazard Block
 tile.gtclassic.blockCabinet.name=Metal Cabinet
@@ -46,6 +45,9 @@ tile.gtclassic.toxicPortalFrame.name=Containment Frame
 tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
 tile.gtclassic.grassToxic.name=Unstable Earth
 
+item.gtclassic.mortarFlint.name=Flint Mortar
+item.gtclassic.mortarIron.name=Iron Mortar
+item.gtclassic.hammerIron.name=Iron Hammer
 item.gtclassic.advancedDrill.name=Advanced Drill
 item.gtclassic.advancedChainsaw.name=Advanced Chainsaw
 item.gtclassic.lithiumBattery.name=Lithium Battery

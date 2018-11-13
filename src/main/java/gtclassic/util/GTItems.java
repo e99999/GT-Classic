@@ -13,11 +13,12 @@ import gtclassic.items.eustorage.GTItemLitiumBattery;
 import gtclassic.items.tools.GTItemAdvancedChainsaw;
 import gtclassic.items.tools.GTItemAdvancedDrill;
 import gtclassic.items.tools.GTItemHammerIron;
+import gtclassic.items.tools.GTItemMortarFlint;
+import gtclassic.items.tools.GTItemMortarIron;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -26,6 +27,8 @@ public class GTItems {
 
     public static final GTItemCreditDoge creditDoge = new GTItemCreditDoge();
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
+	public static final GTItemMortarIron mortarIron = new GTItemMortarIron();
+	public static final GTItemMortarFlint mortarFlint = new GTItemMortarFlint();
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
 	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();
@@ -165,9 +168,9 @@ public class GTItems {
 	ingotIridium = new GTItemMaterials(GTItemMaterialTypes.IRIDIUM_INGOT),
 	ingotAluminum = new GTItemMaterials(GTItemMaterialTypes.ALUMINUM_INGOT),
 	ingotTitanium = new GTItemMaterials(GTItemMaterialTypes.TITANIUM_INGOT),
+	ingotTungsten = new GTItemMaterials(GTItemMaterialTypes.TUNGSTEN_INGOT),
 	ingotChrome = new GTItemMaterials(GTItemMaterialTypes.CHROME_INGOT),
 	ingotElectrum = new GTItemMaterials(GTItemMaterialTypes.ELECTRUM_INGOT),
-	ingotTungsten = new GTItemMaterials(GTItemMaterialTypes.TUNGSTEN_INGOT),
 	ingotLead = new GTItemMaterials(GTItemMaterialTypes.LEAD_INGOT),
 	ingotZinc = new GTItemMaterials(GTItemMaterialTypes.ZINC_INGOT),
 	ingotBrass = new GTItemMaterials(GTItemMaterialTypes.BRASS_INGOT),
@@ -259,6 +262,8 @@ public class GTItems {
 	public static final Item[] items = {
 			creditDoge,
 			creditAlk,
+			mortarIron,
+			mortarFlint,
 			hammerIron,
 			advancedDrill,
 			advancedChainsaw,
