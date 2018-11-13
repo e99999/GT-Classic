@@ -25,8 +25,8 @@ public class GTItems {
 
     public static final GTItemCreditDoge creditDoge = new GTItemCreditDoge();
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
-	public static final GTItemMortar mortarIron = new GTItemMortar(95, "iron_mortar", "mortarIron", 30);
-	public static final GTItemMortar mortarFlint = new GTItemMortar(7, "flint_mortar", "mortarFlint", 31);
+	public static final GTItemMortar mortarIron = new GTItemMortar(95, "iron_mortar", "mortarIron", 30, true);
+	public static final GTItemMortar mortarFlint = new GTItemMortar(7, "flint_mortar", "mortarFlint", 31, false);
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
 	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();

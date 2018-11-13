@@ -18,10 +18,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemMortar extends Item implements IStaticTexturedItem {
 	int itemIndex;
+	boolean enchant;
 
-	public GTItemMortar(int maxDamage, String reg, String un, int index) {
+	public GTItemMortar(int maxDamage, String reg, String un, int index, boolean enchant) {
 		this.maxStackSize = 1;
 		this.itemIndex = index;
+		this.enchant = enchant;
 		this.setMaxDamage(maxDamage);//7
 		setRegistryName(reg);//"flint_mortar"
         setUnlocalizedName(GTClassic.MODID + "." + un);//"mortarFlint"
@@ -57,6 +59,12 @@ public class GTItemMortar extends Item implements IStaticTexturedItem {
             tooltip.add("Can pulverize Ingots into Dust");
         }
 
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack stack)
+    {
+        return this.enchant;
     }
 	
 	@Override
