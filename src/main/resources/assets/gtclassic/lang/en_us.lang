@@ -298,7 +298,7 @@ item.gtclassic.elite_circuit_board.name=Elite Circuit Board
 tooltip.gtclassic.motar=Can pulverize Ingots into Dust
 tooltip.gtclassic.storage=Decorative item storage
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
-tooltip.gtclassic.witherproof=Wither proof
+tooltip.gtclassic.witherproof=Withers cant destroy this Block
 tooltip.gtclassic.alkcredit=Shines the way, towards the far away Everglades
 tooltip.gtclassic.portalframe=Used to build portals to terrible places...
 

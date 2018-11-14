@@ -45,7 +45,6 @@ public class GTBlockCabinet extends Block implements ITileEntityProvider {
         setResistance(40.0F);
         setSoundType(SoundType.METAL);
         setHarvestLevel("pickaxe", 2);
-        
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         
     }

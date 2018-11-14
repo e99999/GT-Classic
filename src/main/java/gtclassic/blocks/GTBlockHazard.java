@@ -78,7 +78,7 @@ public class GTBlockHazard extends Block implements ITexturedBlock {
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
     	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".nomobs"));
-    	tooltip.add(TextFormatting.YELLOW + I18n.format("tooltip."+ GTClassic.MODID +".witherproof"));
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".witherproof"));
     }
     
     @Override
