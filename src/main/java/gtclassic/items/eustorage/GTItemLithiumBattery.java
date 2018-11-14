@@ -13,10 +13,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemLitiumBattery extends ItemBatteryBase implements IAdvancedTexturedItem {
+public class GTItemLithiumBattery extends ItemBatteryBase implements IAdvancedTexturedItem {
     private ModelResourceLocation[] locations = new ModelResourceLocation[5];
 
-    public GTItemLitiumBattery() {
+    public GTItemLithiumBattery() {
         super(0);
         this.setRightClick();
         this.setRegistryName("lithium_battery");

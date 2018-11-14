@@ -41,6 +41,7 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_block");
         setCreativeTab(GTClassic.creativeTabGT);
         setHardness(5.0F);
+        setResistance(15.0F);
         setSoundType(SoundType.METAL);
         setHarvestLevel("pickaxe", 2);
     }

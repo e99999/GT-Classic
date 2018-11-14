@@ -9,7 +9,7 @@ import gtclassic.items.GTItemMaterials.GTItemMaterialTypes;
 import gtclassic.items.GTItemComponents.GTItemComponentTypes;
 import gtclassic.items.armor.GTItemEnergyPack;
 import gtclassic.items.eustorage.GTItemLapotronicEnergyOrb;
-import gtclassic.items.eustorage.GTItemLitiumBattery;
+import gtclassic.items.eustorage.GTItemLithiumBattery;
 import gtclassic.items.tools.GTItemAdvancedChainsaw;
 import gtclassic.items.tools.GTItemAdvancedDrill;
 import gtclassic.items.tools.GTItemHammerIron;
@@ -30,7 +30,7 @@ public class GTItems {
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
 	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();
-	public static final GTItemLitiumBattery lithiumBattery = new GTItemLitiumBattery();
+	public static final GTItemLithiumBattery lithiumBattery = new GTItemLithiumBattery();
 	public static final GTItemLapotronicEnergyOrb lapotronicEnergyOrb = new GTItemLapotronicEnergyOrb();
 	public static final GTItemEnergyPack lithiumBatpack = new GTItemEnergyPack(58, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 200);
 	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45, "gtclassic:textures/models/armor/lapotronpack", 100000000, "lapotron_pack", ".lapotronPack", 3, 1500);
