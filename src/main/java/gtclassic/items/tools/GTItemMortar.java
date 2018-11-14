@@ -8,6 +8,7 @@ import gtclassic.util.GTItems;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -56,7 +57,7 @@ public class GTItemMortar extends Item implements IStaticTexturedItem {
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         if (this == GTItems.mortarIron){
-            tooltip.add("Can pulverize Ingots into Dust");
+        	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".motar"));
         }
 
     }

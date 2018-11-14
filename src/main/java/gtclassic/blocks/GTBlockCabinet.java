@@ -28,6 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraft.client.resources.I18n;
 
 public class GTBlockCabinet extends Block implements ITileEntityProvider {
 
@@ -73,7 +74,7 @@ public class GTBlockCabinet extends Block implements ITileEntityProvider {
 
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	tooltip.add("Decorative item storage");
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".storage"));
     }
     
     @Override

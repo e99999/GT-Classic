@@ -30,8 +30,20 @@ import java.util.Random;
 
 public class GTBlockOre extends Block implements ITexturedBlock {
     public enum GTBlockOreVariants{
-        GALENA(96), IRIDIUM(97), RUBY(98), SAPPHIRE(99), BAUXITE(100), PYRITE(101), CINNABAR(102), SPHALERITE(103), TUNGSTATE(104), SHELDONITE(105), OLIVINE(106), SODALITE(107);
-        private int id;
+        GALENA(96), 
+        IRIDIUM(97), 
+        RUBY(98), 
+        SAPPHIRE(99), 
+        BAUXITE(100), 
+        PYRITE(101), 
+        CINNABAR(102), 
+        SPHALERITE(103), 
+        TUNGSTATE(104), 
+        SHELDONITE(105), 
+        OLIVINE(106), 
+        SODALITE(107);
+        
+    	private int id;
 
         GTBlockOreVariants(int id){
             this.id = id;

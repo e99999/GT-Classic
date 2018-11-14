@@ -8,6 +8,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -19,17 +20,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class GTBlockCasings extends Block implements ITexturedBlock {
-    public enum GTBlockCasingsVariants{
+public class GTBlockMachine extends Block implements ITexturedBlock {
+    public enum GTBlockMachineVariants{
         FUSION(21), 
         LESU(23), 
         STANDARD(24), 
         REINFORCED(25), 
         ADVANCED(26), 
         HIGHLYADVANCED(27);
-        private int id;
+        
+    	private int id;
 
-        GTBlockCasingsVariants(int id){
+    	GTBlockMachineVariants(int id){
             this.id = id;
         }
 
@@ -38,12 +40,12 @@ public class GTBlockCasings extends Block implements ITexturedBlock {
         }
     }
 
-    GTBlockCasingsVariants variant;
-    public GTBlockCasings(GTBlockCasingsVariants variant){
+    GTBlockMachineVariants variant;
+    public GTBlockMachine(GTBlockMachineVariants variant){
         super(Material.IRON);
         this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "casing_block");
-        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "casing_block");
+        setRegistryName(variant.toString().toLowerCase() + "_machineblock");
+        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_machineblock");
         setCreativeTab(GTClassic.creativeTabGT);
         setHardness(5.0F);
         setSoundType(SoundType.METAL);
@@ -63,15 +65,13 @@ public class GTBlockCasings extends Block implements ITexturedBlock {
 
     @Override
     @Deprecated
-    public boolean canEntitySpawn(IBlockState state, Entity entityIn)
-    {
+    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
         return false;
     }
     
-    
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	tooltip.add("Mobs can't spawn on this Block");
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".nomobs"));
     }
     
     @Override

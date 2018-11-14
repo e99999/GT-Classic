@@ -8,12 +8,17 @@ tile.gtclassic.alloySmelter.name=Alloy Smelter
 
 tile.gtclassic.sandIron.name=Black Sand
 
-tile.gtclassic.fusioncasing_block.name=Fusion Coil
-tile.gtclassic.lesucasing_block.name=LESU-Block
-tile.gtclassic.standardcasing_block.name=Standard Machine Casing
-tile.gtclassic.reinforcedcasing_block.name=Reinforced Machine Casing
-tile.gtclassic.advancedcasing_block.name=Advanced Machine Casing
-tile.gtclassic.highlyadvancedcasing_block.name=Highly Advanced Machine Casing
+tile.gtclassic.fusion_machineblock.name=Fusion Coil
+tile.gtclassic.lesu_machineblock.name=LESU-Block
+tile.gtclassic.standard_machineblock.name=Standard Machine Block
+tile.gtclassic.reinforced_machineblock.name=Reinforced Machine Block
+tile.gtclassic.advanced_machineblock.name=Advanced Machine Block
+tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
+
+tile.gtclassic.metal_hazardblock.name=Metal Hazard Block
+tile.gtclassic.fire_hazardblock.name=Fire Hazard Block
+tile.gtclassic.radioactive_hazardblock.name=Radioactive Hazard Block
+tile.gtclassic.caution_hazardblock.name=Caution Hazard Block
 
 tile.gtclassic.lead_block.name=Lead Block
 tile.gtclassic.titanium_block.name=Titanium Block
@@ -48,7 +53,7 @@ tile.gtclassic.pyrite_ore.name=Pyrite Ore
 tile.gtclassic.cinnabar_ore.name=Cinnabar Ore
 tile.gtclassic.sphalerite_ore.name=Sphalerite Ore
 
-tile.gtclassic.toxicPortalFrame.name=Containment Casing
+tile.gtclassic.toxicPortalFrame.name=Containment Frame
 tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
 tile.gtclassic.grassToxic.name=Unstable Earth
 
@@ -289,5 +294,12 @@ item.gtclassic.titanium_machine_hull.name=Titanium Machine Hull
 item.gtclassic.basic_circuit_board.name=Basic Circuit Board
 item.gtclassic.advanced_circuit_board.name=Advanced Circuit Board
 item.gtclassic.elite_circuit_board.name=Elite Circuit Board
+
+tooltip.gtclassic.motar=Can pulverize Ingots into Dust
+tooltip.gtclassic.storage=Decorative item storage
+tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
+tooltip.gtclassic.witherproof=Wither proof
+tooltip.gtclassic.alkcredit=Shines the way, towards the far away Everglades
+tooltip.gtclassic.portalframe=Used to build portals to terrible places...
 
 itemGroup.gtclassic=GregTech Classic

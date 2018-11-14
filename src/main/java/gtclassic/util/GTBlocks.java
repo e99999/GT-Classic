@@ -2,9 +2,10 @@ package gtclassic.util;
 
 import gtclassic.GTClassic;
 import gtclassic.blocks.GTBlockCabinet;
-import gtclassic.blocks.GTBlockCasings;
-import gtclassic.blocks.GTBlockCasings.GTBlockCasingsVariants;
 import gtclassic.blocks.GTBlockHazard;
+import gtclassic.blocks.GTBlockMachine;
+import gtclassic.blocks.GTBlockMachine.GTBlockMachineVariants;
+import gtclassic.blocks.GTBlockHazard.GTBlockHazardVariants;
 import gtclassic.blocks.machines.GTBlockAlloySmelter;
 import gtclassic.blocks.resources.GTBlockMetals;
 import gtclassic.blocks.resources.GTBlockOre;
@@ -24,29 +25,32 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
 
     //not required but useful stored references to blocks
-    public static final GTBlockHazard blockHazard = new GTBlockHazard();
     public static final GTBlockCabinet blockCabinet = new GTBlockCabinet();
     public static final GTBlockSandIron sandIron = new GTBlockSandIron();
     public static final GTBlockAlloySmelter alloySmelter = new GTBlockAlloySmelter();
 
-    public static final GTBlockCasings
-	fusionCasing = new GTBlockCasings(GTBlockCasingsVariants.FUSION),
-	lesuCasing = new GTBlockCasings(GTBlockCasingsVariants.LESU),
-	standardCasing = new GTBlockCasings(GTBlockCasingsVariants.STANDARD),
-	reinforcedCasing = new GTBlockCasings(GTBlockCasingsVariants.REINFORCED),
-	advancedCasing = new GTBlockCasings(GTBlockCasingsVariants.ADVANCED),
-	highlyadvancedCasing = new GTBlockCasings(GTBlockCasingsVariants.HIGHLYADVANCED);
+    public static final GTBlockMachine
+	fusionMachineBlock = new GTBlockMachine(GTBlockMachineVariants.FUSION),
+	lesuMachineBlock = new GTBlockMachine(GTBlockMachineVariants.LESU),
+	standardMachineBlock = new GTBlockMachine(GTBlockMachineVariants.STANDARD),
+	reinforcedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.REINFORCED),
+	advancedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.ADVANCED),
+	highlyadvancedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.HIGHLYADVANCED);
+    
+    public static final GTBlockHazard
+    metalHazardBlock = new GTBlockHazard(GTBlockHazardVariants.METAL),
+    fireHazardBlock = new GTBlockHazard(GTBlockHazardVariants.FIRE),
+    radioactiveHazardBlock = new GTBlockHazard(GTBlockHazardVariants.RADIOACTIVE),
+    cautionHazardBlock = new GTBlockHazard(GTBlockHazardVariants.CAUTION);
     
     public static final GTBlockMetals
 	rubyBlock = new GTBlockMetals(GTBlockMetalsVariants.RUBY),
@@ -90,18 +94,22 @@ public class GTBlocks {
     public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
     
     public static final Block[] blocks = {
-            blockHazard,
             blockCabinet,
             alloySmelter,
             sandIron,
             
-            fusionCasing,
-            lesuCasing,
-            standardCasing,
-            reinforcedCasing,
-            advancedCasing,
-            highlyadvancedCasing,
+            fusionMachineBlock,
+            lesuMachineBlock,
+            standardMachineBlock,
+            reinforcedMachineBlock,
+            advancedMachineBlock,
+            highlyadvancedMachineBlock,
             toxicPortalFrame,
+            
+            metalHazardBlock,
+            fireHazardBlock,
+            radioactiveHazardBlock,
+            cautionHazardBlock,
             
             rubyBlock,
             sapphireBlock,
@@ -165,13 +173,8 @@ public class GTBlocks {
 	//TODO refactor and remove everything below into the sprite system
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-    	//blocks
-    	blockHazard.initModel();
     	blockCabinet.initModel();
-    	
     	sandIron.initModel();
-    	
-    	//toxicPortalFrame.initModel();
     	toxicPortal.initModel();
     	grassToxic.initModel();
     	}

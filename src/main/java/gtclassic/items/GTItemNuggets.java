@@ -11,8 +11,26 @@ import java.util.List;
 
 public class GTItemNuggets extends Item implements IStaticTexturedItem {
     public enum GTItemNuggetTypes{
-        IRIDIUM(0), SILVER(1), ALUMINUM(2), TITANIUM(3), CHROME(4), ELECTRUM(5), TUNGSTEN(6), LEAD(7), ZINC(8), BRASS(9), STEEL(10), PLATINUM(11), NICKEL(12), INVAR(13), OSMIUM(14), COPPER(15), TIN(16), BRONZE(17);
-        private int id;
+        IRIDIUM(0),
+        SILVER(1),
+        ALUMINUM(2),
+        TITANIUM(3),
+        CHROME(4),
+        ELECTRUM(5),
+        TUNGSTEN(6),
+        LEAD(7),
+        ZINC(8),
+        BRASS(9),
+        STEEL(10),
+        PLATINUM(11),
+        NICKEL(12),
+        INVAR(13),
+        OSMIUM(14),
+        COPPER(15),
+        TIN(16),
+        BRONZE(17);
+        
+    	private int id;
 
         GTItemNuggetTypes(int id){
             this.id = id;

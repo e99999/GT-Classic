@@ -37,8 +37,7 @@ public class GTBlockToxicPortalFrame extends Block implements ITexturedBlock{
     
 	@Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	tooltip.add(TextFormatting.GREEN + I18n.format("Used to build portals to terrible places..."));
-    	
+		tooltip.add(TextFormatting.GREEN + I18n.format("tooltip."+ GTClassic.MODID +".portalframe"));
     }
 	
 	@Override

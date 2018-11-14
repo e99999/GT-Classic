@@ -56,8 +56,9 @@ public class GTItemCreditAlk extends Item {
     
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	tooltip.add(TextFormatting.GREEN + I18n.format("Shines the way, towards the far away Everglades."));
-    	tooltip.add("Uses Left: " + (stack.getMaxDamage() - stack.getItemDamage()));
+    	tooltip.add(TextFormatting.GREEN + I18n.format("tooltip."+ GTClassic.MODID +".alkcredit"));
+    	tooltip.add(stack.getMaxDamage() - stack.getItemDamage()+"/64");
+    	
     }
     
     @Override

@@ -8,6 +8,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -21,8 +22,28 @@ import java.util.List;
 
 public class GTBlockMetals extends Block implements ITexturedBlock {
     public enum GTBlockMetalsVariants{
-        RUBY(0), SAPPHIRE(1), ALUMINUM(2), TITANIUM(3), CHROME(4), STEEL(5), BRASS(6), LEAD(7), ELECTRUM(8), ZINC(9), OLIVINE(10), GREEN_SAPPHIRE(11), PLATINUM(12), TUNGSTEN(13), NICKEL(14), TUNGSTENSTEEL(15), IRIDIUM_REINFORCED_TUNGSTENSTEEL(16), INVAR(17), OSMIUM(18), IRIDIUM(19);
-        private int id;
+        RUBY(0), 
+        SAPPHIRE(1),
+        ALUMINUM(2), 
+        TITANIUM(3), 
+        CHROME(4), 
+        STEEL(5), 
+        BRASS(6), 
+        LEAD(7), 
+        ELECTRUM(8), 
+        ZINC(9), 
+        OLIVINE(10), 
+        GREEN_SAPPHIRE(11), 
+        PLATINUM(12), 
+        TUNGSTEN(13), 
+        NICKEL(14), 
+        TUNGSTENSTEEL(15), 
+        IRIDIUM_REINFORCED_TUNGSTENSTEEL(16), 
+        INVAR(17), 
+        OSMIUM(18), 
+        IRIDIUM(19);
+        
+    	private int id;
 
         GTBlockMetalsVariants(int id){
             this.id = id;
@@ -59,15 +80,13 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
 
     @Override
     @Deprecated
-    public boolean canEntitySpawn(IBlockState state, Entity entityIn)
-    {
+    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
         return false;
     }
     
-    
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	tooltip.add("Mobs can't spawn on this Block");
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".nomobs"));
     }
     
     @Override
