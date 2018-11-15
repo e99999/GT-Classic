@@ -180,24 +180,24 @@ public class GTBlocks {
     	}
     
     //TODO refactor this information into ore blocks enums
-    public static void initHarvestLevel() {
-    	int stone = 1;
-    	int iron = 2;
-    	int diamond = 3;
-    	
-    	cinnabarOre.setHarvestLevel("pickaxe", iron);
-    	pyriteOre.setHarvestLevel("pickaxe", stone);
-    	sphaleriteOre.setHarvestLevel("pickaxe", stone);
-    	
-    	tungstateOre.setHarvestLevel("pickaxe", iron);
-    	sheldoniteOre.setHarvestLevel("pickaxe", diamond);
-    	sodaliteOre.setHarvestLevel("pickaxe", iron);
-    	olivineOre.setHarvestLevel("pickaxe", diamond);
-    	
-    	galenaOre.setHarvestLevel("pickaxe", stone);
-    	iridiumOre.setHarvestLevel("pickaxe", diamond);
-    	rubyOre.setHarvestLevel("pickaxe", iron);
-    	sapphireOre.setHarvestLevel("pickaxe", iron);
-    	bauxiteOre.setHarvestLevel("pickaxe", stone);
-    }
+//    public static void initHarvestLevel() {
+//    	int stone = 1;
+//    	int iron = 2;
+//    	int diamond = 3;
+//
+//    	cinnabarOre.setHarvestLevel("pickaxe", iron);
+//    	pyriteOre.setHarvestLevel("pickaxe", stone);
+//    	sphaleriteOre.setHarvestLevel("pickaxe", stone);
+//
+//    	tungstateOre.setHarvestLevel("pickaxe", iron);
+//    	sheldoniteOre.setHarvestLevel("pickaxe", diamond);
+//    	sodaliteOre.setHarvestLevel("pickaxe", iron);
+//    	olivineOre.setHarvestLevel("pickaxe", diamond);
+//
+//    	galenaOre.setHarvestLevel("pickaxe", stone);
+//    	iridiumOre.setHarvestLevel("pickaxe", diamond);
+//    	rubyOre.setHarvestLevel("pickaxe", iron);
+//    	sapphireOre.setHarvestLevel("pickaxe", iron);
+//    	bauxiteOre.setHarvestLevel("pickaxe", stone);
+//    }
 }

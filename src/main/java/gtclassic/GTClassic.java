@@ -45,7 +45,7 @@ public class GTClassic {
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
         GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
-        GTBlocks.initHarvestLevel();
+        //GTBlocks.initHarvestLevel();
         GTRecipes.init();
         proxy.init(e);
     }

@@ -4,6 +4,8 @@ import gtclassic.GTClassic;
 import gtclassic.blocks.resources.GTBlockOre.GTBlockOreVariants;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTItems;
+import ic2.api.item.IC2Items;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -30,28 +32,34 @@ import java.util.Random;
 
 public class GTBlockOre extends Block implements ITexturedBlock {
     public enum GTBlockOreVariants{
-        GALENA(96), 
-        IRIDIUM(97), 
-        RUBY(98), 
-        SAPPHIRE(99), 
-        BAUXITE(100), 
-        PYRITE(101), 
-        CINNABAR(102), 
-        SPHALERITE(103), 
-        TUNGSTATE(104), 
-        SHELDONITE(105), 
-        OLIVINE(106), 
-        SODALITE(107);
+        GALENA(96, 1, 3.0F),
+        IRIDIUM(97, 3, 20.0F),
+        RUBY(98, 2, 4.0F),
+        SAPPHIRE(99, 2, 4.0F),
+        BAUXITE(100, 1, 3.0F),
+        PYRITE(101, 1, 2.0F),
+        CINNABAR(102, 2, 3.0F),
+        SPHALERITE(103, 1, 2.0F),
+        TUNGSTATE(104, 2, 4.0F),
+        SHELDONITE(105, 3, 3.5F),
+        OLIVINE(106, 3, 3.0F),
+        SODALITE(107, 2, 3.0F);
         
     	private int id;
+    	private int harvest;
+    	private float hardness;
 
-        GTBlockOreVariants(int id){
+        GTBlockOreVariants(int id, int harvest, float hardness){
             this.id = id;
+            this.harvest = harvest;
+            this.hardness = hardness;
         }
 
         public int getID(){
             return id;
         }
+        public int getHarvest(){return harvest;}
+        public float getHardness() { return hardness; }
     }
     
     
@@ -62,8 +70,9 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         setRegistryName(variant.toString().toLowerCase() + "_ore");
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_ore");
         setCreativeTab(GTClassic.creativeTabGT);
-        setHardness(3.0F);
+        setHardness(variant.getHardness());
         setResistance(10.0F);
+        setHarvestLevel("pickaxe", variant.getHarvest());
         setSoundType(SoundType.STONE);
     }
 
@@ -72,8 +81,13 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         
         //Nether Ores
         if (this == GTBlocks.cinnabarOre) {
+
         drops.add(new ItemStack(GTItems.dustCinnabar, 2));
-        drops.add(new ItemStack(Items.REDSTONE, 1));
+            if(RANDOM.nextFloat()<0.25f) {
+                drops.add(new ItemStack(Items.REDSTONE, 1));
+            }
+
+
         }
         
         if (this == GTBlocks.pyriteOre) {
@@ -101,6 +115,9 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         
         if (this == GTBlocks.sodaliteOre) {
         drops.add(new ItemStack(GTItems.dustSodalite, 6));
+            if(RANDOM.nextFloat()<0.25f) {
+                drops.add(new ItemStack(GTItems.dustAluminum, 1));
+            }
         }
         
         if (this == GTBlocks.olivineOre) {
@@ -114,7 +131,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         }
         
         if (this == GTBlocks.iridiumOre) {
-        drops.add(new ItemStack(GTBlocks.iridiumOre, 1));
+        drops.add(Ic2Items.iridiumOre);
         }
         
         if (this == GTBlocks.rubyOre) {
