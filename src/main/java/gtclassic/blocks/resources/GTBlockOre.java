@@ -30,31 +30,34 @@ import java.util.Random;
 
 public class GTBlockOre extends Block implements ITexturedBlock {
     public enum GTBlockOreVariants{
-        GALENA(96, 1),
-        IRIDIUM(97, 3),
-        RUBY(98, 2),
-        SAPPHIRE(99, 2),
-        BAUXITE(100, 1),
-        PYRITE(101, 1),
-        CINNABAR(102, 2),
-        SPHALERITE(103, 1),
-        TUNGSTATE(104, 2),
-        SHELDONITE(105, 3),
-        OLIVINE(106, 3),
-        SODALITE(107, 2);
+        GALENA(96, 1, 3.0F),
+        IRIDIUM(97, 3, 20.0F),
+        RUBY(98, 2, 4.0F),
+        SAPPHIRE(99, 2, 4.0F),
+        BAUXITE(100, 1, 3.0F),
+        PYRITE(101, 1, 2.0F),
+        CINNABAR(102, 2, 3.0F),
+        SPHALERITE(103, 1, 2.0F),
+        TUNGSTATE(104, 2, 4.0F),
+        SHELDONITE(105, 3, 3.5F),
+        OLIVINE(106, 3, 3.0F),
+        SODALITE(107, 2, 3.0F);
         
     	private int id;
     	private int harvest;
+    	private float hardness;
 
-        GTBlockOreVariants(int id, int harvest){
+        GTBlockOreVariants(int id, int harvest, float hardness){
             this.id = id;
             this.harvest = harvest;
+            this.hardness = hardness;
         }
 
         public int getID(){
             return id;
         }
         public int getHarvest(){return harvest;}
+        public float getHardness() { return hardness; }
     }
     
     
@@ -65,7 +68,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         setRegistryName(variant.toString().toLowerCase() + "_ore");
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_ore");
         setCreativeTab(GTClassic.creativeTabGT);
-        setHardness(3.0F);
+        setHardness(variant.getHardness());
         setResistance(10.0F);
         setHarvestLevel("pickaxe", variant.getHarvest());
         setSoundType(SoundType.STONE);
