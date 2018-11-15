@@ -30,28 +30,31 @@ import java.util.Random;
 
 public class GTBlockOre extends Block implements ITexturedBlock {
     public enum GTBlockOreVariants{
-        GALENA(96), 
-        IRIDIUM(97), 
-        RUBY(98), 
-        SAPPHIRE(99), 
-        BAUXITE(100), 
-        PYRITE(101), 
-        CINNABAR(102), 
-        SPHALERITE(103), 
-        TUNGSTATE(104), 
-        SHELDONITE(105), 
-        OLIVINE(106), 
-        SODALITE(107);
+        GALENA(96, 1),
+        IRIDIUM(97, 3),
+        RUBY(98, 2),
+        SAPPHIRE(99, 2),
+        BAUXITE(100, 1),
+        PYRITE(101, 1),
+        CINNABAR(102, 2),
+        SPHALERITE(103, 1),
+        TUNGSTATE(104, 2),
+        SHELDONITE(105, 3),
+        OLIVINE(106, 3),
+        SODALITE(107, 2);
         
     	private int id;
+    	private int harvest;
 
-        GTBlockOreVariants(int id){
+        GTBlockOreVariants(int id, int harvest){
             this.id = id;
+            this.harvest = harvest;
         }
 
         public int getID(){
             return id;
         }
+        public int getHarvest(){return harvest;}
     }
     
     
@@ -64,6 +67,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         setCreativeTab(GTClassic.creativeTabGT);
         setHardness(3.0F);
         setResistance(10.0F);
+        setHarvestLevel("pickaxe", variant.getHarvest());
         setSoundType(SoundType.STONE);
     }
 
