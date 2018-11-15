@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class GTItemTinyDusts extends Item implements IStaticTexturedItem {
+public class GTItemTinyDust extends Item implements IStaticTexturedItem {
     public enum GTItemTinyDustTypes{
         ENDERPEARL(0),
         ENDER_EYE(1),
@@ -93,7 +93,7 @@ public class GTItemTinyDusts extends Item implements IStaticTexturedItem {
     }
 
     GTItemTinyDustTypes variant;
-    public GTItemTinyDusts(GTItemTinyDustTypes variant){
+    public GTItemTinyDust(GTItemTinyDustTypes variant){
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase() + "_tiny_dust");
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_tiny_dust");

@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import java.util.Arrays;
 import java.util.List;
 
-public class GTItemNuggets extends Item implements IStaticTexturedItem {
+public class GTItemNugget extends Item implements IStaticTexturedItem {
     public enum GTItemNuggetTypes{
         IRIDIUM(0),
         SILVER(1),
@@ -42,7 +42,7 @@ public class GTItemNuggets extends Item implements IStaticTexturedItem {
     }
 
     GTItemNuggetTypes variant;
-    public GTItemNuggets(GTItemNuggetTypes variant){
+    public GTItemNugget(GTItemNuggetTypes variant){
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase() + "_nugget");
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_nugget");

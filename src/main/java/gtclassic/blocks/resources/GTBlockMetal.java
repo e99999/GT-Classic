@@ -20,8 +20,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class GTBlockMetals extends Block implements ITexturedBlock {
-    public enum GTBlockMetalsVariants{
+public class GTBlockMetal extends Block implements ITexturedBlock {
+    public enum GTBlockMetalVariants{
         RUBY(0), 
         SAPPHIRE(1),
         ALUMINUM(2), 
@@ -45,7 +45,7 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
         
     	private int id;
 
-        GTBlockMetalsVariants(int id){
+        GTBlockMetalVariants(int id){
             this.id = id;
         }
 
@@ -54,8 +54,8 @@ public class GTBlockMetals extends Block implements ITexturedBlock {
         }
     }
 
-    GTBlockMetalsVariants variant;
-    public GTBlockMetals(GTBlockMetalsVariants variant){
+    GTBlockMetalVariants variant;
+    public GTBlockMetal(GTBlockMetalVariants variant){
         super(Material.IRON);
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase() + "_block");

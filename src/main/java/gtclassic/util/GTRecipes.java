@@ -1,9 +1,9 @@
 package gtclassic.util;
 
 
-import gtclassic.blocks.resources.GTBlockMetals;
-import gtclassic.items.resources.GTItemMaterials;
-import gtclassic.items.resources.GTItemNuggets;
+import gtclassic.blocks.resources.GTBlockMetal;
+import gtclassic.items.resources.GTItemIngot;
+import gtclassic.items.resources.GTItemNugget;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.registry.Ic2Items;
@@ -37,7 +37,7 @@ public class GTRecipes {
 	
 	
 	//TODO Use ore dictionary instead of internal classes
-	public static void metalutil(GTItemNuggets nugget, GTItemMaterials ingot, GTBlockMetals block) {
+	public static void metalutil(GTItemNugget nugget, GTItemIngot ingot, GTBlockMetal block) {
 		recipes.addRecipe(new ItemStack(block, 1),
 				new Object[]{"III", "III", "III", 'I', ingot});
 		recipes.addShapelessRecipe(new ItemStack(ingot, 9),

@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import java.util.Arrays;
 import java.util.List;
 
-public class GTItemDusts extends Item implements IStaticTexturedItem {
+public class GTItemDust extends Item implements IStaticTexturedItem {
     public enum GTItemDustTypes{
         ENDERPEARL(0), 
         ENDER_EYE(1), 
@@ -78,7 +78,7 @@ public class GTItemDusts extends Item implements IStaticTexturedItem {
     }
 
     GTItemDustTypes variant;
-    public GTItemDusts(GTItemDustTypes variant){
+    public GTItemDust(GTItemDustTypes variant){
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase() + "_dust");        // The unique name (within your mod) that identifies this item
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_dust");     // Used for localization (en_US.lang)

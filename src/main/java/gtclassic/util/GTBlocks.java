@@ -7,7 +7,7 @@ import gtclassic.blocks.GTBlockMachine;
 import gtclassic.blocks.GTBlockMachine.GTBlockMachineVariants;
 import gtclassic.blocks.GTBlockHazard.GTBlockHazardVariants;
 import gtclassic.blocks.machines.GTBlockAlloySmelter;
-import gtclassic.blocks.resources.GTBlockMetals;
+import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
 import gtclassic.tileentity.GTTileEntityAlloySmelter;
@@ -15,7 +15,7 @@ import gtclassic.tileentity.GTTileEntityCabinet;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortal;
-import gtclassic.blocks.resources.GTBlockMetals.GTBlockMetalsVariants;
+import gtclassic.blocks.resources.GTBlockMetal.GTBlockMetalVariants;
 import gtclassic.blocks.resources.GTBlockOre.GTBlockOreVariants;
 
 
@@ -52,27 +52,27 @@ public class GTBlocks {
     radioactiveHazardBlock = new GTBlockHazard(GTBlockHazardVariants.RADIOACTIVE),
     cautionHazardBlock = new GTBlockHazard(GTBlockHazardVariants.CAUTION);
     
-    public static final GTBlockMetals
-	rubyBlock = new GTBlockMetals(GTBlockMetalsVariants.RUBY),
-	sapphireBlock = new GTBlockMetals(GTBlockMetalsVariants.SAPPHIRE),
-	aluminumBlock = new GTBlockMetals(GTBlockMetalsVariants.ALUMINUM),
-	titaniumBlock = new GTBlockMetals(GTBlockMetalsVariants.TITANIUM),
-	chromeBlock = new GTBlockMetals(GTBlockMetalsVariants.CHROME),
-	steelBlock = new GTBlockMetals(GTBlockMetalsVariants.STEEL),
-	brassBlock = new GTBlockMetals(GTBlockMetalsVariants.BRASS),
-	leadBlock = new GTBlockMetals(GTBlockMetalsVariants.LEAD),
-	electrumBlock = new GTBlockMetals(GTBlockMetalsVariants.ELECTRUM),
-	zincBlock = new GTBlockMetals(GTBlockMetalsVariants.ZINC),
-	olivineBlock = new GTBlockMetals(GTBlockMetalsVariants.OLIVINE),
-	greenSapphireBlock = new GTBlockMetals(GTBlockMetalsVariants.GREEN_SAPPHIRE),
-	platinumBlock = new GTBlockMetals(GTBlockMetalsVariants.PLATINUM),
-	tungstenBlock = new GTBlockMetals(GTBlockMetalsVariants.TUNGSTEN),
-	nickelBlock = new GTBlockMetals(GTBlockMetalsVariants.NICKEL),
-	tungstensteelBlock = new GTBlockMetals(GTBlockMetalsVariants.TUNGSTENSTEEL),
-	iridiumReinforcedTungstensteelBlock = new GTBlockMetals(GTBlockMetalsVariants.IRIDIUM_REINFORCED_TUNGSTENSTEEL),
-	invarBlock = new GTBlockMetals(GTBlockMetalsVariants.INVAR),
-	osmiumBlock = new GTBlockMetals(GTBlockMetalsVariants.OSMIUM),
-	iridiumBlock = new GTBlockMetals(GTBlockMetalsVariants.IRIDIUM);
+    public static final GTBlockMetal
+	rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
+	sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
+	aluminumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINUM),
+	titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM),
+	chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME),
+	steelBlock = new GTBlockMetal(GTBlockMetalVariants.STEEL),
+	brassBlock = new GTBlockMetal(GTBlockMetalVariants.BRASS),
+	leadBlock = new GTBlockMetal(GTBlockMetalVariants.LEAD),
+	electrumBlock = new GTBlockMetal(GTBlockMetalVariants.ELECTRUM),
+	zincBlock = new GTBlockMetal(GTBlockMetalVariants.ZINC),
+	olivineBlock = new GTBlockMetal(GTBlockMetalVariants.OLIVINE),
+	greenSapphireBlock = new GTBlockMetal(GTBlockMetalVariants.GREEN_SAPPHIRE),
+	platinumBlock = new GTBlockMetal(GTBlockMetalVariants.PLATINUM),
+	tungstenBlock = new GTBlockMetal(GTBlockMetalVariants.TUNGSTEN),
+	nickelBlock = new GTBlockMetal(GTBlockMetalVariants.NICKEL),
+	tungstensteelBlock = new GTBlockMetal(GTBlockMetalVariants.TUNGSTENSTEEL),
+	iridiumReinforcedTungstensteelBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM_REINFORCED_TUNGSTENSTEEL),
+	invarBlock = new GTBlockMetal(GTBlockMetalVariants.INVAR),
+	osmiumBlock = new GTBlockMetal(GTBlockMetalVariants.OSMIUM),
+	iridiumBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM);
 
 	public static final GTBlockOre
     galenaOre = new GTBlockOre(GTBlockOreVariants.GALENA),
