@@ -4,6 +4,8 @@ import gtclassic.GTClassic;
 import gtclassic.blocks.resources.GTBlockOre.GTBlockOreVariants;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTItems;
+import ic2.api.item.IC2Items;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -79,8 +81,13 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         
         //Nether Ores
         if (this == GTBlocks.cinnabarOre) {
+
         drops.add(new ItemStack(GTItems.dustCinnabar, 2));
-        drops.add(new ItemStack(Items.REDSTONE, 1));
+            if(RANDOM.nextFloat()<0.25f) {
+                drops.add(new ItemStack(Items.REDSTONE, 1));
+            }
+
+
         }
         
         if (this == GTBlocks.pyriteOre) {
@@ -108,6 +115,9 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         
         if (this == GTBlocks.sodaliteOre) {
         drops.add(new ItemStack(GTItems.dustSodalite, 6));
+            if(RANDOM.nextFloat()<0.25f) {
+                drops.add(new ItemStack(GTItems.dustAluminum, 1));
+            }
         }
         
         if (this == GTBlocks.olivineOre) {
@@ -121,7 +131,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         }
         
         if (this == GTBlocks.iridiumOre) {
-        drops.add(new ItemStack(GTBlocks.iridiumOre, 1));
+        drops.add(Ic2Items.iridiumOre);
         }
         
         if (this == GTBlocks.rubyOre) {
