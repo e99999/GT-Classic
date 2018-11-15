@@ -1,4 +1,4 @@
-package gtclassic.items;
+package gtclassic.items.resources;
 
 import gtclassic.GTClassic;
 import ic2.core.platform.textures.Ic2Icons;

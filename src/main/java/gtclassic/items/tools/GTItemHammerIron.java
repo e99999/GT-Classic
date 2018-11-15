@@ -28,12 +28,8 @@ public class GTItemHammerIron extends ItemPickaxe implements IStaticTexturedItem
 	
 	@Override
     public ItemStack getContainerItem(ItemStack itemStack){
-         ItemStack returnItem = new ItemStack(itemStack.getItem(), 1, itemStack.getItemDamage()+1);
-         if (itemStack.isItemEnchanted()){
-              NBTTagCompound nbtcompound = itemStack.getTagCompound();
-              returnItem.setTagCompound(nbtcompound);
-         }        
-         return returnItem;
+		ItemStack copy = itemStack.copy();
+		return copy.attemptDamageItem(1, itemRand, null) ? ItemStack.EMPTY : copy;
     }
 	
 	@Override

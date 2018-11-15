@@ -1,5 +1,9 @@
 package gtclassic.util;
 
+
+import gtclassic.blocks.resources.GTBlockMetals;
+import gtclassic.items.resources.GTItemMaterials;
+import gtclassic.items.resources.GTItemNuggets;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.registry.Ic2Items;
@@ -12,8 +16,9 @@ public class GTRecipes {
 	
 	public static void init() {
         GTRecipes.initSmeltingRecipes();
-        GTRecipes.initShaplessRecipes();
+        GTRecipes.initShapelessRecipes();
         GTRecipes.initShapedRecipes();
+        GTRecipes.initMaterialRecipes();
      }
 	
 	public static void initSmeltingRecipes() {
@@ -30,7 +35,27 @@ public class GTRecipes {
 	
 	static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 	
-	public static void initShaplessRecipes () {
+	
+	//TODO Use ore dictionary instead of internal classes
+	public static void metalutil(GTItemNuggets nugget, GTItemMaterials ingot, GTBlockMetals block) {
+		recipes.addRecipe(new ItemStack(block, 1),
+				new Object[]{"III", "III", "III", 'I', ingot});
+		recipes.addShapelessRecipe(new ItemStack(ingot, 9),
+				new Object[]{block});
+		recipes.addRecipe(new ItemStack(ingot, 1),
+				new Object[]{"III", "III", "III", 'I', nugget});
+		recipes.addShapelessRecipe(new ItemStack(nugget, 9),
+				new Object[]{ingot});
+		
+	}
+	
+	public static void initMaterialRecipes() {
+		//testing metail util method
+		GTRecipes.metalutil(GTItems.nuggetBrass, GTItems.ingotBrass, GTBlocks.brassBlock);
+		GTRecipes.metalutil(GTItems.nuggetPlatinum, GTItems.ingotPlatinum, GTBlocks.platinumBlock);
+	}
+
+	public static void initShapelessRecipes () {
 		
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.blockCabinet, 1),
 				new Object[]{Ic2Items.machine, Blocks.CHEST});
@@ -129,18 +154,6 @@ public class GTRecipes {
 							 'I', Items.IRON_INGOT,
 							 'S', Items.STICK,});
 		
-		
-		recipes.addRecipe(new ItemStack(GTBlocks.platinumBlock, 1),
-				new Object[]{"III", 
-							 "III", 
-							 "III", 
-							 'I', GTItems.ingotPlatinum});
-		
-		recipes.addRecipe(new ItemStack(GTBlocks.brassBlock, 1),
-				new Object[]{"III", 
-							 "III", 
-							 "III", 
-							 'I', GTItems.ingotBrass});
 	}
 
 }

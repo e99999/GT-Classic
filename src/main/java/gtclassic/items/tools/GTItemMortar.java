@@ -37,21 +37,10 @@ public class GTItemMortar extends Item implements IStaticTexturedItem {
              return true;
     }
 
-    @Override
-    public ItemStack getContainerItem(ItemStack itemStack)
-    {
-         // copy our item.
-         ItemStack returnItem = new ItemStack(itemStack.getItem(), 1, itemStack.getItemDamage()+1);
-  
-         // is it enchanted
-         // if so, copy the enchantment
-         if (itemStack.isItemEnchanted())
-         {
-              NBTTagCompound nbtcompound = itemStack.getTagCompound();
-              returnItem.setTagCompound(nbtcompound);
-         }        
-
-         return returnItem;
+	@Override
+    public ItemStack getContainerItem(ItemStack itemStack){
+		ItemStack copy = itemStack.copy();
+		return copy.attemptDamageItem(1, itemRand, null) ? ItemStack.EMPTY : copy;
     }
 
     @Override
