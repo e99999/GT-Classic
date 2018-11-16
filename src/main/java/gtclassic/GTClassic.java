@@ -37,14 +37,14 @@ public class GTClassic {
     This whole method was copied from Railcraft and therefore is their property.
     https://github.com/Railcraft/Railcraft
     --------------------------------------------------------------------------*/
-//    @Mod.EventHandler
-//    public void fingerprintError(FMLFingerprintViolationEvent event) {
-//        if (Game.isObfuscated()) {
-//            Game.logErrorFingerprint(MODID);
-////            FMLCommonHandler.instance().exitJava(1, false);
-//            throw new RuntimeException("Invalid Fingerprint");
-//        }
-//    }
+    @Mod.EventHandler
+    public void fingerprintError(FMLFingerprintViolationEvent event) {
+        if (Game.isObfuscated()) {
+            Game.logErrorFingerprint(MODID);
+//            FMLCommonHandler.instance().exitJava(1, false);
+            throw new RuntimeException("Invalid Fingerprint");
+        }
+    }
 
     @Mod.EventHandler
     public synchronized void preInit(FMLPreInitializationEvent event) {
