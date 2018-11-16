@@ -2,19 +2,13 @@ package gtclassic;
 
 import gtclassic.commands.GTCommandTeleport;
 import gtclassic.proxy.GTProxyCommon;
-import gtclassic.util.GTBlocks;
-import gtclassic.util.GTCreativeTab;
-import gtclassic.util.GTIcons;
-import gtclassic.util.GTRecipes;
+import gtclassic.util.*;
 import gtclassic.world.GTOreGen;
 import ic2.api.classic.addon.IC2Plugin;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
 
@@ -34,6 +28,23 @@ public class GTClassic {
     @Mod.Instance
     public static GTClassic instance;
     public static Logger logger;
+
+    public static String getVersion() {
+        return MODVERSION;
+    }
+
+    /*-------------------------------------------------------------------------
+    This whole method was copied from Railcraft and therefore is their property.
+    https://github.com/Railcraft/Railcraft
+    --------------------------------------------------------------------------*/
+//    @Mod.EventHandler
+//    public void fingerprintError(FMLFingerprintViolationEvent event) {
+//        if (Game.isObfuscated()) {
+//            Game.logErrorFingerprint(MODID);
+////            FMLCommonHandler.instance().exitJava(1, false);
+//            throw new RuntimeException("Invalid Fingerprint");
+//        }
+//    }
 
     @Mod.EventHandler
     public synchronized void preInit(FMLPreInitializationEvent event) {
