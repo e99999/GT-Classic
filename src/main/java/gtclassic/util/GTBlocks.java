@@ -43,7 +43,8 @@ public class GTBlocks {
 	sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
 	aluminumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINUM),
 	iridiumBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM),
-    chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME);
+    chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME),
+    titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM);
 
 	public static final GTBlockOre
     iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
@@ -67,6 +68,7 @@ public class GTBlocks {
             sapphireBlock,
             aluminumBlock,
             iridiumBlock,
+            titaniumBlock,
             chromeBlock,
             
             iridiumOre,
