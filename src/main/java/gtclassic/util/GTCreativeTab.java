@@ -11,6 +11,6 @@ public class GTCreativeTab extends CreativeTabs {
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack getTabIconItem() {
-        return new ItemStack(GTItems.creditDoge);
+        return new ItemStack(GTItems.advancedDrill);
     }
 }
