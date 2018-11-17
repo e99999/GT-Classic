@@ -4,8 +4,6 @@ import gtclassic.GTConfig;
 import gtclassic.GTClassic;
 import gtclassic.GTBiomes;
 import gtclassic.GTDimensions;
-
-import gtclassic.tileentity.GTTileEntityAlloySmelter;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTItems;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,10 +35,8 @@ public class GTProxyCommon {
 
 
     public void init(FMLInitializationEvent e) {
-    	NetworkRegistry.INSTANCE.registerGuiHandler(GTClassic.instance, new GTProxyGui());
     	GTBiomes.init();
     	GTBiomes.initBiomeDict();
-        GTTileEntityAlloySmelter.init();
     }
 
     

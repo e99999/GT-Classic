@@ -34,69 +34,22 @@ public class GTOreGen implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
 		switch(world.provider.getDimensionType()) {
-		case NETHER:
-			if (GTConfig.genNetherPyrite){
-			runGenerator(GTBlocks.pyriteOre.getDefaultState(), 16, 2, 0, 64, BlockMatcher.forBlock(Blocks.NETHERRACK), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genNetherCinnabar){
-			runGenerator(GTBlocks.cinnabarOre.getDefaultState(), 16, 2, 64, 128, BlockMatcher.forBlock(Blocks.NETHERRACK), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genNetherSphalerite){
-			runGenerator(GTBlocks.sphaleriteOre.getDefaultState(), 16, 2, 32, 96, BlockMatcher.forBlock(Blocks.NETHERRACK), world, random, chunkX, chunkZ);
-			}
-			break;
 		
-		case THE_END:
-			if (GTConfig.genEndAsteroids){
-			runAsteroidGenerator(Blocks.END_STONE.getDefaultState(), 64, 1, 80, 127, BlockMatcher.forBlock(Blocks.AIR), world, random, chunkX, chunkZ);
-			runAsteroidGenerator(Blocks.OBSIDIAN.getDefaultState(), 32, 2, 80, 127, BlockMatcher.forBlock(Blocks.AIR), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genEndAsteroids && GTConfig.genEndTungstate){
-			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genEndAsteroids && GTConfig.genEndSheldonite){
-			runGenerator(GTBlocks.sheldoniteOre.getDefaultState(), 8, 8, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genEndAsteroids && GTConfig.genEndSodalite){
-			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genEndAsteroids && GTConfig.genEndOlivine){
-			runGenerator(GTBlocks.olivineOre.getDefaultState(), 16, 32, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genEndAsteroids){
-			runGenerator(Blocks.OBSIDIAN.getDefaultState(), 4, 2048, 80, 127, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genEndTungstate) {
-			runGenerator(GTBlocks.tungstateOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genEndSheldonite) {
-			runGenerator(GTBlocks.sheldoniteOre.getDefaultState(), 8, 2, 10, 40, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genEndSodalite) {
-			runGenerator(GTBlocks.sodaliteOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genEndOlivine) {
-			runGenerator(GTBlocks.olivineOre.getDefaultState(), 16, 2, 10, 64, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
-			break;
 			
 		default:
-			if (GTConfig.genOverworldGalena){
-			runGenerator(GTBlocks.galenaOre.getDefaultState(), 16, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genOverworldIridium){
+			if (GTConfig.genIridium){
 			runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genOverworldRuby){
+			if (GTConfig.genRuby){
 			runGenerator(GTBlocks.rubyOre.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genOverworldSapphire){
+			if (GTConfig.genSapphire){
 			runGenerator(GTBlocks.sapphireOre.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genOverworldBauxite){
+			if (GTConfig.genBauxite){
 			runGenerator(GTBlocks.bauxiteOre.getDefaultState(), 16, 4, 0, 112, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genOverworldBlackSand){
+			if (GTConfig.genBlackSand){
 			runGenerator(GTBlocks.sandIron.getDefaultState(), 32, 2, 48, 63, BlockMatcher.forBlock(Blocks.SAND), world, random, chunkX, chunkZ);
 			}
 			break;
@@ -122,19 +75,4 @@ public class GTOreGen implements IWorldGenerator {
 		}
 	}
 	
-	private void runAsteroidGenerator(IBlockState blockToGen, int blockAmount,  int chancesToSpawn, int minHeight, int maxHeight, Predicate<IBlockState> blockToReplace, World world, Random rand, int chunkX, int chunkZ){
-		
-		WorldGenMinable generator = new WorldGenMinable(blockToGen, blockAmount, blockToReplace);
-		int heightdiff = maxHeight - minHeight +1;
-		for (int i=0; i<chancesToSpawn; i++){
-			int var1 = rand.nextInt(128);
-			if (var1 == 0) {
-			int x = chunkX * 16 + rand.nextInt(16);
-			int y = minHeight + rand.nextInt(heightdiff);
-			int z = chunkZ * 16 + rand.nextInt(16);
-			
-			generator.generate(world, rand, new BlockPos(x, y, z));
-			}
-		}
-	}
 }

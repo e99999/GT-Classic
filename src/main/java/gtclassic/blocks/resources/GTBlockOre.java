@@ -32,18 +32,11 @@ import java.util.Random;
 
 public class GTBlockOre extends Block implements ITexturedBlock {
     public enum GTBlockOreVariants{
-        GALENA(96, 1, 3.0F),
+       
         IRIDIUM(97, 3, 20.0F),
         RUBY(98, 2, 4.0F),
         SAPPHIRE(99, 2, 4.0F),
-        BAUXITE(100, 1, 3.0F),
-        PYRITE(101, 1, 2.0F),
-        CINNABAR(102, 2, 3.0F),
-        SPHALERITE(103, 1, 2.0F),
-        TUNGSTATE(104, 2, 4.0F),
-        SHELDONITE(105, 3, 3.5F),
-        OLIVINE(106, 3, 3.0F),
-        SODALITE(107, 2, 3.0F);
+        BAUXITE(100, 1, 3.0F);
         
     	private int id;
     	private int harvest;
@@ -79,80 +72,23 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune){
         ArrayList<ItemStack> drops = new ArrayList<>();
         
-        //Nether Ores
-        if (this == GTBlocks.cinnabarOre) {
-
-        drops.add(new ItemStack(GTItems.dustCinnabar, 2));
-            if(RANDOM.nextFloat()<0.25f) {
-                drops.add(new ItemStack(Items.REDSTONE, 1));
-            }
-
-
-        }
-        
-        if (this == GTBlocks.pyriteOre) {
-        drops.add(new ItemStack(GTItems.dustPyrite, 2));
-        }
-        
-        if (this == GTBlocks.sphaleriteOre) {
-        drops.add(new ItemStack(GTItems.dustSphalerite, 1));
-        	if(RANDOM.nextFloat()<0.25f) {
-        		drops.add(new ItemStack(GTItems.dustZinc, 1));
-        	}
-        	if(RANDOM.nextFloat()<0.125f) {
-        		drops.add(new ItemStack(GTItems.yellowGarnet, 1));
-        	}
-        }
-        
-        //End Ores
-        if (this == GTBlocks.tungstateOre) {
-        drops.add(new ItemStack(GTBlocks.tungstateOre, 1));
-        }
-        
-        if (this == GTBlocks.sheldoniteOre) {
-        drops.add(new ItemStack(GTBlocks.sheldoniteOre, 1));
-        }
-        
-        if (this == GTBlocks.sodaliteOre) {
-        drops.add(new ItemStack(GTItems.dustSodalite, 6));
-            if(RANDOM.nextFloat()<0.25f) {
-                drops.add(new ItemStack(GTItems.dustAluminum, 1));
-            }
-        }
-        
-        if (this == GTBlocks.olivineOre) {
-        drops.add(new ItemStack(GTItems.olivine, 1));
-        }
-        
-        
-        //Default Ores
-        if (this == GTBlocks.galenaOre) {
-        drops.add(new ItemStack(GTBlocks.galenaOre, 1));
-        }
+       //add silver
         
         if (this == GTBlocks.iridiumOre) {
         drops.add(Ic2Items.iridiumOre);
         }
         
         if (this == GTBlocks.rubyOre) {
-        	if(RANDOM.nextFloat()>0.10f) {
         		drops.add(new ItemStack(GTItems.ruby, 1));
         		}
-        	else {
-        		drops.add(new ItemStack(GTItems.redGarnet, 1));
-        	}
-        }
         
-        if (this == GTBlocks.sapphireOre) {//iron and add xp
-        	if(RANDOM.nextFloat()>0.10f) {
+        
+        if (this == GTBlocks.sapphireOre) {
         		drops.add(new ItemStack(GTItems.sapphire, 1));
         		}
-        	else {
-        		drops.add(new ItemStack(GTItems.greenSapphire, 1));
-        	}
-        }
+        	
         
-        if (this == GTBlocks.bauxiteOre) {//stone
+        if (this == GTBlocks.bauxiteOre) {
             drops.add(new ItemStack(GTBlocks.bauxiteOre, 1));
             }
         
@@ -165,10 +101,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     	Random rand = world instanceof World ? ((World)world).rand : new Random();    
     	int xp = 0;
     	
-    		if (this == GTBlocks.sphaleriteOre){
-    			xp = MathHelper.getInt(rand, 0, 2);
-            }
-    		else if (this == GTBlocks.iridiumOre){
+    		if (this == GTBlocks.iridiumOre){
             	xp = MathHelper.getInt(rand, 3, 7);
             }
     		else if (this == GTBlocks.rubyOre){
@@ -179,13 +112,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
             }
             return xp;
     }
-    
-    
-    public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
-        return !(entity instanceof EntityDragon);
-    }
   
-
     @Override
     public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
         return FULL_BLOCK_AABB;

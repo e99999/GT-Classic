@@ -11,25 +11,10 @@ import java.util.List;
 
 public class GTItemIngot extends Item implements IStaticTexturedItem {
     public enum GTItemIngotTypes{
-        IRIDIUM_ALLOY(0),
-        HOT_TUNGSTENSTEEL(1),
-        TUNGSTENSTEEL(2),
         IRIDIUM(3),
         ALUMINUM(4),
         TITANIUM(5),
-        CHROME(6),
-        ELECTRUM(7),
-        TUNGSTEN(8),
-        LEAD(9),
-        ZINC(10),
-        BRASS(11),
-        STEEL(12),
-        PLATINUM(13),
-        NICKEL(14),
-        INVAR(15),
-        OSMIUM(16),
-        THORIUM(23),
-        PLUTONIUM(24);
+    	CHROME(6);
         
     	private int id;
 

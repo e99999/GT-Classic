@@ -1,2 +1,2 @@
 # GT-Classic
-a port of GT 2 to 1.12.2 and more.
+a port of GT 1 to 1.12.2 and more.
