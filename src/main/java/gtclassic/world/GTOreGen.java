@@ -37,19 +37,19 @@ public class GTOreGen implements IWorldGenerator {
 		
 			
 		default:
-			if (GTConfig.genOverworldIridium){
+			if (GTConfig.genIridium){
 			runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genOverworldRuby){
+			if (GTConfig.genRuby){
 			runGenerator(GTBlocks.rubyOre.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genOverworldSapphire){
+			if (GTConfig.genSapphire){
 			runGenerator(GTBlocks.sapphireOre.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genOverworldBauxite){
+			if (GTConfig.genBauxite){
 			runGenerator(GTBlocks.bauxiteOre.getDefaultState(), 16, 4, 0, 112, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genOverworldBlackSand){
+			if (GTConfig.genBlackSand){
 			runGenerator(GTBlocks.sandIron.getDefaultState(), 32, 2, 48, 63, BlockMatcher.forBlock(Blocks.SAND), world, random, chunkX, chunkZ);
 			}
 			break;

@@ -83,12 +83,12 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         		}
         
         
-        if (this == GTBlocks.sapphireOre) {//iron and add xp
+        if (this == GTBlocks.sapphireOre) {
         		drops.add(new ItemStack(GTItems.sapphire, 1));
         		}
         	
         
-        if (this == GTBlocks.bauxiteOre) {//stone
+        if (this == GTBlocks.bauxiteOre) {
             drops.add(new ItemStack(GTBlocks.bauxiteOre, 1));
             }
         
@@ -112,13 +112,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
             }
             return xp;
     }
-    
-    
-    public boolean canEntityDestroy(IBlockAccess world, int x, int y, int z, Entity entity) {
-        return !(entity instanceof EntityDragon);
-    }
   
-
     @Override
     public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
         return FULL_BLOCK_AABB;

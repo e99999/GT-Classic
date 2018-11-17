@@ -10,7 +10,6 @@ import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;
 public class GTIcons {
     @SideOnly(Side.CLIENT)
     public static void loadSprites(){
-        addSprite(new Sprites.SpriteData("gtclassic_blocklv", "gtclassic:textures/sprites/block_machinegt_lv.png", new Sprites.SpriteInfo(16, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_blocks", "gtclassic:textures/sprites/blocks.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("gtclassic_terrain", "gtclassic:textures/sprites/terrain.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("gtclassic_items", "gtclassic:textures/sprites/items.png", new Sprites.SpriteInfo(16, 16)));

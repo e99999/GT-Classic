@@ -17,20 +17,11 @@ public class GTConfig {
     public static boolean compatSuperTech = false;
     
     //generation
-    public static boolean genNetherPyrite = true;
-    public static boolean genNetherCinnabar = true;
-    public static boolean genNetherSphalerite = true;
-    public static boolean genEndAsteroids = true;
-    public static boolean genEndTungstate = true;
-    public static boolean genEndSheldonite = true;
-    public static boolean genEndSodalite = true;
-    public static boolean genEndOlivine = true;
-    public static boolean genOverworldGalena = true;
-    public static boolean genOverworldIridium = true;
-    public static boolean genOverworldRuby = true;
-    public static boolean genOverworldSapphire = true;
-    public static boolean genOverworldBauxite = true;
-    public static boolean genOverworldBlackSand = true;
+    public static boolean genIridium = true;
+    public static boolean genRuby = true;
+    public static boolean genSapphire = true;
+    public static boolean genBauxite = true;
+    public static boolean genBlackSand = true;
     
     //toxic dim
     public static int dimensionId = 100;
@@ -59,22 +50,11 @@ public class GTConfig {
     
     private static void initGenerationConfig(Configuration cfg) {
         cfg.addCustomCategoryComment(CATEGORY_GENERATION, "Generation configuration");
-        genNetherPyrite = cfg.getBoolean("genNetherPyrite", CATEGORY_GENERATION, genNetherPyrite, "Generate Nether Pyrite Ore");
-        genNetherCinnabar = cfg.getBoolean("genNetherCinnabar", CATEGORY_GENERATION, genNetherCinnabar, "Generate Nether Cinnabar Ore");
-        genNetherSphalerite = cfg.getBoolean("genNetherSphalerite", CATEGORY_GENERATION, genNetherSphalerite, "Generate Nether Sphalerite Ore");
-        
-        genEndAsteroids = cfg.getBoolean("genEndAsteroids", CATEGORY_GENERATION, genEndAsteroids, "Generate End Asteroids");
-        genEndTungstate = cfg.getBoolean("genEndTungstate", CATEGORY_GENERATION, genEndTungstate, "Generate End Tungstate Ore");
-        genEndSheldonite = cfg.getBoolean("genEndSheldonite", CATEGORY_GENERATION, genEndSheldonite, "Generate End Sheldonite");
-        genEndSodalite = cfg.getBoolean("genEndSodalite", CATEGORY_GENERATION, genEndSodalite, "Generate End Sodalite");
-        genEndOlivine = cfg.getBoolean("genEndOlivine", CATEGORY_GENERATION, genEndOlivine, "Generate End Olivine");
-        
-        genOverworldGalena = cfg.getBoolean("genGalena", CATEGORY_GENERATION, genOverworldGalena, "Generate Overworld Galena Ore");
-        genOverworldIridium = cfg.getBoolean("genIridium", CATEGORY_GENERATION, genOverworldIridium, "Generate Overworld Iridium Ore");
-        genOverworldRuby = cfg.getBoolean("genRuby", CATEGORY_GENERATION, genOverworldRuby, "Generate Overworld Ruby");
-        genOverworldSapphire = cfg.getBoolean("genSapphire", CATEGORY_GENERATION, genOverworldSapphire, "Generate Overworld Sapphire");
-        genOverworldBauxite = cfg.getBoolean("genBauxite", CATEGORY_GENERATION, genOverworldBauxite, "Generate Overworld Bauxite");
-        genOverworldBlackSand = cfg.getBoolean("genBlackSand", CATEGORY_GENERATION, genOverworldBlackSand, "Generate Overworld Black Sand");
+        genIridium = cfg.getBoolean("genIridium", CATEGORY_GENERATION, genIridium, "Generate Overworld Iridium Ore");
+        genRuby = cfg.getBoolean("genRuby", CATEGORY_GENERATION, genRuby, "Generate Overworld Ruby");
+        genSapphire = cfg.getBoolean("genSapphire", CATEGORY_GENERATION, genSapphire, "Generate Overworld Sapphire");
+        genBauxite = cfg.getBoolean("genBauxite", CATEGORY_GENERATION, genBauxite, "Generate Overworld Bauxite");
+        genBlackSand = cfg.getBoolean("genBlackSand", CATEGORY_GENERATION, genBlackSand, "Generate Overworld Black Sand");
         
     }
 

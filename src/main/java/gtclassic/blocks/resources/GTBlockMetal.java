@@ -24,6 +24,7 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
     public enum GTBlockMetalVariants{
         RUBY(0), 
         SAPPHIRE(1),
+        
         ALUMINUM(2), 
         TITANIUM(3), 
         IRIDIUM(19),
