@@ -16,7 +16,6 @@ public class GTItemDust extends Item implements IStaticTexturedItem {
         LAZURITE(72), 
         PYRITE(73), 
         CALCITE(74), 
-        //SODALITE(5), 
         NETHERRACK(70), 
         FLINT(71), 
         URANIUM(27), 
@@ -28,9 +27,6 @@ public class GTItemDust extends Item implements IStaticTexturedItem {
         SAPPHIRE(65), 
         GREEN_SAPPHIRE(66), 
         EMERALD(67);
-        //DIAMOND(35);
-        
-        //mabye need to add clay?
         
     	private int id;
 

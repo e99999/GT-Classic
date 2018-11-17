@@ -57,14 +57,11 @@ public class GTBlocks {
     public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
     
     public static final Block[] blocks = {
-            sandIron,
-            
+    		
             fusionMachineBlock,
             lesuMachineBlock,
             highlyadvancedMachineBlock,
             toxicPortalFrame,
-            
-            
             
             rubyBlock,
             sapphireBlock,
@@ -72,12 +69,11 @@ public class GTBlocks {
             iridiumBlock,
             chromeBlock,
             
-           
             iridiumOre,
             rubyOre,
             sapphireOre,
             bauxiteOre,
-            
+            sandIron,
             
             toxicPortal,
             grassToxic
@@ -88,8 +84,8 @@ public class GTBlocks {
         for (Block block : blocks){
             registry.register(block);
         }
-        //registerTileEntity(GTTileEntityCabinet.class, "_cabinetblock");
     }
+    
     @SubscribeEvent
     public static void registerItemBlocks(RegistryEvent.Register<Item> event){
         final IForgeRegistry registry = event.getRegistry();
@@ -97,9 +93,11 @@ public class GTBlocks {
             registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTClassic.creativeTabGT));
         }
     }
+    
     public static void registerTiles(){
         //GameRegistry.registerTileEntity(GTTileEntityAlloySmelter.class, new ResourceLocation(GTClassic.MODID, "tileEntityAloySmelter"));
     }
+    
     private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
         GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
     }

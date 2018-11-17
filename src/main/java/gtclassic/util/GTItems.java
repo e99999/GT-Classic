@@ -6,6 +6,8 @@ import gtclassic.items.GTItemComponents.GTItemComponentTypes;
 import gtclassic.items.armor.GTItemEnergyPack;
 import gtclassic.items.eustorage.GTItemLapotronicEnergyOrb;
 import gtclassic.items.eustorage.GTItemLithiumBattery;
+import gtclassic.items.resources.GTItemCell;
+import gtclassic.items.resources.GTItemCell.GTItemCellTypes;
 import gtclassic.items.resources.GTItemDust;
 import gtclassic.items.resources.GTItemDust.GTItemDustTypes;
 import gtclassic.items.resources.GTItemGem;
@@ -34,6 +36,24 @@ public class GTItems {
 	public static final GTItemEnergyPack lithiumBatpack = new GTItemEnergyPack(58, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 200);
 	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45, "gtclassic:textures/models/armor/lapotronpack", 100000000, "lapotron_pack", ".lapotronPack", 3, 1500);
 	
+	public static final GTItemCell
+	cellH = new GTItemCell(GTItemCellTypes.H),
+	cellD = new GTItemCell(GTItemCellTypes.D),
+	cellT = new GTItemCell(GTItemCellTypes.T),
+	cellHE = new GTItemCell(GTItemCellTypes.HE),
+	cellW = new GTItemCell(GTItemCellTypes.W),
+	cellLI = new GTItemCell(GTItemCellTypes.LI),
+	cellHE3 = new GTItemCell(GTItemCellTypes.HE3),
+	cellSI = new GTItemCell(GTItemCellTypes.SI),
+	cellC = new GTItemCell(GTItemCellTypes.C),
+	cellME = new GTItemCell(GTItemCellTypes.ME),
+	cellBE = new GTItemCell(GTItemCellTypes.BE),
+	cellCA = new GTItemCell(GTItemCellTypes.CA),
+	cellNA = new GTItemCell(GTItemCellTypes.NA),
+	cellCL = new GTItemCell(GTItemCellTypes.CL),
+	cellK = new GTItemCell(GTItemCellTypes.K),
+	cellN = new GTItemCell(GTItemCellTypes.N);
+	
 	public static final GTItemDust
 	dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
     dustEnderEye = new GTItemDust(GTItemDustTypes.ENDER_EYE),
@@ -42,27 +62,21 @@ public class GTItems {
 	dustCalcite = new GTItemDust(GTItemDustTypes.CALCITE),
 	dustNetherrack = new GTItemDust(GTItemDustTypes.NETHERRACK),
 	dustFlint = new GTItemDust(GTItemDustTypes.FLINT),
-	
 	dustUranium = new GTItemDust(GTItemDustTypes.URANIUM),
 	dustBauxite = new GTItemDust(GTItemDustTypes.BAUXITE),
 	dustAluminum = new GTItemDust(GTItemDustTypes.ALUMINUM),
 	dustTitanium = new GTItemDust(GTItemDustTypes.TITANIUM),
 	dustChrome = new GTItemDust(GTItemDustTypes.CHROME),
-
 	dustRuby = new GTItemDust(GTItemDustTypes.RUBY),
 	dustSapphire = new GTItemDust(GTItemDustTypes.SAPPHIRE),
 	dustGreenSapphire = new GTItemDust(GTItemDustTypes.GREEN_SAPPHIRE),
 	dustEmerald = new GTItemDust(GTItemDustTypes.EMERALD);
-
-
-	
 
 	public static final GTItemIngot
 	ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM),
 	ingotAluminum = new GTItemIngot(GTItemIngotTypes.ALUMINUM),
 	ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
 	ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME);
-	
 	
 	public static final GTItemGem
 	ruby = new GTItemGem(GTItemGemTypes.RUBY),
@@ -79,7 +93,6 @@ public class GTItems {
 			
 			creditAlk,
 			
-			
 			hammerIron,
 			advancedDrill,
 			advancedChainsaw,
@@ -87,6 +100,23 @@ public class GTItems {
 			lapotronicEnergyOrb,
 			lithiumBatpack,
 			lapotronPack,
+			
+			cellH,
+			cellD,
+			cellT,
+			cellHE,
+			cellW,
+			cellLI,
+			cellHE3,
+			cellSI,
+			cellC,
+			cellME,
+			cellBE,
+			cellCA,
+			cellNA,
+			cellCL,
+			cellK,
+			cellN,
 
 			dustEnderpearl,
 			dustEnderEye,
@@ -109,12 +139,9 @@ public class GTItems {
 			ingotAluminum,
 			ingotTitanium,
 			ingotChrome,
-			
-			
 			ruby,
 			sapphire,
 			
-
 			energyFlowCircuit,
 			dataControlCircuit,
 			superConductor,

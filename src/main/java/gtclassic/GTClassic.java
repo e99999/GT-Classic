@@ -2,7 +2,6 @@ package gtclassic;
 
 import gtclassic.commands.GTCommandTeleport;
 import gtclassic.proxy.GTProxyCommon;
-import gtclassic.util.GTBlocks;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTIcons;
 import gtclassic.util.GTRecipes;
