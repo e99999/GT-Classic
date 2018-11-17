@@ -22,12 +22,9 @@ import java.util.List;
 
 public class GTBlockMachine extends Block implements ITexturedBlock {
     public enum GTBlockMachineVariants{
-        FUSION(21), 
-        LESU(23), 
-        STANDARD(24), 
-        REINFORCED(25), 
-        ADVANCED(26), 
-        HIGHLYADVANCED(27);
+        FUSION(1), 
+        LESU(5), 
+        HIGHLYADVANCED(29);
         
     	private int id;
 

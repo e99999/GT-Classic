@@ -40,7 +40,6 @@ public class GTItems {
 	dustLazurite = new GTItemDust(GTItemDustTypes.LAZURITE),
 	dustPyrite = new GTItemDust(GTItemDustTypes.PYRITE),
 	dustCalcite = new GTItemDust(GTItemDustTypes.CALCITE),
-	dustSodalite = new GTItemDust(GTItemDustTypes.SODALITE),
 	dustNetherrack = new GTItemDust(GTItemDustTypes.NETHERRACK),
 	dustFlint = new GTItemDust(GTItemDustTypes.FLINT),
 	
@@ -74,8 +73,6 @@ public class GTItems {
 	dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
 	superConductor = new GTItemComponents(GTItemComponentTypes.SUPERCONDUCTOR),
 	dataStorageCircuit = new GTItemComponents(GTItemComponentTypes.DATA_STORAGE_CIRCUIT),
-	computerMonitor = new GTItemComponents(GTItemComponentTypes.COMPUTER_MONITOR),
-	conveyorModule = new GTItemComponents(GTItemComponentTypes.CONVEYOR_MODULE),
 	braintechAerospaceARDT = new GTItemComponents(GTItemComponentTypes.BRAINTECH_AEROSPACE_ARDT);
 
 	public static final Item[] items = {
@@ -96,7 +93,6 @@ public class GTItems {
 			dustLazurite,
 			dustPyrite,
 			dustCalcite,
-			dustSodalite,
 			dustNetherrack,
 			dustFlint,
 			dustUranium,
@@ -123,8 +119,6 @@ public class GTItems {
 			dataControlCircuit,
 			superConductor,
 			dataStorageCircuit,
-			computerMonitor,
-			conveyorModule,
 			braintechAerospaceARDT,
 	};
 	@SubscribeEvent

@@ -11,13 +11,11 @@ import java.util.List;
 
 public class GTItemComponents extends Item implements IStaticTexturedItem {
     public enum GTItemComponentTypes{
-        ENERGY_FLOW_CIRCUIT(0), 
-        DATA_CONTROL_CIRCUIT(1), 
-        SUPERCONDUCTOR(2), 
-        DATA_STORAGE_CIRCUIT(3), 
-        COMPUTER_MONITOR(4), 
-        CONVEYOR_MODULE(5), 
-        BRAINTECH_AEROSPACE_ARDT(6);
+        ENERGY_FLOW_CIRCUIT(38), 
+        DATA_CONTROL_CIRCUIT(39), 
+        SUPERCONDUCTOR(42), 
+        DATA_STORAGE_CIRCUIT(41), 
+        BRAINTECH_AEROSPACE_ARDT(54);
         
     	private int id;
 
@@ -45,6 +43,6 @@ public class GTItemComponents extends Item implements IStaticTexturedItem {
 
     @Override
     public TextureAtlasSprite getTexture(int i) {
-        return Ic2Icons.getTextures("gtclassic_components")[variant.getID()];
+        return Ic2Icons.getTextures("gtclassic_items")[variant.getID()];
     }
 }

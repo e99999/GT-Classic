@@ -11,23 +11,23 @@ import java.util.List;
 
 public class GTItemDust extends Item implements IStaticTexturedItem {
     public enum GTItemDustTypes{
-        ENDERPEARL(0), 
-        ENDER_EYE(1), 
-        LAZURITE(2), 
-        PYRITE(3), 
-        CALCITE(4), 
-        SODALITE(5), 
-        NETHERRACK(6), 
-        FLINT(7), 
-        URANIUM(16), 
-        BAUXITE(17), 
-        ALUMINUM(18), 
-        TITANIUM(19), 
-        CHROME(20), 
-        RUBY(31), 
-        SAPPHIRE(32), 
-        GREEN_SAPPHIRE(33), 
-        EMERALD(34);
+        ENDERPEARL(68), 
+        ENDER_EYE(69), 
+        LAZURITE(72), 
+        PYRITE(73), 
+        CALCITE(74), 
+        //SODALITE(5), 
+        NETHERRACK(70), 
+        FLINT(71), 
+        URANIUM(27), 
+        BAUXITE(26), 
+        ALUMINUM(25), 
+        TITANIUM(29), 
+        CHROME(31), 
+        RUBY(64), 
+        SAPPHIRE(65), 
+        GREEN_SAPPHIRE(66), 
+        EMERALD(67);
         //DIAMOND(35);
         
         //mabye need to add clay?
@@ -59,6 +59,6 @@ public class GTItemDust extends Item implements IStaticTexturedItem {
 
     @Override
     public TextureAtlasSprite getTexture(int i) {
-        return Ic2Icons.getTextures("gtclassic_dusts")[variant.getID()];
+        return Ic2Icons.getTextures("gtclassic_items")[variant.getID()];
     }
 }

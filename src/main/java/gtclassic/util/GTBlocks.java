@@ -35,9 +35,6 @@ public class GTBlocks {
     public static final GTBlockMachine
 	fusionMachineBlock = new GTBlockMachine(GTBlockMachineVariants.FUSION),
 	lesuMachineBlock = new GTBlockMachine(GTBlockMachineVariants.LESU),
-	standardMachineBlock = new GTBlockMachine(GTBlockMachineVariants.STANDARD),
-	reinforcedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.REINFORCED),
-	advancedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.ADVANCED),
 	highlyadvancedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.HIGHLYADVANCED);
     
     
@@ -64,9 +61,6 @@ public class GTBlocks {
             
             fusionMachineBlock,
             lesuMachineBlock,
-            standardMachineBlock,
-            reinforcedMachineBlock,
-            advancedMachineBlock,
             highlyadvancedMachineBlock,
             toxicPortalFrame,
             

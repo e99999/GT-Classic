@@ -181,7 +181,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTexture(int meta) {
-        return Ic2Icons.getTextures("gtclassic_items")[2];
+        return Ic2Icons.getTextures("gtclassic_items")[61];
     }
 
     @Override
