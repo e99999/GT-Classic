@@ -16,8 +16,14 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTileEntityIndustrialCentrifuge> {
-    public static Box2D machineProgressBox = new Box2D(78, 24, 20, 18);
-    public static Vec2i machineProgressPos = new Vec2i(176, 0);
+    public static Box2D machineProgressBoxRight = new Box2D(98, 38, 10, 10);
+    public static Vec2i machineProgressPosRight = new Vec2i(208, 38);
+    public static Box2D machineProgressBoxLeft = new Box2D(68, 38, 10, 10);
+    public static Vec2i machineProgressPosLeft = new Vec2i(178, 38);
+    public static Box2D machineProgressBoxUp = new Box2D(83, 23, 10, 10);
+    public static Vec2i machineProgressPosUp = new Vec2i(193, 23);
+    public static Box2D machineProgressBoxDown = new Box2D(83, 53, 10, 10);
+    public static Vec2i machineProgressPosDown = new Vec2i(193, 53);
 
     public GTContainerIndustrialCentrifuge(InventoryPlayer player, GTTileEntityIndustrialCentrifuge tile){
         super(tile);
@@ -35,7 +41,10 @@ public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTi
         }
 
         this.addPlayerInventory(player);
-        this.addComponent(new MachineProgressComp(tile, GTContainerIndustrialCentrifuge.machineProgressBox, GTContainerIndustrialCentrifuge.machineProgressPos));
+        this.addComponent(new MachineProgressComp(tile, GTContainerIndustrialCentrifuge.machineProgressBoxRight, GTContainerIndustrialCentrifuge.machineProgressPosRight));
+        this.addComponent(new MachineProgressComp(tile, GTContainerIndustrialCentrifuge.machineProgressBoxLeft, GTContainerIndustrialCentrifuge.machineProgressPosLeft));
+        this.addComponent(new MachineProgressComp(tile, GTContainerIndustrialCentrifuge.machineProgressBoxUp, GTContainerIndustrialCentrifuge.machineProgressPosUp));
+        this.addComponent(new MachineProgressComp(tile, GTContainerIndustrialCentrifuge.machineProgressBoxDown, GTContainerIndustrialCentrifuge.machineProgressPosDown));
     }
 
     @Override

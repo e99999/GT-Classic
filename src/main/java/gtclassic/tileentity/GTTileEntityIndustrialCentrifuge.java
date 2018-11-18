@@ -988,15 +988,12 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
 
     public static void init(){
 
-        addRecipe((new RecipeInputOreDict("dustBauxite", 24)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustAluminum, 16, 0), new ItemStack(GTItems.dustTitanium, 1, 0)})));
-        //example recipe
-//        addRecipe((new RecipeInputOreDict("ingotCopper", 3), new RecipeInputOreDict("ingotZinc", 1)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
-//        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f, "tinItemCasingRolling");
-//        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 2), 0.7f, "silverItemCasingRolling");
-//        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 3), 0.7f, "leadItemCasingRolling");
-//        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 4), 0.7f, "ironItemCasingRolling");
-//        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 5), 0.7f, "goldItemCasingRolling");
-//        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 8), 0.7f, "bronzeItemCasingRolling");
+        addRecipe((new RecipeInputOreDict("dustBauxite", 24)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustAluminum, 16, 0), new ItemStack(GTItems.dustTitanium, 1, 0), StackUtil.copyWithSize(Ic2Items.airCell, 6), new ItemStack(GTItems.cellH, 10)})));
+        addRecipe((new RecipeInputOreDict("dustCoal", 4)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellC, 8)})));
+        addRecipe((new RecipeInputItemStack(StackUtil.copyWithSize(Ic2Items.electrolyzedWaterCell, 6))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellH, 4), (Ic2Items.emptyCell), (Ic2Items.airCell)})));
+        addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.cellH, 4))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellD, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 3)})));
+        addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.cellD, 4))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellT, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 3)})));
+        addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.cellHE, 16))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellHE3, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 15)})));
     }
 
     public static void addRecipe(IRecipeInput input, MachineOutput output)
