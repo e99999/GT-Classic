@@ -28,9 +28,9 @@ public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTi
     public GTContainerIndustrialCentrifuge(InventoryPlayer player, GTTileEntityIndustrialCentrifuge tile){
         super(tile);
         this.addSlotToContainer(new SlotCustom(tile, 0, 80, 35, null));
-        this.addSlotToContainer(new SlotCustom(tile, 1, 51, 5, CommonFilters.CannerInput));
-        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 2, 51, 65));
-        this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 51, 35));
+        this.addSlotToContainer(new SlotCustom(tile, 1, 50, 5, CommonFilters.CannerInput));
+        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 2, 50, 65));
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 50, 35));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 80, 5));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 110, 35));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 6, 80, 65));
