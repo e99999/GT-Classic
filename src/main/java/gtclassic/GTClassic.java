@@ -2,8 +2,11 @@ package gtclassic;
 
 import gtclassic.commands.GTCommandTeleport;
 import gtclassic.proxy.GTProxyCommon;
+import gtclassic.util.GTBlocks;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTIcons;
+import gtclassic.util.GTItems;
+import gtclassic.util.GTOreDict;
 import gtclassic.util.GTRecipes;
 import gtclassic.world.GTOreGen;
 import ic2.api.classic.addon.IC2Plugin;
@@ -15,6 +18,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
+
 import org.apache.logging.log4j.Logger;
 
 //@IC2Plugin(name = GTClassic.MODNAME, id = GTClassic.MODID, version = GTClassic.MODVERSION, hasResourcePack = true)
@@ -44,6 +49,7 @@ public class GTClassic {
     @Mod.EventHandler
     public void init(FMLInitializationEvent e) {
         GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
+        GTOreDict.init();
         GTRecipes.init();
         proxy.init(e);
     }

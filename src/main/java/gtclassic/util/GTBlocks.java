@@ -66,8 +66,8 @@ public class GTBlocks {
             
             rubyBlock,
             sapphireBlock,
-            aluminumBlock,
             iridiumBlock,
+            aluminumBlock,
             titaniumBlock,
             chromeBlock,
             

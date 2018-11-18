@@ -135,12 +135,12 @@ public class GTItems {
 			dustGreenSapphire,
 			dustEmerald,
 
+			ruby,
+			sapphire,
 			ingotIridium,
 			ingotAluminum,
 			ingotTitanium,
 			ingotChrome,
-			ruby,
-			sapphire,
 			
 			energyFlowCircuit,
 			dataControlCircuit,
