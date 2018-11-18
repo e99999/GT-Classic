@@ -28,6 +28,7 @@ item.gtclassic.lithiumBattery.name=Lithium Battery
 item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
+item.gtclassic.destructoPack.name=Destructopack
 
 #cells
 item.gtclassic.h_cell.name=H-Cell
