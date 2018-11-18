@@ -5,13 +5,12 @@ tile.gtclassic.lesu_machineblock.name=LESU-Block
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
 
 #blocks
+tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone
 tile.gtclassic.ruby_block.name=Ruby Block
-tile.gtclassic.iridium_block.name=Iridium Block
 tile.gtclassic.sapphire_block.name=Sapphire Block
 tile.gtclassic.chrome_block.name=Chrome Block
 tile.gtclassic.aluminum_block.name=Aluminum Block
 tile.gtclassic.titanium_block.name=Titanium Block
-
 
 #ore
 tile.gtclassic.bauxite_ore.name=Bauxite Ore
@@ -19,12 +18,6 @@ tile.gtclassic.iridium_ore.name=Iridium Ore
 tile.gtclassic.sapphire_ore.name=Sapphire Ore
 tile.gtclassic.ruby_ore.name=Ruby Ore
 tile.gtclassic.sandIron.name=Black Sand
-
-#toxic dim
-item.gtclassic.creditAlk.name=Alkalus Credit
-tile.gtclassic.toxicPortalFrame.name=Containment Frame
-tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
-tile.gtclassic.grassToxic.name=Unstable Earth
 
 #tools
 item.gtclassic.hammerIron.name=Iron Hammer
@@ -61,7 +54,6 @@ item.gtclassic.calcite_dust.name=Calcite Dust
 item.gtclassic.uranium_dust.name=Uranium Dust
 item.gtclassic.bauxite_dust.name=Bauxite Dust
 item.gtclassic.aluminum_dust.name=Aluminum Dust
-item.gtclassic.netherrack_dust.name=Netherrack Dust
 item.gtclassic.ruby_dust.name=Ruby Dust
 item.gtclassic.sapphire_dust.name=Sapphire Dust
 item.gtclassic.green_sapphire_dust.name=Green Sapphire Dust
@@ -71,7 +63,6 @@ item.gtclassic.ender_eye_dust.name=Ender Eye Dust
 item.gtclassic.titanium_dust.name=Titanium Dust
 item.gtclassic.chrome_dust.name=Chrome Dust
 item.gtclassic.lazurite_dust.name=Lazurite Dust
-
 
 #ingots
 item.gtclassic.iridium_ingot.name=Iridium Ingot
@@ -89,6 +80,12 @@ item.gtclassic.data_control_circuit.name=Data Control Circuit
 item.gtclassic.superconductor.name=Superconductor
 item.gtclassic.data_storage_circuit.name=Data Storage Circuit
 item.gtclassic.braintech_aerospace_ardt.name=Braintech Aerospace Advanced Reinforced Duct Tape FAL-84
+
+#toxic dim
+item.gtclassic.creditAlk.name=Alkalus Credit
+tile.gtclassic.toxicPortalFrame.name=Containment Frame
+tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
+tile.gtclassic.grassToxic.name=Unstable Earth
 
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
 tooltip.gtclassic.alkcredit=Shines the way, towards the far away Everglades

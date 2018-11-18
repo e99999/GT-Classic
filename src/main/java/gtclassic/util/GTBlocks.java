@@ -39,10 +39,10 @@ public class GTBlocks {
     
     
     public static final GTBlockMetal
-	rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
+	iridiumReinforcedStoneBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM_REINFORCED_STONE),
+    rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
 	sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
 	aluminumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINUM),
-	iridiumBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM),
     chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME),
     titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM);
 
@@ -64,9 +64,9 @@ public class GTBlocks {
             highlyadvancedMachineBlock,
             toxicPortalFrame,
             
+            iridiumReinforcedStoneBlock,
             rubyBlock,
             sapphireBlock,
-            iridiumBlock,
             aluminumBlock,
             titaniumBlock,
             chromeBlock,

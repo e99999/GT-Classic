@@ -22,12 +22,11 @@ import java.util.List;
 
 public class GTBlockMetal extends Block implements ITexturedBlock {
     public enum GTBlockMetalVariants{
-        RUBY(66), 
+        IRIDIUM_REINFORCED_STONE(64),
+    	RUBY(66), 
         SAPPHIRE(67),
-        
         ALUMINUM(68), 
         TITANIUM(69), 
-        IRIDIUM(65),
     	CHROME(70); 
         
     	private int id;
