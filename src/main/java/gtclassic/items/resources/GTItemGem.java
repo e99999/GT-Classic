@@ -40,7 +40,7 @@ public class GTItemGem extends Item implements IStaticTexturedItem {
 
     @Override
     public TextureAtlasSprite getTexture(int i) {
-        return Ic2Icons.getTextures("gtclassic_materials")[variant.getID()];
+        return Ic2Icons.getTextures("gtclassic_items")[variant.getID()];
     }
 }
 

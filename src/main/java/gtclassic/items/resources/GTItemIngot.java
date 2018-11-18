@@ -11,10 +11,10 @@ import java.util.List;
 
 public class GTItemIngot extends Item implements IStaticTexturedItem {
     public enum GTItemIngotTypes{
-        IRIDIUM(3),
-        ALUMINUM(4),
-        TITANIUM(5),
-    	CHROME(6);
+        IRIDIUM(23),
+        ALUMINUM(24),
+        TITANIUM(28),
+    	CHROME(30);
         
     	private int id;
 
@@ -42,7 +42,7 @@ public class GTItemIngot extends Item implements IStaticTexturedItem {
 
     @Override
     public TextureAtlasSprite getTexture(int i) {
-        return Ic2Icons.getTextures("gtclassic_materials")[variant.getID()];
+        return Ic2Icons.getTextures("gtclassic_items")[variant.getID()];
     }
 }
 

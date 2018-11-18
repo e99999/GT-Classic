@@ -40,7 +40,7 @@ public class GTItemHammerIron extends ItemPickaxe implements IStaticTexturedItem
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTexture(int meta) {
-        return Ic2Icons.getTextures("gtclassic_items")[29];
+        return Ic2Icons.getTextures("gtclassic_items")[62];
     }
 
 }

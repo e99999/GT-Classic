@@ -4,7 +4,6 @@ import gtclassic.GTClassic;
 import gtclassic.blocks.resources.GTBlockOre.GTBlockOreVariants;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTItems;
-import ic2.api.item.IC2Items;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
@@ -13,9 +12,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -33,10 +29,10 @@ import java.util.Random;
 public class GTBlockOre extends Block implements ITexturedBlock {
     public enum GTBlockOreVariants{
        
-        IRIDIUM(97, 3, 20.0F),
-        RUBY(98, 2, 4.0F),
-        SAPPHIRE(99, 2, 4.0F),
-        BAUXITE(100, 1, 3.0F);
+        IRIDIUM(80, 3, 20.0F),
+        RUBY(82, 2, 4.0F),
+        SAPPHIRE(83, 2, 4.0F),
+        BAUXITE(84, 1, 3.0F);
         
     	private int id;
     	private int harvest;
@@ -71,8 +67,6 @@ public class GTBlockOre extends Block implements ITexturedBlock {
 
     public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune){
         ArrayList<ItemStack> drops = new ArrayList<>();
-        
-       //add silver
         
         if (this == GTBlocks.iridiumOre) {
         drops.add(Ic2Items.iridiumOre);

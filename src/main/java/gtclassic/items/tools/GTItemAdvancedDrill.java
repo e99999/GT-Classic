@@ -187,7 +187,7 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTexture(int meta) {
-        return Ic2Icons.getTextures("gtclassic_items")[1];
+        return Ic2Icons.getTextures("gtclassic_items")[60];
     }
 
     @Override

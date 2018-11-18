@@ -35,18 +35,16 @@ public class GTBlocks {
     public static final GTBlockMachine
 	fusionMachineBlock = new GTBlockMachine(GTBlockMachineVariants.FUSION),
 	lesuMachineBlock = new GTBlockMachine(GTBlockMachineVariants.LESU),
-	standardMachineBlock = new GTBlockMachine(GTBlockMachineVariants.STANDARD),
-	reinforcedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.REINFORCED),
-	advancedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.ADVANCED),
 	highlyadvancedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.HIGHLYADVANCED);
     
     
     public static final GTBlockMetal
-	rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
+	iridiumReinforcedStoneBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM_REINFORCED_STONE),
+    rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
 	sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
 	aluminumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINUM),
-	iridiumBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM),
-    chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME);
+    chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME),
+    titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM);
 
 	public static final GTBlockOre
     iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
@@ -60,30 +58,24 @@ public class GTBlocks {
     public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
     
     public static final Block[] blocks = {
-            sandIron,
-            
+    		
             fusionMachineBlock,
             lesuMachineBlock,
-            standardMachineBlock,
-            reinforcedMachineBlock,
-            advancedMachineBlock,
             highlyadvancedMachineBlock,
             toxicPortalFrame,
             
-            
-            
+            iridiumReinforcedStoneBlock,
             rubyBlock,
             sapphireBlock,
             aluminumBlock,
-            iridiumBlock,
+            titaniumBlock,
             chromeBlock,
             
-           
             iridiumOre,
             rubyOre,
             sapphireOre,
             bauxiteOre,
-            
+            sandIron,
             
             toxicPortal,
             grassToxic
@@ -94,8 +86,8 @@ public class GTBlocks {
         for (Block block : blocks){
             registry.register(block);
         }
-        //registerTileEntity(GTTileEntityCabinet.class, "_cabinetblock");
     }
+    
     @SubscribeEvent
     public static void registerItemBlocks(RegistryEvent.Register<Item> event){
         final IForgeRegistry registry = event.getRegistry();
@@ -103,9 +95,11 @@ public class GTBlocks {
             registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTClassic.creativeTabGT));
         }
     }
+    
     public static void registerTiles(){
         //GameRegistry.registerTileEntity(GTTileEntityAlloySmelter.class, new ResourceLocation(GTClassic.MODID, "tileEntityAloySmelter"));
     }
+    
     private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
         GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
     }

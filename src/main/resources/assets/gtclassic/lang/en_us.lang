@@ -1,64 +1,25 @@
-item.gtclassic.creditDoge.name=Doge Credit
-item.gtclassic.creditAlk.name=Alkalus Credit
 
-tile.gtclassic.blockHazard.name=Hazard Block
-tile.gtclassic.blockCabinet.name=Metal Cabinet
-
-tile.gtclassic.alloySmelter.name=Alloy Smelter
-
-tile.gtclassic.sandIron.name=Black Sand
-
+#machine blocks
 tile.gtclassic.fusion_machineblock.name=Fusion Coil
 tile.gtclassic.lesu_machineblock.name=LESU-Block
-tile.gtclassic.standard_machineblock.name=Standard Machine Block
-tile.gtclassic.reinforced_machineblock.name=Reinforced Machine Block
-tile.gtclassic.advanced_machineblock.name=Advanced Machine Block
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
 
-tile.gtclassic.metal_hazardblock.name=Metal Hazard Block
-tile.gtclassic.fire_hazardblock.name=Fire Hazard Block
-tile.gtclassic.radioactive_hazardblock.name=Radioactive Hazard Block
-tile.gtclassic.caution_hazardblock.name=Caution Hazard Block
-
-tile.gtclassic.lead_block.name=Lead Block
-tile.gtclassic.titanium_block.name=Titanium Block
-tile.gtclassic.olivine_block.name=Olivine Block
-tile.gtclassic.green_sapphire_block.name=Green Sapphire Block
-tile.gtclassic.aluminum_block.name=Aluminum Block
-tile.gtclassic.zinc_block.name=Zinc Block
-tile.gtclassic.iridium_reinforced_tungstensteel_block.name=Iridium Reinforced Tungstensteel Block
-tile.gtclassic.invar_block.name=Invar Block
+#blocks
+tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone
 tile.gtclassic.ruby_block.name=Ruby Block
-tile.gtclassic.iridium_block.name=Iridium Block
-tile.gtclassic.tungsten_block.name=Tungsten Block
-tile.gtclassic.electrum_block.name=Electrum Block
-tile.gtclassic.brass_block.name=Brass Block
 tile.gtclassic.sapphire_block.name=Sapphire Block
-tile.gtclassic.osmium_block.name=Osmium Block
-tile.gtclassic.platinum_block.name=Platinum Block
-tile.gtclassic.steel_block.name=Steel Block
-tile.gtclassic.nickel_block.name=Nickel Block
-tile.gtclassic.tungstensteel_block.name=Tungstensteel Block
 tile.gtclassic.chrome_block.name=Chrome Block
-tile.gtclassic.sodalite_ore.name=Sodalite Ore
-tile.gtclassic.olivine_ore.name=Olivine Ore
+tile.gtclassic.aluminum_block.name=Aluminum Block
+tile.gtclassic.titanium_block.name=Titanium Block
+
+#ore
 tile.gtclassic.bauxite_ore.name=Bauxite Ore
-tile.gtclassic.tungstate_ore.name=Tungstate Ore
 tile.gtclassic.iridium_ore.name=Iridium Ore
-tile.gtclassic.galena_ore.name=Galena Ore
 tile.gtclassic.sapphire_ore.name=Sapphire Ore
 tile.gtclassic.ruby_ore.name=Ruby Ore
-tile.gtclassic.sheldonite_ore.name=Sheldonite Ore
-tile.gtclassic.pyrite_ore.name=Pyrite Ore
-tile.gtclassic.cinnabar_ore.name=Cinnabar Ore
-tile.gtclassic.sphalerite_ore.name=Sphalerite Ore
+tile.gtclassic.sandIron.name=Black Sand
 
-tile.gtclassic.toxicPortalFrame.name=Containment Frame
-tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
-tile.gtclassic.grassToxic.name=Unstable Earth
-
-item.gtclassic.mortarFlint.name=Flint Mortar
-item.gtclassic.mortarIron.name=Iron Mortar
+#tools
 item.gtclassic.hammerIron.name=Iron Hammer
 item.gtclassic.advancedDrill.name=Advanced Drill
 item.gtclassic.advancedChainsaw.name=Advanced Chainsaw
@@ -67,237 +28,66 @@ item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
 
+#cells
+item.gtclassic.h_cell.name=H-Cell
+item.gtclassic.d_cell.name=D-Cell
+item.gtclassic.t_cell.name=T-Cell
+item.gtclassic.he_cell.name=He-Cell
+item.gtclassic.w_cell.name=W-Cell
+item.gtclassic.li_cell.name=Li-Cell
+item.gtclassic.he3_cell.name=He3-Cell
+item.gtclassic.si_cell.name=Si-Cell
+item.gtclassic.c_cell.name=C-Cell
+item.gtclassic.me_cell.name=Me-Cell
+item.gtclassic.be_cell.name=Be-Cell
+item.gtclassic.ca_cell.name=Ca-Cell
+item.gtclassic.na_cell.name=Na-Cell
+item.gtclassic.cl_cell.name=Cl-Cell
+item.gtclassic.k_cell.name=K-Cell
+item.gtclassic.n_cell.name=N-Cell
+
 #dust
-item.gtclassic.lazurite_dust.name=Lazurite Dust
 item.gtclassic.sulfur_dust.name=Sulfur Dust
 item.gtclassic.flint_dust.name=Flint Dust
 item.gtclassic.enderpearl_dust.name=Ender Pearl Dust
 item.gtclassic.calcite_dust.name=Calcite Dust
-item.gtclassic.maganese_dust.name=Maganese Dust
-item.gtclassic.magnesium_dust.name=Magnesium Dust
-item.gtclassic.sphalerite_dust.name=Sphalerite Dust
-item.gtclassic.endstone_dust.name=Endstone Dust
 item.gtclassic.uranium_dust.name=Uranium Dust
 item.gtclassic.bauxite_dust.name=Bauxite Dust
 item.gtclassic.aluminum_dust.name=Aluminum Dust
-item.gtclassic.wood_pulp_dust.name=Wood Pulp
-item.gtclassic.sodalite_dust.name=Sodalite Dust
-item.gtclassic.electrum_dust.name=Electrum Dust
-item.gtclassic.tungsten_dust.name=Tungsten Dust
-item.gtclassic.lead_dust.name=Lead Dust
-item.gtclassic.zinc_dust.name=Zinc Dust
-item.gtclassic.brass_dust.name=Brass Dust
-item.gtclassic.steel_dust.name=Steel Dust
-item.gtclassic.netherrack_dust.name=Netherrack Dust
-item.gtclassic.nickel_dust.name=Nickel Dust
-item.gtclassic.invar_dust.name=Invar Dust
-item.gtclassic.osmium_dust.name=Osmium Dust
 item.gtclassic.ruby_dust.name=Ruby Dust
 item.gtclassic.sapphire_dust.name=Sapphire Dust
 item.gtclassic.green_sapphire_dust.name=Green Sapphire Dust
 item.gtclassic.emerald_dust.name=Emerald Dust
-item.gtclassic.diamond_dust.name=Diamond Dust
-item.gtclassic.olivine_dust.name=Olivine Dust
-item.gtclassic.galena_dust.name=Galena Dust
-item.gtclassic.phosphor_dust.name=Phosphor Dust
-item.gtclassic.red_garnet_dust.name=Red Garnet Dust
-item.gtclassic.yellow_garnet_dust.name=Yellow Garnet Dust
-item.gtclassic.pyrope_dust.name=Pyrope Dust
-item.gtclassic.almandine_dust.name=Almandine Dust
-item.gtclassic.spessartine_dust.name=Spessartine Dust
-item.gtclassic.andradite_dust.name=Andradite Dust
-item.gtclassic.grossular_dust.name=Grossular Dust
-item.gtclassic.uvarovite_dust.name=Uvarovite Dust
-item.gtclassic.ashes_dust.name=Ashes
 item.gtclassic.pyrite_dust.name=Pyrite Dust
-item.gtclassic.redrock_dust.name=Redrock Dust
-item.gtclassic.marble_dust.name=Marble Dust
-item.gtclassic.dark_ashes_dust.name=Dark Ashes
-item.gtclassic.thorium_dust.name=Thorium Dust
-item.gtclassic.plutonium_dust.name=Plutonium Dust
-item.gtclassic.saltpeter_dust.name=Saltpeter Dust
 item.gtclassic.ender_eye_dust.name=Ender Eye Dust
-item.gtclassic.cinnabar_dust.name=Cinnabar Dust
-item.gtclassic.basalt_dust.name=Basalt Dust
 item.gtclassic.titanium_dust.name=Titanium Dust
-item.gtclassic.platinum_dust.name=Platinum Dust
 item.gtclassic.chrome_dust.name=Chrome Dust
-
-#tiny dusts
-item.gtclassic.lazurite_tiny_dust.name=Tiny Pile of Lazurite Dust
-item.gtclassic.sulfur_tiny_dust.name=Tiny Pile of Sulfur Dust
-item.gtclassic.flint_tiny_dust.name=Tiny Pile of Flint Dust
-item.gtclassic.enderpearl_tiny_dust.name=Tiny Pile of Ender Pearl Dust
-item.gtclassic.calcite_tiny_dust.name=Tiny Pile of Calcite Dust
-item.gtclassic.maganese_tiny_dust.name=Tiny Pile of Maganese Dust
-item.gtclassic.magnesium_tiny_dust.name=Tiny Pile of Magnesium Dust
-item.gtclassic.sphalerite_tiny_dust.name=Tiny Pile of Sphalerite Dust
-item.gtclassic.endstone_tiny_dust.name=Tiny Pile of Endstone Dust
-item.gtclassic.uranium_tiny_dust.name=Tiny Pile of Uranium Dust
-item.gtclassic.bauxite_tiny_dust.name=Tiny Pile of Bauxite Dust
-item.gtclassic.aluminum_tiny_dust.name=Tiny Pile of Aluminum Dust
-item.gtclassic.wood_pulp_tiny_dust.name=Tiny Pile of Wood Pulp
-item.gtclassic.sodalite_tiny_dust.name=Tiny Pile of Sodalite Dust
-item.gtclassic.electrum_tiny_dust.name=Tiny Pile of Electrum Dust
-item.gtclassic.tungsten_tiny_dust.name=Tiny Pile of Tungsten Dust
-item.gtclassic.lead_tiny_dust.name=Tiny Pile of Lead Dust
-item.gtclassic.zinc_tiny_dust.name=Tiny Pile of Zinc Dust
-item.gtclassic.brass_tiny_dust.name=Tiny Pile of Brass Dust
-item.gtclassic.steel_tiny_dust.name=Tiny Pile of Steel Dust
-item.gtclassic.netherrack_tiny_dust.name=Tiny Pile of Netherrack Dust
-item.gtclassic.nickel_tiny_dust.name=Tiny Pile of Nickel Dust
-item.gtclassic.invar_tiny_dust.name=Tiny Pile of Invar Dust
-item.gtclassic.osmium_tiny_dust.name=Tiny Pile of Osmium Dust
-item.gtclassic.ruby_tiny_dust.name=Tiny Pile of Ruby Dust
-item.gtclassic.sapphire_tiny_dust.name=Tiny Pile of Sapphire Dust
-item.gtclassic.green_sapphire_tiny_dust.name=Tiny Pile of Green Sapphire Dust
-item.gtclassic.emerald_tiny_dust.name=Tiny Pile of Emerald Dust
-item.gtclassic.diamond_tiny_dust.name=Tiny Pile of Diamond Dust
-item.gtclassic.olivine_tiny_dust.name=Tiny Pile of Olivine Dust
-item.gtclassic.galena_tiny_dust.name=Tiny Pile of Galena Dust
-item.gtclassic.phosphor_tiny_dust.name=Tiny Pile of Phosphor Dust
-item.gtclassic.red_garnet_tiny_dust.name=Tiny Pile of Red Garnet Dust
-item.gtclassic.yellow_garnet_tiny_dust.name=Tiny Pile of Yellow Garnet Dust
-item.gtclassic.pyrope_tiny_dust.name=Tiny Pile of Pyrope Dust
-item.gtclassic.almandine_tiny_dust.name=Tiny Pile of Almandine Dust
-item.gtclassic.spessartine_tiny_dust.name=Tiny Pile of Spessartine Dust
-item.gtclassic.andradite_tiny_dust.name=Tiny Pile of Andradite Dust
-item.gtclassic.grossular_tiny_dust.name=Tiny Pile of Grossular Dust
-item.gtclassic.uvarovite_tiny_dust.name=Tiny Pile of Uvarovite Dust
-item.gtclassic.ashes_tiny_dust.name=Tiny Pile of Ashes
-item.gtclassic.pyrite_tiny_dust.name=Tiny Pile of Pyrite Dust
-item.gtclassic.redrock_tiny_dust.name=Tiny Pile of Redrock Dust
-item.gtclassic.marble_tiny_dust.name=Tiny Pile of Marble Dust
-item.gtclassic.dark_ashes_tiny_dust.name=Tiny Pile of Dark Ashes
-item.gtclassic.thorium_tiny_dust.name=Tiny Pile of Thorium Dust
-item.gtclassic.plutonium_tiny_dust.name=Tiny Pile of Plutonium Dust
-item.gtclassic.saltpeter_tiny_dust.name=Tiny Pile of Saltpeter Dust
-item.gtclassic.ender_eye_tiny_dust.name=Tiny Pile of Ender Eye Dust
-item.gtclassic.cinnabar_tiny_dust.name=Tiny Pile of Cinnabar Dust
-item.gtclassic.basalt_tiny_dust.name=Tiny Pile of Basalt Dust
-item.gtclassic.titanium_tiny_dust.name=Tiny Pile of Titanium Dust
-item.gtclassic.platinum_tiny_dust.name=Tiny Pile of Platinum Dust
-item.gtclassic.chrome_tiny_dust.name=Tiny Pile of Chrome Dust
-item.gtclassic.obsidian_tiny_dust.name=Tiny Pile of Obsidian Dust
-item.gtclassic.charcoal_tiny_dust.name=Tiny Pile of Charcoal Dust
-item.gtclassic.coal_tiny_dust.name=Tiny Pile of Coal Dust
-item.gtclassic.iron_tiny_dust.name=Tiny Pile of Iron Dust
-item.gtclassic.gold_tiny_dust.name=Tiny Pile of Gold Dust
-item.gtclassic.copper_tiny_dust.name=Tiny Pile of Copper Dust
-item.gtclassic.tin_tiny_dust.name=Tiny Pile of Tin Dust
-item.gtclassic.bronze_tiny_dust.name=Tiny Pile of Bronze Dust
-item.gtclassic.silver_tiny_dust.name=Tiny Pile of Silver Dust
-item.gtclassic.clay_tiny_dust.name=Tiny Pile of Clay Dust
-item.gtclassic.gunpowder_tiny_dust.name=Tiny Pile of Gunpowder Dust
-item.gtclassic.redstone_tiny_dust.name=Tiny Pile of Redstone Dust
-item.gtclassic.glowstone_tiny_dust.name=Tiny Pile of Glowstone Dust
-
-#nuggets
-item.gtclassic.iridium_nugget.name=Iridium Nugget
-item.gtclassic.silver_nugget.name=Silver Nugget
-item.gtclassic.aluminum_nugget.name=Aluminum Nugget
-item.gtclassic.titanium_nugget.name=Titanium Nugget
-item.gtclassic.chrome_nugget.name=Chrome Nugget
-item.gtclassic.electrum_nugget.name=Electrum Nugget
-item.gtclassic.tungsten_nugget.name=Tungsten Nugget
-item.gtclassic.lead_nugget.name=Lead Nugget
-item.gtclassic.zinc_nugget.name=Zinc Nugget
-item.gtclassic.brass_nugget.name=Brass Nugget
-item.gtclassic.steel_nugget.name=Steel Nugget
-item.gtclassic.platinum_nugget.name=Platinum Nugget
-item.gtclassic.nickel_nugget.name=Nickel Nugget
-item.gtclassic.invar_nugget.name=Invar Nugget
-item.gtclassic.osmium_nugget.name=Osmium Nugget
-item.gtclassic.copper_nugget.name=Copper Nugget
-item.gtclassic.tin_nugget.name=Tin Nugget
-item.gtclassic.bronze_nugget.name=Bronze Nugget
+item.gtclassic.lazurite_dust.name=Lazurite Dust
 
 #ingots
-item.gtclassic.iridium_alloy_ingot.name=Iridium Alloy Ingot
-item.gtclassic.tungstensteel_ingot.name=Tungstensteel Ingot
-item.gtclassic.hot_tungstensteel_ingot.name=Hot Tungstensteel Ingot
 item.gtclassic.iridium_ingot.name=Iridium Ingot
-item.gtclassic.silver_ingot.name=Silver Ingot
 item.gtclassic.aluminum_ingot.name=Aluminum Ingot
 item.gtclassic.titanium_ingot.name=Titanium Ingot
 item.gtclassic.chrome_ingot.name=Chrome Ingot
-item.gtclassic.electrum_ingot.name=Electrum Ingot
-item.gtclassic.tungsten_ingot.name=Tungsten Ingot
-item.gtclassic.lead_ingot.name=Lead Ingot
-item.gtclassic.zinc_ingot.name=Zinc Ingot
-item.gtclassic.brass_ingot.name=Brass Ingot
-item.gtclassic.steel_ingot.name=Steel Ingot
-item.gtclassic.platinum_ingot.name=Platinum Ingot
-item.gtclassic.nickel_ingot.name=Nickel Ingot
-item.gtclassic.invar_ingot.name=Invar Ingot
-item.gtclassic.osmium_ingot.name=Osmium Ingot
-item.gtclassic.thorium_ingot.name=Thorium Ingot
-item.gtclassic.plutonium_ingot.name=Plutonium Ingot
-
-#plates
-item.gtclassic.lazurite_plate.name=Chunk of Lazurite
-item.gtclassic.silicon_plate.name=Silicon Plate
-item.gtclassic.iron_plate.name=Iron Plate
-item.gtclassic.gold_plate.name=Gold Plate
-item.gtclassic.refined_iron_plate.name=Refined Iron Plate
-item.gtclassic.tin_plate.name=Tin Plate
-item.gtclassic.copper_plate.name=Copper Plate
-item.gtclassic.silver_plate.name=Silver Plate
-item.gtclassic.bronze_plate.name=Bronze Plate
-item.gtclassic.electrum_plate.name=Electrum Plate
-item.gtclassic.nickel_plate.name=Nickel Plate
-item.gtclassic.invar_plate.name=Invar Plate
-item.gtclassic.lead_plate.name=Lead Plate
-item.gtclassic.aluminum_plate.name=Aluminum Plate
-item.gtclassic.chrome_plate.name=Chrome Plate
-item.gtclassic.titanium_plate.name=Titanium Plate
-item.gtclassic.steel_plate.name=Steel Plate
-item.gtclassic.platinum_plate.name=Platinum Plate
-item.gtclassic.tungsten_plate.name=Tungsten Plate
-item.gtclassic.brass_plate.name=Brass Plate
-item.gtclassic.zinc_plate.name=Zinc Plate
-item.gtclassic.tungstensteel_plate.name=Tungstensteel Plate
-item.gtclassic.osmium_plate.name=Osmium Plate
-item.gtclassic.magnalium_plate.name=Magnalium Plate
-item.gtclassic.wood_plate.name=Wood Plate
 
 #other materials
 item.gtclassic.ruby_gem.name=Ruby
 item.gtclassic.sapphire_gem.name=Sapphire
-item.gtclassic.green_sapphire_gem.name=Green Sapphire
-item.gtclassic.olivine_gem.name=Olivine
-item.gtclassic.red_garnet_gem.name=Red Garnet
-item.gtclassic.yellow_garnet_gem.name=Yellow Garnet
 
 #components
 item.gtclassic.energy_flow_circuit.name=Energy Flow Circuit
 item.gtclassic.data_control_circuit.name=Data Control Circuit
 item.gtclassic.superconductor.name=Superconductor
 item.gtclassic.data_storage_circuit.name=Data Storage Circuit
-item.gtclassic.computer_monitor.name=Computer Monitor
-item.gtclassic.conveyor_module.name=Conveyor Module
 item.gtclassic.braintech_aerospace_ardt.name=Braintech Aerospace Advanced Reinforced Duct Tape FAL-84
-item.gtclassic.diamond_sawblade.name=Diamond Sawblade
-item.gtclassic.diamond_grinder.name=Diamond Grinder
-item.gtclassic.kanthal_heating_coil.name=Kanthal Heating Coil
-item.gtclassic.nichrome_heating_coil.name=Nichrome Heating Coil
-item.gtclassic.cupronickel_heating_coil.name=Cupronickel Heating Coil
-item.gtclassic.machine_parts.name=Machine Parts
-item.gtclassic.wolframium_grinder.name=Wolframium Grinder
-item.gtclassic.advanced_circuit_parts.name=Advanced Circuit Parts
-item.gtclassic.aluminum_machine_hull.name=Aluminum Machine Hull
-item.gtclassic.bronze_machine_hull.name=Bronze Machine Hull
-item.gtclassic.brass_machine_hull.name=Brass Machine Hull
-item.gtclassic.steel_machine_hull.name=Steel Machine Hull
-item.gtclassic.titanium_machine_hull.name=Titanium Machine Hull
-item.gtclassic.basic_circuit_board.name=Basic Circuit Board
-item.gtclassic.advanced_circuit_board.name=Advanced Circuit Board
-item.gtclassic.elite_circuit_board.name=Elite Circuit Board
 
-tooltip.gtclassic.motar=Can pulverize Ingots into Dust
-tooltip.gtclassic.storage=Decorative item storage
+#toxic dim
+item.gtclassic.creditAlk.name=Alkalus Credit
+tile.gtclassic.toxicPortalFrame.name=Containment Frame
+tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
+tile.gtclassic.grassToxic.name=Unstable Earth
+
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
-tooltip.gtclassic.witherproof=Withers cant destroy this Block
 tooltip.gtclassic.alkcredit=Shines the way, towards the far away Everglades
 tooltip.gtclassic.portalframe=Used to build portals to terrible places...
 
