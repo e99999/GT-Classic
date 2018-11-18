@@ -3,6 +3,7 @@
 tile.gtclassic.fusion_machineblock.name=Fusion Coil
 tile.gtclassic.lesu_machineblock.name=LESU-Block
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
+tile.gtclassic.industrialCentrifuge.name=Industrial Centrifuge
 
 #blocks
 tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone
