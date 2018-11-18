@@ -23,10 +23,10 @@ public class GTInventoryDestructoPack implements IHasGui {
 			this.handler = null;
 		}
 		
-		@Override
-        public void setStackInSlot(int slot, ItemStack stack){
-			 //Broken code <---------
-		 }
+		//@Override
+        //public void setStackInSlot(int slot, ItemStack stack){
+		//	 //Broken code <---------
+		 //} needs to extend IC2ItemInventory some work
 		
 		
 		public ContainerIC2 getGuiContainer(EntityPlayer player) {
