@@ -24,6 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
 
 	public GTItemDestructoPack(){
+		this.maxStackSize = 1;
         this.setCreativeTab(GTClassic.creativeTabGT);
         this.setRegistryName("destructo_pack");
         this.setUnlocalizedName(GTClassic.MODID + ".destructoPack");
@@ -41,7 +42,7 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
         return Ic2Icons.getTextures("gtclassic_items")[33];
     }
 
-	
+    @Override
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
     	ItemStack stack = player.getHeldItem(hand);
     	if (IC2.platform.isSimulating()) {
@@ -50,23 +51,19 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
     	return EnumActionResult.SUCCESS;
     }
     
-    
-    
     @Override
-	public int getGuiId(ItemStack var1) {
-		// TODO Auto-generated method stub
+	public int getGuiId(ItemStack stack) {
 		return -1;
 	}
 
 	@Override
 	public IHasGui getInventory(EntityPlayer player, EnumHand hand, ItemStack stack) {
-		return new GTInventoryDestructoPack(player, stack);
+		return new GTInventoryDestructoPack();
 	}
 
 	@Override
 	public void setGuiID(ItemStack stack, int id) {
-		// TODO Auto-generated method stub
-		
+			//needed for implementation
 	}
 
 

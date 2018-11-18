@@ -9,7 +9,6 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.InventoryHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 
 public class GTInventoryDestructoPack implements IHasGui {
@@ -17,14 +16,14 @@ public class GTInventoryDestructoPack implements IHasGui {
 		public InventoryHandler handler;
 		boolean allowSlot;
 
-		public GTInventoryDestructoPack(EntityPlayer player, ItemStack stack) {
+		public GTInventoryDestructoPack() {
 			this.inv = new PersonalInventory(1);
 			this.allowSlot = false;
 			this.handler = null;
 		}
 
 		public ContainerIC2 getGuiContainer(EntityPlayer player) {
-			return new GTContainerDestructoPack(player.inventory, this.handler, this.inv, this.allowSlot, this);
+			return new GTContainerDestructoPack(player.inventory, this.inv, this);
 		}
 
 		public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
@@ -36,9 +35,8 @@ public class GTInventoryDestructoPack implements IHasGui {
 
 		public boolean canInteractWith(EntityPlayer player) {
 			return this.handler != null;
-			//return this.handler != null && !player.field_70128_L;
 		}
-
+		
 		public boolean hasGui(EntityPlayer player) {
 			return true;
 		}
