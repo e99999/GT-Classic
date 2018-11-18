@@ -10,25 +10,22 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2ItemLang;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class GTContainerDestructoPack extends ContainerComponent<GTItemDestructoPack> {
 
-	public GTContainerDestructoPack(InventoryPlayer player, IHasInventory inv,
-			GTInventoryDestructoPack item) {
+	public GTContainerDestructoPack(InventoryPlayer player, IHasInventory inv, GTInventoryDestructoPack item) {
 		super(item);
 		this.addSlotToContainer(new SlotCustom(inv, 0, 80, 17, null));
 		this.addPlayerInventory(player, 0, 0);
-		//inv.setStackInSlot(0, new ItemStack(Items.AIR));
 	}
 
+	
 	@Override
 	public ResourceLocation getTexture() {
 		return new ResourceLocation(GTClassic.MODID, "textures/gui/destructopack.png");
 	}
-
+	
 	@Override
 	public int guiInventorySize() {
 		return 1;

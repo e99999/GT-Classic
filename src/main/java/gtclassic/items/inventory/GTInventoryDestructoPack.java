@@ -9,6 +9,7 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.InventoryHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 
 public class GTInventoryDestructoPack implements IHasGui {
@@ -21,7 +22,13 @@ public class GTInventoryDestructoPack implements IHasGui {
 			this.allowSlot = false;
 			this.handler = null;
 		}
-
+		
+		@Override
+        public void setStackInSlot(int slot, ItemStack stack){
+			 //Broken code <---------
+		 }
+		
+		
 		public ContainerIC2 getGuiContainer(EntityPlayer player) {
 			return new GTContainerDestructoPack(player.inventory, this.inv, this);
 		}
