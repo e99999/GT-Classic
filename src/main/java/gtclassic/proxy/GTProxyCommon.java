@@ -4,6 +4,7 @@ import gtclassic.GTConfig;
 import gtclassic.GTClassic;
 import gtclassic.GTBiomes;
 import gtclassic.GTDimensions;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTItems;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +38,7 @@ public class GTProxyCommon {
     public void init(FMLInitializationEvent e) {
     	GTBiomes.init();
     	GTBiomes.initBiomeDict();
+        GTTileEntityIndustrialCentrifuge.init();
     }
 
     

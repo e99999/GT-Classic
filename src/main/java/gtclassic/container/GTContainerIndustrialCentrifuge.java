@@ -3,6 +3,7 @@ package gtclassic.container;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import ic2.api.classic.tile.IMachine;
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDischarge;
@@ -20,14 +21,17 @@ public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTi
 
     public GTContainerIndustrialCentrifuge(InventoryPlayer player, GTTileEntityIndustrialCentrifuge tile){
         super(tile);
-        this.addSlotToContainer(new SlotCustom(tile, 0, 35, 25, null));
-        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 1, 80, 63));
-        this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 107, 25));
-        this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 125, 25));
+        this.addSlotToContainer(new SlotCustom(tile, 0, 80, 35, null));
+        this.addSlotToContainer(new SlotCustom(tile, 1, 51, 5, CommonFilters.CannerInput));
+        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 2, 51, 65));
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 51, 35));
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 80, 5));
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 110, 35));
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 6, 80, 65));
 
         for(int i = 0; i < 4; ++i)
         {
-            this.addSlotToContainer(new SlotUpgrade((IMachine) tile, 4 + i, 152, 8 + i * 18));
+            this.addSlotToContainer(new SlotUpgrade((IMachine) tile, 7 + i, 152, 8 + i * 18));
         }
 
         this.addPlayerInventory(player);

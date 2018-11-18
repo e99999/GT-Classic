@@ -21,8 +21,8 @@ public class GTBlockIndustrialCentrifuge extends BlockMultiID {
     public GTBlockIndustrialCentrifuge(){
         super(Material.IRON);
         this.setCreativeTab(GTClassic.creativeTabGT);
-        this.setRegistryName("alloy_smelter");
-        this.setUnlocalizedName(GTClassic.MODID + ".alloySmelter");
+        this.setRegistryName("industrial_centrifuge");
+        this.setUnlocalizedName(GTClassic.MODID + ".industrialCentrifuge");
     }
 
     @Override

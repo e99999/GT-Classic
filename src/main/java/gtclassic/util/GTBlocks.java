@@ -2,11 +2,13 @@ package gtclassic.util;
 
 import gtclassic.GTClassic;
 
+import gtclassic.blocks.GTBlockIndustrialCentrifuge;
 import gtclassic.blocks.GTBlockMachineCasing;
 import gtclassic.blocks.GTBlockMachineCasing.GTBlockMachineVariants;
 import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortal;
@@ -18,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -35,6 +38,7 @@ public class GTBlocks {
 	fusionMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.FUSION),
 	lesuMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.LESU),
 	highlyadvancedMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.HIGHLYADVANCED);
+    public static final GTBlockIndustrialCentrifuge industrialCentriguge = new GTBlockIndustrialCentrifuge();
     
     
     public static final GTBlockMetal
@@ -62,6 +66,7 @@ public class GTBlocks {
             lesuMachineBlock,
             highlyadvancedMachineBlock,
             toxicPortalFrame,
+            industrialCentriguge,
             
             iridiumReinforcedStoneBlock,
             rubyBlock,
@@ -96,6 +101,7 @@ public class GTBlocks {
     }
     
     public static void registerTiles(){
+        GameRegistry.registerTileEntity(GTTileEntityIndustrialCentrifuge.class, new ResourceLocation(GTClassic.MODID, "tileEntityIndustrialCentrifuge"));
         //GameRegistry.registerTileEntity(GTTileEntityAlloySmelter.class, new ResourceLocation(GTClassic.MODID, "tileEntityAloySmelter"));
     }
     

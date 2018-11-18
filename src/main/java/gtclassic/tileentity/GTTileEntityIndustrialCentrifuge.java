@@ -89,13 +89,16 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
     public AudioSource audioSource;
     public IFilter filter;
 
-    public static final int slotInput1 = 0;
-    public static final int slotFuel = 1;
-    public static final int slotOutput = 2;
-    public static final int slotOutput2 = 3;
+    public static final int slotInput = 0;
+    public static final int slotCell = 1;
+    public static final int slotFuel = 2;
+    public static final int slotOutput = 3;
+    public static final int slotOutput2 = 4;
+    public static final int slotOutput3 = 5;
+    public static final int slotOutput4 = 6;
 
     public GTTileEntityIndustrialCentrifuge() {
-        this(8, 1, 98, 32);
+        this(11, 1, 98, 32);
     }
 
     public GTTileEntityIndustrialCentrifuge(int slots, int energyPerTick, int maxProgress, int maxInput)
@@ -116,21 +119,21 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
     }
 
     public ResourceLocation getGuiTexture() {
-        return new ResourceLocation(GTClassic.MODID, "textures/gui/guialloysmelter.png");
+        return new ResourceLocation(GTClassic.MODID, "textures/gui/industrialcentrifuge.png");
     }
 
     @Override
     public LocaleComp getBlockName() {
-        return new LangComponentHolder.LocaleBlockComp("tile.alloySmelter");
+        return new LangComponentHolder.LocaleBlockComp("tile.industrialCentrifuge");
     }
-    public static IMachineRecipeList alloySmelter = new BasicMachineRecipeList("alloySmelter");
+    public static IMachineRecipeList industrialCentrifuge = new BasicMachineRecipeList("industrialCentrifuge");
 
     public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
         return GuiComponentContainer.class;
     }
 
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
-        return alloySmelter.getRecipeInAndOutput(input, false);
+        return industrialCentrifuge.getRecipeInAndOutput(input, false);
     }
 
     @Override
@@ -145,15 +148,15 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
         this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
-        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput1);
-        handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2);
+        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotCell);
+        handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2, slotOutput3, slotOutput4);
         handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 0, 2, 4);
         handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 1, 3);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
         handler.registerSlotType(SlotType.Fuel, slotFuel);
-        handler.registerSlotType(SlotType.Input, slotInput1);
-        handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2);
+        handler.registerSlotType(SlotType.Input, slotInput, slotCell);
+        handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutput4);
     }
 
     @Override
@@ -214,7 +217,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
 
     @Override
     public String getName() {
-        return "Alloy Smelter";
+        return "Industrial Centrifuge";
     }
 
     @Override
@@ -223,7 +226,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
     }
 
     public IMachineRecipeList getRecipeList() {
-        return alloySmelter;
+        return industrialCentrifuge;
     }
 
     @Override
@@ -393,15 +396,15 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
     public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
         list.addAll(output.getRecipeOutput(this.getMachineWorld().rand, getTileData()));
-        if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput1).isEmpty())
+        if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput).isEmpty())
         {
-            if (this.inventory.get(slotInput1).getItem().hasContainerItem(this.inventory.get(slotInput1)))
+            if (this.inventory.get(slotInput).getItem().hasContainerItem(this.inventory.get(slotInput)))
             {
-                this.inventory.set(slotInput1, this.inventory.get(slotInput1).getItem().getContainerItem(this.inventory.get(slotInput1)));
+                this.inventory.set(slotInput, this.inventory.get(slotInput).getItem().getContainerItem(this.inventory.get(slotInput)));
             }
             else
             {
-                this.inventory.get(slotInput1).shrink(input.getAmount());
+                this.inventory.get(slotInput).shrink(input.getAmount());
             }
 
         }
@@ -470,6 +473,54 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
                     this.inventory.get(slotOutput2).grow(item.getCount());
                     this.results.remove(i--);
                 }
+                else if (this.inventory.get(slotOutput3).isEmpty())
+                {
+                    this.inventory.set(slotOutput3, item.copy());
+                    this.results.remove(i--);
+                }
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput3), item, false, false))
+                {
+                    int left = this.inventory.get(slotOutput3).getMaxStackSize() - this.inventory.get(slotOutput3).getCount();
+                    if (left <= 0)
+                    {
+                        break;
+                    }
+
+                    if (left < item.getCount())
+                    {
+                        int itemLeft = item.getCount() - left;
+                        item.setCount(itemLeft);
+                        this.inventory.get(slotOutput3).setCount(this.inventory.get(slotOutput3).getMaxStackSize());
+                        break;
+                    }
+
+                    this.inventory.get(slotOutput3).grow(item.getCount());
+                    this.results.remove(i--);
+                }
+                else if (this.inventory.get(slotOutput4).isEmpty())
+                {
+                    this.inventory.set(slotOutput4, item.copy());
+                    this.results.remove(i--);
+                }
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput4), item, false, false))
+                {
+                    int left = this.inventory.get(slotOutput4).getMaxStackSize() - this.inventory.get(slotOutput4).getCount();
+                    if (left <= 0)
+                    {
+                        break;
+                    }
+
+                    if (left < item.getCount())
+                    {
+                        int itemLeft = item.getCount() - left;
+                        item.setCount(itemLeft);
+                        this.inventory.get(slotOutput4).setCount(this.inventory.get(slotOutput4).getMaxStackSize());
+                        break;
+                    }
+
+                    this.inventory.get(slotOutput4).grow(item.getCount());
+                    this.results.remove(i--);
+                }
             }
 
             return !this.results.isEmpty();
@@ -478,7 +529,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
 
     private IMachineRecipeList.RecipeEntry getRecipe()
     {
-        if (this.inventory.get(slotInput1).isEmpty() && !this.canWorkWithoutItems())
+        if (this.inventory.get(slotInput).isEmpty() && !this.canWorkWithoutItems())
         {
             return null;
         }
@@ -489,14 +540,14 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
                 IRecipeInput recipe = this.lastRecipe.getInput();
                 if (recipe instanceof INullableRecipeInput)
                 {
-                    if (!recipe.matches(this.inventory.get(slotInput1)))
+                    if (!recipe.matches(this.inventory.get(slotInput)))
                     {
                         this.lastRecipe = null;
                     }
                 }
-                else if (!this.inventory.get(slotInput1).isEmpty() && recipe.matches(this.inventory.get(0)))
+                else if (!this.inventory.get(slotInput).isEmpty() && recipe.matches(this.inventory.get(0)))
                 {
-                    if (recipe.getAmount() > this.inventory.get(slotInput1).getCount())
+                    if (recipe.getAmount() > this.inventory.get(slotInput).getCount())
                     {
                         return null;
                     }
@@ -509,7 +560,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
 
             if (this.lastRecipe == null)
             {
-                IMachineRecipeList.RecipeEntry out = this.getOutputFor(this.inventory.get(slotInput1).copy());
+                IMachineRecipeList.RecipeEntry out = this.getOutputFor(this.inventory.get(slotInput).copy());
                 if (out == null)
                 {
                     return null;
@@ -529,6 +580,14 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
                 return null;
             }
             else if (this.inventory.get(slotOutput2).getCount() >= this.inventory.get(slotOutput2).getMaxStackSize())
+            {
+                return null;
+            }
+            else if (this.inventory.get(slotOutput3).getCount() >= this.inventory.get(slotOutput3).getMaxStackSize())
+            {
+                return null;
+            }
+            else if (this.inventory.get(slotOutput4).getCount() >= this.inventory.get(slotOutput4).getMaxStackSize())
             {
                 return null;
             }
@@ -881,13 +940,13 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
     @Override
     public IHasInventory getOutputInventory()
     {
-        return new RangedInventoryWrapper(this, slotOutput, slotOutput2);
+        return new RangedInventoryWrapper(this, slotOutput, slotOutput2, slotOutput3, slotOutput4);
     }
 
     @Override
     public IHasInventory getInputInventory()
     {
-        return new RangedInventoryWrapper(this, slotInput1);
+        return new RangedInventoryWrapper(this, slotInput, slotCell);
     }
 
 
@@ -929,7 +988,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
 
     public static void init(){
 
-        //addRecipe((new RecipeInputOreDict("ingotCopper", 4)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
+        addRecipe((new RecipeInputOreDict("dustBauxite", 24)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustAluminum, 16, 0), new ItemStack(GTItems.dustTitanium, 1, 0)})));
         //example recipe
 //        addRecipe((new RecipeInputOreDict("ingotCopper", 3), new RecipeInputOreDict("ingotZinc", 1)),  new ItemStack(GTItems.ingotBrass, 4, 0), 0.7f);
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f, "tinItemCasingRolling");
@@ -938,6 +997,14 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 4), 0.7f, "ironItemCasingRolling");
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 5), 0.7f, "goldItemCasingRolling");
 //        alloySmelter.addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 8), 0.7f, "bronzeItemCasingRolling");
+    }
+
+    public static void addRecipe(IRecipeInput input, MachineOutput output)
+    {
+        industrialCentrifuge.addRecipe(input, output, output.toString());
+    }
+
+    private static void addRecipe(ItemStack itemStack, MachineOutput machineOutput) {
     }
 
     public static void addRecipe(ItemStack input, ItemStack output) {
@@ -969,7 +1036,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        alloySmelter.addRecipe(input, output, exp, makeString(output));
+        industrialCentrifuge.addRecipe(input, output, exp, makeString(output));
     }
 
     private static String makeString(ItemStack stack) {
