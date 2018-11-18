@@ -46,6 +46,18 @@ public class GTRecipes {
 		
 		recipes.addRecipe(Ic2Items.lapotronCrystal.copy(), 
 				new Object[]{"LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', Ic2Items.electricCircuit.copy(), 'L', "gemLapis"});
+		
+		recipes.addRecipe(new ItemStack(GTItems.lapotronicEnergyOrb, 1),
+				new Object[]{"LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(),'P', Ic2Items.iridiumPlate.copy(),});
+		
+		recipes.addRecipe(new ItemStack(GTItems.energyFlowCircuit, 4),
+				new Object[]{"CLC", "LPL", "CLC", 'L', Ic2Items.lapotronCrystal.copy(),'C', Ic2Items.advancedCircuit.copy(), 'P', Ic2Items.iridiumPlate.copy(),});
+		
+		recipes.addRecipe(new ItemStack(GTItems.superConductor, 4),
+				new Object[]{"CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(),'E', GTItems.energyFlowCircuit, 'W', GTItems.cellW, 'P', Ic2Items.iridiumPlate.copy(),});
+		
+		recipes.addRecipe(new ItemStack(GTItems.lapotronPack, 1),
+				new Object[]{"ELE", "SBS", "EPE", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'L', GTItems.lapotronicEnergyOrb, 'B', Ic2Items.lapPack.copy(), 'P', Ic2Items.iridiumPlate.copy(),});
 
 	}
 	

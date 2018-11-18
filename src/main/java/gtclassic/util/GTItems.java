@@ -17,6 +17,7 @@ import gtclassic.items.resources.GTItemIngot.GTItemIngotTypes;
 import gtclassic.items.tools.GTItemAdvancedChainsaw;
 import gtclassic.items.tools.GTItemAdvancedDrill;
 import gtclassic.items.tools.GTItemHammerIron;
+import gtclassic.items.tools.GTItemTeslaStaff;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -31,6 +32,7 @@ public class GTItems {
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
 	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();
+	public static final GTItemTeslaStaff teslaStaff = new GTItemTeslaStaff();
 	public static final GTItemLithiumBattery lithiumBattery = new GTItemLithiumBattery();
 	public static final GTItemLapotronicEnergyOrb lapotronicEnergyOrb = new GTItemLapotronicEnergyOrb();
 	public static final GTItemEnergyPack lithiumBatpack = new GTItemEnergyPack(58, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 200);
@@ -95,6 +97,7 @@ public class GTItems {
 			hammerIron,
 			advancedDrill,
 			advancedChainsaw,
+			teslaStaff,
 			lithiumBattery,
 			lapotronicEnergyOrb,
 			lithiumBatpack,
