@@ -2,8 +2,8 @@ package gtclassic.util;
 
 import gtclassic.GTClassic;
 
-import gtclassic.blocks.GTBlockMachine;
-import gtclassic.blocks.GTBlockMachine.GTBlockMachineVariants;
+import gtclassic.blocks.GTBlockMachineCasing;
+import gtclassic.blocks.GTBlockMachineCasing.GTBlockMachineVariants;
 import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
@@ -18,7 +18,6 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -32,10 +31,10 @@ public class GTBlocks {
     
     public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
-    public static final GTBlockMachine
-	fusionMachineBlock = new GTBlockMachine(GTBlockMachineVariants.FUSION),
-	lesuMachineBlock = new GTBlockMachine(GTBlockMachineVariants.LESU),
-	highlyadvancedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.HIGHLYADVANCED);
+    public static final GTBlockMachineCasing
+	fusionMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.FUSION),
+	lesuMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.LESU),
+	highlyadvancedMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.HIGHLYADVANCED);
     
     
     public static final GTBlockMetal
