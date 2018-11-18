@@ -2,11 +2,13 @@ package gtclassic.util;
 
 import gtclassic.GTClassic;
 
-import gtclassic.blocks.GTBlockMachine;
-import gtclassic.blocks.GTBlockMachine.GTBlockMachineVariants;
+import gtclassic.blocks.GTBlockIndustrialCentrifuge;
+import gtclassic.blocks.GTBlockMachineCasing;
+import gtclassic.blocks.GTBlockMachineCasing.GTBlockMachineVariants;
 import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortal;
@@ -32,10 +34,11 @@ public class GTBlocks {
     
     public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
-    public static final GTBlockMachine
-	fusionMachineBlock = new GTBlockMachine(GTBlockMachineVariants.FUSION),
-	lesuMachineBlock = new GTBlockMachine(GTBlockMachineVariants.LESU),
-	highlyadvancedMachineBlock = new GTBlockMachine(GTBlockMachineVariants.HIGHLYADVANCED);
+    public static final GTBlockMachineCasing
+	fusionMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.FUSION),
+	lesuMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.LESU),
+	highlyadvancedMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.HIGHLYADVANCED);
+    public static final GTBlockIndustrialCentrifuge industrialCentriguge = new GTBlockIndustrialCentrifuge();
     
     
     public static final GTBlockMetal
@@ -63,6 +66,7 @@ public class GTBlocks {
             lesuMachineBlock,
             highlyadvancedMachineBlock,
             toxicPortalFrame,
+            industrialCentriguge,
             
             iridiumReinforcedStoneBlock,
             rubyBlock,
@@ -97,6 +101,7 @@ public class GTBlocks {
     }
     
     public static void registerTiles(){
+        GameRegistry.registerTileEntity(GTTileEntityIndustrialCentrifuge.class, new ResourceLocation(GTClassic.MODID, "tileEntityIndustrialCentrifuge"));
         //GameRegistry.registerTileEntity(GTTileEntityAlloySmelter.class, new ResourceLocation(GTClassic.MODID, "tileEntityAloySmelter"));
     }
     
