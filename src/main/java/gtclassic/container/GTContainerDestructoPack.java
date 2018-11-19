@@ -3,7 +3,6 @@ package gtclassic.container;
 import gtclassic.GTClassic;
 import gtclassic.items.inventory.GTInventoryDestructoPack;
 import gtclassic.items.tools.GTItemDestructoPack;
-import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerComponent;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.platform.lang.components.base.LocaleComp;

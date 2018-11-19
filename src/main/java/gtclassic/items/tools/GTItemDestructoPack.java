@@ -15,10 +15,9 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -43,15 +42,15 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
     public TextureAtlasSprite getTexture(int meta) {
         return Ic2Icons.getTextures("gtclassic_items")[33];
     }
+    
+    public ActionResult<ItemStack> func_77659_a(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		if (IC2.platform.isSimulating()) {
+			IC2.platform.launchGui(playerIn, this.getInventory(playerIn, handIn, playerIn.getHeldItem(handIn)),
+					handIn);
+		}
 
-    @Override
-    public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
-    	ItemStack stack = player.getHeldItem(hand);
-    	if (IC2.platform.isSimulating()) {
-			IC2.platform.launchGui(player, this.getInventory(player, hand, stack), hand);
-    	}
-    	return EnumActionResult.SUCCESS;
-    }
+		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+	}
     
     @Override
     public int getGuiId(ItemStack stack)

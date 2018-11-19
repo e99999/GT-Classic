@@ -48,16 +48,25 @@ public class GTRecipes {
 				new Object[]{"LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', Ic2Items.electricCircuit.copy(), 'L', "gemLapis"});
 		
 		recipes.addRecipe(new ItemStack(GTItems.lapotronicEnergyOrb, 1),
-				new Object[]{"LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(),'P', Ic2Items.iridiumPlate.copy(),});
+				new Object[]{"LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(),'P', Ic2Items.iridiumPlate.copy()});
 		
 		recipes.addRecipe(new ItemStack(GTItems.energyFlowCircuit, 4),
-				new Object[]{"CLC", "LPL", "CLC", 'L', Ic2Items.lapotronCrystal.copy(),'C', Ic2Items.advancedCircuit.copy(), 'P', Ic2Items.iridiumPlate.copy(),});
+				new Object[]{"CLC", "LPL", "CLC", 'L', Ic2Items.lapotronCrystal.copy(),'C', Ic2Items.advancedCircuit.copy(), 'P', Ic2Items.iridiumPlate.copy()});
 		
 		recipes.addRecipe(new ItemStack(GTItems.superConductor, 4),
-				new Object[]{"CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(),'E', GTItems.energyFlowCircuit, 'W', GTItems.cellW, 'P', Ic2Items.iridiumPlate.copy(),});
+				new Object[]{"CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(),'E', GTItems.energyFlowCircuit, 'W', GTItems.cellW, 'P', Ic2Items.iridiumPlate.copy()});
 		
 		recipes.addRecipe(new ItemStack(GTItems.lapotronPack, 1),
-				new Object[]{"ELE", "SBS", "EPE", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'L', GTItems.lapotronicEnergyOrb, 'B', Ic2Items.lapPack.copy(), 'P', Ic2Items.iridiumPlate.copy(),});
+				new Object[]{"ELE", "SBS", "EPE", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'L', GTItems.lapotronicEnergyOrb, 'B', Ic2Items.lapPack.copy(), 'P', Ic2Items.iridiumPlate.copy()});
+		
+		recipes.addRecipe(new ItemStack(GTItems.destructoPack, 1),
+				new Object[]{"BIB", "ICI", "BIB", 'B', Items.LAVA_BUCKET,'C', Ic2Items.electricCircuit.copy(), 'I', Ic2Items.refinedIronIngot.copy()});
+		
+		recipes.addRecipe(new ItemStack(GTItems.destructoPack, 1),
+				new Object[]{"BIB", "ICI", "BIB", 'B', Items.LAVA_BUCKET,'C', Ic2Items.electricCircuit.copy(), 'I', "ingotAluminum"});
+		
+		recipes.addRecipe(new ItemStack(GTItems.teslaStaff, 1),
+				new Object[]{"LS ", "SP ", "  P", 'L', GTItems.lapotronicEnergyOrb, 'S', GTItems.superConductor, 'P', Ic2Items.iridiumPlate.copy()});
 
 	}
 	
