@@ -14,8 +14,9 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTContainerDestructoPack extends ContainerComponent<GTItemDestructoPack> {
 
-	public GTContainerDestructoPack(InventoryPlayer player, IHasInventory inv, GTInventoryDestructoPack item) {
-		super(item);
+	public GTContainerDestructoPack(GTInventoryDestructoPack inv, int id, InventoryPlayer player) {
+		super(inv);
+		//super(inv, id);
 		this.addSlotToContainer(new SlotCustom(inv, 0, 80, 17, null));
 		this.addPlayerInventory(player, 0, 0);
 	}

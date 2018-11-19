@@ -66,7 +66,7 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
 
 	@Override
 	public IHasGui getInventory(EntityPlayer player, EnumHand hand, ItemStack stack) {
-		return new GTInventoryDestructoPack();
+		return new GTInventoryDestructoPack(player, this, stack);
 	}
 
 	@Override

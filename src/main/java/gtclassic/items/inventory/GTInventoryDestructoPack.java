@@ -2,6 +2,8 @@ package gtclassic.items.inventory;
 
 import gtclassic.container.GTContainerDestructoPack;
 import ic2.core.block.personal.base.misc.PersonalInventory;
+import ic2.core.inventory.base.IC2ItemInventory;
+import ic2.core.inventory.base.IHandHeldInventory;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
@@ -9,28 +11,29 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.InventoryHandler;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 
-public class GTInventoryDestructoPack implements IHasGui {
-		public IHasInventory inv;
-		public InventoryHandler handler;
-		boolean allowSlot;
+public class GTInventoryDestructoPack extends IC2ItemInventory {
+		public GTInventoryDestructoPack(EntityPlayer player, IHandHeldInventory inv, ItemStack item) {
+			super(player, inv, item);
+		}
 
-		public GTInventoryDestructoPack() {
-			this.inv = new PersonalInventory(1);
-			this.allowSlot = false;
-			this.handler = null;
+		public int getType() {
+			return 0;
 		}
 		
-		//@Override
-        //public void setStackInSlot(int slot, ItemStack stack){
-		//	 //Broken code <---------
-		 //} needs to extend IC2ItemInventory some work
+		@Override
+        public void setStackInSlot(int slot, ItemStack stack){
+			if (this.getStackInSlot(0) != ItemStack.EMPTY){
+			this.setStackInSlot(0, ItemStack.EMPTY);
+			}
+		 } 
 		
 		
 		public ContainerIC2 getGuiContainer(EntityPlayer player) {
-			return new GTContainerDestructoPack(player.inventory, this.inv, this);
+			return new GTContainerDestructoPack(this, this.getID(), player.inventory);
 		}
 
 		public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
@@ -41,11 +44,16 @@ public class GTInventoryDestructoPack implements IHasGui {
 		}
 
 		public boolean canInteractWith(EntityPlayer player) {
-			return this.handler != null;
+			return !player.isDead;
 		}
 		
 		public boolean hasGui(EntityPlayer player) {
 			return true;
+		}
+
+		@Override
+		public int getInventorySize() {
+			return 1;
 		}
 
 	}
