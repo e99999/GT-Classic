@@ -10,9 +10,11 @@ import ic2.core.inventory.base.IHandHeldInventory;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.item.base.ItemIC2;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -24,6 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
 
 	public GTItemDestructoPack(){
+		this.maxStackSize = 1;
         this.setCreativeTab(GTClassic.creativeTabGT);
         this.setRegistryName("destructo_pack");
         this.setUnlocalizedName(GTClassic.MODID + ".destructoPack");
@@ -41,7 +44,7 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
         return Ic2Icons.getTextures("gtclassic_items")[33];
     }
 
-	
+    @Override
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
     	ItemStack stack = player.getHeldItem(hand);
     	if (IC2.platform.isSimulating()) {
@@ -50,24 +53,32 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
     	return EnumActionResult.SUCCESS;
     }
     
-    
-    
     @Override
-	public int getGuiId(ItemStack var1) {
-		// TODO Auto-generated method stub
-		return -1;
-	}
+    public int getGuiId(ItemStack stack)
+    {
+        NBTTagCompound nbt = StackUtil.getNbtData(stack);
+        if(nbt.hasKey("GuiID"))
+        {
+            return nbt.getInteger("GuiID");
+        }
+        return -1;
+    }
 
 	@Override
 	public IHasGui getInventory(EntityPlayer player, EnumHand hand, ItemStack stack) {
-		return new GTInventoryDestructoPack(player, stack);
+		return new GTInventoryDestructoPack();
 	}
 
 	@Override
-	public void setGuiID(ItemStack stack, int id) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setGuiID(ItemStack stack, int id)
+    {
+        if(id == -1)
+        {
+            StackUtil.getOrCreateNbtData(stack).removeTag("GuiID");
+            return;
+        }
+        StackUtil.getOrCreateNbtData(stack).setInteger("GuiID", id);
+    }
 
 
 	@Override

@@ -17,14 +17,20 @@ public class GTInventoryDestructoPack implements IHasGui {
 		public InventoryHandler handler;
 		boolean allowSlot;
 
-		public GTInventoryDestructoPack(EntityPlayer player, ItemStack stack) {
+		public GTInventoryDestructoPack() {
 			this.inv = new PersonalInventory(1);
 			this.allowSlot = false;
 			this.handler = null;
 		}
-
+		
+		//@Override
+        //public void setStackInSlot(int slot, ItemStack stack){
+		//	 //Broken code <---------
+		 //} needs to extend IC2ItemInventory some work
+		
+		
 		public ContainerIC2 getGuiContainer(EntityPlayer player) {
-			return new GTContainerDestructoPack(player.inventory, this.handler, this.inv, this.allowSlot, this);
+			return new GTContainerDestructoPack(player.inventory, this.inv, this);
 		}
 
 		public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
@@ -36,9 +42,8 @@ public class GTInventoryDestructoPack implements IHasGui {
 
 		public boolean canInteractWith(EntityPlayer player) {
 			return this.handler != null;
-			//return this.handler != null && !player.field_70128_L;
 		}
-
+		
 		public boolean hasGui(EntityPlayer player) {
 			return true;
 		}
