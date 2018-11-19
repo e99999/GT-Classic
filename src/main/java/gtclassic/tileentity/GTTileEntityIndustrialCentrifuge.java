@@ -105,7 +105,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
     {
         super(slots, maxInput);
         this.setFuelSlot(slotFuel);
-        this.setCustomName("tileOreWashingPlant");
+        this.setCustomName("tileIndustrialCentrifuge");
         this.energyConsume = energyPerTick;
         this.defaultEnergyConsume = energyPerTick;
         this.operationLength = maxProgress;

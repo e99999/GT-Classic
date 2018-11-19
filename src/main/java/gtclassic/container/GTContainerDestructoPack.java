@@ -5,6 +5,7 @@ import gtclassic.items.inventory.GTInventoryDestructoPack;
 import gtclassic.items.tools.GTItemDestructoPack;
 import ic2.core.inventory.container.ContainerComponent;
 import ic2.core.inventory.slots.SlotCustom;
+import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2ItemLang;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,8 +39,7 @@ public class GTContainerDestructoPack extends ContainerComponent<GTItemDestructo
 
 	@Override
 	public LocaleComp getGuiName() {
-		//yes I know this returns a generic name its temporary
-		return Ic2ItemLang.machineTool;
+		 return new LangComponentHolder.LocaleBlockComp("item.gtclassic.destructoPack");
 	}
 
 }

@@ -30,6 +30,8 @@ item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
 item.gtclassic.destructoPack.name=Destructopack
+item.gtclassic.debugScanner.name=Debug Scanner
+
 
 #cells
 item.gtclassic.h_cell.name=H-Cell
@@ -93,5 +95,7 @@ tile.gtclassic.grassToxic.name=Unstable Earth
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
 tooltip.gtclassic.alkcredit=Shines the way, towards the far away Everglades
 tooltip.gtclassic.portalframe=Used to build portals to terrible places...
+tooltip.gtclassic.trashcan=Mobile Trashcan
+tooltip.gtclassic.warranty=No Warranty!
 
 itemGroup.gtclassic=GregTech Classic

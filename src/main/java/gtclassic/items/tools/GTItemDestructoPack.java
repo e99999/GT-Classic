@@ -12,12 +12,15 @@ import ic2.core.item.base.ItemIC2;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -30,6 +33,12 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
         this.setRegistryName("destructo_pack");
         this.setUnlocalizedName(GTClassic.MODID + ".destructoPack");
 	}
+	
+	
+	@Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".trashcan"));
+    }
 	
 	
 	@Override

@@ -10,11 +10,14 @@ import ic2.core.item.base.ItemElectricTool;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -50,6 +53,11 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 	        return Ic2Icons.getTextures("gtclassic_items")[47];
 	    }
 
+	    @Override
+	    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+	    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".warranty"));
+	    }
+	    
 	    public EnumEnchantmentType getType(ItemStack item) {
 			return EnumEnchantmentType.WEAPON;
 		}
