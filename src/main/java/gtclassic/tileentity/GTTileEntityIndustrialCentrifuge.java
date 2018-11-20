@@ -150,12 +150,15 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotCell);
         handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2, slotOutput3, slotOutput4);
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 0, 2, 4);
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 1, 3);
+        handler.registerDefaultSlotsForSide(RotationList.UP, slotInput);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
+        handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotCell);
+        handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput, slotOutput2, slotOutput3, slotOutput4);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
         handler.registerSlotType(SlotType.Fuel, slotFuel);
-        handler.registerSlotType(SlotType.Input, slotInput, slotCell);
+        handler.registerSlotType(SlotType.Input, slotInput);
+        handler.registerSlotType(SlotType.SecondInput, slotCell);
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutput4);
     }
 

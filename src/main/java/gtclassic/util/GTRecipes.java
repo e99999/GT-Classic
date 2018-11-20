@@ -81,6 +81,9 @@ public class GTRecipes {
 		TileEntityCompressor.addRecipe("ingotChrome", 9, new ItemStack(GTBlocks.chromeBlock), 0.1F);
 		TileEntityCompressor.addRecipe("ingotTitanium", 9, new ItemStack(GTBlocks.titaniumBlock), 0.1F);
 		
+		TileEntityMacerator.addRecipe(new ItemStack(Items.ENDER_PEARL, 1), StackUtil.copyWithSize(new ItemStack(GTItems.dustEnderpearl), 1), 0.3F);
+		TileEntityMacerator.addRecipe(new ItemStack(Items.ENDER_EYE, 1), StackUtil.copyWithSize(new ItemStack(GTItems.dustEnderEye), 2), 0.5F);
+		
 		TileEntityMacerator.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.ruby), 2), 0.3F);
 		TileEntityMacerator.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.sapphire), 2), 0.3F);
 		TileEntityMacerator.addRecipe("oreBauxite", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustBauxite), 4), 0.1F);

@@ -52,7 +52,6 @@ item.gtclassic.k_cell.name=K-Cell
 item.gtclassic.n_cell.name=N-Cell
 
 #dust
-item.gtclassic.sulfur_dust.name=Sulfur Dust
 item.gtclassic.flint_dust.name=Flint Dust
 item.gtclassic.enderpearl_dust.name=Ender Pearl Dust
 item.gtclassic.calcite_dust.name=Calcite Dust
@@ -68,6 +67,7 @@ item.gtclassic.ender_eye_dust.name=Ender Eye Dust
 item.gtclassic.titanium_dust.name=Titanium Dust
 item.gtclassic.chrome_dust.name=Chrome Dust
 item.gtclassic.lazurite_dust.name=Lazurite Dust
+item.gtclassic.sodalite_dust.name=Sodalite Dust
 
 #ingots
 item.gtclassic.iridium_ingot.name=Iridium Ingot
@@ -95,7 +95,7 @@ tile.gtclassic.grassToxic.name=Unstable Earth
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
 tooltip.gtclassic.alkcredit=Shines the way, towards the far away Everglades
 tooltip.gtclassic.portalframe=Used to build portals to terrible places...
-tooltip.gtclassic.trashcan=Mobile Trashcan
+tooltip.gtclassic.trashcan=Mobile Trash Bin
 tooltip.gtclassic.warranty=No Warranty!
 
 itemGroup.gtclassic=GregTech Classic

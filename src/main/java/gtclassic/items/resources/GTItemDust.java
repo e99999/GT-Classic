@@ -25,7 +25,8 @@ public class GTItemDust extends Item implements IStaticTexturedItem {
         RUBY(64), 
         SAPPHIRE(65), 
         GREEN_SAPPHIRE(66), 
-        EMERALD(67);
+        EMERALD(67),
+    	SODALITE(75);
         
     	private int id;
 
