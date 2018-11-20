@@ -1,35 +1,92 @@
 package gtclassic.util;
 
+import java.util.ArrayList;
+
+import com.google.common.collect.Lists;
+
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.ForgeRegistry;
 
 public class GTRecipes {
 	
 	public static void init() {
         GTRecipes.initSmeltingRecipes();
+        GTRecipes.initReplaceRecipes();
         GTRecipes.initShapelessRecipes();
         GTRecipes.initShapedRecipes();
         GTRecipes.initMachineRecipes();
      }
 	
+	static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
+
 	public static void initSmeltingRecipes() {
-		//ore smelting recipe
+		
+		GameRegistry.addSmelting(GTBlocks.rubyBlock, new ItemStack(GTItems.ruby, 9), 0.1F);
+		GameRegistry.addSmelting(GTBlocks.sapphireBlock, new ItemStack(GTItems.sapphire, 9), 0.1F);
+		GameRegistry.addSmelting(GTBlocks.aluminumBlock, new ItemStack(GTItems.ingotAluminum, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustAluminum, new ItemStack(GTItems.ingotAluminum, 1), 0.3F);
+		GameRegistry.addSmelting(GTBlocks.chromeBlock, new ItemStack(GTItems.ingotAluminum, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustChrome, new ItemStack(GTItems.ingotChrome, 1), 0.3F);
+		GameRegistry.addSmelting(GTBlocks.titaniumBlock, new ItemStack(GTItems.ingotTitanium, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustTitanium, new ItemStack(GTItems.ingotTitanium, 1), 0.3F);
 		
 		GameRegistry.addSmelting(GTBlocks.sandIron, new ItemStack(Items.IRON_NUGGET, 3), 0.1F);
 	}
 	
-	static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
-	
+	public static void initReplaceRecipes() {
+			 ForgeRegistry<IRecipe> recipeRegistry = (ForgeRegistry<IRecipe>)ForgeRegistries.RECIPES;
+		        ArrayList<IRecipe> recipesList = Lists.newArrayList(recipeRegistry.getValuesCollection());
+		        
+		        for (IRecipe r : recipesList){
+	                ItemStack output = r.getRecipeOutput();
+	             
+	                if (output.getItem() == Item.getItemFromBlock(Blocks.IRON_BLOCK)){
+	                	recipeRegistry.remove(r.getRegistryName());
+	                	TileEntityCompressor.addRecipe("ingotIron", 9, new ItemStack(Blocks.IRON_BLOCK), 0.1F);
+	                }
+	                if (output.getItem() == Item.getItemFromBlock(Blocks.GOLD_BLOCK)){
+	                	recipeRegistry.remove(r.getRegistryName());
+	                	TileEntityCompressor.addRecipe("ingotGold", 9, new ItemStack(Blocks.GOLD_BLOCK), 0.1F);
+	                }
+	                if (output.getItem() == Item.getItemFromBlock(Blocks.DIAMOND_BLOCK)){
+	                    recipeRegistry.remove(r.getRegistryName());
+	                    TileEntityCompressor.addRecipe("gemDiamond", 9, new ItemStack(Blocks.DIAMOND_BLOCK), 0.1F);
+	                }
+	                if (output.getItem() == Item.getItemFromBlock(Blocks.EMERALD_BLOCK)){
+	                    recipeRegistry.remove(r.getRegistryName());
+	                    TileEntityCompressor.addRecipe("gemEmerald", 9, new ItemStack(Blocks.EMERALD_BLOCK), 0.1F);
+	                }
+	                if (output.getItem() == Item.getItemFromBlock(Blocks.LAPIS_BLOCK)){
+	                    recipeRegistry.remove(r.getRegistryName());
+	                    TileEntityCompressor.addRecipe("gemLapis", 9, new ItemStack(Blocks.LAPIS_BLOCK), 0.1F);
+	                }
+	                if (output.getItem() == Item.getItemFromBlock(Blocks.REDSTONE_BLOCK)){
+	                    recipeRegistry.remove(r.getRegistryName());
+	                    TileEntityCompressor.addRecipe("dustRedstone", 9, new ItemStack(Blocks.REDSTONE_BLOCK), 0.1F);
+	                }
+	                if (output.getItem() == Item.getItemFromBlock(Blocks.GLOWSTONE)){
+	                    recipeRegistry.remove(r.getRegistryName());
+	                    TileEntityCompressor.addRecipe("dustGlowstone", 4, new ItemStack(Blocks.GLOWSTONE), 0.1F);
+	                }
+	                if (output.getItem() == Item.getItemFromBlock(Blocks.QUARTZ_BLOCK)){
+	                    recipeRegistry.remove(r.getRegistryName());
+	                    TileEntityCompressor.addRecipe(new ItemStack(Items.QUARTZ, 4), new ItemStack(Blocks.QUARTZ_BLOCK), 0.1F);
+	                }
+	        }
+	}
+
 	public static void initShapelessRecipes () {
 		
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.iridiumReinforcedStoneBlock, 1),
@@ -79,7 +136,7 @@ public class GTRecipes {
 		TileEntityCompressor.addRecipe("dustRuby", 1, new ItemStack(GTItems.ruby), 0.1F);
 		TileEntityCompressor.addRecipe("dustSapphire", 1, new ItemStack(GTItems.sapphire), 0.1F);
 		TileEntityCompressor.addRecipe(Ic2Items.iridiumOre, 1, new ItemStack(GTItems.ingotIridium), 0.5F);
-		
+
 		TileEntityCompressor.addRecipe("gemRuby", 9, new ItemStack(GTBlocks.rubyBlock), 0.1F);
 		TileEntityCompressor.addRecipe("gemSapphire", 9, new ItemStack(GTBlocks.sapphireBlock), 0.1F);
 		TileEntityCompressor.addRecipe("ingotAluminum", 9, new ItemStack(GTBlocks.aluminumBlock), 0.1F);
