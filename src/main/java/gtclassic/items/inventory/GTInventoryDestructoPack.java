@@ -17,6 +17,7 @@ public class GTInventoryDestructoPack extends IC2ItemInventory {
 		
 		@Override
         	public void setStackInSlot(int slot, ItemStack stack) {
+			//sets the container to null
 		} 
 		
 		public ContainerIC2 getGuiContainer(EntityPlayer player) {
@@ -27,6 +28,7 @@ public class GTInventoryDestructoPack extends IC2ItemInventory {
 			return GuiComponentContainer.class;
 		}
 
+		@Override
 		public void onClose(ItemStack stack) {
 			stack.setTagCompound(null);
 		}

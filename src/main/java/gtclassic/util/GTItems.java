@@ -29,7 +29,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTItems {
 
-
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
@@ -78,15 +77,15 @@ public class GTItems {
 	dustEmerald = new GTItemDust(GTItemDustTypes.EMERALD),
 	dustSodalite = new GTItemDust(GTItemDustTypes.SODALITE);
 
+	public static final GTItemGem
+	ruby = new GTItemGem(GTItemGemTypes.RUBY),
+	sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE);
+	
 	public static final GTItemIngot
 	ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM),
 	ingotAluminum = new GTItemIngot(GTItemIngotTypes.ALUMINUM),
 	ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
 	ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME);
-	
-	public static final GTItemGem
-	ruby = new GTItemGem(GTItemGemTypes.RUBY),
-	sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE);
 	
 	public static final GTItemComponents
 	energyFlowCircuit = new GTItemComponents(GTItemComponentTypes.ENERGY_FLOW_CIRCUIT),

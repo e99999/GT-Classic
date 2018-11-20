@@ -102,7 +102,6 @@ public class GTBlocks {
     
     public static void registerTiles(){
         GameRegistry.registerTileEntity(GTTileEntityIndustrialCentrifuge.class, new ResourceLocation(GTClassic.MODID, "tileEntityIndustrialCentrifuge"));
-        //GameRegistry.registerTileEntity(GTTileEntityAlloySmelter.class, new ResourceLocation(GTClassic.MODID, "tileEntityAloySmelter"));
     }
     
     private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {

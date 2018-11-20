@@ -5,7 +5,6 @@ import java.util.List;
 
 import gtclassic.GTClassic;
 import ic2.api.item.ElectricItem;
-import ic2.core.audio.AudioSource;
 import ic2.core.item.base.ItemElectricTool;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -14,24 +13,19 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexturedItem {
 
-	//public int soundTicker;
-	//public AudioSource sound;
-
 	public GTItemTeslaStaff() {
 		super(0.0F, 2.0F, ToolMaterial.IRON);
-		//this.func_77627_a(true);
-		//this.func_77656_e(0);
-		//this.field_77865_bY = 1.0F;
-		//this.soundTicker = 0;
 		this.attackDamage = 1.0F;
 		this.maxCharge = 10000000;
 		this.transferLimit = 2048;
@@ -56,6 +50,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 	    @Override
 	    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 	    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".warranty"));
+	    	tooltip.add(TextFormatting.BLUE + I18n.format("tooltip."+ GTClassic.MODID +".tesla"));
 	    }
 	    
 	    public EnumEnchantmentType getType(ItemStack item) {
@@ -69,6 +64,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 	        } else {
 	            if (ElectricItem.manager.use(stack, (double)this.operationEnergyCost, (EntityPlayer)attacker)) {
 	                target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attacker), 1000.0F);
+	                attacker.world.spawnEntity(new EntityLightningBolt(attacker.world, target.lastTickPosX, target.lastTickPosY, target.lastTickPosZ, false));
 	            } else {
 	                target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attacker), 1.0F);
 	            }
