@@ -14,17 +14,10 @@ public class GTInventoryDestructoPack extends IC2ItemInventory {
 		public GTInventoryDestructoPack(EntityPlayer player, IHandHeldInventory inv, ItemStack item) {
 			super(player, inv, item);
 		}
-
-		public int getType() {
-			return 0;
-		}
 		
 		@Override
-        public void setStackInSlot(int slot, ItemStack stack){
-			if (this.getStackInSlot(0) != ItemStack.EMPTY){
-			this.setStackInSlot(0, ItemStack.EMPTY);
-			}
-		 } 
+        	public void setStackInSlot(int slot, ItemStack stack) {
+		} 
 		
 		public ContainerIC2 getGuiContainer(EntityPlayer player) {
 			return new GTContainerDestructoPack(this, this.getID(), player.inventory);
@@ -34,9 +27,8 @@ public class GTInventoryDestructoPack extends IC2ItemInventory {
 			return GuiComponentContainer.class;
 		}
 
-		@Override
-		public void onGuiClosed(EntityPlayer player) {
-			//TODO add code to delete any lingering nbt data
+		public void onClose(ItemStack stack) {
+			stack.setTagCompound(null);
 		}
 
 		public boolean canInteractWith(EntityPlayer player) {
@@ -51,5 +43,4 @@ public class GTInventoryDestructoPack extends IC2ItemInventory {
 		public int getInventorySize() {
 			return 1;
 		}
-
 	}
