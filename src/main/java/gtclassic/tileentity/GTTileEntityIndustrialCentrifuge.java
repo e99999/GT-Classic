@@ -991,7 +991,15 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
 
     public static void init(){
 
-        addRecipe((new RecipeInputOreDict("dustBauxite", 24)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustAluminum, 16, 0), new ItemStack(GTItems.dustTitanium, 1, 0), StackUtil.copyWithSize(Ic2Items.airCell, 6), new ItemStack(GTItems.cellH, 10)})));
+    	//recipes that dont require cells and work properly right now 
+    	addRecipe((new RecipeInputOreDict("dustGlowstone", 16)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(Items.REDSTONE, 8, 0), StackUtil.copyWithSize(Ic2Items.goldDust, 8)})));
+    	addRecipe((new RecipeInputOreDict("dustEnderEye", 16)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustEnderpearl, 8, 0), new ItemStack(Items.BLAZE_POWDER, 8, 0)})));
+    	addRecipe((new RecipeInputOreDict("gemLapis", 64)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustLazurite, 48, 0), new ItemStack(GTItems.dustSodalite, 8, 0), new ItemStack(GTItems.dustPyrite, 4, 0),  new ItemStack(GTItems.dustCalcite, 4, 0)})));
+    	addRecipe((new RecipeInputItemStack(StackUtil.copyWithSize(Ic2Items.netherrackDust, 64))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(Items.GOLD_NUGGET, 4, 0), new ItemStack(Items.REDSTONE, 4, 0), new ItemStack(Items.GUNPOWDER, 8, 0),  StackUtil.copyWithSize(Ic2Items.coalDust, 4)})));
+    	addRecipe((new RecipeInputOreDict("dustPyrite", 3)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{StackUtil.copyWithSize(Ic2Items.ironDust, 1)}))); 
+    	
+    	//experimental recipes that need the cell input added
+    	addRecipe((new RecipeInputOreDict("dustBauxite", 24)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustAluminum, 16, 0), new ItemStack(GTItems.dustTitanium, 1, 0), StackUtil.copyWithSize(Ic2Items.airCell, 6), new ItemStack(GTItems.cellH, 10)})));
         addRecipe((new RecipeInputOreDict("dustCoal", 4)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellC, 8)})));
         addRecipe((new RecipeInputItemStack(StackUtil.copyWithSize(Ic2Items.electrolyzedWaterCell, 6))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellH, 4), (Ic2Items.emptyCell), (Ic2Items.airCell)})));
         addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.cellH, 4))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellD, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 3)})));

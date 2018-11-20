@@ -7,8 +7,7 @@ import ic2.core.inventory.container.ContainerItemComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.InvertedFilter;
 import ic2.core.inventory.slots.SlotCustom;
-import ic2.core.platform.lang.components.base.LangComponentHolder;
-import ic2.core.platform.lang.components.base.LocaleComp;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -25,4 +24,10 @@ public class GTContainerDestructoPack extends ContainerItemComponent<GTInventory
 	public ResourceLocation getTexture() {
 		return TEXTURE;
 	}
+
+	@Override
+    public boolean canInteractWith(EntityPlayer player)
+    {
+		return getGuiHolder().canInteractWith(player);
+    }
 }
