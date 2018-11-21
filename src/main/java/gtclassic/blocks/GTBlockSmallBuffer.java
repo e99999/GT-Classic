@@ -61,7 +61,6 @@ public class GTBlockSmallBuffer extends BlockMultiID  {
         for(EnumFacing side : EnumFacing.VALUES)
         {
             states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
-            //states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, true));
         }
         return states;
     }

@@ -19,7 +19,7 @@ public class GTContainerSmallBuffer extends ContainerTileComponent<GTTileEntityS
 	
 	public GTContainerSmallBuffer(InventoryPlayer player, GTTileEntitySmallBuffer tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 80, 17, null));
+		this.addSlotToContainer(new SlotCustom(tile, 0, 80, 23, null));
 		this.addPlayerInventory(player, 0, 0);
 	}
 	

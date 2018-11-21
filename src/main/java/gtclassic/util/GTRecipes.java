@@ -23,7 +23,7 @@ public class GTRecipes {
 	
 	public static void init() {
         GTRecipes.initSmeltingRecipes();
-        GTRecipes.initReplaceRecipes();
+        //GTRecipes.initReplaceRecipes(); Figure out how to remove advancement errors when doing this
         GTRecipes.initShapelessRecipes();
         GTRecipes.initShapedRecipes();
         GTRecipes.initMachineRecipes();

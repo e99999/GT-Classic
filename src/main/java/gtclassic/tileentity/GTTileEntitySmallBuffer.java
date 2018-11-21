@@ -1,11 +1,6 @@
 package gtclassic.tileentity;
 
-import gtclassic.GTClassic;
-import gtclassic.container.GTContainerIndustrialCentrifuge;
 import gtclassic.container.GTContainerSmallBuffer;
-import ic2.api.energy.tile.IEnergyAcceptor;
-import ic2.api.energy.tile.IEnergyConductor;
-import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
