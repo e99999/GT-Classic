@@ -31,8 +31,7 @@ public class GTBlockIndustrialCentrifuge extends BlockMultiID {
     }
 
     @Override
-    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
-    {
+    public TileEntityBlock createNewTileEntity(World worldIn, int meta){
         return new GTTileEntityIndustrialCentrifuge();
     }
 

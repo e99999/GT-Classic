@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntitySmallBuffer;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -32,15 +32,13 @@ public class GTBlockSmallBuffer extends BlockMultiID  {
     }
 
     @Override
-    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
-    {
-        return null;
+    public TileEntityBlock createNewTileEntity(World worldIn, int meta){
+    	return new GTTileEntitySmallBuffer();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite[] getIconSheet(int meta)
-    {
+    public TextureAtlasSprite[] getIconSheet(int meta){
         //needed for construction but get overwritten
     	return Ic2Icons.getTextures("gtclassic_blocks");
     }
