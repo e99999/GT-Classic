@@ -3,8 +3,10 @@ package gtclassic.util;
 import gtclassic.GTClassic;
 
 import gtclassic.blocks.GTBlockIndustrialCentrifuge;
+import gtclassic.blocks.GTBlockLargeBuffer;
 import gtclassic.blocks.GTBlockMachineCasing;
 import gtclassic.blocks.GTBlockMachineCasing.GTBlockMachineVariants;
+import gtclassic.blocks.GTBlockSmallBuffer;
 import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
@@ -29,8 +31,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
-
-    //not required but useful stored references to blocks
     
     public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
@@ -38,8 +38,6 @@ public class GTBlocks {
 	fusionMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.FUSION),
 	lesuMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.LESU),
 	highlyadvancedMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.HIGHLYADVANCED);
-    public static final GTBlockIndustrialCentrifuge industrialCentriguge = new GTBlockIndustrialCentrifuge();
-    
     
     public static final GTBlockMetal
 	iridiumReinforcedStoneBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM_REINFORCED_STONE),
@@ -55,18 +53,19 @@ public class GTBlocks {
     sapphireOre = new GTBlockOre(GTBlockOreVariants.SAPPHIRE),
     bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE);
   
-
     public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
 	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
     public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
+   
+    public static final GTBlockIndustrialCentrifuge industrialCentriguge = new GTBlockIndustrialCentrifuge();
+	public static final GTBlockSmallBuffer smallBuffer = new GTBlockSmallBuffer();
+	public static final GTBlockLargeBuffer largeBuffer = new GTBlockLargeBuffer();
     
     public static final Block[] blocks = {
     		
             fusionMachineBlock,
             lesuMachineBlock,
             highlyadvancedMachineBlock,
-            toxicPortalFrame,
-            industrialCentriguge,
             
             iridiumReinforcedStoneBlock,
             rubyBlock,
@@ -81,8 +80,13 @@ public class GTBlocks {
             bauxiteOre,
             sandIron,
             
+            grassToxic,
             toxicPortal,
-            grassToxic
+            toxicPortalFrame,
+            industrialCentriguge,
+            smallBuffer,
+            largeBuffer,
+            
     };
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event){
@@ -108,10 +112,9 @@ public class GTBlocks {
         GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
     }
 	
-	//TODO refactor and remove everything below into the sprite system
+	//TODO keeping toxic dim stuff in here because it might be changed on release if Alk never fucking replies
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-    	sandIron.initModel();
     	toxicPortal.initModel();
     	grassToxic.initModel();
     	}
