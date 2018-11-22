@@ -11,6 +11,8 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGui{
 
@@ -18,6 +20,7 @@ public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGu
 		super(1);
 	}
 	
+	@SideOnly(Side.CLIENT)
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
         return GuiComponentContainer.class;
     }

@@ -50,10 +50,15 @@ public class GTBlockLargeBuffer extends BlockMultiID  {
     	return Ic2Icons.getTextures("gtclassic_blocks");
     }
     
+    @Override
     @SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
-    	return Ic2Icons.getTextures("gtclassic_blocks")[118];
-	}
+    public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
+        if (side == EnumFacing.SOUTH) {
+            return Ic2Icons.getTextures("gtclassic_blocks")[113];
+        }else {
+            return Ic2Icons.getTextures("gtclassic_blocks")[118];
+        }
+    }
 
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getParticleTexture(IBlockState state) {

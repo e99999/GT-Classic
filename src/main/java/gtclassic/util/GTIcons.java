@@ -12,9 +12,7 @@ public class GTIcons {
     public static void loadSprites(){
         addSprite(new Sprites.SpriteData("gtclassic_blocks", "gtclassic:textures/sprites/blocks.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("gtclassic_items", "gtclassic:textures/sprites/items.png", new Sprites.SpriteInfo(16, 16)));
-        addSprite(new Sprites.SpriteData("gtclassic_blocklv", "gtclassic:textures/sprites/block_machinegt_lv.png", new Sprites.SpriteInfo(16, 12)));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 0, 16, 8));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_items", 0, 0, 16, 5));
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_blocklv", 0, 0, 16, 12));
     }
 }

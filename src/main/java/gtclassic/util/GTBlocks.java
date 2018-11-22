@@ -11,6 +11,7 @@ import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntitySmallBuffer;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortal;
@@ -106,6 +107,7 @@ public class GTBlocks {
     
     public static void registerTiles(){
         GameRegistry.registerTileEntity(GTTileEntityIndustrialCentrifuge.class, new ResourceLocation(GTClassic.MODID, "tileEntityIndustrialCentrifuge"));
+        GameRegistry.registerTileEntity(GTTileEntitySmallBuffer.class, new ResourceLocation(GTClassic.MODID, "tileEntitySmallBuffer"));
     }
     
     private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {

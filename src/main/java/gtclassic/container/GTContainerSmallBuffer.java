@@ -3,6 +3,7 @@ package gtclassic.container;
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntitySmallBuffer;
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotCustom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,7 +14,7 @@ public class GTContainerSmallBuffer extends ContainerTileComponent<GTTileEntityS
 	
 	public GTContainerSmallBuffer(InventoryPlayer player, GTTileEntitySmallBuffer tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 80, 23, null));
+		this.addSlotToContainer(new SlotBase(tile, 0, 80, 23));
 		this.addPlayerInventory(player, 0, 0);
 	}
 	
