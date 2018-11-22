@@ -5,18 +5,12 @@ import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.ArrayFilter;
-import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.filters.CommonFilters;
-import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 
 public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGui{
 
@@ -32,7 +26,7 @@ public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGu
     {
         return new GTContainerSmallBuffer(player.inventory, this);
     }
-
+	
 	@Override
     protected void addSlots(InventoryHandler handler) {
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
@@ -41,7 +35,6 @@ public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGu
         handler.registerSlotType(SlotType.Input, 0);
         handler.registerSlotType(SlotType.Output, 0);
     }
-	
 	
 	@Override
     public boolean canInteractWith(EntityPlayer player)

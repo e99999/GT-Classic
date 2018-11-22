@@ -5,6 +5,7 @@ import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -20,6 +21,9 @@ import java.util.List;
 public class GTBlockIndustrialCentrifuge extends BlockMultiID {
     public GTBlockIndustrialCentrifuge(){
         super(Material.IRON);
+        this.setHardness(4.0F);
+        this.setResistance(20.0F);
+        this.setSoundType(SoundType.METAL);
         this.setCreativeTab(GTClassic.creativeTabGT);
         this.setRegistryName("industrial_centrifuge");
         this.setUnlocalizedName(GTClassic.MODID + ".industrialCentrifuge");

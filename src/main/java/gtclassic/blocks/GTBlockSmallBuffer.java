@@ -9,6 +9,7 @@ import gtclassic.tileentity.GTTileEntitySmallBuffer;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -21,6 +22,10 @@ public class GTBlockSmallBuffer extends BlockMultiID  {
 
 	public GTBlockSmallBuffer() {
 		super(Material.IRON);
+		this.setHardness(4.0F);
+        this.setResistance(20.0F);
+        this.setHarvestLevel("pickaxe", 2);
+        this.setSoundType(SoundType.METAL);
         this.setCreativeTab(GTClassic.creativeTabGT);
         this.setRegistryName("small_buffer");
         this.setUnlocalizedName(GTClassic.MODID + ".smallBuffer");

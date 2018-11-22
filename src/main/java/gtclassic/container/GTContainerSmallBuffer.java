@@ -1,14 +1,8 @@
 package gtclassic.container;
 
 import gtclassic.GTClassic;
-import gtclassic.items.inventory.GTInventoryDestructoPack;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntitySmallBuffer;
-import gtclassic.util.GTItems;
-import ic2.core.inventory.container.ContainerItemComponent;
 import ic2.core.inventory.container.ContainerTileComponent;
-import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.filters.InvertedFilter;
 import ic2.core.inventory.slots.SlotCustom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
