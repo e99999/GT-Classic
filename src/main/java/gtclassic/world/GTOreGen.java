@@ -12,9 +12,12 @@ import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class GTOreGen implements IWorldGenerator {
@@ -33,29 +36,44 @@ public class GTOreGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
-		switch(world.provider.getDimensionType()) {
 		
-			
+		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
+		
+		switch(world.provider.getDimensionType()) 
+		{
+		
 		default:
-			if (GTConfig.genIridium){
-			runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			
+			if (GTConfig.genIridium)
+			{
+				runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genRuby){
-			runGenerator(GTBlocks.rubyOre.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			
+			if (BiomeDictionary.hasType(biomegenbase, Type.HOT) && (GTConfig.genRuby)) 
+			{
+				runGenerator(GTBlocks.rubyOre.getDefaultState(), 3, 8, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genSapphire){
-			runGenerator(GTBlocks.sapphireOre.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			
+			if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) && (GTConfig.genSapphire)) 
+			{
+				runGenerator(GTBlocks.sapphireOre.getDefaultState(), 3, 8, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genBauxite){
-			runGenerator(GTBlocks.bauxiteOre.getDefaultState(), 16, 4, 0, 112, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			
+			if (BiomeDictionary.hasType(biomegenbase, Type.RIVER) && (GTConfig.genSapphire)) 
+			{
+				runGenerator(GTBlocks.sandIron.getDefaultState(), 32, 4, 48, 72, BlockMatcher.forBlock(Blocks.SAND), world, random, chunkX, chunkZ);
 			}
-			if (GTConfig.genBlackSand){
-			runGenerator(GTBlocks.sandIron.getDefaultState(), 32, 2, 48, 63, BlockMatcher.forBlock(Blocks.SAND), world, random, chunkX, chunkZ);
+			
+			if ((BiomeDictionary.hasType(biomegenbase, Type.FOREST) || (BiomeDictionary.hasType(biomegenbase, Type.PLAINS)) && (GTConfig.genBauxite)))
+			{
+				runGenerator(GTBlocks.bauxiteOre.getDefaultState(), 16, 4, 0, 112, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
+			
 			break;
 		}
 		
-		if (world.provider.getDimension() == GTConfig.dimensionId) { //ores for toxic dim go here
+		if (world.provider.getDimension() == GTConfig.dimensionId) 
+		{ //ores for toxic dim go here
 			runGenerator(GTBlocks.iridiumOre.getDefaultState(), 3, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 	}

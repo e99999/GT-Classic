@@ -58,7 +58,8 @@ public class GTBlockSmallBuffer extends BlockMultiID  {
         }
     }
 
-	@SideOnly(Side.CLIENT)
+    @Override
+    @SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getParticleTexture(IBlockState state) {
 		return Ic2Icons.getTextures("gtclassic_blocks")[117];
 	}

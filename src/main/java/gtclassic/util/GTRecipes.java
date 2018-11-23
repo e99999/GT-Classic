@@ -42,7 +42,7 @@ public class GTRecipes {
 		GameRegistry.addSmelting(GTBlocks.titaniumBlock, new ItemStack(GTItems.ingotTitanium, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustTitanium, new ItemStack(GTItems.ingotTitanium, 1), 0.3F);
 		
-		GameRegistry.addSmelting(GTBlocks.sandIron, new ItemStack(Items.IRON_NUGGET, 3), 0.1F);
+		GameRegistry.addSmelting(GTBlocks.sandIron, new ItemStack(Items.IRON_NUGGET, 6), 0.1F);
 	}
 	
 	public static void initReplaceRecipes() {
@@ -98,12 +98,54 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTItems.hammerIron, 1),
 				new Object[]{"II ", "IIS", "II ", 'I', "ingotIron",'S', Items.STICK,});
 		
+		
+		
 		recipes.addRecipe(Ic2Items.energyCrystal.copy(),
 				new Object[]{"RRR", "RDR", "RRR", 'D', "gemRuby", 'R', "dustRedstone"});
 		
 		recipes.addRecipe(Ic2Items.lapotronCrystal.copy(), 
+				new Object[]{"LCL", "LDL", "LCL", 'D', Ic2Items.energyCrystal.copy(), 'C', Ic2Items.electricCircuit.copy(), 'L', "dustLazurite"});
+		
+		recipes.addRecipe(Ic2Items.lapotronCrystal.copy(), 
 				new Object[]{"LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', Ic2Items.electricCircuit.copy(), 'L', "gemLapis"});
 		
+		recipes.addRecipe(Ic2Items.lapotronCrystal.copy(), 
+				new Object[]{"LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', Ic2Items.electricCircuit.copy(), 'L', "dustLazurite"});
+		
+		
+		
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2), //TODO use config to swap for steel/refined iron
+				new Object[]{"CCC", "III", "CCC", 'I', Ic2Items.refinedIronIngot.copy(), 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2), //TODO use config to swap for steel/refined iron
+				new Object[]{"CIC", "CIC", "CIC", 'I', Ic2Items.refinedIronIngot.copy(), 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		recipes.addRecipe(Ic2Items.electricCircuit.copy(), 
+				new Object[]{"CCC", "RIR", "CCC", 'I', "ingotSilver", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		recipes.addRecipe(Ic2Items.electricCircuit.copy(), 
+				new Object[]{"CRC", "CIC", "CRC", 'I', "ingotSilver", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
+				new Object[]{"CCC", "III", "CCC", 'I', "ingotSilver", 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
+				new Object[]{"CIC", "CIC", "CIC", 'I', "ingotSilver", 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		recipes.addRecipe(Ic2Items.electricCircuit.copy(), 
+				new Object[]{"CCC", "RIR", "CCC", 'I', "ingotAluminum", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		recipes.addRecipe(Ic2Items.electricCircuit.copy(), 
+				new Object[]{"CRC", "CIC", "CRC", 'I', "ingotAluminum", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
+				new Object[]{"CCC", "III", "CCC", 'I', "ingotAluminum", 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
+				new Object[]{"CIC", "CIC", "CIC", 'I', "ingotAluminum", 'C', Ic2Items.insulatedCopperCable.copy()});
+		
+		
+
 		recipes.addRecipe(new ItemStack(GTItems.lapotronicEnergyOrb, 1),
 				new Object[]{"LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(),'P', Ic2Items.iridiumPlate.copy()});
 		
@@ -116,7 +158,7 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTItems.lapotronPack, 1),
 				new Object[]{"ELE", "SBS", "EPE", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'L', GTItems.lapotronicEnergyOrb, 'B', Ic2Items.lapPack.copy(), 'P', Ic2Items.iridiumPlate.copy()});
 		
-		recipes.addRecipe(new ItemStack(GTItems.destructoPack, 1),
+		recipes.addRecipe(new ItemStack(GTItems.destructoPack, 1), //TODO use config to swap for steel/refined iron
 				new Object[]{"BIB", "ICI", "BIB", 'B', Items.LAVA_BUCKET,'C', Ic2Items.electricCircuit.copy(), 'I', Ic2Items.refinedIronIngot.copy()});
 		
 		recipes.addRecipe(new ItemStack(GTItems.destructoPack, 1),

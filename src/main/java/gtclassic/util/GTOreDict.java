@@ -14,6 +14,7 @@ public class GTOreDict {
 	    OreDictionary.registerOre("dustUranium", GTItems.dustUranium);
 	    OreDictionary.registerOre("dustBauxite", GTItems.dustBauxite);
 	    OreDictionary.registerOre("dustAluminum", GTItems.dustAluminum);
+	    OreDictionary.registerOre("dustAluminium", GTItems.dustAluminum);
 	    OreDictionary.registerOre("dustTitanium", GTItems.dustTitanium);
 	    OreDictionary.registerOre("dustChrome", GTItems.dustChrome);
 		OreDictionary.registerOre("dustRuby", GTItems.dustRuby);
