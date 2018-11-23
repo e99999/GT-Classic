@@ -148,10 +148,25 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTItems.lapotronicEnergyOrb, 1),
 				new Object[]{"LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(),'P', Ic2Items.iridiumPlate.copy()});
-		
+
+		recipes.addRecipe(new ItemStack(GTItems.dataControlCircuit, 4),
+				new Object[]{"CDC", "DPD", "CDC", 'D', GTItems.dataStorageCircuit,'C', Ic2Items.advancedCircuit.copy(), 'P', Ic2Items.iridiumPlate.copy()});
+
+		recipes.addRecipe(new ItemStack(GTItems.dataStorageCircuit, 4),
+				new Object[]{"EEE", "ECE", "EEE", 'E',"gemEmerald",'C', Ic2Items.advancedCircuit.copy()});
+
+		recipes.addRecipe(new ItemStack(GTItems.dataOrb, 4),
+				new Object[]{"SSS", "SCS", "SSS", 'S',GTItems.dataStorageCircuit,'C', GTItems.dataControlCircuit});
+
 		recipes.addRecipe(new ItemStack(GTItems.energyFlowCircuit, 4),
 				new Object[]{"CLC", "LPL", "CLC", 'L', Ic2Items.lapotronCrystal.copy(),'C', Ic2Items.advancedCircuit.copy(), 'P', Ic2Items.iridiumPlate.copy()});
-		
+
+		recipes.addRecipe(new ItemStack(GTItems.lithiumBattery, 1),
+				new Object[]{" G ", "ALA", "ALA", 'G', Ic2Items.doubleInsulatedGoldCable.copy(),'A', "ingotAluminum", 'L', GTItems.cellLI});
+
+		recipes.addRecipe(new ItemStack(GTItems.lithiumBatpack, 1),
+				new Object[]{"LCL", "LAL", "L L", 'C', Ic2Items.advancedCircuit.copy(),'A', "ingotAluminum", 'L', GTItems.lithiumBattery});
+
 		recipes.addRecipe(new ItemStack(GTItems.superConductor, 4),
 				new Object[]{"CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(),'E', GTItems.energyFlowCircuit, 'W', GTItems.cellW, 'P', Ic2Items.iridiumPlate.copy()});
 		

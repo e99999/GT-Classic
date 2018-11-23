@@ -80,7 +80,8 @@ public class GTItems {
 	dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
 	superConductor = new GTItemComponents(GTItemComponentTypes.SUPERCONDUCTOR),
 	dataStorageCircuit = new GTItemComponents(GTItemComponentTypes.DATA_STORAGE_CIRCUIT),
-	braintechAerospaceARDT = new GTItemComponents(GTItemComponentTypes.BRAINTECH_AEROSPACE_ARDT);
+	braintechAerospaceARDT = new GTItemComponents(GTItemComponentTypes.BRAINTECH_AEROSPACE_ARDT),
+	dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB);
 	
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
@@ -142,6 +143,7 @@ public class GTItems {
 			superConductor,
 			dataStorageCircuit,
 			braintechAerospaceARDT,
+			dataOrb,
 			
 			creditAlk,
 			hammerIron,
