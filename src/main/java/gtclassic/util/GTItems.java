@@ -165,9 +165,4 @@ public class GTItems {
 			registry.register(item);
 		}
 	}
-	//inits textures for items
-	@SideOnly(Side.CLIENT)
-    public static void initModels() {
-
-    }
 }
