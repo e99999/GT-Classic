@@ -1,11 +1,15 @@
 package gtclassic.items;
 
+import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
 import gtclassic.util.GTBlocks;
 
+import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,7 +28,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemCreditAlk extends Item {
+public class GTItemCreditAlk extends Item implements IStaticTexturedItem {
 
     //basic information about this item
 	public GTItemCreditAlk() {
@@ -35,12 +39,17 @@ public class GTItemCreditAlk extends Item {
         setUnlocalizedName(GTClassic.MODID + ".creditAlk");
         setCreativeTab(GTClassic.creativeTabGT);
     }
-    
-    //init texture
-    @SideOnly(Side.CLIENT)
-    public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    }
+
+	@Override
+	public List<Integer> getValidVariants() {
+		return Arrays.asList(0);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTexture(int i) {
+		return Ic2Icons.getTextures("gtclassic_items")[63];
+	}
     
     @Override
     @SideOnly(Side.CLIENT)

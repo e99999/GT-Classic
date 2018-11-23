@@ -119,6 +119,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getParticleTexture(IBlockState state) {
         return this.getTextureFromState(state, EnumFacing.SOUTH);
     }

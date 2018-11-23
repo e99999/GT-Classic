@@ -168,7 +168,6 @@ public class GTItems {
 	//inits textures for items
 	@SideOnly(Side.CLIENT)
     public static void initModels() {
-       
-        creditAlk.initModel();
+
     }
 }
