@@ -13,12 +13,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileEntityComputerCube extends TileEntityMachine implements IHasGui{
 
-	public GTTileEntityComputerCube() {
+	public GTTileEntityComputerCube() 
+	{
 		super(1);
 	}
 	
 	@SideOnly(Side.CLIENT)
-	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
+	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) 
+	{
         return GuiComponentContainer.class;
     }
 	

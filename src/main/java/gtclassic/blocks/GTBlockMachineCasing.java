@@ -45,6 +45,7 @@ public class GTBlockMachineCasing extends Block implements ITexturedBlock {
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_machineblock");
         setCreativeTab(GTClassic.creativeTabGT);
         setHardness(5.0F);
+        setResistance(30.0F);
         setSoundType(SoundType.METAL);
         setHarvestLevel("pickaxe", 2);
     }

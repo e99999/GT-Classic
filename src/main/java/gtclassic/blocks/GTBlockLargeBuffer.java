@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntityLargeBuffer;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -38,10 +38,10 @@ public class GTBlockLargeBuffer extends BlockMultiID  {
         return Arrays.asList(0);
     }
 
-    @Override
+	@Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
-        return null;
+    	return new GTTileEntityLargeBuffer();
     }
 
     @Override

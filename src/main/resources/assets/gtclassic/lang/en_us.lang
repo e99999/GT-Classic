@@ -6,6 +6,7 @@ tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
 tile.gtclassic.industrialCentrifuge.name=Industrial Centrifuge
 tile.gtclassic.smallBuffer.name=Small Electric Item Buffer
 tile.gtclassic.largeBuffer.name=Large Electric Item Buffer
+tile.gtclassic.computerCube.name=Computer Cube
 
 #blocks
 tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone
