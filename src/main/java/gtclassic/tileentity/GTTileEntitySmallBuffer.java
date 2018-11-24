@@ -1,6 +1,9 @@
 package gtclassic.tileentity;
 
 import gtclassic.container.GTContainerSmallBuffer;
+import ic2.api.energy.tile.IEnergyAcceptor;
+import ic2.api.energy.tile.IEnergyConductor;
+import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -11,10 +14,11 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGui{
+public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGui, IEnergyConductor{
 
 	public GTTileEntitySmallBuffer() {
 		super(1);
@@ -56,5 +60,65 @@ public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGu
     {
         return true;
     }
+
+	@Override
+	public boolean acceptsEnergyFrom(IEnergyEmitter var1, EnumFacing var2) {
+		// TODO Auto-generated method stub for IEnergyConductor
+		return true;
+	}
+
+	@Override
+	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing var2) {
+		// TODO Auto-generated method stub for IEnergyConductor
+		return true;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub for IEnergyConductor
+		return null;
+	}
+
+	@Override
+	public boolean hasCustomName() {
+		// TODO Auto-generated method stub for IEnergyConductor
+		return false;
+	}
+
+	@Override
+	public double getConductionLoss() {
+		// TODO Auto-generated method stub for IEnergyConductor
+		return 0;
+	}
+
+	@Override
+	public double getConductorBreakdownEnergy() {
+		// TODO Auto-generated method stub for IEnergyConductor
+		return 0;
+	}
+
+	@Override
+	public double getInsulationBreakdownEnergy() {
+		// TODO Auto-generated method stub for IEnergyConductor
+		return 0;
+	}
+
+	@Override
+	public double getInsulationEnergyAbsorption() {
+		// TODO Auto-generated method stub for IEnergyConductor
+		return 0;
+	}
+
+	@Override
+	public void removeConductor() {
+		// TODO Auto-generated method stub for IEnergyConductor
+		
+	}
+
+	@Override
+	public void removeInsulation() {
+		// TODO Auto-generated method stub for IEnergyConductor
+		
+	}
 
 }
