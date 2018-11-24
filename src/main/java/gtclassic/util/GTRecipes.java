@@ -148,10 +148,25 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTItems.lapotronicEnergyOrb, 1),
 				new Object[]{"LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(),'P', Ic2Items.iridiumPlate.copy()});
-		
+
+		recipes.addRecipe(new ItemStack(GTItems.dataControlCircuit, 4),
+				new Object[]{"CDC", "DPD", "CDC", 'D', GTItems.dataStorageCircuit,'C', Ic2Items.advancedCircuit.copy(), 'P', Ic2Items.iridiumPlate.copy()});
+
+		recipes.addRecipe(new ItemStack(GTItems.dataStorageCircuit, 4),
+				new Object[]{"EEE", "ECE", "EEE", 'E',"gemEmerald",'C', Ic2Items.advancedCircuit.copy()});
+
+		recipes.addRecipe(new ItemStack(GTItems.dataOrb, 4),
+				new Object[]{"SSS", "SCS", "SSS", 'S',GTItems.dataStorageCircuit,'C', GTItems.dataControlCircuit});
+
 		recipes.addRecipe(new ItemStack(GTItems.energyFlowCircuit, 4),
 				new Object[]{"CLC", "LPL", "CLC", 'L', Ic2Items.lapotronCrystal.copy(),'C', Ic2Items.advancedCircuit.copy(), 'P', Ic2Items.iridiumPlate.copy()});
-		
+
+		recipes.addRecipe(new ItemStack(GTItems.lithiumBattery, 1),
+				new Object[]{" G ", "ALA", "ALA", 'G', Ic2Items.doubleInsulatedGoldCable.copy(),'A', "ingotAluminum", 'L', GTItems.cellLI});
+
+		recipes.addRecipe(new ItemStack(GTItems.lithiumBatpack, 1),
+				new Object[]{"LCL", "LAL", "L L", 'C', Ic2Items.advancedCircuit.copy(),'A', "ingotAluminum", 'L', GTItems.lithiumBattery});
+
 		recipes.addRecipe(new ItemStack(GTItems.superConductor, 4),
 				new Object[]{"CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(),'E', GTItems.energyFlowCircuit, 'W', GTItems.cellW, 'P', Ic2Items.iridiumPlate.copy()});
 		
@@ -195,12 +210,14 @@ public class GTRecipes {
 		TileEntityMacerator.addRecipe("oreIridium", 1, StackUtil.copyWithSize(Ic2Items.iridiumOre, 2), 1.0F);
 		
 		TileEntityMacerator.addRecipe("gemRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustRuby), 1), 0.1F);
+		TileEntityMacerator.addRecipe("gemEmerald", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustEmerald), 1), 0.1F);
 		TileEntityMacerator.addRecipe("gemSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustSapphire), 1), 0.1F);
 		TileEntityMacerator.addRecipe("ingotAluminum", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustAluminum), 1), 0.1F);
 		TileEntityMacerator.addRecipe("ingotChrome", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustChrome), 1), 0.1F);
 		TileEntityMacerator.addRecipe("ingotTitanium", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustTitanium), 1), 0.1F);
 		
 		TileEntityMacerator.addRecipe("blockRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustRuby), 9), 0.1F);
+		TileEntityMacerator.addRecipe("blockEmerald", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustEmerald), 9), 0.1F);
 		TileEntityMacerator.addRecipe("blockSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustSapphire), 9), 0.1F);
 		TileEntityMacerator.addRecipe("blockAluminum", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustAluminum), 9), 0.1F);
 		TileEntityMacerator.addRecipe("blockChrome", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustChrome), 9), 0.1F);

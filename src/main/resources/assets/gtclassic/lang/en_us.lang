@@ -87,6 +87,7 @@ item.gtclassic.data_control_circuit.name=Data Control Circuit
 item.gtclassic.superconductor.name=Superconductor
 item.gtclassic.data_storage_circuit.name=Data Storage Circuit
 item.gtclassic.braintech_aerospace_ardt.name=Braintech Aerospace Advanced Reinforced Duct Tape FAL-84
+item.gtclassic.data_orb.name=Data Orb
 
 #toxic dim
 item.gtclassic.creditAlk.name=Alkalus Credit

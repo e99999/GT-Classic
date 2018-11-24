@@ -17,7 +17,8 @@ public class GTItemComponents extends Item implements IStaticTexturedItem {
         DATA_CONTROL_CIRCUIT(39), 
         SUPERCONDUCTOR(42), 
         DATA_STORAGE_CIRCUIT(41), 
-        BRAINTECH_AEROSPACE_ARDT(54);
+        BRAINTECH_AEROSPACE_ARDT(54),
+        DATA_ORB(43);
         
     	private int id;
 
