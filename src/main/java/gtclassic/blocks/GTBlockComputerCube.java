@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntityComputerCube;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -18,30 +18,28 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockLargeBuffer extends BlockMultiID  {
+public class GTBlockComputerCube extends BlockMultiID  {
 
-	public GTBlockLargeBuffer() 
-	{
+	public GTBlockComputerCube() {
 		super(Material.IRON);
 		this.setHardness(4.0F);
         this.setResistance(20.0F);
         this.setHarvestLevel("pickaxe", 2);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(GTClassic.creativeTabGT);
-        this.setRegistryName("large_buffer");
-        this.setUnlocalizedName(GTClassic.MODID + ".largeBuffer");
+        this.setRegistryName("computer_cube");
+        this.setUnlocalizedName(GTClassic.MODID + ".computerCube");
 	}
 
 	@Override
-    public List<Integer> getValidMetas() 
-	{
+    public List<Integer> getValidMetas() {
         return Arrays.asList(0);
     }
 
-    @Override
+	@Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
-        return null;
+    	return new GTTileEntityComputerCube();
     }
 
     @Override
@@ -56,17 +54,12 @@ public class GTBlockLargeBuffer extends BlockMultiID  {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) 
     {
-        if (side == EnumFacing.SOUTH) {
-            return Ic2Icons.getTextures("gtclassic_blocks")[113];
-        }else {
-            return Ic2Icons.getTextures("gtclassic_blocks")[118];
-        }
+            return Ic2Icons.getTextures("gtclassic_blocks")[8];
     }
 
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getParticleTexture(IBlockState state) 
-	{
-		return Ic2Icons.getTextures("gtclassic_blocks")[118];
+	public TextureAtlasSprite getParticleTexture(IBlockState state) {
+		return Ic2Icons.getTextures("gtclassic_blocks")[8];
 	}
 
     @Override

@@ -1,7 +1,7 @@
 package gtclassic.util;
 
 import gtclassic.GTClassic;
-
+import gtclassic.blocks.GTBlockComputerCube;
 import gtclassic.blocks.GTBlockIndustrialCentrifuge;
 import gtclassic.blocks.GTBlockLargeBuffer;
 import gtclassic.blocks.GTBlockMachineCasing;
@@ -61,6 +61,7 @@ public class GTBlocks {
     public static final GTBlockIndustrialCentrifuge industrialCentriguge = new GTBlockIndustrialCentrifuge();
 	public static final GTBlockSmallBuffer smallBuffer = new GTBlockSmallBuffer();
 	public static final GTBlockLargeBuffer largeBuffer = new GTBlockLargeBuffer();
+	public static final GTBlockComputerCube computerCube = new GTBlockComputerCube();
     
     public static final Block[] blocks = {
     		
@@ -87,6 +88,7 @@ public class GTBlocks {
             industrialCentriguge,
             smallBuffer,
             largeBuffer,
+            computerCube,
             
     };
     @SubscribeEvent
