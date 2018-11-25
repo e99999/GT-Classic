@@ -1,12 +1,8 @@
 package gtclassic.util;
 
 import gtclassic.GTClassic;
-import gtclassic.blocks.GTBlockComputerCube;
-import gtclassic.blocks.GTBlockIndustrialCentrifuge;
-import gtclassic.blocks.GTBlockLargeBuffer;
-import gtclassic.blocks.GTBlockMachineCasing;
+import gtclassic.blocks.*;
 import gtclassic.blocks.GTBlockMachineCasing.GTBlockMachineVariants;
-import gtclassic.blocks.GTBlockSmallBuffer;
 import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
@@ -64,12 +60,24 @@ public class GTBlocks {
 	public static final GTBlockSmallBuffer smallBuffer = new GTBlockSmallBuffer();
 	public static final GTBlockLargeBuffer largeBuffer = new GTBlockLargeBuffer();
 	public static final GTBlockComputerCube computerCube = new GTBlockComputerCube();
-    
+	public static final GTBlockEUStorage
+    lapotronicEnergySU = new GTBlockEUStorage("lapotronic_energy_su", "lapotronicEnergySU"),
+    interdimensionalEnergySU = new GTBlockEUStorage("interdimesnional_energy_su", "interdimensionalEnergySU"),
+    adjustableEnergySU = new GTBlockEUStorage("adjustable_energy_su", "adjustableEnergySU");
+    public static final GTBlockEUGenerator
+    lightningRod = new GTBlockEUGenerator("lightning_rod", "lightningRod"),
+    fusionReactor = new GTBlockEUGenerator("fusion_reactor", "fusionReactor");
+
     public static final Block[] blocks = {
     		
             fusionMachineBlock,
             lesuMachineBlock,
             highlyadvancedMachineBlock,
+            lapotronicEnergySU,
+            interdimensionalEnergySU,
+            adjustableEnergySU,
+            lightningRod,
+            fusionReactor,
             
             iridiumReinforcedStoneBlock,
             rubyBlock,
