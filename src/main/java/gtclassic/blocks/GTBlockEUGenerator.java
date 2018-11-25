@@ -1,6 +1,7 @@
 package gtclassic.blocks;
 
 import gtclassic.GTClassic;
+import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -48,14 +49,17 @@ public class GTBlockEUGenerator extends BlockMultiID {
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
-        if (side == EnumFacing.DOWN) {
-            return Ic2Icons.getTextures("gtclassic_blocks")[40];
-        } else if (side == EnumFacing.UP){
-            return Ic2Icons.getTextures("gtclassic_blocks")[41];
-        }else {
-            return Ic2Icons.getTextures("gtclassic_blocks")[25];
+        if (this == GTBlocks.lightningRod){
+            if (side == EnumFacing.DOWN) {
+                return Ic2Icons.getTextures("gtclassic_blocks")[2];
+            } else if (side == EnumFacing.UP){
+                return Ic2Icons.getTextures("gtclassic_blocks")[21];
+            }else {
+                return Ic2Icons.getTextures("gtclassic_blocks")[18];
+            }
+        }else{
+            return Ic2Icons.getTextures("gtclassic_blocks")[128];
         }
-        //return Ic2Icons.getTextures("gtclassic_blocks")[100];
     }
 
     @Override

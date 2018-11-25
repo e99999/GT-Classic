@@ -64,7 +64,8 @@ public class GTBlocks {
     lapotronicEnergySU = new GTBlockEUStorage("lapotronic_energy_su", "lapotronicEnergySU"),
     interdimensionalEnergySU = new GTBlockEUStorage("interdimesnional_energy_su", "interdimensionalEnergySU"),
     adjustableEnergySU = new GTBlockEUStorage("adjustable_energy_su", "adjustableEnergySU");
-    
+    public static final GTBlockEUGenerator lightningRod = new GTBlockEUGenerator("lightning_rod", "lightningRod");
+
     public static final Block[] blocks = {
     		
             fusionMachineBlock,
@@ -73,6 +74,7 @@ public class GTBlocks {
             lapotronicEnergySU,
             interdimensionalEnergySU,
             adjustableEnergySU,
+            lightningRod,
             
             iridiumReinforcedStoneBlock,
             rubyBlock,
