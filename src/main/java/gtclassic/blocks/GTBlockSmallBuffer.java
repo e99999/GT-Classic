@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockSmallBuffer extends BlockMultiID implements IFacingBlock {
+public class GTBlockSmallBuffer extends BlockMultiID {
 
 	public GTBlockSmallBuffer() 
 	{
@@ -49,40 +49,14 @@ public class GTBlockSmallBuffer extends BlockMultiID implements IFacingBlock {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        //needed for construction but get overwritten
-    	return Ic2Icons.getTextures("gtclassic_blocks");
+    	return Ic2Icons.getTextures("gtclassic_smallbuffer");
     }
     
-    public boolean hasRotation(IBlockState var1) 
-	{
-		return true;
-	}
-	
-	public EnumFacing getRotation(IBlockState var1) 
-	{
-		return EnumFacing.SOUTH;
-	}
-    
     @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) 
+    public int getMaxSheetSize(int meta)
     {
-        if (side == EnumFacing.SOUTH) 
-        {
-            return Ic2Icons.getTextures("gtclassic_blocks")[113];
-        }
-        else 
-        {
-            return Ic2Icons.getTextures("gtclassic_blocks")[117];
-        }
+        return 1;
     }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getParticleTexture(IBlockState state) 
-    {
-		return Ic2Icons.getTextures("gtclassic_blocks")[117];
-	}
 
     @Override
     public List<IBlockState> getValidStateList()
