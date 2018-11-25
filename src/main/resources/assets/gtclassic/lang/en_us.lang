@@ -11,6 +11,7 @@ tile.gtclassic.lapotronicEnergySU.name=Lapotronic Energy Storage Unit
 tile.gtclassic.interdimensionalEnergySU.name=Interdimensional Energy Storage Unit
 tile.gtclassic.adjustableEnergySU.name=Adjustable Energy Storage Unit
 tile.gtclassic.lightningRod.name=Lightning Rod
+tile.gtclassic.fusionReactor.name=Fusion Reactor
 
 #blocks
 tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone

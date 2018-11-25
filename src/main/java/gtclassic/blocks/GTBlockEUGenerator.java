@@ -57,6 +57,18 @@ public class GTBlockEUGenerator extends BlockMultiID {
             }else {
                 return Ic2Icons.getTextures("gtclassic_blocks")[18];
             }
+        }else if (this == GTBlocks.fusionReactor){
+            if (side == EnumFacing.DOWN) {
+                return Ic2Icons.getTextures("gtclassic_blocks")[2];
+            } else if (side == EnumFacing.UP){
+                return Ic2Icons.getTextures("gtclassic_blocks")[61];
+            }else if(side == EnumFacing.EAST){
+                return Ic2Icons.getTextures("gtclassic_blocks")[19];
+            }else if(side == EnumFacing.WEST){
+                return Ic2Icons.getTextures("gtclassic_blocks")[19];
+            }else{
+                return Ic2Icons.getTextures("gtclassic_blocks")[18];
+            }
         }else{
             return Ic2Icons.getTextures("gtclassic_blocks")[128];
         }
