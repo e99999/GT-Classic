@@ -2,6 +2,7 @@ package gtclassic.blocks;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -49,14 +50,27 @@ public class GTBlockEUStorage extends BlockMultiID {
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
-        if (side == EnumFacing.DOWN) {
-            return Ic2Icons.getTextures("gtclassic_blocks")[40];
-        } else if (side == EnumFacing.UP){
-            return Ic2Icons.getTextures("gtclassic_blocks")[41];
-        }else {
-            return Ic2Icons.getTextures("gtclassic_blocks")[25];
+        if (this == GTBlocks.lapotronicEnergySU){
+            if (side == EnumFacing.SOUTH) {
+                return Ic2Icons.getTextures("gtclassic_blocks")[13];
+            }else {
+                return Ic2Icons.getTextures("gtclassic_blocks")[12];
+            }
+        }else if (this == GTBlocks.interdimensionalEnergySU){
+            if (side == EnumFacing.SOUTH) {
+                return Ic2Icons.getTextures("gtclassic_blocks")[18];
+            }else {
+                return Ic2Icons.getTextures("gtclassic_blocks")[22];
+            }
+        }else if (this == GTBlocks.adjustableEnergySU){
+            if (side == EnumFacing.SOUTH) {
+                return Ic2Icons.getTextures("gtclassic_blocks")[17];
+            }else {
+                return Ic2Icons.getTextures("gtclassic_blocks")[16];
+            }
+        }else{
+            return Ic2Icons.getTextures("gtclassic_blocks")[128];
         }
-        //return Ic2Icons.getTextures("gtclassic_blocks")[100];
     }
 
     @Override
