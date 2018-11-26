@@ -37,46 +37,27 @@ public class GTBlockEUStorage extends BlockMultiID {
 
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta){
-        return null;
+        return new TileEntityBlock();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite[] getIconSheet(int meta)
-    {
-        return Ic2Icons.getTextures("gtclassic_blocks");
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
+    public TextureAtlasSprite[] getIconSheet(int meta) {
         if (this == GTBlocks.lapotronicEnergySU){
-            if (side == EnumFacing.SOUTH) {
-                return Ic2Icons.getTextures("gtclassic_blocks")[13];
-            }else {
-                return Ic2Icons.getTextures("gtclassic_blocks")[12];
-            }
+            return Ic2Icons.getTextures("gtclassic_lapotronicenergysu");
         }else if (this == GTBlocks.interdimensionalEnergySU){
-            if (side == EnumFacing.SOUTH) {
-                return Ic2Icons.getTextures("gtclassic_blocks")[18];
-            }else {
-                return Ic2Icons.getTextures("gtclassic_blocks")[22];
-            }
+            return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");
         }else if (this == GTBlocks.adjustableEnergySU){
-            if (side == EnumFacing.SOUTH) {
-                return Ic2Icons.getTextures("gtclassic_blocks")[17];
-            }else {
-                return Ic2Icons.getTextures("gtclassic_blocks")[16];
-            }
+            return Ic2Icons.getTextures("gtclassic_adjustableenergysu");
         }else{
-            return Ic2Icons.getTextures("gtclassic_blocks")[128];
+            return Ic2Icons.getTextures("gtclassic_blocks");
         }
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getParticleTexture(IBlockState state) {
-        return Ic2Icons.getTextures("gtclassic_blocks")[100];
+    public int getMaxSheetSize(int meta)
+    {
+        return 1;
     }
 
     @Override
