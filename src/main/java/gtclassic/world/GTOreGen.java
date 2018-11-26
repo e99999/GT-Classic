@@ -66,7 +66,7 @@ public class GTOreGen implements IWorldGenerator {
 			
 			if ((BiomeDictionary.hasType(biomegenbase, Type.FOREST) || (BiomeDictionary.hasType(biomegenbase, Type.PLAINS)) && (GTConfig.genBauxite)))
 			{
-				runGenerator(GTBlocks.bauxiteOre.getDefaultState(), 16, 4, 0, 112, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+				runGenerator(GTBlocks.bauxiteOre.getDefaultState(), 16, 4, 40, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
 			
 			break;

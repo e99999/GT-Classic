@@ -1,10 +1,6 @@
 package gtclassic.blocks;
 
 import gtclassic.GTClassic;
-import gtclassic.tileentity.GTTileEntityComputerCube;
-import gtclassic.tileentity.GTTileEntityLargeBuffer;
-import gtclassic.tileentity.GTTileEntitySmallBuffer;
-import gtclassic.tileentity.GTTileEntityTranslocator;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -22,18 +18,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GTBlockMachine extends BlockMultiID {
-    public enum GTBlockMachineVariants
+public class GTBlockEnergy extends BlockMultiID {
+    public enum GTBlockEnergyVariants
     {
-        SMALLBUFFER,
-    	LARGEBUFFER, 
-        TRANSLOCATOR,
-        COMPUTERCUBE,
-        ELECTRICCRAFTER; 
+        //Generators
+    	LIGHTNINGROD,
+    	FUSIONREACTOR, 
+        
+    	//Storage
+    	LESU,
+        IESU,
+        AESU; 
     }
 
-    GTBlockMachineVariants variant;
-    public GTBlockMachine(GTBlockMachineVariants variant)
+    GTBlockEnergyVariants variant;
+    public GTBlockEnergy(GTBlockEnergyVariants variant)
     {
         super(Material.IRON);
         this.variant = variant;
@@ -55,52 +54,39 @@ public class GTBlockMachine extends BlockMultiID {
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
-    	 if (this == GTBlocks.smallBuffer) 
-    	 {
-    		 return new GTTileEntitySmallBuffer();
-    	 }
-    	 
-    	 if (this == GTBlocks.largeBuffer) 
-    	 {
-    		 return new GTTileEntityLargeBuffer();
-    	 }
-    	 
-    	 if (this == GTBlocks.translocator) 
-    	 {
-    		 return new GTTileEntityTranslocator();
-    	 }
-    	 
-    	 if (this == GTBlocks.computerCube) 
-    	 {
-    		 return new GTTileEntityComputerCube();
-    	 }
-    	 
-    	 return null;
+        return new TileEntityBlock();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-    	if (this == GTBlocks.smallBuffer) 
+    	//Generators
+    	if (this == GTBlocks.lightningRod) 
    	 	{
-    		return Ic2Icons.getTextures("gtclassic_smallbuffer");
+    		return Ic2Icons.getTextures("gtclassic_lightningrod");
    	 	}
    	 
-   	 	if (this == GTBlocks.largeBuffer) 
+   	 	if (this == GTBlocks.fusionReactor) 
    	 	{
-   	 		return Ic2Icons.getTextures("gtclassic_largebuffer");
+   	 		return Ic2Icons.getTextures("gtclassic_fusionreactor");
    	 	}
    	 
-   	 	if (this == GTBlocks.translocator) 
+   	 	//Storage
+   	 	if (this == GTBlocks.LESU) 
    	 	{
-   	 		return Ic2Icons.getTextures("gtclassic_translocator");
+   	 		return Ic2Icons.getTextures("gtclassic_lapotronicenergysu");
    	 	}
    	 
-   	 	if (this == GTBlocks.computerCube) 
+   	 	if (this == GTBlocks.IESU) 
    	 	{
-   	 		return Ic2Icons.getTextures("gtclassic_computercube");
+   	 		return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");
    	 	}
+   	 	
+   	 	if (this == GTBlocks.AESU) 
+	 	{
+   	 		return Ic2Icons.getTextures("gtclassic_adjustableenergysu");
+	 	}
     	
     	return Ic2Icons.getTextures("gtclassic_builder");
     }
@@ -118,7 +104,8 @@ public class GTBlockMachine extends BlockMultiID {
         List<IBlockState> states = new ArrayList<>();
         for(EnumFacing side : EnumFacing.VALUES)
         {
-            states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
+        	states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
+        	states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, true));
         }
         return states;
     }

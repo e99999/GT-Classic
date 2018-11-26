@@ -3,16 +3,17 @@
 tile.gtclassic.fusion_machineblock.name=Fusion Coil
 tile.gtclassic.lesu_machineblock.name=LESU-Block
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
-tile.gtclassic.industrialCentrifuge.name=Industrial Centrifuge
 tile.gtclassic.smallbuffer.name=Small Electric Item Buffer
 tile.gtclassic.largebuffer.name=Large Electric Item Buffer
 tile.gtclassic.translocator.name=Translocator
 tile.gtclassic.computercube.name=Computer Cube
-tile.gtclassic.lapotronicEnergySU.name=Lapotronic Energy Storage Unit
-tile.gtclassic.interdimensionalEnergySU.name=Interdimensional Energy Storage Unit
-tile.gtclassic.adjustableEnergySU.name=Adjustable Energy Storage Unit
-tile.gtclassic.lightningRod.name=Lightning Rod
-tile.gtclassic.fusionReactor.name=Fusion Reactor
+tile.gtclassic.industrialCentrifuge.name=Industrial Centrifuge
+
+tile.gtclassic.lightningrod.name=Lightning Rod
+tile.gtclassic.fusionreactor.name=Fusion Reactor
+tile.gtclassic.lesu.name=Lapotronic Energy Storage Unit
+tile.gtclassic.iesu.name=Interdimensional Energy Storage Unit
+tile.gtclassic.aesu.name=Adjustable Energy Storage Unit
 
 #blocks
 tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone

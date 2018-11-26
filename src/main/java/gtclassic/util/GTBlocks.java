@@ -4,6 +4,7 @@ import gtclassic.GTClassic;
 import gtclassic.blocks.*;
 import gtclassic.blocks.GTBlockCasing.GTBlockCasingVariants;
 import gtclassic.blocks.GTBlockMachine.GTBlockMachineVariants;
+import gtclassic.blocks.GTBlockEnergy.GTBlockEnergyVariants;
 import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
@@ -53,10 +54,6 @@ public class GTBlocks {
     rubyOre = new GTBlockOre(GTBlockOreVariants.RUBY),
     sapphireOre = new GTBlockOre(GTBlockOreVariants.SAPPHIRE),
     bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE);
-  
-    public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
-	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
-    public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
     
     public static final GTBlockMachine
     smallBuffer = new GTBlockMachine(GTBlockMachineVariants.SMALLBUFFER),
@@ -67,14 +64,16 @@ public class GTBlocks {
     
     public static final GTBlockIndustrialCentrifuge industrialCentriguge = new GTBlockIndustrialCentrifuge();
 	
-	public static final GTBlockEUStorage
-    lapotronicEnergySU = new GTBlockEUStorage("lapotronic_energy_su", "lapotronicEnergySU"),
-    interdimensionalEnergySU = new GTBlockEUStorage("interdimesnional_energy_su", "interdimensionalEnergySU"),
-    adjustableEnergySU = new GTBlockEUStorage("adjustable_energy_su", "adjustableEnergySU");
-    
-	public static final GTBlockEUGenerator
-    lightningRod = new GTBlockEUGenerator("lightning_rod", "lightningRod"),
-    fusionReactor = new GTBlockEUGenerator("fusion_reactor", "fusionReactor");
+	public static final GTBlockEnergy
+	lightningRod = new GTBlockEnergy(GTBlockEnergyVariants.LIGHTNINGROD),
+	fusionReactor = new GTBlockEnergy(GTBlockEnergyVariants.FUSIONREACTOR),
+	LESU = new GTBlockEnergy(GTBlockEnergyVariants.LESU),
+	IESU = new GTBlockEnergy(GTBlockEnergyVariants.IESU),
+	AESU = new GTBlockEnergy(GTBlockEnergyVariants.AESU);
+	
+	public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
+	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
+    public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
 
     public static final Block[] blocks = {
     		
@@ -95,10 +94,6 @@ public class GTBlocks {
             bauxiteOre,
             sandIron,
             
-            grassToxic,
-            toxicPortal,
-            toxicPortalFrame,
-            
             smallBuffer,
             largeBuffer,
             translocator,
@@ -106,11 +101,15 @@ public class GTBlocks {
             
             industrialCentriguge,
             
-            lapotronicEnergySU,
-            interdimensionalEnergySU,
-            adjustableEnergySU,
             lightningRod,
-            fusionReactor
+            fusionReactor,
+            LESU,
+            IESU,
+            AESU,
+            
+            toxicPortalFrame,
+            toxicPortal,
+            grassToxic
             
     };
     @SubscribeEvent
