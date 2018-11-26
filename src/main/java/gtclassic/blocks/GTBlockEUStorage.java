@@ -37,7 +37,7 @@ public class GTBlockEUStorage extends BlockMultiID {
 
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta){
-        return null;
+        return new TileEntityBlock();
     }
 
     @Override
