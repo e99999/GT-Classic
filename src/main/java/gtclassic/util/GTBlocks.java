@@ -2,7 +2,8 @@ package gtclassic.util;
 
 import gtclassic.GTClassic;
 import gtclassic.blocks.*;
-import gtclassic.blocks.GTBlockMachineCasing.GTBlockMachineVariants;
+import gtclassic.blocks.GTBlockCasing.GTBlockCasingVariants;
+import gtclassic.blocks.GTBlockMachine.GTBlockMachineVariants;
 import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
@@ -10,6 +11,7 @@ import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeBuffer;
 import gtclassic.tileentity.GTTileEntitySmallBuffer;
+import gtclassic.tileentity.GTTileEntityTranslocator;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortal;
@@ -33,10 +35,10 @@ public class GTBlocks {
     
     public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
-    public static final GTBlockMachineCasing
-	fusionMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.FUSION),
-	lesuMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.LESU),
-	highlyadvancedMachineBlock = new GTBlockMachineCasing(GTBlockMachineVariants.HIGHLYADVANCED);
+    public static final GTBlockCasing
+	fusionMachineBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
+	lesuMachineBlock = new GTBlockCasing(GTBlockCasingVariants.LESU),
+	highlyadvancedMachineBlock = new GTBlockCasing(GTBlockCasingVariants.HIGHLYADVANCED);
     
     public static final GTBlockMetal
 	iridiumReinforcedStoneBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM_REINFORCED_STONE),
@@ -55,16 +57,22 @@ public class GTBlocks {
     public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
 	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
     public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
-   
+    
+    public static final GTBlockMachine
+    smallBuffer = new GTBlockMachine(GTBlockMachineVariants.SMALLBUFFER),
+    largeBuffer = new GTBlockMachine(GTBlockMachineVariants.LARGEBUFFER),
+    translocator = new GTBlockMachine(GTBlockMachineVariants.TRANSLOCATOR),
+    electricCrafter = new GTBlockMachine(GTBlockMachineVariants.ELECTRICCRAFTER),
+    computerCube = new GTBlockMachine(GTBlockMachineVariants.COMPUTERCUBE);
+    
     public static final GTBlockIndustrialCentrifuge industrialCentriguge = new GTBlockIndustrialCentrifuge();
-	public static final GTBlockSmallBuffer smallBuffer = new GTBlockSmallBuffer();
-	public static final GTBlockLargeBuffer largeBuffer = new GTBlockLargeBuffer();
-	public static final GTBlockComputerCube computerCube = new GTBlockComputerCube();
+	
 	public static final GTBlockEUStorage
     lapotronicEnergySU = new GTBlockEUStorage("lapotronic_energy_su", "lapotronicEnergySU"),
     interdimensionalEnergySU = new GTBlockEUStorage("interdimesnional_energy_su", "interdimensionalEnergySU"),
     adjustableEnergySU = new GTBlockEUStorage("adjustable_energy_su", "adjustableEnergySU");
-    public static final GTBlockEUGenerator
+    
+	public static final GTBlockEUGenerator
     lightningRod = new GTBlockEUGenerator("lightning_rod", "lightningRod"),
     fusionReactor = new GTBlockEUGenerator("fusion_reactor", "fusionReactor");
 
@@ -73,11 +81,6 @@ public class GTBlocks {
             fusionMachineBlock,
             lesuMachineBlock,
             highlyadvancedMachineBlock,
-            lapotronicEnergySU,
-            interdimensionalEnergySU,
-            adjustableEnergySU,
-            lightningRod,
-            fusionReactor,
             
             iridiumReinforcedStoneBlock,
             rubyBlock,
@@ -95,10 +98,19 @@ public class GTBlocks {
             grassToxic,
             toxicPortal,
             toxicPortalFrame,
-            industrialCentriguge,
+            
             smallBuffer,
             largeBuffer,
+            translocator,
             computerCube,
+            
+            industrialCentriguge,
+            
+            lapotronicEnergySU,
+            interdimensionalEnergySU,
+            adjustableEnergySU,
+            lightningRod,
+            fusionReactor
             
     };
     @SubscribeEvent
@@ -121,6 +133,7 @@ public class GTBlocks {
         GameRegistry.registerTileEntity(GTTileEntityIndustrialCentrifuge.class, new ResourceLocation(GTClassic.MODID, "tileEntityIndustrialCentrifuge"));
         GameRegistry.registerTileEntity(GTTileEntitySmallBuffer.class, new ResourceLocation(GTClassic.MODID, "tileEntitySmallBuffer"));
         GameRegistry.registerTileEntity(GTTileEntityLargeBuffer.class, new ResourceLocation(GTClassic.MODID, "tileEntityLargeBuffer"));
+        GameRegistry.registerTileEntity(GTTileEntityTranslocator.class, new ResourceLocation(GTClassic.MODID, "tileTranslocator"));
         GameRegistry.registerTileEntity(GTTileEntityComputerCube.class, new ResourceLocation(GTClassic.MODID, "tileEntityComputerCube"));
     }
     

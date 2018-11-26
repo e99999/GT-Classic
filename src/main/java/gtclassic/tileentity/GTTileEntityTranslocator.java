@@ -1,6 +1,6 @@
 package gtclassic.tileentity;
 
-import gtclassic.container.GTContainerSmallBuffer;
+import gtclassic.container.GTContainerTranslocator;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyConductor;
 import ic2.api.energy.tile.IEnergyEmitter;
@@ -18,11 +18,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGui, IEnergyConductor{
+public class GTTileEntityTranslocator extends TileEntityMachine implements IHasGui, IEnergyConductor{
 
-	public GTTileEntitySmallBuffer() 
+	public GTTileEntityTranslocator() 
 	{
-		super(1);
+		super(9);
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -33,18 +33,18 @@ public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGu
 	
 	public ContainerIC2 getGuiContainer(EntityPlayer player)
     {
-        return new GTContainerSmallBuffer(player.inventory, this);
+        return new GTContainerTranslocator(player.inventory, this);
     }
 	
 	@Override
     protected void addSlots(InventoryHandler handler) 
 	{
-        handler.registerDefaultSideAccess(AccessRule.Export, RotationList.SOUTH);
-        handler.registerDefaultSideAccess(AccessRule.Import, RotationList.SOUTH.getOppositeList());
-        handler.registerDefaultSlotAccess(AccessRule.Both, 0);
-        handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
-        handler.registerSlotType(SlotType.Input, 0);
-        handler.registerSlotType(SlotType.Output, 0);
+        //handler.registerDefaultSideAccess(AccessRule.Export, RotationList.SOUTH);
+        //handler.registerDefaultSideAccess(AccessRule.Import, RotationList.SOUTH.getOppositeList());
+        //handler.registerDefaultSlotAccess(AccessRule.Both, 0);
+        //handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
+        //handler.registerSlotType(SlotType.Input, 0);
+        //handler.registerSlotType(SlotType.Output, 0);
     }
 	
 	@Override

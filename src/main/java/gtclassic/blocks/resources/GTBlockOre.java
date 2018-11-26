@@ -73,12 +73,12 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         }
         
         if (this == GTBlocks.rubyOre) {
-        		drops.add(new ItemStack(GTItems.ruby, 1));
+        		drops.add(new ItemStack(GTItems.ruby, 1 + fortune));
         		}
         
         
         if (this == GTBlocks.sapphireOre) {
-        		drops.add(new ItemStack(GTItems.sapphire, 1));
+        		drops.add(new ItemStack(GTItems.sapphire, 1 + fortune));
         		}
         	
         

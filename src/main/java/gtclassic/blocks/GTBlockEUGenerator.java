@@ -19,7 +19,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GTBlockEUGenerator extends BlockMultiID {
-    public GTBlockEUGenerator(String reg, String un){
+    public GTBlockEUGenerator(String reg, String un)
+    {
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(20.0F);
@@ -30,23 +31,30 @@ public class GTBlockEUGenerator extends BlockMultiID {
     }
 
     @Override
-    public List<Integer> getValidMetas() {
+    public List<Integer> getValidMetas() 
+    {
         return Arrays.asList(0);
     }
 
     @Override
-    public TileEntityBlock createNewTileEntity(World worldIn, int meta){
+    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
+    {
         return new TileEntityBlock();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta) {
-        if (this == GTBlocks.lightningRod){
+        if (this == GTBlocks.lightningRod)
+        {
             return Ic2Icons.getTextures("gtclassic_lightningrod");
-        }else if (this == GTBlocks.fusionReactor){
+        }
+        else if (this == GTBlocks.fusionReactor)
+        {
             return Ic2Icons.getTextures("gtclassic_fusionreactor");
-        }else{
+        }
+        else
+        {
             return Ic2Icons.getTextures("gtclassic_blocks");
         }
     }

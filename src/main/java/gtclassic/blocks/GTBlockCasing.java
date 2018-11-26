@@ -20,15 +20,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class GTBlockMachineCasing extends Block implements ITexturedBlock {
-    public enum GTBlockMachineVariants{
+public class GTBlockCasing extends Block implements ITexturedBlock {
+    public enum GTBlockCasingVariants{
         FUSION(1), 
         LESU(5), 
         HIGHLYADVANCED(29);
         
     	private int id;
 
-    	GTBlockMachineVariants(int id){
+    	GTBlockCasingVariants(int id){
             this.id = id;
         }
 
@@ -37,8 +37,8 @@ public class GTBlockMachineCasing extends Block implements ITexturedBlock {
         }
     }
 
-    GTBlockMachineVariants variant;
-    public GTBlockMachineCasing(GTBlockMachineVariants variant){
+    GTBlockCasingVariants variant;
+    public GTBlockCasing(GTBlockCasingVariants variant){
         super(Material.IRON);
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase() + "_machineblock");

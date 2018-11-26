@@ -4,9 +4,10 @@ tile.gtclassic.fusion_machineblock.name=Fusion Coil
 tile.gtclassic.lesu_machineblock.name=LESU-Block
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
 tile.gtclassic.industrialCentrifuge.name=Industrial Centrifuge
-tile.gtclassic.smallBuffer.name=Small Electric Item Buffer
-tile.gtclassic.largeBuffer.name=Large Electric Item Buffer
-tile.gtclassic.computerCube.name=Computer Cube
+tile.gtclassic.smallbuffer.name=Small Electric Item Buffer
+tile.gtclassic.largebuffer.name=Large Electric Item Buffer
+tile.gtclassic.translocator.name=Translocator
+tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.lapotronicEnergySU.name=Lapotronic Energy Storage Unit
 tile.gtclassic.interdimensionalEnergySU.name=Interdimensional Energy Storage Unit
 tile.gtclassic.adjustableEnergySU.name=Adjustable Energy Storage Unit
@@ -42,22 +43,22 @@ item.gtclassic.debugScanner.name=Debug Scanner
 
 
 #cells
-item.gtclassic.h_cell.name=H-Cell
-item.gtclassic.d_cell.name=D-Cell
-item.gtclassic.t_cell.name=T-Cell
-item.gtclassic.he_cell.name=He-Cell
-item.gtclassic.w_cell.name=W-Cell
-item.gtclassic.li_cell.name=Li-Cell
-item.gtclassic.he3_cell.name=He3-Cell
-item.gtclassic.si_cell.name=Si-Cell
-item.gtclassic.c_cell.name=C-Cell
-item.gtclassic.me_cell.name=Me-Cell
-item.gtclassic.be_cell.name=Be-Cell
-item.gtclassic.ca_cell.name=Ca-Cell
-item.gtclassic.na_cell.name=Na-Cell
-item.gtclassic.cl_cell.name=Cl-Cell
-item.gtclassic.k_cell.name=K-Cell
-item.gtclassic.n_cell.name=N-Cell
+item.gtclassic.h_cell.name=Hydrogen Cell
+item.gtclassic.d_cell.name=Deuterium Cell
+item.gtclassic.t_cell.name=Tritium Cell
+item.gtclassic.he_cell.name=Helium Cell
+item.gtclassic.w_cell.name=Tungsten Cell
+item.gtclassic.li_cell.name=Lithium Cell
+item.gtclassic.he3_cell.name=Helium-3 Cell
+item.gtclassic.si_cell.name=Silicon Cell
+item.gtclassic.c_cell.name=Carbon Cell
+item.gtclassic.me_cell.name=Methane Cell
+item.gtclassic.be_cell.name=Berilium Cell
+item.gtclassic.ca_cell.name=Calcium Cell
+item.gtclassic.na_cell.name=Sodium Cell
+item.gtclassic.cl_cell.name=Chlorine Cell
+item.gtclassic.k_cell.name=Potassium Cell
+item.gtclassic.n_cell.name=Nitrogen Cell
 
 #dust
 item.gtclassic.flint_dust.name=Flint Dust

@@ -20,7 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GTBlockEUStorage extends BlockMultiID {
-    public GTBlockEUStorage(String reg, String un){
+    public GTBlockEUStorage(String reg, String un)
+    {
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(20.0F);
@@ -31,25 +32,35 @@ public class GTBlockEUStorage extends BlockMultiID {
     }
 
     @Override
-    public List<Integer> getValidMetas() {
+    public List<Integer> getValidMetas() 
+    {
         return Arrays.asList(0);
     }
 
     @Override
-    public TileEntityBlock createNewTileEntity(World worldIn, int meta){
+    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
+    {
         return new TileEntityBlock();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite[] getIconSheet(int meta) {
-        if (this == GTBlocks.lapotronicEnergySU){
+    public TextureAtlasSprite[] getIconSheet(int meta) 
+    {
+        if (this == GTBlocks.lapotronicEnergySU)
+        {
             return Ic2Icons.getTextures("gtclassic_lapotronicenergysu");
-        }else if (this == GTBlocks.interdimensionalEnergySU){
+        }
+        else if (this == GTBlocks.interdimensionalEnergySU)
+        {
             return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");
-        }else if (this == GTBlocks.adjustableEnergySU){
+        }
+        else if (this == GTBlocks.adjustableEnergySU)
+        {
             return Ic2Icons.getTextures("gtclassic_adjustableenergysu");
-        }else{
+        }
+        else
+        {
             return Ic2Icons.getTextures("gtclassic_blocks");
         }
     }
