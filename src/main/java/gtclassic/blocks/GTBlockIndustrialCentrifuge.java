@@ -43,26 +43,13 @@ public class GTBlockIndustrialCentrifuge extends BlockMultiID {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        return Ic2Icons.getTextures("gtclassic_blocks");
+        return Ic2Icons.getTextures("gtclassic_industrialcentrifuge");
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
-        if (side == EnumFacing.DOWN) {
-            return Ic2Icons.getTextures("gtclassic_blocks")[40];
-        } else if (side == EnumFacing.UP){
-            return Ic2Icons.getTextures("gtclassic_blocks")[41];
-        }else {
-            return Ic2Icons.getTextures("gtclassic_blocks")[25];
-        }
-        //return Ic2Icons.getTextures("gtclassic_blocks")[100];
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getParticleTexture(IBlockState state) {
-        return Ic2Icons.getTextures("gtclassic_blocks")[100];
+    public int getMaxSheetSize(int meta)
+    {
+        return 1;
     }
 
     @Override

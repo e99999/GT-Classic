@@ -46,21 +46,14 @@ public class GTBlockComputerCube extends BlockMultiID  {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        //needed for construction but get overwritten
-    	return Ic2Icons.getTextures("gtclassic_blocks");
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) 
-    {
-            return Ic2Icons.getTextures("gtclassic_blocks")[8];
+    	return Ic2Icons.getTextures("gtclassic_computercube");
     }
 
-	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getParticleTexture(IBlockState state) {
-		return Ic2Icons.getTextures("gtclassic_blocks")[8];
-	}
+    @Override
+    public int getMaxSheetSize(int meta)
+    {
+        return 1;
+    }
 
     @Override
     public List<IBlockState> getValidStateList()

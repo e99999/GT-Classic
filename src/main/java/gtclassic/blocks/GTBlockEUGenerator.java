@@ -41,43 +41,20 @@ public class GTBlockEUGenerator extends BlockMultiID {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite[] getIconSheet(int meta)
-    {
-        return Ic2Icons.getTextures("gtclassic_blocks");
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
+    public TextureAtlasSprite[] getIconSheet(int meta) {
         if (this == GTBlocks.lightningRod){
-            if (side == EnumFacing.DOWN) {
-                return Ic2Icons.getTextures("gtclassic_blocks")[2];
-            } else if (side == EnumFacing.UP){
-                return Ic2Icons.getTextures("gtclassic_blocks")[21];
-            }else {
-                return Ic2Icons.getTextures("gtclassic_blocks")[18];
-            }
+            return Ic2Icons.getTextures("gtclassic_lightningrod");
         }else if (this == GTBlocks.fusionReactor){
-            if (side == EnumFacing.DOWN) {
-                return Ic2Icons.getTextures("gtclassic_blocks")[2];
-            } else if (side == EnumFacing.UP){
-                return Ic2Icons.getTextures("gtclassic_blocks")[61];
-            }else if(side == EnumFacing.EAST){
-                return Ic2Icons.getTextures("gtclassic_blocks")[19];
-            }else if(side == EnumFacing.WEST){
-                return Ic2Icons.getTextures("gtclassic_blocks")[19];
-            }else{
-                return Ic2Icons.getTextures("gtclassic_blocks")[18];
-            }
+            return Ic2Icons.getTextures("gtclassic_fusionreactor");
         }else{
-            return Ic2Icons.getTextures("gtclassic_blocks")[128];
+            return Ic2Icons.getTextures("gtclassic_blocks");
         }
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getParticleTexture(IBlockState state) {
-        return Ic2Icons.getTextures("gtclassic_blocks")[100];
+    public int getMaxSheetSize(int meta)
+    {
+        return 1;
     }
 
     @Override
