@@ -30,7 +30,8 @@ public class GTBlockMachine extends BlockMultiID {
     	LARGEBUFFER, 
         TRANSLOCATOR,
         COMPUTERCUBE,
-        ELECTRICCRAFTER,
+        CRAFTER,
+        QUANTUMCHEST,
         INDUSTRIALCENTRIFUGE;
     }
 

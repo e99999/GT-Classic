@@ -39,12 +39,11 @@ public class GTTileEntityTranslocator extends TileEntityMachine implements IHasG
 	@Override
     protected void addSlots(InventoryHandler handler) 
 	{
-        //handler.registerDefaultSideAccess(AccessRule.Export, RotationList.SOUTH);
-        //handler.registerDefaultSideAccess(AccessRule.Import, RotationList.SOUTH.getOppositeList());
-        //handler.registerDefaultSlotAccess(AccessRule.Both, 0);
-        //handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
-        //handler.registerSlotType(SlotType.Input, 0);
-        //handler.registerSlotType(SlotType.Output, 0);
+        handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+        handler.registerDefaultSlotAccess(AccessRule.Both, 0, 1, 2, 3, 4, 5, 6, 7, 8);
+        handler.registerDefaultSlotsForSide(RotationList.ALL, 0, 1, 2, 3, 4, 5, 6, 7, 8);
+        handler.registerSlotType(SlotType.Input, 0, 1, 2, 3, 4, 5, 6, 7, 8);
+        handler.registerSlotType(SlotType.Output, 0, 1, 2, 3, 4, 5, 6, 7, 8);
     }
 	
 	@Override

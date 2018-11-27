@@ -59,7 +59,8 @@ public class GTBlocks {
     smallBuffer = new GTBlockMachine(GTBlockMachineVariants.SMALLBUFFER),
     largeBuffer = new GTBlockMachine(GTBlockMachineVariants.LARGEBUFFER),
     translocator = new GTBlockMachine(GTBlockMachineVariants.TRANSLOCATOR),
-    electricCrafter = new GTBlockMachine(GTBlockMachineVariants.ELECTRICCRAFTER),
+    electricCrafter = new GTBlockMachine(GTBlockMachineVariants.CRAFTER),
+    quantumChest = new GTBlockMachine(GTBlockMachineVariants.QUANTUMCHEST),
     computerCube = new GTBlockMachine(GTBlockMachineVariants.COMPUTERCUBE),
     industrialCentrifuge = new GTBlockMachine(GTBlockMachineVariants.INDUSTRIALCENTRIFUGE);
 	

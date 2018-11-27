@@ -39,11 +39,15 @@ public class GTTileEntityLargeBuffer extends TileEntityMachine implements IHasGu
 	@Override
     protected void addSlots(InventoryHandler handler) 
 	{
-        //handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-        //handler.registerDefaultSlotAccess(AccessRule.Both, 0);
-        ////handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
-        //handler.registerSlotType(SlotType.Input, 0);
-        //handler.registerSlotType(SlotType.Output, 0);
+        handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+        
+        for (int i = 0; i < 26; i++) 
+        {
+        handler.registerDefaultSlotAccess(AccessRule.Both, i);
+        handler.registerDefaultSlotsForSide(RotationList.ALL, i);
+        handler.registerSlotType(SlotType.Input, i);
+        handler.registerSlotType(SlotType.Output, i);
+        }
     }
 	
 	@Override

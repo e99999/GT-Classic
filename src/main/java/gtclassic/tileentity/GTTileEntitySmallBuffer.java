@@ -39,9 +39,8 @@ public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGu
 	@Override
     protected void addSlots(InventoryHandler handler) 
 	{
-        handler.registerDefaultSideAccess(AccessRule.Export, RotationList.SOUTH);
-        handler.registerDefaultSideAccess(AccessRule.Import, RotationList.SOUTH.getOppositeList());
-        handler.registerDefaultSlotAccess(AccessRule.Both, 0);
+		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+		handler.registerDefaultSlotAccess(AccessRule.Both, 0);
         handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
         handler.registerSlotType(SlotType.Input, 0);
         handler.registerSlotType(SlotType.Output, 0);
@@ -66,15 +65,25 @@ public class GTTileEntitySmallBuffer extends TileEntityMachine implements IHasGu
     }
 
 	@Override
-	public boolean acceptsEnergyFrom(IEnergyEmitter var1, EnumFacing var2) {
-		// TODO Auto-generated method stub for IEnergyConductor
+	public boolean acceptsEnergyFrom(IEnergyEmitter var1, EnumFacing var2) 
+	{
+		if (var2 == EnumFacing.NORTH)
+		{
 		return true;
+		}
+	
+			return false;
 	}
 
 	@Override
-	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing var2) {
-		// TODO Auto-generated method stub for IEnergyConductor
+	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing var2)
+	{
+		if (var2 == EnumFacing.SOUTH)
+		{
 		return true;
+		}
+	
+			return false;
 	}
 
 	@Override
