@@ -1,4 +1,4 @@
-package gtclassic.items;
+package gtclassic.toxicdimension.items;
 
 import java.util.Arrays;
 import java.util.List;

@@ -20,6 +20,7 @@ import gtclassic.items.tools.GTItemDebugScanner;
 import gtclassic.items.tools.GTItemDestructoPack;
 import gtclassic.items.tools.GTItemHammerIron;
 import gtclassic.items.tools.GTItemTeslaStaff;
+import gtclassic.toxicdimension.items.GTItemCreditAlk;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

@@ -11,10 +11,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -29,6 +33,12 @@ public class GTBlockSandIron extends BlockFalling  implements ITexturedBlock {
         setHardness(0.5F);
         setSoundType(SoundType.SAND);
         setHarvestLevel("shovel", 0);
+    }
+	
+	@Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".ironsand1"));
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".ironsand2"));
     }
 
 	@Override

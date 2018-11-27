@@ -12,11 +12,14 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -106,7 +109,34 @@ public class GTBlockOre extends Block implements ITexturedBlock {
             }
             return xp;
     }
-  
+    
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
+    {
+    	if (this == GTBlocks.iridiumOre)
+    	{
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".iridium"));
+    	}
+    	
+    	else if (this == GTBlocks.rubyOre)
+    	{
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".ruby1"));
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".ruby2"));
+    	}
+    	
+    	else if (this == GTBlocks.sapphireOre)
+    	{
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".sapphire1"));
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".sapphire2"));
+    	}
+    	
+    	else if (this == GTBlocks.bauxiteOre)
+    	{
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".bauxite1"));
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".bauxite2"));
+    	}
+    }
+    
     @Override
     public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
         return FULL_BLOCK_AABB;

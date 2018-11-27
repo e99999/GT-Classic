@@ -103,6 +103,15 @@ tile.gtclassic.toxicPortalFrame.name=Containment Frame
 tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
 tile.gtclassic.grassToxic.name=Unstable Earth
 
+tooltip.gtclassic.iridium=Good luck finding this :)
+tooltip.gtclassic.ruby1=Spawns in HOT type biomes
+tooltip.gtclassic.ruby2=Y level 0-48  
+tooltip.gtclassic.sapphire1=Spawns in OCEAN type biomes
+tooltip.gtclassic.sapphire2=Y level 0-48  
+tooltip.gtclassic.ironsand1=Spawns in RIVER type biomes
+tooltip.gtclassic.ironsand2=Y level 48-72  
+tooltip.gtclassic.bauxite1=Spawns in FOREST & PLAINS type biomes
+tooltip.gtclassic.bauxite2=Y level 40-120  
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
 tooltip.gtclassic.alkcredit=Shines the way, towards the far away Everglades
 tooltip.gtclassic.portalframe=Used to build portals to terrible places...
