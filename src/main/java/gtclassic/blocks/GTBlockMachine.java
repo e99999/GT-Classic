@@ -4,6 +4,7 @@ import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeBuffer;
+import gtclassic.tileentity.GTTileEntityQuantumChest;
 import gtclassic.tileentity.GTTileEntitySmallBuffer;
 import gtclassic.tileentity.GTTileEntityTranslocator;
 import gtclassic.util.GTBlocks;
@@ -102,6 +103,11 @@ public class GTBlockMachine extends BlockMultiID {
     		 return new GTTileEntityComputerCube();
     	 }
     	 
+    	 else if (this == GTBlocks.quantumChest) 
+    	 {
+    		 return new GTTileEntityQuantumChest();
+    	 }
+    	 
     	 else if (this == GTBlocks.industrialCentrifuge) 
     	 {
     		 return new GTTileEntityIndustrialCentrifuge();
@@ -117,27 +123,37 @@ public class GTBlockMachine extends BlockMultiID {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-    	if (this == GTBlocks.smallBuffer) 
+    	if (this == GTBlocks.smallBuffer)
    	 	{
     		return Ic2Icons.getTextures("gtclassic_smallbuffer");
    	 	}
    	 
-   	 	if (this == GTBlocks.largeBuffer) 
+   	 	if (this == GTBlocks.largeBuffer)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_largebuffer");
    	 	}
    	 
-   	 	if (this == GTBlocks.translocator) 
+   	 	if (this == GTBlocks.translocator)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_translocator");
    	 	}
+   	 	
+   	 	if (this == GTBlocks.autoCrafter)
+	 	{
+	 		return Ic2Icons.getTextures("gtclassic_autocrafter");
+	 	}
+   	 	
+   	 	if (this == GTBlocks.quantumChest)
+	 	{
+	 		return Ic2Icons.getTextures("gtclassic_quantumchest");
+	 	}
    	 
-   	 	if (this == GTBlocks.computerCube) 
+   	 	if (this == GTBlocks.computerCube)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_computercube");
    	 	}
    	 	
-   	 	if (this == GTBlocks.industrialCentrifuge) 
+   	 	if (this == GTBlocks.industrialCentrifuge)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_industrialcentrifuge");
    	 	}

@@ -1,14 +1,19 @@
 
-#machine blocks
+#casing blocks
 tile.gtclassic.fusion_machineblock.name=Fusion Coil
 tile.gtclassic.lesu_machineblock.name=LESU-Block
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
+
+#machine blocks
 tile.gtclassic.smallbuffer.name=Small Electric Item Buffer
 tile.gtclassic.largebuffer.name=Large Electric Item Buffer
 tile.gtclassic.translocator.name=Translocator
+tile.gtclassic.autocrafter.name=Electric Autocrafter
+tile.gtclassic.quantumchest.name=Quantum Chest
 tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
 
+#energy blocks
 tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.fusionreactor.name=Fusion Reactor
 tile.gtclassic.lesu.name=Lapotronic Energy Storage Unit

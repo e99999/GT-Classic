@@ -11,6 +11,7 @@ import gtclassic.blocks.resources.GTBlockSandIron;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeBuffer;
+import gtclassic.tileentity.GTTileEntityQuantumChest;
 import gtclassic.tileentity.GTTileEntitySmallBuffer;
 import gtclassic.tileentity.GTTileEntityTranslocator;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
@@ -59,7 +60,7 @@ public class GTBlocks {
     smallBuffer = new GTBlockMachine(GTBlockMachineVariants.SMALLBUFFER),
     largeBuffer = new GTBlockMachine(GTBlockMachineVariants.LARGEBUFFER),
     translocator = new GTBlockMachine(GTBlockMachineVariants.TRANSLOCATOR),
-    electricCrafter = new GTBlockMachine(GTBlockMachineVariants.AUTOCRAFTER),
+    autoCrafter = new GTBlockMachine(GTBlockMachineVariants.AUTOCRAFTER),
     quantumChest = new GTBlockMachine(GTBlockMachineVariants.QUANTUMCHEST),
     computerCube = new GTBlockMachine(GTBlockMachineVariants.COMPUTERCUBE),
     industrialCentrifuge = new GTBlockMachine(GTBlockMachineVariants.INDUSTRIALCENTRIFUGE);
@@ -97,6 +98,8 @@ public class GTBlocks {
             smallBuffer,
             largeBuffer,
             translocator,
+            autoCrafter,
+            quantumChest,
             computerCube,
             industrialCentrifuge,
             
@@ -133,6 +136,7 @@ public class GTBlocks {
         GameRegistry.registerTileEntity(GTTileEntitySmallBuffer.class, new ResourceLocation(GTClassic.MODID, "tileEntitySmallBuffer"));
         GameRegistry.registerTileEntity(GTTileEntityLargeBuffer.class, new ResourceLocation(GTClassic.MODID, "tileEntityLargeBuffer"));
         GameRegistry.registerTileEntity(GTTileEntityTranslocator.class, new ResourceLocation(GTClassic.MODID, "tileTranslocator"));
+        GameRegistry.registerTileEntity(GTTileEntityQuantumChest.class, new ResourceLocation(GTClassic.MODID, "tileQuantumChest"));
         GameRegistry.registerTileEntity(GTTileEntityComputerCube.class, new ResourceLocation(GTClassic.MODID, "tileEntityComputerCube"));
     }
     
