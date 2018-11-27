@@ -4,8 +4,8 @@ import gtclassic.GTClassic;
 import gtclassic.items.*;
 import gtclassic.items.GTItemComponents.GTItemComponentTypes;
 import gtclassic.items.armor.GTItemEnergyPack;
-import gtclassic.items.eustorage.GTItemLapotronicEnergyOrb;
-import gtclassic.items.eustorage.GTItemLithiumBattery;
+import gtclassic.items.energy.GTItemLapotronicEnergyOrb;
+import gtclassic.items.energy.GTItemLithiumBattery;
 import gtclassic.items.resources.GTItemCell;
 import gtclassic.items.resources.GTItemCell.GTItemCellTypes;
 import gtclassic.items.resources.GTItemDust;
@@ -56,7 +56,7 @@ public class GTItems {
 	dustFlint = new GTItemDust(GTItemDustTypes.FLINT),
 	dustUranium = new GTItemDust(GTItemDustTypes.URANIUM),
 	dustBauxite = new GTItemDust(GTItemDustTypes.BAUXITE),
-	dustAluminum = new GTItemDust(GTItemDustTypes.ALUMINUM),
+	dustAluminium = new GTItemDust(GTItemDustTypes.ALUMINIUM),
 	dustTitanium = new GTItemDust(GTItemDustTypes.TITANIUM),
 	dustChrome = new GTItemDust(GTItemDustTypes.CHROME),
 	dustRuby = new GTItemDust(GTItemDustTypes.RUBY),
@@ -71,7 +71,7 @@ public class GTItems {
 	
 	public static final GTItemIngot
 	ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM),
-	ingotAluminum = new GTItemIngot(GTItemIngotTypes.ALUMINUM),
+	ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),
 	ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
 	ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME);
 	
@@ -122,7 +122,7 @@ public class GTItems {
 			dustFlint,
 			dustUranium,
 			dustBauxite,
-			dustAluminum,
+			dustAluminium,
 			dustTitanium,
 			dustChrome,
 			dustRuby,
@@ -134,7 +134,7 @@ public class GTItems {
 			ruby,
 			sapphire,
 			ingotIridium,
-			ingotAluminum,
+			ingotAluminium,
 			ingotTitanium,
 			ingotChrome,
 			

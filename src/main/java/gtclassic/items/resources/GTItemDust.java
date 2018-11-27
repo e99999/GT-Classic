@@ -21,7 +21,7 @@ public class GTItemDust extends Item implements IStaticTexturedItem {
         FLINT(71), 
         URANIUM(27), 
         BAUXITE(26), 
-        ALUMINUM(25), 
+        ALUMINIUM(25), 
         TITANIUM(29), 
         CHROME(31), 
         RUBY(64), 

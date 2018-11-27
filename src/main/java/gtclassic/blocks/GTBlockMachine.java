@@ -2,6 +2,7 @@ package gtclassic.blocks;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityComputerCube;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeBuffer;
 import gtclassic.tileentity.GTTileEntitySmallBuffer;
 import gtclassic.tileentity.GTTileEntityTranslocator;
@@ -29,7 +30,8 @@ public class GTBlockMachine extends BlockMultiID {
     	LARGEBUFFER, 
         TRANSLOCATOR,
         COMPUTERCUBE,
-        ELECTRICCRAFTER; 
+        ELECTRICCRAFTER,
+        INDUSTRIALCENTRIFUGE;
     }
 
     GTBlockMachineVariants variant;
@@ -75,7 +77,17 @@ public class GTBlockMachine extends BlockMultiID {
     		 return new GTTileEntityComputerCube();
     	 }
     	 
-    	 return null;
+    	 if (this == GTBlocks.computerCube) 
+    	 {
+    		 return new GTTileEntityComputerCube();
+    	 }
+    	 
+    	 if (this == GTBlocks.industrialCentrifuge) 
+    	 {
+    		 return new GTTileEntityIndustrialCentrifuge();
+    	 }
+    	 
+    	 return new TileEntityBlock();
     }
 
     @Override
@@ -101,6 +113,11 @@ public class GTBlockMachine extends BlockMultiID {
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_computercube");
    	 	}
+   	 	
+   	 	if (this == GTBlocks.industrialCentrifuge) 
+   	 	{
+   	 		return Ic2Icons.getTextures("gtclassic_industrialcentrifuge");
+   	 	}
     	
     	return Ic2Icons.getTextures("gtclassic_builder");
     }
@@ -118,7 +135,8 @@ public class GTBlockMachine extends BlockMultiID {
         List<IBlockState> states = new ArrayList<>();
         for(EnumFacing side : EnumFacing.VALUES)
         {
-            states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
+        	states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
+            states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, true));
         }
         return states;
     }

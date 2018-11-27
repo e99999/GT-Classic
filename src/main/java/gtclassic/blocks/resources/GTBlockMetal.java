@@ -27,7 +27,7 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
         IRIDIUM_REINFORCED_STONE(64),
     	RUBY(66), 
         SAPPHIRE(67),
-        ALUMINUM(68), 
+        ALUMINIUM(68), 
         TITANIUM(69), 
     	CHROME(70); 
         

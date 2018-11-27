@@ -14,7 +14,7 @@ import java.util.List;
 public class GTItemIngot extends Item implements IStaticTexturedItem {
     public enum GTItemIngotTypes{
         IRIDIUM(23),
-        ALUMINUM(24),
+        ALUMINIUM(24),
         TITANIUM(28),
     	CHROME(30);
         

@@ -1,4 +1,4 @@
-package gtclassic.items.eustorage;
+package gtclassic.items.energy;
 
 import gtclassic.GTClassic;
 import ic2.core.item.base.ItemBatteryBase;

@@ -45,7 +45,7 @@ public class GTBlocks {
 	iridiumReinforcedStoneBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM_REINFORCED_STONE),
     rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
 	sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
-	aluminumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINUM),
+	aluminiumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINIUM),
     chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME),
     titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM);
 
@@ -60,9 +60,8 @@ public class GTBlocks {
     largeBuffer = new GTBlockMachine(GTBlockMachineVariants.LARGEBUFFER),
     translocator = new GTBlockMachine(GTBlockMachineVariants.TRANSLOCATOR),
     electricCrafter = new GTBlockMachine(GTBlockMachineVariants.ELECTRICCRAFTER),
-    computerCube = new GTBlockMachine(GTBlockMachineVariants.COMPUTERCUBE);
-    
-    public static final GTBlockIndustrialCentrifuge industrialCentriguge = new GTBlockIndustrialCentrifuge();
+    computerCube = new GTBlockMachine(GTBlockMachineVariants.COMPUTERCUBE),
+    industrialCentrifuge = new GTBlockMachine(GTBlockMachineVariants.INDUSTRIALCENTRIFUGE);
 	
 	public static final GTBlockEnergy
 	lightningRod = new GTBlockEnergy(GTBlockEnergyVariants.LIGHTNINGROD),
@@ -84,7 +83,7 @@ public class GTBlocks {
             iridiumReinforcedStoneBlock,
             rubyBlock,
             sapphireBlock,
-            aluminumBlock,
+            aluminiumBlock,
             titaniumBlock,
             chromeBlock,
             
@@ -98,8 +97,8 @@ public class GTBlocks {
             largeBuffer,
             translocator,
             computerCube,
+            industrialCentrifuge,
             
-            industrialCentriguge,
             
             lightningRod,
             fusionReactor,

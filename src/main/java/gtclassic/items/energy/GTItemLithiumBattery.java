@@ -1,4 +1,4 @@
-package gtclassic.items.eustorage;
+package gtclassic.items.energy;
 
 import gtclassic.GTClassic;
 import ic2.api.item.ElectricItem;

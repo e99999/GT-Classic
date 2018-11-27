@@ -7,7 +7,7 @@ tile.gtclassic.smallbuffer.name=Small Electric Item Buffer
 tile.gtclassic.largebuffer.name=Large Electric Item Buffer
 tile.gtclassic.translocator.name=Translocator
 tile.gtclassic.computercube.name=Computer Cube
-tile.gtclassic.industrialCentrifuge.name=Industrial Centrifuge
+tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
 
 tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.fusionreactor.name=Fusion Reactor
@@ -20,7 +20,7 @@ tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone
 tile.gtclassic.ruby_block.name=Ruby Block
 tile.gtclassic.sapphire_block.name=Sapphire Block
 tile.gtclassic.chrome_block.name=Chrome Block
-tile.gtclassic.aluminum_block.name=Aluminum Block
+tile.gtclassic.aluminium_block.name=Aluminium Block
 tile.gtclassic.titanium_block.name=Titanium Block
 
 #ore
@@ -67,7 +67,7 @@ item.gtclassic.enderpearl_dust.name=Ender Pearl Dust
 item.gtclassic.calcite_dust.name=Calcite Dust
 item.gtclassic.uranium_dust.name=Uranium Dust
 item.gtclassic.bauxite_dust.name=Bauxite Dust
-item.gtclassic.aluminum_dust.name=Aluminum Dust
+item.gtclassic.aluminium_dust.name=Aluminium Dust
 item.gtclassic.ruby_dust.name=Ruby Dust
 item.gtclassic.sapphire_dust.name=Sapphire Dust
 item.gtclassic.green_sapphire_dust.name=Green Sapphire Dust
@@ -81,7 +81,7 @@ item.gtclassic.sodalite_dust.name=Sodalite Dust
 
 #ingots
 item.gtclassic.iridium_ingot.name=Iridium Ingot
-item.gtclassic.aluminum_ingot.name=Aluminum Ingot
+item.gtclassic.aluminium_ingot.name=Aluminium Ingot
 item.gtclassic.titanium_ingot.name=Titanium Ingot
 item.gtclassic.chrome_ingot.name=Chrome Ingot
 
