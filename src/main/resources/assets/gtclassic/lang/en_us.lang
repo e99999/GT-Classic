@@ -102,19 +102,23 @@ item.gtclassic.creditAlk.name=Alkalus Credit
 tile.gtclassic.toxicPortalFrame.name=Containment Frame
 tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
 tile.gtclassic.grassToxic.name=Unstable Earth
-
-tooltip.gtclassic.iridium=Good luck finding this :)
-tooltip.gtclassic.ruby1=Spawns in HOT type biomes
-tooltip.gtclassic.ruby2=Y level 0-48  
-tooltip.gtclassic.sapphire1=Spawns in OCEAN type biomes
-tooltip.gtclassic.sapphire2=Y level 0-48  
-tooltip.gtclassic.ironsand1=Spawns in RIVER type biomes
-tooltip.gtclassic.ironsand2=Y level 48-72  
-tooltip.gtclassic.bauxite1=Spawns in FOREST & PLAINS type biomes
-tooltip.gtclassic.bauxite2=Y level 40-120  
-tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
 tooltip.gtclassic.alkcredit=Shines the way, towards the far away Everglades
 tooltip.gtclassic.portalframe=Used to build portals to terrible places...
+
+tooltip.gtclassic.iridium=Spawns rarely in ALL biomes
+tooltip.gtclassic.ruby=Spawns in HOT biomes
+tooltip.gtclassic.sapphire=Spawns in OCEAN biomes
+tooltip.gtclassic.ironsand=Spawns in RIVER biomes
+tooltip.gtclassic.bauxite=Spawns in FOREST & PLAINS biomes
+
+tooltip.gtclassic.beacon=Can be used as a beacon base
+tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
+tooltip.gtclassic.buffer=A directable Hopper with an inbuilt Energy Conduit!
+tooltip.gtclassic.computer=One stop shop utility & information
+tooltip.gtclassic.centrifuge=And round and round and round it goes
+
+tooltip.gtclassic.drill=No frills world destroyer!
+tooltip.gtclassic.saw=Makes trees disappear
 tooltip.gtclassic.trashcan=Mobile Trash Bin
 tooltip.gtclassic.warranty=No Warranty!
 tooltip.gtclassic.tesla=O V E R C H A R G E D

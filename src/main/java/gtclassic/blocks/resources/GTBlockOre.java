@@ -120,20 +120,17 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     	
     	else if (this == GTBlocks.rubyOre)
     	{
-    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".ruby1"));
-    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".ruby2"));
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".ruby"));
     	}
     	
     	else if (this == GTBlocks.sapphireOre)
     	{
-    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".sapphire1"));
-    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".sapphire2"));
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".sapphire"));
     	}
     	
     	else if (this == GTBlocks.bauxiteOre)
     	{
-    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".bauxite1"));
-    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".bauxite2"));
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".bauxite"));
     	}
     }
     

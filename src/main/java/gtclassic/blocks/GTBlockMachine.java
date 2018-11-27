@@ -14,7 +14,11 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -30,7 +34,7 @@ public class GTBlockMachine extends BlockMultiID {
     	LARGEBUFFER, 
         TRANSLOCATOR,
         COMPUTERCUBE,
-        CRAFTER,
+        AUTOCRAFTER,
         QUANTUMCHEST,
         INDUSTRIALCENTRIFUGE;
     }
@@ -50,6 +54,26 @@ public class GTBlockMachine extends BlockMultiID {
     }
     
     @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
+    {
+    	if (this == GTBlocks.smallBuffer || this == GTBlocks.largeBuffer || this == GTBlocks.translocator)
+    	{
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".buffer"));
+    	}
+    	
+    	else if (this == GTBlocks.computerCube)
+    	{
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".computer"));
+    	}
+    	
+    	else if (this == GTBlocks.industrialCentrifuge)
+    	{
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".centrifuge"));
+    	}
+    	
+    }
+    
+    @Override
     public List<Integer> getValidMetas() 
 	{
         return Arrays.asList(0);
@@ -63,32 +87,30 @@ public class GTBlockMachine extends BlockMultiID {
     		 return new GTTileEntitySmallBuffer();
     	 }
     	 
-    	 if (this == GTBlocks.largeBuffer) 
+    	 else if (this == GTBlocks.largeBuffer) 
     	 {
     		 return new GTTileEntityLargeBuffer();
     	 }
     	 
-    	 if (this == GTBlocks.translocator) 
+    	 else if (this == GTBlocks.translocator) 
     	 {
     		 return new GTTileEntityTranslocator();
     	 }
     	 
-    	 if (this == GTBlocks.computerCube) 
+    	 else if (this == GTBlocks.computerCube) 
     	 {
     		 return new GTTileEntityComputerCube();
     	 }
     	 
-    	 if (this == GTBlocks.computerCube) 
-    	 {
-    		 return new GTTileEntityComputerCube();
-    	 }
-    	 
-    	 if (this == GTBlocks.industrialCentrifuge) 
+    	 else if (this == GTBlocks.industrialCentrifuge) 
     	 {
     		 return new GTTileEntityIndustrialCentrifuge();
     	 }
     	 
-    	 return new TileEntityBlock();
+    	 else 
+    	 {
+    		 return new TileEntityBlock();
+    	 }
     }
 
     @Override

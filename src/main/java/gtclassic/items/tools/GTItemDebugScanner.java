@@ -52,12 +52,12 @@ public class GTItemDebugScanner extends ItemBatteryBase implements IEUReader {
 		
 		IC2.platform.messagePlayer(player,"-=={ "+player.getDisplayNameString()+" }==-");
 		IC2.platform.messagePlayer(player, state.getBlock().toString());
-		IC2.platform.messagePlayer(player, player.getPosition().toString());
 		
 		if (tileEntity instanceof TileEntityBlock) {
 			TileEntityBlock te = (TileEntityBlock) tileEntity;
 			IC2.platform.messagePlayer(player,"Active=" + te.getActive());
 			IC2.platform.messagePlayer(player,"Facing=" + te.getFacing());
+			IC2.platform.messagePlayer(player,"" + te.getPos().toString());
 		}
 		
 		if (tileEntity instanceof TileEntityElecMachine) {
