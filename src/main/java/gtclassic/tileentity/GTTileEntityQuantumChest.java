@@ -14,6 +14,7 @@ import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -21,7 +22,7 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 
 	public GTTileEntityQuantumChest() 
 	{
-		super(1);
+		super(3);
 	}
 	
 	@Override
@@ -47,6 +48,12 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 	}
 	
 	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) 
+	{
+		return false;
+	}
+	
+	@Override
 	public boolean canRemoveBlock(EntityPlayer player) 
 	{
 		return true;
@@ -56,10 +63,11 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
     protected void addSlots(InventoryHandler handler) 
 	{
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerDefaultSlotAccess(AccessRule.Both, 0);
+		handler.registerDefaultSlotAccess(AccessRule.Import, 0);
+		handler.registerDefaultSlotAccess(AccessRule.Export, 1);
         handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
         handler.registerSlotType(SlotType.Input, 0);
-        handler.registerSlotType(SlotType.Output, 0);
+        handler.registerSlotType(SlotType.Output, 1);
     }
 	
 	@Override

@@ -62,6 +62,11 @@ public class GTBlockMachine extends BlockMultiID {
     	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".buffer"));
     	}
     	
+    	else if (this == GTBlocks.quantumChest)
+    	{
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".quantumchest"));
+    	}
+    	
     	else if (this == GTBlocks.computerCube)
     	{
     	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".computer"));
