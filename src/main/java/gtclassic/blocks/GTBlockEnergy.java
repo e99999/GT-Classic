@@ -90,28 +90,30 @@ public class GTBlockEnergy extends BlockMultiID {
     		return Ic2Icons.getTextures("gtclassic_lightningrod");
    	 	}
    	 
-   	 	if (this == GTBlocks.fusionReactor) 
+   	 	else if (this == GTBlocks.fusionReactor)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_fusionreactor");
    	 	}
    	 
    	 	//Storage
-   	 	if (this == GTBlocks.LESU) 
+   	 	else if (this == GTBlocks.LESU)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_lapotronicenergysu");
    	 	}
    	 
-   	 	if (this == GTBlocks.IESU) 
+   	 	else if (this == GTBlocks.IESU)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");
    	 	}
    	 	
-   	 	if (this == GTBlocks.AESU) 
+   	 	else if (this == GTBlocks.AESU)
 	 	{
    	 		return Ic2Icons.getTextures("gtclassic_adjustableenergysu");
 	 	}
-    	
-    	return Ic2Icons.getTextures("gtclassic_builder");
+    	else{
+            return Ic2Icons.getTextures("gtclassic_builder");
+        }
+
     }
     
     @Override
