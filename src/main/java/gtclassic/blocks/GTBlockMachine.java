@@ -37,7 +37,11 @@ public class GTBlockMachine extends BlockMultiID {
         COMPUTERCUBE,
         AUTOCRAFTER,
         QUANTUMCHEST,
-        INDUSTRIALCENTRIFUGE;
+        INDUSTRIALCENTRIFUGE,
+		MATTERFABRICATOR,
+		PLAYERDETECTOR,
+		UUMASSEMBLER,
+		SONICTRON;
     }
 
     GTBlockMachineVariants variant;

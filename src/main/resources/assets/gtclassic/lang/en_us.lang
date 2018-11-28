@@ -12,6 +12,10 @@ tile.gtclassic.autocrafter.name=Electric Autocrafter
 tile.gtclassic.quantumchest.name=Quantum Chest
 tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
+tile.gtclassic.matterfabricator.name=Matter Fabricator
+tile.gtclassic.playerdetector.name=Player Detector
+tile.gtclassic.uumassembler.name=UU Matter Assembler
+tile.gtclassic.sonictron.name=Sonictron
 
 #energy blocks
 tile.gtclassic.lightningrod.name=Lightning Rod
@@ -19,6 +23,7 @@ tile.gtclassic.fusionreactor.name=Fusion Reactor
 tile.gtclassic.lesu.name=Lapotronic Energy Storage Unit
 tile.gtclassic.iesu.name=Interdimensional Energy Storage Unit
 tile.gtclassic.aesu.name=Adjustable Energy Storage Unit
+tile.gtclassic.supercondensator.name=Super Condensator
 
 #blocks
 tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone

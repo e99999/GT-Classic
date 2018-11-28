@@ -63,14 +63,19 @@ public class GTBlocks {
     autoCrafter = new GTBlockMachine(GTBlockMachineVariants.AUTOCRAFTER),
     quantumChest = new GTBlockMachine(GTBlockMachineVariants.QUANTUMCHEST),
     computerCube = new GTBlockMachine(GTBlockMachineVariants.COMPUTERCUBE),
-    industrialCentrifuge = new GTBlockMachine(GTBlockMachineVariants.INDUSTRIALCENTRIFUGE);
+    industrialCentrifuge = new GTBlockMachine(GTBlockMachineVariants.INDUSTRIALCENTRIFUGE),
+    matterFabricator = new GTBlockMachine(GTBlockMachineVariants.MATTERFABRICATOR),
+    playerDetector = new GTBlockMachine(GTBlockMachineVariants.PLAYERDETECTOR),
+    uuMatterAssembler = new GTBlockMachine(GTBlockMachineVariants.UUMASSEMBLER),
+    sonictron = new GTBlockMachine(GTBlockMachineVariants.SONICTRON);
 	
 	public static final GTBlockEnergy
 	lightningRod = new GTBlockEnergy(GTBlockEnergyVariants.LIGHTNINGROD),
 	fusionReactor = new GTBlockEnergy(GTBlockEnergyVariants.FUSIONREACTOR),
 	LESU = new GTBlockEnergy(GTBlockEnergyVariants.LESU),
 	IESU = new GTBlockEnergy(GTBlockEnergyVariants.IESU),
-	AESU = new GTBlockEnergy(GTBlockEnergyVariants.AESU);
+	AESU = new GTBlockEnergy(GTBlockEnergyVariants.AESU),
+    superCondensator = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDENSATOR);
 	
 	public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
 	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
@@ -102,6 +107,10 @@ public class GTBlocks {
             quantumChest,
             computerCube,
             industrialCentrifuge,
+            matterFabricator,
+            playerDetector,
+            uuMatterAssembler,
+            sonictron,
             
             
             lightningRod,
@@ -109,6 +118,7 @@ public class GTBlocks {
             LESU,
             IESU,
             AESU,
+            superCondensator,
             
             toxicPortalFrame,
             toxicPortal,

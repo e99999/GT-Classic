@@ -27,7 +27,10 @@ public class GTBlockEnergy extends BlockMultiID {
         //Generators
     	LIGHTNINGROD,
     	FUSIONREACTOR, 
-        
+
+        //Transformer
+        SUPERCONDENSATOR,
+
     	//Storage
     	LESU,
         IESU,
