@@ -121,7 +121,16 @@ public class GTBlockMachine extends BlockMultiID {
     	 {
     		 return new GTTileEntityIndustrialCentrifuge();
     	 }
-    	 
+
+		 else if (this == GTBlocks.industrialCentrifuge)
+		 {
+			 return new GTTileEntityIndustrialCentrifuge();
+		 }
+		 else if (this == GTBlocks.industrialCentrifuge)
+		 {
+			 return new GTTileEntityIndustrialCentrifuge();
+		 }
+
     	 else 
     	 {
     		 return new TileEntityBlock();
@@ -166,6 +175,26 @@ public class GTBlockMachine extends BlockMultiID {
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_industrialcentrifuge");
    	 	}
+
+		else if (this == GTBlocks.matterFabricator)
+		{
+			return Ic2Icons.getTextures("gtclassic_matterfabricator");
+		}
+
+		else if (this == GTBlocks.playerDetector)
+		{
+			return Ic2Icons.getTextures("gtclassic_playerdetector");
+		}
+
+		else if (this == GTBlocks.uuMatterAssembler)
+		{
+			return Ic2Icons.getTextures("gtclassic_uumatterassembler");
+		}
+
+		else if (this == GTBlocks.sonictron)
+		{
+			return Ic2Icons.getTextures("gtclassic_sonictron");
+		}
 
    	 	else {
 			return Ic2Icons.getTextures("gtclassic_builder");

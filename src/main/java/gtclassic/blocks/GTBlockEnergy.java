@@ -97,6 +97,10 @@ public class GTBlockEnergy extends BlockMultiID {
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_fusionreactor");
    	 	}
+
+   	 	else if (this == GTBlocks.superCondensator){
+            return Ic2Icons.getTextures("gtclassic_supercondensator");
+        }
    	 
    	 	//Storage
    	 	else if (this == GTBlocks.LESU)
