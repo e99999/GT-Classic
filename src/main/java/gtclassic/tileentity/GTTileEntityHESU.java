@@ -1,14 +1,17 @@
 package gtclassic.tileentity;
 
+import gtclassic.GTClassic;
 import gtclassic.container.GTContainerHESU;
+import gtclassic.util.GTLang;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import ic2.core.platform.lang.storage.Ic2BlockLang;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class GTTileEntityHESU extends TileEntityElectricBlock {
-    public GTTileEntityHESU() 
+	
+	public GTTileEntityHESU() 
     {
         super(4, 2048, 100000000);
     }
@@ -33,8 +36,7 @@ public class GTTileEntityHESU extends TileEntityElectricBlock {
 	}
 
     public LocaleComp getBlockName() {
-    	// TODO make GT Classic Block Lang
-    	return Ic2BlockLang.mfsu;
+    	return GTLang.hfsu;
 	}
 
 	@Override
