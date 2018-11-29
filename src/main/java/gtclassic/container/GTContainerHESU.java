@@ -29,7 +29,7 @@ public class GTContainerHESU extends ContainerTileComponent<GTTileEntityHESU> {
         }
 
         for(int i = 0; i < 4; ++i) {
-            this.addSlotToContainer(new SlotArmor(player, 3 - i, VALID_EQUIPMENT_SLOTS[i], 8, 8 + i * 18));
+            this.addSlotToContainer(new SlotArmor(player, 3 - i, VALID_EQUIPMENT_SLOTS[i], 152, 5 + i * 18));
         }
 
         this.addPlayerInventory(player);
