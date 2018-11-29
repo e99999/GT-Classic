@@ -9,6 +9,7 @@ import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
 import gtclassic.tileentity.GTTileEntityComputerCube;
+import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeBuffer;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
@@ -148,6 +149,8 @@ public class GTBlocks {
         GameRegistry.registerTileEntity(GTTileEntityTranslocator.class, new ResourceLocation(GTClassic.MODID, "tileTranslocator"));
         GameRegistry.registerTileEntity(GTTileEntityQuantumChest.class, new ResourceLocation(GTClassic.MODID, "tileQuantumChest"));
         GameRegistry.registerTileEntity(GTTileEntityComputerCube.class, new ResourceLocation(GTClassic.MODID, "tileEntityComputerCube"));
+        
+        GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
     }
     
     private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {

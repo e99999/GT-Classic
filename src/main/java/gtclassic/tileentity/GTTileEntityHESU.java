@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 public class GTTileEntityHESU extends TileEntityElectricBlock {
     public GTTileEntityHESU() 
     {
-        super(4, 8192, 160000000);
+        super(4, 2048, 100000000);
     }
 
     @Override
@@ -20,13 +20,14 @@ public class GTTileEntityHESU extends TileEntityElectricBlock {
 
 
     @Override
-    public int getProcessRate() 
+    public int getProcessRate()
     {
-        return 512;
+        return 128;
     }
     
     @Override
-    public double getWrenchDropRate() {
+    public double getWrenchDropRate() 
+    {
 		return 0.70D;
 	}
 
@@ -39,12 +40,12 @@ public class GTTileEntityHESU extends TileEntityElectricBlock {
     @Override
     public String getName() 
     {
-        return "HESU";
+        return "H.E.S.U.";
     }
 
     @Override
     public boolean hasCustomName() 
     {
-        return true;
+        return false;
     }
 }
