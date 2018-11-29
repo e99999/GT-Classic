@@ -3,16 +3,23 @@ package gtclassic.container;
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.util.guicomponents.GTGuiCompEnergyStorage;
+import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotArmor;
 import ic2.core.inventory.slots.SlotCharge;
 import ic2.core.inventory.slots.SlotDischarge;
+import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.lang.components.special.DisplayLocaleComp;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static ic2.core.block.wiring.container.ContainerElectricBlock.VALID_EQUIPMENT_SLOTS;
+
+import java.awt.Container;
 
 public class GTContainerHESU extends ContainerTileComponent<GTTileEntityHESU> {
 	
@@ -20,9 +27,10 @@ public class GTContainerHESU extends ContainerTileComponent<GTTileEntityHESU> {
     
 	public GTContainerHESU(InventoryPlayer player, GTTileEntityHESU tile)
     {
-        super(tile);
-        this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 0, 128, 50)); //battery
-        this.addSlotToContainer(new SlotCharge(tile, tile.tier, 1, 128, 14));
+		
+		super(tile);
+        this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50)); //battery
+        this.addSlotToContainer(new SlotCharge(tile, tile.tier, 0, 128, 14));
 
         for(int i = 0; i < 4; ++i) 
         {
@@ -45,6 +53,14 @@ public class GTContainerHESU extends ContainerTileComponent<GTTileEntityHESU> {
     	return 2;
     }
     
+    @Override
+    @SideOnly(Side.CLIENT)
+	public void onGuiLoaded(GuiIC2 gui) 
+    {
+    	gui.disableName();
+    	gui.dissableInvName();
+	}
+
     @Override
     protected boolean moveIntoInventoryInverted() 
     {

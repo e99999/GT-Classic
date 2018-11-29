@@ -1,13 +1,15 @@
 package gtclassic.tileentity;
 
 import gtclassic.container.GTContainerHESU;
+import gtclassic.util.GTLang;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.entity.player.EntityPlayer;
 
-
 public class GTTileEntityHESU extends TileEntityElectricBlock {
-    public GTTileEntityHESU() 
+	
+	public GTTileEntityHESU() 
     {
         super(4, 2048, 100000000);
     }
@@ -17,7 +19,6 @@ public class GTTileEntityHESU extends TileEntityElectricBlock {
     {
         return new GTContainerHESU(player.inventory, this);
     }
-
 
     @Override
     public int getProcessRate()
@@ -31,21 +32,8 @@ public class GTTileEntityHESU extends TileEntityElectricBlock {
 		return 0.70D;
 	}
 
-    @Override
-    public void update() 
+    public LocaleComp getBlockName() 
     {
-    	//needed for construction
-    }
-
-    @Override
-    public String getName() 
-    {
-        return "H.E.S.U.";
-    }
-
-    @Override
-    public boolean hasCustomName() 
-    {
-        return false;
-    }
+    	return GTLang.hfsu;
+	}
 }

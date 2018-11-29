@@ -3,10 +3,13 @@ package gtclassic.container;
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityLargeBuffer;
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerLargeBuffer extends ContainerTileComponent<GTTileEntityLargeBuffer> {
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/electricbufferlarge.png");
@@ -20,6 +23,13 @@ public class GTContainerLargeBuffer extends ContainerTileComponent<GTTileEntityL
 					this.addSlotToContainer(new SlotBase(tile, x + y * 9, 8 + x * 18, 5 + y * 18));
 				}
 		this.addPlayerInventory(player, 0, 0);
+	}
+	
+	@Override
+    @SideOnly(Side.CLIENT)
+	public void onGuiLoaded(GuiIC2 gui) 
+    {
+    	gui.dissableInvName();
 	}
 	
 	@Override

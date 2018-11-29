@@ -3,10 +3,13 @@ package gtclassic.container;
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityTranslocator;
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerTranslocator extends ContainerTileComponent<GTTileEntityTranslocator> {
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/translocator.png");
@@ -24,6 +27,13 @@ public class GTContainerTranslocator extends ContainerTileComponent<GTTileEntity
 		this.addSlotToContainer(new SlotBase(tile, 7, 80, 40));
 		this.addSlotToContainer(new SlotBase(tile, 8, 97, 40));
 		this.addPlayerInventory(player, 0, 0);
+	}
+	
+	@Override
+    @SideOnly(Side.CLIENT)
+	public void onGuiLoaded(GuiIC2 gui) 
+    {
+    	gui.dissableInvName();
 	}
 	
 	@Override
