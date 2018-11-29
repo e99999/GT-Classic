@@ -1,6 +1,7 @@
 package gtclassic.blocks;
 
 import gtclassic.GTClassic;
+import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -34,7 +35,7 @@ public class GTBlockEnergy extends BlockMultiID {
     	//Storage
     	LESU,
         IESU,
-        AESU; 
+        HESU;
     }
 
     GTBlockEnergyVariants variant;
@@ -60,6 +61,9 @@ public class GTBlockEnergy extends BlockMultiID {
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
+        if (this == GTBlocks.HESU){
+            return new GTTileEntityHESU(4, 2048,100000000);
+        }
         return new TileEntityBlock();
     }
     
@@ -113,9 +117,9 @@ public class GTBlockEnergy extends BlockMultiID {
    	 		return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");
    	 	}
    	 	
-   	 	else if (this == GTBlocks.AESU)
+   	 	else if (this == GTBlocks.HESU)
 	 	{
-   	 		return Ic2Icons.getTextures("gtclassic_adjustableenergysu");
+   	 		return Ic2Icons.getTextures("gtclassic_hugeenergysu");
 	 	}
     	else{
             return Ic2Icons.getTextures("gtclassic_builder");

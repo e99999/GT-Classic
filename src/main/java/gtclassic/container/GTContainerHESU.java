@@ -21,15 +21,15 @@ import static ic2.core.block.wiring.container.ContainerElectricBlock.VALID_EQUIP
 public class GTContainerHESU extends ContainerTileComponent<GTTileEntityHESU> {
     public GTContainerHESU(InventoryPlayer player, GTTileEntityHESU tile){
         super(tile);
-        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 0, 128, 14)); //battery
-        this.addSlotToContainer(new SlotCharge(tile, 2147483647, 1, 128, 50));
+        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 0, 128, 50)); //battery
+        this.addSlotToContainer(new SlotCharge(tile, 2147483647, 1, 128, 14));
 
         if (Loader.isModLoaded("baubles")) {
             this.loadBaubles(player.player);
         }
 
         for(int i = 0; i < 4; ++i) {
-            this.addSlotToContainer(new SlotArmor(player, 3 - i, VALID_EQUIPMENT_SLOTS[i], 8, 8 + i * 18));
+            this.addSlotToContainer(new SlotArmor(player, 3 - i, VALID_EQUIPMENT_SLOTS[i], 152, 5 + i * 18));
         }
 
         this.addPlayerInventory(player);

@@ -22,7 +22,7 @@ tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.fusionreactor.name=Fusion Reactor
 tile.gtclassic.lesu.name=Lapotronic Energy Storage Unit
 tile.gtclassic.iesu.name=Interdimensional Energy Storage Unit
-tile.gtclassic.aesu.name=Adjustable Energy Storage Unit
+tile.gtclassic.hesu.name=HESU
 tile.gtclassic.supercondensator.name=Super Condensator
 
 #blocks

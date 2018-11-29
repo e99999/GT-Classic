@@ -122,15 +122,6 @@ public class GTBlockMachine extends BlockMultiID {
     		 return new GTTileEntityIndustrialCentrifuge();
     	 }
 
-		 else if (this == GTBlocks.industrialCentrifuge)
-		 {
-			 return new GTTileEntityIndustrialCentrifuge();
-		 }
-		 else if (this == GTBlocks.industrialCentrifuge)
-		 {
-			 return new GTTileEntityIndustrialCentrifuge();
-		 }
-
     	 else 
     	 {
     		 return new TileEntityBlock();
