@@ -62,7 +62,7 @@ public class GTBlockEnergy extends BlockMultiID {
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
         if (this == GTBlocks.HESU){
-            return new GTTileEntityHESU(4, 2048,100000000);
+            return new GTTileEntityHESU();
         }
         return new TileEntityBlock();
     }
