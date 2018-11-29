@@ -1,4 +1,4 @@
-package gtclassic.items.tools;
+package gtclassic.items.energy;
 
 import gtclassic.GTClassic;
 import ic2.api.classic.item.IEUReader;
@@ -26,51 +26,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemDebugScanner extends ItemBatteryBase implements IEUReader {
-    public GTItemDebugScanner() {
+public class GTItemZeroPointModule extends ItemBatteryBase {
+    public GTItemZeroPointModule() {
     	super(0);
         this.setRightClick();
-    	this.setRegistryName("debug_scanner");
-        this.setUnlocalizedName(GTClassic.MODID + ".debugScanner");
+    	this.setRegistryName("zero_point_module");
+        this.setUnlocalizedName(GTClassic.MODID + ".zeroPointModule");
         this.setCreativeTab(GTClassic.creativeTabGT);
-        this.maxCharge = 1000000000;
-        this.transferLimit = 1000;
-        this.tier = 1;
+        this.maxCharge = Integer.MAX_VALUE;
+        this.transferLimit = 131072;
+        this.tier = 6;
         this.provider = true;
         this.setCreativeTab(GTClassic.creativeTabGT);
-    }
-
-    @Override
-    public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
-			float hitY, float hitZ, EnumHand hand) {
-    	if (!IC2.platform.isSimulating()) {
-			return EnumActionResult.PASS;
-		} else {
-
-		TileEntity tileEntity = world.getTileEntity(pos);
-		IBlockState state = world.getBlockState(pos);
-		
-		IC2.platform.messagePlayer(player,"-=={ "+player.getDisplayNameString()+" }==-");
-		IC2.platform.messagePlayer(player, state.getBlock().toString());
-		
-		if (tileEntity instanceof TileEntityBlock) {
-			TileEntityBlock te = (TileEntityBlock) tileEntity;
-			IC2.platform.messagePlayer(player,"Active=" + te.getActive());
-			IC2.platform.messagePlayer(player,"Facing=" + te.getFacing());
-			IC2.platform.messagePlayer(player,"" + te.getPos().toString());
-		}
-		
-		if (tileEntity instanceof TileEntityElecMachine) {
-			TileEntityElecMachine te3 = (TileEntityElecMachine) tileEntity;
-			IC2.platform.messagePlayer(player, "Tier=" + te3.tier);
-			IC2.platform.messagePlayer(player, "Energy:" + te3.energy);
-			IC2.platform.messagePlayer(player, "Max Input=" + te3.maxInput);
-			IC2.platform.messagePlayer(player, "Max Energy=" + te3.maxEnergy);
-		}
-		
-		IC2.platform.messagePlayer(player, "Now get back to work!");
-		return EnumActionResult.SUCCESS;
-		}
     }
     
     @Override
@@ -103,11 +70,6 @@ public class GTItemDebugScanner extends ItemBatteryBase implements IEUReader {
     public TextureAtlasSprite getTexture(ItemStack item) {
         return Ic2Icons.getTextures("gtclassic_items")[55];
     }
-
-	@Override
-	public boolean isEUReader(ItemStack var1) {
-		return true;
-	}
 	
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
