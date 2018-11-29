@@ -6,6 +6,7 @@ import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,9 +15,11 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -29,10 +32,6 @@ import java.util.Random;
 public class GTBlockEnergy extends BlockMultiID {
     public enum GTBlockEnergyVariants
     {
-        //Generators
-    	LIGHTNINGROD,
-    	FUSIONREACTOR, 
-
         //Transformer
         SUPERCONDENSATOR,
 
@@ -109,18 +108,8 @@ public class GTBlockEnergy extends BlockMultiID {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-    	//Generators
-    	if (this == GTBlocks.lightningRod) 
-   	 	{
-    		return Ic2Icons.getTextures("gtclassic_lightningrod");
-   	 	}
-   	 
-   	 	else if (this == GTBlocks.fusionReactor)
-   	 	{
-   	 		return Ic2Icons.getTextures("gtclassic_fusionreactor");
-   	 	}
-
-   	 	else if (this == GTBlocks.superCondensator){
+    	if (this == GTBlocks.superCondensator)
+    	{
             return Ic2Icons.getTextures("gtclassic_supercondensator");
         }
    	 
@@ -139,7 +128,8 @@ public class GTBlockEnergy extends BlockMultiID {
 	 	{
    	 		return Ic2Icons.getTextures("gtclassic_hugeenergysu");
 	 	}
-    	else{
+    	else
+    	{
             return Ic2Icons.getTextures("gtclassic_builder");
         }
 
@@ -169,5 +159,31 @@ public class GTBlockEnergy extends BlockMultiID {
     {
         return getBlockState().getValidStates();
     }
+    
+    @Deprecated
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof TileEntityElectricBlock) {
+			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
+		} else {
+			return super.getStrongPower(blockState, blockAccess, pos, side);
+		}
+	}
+
+	@Deprecated
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof TileEntityElectricBlock) {
+			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
+		} else {
+			return super.getWeakPower(blockState, blockAccess, pos, side);
+		}
+	}
+
+	@Deprecated
+	public boolean canProvidePower(IBlockState state) {
+		int meta = this.getMetaFromState(state);
+		return meta >= 0 && meta <= 2 ? true : super.canProvidePower(state);
+	}
 
 }
