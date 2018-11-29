@@ -2,6 +2,7 @@ package gtclassic.blocks;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityHESU;
+import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -63,8 +64,12 @@ public class GTBlockEnergy extends BlockMultiID {
     {
         if (this == GTBlocks.HESU){
             return new GTTileEntityHESU();
+        }else if (this == GTBlocks.superCondensator){
+            return new GTTileEntitySuperCondensator();
+        }else{
+            return new TileEntityBlock();
         }
-        return new TileEntityBlock();
+
     }
     
     @SideOnly(Side.CLIENT)
