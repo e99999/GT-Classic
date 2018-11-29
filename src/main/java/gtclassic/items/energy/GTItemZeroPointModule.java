@@ -14,6 +14,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
@@ -27,7 +28,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemZeroPointModule extends ItemBatteryBase {
-    public GTItemZeroPointModule() {
+    
+	public GTItemZeroPointModule() 
+    {
     	super(0);
         this.setRightClick();
     	this.setRegistryName("zero_point_module");
@@ -41,39 +44,52 @@ public class GTItemZeroPointModule extends ItemBatteryBase {
     }
     
     @Override
-    public int getItemStackLimit(ItemStack stack) {
+    public int getItemStackLimit(ItemStack stack) 
+    {
         return 1;
     }
 
     @Override
-    public boolean isDamaged(ItemStack stack) {
+    public boolean isDamaged(ItemStack stack) 
+    {
         return true;
     }
 
     @Override
-    public boolean showDurabilityBar(ItemStack stack) {
+    public boolean showDurabilityBar(ItemStack stack) 
+    {
         return false;
     }
 
     @Override
-    public boolean wantsToPlay(ItemStack stack) {
+    public boolean wantsToPlay(ItemStack stack) 
+    {
         return true;
     }
 
     @Override
-    public ResourceLocation createSound(ItemStack stack) {
+    public ResourceLocation createSound(ItemStack stack) 
+    {
         return Ic2Sounds.batteryUse;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTexture(ItemStack item) {
+    public TextureAtlasSprite getTexture(ItemStack item) 
+    {
         return Ic2Icons.getTextures("gtclassic_items")[55];
     }
+    
+    @Override
+	public EnumRarity getRarity(ItemStack thisItem) {
+		return EnumRarity.EPIC;
+	}
 	
 	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		if (this.isInCreativeTab(tab)) {
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) 
+	{
+		if (this.isInCreativeTab(tab)) 
+		{
 			ItemStack full = new ItemStack(this, 1, 0);
 			ElectricItem.manager.charge(full, 2.147483647E9D, Integer.MAX_VALUE, true, false);
 			items.add(full);

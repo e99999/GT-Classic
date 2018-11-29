@@ -30,9 +30,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemCreditAlk extends Item implements IStaticTexturedItem {
 
-    //basic information about this item
-	public GTItemCreditAlk() {
-		
+	public GTItemCreditAlk() 
+	{
 		this.maxStackSize = 1;
 		this.setMaxDamage(64);
 		setRegistryName("alk_credit");      
@@ -41,13 +40,15 @@ public class GTItemCreditAlk extends Item implements IStaticTexturedItem {
     }
 
 	@Override
-	public List<Integer> getValidVariants() {
+	public List<Integer> getValidVariants() 
+	{
 		return Arrays.asList(0);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getTexture(int i) {
+	public TextureAtlasSprite getTexture(int i) 
+	{
 		return Ic2Icons.getTextures("gtclassic_items")[63];
 	}
     
@@ -59,26 +60,32 @@ public class GTItemCreditAlk extends Item implements IStaticTexturedItem {
     }
     
     @Override
-	public EnumRarity getRarity(ItemStack thisItem) {
-		return EnumRarity.EPIC;
+	public EnumRarity getRarity(ItemStack thisItem) 
+    {
+		return EnumRarity.RARE;
 	}
     
     @Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
+    {
     	tooltip.add(TextFormatting.GREEN + I18n.format("tooltip."+ GTClassic.MODID +".alkcredit"));
     	tooltip.add(stack.getMaxDamage() - stack.getItemDamage()+"/64");
     	
     }
     
     @Override
-	public EnumActionResult onItemUse(EntityPlayer entity, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY,
-			float hitZ) {
+	public EnumActionResult onItemUse(EntityPlayer entity, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) 
+    {
 		pos = pos.offset(facing);
 		ItemStack itemstack = entity.getHeldItem(hand);
-		if (!entity.canPlayerEdit(pos, facing, itemstack)) {
+		if (!entity.canPlayerEdit(pos, facing, itemstack)) 
+		{
 			return EnumActionResult.FAIL;
-		} else {
-			if (world.isAirBlock(pos)) {
+		}
+		else 
+		{
+			if (world.isAirBlock(pos)) 
+			{
 				world.playSound(entity, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
 				GTBlocks.toxicPortal.trySpawnPortal(world, pos);
 			}
