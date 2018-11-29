@@ -127,6 +127,7 @@ tooltip.gtclassic.buffer=A directable Hopper with an inbuilt Energy Conduit!
 tooltip.gtclassic.quantumchest=2 milliards, uhhm I mean billions, items to store here!
 tooltip.gtclassic.computer=One stop shop utility & information
 tooltip.gtclassic.centrifuge=And round and round and round it goes
+tooltip.gtclassic.superCondensator=In: 65535 EU, Out: 32768 EU 4x
 
 tooltip.gtclassic.drill=No frills world destroyer!
 tooltip.gtclassic.saw=Makes trees disappear

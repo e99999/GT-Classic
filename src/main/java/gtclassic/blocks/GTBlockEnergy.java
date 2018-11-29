@@ -11,6 +11,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -68,6 +71,16 @@ public class GTBlockEnergy extends BlockMultiID {
             return new GTTileEntitySuperCondensator();
         }else{
             return new TileEntityBlock();
+        }
+
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        if (this == GTBlocks.superCondensator)
+        {
+            tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".superCondensator"));
         }
 
     }
