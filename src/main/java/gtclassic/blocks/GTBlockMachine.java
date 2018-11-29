@@ -37,7 +37,11 @@ public class GTBlockMachine extends BlockMultiID {
         COMPUTERCUBE,
         AUTOCRAFTER,
         QUANTUMCHEST,
-        INDUSTRIALCENTRIFUGE;
+        INDUSTRIALCENTRIFUGE,
+		MATTERFABRICATOR,
+		PLAYERDETECTOR,
+		UUMASSEMBLER,
+		SONICTRON;
     }
 
     GTBlockMachineVariants variant;
@@ -117,7 +121,16 @@ public class GTBlockMachine extends BlockMultiID {
     	 {
     		 return new GTTileEntityIndustrialCentrifuge();
     	 }
-    	 
+
+		 else if (this == GTBlocks.industrialCentrifuge)
+		 {
+			 return new GTTileEntityIndustrialCentrifuge();
+		 }
+		 else if (this == GTBlocks.industrialCentrifuge)
+		 {
+			 return new GTTileEntityIndustrialCentrifuge();
+		 }
+
     	 else 
     	 {
     		 return new TileEntityBlock();
@@ -133,37 +146,60 @@ public class GTBlockMachine extends BlockMultiID {
     		return Ic2Icons.getTextures("gtclassic_smallbuffer");
    	 	}
    	 
-   	 	if (this == GTBlocks.largeBuffer)
+   	 	else if (this == GTBlocks.largeBuffer)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_largebuffer");
    	 	}
    	 
-   	 	if (this == GTBlocks.translocator)
+   	 	else if (this == GTBlocks.translocator)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_translocator");
    	 	}
    	 	
-   	 	if (this == GTBlocks.autoCrafter)
+   	 	else if (this == GTBlocks.autoCrafter)
 	 	{
 	 		return Ic2Icons.getTextures("gtclassic_autocrafter");
 	 	}
    	 	
-   	 	if (this == GTBlocks.quantumChest)
+   	 	else if (this == GTBlocks.quantumChest)
 	 	{
 	 		return Ic2Icons.getTextures("gtclassic_quantumchest");
 	 	}
    	 
-   	 	if (this == GTBlocks.computerCube)
+   	 	else if (this == GTBlocks.computerCube)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_computercube");
    	 	}
    	 	
-   	 	if (this == GTBlocks.industrialCentrifuge)
+   	 	else if (this == GTBlocks.industrialCentrifuge)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_industrialcentrifuge");
    	 	}
-    	
-    	return Ic2Icons.getTextures("gtclassic_builder");
+
+		else if (this == GTBlocks.matterFabricator)
+		{
+			return Ic2Icons.getTextures("gtclassic_matterfabricator");
+		}
+
+		else if (this == GTBlocks.playerDetector)
+		{
+			return Ic2Icons.getTextures("gtclassic_playerdetector");
+		}
+
+		else if (this == GTBlocks.uuMatterAssembler)
+		{
+			return Ic2Icons.getTextures("gtclassic_uumatterassembler");
+		}
+
+		else if (this == GTBlocks.sonictron)
+		{
+			return Ic2Icons.getTextures("gtclassic_sonictron");
+		}
+
+   	 	else {
+			return Ic2Icons.getTextures("gtclassic_builder");
+		}
+
     }
     
     @Override

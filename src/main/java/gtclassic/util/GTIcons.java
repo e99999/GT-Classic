@@ -21,12 +21,17 @@ public class GTIcons {
         addSprite(new Sprites.SpriteData("gtclassic_quantumchest", "gtclassic:textures/sprites/quantumchest.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_computercube", "gtclassic:textures/sprites/computercube.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_industrialcentrifuge", "gtclassic:textures/sprites/industrialcentrifuge.png", new Sprites.SpriteInfo(1, 12)));
-        
+        addSprite(new Sprites.SpriteData("gtclassic_matterfabricator", "gtclassic:textures/sprites/matterfabricator.png", new Sprites.SpriteInfo(1, 12)));
+        addSprite(new Sprites.SpriteData("gtclassic_playerdetector", "gtclassic:textures/sprites/playerdetector.png", new Sprites.SpriteInfo(1, 12)));
+        addSprite(new Sprites.SpriteData("gtclassic_uumatterassembler", "gtclassic:textures/sprites/uumassembler.png", new Sprites.SpriteInfo(1, 12)));
+        addSprite(new Sprites.SpriteData("gtclassic_sonictron", "gtclassic:textures/sprites/sonictron.png", new Sprites.SpriteInfo(1, 12)));
+
         addSprite(new Sprites.SpriteData("gtclassic_lapotronicenergysu", "gtclassic:textures/sprites/lapotronicenergysu.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_adjustableenergysu", "gtclassic:textures/sprites/adjustableenergysu.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_interdimensionalenergysu", "gtclassic:textures/sprites/interdimensionalenergysu.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_lightningrod", "gtclassic:textures/sprites/lightningrod.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_fusionreactor", "gtclassic:textures/sprites/fusionreactor.png", new Sprites.SpriteInfo(1, 12)));
+        addSprite(new Sprites.SpriteData("gtclassic_supercondensator", "gtclassic:textures/sprites/supercondensator.png", new Sprites.SpriteInfo(1, 12)));
         
         
         addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 0, 16, 8));
@@ -40,12 +45,16 @@ public class GTIcons {
         addTextureEntry(new Sprites.TextureEntry("gtclassic_quantumchest", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_computercube", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_industrialcentrifuge", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_matterfabricator", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_playerdetector", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_uumatterassembler", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_sonictron", 0, 0, 1, 12));
         
         addTextureEntry(new Sprites.TextureEntry("gtclassic_lapotronicenergysu", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_adjustableenergysu", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_interdimensionalenergysu", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_lightningrod", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_fusionreactor", 0, 0, 1, 12));
-        
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_supercondensator", 0, 0, 1, 12));
     }
 }
