@@ -37,7 +37,11 @@ public class GTTileEntityHESU extends TileEntityElectricBlock {
     	return Ic2BlockLang.mfsu;
 	}
 
-	
+	@Override
+	public void update() 
+	{
+		// TODO Auto-generated method stub
+	}
 
 	@Override
 	public String getName() 
