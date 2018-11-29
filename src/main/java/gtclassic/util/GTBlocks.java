@@ -5,6 +5,7 @@ import gtclassic.blocks.*;
 import gtclassic.blocks.GTBlockCasing.GTBlockCasingVariants;
 import gtclassic.blocks.GTBlockMachine.GTBlockMachineVariants;
 import gtclassic.blocks.GTBlockEnergy.GTBlockEnergyVariants;
+import gtclassic.blocks.GTBlockGenerator.GTBlockGeneratorVariants;
 import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
@@ -71,12 +72,14 @@ public class GTBlocks {
     sonictron = new GTBlockMachine(GTBlockMachineVariants.SONICTRON);
 	
 	public static final GTBlockEnergy
-	lightningRod = new GTBlockEnergy(GTBlockEnergyVariants.LIGHTNINGROD),
-	fusionReactor = new GTBlockEnergy(GTBlockEnergyVariants.FUSIONREACTOR),
 	LESU = new GTBlockEnergy(GTBlockEnergyVariants.LESU),
 	IESU = new GTBlockEnergy(GTBlockEnergyVariants.IESU),
 	HESU = new GTBlockEnergy(GTBlockEnergyVariants.HESU),
     superCondensator = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDENSATOR);
+	
+	public static final GTBlockGenerator
+	fusionReactor = new GTBlockGenerator(GTBlockGeneratorVariants.FUSIONREACTOR),
+	lightningRod = new GTBlockGenerator(GTBlockGeneratorVariants.LIGHTNINGROD);
 	
 	public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
 	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
@@ -113,9 +116,8 @@ public class GTBlocks {
             uuMatterAssembler,
             sonictron,
             
-            
-            lightningRod,
             fusionReactor,
+            lightningRod,
             LESU,
             IESU,
             HESU,
