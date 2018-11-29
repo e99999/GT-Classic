@@ -16,7 +16,7 @@ public class GTTileEntityHESU extends TileEntityElectricBlock {
 
     @Override
     public ResourceLocation getTexture() {
-        return new ResourceLocation(GTClassic.MODID, "textures/gui/aesu.png");
+        return new ResourceLocation(GTClassic.MODID, "textures/gui/hesu.png");
     }
 
     @Override

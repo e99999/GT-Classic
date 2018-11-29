@@ -27,7 +27,7 @@ public class GTIcons {
         addSprite(new Sprites.SpriteData("gtclassic_sonictron", "gtclassic:textures/sprites/sonictron.png", new Sprites.SpriteInfo(1, 12)));
 
         addSprite(new Sprites.SpriteData("gtclassic_lapotronicenergysu", "gtclassic:textures/sprites/lapotronicenergysu.png", new Sprites.SpriteInfo(1, 12)));
-        addSprite(new Sprites.SpriteData("gtclassic_adjustableenergysu", "gtclassic:textures/sprites/adjustableenergysu.png", new Sprites.SpriteInfo(1, 12)));
+        addSprite(new Sprites.SpriteData("gtclassic_hugeenergysu", "gtclassic:textures/sprites/hugeenergysu.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_interdimensionalenergysu", "gtclassic:textures/sprites/interdimensionalenergysu.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_lightningrod", "gtclassic:textures/sprites/lightningrod.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_fusionreactor", "gtclassic:textures/sprites/fusionreactor.png", new Sprites.SpriteInfo(1, 12)));
@@ -51,7 +51,7 @@ public class GTIcons {
         addTextureEntry(new Sprites.TextureEntry("gtclassic_sonictron", 0, 0, 1, 12));
         
         addTextureEntry(new Sprites.TextureEntry("gtclassic_lapotronicenergysu", 0, 0, 1, 12));
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_adjustableenergysu", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_hugeenergysu", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_interdimensionalenergysu", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_lightningrod", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_fusionreactor", 0, 0, 1, 12));

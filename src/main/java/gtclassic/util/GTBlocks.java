@@ -74,7 +74,7 @@ public class GTBlocks {
 	fusionReactor = new GTBlockEnergy(GTBlockEnergyVariants.FUSIONREACTOR),
 	LESU = new GTBlockEnergy(GTBlockEnergyVariants.LESU),
 	IESU = new GTBlockEnergy(GTBlockEnergyVariants.IESU),
-	AESU = new GTBlockEnergy(GTBlockEnergyVariants.AESU),
+	HESU = new GTBlockEnergy(GTBlockEnergyVariants.HESU),
     superCondensator = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDENSATOR);
 	
 	public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
@@ -117,7 +117,7 @@ public class GTBlocks {
             fusionReactor,
             LESU,
             IESU,
-            AESU,
+            HESU,
             superCondensator,
             
             toxicPortalFrame,
