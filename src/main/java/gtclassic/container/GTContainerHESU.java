@@ -29,8 +29,8 @@ public class GTContainerHESU extends ContainerTileComponent<GTTileEntityHESU> {
     {
 		
 		super(tile);
-        this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 0, 128, 50)); //battery
-        this.addSlotToContainer(new SlotCharge(tile, tile.tier, 1, 128, 14));
+        this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50)); //battery
+        this.addSlotToContainer(new SlotCharge(tile, tile.tier, 0, 128, 14));
 
         for(int i = 0; i < 4; ++i) 
         {

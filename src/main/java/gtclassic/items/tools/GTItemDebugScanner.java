@@ -110,7 +110,7 @@ public class GTItemDebugScanner extends ItemBatteryBase implements IEUReader {
 	}
 	
 	@Override
-	public void func_150895_a(CreativeTabs tab, NonNullList<ItemStack> items) {
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
 			ItemStack full = new ItemStack(this, 1, 0);
 			ElectricItem.manager.charge(full, 2.147483647E9D, Integer.MAX_VALUE, true, false);
