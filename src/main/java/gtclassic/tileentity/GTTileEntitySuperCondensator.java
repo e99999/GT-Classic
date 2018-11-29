@@ -8,7 +8,7 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 
 public class GTTileEntitySuperCondensator  extends TileEntityTransformer implements IBitLevelOverride {
     public GTTileEntitySuperCondensator() {
-        super(8192, 65535, 65535);
+        super(32768, 65535, 65535);
     }
 
     public double getWrenchDropRate() {
@@ -22,5 +22,5 @@ public class GTTileEntitySuperCondensator  extends TileEntityTransformer impleme
     public boolean hasOverride(int fieldID, String fieldName) {
         return fieldID == 3;
     }
-    
+
 }
