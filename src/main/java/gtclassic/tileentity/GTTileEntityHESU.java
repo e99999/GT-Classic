@@ -3,8 +3,9 @@ package gtclassic.tileentity;
 import gtclassic.container.GTContainerHESU;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.lang.storage.Ic2BlockLang;
 import net.minecraft.entity.player.EntityPlayer;
-
 
 public class GTTileEntityHESU extends TileEntityElectricBlock {
     public GTTileEntityHESU() 
@@ -31,21 +32,24 @@ public class GTTileEntityHESU extends TileEntityElectricBlock {
 		return 0.70D;
 	}
 
-    @Override
-    public void update() 
-    {
-    	//needed for construction
-    }
+    public LocaleComp getBlockName() {
+    	// TODO make GT Classic Block Lang
+    	return Ic2BlockLang.mfsu;
+	}
 
-    @Override
-    public String getName() 
-    {
-        return "H.E.S.U.";
-    }
+	
 
-    @Override
-    public boolean hasCustomName() 
-    {
-        return false;
-    }
+	@Override
+	public String getName() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean hasCustomName() 
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
