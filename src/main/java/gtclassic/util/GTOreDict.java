@@ -1,5 +1,6 @@
 package gtclassic.util;
 
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GTOreDict {
@@ -43,7 +44,9 @@ public class GTOreDict {
         OreDictionary.registerOre("blockAluminum", GTBlocks.aluminiumBlock);
         OreDictionary.registerOre("blockChrome", GTBlocks.chromeBlock);
         OreDictionary.registerOre("blockTitanium", GTBlocks.titaniumBlock);
-        
+
+        OreDictionary.registerOre("batteryTier2", Ic2Items.energyCrystal);
+		OreDictionary.registerOre("batteryTier2", GTItems.lithiumBattery);
 	}
 
 }

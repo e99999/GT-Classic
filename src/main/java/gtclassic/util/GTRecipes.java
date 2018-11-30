@@ -109,8 +109,8 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTBlocks.lightningRod,1),
 				new Object[]{"EAE", "ASA", "EAE", 'E', GTItems.energyFlowCircuit,'S', GTBlocks.superCondensator, 'A', GTBlocks.highlyadvancedMachineBlock});
 
-		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler,1), //TODO make the recipe oscilate between lithium battery and energy crystal
-				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D', GTItems.dataOrb, 'B', GTItems.lithiumBattery });
+		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler,1),
+				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D', GTItems.dataOrb, 'B', "batteryTier2" });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.LESU,1),
 				new Object[]{" L ", "AlA", " M ", 'L', Ic2Items.transformerLV,'A', "circuitAdvanced", 'l', GTBlocks.lesuMachineBlock, 'M', Ic2Items.transformerMV});
