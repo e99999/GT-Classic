@@ -97,10 +97,32 @@ public class GTRecipes {
 	public static void initShapedRecipes () {
 		
 		recipes.addRecipe(new ItemStack(GTItems.hammerIron, 1),
-				new Object[]{"II ", "IIS", "II ", 'I', "ingotIron",'S', Items.STICK,});
+				new Object[]{"II ", "IIS", "II ", 'I', "ingotIron",'S', Items.STICK});
 		
-		
-		
+		recipes.addRecipe(new ItemStack(GTBlocks.fusionReactor,1),
+				new Object[]{"ESE", "LCL", "ESE", 'E', GTItems.energyFlowCircuit,'S', GTBlocks.superCondensator, 'L', GTItems.lapotronicEnergyOrb, 'C', GTBlocks.computerCube});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.lightningRod,1),
+				new Object[]{"EAE", "ASA", "EAE", 'E', GTItems.energyFlowCircuit,'S', GTBlocks.superCondensator, 'A', GTBlocks.highlyadvancedMachineBlock});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler,1), //TODO make the recipe oscilate between lithium battery and energy crystal
+				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D', GTItems.dataOrb, 'B', GTItems.lithiumBattery });
+
+		recipes.addRecipe(new ItemStack(GTBlocks.LESU,1),
+				new Object[]{" L ", "AlA", " M ", 'L', Ic2Items.transformerLV,'A', "circuitAdvanced", 'l', GTBlocks.lesuMachineBlock, 'M', Ic2Items.transformerMV});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge,1),
+				new Object[]{"RCR", "AEA", "RCR", 'E', Ic2Items.extractor,'R', "ingotRefinedIron", 'A', Ic2Items.advMachine, 'C', "circuitAdvanced"});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.playerDetector,1),
+				new Object[]{" D ", "CcC", " D ", 'D', GTItems.dataStorageCircuit,'C', "circuitAdvanced", 'c', GTBlocks.computerCube});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.matterFabricator,1),
+				new Object[]{"ETE", "HLH", "ETE", 'E', GTItems.energyFlowCircuit,'T', Ic2Items.teleporter, 'H', GTBlocks.highlyadvancedMachineBlock, 'L', GTItems.lapotronicEnergyOrb});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.superCondensator,1),
+				new Object[]{"ELE", "SHS", "ELE", 'E', GTItems.energyFlowCircuit,'S', GTItems.superConductor, 'H', GTBlocks.highlyadvancedMachineBlock, 'L', GTItems.lapotronicEnergyOrb});
+
 		recipes.addRecipe(Ic2Items.energyCrystal.copy(),
 				new Object[]{"RRR", "RDR", "RRR", 'D', "gemRuby", 'R', "dustRedstone"});
 		

@@ -2,6 +2,7 @@ package gtclassic.blocks;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityHESU;
+import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -11,6 +12,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
@@ -62,8 +66,12 @@ public class GTBlockEnergy extends BlockMultiID {
     {
         if (this == GTBlocks.HESU){
             return new GTTileEntityHESU();
+        }else if (this == GTBlocks.superCondensator){
+            return new GTTileEntitySuperCondensator();
+        }else{
+            return new TileEntityBlock();
         }
-        return new TileEntityBlock();
+
     }
     
     @SideOnly(Side.CLIENT)
