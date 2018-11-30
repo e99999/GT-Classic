@@ -7,8 +7,8 @@ import gtclassic.items.armor.GTItemEnergyPack;
 import gtclassic.items.energy.GTItemLapotronicEnergyOrb;
 import gtclassic.items.energy.GTItemLithiumBattery;
 import gtclassic.items.energy.GTItemZeroPointModule;
-import gtclassic.items.resources.GTItemElements;
-import gtclassic.items.resources.GTItemElements.GTItemCellTypes;
+import gtclassic.items.resources.GTItemElement;
+import gtclassic.items.resources.GTItemElement.GTItemElementTypes;
 import gtclassic.items.resources.GTItemDust;
 import gtclassic.items.resources.GTItemDust.GTItemDustTypes;
 import gtclassic.items.resources.GTItemGem;
@@ -24,29 +24,27 @@ import gtclassic.toxicdimension.items.GTItemCreditAlk;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTItems {
 	
-	public static final GTItemElements
-	hydrogen = new GTItemElements(GTItemCellTypes.HYDROGEN),
-	dueterium = new GTItemElements(GTItemCellTypes.DEUTERIUM),
-	tritium = new GTItemElements(GTItemCellTypes.TRITIUM),
-	helium = new GTItemElements(GTItemCellTypes.HELIUM),
-	tungsten = new GTItemElements(GTItemCellTypes.TUNGSTEN),
-	lithium = new GTItemElements(GTItemCellTypes.LITHIUM),
-	helium3 = new GTItemElements(GTItemCellTypes.HELIUM3),
-	silicon = new GTItemElements(GTItemCellTypes.SILICON),
-	carbon = new GTItemElements(GTItemCellTypes.CARBON),
-	methane = new GTItemElements(GTItemCellTypes.METHANE),
-	berilium = new GTItemElements(GTItemCellTypes.BERILIUM),
-	calcium = new GTItemElements(GTItemCellTypes.CALCIUM),
-	sodium = new GTItemElements(GTItemCellTypes.SODIUM),
-	chlorine = new GTItemElements(GTItemCellTypes.CHLORINE),
-	potassium = new GTItemElements(GTItemCellTypes.POTASSIUM),
-	nitrogen = new GTItemElements(GTItemCellTypes.NITROGEN);
+	public static final GTItemElement
+	hydrogen = new GTItemElement(GTItemElementTypes.HYDROGEN),
+	dueterium = new GTItemElement(GTItemElementTypes.DEUTERIUM),
+	tritium = new GTItemElement(GTItemElementTypes.TRITIUM),
+	helium = new GTItemElement(GTItemElementTypes.HELIUM),
+	tungsten = new GTItemElement(GTItemElementTypes.TUNGSTEN),
+	lithium = new GTItemElement(GTItemElementTypes.LITHIUM),
+	helium3 = new GTItemElement(GTItemElementTypes.HELIUM3),
+	silicon = new GTItemElement(GTItemElementTypes.SILICON),
+	carbon = new GTItemElement(GTItemElementTypes.CARBON),
+	methane = new GTItemElement(GTItemElementTypes.METHANE),
+	berilium = new GTItemElement(GTItemElementTypes.BERILIUM),
+	calcium = new GTItemElement(GTItemElementTypes.CALCIUM),
+	sodium = new GTItemElement(GTItemElementTypes.SODIUM),
+	chlorine = new GTItemElement(GTItemElementTypes.CHLORINE),
+	potassium = new GTItemElement(GTItemElementTypes.POTASSIUM),
+	nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN),
 	
 	public static final GTItemDust
 	dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),

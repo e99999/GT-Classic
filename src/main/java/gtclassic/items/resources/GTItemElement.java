@@ -12,8 +12,8 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemElements extends Item implements IStaticTexturedItem {
-    public enum GTItemCellTypes{
+public class GTItemElement extends Item implements IStaticTexturedItem {
+    public enum GTItemElementTypes{
         HYDROGEN(0), 
         DEUTERIUM(1), 
         TRITIUM(2), 
@@ -30,11 +30,10 @@ public class GTItemElements extends Item implements IStaticTexturedItem {
         CHLORINE(13), 
         POTASSIUM(14), 
         NITROGEN(15),
-        OXYGEN(5);
         
     	private int id;
 
-        GTItemCellTypes(int id){
+        GTItemElementTypes(int id){
             this.id = id;
         }
 
@@ -43,8 +42,8 @@ public class GTItemElements extends Item implements IStaticTexturedItem {
         }
     }
 
-    GTItemCellTypes variant;
-    public GTItemElements(GTItemCellTypes variant){
+    GTItemElementTypes variant;
+    public GTItemElement(GTItemElementTypes variant){
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase());
         setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
