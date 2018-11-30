@@ -49,7 +49,7 @@ public class GTItemCreditAlk extends Item implements IStaticTexturedItem {
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) 
 	{
-		return Ic2Icons.getTextures("gtclassic_items")[63];
+		return Ic2Icons.getTextures("gtclassic_items")[79];
 	}
     
     @Override

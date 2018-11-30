@@ -189,13 +189,13 @@ public class GTRecipes {
 				new Object[]{"CLC", "LPL", "CLC", 'L', Ic2Items.lapotronCrystal.copy(),'C', Ic2Items.advancedCircuit.copy(), 'P', Ic2Items.iridiumPlate.copy()});
 
 		recipes.addRecipe(new ItemStack(GTItems.lithiumBattery, 1),
-				new Object[]{" G ", "ALA", "ALA", 'G', Ic2Items.doubleInsulatedGoldCable.copy(),'A', "ingotAluminium", 'L', GTItems.cellLI});
+				new Object[]{" G ", "ALA", "ALA", 'G', Ic2Items.doubleInsulatedGoldCable.copy(),'A', "ingotAluminium", 'L', GTItems.lithium});
 
 		recipes.addRecipe(new ItemStack(GTItems.lithiumBatpack, 1),
 				new Object[]{"LCL", "LAL", "L L", 'C', Ic2Items.advancedCircuit.copy(),'A', "ingotAluminium", 'L', GTItems.lithiumBattery});
 
 		recipes.addRecipe(new ItemStack(GTItems.superConductor, 4),
-				new Object[]{"CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(),'E', GTItems.energyFlowCircuit, 'W', GTItems.cellW, 'P', Ic2Items.iridiumPlate.copy()});
+				new Object[]{"CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(),'E', GTItems.energyFlowCircuit, 'W', GTItems.tungsten, 'P', Ic2Items.iridiumPlate.copy()});
 		
 		recipes.addRecipe(new ItemStack(GTItems.lapotronPack, 1),
 				new Object[]{"ELE", "SBS", "EPE", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'L', GTItems.lapotronicEnergyOrb, 'B', Ic2Items.lapPack.copy(), 'P', Ic2Items.iridiumPlate.copy()});

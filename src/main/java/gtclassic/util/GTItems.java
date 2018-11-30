@@ -7,8 +7,8 @@ import gtclassic.items.armor.GTItemEnergyPack;
 import gtclassic.items.energy.GTItemLapotronicEnergyOrb;
 import gtclassic.items.energy.GTItemLithiumBattery;
 import gtclassic.items.energy.GTItemZeroPointModule;
-import gtclassic.items.resources.GTItemCell;
-import gtclassic.items.resources.GTItemCell.GTItemCellTypes;
+import gtclassic.items.resources.GTItemElements;
+import gtclassic.items.resources.GTItemElements.GTItemCellTypes;
 import gtclassic.items.resources.GTItemDust;
 import gtclassic.items.resources.GTItemDust.GTItemDustTypes;
 import gtclassic.items.resources.GTItemGem;
@@ -30,23 +30,23 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTItems {
 	
-	public static final GTItemCell
-	cellH = new GTItemCell(GTItemCellTypes.H),
-	cellD = new GTItemCell(GTItemCellTypes.D),
-	cellT = new GTItemCell(GTItemCellTypes.T),
-	cellHE = new GTItemCell(GTItemCellTypes.HE),
-	cellW = new GTItemCell(GTItemCellTypes.W),
-	cellLI = new GTItemCell(GTItemCellTypes.LI),
-	cellHE3 = new GTItemCell(GTItemCellTypes.HE3),
-	cellSI = new GTItemCell(GTItemCellTypes.SI),
-	cellC = new GTItemCell(GTItemCellTypes.C),
-	cellME = new GTItemCell(GTItemCellTypes.ME),
-	cellBE = new GTItemCell(GTItemCellTypes.BE),
-	cellCA = new GTItemCell(GTItemCellTypes.CA),
-	cellNA = new GTItemCell(GTItemCellTypes.NA),
-	cellCL = new GTItemCell(GTItemCellTypes.CL),
-	cellK = new GTItemCell(GTItemCellTypes.K),
-	cellN = new GTItemCell(GTItemCellTypes.N);
+	public static final GTItemElements
+	hydrogen = new GTItemElements(GTItemCellTypes.HYDROGEN),
+	dueterium = new GTItemElements(GTItemCellTypes.DEUTERIUM),
+	tritium = new GTItemElements(GTItemCellTypes.TRITIUM),
+	helium = new GTItemElements(GTItemCellTypes.HELIUM),
+	tungsten = new GTItemElements(GTItemCellTypes.TUNGSTEN),
+	lithium = new GTItemElements(GTItemCellTypes.LITHIUM),
+	helium3 = new GTItemElements(GTItemCellTypes.HELIUM3),
+	silicon = new GTItemElements(GTItemCellTypes.SILICON),
+	carbon = new GTItemElements(GTItemCellTypes.CARBON),
+	methane = new GTItemElements(GTItemCellTypes.METHANE),
+	berilium = new GTItemElements(GTItemCellTypes.BERILIUM),
+	calcium = new GTItemElements(GTItemCellTypes.CALCIUM),
+	sodium = new GTItemElements(GTItemCellTypes.SODIUM),
+	chlorine = new GTItemElements(GTItemCellTypes.CHLORINE),
+	potassium = new GTItemElements(GTItemCellTypes.POTASSIUM),
+	nitrogen = new GTItemElements(GTItemCellTypes.NITROGEN);
 	
 	public static final GTItemDust
 	dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
@@ -82,7 +82,8 @@ public class GTItems {
 	superConductor = new GTItemComponents(GTItemComponentTypes.SUPERCONDUCTOR),
 	dataStorageCircuit = new GTItemComponents(GTItemComponentTypes.DATA_STORAGE_CIRCUIT),
 	braintechAerospaceARDT = new GTItemComponents(GTItemComponentTypes.BRAINTECH_AEROSPACE_ARDT),
-	dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB);
+	dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB),
+	glassTube = new GTItemComponents(GTItemComponentTypes.GLASS_TUBE);
 	
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
@@ -98,22 +99,22 @@ public class GTItems {
 
 	public static final Item[] items = {
 			
-			cellH,
-			cellD,
-			cellT,
-			cellHE,
-			cellW,
-			cellLI,
-			cellHE3,
-			cellSI,
-			cellC,
-			cellME,
-			cellBE,
-			cellCA,
-			cellNA,
-			cellCL,
-			cellK,
-			cellN,
+			hydrogen,
+			dueterium,
+			tritium,
+			helium,
+			tungsten,
+			lithium,
+			helium3,
+			silicon,
+			carbon,
+			methane,
+			berilium,
+			calcium,
+			sodium,
+			chlorine,
+			potassium,
+			nitrogen,
 
 			dustEnderpearl,
 			dustEnderEye,
@@ -145,8 +146,8 @@ public class GTItems {
 			dataStorageCircuit,
 			braintechAerospaceARDT,
 			dataOrb,
+			glassTube,
 			
-			creditAlk,
 			hammerIron,
 			advancedDrill,
 			advancedChainsaw,
@@ -156,7 +157,8 @@ public class GTItems {
 			zeroPointModule,
 			lithiumBatpack,
 			lapotronPack,
-			destructoPack
+			destructoPack,
+			creditAlk
 			
 	};
 	@SubscribeEvent

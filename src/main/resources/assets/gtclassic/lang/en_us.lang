@@ -55,22 +55,22 @@ item.gtclassic.zeroPointModule.name=Zero Point Module
 
 
 #cells
-item.gtclassic.h_cell.name=Hydrogen Cell
-item.gtclassic.d_cell.name=Deuterium Cell
-item.gtclassic.t_cell.name=Tritium Cell
-item.gtclassic.he_cell.name=Helium Cell
-item.gtclassic.w_cell.name=Tungsten Cell
-item.gtclassic.li_cell.name=Lithium Cell
-item.gtclassic.he3_cell.name=Helium-3 Cell
-item.gtclassic.si_cell.name=Silicon Cell
-item.gtclassic.c_cell.name=Carbon Cell
-item.gtclassic.me_cell.name=Methane Cell
-item.gtclassic.be_cell.name=Berilium Cell
-item.gtclassic.ca_cell.name=Calcium Cell
-item.gtclassic.na_cell.name=Sodium Cell
-item.gtclassic.cl_cell.name=Chlorine Cell
-item.gtclassic.k_cell.name=Potassium Cell
-item.gtclassic.n_cell.name=Nitrogen Cell
+item.gtclassic.hydrogen.name=Hydrogen
+item.gtclassic.deuterium.name=Deuterium
+item.gtclassic.tritium.name=Tritium
+item.gtclassic.helium.name=Helium
+item.gtclassic.tungsten.name=Tungsten
+item.gtclassic.lithium.name=Lithium
+item.gtclassic.helium3.name=Helium-3
+item.gtclassic.silicon.name=Silicon
+item.gtclassic.carbon.name=Carbon
+item.gtclassic.methane.name=Methane
+item.gtclassic.berlium.name=Berilium
+item.gtclassic.calcium.name=Calcium
+item.gtclassic.sodium.name=Sodium
+item.gtclassic.chlorine.name=Chlorine
+item.gtclassic.potassium.name=Potassium
+item.gtclassic.nitrogen.name=Nitrogen
 
 #dust
 item.gtclassic.flint_dust.name=Flint Dust

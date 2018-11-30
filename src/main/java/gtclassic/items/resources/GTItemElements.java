@@ -12,24 +12,25 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemCell extends Item implements IStaticTexturedItem {
+public class GTItemElements extends Item implements IStaticTexturedItem {
     public enum GTItemCellTypes{
-        H(0), 
-        D(1), 
-        T(2), 
-        HE(3), 
-        W(4), 
-        LI(5), 
-        HE3(6), 
-        SI(7), 
-        C(8), 
-        ME(9), 
-        BE(10), 
-        CA(11), 
-        NA(12), 
-        CL(13), 
-        K(14), 
-        N(15);
+        HYDROGEN(0), 
+        DEUTERIUM(1), 
+        TRITIUM(2), 
+        HELIUM(3), 
+        TUNGSTEN(4), 
+        LITHIUM(5), 
+        HELIUM3(6), 
+        SILICON(7), 
+        CARBON(8), 
+        METHANE(9), 
+        BERILIUM(10), 
+        CALCIUM(11), 
+        SODIUM(12), 
+        CHLORINE(13), 
+        POTASSIUM(14), 
+        NITROGEN(15),
+        OXYGEN(5);
         
     	private int id;
 
@@ -43,10 +44,10 @@ public class GTItemCell extends Item implements IStaticTexturedItem {
     }
 
     GTItemCellTypes variant;
-    public GTItemCell(GTItemCellTypes variant){
+    public GTItemElements(GTItemCellTypes variant){
         this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_cell");        // The unique name (within your mod) that identifies this item
-        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_cell");     // Used for localization (en_US.lang)
+        setRegistryName(variant.toString().toLowerCase());
+        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
         setCreativeTab(GTClassic.creativeTabGT);
     }
 
