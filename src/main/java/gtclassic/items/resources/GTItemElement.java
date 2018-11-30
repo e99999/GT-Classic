@@ -29,7 +29,7 @@ public class GTItemElement extends Item implements IStaticTexturedItem {
         SODIUM(12), 
         CHLORINE(13), 
         POTASSIUM(14), 
-        NITROGEN(15),
+        NITROGEN(15);
         
     	private int id;
 
