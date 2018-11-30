@@ -36,6 +36,7 @@ public class GTBlockMachine extends BlockMultiID {
         TRANSLOCATOR,
         COMPUTERCUBE,
         AUTOCRAFTER,
+        CHARGEOMAT,
         QUANTUMCHEST,
         INDUSTRIALCENTRIFUGE,
 		MATTERFABRICATOR,
@@ -155,6 +156,11 @@ public class GTBlockMachine extends BlockMultiID {
    	 	else if (this == GTBlocks.quantumChest)
 	 	{
 	 		return Ic2Icons.getTextures("gtclassic_quantumchest");
+	 	}
+    	
+   	 	else if (this == GTBlocks.chargeOMat)
+	 	{
+	 		return Ic2Icons.getTextures("gtclassic_chargeomat");
 	 	}
    	 
    	 	else if (this == GTBlocks.computerCube)

@@ -9,6 +9,7 @@ tile.gtclassic.smallbuffer.name=Small Electric Item Buffer
 tile.gtclassic.largebuffer.name=Large Electric Item Buffer
 tile.gtclassic.translocator.name=Translocator
 tile.gtclassic.autocrafter.name=Electric Autocrafter
+tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.quantumchest.name=Quantum Chest
 tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
@@ -133,5 +134,10 @@ tooltip.gtclassic.saw=Makes trees disappear
 tooltip.gtclassic.trashcan=Mobile Trash Bin
 tooltip.gtclassic.warranty=No Warranty!
 tooltip.gtclassic.tesla=O V E R C H A R G E D
+
+tooltip.gtclassic.zpm1=Extracts vacuum energy from subspace-time
+tooltip.gtclassic.zpm2=until it reaches maximum entropy.
+tooltip.gtclassic.zpm3=Only found as rare loot in jungle temples
+tooltip.gtclassic.zpm4=CANNOT BE RECHARGED
 
 itemGroup.gtclassic=GregTech Classic
