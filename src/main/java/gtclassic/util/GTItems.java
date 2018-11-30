@@ -44,7 +44,7 @@ public class GTItems {
 	sodium = new GTItemElement(GTItemElementTypes.SODIUM),
 	chlorine = new GTItemElement(GTItemElementTypes.CHLORINE),
 	potassium = new GTItemElement(GTItemElementTypes.POTASSIUM),
-	nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN),
+	nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN);
 	
 	public static final GTItemDust
 	dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
