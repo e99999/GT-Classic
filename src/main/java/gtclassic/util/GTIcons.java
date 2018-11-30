@@ -21,6 +21,7 @@ public class GTIcons {
         addSprite(new Sprites.SpriteData("gtclassic_quantumchest", "gtclassic:textures/sprites/quantumchest.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_chargeomat", "gtclassic:textures/sprites/chargeomat.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_computercube", "gtclassic:textures/sprites/computercube.png", new Sprites.SpriteInfo(1, 12)));
+        addSprite(new Sprites.SpriteData("gtclassic_electrolyzer", "gtclassic:textures/sprites/electrolyzer.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_industrialcentrifuge", "gtclassic:textures/sprites/industrialcentrifuge.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_matterfabricator", "gtclassic:textures/sprites/matterfabricator.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_playerdetector", "gtclassic:textures/sprites/playerdetector.png", new Sprites.SpriteInfo(1, 12)));
@@ -46,6 +47,7 @@ public class GTIcons {
         addTextureEntry(new Sprites.TextureEntry("gtclassic_quantumchest", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_chargeomat", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_computercube", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_electrolyzer", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_industrialcentrifuge", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_matterfabricator", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_playerdetector", 0, 0, 1, 12));

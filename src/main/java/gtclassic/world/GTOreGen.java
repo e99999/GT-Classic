@@ -51,12 +51,12 @@ public class GTOreGen implements IWorldGenerator {
 			
 			if (BiomeDictionary.hasType(biomegenbase, Type.HOT) && (GTConfig.genRuby)) 
 			{
-				runGenerator(GTBlocks.rubyOre.getDefaultState(), 3, 8, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+				runGenerator(GTBlocks.rubyOre.getDefaultState(), 3, 16, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
 			
 			if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) && (GTConfig.genSapphire)) 
 			{
-				runGenerator(GTBlocks.sapphireOre.getDefaultState(), 3, 8, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+				runGenerator(GTBlocks.sapphireOre.getDefaultState(), 3, 16, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
 			
 			if (BiomeDictionary.hasType(biomegenbase, Type.RIVER) && (GTConfig.genSapphire)) 
@@ -66,7 +66,7 @@ public class GTOreGen implements IWorldGenerator {
 			
 			if ((BiomeDictionary.hasType(biomegenbase, Type.FOREST) || (BiomeDictionary.hasType(biomegenbase, Type.PLAINS)) && (GTConfig.genBauxite)))
 			{
-				runGenerator(GTBlocks.bauxiteOre.getDefaultState(), 16, 4, 40, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+				runGenerator(GTBlocks.bauxiteOre.getDefaultState(), 16, 8, 40, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			}
 			
 			break;

@@ -39,6 +39,7 @@ public class GTBlockMachine extends BlockMultiID {
         CHARGEOMAT,
         QUANTUMCHEST,
         INDUSTRIALCENTRIFUGE,
+        ELECTROLYZER,
 		MATTERFABRICATOR,
 		PLAYERDETECTOR,
 		UUMASSEMBLER,
@@ -167,6 +168,11 @@ public class GTBlockMachine extends BlockMultiID {
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_computercube");
    	 	}
+    	
+   	 	else if (this == GTBlocks.electrolyzer)
+	 	{
+	 		return Ic2Icons.getTextures("gtclassic_electrolyzer");
+	 	}
    	 	
    	 	else if (this == GTBlocks.industrialCentrifuge)
    	 	{

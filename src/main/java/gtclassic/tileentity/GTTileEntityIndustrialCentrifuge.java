@@ -98,7 +98,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
     public static final int slotOutput4 = 6;
 
     public GTTileEntityIndustrialCentrifuge() {
-        this(11, 1, 98, 32);
+        this(7, 1, 98, 32);
     }
 
     public GTTileEntityIndustrialCentrifuge(int slots, int energyPerTick, int maxProgress, int maxInput)

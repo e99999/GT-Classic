@@ -46,6 +46,10 @@ public class GTRecipes {
 		GameRegistry.addSmelting(GTBlocks.sandIron, new ItemStack(Items.IRON_NUGGET, 3), 0.1F);
 	}
 	
+	public static void initBuildcraftRecipes() {}
+	
+	public static void initForestryRecipes() {}
+	
 	public static void initReplaceRecipes() {
 			 ForgeRegistry<IRecipe> recipeRegistry = (ForgeRegistry<IRecipe>)ForgeRegistries.RECIPES;
 		        ArrayList<IRecipe> recipesList = Lists.newArrayList(recipeRegistry.getValuesCollection());
