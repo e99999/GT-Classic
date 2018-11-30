@@ -80,6 +80,9 @@ public class GTBlockEnergy extends BlockMultiID {
         if (this == GTBlocks.superCondensator)
         {
             tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".superCondensator"));
+        }else if (this == GTBlocks.HESU){
+            tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".hesu"));
+            tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".hesu2"));
         }
 
     }
