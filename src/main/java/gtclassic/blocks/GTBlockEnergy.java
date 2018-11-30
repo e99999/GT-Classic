@@ -73,19 +73,6 @@ public class GTBlockEnergy extends BlockMultiID {
         }
 
     }
-
-    @Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
-    {
-        if (this == GTBlocks.superCondensator)
-        {
-            tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".superCondensator"));
-        }else if (this == GTBlocks.HESU){
-            tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".hesu"));
-            tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".hesu2"));
-        }
-
-    }
     
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
