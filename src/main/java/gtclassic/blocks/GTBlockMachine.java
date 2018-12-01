@@ -1,6 +1,7 @@
 package gtclassic.blocks;
 
 import gtclassic.GTClassic;
+import gtclassic.tileentity.GTTileEntityChemicalElectrolyzer;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeBuffer;
@@ -39,7 +40,7 @@ public class GTBlockMachine extends BlockMultiID {
         CHARGEOMAT,
         QUANTUMCHEST,
         INDUSTRIALCENTRIFUGE,
-        ELECTROLYZER,
+        CHEMICALELECTROLYZER,
 		MATTERFABRICATOR,
 		PLAYERDETECTOR,
 		UUMASSEMBLER,
@@ -123,6 +124,11 @@ public class GTBlockMachine extends BlockMultiID {
     	 {
     		 return new GTTileEntityIndustrialCentrifuge();
     	 }
+    	 
+    	 else if (this == GTBlocks.chemicalElectrolyzer) 
+    	 {
+    		 return new GTTileEntityChemicalElectrolyzer();
+    	 }
 
     	 else 
     	 {
@@ -169,7 +175,7 @@ public class GTBlockMachine extends BlockMultiID {
    	 		return Ic2Icons.getTextures("gtclassic_computercube");
    	 	}
     	
-   	 	else if (this == GTBlocks.electrolyzer)
+   	 	else if (this == GTBlocks.chemicalElectrolyzer)
 	 	{
 	 		return Ic2Icons.getTextures("gtclassic_electrolyzer");
 	 	}

@@ -105,6 +105,9 @@ public class GTRecipes {
 		
 		recipes.addRecipe(new ItemStack(GTItems.hammerIron, 1),
 				new Object[]{"II ", "IIS", "II ", 'I', "ingotIron",'S', Items.STICK});
+		
+		recipes.addRecipe(new ItemStack(GTItems.glassTube, 32),
+				new Object[]{"G G", "G G", " G ", 'G', Blocks.GLASS});
 
 
 

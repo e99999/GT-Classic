@@ -10,7 +10,6 @@ import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotOutput;
-import ic2.core.inventory.slots.SlotUpgrade;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +33,7 @@ public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTi
     {
         super(tile);
         this.addSlotToContainer(new SlotCustom(tile, 0, 80, 35, null));
-        this.addSlotToContainer(new SlotCustom(tile, 1, 50, 5, CommonFilters.CannerInput));
+        this.addSlotToContainer(new SlotCustom(tile, 1, 50, 5, null));
         this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 2, 32, 5)); //battery
         this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 50, 35));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 80, 5));
