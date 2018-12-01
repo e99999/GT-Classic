@@ -21,7 +21,7 @@ compileJava {
 }
 
 minecraft {
-    version = "${mc_version}-${forge_version}"
+    version = "${forge_mc_version}-${forge_version}"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -35,29 +35,45 @@ minecraft {
     replace "@VERSION@", project.version
     replaceIn "GTClassic.java"
 }
+repositories {
+    maven { // Mantle, TCon, JEI
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven/'
+    }
+    maven { // The One Probe, EnderIO, EnderCore
+        name 'tterrag'
+        url 'http://maven.tterrag.com/'
+    }
+    maven { // Buildcraft
+        name 'buildcraft'
+        url 'https://mod-buildcraft.com/maven/'
+    }
+    maven { // Forestry, Ic2 ex
+        name 'industrialcraft'
+        url 'http://maven.ic2.player.to/'
+    }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
+}
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+    //forestry
+    deobfProvided "net.sengir.forestry:forestry_${forge_mc_version}:${forestry_version}"
+    runtime "net.sengir.forestry:forestry_${forge_mc_version}:${forestry_version}"
+    // BuildCraft
+    compile "com.mod-buildcraft:buildcraft:${buildcraft_version}"
+    // JEI
+    deobfProvided "mezz.jei:jei_${forge_mc_version}:${jei_version}"
+    runtime "mezz.jei:jei_${forge_mc_version}:${jei_version}"
 
-    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
-    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+    //one probe
+    deobfProvided "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
+    runtime "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
 
-    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
-    // except that these dependencies get remapped to your current MCP mappings
-    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    //baubles
+    compile 'baubles:Baubles:1.12:1.5.2'
 }
 
 processResources {
