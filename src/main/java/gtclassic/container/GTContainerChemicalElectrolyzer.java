@@ -21,6 +21,7 @@ public class GTContainerChemicalElectrolyzer extends ContainerTileComponent<GTTi
     
     
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/electrolyzer.png");
+	
 	public static Box2D machineProgressBoxUp = new Box2D(83, 23, 10, 10);
     public static Vec2i machineProgressPosUp = new Vec2i(193, 23);
    
@@ -37,7 +38,7 @@ public class GTContainerChemicalElectrolyzer extends ContainerTileComponent<GTTi
         this.addSlotToContainer(new SlotOutput(player.player, tile, 6, 110, 16));
 
         this.addPlayerInventory(player);
-        //this.addComponent(new MachineProgressComp(tile, GTContainerChemicalElectrolyzer.machineProgressBoxUp, GTContainerChemicalElectrolyzer.machineProgressPosUp));
+        this.addComponent(new MachineProgressComp(tile, GTContainerChemicalElectrolyzer.machineProgressBoxUp, GTContainerChemicalElectrolyzer.machineProgressPosUp));
     }
     
     @Override
