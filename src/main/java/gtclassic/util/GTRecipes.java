@@ -96,21 +96,26 @@ public class GTRecipes {
 		
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.iridiumReinforcedStoneBlock, 1),
 				new Object[]{Ic2Items.reinforcedStone, "ingotIridium"});
+
+		recipes.addShapelessRecipe(new ItemStack(GTBlocks.smallBuffer,8),
+				new Object[]{GTBlocks.largeBuffer});
 	}
 		
 	public static void initShapedRecipes () {
 		
 		recipes.addRecipe(new ItemStack(GTItems.hammerIron, 1),
 				new Object[]{"II ", "IIS", "II ", 'I', "ingotIron",'S', Items.STICK});
-		
+
+
+
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionReactor,1),
 				new Object[]{"ESE", "LCL", "ESE", 'E', GTItems.energyFlowCircuit,'S', GTBlocks.superCondensator, 'L', GTItems.lapotronicEnergyOrb, 'C', GTBlocks.computerCube});
 
 		recipes.addRecipe(new ItemStack(GTBlocks.lightningRod,1),
 				new Object[]{"EAE", "ASA", "EAE", 'E', GTItems.energyFlowCircuit,'S', GTBlocks.superCondensator, 'A', GTBlocks.highlyadvancedMachineBlock});
 
-		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler,1), //TODO make the recipe oscilate between lithium battery and energy crystal
-				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D', GTItems.dataOrb, 'B', GTItems.lithiumBattery });
+		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler,1),
+				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D', GTItems.dataOrb, 'B', "batteryTier2" });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.LESU,1),
 				new Object[]{" L ", "AlA", " M ", 'L', Ic2Items.transformerLV,'A', "circuitAdvanced", 'l', GTBlocks.lesuMachineBlock, 'M', Ic2Items.transformerMV});
@@ -126,6 +131,20 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTBlocks.superCondensator,1),
 				new Object[]{"ELE", "SHS", "ELE", 'E', GTItems.energyFlowCircuit,'S', GTItems.superConductor, 'H', GTBlocks.highlyadvancedMachineBlock, 'L', GTItems.lapotronicEnergyOrb});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.autoCrafter,1),
+				new Object[]{" B ", "CcC", " A ", 'B', Ic2Items.battery,'C', "circuitAdvanced", 'c', "workbench", 'A', Ic2Items.advMachine});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.translocator,1),
+				new Object[]{" B ", "CPC", " M ", 'B', Ic2Items.battery,'C', "circuitBasic", 'P', Blocks.PISTON, 'M', Ic2Items.machine});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.largeBuffer,1),
+				new Object[]{" B ", "CcC", " A ", 'B', Ic2Items.battery,'C', "circuitAdvanced", 'c', "chest", 'A', Ic2Items.advMachine});
+
+		recipes.addRecipe(new ItemStack(GTBlocks.largeBuffer,1),
+				new Object[]{"SSS", "SCS", "SSS", 'S', GTBlocks.smallBuffer,'C', "circuitAdvanced"});
+
+
 
 		recipes.addRecipe(Ic2Items.energyCrystal.copy(),
 				new Object[]{"RRR", "RDR", "RRR", 'D', "gemRuby", 'R', "dustRedstone"});
