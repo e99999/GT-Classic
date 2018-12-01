@@ -17,7 +17,9 @@ import gtclassic.items.resources.GTItemIngot;
 import gtclassic.items.resources.GTItemIngot.GTItemIngotTypes;
 import gtclassic.items.tools.GTItemAdvancedChainsaw;
 import gtclassic.items.tools.GTItemAdvancedDrill;
+import gtclassic.items.tools.GTItemCraftingTablet;
 import gtclassic.items.tools.GTItemDestructoPack;
+import gtclassic.items.tools.GTItemElectromagnet;
 import gtclassic.items.tools.GTItemHammerIron;
 import gtclassic.items.tools.GTItemTeslaStaff;
 import gtclassic.toxicdimension.items.GTItemCreditAlk;
@@ -62,7 +64,8 @@ public class GTItems {
 	dustSapphire = new GTItemDust(GTItemDustTypes.SAPPHIRE),
 	dustGreenSapphire = new GTItemDust(GTItemDustTypes.GREEN_SAPPHIRE),
 	dustEmerald = new GTItemDust(GTItemDustTypes.EMERALD),
-	dustSodalite = new GTItemDust(GTItemDustTypes.SODALITE);
+	dustSodalite = new GTItemDust(GTItemDustTypes.SODALITE),
+	dustEndstone = new GTItemDust(GTItemDustTypes.ENDSTONE);
 
 	public static final GTItemGem
 	ruby = new GTItemGem(GTItemGemTypes.RUBY),
@@ -83,17 +86,19 @@ public class GTItems {
 	dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB),
 	glassTube = new GTItemComponents(GTItemComponentTypes.GLASS_TUBE);
 	
-	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
+	public static final GTItemElectromagnet electroMagnet = new GTItemElectromagnet();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
 	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();
 	public static final GTItemTeslaStaff teslaStaff = new GTItemTeslaStaff();
 	public static final GTItemLithiumBattery lithiumBattery = new GTItemLithiumBattery();
 	public static final GTItemLapotronicEnergyOrb lapotronicEnergyOrb = new GTItemLapotronicEnergyOrb();
-	public static final GTItemZeroPointModule zeroPointModule = new GTItemZeroPointModule();
 	public static final GTItemEnergyPack lithiumBatpack = new GTItemEnergyPack(58, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 200);
 	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45, "gtclassic:textures/models/armor/lapotronpack", 100000000, "lapotron_pack", ".lapotronPack", 3, 1500);
 	public static final GTItemDestructoPack destructoPack = new GTItemDestructoPack();
+	public static final GTItemCraftingTablet craftingTablet = new GTItemCraftingTablet();
+	public static final GTItemZeroPointModule zeroPointModule = new GTItemZeroPointModule();
+	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 
 	public static final Item[] items = {
 			
@@ -130,6 +135,7 @@ public class GTItems {
 			dustGreenSapphire,
 			dustEmerald,
 			dustSodalite,
+			dustEndstone,
 
 			ruby,
 			sapphire,
@@ -147,15 +153,17 @@ public class GTItems {
 			glassTube,
 			
 			hammerIron,
+			electroMagnet,
 			advancedDrill,
 			advancedChainsaw,
 			teslaStaff,
 			lithiumBattery,
 			lapotronicEnergyOrb,
-			zeroPointModule,
 			lithiumBatpack,
 			lapotronPack,
 			destructoPack,
+			craftingTablet,
+			zeroPointModule,
 			creditAlk
 			
 	};

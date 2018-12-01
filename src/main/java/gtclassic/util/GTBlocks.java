@@ -16,6 +16,7 @@ import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeBuffer;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
 import gtclassic.tileentity.GTTileEntitySmallBuffer;
+import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import gtclassic.tileentity.GTTileEntityTranslocator;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
@@ -157,6 +158,7 @@ public class GTBlocks {
         GameRegistry.registerTileEntity(GTTileEntityQuantumChest.class, new ResourceLocation(GTClassic.MODID, "tileQuantumChest"));
         GameRegistry.registerTileEntity(GTTileEntityComputerCube.class, new ResourceLocation(GTClassic.MODID, "tileEntityComputerCube"));
         GameRegistry.registerTileEntity(GTTileEntityChemicalElectrolyzer.class, new ResourceLocation(GTClassic.MODID, "tileEntityChemicalElectrolyzer"));
+        GameRegistry.registerTileEntity(GTTileEntitySuperCondensator.class, new ResourceLocation(GTClassic.MODID, "tileSuperCondensator"));
         
         GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
     }

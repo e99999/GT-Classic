@@ -45,6 +45,7 @@ public class GTTileEntityChemicalElectrolyzer extends TileEntityElecMachine impl
 	public GTTileEntityChemicalElectrolyzer() 
 	{
 		super(7, 32);
+		this.setCustomName("tileChemicalElectrolyzer");
 	}
 	
 	@Override

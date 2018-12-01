@@ -74,7 +74,7 @@ public class GTItemZeroPointModule extends ItemBatteryBase {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTexture(ItemStack item) 
     {
-        return Ic2Icons.getTextures("gtclassic_items")[55];
+        return Ic2Icons.getTextures("gtclassic_items")[78];
     }
     
     @Override

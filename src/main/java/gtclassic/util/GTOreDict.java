@@ -9,6 +9,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("dustEnderPearl", GTItems.dustEnderpearl);
 		OreDictionary.registerOre("dustEnderEye", GTItems.dustEnderEye);
 	    OreDictionary.registerOre("dustLazurite", GTItems.dustLazurite);
+	    OreDictionary.registerOre("dyeBlue", GTItems.dustLazurite);
 	    OreDictionary.registerOre("dustPyrite", GTItems.dustPyrite);
 	    OreDictionary.registerOre("dustCalcite", GTItems.dustCalcite);
 	    OreDictionary.registerOre("dustFlint", GTItems.dustFlint);
@@ -23,6 +24,8 @@ public class GTOreDict {
 		OreDictionary.registerOre("dustGreenSapphire", GTItems.dustGreenSapphire);
 		OreDictionary.registerOre("dustEmerald", GTItems.dustEmerald);
 		OreDictionary.registerOre("dustSodalite", GTItems.dustSodalite);
+		OreDictionary.registerOre("dustEndstone", GTItems.dustEndstone);
+		OreDictionary.registerOre("dustEnd", GTItems.dustEndstone);
 		
         OreDictionary.registerOre("oreRuby", GTBlocks.rubyOre);
         OreDictionary.registerOre("oreSapphire", GTBlocks.sapphireOre);

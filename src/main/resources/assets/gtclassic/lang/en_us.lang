@@ -44,6 +44,7 @@ tile.gtclassic.sandIron.name=Black Sand
 
 #tools
 item.gtclassic.hammerIron.name=Iron Hammer
+item.gtclassic.electroMagnet.name=Electromagnet
 item.gtclassic.advancedDrill.name=Advanced Drill
 item.gtclassic.advancedChainsaw.name=Advanced Chainsaw
 item.gtclassic.teslaStaff.name=Tesla Staff
@@ -52,6 +53,7 @@ item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
 item.gtclassic.destructoPack.name=Destructopack
+item.gtclassic.craftingTablet.name=Crafting Tablet
 item.gtclassic.zeroPointModule.name=Zero Point Module
 item.gtclassic.glass_tube.name=Glass Tube
 
