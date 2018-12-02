@@ -22,7 +22,7 @@ public class GTItemHammerIron extends ItemPickaxe implements IStaticTexturedItem
 	public GTItemHammerIron() 
 	{
 		super(Item.ToolMaterial.IRON);
-		this.setMaxDamage(500);
+		this.setMaxDamage(768);
 		setRegistryName("iron_hammer");
         setUnlocalizedName(GTClassic.MODID + ".hammerIron");
         setCreativeTab(GTClassic.creativeTabGT);
@@ -31,7 +31,7 @@ public class GTItemHammerIron extends ItemPickaxe implements IStaticTexturedItem
 	@Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
 	{
-    	tooltip.add(stack.getMaxDamage() - stack.getItemDamage()+"/500");
+    	tooltip.add(stack.getMaxDamage() - stack.getItemDamage()+"/768");
     }
 	
 	@Override

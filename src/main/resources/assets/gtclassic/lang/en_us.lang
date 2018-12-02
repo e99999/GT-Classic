@@ -43,8 +43,9 @@ tile.gtclassic.ruby_ore.name=Ruby Ore
 tile.gtclassic.sandIron.name=Black Sand
 
 #tools
-item.gtclassic.hammerIron.name=Iron Hammer
+item.gtclassic.hammerIron.name=Refined Iron Hammer
 item.gtclassic.electroMagnet.name=Electromagnet
+item.gtclassic.rockCutter.name=Rock Cutter
 item.gtclassic.advancedDrill.name=Advanced Drill
 item.gtclassic.advancedChainsaw.name=Advanced Chainsaw
 item.gtclassic.teslaStaff.name=Tesla Staff
@@ -136,9 +137,11 @@ tooltip.gtclassic.superCondensator=In: 65535 EU, Out: 32768 EU 4x
 tooltip.gtclassic.hesu=Max Input: 2048 EU
 tooltip.gtclassic.hesu2=Max Storage: 100000000 EU
 
+tooltip.gtclassic.rockcutter=Hi I'm a rock cutter
 tooltip.gtclassic.drill=No frills world destroyer!
 tooltip.gtclassic.saw=Makes trees disappear
 tooltip.gtclassic.trashcan=Mobile Trash Bin
+tooltip.gtclassic.craftingtablet=Travelers best friend!
 tooltip.gtclassic.warranty=No Warranty!
 tooltip.gtclassic.tesla=O V E R C H A R G E D
 

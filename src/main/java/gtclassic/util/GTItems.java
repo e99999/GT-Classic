@@ -21,6 +21,7 @@ import gtclassic.items.tools.GTItemCraftingTablet;
 import gtclassic.items.tools.GTItemDestructoPack;
 import gtclassic.items.tools.GTItemElectromagnet;
 import gtclassic.items.tools.GTItemHammerIron;
+import gtclassic.items.tools.GTItemRockCutter;
 import gtclassic.items.tools.GTItemTeslaStaff;
 import gtclassic.toxicdimension.items.GTItemCreditAlk;
 import net.minecraft.item.Item;
@@ -88,6 +89,7 @@ public class GTItems {
 	
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemElectromagnet electroMagnet = new GTItemElectromagnet();
+	public static final GTItemRockCutter rockCutter = new GTItemRockCutter();
 	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
 	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();
 	public static final GTItemTeslaStaff teslaStaff = new GTItemTeslaStaff();
@@ -154,6 +156,7 @@ public class GTItems {
 			
 			hammerIron,
 			electroMagnet,
+			rockCutter,
 			advancedDrill,
 			advancedChainsaw,
 			teslaStaff,

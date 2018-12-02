@@ -12,6 +12,7 @@ import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,6 +20,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.ForgeRegistry;
+import ic2.core.item.recipe.upgrades.EnchantmentModifier;
 
 public class GTRecipes {
 	
@@ -104,7 +106,12 @@ public class GTRecipes {
 	public static void initShapedRecipes () {
 		
 		recipes.addRecipe(new ItemStack(GTItems.hammerIron, 1),
-				new Object[]{"II ", "IIS", "II ", 'I', "ingotIron",'S', Items.STICK});
+				new Object[]{"II ", "IIS", "II ", 'I', "ingotRefinedIron",'S', Items.STICK});
+		
+		recipes.addRecipe(new ItemStack(GTItems.rockCutter, 1),
+				new Object[]{"DI ", "DI ", "DCB",
+						(new EnchantmentModifier(new ItemStack(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput()),
+						'D', Items.DIAMOND, 'I', "ingotRefinedIron", 'C', Ic2Items.electricCircuit, 'B', Ic2Items.battery.copy()});
 		
 		recipes.addRecipe(new ItemStack(GTItems.glassTube, 32),
 				new Object[]{"G G", "G G", " G ", 'G', Blocks.GLASS});
@@ -272,12 +279,9 @@ public class GTRecipes {
 		TileEntityMacerator.addRecipe("blockChrome", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustChrome), 9), 0.1F);
 		TileEntityMacerator.addRecipe("blockTitanium", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustTitanium), 9), 0.1F);
 		
-		TileEntityExtractor.addRecipe("oreMagnetite", 1, StackUtil.copyWithSize(Ic2Items.ironDust, 1), 0.3F);
 		TileEntityExtractor.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.ruby), 3), 0.3F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.sapphire), 3), 0.3F);
-		
-		
-		
+
 	}
 
 }

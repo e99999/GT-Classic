@@ -13,6 +13,8 @@ import ic2.core.item.base.ItemIC2;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,6 +43,12 @@ public class GTItemCraftingTablet extends ItemIC2 implements IHandHeldInventory{
 
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
+	
+	@Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
+	{
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".craftingtablet"));
+    }
 	
 	@Override
     @SideOnly(Side.CLIENT)
