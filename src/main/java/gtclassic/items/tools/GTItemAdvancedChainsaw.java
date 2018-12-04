@@ -2,9 +2,7 @@ package gtclassic.items.tools;
 
 import gtclassic.GTClassic;
 import ic2.api.item.ElectricItem;
-import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
-import ic2.core.audio.AudioSource;
 import ic2.core.item.base.ItemElectricTool;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -12,11 +10,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentDamage;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -29,6 +28,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -40,30 +40,40 @@ import java.util.List;
 
 public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticTexturedItem {
     public static final ItemStack ironAxe;
-    AudioSource lastSource;
-    public GTItemAdvancedChainsaw(){
+    
+    public GTItemAdvancedChainsaw()
+    {
         super(0.0F, 0.0F, ToolMaterial.IRON);
         this.attackDamage = 8.0F;
         this.maxCharge = 100000;
         this.transferLimit = 150;
         this.operationEnergyCost = 50;
-        this.tier = 3;
+        this.tier = 1;
         this.efficiency = 12.0F;
         this.setHarvestLevel("axe", 2);
         this.setRegistryName("advanced_chainsaw");
         this.setUnlocalizedName(GTClassic.MODID + ".advancedChainsaw");
         this.setCreativeTab(GTClassic.creativeTabGT);
     }
+    
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
+	{
+    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".saw"));
+    }
 
     @Override
-    public boolean canHarvestBlock(IBlockState state, ItemStack stack) {
+    public boolean canHarvestBlock(IBlockState state, ItemStack stack) 
+    {
         return ironAxe.canHarvestBlock(state) || state.getBlock() == Blocks.WEB;
     }
 
     @Override
-    public float getDestroySpeed(ItemStack stack, IBlockState state) {
+    public float getDestroySpeed(ItemStack stack, IBlockState state) 
+    {
         Material material = state.getMaterial();
-        if (!ElectricItem.manager.canUse(stack, (double)this.getEnergyCost(stack))) {
+        if (!ElectricItem.manager.canUse(stack, (double)this.getEnergyCost(stack))) 
+        {
             return 1.0F;
         } else {
             return material != Material.WOOD && material != Material.PLANTS && material != Material.VINE && material != Material.LEAVES ? super.getDestroySpeed(stack, state) : this.efficiency;
@@ -71,19 +81,27 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
     }
 
     @Override
-    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase entity, EnumHand hand) {
-        if (entity.world.isRemote) {
+    public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase entity, EnumHand hand) 
+    {
+        if (entity.world.isRemote) 
+        {
             return false;
-        } else if (!(entity instanceof IShearable)) {
+        }
+        else if (!(entity instanceof IShearable)) 
+        {
             return false;
-        } else {
+        }
+        else 
+        {
             IShearable target = (IShearable)entity;
             BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
-            if (target.isShearable(stack, entity.world, pos) && ElectricItem.manager.canUse(stack, (double)(this.getEnergyCost(stack) * 2))) {
+            if (target.isShearable(stack, entity.world, pos) && ElectricItem.manager.canUse(stack, (double)(this.getEnergyCost(stack) * 2))) 
+            {
                 List<ItemStack> drops = target.onSheared(stack, entity.world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack));
 
                 EntityItem ent;
-                for(Iterator var8 = drops.iterator(); var8.hasNext(); ent.motionZ += (double)((entity.world.rand.nextFloat() - entity.world.rand.nextFloat()) * 0.1F)) {
+                for(Iterator var8 = drops.iterator(); var8.hasNext(); ent.motionZ += (double)((entity.world.rand.nextFloat() - entity.world.rand.nextFloat()) * 0.1F)) 
+                {
                     ItemStack item = (ItemStack)var8.next();
                     ent = entity.entityDropItem(item, 1.0F);
                     ent.motionY += (double)(entity.world.rand.nextFloat() * 0.05F);
@@ -98,10 +116,12 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
     }
 
     @Override
-    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
+    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) 
+    {
         World worldIn = player.world;
         if (!player.isSneaking()){
-            for (int i = 1; i < 60; i++) {
+            for (int i = 1; i < 60; i++) 
+            {
                 BlockPos nextPos = pos.up(i);
                 IBlockState nextState = worldIn.getBlockState(nextPos);
                 if(nextState.getBlock().isWood(worldIn, nextPos)){
@@ -109,15 +129,19 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
                 }
             }
         }
-        if (!player.world.isRemote && !player.capabilities.isCreativeMode) {
+        if (!player.world.isRemote && !player.capabilities.isCreativeMode) 
+        {
             Block block = player.world.getBlockState(pos).getBlock();
-            if (block instanceof IShearable) {
+            if (block instanceof IShearable) 
+            {
                 IShearable target = (IShearable)block;
-                if (target.isShearable(itemstack, player.world, pos) && ElectricItem.manager.canUse(itemstack, (double)this.getEnergyCost(itemstack))) {
+                if (target.isShearable(itemstack, player.world, pos) && ElectricItem.manager.canUse(itemstack, (double)this.getEnergyCost(itemstack))) 
+                {
                     List<ItemStack> drops = target.onSheared(itemstack, player.world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
                     Iterator var7 = drops.iterator();
 
-                    while(var7.hasNext()) {
+                    while(var7.hasNext()) 
+                    {
                         ItemStack stack = (ItemStack)var7.next();
                         float f = 0.7F;
                         double d = (double)(player.world.rand.nextFloat() * f) + (double)(1.0F - f) * 0.5D;
@@ -130,7 +154,8 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
 
                     ElectricItem.manager.use(itemstack, (double)this.getEnergyCost(itemstack), player);
                     player.addStat(StatList.getBlockStats(block));
-                    if (block == Blocks.WEB) {
+                    if (block == Blocks.WEB) 
+                    {
                         player.world.setBlockToAir(pos);
                         IC2.achievements.issueStat(player, "blocksSawed");
                         return true;
@@ -139,34 +164,38 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
             }
 
             return false;
-        } else {
+        }
+        else 
+        {
             return false;
         }
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos, EntityLivingBase entityLiving) {
-        if (entityLiving instanceof EntityPlayer) {
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos, EntityLivingBase entityLiving) 
+    {
+        if (entityLiving instanceof EntityPlayer) 
+        {
             IC2.achievements.issueStat((EntityPlayer)entityLiving, "blocksSawed");
         }
         return super.onBlockDestroyed(stack, worldIn, blockIn, pos, entityLiving);
     }
 
-    public void breakBlock(BlockPos pos, ItemStack saw, World world, BlockPos oldPos, EntityPlayer player) {
-        if (oldPos == pos) {
+    public void breakBlock(BlockPos pos, ItemStack saw, World world, BlockPos oldPos, EntityPlayer player) 
+    {
+        if (oldPos == pos) 
+        {
             return;
         }
-        //IEnergyStorage capEnergy = stack.getCapability(CapabilityEnergy.ENERGY, null);
-        if (!ElectricItem.manager.canUse(saw, (double)this.getEnergyCost(saw))) {
+        if (!ElectricItem.manager.canUse(saw, (double)this.getEnergyCost(saw))) 
+        {
             return;
         }
         IBlockState blockState = world.getBlockState(pos);
-        if (blockState.getBlockHardness(world, pos) == -1.0F) {
+        if (blockState.getBlockHardness(world, pos) == -1.0F) 
+        {
             return;
         }
-//        if(!(entityLiving instanceof EntityPlayer)){
-//            return;
-//        }
         ElectricItem.manager.use(saw, (double)this.getEnergyCost(saw), player);
         blockState.getBlock().harvestBlock(world, player, pos, blockState, world.getTileEntity(pos), saw);
         world.setBlockToAir(pos);
@@ -174,44 +203,58 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
     }
 
     @Override
-    public List<Integer> getValidVariants() {
+    public List<Integer> getValidVariants() 
+    {
         return Arrays.asList(0);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTexture(int meta) {
+    public TextureAtlasSprite getTexture(int meta) 
+    {
         return Ic2Icons.getTextures("gtclassic_items")[61];
     }
 
     @Override
-    public EnumEnchantmentType getType(ItemStack item) {
+    public EnumEnchantmentType getType(ItemStack item) 
+    {
         return EnumEnchantmentType.DIGGER;
     }
 
     @Override
-    public boolean isSpecialSupported(ItemStack item, Enchantment ench) {
+    public boolean isSpecialSupported(ItemStack item, Enchantment ench) 
+    {
         return ench instanceof EnchantmentDamage;
     }
 
 
     @Override
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
-        if (!(attacker instanceof EntityPlayer)) {
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) 
+    {
+        if (!(attacker instanceof EntityPlayer)) 
+        {
             return true;
-        } else {
-            if (ElectricItem.manager.use(stack, (double)this.operationEnergyCost, (EntityPlayer)attacker)) {
+        }
+        else 
+        {
+            if (ElectricItem.manager.use(stack, (double)this.operationEnergyCost, (EntityPlayer)attacker)) 
+            {
                 target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attacker), 10.0F);
-            } else {
+            }
+            else 
+            {
                 target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attacker), 1.0F);
             }
 
-            if (target.getHealth() <= 0.0F) {
-                if (target instanceof EntityCreeper) {
+            if (target.getHealth() <= 0.0F) 
+            {
+                if (target instanceof EntityCreeper) 
+                {
                     IC2.achievements.issueStat((EntityPlayer)attacker, "killCreeperChainsaw");
                 }
 
-                if (attacker instanceof EntityPlayer) {
+                if (attacker instanceof EntityPlayer) 
+                {
                     IC2.achievements.issueStat((EntityPlayer)attacker, "chainsawKills");
                 }
             }
@@ -220,7 +263,8 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
         }
     }
 
-    static {
+    static 
+    {
         ironAxe = new ItemStack(Items.IRON_AXE);
     }
 }

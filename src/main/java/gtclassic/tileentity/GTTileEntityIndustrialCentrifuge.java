@@ -98,7 +98,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
     public static final int slotOutput4 = 6;
 
     public GTTileEntityIndustrialCentrifuge() {
-        this(11, 1, 98, 32);
+        this(7, 1, 98, 32);
     }
 
     public GTTileEntityIndustrialCentrifuge(int slots, int energyPerTick, int maxProgress, int maxInput)
@@ -150,12 +150,15 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotCell);
         handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2, slotOutput3, slotOutput4);
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 0, 2, 4);
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 1, 3);
+        handler.registerDefaultSlotsForSide(RotationList.UP, slotInput);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
+        handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotCell);
+        handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput, slotOutput2, slotOutput3, slotOutput4);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
         handler.registerSlotType(SlotType.Fuel, slotFuel);
-        handler.registerSlotType(SlotType.Input, slotInput, slotCell);
+        handler.registerSlotType(SlotType.Input, slotInput);
+        handler.registerSlotType(SlotType.SecondInput, slotCell);
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutput4);
     }
 
@@ -988,12 +991,20 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityElecMachine impl
 
     public static void init(){
 
-        addRecipe((new RecipeInputOreDict("dustBauxite", 24)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustAluminum, 16, 0), new ItemStack(GTItems.dustTitanium, 1, 0), StackUtil.copyWithSize(Ic2Items.airCell, 6), new ItemStack(GTItems.cellH, 10)})));
-        addRecipe((new RecipeInputOreDict("dustCoal", 4)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellC, 8)})));
-        addRecipe((new RecipeInputItemStack(StackUtil.copyWithSize(Ic2Items.electrolyzedWaterCell, 6))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellH, 4), (Ic2Items.emptyCell), (Ic2Items.airCell)})));
-        addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.cellH, 4))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellD, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 3)})));
-        addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.cellD, 4))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellT, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 3)})));
-        addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.cellHE, 16))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.cellHE3, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 15)})));
+    	//recipes that dont require cells and work properly right now 
+    	addRecipe((new RecipeInputOreDict("dustGlowstone", 16)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(Items.REDSTONE, 8, 0), StackUtil.copyWithSize(Ic2Items.goldDust, 8)})));
+    	addRecipe((new RecipeInputOreDict("dustEnderEye", 16)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustEnderpearl, 8, 0), new ItemStack(Items.BLAZE_POWDER, 8, 0)})));
+    	addRecipe((new RecipeInputOreDict("gemLapis", 64)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustLazurite, 48, 0), new ItemStack(GTItems.dustSodalite, 8, 0), new ItemStack(GTItems.dustPyrite, 4, 0),  new ItemStack(GTItems.dustCalcite, 4, 0)})));
+    	addRecipe((new RecipeInputItemStack(StackUtil.copyWithSize(Ic2Items.netherrackDust, 64))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(Items.GOLD_NUGGET, 4, 0), new ItemStack(Items.REDSTONE, 4, 0), new ItemStack(Items.GUNPOWDER, 8, 0),  StackUtil.copyWithSize(Ic2Items.coalDust, 4)})));
+    	addRecipe((new RecipeInputOreDict("dustPyrite", 3)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{StackUtil.copyWithSize(Ic2Items.ironDust, 1)}))); 
+    	
+    	//experimental recipes that need the cell input added
+    	addRecipe((new RecipeInputOreDict("dustBauxite", 24)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dustAluminium, 16, 0), new ItemStack(GTItems.dustTitanium, 1, 0), StackUtil.copyWithSize(Ic2Items.airCell, 6), new ItemStack(GTItems.hydrogen, 10)})));
+        addRecipe((new RecipeInputOreDict("dustCoal", 4)),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.carbon, 8)})));
+        //addRecipe((new RecipeInputItemStack(StackUtil.copyWithSize(Ic2Items.electrolyzedWaterCell, 6))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.helium, 4), (Ic2Items.emptyCell), (Ic2Items.airCell)})));
+        //addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.hydrogen, 4))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.dueterium, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 3)})));
+        //addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.dueterium, 4))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.tungsten, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 3)})));
+        //addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.helium3, 16))),  new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(GTItems.helium3, 1), StackUtil.copyWithSize(Ic2Items.emptyCell, 15)})));
     }
 
     public static void addRecipe(IRecipeInput input, MachineOutput output)

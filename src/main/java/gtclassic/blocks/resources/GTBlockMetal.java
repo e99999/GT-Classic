@@ -14,6 +14,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -25,7 +28,7 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
         IRIDIUM_REINFORCED_STONE(64),
     	RUBY(66), 
         SAPPHIRE(67),
-        ALUMINUM(68), 
+        ALUMINIUM(68), 
         TITANIUM(69), 
     	CHROME(70); 
         
@@ -52,6 +55,12 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
         setSoundType(SoundType.METAL);
         setHarvestLevel("pickaxe", 2);
     }
+    
+    @Override
+    public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
+        return true;
+    }
+
 
     @Override
     public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
@@ -72,10 +81,12 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
     
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".nomobs"));
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".nomobs"));
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".beacon"));
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getParticleTexture(IBlockState state) {
         return this.getTextureFromState(state, EnumFacing.SOUTH);
     }

@@ -19,7 +19,6 @@ public class GTProxyClient extends GTProxyCommon {
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
     	GTBlocks.initModels();
-        GTItems.initModels();
     }
 }
 

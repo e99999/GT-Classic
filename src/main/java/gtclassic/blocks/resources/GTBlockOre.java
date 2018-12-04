@@ -12,11 +12,14 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -73,12 +76,12 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         }
         
         if (this == GTBlocks.rubyOre) {
-        		drops.add(new ItemStack(GTItems.ruby, 1));
+        		drops.add(new ItemStack(GTItems.ruby, 1 + fortune));
         		}
         
         
         if (this == GTBlocks.sapphireOre) {
-        		drops.add(new ItemStack(GTItems.sapphire, 1));
+        		drops.add(new ItemStack(GTItems.sapphire, 1 + fortune));
         		}
         	
         
@@ -106,7 +109,31 @@ public class GTBlockOre extends Block implements ITexturedBlock {
             }
             return xp;
     }
-  
+    
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
+    {
+    	if (this == GTBlocks.iridiumOre)
+    	{
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".iridium"));
+    	}
+    	
+    	else if (this == GTBlocks.rubyOre)
+    	{
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".ruby"));
+    	}
+    	
+    	else if (this == GTBlocks.sapphireOre)
+    	{
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".sapphire"));
+    	}
+    	
+    	else if (this == GTBlocks.bauxiteOre)
+    	{
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".bauxite"));
+    	}
+    }
+    
     @Override
     public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
         return FULL_BLOCK_AABB;
@@ -119,6 +146,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getParticleTexture(IBlockState state) {
         return this.getTextureFromState(state, EnumFacing.SOUTH);
     }
