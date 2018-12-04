@@ -99,12 +99,21 @@ public class GTRecipes {
 		
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.iridiumReinforcedStoneBlock, 1),
 				new Object[]{Ic2Items.reinforcedStone, "ingotIridium"});
+		
+		recipes.addShapelessRecipe(new ItemStack(GTBlocks.smallChest, 1),
+				new Object[]{Ic2Items.machine, "chestWood"});
+		
+		recipes.addShapelessRecipe(new ItemStack(GTBlocks.largeChest, 1),
+				new Object[]{GTBlocks.smallChest, GTBlocks.smallChest});
 	}
 		
 	public static void initShapedRecipes () {
 		
 		recipes.addRecipe(new ItemStack(GTItems.hammerIron, 1),
 				new Object[]{"II ", "IIS", "II ", 'I', "ingotRefinedIron",'S', Items.STICK});
+		
+		recipes.addRecipe(new ItemStack(GTItems.electroMagnet, 1),
+				new Object[]{"M M", " M ", " B ", 'M', Ic2Items.magnet,'B', Ic2Items.battery});
 		
 		recipes.addRecipe(new ItemStack(GTItems.rockCutter, 1),
 				new Object[]{"DI ", "DI ", "DCB", new EnchantmentModifier(new ItemStack(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(),

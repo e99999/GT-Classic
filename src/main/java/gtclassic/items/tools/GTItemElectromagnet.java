@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemElectromagnet extends BasicElectricItem implements ITexturedItem {
 	
 	boolean isActive = false;
-	int range = 10;
+	int range = 7;
 	double speed = 0.025D;
 	double energyCost = 1;
 	
@@ -52,12 +52,12 @@ public class GTItemElectromagnet extends BasicElectricItem implements ITexturedI
 		{
 			if (!isActive)
 			{
-				this.isActive = true;
+				isActive = true;
 				//turn on magnet
 			}
 			else 
 			{
-				this.isActive = false;
+				isActive = false;
 				//turn off magnet
 			}
 			
@@ -68,32 +68,27 @@ public class GTItemElectromagnet extends BasicElectricItem implements ITexturedI
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
 	{
-		if(entityIn instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer)entityIn;
-			if(isActive)
-			{
-				double x = player.posX;
-				double y = player.posY + 1.5;
-				double z = player.posZ;
-				
-				List<EntityItem> items = player.world.getEntitiesWithinAABB(EntityItem.class, 
-						new AxisAlignedBB(x - range, y - range, z - range, x + range, y + range, z + range));
-				
-				int pulled = 0;
-				for(EntityItem item : items)
-					if(canPull(stack))
-					{
-						if(pulled > 200)
-							break;
-						item.addVelocity((x - item.posX) * speed, (y - item.posY) * speed, (z - item.posZ) * speed);
-						ElectricItem.manager.use(stack, (double)energyCost, (EntityLivingBase)null);
-						pulled++;
-					}
-			}
-				
+	    
+		if(worldIn.getTotalWorldTime() % 4 != 0) {
+		if(!(entityIn instanceof EntityPlayer) || !isActive)
+	    {
+	        return;
+	    }
+	    double x = entityIn.posX;
+	    double y = entityIn.posY + 1.5;
+	    double z = entityIn.posZ;
+	    int pulled = 0;
+	    for(EntityItem item : worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(x, y, z, x + 1, y + 1, z + 1).grow(range)))
+	    {
+	        if(!canPull(stack) || pulled > 200)
+	        {
+	            return;
+	        }
+	        item.addVelocity((x - item.posX) * speed, (y - item.posY) * speed, (z - item.posZ) * speed);
+	        ElectricItem.manager.use(stack, (double)energyCost, (EntityLivingBase)null);
+	        pulled++;
+	    }
 		}
-			
 	}
 	
 	public boolean canPull(ItemStack stack) 
