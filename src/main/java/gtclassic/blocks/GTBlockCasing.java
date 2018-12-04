@@ -24,7 +24,6 @@ import java.util.List;
 public class GTBlockCasing extends Block implements ITexturedBlock {
     public enum GTBlockCasingVariants{
         FUSION(1), 
-        LESU(5), 
         HIGHLYADVANCED(29);
         
     	private int id;

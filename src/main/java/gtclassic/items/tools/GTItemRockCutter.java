@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.*;
 
-public class GTItemRockCutter extends ItemElectricTool implements IStaticTexturedItem, IBootable, IMiningDrill {
+public class GTItemRockCutter extends ItemElectricTool implements IStaticTexturedItem, IMiningDrill {
     
 	public GTItemRockCutter()
 	{
@@ -54,12 +54,6 @@ public class GTItemRockCutter extends ItemElectricTool implements IStaticTexture
     public boolean hasEffect(ItemStack stack)
     {
         return false;
-    }
-
-    @Override
-    public void onLoad() 
-    {
-    	//required for construction
     }
 
     @Override

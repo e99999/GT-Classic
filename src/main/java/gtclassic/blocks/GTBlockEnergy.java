@@ -36,7 +36,6 @@ public class GTBlockEnergy extends BlockMultiID {
         SUPERCONDENSATOR,
 
     	//Storage
-    	LESU,
         IESU,
         HESU;
     }
@@ -64,11 +63,16 @@ public class GTBlockEnergy extends BlockMultiID {
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
-        if (this == GTBlocks.HESU){
+        if (this == GTBlocks.HESU)
+        {
             return new GTTileEntityHESU();
-        }else if (this == GTBlocks.superCondensator){
+        } 
+        else if (this == GTBlocks.superCondensator)
+        {
             return new GTTileEntitySuperCondensator();
-        }else{
+        }
+        else
+        {
             return new TileEntityBlock();
         }
 
@@ -104,11 +108,6 @@ public class GTBlockEnergy extends BlockMultiID {
         }
    	 
    	 	//Storage
-   	 	else if (this == GTBlocks.LESU)
-   	 	{
-   	 		return Ic2Icons.getTextures("gtclassic_lapotronicenergysu");
-   	 	}
-   	 
    	 	else if (this == GTBlocks.IESU)
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");

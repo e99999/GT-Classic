@@ -29,13 +29,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.*;
 
-public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticTexturedItem, IBootable, IMiningDrill {
+public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticTexturedItem, IMiningDrill {
     
 	public GTItemAdvancedDrill()
 	{
         super(0.0F, -3.0F, ToolMaterial.DIAMOND);
         this.setRegistryName("advanced_drill");
-        this.hasSubtypes = true;
         this.setUnlocalizedName(GTClassic.MODID + ".advancedDrill");
         this.attackDamage = 8.0F;
         this.maxCharge = 100000;
@@ -48,12 +47,6 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
 	{
     	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".drill"));
-    }
-
-    @Override
-    public void onLoad() 
-    {
-    	//required for construction
     }
 
     @Override

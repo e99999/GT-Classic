@@ -4,6 +4,7 @@ import gtclassic.GTClassic;
 import gtclassic.blocks.*;
 import gtclassic.blocks.GTBlockCasing.GTBlockCasingVariants;
 import gtclassic.blocks.GTBlockMachine.GTBlockMachineVariants;
+import gtclassic.blocks.GTBlockStorage.GTBlockStorageVariants;
 import gtclassic.blocks.GTBlockEnergy.GTBlockEnergyVariants;
 import gtclassic.blocks.GTBlockGenerator.GTBlockGeneratorVariants;
 import gtclassic.blocks.resources.GTBlockMetal;
@@ -13,17 +14,14 @@ import gtclassic.tileentity.GTTileEntityChemicalElectrolyzer;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.tileentity.GTTileEntityLargeBuffer;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
-import gtclassic.tileentity.GTTileEntitySmallBuffer;
+import gtclassic.tileentity.GTTileEntitySmallChest;
 import gtclassic.tileentity.GTTileEntitySuperCondensator;
-import gtclassic.tileentity.GTTileEntityTranslocator;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortalFrame;
 import gtclassic.toxicdimension.blocks.GTBlockToxicGrass;
 import gtclassic.toxicdimension.blocks.GTBlockToxicPortal;
 import gtclassic.blocks.resources.GTBlockMetal.GTBlockMetalVariants;
 import gtclassic.blocks.resources.GTBlockOre.GTBlockOreVariants;
-
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -43,7 +41,6 @@ public class GTBlocks {
 
     public static final GTBlockCasing
 	fusionMachineBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
-	lesuMachineBlock = new GTBlockCasing(GTBlockCasingVariants.LESU),
 	highlyadvancedMachineBlock = new GTBlockCasing(GTBlockCasingVariants.HIGHLYADVANCED);
     
     public static final GTBlockMetal
@@ -61,12 +58,8 @@ public class GTBlocks {
     bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE);
     
     public static final GTBlockMachine
-    smallBuffer = new GTBlockMachine(GTBlockMachineVariants.SMALLBUFFER),
-    largeBuffer = new GTBlockMachine(GTBlockMachineVariants.LARGEBUFFER),
-    translocator = new GTBlockMachine(GTBlockMachineVariants.TRANSLOCATOR),
     autoCrafter = new GTBlockMachine(GTBlockMachineVariants.AUTOCRAFTER),
     chargeOMat = new GTBlockMachine(GTBlockMachineVariants.CHARGEOMAT),
-    quantumChest = new GTBlockMachine(GTBlockMachineVariants.QUANTUMCHEST),
     computerCube = new GTBlockMachine(GTBlockMachineVariants.COMPUTERCUBE),
     chemicalElectrolyzer = new GTBlockMachine(GTBlockMachineVariants.CHEMICALELECTROLYZER),
     industrialCentrifuge = new GTBlockMachine(GTBlockMachineVariants.INDUSTRIALCENTRIFUGE),
@@ -74,9 +67,13 @@ public class GTBlocks {
     playerDetector = new GTBlockMachine(GTBlockMachineVariants.PLAYERDETECTOR),
     uuMatterAssembler = new GTBlockMachine(GTBlockMachineVariants.UUMASSEMBLER),
     sonictron = new GTBlockMachine(GTBlockMachineVariants.SONICTRON);
+    
+	public static final GTBlockStorage
+	smallChest = new GTBlockStorage(GTBlockStorageVariants.SMALLCHEST),
+	largeChest = new GTBlockStorage(GTBlockStorageVariants.LARGECHEST),
+	quantumChest = new GTBlockStorage(GTBlockStorageVariants.QUANTUMCHEST);
 	
 	public static final GTBlockEnergy
-	LESU = new GTBlockEnergy(GTBlockEnergyVariants.LESU),
 	IESU = new GTBlockEnergy(GTBlockEnergyVariants.IESU),
 	HESU = new GTBlockEnergy(GTBlockEnergyVariants.HESU),
     superCondensator = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDENSATOR);
@@ -89,10 +86,10 @@ public class GTBlocks {
 	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
     public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
 
-    public static final Block[] blocks = {
+    public static final Block[] blocks = 
+    	{
     		
             fusionMachineBlock,
-            lesuMachineBlock,
             highlyadvancedMachineBlock,
             
             iridiumReinforcedStoneBlock,
@@ -108,12 +105,8 @@ public class GTBlocks {
             bauxiteOre,
             sandIron,
             
-            smallBuffer,
-            largeBuffer,
-            translocator,
             autoCrafter,
             chargeOMat,
-            quantumChest,
             computerCube,
             chemicalElectrolyzer,
             industrialCentrifuge,
@@ -122,9 +115,12 @@ public class GTBlocks {
             uuMatterAssembler,
             sonictron,
             
+            smallChest,
+            largeChest,
+            quantumChest,
+            
             fusionReactor,
             lightningRod,
-            LESU,
             IESU,
             HESU,
             superCondensator,
@@ -133,44 +129,50 @@ public class GTBlocks {
             toxicPortal,
             grassToxic
             
-    };
+    	};
     @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event){
+    public static void registerBlocks(RegistryEvent.Register<Block> event)
+    {
         IForgeRegistry registry = event.getRegistry();
-        for (Block block : blocks){
+        for (Block block : blocks)
+        {
             registry.register(block);
         }
     }
     
     @SubscribeEvent
-    public static void registerItemBlocks(RegistryEvent.Register<Item> event){
+    public static void registerItemBlocks(RegistryEvent.Register<Item> event)
+    {
         final IForgeRegistry registry = event.getRegistry();
-        for (Block block : blocks) {
+        for (Block block : blocks) 
+        {
             registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()).setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTClassic.creativeTabGT));
         }
     }
     
-    public static void registerTiles(){
+    public static void registerTiles()
+    {
         GameRegistry.registerTileEntity(GTTileEntityIndustrialCentrifuge.class, new ResourceLocation(GTClassic.MODID, "tileEntityIndustrialCentrifuge"));
-        GameRegistry.registerTileEntity(GTTileEntitySmallBuffer.class, new ResourceLocation(GTClassic.MODID, "tileEntitySmallBuffer"));
-        GameRegistry.registerTileEntity(GTTileEntityLargeBuffer.class, new ResourceLocation(GTClassic.MODID, "tileEntityLargeBuffer"));
-        GameRegistry.registerTileEntity(GTTileEntityTranslocator.class, new ResourceLocation(GTClassic.MODID, "tileTranslocator"));
-        GameRegistry.registerTileEntity(GTTileEntityQuantumChest.class, new ResourceLocation(GTClassic.MODID, "tileQuantumChest"));
         GameRegistry.registerTileEntity(GTTileEntityComputerCube.class, new ResourceLocation(GTClassic.MODID, "tileEntityComputerCube"));
         GameRegistry.registerTileEntity(GTTileEntityChemicalElectrolyzer.class, new ResourceLocation(GTClassic.MODID, "tileEntityChemicalElectrolyzer"));
         GameRegistry.registerTileEntity(GTTileEntitySuperCondensator.class, new ResourceLocation(GTClassic.MODID, "tileSuperCondensator"));
         
+        GameRegistry.registerTileEntity(GTTileEntitySmallChest.class, new ResourceLocation(GTClassic.MODID, "tileEntitySmallChest"));
+        GameRegistry.registerTileEntity(GTTileEntityQuantumChest.class, new ResourceLocation(GTClassic.MODID, "tileQuantumChest"));
+        
         GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
     }
     
-    private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
-        GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
+    private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) 
+    {
+        //overloads deprecated method to properly register tiles
+    	GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
     }
 	
-	//TODO keeping toxic dim stuff in here because it might be changed on release if Alk never fucking replies
     @SideOnly(Side.CLIENT)
-    public static void initModels() {
+    public static void initModels() 
+    {
     	toxicPortal.initModel();
     	grassToxic.initModel();
-    	}
+    }
 }

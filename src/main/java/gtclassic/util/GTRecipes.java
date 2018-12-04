@@ -11,6 +11,7 @@ import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
@@ -98,9 +99,6 @@ public class GTRecipes {
 		
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.iridiumReinforcedStoneBlock, 1),
 				new Object[]{Ic2Items.reinforcedStone, "ingotIridium"});
-
-		recipes.addShapelessRecipe(new ItemStack(GTBlocks.smallBuffer,8),
-				new Object[]{GTBlocks.largeBuffer});
 	}
 		
 	public static void initShapedRecipes () {
@@ -109,13 +107,11 @@ public class GTRecipes {
 				new Object[]{"II ", "IIS", "II ", 'I', "ingotRefinedIron",'S', Items.STICK});
 		
 		recipes.addRecipe(new ItemStack(GTItems.rockCutter, 1),
-				new Object[]{"DI ", "DI ", "DCB",
-						(new EnchantmentModifier(new ItemStack(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput()),
-						'D', Items.DIAMOND, 'I', "ingotRefinedIron", 'C', Ic2Items.electricCircuit, 'B', Ic2Items.battery.copy()});
+				new Object[]{"DI ", "DI ", "DCB", new EnchantmentModifier(new ItemStack(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(),
+				'D', Items.DIAMOND, 'I', "ingotRefinedIron", 'C', Ic2Items.electricCircuit, 'B', Ic2Items.battery.copy()});
 		
 		recipes.addRecipe(new ItemStack(GTItems.glassTube, 32),
 				new Object[]{"G G", "G G", " G ", 'G', Blocks.GLASS});
-
 
 
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionReactor,1),
@@ -126,9 +122,6 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler,1),
 				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D', GTItems.dataOrb, 'B', "batteryTier2" });
-
-		recipes.addRecipe(new ItemStack(GTBlocks.LESU,1),
-				new Object[]{" L ", "AlA", " M ", 'L', Ic2Items.transformerLV,'A', "circuitAdvanced", 'l', GTBlocks.lesuMachineBlock, 'M', Ic2Items.transformerMV});
 
 		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge,1),
 				new Object[]{"RCR", "AEA", "RCR", 'E', Ic2Items.extractor,'R', "ingotRefinedIron", 'A', Ic2Items.advMachine, 'C', "circuitAdvanced"});
@@ -144,16 +137,6 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTBlocks.autoCrafter,1),
 				new Object[]{" B ", "CcC", " A ", 'B', Ic2Items.battery,'C', "circuitAdvanced", 'c', "workbench", 'A', Ic2Items.advMachine});
-
-		recipes.addRecipe(new ItemStack(GTBlocks.translocator,1),
-				new Object[]{" B ", "CPC", " M ", 'B', Ic2Items.battery,'C', "circuitBasic", 'P', Blocks.PISTON, 'M', Ic2Items.machine});
-
-		recipes.addRecipe(new ItemStack(GTBlocks.largeBuffer,1),
-				new Object[]{" B ", "CcC", " A ", 'B', Ic2Items.battery,'C', "circuitAdvanced", 'c', "chest", 'A', Ic2Items.advMachine});
-
-		recipes.addRecipe(new ItemStack(GTBlocks.largeBuffer,1),
-				new Object[]{"SSS", "SCS", "SSS", 'S', GTBlocks.smallBuffer,'C', "circuitAdvanced"});
-
 
 
 		recipes.addRecipe(Ic2Items.energyCrystal.copy(),
@@ -247,7 +230,6 @@ public class GTRecipes {
 		
 		TileEntityCompressor.addRecipe("dustSapphire", 1, new ItemStack(GTItems.sapphire), 0.1F);
 		TileEntityCompressor.addRecipe("dustRuby", 1, new ItemStack(GTItems.ruby), 0.1F);
-		TileEntityCompressor.addRecipe("dustSapphire", 1, new ItemStack(GTItems.sapphire), 0.1F);
 		TileEntityCompressor.addRecipe("dustEmerald", 1, new ItemStack(Items.EMERALD), 0.1F);
 		TileEntityCompressor.addRecipe(Ic2Items.iridiumOre, 1, new ItemStack(GTItems.ingotIridium), 0.5F);
 
@@ -260,8 +242,7 @@ public class GTRecipes {
 		TileEntityMacerator.addRecipe(new ItemStack(Items.ENDER_PEARL, 1), StackUtil.copyWithSize(new ItemStack(GTItems.dustEnderpearl), 1), 0.3F);
 		TileEntityMacerator.addRecipe(new ItemStack(Items.ENDER_EYE, 1), StackUtil.copyWithSize(new ItemStack(GTItems.dustEnderEye), 2), 0.5F);
 		
-		TileEntityMacerator.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustRuby), 2), 0.3F);
-		TileEntityMacerator.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustSapphire), 2), 0.3F);
+		TileEntityMacerator.addRecipe(new ItemStack(Blocks.END_STONE, 1), new ItemStack(GTItems.dustEndstone));
 		TileEntityMacerator.addRecipe("oreBauxite", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustBauxite), 4), 0.1F);
 		TileEntityMacerator.addRecipe("oreIridium", 1, StackUtil.copyWithSize(Ic2Items.iridiumOre, 2), 1.0F);
 		

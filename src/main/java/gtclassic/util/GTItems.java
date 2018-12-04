@@ -120,6 +120,7 @@ public class GTItems {
 			chlorine,
 			potassium,
 			nitrogen,
+			glassTube,
 
 			dustEnderpearl,
 			dustEnderEye,
@@ -152,7 +153,6 @@ public class GTItems {
 			dataStorageCircuit,
 			braintechAerospaceARDT,
 			dataOrb,
-			glassTube,
 			
 			hammerIron,
 			electroMagnet,

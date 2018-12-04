@@ -14,11 +14,7 @@ public class GTIcons {
         addSprite(new Sprites.SpriteData("gtclassic_items", "gtclassic:textures/sprites/items.png", new Sprites.SpriteInfo(16, 16)));
      
         addSprite(new Sprites.SpriteData("gtclassic_builder", "gtclassic:textures/sprites/builder.png", new Sprites.SpriteInfo(1, 12)));
-        addSprite(new Sprites.SpriteData("gtclassic_smallbuffer", "gtclassic:textures/sprites/smallbuffer.png", new Sprites.SpriteInfo(1, 12)));
-        addSprite(new Sprites.SpriteData("gtclassic_largebuffer", "gtclassic:textures/sprites/largebuffer.png", new Sprites.SpriteInfo(1, 12)));
-        addSprite(new Sprites.SpriteData("gtclassic_translocator", "gtclassic:textures/sprites/translocator.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_autocrafter", "gtclassic:textures/sprites/autocrafter.png", new Sprites.SpriteInfo(1, 12)));
-        addSprite(new Sprites.SpriteData("gtclassic_quantumchest", "gtclassic:textures/sprites/quantumchest.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_chargeomat", "gtclassic:textures/sprites/chargeomat.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_computercube", "gtclassic:textures/sprites/computercube.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_electrolyzer", "gtclassic:textures/sprites/electrolyzer.png", new Sprites.SpriteInfo(1, 12)));
@@ -27,8 +23,11 @@ public class GTIcons {
         addSprite(new Sprites.SpriteData("gtclassic_playerdetector", "gtclassic:textures/sprites/playerdetector.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_uumatterassembler", "gtclassic:textures/sprites/uumassembler.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_sonictron", "gtclassic:textures/sprites/sonictron.png", new Sprites.SpriteInfo(1, 12)));
+        
+        addSprite(new Sprites.SpriteData("gtclassic_smallchest", "gtclassic:textures/sprites/smallchest.png", new Sprites.SpriteInfo(1, 12)));
+        addSprite(new Sprites.SpriteData("gtclassic_largechest", "gtclassic:textures/sprites/largechest.png", new Sprites.SpriteInfo(1, 12)));
+        addSprite(new Sprites.SpriteData("gtclassic_quantumchest", "gtclassic:textures/sprites/quantumchest.png", new Sprites.SpriteInfo(1, 12)));
 
-        addSprite(new Sprites.SpriteData("gtclassic_lapotronicenergysu", "gtclassic:textures/sprites/lapotronicenergysu.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_hugeenergysu", "gtclassic:textures/sprites/hugeenergysu.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_interdimensionalenergysu", "gtclassic:textures/sprites/interdimensionalenergysu.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_lightningrod", "gtclassic:textures/sprites/lightningrod.png", new Sprites.SpriteInfo(1, 12)));
@@ -40,11 +39,7 @@ public class GTIcons {
         addTextureEntry(new Sprites.TextureEntry("gtclassic_items", 0, 0, 16, 5));
         
         addTextureEntry(new Sprites.TextureEntry("gtclassic_builder", 0, 0, 1, 12));
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_smallbuffer", 0, 0, 1, 12));
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_largebuffer", 0, 0, 1, 12));
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_translocator", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_autocrafter", 0, 0, 1, 12));
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_quantumchest", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_chargeomat", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_computercube", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_electrolyzer", 0, 0, 1, 12));
@@ -54,7 +49,10 @@ public class GTIcons {
         addTextureEntry(new Sprites.TextureEntry("gtclassic_uumatterassembler", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_sonictron", 0, 0, 1, 12));
         
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_lapotronicenergysu", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_smallchest", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_largechest", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_quantumchest", 0, 0, 1, 12));
+        
         addTextureEntry(new Sprites.TextureEntry("gtclassic_hugeenergysu", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_interdimensionalenergysu", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_lightningrod", 0, 0, 1, 12));

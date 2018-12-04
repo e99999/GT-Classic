@@ -1,13 +1,9 @@
 
 #casing blocks
 tile.gtclassic.fusion_machineblock.name=Fusion Coil
-tile.gtclassic.lesu_machineblock.name=LESU-Block
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
 
 #machine blocks
-tile.gtclassic.smallbuffer.name=Small Electric Item Buffer
-tile.gtclassic.largebuffer.name=Large Electric Item Buffer
-tile.gtclassic.translocator.name=Translocator
 tile.gtclassic.autocrafter.name=Electric Autocrafter
 tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.quantumchest.name=Quantum Chest
@@ -19,11 +15,15 @@ tile.gtclassic.playerdetector.name=Player Detector
 tile.gtclassic.uumassembler.name=UU Matter Assembler
 tile.gtclassic.sonictron.name=Sonictron
 
+#storage blocks
+tile.gtclassic.smallchest.name=Metal Chest
+tile.gtclassic.largechest.name=Large Metal Chest
+tile.gtclassic.quantumchest.name=Quantum Chest
+
 #energy blocks
 tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.fusionreactor.name=Fusion Reactor
-tile.gtclassic.lesu.name=Lapotronic Energy Storage Unit
-tile.gtclassic.iesu.name=Interdimensional Energy Storage Unit
+tile.gtclassic.iesu.name=IESU
 tile.gtclassic.hesu.name=HESU
 tile.gtclassic.supercondensator.name=Super Condensator
 
@@ -56,8 +56,7 @@ item.gtclassic.lapotronPack.name=Lapotron Pack
 item.gtclassic.destructoPack.name=Destructopack
 item.gtclassic.craftingTablet.name=Crafting Tablet
 item.gtclassic.zeroPointModule.name=Zero Point Module
-item.gtclassic.glass_tube.name=Glass Tube
-
+item.gtclassic.glass_tube.name=Empty Tube
 
 #elements
 item.gtclassic.hydrogen.name=Hydrogen
@@ -94,6 +93,7 @@ item.gtclassic.titanium_dust.name=Titanium Dust
 item.gtclassic.chrome_dust.name=Chrome Dust
 item.gtclassic.lazurite_dust.name=Lazurite Dust
 item.gtclassic.sodalite_dust.name=Sodalite Dust
+item.gtclassic.endstone_dust.name=Endstone Dust
 
 #ingots
 item.gtclassic.iridium_ingot.name=Iridium Ingot
@@ -129,7 +129,7 @@ tooltip.gtclassic.bauxite=Spawns in FOREST & PLAINS biomes
 
 tooltip.gtclassic.beacon=Can be used as a beacon base
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
-tooltip.gtclassic.buffer=A directable Hopper with an inbuilt Energy Conduit!
+tooltip.gtclassic.chest=Decorative item storage
 tooltip.gtclassic.quantumchest=2 milliards, uhhm I mean billions, items to store here!
 tooltip.gtclassic.computer=One stop shop utility & information
 tooltip.gtclassic.centrifuge=And round and round and round it goes
