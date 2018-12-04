@@ -48,7 +48,13 @@ public class GTItems {
 	sodium = new GTItemElement(GTItemElementTypes.SODIUM),
 	chlorine = new GTItemElement(GTItemElementTypes.CHLORINE),
 	potassium = new GTItemElement(GTItemElementTypes.POTASSIUM),
-	nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN);
+	nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN),
+	oxygen = new GTItemElement(GTItemElementTypes.OXYGEN),
+	
+	water = new GTItemElement(GTItemElementTypes.WATER),
+	lava = new GTItemElement(GTItemElementTypes.LAVA),
+	proton = new GTItemElement(GTItemElementTypes.PROTON),
+	neutron = new GTItemElement(GTItemElementTypes.NEUTRON);
 	
 	public static final GTItemDust
 	dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
@@ -122,6 +128,12 @@ public class GTItems {
 			chlorine,
 			potassium,
 			nitrogen,
+			oxygen,
+			
+			water,
+			lava,
+			proton,
+			neutron,
 			glassTube,
 
 			dustEnderpearl,

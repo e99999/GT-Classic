@@ -13,8 +13,8 @@ import java.util.List;
 
 public class GTItemGem extends Item implements IStaticTexturedItem {
     public enum GTItemGemTypes{
-    	RUBY(17),
-        SAPPHIRE(18);
+    	RUBY(21),
+        SAPPHIRE(22);
         
     	private int id;
 

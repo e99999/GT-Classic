@@ -75,6 +75,12 @@ item.gtclassic.sodium.name=Sodium
 item.gtclassic.chlorine.name=Chlorine
 item.gtclassic.potassium.name=Potassium
 item.gtclassic.nitrogen.name=Nitrogen
+item.gtclassic.oxygen.name=Oxygen
+
+item.gtclassic.water.name=Water
+item.gtclassic.lava.name=Lava
+item.gtclassic.proton.name=???
+item.gtclassic.neutron.name=???
 
 #dust
 item.gtclassic.flint_dust.name=Flint Dust
