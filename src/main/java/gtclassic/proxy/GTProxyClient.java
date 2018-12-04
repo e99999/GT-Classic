@@ -18,7 +18,8 @@ public class GTProxyClient extends GTProxyCommon {
     	super.preInit(e);
     }
 
-	public void onIconLoad(SpriteReloadEvent event)
+	@SubscribeEvent
+	public static void onIconLoad(SpriteReloadEvent event)
 	{
 	    GTIcons.loadSprites();
 	}
