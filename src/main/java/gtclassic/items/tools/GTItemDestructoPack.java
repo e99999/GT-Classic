@@ -26,7 +26,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
 
-	public GTItemDestructoPack(){
+	public GTItemDestructoPack()
+	{
 		this.maxStackSize = 1;
         this.setCreativeTab(GTClassic.creativeTabGT);
         this.setRegistryName("destructo_pack");
@@ -35,13 +36,15 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
 	
 	
 	@Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
+	{
     	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".trashcan"));
     }
 	
 	
 	@Override
-    public List<Integer> getValidVariants() {
+    public List<Integer> getValidVariants() 
+	{
         return Arrays.asList(0);
     }
 
@@ -51,8 +54,11 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
         return Ic2Icons.getTextures("gtclassic_items")[33];
     }
     
-    public ActionResult<ItemStack> func_77659_a(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		if (IC2.platform.isSimulating()) {
+    @Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) 
+    {
+		if (IC2.platform.isSimulating()) 
+		{
 			IC2.platform.launchGui(playerIn, this.getInventory(playerIn, handIn, playerIn.getHeldItem(handIn)),
 					handIn);
 		}
@@ -72,7 +78,8 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
     }
 
 	@Override
-	public IHasGui getInventory(EntityPlayer player, EnumHand hand, ItemStack stack) {
+	public IHasGui getInventory(EntityPlayer player, EnumHand hand, ItemStack stack) 
+	{
 		return new GTInventoryDestructoPack(player, this, stack);
 	}
 
@@ -89,13 +96,9 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
 
 
 	@Override
-	public int getTextureEntry(int var1) {
+	public int getTextureEntry(int var1) 
+	{
 		return 0;
 	}
-
-	
-	
-	
-	
 
 }

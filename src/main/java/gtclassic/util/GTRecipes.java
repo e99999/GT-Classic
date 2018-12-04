@@ -121,7 +121,7 @@ public class GTRecipes {
 				new Object[]{"EAE", "ASA", "EAE", 'E', GTItems.energyFlowCircuit,'S', GTBlocks.superCondensator, 'A', GTBlocks.highlyadvancedMachineBlock});
 
 		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler,1),
-				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D', GTItems.dataOrb, 'B', "batteryTier2" });
+				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.assembler, 'D', GTItems.dataOrb, 'B', "batteryTier2" });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge,1),
 				new Object[]{"RCR", "AEA", "RCR", 'E', Ic2Items.extractor,'R', "ingotRefinedIron", 'A', Ic2Items.advMachine, 'C', "circuitAdvanced"});
@@ -135,7 +135,7 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTBlocks.superCondensator,1),
 				new Object[]{"ELE", "SHS", "ELE", 'E', GTItems.energyFlowCircuit,'S', GTItems.superConductor, 'H', GTBlocks.highlyadvancedMachineBlock, 'L', GTItems.lapotronicEnergyOrb});
 
-		recipes.addRecipe(new ItemStack(GTBlocks.autoCrafter,1),
+		recipes.addRecipe(new ItemStack(GTBlocks.assembler,1),
 				new Object[]{" B ", "CcC", " A ", 'B', Ic2Items.battery,'C', "circuitAdvanced", 'c', "workbench", 'A', Ic2Items.advMachine});
 
 

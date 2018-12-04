@@ -35,7 +35,8 @@ public class GTItemCraftingTablet extends ItemIC2 implements IHandHeldInventory{
         this.setUnlocalizedName(GTClassic.MODID + ".craftingTablet");
 	}
 	
-	public ActionResult<ItemStack> func_77659_a(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if (IC2.platform.isSimulating()) {
 			IC2.platform.launchGui(playerIn, this.getInventory(playerIn, handIn, playerIn.getHeldItem(handIn)),
 					handIn);

@@ -59,7 +59,7 @@ public class GTBlocks {
     bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE);
     
     public static final GTBlockMachine
-    autoCrafter = new GTBlockMachine(GTBlockMachineVariants.AUTOCRAFTER),
+    assembler = new GTBlockMachine(GTBlockMachineVariants.ASSEMBLER),
     chargeOMat = new GTBlockMachine(GTBlockMachineVariants.CHARGEOMAT),
     computerCube = new GTBlockMachine(GTBlockMachineVariants.COMPUTERCUBE),
     chemicalElectrolyzer = new GTBlockMachine(GTBlockMachineVariants.CHEMICALELECTROLYZER),
@@ -67,7 +67,7 @@ public class GTBlocks {
     matterFabricator = new GTBlockMachine(GTBlockMachineVariants.MATTERFABRICATOR),
     playerDetector = new GTBlockMachine(GTBlockMachineVariants.PLAYERDETECTOR),
     uuMatterAssembler = new GTBlockMachine(GTBlockMachineVariants.UUMASSEMBLER),
-    sonictron = new GTBlockMachine(GTBlockMachineVariants.SONICTRON);
+    sonictronBlock = new GTBlockMachine(GTBlockMachineVariants.SONICTRON);
     
 	public static final GTBlockStorage
 	smallChest = new GTBlockStorage(GTBlockStorageVariants.SMALLCHEST),
@@ -106,7 +106,7 @@ public class GTBlocks {
             bauxiteOre,
             sandIron,
             
-            autoCrafter,
+            assembler,
             chargeOMat,
             computerCube,
             chemicalElectrolyzer,
@@ -114,7 +114,7 @@ public class GTBlocks {
             matterFabricator,
             playerDetector,
             uuMatterAssembler,
-            sonictron,
+            sonictronBlock,
             
             smallChest,
             largeChest,

@@ -4,9 +4,8 @@ tile.gtclassic.fusion_machineblock.name=Fusion Coil
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
 
 #machine blocks
-tile.gtclassic.autocrafter.name=Electric Autocrafter
+tile.gtclassic.assembler.name=Assembling Machine
 tile.gtclassic.chargeomat.name=Charge-O-Mat
-tile.gtclassic.quantumchest.name=Quantum Chest
 tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.chemicalelectrolyzer.name=Chemical Electrolyzer
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
@@ -43,6 +42,9 @@ tile.gtclassic.ruby_ore.name=Ruby Ore
 tile.gtclassic.sandIron.name=Black Sand
 
 #tools
+item.gtclassic.sonictronItem.name=Handheld Sonictron
+item.gtclassic.destructoPack.name=Destructopack
+item.gtclassic.craftingTablet.name=Crafting Tablet
 item.gtclassic.hammerIron.name=Refined Iron Hammer
 item.gtclassic.electroMagnet.name=Electromagnet
 item.gtclassic.rockCutter.name=Rock Cutter
@@ -53,8 +55,6 @@ item.gtclassic.lithiumBattery.name=Lithium Battery
 item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
-item.gtclassic.destructoPack.name=Destructopack
-item.gtclassic.craftingTablet.name=Crafting Tablet
 item.gtclassic.zeroPointModule.name=Zero Point Module
 item.gtclassic.glass_tube.name=Empty Tube
 

@@ -29,7 +29,7 @@ public class GTBlockMachine extends BlockMultiID {
     public enum GTBlockMachineVariants
     {
         COMPUTERCUBE,
-        AUTOCRAFTER,
+        ASSEMBLER,
         CHARGEOMAT,
         INDUSTRIALCENTRIFUGE,
         CHEMICALELECTROLYZER,
@@ -102,9 +102,9 @@ public class GTBlockMachine extends BlockMultiID {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-    	if (this == GTBlocks.autoCrafter)
+    	if (this == GTBlocks.assembler)
 	 	{
-	 		return Ic2Icons.getTextures("gtclassic_autocrafter");
+	 		return Ic2Icons.getTextures("gtclassic_assembler");
 	 	}
     	
    	 	else if (this == GTBlocks.chargeOMat)
@@ -142,7 +142,7 @@ public class GTBlockMachine extends BlockMultiID {
 			return Ic2Icons.getTextures("gtclassic_uumatterassembler");
 		}
 
-		else if (this == GTBlocks.sonictron)
+		else if (this == GTBlocks.sonictronBlock)
 		{
 			return Ic2Icons.getTextures("gtclassic_sonictron");
 		}
