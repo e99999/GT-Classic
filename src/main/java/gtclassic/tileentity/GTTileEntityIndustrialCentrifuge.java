@@ -53,7 +53,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	
 	public GTTileEntityIndustrialCentrifuge()
 	{
-		super(7, 1, 200, 32);
+		super(11, 1, 200, 32);
 		setFuelSlot(slotFuel);
 	}
 	
@@ -216,7 +216,8 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	
 	public static void init()
 	{
-		addRecipe(new ItemStack(Blocks.DIRT, 16), 10, new OutputItem(new ItemStack(Items.DIAMOND), 0));
+		//addRecipe(new ItemStack(Blocks.DIRT, 16), 10, new OutputItem(new ItemStack(Items.DIAMOND), 0));
+		//moved to GTRecipes
 	}
 	
 	public static void addRecipe(ItemStack stack, int cellRequirement, OutputItem...results)

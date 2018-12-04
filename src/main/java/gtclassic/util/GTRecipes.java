@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.google.common.collect.Lists;
 
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge.OutputItem;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
@@ -161,36 +163,17 @@ public class GTRecipes {
 				new Object[]{"LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', Ic2Items.electricCircuit.copy(), 'L', "dustLazurite"});
 		
 		
-		
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2), //TODO use config to swap for steel/refined iron
-				new Object[]{"CCC", "III", "CCC", 'I', Ic2Items.refinedIronIngot.copy(), 'C', Ic2Items.insulatedCopperCable.copy()});
-		
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2), //TODO use config to swap for steel/refined iron
-				new Object[]{"CIC", "CIC", "CIC", 'I', Ic2Items.refinedIronIngot.copy(), 'C', Ic2Items.insulatedCopperCable.copy()});
-		
 		recipes.addRecipe(Ic2Items.electricCircuit.copy(), 
 				new Object[]{"CCC", "RIR", "CCC", 'I', "ingotSilver", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy()});
 		
 		recipes.addRecipe(Ic2Items.electricCircuit.copy(), 
 				new Object[]{"CRC", "CIC", "CRC", 'I', "ingotSilver", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy()});
 		
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
-				new Object[]{"CCC", "III", "CCC", 'I', "ingotSilver", 'C', Ic2Items.insulatedCopperCable.copy()});
-		
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
-				new Object[]{"CIC", "CIC", "CIC", 'I', "ingotSilver", 'C', Ic2Items.insulatedCopperCable.copy()});
-		
 		recipes.addRecipe(Ic2Items.electricCircuit.copy(), 
 				new Object[]{"CCC", "RIR", "CCC", 'I', "ingotAluminium", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy()});
 		
 		recipes.addRecipe(Ic2Items.electricCircuit.copy(), 
 				new Object[]{"CRC", "CIC", "CRC", 'I', "ingotAluminium", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy()});
-		
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
-				new Object[]{"CCC", "III", "CCC", 'I', "ingotAluminium", 'C', Ic2Items.insulatedCopperCable.copy()});
-		
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
-				new Object[]{"CIC", "CIC", "CIC", 'I', "ingotAluminium", 'C', Ic2Items.insulatedCopperCable.copy()});
 		
 		
 
@@ -271,6 +254,15 @@ public class GTRecipes {
 		
 		TileEntityExtractor.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.ruby), 3), 0.3F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.sapphire), 3), 0.3F);
+		
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.DIRT, 16), 10, new OutputItem(new ItemStack(Items.DIAMOND), 0));
+		
+		GTTileEntityIndustrialCentrifuge.addRecipe("dustEndstone", 64, 8, //input, amount, glass tube amount
+				new OutputItem(new ItemStack(GTItems.tungsten, 8), 0), //out0
+				new OutputItem(new ItemStack(GTItems.dustEmerald, 1), 1), //out1
+				new OutputItem(new ItemStack(GTItems.dustSodalite, 8), 2), //out2
+				new OutputItem(new ItemStack(GTItems.dustAluminium, 4), 3));//out3
+		
 
 	}
 
