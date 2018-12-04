@@ -14,6 +14,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -174,5 +175,11 @@ public class GTBlockEnergy extends BlockMultiID {
 		int meta = this.getMetaFromState(state);
 		return meta >= 0 && meta <= 2 ? true : super.canProvidePower(state);
 	}
+	
+	@Override
+    @Deprecated
+    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
+        return false;
+    }
 
 }

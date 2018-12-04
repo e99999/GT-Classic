@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
+import gtclassic.tileentity.GTTileEntityLargeChest;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
 import gtclassic.tileentity.GTTileEntitySmallChest;
 import gtclassic.util.GTBlocks;
@@ -17,6 +18,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -78,6 +80,11 @@ public class GTBlockStorage extends BlockMultiID {
     	 {
     		 return new GTTileEntitySmallChest();
     	 }
+    	 
+    	 else if (this == GTBlocks.largeChest)
+    	 {
+    		 return new GTTileEntityLargeChest();
+    	 }
 
     	 else
     	 {
@@ -135,6 +142,10 @@ public class GTBlockStorage extends BlockMultiID {
         return getBlockState().getValidStates();
     }
 
-
+    @Override
+    @Deprecated
+    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
+        return false;
+    }
 
 }

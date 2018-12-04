@@ -10,6 +10,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -99,6 +100,12 @@ public class GTBlockGenerator extends BlockMultiID {
     public List<IBlockState> getValidStates()
     {
         return getBlockState().getValidStates();
+    }
+    
+    @Override
+    @Deprecated
+    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
+        return false;
     }
 
 }

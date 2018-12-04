@@ -14,6 +14,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -175,6 +176,12 @@ public class GTBlockMachine extends BlockMultiID {
     public List<IBlockState> getValidStates()
     {
         return getBlockState().getValidStates();
+    }
+    
+    @Override
+    @Deprecated
+    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
+        return false;
     }
 
 }

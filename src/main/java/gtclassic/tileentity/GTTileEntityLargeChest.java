@@ -1,7 +1,7 @@
 package gtclassic.tileentity;
 
 import gtclassic.GTClassic;
-import gtclassic.container.GTContainerSmallChest;
+import gtclassic.container.GTContainerLargeChest;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -17,16 +17,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileEntitySmallChest extends TileEntityMachine implements IHasGui {
+public class GTTileEntityLargeChest extends TileEntityMachine implements IHasGui {
 
-	public GTTileEntitySmallChest() 
+	public GTTileEntityLargeChest() 
 	{
-		super(27);
+		super(54);
 	}
 	
 	@Override
     public LocaleComp getBlockName() {
-        return new LangComponentHolder.LocaleBlockComp("tile." + GTClassic.MODID + ".smallchest");
+        return new LangComponentHolder.LocaleBlockComp("tile." + GTClassic.MODID + ".largechest");
     }
 	
 	@SideOnly(Side.CLIENT)
@@ -37,7 +37,7 @@ public class GTTileEntitySmallChest extends TileEntityMachine implements IHasGui
 	
 	public ContainerIC2 getGuiContainer(EntityPlayer player)
     {
-        return new GTContainerSmallChest(player.inventory, this);
+        return new GTContainerLargeChest(player.inventory, this);
     }
 	
 	@Override
@@ -45,7 +45,7 @@ public class GTTileEntitySmallChest extends TileEntityMachine implements IHasGui
 	{
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         
-        for (int i = 0; i < 26; i++) 
+        for (int i = 0; i < 54; i++) 
         {
         handler.registerDefaultSlotAccess(AccessRule.Both, i);
         handler.registerDefaultSlotsForSide(RotationList.ALL, i);

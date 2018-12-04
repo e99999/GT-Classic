@@ -1,22 +1,25 @@
 package gtclassic.container;
 
 import gtclassic.GTClassic;
-import gtclassic.tileentity.GTTileEntitySmallChest;
+import gtclassic.tileentity.GTTileEntityLargeChest;
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 
-public class GTContainerSmallChest extends ContainerTileComponent<GTTileEntitySmallChest> {
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/smallchest.png");
+public class GTContainerLargeChest extends ContainerTileComponent<GTTileEntityLargeChest> {
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/largechest.png");
 	
-	public GTContainerSmallChest(InventoryPlayer player, GTTileEntitySmallChest tile) 
+	public GTContainerLargeChest(InventoryPlayer player, GTTileEntityLargeChest tile) 
 	{
 		super(tile);
-
-		for (int y = 0; y < 3; ++y) 
+		
+		for (int y = 0; y < 6; ++y) 
 		{
 			for (int x = 0; x < 9; ++x) 
 			{
@@ -24,13 +27,19 @@ public class GTContainerSmallChest extends ContainerTileComponent<GTTileEntitySm
 			}
 		}
 		
-		this.addPlayerInventory(player, 0, 0);
+		this.addPlayerInventory(player, 0, 56);
 	}
 	
 	@Override
 	public ResourceLocation getTexture() 
 	{
 		return TEXTURE;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void onGuiLoaded(GuiIC2 gui) {
+		gui.setMaxGuiY(222);
 	}
 
 	@Override
@@ -42,7 +51,7 @@ public class GTContainerSmallChest extends ContainerTileComponent<GTTileEntitySm
 	@Override
 	public int guiInventorySize() 
 	{
-		return 27;
+		return 54;
 	}
 	
 }
