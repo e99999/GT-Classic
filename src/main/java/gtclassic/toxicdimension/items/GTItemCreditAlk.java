@@ -62,7 +62,7 @@ public class GTItemCreditAlk extends Item implements IStaticTexturedItem {
     @Override
 	public EnumRarity getRarity(ItemStack thisItem) 
     {
-		return EnumRarity.RARE;
+		return EnumRarity.EPIC;
 	}
     
     @Override

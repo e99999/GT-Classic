@@ -90,8 +90,9 @@ public class GTItems {
 	dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
 	superConductor = new GTItemComponents(GTItemComponentTypes.SUPERCONDUCTOR),
 	dataStorageCircuit = new GTItemComponents(GTItemComponentTypes.DATA_STORAGE_CIRCUIT),
-	braintechAerospaceARDT = new GTItemComponents(GTItemComponentTypes.BRAINTECH_AEROSPACE_ARDT),
 	dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB);
+	
+	public static final GTItemDuctTape braintechAerospaceARDT = new GTItemDuctTape();
 	
 	public static final GTItemSonictron sonictronItem = new GTItemSonictron();
 	public static final GTItemDestructoPack destructoPack = new GTItemDestructoPack();

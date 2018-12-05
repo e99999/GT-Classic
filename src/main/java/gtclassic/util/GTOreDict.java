@@ -1,6 +1,8 @@
 package gtclassic.util;
 
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GTOreDict {
@@ -47,6 +49,8 @@ public class GTOreDict {
         OreDictionary.registerOre("blockChrome", GTBlocks.chromeBlock);
         OreDictionary.registerOre("blockTitanium", GTBlocks.titaniumBlock);
 
+        OreDictionary.registerOre("itemRubber", new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
+        
         OreDictionary.registerOre("batteryTier2", Ic2Items.energyCrystal);
 		OreDictionary.registerOre("batteryTier2", GTItems.lithiumBattery);
 	}

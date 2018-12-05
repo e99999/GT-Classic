@@ -143,6 +143,7 @@ tooltip.gtclassic.superCondensator=In: 65535 EU, Out: 32768 EU 4x
 tooltip.gtclassic.hesu=Max Input: 2048 EU
 tooltip.gtclassic.hesu2=Max Storage: 100000000 EU
 
+tooltip.gtclassic.ducttape=The solution to all your problems
 tooltip.gtclassic.rockcutter=Hi I'm a rock cutter
 tooltip.gtclassic.drill=No frills world destroyer!
 tooltip.gtclassic.saw=Makes trees disappear
