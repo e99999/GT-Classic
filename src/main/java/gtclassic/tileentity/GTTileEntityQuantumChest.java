@@ -2,6 +2,7 @@ package gtclassic.tileentity;
 
 import gtclassic.GTClassic;
 import gtclassic.container.GTContainerQuantumChest;
+import gtclassic.util.GTLang;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -26,8 +27,9 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 	}
 	
 	@Override
-    public LocaleComp getBlockName() {
-        return new LangComponentHolder.LocaleBlockComp("tile." + GTClassic.MODID + ".quantumchest");
+    public LocaleComp getBlockName() 
+	{
+        return GTLang.quantumchest;
     }
 	
 	@SideOnly(Side.CLIENT)

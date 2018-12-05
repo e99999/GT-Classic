@@ -10,6 +10,7 @@ import ic2.core.IC2;
 import ic2.core.item.base.BasicElectricItem;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedItem;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,6 +18,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -28,9 +30,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemElectromagnet extends BasicElectricItem implements ITexturedItem {
 	
-	boolean isActive = false;
+	public static final String active ="ImActive";
 	int range = 7;
-	double speed = 0.025D;
+	double speed = 0.033D;
 	double energyCost = 1;
 	
 	public GTItemElectromagnet() 
@@ -50,36 +52,32 @@ public class GTItemElectromagnet extends BasicElectricItem implements ITexturedI
 		worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.MASTER, 1.0F, 1.0F);
 		if (IC2.platform.isSimulating()) 
 		{
-			if (!isActive)
-			{
-				isActive = true;
-				//turn on magnet
-			}
-			else 
-			{
-				isActive = false;
-				//turn off magnet
-			}
+			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(playerIn.getHeldItem(handIn));
+			boolean result = !nbt.getBoolean(active);
+			nbt.setBoolean(active, result);
 			
 		}
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
 	
 	@Override
-	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected)
 	{
-	    
-		if(worldIn.getTotalWorldTime() % 4 != 0) {
-		if(!(entityIn instanceof EntityPlayer) || !isActive)
-	    {
-	        return;
-	    }
-	    double x = entityIn.posX;
-	    double y = entityIn.posY + 1.5;
-	    double z = entityIn.posZ;
-	    int pulled = 0;
-	    for(EntityItem item : worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(x, y, z, x + 1, y + 1, z + 1).grow(range)))
-	    {
+		
+		NBTTagCompound nbt = StackUtil.getNbtData((stack));
+		
+		if(worldIn.getTotalWorldTime() % 2 == 0)
+		{
+			if(!(entityIn instanceof EntityPlayer) || !nbt.getBoolean(active))
+			{
+				return;
+			}
+			double x = entityIn.posX;
+			double y = entityIn.posY + 1.5;
+			double z = entityIn.posZ;
+			int pulled = 0;
+			for(EntityItem item : worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(x, y, z, x + 1, y + 1, z + 1).grow(range)))
+			{
 	        if(!canPull(stack) || pulled > 200)
 	        {
 	            return;
@@ -87,7 +85,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements ITexturedI
 	        item.addVelocity((x - item.posX) * speed, (y - item.posY) * speed, (z - item.posZ) * speed);
 	        ElectricItem.manager.use(stack, (double)energyCost, (EntityLivingBase)null);
 	        pulled++;
-	    }
+	    	}
 		}
 	}
 	
@@ -100,7 +98,8 @@ public class GTItemElectromagnet extends BasicElectricItem implements ITexturedI
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(ItemStack stack)
     {
-        return isActive;
+		NBTTagCompound nbt = StackUtil.getOrCreateNbtData((stack));
+		return nbt.getBoolean(active);
     }
 
 	@Override

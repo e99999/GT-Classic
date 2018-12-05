@@ -2,6 +2,7 @@ package gtclassic.tileentity;
 
 import gtclassic.GTClassic;
 import gtclassic.container.GTContainerSmallChest;
+import gtclassic.util.GTLang;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -25,8 +26,9 @@ public class GTTileEntitySmallChest extends TileEntityMachine implements IHasGui
 	}
 	
 	@Override
-    public LocaleComp getBlockName() {
-        return new LangComponentHolder.LocaleBlockComp("tile." + GTClassic.MODID + ".smallchest");
+    public LocaleComp getBlockName() 
+	{
+        return GTLang.smallchest;
     }
 	
 	@SideOnly(Side.CLIENT)

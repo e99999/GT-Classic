@@ -53,7 +53,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	
 	public GTTileEntityIndustrialCentrifuge()
 	{
-		super(11, 1, 1000, 32);
+		super(7, 1, 1000, 32);
 		setFuelSlot(slotFuel);
 	}
 	

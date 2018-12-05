@@ -4,20 +4,16 @@ import com.google.common.collect.ImmutableSet;
 import gtclassic.GTClassic;
 import ic2.api.classic.item.IMiningDrill;
 import ic2.api.item.ElectricItem;
-import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
-import ic2.core.util.obj.IBootable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -78,6 +74,19 @@ public class GTItemRockCutter extends ItemElectricTool implements IStaticTexture
     public float getMiningSpeed(ItemStack stack) 
     {
     	return 1.0F;
+    }
+    
+    @Override
+    public float getDestroySpeed(ItemStack stack, IBlockState state) 
+    {
+    	if (canMine(stack)) 
+    	{
+    		return 1.0F;
+    	}
+    	else
+    	{
+    		return 0.0F;
+    	}
     }
 
     @Override
