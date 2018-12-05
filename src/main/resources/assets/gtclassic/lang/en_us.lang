@@ -4,10 +4,9 @@ tile.gtclassic.fusion_machineblock.name=Fusion Coil
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
 
 #machine blocks
-tile.gtclassic.assembler.name=Assembling Machine
+tile.gtclassic.autocrafter.name=Electric Crafter
 tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.computercube.name=Computer Cube
-tile.gtclassic.chemicalelectrolyzer.name=Chemical Electrolyzer
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
 tile.gtclassic.matterfabricator.name=Matter Fabricator
 tile.gtclassic.playerdetector.name=Player Detector
@@ -40,6 +39,7 @@ tile.gtclassic.iridium_ore.name=Iridium Ore
 tile.gtclassic.sapphire_ore.name=Sapphire Ore
 tile.gtclassic.ruby_ore.name=Ruby Ore
 tile.gtclassic.sandIron.name=Black Sand
+tile.gtclassic.iridium_end_ore.name=Iridium End Ore
 
 #tools
 item.gtclassic.sonictronItem.name=Handheld Sonictron
@@ -99,7 +99,6 @@ item.gtclassic.titanium_dust.name=Titanium Dust
 item.gtclassic.chrome_dust.name=Chrome Dust
 item.gtclassic.lazurite_dust.name=Lazurite Dust
 item.gtclassic.sodalite_dust.name=Sodalite Dust
-item.gtclassic.endstone_dust.name=Endstone Dust
 
 #ingots
 item.gtclassic.iridium_ingot.name=Iridium Ingot
@@ -130,8 +129,9 @@ tooltip.gtclassic.portalframe=Used to build portals to terrible places...
 tooltip.gtclassic.iridium=Spawns rarely in ALL biomes
 tooltip.gtclassic.ruby=Spawns in HOT biomes
 tooltip.gtclassic.sapphire=Spawns in OCEAN biomes
-tooltip.gtclassic.ironsand=Spawns in RIVER biomes
 tooltip.gtclassic.bauxite=Spawns in FOREST & PLAINS biomes
+tooltip.gtclassic.ironsand=Spawns in RIVER biomes
+tooltip.gtclassic.iridiumend=Spawns in the bottom of End Islands
 
 tooltip.gtclassic.beacon=Can be used as a beacon base
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block

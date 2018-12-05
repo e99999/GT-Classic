@@ -1,7 +1,6 @@
 package gtclassic.blocks;
 
 import gtclassic.GTClassic;
-import gtclassic.tileentity.GTTileEntityChemicalElectrolyzer;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTBlocks;
@@ -28,14 +27,13 @@ import java.util.List;
 public class GTBlockMachine extends BlockMultiID {
     public enum GTBlockMachineVariants
     {
-        COMPUTERCUBE,
-        ASSEMBLER,
+    	AUTOCRAFTER,
+    	COMPUTERCUBE,
         CHARGEOMAT,
         INDUSTRIALCENTRIFUGE,
-        CHEMICALELECTROLYZER,
 		MATTERFABRICATOR,
-		PLAYERDETECTOR,
 		UUMASSEMBLER,
+		PLAYERDETECTOR,
 		SONICTRON;
     }
 
@@ -86,11 +84,6 @@ public class GTBlockMachine extends BlockMultiID {
     	 {
     		 return new GTTileEntityIndustrialCentrifuge();
     	 }
-    	 
-    	 else if (this == GTBlocks.chemicalElectrolyzer) 
-    	 {
-    		 return new GTTileEntityChemicalElectrolyzer();
-    	 }
 
     	 else 
     	 {
@@ -102,9 +95,9 @@ public class GTBlockMachine extends BlockMultiID {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-    	if (this == GTBlocks.assembler)
+    	if (this == GTBlocks.autoCrafter)
 	 	{
-	 		return Ic2Icons.getTextures("gtclassic_assembler");
+	 		return Ic2Icons.getTextures("gtclassic_autocrafter");
 	 	}
     	
    	 	else if (this == GTBlocks.chargeOMat)
@@ -116,11 +109,6 @@ public class GTBlockMachine extends BlockMultiID {
    	 	{
    	 		return Ic2Icons.getTextures("gtclassic_computercube");
    	 	}
-    	
-   	 	else if (this == GTBlocks.chemicalElectrolyzer)
-	 	{
-	 		return Ic2Icons.getTextures("gtclassic_electrolyzer");
-	 	}
    	 	
    	 	else if (this == GTBlocks.industrialCentrifuge)
    	 	{
@@ -132,14 +120,14 @@ public class GTBlockMachine extends BlockMultiID {
 			return Ic2Icons.getTextures("gtclassic_matterfabricator");
 		}
 
-		else if (this == GTBlocks.playerDetector)
-		{
-			return Ic2Icons.getTextures("gtclassic_playerdetector");
-		}
-
 		else if (this == GTBlocks.uuMatterAssembler)
 		{
 			return Ic2Icons.getTextures("gtclassic_uumatterassembler");
+		}
+    	
+		else if (this == GTBlocks.playerDetector)
+		{
+			return Ic2Icons.getTextures("gtclassic_playerdetector");
 		}
 
 		else if (this == GTBlocks.sonictronBlock)

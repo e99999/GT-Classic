@@ -72,8 +72,7 @@ public class GTItems {
 	dustSapphire = new GTItemDust(GTItemDustTypes.SAPPHIRE),
 	dustGreenSapphire = new GTItemDust(GTItemDustTypes.GREEN_SAPPHIRE),
 	dustEmerald = new GTItemDust(GTItemDustTypes.EMERALD),
-	dustSodalite = new GTItemDust(GTItemDustTypes.SODALITE),
-	dustEndstone = new GTItemDust(GTItemDustTypes.ENDSTONE);
+	dustSodalite = new GTItemDust(GTItemDustTypes.SODALITE);
 
 	public static final GTItemGem
 	ruby = new GTItemGem(GTItemGemTypes.RUBY),
@@ -152,7 +151,6 @@ public class GTItems {
 			dustGreenSapphire,
 			dustEmerald,
 			dustSodalite,
-			dustEndstone,
 
 			ruby,
 			sapphire,

@@ -10,7 +10,6 @@ import gtclassic.blocks.GTBlockGenerator.GTBlockGeneratorVariants;
 import gtclassic.blocks.resources.GTBlockMetal;
 import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockSandIron;
-import gtclassic.tileentity.GTTileEntityChemicalElectrolyzer;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
@@ -37,8 +36,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
-    
-    public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
     public static final GTBlockCasing
 	fusionMachineBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
@@ -56,17 +53,19 @@ public class GTBlocks {
     iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
     rubyOre = new GTBlockOre(GTBlockOreVariants.RUBY),
     sapphireOre = new GTBlockOre(GTBlockOreVariants.SAPPHIRE),
-    bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE);
+    bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE),
+	iridiumEnd = new GTBlockOre(GTBlockOreVariants.IRIDIUM_END);
+	
+	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
     
     public static final GTBlockMachine
-    assembler = new GTBlockMachine(GTBlockMachineVariants.ASSEMBLER),
+    autoCrafter = new GTBlockMachine(GTBlockMachineVariants.AUTOCRAFTER),
     chargeOMat = new GTBlockMachine(GTBlockMachineVariants.CHARGEOMAT),
     computerCube = new GTBlockMachine(GTBlockMachineVariants.COMPUTERCUBE),
-    chemicalElectrolyzer = new GTBlockMachine(GTBlockMachineVariants.CHEMICALELECTROLYZER),
     industrialCentrifuge = new GTBlockMachine(GTBlockMachineVariants.INDUSTRIALCENTRIFUGE),
     matterFabricator = new GTBlockMachine(GTBlockMachineVariants.MATTERFABRICATOR),
-    playerDetector = new GTBlockMachine(GTBlockMachineVariants.PLAYERDETECTOR),
     uuMatterAssembler = new GTBlockMachine(GTBlockMachineVariants.UUMASSEMBLER),
+    playerDetector = new GTBlockMachine(GTBlockMachineVariants.PLAYERDETECTOR),
     sonictronBlock = new GTBlockMachine(GTBlockMachineVariants.SONICTRON);
     
 	public static final GTBlockStorage
@@ -105,15 +104,15 @@ public class GTBlocks {
             sapphireOre,
             bauxiteOre,
             sandIron,
+            iridiumEnd,
             
-            assembler,
+            autoCrafter,
             chargeOMat,
             computerCube,
-            chemicalElectrolyzer,
             industrialCentrifuge,
             matterFabricator,
-            playerDetector,
             uuMatterAssembler,
+            playerDetector,
             sonictronBlock,
             
             smallChest,
@@ -155,7 +154,6 @@ public class GTBlocks {
     {
         GameRegistry.registerTileEntity(GTTileEntityIndustrialCentrifuge.class, new ResourceLocation(GTClassic.MODID, "tileEntityIndustrialCentrifuge"));
         GameRegistry.registerTileEntity(GTTileEntityComputerCube.class, new ResourceLocation(GTClassic.MODID, "tileEntityComputerCube"));
-        GameRegistry.registerTileEntity(GTTileEntityChemicalElectrolyzer.class, new ResourceLocation(GTClassic.MODID, "tileEntityChemicalElectrolyzer"));
         GameRegistry.registerTileEntity(GTTileEntitySuperCondensator.class, new ResourceLocation(GTClassic.MODID, "tileSuperCondensator"));
         
         GameRegistry.registerTileEntity(GTTileEntitySmallChest.class, new ResourceLocation(GTClassic.MODID, "tileEntitySmallChest"));

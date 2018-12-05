@@ -14,10 +14,9 @@ public class GTIcons {
         addSprite(new Sprites.SpriteData("gtclassic_items", "gtclassic:textures/sprites/items.png", new Sprites.SpriteInfo(16, 16)));
      
         addSprite(new Sprites.SpriteData("gtclassic_builder", "gtclassic:textures/sprites/builder.png", new Sprites.SpriteInfo(1, 12)));
-        addSprite(new Sprites.SpriteData("gtclassic_assembler", "gtclassic:textures/sprites/assembler.png", new Sprites.SpriteInfo(1, 12)));
+        addSprite(new Sprites.SpriteData("gtclassic_autocrafter", "gtclassic:textures/sprites/autocrafter.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_chargeomat", "gtclassic:textures/sprites/chargeomat.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_computercube", "gtclassic:textures/sprites/computercube.png", new Sprites.SpriteInfo(1, 12)));
-        addSprite(new Sprites.SpriteData("gtclassic_electrolyzer", "gtclassic:textures/sprites/electrolyzer.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_industrialcentrifuge", "gtclassic:textures/sprites/industrialcentrifuge.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_matterfabricator", "gtclassic:textures/sprites/matterfabricator.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("gtclassic_playerdetector", "gtclassic:textures/sprites/playerdetector.png", new Sprites.SpriteInfo(1, 12)));
@@ -39,10 +38,9 @@ public class GTIcons {
         addTextureEntry(new Sprites.TextureEntry("gtclassic_items", 0, 0, 16, 5));
         
         addTextureEntry(new Sprites.TextureEntry("gtclassic_builder", 0, 0, 1, 12));
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_assembler", 0, 0, 1, 12));
+        addTextureEntry(new Sprites.TextureEntry("gtclassic_autocrafter", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_chargeomat", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_computercube", 0, 0, 1, 12));
-        addTextureEntry(new Sprites.TextureEntry("gtclassic_electrolyzer", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_industrialcentrifuge", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_matterfabricator", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("gtclassic_playerdetector", 0, 0, 1, 12));

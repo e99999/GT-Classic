@@ -35,7 +35,8 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         IRIDIUM(80, 3, 20.0F),
         RUBY(82, 2, 4.0F),
         SAPPHIRE(83, 2, 4.0F),
-        BAUXITE(84, 1, 3.0F);
+        BAUXITE(84, 1, 3.0F),
+        IRIDIUM_END(86, 3, 20.0F);
         
     	private int id;
     	private int harvest;
@@ -71,7 +72,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune){
         ArrayList<ItemStack> drops = new ArrayList<>();
         
-        if (this == GTBlocks.iridiumOre) {
+        if (this == GTBlocks.iridiumOre || this == GTBlocks.iridiumEnd) {
         drops.add(Ic2Items.iridiumOre);
         }
         
@@ -98,7 +99,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     	Random rand = world instanceof World ? ((World)world).rand : new Random();    
     	int xp = 0;
     	
-    		if (this == GTBlocks.iridiumOre){
+    		if (this == GTBlocks.iridiumOre || this == GTBlocks.iridiumEnd) {
             	xp = MathHelper.getInt(rand, 3, 7);
             }
     		else if (this == GTBlocks.rubyOre){
@@ -131,6 +132,11 @@ public class GTBlockOre extends Block implements ITexturedBlock {
     	else if (this == GTBlocks.bauxiteOre)
     	{
     	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".bauxite"));
+    	}
+    	
+    	else if (this == GTBlocks.iridiumEnd)
+    	{
+    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".iridiumend"));
     	}
     }
     

@@ -42,6 +42,15 @@ public class GTOreGen implements IWorldGenerator {
 		switch(world.provider.getDimensionType()) 
 		{
 		
+		case THE_END:
+			
+			if (GTConfig.genIridium)
+			{
+				runGenerator(GTBlocks.iridiumEnd.getDefaultState(), 4, 12, 10, 30, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			}
+			
+			break;
+		
 		default:
 			
 			if (GTConfig.genIridium)
@@ -74,7 +83,7 @@ public class GTOreGen implements IWorldGenerator {
 		
 		if (world.provider.getDimension() == GTConfig.dimensionId) 
 		{ //ores for toxic dim go here
-			runGenerator(GTBlocks.iridiumOre.getDefaultState(), 3, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.iridiumOre.getDefaultState(), 4, 8, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 	}
 	

@@ -132,7 +132,7 @@ public class GTRecipes {
 				new Object[]{"EAE", "ASA", "EAE", 'E', GTItems.energyFlowCircuit,'S', GTBlocks.superCondensator, 'A', GTBlocks.highlyadvancedMachineBlock});
 
 		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler,1),
-				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.assembler, 'D', GTItems.dataOrb, 'B', "batteryTier2" });
+				new Object[]{"dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D', GTItems.dataOrb, 'B', "batteryTier2" });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge,1),
 				new Object[]{"RCR", "AEA", "RCR", 'E', Ic2Items.extractor,'R', "ingotRefinedIron", 'A', Ic2Items.advMachine, 'C', "circuitAdvanced"});
@@ -146,7 +146,7 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTBlocks.superCondensator,1),
 				new Object[]{"ELE", "SHS", "ELE", 'E', GTItems.energyFlowCircuit,'S', GTItems.superConductor, 'H', GTBlocks.highlyadvancedMachineBlock, 'L', GTItems.lapotronicEnergyOrb});
 
-		recipes.addRecipe(new ItemStack(GTBlocks.assembler,1),
+		recipes.addRecipe(new ItemStack(GTBlocks.autoCrafter,1),
 				new Object[]{" B ", "CcC", " A ", 'B', Ic2Items.battery,'C', "circuitAdvanced", 'c', "workbench", 'A', Ic2Items.advMachine});
 
 
@@ -234,7 +234,6 @@ public class GTRecipes {
 		TileEntityMacerator.addRecipe(new ItemStack(Items.ENDER_PEARL, 1), StackUtil.copyWithSize(new ItemStack(GTItems.dustEnderpearl), 1), 0.3F);
 		TileEntityMacerator.addRecipe(new ItemStack(Items.ENDER_EYE, 1), StackUtil.copyWithSize(new ItemStack(GTItems.dustEnderEye), 2), 0.5F);
 		
-		TileEntityMacerator.addRecipe(new ItemStack(Blocks.END_STONE, 1), new ItemStack(GTItems.dustEndstone));
 		TileEntityMacerator.addRecipe("oreBauxite", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustBauxite), 4), 0.1F);
 		TileEntityMacerator.addRecipe("oreIridium", 1, StackUtil.copyWithSize(Ic2Items.iridiumOre, 2), 1.0F);
 		
@@ -255,13 +254,13 @@ public class GTRecipes {
 		TileEntityExtractor.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.ruby), 3), 0.3F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.sapphire), 3), 0.3F);
 		
-		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.DIRT, 16), 10, new OutputItem(new ItemStack(Items.DIAMOND), 0));
+		//GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.DIRT, 16), 10, new OutputItem(new ItemStack(Items.DIAMOND), 0));
 		
-		GTTileEntityIndustrialCentrifuge.addRecipe("dustEndstone", 64, 8, //input, amount, glass tube amount
-				new OutputItem(new ItemStack(GTItems.tungsten, 8), 0), //out0
-				new OutputItem(new ItemStack(GTItems.dustEmerald, 1), 1), //out1
-				new OutputItem(new ItemStack(GTItems.dustSodalite, 8), 2), //out2
-				new OutputItem(new ItemStack(GTItems.dustAluminium, 4), 3));//out3
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.END_STONE, 64), 9, //input, amount, glass tube amount
+				new OutputItem(new ItemStack(Blocks.SAND, 48), 0), //out0
+				new OutputItem(new ItemStack(GTItems.helium3, 4), 1), //out1
+				new OutputItem(new ItemStack(GTItems.helium, 4), 2), //out2
+				new OutputItem(new ItemStack(GTItems.tungsten, 1), 3));//out3
 		
 
 	}
