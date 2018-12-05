@@ -1,8 +1,7 @@
 package gtclassic.tileentity;
 
-import java.util.Set;
-
 import gtclassic.container.GTContainerFusionReactor;
+import gtclassic.util.GTBlocks;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.tile.IMachine;
 import ic2.api.classic.tile.machine.IProgressMachine;
@@ -19,12 +18,16 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.util.obj.IOutputMachine;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.Set;
 
 public class GTTileEntityFusionReactor extends TileEntityElecMachine implements  ITickable, IProgressMachine, IMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser {
 
@@ -32,6 +35,7 @@ public class GTTileEntityFusionReactor extends TileEntityElecMachine implements 
     public static final int slotInput1 = 1;
     public static final int slotOutput = 2;
 
+    public static final IBlockState coilState = GTBlocks.fusionMachineBlock.getDefaultState();
 	
 	public GTTileEntityFusionReactor() 
 	{
@@ -192,7 +196,59 @@ public class GTTileEntityFusionReactor extends TileEntityElecMachine implements 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	public boolean checkStructure() {
+		if (world.isRemote) return false; //Return false if on client side
+		if (!world.isAreaLoaded(pos, 3)) return false; //Return false if area is not loaded
+
+		BlockPos working;
+
+		//Check line shapes
+		working = pos.offset(EnumFacing.NORTH, 3);
+		if (!(checkPos(working) && checkPos(working, EnumFacing.EAST, 1) && checkPos(working, EnumFacing.WEST, 1))) {
+			return false;
+		}
+		working = pos.offset(EnumFacing.SOUTH, 3);
+		if (!(checkPos(working) && checkPos(working, EnumFacing.EAST, 1) && checkPos(working, EnumFacing.WEST, 1))) {
+			return false;
+		}
+		working = pos.offset(EnumFacing.EAST, 3);
+		if (!(checkPos(working) && checkPos(working, EnumFacing.NORTH, 1) && checkPos(working, EnumFacing.SOUTH, 1))) {
+			return false;
+		}
+		working = pos.offset(EnumFacing.WEST, 3);
+		if (!(checkPos(working) && checkPos(working, EnumFacing.NORTH, 1) && checkPos(working, EnumFacing.SOUTH, 1))) {
+			return false;
+		}
+
+		//Check corner shapes
+		working = pos.offset(EnumFacing.NORTH, 2).offset(EnumFacing.EAST, 2);
+		if (!(checkPos(working) && checkPos(working, EnumFacing.WEST, 1) && checkPos(working, EnumFacing.SOUTH, 1))) {
+			return false;
+		}
+		working = pos.offset(EnumFacing.NORTH, 2).offset(EnumFacing.WEST, 2);
+		if (!(checkPos(working) && checkPos(working, EnumFacing.EAST, 1) && checkPos(working, EnumFacing.SOUTH, 1))) {
+			return false;
+		}
+		working = pos.offset(EnumFacing.SOUTH, 2).offset(EnumFacing.EAST, 2);
+		if (!(checkPos(working) && checkPos(working, EnumFacing.WEST, 1) && checkPos(working, EnumFacing.NORTH, 1))) {
+			return false;
+		}
+		working = pos.offset(EnumFacing.SOUTH, 2).offset(EnumFacing.WEST, 2);
+		if (!(checkPos(working) && checkPos(working, EnumFacing.EAST, 1) && checkPos(working, EnumFacing.NORTH, 1))) {
+			return false;
+		}
+
+		return true;
+	}
+
+	public boolean checkPos(BlockPos pos) {
+		return world.getBlockState(pos) == coilState;
+	}
+
+	public boolean checkPos(BlockPos pos, EnumFacing facing, int offset) {
+		return checkPos(pos.offset(facing, offset));
+	}
 }

@@ -15,6 +15,8 @@ import gtclassic.items.resources.GTItemGem;
 import gtclassic.items.resources.GTItemGem.GTItemGemTypes;
 import gtclassic.items.resources.GTItemIngot;
 import gtclassic.items.resources.GTItemIngot.GTItemIngotTypes;
+import gtclassic.items.resources.GTItemPlasma.GTItemPlasmaTypes;
+import gtclassic.items.resources.GTItemPlasma;
 import gtclassic.items.tools.GTItemAdvancedChainsaw;
 import gtclassic.items.tools.GTItemAdvancedDrill;
 import gtclassic.items.tools.GTItemCraftingTablet;
@@ -55,6 +57,12 @@ public class GTItems {
 	lava = new GTItemElement(GTItemElementTypes.LAVA),
 	proton = new GTItemElement(GTItemElementTypes.PROTON),
 	neutron = new GTItemElement(GTItemElementTypes.NEUTRON);
+	
+	public static final GTItemPlasma
+	plasmaHydrogen = new GTItemPlasma(GTItemPlasmaTypes.HYDROGEN),
+	plasmaNitrogen = new GTItemPlasma(GTItemPlasmaTypes.NITROGEN),
+	plasmaOxygen = new GTItemPlasma(GTItemPlasmaTypes.OXYGEN),
+	plasmaIron = new GTItemPlasma(GTItemPlasmaTypes.IRON);
 	
 	public static final GTItemDust
 	dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
@@ -135,6 +143,11 @@ public class GTItems {
 			proton,
 			neutron,
 			glassTube,
+			
+			plasmaHydrogen,
+			plasmaNitrogen,
+			plasmaOxygen,
+			plasmaIron,
 
 			dustEnderpearl,
 			dustEnderEye,
