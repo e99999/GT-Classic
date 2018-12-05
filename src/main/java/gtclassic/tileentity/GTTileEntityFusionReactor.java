@@ -1,0 +1,198 @@
+package gtclassic.tileentity;
+
+import java.util.Set;
+
+import gtclassic.container.GTContainerFusionReactor;
+import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
+import ic2.api.classic.tile.IMachine;
+import ic2.api.classic.tile.machine.IProgressMachine;
+import ic2.api.network.INetworkTileEntityEventListener;
+import ic2.core.RotationList;
+import ic2.core.block.base.tile.TileEntityElecMachine;
+import ic2.core.block.base.util.info.misc.IEnergyUser;
+import ic2.core.inventory.base.IHasGui;
+import ic2.core.inventory.base.IHasInventory;
+import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.inventory.gui.GuiComponentContainer;
+import ic2.core.inventory.management.AccessRule;
+import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.inventory.management.SlotType;
+import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
+import ic2.core.util.obj.IOutputMachine;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+public class GTTileEntityFusionReactor extends TileEntityElecMachine implements  ITickable, IProgressMachine, IMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser {
+
+	public static final int slotInput = 0;
+    public static final int slotInput1 = 1;
+    public static final int slotOutput = 2;
+
+	
+	public GTTileEntityFusionReactor() 
+	{
+		super(3, 512);
+		this.setCustomName("tileFusionReactor");
+	}
+	
+	@Override
+    protected void addSlots(InventoryHandler handler) 
+	{
+        handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotInput1);
+        handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput);
+        handler.registerDefaultSlotsForSide(RotationList.UP, slotInput);
+        handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
+        handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput);
+        handler.registerSlotType(SlotType.Input, slotInput);
+        handler.registerSlotType(SlotType.SecondInput, slotInput1);
+        handler.registerSlotType(SlotType.Output, slotOutput);
+    }
+
+	@Override
+	public boolean supportsNotify() 
+	{
+		return true;
+	}
+
+	@Override
+	public boolean canInteractWith(EntityPlayer var1) 
+	{
+		return !this.isInvalid();
+	}
+
+	@Override
+	public Class<? extends GuiScreen> getGuiClass(EntityPlayer var1) 
+	{
+		return GuiComponentContainer.class;
+	}
+
+	@Override
+	public ContainerIC2 getGuiContainer(EntityPlayer player) {
+		return new GTContainerFusionReactor(player.inventory, this);
+	}
+
+	@Override
+	public boolean hasGui(EntityPlayer var1) {
+		return true;
+	}
+
+	@Override
+    public void onGuiClosed(EntityPlayer entityPlayer)
+    {
+        //needed for construction
+    }
+	
+	@Override
+    public double getWrenchDropRate() 
+	{
+        return 0.8500000238418579D;
+    }
+	
+	@Override
+    public boolean needsInitialRedstoneUpdate()
+    {
+        return true;
+    }
+
+	@Override
+	public float getMaxProgress() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float getProgress() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getEnergy() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean useEnergy(double var1, boolean var3) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setRedstoneSensitive(boolean var1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isRedstoneSensitive() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isProcessing() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isValidInput(ItemStack var1) 
+	{
+		 return false;
+	}
+
+	@Override
+	public Set<UpgradeType> getSupportedTypes() 
+	{
+		return null;
+	}
+
+	@Override
+    public World getMachineWorld()
+    {
+        return this.getWorld();
+    }
+
+    @Override
+    public BlockPos getMachinePos()
+    {
+        return this.getPos();
+    }
+
+	@Override
+	public int getEnergyUsage() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void onNetworkEvent(int var1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+    public IHasInventory getOutputInventory()
+    {
+        return new RangedInventoryWrapper(this, slotOutput);
+    }
+
+    @Override
+    public IHasInventory getInputInventory()
+    {
+        return new RangedInventoryWrapper(this, slotInput, slotInput1);
+    }
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,6 +1,7 @@
 package gtclassic.blocks;
 
 import gtclassic.GTClassic;
+import gtclassic.tileentity.GTTileEntityFusionReactor;
 import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
@@ -54,7 +55,14 @@ public class GTBlockGenerator extends BlockMultiID {
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityBlock();
+        if (this == GTBlocks.fusionReactor)
+        {
+        	return new GTTileEntityFusionReactor();
+        }
+        else 
+        {
+        	return new TileEntityBlock();
+        }
     }
 
     @Override
