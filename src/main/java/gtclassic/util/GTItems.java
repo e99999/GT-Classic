@@ -62,7 +62,8 @@ public class GTItems {
 	plasmaHydrogen = new GTItemPlasma(GTItemPlasmaTypes.HYDROGEN),
 	plasmaNitrogen = new GTItemPlasma(GTItemPlasmaTypes.NITROGEN),
 	plasmaOxygen = new GTItemPlasma(GTItemPlasmaTypes.OXYGEN),
-	plasmaIron = new GTItemPlasma(GTItemPlasmaTypes.IRON);
+	plasmaIron = new GTItemPlasma(GTItemPlasmaTypes.IRON),
+	plasmaUU = new GTItemPlasma(GTItemPlasmaTypes.UU);
 	
 	public static final GTItemDust
 	dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
@@ -142,12 +143,13 @@ public class GTItems {
 			lava,
 			proton,
 			neutron,
-			glassTube,
 			
 			plasmaHydrogen,
 			plasmaNitrogen,
 			plasmaOxygen,
 			plasmaIron,
+			plasmaUU,
+			glassTube,
 
 			dustEnderpearl,
 			dustEnderEye,

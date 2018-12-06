@@ -101,7 +101,6 @@ public class GTTileEntityFusionReactor extends TileEntityElecMachine implements 
 	@Override
     public void onGuiClosed(EntityPlayer entityPlayer)
     {
-		this.checkStructure();
 		if (this.checkStructure()) 
 		{
 			this.status = 1;

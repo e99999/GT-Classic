@@ -86,6 +86,7 @@ item.gtclassic.hydrogen_plasma.name=Hydrogen Plasma
 item.gtclassic.nitrogen_plasma.name=Nitrogen Plasma
 item.gtclassic.oxygen_plasma.name=Oxygen Plasma
 item.gtclassic.iron_plasma.name=Iron Plasma
+item.gtclassic.uu_plasma.name=UU-Plasma
 
 #dust
 item.gtclassic.flint_dust.name=Flint Dust

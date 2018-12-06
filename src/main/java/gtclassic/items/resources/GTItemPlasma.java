@@ -21,7 +21,8 @@ public class GTItemPlasma extends Item implements IStaticTexturedItem {
         HYDROGEN(16),
         NITROGEN(15),
         OXYGEN(18),
-        IRON(14);
+        IRON(14),
+		UU(9);
 
     	private int id;
 
