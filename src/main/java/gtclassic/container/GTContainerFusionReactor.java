@@ -2,9 +2,12 @@ package gtclassic.container;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityFusionReactor;
+import gtclassic.util.GTItems;
 import gtclassic.util.guicomponents.GTGuiCompEnergyStorage;
 import gtclassic.util.guicomponents.GTGuiCompFusion;
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.inventory.filters.InvertedFilter;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
@@ -22,15 +25,15 @@ public class GTContainerFusionReactor extends ContainerTileComponent<GTTileEntit
     
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/fusionreactor.png");
 	
-	public static Box2D machineProgressBox = new Box2D(83, 23, 10, 10);
-    public static Vec2i machineProgressPos = new Vec2i(193, 23);
+	public static Box2D machineProgressBox = new Box2D(127, 38, 10, 10);
+    public static Vec2i machineProgressPos = new Vec2i(208, 38);
    
 
     public GTContainerFusionReactor(InventoryPlayer player, GTTileEntityFusionReactor tile)
     {
         super(tile);
         this.addSlotToContainer(new SlotCustom(tile, 0, 88, 17, null));//main slot
-        this.addSlotToContainer(new SlotCustom(tile, 1, 88, 53, null));//second slot
+        this.addSlotToContainer(new SlotCustom(tile, 1, 88, 53, new BasicItemFilter(GTItems.glassTube)));//second slot
         this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35)); //output
 
         this.addPlayerInventory(player);
