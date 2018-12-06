@@ -21,9 +21,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerFusionReactor extends ContainerTileComponent<GTTileEntityFusionReactor> {
-    
-    
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/fusionreactor.png");
 	
 	public static Box2D machineProgressBox = new Box2D(127, 38, 10, 10);
     public static Vec2i machineProgressPos = new Vec2i(208, 38);
@@ -50,17 +47,20 @@ public class GTContainerFusionReactor extends ContainerTileComponent<GTTileEntit
 	}
 
     @Override
-    public ResourceLocation getTexture() {
-    	return TEXTURE;
+    public ResourceLocation getTexture() 
+    {
+        return this.getGuiHolder().getGuiTexture();
     }
 
     @Override
-    public int guiInventorySize() {
+    public int guiInventorySize() 
+    {
         return this.getGuiHolder().slotCount;
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer playerIn) {
+    public boolean canInteractWith(EntityPlayer playerIn) 
+    {
         return this.getGuiHolder().canInteractWith(playerIn);
     }
 

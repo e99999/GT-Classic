@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.google.common.collect.Lists;
 
+import gtclassic.tileentity.GTTileEntityFusionReactor;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge.OutputItem;
 import ic2.api.classic.recipe.ClassicRecipes;
@@ -261,6 +262,8 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.helium3, 4), 1), //out1
 				new OutputItem(new ItemStack(GTItems.helium, 4), 2), //out2
 				new OutputItem(new ItemStack(GTItems.tungsten, 1), 3));//out3
+		
+		GTTileEntityFusionReactor.addRecipe(new ItemStack(Blocks.STONE),10 ,new ItemStack(Blocks.GRAVEL));
 		
 
 	}
