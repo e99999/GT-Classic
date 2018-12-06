@@ -22,8 +22,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerFusionReactor extends ContainerTileComponent<GTTileEntityFusionReactor> {
 	
-	public static Box2D machineProgressBox = new Box2D(127, 38, 10, 10);
-    public static Vec2i machineProgressPos = new Vec2i(208, 38);
+	public static Box2D machineProgressBox = new Box2D(110, 35, 20, 16);
+	public static Vec2i machineProgressPos = new Vec2i(176, 14);
    
 
     public GTContainerFusionReactor(InventoryPlayer player, GTTileEntityFusionReactor tile)
