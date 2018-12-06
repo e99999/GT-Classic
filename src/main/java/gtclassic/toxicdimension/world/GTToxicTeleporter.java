@@ -1,8 +1,6 @@
 package gtclassic.toxicdimension.world;
 
-
 import gtclassic.util.GTBlocks;
-
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
@@ -51,7 +49,7 @@ public class GTToxicTeleporter extends Teleporter {
 					}
 				}
 			}
-			entityIn.setLocationAndAngles((double) i, (double) j, (double) k, entityIn.rotationYaw, 0.0F);
+			entityIn.setLocationAndAngles(i, j, k, entityIn.rotationYaw, 0.0F);
 			entityIn.motionX = 0.0D;
 			entityIn.motionY = 0.0D;
 			entityIn.motionZ = 0.0D;
@@ -67,7 +65,7 @@ public class GTToxicTeleporter extends Teleporter {
 		BlockPos blockpos = BlockPos.ORIGIN;
 		long l = ChunkPos.asLong(j, k);
 		if (this.destinationCoordinateCache.containsKey(l)) {
-			Teleporter.PortalPosition teleporterportalposition = (Teleporter.PortalPosition) this.destinationCoordinateCache.get(l);
+			Teleporter.PortalPosition teleporterportalposition = this.destinationCoordinateCache.get(l);
 			d0 = 0.0D;
 			blockpos = teleporterportalposition;
 			teleporterportalposition.lastUpdateTime = this.world.getTotalWorldTime();
@@ -77,11 +75,12 @@ public class GTToxicTeleporter extends Teleporter {
 			for (int i1 = -128; i1 <= 128; ++i1) {
 				BlockPos blockpos2;
 				for (int j1 = -128; j1 <= 128; ++j1) {
-					for (BlockPos blockpos1 = blockpos3.add(i1, this.world.getActualHeight() - 1 - blockpos3.getY(), j1); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
+					for (BlockPos blockpos1 = blockpos3.add(i1, this.world.getActualHeight() - 1 - blockpos3.getY(),
+							j1); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
 						blockpos2 = blockpos1.down();
 						if (this.world.getBlockState(blockpos1).getBlock() == GTBlocks.toxicPortal) {
-							for (blockpos2 = blockpos1.down(); this.world.getBlockState(blockpos2).getBlock() == GTBlocks.toxicPortal; blockpos2 = blockpos2
-									.down()) {
+							for (blockpos2 = blockpos1.down(); this.world.getBlockState(blockpos2)
+									.getBlock() == GTBlocks.toxicPortal; blockpos2 = blockpos2.down()) {
 								blockpos1 = blockpos2;
 							}
 							double d1 = blockpos1.distanceSq(blockpos3);
@@ -96,16 +95,20 @@ public class GTToxicTeleporter extends Teleporter {
 		}
 		if (d0 >= 0.0D) {
 			if (flag) {
-				this.destinationCoordinateCache.put(l, new Teleporter.PortalPosition(blockpos, this.world.getTotalWorldTime()));
+				this.destinationCoordinateCache.put(l,
+						new Teleporter.PortalPosition(blockpos, this.world.getTotalWorldTime()));
 			}
-			double d5 = (double) blockpos.getX() + 0.5D;
-			double d7 = (double) blockpos.getZ() + 0.5D;
-			BlockPattern.PatternHelper blockpatternpatternhelper = GTBlocks.toxicPortal.createPatternHelper(this.world, blockpos);
-			boolean flag1 = blockpatternpatternhelper.getForwards().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE;
-			double d2 = blockpatternpatternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double) blockpatternpatternhelper
-					.getFrontTopLeft().getZ() : (double) blockpatternpatternhelper.getFrontTopLeft().getX();
-			double d6 = (double) (blockpatternpatternhelper.getFrontTopLeft().getY() + 1) - lastPortalVec.y
-					* (double) blockpatternpatternhelper.getHeight();
+			double d5 = blockpos.getX() + 0.5D;
+			double d7 = blockpos.getZ() + 0.5D;
+			BlockPattern.PatternHelper blockpatternpatternhelper = GTBlocks.toxicPortal.createPatternHelper(this.world,
+					blockpos);
+			boolean flag1 = blockpatternpatternhelper.getForwards().rotateY()
+					.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE;
+			double d2 = blockpatternpatternhelper.getForwards().getAxis() == EnumFacing.Axis.X
+					? (double) blockpatternpatternhelper.getFrontTopLeft().getZ()
+					: (double) blockpatternpatternhelper.getFrontTopLeft().getX();
+			double d6 = blockpatternpatternhelper.getFrontTopLeft().getY() + 1
+					- lastPortalVec.y * blockpatternpatternhelper.getHeight();
 			if (flag1) {
 				++d2;
 			}
@@ -135,12 +138,13 @@ public class GTToxicTeleporter extends Teleporter {
 			}
 			double d3 = entityIn.motionX;
 			double d4 = entityIn.motionZ;
-			entityIn.motionX = d3 * (double) f + d4 * (double) f3;
-			entityIn.motionZ = d3 * (double) f2 + d4 * (double) f1;
-			entityIn.rotationYaw = rotationYaw - (float) (teleportDirection.getOpposite().getHorizontalIndex() * 90)
-					+ (float) (blockpatternpatternhelper.getForwards().getHorizontalIndex() * 90);
+			entityIn.motionX = d3 * f + d4 * f3;
+			entityIn.motionZ = d3 * f2 + d4 * f1;
+			entityIn.rotationYaw = rotationYaw - teleportDirection.getOpposite().getHorizontalIndex() * 90
+					+ blockpatternpatternhelper.getForwards().getHorizontalIndex() * 90;
 			if (entityIn instanceof EntityPlayerMP) {
-				((EntityPlayerMP) entityIn).connection.setPlayerLocation(d5, d6, d7, entityIn.rotationYaw, entityIn.rotationPitch);
+				((EntityPlayerMP) entityIn).connection.setPlayerLocation(d5, d6, d7, entityIn.rotationYaw,
+						entityIn.rotationPitch);
 			} else {
 				entityIn.setLocationAndAngles(d5, d6, d7, entityIn.rotationYaw, entityIn.rotationPitch);
 			}
@@ -163,10 +167,10 @@ public class GTToxicTeleporter extends Teleporter {
 		int i2 = this.random.nextInt(4);
 		BlockPos.MutableBlockPos blockposmutableblockpos = new BlockPos.MutableBlockPos();
 		for (int j2 = j - 16; j2 <= j + 16; ++j2) {
-			double d1 = (double) j2 + 0.5D - entityIn.posX;
+			double d1 = j2 + 0.5D - entityIn.posX;
 			for (int l2 = l - 16; l2 <= l + 16; ++l2) {
-				double d2 = (double) l2 + 0.5D - entityIn.posZ;
-				label293 : for (int j3 = this.world.getActualHeight() - 1; j3 >= 0; --j3) {
+				double d2 = l2 + 0.5D - entityIn.posZ;
+				label293: for (int j3 = this.world.getActualHeight() - 1; j3 >= 0; --j3) {
 					if (this.world.isAirBlock(blockposmutableblockpos.setPos(j2, j3, l2))) {
 						while (j3 > 0 && this.world.isAirBlock(blockposmutableblockpos.setPos(j2, j3 - 1, l2))) {
 							--j3;
@@ -185,14 +189,16 @@ public class GTToxicTeleporter extends Teleporter {
 										int j5 = j3 + l4;
 										int k5 = l2 + (k4 - 1) * i4 - j4 * l3;
 										blockposmutableblockpos.setPos(i5, j5, k5);
-										if (l4 < 0 && !this.world.getBlockState(blockposmutableblockpos).getMaterial().isSolid() || l4 >= 0
-												&& !this.world.isAirBlock(blockposmutableblockpos)) {
+										if (l4 < 0
+												&& !this.world.getBlockState(blockposmutableblockpos).getMaterial()
+														.isSolid()
+												|| l4 >= 0 && !this.world.isAirBlock(blockposmutableblockpos)) {
 											continue label293;
 										}
 									}
 								}
 							}
-							double d5 = (double) j3 + 0.5D - entityIn.posY;
+							double d5 = j3 + 0.5D - entityIn.posY;
 							double d7 = d1 * d1 + d5 * d5 + d2 * d2;
 							if (d0 < 0.0D || d7 < d0) {
 								d0 = d7;
@@ -208,10 +214,10 @@ public class GTToxicTeleporter extends Teleporter {
 		}
 		if (d0 < 0.0D) {
 			for (int l5 = j - 16; l5 <= j + 16; ++l5) {
-				double d3 = (double) l5 + 0.5D - entityIn.posX;
+				double d3 = l5 + 0.5D - entityIn.posX;
 				for (int j6 = l - 16; j6 <= l + 16; ++j6) {
-					double d4 = (double) j6 + 0.5D - entityIn.posZ;
-					label231 : for (int i7 = this.world.getActualHeight() - 1; i7 >= 0; --i7) {
+					double d4 = j6 + 0.5D - entityIn.posZ;
+					label231: for (int i7 = this.world.getActualHeight() - 1; i7 >= 0; --i7) {
 						if (this.world.isAirBlock(blockposmutableblockpos.setPos(l5, i7, j6))) {
 							while (i7 > 0 && this.world.isAirBlock(blockposmutableblockpos.setPos(l5, i7 - 1, j6))) {
 								--i7;
@@ -225,13 +231,15 @@ public class GTToxicTeleporter extends Teleporter {
 										int i13 = i7 + j11;
 										int j13 = j6 + (j10 - 1) * j9;
 										blockposmutableblockpos.setPos(j12, i13, j13);
-										if (j11 < 0 && !this.world.getBlockState(blockposmutableblockpos).getMaterial().isSolid() || j11 >= 0
-												&& !this.world.isAirBlock(blockposmutableblockpos)) {
+										if (j11 < 0
+												&& !this.world.getBlockState(blockposmutableblockpos).getMaterial()
+														.isSolid()
+												|| j11 >= 0 && !this.world.isAirBlock(blockposmutableblockpos)) {
 											continue label231;
 										}
 									}
 								}
-								double d6 = (double) i7 + 0.5D - entityIn.posY;
+								double d6 = i7 + 0.5D - entityIn.posY;
 								double d8 = d3 * d3 + d6 * d6 + d4 * d4;
 								if (d0 < 0.0D || d8 < d0) {
 									d0 = d8;
@@ -271,7 +279,8 @@ public class GTToxicTeleporter extends Teleporter {
 				}
 			}
 		}
-		IBlockState iblockstate = GTBlocks.toxicPortal.getDefaultState().withProperty(BlockPortal.AXIS, l6 == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
+		IBlockState iblockstate = GTBlocks.toxicPortal.getDefaultState().withProperty(BlockPortal.AXIS,
+				l6 == 0 ? EnumFacing.Axis.Z : EnumFacing.Axis.X);
 		for (int i8 = 0; i8 < 4; ++i8) {
 			for (int l8 = 0; l8 < 4; ++l8) {
 				for (int l9 = -1; l9 < 4; ++l9) {
@@ -279,7 +288,8 @@ public class GTToxicTeleporter extends Teleporter {
 					int l11 = k2 + l9;
 					int k12 = k6 + (l8 - 1) * i3;
 					boolean flag1 = l8 == 0 || l8 == 3 || l9 == -1 || l9 == 3;
-					this.world.setBlockState(new BlockPos(l10, l11, k12), flag1 ? GTBlocks.toxicPortalFrame.getDefaultState() : iblockstate, 2);
+					this.world.setBlockState(new BlockPos(l10, l11, k12),
+							flag1 ? GTBlocks.toxicPortalFrame.getDefaultState() : iblockstate, 2);
 				}
 			}
 			for (int i9 = 0; i9 < 4; ++i9) {
@@ -288,7 +298,8 @@ public class GTToxicTeleporter extends Teleporter {
 					int i12 = k2 + i10;
 					int l12 = k6 + (i9 - 1) * i3;
 					BlockPos blockpos = new BlockPos(i11, i12, l12);
-					this.world.notifyNeighborsOfStateChange(blockpos, this.world.getBlockState(blockpos).getBlock(), false);
+					this.world.notifyNeighborsOfStateChange(blockpos, this.world.getBlockState(blockpos).getBlock(),
+							false);
 				}
 			}
 		}

@@ -13,21 +13,21 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTContainerDestructoPack extends ContainerItemComponent<GTInventoryDestructoPack> {
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/destructopack.png");
-	
+
 	public GTContainerDestructoPack(GTInventoryDestructoPack inv, int id, InventoryPlayer player) {
 		super(inv, id);
-		this.addSlotToContainer(new SlotCustom(inv, 0, 80, 17, new InvertedFilter(new BasicItemFilter(GTItems.destructoPack))));
+		this.addSlotToContainer(
+				new SlotCustom(inv, 0, 80, 17, new InvertedFilter(new BasicItemFilter(GTItems.destructoPack))));
 		this.addPlayerInventory(player, 0, 0);
 	}
-	
+
 	@Override
 	public ResourceLocation getTexture() {
 		return TEXTURE;
 	}
 
 	@Override
-    public boolean canInteractWith(EntityPlayer player)
-    {
+	public boolean canInteractWith(EntityPlayer player) {
 		return getGuiHolder().canInteractWith(player);
-    }
+	}
 }

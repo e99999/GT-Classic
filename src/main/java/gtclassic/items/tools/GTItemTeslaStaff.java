@@ -35,44 +35,44 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 		this.setUnlocalizedName(GTClassic.MODID + ".teslaStaff");
 		this.setCreativeTab(GTClassic.creativeTabGT);
 	}
-	
-	 	@Override
-	    public List<Integer> getValidVariants() {
-	        return Arrays.asList(0);
-	    }
 
-	    @Override
-	    @SideOnly(Side.CLIENT)
-	    public TextureAtlasSprite getTexture(int meta) {
-	        return Ic2Icons.getTextures("gtclassic_items")[47];
-	    }
+	@Override
+	public List<Integer> getValidVariants() {
+		return Arrays.asList(0);
+	}
 
-	    @Override
-	    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-	    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".warranty"));
-	    	tooltip.add(TextFormatting.BLUE + I18n.format("tooltip."+ GTClassic.MODID +".tesla"));
-	    }
-	    
-	    public EnumEnchantmentType getType(ItemStack item) {
-			return EnumEnchantmentType.WEAPON;
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTexture(int meta) {
+		return Ic2Icons.getTextures("gtclassic_items")[47];
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".warranty"));
+		tooltip.add(TextFormatting.BLUE + I18n.format("tooltip." + GTClassic.MODID + ".tesla"));
+	}
+
+	@Override
+	public EnumEnchantmentType getType(ItemStack item) {
+		return EnumEnchantmentType.WEAPON;
+	}
+
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
+		if (!(attacker instanceof EntityPlayer)) {
+			return true;
+		} else {
+			if (ElectricItem.manager.use(stack, this.operationEnergyCost, attacker)) {
+				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1000.0F);
+				attacker.world.spawnEntity(new EntityLightningBolt(attacker.world, target.lastTickPosX,
+						target.lastTickPosY, target.lastTickPosZ, false));
+			} else {
+				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1.0F);
+			}
+
+			return false;
 		}
-	    
-	    @Override
-	    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
-	        if (!(attacker instanceof EntityPlayer)) {
-	            return true;
-	        } else {
-	            if (ElectricItem.manager.use(stack, (double)this.operationEnergyCost, (EntityPlayer)attacker)) {
-	                target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attacker), 1000.0F);
-	                attacker.world.spawnEntity(new EntityLightningBolt(attacker.world, target.lastTickPosX, target.lastTickPosY, target.lastTickPosZ, false));
-	            } else {
-	                target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer)attacker), 1.0F);
-	            }
-
-	            return false;
-	        }
-	    }
-	    
-	    
+	}
 
 }

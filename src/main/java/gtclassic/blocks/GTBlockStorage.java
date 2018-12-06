@@ -26,126 +26,106 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockStorage extends BlockMultiID {
-    public enum GTBlockStorageVariants
-    {
-    	SMALLCHEST,
-    	LARGECHEST,
-    	QUANTUMCHEST,
-    }
+	public enum GTBlockStorageVariants {
+		SMALLCHEST, LARGECHEST, QUANTUMCHEST,
+	}
 
-    GTBlockStorageVariants variant;
-    public GTBlockStorage(GTBlockStorageVariants variant)
-    {
-        super(Material.IRON);
-        this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase());
-        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
-        setCreativeTab(GTClassic.creativeTabGT);
-        setHardness(4.0F);
-        setResistance(20.0F);
-        setSoundType(SoundType.METAL);
-        setHarvestLevel("pickaxe", 2);
-    }
-    
-    @Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
-    {
-    	if (this == GTBlocks.quantumChest)
-    	{
-    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".quantumchest"));
-    	}
-    	
-    	else
-    	{
-    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".chest"));
-    	}
-    	
-    }
-    
-    @Override
-    public List<Integer> getValidMetas() 
-	{
-        return Arrays.asList(0);
-    }
+	GTBlockStorageVariants variant;
 
-    @Override
-    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
-    {
-    	 if (this == GTBlocks.quantumChest) 
-    	 {
-    		 return new GTTileEntityQuantumChest();
-    	 }
-    	 
-    	 else if (this == GTBlocks.smallChest)
-    	 {
-    		 return new GTTileEntitySmallChest();
-    	 }
-    	 
-    	 else if (this == GTBlocks.largeChest)
-    	 {
-    		 return new GTTileEntityLargeChest();
-    	 }
+	public GTBlockStorage(GTBlockStorageVariants variant) {
+		super(Material.IRON);
+		this.variant = variant;
+		setRegistryName(variant.toString().toLowerCase());
+		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
+		setCreativeTab(GTClassic.creativeTabGT);
+		setHardness(4.0F);
+		setResistance(20.0F);
+		setSoundType(SoundType.METAL);
+		setHarvestLevel("pickaxe", 2);
+	}
 
-    	 else
-    	 {
-    		 return new TileEntityBlock();
-    	 }
-    }
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		if (this == GTBlocks.quantumChest) {
+			tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".quantumchest"));
+		}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite[] getIconSheet(int meta)
-    {
-    	
-    	if (this == GTBlocks.smallChest) 
-   	 	{
-    		return Ic2Icons.getTextures("gtclassic_smallchest");
-   	 	}
-   	 
-   	 	else if (this == GTBlocks.largeChest)
-   	 	{
-   	 		return Ic2Icons.getTextures("gtclassic_largechest");
-   	 	}
-    	
-    	else if (this == GTBlocks.quantumChest)
-	 	{
-	 		return Ic2Icons.getTextures("gtclassic_quantumchest");
-	 	}
-    	
-   	 	else
-	 	{
-	 		return Ic2Icons.getTextures("gtclassic_builder");
-	 	}
-    }
-    
-    @Override
-    public int getMaxSheetSize(int meta)
-    {
-        return 1;
-    }
+		else {
+			tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".chest"));
+		}
 
-    @Override
-    public List<IBlockState> getValidStateList()
-    {
-        IBlockState def = getDefaultState();
-        List<IBlockState> states = new ArrayList<>();
-        for(EnumFacing side : EnumFacing.VALUES)
-        {
-        	states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
-        }
-        return states;
-    }
+	}
 
-    @Override
-    public List<IBlockState> getValidStates()
-    {
-        return getBlockState().getValidStates();
-    }
+	@Override
+	public List<Integer> getValidMetas() {
+		return Arrays.asList(0);
+	}
 
-    @Override
-    @Deprecated
-    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
-        return false;
-    }
+	@Override
+	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
+		if (this == GTBlocks.quantumChest) {
+			return new GTTileEntityQuantumChest();
+		}
+
+		else if (this == GTBlocks.smallChest) {
+			return new GTTileEntitySmallChest();
+		}
+
+		else if (this == GTBlocks.largeChest) {
+			return new GTTileEntityLargeChest();
+		}
+
+		else {
+			return new TileEntityBlock();
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite[] getIconSheet(int meta) {
+
+		if (this == GTBlocks.smallChest) {
+			return Ic2Icons.getTextures("gtclassic_smallchest");
+		}
+
+		else if (this == GTBlocks.largeChest) {
+			return Ic2Icons.getTextures("gtclassic_largechest");
+		}
+
+		else if (this == GTBlocks.quantumChest) {
+			return Ic2Icons.getTextures("gtclassic_quantumchest");
+		}
+
+		else {
+			return Ic2Icons.getTextures("gtclassic_builder");
+		}
+	}
+
+	@Override
+	public int getMaxSheetSize(int meta) {
+		return 1;
+	}
+
+	@Override
+	public List<IBlockState> getValidStateList() {
+		IBlockState def = getDefaultState();
+		List<IBlockState> states = new ArrayList<>();
+		for (EnumFacing side : EnumFacing.VALUES) {
+			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+					false));
+		}
+		return states;
+	}
+
+	@Override
+	public List<IBlockState> getValidStates() {
+		return getBlockState().getValidStates();
+	}
+
+	@Override
+	@Deprecated
+	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+		return false;
+	}
 
 }

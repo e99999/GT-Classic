@@ -11,23 +11,19 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class GTProxyClient extends GTProxyCommon {
-    
+
 	@Override
-    public void preInit(FMLPreInitializationEvent e) 
-	{
-    	super.preInit(e);
-    }
+	public void preInit(FMLPreInitializationEvent e) {
+		super.preInit(e);
+	}
 
 	@SubscribeEvent
-	public static void onIconLoad(SpriteReloadEvent event)
-	{
-	    GTIcons.loadSprites();
+	public static void onIconLoad(SpriteReloadEvent event) {
+		GTIcons.loadSprites();
 	}
-    
-    @SubscribeEvent
-    public static void registerModels(ModelRegistryEvent event) 
-    {
-    	GTBlocks.initModels();
-    }
-}
 
+	@SubscribeEvent
+	public static void registerModels(ModelRegistryEvent event) {
+		GTBlocks.initModels();
+	}
+}

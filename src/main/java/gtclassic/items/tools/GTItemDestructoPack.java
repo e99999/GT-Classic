@@ -24,80 +24,65 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory{
+public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 
-	public GTItemDestructoPack()
-	{
+	public GTItemDestructoPack() {
 		this.maxStackSize = 1;
-        this.setCreativeTab(GTClassic.creativeTabGT);
-        this.setRegistryName("destructo_pack");
-        this.setUnlocalizedName(GTClassic.MODID + ".destructoPack");
+		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setRegistryName("destructo_pack");
+		this.setUnlocalizedName(GTClassic.MODID + ".destructoPack");
 	}
-	
-	
-	@Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) 
-	{
-    	tooltip.add(I18n.format("tooltip."+ GTClassic.MODID +".trashcan"));
-    }
-	
-	
-	@Override
-    public List<Integer> getValidVariants() 
-	{
-        return Arrays.asList(0);
-    }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTexture(int meta) {
-        return Ic2Icons.getTextures("gtclassic_items")[33];
-    }
-    
-    @Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) 
-    {
-		if (IC2.platform.isSimulating()) 
-		{
-			IC2.platform.launchGui(playerIn, this.getInventory(playerIn, handIn, playerIn.getHeldItem(handIn)),
-					handIn);
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".trashcan"));
+	}
+
+	@Override
+	public List<Integer> getValidVariants() {
+		return Arrays.asList(0);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTexture(int meta) {
+		return Ic2Icons.getTextures("gtclassic_items")[33];
+	}
+
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		if (IC2.platform.isSimulating()) {
+			IC2.platform.launchGui(playerIn, this.getInventory(playerIn, handIn, playerIn.getHeldItem(handIn)), handIn);
 		}
 
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
-    
-    @Override
-    public int getGuiId(ItemStack stack)
-    {
-        NBTTagCompound nbt = StackUtil.getNbtData(stack);
-        if(nbt.hasKey("GuiID"))
-        {
-            return nbt.getInteger("GuiID");
-        }
-        return -1;
-    }
 
 	@Override
-	public IHasGui getInventory(EntityPlayer player, EnumHand hand, ItemStack stack) 
-	{
+	public int getGuiId(ItemStack stack) {
+		NBTTagCompound nbt = StackUtil.getNbtData(stack);
+		if (nbt.hasKey("GuiID")) {
+			return nbt.getInteger("GuiID");
+		}
+		return -1;
+	}
+
+	@Override
+	public IHasGui getInventory(EntityPlayer player, EnumHand hand, ItemStack stack) {
 		return new GTInventoryDestructoPack(player, this, stack);
 	}
 
 	@Override
-    public void setGuiID(ItemStack stack, int id)
-    {
-        if(id == -1)
-        {
-            StackUtil.getOrCreateNbtData(stack).removeTag("GuiID");
-            return;
-        }
-        StackUtil.getOrCreateNbtData(stack).setInteger("GuiID", id);
-    }
-
+	public void setGuiID(ItemStack stack, int id) {
+		if (id == -1) {
+			StackUtil.getOrCreateNbtData(stack).removeTag("GuiID");
+			return;
+		}
+		StackUtil.getOrCreateNbtData(stack).setInteger("GuiID", id);
+	}
 
 	@Override
-	public int getTextureEntry(int var1) 
-	{
+	public int getTextureEntry(int var1) {
 		return 0;
 	}
 

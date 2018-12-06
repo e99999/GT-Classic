@@ -11,31 +11,26 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-
 public class GTContainerLargeChest extends ContainerTileComponent<GTTileEntityLargeChest> {
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/largechest.png");
-	
-	public GTContainerLargeChest(InventoryPlayer player, GTTileEntityLargeChest tile) 
-	{
+
+	public GTContainerLargeChest(InventoryPlayer player, GTTileEntityLargeChest tile) {
 		super(tile);
-		
-		for (int y = 0; y < 6; ++y) 
-		{
-			for (int x = 0; x < 9; ++x) 
-			{
+
+		for (int y = 0; y < 6; ++y) {
+			for (int x = 0; x < 9; ++x) {
 				this.addSlotToContainer(new SlotBase(tile, x + y * 9, 8 + x * 18, 18 + y * 18));
 			}
 		}
-		
+
 		this.addPlayerInventory(player, 0, 56);
 	}
-	
+
 	@Override
-	public ResourceLocation getTexture() 
-	{
+	public ResourceLocation getTexture() {
 		return TEXTURE;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiLoaded(GuiIC2 gui) {
@@ -43,15 +38,13 @@ public class GTContainerLargeChest extends ContainerTileComponent<GTTileEntityLa
 	}
 
 	@Override
-    public boolean canInteractWith(EntityPlayer player)
-    {
+	public boolean canInteractWith(EntityPlayer player) {
 		return getGuiHolder().canInteractWith(player);
-    }
+	}
 
 	@Override
-	public int guiInventorySize() 
-	{
+	public int guiInventorySize() {
 		return 54;
 	}
-	
+
 }

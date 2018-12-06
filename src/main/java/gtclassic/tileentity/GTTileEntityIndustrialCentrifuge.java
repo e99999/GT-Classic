@@ -28,7 +28,6 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,30 +35,28 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMachine
-{
-    public static final int slotInput = 0;
-    public static final int slotCell = 1;
-    public static final int slotFuel = 2;
-    public static final int slotOutput = 3;
-    public static final int slotOutput2 = 4;
-    public static final int slotOutput3 = 5;
-    public static final int slotOutput4 = 6;
-    
-    public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTClassic.MODID, "textures/gui/industrialcentrifuge.png");
-    
-    public static final String CELL_REQUIREMENT = "recipe-cells";
-    public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("centrifuge");
-	
-	public GTTileEntityIndustrialCentrifuge()
-	{
+public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMachine {
+	public static final int slotInput = 0;
+	public static final int slotCell = 1;
+	public static final int slotFuel = 2;
+	public static final int slotOutput = 3;
+	public static final int slotOutput2 = 4;
+	public static final int slotOutput3 = 5;
+	public static final int slotOutput4 = 6;
+
+	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTClassic.MODID,
+			"textures/gui/industrialcentrifuge.png");
+
+	public static final String CELL_REQUIREMENT = "recipe-cells";
+	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("centrifuge");
+
+	public GTTileEntityIndustrialCentrifuge() {
 		super(7, 1, 1000, 32);
 		setFuelSlot(slotFuel);
 	}
-	
+
 	@Override
-	protected void addSlots(InventoryHandler handler)
-	{
+	protected void addSlots(InventoryHandler handler) {
 		this.filter = new MachineFilter(this);
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
@@ -68,8 +65,10 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotCell);
-		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput, slotOutput2, slotOutput3, slotOutput4);
-		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
+		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput, slotOutput2, slotOutput3,
+				slotOutput4);
+		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
+				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerInputFilter(new BasicItemFilter(GTItems.glassTube), slotCell);
 		handler.registerInputFilter(filter, slotInput);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
@@ -78,180 +77,147 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 		handler.registerSlotType(SlotType.SecondInput, slotCell);
 		handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutput4);
 	}
-	
+
 	@Override
-	public ContainerIC2 getGuiContainer(EntityPlayer player)
-	{
-        return new GTContainerIndustrialCentrifuge(player.inventory, this);
+	public ContainerIC2 getGuiContainer(EntityPlayer player) {
+		return new GTContainerIndustrialCentrifuge(player.inventory, this);
 	}
-	
+
 	@Override
-	public IMachineRecipeList getRecipeList()
-	{
+	public IMachineRecipeList getRecipeList() {
 		return RECIPE_LIST;
 	}
-	
+
 	@Override
-	public MachineType getType()
-	{
+	public MachineType getType() {
 		return null;
 	}
-	
+
 	@Override
-	public RecipeEntry getOutputFor(ItemStack input)
-	{
+	public RecipeEntry getOutputFor(ItemStack input) {
 		RecipeEntry entry = RECIPE_LIST.getRecipeInAndOutput(input, false);
-		if(entry != null && getStackInSlot(slotCell).getCount() >= getRequiredCells(entry.getOutput()))
-		{
+		if (entry != null && getStackInSlot(slotCell).getCount() >= getRequiredCells(entry.getOutput())) {
 			return entry;
 		}
 		return null;
 	}
-	
+
 	@Override
-	protected EnumActionResult isRecipeStillValid(RecipeEntry entry)
-	{
-		if(getStackInSlot(slotCell).getCount() >= getRequiredCells(entry.getOutput()))
-		{
+	protected EnumActionResult isRecipeStillValid(RecipeEntry entry) {
+		if (getStackInSlot(slotCell).getCount() >= getRequiredCells(entry.getOutput())) {
 			return EnumActionResult.SUCCESS;
 		}
 		return EnumActionResult.PASS;
 	}
-	
+
 	@Override
-	protected EnumActionResult canFillRecipeIntoOutputs(MachineOutput output)
-	{
+	protected EnumActionResult canFillRecipeIntoOutputs(MachineOutput output) {
 		List<ItemStack> result = output.getAllOutputs();
-		for(int i = 0;i<result.size() && i < 4;i++)
-		{
+		for (int i = 0; i < result.size() && i < 4; i++) {
 			ItemStack stack = getStackInSlot(slotOutput + i);
 			ItemStack extra = result.get(i);
-			if((!stack.isEmpty() && !StackUtil.isStackEqual(stack, extra, false, true)) || stack.getCount() + extra.getCount() > extra.getMaxStackSize())
-			{
+			if ((!stack.isEmpty() && !StackUtil.isStackEqual(stack, extra, false, true))
+					|| stack.getCount() + extra.getCount() > extra.getMaxStackSize()) {
 				return EnumActionResult.PASS;
 			}
 		}
 		return EnumActionResult.SUCCESS;
 	}
-	
+
 	@Override
-	public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
-	{
+	public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list) {
 		super.operateOnce(input, output, list);
 		getStackInSlot(slotCell).shrink(getRequiredCells(output));
 	}
-	
+
 	@Override
-	public void operate(RecipeEntry entry)
-	{
+	public void operate(RecipeEntry entry) {
 		IRecipeInput input = entry.getInput();
 		MachineOutput output = entry.getOutput().copy();
-		for(int i = 0;i < 4;i++)
-		{
+		for (int i = 0; i < 4; i++) {
 			ItemStack itemStack = inventory.get(i + inventory.size() - 4);
-			if(itemStack.getItem() instanceof IMachineUpgradeItem)
-			{
-				IMachineUpgradeItem item = (IMachineUpgradeItem)itemStack.getItem();
+			if (itemStack.getItem() instanceof IMachineUpgradeItem) {
+				IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
 				item.onProcessEndPre(itemStack, this, output);
 			}
 		}
 		List<ItemStack> list = new ArrayList<ItemStack>();
 		operateOnce(input, output, list);
-		for(int i = 0;i < 4;i++)
-		{
+		for (int i = 0; i < 4; i++) {
 			ItemStack itemStack = inventory.get(i + inventory.size() - 4);
-			if(itemStack.getItem() instanceof IMachineUpgradeItem)
-			{
-				IMachineUpgradeItem item = (IMachineUpgradeItem)itemStack.getItem();
+			if (itemStack.getItem() instanceof IMachineUpgradeItem) {
+				IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
 				item.onProcessEndPost(itemStack, this, input, output, list);
 			}
 		}
-		if(list.size() > 0)
-		{
-			for(int i = 0;i<4 && i<list.size();i++)
-			{
-				//Dangerous thing here. Might dupe items if there is random rolls
+		if (list.size() > 0) {
+			for (int i = 0; i < 4 && i < list.size(); i++) {
+				// Dangerous thing here. Might dupe items if there is random rolls
 				ItemStack toAdd = list.get(i);
-				if(toAdd.isEmpty())
-				{
+				if (toAdd.isEmpty()) {
 					continue;
 				}
-				if(getStackInSlot(slotOutput + i).isEmpty())
-				{
+				if (getStackInSlot(slotOutput + i).isEmpty()) {
 					setStackInSlot(slotOutput + i, toAdd);
-				}
-				else
-				{
+				} else {
 					getStackInSlot(slotOutput + i).grow(toAdd.getCount());
 				}
 			}
 		}
 	}
-	
+
 	@Override
-	public ResourceLocation getGuiTexture()
-	{
+	public ResourceLocation getGuiTexture() {
 		return GUI_LOCATION;
 	}
-	
-	protected static int getRequiredCells(MachineOutput output)
-	{
-		if(output == null || output.getMetadata() == null)
-		{
+
+	protected static int getRequiredCells(MachineOutput output) {
+		if (output == null || output.getMetadata() == null) {
 			return 0;
 		}
 		return output.getMetadata().getInteger(CELL_REQUIREMENT);
 	}
-	
-	protected static NBTTagCompound createCellRequirement(int amount)
-	{
-		if(amount <= 0)
-		{
+
+	protected static NBTTagCompound createCellRequirement(int amount) {
+		if (amount <= 0) {
 			return null;
 		}
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setInteger(CELL_REQUIREMENT, amount);
 		return nbt;
 	}
-	
-	public static void init()
-	{
-		//addRecipe(new ItemStack(Blocks.DIRT, 16), 10, new OutputItem(new ItemStack(Items.DIAMOND), 0));
-		//moved to GTRecipes
+
+	public static void init() {
+		// addRecipe(new ItemStack(Blocks.DIRT, 16), 10, new OutputItem(new
+		// ItemStack(Items.DIAMOND), 0));
+		// moved to GTRecipes
 	}
-	
-	public static void addRecipe(ItemStack stack, int cellRequirement, OutputItem...results)
-	{
+
+	public static void addRecipe(ItemStack stack, int cellRequirement, OutputItem... results) {
 		addRecipe(new RecipeInputItemStack(stack), cellRequirement, results);
 	}
-	
-	public static void addRecipe(String id, int amount, int cellRequirement, OutputItem...results)
-	{
+
+	public static void addRecipe(String id, int amount, int cellRequirement, OutputItem... results) {
 		addRecipe(new RecipeInputOreDict(id, amount), cellRequirement, results);
 	}
-	
-	public static void addRecipe(IRecipeInput input, int cellRequirement, OutputItem...results)
-	{
+
+	public static void addRecipe(IRecipeInput input, int cellRequirement, OutputItem... results) {
 		NonNullList<ItemStack> list = NonNullList.withSize(4, ItemStack.EMPTY);
-		for(OutputItem item : results)
-		{
+		for (OutputItem item : results) {
 			list.set(item.slot, item.stack.copy());
 		}
 		addRecipe(input, new MachineOutput(createCellRequirement(cellRequirement), list));
 	}
-	
-	static void addRecipe(IRecipeInput input, MachineOutput output)
-	{
+
+	static void addRecipe(IRecipeInput input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
 	}
-	
-	public static class OutputItem
-	{
+
+	public static class OutputItem {
 		ItemStack stack;
 		int slot;
-		
-		public OutputItem(ItemStack result, int slotIndex)
-		{
+
+		public OutputItem(ItemStack result, int slotIndex) {
 			stack = result;
 			slot = slotIndex;
 		}

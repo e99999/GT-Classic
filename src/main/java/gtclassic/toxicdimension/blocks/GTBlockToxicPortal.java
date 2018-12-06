@@ -3,11 +3,11 @@ package gtclassic.toxicdimension.blocks;
 import java.util.Random;
 
 import com.google.common.cache.LoadingCache;
+
 import gtclassic.GTClassic;
 import gtclassic.GTConfig;
-import gtclassic.util.GTBlocks;
 import gtclassic.toxicdimension.world.GTToxicTeleporter;
-
+import gtclassic.util.GTBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.SoundType;
@@ -38,19 +38,19 @@ public class GTBlockToxicPortal extends BlockPortal {
 
 	public GTBlockToxicPortal() {
 		super();
-		setRegistryName("toxic_portal"); //texture
-		setUnlocalizedName(GTClassic.MODID + ".toxicPortal"); //lang
+		setRegistryName("toxic_portal"); // texture
+		setUnlocalizedName(GTClassic.MODID + ".toxicPortal"); // lang
 		setHardness(-1.0F);
 		setLightLevel(0.75F);
-		setSoundType(SoundType.GLASS);	
+		setSoundType(SoundType.GLASS);
 	}
-	
-	
+
 	@SideOnly(Side.CLIENT)
-    public void initModel() {
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    }
-	
+	public void initModel() {
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0,
+				new ModelResourceLocation(getRegistryName(), "inventory"));
+	}
+
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 	}
@@ -75,16 +75,18 @@ public class GTBlockToxicPortal extends BlockPortal {
 	@Override
 	@Deprecated
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-		EnumFacing.Axis enumfacingaxis = (EnumFacing.Axis) state.getValue(AXIS);
+		EnumFacing.Axis enumfacingaxis = state.getValue(AXIS);
 		if (enumfacingaxis == EnumFacing.Axis.X) {
 			GTBlockToxicPortal.Size blockportalsize = new GTBlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.X);
-			if (!blockportalsize.isValid() || blockportalsize.portalBlockCount < blockportalsize.width * blockportalsize.height) {
+			if (!blockportalsize.isValid()
+					|| blockportalsize.portalBlockCount < blockportalsize.width * blockportalsize.height) {
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 				portalDestroyed(worldIn, pos);
 			}
 		} else if (enumfacingaxis == EnumFacing.Axis.Z) {
 			GTBlockToxicPortal.Size blockportalsize1 = new GTBlockToxicPortal.Size(worldIn, pos, EnumFacing.Axis.Z);
-			if (!blockportalsize1.isValid() || blockportalsize1.portalBlockCount < blockportalsize1.width * blockportalsize1.height) {
+			if (!blockportalsize1.isValid()
+					|| blockportalsize1.portalBlockCount < blockportalsize1.width * blockportalsize1.height) {
 				worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 				portalDestroyed(worldIn, pos);
 			}
@@ -98,21 +100,22 @@ public class GTBlockToxicPortal extends BlockPortal {
 	@Override
 	public void randomDisplayTick(IBlockState stateIn, World world, BlockPos pos, Random rand) {
 		if (rand.nextInt(100) == 0)
-			world.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D,
-					(net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(
-							("block.portal.ambient"))), SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+			world.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
+					net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(("block.portal.ambient"))),
+					SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
 		for (int i = 0; i < 4; ++i) {
-			double d0 = (double) ((float) pos.getX() + rand.nextFloat());
-			double d1 = (double) ((float) pos.getY() + rand.nextFloat());
-			double d2 = (double) ((float) pos.getZ() + rand.nextFloat());
+			double d0 = pos.getX() + rand.nextFloat();
+			double d1 = pos.getY() + rand.nextFloat();
+			double d2 = pos.getZ() + rand.nextFloat();
 			int j = rand.nextInt(2) * 2 - 1;
-			if (world.getBlockState(pos.west()).getBlock() != this && world.getBlockState(pos.east()).getBlock() != this) {
-				d0 = pos.getX() + 0.5D + 0.25D * (double) j;
+			if (world.getBlockState(pos.west()).getBlock() != this
+					&& world.getBlockState(pos.east()).getBlock() != this) {
+				d0 = pos.getX() + 0.5D + 0.25D * j;
 			} else {
-				d2 = pos.getZ() + 0.5D + 0.25D * (double) j;
+				d2 = pos.getZ() + 0.5D + 0.25D * j;
 			}
 			world.spawnParticle(EnumParticleTypes.FLAME, d0, d1, d2, 0, 0, 0);
-			
+
 		}
 	}
 
@@ -133,13 +136,15 @@ public class GTBlockToxicPortal extends BlockPortal {
 			BlockPos blockpos = blockportalsize.bottomLeft.up(blockportalsize.getHeight() - 1);
 			for (EnumFacing.AxisDirection enumfacingaxisdirection : EnumFacing.AxisDirection.values()) {
 				BlockPattern.PatternHelper blockpatternpatternhelper = new BlockPattern.PatternHelper(
-						enumfacing.getAxisDirection() == enumfacingaxisdirection ? blockpos : blockpos.offset(blockportalsize.rightDir,
-								blockportalsize.getWidth() - 1), EnumFacing.getFacingFromAxis(enumfacingaxisdirection, enumfacingaxis),
-						EnumFacing.UP, loadingcache, blockportalsize.getWidth(), blockportalsize.getHeight(), 1);
+						enumfacing.getAxisDirection() == enumfacingaxisdirection ? blockpos
+								: blockpos.offset(blockportalsize.rightDir, blockportalsize.getWidth() - 1),
+						EnumFacing.getFacingFromAxis(enumfacingaxisdirection, enumfacingaxis), EnumFacing.UP,
+						loadingcache, blockportalsize.getWidth(), blockportalsize.getHeight(), 1);
 				for (int i = 0; i < blockportalsize.getWidth(); ++i) {
 					for (int j = 0; j < blockportalsize.getHeight(); ++j) {
 						BlockWorldState blockworldstate = blockpatternpatternhelper.translateOffset(i, j, 1);
-						if (blockworldstate.getBlockState() != null && blockworldstate.getBlockState().getMaterial() != Material.AIR) {
+						if (blockworldstate.getBlockState() != null
+								&& blockworldstate.getBlockState().getMaterial() != Material.AIR) {
 							++aint[enumfacingaxisdirection.ordinal()];
 						}
 					}
@@ -151,9 +156,11 @@ public class GTBlockToxicPortal extends BlockPortal {
 					enumfacingaxisdirection1 = enumfacingaxisdirection2;
 				}
 			}
-			return new BlockPattern.PatternHelper(enumfacing.getAxisDirection() == enumfacingaxisdirection1 ? blockpos : blockpos.offset(
-					blockportalsize.rightDir, blockportalsize.getWidth() - 1), EnumFacing.getFacingFromAxis(enumfacingaxisdirection1,
-					enumfacingaxis), EnumFacing.UP, loadingcache, blockportalsize.getWidth(), blockportalsize.getHeight(), 1);
+			return new BlockPattern.PatternHelper(
+					enumfacing.getAxisDirection() == enumfacingaxisdirection1 ? blockpos
+							: blockpos.offset(blockportalsize.rightDir, blockportalsize.getWidth() - 1),
+					EnumFacing.getFacingFromAxis(enumfacingaxisdirection1, enumfacingaxis), EnumFacing.UP, loadingcache,
+					blockportalsize.getWidth(), blockportalsize.getHeight(), 1);
 		}
 	}
 
@@ -170,14 +177,16 @@ public class GTBlockToxicPortal extends BlockPortal {
 							getTeleporterForDimension(thePlayer, pos, GTConfig.dimensionId));
 				} else {
 					entityIn.timeUntilPortal = 10;
-					thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0, getTeleporterForDimension(thePlayer, pos, 0));
+					thePlayer.mcServer.getPlayerList().transferPlayerToDimension(thePlayer, 0,
+							getTeleporterForDimension(thePlayer, pos, 0));
 				}
 			} else if (!(entityIn instanceof EntityPlayer) && !(entityIn instanceof EntityPlayerSP)) {
 				if (entityIn.timeUntilPortal > 0) {
 					entityIn.timeUntilPortal = 10;
 				} else if (entityIn.dimension != GTConfig.dimensionId) {
 					entityIn.timeUntilPortal = 10;
-					entityIn.changeDimension(GTConfig.dimensionId, getTeleporterForDimension(entityIn, pos, GTConfig.dimensionId));
+					entityIn.changeDimension(GTConfig.dimensionId,
+							getTeleporterForDimension(entityIn, pos, GTConfig.dimensionId));
 				} else {
 					entityIn.timeUntilPortal = 10;
 					entityIn.changeDimension(GTConfig.dimensionId, getTeleporterForDimension(entityIn, pos, 0));
@@ -187,16 +196,20 @@ public class GTBlockToxicPortal extends BlockPortal {
 	}
 
 	private GTToxicTeleporter getTeleporterForDimension(Entity entity, BlockPos pos, int dimid) {
-		BlockPattern.PatternHelper blockpatternpatternhelper = GTBlocks.toxicPortal.createPatternHelper(entity.world, new BlockPos(pos));
-		double d0 = blockpatternpatternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double) blockpatternpatternhelper
-				.getFrontTopLeft().getZ() : (double) blockpatternpatternhelper.getFrontTopLeft().getX();
+		BlockPattern.PatternHelper blockpatternpatternhelper = GTBlocks.toxicPortal.createPatternHelper(entity.world,
+				new BlockPos(pos));
+		double d0 = blockpatternpatternhelper.getForwards().getAxis() == EnumFacing.Axis.X
+				? (double) blockpatternpatternhelper.getFrontTopLeft().getZ()
+				: (double) blockpatternpatternhelper.getFrontTopLeft().getX();
 		double d1 = blockpatternpatternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? entity.posZ : entity.posX;
-		d1 = Math.abs(MathHelper.pct(d1
-				- (double) (blockpatternpatternhelper.getForwards().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE ? 1 : 0),
-				d0, d0 - (double) blockpatternpatternhelper.getWidth()));
-		double d2 = MathHelper.pct(entity.posY - 1.0D, (double) blockpatternpatternhelper.getFrontTopLeft().getY(),
-				(double) (blockpatternpatternhelper.getFrontTopLeft().getY() - blockpatternpatternhelper.getHeight()));
-		return new GTToxicTeleporter(entity.getServer().getWorld(dimid), new Vec3d(d1, d2, 0.0D), blockpatternpatternhelper.getForwards());
+		d1 = Math.abs(MathHelper.pct(
+				d1 - (blockpatternpatternhelper.getForwards().rotateY()
+						.getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE ? 1 : 0),
+				d0, d0 - blockpatternpatternhelper.getWidth()));
+		double d2 = MathHelper.pct(entity.posY - 1.0D, blockpatternpatternhelper.getFrontTopLeft().getY(),
+				blockpatternpatternhelper.getFrontTopLeft().getY() - blockpatternpatternhelper.getHeight());
+		return new GTToxicTeleporter(entity.getServer().getWorld(dimid), new Vec3d(d1, d2, 0.0D),
+				blockpatternpatternhelper.getForwards());
 	}
 
 	public static class Size {
@@ -221,7 +234,8 @@ public class GTBlockToxicPortal extends BlockPortal {
 				this.rightDir = EnumFacing.SOUTH;
 			}
 			for (BlockPos blockpos = sizeblockpos; sizeblockpos.getY() > blockpos.getY() - 21 && sizeblockpos.getY() > 0
-					&& this.isEmptyBlock(worldIn.getBlockState(sizeblockpos.down()).getBlock()); sizeblockpos = sizeblockpos.down()) {
+					&& this.isEmptyBlock(worldIn.getBlockState(sizeblockpos.down())
+							.getBlock()); sizeblockpos = sizeblockpos.down()) {
 				;
 			}
 			int i = this.getDistanceUntilEdge(sizeblockpos, this.leftDir) - 1;
@@ -243,7 +257,8 @@ public class GTBlockToxicPortal extends BlockPortal {
 			for (i = 0; i < 22; ++i) {
 				BlockPos blockpos = distblockpos.offset(distfacing, i);
 				if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock())
-						|| this.world.getBlockState(blockpos.down()).getBlock() != GTBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
+						|| this.world.getBlockState(blockpos.down()).getBlock() != GTBlocks.toxicPortalFrame
+								.getDefaultState().getBlock()) {
 					break;
 				}
 			}
@@ -260,7 +275,7 @@ public class GTBlockToxicPortal extends BlockPortal {
 		}
 
 		protected int calculatePortalHeight() {
-			label56 : for (this.height = 0; this.height < 21; ++this.height) {
+			label56: for (this.height = 0; this.height < 21; ++this.height) {
 				for (int i = 0; i < this.width; ++i) {
 					BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i).up(this.height);
 					Block block = this.world.getBlockState(blockpos).getBlock();
@@ -284,8 +299,8 @@ public class GTBlockToxicPortal extends BlockPortal {
 				}
 			}
 			for (int j = 0; j < this.width; ++j) {
-				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != GTBlocks.toxicPortalFrame
-						.getDefaultState().getBlock()) {
+				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height))
+						.getBlock() != GTBlocks.toxicPortalFrame.getDefaultState().getBlock()) {
 					this.height = 0;
 					break;
 				}
@@ -301,18 +316,21 @@ public class GTBlockToxicPortal extends BlockPortal {
 		}
 
 		protected boolean isEmptyBlock(Block blockIn) {
-			return blockIn.getDefaultState().getMaterial() == Material.AIR || blockIn == Blocks.FIRE || blockIn == GTBlocks.toxicPortal;
+			return blockIn.getDefaultState().getMaterial() == Material.AIR || blockIn == Blocks.FIRE
+					|| blockIn == GTBlocks.toxicPortal;
 		}
 
 		public boolean isValid() {
-			return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3 && this.height <= 21;
+			return this.bottomLeft != null && this.width >= 2 && this.width <= 21 && this.height >= 3
+					&& this.height <= 21;
 		}
 
 		public void placePortalBlocks() {
 			for (int i = 0; i < this.width; ++i) {
 				BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
 				for (int j = 0; j < this.height; ++j) {
-					this.world.setBlockState(blockpos.up(j), GTBlocks.toxicPortal.getDefaultState().withProperty(BlockPortal.AXIS, this.axis), 2);
+					this.world.setBlockState(blockpos.up(j),
+							GTBlocks.toxicPortal.getDefaultState().withProperty(BlockPortal.AXIS, this.axis), 2);
 				}
 			}
 		}

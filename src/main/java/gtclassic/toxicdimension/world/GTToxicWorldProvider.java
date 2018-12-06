@@ -2,7 +2,6 @@ package gtclassic.toxicdimension.world;
 
 import gtclassic.GTDimensions;
 import gtclassic.toxicdimension.biome.GTBiomeProviderCustom;
-
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
@@ -11,39 +10,39 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTToxicWorldProvider extends WorldProvider {
-	
+
 	@Override
 	public boolean hasSkyLight() {
 		return true;
 	}
 
-    @Override
-    public DimensionType getDimensionType() {
-        return GTDimensions.toxicDimensionType;
-    }
+	@Override
+	public DimensionType getDimensionType() {
+		return GTDimensions.toxicDimensionType;
+	}
 
-    @Override
-    public String getSaveFolder() {
-        return "TOXIC";
-    }
+	@Override
+	public String getSaveFolder() {
+		return "TOXIC";
+	}
 
-    @Override
-    public IChunkGenerator createChunkGenerator() {
-        return new GTToxicChunkGenerator(world);
-    }
-    
-    @Override
+	@Override
+	public IChunkGenerator createChunkGenerator() {
+		return new GTToxicChunkGenerator(world);
+	}
+
+	@Override
 	public void init() {
 		this.biomeProvider = new GTBiomeProviderCustom(this.world.getSeed());
 	}
 
-    @Override
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Vec3d getFogColor(float par1, float par2) {
 		return new Vec3d(0.01568627450980392D, 0.09019607843137255D, 0.0D);
 	}
-    
-    @Override
+
+	@Override
 	public boolean isSurfaceWorld() {
 		return true;
 	}
@@ -60,20 +59,19 @@ public class GTToxicWorldProvider extends WorldProvider {
 
 	@Override
 	public float getSunBrightness(float par1) {
-		return (par1*2F);
+		return (par1 * 2F);
 	}
 
 	@Override
 	public float getStarBrightness(float par1) {
-		return (par1*5F);
+		return (par1 * 5F);
 	}
-	
+
 	@Override
-    public boolean canDoLightning(net.minecraft.world.chunk.Chunk chunk)
-    {
-        return true;
-    }
-	
+	public boolean canDoLightning(net.minecraft.world.chunk.Chunk chunk) {
+		return true;
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean doesXZShowFog(int par1, int par2) {
