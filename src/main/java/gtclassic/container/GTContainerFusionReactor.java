@@ -2,6 +2,8 @@ package gtclassic.container;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityFusionReactor;
+import gtclassic.util.guicomponents.GTGuiCompEnergyStorage;
+import gtclassic.util.guicomponents.GTGuiCompFusion;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -20,8 +22,8 @@ public class GTContainerFusionReactor extends ContainerTileComponent<GTTileEntit
     
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/fusionreactor.png");
 	
-	public static Box2D machineProgressBoxUp = new Box2D(83, 23, 10, 10);
-    public static Vec2i machineProgressPosUp = new Vec2i(193, 23);
+	public static Box2D machineProgressBox = new Box2D(83, 23, 10, 10);
+    public static Vec2i machineProgressPos = new Vec2i(193, 23);
    
 
     public GTContainerFusionReactor(InventoryPlayer player, GTTileEntityFusionReactor tile)
@@ -32,7 +34,9 @@ public class GTContainerFusionReactor extends ContainerTileComponent<GTTileEntit
         this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35)); //output
 
         this.addPlayerInventory(player);
-        this.addComponent(new MachineProgressComp(tile, GTContainerFusionReactor.machineProgressBoxUp, GTContainerFusionReactor.machineProgressPosUp));
+        this.addComponent(new MachineProgressComp(tile, GTContainerFusionReactor.machineProgressBox, GTContainerFusionReactor.machineProgressPos));
+        
+        this.addComponent(new GTGuiCompFusion(tile));
     }
     
     @Override
