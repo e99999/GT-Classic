@@ -52,7 +52,7 @@ public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
 	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("fusion");
 
 	public GTTileEntityFusionReactor() {
-		super(3, 1, 1000, 2048);
+		super(3, 2048, 10000, 2048);
 		this.status = 0;
 		this.setCustomName("tileFusionReactor");
 	}
@@ -99,6 +99,22 @@ public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
 	@Override
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
 		return GuiComponentContainer.class;
+	}
+
+	boolean lastState;
+	boolean firstCheck = true;
+
+	@Override
+	public boolean canWork() {
+		boolean superCall = super.canWork();
+		if (superCall) {
+			if (world.getTotalWorldTime() % 1200 == 0 || firstCheck) {
+				lastState = checkStructure();
+				firstCheck = false;
+			}
+			superCall = superCall && lastState;
+		}
+		return superCall;
 	}
 
 	@Override
@@ -166,7 +182,7 @@ public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
 	}
 
 	public static void init() {
-		//empty method for internal recipes
+		// empty method for internal recipes
 	}
 
 	public static void addRecipe(ItemStack stack, int cellRequirement, ItemStack output) {
@@ -253,5 +269,4 @@ public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
 			this.status = 666;
 		}
 	}
-
 }

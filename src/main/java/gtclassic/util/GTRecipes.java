@@ -279,17 +279,14 @@ public class GTRecipes {
 		TileEntityExtractor.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.sapphire), 3),
 				0.3F);
 
-		// GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.DIRT, 16),
-		// 10, new OutputItem(new ItemStack(Items.DIAMOND), 0));
-
-		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.END_STONE, 64), 9, // input, amount, glass tube
-																							// amount
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.END_STONE, 64), 9, // input, glass tube amount
+																							
 				new OutputItem(new ItemStack(Blocks.SAND, 48), 0), // out0
 				new OutputItem(new ItemStack(GTItems.helium3, 4), 1), // out1
 				new OutputItem(new ItemStack(GTItems.helium, 4), 2), // out2
 				new OutputItem(new ItemStack(GTItems.tungsten, 1), 3));// out3
 
-		GTTileEntityFusionReactor.addRecipe(new ItemStack(Blocks.STONE), 10, new ItemStack(Blocks.GRAVEL));
+		GTTileEntityFusionReactor.addRecipe(new ItemStack(Items.GLOWSTONE_DUST), 0, Ic2Items.iridiumOre); //input, glass tube amount, output 
 
 	}
 

@@ -3,6 +3,7 @@ package gtclassic.blocks;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityFusionReactor;
@@ -15,7 +16,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -97,6 +101,41 @@ public class GTBlockGenerator extends BlockMultiID {
 	@Deprecated
 	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
 		return false;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileEntityFusionReactor) {
+			int z = Math.round(((GTTileEntityFusionReactor) tile).getProgress());
+			int r = (12 - (z / 1000));
+
+			if (z > 0) {
+				for (int i = -2; i <= 2; ++i) {
+					for (int j = -2; j <= 2; ++j) {
+						if (i > -2 && i < 2 && j == -1) {
+							j = 2;
+						}
+
+						if (rand.nextInt(r) == 0) {
+							for (int k = 0; k <= 1; ++k) {
+
+								if (!worldIn.isAirBlock(pos.add(i / 2, 0, j / 2))) {
+									break;
+								}
+
+								worldIn.spawnParticle(EnumParticleTypes.END_ROD, (double) pos.getX() + 0.5D,
+										(double) pos.getY() + 2.0D, (double) pos.getZ() + 0.5D,
+										(double) ((float) i + rand.nextFloat()) - 0.5D,
+										(double) ((float) k - rand.nextFloat() - 1.0F),
+										(double) ((float) j + rand.nextFloat()) - 0.5D);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 }
