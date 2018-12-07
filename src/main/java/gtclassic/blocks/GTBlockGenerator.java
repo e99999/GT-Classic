@@ -108,25 +108,22 @@ public class GTBlockGenerator extends BlockMultiID {
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		TileEntity tile = worldIn.getTileEntity(pos);
 		if (tile instanceof GTTileEntityFusionReactor) {
-			int z = Math.round(((GTTileEntityFusionReactor) tile).getProgress());
-			int r = (12 - (z / 1000));
-
-			if (z > 0) {
+			if (((GTTileEntityFusionReactor) tile).isActive) {
 				for (int i = -2; i <= 2; ++i) {
 					for (int j = -2; j <= 2; ++j) {
 						if (i > -2 && i < 2 && j == -1) {
 							j = 2;
 						}
 
-						if (rand.nextInt(r) == 0) {
+						if (rand.nextInt(4) == 0) {
 							for (int k = 0; k <= 1; ++k) {
 
 								if (!worldIn.isAirBlock(pos.add(i / 2, 0, j / 2))) {
 									break;
 								}
 
-								worldIn.spawnParticle(EnumParticleTypes.END_ROD, (double) pos.getX() + 0.5D,
-										(double) pos.getY() + 2.0D, (double) pos.getZ() + 0.5D,
+								worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D,
+										(double) pos.getY() + 1.0D, (double) pos.getZ() + 0.5D,
 										(double) ((float) i + rand.nextFloat()) - 0.5D,
 										(double) ((float) k - rand.nextFloat() - 1.0F),
 										(double) ((float) j + rand.nextFloat()) - 0.5D);

@@ -280,13 +280,20 @@ public class GTRecipes {
 				0.3F);
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.END_STONE, 64), 9, // input, glass tube amount
-																							
 				new OutputItem(new ItemStack(Blocks.SAND, 48), 0), // out0
 				new OutputItem(new ItemStack(GTItems.helium3, 4), 1), // out1
 				new OutputItem(new ItemStack(GTItems.helium, 4), 2), // out2
 				new OutputItem(new ItemStack(GTItems.tungsten, 1), 3));// out3
 
-		GTTileEntityFusionReactor.addRecipe(new ItemStack(Items.GLOWSTONE_DUST), 0, Ic2Items.iridiumOre); //input, glass tube amount, output 
+		GTTileEntityFusionReactor.addRecipe(new ItemStack(Items.GLOWSTONE_DUST), 0, Ic2Items.iridiumOre);																			
+		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.hydrogen), 0,
+				(new ItemStack(GTItems.plasmaHydrogen)));
+		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.nitrogen), 0,
+				(new ItemStack(GTItems.plasmaNitrogen)));
+		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.oxygen), 0, (new ItemStack(GTItems.plasmaOxygen)));
+		GTTileEntityFusionReactor.addRecipe(StackUtil.copyWithSize(Ic2Items.uuMatter, 5), 1,
+				(new ItemStack(GTItems.plasmaUU)));
+		GTTileEntityFusionReactor.addRecipe("dustIron", 1, 1, (new ItemStack(GTItems.plasmaIron)));
 
 	}
 
