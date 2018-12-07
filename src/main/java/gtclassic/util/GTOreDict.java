@@ -50,16 +50,11 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("itemRubber",
 				new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
-
-		OreDictionary.registerOre("batteryTier2", Ic2Items.energyCrystal);
-		OreDictionary.registerOre("batteryTier2", GTItems.lithiumBattery);
-
 		
-		//BASIC CIRCUITS FROM OTHER MODS
-		OreDictionary.registerOre("circuitBasic", Ic2Items.electricCircuit);
+		OreDictionary.registerOre("toolHammer", GTItems.hammerIron);
 		
-		//ADVANCED CIRCUITS FROM OTHER MODS
-		OreDictionary.registerOre("circuitAdvanced", Ic2Items.advancedCircuit);
+		OreDictionary.registerOre("batteryAdvanced", Ic2Items.energyCrystal);
+		OreDictionary.registerOre("batteryAdvanced", GTItems.lithiumBattery);
 	}
 
 }

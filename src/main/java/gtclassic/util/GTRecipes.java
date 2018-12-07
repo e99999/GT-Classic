@@ -46,9 +46,9 @@ public class GTRecipes {
 	static IRecipeInput ingotElectric = new RecipeInputCombined(1,
 			new IRecipeInput[] { new RecipeInputOreDict("ingotAluminium"), new RecipeInputOreDict("ingotRefinedIron"),
 					new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotSteel") });
-	
+
 	static IRecipeInput ingotSteel = new RecipeInputCombined(1,
-			new IRecipeInput[] { new RecipeInputOreDict("ingotRefinedIron"), new RecipeInputOreDict("ingotSteel")});
+			new IRecipeInput[] { new RecipeInputOreDict("ingotRefinedIron"), new RecipeInputOreDict("ingotSteel") });
 
 	FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
 	static FluidStack lava = new FluidStack(FluidRegistry.LAVA, 1000);
@@ -112,6 +112,9 @@ public class GTRecipes {
 
 	public static void initShapelessRecipes() {
 
+		recipes.addShapelessRecipe(new ItemStack(GTItems.braintechAerospaceARDT, 1),
+				new Object[] { StackUtil.copyWithSize(Ic2Items.rubber, 64) });
+
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.iridiumReinforcedStoneBlock, 1),
 				new Object[] { Ic2Items.reinforcedStone, "ingotIridium" });
 
@@ -127,7 +130,7 @@ public class GTRecipes {
 		// TOOLS
 
 		recipes.addRecipe(new ItemStack(GTItems.hammerIron, 1),
-				new Object[] { "II ", "IIS", "II ", 'I', ingotSteel, 'S', Items.STICK });
+				new Object[] { "II ", "IIS", "II ", 'I', "ingotIron", 'S', Items.STICK });
 
 		recipes.addRecipe(new ItemStack(GTItems.electroMagnet, 1),
 				new Object[] { "M M", "IMI", "IBI", 'M', Ic2Items.magnet, 'B', Ic2Items.battery, 'I', ingotElectric });
@@ -136,8 +139,13 @@ public class GTRecipes {
 				new Object[] { "DI ", "DI ", "DCB",
 						new EnchantmentModifier(new ItemStack(GTItems.rockCutter), Enchantments.SILK_TOUCH)
 								.setUsesInput(),
-						'D', "gemDiamond", 'I', ingotSteel, 'C', "circuitBasic", 'B',
-						Ic2Items.battery.copy() });
+						'D', "gemDiamond", 'I', ingotSteel, 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
+
+		recipes.addRecipe(new ItemStack(GTItems.advancedDrill, 1), new Object[] { " I ", "ICI", "IBI", 'I',
+				"ingotTitanium", 'B', GTItems.lithiumBattery, 'C', GTItems.energyFlowCircuit });
+
+		recipes.addRecipe(new ItemStack(GTItems.advancedChainsaw, 1), new Object[] { " II", "ICI", "BI ", 'I',
+				"ingotTitanium", 'B', GTItems.lithiumBattery, 'C', GTItems.energyFlowCircuit });
 
 		recipes.addRecipe(new ItemStack(GTItems.glassTube, 32),
 				new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
@@ -175,7 +183,7 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTItems.teslaStaff, 1), new Object[] { "LS ", "SP ", "  P", 'L',
 				GTItems.lapotronicEnergyOrb, 'S', GTItems.superConductor, 'P', Ic2Items.iridiumPlate.copy() });
-		
+
 		recipes.addRecipe(new ItemStack(GTItems.lithiumBattery, 1), new Object[] { " G ", "ALA", "ALA", 'G',
 				Ic2Items.doubleInsulatedGoldCable.copy(), 'A', "ingotAluminium", 'L', GTItems.lithium });
 
@@ -183,18 +191,27 @@ public class GTRecipes {
 				"circuitAdvanced", 'A', "ingotAluminium", 'L', GTItems.lithiumBattery });
 
 		// BLOCKS
-		
-		recipes.addRecipe(new ItemStack(GTBlocks.highlyadvancedMachineBlock),
-				new Object[] { "CTC", "TBT", "CTC", 'T', "ingotTitanium", 'C', "ingotChrome", 'B', Ic2Items.advMachine.copy() });
-		
-		recipes.addRecipe(new ItemStack(GTBlocks.highlyadvancedMachineBlock),
-				new Object[] { "TCT", "CBC", "TCT", 'T', "ingotTitanium", 'C', "ingotChrome", 'B', Ic2Items.advMachine.copy() });
-		
+
+		recipes.addRecipe(new ItemStack(GTBlocks.highlyadvancedMachineBlock), new Object[] { "CTC", "TBT", "CTC", 'T',
+				"ingotTitanium", 'C', "ingotChrome", 'B', Ic2Items.advMachine.copy() });
+
+		recipes.addRecipe(new ItemStack(GTBlocks.highlyadvancedMachineBlock), new Object[] { "TCT", "CBC", "TCT", 'T',
+				"ingotTitanium", 'C', "ingotChrome", 'B', Ic2Items.advMachine.copy() });
+
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionMachineBlock),
-				new Object[] { "YBC", "B B", "SBY", 'B', GTBlocks.highlyadvancedMachineBlock, 'C', GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'Y', Ic2Items.teslaCoil.copy(), 'B', Ic2Items.advMachine.copy() });
-		
+				new Object[] { "YBC", "BRB", "SBY", 'B', GTBlocks.highlyadvancedMachineBlock, 'C',
+						GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'Y', Ic2Items.teslaCoil.copy(), 'B',
+						Ic2Items.advMachine.copy(), 'R', Ic2Items.reactorReflectorIridium.copy() });
+
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionMachineBlock),
-				new Object[] { "CBY", "B B", "YBS", 'B', GTBlocks.highlyadvancedMachineBlock, 'C', GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'Y', Ic2Items.teslaCoil.copy(), 'B', Ic2Items.advMachine.copy() });
+				new Object[] { "CBY", "BRB", "YBS", 'B', GTBlocks.highlyadvancedMachineBlock, 'C',
+						GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'Y', Ic2Items.teslaCoil.copy(), 'B',
+						Ic2Items.advMachine.copy(), 'R', Ic2Items.reactorReflectorIridium.copy() });
+
+		recipes.addRecipe(new ItemStack(GTBlocks.toxicPortalFrame), new Object[] { "TIN", "XMY", "PEH", 'T',
+				GTItems.braintechAerospaceARDT, 'I', GTItems.ingotTitanium, 'N', Ic2Items.scrapMetalChunk.copy(), 'X',
+				GTItems.proton, 'M', GTBlocks.iridiumReinforcedStoneBlock, 'Y', GTItems.neutron, 'P',
+				Ic2Items.reactorNearDepletedNetherStarUraniumRod.copy(), 'E', "ingotAluminium", 'H', "toolHammer" });
 
 		// TILES
 
@@ -208,7 +225,7 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler, 1),
 				new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T',
 						Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D',
-						GTItems.dataOrb, 'B', "batteryTier2" });
+						GTItems.dataOrb, 'B', "batteryAdvanced" });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 				Ic2Items.extractor, 'R', ingotElectric, 'A', Ic2Items.advMachine, 'C', "circuitAdvanced" });
@@ -241,8 +258,8 @@ public class GTRecipes {
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.waterMill.copy(), 2),
 				new Object[] { " X ", "XYX", " X ", 'Y', Ic2Items.generator.copy(), 'X', "ingotAluminium" });
 
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.mixedMetalIngot, 3), new Object[] { "III", "BBB", "TTT", 'I',
-				ingotSteel, 'B', "ingotBronze", 'T', "ingotAluminum" });
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.mixedMetalIngot, 3),
+				new Object[] { "III", "BBB", "TTT", 'I', ingotSteel, 'B', "ingotBronze", 'T', "ingotAluminum" });
 
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.mixedMetalIngot, 6),
 				new Object[] { "III", "BBB", "TTT", 'I', "ingotTitanium", 'B', "ingotBronze", 'T', ingotElectric });
@@ -259,13 +276,11 @@ public class GTRecipes {
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
 				new Object[] { "CIC", "CIC", "CIC", 'I', ingotElectric, 'C', Ic2Items.insulatedCopperCable.copy() });
 
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.advancedCircuit, 2),
-				new Object[] { "IGI", "LCL", "IGI", 'L', "dyeBlue", 'G', Items.GLOWSTONE_DUST, 'I',
-						"ingotSilver", 'C', Ic2Items.electricCircuit.copy() });
-		
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.advancedCircuit, 2),
-				new Object[] { "ILI", "GCG", "ILI", 'L', "dyeBlue", 'G', Items.GLOWSTONE_DUST, 'I',
-						"ingotSilver", 'C', Ic2Items.electricCircuit.copy() });
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.advancedCircuit, 2), new Object[] { "IGI", "LCL", "IGI", 'L',
+				"dyeBlue", 'G', Items.GLOWSTONE_DUST, 'I', "ingotSilver", 'C', Ic2Items.electricCircuit.copy() });
+
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.advancedCircuit, 2), new Object[] { "ILI", "GCG", "ILI", 'L',
+				"dyeBlue", 'G', Items.GLOWSTONE_DUST, 'I', "ingotSilver", 'C', Ic2Items.electricCircuit.copy() });
 
 		recipes.addRecipe(Ic2Items.energyCrystal.copy(),
 				new Object[] { "RRR", "RDR", "RRR", 'D', "gemRuby", 'R', "dustRedstone" });
