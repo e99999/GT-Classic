@@ -4,10 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
+import gtclassic.util.GTItems;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -27,6 +29,15 @@ public class GTItemElement extends Item implements IStaticTexturedItem {
 		public int getID() {
 			return id;
 		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		if (this == GTItems.proton || this == GTItems.neutron) {
+			return true;
+		}
+		return false;
 	}
 
 	GTItemElementTypes variant;

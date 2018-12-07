@@ -79,8 +79,8 @@ item.gtclassic.oxygen.name=Oxygen
 
 item.gtclassic.water.name=Water
 item.gtclassic.lava.name=Lava
-item.gtclassic.proton.name=Raw Matter
-item.gtclassic.neutron.name=Raw Anti-Matter
+item.gtclassic.proton.name=Positive Matter
+item.gtclassic.neutron.name=Neutral Matter
 
 item.gtclassic.hydrogen_plasma.name=Hydrogen Plasma
 item.gtclassic.nitrogen_plasma.name=Nitrogen Plasma

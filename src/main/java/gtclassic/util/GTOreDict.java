@@ -54,7 +54,11 @@ public class GTOreDict {
 		OreDictionary.registerOre("batteryTier2", Ic2Items.energyCrystal);
 		OreDictionary.registerOre("batteryTier2", GTItems.lithiumBattery);
 
+		
+		//BASIC CIRCUITS FROM OTHER MODS
 		OreDictionary.registerOre("circuitBasic", Ic2Items.electricCircuit);
+		
+		//ADVANCED CIRCUITS FROM OTHER MODS
 		OreDictionary.registerOre("circuitAdvanced", Ic2Items.advancedCircuit);
 	}
 
