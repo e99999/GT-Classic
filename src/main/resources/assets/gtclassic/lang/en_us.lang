@@ -56,7 +56,7 @@ item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
 item.gtclassic.zeroPointModule.name=Zero Point Module
-item.gtclassic.glass_tube.name=Empty Tube
+item.gtclassic.glass_tube.name=Glass Tube
 
 #elements
 item.gtclassic.hydrogen.name=Hydrogen
