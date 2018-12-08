@@ -83,7 +83,8 @@ public class GTItemZeroPointModule extends ItemBatteryBase {
 			Map<ToolTipType, List<String>> sortedTooltip) {
 		List<String> ctrlList = sortedTooltip.get(ToolTipType.Ctrl);
 		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
-		//TODO make zpm not recharge ctrlList.add(TextFormatting.RED + GTLang.zpm4.getLocalized());
+		// TODO make zpm not recharge ctrlList.add(TextFormatting.RED +
+		// GTLang.zpm4.getLocalized());
 		ctrlList.add(TextFormatting.GOLD + GTLang.zpm1.getLocalized());
 		ctrlList.add(TextFormatting.GOLD + GTLang.zpm2.getLocalized());
 		ctrlList.add(TextFormatting.ITALIC + GTLang.zpm3.getLocalized());

@@ -16,7 +16,7 @@ public class GTToxicBiome {
 	public static Object instance;
 	static {
 		Biome.BiomeProperties customProps = new Biome.BiomeProperties("toxicBiome");
-		customProps.setRainfall(0.7F);
+		customProps.setRainfall(50.0F);
 		customProps.setBaseHeight(0.0F);
 		customProps.setHeightVariation(0.25F);
 		customProps.setWaterColor(-13421824);

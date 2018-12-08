@@ -77,6 +77,6 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_fusionreactor", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_supercondensator", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_superconductorwire", 0, 0, 1, 12));
-		
+
 	}
 }

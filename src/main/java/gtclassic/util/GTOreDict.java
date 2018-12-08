@@ -7,6 +7,12 @@ import net.minecraftforge.oredict.OreDictionary;
 public class GTOreDict {
 
 	public static void init() {
+
+		OreDictionary.registerOre("dustTungsten", GTItems.tungsten);
+		OreDictionary.registerOre("dustLithium", GTItems.lithium);
+		OreDictionary.registerOre("itemSilicon", GTItems.silicon);
+		OreDictionary.registerOre("dustCarbon", GTItems.carbon);
+
 		OreDictionary.registerOre("dustEnderPearl", GTItems.dustEnderpearl);
 		OreDictionary.registerOre("dustEnderEye", GTItems.dustEnderEye);
 		OreDictionary.registerOre("dustLazurite", GTItems.dustLazurite);
@@ -50,9 +56,9 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("itemRubber",
 				new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
-		
+
 		OreDictionary.registerOre("toolHammer", GTItems.hammerIron);
-		
+
 		OreDictionary.registerOre("batteryAdvanced", Ic2Items.energyCrystal);
 		OreDictionary.registerOre("batteryAdvanced", GTItems.lithiumBattery);
 	}

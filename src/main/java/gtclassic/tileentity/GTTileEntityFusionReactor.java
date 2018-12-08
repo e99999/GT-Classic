@@ -157,7 +157,7 @@ public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
 
 	@Override
 	public boolean isValidInput(ItemStack par1) {
-			return RECIPE_LIST.getRecipeInAndOutput(par1, true) != null ? super.isValidInput(par1) : false;
+		return RECIPE_LIST.getRecipeInAndOutput(par1, true) != null ? super.isValidInput(par1) : false;
 	}
 
 	protected static int getRequiredCells(MachineOutput output) {

@@ -4,6 +4,8 @@ import gtclassic.GTClassic;
 import gtclassic.items.GTItemComponents;
 import gtclassic.items.GTItemComponents.GTItemComponentTypes;
 import gtclassic.items.GTItemDuctTape;
+import gtclassic.items.GTItemHeatStorage;
+import gtclassic.items.GTItemHeatStorage.GTItemHeatStorageTypes;
 import gtclassic.items.armor.GTItemEnergyPack;
 import gtclassic.items.energy.GTItemLapotronicEnergyOrb;
 import gtclassic.items.energy.GTItemLithiumBattery;
@@ -84,6 +86,10 @@ public class GTItems {
 			ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
 			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME);
 
+	public static final GTItemHeatStorage heatStorageSingle = new GTItemHeatStorage(GTItemHeatStorageTypes.SINGLE),
+			heatStorageTriple = new GTItemHeatStorage(GTItemHeatStorageTypes.TRIPLE),
+			heatStorageSix = new GTItemHeatStorage(GTItemHeatStorageTypes.SIX);
+
 	public static final GTItemComponents glassTube = new GTItemComponents(GTItemComponentTypes.GLASS_TUBE),
 			energyFlowCircuit = new GTItemComponents(GTItemComponentTypes.ENERGY_FLOW_CIRCUIT),
 			dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
@@ -125,6 +131,8 @@ public class GTItems {
 			dustSodalite,
 
 			ruby, sapphire, ingotIridium, ingotAluminium, ingotTitanium, ingotChrome,
+
+			heatStorageSingle, heatStorageTriple, heatStorageSix,
 
 			energyFlowCircuit, dataControlCircuit, superConductor, dataStorageCircuit, braintechAerospaceARDT, dataOrb,
 

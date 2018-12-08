@@ -172,7 +172,7 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTItems.superConductor, 4),
 				new Object[] { "CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(), 'E',
-						GTItems.energyFlowCircuit, 'W', GTItems.tungsten, 'P', Ic2Items.iridiumPlate.copy() });
+						GTItems.energyFlowCircuit, 'W', "dustTungsten", 'P', Ic2Items.iridiumPlate.copy() });
 
 		recipes.addRecipe(new ItemStack(GTItems.lapotronPack, 1),
 				new Object[] { "ELE", "SBS", "EPE", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'L',
@@ -188,7 +188,7 @@ public class GTRecipes {
 				GTItems.lapotronicEnergyOrb, 'S', GTItems.superConductor, 'P', Ic2Items.iridiumPlate.copy() });
 
 		recipes.addRecipe(new ItemStack(GTItems.lithiumBattery, 1), new Object[] { " G ", "ALA", "ALA", 'G',
-				Ic2Items.doubleInsulatedGoldCable.copy(), 'A', "ingotAluminium", 'L', GTItems.lithium });
+				Ic2Items.doubleInsulatedGoldCable.copy(), 'A', "ingotAluminium", 'L', "dustLithium" });
 
 		recipes.addRecipe(new ItemStack(GTItems.lithiumBatpack, 1), new Object[] { "LCL", "LAL", "L L", 'C',
 				"circuitAdvanced", 'A', "ingotAluminium", 'L', GTItems.lithiumBattery });
@@ -301,6 +301,8 @@ public class GTRecipes {
 
 	public static void initMachineRecipes() {
 
+		// IC2C COMPRESSOR
+
 		TileEntityCompressor.addRecipe("dustEnderPearl", 1, new ItemStack(Items.ENDER_PEARL), 0.1F);
 		TileEntityCompressor.addRecipe("dustEnderEye", 2, new ItemStack(Items.ENDER_EYE), 0.1F);
 
@@ -314,6 +316,8 @@ public class GTRecipes {
 		TileEntityCompressor.addRecipe("ingotAluminium", 9, new ItemStack(GTBlocks.aluminiumBlock), 0.1F);
 		TileEntityCompressor.addRecipe("ingotChrome", 9, new ItemStack(GTBlocks.chromeBlock), 0.1F);
 		TileEntityCompressor.addRecipe("ingotTitanium", 9, new ItemStack(GTBlocks.titaniumBlock), 0.1F);
+
+		// IC2C MACERATOR
 
 		TileEntityMacerator.addRecipe("enderpearl", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustEnderpearl), 1),
 				0.3F);
@@ -348,17 +352,27 @@ public class GTRecipes {
 		TileEntityMacerator.addRecipe("blockTitanium", 1,
 				StackUtil.copyWithSize(new ItemStack(GTItems.dustTitanium), 9), 0.1F);
 
+		// IC2C EXTRACTR
+
 		TileEntityExtractor.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.ruby), 3), 0.3F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.sapphire), 3),
 				0.3F);
 
 		TileEntityExtractor.addRecipe("oreMagnetite", 1, StackUtil.copyWithSize(Ic2Items.ironDust, 1), 0.3F);
 
+		// INDUSTRIAL CENTRIFUGE
+
 		GTTileEntityIndustrialCentrifuge.addRecipe("endstone", 64, 9, // input, glass tube amount
 				new OutputItem(new ItemStack(Blocks.SAND, 48), 0), // out0
 				new OutputItem(new ItemStack(GTItems.helium3, 4), 1), // out1
 				new OutputItem(new ItemStack(GTItems.helium, 4), 2), // out2
 				new OutputItem(new ItemStack(GTItems.tungsten, 1), 3));// out3
+
+		// PLACEHOLDER END GAME RECIPES
+
+		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.uuMatter, 1), 8,
+				new OutputItem(new ItemStack(GTItems.proton, 4), 0),
+				new OutputItem(new ItemStack(GTItems.neutron, 4), 2));
 
 		GTTileEntityFusionReactor.addRecipe("dustGlowstone", 1, 0, Ic2Items.iridiumOre);
 		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.hydrogen), 0,

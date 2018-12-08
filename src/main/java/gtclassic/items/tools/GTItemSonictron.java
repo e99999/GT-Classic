@@ -24,10 +24,10 @@ public class GTItemSonictron extends ItemIC2 {
 		this.setRegistryName("sonictron_item");
 		this.setUnlocalizedName(GTClassic.MODID + ".sonictronItem");
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-			tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
+		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
 	}
 
 	@Override

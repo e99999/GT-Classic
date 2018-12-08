@@ -37,12 +37,11 @@ public class GTItemDuctTape extends Item implements IStaticTexturedItem {
 		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".ducttape"));
 		tooltip.add(stack.getMaxDamage() - stack.getItemDamage() + "/64");
 	}
-	
+
 	@Override
-    public boolean isEnchantable(ItemStack stack)
-    {
-        return false;
-    }
+	public boolean isEnchantable(ItemStack stack) {
+		return false;
+	}
 
 	@Override
 	public ItemStack getContainerItem(ItemStack itemStack) {
