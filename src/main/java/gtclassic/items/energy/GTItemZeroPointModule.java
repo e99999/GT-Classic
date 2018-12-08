@@ -11,6 +11,7 @@ import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.obj.ToolTipType;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -81,7 +82,8 @@ public class GTItemZeroPointModule extends ItemBatteryBase {
 	public void onSortedItemToolTip(ItemStack stack, EntityPlayer player, boolean debugTooltip, List<String> tooltip,
 			Map<ToolTipType, List<String>> sortedTooltip) {
 		List<String> ctrlList = sortedTooltip.get(ToolTipType.Ctrl);
-		ctrlList.add(TextFormatting.RED + GTLang.zpm4.getLocalized());
+		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
+		//TODO make zpm not recharge ctrlList.add(TextFormatting.RED + GTLang.zpm4.getLocalized());
 		ctrlList.add(TextFormatting.GOLD + GTLang.zpm1.getLocalized());
 		ctrlList.add(TextFormatting.GOLD + GTLang.zpm2.getLocalized());
 		ctrlList.add(TextFormatting.ITALIC + GTLang.zpm3.getLocalized());

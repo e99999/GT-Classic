@@ -59,7 +59,7 @@ public class GTRecipes {
 		GameRegistry.addSmelting(GTBlocks.sapphireBlock, new ItemStack(GTItems.sapphire, 9), 0.1F);
 		GameRegistry.addSmelting(GTBlocks.aluminiumBlock, new ItemStack(GTItems.ingotAluminium, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustAluminium, new ItemStack(GTItems.ingotAluminium, 1), 0.3F);
-		GameRegistry.addSmelting(GTBlocks.chromeBlock, new ItemStack(GTItems.ingotAluminium, 9), 0.1F);
+		GameRegistry.addSmelting(GTBlocks.chromeBlock, new ItemStack(GTItems.ingotChrome, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustChrome, new ItemStack(GTItems.ingotChrome, 1), 0.3F);
 		GameRegistry.addSmelting(GTBlocks.titaniumBlock, new ItemStack(GTItems.ingotTitanium, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustTitanium, new ItemStack(GTItems.ingotTitanium, 1), 0.3F);
@@ -123,6 +123,9 @@ public class GTRecipes {
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.largeChest, 1),
 				new Object[] { GTBlocks.smallChest, GTBlocks.smallChest });
+
+		recipes.addShapelessRecipe(new ItemStack(GTBlocks.largeChest, 1),
+				new Object[] { "chestWood", "chestWood", Ic2Items.machine, Ic2Items.machine });
 	}
 
 	public static void initShapedRecipes() {
@@ -348,6 +351,8 @@ public class GTRecipes {
 		TileEntityExtractor.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.ruby), 3), 0.3F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.sapphire), 3),
 				0.3F);
+
+		TileEntityExtractor.addRecipe("oreMagnetite", 1, StackUtil.copyWithSize(Ic2Items.ironDust, 1), 0.3F);
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("endstone", 64, 9, // input, glass tube amount
 				new OutputItem(new ItemStack(Blocks.SAND, 48), 0), // out0

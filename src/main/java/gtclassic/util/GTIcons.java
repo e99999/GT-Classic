@@ -51,6 +51,8 @@ public class GTIcons {
 				new Sprites.SpriteInfo(1, 12)));
 		addSprite(new Sprites.SpriteData("gtclassic_supercondensator",
 				"gtclassic:textures/sprites/supercondensator.png", new Sprites.SpriteInfo(1, 12)));
+		addSprite(new Sprites.SpriteData("gtclassic_superconductorwire",
+				"gtclassic:textures/sprites/superconductorwire.png", new Sprites.SpriteInfo(1, 12)));
 
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 0, 16, 8));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_items", 0, 0, 16, 5));
@@ -74,5 +76,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_lightningrod", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_fusionreactor", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_supercondensator", 0, 0, 1, 12));
+		addTextureEntry(new Sprites.TextureEntry("gtclassic_superconductorwire", 0, 0, 1, 12));
+		
 	}
 }
