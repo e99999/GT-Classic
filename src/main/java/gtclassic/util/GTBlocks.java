@@ -17,7 +17,7 @@ import gtclassic.blocks.resources.GTBlockOre;
 import gtclassic.blocks.resources.GTBlockOre.GTBlockOreVariants;
 import gtclassic.blocks.resources.GTBlockSandIron;
 import gtclassic.tileentity.GTTileEntityComputerCube;
-import gtclassic.tileentity.GTTileEntityFusionReactor;
+import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeChest;
@@ -137,7 +137,7 @@ public class GTBlocks {
 
 		GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
 
-		GameRegistry.registerTileEntity(GTTileEntityFusionReactor.class,
+		GameRegistry.registerTileEntity(GTTileEntityFusionComputer.class,
 				new ResourceLocation(GTClassic.MODID, "tileFusionReactor"));
 	}
 

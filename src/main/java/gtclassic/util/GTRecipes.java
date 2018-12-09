@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.google.common.collect.Lists;
 
-import gtclassic.tileentity.GTTileEntityFusionReactor;
+import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge.OutputItem;
 import ic2.api.classic.recipe.ClassicRecipes;
@@ -374,10 +374,10 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.proton, 4), 0),
 				new OutputItem(new ItemStack(GTItems.neutron, 4), 2));
 
-		GTTileEntityFusionReactor.addRecipe("dustGlowstone", 1, 0, Ic2Items.iridiumOre);
-		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.tritium), 1, (new ItemStack(GTItems.plasmaHelium)));
-		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.helium3), 1, (new ItemStack(GTItems.plasmaHelium)));
-		GTTileEntityFusionReactor.addRecipe(StackUtil.copyWithSize(Ic2Items.uuMatter, 10), 1,
+		GTTileEntityFusionComputer.addRecipe("dustTungsten", 1, 1, Ic2Items.iridiumOre);
+		GTTileEntityFusionComputer.addRecipe(new ItemStack(GTItems.tritium), 1, (new ItemStack(GTItems.plasmaHelium)));
+		GTTileEntityFusionComputer.addRecipe(new ItemStack(GTItems.helium3), 1, (new ItemStack(GTItems.plasmaHelium)));
+		GTTileEntityFusionComputer.addRecipe(StackUtil.copyWithSize(Ic2Items.uuMatter, 10), 0,
 				(new ItemStack(GTItems.plasmaUU)));
 
 	}

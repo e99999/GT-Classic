@@ -3,7 +3,7 @@ package gtclassic.tileentity;
 import java.util.List;
 
 import gtclassic.GTClassic;
-import gtclassic.container.GTContainerFusionReactor;
+import gtclassic.container.GTContainerFusionComputer;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTItems;
 import gtclassic.util.GTLang;
@@ -35,7 +35,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
-public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
+public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 
 	public static final int slotInput = 0;
 	public static final int slotCell = 1;
@@ -46,12 +46,12 @@ public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
 	public static final IBlockState coilState = GTBlocks.fusionMachineBlock.getDefaultState();
 
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTClassic.MODID,
-			"textures/gui/fusionreactor.png");
+			"textures/gui/fusioncomputer.png");
 
 	public static final String CELL_REQUIREMENT = "recipe-cells";
 	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("fusion");
 
-	public GTTileEntityFusionReactor() {
+	public GTTileEntityFusionComputer() {
 		super(3, 2048, 10000, 2048);
 		this.status = 0;
 	}
@@ -72,7 +72,7 @@ public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerFusionReactor(player.inventory, this);
+		return new GTContainerFusionComputer(player.inventory, this);
 	}
 
 	@Override

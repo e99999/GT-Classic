@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTClassic;
-import gtclassic.tileentity.GTTileEntityFusionReactor;
+import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -61,7 +61,7 @@ public class GTBlockGenerator extends BlockMultiID {
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.fusionComputer) {
-			return new GTTileEntityFusionReactor();
+			return new GTTileEntityFusionComputer();
 		} else {
 			return new TileEntityBlock();
 		}
@@ -116,8 +116,8 @@ public class GTBlockGenerator extends BlockMultiID {
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileEntityFusionReactor) {
-			if (((GTTileEntityFusionReactor) tile).isActive) {
+		if (tile instanceof GTTileEntityFusionComputer) {
+			if (((GTTileEntityFusionComputer) tile).isActive) {
 				for (int i = -2; i <= 2; ++i) {
 					for (int j = -2; j <= 2; ++j) {
 						if (i > -2 && i < 2 && j == -1) {

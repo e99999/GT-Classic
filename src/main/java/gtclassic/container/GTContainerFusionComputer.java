@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.tileentity.GTTileEntityFusionReactor;
+import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.util.GTItems;
 import gtclassic.util.guicomponents.GTGuiCompFusion;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -17,20 +17,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerFusionReactor extends ContainerTileComponent<GTTileEntityFusionReactor> {
+public class GTContainerFusionComputer extends ContainerTileComponent<GTTileEntityFusionComputer> {
 
 	public static Box2D machineProgressBox = new Box2D(110, 35, 20, 16);
 	public static Vec2i machineProgressPos = new Vec2i(176, 14);
 
-	public GTContainerFusionReactor(InventoryPlayer player, GTTileEntityFusionReactor tile) {
+	public GTContainerFusionComputer(InventoryPlayer player, GTTileEntityFusionComputer tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 17, null));// main slot
 		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 53, new BasicItemFilter(GTItems.dueterium)));// second slot
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35)); // output
 
 		this.addPlayerInventory(player);
-		this.addComponent(new MachineProgressComp(tile, GTContainerFusionReactor.machineProgressBox,
-				GTContainerFusionReactor.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, GTContainerFusionComputer.machineProgressBox,
+				GTContainerFusionComputer.machineProgressPos));
 
 		this.addComponent(new GTGuiCompFusion(tile));
 	}
