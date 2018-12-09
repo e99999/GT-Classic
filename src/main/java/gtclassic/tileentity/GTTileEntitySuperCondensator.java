@@ -8,7 +8,6 @@ public class GTTileEntitySuperCondensator extends TileEntityTransformer implemen
 
 	public GTTileEntitySuperCondensator() {
 		super(32768, 65535, 65535);
-		this.setCustomName("tileSuperCondensator");
 	}
 
 	@Override

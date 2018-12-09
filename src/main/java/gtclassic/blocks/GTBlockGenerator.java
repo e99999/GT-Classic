@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTBlockGenerator extends BlockMultiID {
 	public enum GTBlockGeneratorVariants {
 		// Generators
-		LIGHTNINGROD, FUSIONREACTOR,
+		LIGHTNINGROD, FUSIONCOMPUTER,
 	}
 
 	GTBlockGeneratorVariants variant;
@@ -60,7 +60,7 @@ public class GTBlockGenerator extends BlockMultiID {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		if (this == GTBlocks.fusionReactor) {
+		if (this == GTBlocks.fusionComputer) {
 			return new GTTileEntityFusionReactor();
 		} else {
 			return new TileEntityBlock();
@@ -74,8 +74,8 @@ public class GTBlockGenerator extends BlockMultiID {
 			return Ic2Icons.getTextures("gtclassic_lightningrod");
 		}
 
-		else if (this == GTBlocks.fusionReactor) {
-			return Ic2Icons.getTextures("gtclassic_fusionreactor");
+		else if (this == GTBlocks.fusionComputer) {
+			return Ic2Icons.getTextures("gtclassic_fusioncomputer");
 		}
 
 		else {

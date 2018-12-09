@@ -32,7 +32,7 @@ public class GTGuiCompFusion extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString(block.getBlockName(), 94, 6, grey);
+		gui.drawString(block.getBlockName(), 89, 6, grey);
 
 		if (this.block.getStatus() == 666) {
 			gui.drawString("x", 12, 58, red);

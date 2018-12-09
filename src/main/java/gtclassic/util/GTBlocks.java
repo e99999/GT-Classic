@@ -77,7 +77,7 @@ public class GTBlocks {
 			superCondensator = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDENSATOR),
 			superConductorWire = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDUCTORWIRE);
 
-	public static final GTBlockGenerator fusionReactor = new GTBlockGenerator(GTBlockGeneratorVariants.FUSIONREACTOR),
+	public static final GTBlockGenerator fusionComputer = new GTBlockGenerator(GTBlockGeneratorVariants.FUSIONCOMPUTER),
 			lightningRod = new GTBlockGenerator(GTBlockGeneratorVariants.LIGHTNINGROD);
 
 	public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
@@ -97,7 +97,7 @@ public class GTBlocks {
 
 			smallChest, largeChest, quantumChest,
 
-			fusionReactor, lightningRod, IESU, HESU, superCondensator, superConductorWire,
+			fusionComputer, lightningRod, IESU, HESU, superCondensator, superConductorWire,
 
 			toxicPortalFrame, toxicPortal, grassToxic
 

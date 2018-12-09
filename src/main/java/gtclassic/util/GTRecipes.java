@@ -218,7 +218,7 @@ public class GTRecipes {
 
 		// TILES
 
-		recipes.addRecipe(new ItemStack(GTBlocks.fusionReactor, 1),
+		recipes.addRecipe(new ItemStack(GTBlocks.fusionComputer, 1),
 				new Object[] { "ESE", "LCL", "ESE", 'E', GTItems.energyFlowCircuit, 'S', GTBlocks.superCondensator, 'L',
 						GTItems.lapotronicEnergyOrb, 'C', GTBlocks.computerCube });
 
@@ -375,14 +375,10 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.neutron, 4), 2));
 
 		GTTileEntityFusionReactor.addRecipe("dustGlowstone", 1, 0, Ic2Items.iridiumOre);
-		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.hydrogen), 0,
-				(new ItemStack(GTItems.plasmaHydrogen)));
-		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.nitrogen), 0,
-				(new ItemStack(GTItems.plasmaNitrogen)));
-		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.oxygen), 0, (new ItemStack(GTItems.plasmaOxygen)));
+		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.tritium), 1, (new ItemStack(GTItems.plasmaHelium)));
+		GTTileEntityFusionReactor.addRecipe(new ItemStack(GTItems.helium3), 1, (new ItemStack(GTItems.plasmaHelium)));
 		GTTileEntityFusionReactor.addRecipe(StackUtil.copyWithSize(Ic2Items.uuMatter, 10), 1,
 				(new ItemStack(GTItems.plasmaUU)));
-		GTTileEntityFusionReactor.addRecipe("dustIron", 1, 1, (new ItemStack(GTItems.plasmaIron)));
 
 	}
 

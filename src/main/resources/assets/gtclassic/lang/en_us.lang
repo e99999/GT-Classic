@@ -20,7 +20,7 @@ tile.gtclassic.quantumchest.name=Quantum Chest
 
 #energy blocks
 tile.gtclassic.lightningrod.name=Lightning Rod
-tile.gtclassic.fusionreactor.name=Fusion Reactor
+tile.gtclassic.fusioncomputer.name=Fusion Computer
 tile.gtclassic.iesu.name=IESU
 tile.gtclassic.hesu.name=HESU
 tile.gtclassic.supercondensator.name=Super Condensator
@@ -86,6 +86,7 @@ item.gtclassic.neutron.name=Neutral Matter
 item.gtclassic.hydrogen_plasma.name=Hydrogen Plasma
 item.gtclassic.nitrogen_plasma.name=Nitrogen Plasma
 item.gtclassic.oxygen_plasma.name=Oxygen Plasma
+item.gtclassic.helium_plasma.name=Helium Plasma
 item.gtclassic.iron_plasma.name=Iron Plasma
 item.gtclassic.uu_plasma.name=UU-Plasma
 

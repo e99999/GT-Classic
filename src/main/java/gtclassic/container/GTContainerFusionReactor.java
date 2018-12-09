@@ -25,7 +25,7 @@ public class GTContainerFusionReactor extends ContainerTileComponent<GTTileEntit
 	public GTContainerFusionReactor(InventoryPlayer player, GTTileEntityFusionReactor tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 17, null));// main slot
-		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 53, new BasicItemFilter(GTItems.glassTube)));// second slot
+		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 53, new BasicItemFilter(GTItems.dueterium)));// second slot
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35)); // output
 
 		this.addPlayerInventory(player);

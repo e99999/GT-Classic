@@ -54,7 +54,6 @@ public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
 	public GTTileEntityFusionReactor() {
 		super(3, 2048, 10000, 2048);
 		this.status = 0;
-		this.setCustomName("tileFusionReactor");
 	}
 
 	@Override
@@ -65,7 +64,7 @@ public class GTTileEntityFusionReactor extends TileEntityBasicElectricMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotCell);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput);
-		handler.registerInputFilter(new BasicItemFilter(GTItems.glassTube), slotCell);
+		handler.registerInputFilter(new BasicItemFilter(GTItems.dueterium), slotCell);
 		handler.registerSlotType(SlotType.Input, slotInput);
 		handler.registerSlotType(SlotType.SecondInput, slotCell);
 		handler.registerSlotType(SlotType.Output, slotOutput);
