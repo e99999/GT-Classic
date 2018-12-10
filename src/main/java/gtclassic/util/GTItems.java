@@ -113,9 +113,9 @@ public class GTItems {
 	public static final GTItemLithiumBattery lithiumBattery = new GTItemLithiumBattery();
 	public static final GTItemLapotronicEnergyOrb lapotronicEnergyOrb = new GTItemLapotronicEnergyOrb();
 	public static final GTItemEnergyPack lithiumBatpack = new GTItemEnergyPack(58,
-			"gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 200);
+			"gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128);
 	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45,
-			"gtclassic:textures/models/armor/lapotronpack", 100000000, "lapotron_pack", ".lapotronPack", 3, 1500);
+			"gtclassic:textures/models/armor/lapotronpack", 100000000, "lapotron_pack", ".lapotronPack", 3, 8192);
 	public static final GTItemZeroPointModule zeroPointModule = new GTItemZeroPointModule();
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 

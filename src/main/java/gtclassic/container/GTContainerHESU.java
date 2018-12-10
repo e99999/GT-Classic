@@ -4,12 +4,15 @@ import static ic2.core.block.wiring.container.ContainerElectricBlock.VALID_EQUIP
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityHESU;
+import gtclassic.util.guicomponents.GTGuiCompEnergyBar;
 import gtclassic.util.guicomponents.GTGuiCompEnergyStorage;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotArmor;
 import ic2.core.inventory.slots.SlotCharge;
 import ic2.core.inventory.slots.SlotDischarge;
+import ic2.core.util.math.Box2D;
+import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -20,10 +23,14 @@ public class GTContainerHESU extends ContainerTileComponent<GTTileEntityHESU> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/energystorage.png");
 
+	public static Box2D chargeProgressBox = new Box2D(8, 73, 116, 5); // where the background to cover is, and the size
+																		// xy
+	public static Vec2i chargeProgressPos = new Vec2i(0, 251); // where the overlay is located
+
 	public GTContainerHESU(InventoryPlayer player, GTTileEntityHESU tile) {
 
 		super(tile);
-		this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50)); // battery
+		this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50));
 		this.addSlotToContainer(new SlotCharge(tile, tile.tier, 0, 128, 14));
 
 		for (int i = 0; i < 4; ++i) {
@@ -31,6 +38,8 @@ public class GTContainerHESU extends ContainerTileComponent<GTTileEntityHESU> {
 		}
 
 		this.addComponent(new GTGuiCompEnergyStorage(tile));
+		this.addComponent(
+				new GTGuiCompEnergyBar(tile, GTContainerHESU.chargeProgressBox, GTContainerHESU.chargeProgressPos));
 		this.addPlayerInventory(player);
 	}
 

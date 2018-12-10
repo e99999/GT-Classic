@@ -296,14 +296,6 @@ public class GTRecipes {
 		recipes.addRecipe(Ic2Items.electricCircuit.copy(), new Object[] { "CRC", "CIC", "CRC", 'I', ingotElectric, 'R',
 				"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy() });
 
-		// recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
-		// new Object[] { "CCC", "III", "CCC", 'I', ingotElectric, 'C',
-		// Ic2Items.insulatedCopperCable.copy() });
-
-		// recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
-		// new Object[] { "CIC", "CIC", "CIC", 'I', ingotElectric, 'C',
-		// Ic2Items.insulatedCopperCable.copy() });
-
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2), new Object[] { "CCC", "SIS", "CCC", 'I',
 				ingotElectric, 'C', Ic2Items.insulatedCopperCable.copy(), 'S', "plateSilicon" });
 
@@ -613,6 +605,15 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.tungsten, 1), 3));// out3
 
 		// INDUSTRIAL CENTRIFUGE RECIPES NEW/OUT OF ORDER
+
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.QUARTZ, 8), 12,
+				new OutputItem(new ItemStack(GTItems.silicon, 8), 1),
+				new OutputItem(new ItemStack(GTItems.oxygen, 4), 2));
+
+		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.obsidianDust, 64), 10,
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 2), 0),
+				new OutputItem(new ItemStack(GTItems.silicon, 6), 1),
+				new OutputItem(new ItemStack(GTItems.oxygen, 4), 2));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.uuMatter, 1), 8,
 				new OutputItem(new ItemStack(GTItems.proton, 4), 0),

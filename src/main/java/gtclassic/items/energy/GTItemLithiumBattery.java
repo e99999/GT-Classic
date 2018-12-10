@@ -20,7 +20,7 @@ public class GTItemLithiumBattery extends ItemBatteryBase implements IAdvancedTe
 		this.setRegistryName("lithium_battery");
 		this.setUnlocalizedName(GTClassic.MODID + ".lithiumBattery");
 		this.maxCharge = 100000;
-		this.transferLimit = 150;
+		this.transferLimit = 128;
 		this.tier = 1;
 		this.provider = true;
 		this.setCreativeTab(GTClassic.creativeTabGT);

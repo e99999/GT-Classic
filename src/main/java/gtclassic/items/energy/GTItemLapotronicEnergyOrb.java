@@ -17,7 +17,7 @@ public class GTItemLapotronicEnergyOrb extends ItemBatteryBase {
 		this.setRegistryName("lapotronic_energy_orb");
 		this.setUnlocalizedName(GTClassic.MODID + ".lapotronicEnergyOrb");
 		this.maxCharge = 10000000;
-		this.transferLimit = 1000;
+		this.transferLimit = 8192;
 		this.tier = 4;
 		this.provider = true;
 		this.setCreativeTab(GTClassic.creativeTabGT);

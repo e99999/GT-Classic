@@ -1,8 +1,10 @@
 package gtclassic.container;
 
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.util.GTItems;
 import gtclassic.util.guicomponents.GTMachineUpProgressComp;
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
@@ -31,7 +33,7 @@ public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTi
 	public GTContainerIndustrialCentrifuge(InventoryPlayer player, GTTileEntityIndustrialCentrifuge tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 80, 35, null));
-		this.addSlotToContainer(new SlotCustom(tile, 1, 50, 5, null));
+		this.addSlotToContainer(new SlotCustom(tile, 1, 50, 5, new BasicItemFilter(GTItems.glassTube)));
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 2, 32, 5)); // battery
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 50, 35));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 80, 5));
