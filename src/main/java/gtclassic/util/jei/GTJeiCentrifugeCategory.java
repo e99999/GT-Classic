@@ -1,5 +1,6 @@
 package gtclassic.util.jei;
 import gtclassic.GTClassic;
+import gtclassic.util.GTBlocks;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -17,8 +18,9 @@ public class GTJeiCentrifugeCategory implements IRecipeCategory<GTJeiCentrifugeW
 	IDrawable arrow;
 	
 	public GTJeiCentrifugeCategory(IGuiHelper helper) {
-		ResourceLocation texture = new ResourceLocation(GTClassic.MODID, "textures/gui/jeicentrifuge.png");
-		this.draw = helper.createDrawable(texture, 10, 10, 78, 78);
+		displayName = new ItemStack(GTBlocks.industrialCentrifuge);
+		ResourceLocation texture = new ResourceLocation(GTClassic.MODID, "textures/gui/industrialcentrifuge.png");
+		this.draw = helper.createDrawable(texture, 49, 4, 78, 78);
 	}
 
 	@Override
@@ -33,8 +35,7 @@ public class GTJeiCentrifugeCategory implements IRecipeCategory<GTJeiCentrifugeW
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		return displayName.getDisplayName();
 	}
 
 	@Override
@@ -45,12 +46,12 @@ public class GTJeiCentrifugeCategory implements IRecipeCategory<GTJeiCentrifugeW
 	@Override
 	public void setRecipe(IRecipeLayout layout, GTJeiCentrifugeWrapper arg1, IIngredients ingridient) {
 		IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
-		 guiItemStacks.init(0, true, 31, 31); //input
-	     guiItemStacks.init(1, true, 1, 1); //cell slot
-	     guiItemStacks.init(2, false, 1, 31); //outputs
-	     guiItemStacks.init(3, false, 31, 1);
-	     guiItemStacks.init(4, false, 61, 31);
-	     guiItemStacks.init(5, false, 31, 61);
+		 guiItemStacks.init(0, true, 30, 30); //input
+	     guiItemStacks.init(1, true, 0, 0); //cell slot
+	     guiItemStacks.init(2, false, 0, 30); //outputs
+	     guiItemStacks.init(3, false, 30, 0);
+	     guiItemStacks.init(4, false, 60, 30);
+	     guiItemStacks.init(5, false, 30, 60);
 	     guiItemStacks.set(ingridient);
 		
 	}
