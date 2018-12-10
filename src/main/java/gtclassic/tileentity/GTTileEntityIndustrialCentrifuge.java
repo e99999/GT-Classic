@@ -7,6 +7,7 @@ import gtclassic.GTClassic;
 import gtclassic.container.GTContainerIndustrialCentrifuge;
 import gtclassic.util.GTItems;
 import gtclassic.util.misc.GTBasicMachineRecipeList;
+import gtclassic.util.misc.RecipeHelpers.IRecipeModifier;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -171,7 +172,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 		return GUI_LOCATION;
 	}
 
-	protected static int getRequiredCells(MachineOutput output) {
+	public static int getRequiredCells(MachineOutput output) {
 		if (output == null || output.getMetadata() == null) {
 			return 0;
 		}
@@ -208,7 +209,34 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 		}
 		addRecipe(input, new MachineOutput(createCellRequirement(cellRequirement), list));
 	}
+	
+	public static void addRecipe(ItemStack stack, int cellRequirement, IRecipeModifier[] modifiers, OutputItem... results) {
+		addRecipe(new RecipeInputItemStack(stack), cellRequirement, modifiers, results);
+	}
 
+	public static void addRecipe(String id, int amount, int cellRequirement, IRecipeModifier[] modifiers, OutputItem... results) {
+		addRecipe(new RecipeInputOreDict(id, amount), cellRequirement, modifiers, results);
+	}
+
+	public static void addRecipe(IRecipeInput input, int cellRequirement, IRecipeModifier[] modifiers, OutputItem... results) {
+		NonNullList<ItemStack> list = NonNullList.withSize(4, ItemStack.EMPTY);
+		for (OutputItem item : results) {
+			list.set(item.slot, item.stack.copy());
+		}
+		NBTTagCompound mods = new NBTTagCompound();
+		for(IRecipeModifier modifier : modifiers)
+		{
+			modifier.apply(mods);
+		}
+		NBTTagCompound nbt = createCellRequirement(cellRequirement);
+		if(!mods.hasNoTags())
+		{
+			if(nbt == null) nbt = mods;
+			else nbt.merge(mods);
+		}
+		addRecipe(input, new MachineOutput(nbt, list));
+	}
+	
 	static void addRecipe(IRecipeInput input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
 	}
