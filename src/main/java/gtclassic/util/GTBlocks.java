@@ -19,6 +19,7 @@ import gtclassic.blocks.resources.GTBlockSandIron;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityHESU;
+import gtclassic.tileentity.GTTileEntityIDSU;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeChest;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
@@ -72,7 +73,7 @@ public class GTBlocks {
 			largeChest = new GTBlockStorage(GTBlockStorageVariants.LARGECHEST),
 			quantumChest = new GTBlockStorage(GTBlockStorageVariants.QUANTUMCHEST);
 
-	public static final GTBlockEnergy IESU = new GTBlockEnergy(GTBlockEnergyVariants.IESU),
+	public static final GTBlockEnergy IDSU = new GTBlockEnergy(GTBlockEnergyVariants.IDSU),
 			HESU = new GTBlockEnergy(GTBlockEnergyVariants.HESU),
 			superCondensator = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDENSATOR),
 			superConductorWire = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDUCTORWIRE);
@@ -97,7 +98,7 @@ public class GTBlocks {
 
 			smallChest, largeChest, quantumChest,
 
-			fusionComputer, lightningRod, IESU, HESU, superCondensator, superConductorWire,
+			fusionComputer, lightningRod, IDSU, HESU, superCondensator, superConductorWire,
 
 			toxicPortalFrame, toxicPortal, grassToxic
 
@@ -136,6 +137,7 @@ public class GTBlocks {
 				new ResourceLocation(GTClassic.MODID, "tileQuantumChest"));
 
 		GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
+		GameRegistry.registerTileEntity(GTTileEntityIDSU.class, new ResourceLocation(GTClassic.MODID, "tileIDSU"));
 
 		GameRegistry.registerTileEntity(GTTileEntityFusionComputer.class,
 				new ResourceLocation(GTClassic.MODID, "tileFusionReactor"));

@@ -8,6 +8,7 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 public class GTLang {
 
 	public static LocaleComp hfsu = new LocaleBlockComp("tile." + GTClassic.MODID + ".hesu");
+	public static LocaleComp idsu = new LocaleBlockComp("tile." + GTClassic.MODID + ".idsu");
 	public static LocaleComp fusion = new LocaleBlockComp("tile." + GTClassic.MODID + ".fusioncomputer");
 
 	public static LocaleComp smallchest = new LocaleBlockComp("tile." + GTClassic.MODID + ".smallchest");

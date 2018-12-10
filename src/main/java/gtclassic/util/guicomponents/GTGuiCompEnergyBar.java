@@ -41,13 +41,13 @@ public class GTGuiCompEnergyBar extends GuiComponent {
 
 			Box2D box = this.getPosition();
 			int maxX = box.getHeight();
-			int lvl = (int) (per * (float) maxX);
+			int lvl = (int) (per * (float) maxX * 23.3F);
 			if (lvl <= 0) {
 				return;
 			}
 
-			gui.drawTexturedModalRect(x + box.getX(), y + box.getY() + (box.getLenght() - lvl), this.texPos.getX(),
-					this.texPos.getY() + (box.getLenght() - lvl), maxX, lvl);
+			gui.drawTexturedModalRect(x + box.getX(), y + box.getY(), this.texPos.getX(), this.texPos.getY(), lvl,
+					box.getHeight());
 		}
 
 	}

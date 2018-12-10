@@ -7,6 +7,7 @@ import java.util.Random;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityHESU;
+import gtclassic.tileentity.GTTileEntityIDSU;
 import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
@@ -37,7 +38,7 @@ public class GTBlockEnergy extends BlockMultiID {
 		SUPERCONDENSATOR, SUPERCONDUCTORWIRE,
 
 		// STORAGE
-		IESU, HESU;
+		IDSU, HESU;
 	}
 
 	GTBlockEnergyVariants variant;
@@ -56,7 +57,12 @@ public class GTBlockEnergy extends BlockMultiID {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (this != GTBlocks.HESU) {
+		if (this == GTBlocks.HESU) {
+			tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".hesu3"));
+		} else if (this == GTBlocks.IDSU) {
+			tooltip.add(TextFormatting.DARK_PURPLE + I18n.format("tooltip." + GTClassic.MODID + ".idsu"));
+			tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
+		} else {
 			tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
 		}
 	}
@@ -70,6 +76,8 @@ public class GTBlockEnergy extends BlockMultiID {
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.HESU) {
 			return new GTTileEntityHESU();
+		} else if (this == GTBlocks.IDSU) {
+			return new GTTileEntityIDSU();
 		} else if (this == GTBlocks.superCondensator) {
 			return new GTTileEntitySuperCondensator();
 		} else {
@@ -81,7 +89,7 @@ public class GTBlockEnergy extends BlockMultiID {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if (this == GTBlocks.IESU) {
+		if (this == GTBlocks.IDSU) {
 			for (int i = 0; i < 3; ++i) {
 				int j = rand.nextInt(2) * 2 - 1;
 				int k = rand.nextInt(2) * 2 - 1;
@@ -107,7 +115,7 @@ public class GTBlockEnergy extends BlockMultiID {
 			return Ic2Icons.getTextures("gtclassic_superconductorwire");
 		}
 
-		else if (this == GTBlocks.IESU) {
+		else if (this == GTBlocks.IDSU) {
 			return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");
 		}
 

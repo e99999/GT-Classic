@@ -21,7 +21,7 @@ tile.gtclassic.quantumchest.name=Quantum Chest
 #energy blocks
 tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.fusioncomputer.name=Fusion Computer
-tile.gtclassic.iesu.name=IESU
+tile.gtclassic.idsu.name=IDSU
 tile.gtclassic.hesu.name=HESU
 tile.gtclassic.supercondensator.name=Super Condensator
 tile.gtclassic.superconductorwire.name=Super Conductor Wire
@@ -156,6 +156,8 @@ tooltip.gtclassic.centrifuge=And round and round and round it goes
 tooltip.gtclassic.superCondensator=In: 65535 EU, Out: 32768 EU 4x
 tooltip.gtclassic.hesu=Max Input: 2048 EU
 tooltip.gtclassic.hesu2=Max Storage: 100000000 EU
+tooltip.gtclassic.hesu3=Huuuuuuuuuge!
+tooltip.gtclassic.idsu=Interdimensional
 
 tooltip.gtclassic.ducttape=The solution to all your problems
 tooltip.gtclassic.rockcutter=For a silky smooth touch
