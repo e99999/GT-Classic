@@ -159,7 +159,7 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 		return RECIPE_LIST.getRecipeInAndOutput(par1, true) != null ? super.isValidInput(par1) : false;
 	}
 
-	protected static int getRequiredCells(MachineOutput output) {
+	public static int getRequiredCells(MachineOutput output) {
 		if (output == null || output.getMetadata() == null) {
 			return 0;
 		}

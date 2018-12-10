@@ -2,6 +2,7 @@ package gtclassic.util.jei;
 
 import javax.annotation.Nonnull;
 
+import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import mezz.jei.api.IJeiRuntime;
@@ -30,11 +31,20 @@ public class GTJeiPlugin implements IModPlugin {
 			}
 		}, "centrifuge");
 		registry.addRecipes(GTTileEntityIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
+		
+		registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
+			@Override
+			public IRecipeWrapper getRecipeWrapper(RecipeEntry var1) {
+				return new GTJeiFusionWrapper(var1);
+			}
+		}, "fusion");
+		registry.addRecipes(GTTileEntityFusionComputer.RECIPE_LIST.getRecipeMap(), "fusion");
 	}
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(new GTJeiCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new GTJeiFusionCategory(registry.getJeiHelpers().getGuiHelper()));
 	}
 
 }
