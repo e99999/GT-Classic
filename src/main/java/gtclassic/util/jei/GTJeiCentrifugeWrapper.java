@@ -17,19 +17,18 @@ public class GTJeiCentrifugeWrapper extends BlankRecipeWrapper {
 	public GTJeiCentrifugeWrapper(RecipeEntry recipe) {
 		this.entry = recipe;
 	}
-	
+
 	@Override
-	public void getIngredients(IIngredients components) 
-	{
-		components.setInputLists(ItemStack.class, Arrays.asList(entry.getInput().getInputs(), Arrays.asList(new ItemStack(GTItems.glassTube, GTTileEntityIndustrialCentrifuge.getRequiredCells(entry.getOutput())))));
+	public void getIngredients(IIngredients components) {
+		components.setInputLists(ItemStack.class,
+				Arrays.asList(entry.getInput().getInputs(), Arrays.asList(new ItemStack(GTItems.glassTube,
+						GTTileEntityIndustrialCentrifuge.getRequiredCells(entry.getOutput())))));
 		List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
 		int count = 0;
-		for(ItemStack stack : entry.getOutput().copy().getAllOutputs())
-		{
+		for (ItemStack stack : entry.getOutput().copy().getAllOutputs()) {
 			outputs.add(Arrays.asList(stack));
 			count++;
-			if(count >= 4)
-			{
+			if (count >= 4) {
 				break;
 			}
 		}

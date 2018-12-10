@@ -14,29 +14,27 @@ import mezz.jei.api.recipe.IRecipeWrapperFactory;
 
 @JEIPlugin
 public class GTJeiPlugin implements IModPlugin {
-	
+
 	@Override
 	public void onRuntimeAvailable(@Nonnull IJeiRuntime arg0) {
 		// empty method for construction
 	}
-	
+
 	@Override
 	public void register(@Nonnull IModRegistry registry) {
-		
-		registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>(){
+
+		registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
 			@Override
-			public IRecipeWrapper getRecipeWrapper(RecipeEntry var1)
-			{
+			public IRecipeWrapper getRecipeWrapper(RecipeEntry var1) {
 				return new GTJeiCentrifugeWrapper(var1);
 			}
 		}, "centrifuge");
 		registry.addRecipes(GTTileEntityIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
 	}
-	
+
 	@Override
-    public void registerCategories(IRecipeCategoryRegistration registry)
-    {
+	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(new GTJeiCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
-    }
+	}
 
 }

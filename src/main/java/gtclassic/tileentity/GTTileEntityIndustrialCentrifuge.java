@@ -52,7 +52,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("centrifuge");
 
 	public GTTileEntityIndustrialCentrifuge() {
-		super(7, 12, 1000, 32);
+		super(7, 12, 500, 32);
 		setFuelSlot(slotFuel);
 	}
 
@@ -209,34 +209,37 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 		}
 		addRecipe(input, new MachineOutput(createCellRequirement(cellRequirement), list));
 	}
-	
-	public static void addRecipe(ItemStack stack, int cellRequirement, IRecipeModifier[] modifiers, OutputItem... results) {
+
+	public static void addRecipe(ItemStack stack, int cellRequirement, IRecipeModifier[] modifiers,
+			OutputItem... results) {
 		addRecipe(new RecipeInputItemStack(stack), cellRequirement, modifiers, results);
 	}
 
-	public static void addRecipe(String id, int amount, int cellRequirement, IRecipeModifier[] modifiers, OutputItem... results) {
+	public static void addRecipe(String id, int amount, int cellRequirement, IRecipeModifier[] modifiers,
+			OutputItem... results) {
 		addRecipe(new RecipeInputOreDict(id, amount), cellRequirement, modifiers, results);
 	}
 
-	public static void addRecipe(IRecipeInput input, int cellRequirement, IRecipeModifier[] modifiers, OutputItem... results) {
+	public static void addRecipe(IRecipeInput input, int cellRequirement, IRecipeModifier[] modifiers,
+			OutputItem... results) {
 		NonNullList<ItemStack> list = NonNullList.withSize(4, ItemStack.EMPTY);
 		for (OutputItem item : results) {
 			list.set(item.slot, item.stack.copy());
 		}
 		NBTTagCompound mods = new NBTTagCompound();
-		for(IRecipeModifier modifier : modifiers)
-		{
+		for (IRecipeModifier modifier : modifiers) {
 			modifier.apply(mods);
 		}
 		NBTTagCompound nbt = createCellRequirement(cellRequirement);
-		if(!mods.hasNoTags())
-		{
-			if(nbt == null) nbt = mods;
-			else nbt.merge(mods);
+		if (!mods.hasNoTags()) {
+			if (nbt == null)
+				nbt = mods;
+			else
+				nbt.merge(mods);
 		}
 		addRecipe(input, new MachineOutput(nbt, list));
 	}
-	
+
 	static void addRecipe(IRecipeInput input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
 	}
