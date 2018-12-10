@@ -10,7 +10,6 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("dustTungsten", GTItems.tungsten);
 		OreDictionary.registerOre("dustLithium", GTItems.lithium);
-		OreDictionary.registerOre("itemSilicon", GTItems.silicon);
 		OreDictionary.registerOre("dustCarbon", GTItems.carbon);
 
 		OreDictionary.registerOre("dustEnderPearl", GTItems.dustEnderpearl);
@@ -58,6 +57,9 @@ public class GTOreDict {
 				new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
 
 		OreDictionary.registerOre("toolHammer", GTItems.hammerIron);
+
+		OreDictionary.registerOre("itemSilicon", GTItems.plateSilicon);
+		OreDictionary.registerOre("plateSilicon", GTItems.plateSilicon);
 
 		OreDictionary.registerOre("batteryAdvanced", Ic2Items.energyCrystal);
 		OreDictionary.registerOre("batteryAdvanced", GTItems.lithiumBattery);

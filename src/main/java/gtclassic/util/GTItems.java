@@ -96,7 +96,8 @@ public class GTItems {
 			dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
 			superConductor = new GTItemComponents(GTItemComponentTypes.SUPERCONDUCTOR),
 			dataStorageCircuit = new GTItemComponents(GTItemComponentTypes.DATA_STORAGE_CIRCUIT),
-			dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB);
+			dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB),
+			plateSilicon = new GTItemComponents(GTItemComponentTypes.SILICON_PLATE);
 
 	public static final GTItemDuctTape braintechAerospaceARDT = new GTItemDuctTape();
 
@@ -131,7 +132,7 @@ public class GTItems {
 			dustAluminium, dustTitanium, dustChrome, dustRuby, dustSapphire, dustGreenSapphire, dustEmerald,
 			dustSodalite,
 
-			ruby, sapphire, ingotIridium, ingotAluminium, ingotTitanium, ingotChrome,
+			ruby, sapphire, ingotIridium, ingotAluminium, ingotTitanium, ingotChrome, plateSilicon,
 
 			heatStorageSingle, heatStorageTriple, heatStorageSix,
 

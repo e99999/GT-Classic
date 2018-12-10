@@ -31,7 +31,7 @@ public class GTJeiPlugin implements IModPlugin {
 			}
 		}, "centrifuge");
 		registry.addRecipes(GTTileEntityIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
-		
+
 		registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
 			@Override
 			public IRecipeWrapper getRecipeWrapper(RecipeEntry var1) {

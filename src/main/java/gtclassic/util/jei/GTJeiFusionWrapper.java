@@ -20,9 +20,8 @@ public class GTJeiFusionWrapper extends BlankRecipeWrapper {
 
 	@Override
 	public void getIngredients(IIngredients components) {
-		components.setInputLists(ItemStack.class,
-				Arrays.asList(entry.getInput().getInputs(), Arrays.asList(new ItemStack(GTItems.dueterium,
-						GTTileEntityFusionComputer.getRequiredCells(entry.getOutput())))));
+		components.setInputLists(ItemStack.class, Arrays.asList(entry.getInput().getInputs(), Arrays.asList(
+				new ItemStack(GTItems.dueterium, GTTileEntityFusionComputer.getRequiredCells(entry.getOutput())))));
 		List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
 		int count = 0;
 		for (ItemStack stack : entry.getOutput().copy().getAllOutputs()) {

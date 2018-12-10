@@ -50,7 +50,7 @@ public class GTRecipes {
 	static IRecipeInput ingotSteel = new RecipeInputCombined(1,
 			new IRecipeInput[] { new RecipeInputOreDict("ingotRefinedIron"), new RecipeInputOreDict("ingotSteel") });
 
-	FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
+	static FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
 	static FluidStack lava = new FluidStack(FluidRegistry.LAVA, 1000);
 
 	public static void initSmeltingRecipes() {
@@ -129,6 +129,12 @@ public class GTRecipes {
 
 		recipes.addShapelessRecipe(new ItemStack(GTItems.methane, 4),
 				new Object[] { GTItems.carbon, GTItems.hydrogen, GTItems.hydrogen, GTItems.hydrogen });
+
+		recipes.addShapelessRecipe(new ItemStack(GTItems.glassTube, 1), new Object[] { GTItems.oxygen });
+
+		recipes.addShapelessRecipe(new ItemStack(GTItems.water, 1), new Object[] { water, GTItems.glassTube });
+
+		recipes.addShapelessRecipe(new ItemStack(GTItems.lava, 1), new Object[] { lava, GTItems.glassTube });
 	}
 
 	public static void initShapedRecipes() {
@@ -290,11 +296,16 @@ public class GTRecipes {
 		recipes.addRecipe(Ic2Items.electricCircuit.copy(), new Object[] { "CRC", "CIC", "CRC", 'I', ingotElectric, 'R',
 				"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy() });
 
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
-				new Object[] { "CCC", "III", "CCC", 'I', ingotElectric, 'C', Ic2Items.insulatedCopperCable.copy() });
+		// recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
+		// new Object[] { "CCC", "III", "CCC", 'I', ingotElectric, 'C',
+		// Ic2Items.insulatedCopperCable.copy() });
 
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
-				new Object[] { "CIC", "CIC", "CIC", 'I', ingotElectric, 'C', Ic2Items.insulatedCopperCable.copy() });
+		// recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2),
+		// new Object[] { "CIC", "CIC", "CIC", 'I', ingotElectric, 'C',
+		// Ic2Items.insulatedCopperCable.copy() });
+
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2), new Object[] { "CCC", "SIS", "CCC", 'I',
+				ingotElectric, 'C', Ic2Items.insulatedCopperCable.copy(), 'S', "plateSilicon" });
 
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.advancedCircuit, 2), new Object[] { "IGI", "LCL", "IGI", 'L',
 				"dyeBlue", 'G', Items.GLOWSTONE_DUST, 'I', "ingotSilver", 'C', Ic2Items.electricCircuit.copy() });
@@ -318,9 +329,9 @@ public class GTRecipes {
 				new Object[] { "Rcc", "AAC", " AA", 'A', Ic2Items.advancedAlloy.copy(), 'C',
 						Ic2Items.advancedCircuit.copy(), 'c', GTItems.helium, 'R', "dustRedstone" });
 
-		recipes.addRecipe(Ic2Items.solarPanel.copy(),
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.solarPanel, 2),
 				new Object[] { "YYY", "XPX", "CVC", 'C', Ic2Items.electricCircuit.copy(), 'V',
-						Ic2Items.generator.copy(), 'X', "itemSilicon", 'Y', "paneGlass", 'P', GTItems.carbon});
+						Ic2Items.generator.copy(), 'X', "plateSilicon", 'Y', "paneGlass", 'P', Ic2Items.carbonPlate });
 
 		recipes.addRecipe(Ic2Items.reactorReflectorThick.copy(),
 				new Object[] { " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GTItems.berilium });
@@ -342,11 +353,20 @@ public class GTRecipes {
 		TileEntityCompressor.addRecipe("ingotChrome", 9, new ItemStack(GTBlocks.chromeBlock), 0.1F);
 		TileEntityCompressor.addRecipe("ingotTitanium", 9, new ItemStack(GTBlocks.titaniumBlock), 0.1F);
 
+		TileEntityCompressor.addRecipe(new ItemStack(GTItems.silicon, 9),
+				StackUtil.copyWithSize(new ItemStack(GTItems.plateSilicon), 1), 0.2F);
+
+		TileEntityCompressor.addRecipe(new ItemStack(GTItems.carbon, 8),
+				StackUtil.copyWithSize(Ic2Items.carbonFiber, 1), 0.2F);
+
+		TileEntityCompressor.addRecipe(new ItemStack(GTItems.dustUranium, 1),
+				StackUtil.copyWithSize(Ic2Items.uraniumIngot, 1), 0.2F);
+
 		// IC2C MACERATOR
 
 		TileEntityMacerator.addRecipe(new ItemStack(Items.FLINT, 1),
 				StackUtil.copyWithSize(new ItemStack(GTItems.dustFlint), 1), 0.1F);
-		
+
 		TileEntityMacerator.addRecipe(Ic2Items.uraniumDrop, 1,
 				StackUtil.copyWithSize(new ItemStack(GTItems.dustUranium), 1), 0.1F);
 
