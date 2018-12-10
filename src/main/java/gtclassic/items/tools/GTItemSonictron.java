@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
-import gtclassic.util.GTBlocks;
 import ic2.core.item.base.ItemIC2;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
