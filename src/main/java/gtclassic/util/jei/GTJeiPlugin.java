@@ -2,6 +2,7 @@ package gtclassic.util.jei;
 
 import javax.annotation.Nonnull;
 
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
