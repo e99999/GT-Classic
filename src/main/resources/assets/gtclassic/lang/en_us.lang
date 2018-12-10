@@ -4,10 +4,9 @@ tile.gtclassic.fusion_machineblock.name=Fusion Coil
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
 
 #machine blocks
-tile.gtclassic.assembler.name=Assembling Machine
+tile.gtclassic.autocrafter.name=Electric Crafter
 tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.computercube.name=Computer Cube
-tile.gtclassic.chemicalelectrolyzer.name=Chemical Electrolyzer
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
 tile.gtclassic.matterfabricator.name=Matter Fabricator
 tile.gtclassic.playerdetector.name=Player Detector
@@ -21,10 +20,11 @@ tile.gtclassic.quantumchest.name=Quantum Chest
 
 #energy blocks
 tile.gtclassic.lightningrod.name=Lightning Rod
-tile.gtclassic.fusionreactor.name=Fusion Reactor
+tile.gtclassic.fusioncomputer.name=Fusion Computer
 tile.gtclassic.iesu.name=IESU
 tile.gtclassic.hesu.name=HESU
 tile.gtclassic.supercondensator.name=Super Condensator
+tile.gtclassic.superconductorwire.name=Super Conductor Wire
 
 #blocks
 tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone
@@ -40,12 +40,13 @@ tile.gtclassic.iridium_ore.name=Iridium Ore
 tile.gtclassic.sapphire_ore.name=Sapphire Ore
 tile.gtclassic.ruby_ore.name=Ruby Ore
 tile.gtclassic.sandIron.name=Black Sand
+tile.gtclassic.iridium_end_ore.name=Iridium End Ore
 
 #tools
 item.gtclassic.sonictronItem.name=Handheld Sonictron
 item.gtclassic.destructoPack.name=Destructopack
 item.gtclassic.craftingTablet.name=Crafting Tablet
-item.gtclassic.hammerIron.name=Refined Iron Hammer
+item.gtclassic.hammerIron.name=Iron Hammer
 item.gtclassic.electroMagnet.name=Electromagnet
 item.gtclassic.rockCutter.name=Rock Cutter
 item.gtclassic.advancedDrill.name=Advanced Drill
@@ -56,7 +57,7 @@ item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
 item.gtclassic.zeroPointModule.name=Zero Point Module
-item.gtclassic.glass_tube.name=Empty Tube
+item.gtclassic.glass_tube.name=Glass Tube
 
 #elements
 item.gtclassic.hydrogen.name=Hydrogen
@@ -75,6 +76,19 @@ item.gtclassic.sodium.name=Sodium
 item.gtclassic.chlorine.name=Chlorine
 item.gtclassic.potassium.name=Potassium
 item.gtclassic.nitrogen.name=Nitrogen
+item.gtclassic.oxygen.name=Oxygen
+
+item.gtclassic.water.name=Water
+item.gtclassic.lava.name=Lava
+item.gtclassic.proton.name=Positive Matter
+item.gtclassic.neutron.name=Neutral Matter
+
+item.gtclassic.hydrogen_plasma.name=Hydrogen Plasma
+item.gtclassic.nitrogen_plasma.name=Nitrogen Plasma
+item.gtclassic.oxygen_plasma.name=Oxygen Plasma
+item.gtclassic.helium_plasma.name=Helium Plasma
+item.gtclassic.iron_plasma.name=Iron Plasma
+item.gtclassic.uu_plasma.name=UU-Plasma
 
 #dust
 item.gtclassic.flint_dust.name=Flint Dust
@@ -93,13 +107,17 @@ item.gtclassic.titanium_dust.name=Titanium Dust
 item.gtclassic.chrome_dust.name=Chrome Dust
 item.gtclassic.lazurite_dust.name=Lazurite Dust
 item.gtclassic.sodalite_dust.name=Sodalite Dust
-item.gtclassic.endstone_dust.name=Endstone Dust
 
 #ingots
 item.gtclassic.iridium_ingot.name=Iridium Ingot
 item.gtclassic.aluminium_ingot.name=Aluminium Ingot
 item.gtclassic.titanium_ingot.name=Titanium Ingot
 item.gtclassic.chrome_ingot.name=Chrome Ingot
+
+#
+item.gtclassic.heatstorage_single.name=60K Helium Coolant Cell
+item.gtclassic.heatstorage_triple.name=120K Helium Coolant Cell
+item.gtclassic.heatstorage_six.name=360K Helium Coolant Cell
 
 #other materials
 item.gtclassic.ruby_gem.name=Ruby
@@ -124,8 +142,9 @@ tooltip.gtclassic.portalframe=Used to build portals to terrible places...
 tooltip.gtclassic.iridium=Spawns rarely in ALL biomes
 tooltip.gtclassic.ruby=Spawns in HOT biomes
 tooltip.gtclassic.sapphire=Spawns in OCEAN biomes
-tooltip.gtclassic.ironsand=Spawns in RIVER biomes
 tooltip.gtclassic.bauxite=Spawns in FOREST & PLAINS biomes
+tooltip.gtclassic.ironsand=Spawns in RIVER biomes
+tooltip.gtclassic.iridiumend=Spawns in the bottom of End Islands
 
 tooltip.gtclassic.beacon=Can be used as a beacon base
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
@@ -137,13 +156,15 @@ tooltip.gtclassic.superCondensator=In: 65535 EU, Out: 32768 EU 4x
 tooltip.gtclassic.hesu=Max Input: 2048 EU
 tooltip.gtclassic.hesu2=Max Storage: 100000000 EU
 
-tooltip.gtclassic.rockcutter=Hi I'm a rock cutter
+tooltip.gtclassic.ducttape=The solution to all your problems
+tooltip.gtclassic.rockcutter=For a silky smooth touch
 tooltip.gtclassic.drill=No frills world destroyer!
 tooltip.gtclassic.saw=Makes trees disappear
 tooltip.gtclassic.trashcan=Mobile Trash Bin
 tooltip.gtclassic.craftingtablet=Travelers best friend!
 tooltip.gtclassic.warranty=No Warranty!
 tooltip.gtclassic.tesla=O V E R C H A R G E D
+tooltip.gtclassic.wip=Work in progress
 
 tooltip.gtclassic.zpm1=Extracts vacuum energy from subspace-time
 tooltip.gtclassic.zpm2=until it reaches maximum entropy.

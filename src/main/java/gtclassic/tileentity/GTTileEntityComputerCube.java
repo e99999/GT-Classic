@@ -11,46 +11,41 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileEntityComputerCube extends TileEntityMachine implements IHasGui{
+public class GTTileEntityComputerCube extends TileEntityMachine implements IHasGui {
 
-	public GTTileEntityComputerCube() 
-	{
+	public GTTileEntityComputerCube() {
 		super(1);
 	}
-	
+
+	@Override
 	@SideOnly(Side.CLIENT)
-	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) 
-	{
-        return GuiComponentContainer.class;
-    }
-	
-	public ContainerIC2 getGuiContainer(EntityPlayer player)
-    {
-        return new GTContainerComputerCube0(player.inventory, this);
-    }
-	
-	@Override
-    protected void addSlots(InventoryHandler handler)
-	{
-		//nothing for now
-    }
-	
-	@Override
-    public boolean canInteractWith(EntityPlayer player)
-    {
-        return !this.isInvalid();
-    }
+	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
+		return GuiComponentContainer.class;
+	}
 
 	@Override
-    public void onGuiClosed(EntityPlayer entityPlayer)
-    {
-        //needed for construction
-    }
+	public ContainerIC2 getGuiContainer(EntityPlayer player) {
+		return new GTContainerComputerCube0(player.inventory, this);
+	}
 
-    @Override
-    public boolean hasGui(EntityPlayer player)
-    {
-        return true;
-    }
+	@Override
+	protected void addSlots(InventoryHandler handler) {
+		// nothing for now
+	}
+
+	@Override
+	public boolean canInteractWith(EntityPlayer player) {
+		return !this.isInvalid();
+	}
+
+	@Override
+	public void onGuiClosed(EntityPlayer entityPlayer) {
+		// needed for construction
+	}
+
+	@Override
+	public boolean hasGui(EntityPlayer player) {
+		return true;
+	}
 
 }

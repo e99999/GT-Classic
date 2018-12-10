@@ -11,46 +11,46 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemLapotronicEnergyOrb extends ItemBatteryBase {
-    public GTItemLapotronicEnergyOrb() {
-        super(0);
-        this.setRightClick();
-        this.setRegistryName("lapotronic_energy_orb");
-        this.setUnlocalizedName(GTClassic.MODID + ".lapotronicEnergyOrb");
-        this.maxCharge = 10000000;
-        this.transferLimit = 1000;
-        this.tier = 4;
-        this.provider = true;
-        this.setCreativeTab(GTClassic.creativeTabGT);
-    }
+	public GTItemLapotronicEnergyOrb() {
+		super(0);
+		this.setRightClick();
+		this.setRegistryName("lapotronic_energy_orb");
+		this.setUnlocalizedName(GTClassic.MODID + ".lapotronicEnergyOrb");
+		this.maxCharge = 10000000;
+		this.transferLimit = 1000;
+		this.tier = 4;
+		this.provider = true;
+		this.setCreativeTab(GTClassic.creativeTabGT);
+	}
 
-    @Override
-    public int getItemStackLimit(ItemStack stack) {
-        return 1;
-    }
+	@Override
+	public int getItemStackLimit(ItemStack stack) {
+		return 1;
+	}
 
-    @Override
-    public boolean isDamaged(ItemStack stack) {
-        return true;
-    }
+	@Override
+	public boolean isDamaged(ItemStack stack) {
+		return true;
+	}
 
-    @Override
-    public boolean showDurabilityBar(ItemStack stack) {
-        return true;
-    }
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return true;
+	}
 
-    @Override
-    public boolean wantsToPlay(ItemStack stack) {
-        return true;
-    }
+	@Override
+	public boolean wantsToPlay(ItemStack stack) {
+		return true;
+	}
 
-    @Override
-    public ResourceLocation createSound(ItemStack stack) {
-        return Ic2Sounds.batteryUse;
-    }
+	@Override
+	public ResourceLocation createSound(ItemStack stack) {
+		return Ic2Sounds.batteryUse;
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTexture(ItemStack item) {
-        return Ic2Icons.getTextures("gtclassic_items")[37];
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTexture(ItemStack item) {
+		return Ic2Icons.getTextures("gtclassic_items")[37];
+	}
 }

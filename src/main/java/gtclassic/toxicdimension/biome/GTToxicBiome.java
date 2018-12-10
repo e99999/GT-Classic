@@ -1,15 +1,14 @@
 package gtclassic.toxicdimension.biome;
 
 import gtclassic.util.GTBlocks;
-
+import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.monster.EntityPigZombie;
 
 public class GTToxicBiome {
 
@@ -17,11 +16,11 @@ public class GTToxicBiome {
 	public static Object instance;
 	static {
 		Biome.BiomeProperties customProps = new Biome.BiomeProperties("toxicBiome");
-		customProps.setRainfall(0.7F);
+		customProps.setRainfall(50.0F);
 		customProps.setBaseHeight(0.0F);
 		customProps.setHeightVariation(0.25F);
 		customProps.setWaterColor(-13421824);
-		//customProps.setTemperature(2.0F);
+		// customProps.setTemperature(2.0F);
 		biome = new BiomeGenCustom(customProps);
 	}
 
@@ -47,12 +46,12 @@ public class GTToxicBiome {
 			this.spawnableCreatureList.clear();
 			this.spawnableWaterCreatureList.clear();
 			this.spawnableCaveCreatureList.clear();
-			
-			//Mobs
+
+			// Mobs
 			this.spawnableCreatureList.add(new SpawnListEntry(EntityBlaze.class, 100, 2, 6));
 			this.spawnableCreatureList.add(new SpawnListEntry(EntityPigZombie.class, 60, 4, 16));
 			this.spawnableCreatureList.add(new SpawnListEntry(EntityIronGolem.class, 20, 1, 2));
-			
+
 		}
 
 		@SideOnly(Side.CLIENT)
@@ -74,4 +73,3 @@ public class GTToxicBiome {
 		}
 	}
 }
-

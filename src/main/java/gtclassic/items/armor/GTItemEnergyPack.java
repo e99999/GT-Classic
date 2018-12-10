@@ -15,91 +15,97 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamagelessElectricItem {
-    String texture;
-    int maxEnergy;
-    int tier;
-    int transferlimit;
-    EnumRarity rare;
+	String texture;
+	int maxEnergy;
+	int tier;
+	int transferlimit;
+	EnumRarity rare;
 
-    int indexitem;
+	int indexitem;
 
-    public GTItemEnergyPack(int index, String tex, int max, String reg, String unl, int lvl, int limit) {
-        super(index, EntityEquipmentSlot.CHEST);
-        this.indexitem = index;
-        this.setMaxDamage(0);
-        this.texture =  tex; //"gtclassic:textures/models/armor/lithiumbatpack";
-        this.maxEnergy = max; //600000;
-        this.setRegistryName(reg); //("lithium_batpack");
-        this.setUnlocalizedName(GTClassic.MODID + unl); //(GTClassic.MODID + ".lithiumBatpack");
-        this.setCreativeTab(GTClassic.creativeTabGT);
-        this.tier = lvl; //1;
-        this.transferlimit = limit; //200;
-        this.rare = EnumRarity.COMMON;
-    }
+	public GTItemEnergyPack(int index, String tex, int max, String reg, String unl, int lvl, int limit) {
+		super(index, EntityEquipmentSlot.CHEST);
+		this.indexitem = index;
+		this.setMaxDamage(0);
+		this.texture = tex; // "gtclassic:textures/models/armor/lithiumbatpack";
+		this.maxEnergy = max; // 600000;
+		this.setRegistryName(reg); // ("lithium_batpack");
+		this.setUnlocalizedName(GTClassic.MODID + unl); // (GTClassic.MODID + ".lithiumBatpack");
+		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.tier = lvl; // 1;
+		this.transferlimit = limit; // 200;
+		this.rare = EnumRarity.COMMON;
+	}
 
-    //might use this above later to make registering packs easier.
-    //int index, int maxDamage, String tex, int max, String reg, String unl, int lvl, int limit
+	// might use this above later to make registering packs easier.
+	// int index, int maxDamage, String tex, int max, String reg, String unl, int
+	// lvl, int limit
 
+	public GTItemEnergyPack setRarity(EnumRarity newValue) {
+		this.rare = newValue;
+		return this;
+	}
 
-    public GTItemEnergyPack setRarity(EnumRarity newValue) {
-        this.rare = newValue;
-        return this;
-    }
+	@Override
+	public String getTexture() {
+		return this.texture;
+	}
 
-    public String getTexture() {
-        return this.texture;
-    }
+	@Override
+	public ItemStack getRepairItem() {
+		return ItemStack.EMPTY;
+	}
 
-    public ItemStack getRepairItem() {
-        return ItemStack.EMPTY;
-    }
+	@Override
+	public boolean canProvideEnergy(ItemStack stack) {
+		return true;
+	}
 
-    public boolean canProvideEnergy(ItemStack stack) {
-        return true;
-    }
+	@Override
+	public double getMaxCharge(ItemStack stack) {
+		return this.maxEnergy;
+	}
 
-    public double getMaxCharge(ItemStack stack) {
-        return (double)this.maxEnergy;
-    }
+	@Override
+	public int getTier(ItemStack stack) {
+		return this.tier;
+	}
 
-    public int getTier(ItemStack stack) {
-        return this.tier;
-    }
+	@Override
+	public double getTransferLimit(ItemStack stack) {
+		return this.transferlimit;
+	}
 
-    public double getTransferLimit(ItemStack stack) {
-        return (double)this.transferlimit;
-    }
-
-    @Override
+	@Override
 	public EnumRarity getRarity(ItemStack thisItem) {
 		return EnumRarity.RARE;
 	}
 
-    @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
-        if (this.isInCreativeTab(tab)) {
-            ItemStack empty = new ItemStack(this);
-            ItemStack full = new ItemStack(this);
-            ElectricItem.manager.discharge(empty, 2.147483647E9D, 2147483647, true, false, false);
-            ElectricItem.manager.charge(full, 2.147483647E9D, 2147483647, true, false);
-            subItems.add(empty);
-            subItems.add(full);
-        }
-    }
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+		if (this.isInCreativeTab(tab)) {
+			ItemStack empty = new ItemStack(this);
+			ItemStack full = new ItemStack(this);
+			ElectricItem.manager.discharge(empty, 2.147483647E9D, 2147483647, true, false, false);
+			ElectricItem.manager.charge(full, 2.147483647E9D, 2147483647, true, false);
+			subItems.add(empty);
+			subItems.add(full);
+		}
+	}
 
-    @Override
-    public boolean showDurabilityBar(ItemStack stack) {
-        return true;
-    }
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return true;
+	}
 
-    @Override
-    public double getDurabilityForDisplay(ItemStack stack) {
-        return 1.0D - ElectricItem.manager.getCharge(stack) / this.getMaxCharge(stack);
-    }
+	@Override
+	public double getDurabilityForDisplay(ItemStack stack) {
+		return 1.0D - ElectricItem.manager.getCharge(stack) / this.getMaxCharge(stack);
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTexture(int meta){
-        return Ic2Icons.getTextures("gtclassic_items")[this.indexitem];
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTexture(int meta) {
+		return Ic2Icons.getTextures("gtclassic_items")[this.indexitem];
+	}
 }

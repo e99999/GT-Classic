@@ -1,5 +1,7 @@
 package gtclassic.blocks;
 
+import java.util.List;
+
 import gtclassic.GTClassic;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
@@ -19,73 +21,70 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class GTBlockCasing extends Block implements ITexturedBlock {
-    public enum GTBlockCasingVariants{
-        FUSION(1), 
-        HIGHLYADVANCED(29);
-        
-    	private int id;
+	public enum GTBlockCasingVariants {
+		FUSION(1), HIGHLYADVANCED(29);
 
-    	GTBlockCasingVariants(int id){
-            this.id = id;
-        }
+		private int id;
 
-        public int getID(){
-            return id;
-        }
-    }
+		GTBlockCasingVariants(int id) {
+			this.id = id;
+		}
 
-    GTBlockCasingVariants variant;
-    public GTBlockCasing(GTBlockCasingVariants variant){
-        super(Material.IRON);
-        this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_machineblock");
-        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_machineblock");
-        setCreativeTab(GTClassic.creativeTabGT);
-        setHardness(5.0F);
-        setResistance(30.0F);
-        setSoundType(SoundType.METAL);
-        setHarvestLevel("pickaxe", 2);
-    }
+		public int getID() {
+			return id;
+		}
+	}
 
-    @Override
-    public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
-        return FULL_BLOCK_AABB;
-    }
+	GTBlockCasingVariants variant;
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-        return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
-    }
+	public GTBlockCasing(GTBlockCasingVariants variant) {
+		super(Material.IRON);
+		this.variant = variant;
+		setRegistryName(variant.toString().toLowerCase() + "_machineblock");
+		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_machineblock");
+		setCreativeTab(GTClassic.creativeTabGT);
+		setHardness(5.0F);
+		setResistance(30.0F);
+		setSoundType(SoundType.METAL);
+		setHarvestLevel("pickaxe", 2);
+	}
 
-    @Override
-    @Deprecated
-    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
-        return false;
-    }
-    
-    @Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".nomobs"));
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getParticleTexture(IBlockState state) {
-        return this.getTextureFromState(state, EnumFacing.SOUTH);
-    }
+	@Override
+	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
+		return FULL_BLOCK_AABB;
+	}
 
-    @Override
-    public List<IBlockState> getValidStates() {
-        return this.blockState.getValidStates();
-    }
+	@SideOnly(Side.CLIENT)
+	@Override
+	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
+		return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
+	}
 
-    @Override
-    public IBlockState getStateFromStack(ItemStack stack) {
-        return this.getStateFromMeta(stack.getMetadata());
-    }
+	@Override
+	@Deprecated
+	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+		return false;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".nomobs"));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getParticleTexture(IBlockState state) {
+		return this.getTextureFromState(state, EnumFacing.SOUTH);
+	}
+
+	@Override
+	public List<IBlockState> getValidStates() {
+		return this.blockState.getValidStates();
+	}
+
+	@Override
+	public IBlockState getStateFromStack(ItemStack stack) {
+		return this.getStateFromMeta(stack.getMetadata());
+	}
 }
-

@@ -1,5 +1,10 @@
 package gtclassic.blocks;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.tileentity.GTTileEntitySuperCondensator;
@@ -20,137 +25,125 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
 public class GTBlockEnergy extends BlockMultiID {
-    public enum GTBlockEnergyVariants
-    {
-        //Transformer
-        SUPERCONDENSATOR,
+	public enum GTBlockEnergyVariants {
+		// OTHER STUFF
+		SUPERCONDENSATOR, SUPERCONDUCTORWIRE,
 
-    	//Storage
-        IESU,
-        HESU;
-    }
+		// STORAGE
+		IESU, HESU;
+	}
 
-    GTBlockEnergyVariants variant;
-    public GTBlockEnergy(GTBlockEnergyVariants variant)
-    {
-        super(Material.IRON);
-        this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase());
-        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
-        setCreativeTab(GTClassic.creativeTabGT);
-        setHardness(4.0F);
-        setResistance(20.0F);
-        setSoundType(SoundType.METAL);
-        setHarvestLevel("pickaxe", 2);
-    }
-    
-    @Override
-    public List<Integer> getValidMetas() 
-	{
-        return Arrays.asList(0);
-    }
+	GTBlockEnergyVariants variant;
 
-    @Override
-    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
-    {
-        if (this == GTBlocks.HESU)
-        {
-            return new GTTileEntityHESU();
-        } 
-        else if (this == GTBlocks.superCondensator)
-        {
-            return new GTTileEntitySuperCondensator();
-        }
-        else
-        {
-            return new TileEntityBlock();
-        }
+	public GTBlockEnergy(GTBlockEnergyVariants variant) {
+		super(Material.IRON);
+		this.variant = variant;
+		setRegistryName(variant.toString().toLowerCase());
+		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
+		setCreativeTab(GTClassic.creativeTabGT);
+		setHardness(4.0F);
+		setResistance(20.0F);
+		setSoundType(SoundType.METAL);
+		setHarvestLevel("pickaxe", 2);
+	}
 
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-    {
-    	if (this == GTBlocks.IESU) 
-   	 	{
-    		for (int i = 0; i < 3; ++i)
-    		{
-            int j = rand.nextInt(2) * 2 - 1;
-            int k = rand.nextInt(2) * 2 - 1;
-            double d0 = (double)pos.getX() + 0.5D + 0.25D * (double)j;
-            double d1 = (double)((float)pos.getY() + rand.nextFloat());
-            double d2 = (double)pos.getZ() + 0.5D + 0.25D * (double)k;
-            double d3 = (double)(rand.nextFloat() * (float)j);
-            double d4 = ((double)rand.nextFloat() - 0.5D) * 0.125D;
-            double d5 = (double)(rand.nextFloat() * (float)k);
-            worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
-    		}
-        }
-    }
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		if (this != GTBlocks.HESU) {
+			tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
+		}
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite[] getIconSheet(int meta)
-    {
-    	if (this == GTBlocks.superCondensator)
-    	{
-            return Ic2Icons.getTextures("gtclassic_supercondensator");
-        }
-   	 
-   	 	//Storage
-   	 	else if (this == GTBlocks.IESU)
-   	 	{
-   	 		return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");
-   	 	}
-   	 	
-   	 	else if (this == GTBlocks.HESU)
-	 	{
-   	 		return Ic2Icons.getTextures("gtclassic_hugeenergysu");
-	 	}
-    	else
-    	{
-            return Ic2Icons.getTextures("gtclassic_builder");
-        }
+	@Override
+	public List<Integer> getValidMetas() {
+		return Arrays.asList(0);
+	}
 
-    }
-    
-    @Override
-    public int getMaxSheetSize(int meta)
-    {
-        return 1;
-    }
+	@Override
+	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
+		if (this == GTBlocks.HESU) {
+			return new GTTileEntityHESU();
+		} else if (this == GTBlocks.superCondensator) {
+			return new GTTileEntitySuperCondensator();
+		} else {
+			return new TileEntityBlock();
+		}
 
-    @Override
-    public List<IBlockState> getValidStateList()
-    {
-        IBlockState def = getDefaultState();
-        List<IBlockState> states = new ArrayList<>();
-        for(EnumFacing side : EnumFacing.VALUES)
-        {
-        	states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
-        	states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, true));
-        }
-        return states;
-    }
+	}
 
-    @Override
-    public List<IBlockState> getValidStates()
-    {
-        return getBlockState().getValidStates();
-    }
-    
-    @Deprecated
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		if (this == GTBlocks.IESU) {
+			for (int i = 0; i < 3; ++i) {
+				int j = rand.nextInt(2) * 2 - 1;
+				int k = rand.nextInt(2) * 2 - 1;
+				double d0 = pos.getX() + 0.5D + 0.25D * j;
+				double d1 = pos.getY() + rand.nextFloat();
+				double d2 = pos.getZ() + 0.5D + 0.25D * k;
+				double d3 = rand.nextFloat() * j;
+				double d4 = (rand.nextFloat() - 0.5D) * 0.125D;
+				double d5 = rand.nextFloat() * k;
+				worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
+			}
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite[] getIconSheet(int meta) {
+		if (this == GTBlocks.superCondensator) {
+			return Ic2Icons.getTextures("gtclassic_supercondensator");
+		}
+
+		else if (this == GTBlocks.superConductorWire) {
+			return Ic2Icons.getTextures("gtclassic_superconductorwire");
+		}
+
+		else if (this == GTBlocks.IESU) {
+			return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");
+		}
+
+		else if (this == GTBlocks.HESU) {
+			return Ic2Icons.getTextures("gtclassic_hugeenergysu");
+		} else {
+			return Ic2Icons.getTextures("gtclassic_builder");
+		}
+
+	}
+
+	@Override
+	public int getMaxSheetSize(int meta) {
+		return 1;
+	}
+
+	@Override
+	public List<IBlockState> getValidStateList() {
+		IBlockState def = getDefaultState();
+		List<IBlockState> states = new ArrayList<>();
+		for (EnumFacing side : EnumFacing.VALUES) {
+			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+					false));
+			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+					true));
+		}
+		return states;
+	}
+
+	@Override
+	public List<IBlockState> getValidStates() {
+		return getBlockState().getValidStates();
+	}
+
+	@Override
+	@Deprecated
 	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		TileEntity tile = blockAccess.getTileEntity(pos);
 		if (tile instanceof TileEntityElectricBlock) {
@@ -160,6 +153,7 @@ public class GTBlockEnergy extends BlockMultiID {
 		}
 	}
 
+	@Override
 	@Deprecated
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		TileEntity tile = blockAccess.getTileEntity(pos);
@@ -170,16 +164,17 @@ public class GTBlockEnergy extends BlockMultiID {
 		}
 	}
 
+	@Override
 	@Deprecated
 	public boolean canProvidePower(IBlockState state) {
 		int meta = this.getMetaFromState(state);
 		return meta >= 0 && meta <= 2 ? true : super.canProvidePower(state);
 	}
-	
+
 	@Override
-    @Deprecated
-    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
-        return false;
-    }
+	@Deprecated
+	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+		return false;
+	}
 
 }

@@ -13,59 +13,51 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemLithiumBattery extends ItemBatteryBase implements IAdvancedTexturedItem {
-	
-    public GTItemLithiumBattery() 
-    {
-        super(0);
-        this.setRightClick();
-        this.setRegistryName("lithium_battery");
-        this.setUnlocalizedName(GTClassic.MODID + ".lithiumBattery");
-        this.maxCharge = 100000;
-        this.transferLimit = 150;
-        this.tier = 1;
-        this.provider = true;
-        this.setCreativeTab(GTClassic.creativeTabGT);
-    }
 
-    @Override
-    public int getItemStackLimit(ItemStack stack) 
-    {
-        return this.shouldBeStackable(stack) ? 16 : 1;
-    }
+	public GTItemLithiumBattery() {
+		super(0);
+		this.setRightClick();
+		this.setRegistryName("lithium_battery");
+		this.setUnlocalizedName(GTClassic.MODID + ".lithiumBattery");
+		this.maxCharge = 100000;
+		this.transferLimit = 150;
+		this.tier = 1;
+		this.provider = true;
+		this.setCreativeTab(GTClassic.creativeTabGT);
+	}
 
-    @Override
-    public boolean isDamaged(ItemStack stack) 
-    {
-        return !this.shouldBeStackable(stack);
-    }
+	@Override
+	public int getItemStackLimit(ItemStack stack) {
+		return this.shouldBeStackable(stack) ? 16 : 1;
+	}
 
-    private boolean shouldBeStackable(ItemStack stack) 
-    {
-        return !stack.hasTagCompound() || ElectricItem.manager.getCharge(stack) == 0.0D;
-    }
+	@Override
+	public boolean isDamaged(ItemStack stack) {
+		return !this.shouldBeStackable(stack);
+	}
 
-    @Override
-    public boolean showDurabilityBar(ItemStack stack) 
-    {
-        return this.shouldBeStackable(stack) ? false : super.showDurabilityBar(stack);
-    }
+	private boolean shouldBeStackable(ItemStack stack) {
+		return !stack.hasTagCompound() || ElectricItem.manager.getCharge(stack) == 0.0D;
+	}
 
-    @Override
-    public boolean wantsToPlay(ItemStack stack) 
-    {
-        return true;
-    }
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return this.shouldBeStackable(stack) ? false : super.showDurabilityBar(stack);
+	}
 
-    @Override
-    public ResourceLocation createSound(ItemStack stack) 
-    {
-        return Ic2Sounds.batteryUse;
-    }
+	@Override
+	public boolean wantsToPlay(ItemStack stack) {
+		return true;
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTexture(ItemStack item) 
-    {
-            return Ic2Icons.getTextures("gtclassic_items")[57];
-    }
+	@Override
+	public ResourceLocation createSound(ItemStack stack) {
+		return Ic2Sounds.batteryUse;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTexture(ItemStack item) {
+		return Ic2Icons.getTextures("gtclassic_items")[57];
+	}
 }

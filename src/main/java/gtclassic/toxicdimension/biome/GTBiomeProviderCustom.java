@@ -152,4 +152,3 @@ public class GTBiomeProviderCustom extends BiomeProvider {
 		this.biomeCache.cleanupCache();
 	}
 }
-

@@ -1,5 +1,7 @@
 package gtclassic.blocks.resources;
 
+import java.util.List;
+
 import gtclassic.GTClassic;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
@@ -21,83 +23,76 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class GTBlockMetal extends Block implements ITexturedBlock {
-    public enum GTBlockMetalVariants{
-        IRIDIUM_REINFORCED_STONE(64),
-    	RUBY(66), 
-        SAPPHIRE(67),
-        ALUMINIUM(68), 
-        TITANIUM(69), 
-    	CHROME(70); 
-        
-    	private int id;
+	public enum GTBlockMetalVariants {
+		IRIDIUM_REINFORCED_STONE(64), RUBY(66), SAPPHIRE(67), ALUMINIUM(68), TITANIUM(69), CHROME(70);
 
-        GTBlockMetalVariants(int id){
-            this.id = id;
-        }
+		private int id;
 
-        public int getID(){
-            return id;
-        }
-    }
+		GTBlockMetalVariants(int id) {
+			this.id = id;
+		}
 
-    GTBlockMetalVariants variant;
-    public GTBlockMetal(GTBlockMetalVariants variant){
-        super(Material.IRON);
-        this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_block");
-        setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_block");
-        setCreativeTab(GTClassic.creativeTabGT);
-        setHardness(5.0F);
-        setResistance(15.0F);
-        setSoundType(SoundType.METAL);
-        setHarvestLevel("pickaxe", 2);
-    }
-    
-    @Override
-    public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
-        return true;
-    }
+		public int getID() {
+			return id;
+		}
+	}
 
+	GTBlockMetalVariants variant;
 
-    @Override
-    public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
-        return FULL_BLOCK_AABB;
-    }
+	public GTBlockMetal(GTBlockMetalVariants variant) {
+		super(Material.IRON);
+		this.variant = variant;
+		setRegistryName(variant.toString().toLowerCase() + "_block");
+		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_block");
+		setCreativeTab(GTClassic.creativeTabGT);
+		setHardness(5.0F);
+		setResistance(15.0F);
+		setSoundType(SoundType.METAL);
+		setHarvestLevel("pickaxe", 2);
+	}
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-        return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
-    }
+	@Override
+	public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
+		return true;
+	}
 
-    @Override
-    @Deprecated
-    public boolean canEntitySpawn(IBlockState state, Entity entityIn){
-        return false;
-    }
-    
-    @Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".nomobs"));
-    	tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip."+ GTClassic.MODID +".beacon"));
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getParticleTexture(IBlockState state) {
-        return this.getTextureFromState(state, EnumFacing.SOUTH);
-    }
+	@Override
+	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
+		return FULL_BLOCK_AABB;
+	}
 
-    @Override
-    public List<IBlockState> getValidStates() {
-        return this.blockState.getValidStates();
-    }
+	@SideOnly(Side.CLIENT)
+	@Override
+	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
+		return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
+	}
 
-    @Override
-    public IBlockState getStateFromStack(ItemStack stack) {
-        return this.getStateFromMeta(stack.getMetadata());
-    }
+	@Override
+	@Deprecated
+	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+		return false;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".nomobs"));
+		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".beacon"));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getParticleTexture(IBlockState state) {
+		return this.getTextureFromState(state, EnumFacing.SOUTH);
+	}
+
+	@Override
+	public List<IBlockState> getValidStates() {
+		return this.blockState.getValidStates();
+	}
+
+	@Override
+	public IBlockState getStateFromStack(ItemStack stack) {
+		return this.getStateFromMeta(stack.getMetadata());
+	}
 }
