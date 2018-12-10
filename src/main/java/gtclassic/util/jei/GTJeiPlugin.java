@@ -9,6 +9,8 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import mezz.jei.api.recipe.IRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapperFactory;
 
 @JEIPlugin
 public class GTJeiPlugin implements IModPlugin {
@@ -21,16 +23,20 @@ public class GTJeiPlugin implements IModPlugin {
 	@Override
 	public void register(@Nonnull IModRegistry registry) {
 		
-	
-		// register handlers first
-		// register recipes seconds
-		 
-		//registry.handleRecipes(RecipeEntry.class,, "centrifuge");
+		registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>(){
+			@Override
+			public IRecipeWrapper getRecipeWrapper(RecipeEntry var1)
+			{
+				return new GTJeiCentrifugeWrapper(var1);
+			}
+		}, "centrifuge");
+		registry.addRecipes(GTTileEntityIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
 	}
 	
 	@Override
     public void registerCategories(IRecipeCategoryRegistration registry)
     {
+		registry.addRecipeCategories(new GTJeiCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
     }
 
 }
