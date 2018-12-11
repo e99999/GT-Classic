@@ -16,7 +16,7 @@ public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 	public GTTileEntityLightningRod() {
 		super(0);
 		this.maxStorage = 100000000;
-		this.production = 2048;
+		this.production = 8096;
 
 	}
 
@@ -34,11 +34,11 @@ public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 
 	@Override
 	public void update() {
-		Random rand = world instanceof World ? ((World) world).rand : new Random();
+		Random rand = world instanceof World ? world.rand : new Random();
 
 		if (world.getTotalWorldTime() % 256 == 0 && correctWeather(this.world, this.getPos().up())
 				&& (rand.nextInt(10) == 0)) {
-			this.world.spawnEntity(new EntityLightningBolt(this.world, this.getPos().getX(), this.getPos().getY(),
+			this.world.addWeatherEffect(new EntityLightningBolt(this.world, this.getPos().getX(), this.getPos().getY(),
 					this.getPos().getZ(), false));
 			if (this.storage < this.maxStorage) {
 

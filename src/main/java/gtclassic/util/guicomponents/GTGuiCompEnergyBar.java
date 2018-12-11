@@ -40,8 +40,8 @@ public class GTGuiCompEnergyBar extends GuiComponent {
 			}
 
 			Box2D box = this.getPosition();
-			int maxX = box.getHeight();
-			int lvl = (int) (per * (float) maxX * 23.3F);
+			int maxX = box.getLenght();
+			int lvl = (int) (per * (float) maxX );
 			if (lvl <= 0) {
 				return;
 			}
