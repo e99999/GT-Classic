@@ -40,6 +40,8 @@ public class GTIcons {
 				new Sprites.SpriteInfo(1, 12)));
 		addSprite(new Sprites.SpriteData("gtclassic_quantumchest", "gtclassic:textures/sprites/quantumchest.png",
 				new Sprites.SpriteInfo(1, 12)));
+		addSprite(new Sprites.SpriteData("gtclassic_bookshelf", "gtclassic:textures/sprites/bookshelf.png",
+				new Sprites.SpriteInfo(1, 12)));
 
 		addSprite(new Sprites.SpriteData("gtclassic_hugeenergysu", "gtclassic:textures/sprites/hugeenergysu.png",
 				new Sprites.SpriteInfo(1, 12)));
@@ -72,6 +74,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_smallchest", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_largechest", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_quantumchest", 0, 0, 1, 12));
+		addTextureEntry(new Sprites.TextureEntry("gtclassic_bookshelf", 0, 0, 1, 12));
 
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_hugeenergysu", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_interdimensionalenergysu", 0, 0, 1, 12));

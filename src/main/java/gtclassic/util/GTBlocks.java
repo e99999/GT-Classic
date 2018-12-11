@@ -74,7 +74,8 @@ public class GTBlocks {
 
 	public static final GTBlockStorage smallChest = new GTBlockStorage(GTBlockStorageVariants.SMALLCHEST),
 			largeChest = new GTBlockStorage(GTBlockStorageVariants.LARGECHEST),
-			quantumChest = new GTBlockStorage(GTBlockStorageVariants.QUANTUMCHEST);
+			quantumChest = new GTBlockStorage(GTBlockStorageVariants.QUANTUMCHEST),
+			bookShelf = new GTBlockStorage(GTBlockStorageVariants.BOOKSHELF);
 
 	public static final GTBlockEnergy IDSU = new GTBlockEnergy(GTBlockEnergyVariants.IDSU),
 			HESU = new GTBlockEnergy(GTBlockEnergyVariants.HESU), LESU = new GTBlockEnergy(GTBlockEnergyVariants.LESU),
@@ -99,7 +100,7 @@ public class GTBlocks {
 			autoCrafter, chargeOMat, computerCube, industrialCentrifuge, matterFabricator, uuMatterAssembler,
 			playerDetector, sonictronBlock,
 
-			smallChest, largeChest, quantumChest,
+			bookShelf, smallChest, largeChest, quantumChest,
 
 			fusionComputer, lightningRod, IDSU, HESU, LESU, superCondensator, superConductorWire,
 

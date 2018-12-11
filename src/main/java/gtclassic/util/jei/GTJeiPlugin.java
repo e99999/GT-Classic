@@ -5,7 +5,9 @@ import javax.annotation.Nonnull;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTBlocks;
+import gtclassic.util.GTItems;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
+import ic2.core.platform.registry.Ic2Items;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
@@ -28,6 +30,10 @@ public class GTJeiPlugin implements IModPlugin {
 
 		registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
 		registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), new String[] { "fusion" });
+		// TODO remove the ic2 worktable once Speiger patches it on his end
+		registry.addRecipeCatalyst(Ic2Items.industrialWorktable, new String[] { "minecraft.crafting" });
+		registry.addRecipeCatalyst(new ItemStack(GTBlocks.autoCrafter), new String[] { "minecraft.crafting" });
+		registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 
 		registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
 			@Override

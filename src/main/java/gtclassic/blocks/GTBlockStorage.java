@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockStorage extends BlockMultiID {
 	public enum GTBlockStorageVariants {
-		SMALLCHEST, LARGECHEST, QUANTUMCHEST,
+		SMALLCHEST, LARGECHEST, QUANTUMCHEST, BOOKSHELF,
 	}
 
 	GTBlockStorageVariants variant;
@@ -96,6 +96,10 @@ public class GTBlockStorage extends BlockMultiID {
 
 		else if (this == GTBlocks.quantumChest) {
 			return Ic2Icons.getTextures("gtclassic_quantumchest");
+		}
+
+		else if (this == GTBlocks.bookShelf) {
+			return Ic2Icons.getTextures("gtclassic_bookshelf");
 		}
 
 		else {

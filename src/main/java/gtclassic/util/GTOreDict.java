@@ -61,6 +61,8 @@ public class GTOreDict {
 		OreDictionary.registerOre("itemSilicon", GTItems.plateSilicon);
 		OreDictionary.registerOre("plateSilicon", GTItems.plateSilicon);
 
+		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
+
 		OreDictionary.registerOre("batteryAdvanced", Ic2Items.energyCrystal);
 		OreDictionary.registerOre("batteryAdvanced", GTItems.lithiumBattery);
 	}
