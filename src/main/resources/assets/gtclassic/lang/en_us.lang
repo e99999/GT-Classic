@@ -2,6 +2,7 @@
 #casing blocks
 tile.gtclassic.fusion_machineblock.name=Fusion Coil
 tile.gtclassic.highlyadvanced_machineblock.name=Highly Advanced Machine Block
+tile.gtclassic.lesu_machineblock.name=LESU Block
 
 #machine blocks
 tile.gtclassic.autocrafter.name=Electric Crafter
@@ -23,6 +24,7 @@ tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.fusioncomputer.name=Fusion Computer
 tile.gtclassic.idsu.name=IDSU
 tile.gtclassic.hesu.name=HESU
+tile.gtclassic.lesu.name=LESU Controller
 tile.gtclassic.supercondensator.name=Super Condensator
 tile.gtclassic.superconductorwire.name=Super Conductor Wire
 

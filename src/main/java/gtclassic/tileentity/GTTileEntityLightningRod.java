@@ -12,12 +12,13 @@ import net.minecraft.util.math.BlockPos.MutableBlockPos;
 
 public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 
-	public int rodheight = 0;
+	public int rodheight;
 
 	public GTTileEntityLightningRod() {
 		super(0);
 		this.maxStorage = 100000000;
 		this.production = 8096;
+		this.rodheight = 0;
 
 	}
 
@@ -26,9 +27,9 @@ public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 		if (world.getTotalWorldTime() % 256 == 0 && world.rand.nextInt(10) == 0) {
 			// TODO manage precip height and lightning chance
 			if (world.isThundering()
-					&& /* world.getPrecipitationHeight(pos).getY() <= pos.getY() + rodheight && */ checkStructure()) {
+					&& /* world.getPrecipitationHeight(pos).getY() <= (pos.getY() + rodheight &&) */ checkStructure()) {
 				this.world.addWeatherEffect(new EntityLightningBolt(this.world, this.getPos().getX(),
-						getPos().getY() + 7, this.getPos().getZ(), false));
+						getPos().getY() + 8, this.getPos().getZ(), false));
 				if (this.storage < this.maxStorage) {
 					this.storage = Math.min(this.maxStorage, storage + 25000000);
 					getNetwork().updateTileGuiField(this, "storage");
@@ -73,7 +74,7 @@ public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 			position.setY(i);
 			if (!checkPos(position)) {
 				heighest = i - 1;
-				rodheight = i;
+				this.rodheight = i;
 				break;
 			}
 		}

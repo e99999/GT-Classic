@@ -8,6 +8,7 @@ import java.util.Random;
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.tileentity.GTTileEntityIDSU;
+import gtclassic.tileentity.GTTileEntityLESU;
 import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
@@ -38,7 +39,7 @@ public class GTBlockEnergy extends BlockMultiID {
 		SUPERCONDENSATOR, SUPERCONDUCTORWIRE,
 
 		// STORAGE
-		IDSU, HESU;
+		IDSU, HESU, LESU;
 	}
 
 	GTBlockEnergyVariants variant;
@@ -78,6 +79,8 @@ public class GTBlockEnergy extends BlockMultiID {
 			return new GTTileEntityHESU();
 		} else if (this == GTBlocks.IDSU) {
 			return new GTTileEntityIDSU();
+		} else if (this == GTBlocks.LESU) {
+			return new GTTileEntityLESU();
 		} else if (this == GTBlocks.superCondensator) {
 			return new GTTileEntitySuperCondensator();
 		} else {
@@ -109,18 +112,14 @@ public class GTBlockEnergy extends BlockMultiID {
 	public TextureAtlasSprite[] getIconSheet(int meta) {
 		if (this == GTBlocks.superCondensator) {
 			return Ic2Icons.getTextures("gtclassic_supercondensator");
-		}
-
-		else if (this == GTBlocks.superConductorWire) {
+		} else if (this == GTBlocks.superConductorWire) {
 			return Ic2Icons.getTextures("gtclassic_superconductorwire");
-		}
-
-		else if (this == GTBlocks.IDSU) {
+		} else if (this == GTBlocks.IDSU) {
 			return Ic2Icons.getTextures("gtclassic_interdimensionalenergysu");
-		}
-
-		else if (this == GTBlocks.HESU) {
+		} else if (this == GTBlocks.HESU) {
 			return Ic2Icons.getTextures("gtclassic_hugeenergysu");
+		} else if (this == GTBlocks.LESU) {
+			return Ic2Icons.getTextures("gtclassic_lapotronicenergysu");
 		} else {
 			return Ic2Icons.getTextures("gtclassic_builder");
 		}

@@ -23,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockCasing extends Block implements ITexturedBlock {
 	public enum GTBlockCasingVariants {
-		FUSION(1), HIGHLYADVANCED(29);
+		FUSION(1), HIGHLYADVANCED(29), LESU(5);
 
 		private int id;
 

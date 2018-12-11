@@ -21,6 +21,7 @@ import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.tileentity.GTTileEntityIDSU;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntityLESU;
 import gtclassic.tileentity.GTTileEntityLargeChest;
 import gtclassic.tileentity.GTTileEntityLightningRod;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
@@ -44,7 +45,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class GTBlocks {
 
 	public static final GTBlockCasing fusionMachineBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
-			highlyadvancedMachineBlock = new GTBlockCasing(GTBlockCasingVariants.HIGHLYADVANCED);
+			highlyadvancedMachineBlock = new GTBlockCasing(GTBlockCasingVariants.HIGHLYADVANCED),
+			lesuMachineBlock = new GTBlockCasing(GTBlockCasingVariants.LESU);
 
 	public static final GTBlockMetal iridiumReinforcedStoneBlock = new GTBlockMetal(
 			GTBlockMetalVariants.IRIDIUM_REINFORCED_STONE), rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
@@ -75,7 +77,7 @@ public class GTBlocks {
 			quantumChest = new GTBlockStorage(GTBlockStorageVariants.QUANTUMCHEST);
 
 	public static final GTBlockEnergy IDSU = new GTBlockEnergy(GTBlockEnergyVariants.IDSU),
-			HESU = new GTBlockEnergy(GTBlockEnergyVariants.HESU),
+			HESU = new GTBlockEnergy(GTBlockEnergyVariants.HESU), LESU = new GTBlockEnergy(GTBlockEnergyVariants.LESU),
 			superCondensator = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDENSATOR),
 			superConductorWire = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDUCTORWIRE);
 
@@ -88,7 +90,7 @@ public class GTBlocks {
 
 	public static final Block[] blocks = {
 
-			fusionMachineBlock, highlyadvancedMachineBlock,
+			fusionMachineBlock, highlyadvancedMachineBlock, lesuMachineBlock,
 
 			iridiumReinforcedStoneBlock, rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock,
 
@@ -99,7 +101,7 @@ public class GTBlocks {
 
 			smallChest, largeChest, quantumChest,
 
-			fusionComputer, lightningRod, IDSU, HESU, superCondensator, superConductorWire,
+			fusionComputer, lightningRod, IDSU, HESU, LESU, superCondensator, superConductorWire,
 
 			toxicPortalFrame, toxicPortal, grassToxic
 
@@ -139,6 +141,7 @@ public class GTBlocks {
 
 		GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
 		GameRegistry.registerTileEntity(GTTileEntityIDSU.class, new ResourceLocation(GTClassic.MODID, "tileIDSU"));
+		GameRegistry.registerTileEntity(GTTileEntityLESU.class, new ResourceLocation(GTClassic.MODID, "tileLESU"));
 
 		GameRegistry.registerTileEntity(GTTileEntityLightningRod.class,
 				new ResourceLocation(GTClassic.MODID, "tileLightningRod"));

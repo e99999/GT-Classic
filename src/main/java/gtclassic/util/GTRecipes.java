@@ -330,6 +330,9 @@ public class GTRecipes {
 		recipes.addRecipe(Ic2Items.reactorReflectorThick.copy(),
 				new Object[] { " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GTItems.berilium });
 
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G',
+				"blockGlass", 'I', ingotElectric, 'H', GTItems.helium, 'C', Ic2Items.insulatedCopperCable.copy() });
+
 	}
 
 	public static void initMachineRecipes() {
