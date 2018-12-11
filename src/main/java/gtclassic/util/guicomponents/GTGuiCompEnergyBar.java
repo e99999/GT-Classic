@@ -1,15 +1,15 @@
 package gtclassic.util.guicomponents;
 
+import java.util.Arrays;
+import java.util.List;
+
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
-import ic2.core.inventory.gui.components.GuiComponent.ActionRequest;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.player.PlayerHandler;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
-import java.util.Arrays;
-import java.util.List;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

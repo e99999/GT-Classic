@@ -7,6 +7,7 @@ import java.util.Random;
 
 import gtclassic.GTClassic;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
+import gtclassic.tileentity.GTTileEntityLightningRod;
 import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -60,7 +61,9 @@ public class GTBlockGenerator extends BlockMultiID {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		if (this == GTBlocks.fusionComputer) {
+		if (this == GTBlocks.lightningRod) {
+			return new GTTileEntityLightningRod();
+		} else if (this == GTBlocks.fusionComputer) {
 			return new GTTileEntityFusionComputer();
 		} else {
 			return new TileEntityBlock();

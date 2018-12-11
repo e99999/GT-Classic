@@ -22,6 +22,7 @@ import gtclassic.tileentity.GTTileEntityHESU;
 import gtclassic.tileentity.GTTileEntityIDSU;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeChest;
+import gtclassic.tileentity.GTTileEntityLightningRod;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
 import gtclassic.tileentity.GTTileEntitySmallChest;
 import gtclassic.tileentity.GTTileEntitySuperCondensator;
@@ -139,8 +140,10 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
 		GameRegistry.registerTileEntity(GTTileEntityIDSU.class, new ResourceLocation(GTClassic.MODID, "tileIDSU"));
 
+		GameRegistry.registerTileEntity(GTTileEntityLightningRod.class,
+				new ResourceLocation(GTClassic.MODID, "tileLightningRod"));
 		GameRegistry.registerTileEntity(GTTileEntityFusionComputer.class,
-				new ResourceLocation(GTClassic.MODID, "tileFusionReactor"));
+				new ResourceLocation(GTClassic.MODID, "tileFusionComputer"));
 	}
 
 	private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
