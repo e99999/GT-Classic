@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import com.google.common.collect.Lists;
 
-import gtclassic.tileentity.GTTileEntityFusionComputer;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge.OutputItem;
+import gtclassic.block.tileentity.GTTileEntityFusionComputer;
+import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge.OutputItem;
 import gtclassic.util.misc.RecipeHelpers.IRecipeModifier;
 import gtclassic.util.misc.RecipeHelpers.ModifierType;
 import ic2.api.classic.recipe.ClassicRecipes;

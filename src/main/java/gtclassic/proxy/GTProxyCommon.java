@@ -5,7 +5,7 @@ import java.io.File;
 import gtclassic.GTBiomes;
 import gtclassic.GTConfig;
 import gtclassic.GTDimensions;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTItems;
 import net.minecraftforge.common.MinecraftForge;

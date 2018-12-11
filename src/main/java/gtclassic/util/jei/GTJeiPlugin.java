@@ -2,8 +2,8 @@ package gtclassic.util.jei;
 
 import javax.annotation.Nonnull;
 
-import gtclassic.tileentity.GTTileEntityFusionComputer;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.block.tileentity.GTTileEntityFusionComputer;
+import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTItems;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;

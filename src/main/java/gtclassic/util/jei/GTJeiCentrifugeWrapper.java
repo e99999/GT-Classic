@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTItems;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import mezz.jei.api.ingredients.IIngredients;
