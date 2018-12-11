@@ -18,8 +18,6 @@ import net.minecraft.world.World;
 
 public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 
-	public static final IBlockState rodState = Ic2States.ironFence;
-
 	public GTTileEntityLightningRod() {
 		super(0);
 		this.maxStorage = 100000000;
@@ -41,20 +39,19 @@ public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 
 	@Override
 	public void update() {
-		Random rand = world instanceof World ? world.rand : new Random();
-
-		if (world.getTotalWorldTime() % 256 == 0 /* && correctWeather(this.world, this.getPos().up()) */
-				&& rand.nextInt(10) == 0) {
-			if (checkStructure()) {
-				this.world.addWeatherEffect(new EntityLightningBolt(this.world, this.getPos().getX(),
-						this.getPos().getY(), this.getPos().getZ(), false));
-				if (this.storage < this.maxStorage) {
-
-					this.storage = Math.min(this.maxStorage, this.storage + (production));
+		if (world.getTotalWorldTime() % 256 == 0 && world.rand.nextInt(10) == 0)
+		{
+			if (world.isThundering() && world.getPrecipitationHeight(pos) <= pos.getY() + 1 && checkStructure()) 
+			{
+				this.world.addWeatherEffect(new EntityLightningBolt(this.world, this.getPos().getX(), getPos().getY(), this.getPos().getZ(), false));
+				if (this.storage < this.maxStorage) 
+				{
+					this.storage = Math.min(this.maxStorage, storage + 25000000);
+					getNetwork().updateTileGuiField(this, "storage");
 				}
 			}
 		}
-
+		updateComparators();
 	}
 
 	@Override
@@ -84,54 +81,22 @@ public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 
 	public boolean checkStructure() {
 		// if (world.isRemote) return false; //Return false if on client side
-		if (!world.isAreaLoaded(pos, 3))
-			return false;
-
-		BlockPos working;
-
-		// vertical line upward
-		working = pos.offset(EnumFacing.UP, 1);
-		if (!(checkPos(working))) {
-			return false;
+		//world.isRemote is not a good idea, just use isRendering() instead which is in Ic2cs TileEntities a native function and is also not relying on a world.
+		MutableBlockPos position = new MutableBlockPos(pos);
+		int heighest = 0;
+		for(int i = pos.getY() + 1;i<world.provider.getActualHeight();i++)
+		{
+			position.setY(i);
+			if(!checkPos(position))
+			{
+				heighest = i-1;
+				break;
+			}
 		}
-		working = pos.offset(EnumFacing.UP, 2);
-		if (!(checkPos(working))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.UP, 3);
-		if (!(checkPos(working))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.UP, 4);
-		if (!(checkPos(working))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.UP, 5);
-		if (!(checkPos(working))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.UP, 6);
-		if (!(checkPos(working))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.UP, 7);
-		if (!(checkPos(working))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.UP, 8);
-		if (!(checkPos(working))) {
-			return false;
-		}
-
-		return true;
+		return heighest > 7;
 	}
 
 	public boolean checkPos(BlockPos pos) {
-		return world.getBlockState(pos) == rodState;
+		return world.getBlockState(pos) == Ic2States.ironFence;
 	}
-
-	public boolean checkPos(BlockPos pos, EnumFacing facing, int offset) {
-		return checkPos(pos.offset(facing, offset));
-	}
-
 }
