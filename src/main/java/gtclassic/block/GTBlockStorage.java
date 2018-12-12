@@ -21,6 +21,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
@@ -144,7 +145,12 @@ public class GTBlockStorage extends BlockMultiID {
 
 	@Override
 	public float getEnchantPowerBonus(World world, BlockPos pos) {
-		return this == GTBlocks.bookShelf ? 2 : 0;
+		TileEntity tile = world.getTileEntity(pos);
+		if ((tile instanceof GTTileEntityBookshelf) && (((GTTileEntityBookshelf) tile).isActive)) {
+			return 2;
+		} else {
+			return 0;
+		}
 	}
 
 }

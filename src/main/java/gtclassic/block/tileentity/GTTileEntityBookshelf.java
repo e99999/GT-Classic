@@ -45,10 +45,6 @@ public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui 
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 
 		for (int i = 0; i < 7; i++) {
-			handler.registerDefaultSlotAccess(AccessRule.Both, i);
-			handler.registerDefaultSlotsForSide(RotationList.ALL, i);
-			handler.registerSlotType(SlotType.Input, i);
-			handler.registerSlotType(SlotType.Output, i);
 			handler.registerInputFilter(new BasicItemFilter(Items.BOOK), i);
 		}
 	}
