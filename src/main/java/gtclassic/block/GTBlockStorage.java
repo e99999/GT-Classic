@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
+import gtclassic.block.tileentity.GTTileEntityBookshelf;
 import gtclassic.block.tileentity.GTTileEntityLargeChest;
 import gtclassic.block.tileentity.GTTileEntityQuantumChest;
 import gtclassic.block.tileentity.GTTileEntitySmallChest;
@@ -21,6 +22,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -77,6 +79,10 @@ public class GTBlockStorage extends BlockMultiID {
 			return new GTTileEntityLargeChest();
 		}
 
+		else if (this == GTBlocks.bookShelf) {
+			return new GTTileEntityBookshelf();
+		}
+
 		else {
 			return new TileEntityBlock();
 		}
@@ -119,6 +125,8 @@ public class GTBlockStorage extends BlockMultiID {
 		for (EnumFacing side : EnumFacing.VALUES) {
 			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
 					false));
+			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+					true));
 		}
 		return states;
 	}
@@ -132,6 +140,11 @@ public class GTBlockStorage extends BlockMultiID {
 	@Deprecated
 	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
 		return false;
+	}
+
+	@Override
+	public float getEnchantPowerBonus(World world, BlockPos pos) {
+		return this == GTBlocks.bookShelf ? 2 : 0;
 	}
 
 }

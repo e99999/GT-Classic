@@ -16,6 +16,7 @@ import gtclassic.block.material.GTBlockMetal.GTBlockMetalVariants;
 import gtclassic.block.material.GTBlockOre;
 import gtclassic.block.material.GTBlockOre.GTBlockOreVariants;
 import gtclassic.block.material.GTBlockSandIron;
+import gtclassic.block.tileentity.GTTileEntityBookshelf;
 import gtclassic.block.tileentity.GTTileEntityComputerCube;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityHESU;
@@ -139,6 +140,8 @@ public class GTBlocks {
 				new ResourceLocation(GTClassic.MODID, "tileEntityLargeChest"));
 		GameRegistry.registerTileEntity(GTTileEntityQuantumChest.class,
 				new ResourceLocation(GTClassic.MODID, "tileQuantumChest"));
+		GameRegistry.registerTileEntity(GTTileEntityBookshelf.class,
+				new ResourceLocation(GTClassic.MODID, "tileEntityBookshelf"));
 
 		GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
 		GameRegistry.registerTileEntity(GTTileEntityIDSU.class, new ResourceLocation(GTClassic.MODID, "tileIDSU"));
