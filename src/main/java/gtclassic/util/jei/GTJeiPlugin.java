@@ -30,7 +30,7 @@ public class GTJeiPlugin implements IModPlugin {
 	@Override
 	public void register(@Nonnull IModRegistry registry) {
 
-		if (SubModul.load){
+		if (SubModul.load) {
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), new String[] { "fusion" });
 			// TODO remove the ic2 worktable once Speiger patches it on his end

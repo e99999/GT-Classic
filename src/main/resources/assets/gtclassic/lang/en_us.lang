@@ -59,6 +59,7 @@ item.gtclassic.lithiumBattery.name=Lithium Battery
 item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
+item.gtclassic.debug_scanner.name=Debug Scanner
 item.gtclassic.zeroPointModule.name=Zero Point Module
 item.gtclassic.glass_tube.name=Glass Tube
 
@@ -117,10 +118,19 @@ item.gtclassic.aluminium_ingot.name=Aluminium Ingot
 item.gtclassic.titanium_ingot.name=Titanium Ingot
 item.gtclassic.chrome_ingot.name=Chrome Ingot
 
-#
+#reactor
 item.gtclassic.heatstorage_single.name=60K Helium Coolant Cell
 item.gtclassic.heatstorage_triple.name=120K Helium Coolant Cell
 item.gtclassic.heatstorage_six.name=360K Helium Coolant Cell
+
+item.gtclassic.singlethorium_rod.name=Thorium Cell
+item.gtclassic.doublethorium_rod.name=Dual Thorium Cell
+item.gtclassic.quadthorium_rod.name=Quad Thorium Cell
+item.gtclassic.singleplutonium_rod.name=Plutonium Cell
+item.gtclassic.doubleplutonium_rod.name=Dual Plutonium Cell
+item.gtclassic.quadplutonium_rod.name=Quad Plutonium Cell
+
+
 
 #other materials
 item.gtclassic.ruby_gem.name=Ruby

@@ -4,8 +4,6 @@ import gtclassic.GTClassic;
 import gtclassic.item.GTItemComponents;
 import gtclassic.item.GTItemComponents.GTItemComponentTypes;
 import gtclassic.item.GTItemDuctTape;
-import gtclassic.item.GTItemHeatStorage;
-import gtclassic.item.GTItemHeatStorage.GTItemHeatStorageTypes;
 import gtclassic.item.armor.GTItemEnergyPack;
 import gtclassic.item.energy.GTItemLapotronicEnergyOrb;
 import gtclassic.item.energy.GTItemLithiumBattery;
@@ -20,9 +18,14 @@ import gtclassic.item.material.GTItemIngot;
 import gtclassic.item.material.GTItemIngot.GTItemIngotTypes;
 import gtclassic.item.material.GTItemPlasma;
 import gtclassic.item.material.GTItemPlasma.GTItemPlasmaTypes;
+import gtclassic.item.reactor.GTItemHeatStorage;
+import gtclassic.item.reactor.GTItemHeatStorage.GTItemHeatStorageTypes;
+import gtclassic.item.reactor.GTItemRod;
+import gtclassic.item.reactor.GTItemRod.GTItemRodTypes;
 import gtclassic.item.tool.GTItemAdvancedChainsaw;
 import gtclassic.item.tool.GTItemAdvancedDrill;
 import gtclassic.item.tool.GTItemCraftingTablet;
+import gtclassic.item.tool.GTItemDebugScanner;
 import gtclassic.item.tool.GTItemDestructoPack;
 import gtclassic.item.tool.GTItemElectromagnet;
 import gtclassic.item.tool.GTItemHammerIron;
@@ -91,6 +94,13 @@ public class GTItems {
 			heatStorageTriple = new GTItemHeatStorage(GTItemHeatStorageTypes.TRIPLE),
 			heatStorageSix = new GTItemHeatStorage(GTItemHeatStorageTypes.SIX);
 
+	public static final GTItemRod rodThoriumSingle = new GTItemRod(GTItemRodTypes.SINGLETHORIUM),
+			rodThoriumDouble = new GTItemRod(GTItemRodTypes.DOUBLETHORIUM),
+			rodThoriumQuad = new GTItemRod(GTItemRodTypes.QUADTHORIUM),
+			rodPlutoniumSingle = new GTItemRod(GTItemRodTypes.SINGLEPLUTONIUM),
+			rodPlutoniumDouble = new GTItemRod(GTItemRodTypes.DOUBLEPLUTONIUM),
+			rodPlutoniumQuad = new GTItemRod(GTItemRodTypes.QUADPLUTONIUM);
+
 	public static final GTItemComponents glassTube = new GTItemComponents(GTItemComponentTypes.GLASS_TUBE),
 			energyFlowCircuit = new GTItemComponents(GTItemComponentTypes.ENERGY_FLOW_CIRCUIT),
 			dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
@@ -117,6 +127,7 @@ public class GTItems {
 	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45,
 			"gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192);
 	public static final GTItemZeroPointModule zeroPointModule = new GTItemZeroPointModule();
+	public static final GTItemDebugScanner debugScanner = new GTItemDebugScanner();
 	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 
 	public static final Item[] items = {
@@ -135,12 +146,14 @@ public class GTItems {
 			ruby, sapphire, ingotIridium, ingotAluminium, ingotTitanium, ingotChrome, plateSilicon,
 
 			heatStorageSingle, heatStorageTriple, heatStorageSix,
+			
+			rodThoriumSingle, rodThoriumDouble, rodThoriumQuad, rodPlutoniumSingle, rodPlutoniumDouble, rodPlutoniumQuad,
 
 			energyFlowCircuit, dataControlCircuit, superConductor, dataStorageCircuit, braintechAerospaceARDT, dataOrb,
 
 			sonictronItem, destructoPack, craftingTablet, hammerIron, electroMagnet, rockCutter, advancedDrill,
 			advancedChainsaw, teslaStaff, lithiumBattery, lapotronicEnergyOrb, lithiumBatpack, lapotronPack,
-			zeroPointModule, creditAlk
+			debugScanner, zeroPointModule, creditAlk
 
 	};
 

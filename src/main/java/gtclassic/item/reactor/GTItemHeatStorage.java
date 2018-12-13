@@ -1,4 +1,4 @@
-package gtclassic.item;
+package gtclassic.item.reactor;
 
 import java.util.Arrays;
 import java.util.List;
