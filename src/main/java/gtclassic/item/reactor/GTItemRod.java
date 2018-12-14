@@ -59,7 +59,7 @@ public class GTItemRod extends ItemGrandualInt implements IBootable, ISteamReact
 	public TextureAtlasSprite getTexture(int i) {
 		return Ic2Icons.getTextures("gtclassic_items")[variant.getID()];
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));

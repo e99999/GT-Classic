@@ -11,6 +11,7 @@ import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.item.base.ItemIC2;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,6 +55,7 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 
 			TileEntity tileEntity = world.getTileEntity(pos);
 
+			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 			if (!IC2.platform.isSimulating()) {
 				return EnumActionResult.PASS;
 			}
@@ -64,15 +66,17 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + te.checkStructure());
 				IC2.platform.messagePlayer(player, "Fence Amount: " + (te.fenceheight - (te.getPos().getY() + 1)));
 				IC2.platform.messagePlayer(player, "Fence Level: " + te.fenceheight);
+				IC2.platform.messagePlayer(player, "Weather Height: " + world.getPrecipitationHeight(pos).getY());
 				IC2.platform.messagePlayer(player, "Block Up Level: " + (te.getPos().getY() + 1));
-				IC2.platform.messagePlayer(player, "Storm Strength: " + world.thunderingStrength);
+				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.thunderingStrength) * 100) + "%");
+				IC2.platform.messagePlayer(player, "1 out of " + te.chance + " chance to strike based on fence height");
 				return EnumActionResult.SUCCESS;
 			}
 
 			if (tileEntity instanceof GTTileEntityFusionComputer) {
 				GTTileEntityFusionComputer te1 = (GTTileEntityFusionComputer) tileEntity;
 				IC2.platform.messagePlayer(player, "---Fusion Computer Multi Block Information---");
-				IC2.platform.messagePlayer(player, "Block: Active=" + te1.getActive() + " Facing=" + te1.getFacing());
+				IC2.platform.messagePlayer(player, "Active: " + te1.getActive());
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + te1.checkStructure());
 				IC2.platform.messagePlayer(player, "Stored EU: " + te1.getStoredEU());
 				return EnumActionResult.SUCCESS;
@@ -88,7 +92,7 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 			}
 
 			else {
-				IC2.platform.messagePlayer(player, "?????????");
+				IC2.platform.messagePlayer(player, "Nothing to read from this");
 			}
 
 		}

@@ -11,6 +11,7 @@ import ic2.api.classic.item.IMiningDrill;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.state.IBlockState;
@@ -80,7 +81,7 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
 		if (entityLiving instanceof EntityPlayer) {
 			IC2.achievements.issueStat((EntityPlayer) entityLiving, "blocksDrilled");
 		}
-
+		IC2.audioManager.playOnce(entityLiving, Ic2Sounds.drillHard);
 		return super.onBlockDestroyed(stack, worldIn, blockIn, pos, entityLiving);
 	}
 

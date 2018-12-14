@@ -146,8 +146,9 @@ public class GTItems {
 			ruby, sapphire, ingotIridium, ingotAluminium, ingotTitanium, ingotChrome, plateSilicon,
 
 			heatStorageSingle, heatStorageTriple, heatStorageSix,
-			
-			rodThoriumSingle, rodThoriumDouble, rodThoriumQuad, rodPlutoniumSingle, rodPlutoniumDouble, rodPlutoniumQuad,
+
+			rodThoriumSingle, rodThoriumDouble, rodThoriumQuad, rodPlutoniumSingle, rodPlutoniumDouble,
+			rodPlutoniumQuad,
 
 			energyFlowCircuit, dataControlCircuit, superConductor, dataStorageCircuit, braintechAerospaceARDT, dataOrb,
 

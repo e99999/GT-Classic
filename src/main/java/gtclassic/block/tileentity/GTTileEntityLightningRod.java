@@ -13,23 +13,24 @@ import net.minecraft.util.math.BlockPos.MutableBlockPos;
 public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 
 	public int fenceheight;
+	public int chance;
 
 	public GTTileEntityLightningRod() {
 		super(0);
 		this.maxStorage = 100000000;
 		this.production = 8096;
 		this.fenceheight = 0;
+		this.chance = 262;
 
 	}
 
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 256 == 0 && world.rand.nextInt(10) == 0) {
-			// TODO manage precip height and lightning chance
-			if (world.isThundering()
-					&& /* world.getPrecipitationHeight(pos).getY() <= (pos.getY() + fenceheight &&) */ checkStructure()) {
-				this.world.addWeatherEffect(new EntityLightningBolt(this.world, this.getPos().getX(),
-						fenceheight, this.getPos().getZ(), false));
+		if (world.getTotalWorldTime() % 256 == 0 && world.rand.nextInt(chance) == 0) {
+			if (world.isThundering() && (world.getPrecipitationHeight(pos).getY() <= (fenceheight + 3))
+					&& checkStructure()) {
+				this.world.addWeatherEffect(new EntityLightningBolt(this.world, this.getPos().getX(), fenceheight,
+						this.getPos().getZ(), false));
 				if (this.storage < this.maxStorage) {
 					this.storage = Math.min(this.maxStorage, storage + 25000000);
 					getNetwork().updateTileGuiField(this, "storage");
@@ -64,21 +65,35 @@ public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 		return false;
 	}
 
+	public void fenceCheck() {
+		if (fenceheight > 254) {
+			fenceheight = 254;
+		}
+		// keeps strange circumstances from borking the logic
+	}
+
+	public void chanceCheck() {
+		if (chance < 10) {
+			chance = 10;
+		}
+		// keeps strange circumstances from borking the logic
+	}
+
 	public boolean checkStructure() {
-		// if (world.isRemote) return false; //Return false if on client side
-		// world.isRemote is not a good idea, just use isRendering() instead which is in
-		// Ic2cs TileEntities a native function and is also not relying on a world.
 		MutableBlockPos position = new MutableBlockPos(pos);
 		int heighest = 0;
-		for (int i = pos.getY() + 1; i < world.provider.getActualHeight(); i++) {
+		for (int i = pos.getY() + 1; i < (world.provider.getActualHeight() + 1); i++) {
 			position.setY(i);
 			if (!checkPos(position)) {
 				heighest = i - 1;
 				this.fenceheight = i;
+				fenceCheck();
+				this.chance = 262 - (fenceheight - (this.getPos().getY() + 1));
+				chanceCheck();
 				break;
 			}
 		}
-		return heighest > (pos.getY()+7);
+		return heighest > (pos.getY() + 7);
 	}
 
 	public boolean checkPos(BlockPos pos) {

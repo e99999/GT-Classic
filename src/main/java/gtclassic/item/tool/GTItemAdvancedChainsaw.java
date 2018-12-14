@@ -8,6 +8,7 @@ import gtclassic.GTClassic;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.Block;
@@ -27,10 +28,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
@@ -181,6 +184,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
 		blockState.getBlock().harvestBlock(world, player, pos, blockState, world.getTileEntity(pos), saw);
 		world.setBlockToAir(pos);
 		world.removeTileEntity(pos);
+		IC2.audioManager.playOnce(player, Ic2Sounds.chainsawUseOne);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import gtclassic.GTClassic;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.BasicElectricItem;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedItem;
 import ic2.core.util.misc.StackUtil;
@@ -47,8 +48,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements ITexturedI
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE,
-				SoundCategory.MASTER, 1.0F, 1.0F);
+		IC2.audioManager.playOnce(playerIn, Ic2Sounds.forceFieldOp);
 		if (IC2.platform.isSimulating()) {
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(playerIn.getHeldItem(handIn));
 			boolean result = !nbt.getBoolean(active);
