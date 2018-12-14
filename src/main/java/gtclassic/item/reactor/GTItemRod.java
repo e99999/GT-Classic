@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
-import gtclassic.item.reactor.GTItemRod.GTItemRodTypes;
-import ic2.api.classic.reactor.IReactorPlanner;
 import ic2.api.classic.reactor.IReactorPlannerComponent;
 import ic2.api.classic.reactor.ISteamReactor;
 import ic2.api.classic.reactor.ISteamReactorComponent;

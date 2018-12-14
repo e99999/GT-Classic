@@ -1,6 +1,8 @@
 package gtclassic.block.tileentity;
 
 import gtclassic.block.container.GTContainerComputerCube0;
+import gtclassic.block.container.GTContainerComputerCube1;
+import gtclassic.block.container.GTContainerComputerCube2;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
@@ -13,8 +15,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileEntityComputerCube extends TileEntityMachine implements IHasGui {
 
+	public int index;
+
 	public GTTileEntityComputerCube() {
 		super(1);
+		this.index = 0;
 	}
 
 	@Override
@@ -25,7 +30,17 @@ public class GTTileEntityComputerCube extends TileEntityMachine implements IHasG
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerComputerCube0(player.inventory, this);
+		if (this.index == 0) {
+			return new GTContainerComputerCube0(player.inventory, this);
+		}
+		if (this.index == 1) {
+			return new GTContainerComputerCube1(player.inventory, this);
+		}
+		if (this.index == 2) {
+			return new GTContainerComputerCube2(player.inventory, this);
+		} else {
+			return new GTContainerComputerCube0(player.inventory, this);
+		}
 	}
 
 	@Override
@@ -40,12 +55,18 @@ public class GTTileEntityComputerCube extends TileEntityMachine implements IHasG
 
 	@Override
 	public void onGuiClosed(EntityPlayer entityPlayer) {
-		// needed for construction
 	}
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
+	}
+	
+	public void advanceIndex () {
+		this.index = this.index + 1;
+		if (this.index > 2) {
+			this.index = 0;
+		}
 	}
 
 }

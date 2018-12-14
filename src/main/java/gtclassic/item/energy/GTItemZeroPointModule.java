@@ -36,7 +36,7 @@ public class GTItemZeroPointModule extends ItemBatteryBase {
 		this.setCreativeTab(GTClassic.creativeTabGT);
 		this.maxCharge = Integer.MAX_VALUE;
 		this.transferLimit = 13107;
-		this.tier = 6;
+		this.tier = 1;
 		this.provider = true;
 		this.setCreativeTab(GTClassic.creativeTabGT);
 	}

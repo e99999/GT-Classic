@@ -55,7 +55,6 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 
 			TileEntity tileEntity = world.getTileEntity(pos);
 
-			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 			if (!IC2.platform.isSimulating()) {
 				return EnumActionResult.PASS;
 			}
@@ -70,15 +69,18 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 				IC2.platform.messagePlayer(player, "Block Up Level: " + (te.getPos().getY() + 1));
 				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.thunderingStrength) * 100) + "%");
 				IC2.platform.messagePlayer(player, "1 out of " + te.chance + " chance to strike based on fence height");
+				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}
 
 			if (tileEntity instanceof GTTileEntityFusionComputer) {
 				GTTileEntityFusionComputer te1 = (GTTileEntityFusionComputer) tileEntity;
 				IC2.platform.messagePlayer(player, "---Fusion Computer Multi Block Information---");
-				IC2.platform.messagePlayer(player, "Active: " + te1.getActive());
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + te1.checkStructure());
+				IC2.platform.messagePlayer(player, "Active: " + te1.getActive());
+				IC2.platform.messagePlayer(player, "Progress: " + ((int) (te1.getProgress() / 100)) + "%");
 				IC2.platform.messagePlayer(player, "Stored EU: " + te1.getStoredEU());
+				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}
 
@@ -89,6 +91,7 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 				IC2.platform.messagePlayer(player, "Output: " + te4.getOutput());
 				IC2.platform.messagePlayer(player, "Stored EU: " + te4.getStored());
 				IC2.platform.messagePlayer(player, "Max EU: " + te4.getCapacity());
+				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 			}
 
 			else {

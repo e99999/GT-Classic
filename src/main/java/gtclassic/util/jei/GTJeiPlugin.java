@@ -17,7 +17,6 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 @JEIPlugin
 public class GTJeiPlugin implements IModPlugin {

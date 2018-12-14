@@ -2,7 +2,6 @@ package gtclassic.block.container;
 
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTItems;
-import gtclassic.util.guicomponent.GTMachineUpProgressComp;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.GuiIC2;
@@ -49,7 +48,7 @@ public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTi
 				GTContainerIndustrialCentrifuge.machineProgressPosRight));
 		this.addComponent(new MachineProgressComp(tile, GTContainerIndustrialCentrifuge.machineProgressBoxLeft,
 				GTContainerIndustrialCentrifuge.machineProgressPosLeft));
-		this.addComponent(new GTMachineUpProgressComp(tile, GTContainerIndustrialCentrifuge.machineProgressBoxUp,
+		this.addComponent(new MachineProgressComp(tile, GTContainerIndustrialCentrifuge.machineProgressBoxUp,
 				GTContainerIndustrialCentrifuge.machineProgressPosUp));
 		this.addComponent(new MachineProgressComp(tile, GTContainerIndustrialCentrifuge.machineProgressBoxDown,
 				GTContainerIndustrialCentrifuge.machineProgressPosDown));

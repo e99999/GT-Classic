@@ -112,6 +112,7 @@ public class GTBlocks {
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		IForgeRegistry registry = event.getRegistry();
+		GTClassic.logger.info("Registering Blocks");
 		for (Block block : blocks) {
 			registry.register(block);
 		}
