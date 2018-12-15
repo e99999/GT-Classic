@@ -11,6 +11,7 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -18,7 +19,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui {
-
+	
+	Set<Integer> storedSlots = new HashSet<Integer>();
+	
 	public GTTileEntityBookshelf() {
 		super(8);
 	}
@@ -27,7 +30,13 @@ public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui 
 	public LocaleComp getBlockName() {
 		return GTLang.bookshelf;
 	}
-
+	
+	@Override
+	public boolean canUpdate()
+	{
+		return false;
+	}
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
@@ -42,10 +51,7 @@ public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-
-		for (int i = 0; i < 7; i++) {
-			handler.registerInputFilter(new BasicItemFilter(Items.BOOK), i);
-		}
+		handler.registerInputFilter(new BasicItemFilter(Items.BOOK), MathUtil.fromTo(0, 8));
 	}
 
 	@Override
@@ -55,29 +61,37 @@ public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui 
 
 	@Override
 	public void onLoaded() {
-		hasBooks();
 		super.onLoaded();
+		for(int i = 0;i<8;i++) {
+			if(getStackInSlot(i).getCount() > 0) {
+				storedSlots.add(i);
+				continue;
+			}
+			storedSlots.remove(i);
+		}
+		setActive(storedSlots.size() > 0);
 	}
-
+	
+	@Override
+	public void setStackInSlot(int slot, ItemStack stack) {
+		super.setStackInSlot(slot, stack);
+		if(isSimulating()) {
+			if(stack.getCount() > 0) {
+				storedSlots.add(slot);
+			}
+			else {
+				storedSlots.remove(slot);
+			}
+			setActive(storedSlots.size() > 0);
+		}
+	}	
+	
 	@Override
 	public void onGuiClosed(EntityPlayer entityPlayer) {
-		hasBooks();
 	}
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
 	}
-
-	public void hasBooks() {
-		for (int i = 0; i < 8; i++) {
-			if (this.getStackInSlot(i).getCount() > 0) {
-				this.setActive(true);
-				break;
-			} else {
-				this.setActive(false);
-			}
-		}
-	}
-
 }
