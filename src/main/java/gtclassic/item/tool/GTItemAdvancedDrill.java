@@ -40,7 +40,7 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
 		this.setUnlocalizedName(GTClassic.MODID + ".advancedDrill");
 		this.attackDamage = 8.0F;
 		this.maxCharge = 100000;
-		this.transferLimit = 150;
+		this.transferLimit = 128;
 		this.tier = 1;
 		this.setCreativeTab(GTClassic.creativeTabGT);
 	}
@@ -67,7 +67,7 @@ public class GTItemAdvancedDrill extends ItemElectricTool implements IStaticText
 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
-		return 64.0F;
+		return 48.0F;
 	}
 
 	@Override

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.block.tileentity.GTTileEntityComputerCube;
-import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.util.GTBlocks;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.buttons.IconButton;
@@ -20,8 +19,6 @@ public class GTGuiCompComputerCube extends GuiComponent {
 	GTTileEntityComputerCube block;
 	int white = 16777215;
 	int grey = 4210752;
-	int red = 15599112;
-	int green = 9567352;
 
 	public GTGuiCompComputerCube(GTTileEntityComputerCube tile) {
 		super(Ic2GuiComp.nullBox);
@@ -33,18 +30,20 @@ public class GTGuiCompComputerCube extends GuiComponent {
 		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.GuiTick,
 				ActionRequest.FrontgroundDraw, ActionRequest.BackgroundDraw);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void onGuiInit(GuiIC2 gui) {
-		gui.registerButton((new IconButton(0, gui.getXOffset() + 147, gui.getYOffset() + 6, 20, 20)).setItemStack(new ItemStack(GTBlocks.computerCube))
-				.addText("Mode"));
+	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
+		gui.drawCenteredString("[" + getTime(gui) + "]", 89, 9, grey);
+		gui.drawCenteredString("G.L.A.D.-OS", 91, 59, white);
 	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void onButtonClick(GuiIC2 gui, GuiButton button) {
-		this.block.advanceIndex();
+
+	public String getTime(GuiIC2 gui) {
+		long time = gui.getPlayer().getEntityWorld().getWorldTime();
+		int hours = (int) ((time / 1000 + 8) % 24);
+		int minutes = (int) (60 * (time % 1000) / 1000);
+		return String.format("%02d:%02d", hours, minutes);
+
 	}
 
 }

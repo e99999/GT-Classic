@@ -163,7 +163,8 @@ public class GTItems {
 		IForgeRegistry registry = event.getRegistry();
 		// items
 		GTClassic.logger.info("Registering Items");
-		GTClassic.logger.info("WARNING [The ZPM is still in debug mode if you are reading this e99999 did not do his job]");
+		GTClassic.logger
+				.info("WARNING [The ZPM is still in debug mode if you are reading this e99999 did not do his job]");
 		for (Item item : items) {
 			registry.register(item);
 		}

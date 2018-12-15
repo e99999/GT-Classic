@@ -45,7 +45,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
 		super(0.0F, 0.0F, ToolMaterial.IRON);
 		this.attackDamage = 8.0F;
 		this.maxCharge = 100000;
-		this.transferLimit = 150;
+		this.transferLimit = 128;
 		this.operationEnergyCost = 50;
 		this.tier = 1;
 		this.efficiency = 12.0F;

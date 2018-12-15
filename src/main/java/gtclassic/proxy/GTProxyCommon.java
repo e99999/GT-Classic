@@ -5,7 +5,6 @@ import java.io.File;
 import gtclassic.GTBiomes;
 import gtclassic.GTConfig;
 import gtclassic.GTDimensions;
-import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTBlocks;
 import gtclassic.util.GTItems;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,7 +21,7 @@ public class GTProxyCommon {
 	// create config on pre load
 	public void preInit(FMLPreInitializationEvent e) {
 		File directory = e.getModConfigurationDirectory();
-		config = new Configuration(new File(directory.getPath(), "GTClassic.cfg"));
+		config = new Configuration(new File(directory.getPath(), "ic2/gtclassic.cfg"));
 		GTConfig.readConfig();
 		config.save();
 		GTDimensions.init();
@@ -34,7 +33,6 @@ public class GTProxyCommon {
 	public void init(FMLInitializationEvent e) {
 		GTBiomes.init();
 		GTBiomes.initBiomeDict();
-		GTTileEntityIndustrialCentrifuge.init();
 	}
 
 	public void postInit(FMLPostInitializationEvent e) {

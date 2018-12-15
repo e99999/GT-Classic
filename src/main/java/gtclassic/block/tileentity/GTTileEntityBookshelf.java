@@ -1,5 +1,8 @@
 package gtclassic.block.tileentity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import gtclassic.block.container.GTContainerBookshelf;
 import gtclassic.util.GTLang;
 import ic2.core.RotationList;
@@ -15,13 +18,14 @@ import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui {
-	
+
 	Set<Integer> storedSlots = new HashSet<Integer>();
-	
+
 	public GTTileEntityBookshelf() {
 		super(8);
 	}
@@ -30,13 +34,12 @@ public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui 
 	public LocaleComp getBlockName() {
 		return GTLang.bookshelf;
 	}
-	
+
 	@Override
-	public boolean canUpdate()
-	{
+	public boolean canUpdate() {
 		return false;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
@@ -62,8 +65,8 @@ public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui 
 	@Override
 	public void onLoaded() {
 		super.onLoaded();
-		for(int i = 0;i<8;i++) {
-			if(getStackInSlot(i).getCount() > 0) {
+		for (int i = 0; i < 8; i++) {
+			if (getStackInSlot(i).getCount() > 0) {
 				storedSlots.add(i);
 				continue;
 			}
@@ -71,21 +74,20 @@ public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui 
 		}
 		setActive(storedSlots.size() > 0);
 	}
-	
+
 	@Override
 	public void setStackInSlot(int slot, ItemStack stack) {
 		super.setStackInSlot(slot, stack);
-		if(isSimulating()) {
-			if(stack.getCount() > 0) {
+		if (isSimulating()) {
+			if (stack.getCount() > 0) {
 				storedSlots.add(slot);
-			}
-			else {
+			} else {
 				storedSlots.remove(slot);
 			}
 			setActive(storedSlots.size() > 0);
 		}
-	}	
-	
+	}
+
 	@Override
 	public void onGuiClosed(EntityPlayer entityPlayer) {
 	}

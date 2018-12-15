@@ -188,12 +188,6 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 		return nbt;
 	}
 
-	public static void init() {
-		// addRecipe(new ItemStack(Blocks.DIRT, 16), 10, new OutputItem(new
-		// ItemStack(Items.DIAMOND), 0));
-		// moved to GTRecipes
-	}
-
 	public static void addRecipe(ItemStack stack, int cellRequirement, OutputItem... results) {
 		addRecipe(new RecipeInputItemStack(stack), cellRequirement, results);
 	}

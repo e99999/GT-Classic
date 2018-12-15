@@ -7,7 +7,6 @@ import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityLightningRod;
 import ic2.api.classic.item.IEUReader;
-import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.item.base.ItemIC2;

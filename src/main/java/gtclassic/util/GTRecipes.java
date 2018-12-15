@@ -135,6 +135,10 @@ public class GTRecipes {
 		recipes.addShapelessRecipe(new ItemStack(GTItems.methane, 4),
 				new Object[] { GTItems.carbon, GTItems.hydrogen, GTItems.hydrogen, GTItems.hydrogen });
 
+		recipes.addShapelessRecipe(new ItemStack(Items.GUNPOWDER, 5),
+				new Object[] { GTItems.potassium, GTItems.potassium, GTItems.nitrogen, GTItems.nitrogen, GTItems.oxygen,
+						GTItems.oxygen, GTItems.oxygen });
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.glassTube, 1), new Object[] { GTItems.oxygen });
 
 		recipes.addShapelessRecipe(new ItemStack(GTItems.water, 1), new Object[] { water, GTItems.glassTube });
@@ -364,6 +368,10 @@ public class GTRecipes {
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G',
 				"blockGlass", 'I', ingotElectric, 'H', GTItems.helium, 'C', Ic2Items.insulatedCopperCable.copy() });
 
+		recipes.addRecipe(Ic2Items.plasmaCore.copy(),
+				new Object[] { "XYX", "YCY", "XYX", 'X', StackUtil.copyWithSize(Ic2Items.magnet, 2), 'Y',
+						StackUtil.copyWithSize(Ic2Items.advancedAlloy, 4), 'C', GTItems.plasmaUU });
+
 	}
 
 	public static void initMachineRecipes() {
@@ -436,8 +444,6 @@ public class GTRecipes {
 		TileEntityExtractor.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.ruby), 3), 0.3F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.sapphire), 3),
 				0.3F);
-
-		TileEntityExtractor.addRecipe("oreMagnetite", 1, StackUtil.copyWithSize(Ic2Items.ironDust, 1), 0.3F);
 
 		// INDUSTRIAL CENTRIFUGE RECIPES IN ORDER OF ORIGINAL GT1
 
@@ -643,6 +649,10 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.tungsten, 1), 3));// out3
 
 		// INDUSTRIAL CENTRIFUGE RECIPES NEW/OUT OF ORDER
+		
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(GTBlocks.sandIron, 3), 0,
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 2), 1),
+				new OutputItem(new ItemStack(Items.GOLD_NUGGET, 1), 2));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.QUARTZ, 8), 12,
 				new OutputItem(new ItemStack(GTItems.silicon, 8), 1),
