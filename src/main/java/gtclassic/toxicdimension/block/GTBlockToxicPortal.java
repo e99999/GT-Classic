@@ -1,5 +1,6 @@
 package gtclassic.toxicdimension.block;
 
+import java.util.List;
 import java.util.Random;
 
 import com.google.common.cache.LoadingCache;
@@ -8,6 +9,8 @@ import gtclassic.GTClassic;
 import gtclassic.GTConfig;
 import gtclassic.toxicdimension.world.GTToxicTeleporter;
 import gtclassic.util.GTBlocks;
+import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.SoundType;
@@ -16,39 +19,63 @@ import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockToxicPortal extends BlockPortal {
+public class GTBlockToxicPortal extends BlockPortal implements ITexturedBlock {
 
 	public GTBlockToxicPortal() {
 		super();
-		setRegistryName("toxic_portal"); // texture
-		setUnlocalizedName(GTClassic.MODID + ".toxicPortal"); // lang
+		setRegistryName("toxic_portal");
+		setUnlocalizedName(GTClassic.MODID + ".toxicPortal");
 		setHardness(-1.0F);
 		setLightLevel(0.75F);
 		setSoundType(SoundType.GLASS);
 	}
 
+	static final AxisAlignedBB box = new AxisAlignedBB(0.42D, 0.0D, 0.0D, 0.21D, 1.0D, 1.0D);
+
+	@Override
+	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
+		return box;
+	}
+
 	@SideOnly(Side.CLIENT)
-	public void initModel() {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), 0,
-				new ModelResourceLocation(getRegistryName(), "inventory"));
+	@Override
+	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
+		return Ic2Icons.getTextures("gtclassic_blocks")[75];
+
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getParticleTexture(IBlockState state) {
+		return this.getTextureFromState(state, EnumFacing.SOUTH);
+	}
+
+	@Override
+	public List<IBlockState> getValidStates() {
+		return this.blockState.getValidStates();
+	}
+
+	@Override
+	public IBlockState getStateFromStack(ItemStack stack) {
+		return this.getStateFromMeta(stack.getMetadata());
 	}
 
 	@Override

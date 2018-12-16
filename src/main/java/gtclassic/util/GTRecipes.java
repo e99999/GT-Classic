@@ -649,7 +649,7 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.tungsten, 1), 3));// out3
 
 		// INDUSTRIAL CENTRIFUGE RECIPES NEW/OUT OF ORDER
-		
+
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(GTBlocks.sandIron, 3), 0,
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 2), 1),
 				new OutputItem(new ItemStack(Items.GOLD_NUGGET, 1), 2));

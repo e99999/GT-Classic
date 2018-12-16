@@ -4,13 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.block.tileentity.GTTileEntityComputerCube;
-import gtclassic.util.GTBlocks;
 import ic2.core.inventory.gui.GuiIC2;
-import ic2.core.inventory.gui.buttons.IconButton;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.registry.Ic2GuiComp;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

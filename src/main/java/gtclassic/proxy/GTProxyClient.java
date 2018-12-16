@@ -1,9 +1,7 @@
 package gtclassic.proxy;
 
-import gtclassic.util.GTBlocks;
 import gtclassic.util.GTIcons;
 import ic2.core.platform.textures.Ic2Icons.SpriteReloadEvent;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -20,10 +18,5 @@ public class GTProxyClient extends GTProxyCommon {
 	@SubscribeEvent
 	public static void onIconLoad(SpriteReloadEvent event) {
 		GTIcons.loadSprites();
-	}
-
-	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event) {
-		GTBlocks.initModels();
 	}
 }

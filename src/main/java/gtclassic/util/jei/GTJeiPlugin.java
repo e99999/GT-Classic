@@ -31,9 +31,9 @@ public class GTJeiPlugin implements IModPlugin {
 	public void register(@Nonnull IModRegistry registry) {
 
 		if (SubModul.load) {
-			
+
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-			
+
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), new String[] { "fusion" });
 			// TODO remove the ic2 worktable once Speiger patches it on his end
@@ -56,7 +56,7 @@ public class GTJeiPlugin implements IModPlugin {
 				}
 			}, "fusion");
 			registry.addRecipes(GTTileEntityFusionComputer.RECIPE_LIST.getRecipeMap(), "fusion");
-			
+
 			blacklist.addIngredientToBlacklist(new ItemStack(GTBlocks.toxicPortal));
 		}
 	}

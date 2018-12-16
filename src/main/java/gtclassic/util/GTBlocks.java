@@ -39,8 +39,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
@@ -157,10 +155,5 @@ public class GTBlocks {
 	private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
 		// overloads deprecated method to properly register tiles
 		GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public static void initModels() {
-		toxicPortal.initModel();
 	}
 }
