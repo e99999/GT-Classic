@@ -13,6 +13,7 @@ import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
@@ -30,6 +31,9 @@ public class GTJeiPlugin implements IModPlugin {
 	public void register(@Nonnull IModRegistry registry) {
 
 		if (SubModul.load) {
+			
+			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
+			
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), new String[] { "fusion" });
 			// TODO remove the ic2 worktable once Speiger patches it on his end
@@ -52,6 +56,8 @@ public class GTJeiPlugin implements IModPlugin {
 				}
 			}, "fusion");
 			registry.addRecipes(GTTileEntityFusionComputer.RECIPE_LIST.getRecipeMap(), "fusion");
+			
+			blacklist.addIngredientToBlacklist(new ItemStack(GTBlocks.toxicPortal));
 		}
 	}
 

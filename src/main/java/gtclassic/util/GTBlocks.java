@@ -162,6 +162,5 @@ public class GTBlocks {
 	@SideOnly(Side.CLIENT)
 	public static void initModels() {
 		toxicPortal.initModel();
-		grassToxic.initModel();
 	}
 }
