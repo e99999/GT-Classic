@@ -153,8 +153,8 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTItems.hammerIron, 1),
 				new Object[] { "II ", "IIS", "II ", 'I', "ingotIron", 'S', Items.STICK });
 
-		recipes.addRecipe(new ItemStack(GTItems.electroMagnet, 1),
-				new Object[] { "M M", "IMI", "IBI", 'M', Ic2Items.magnet, 'B', Ic2Items.battery, 'I', ingotElectric });
+		recipes.addRecipe(new ItemStack(GTItems.electroMagnet, 1), new Object[] { "M M", "WMW", "IBI", 'M',
+				Ic2Items.magnet, 'B', Ic2Items.battery, 'I', ingotElectric, 'W', Ic2Items.copperCable });
 
 		recipes.addRecipe(new ItemStack(GTItems.rockCutter, 1),
 				new Object[] { "DI ", "DI ", "DCB",
@@ -244,7 +244,7 @@ public class GTRecipes {
 						GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'Y', Ic2Items.teslaCoil.copy(), 'B',
 						Ic2Items.advMachine.copy(), 'R', Ic2Items.reactorReflectorIridium.copy() });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.toxicPortalFrame),
+		recipes.addRecipe(new ItemStack(GTBlocks.toxicPortalFrame, 2),
 				new Object[] { "TIN", "XMY", "PEH", 'T', GTItems.braintechAerospaceARDT, 'I', GTItems.ingotTitanium,
 						'N', Ic2Items.scrapMetal, 'X', GTItems.proton, 'M', GTBlocks.iridiumReinforcedStoneBlock, 'Y',
 						GTItems.neutron, 'P', Ic2Items.reactorNearDepletedUraniumRod.copy(), 'E', "ingotAluminium", 'H',
