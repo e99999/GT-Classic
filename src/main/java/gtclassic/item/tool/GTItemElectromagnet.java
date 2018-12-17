@@ -31,11 +31,12 @@ public class GTItemElectromagnet extends BasicElectricItem implements ITexturedI
 
 	public static final String active = "ImActive";
 	int range = 7;
-	double speed = 0.033D;
+	double speed = 0.04D;
 	double energyCost = 1;
 
 	public GTItemElectromagnet() {
 		this.maxStackSize = 1;
+		this.setHasSubtypes(true);
 		this.setRegistryName("electromagnet");
 		this.setUnlocalizedName(GTClassic.MODID + ".electroMagnet");
 		this.maxCharge = 10000;
@@ -72,12 +73,15 @@ public class GTItemElectromagnet extends BasicElectricItem implements ITexturedI
 			for (EntityItem item : worldIn.getEntitiesWithinAABB(EntityItem.class,
 					new AxisAlignedBB(x, y, z, x + 1, y + 1, z + 1).grow(range))) {
 				if (!canPull(stack) || pulled > 200) {
-					return;
+					break;
 				}
 				item.addVelocity((x - item.posX) * speed, (y - item.posY) * speed, (z - item.posZ) * speed);
 				ElectricItem.manager.use(stack, energyCost, (EntityLivingBase) null);
 				pulled++;
 			}
+			GTClassic.logger.info("pulled: " + pulled);
+			GTClassic.logger.info("meta: " + this.getDamage(stack));
+			this.setDamage(stack, pulled > 0 ? 1 : 0);
 		}
 	}
 
@@ -95,12 +99,12 @@ public class GTItemElectromagnet extends BasicElectricItem implements ITexturedI
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[59];
+		return Ic2Icons.getTextures("gtclassic_items")[76 + meta];
 	}
 
 	@Override
 	public List<Integer> getValidVariants() {
-		return Arrays.asList(0);
+		return Arrays.asList(0, 1);
 	}
 
 	@Override
