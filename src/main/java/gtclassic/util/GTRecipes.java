@@ -289,8 +289,11 @@ public class GTRecipes {
 				new Object[] { "RCR", "AEA", "RMR", 'E', GTItems.lapotronicEnergyOrb, 'R', GTItems.energyFlowCircuit,
 						'A', "chestWood", 'C', GTBlocks.computerCube, 'M', Ic2Items.advMachine.copy() });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "DRD", "MCM", "DRD", 'D',
-				GTItems.dataOrb, 'R', GTItems.energyFlowCircuit, 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+		recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
+				GTItems.dataOrb, 'I', "ingotChrome" , 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+		
+		recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
+				GTItems.dataOrb, 'I', "ingotTitanium" , 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.sonictronBlock, 1),
 				new Object[] { "CRC", "NMN", "CJC", 'C', "circuitBasic", 'N', Blocks.NOTEBLOCK, 'J', Blocks.JUKEBOX,

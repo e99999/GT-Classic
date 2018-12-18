@@ -98,12 +98,14 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 				if (inventory.get(slotOutput) == ItemStack.EMPTY || inventory.get(slotOutput).getCount() == 0) {
 					if (this.quantumCount > 0) {// first stop gap
 						inventory.set(slotOutput, inventory.get(slotDisplay).copy());
-						if (this.quantumCount > 0) { //second stop gap
+						if (this.quantumCount >= size) { //second stop gap
 							inventory.get(slotOutput).grow(size);
 							removeQuantumToSlot(size);
 						}
 					} else {
 						inventory.set(slotDisplay, ItemStack.EMPTY);
+						quantumCount = 0;
+						updateGUI();
 					}
 				}
 				if (inventory.get(slotDisplay).getCount() != 0
