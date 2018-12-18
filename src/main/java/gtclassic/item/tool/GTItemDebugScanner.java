@@ -6,6 +6,7 @@ import java.util.List;
 import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityLightningRod;
+import gtclassic.block.tileentity.GTTileEntityQuantumChest;
 import ic2.api.classic.item.IEUReader;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
@@ -79,6 +80,15 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 				IC2.platform.messagePlayer(player, "Active: " + te1.getActive());
 				IC2.platform.messagePlayer(player, "Progress: " + ((int) (te1.getProgress() / 100)) + "%");
 				IC2.platform.messagePlayer(player, "Stored EU: " + te1.getStoredEU());
+				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+				return EnumActionResult.SUCCESS;
+			}
+			
+			if (tileEntity instanceof GTTileEntityQuantumChest) {
+				 GTTileEntityQuantumChest te2 = ( GTTileEntityQuantumChest) tileEntity;
+				IC2.platform.messagePlayer(player, "---Quantum Chest Information---");
+				IC2.platform.messagePlayer(player, "Quantity: " + te2.getAmount());
+				IC2.platform.messagePlayer(player, "Qauntum Count: " + te2.getCount());
 				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}
