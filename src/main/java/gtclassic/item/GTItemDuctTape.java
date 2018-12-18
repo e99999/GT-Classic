@@ -20,7 +20,7 @@ public class GTItemDuctTape extends Item implements IStaticTexturedItem {
 
 	public GTItemDuctTape() {
 		this.maxStackSize = 1;
-		this.setMaxDamage(64);
+		this.setMaxDamage(255);
 		setRegistryName("braintech_aerospace_ardt");
 		setUnlocalizedName(GTClassic.MODID + ".braintech_aerospace_ardt");
 		setCreativeTab(GTClassic.creativeTabGT);
@@ -35,7 +35,7 @@ public class GTItemDuctTape extends Item implements IStaticTexturedItem {
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
 		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".ducttape"));
-		tooltip.add(stack.getMaxDamage() - stack.getItemDamage() + "/64");
+		tooltip.add((stack.getMaxDamage() + 1) - stack.getItemDamage() + "/256");
 	}
 
 	@Override

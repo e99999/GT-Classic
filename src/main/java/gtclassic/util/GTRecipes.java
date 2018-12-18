@@ -114,9 +114,6 @@ public class GTRecipes {
 
 	public static void initShapelessRecipes() {
 
-		recipes.addShapelessRecipe(new ItemStack(GTItems.braintechAerospaceARDT, 1),
-				new Object[] { StackUtil.copyWithSize(Ic2Items.rubber, 64) });
-
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.iridiumReinforcedStoneBlock, 1),
 				new Object[] { Ic2Items.reinforcedStone, "ingotIridium" });
 
@@ -171,6 +168,10 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTItems.glassTube, 32),
 				new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
 
+		// TODO make this shapeless when Speiger or Meduris fixes it
+		recipes.addRecipe(new ItemStack(GTItems.braintechAerospaceARDT),
+				new Object[] { "XX ", "XX ", "   ", 'X', StackUtil.copyWithSize(Ic2Items.rubber, 64) });
+
 		// ITEMS
 
 		recipes.addRecipe(new ItemStack(GTItems.heatStorageSingle, 1),
@@ -222,6 +223,9 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTItems.lithiumBatpack, 1), new Object[] { "LCL", "LAL", "L L", 'C',
 				"circuitAdvanced", 'A', "ingotAluminium", 'L', GTItems.lithiumBattery });
+
+		recipes.addRecipe(new ItemStack(GTItems.creditAlk, 1), new Object[] { "DSR", "EPE", "RSD", 'D', "gemDiamond",
+				'S', "gemSapphire", 'R', "gemRuby", 'E', "gemEmerald", 'P', Ic2Items.advancedAlloy });
 
 		// BLOCKS
 

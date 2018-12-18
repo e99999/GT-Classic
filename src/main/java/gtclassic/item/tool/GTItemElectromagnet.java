@@ -85,8 +85,6 @@ public class GTItemElectromagnet extends BasicElectricItem implements IStaticTex
 				ElectricItem.manager.use(stack, energyCost, (EntityLivingBase) null);
 				pulled++;
 			}
-			// GTClassic.logger.info("pulled: " + pulled);
-			// GTClassic.logger.info("meta: " + this.getDamage(stack));
 			this.setDamage(stack, pulled > 0 ? 1 : 0);
 		}
 	}

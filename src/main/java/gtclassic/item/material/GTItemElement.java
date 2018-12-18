@@ -36,6 +36,24 @@ public class GTItemElement extends Item implements IStaticTexturedItem {
 	}
 
 	@Override
+	public int getItemBurnTime(ItemStack stack) {
+		if (this == GTItems.hydrogen) {
+			return (12000 / 20);
+		}
+		if (this == GTItems.lithium) {
+			return (24000 / 20);
+		}
+		if (this == GTItems.carbon) {
+			return (6000 / 20);
+		}
+		if (this == GTItems.methane) {
+			return (24000 / 20);
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this == GTItems.proton || this == GTItems.neutron) {
 			tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
