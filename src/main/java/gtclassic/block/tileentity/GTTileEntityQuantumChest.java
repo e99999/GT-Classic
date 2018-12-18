@@ -27,8 +27,11 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 	int slotOutput = 1;
 	int slotDisplay = 2;
 
-	int maxSize = Integer.MAX_VALUE - 128;
+	int maxSize = Integer.MAX_VALUE;
 	int quantumCount;
+
+	// TODO i dont feel so good on login and logut, might need unload nbt saving or
+	// on update
 
 	public GTTileEntityQuantumChest() {
 		super(3);
@@ -43,6 +46,13 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 		} else {
 			return 64;
 		}
+	}
+
+	public boolean isSpace() {
+		if (this.quantumCount < maxSize) {
+			return true;
+		} else
+			return false;
 	}
 
 	public void updateGUI() {
@@ -69,34 +79,38 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 
 	@Override
 	public void update() {
-		if (!inventory.get(slotInput).isEmpty()) {
-			if (inventory.get(slotDisplay).isEmpty()) {
-				inventory.set(slotDisplay, inventory.get(slotInput).copy());
-				initQuantum(slotDisplay);
-				inventory.set(slotInput, ItemStack.EMPTY);
-			} else if (!inventory.get(slotDisplay).isEmpty()
-					&& StackUtil.isStackEqual(inventory.get(slotInput), inventory.get(slotDisplay), true, true)) {
-				copySlotToQuantum(slotInput);
-				inventory.get(slotDisplay).grow(inventory.get(slotInput).getCount());
-				inventory.set(slotInput, ItemStack.EMPTY);
-			}
-		}
-
-		if (!inventory.get(slotDisplay).isEmpty()) {
-			int size = inventory.get(slotDisplay).getMaxStackSize();
-			if (inventory.get(slotOutput) == ItemStack.EMPTY || inventory.get(slotOutput).getCount() == 0) {
-				if (this.quantumCount > 0) {
-					inventory.set(slotOutput, inventory.get(slotDisplay).copy());
-					removeQuantumToSlot(size);
-					inventory.get(slotOutput).grow(size);
-				} else {
-					inventory.set(slotDisplay, ItemStack.EMPTY);
+		if (world.getTotalWorldTime() % 5 == 0) { // temporary measure to prevent duping until i fix the logic
+			if (!inventory.get(slotInput).isEmpty() && isSpace()) {
+				if (inventory.get(slotDisplay).isEmpty()) {
+					inventory.set(slotDisplay, inventory.get(slotInput).copy());
+					initQuantum(slotDisplay);
+					inventory.set(slotInput, ItemStack.EMPTY);
+				} else if (!inventory.get(slotDisplay).isEmpty()
+						&& StackUtil.isStackEqual(inventory.get(slotInput), inventory.get(slotDisplay), true, true)) {
+					copySlotToQuantum(slotInput);
+					inventory.get(slotDisplay).grow(inventory.get(slotInput).getCount());
+					inventory.set(slotInput, ItemStack.EMPTY);
 				}
 			}
-			if (inventory.get(slotDisplay).getCount() != 0
-					&& StackUtil.isStackEqual(inventory.get(slotDisplay), inventory.get(slotOutput), true, true)
-					&& inventory.get(slotOutput).getCount() <= size - 1) {
-				inventory.get(slotDisplay).shrink(1);
+
+			if (!inventory.get(slotDisplay).isEmpty()) {
+				int size = inventory.get(slotDisplay).getMaxStackSize();
+				if (inventory.get(slotOutput) == ItemStack.EMPTY || inventory.get(slotOutput).getCount() == 0) {
+					if (this.quantumCount > 0) {// first stop gap
+						inventory.set(slotOutput, inventory.get(slotDisplay).copy());
+						if (this.quantumCount > 0) { //second stop gap
+							inventory.get(slotOutput).grow(size);
+							removeQuantumToSlot(size);
+						}
+					} else {
+						inventory.set(slotDisplay, ItemStack.EMPTY);
+					}
+				}
+				if (inventory.get(slotDisplay).getCount() != 0
+						&& StackUtil.isStackEqual(inventory.get(slotDisplay), inventory.get(slotOutput), true, true)
+						&& inventory.get(slotOutput).getCount() <= size - 1) {
+					inventory.get(slotDisplay).shrink(1);
+				}
 			}
 
 		}
