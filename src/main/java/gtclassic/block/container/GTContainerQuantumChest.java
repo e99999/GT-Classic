@@ -2,6 +2,7 @@ package gtclassic.block.container;
 
 import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityQuantumChest;
+import gtclassic.util.guicomponent.GTGuiCompQuantumChest;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotDisplay;
@@ -19,6 +20,7 @@ public class GTContainerQuantumChest extends ContainerTileComponent<GTTileEntity
 		this.addSlotToContainer(new SlotBase(tile, 0, 80, 17));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 1, 80, 53));
 		this.addSlotToContainer(new SlotDisplay(tile, 2, 59, 42));
+		this.addComponent(new GTGuiCompQuantumChest(tile));
 		this.addPlayerInventory(player, 0, 0);
 	}
 

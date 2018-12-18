@@ -15,6 +15,7 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,11 +26,38 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 	int slotInput = 0;
 	int slotOutput = 1;
 	int slotDisplay = 2;
-	int itemCount;
+
+	int maxSize = Integer.MAX_VALUE - 128;
+	int quantumCount;
 
 	public GTTileEntityQuantumChest() {
 		super(3);
-		this.itemCount = 0;
+		this.quantumCount = 0;
+		this.addGuiFields(new String[] { "quantumCount" });
+	}
+
+	@Override
+	public int getMaxStackSize(int slot) {
+		if (slot == 2) {
+			return 1;
+		} else {
+			return 64;
+		}
+	}
+
+	public void initQuantum(int slot) {
+		this.quantumCount = (this.inventory.get(slot).getCount());
+	}
+
+	public void copySlotToQuantum(int slot) {
+		this.quantumCount = this.quantumCount + inventory.get(slot).getCount();
+	}
+
+	public void removeQuantumToSlot(int size) {
+		this.quantumCount = this.quantumCount - size;
+		if (quantumCount < 0) {
+			quantumCount = 0;
+		}
 	}
 
 	@Override
@@ -37,9 +65,11 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 		if (!inventory.get(slotInput).isEmpty()) {
 			if (inventory.get(slotDisplay).isEmpty()) {
 				inventory.set(slotDisplay, inventory.get(slotInput).copy());
+				initQuantum(slotDisplay);
 				inventory.set(slotInput, ItemStack.EMPTY);
 			} else if (!inventory.get(slotDisplay).isEmpty()
 					&& StackUtil.isStackEqual(inventory.get(slotInput), inventory.get(slotDisplay), true, true)) {
+				copySlotToQuantum(slotInput);
 				inventory.get(slotDisplay).grow(inventory.get(slotInput).getCount());
 				inventory.set(slotInput, ItemStack.EMPTY);
 			}
@@ -48,10 +78,11 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 		if (!inventory.get(slotDisplay).isEmpty()) {
 			int size = inventory.get(slotDisplay).getMaxStackSize();
 			if (inventory.get(slotOutput) == ItemStack.EMPTY || inventory.get(slotOutput).getCount() == 0) {
-				if (inventory.get(slotDisplay).getCount() >= size) {
+				if (this.quantumCount > 0) {
 					inventory.set(slotOutput, inventory.get(slotDisplay).copy());
-					inventory.get(slotOutput).setCount(size);
-					inventory.get(slotDisplay).shrink(size);
+					inventory.get(slotOutput).grow(size);
+					removeQuantumToSlot(size);
+					// inventory.get(slotDisplay).shrink(size);
 				} else {
 					inventory.set(slotOutput, inventory.get(slotDisplay));
 					inventory.set(slotDisplay, ItemStack.EMPTY);
@@ -60,7 +91,7 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 			if (inventory.get(slotDisplay).getCount() != 0
 					&& StackUtil.isStackEqual(inventory.get(slotDisplay), inventory.get(slotOutput), true, true)
 					&& inventory.get(slotOutput).getCount() <= size - 1) {
-				inventory.get(slotOutput).grow(1);
+				// inventory.get(slotOutput).grow(1);
 				inventory.get(slotDisplay).shrink(1);
 
 			}
@@ -68,17 +99,30 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 		}
 	}
 
-	public int getAmount() {
+	public int getDisplayCount() {
 		return inventory.get(slotDisplay).getCount();
 	}
 
-	public int getCount() {
-		return itemCount;
+	public int getQuantumCount() {
+		return this.quantumCount;
 	}
 
 	@Override
 	public LocaleComp getBlockName() {
 		return GTLang.quantumchest;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		this.quantumCount = nbt.getInteger("quantumCount");
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setInteger("quantumCount", this.quantumCount);
+		return nbt;
 	}
 
 	@Override

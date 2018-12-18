@@ -83,12 +83,12 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}
-			
+
 			if (tileEntity instanceof GTTileEntityQuantumChest) {
-				 GTTileEntityQuantumChest te2 = ( GTTileEntityQuantumChest) tileEntity;
+				GTTileEntityQuantumChest te2 = (GTTileEntityQuantumChest) tileEntity;
 				IC2.platform.messagePlayer(player, "---Quantum Chest Information---");
-				IC2.platform.messagePlayer(player, "Quantity: " + te2.getAmount());
-				IC2.platform.messagePlayer(player, "Qauntum Count: " + te2.getCount());
+				IC2.platform.messagePlayer(player, "Display Count: " + te2.getDisplayCount());
+				IC2.platform.messagePlayer(player, "Internal Count: " + te2.getQuantumCount());
 				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}
