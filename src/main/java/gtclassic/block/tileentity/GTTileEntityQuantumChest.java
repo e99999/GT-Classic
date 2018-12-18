@@ -45,12 +45,18 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 		}
 	}
 
+	public void updateGUI() {
+		this.getNetwork().updateTileGuiField(this, "quantumCount");
+	}
+
 	public void initQuantum(int slot) {
 		this.quantumCount = (this.inventory.get(slot).getCount());
+		updateGUI();
 	}
 
 	public void copySlotToQuantum(int slot) {
 		this.quantumCount = this.quantumCount + inventory.get(slot).getCount();
+		updateGUI();
 	}
 
 	public void removeQuantumToSlot(int size) {
@@ -58,6 +64,7 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 		if (quantumCount < 0) {
 			quantumCount = 0;
 		}
+		updateGUI();
 	}
 
 	@Override
@@ -80,20 +87,16 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 			if (inventory.get(slotOutput) == ItemStack.EMPTY || inventory.get(slotOutput).getCount() == 0) {
 				if (this.quantumCount > 0) {
 					inventory.set(slotOutput, inventory.get(slotDisplay).copy());
-					inventory.get(slotOutput).grow(size);
 					removeQuantumToSlot(size);
-					// inventory.get(slotDisplay).shrink(size);
+					inventory.get(slotOutput).grow(size);
 				} else {
-					inventory.set(slotOutput, inventory.get(slotDisplay));
 					inventory.set(slotDisplay, ItemStack.EMPTY);
 				}
 			}
 			if (inventory.get(slotDisplay).getCount() != 0
 					&& StackUtil.isStackEqual(inventory.get(slotDisplay), inventory.get(slotOutput), true, true)
 					&& inventory.get(slotOutput).getCount() <= size - 1) {
-				// inventory.get(slotOutput).grow(1);
 				inventory.get(slotDisplay).shrink(1);
-
 			}
 
 		}
