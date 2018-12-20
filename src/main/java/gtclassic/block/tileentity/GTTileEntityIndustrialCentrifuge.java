@@ -52,7 +52,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("centrifuge");
 
 	public GTTileEntityIndustrialCentrifuge() {
-		super(7, 12, 100, 32);
+		super(7, 12, 1000, 32);
 		setFuelSlot(slotFuel);
 	}
 

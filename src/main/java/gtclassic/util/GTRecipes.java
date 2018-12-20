@@ -159,11 +159,11 @@ public class GTRecipes {
 								.setUsesInput(),
 						'D', "gemDiamond", 'I', ingotSteel, 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
 
-		recipes.addRecipe(new ItemStack(GTItems.advancedDrill, 1), new Object[] { " I ", "ICI", "IBI", 'I',
-				"ingotTitanium", 'B', GTItems.lithiumBattery, 'C', GTItems.energyFlowCircuit });
+		recipes.addRecipe(new ItemStack(GTItems.advancedDrill, 1), new Object[] { "DDD", "ICI", "IBI", 'I',
+				"ingotTitanium", 'B', GTItems.lithiumBattery, 'C', GTItems.dataControlCircuit, 'D', "gemDiamond" });
 
 		recipes.addRecipe(new ItemStack(GTItems.advancedChainsaw, 1), new Object[] { " II", "ICI", "BI ", 'I',
-				"ingotTitanium", 'B', GTItems.lithiumBattery, 'C', GTItems.energyFlowCircuit });
+				"ingotTitanium", 'B', GTItems.lithiumBattery, 'C', GTItems.dataControlCircuit });
 
 		recipes.addRecipe(new ItemStack(GTItems.glassTube, 32),
 				new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
@@ -290,10 +290,10 @@ public class GTRecipes {
 						'A', "chestWood", 'C', GTBlocks.computerCube, 'M', Ic2Items.advMachine.copy() });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-				GTItems.dataOrb, 'I', "ingotChrome" , 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
-		
+				GTItems.dataOrb, 'I', "ingotChrome", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+
 		recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-				GTItems.dataOrb, 'I', "ingotTitanium" , 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+				GTItems.dataOrb, 'I', "ingotTitanium", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.sonictronBlock, 1),
 				new Object[] { "CRC", "NMN", "CJC", 'C', "circuitBasic", 'N', Blocks.NOTEBLOCK, 'J', Blocks.JUKEBOX,
@@ -340,8 +340,8 @@ public class GTRecipes {
 		recipes.addRecipe(Ic2Items.electricCircuit.copy(), new Object[] { "CRC", "CIC", "CRC", 'I', ingotElectric, 'R',
 				"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy() });
 
-		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2), new Object[] { "CCC", "SIS", "CCC", 'I',
-				ingotElectric, 'C', Ic2Items.insulatedCopperCable.copy(), 'S', "plateSilicon" });
+		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.electricCircuit, 2), new Object[] { "CCC", "RSR", "CCC", 'R',
+				"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy(), 'S', "plateSilicon" });
 
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.advancedCircuit, 2), new Object[] { "IGI", "LCL", "IGI", 'L',
 				"dyeBlue", 'G', Items.GLOWSTONE_DUST, 'I', "ingotSilver", 'C', Ic2Items.electricCircuit.copy() });
@@ -454,9 +454,9 @@ public class GTRecipes {
 
 		// INDUSTRIAL CENTRIFUGE RECIPES IN ORDER OF ORIGINAL GT1
 
-		IRecipeModifier[] hardgate = new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(15900) };
-		IRecipeModifier[] medgate = new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(7900) };
-		IRecipeModifier[] easygate = new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(3900) };
+		IRecipeModifier[] hardgate = new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(15000) };
+		IRecipeModifier[] medgate = new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(7000) };
+		IRecipeModifier[] easygate = new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(3000) };
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(GTItems.water, 6), 0,
 				new OutputItem(new ItemStack(GTItems.hydrogen, 4), 1),
@@ -657,13 +657,13 @@ public class GTRecipes {
 
 		// INDUSTRIAL CENTRIFUGE RECIPES NEW/OUT OF ORDER
 
-		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(GTBlocks.sandIron, 3), 0,
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 2), 1),
-				new OutputItem(new ItemStack(Items.GOLD_NUGGET, 1), 2));
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(GTBlocks.sandIron, 8), 0,
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 7), 1),
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.goldDust, 1), 2));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.QUARTZ, 8), 12,
-				new OutputItem(new ItemStack(GTItems.silicon, 8), 1),
-				new OutputItem(new ItemStack(GTItems.oxygen, 4), 2));
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.QUARTZ, 8), 3, easygate,
+				new OutputItem(new ItemStack(GTItems.silicon, 1), 1),
+				new OutputItem(new ItemStack(GTItems.oxygen, 2), 2));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.obsidianDust, 64), 10,
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 2), 0),
