@@ -1,6 +1,6 @@
 # GT-Classic
 # About 
-GT Classic is a "port" of GT1 for 1.12.2 and IC2 Classic.
+GT Classic is a rewrite of GT1 for 1.12.2 and IC2 Classic.
 
 # Downloads
 The project is not available to download/play at this time please check back soon.
