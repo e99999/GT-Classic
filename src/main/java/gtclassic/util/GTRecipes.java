@@ -396,7 +396,7 @@ public class GTRecipes {
 		TileEntityCompressor.addRecipe("ingotChrome", 9, new ItemStack(GTBlocks.chromeBlock), 0.1F);
 		TileEntityCompressor.addRecipe("ingotTitanium", 9, new ItemStack(GTBlocks.titaniumBlock), 0.1F);
 
-		TileEntityCompressor.addRecipe(new ItemStack(GTItems.silicon, 9),
+		TileEntityCompressor.addRecipe(new ItemStack(GTItems.silicon, 1),
 				StackUtil.copyWithSize(new ItemStack(GTItems.plateSilicon), 1), 0.2F);
 
 		TileEntityCompressor.addRecipe(new ItemStack(GTItems.carbon, 8),
@@ -661,7 +661,7 @@ public class GTRecipes {
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 7), 1),
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.goldDust, 1), 2));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.QUARTZ, 8), 3, easygate,
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.QUARTZ, 1), 3, easygate,
 				new OutputItem(new ItemStack(GTItems.silicon, 1), 1),
 				new OutputItem(new ItemStack(GTItems.oxygen, 2), 2));
 

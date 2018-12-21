@@ -130,8 +130,6 @@ item.gtclassic.singleplutonium_rod.name=Plutonium Cell
 item.gtclassic.doubleplutonium_rod.name=Dual Plutonium Cell
 item.gtclassic.quadplutonium_rod.name=Quad Plutonium Cell
 
-
-
 #other materials
 item.gtclassic.ruby_gem.name=Ruby
 item.gtclassic.sapphire_gem.name=Sapphire
