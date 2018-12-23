@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.GTClassic;
+import gtclassic.GTItems;
 import gtclassic.block.container.GTContainerIndustrialCentrifuge;
-import gtclassic.util.GTItems;
-import gtclassic.util.misc.GTBasicMachineRecipeList;
-import gtclassic.util.misc.RecipeHelpers.IRecipeModifier;
+import gtclassic.util.recipe.GTBasicMachineRecipeList;
+import gtclassic.util.recipe.GTRecipeHelpers.IRecipeModifier;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;

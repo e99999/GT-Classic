@@ -1,8 +1,8 @@
 package gtclassic.block.container;
 
+import gtclassic.GTItems;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
-import gtclassic.util.GTItems;
-import gtclassic.util.guicomponent.GTGuiCompFusion;
+import gtclassic.util.gui.GTGuiCompFusion;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.GuiIC2;

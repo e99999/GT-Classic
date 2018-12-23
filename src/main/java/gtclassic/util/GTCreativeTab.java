@@ -1,5 +1,6 @@
 package gtclassic.util;
 
+import gtclassic.GTItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;

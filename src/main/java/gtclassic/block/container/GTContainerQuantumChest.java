@@ -2,7 +2,7 @@ package gtclassic.block.container;
 
 import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityQuantumChest;
-import gtclassic.util.guicomponent.GTGuiCompQuantumChest;
+import gtclassic.util.gui.GTGuiCompQuantumChest;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotDisplay;

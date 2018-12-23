@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
-import gtclassic.util.GTItems;
+import gtclassic.GTItems;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;

@@ -1,5 +1,6 @@
 package gtclassic.util;
 
+import gtclassic.GTItems;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;

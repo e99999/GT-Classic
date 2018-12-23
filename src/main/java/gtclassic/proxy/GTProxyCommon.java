@@ -2,11 +2,9 @@ package gtclassic.proxy;
 
 import java.io.File;
 
-import gtclassic.GTBiomes;
+import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
-import gtclassic.GTDimensions;
-import gtclassic.util.GTBlocks;
-import gtclassic.util.GTItems;
+import gtclassic.GTItems;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -24,15 +22,13 @@ public class GTProxyCommon {
 		config = new Configuration(new File(directory.getPath(), "ic2/gtclassic.cfg"));
 		GTConfig.readConfig();
 		config.save();
-		GTDimensions.init();
 		MinecraftForge.EVENT_BUS.register(GTBlocks.class);
 		GTBlocks.registerTiles();
 		MinecraftForge.EVENT_BUS.register(GTItems.class);
 	}
 
 	public void init(FMLInitializationEvent e) {
-		GTBiomes.init();
-		GTBiomes.initBiomeDict();
+		// temporarily empty init method
 	}
 
 	public void postInit(FMLPostInitializationEvent e) {

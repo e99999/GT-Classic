@@ -4,8 +4,8 @@ import static ic2.core.block.wiring.container.ContainerElectricBlock.VALID_EQUIP
 
 import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityIDSU;
-import gtclassic.util.guicomponent.GTGuiCompEnergyBar;
-import gtclassic.util.guicomponent.GTGuiCompEnergyStorage;
+import gtclassic.util.gui.GTGuiCompEnergyBar;
+import gtclassic.util.gui.GTGuiCompEnergyStorage;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotArmor;

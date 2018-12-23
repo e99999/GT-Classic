@@ -2,10 +2,10 @@ package gtclassic.util.jei;
 
 import javax.annotation.Nonnull;
 
+import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.util.GTBlocks;
-import gtclassic.util.GTItems;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.jeiIntigration.SubModul;
@@ -57,7 +57,6 @@ public class GTJeiPlugin implements IModPlugin {
 			}, "fusion");
 			registry.addRecipes(GTTileEntityFusionComputer.RECIPE_LIST.getRecipeMap(), "fusion");
 
-			blacklist.addIngredientToBlacklist(new ItemStack(GTBlocks.toxicPortal));
 		}
 	}
 

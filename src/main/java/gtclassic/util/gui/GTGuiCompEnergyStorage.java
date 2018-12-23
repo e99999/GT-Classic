@@ -1,4 +1,4 @@
-package gtclassic.util.guicomponent;
+package gtclassic.util.gui;
 
 import java.util.Arrays;
 import java.util.List;

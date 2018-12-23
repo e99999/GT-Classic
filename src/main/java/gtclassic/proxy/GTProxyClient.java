@@ -1,6 +1,6 @@
 package gtclassic.proxy;
 
-import gtclassic.util.GTIcons;
+import gtclassic.GTIcons;
 import ic2.core.platform.textures.Ic2Icons.SpriteReloadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

@@ -1,8 +1,8 @@
 package gtclassic.item.container;
 
 import gtclassic.GTClassic;
+import gtclassic.GTItems;
 import gtclassic.item.inventory.GTInventoryDestructoPack;
-import gtclassic.util.GTItems;
 import ic2.core.inventory.container.ContainerItemComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.InvertedFilter;

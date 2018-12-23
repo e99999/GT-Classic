@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
-import gtclassic.util.GTBlocks;
-import gtclassic.util.GTItems;
+import gtclassic.GTItems;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
@@ -31,8 +31,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTBlockOre extends Block implements ITexturedBlock {
 	public enum GTBlockOreVariants {
 
-		IRIDIUM(80, 3, 20.0F), RUBY(82, 2, 4.0F), SAPPHIRE(83, 2, 4.0F), BAUXITE(84, 1, 3.0F),
-		IRIDIUM_END(86, 3, 20.0F);
+		IRIDIUM(80, 3, 20.0F), RUBY(81, 2, 4.0F), SAPPHIRE(82, 2, 4.0F), BAUXITE(83, 1, 3.0F),
+		IRIDIUM_END(85, 3, 20.0F);
 
 		private int id;
 		private int harvest;

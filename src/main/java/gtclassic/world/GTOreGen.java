@@ -4,8 +4,8 @@ import java.util.Random;
 
 import com.google.common.base.Predicate;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
-import gtclassic.util.GTBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
@@ -40,7 +40,7 @@ public class GTOreGen implements IWorldGenerator {
 		case THE_END:
 
 			if (GTConfig.genIridium) {
-				runGenerator(GTBlocks.iridiumEnd.getDefaultState(), 4, 12, 10, 30,
+				runGenerator(GTBlocks.iridiumEnd.getDefaultState(), 2, 8, 10, 30,
 						BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			}
 

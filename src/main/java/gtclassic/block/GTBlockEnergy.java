@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityHESU;
 import gtclassic.block.tileentity.GTTileEntityIDSU;
 import gtclassic.block.tileentity.GTTileEntityLESU;
 import gtclassic.block.tileentity.GTTileEntitySuperCondensator;
-import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;

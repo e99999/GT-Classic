@@ -1,6 +1,5 @@
-package gtclassic.util;
+package gtclassic;
 
-import gtclassic.GTClassic;
 import gtclassic.item.GTItemComponents;
 import gtclassic.item.GTItemComponents.GTItemComponentTypes;
 import gtclassic.item.GTItemDuctTape;
@@ -32,7 +31,6 @@ import gtclassic.item.tool.GTItemHammerIron;
 import gtclassic.item.tool.GTItemRockCutter;
 import gtclassic.item.tool.GTItemSonictron;
 import gtclassic.item.tool.GTItemTeslaStaff;
-import gtclassic.toxicdimension.item.GTItemCreditAlk;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -126,7 +124,6 @@ public class GTItems {
 			"gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192);
 	public static final GTItemZeroPointModule zeroPointModule = new GTItemZeroPointModule();
 	public static final GTItemDebugScanner debugScanner = new GTItemDebugScanner();
-	public static final GTItemCreditAlk creditAlk = new GTItemCreditAlk();
 
 	public static final Item[] items = {
 
@@ -152,7 +149,7 @@ public class GTItems {
 
 			sonictronItem, destructoPack, craftingTablet, hammerIron, electroMagnet, rockCutter, advancedDrill,
 			advancedChainsaw, teslaStaff, lithiumBattery, lapotronicEnergyOrb, lithiumBatpack, lapotronPack,
-			debugScanner, zeroPointModule, creditAlk
+			debugScanner, zeroPointModule
 
 	};
 

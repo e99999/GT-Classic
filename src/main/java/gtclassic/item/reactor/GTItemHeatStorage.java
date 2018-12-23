@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTClassic;
-import gtclassic.util.GTItems;
+import gtclassic.GTItems;
 import ic2.api.reactor.IReactor;
 import ic2.core.item.reactor.ItemReactorHeatStorageBase;
 import ic2.core.platform.textures.Ic2Icons;

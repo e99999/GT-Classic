@@ -2,12 +2,12 @@ package gtclassic.block.tileentity;
 
 import java.util.List;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
+import gtclassic.GTItems;
 import gtclassic.block.container.GTContainerFusionComputer;
-import gtclassic.util.GTBlocks;
-import gtclassic.util.GTItems;
 import gtclassic.util.GTLang;
-import gtclassic.util.misc.GTBasicMachineRecipeList;
+import gtclassic.util.recipe.GTBasicMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.api.classic.recipe.machine.MachineOutput;

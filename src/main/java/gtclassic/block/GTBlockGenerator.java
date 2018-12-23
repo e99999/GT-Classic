@@ -5,10 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityLightningRod;
-import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;

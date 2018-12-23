@@ -1,4 +1,4 @@
-package gtclassic.util;
+package gtclassic;
 
 import static ic2.core.platform.textures.Ic2Icons.addSprite;
 import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;

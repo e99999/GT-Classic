@@ -1,7 +1,7 @@
 package gtclassic.block.container;
 
+import gtclassic.GTItems;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.util.GTItems;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.GuiIC2;

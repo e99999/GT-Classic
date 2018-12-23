@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityComputerCube;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;

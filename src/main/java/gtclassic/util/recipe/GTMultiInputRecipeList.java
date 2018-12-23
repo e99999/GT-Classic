@@ -1,4 +1,4 @@
-package gtclassic.util.misc;
+package gtclassic.util.recipe;
 
 import java.util.ArrayList;
 import java.util.Arrays;

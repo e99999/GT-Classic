@@ -1,5 +1,7 @@
 package gtclassic.util;
 
+import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;

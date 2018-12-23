@@ -1,22 +1,24 @@
-package gtclassic.util.guicomponent;
+package gtclassic.util.gui;
 
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.block.tileentity.GTTileEntityComputerCube;
+import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.registry.Ic2GuiComp;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTGuiCompComputerCube extends GuiComponent {
+public class GTGuiCompFusion extends GuiComponent {
 
-	GTTileEntityComputerCube block;
+	GTTileEntityFusionComputer block;
 	int white = 16777215;
 	int grey = 4210752;
+	int red = 15599112;
+	int green = 9567352;
 
-	public GTGuiCompComputerCube(GTTileEntityComputerCube tile) {
+	public GTGuiCompFusion(GTTileEntityFusionComputer tile) {
 		super(Ic2GuiComp.nullBox);
 		this.block = tile;
 	}
@@ -30,16 +32,19 @@ public class GTGuiCompComputerCube extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawCenteredString("[" + getTime(gui) + "]", 89, 9, grey);
-		gui.drawCenteredString("G.L.A.D.-OS", 91, 59, white);
-	}
+		gui.drawString(block.getBlockName(), 89, 6, grey);
 
-	public String getTime(GuiIC2 gui) {
-		long time = gui.getPlayer().getEntityWorld().getWorldTime();
-		int hours = (int) ((time / 1000 + 8) % 24);
-		int minutes = (int) (60 * (time % 1000) / 1000);
-		return String.format("%02d:%02d", hours, minutes);
+		if (this.block.getStatus() == 666) {
+			gui.drawString("!", 12, 58, red);
+		}
 
+		else if (this.block.getStatus() == 1) {
+			gui.drawString(": )", 12, 58, green);
+		}
+
+		else if (this.block.getStatus() == 0) {
+			gui.drawString("n", 12, 58, white);
+		}
 	}
 
 }

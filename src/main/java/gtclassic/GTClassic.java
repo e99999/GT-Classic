@@ -7,7 +7,6 @@ import gtclassic.proxy.GTProxyCommon;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;
-import gtclassic.util.GTRecipes;
 import gtclassic.world.GTOreGen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;

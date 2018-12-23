@@ -1,7 +1,7 @@
 package gtclassic.util.jei;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
-import gtclassic.util.GTBlocks;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;

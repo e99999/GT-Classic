@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityBookshelf;
 import gtclassic.block.tileentity.GTTileEntityLargeChest;
 import gtclassic.block.tileentity.GTTileEntityQuantumChest;
 import gtclassic.block.tileentity.GTTileEntitySmallChest;
-import gtclassic.util.GTBlocks;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;

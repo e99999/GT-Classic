@@ -45,7 +45,7 @@ public class GTBlockSandIron extends BlockFalling implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures("gtclassic_blocks")[85];
+		return Ic2Icons.getTextures("gtclassic_blocks")[84];
 	}
 
 	@Override

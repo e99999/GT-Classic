@@ -1,6 +1,5 @@
-package gtclassic.util;
+package gtclassic;
 
-import gtclassic.GTClassic;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCasing.GTBlockCasingVariants;
 import gtclassic.block.GTBlockEnergy;
@@ -28,9 +27,6 @@ import gtclassic.block.tileentity.GTTileEntityLightningRod;
 import gtclassic.block.tileentity.GTTileEntityQuantumChest;
 import gtclassic.block.tileentity.GTTileEntitySmallChest;
 import gtclassic.block.tileentity.GTTileEntitySuperCondensator;
-import gtclassic.toxicdimension.block.GTBlockToxicGrass;
-import gtclassic.toxicdimension.block.GTBlockToxicPortal;
-import gtclassic.toxicdimension.block.GTBlockToxicPortalFrame;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -84,10 +80,6 @@ public class GTBlocks {
 	public static final GTBlockGenerator fusionComputer = new GTBlockGenerator(GTBlockGeneratorVariants.FUSIONCOMPUTER),
 			lightningRod = new GTBlockGenerator(GTBlockGeneratorVariants.LIGHTNINGROD);
 
-	public static final GTBlockToxicPortalFrame toxicPortalFrame = new GTBlockToxicPortalFrame();
-	public static final GTBlockToxicPortal toxicPortal = new GTBlockToxicPortal();
-	public static final GTBlockToxicGrass grassToxic = new GTBlockToxicGrass();
-
 	public static final Block[] blocks = {
 
 			fusionMachineBlock, highlyadvancedMachineBlock, lesuMachineBlock,
@@ -102,8 +94,6 @@ public class GTBlocks {
 			bookShelf, smallChest, largeChest, quantumChest,
 
 			fusionComputer, lightningRod, IDSU, HESU, LESU, superCondensator, superConductorWire,
-
-			toxicPortalFrame, toxicPortal, grassToxic
 
 	};
 

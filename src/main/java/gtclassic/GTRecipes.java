@@ -1,4 +1,4 @@
-package gtclassic.util;
+package gtclassic;
 
 import java.util.ArrayList;
 
@@ -7,8 +7,8 @@ import com.google.common.collect.Lists;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge.OutputItem;
-import gtclassic.util.misc.RecipeHelpers.IRecipeModifier;
-import gtclassic.util.misc.RecipeHelpers.ModifierType;
+import gtclassic.util.recipe.GTRecipeHelpers.IRecipeModifier;
+import gtclassic.util.recipe.GTRecipeHelpers.ModifierType;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.recipe.IRecipeInput;
