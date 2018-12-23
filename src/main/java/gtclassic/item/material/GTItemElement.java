@@ -8,12 +8,8 @@ import gtclassic.util.GTItems;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -35,6 +31,15 @@ public class GTItemElement extends Item implements IStaticTexturedItem {
 		}
 	}
 
+	GTItemElementTypes variant;
+
+	public GTItemElement(GTItemElementTypes variant) {
+		this.variant = variant;
+		setRegistryName(variant.toString().toLowerCase());
+		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
+		setCreativeTab(GTClassic.creativeTabGT);
+	}
+
 	@Override
 	public int getItemBurnTime(ItemStack stack) {
 		if (this == GTItems.hydrogen) {
@@ -51,31 +56,6 @@ public class GTItemElement extends Item implements IStaticTexturedItem {
 		} else {
 			return 0;
 		}
-	}
-
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (this == GTItems.proton || this == GTItems.neutron) {
-			tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
-		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack stack) {
-		if (this == GTItems.proton || this == GTItems.neutron) {
-			return true;
-		}
-		return false;
-	}
-
-	GTItemElementTypes variant;
-
-	public GTItemElement(GTItemElementTypes variant) {
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase());
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
-		setCreativeTab(GTClassic.creativeTabGT);
 	}
 
 	@Override

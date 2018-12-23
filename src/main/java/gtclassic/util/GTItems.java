@@ -58,9 +58,7 @@ public class GTItems {
 			nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN),
 			oxygen = new GTItemElement(GTItemElementTypes.OXYGEN),
 
-			water = new GTItemElement(GTItemElementTypes.WATER), lava = new GTItemElement(GTItemElementTypes.LAVA),
-			proton = new GTItemElement(GTItemElementTypes.PROTON),
-			neutron = new GTItemElement(GTItemElementTypes.NEUTRON);
+			water = new GTItemElement(GTItemElementTypes.WATER), lava = new GTItemElement(GTItemElementTypes.LAVA);
 
 	public static final GTItemPlasma plasmaHydrogen = new GTItemPlasma(GTItemPlasmaTypes.HYDROGEN),
 			plasmaNitrogen = new GTItemPlasma(GTItemPlasmaTypes.NITROGEN),
@@ -135,7 +133,7 @@ public class GTItems {
 			hydrogen, dueterium, tritium, helium, tungsten, lithium, helium3, silicon, carbon, methane, berilium,
 			calcium, sodium, chlorine, potassium, nitrogen, oxygen,
 
-			water, lava, proton, neutron,
+			water, lava,
 
 			plasmaHydrogen, plasmaNitrogen, plasmaOxygen, plasmaHelium, plasmaIron, plasmaUU, glassTube,
 

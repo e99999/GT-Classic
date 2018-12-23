@@ -195,12 +195,9 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 		RECIPE_LIST.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
 	}
 
-	// ###################################################STOP!#############################################################
-
 	public boolean checkStructure() {
-		// if (world.isRemote) return false; //Return false if on client side
 		if (!world.isAreaLoaded(pos, 3))
-			return false; // Return false if area is not loaded
+			return false;
 
 		BlockPos working;
 

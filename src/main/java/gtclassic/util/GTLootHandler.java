@@ -27,39 +27,52 @@ public class GTLootHandler {
 		Item itemSapphire = GTItems.sapphire;
 		Item itemZPM = GTItems.zeroPointModule;
 
-		if(event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)){
-			event.getTable().getPool("main").addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-            event.getTable().getPool("main").addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-        }
+		if (event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)) {
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
+		}
 
-        else if(event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE)){
-        	event.getTable().getPool("main").addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-            event.getTable().getPool("main").addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-        }
+		else if (event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE)) {
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
+		}
 
-        else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR)){
-        	event.getTable().getPool("main").addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-            event.getTable().getPool("main").addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-        }
+		else if (event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR)) {
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
+		}
 
-        else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING)){
-        	event.getTable().getPool("main").addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-            event.getTable().getPool("main").addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-        }
+		else if (event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING)) {
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
+		}
 
-        else if(event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)){
-            event.getTable().getPool("main").addEntry(new LootEntryItem(itemZPM, 1, 0, funcs, new LootCondition[0], stringZPM));
-        }
+		else if (event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemZPM, 1, 0, funcs, new LootCondition[0], stringZPM));
+		}
 
-        else if(event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)){
-        	event.getTable().getPool("main").addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-            event.getTable().getPool("main").addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-        }
-		
-        else if(event.getName().equals(LootTableList.CHESTS_VILLAGE_BLACKSMITH)){
-        	event.getTable().getPool("main").addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-            event.getTable().getPool("main").addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-        }
+		else if (event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)) {
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
+		}
+
+		else if (event.getName().equals(LootTableList.CHESTS_VILLAGE_BLACKSMITH)) {
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
+		}
 
 	}
 

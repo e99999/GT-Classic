@@ -49,7 +49,7 @@ public class GTOreGen implements IWorldGenerator {
 		default:
 
 			if (GTConfig.genIridium) {
-				runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE),
+				runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 2, 0, 128, BlockMatcher.forBlock(Blocks.STONE),
 						world, random, chunkX, chunkZ);
 			}
 
@@ -58,12 +58,13 @@ public class GTOreGen implements IWorldGenerator {
 						world, random, chunkX, chunkZ);
 			}
 
-			if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) && (GTConfig.genSapphire)) {
+			if ((BiomeDictionary.hasType(biomegenbase, Type.OCEAN)
+					|| (BiomeDictionary.hasType(biomegenbase, Type.COLD) && (GTConfig.genSapphire)))) {
 				runGenerator(GTBlocks.sapphireOre.getDefaultState(), 3, 16, 0, 48, BlockMatcher.forBlock(Blocks.STONE),
 						world, random, chunkX, chunkZ);
 			}
 
-			if (BiomeDictionary.hasType(biomegenbase, Type.RIVER) && (GTConfig.genSapphire)) {
+			if (BiomeDictionary.hasType(biomegenbase, Type.RIVER) && (GTConfig.genBlackSand)) {
 				runGenerator(GTBlocks.sandIron.getDefaultState(), 32, 4, 48, 72, BlockMatcher.forBlock(Blocks.SAND),
 						world, random, chunkX, chunkZ);
 			}
@@ -77,10 +78,6 @@ public class GTOreGen implements IWorldGenerator {
 			break;
 		}
 
-		if (world.provider.getDimension() == GTConfig.dimensionId) { // ores for toxic dim go here
-			runGenerator(GTBlocks.iridiumOre.getDefaultState(), 4, 8, 0, 128, BlockMatcher.forBlock(Blocks.STONE),
-					world, random, chunkX, chunkZ);
-		}
 	}
 
 	private void runGenerator(IBlockState blockToGen, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,

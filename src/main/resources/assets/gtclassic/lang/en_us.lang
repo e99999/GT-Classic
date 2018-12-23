@@ -84,8 +84,6 @@ item.gtclassic.oxygen.name=Oxygen
 
 item.gtclassic.water.name=Water
 item.gtclassic.lava.name=Lava
-item.gtclassic.proton.name=Positive Matter
-item.gtclassic.neutron.name=Neutral Matter
 
 item.gtclassic.hydrogen_plasma.name=Hydrogen Plasma
 item.gtclassic.nitrogen_plasma.name=Nitrogen Plasma
@@ -143,17 +141,9 @@ item.gtclassic.braintech_aerospace_ardt.name=Braintech Aerospace Advanced Reinfo
 item.gtclassic.data_orb.name=Data Orb
 item.gtclassic.silicon_plate.name=Silicon Plate
 
-#toxic dim
-item.gtclassic.creditAlk.name=Alkalus Credit
-tile.gtclassic.toxicPortalFrame.name=Containment Frame
-tile.gtclassic.toxicPortal.name=A Glimpse Into A Dark Future...
-tile.gtclassic.grassToxic.name=Unstable Earth
-tooltip.gtclassic.alkcredit=Shines the way, towards the far away Everglades
-tooltip.gtclassic.portalframe=Used to build portals to terrible places...
-
 tooltip.gtclassic.iridium=Spawns rarely in ALL biomes
 tooltip.gtclassic.ruby=Spawns in HOT biomes
-tooltip.gtclassic.sapphire=Spawns in OCEAN biomes
+tooltip.gtclassic.sapphire=Spawns in OCEAN & COLD biomes
 tooltip.gtclassic.bauxite=Spawns in FOREST & PLAINS biomes
 tooltip.gtclassic.ironsand=Spawns in RIVER biomes
 tooltip.gtclassic.iridiumend=Spawns in the bottom of End Islands

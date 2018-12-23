@@ -65,6 +65,12 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("batteryAdvanced", Ic2Items.energyCrystal);
 		OreDictionary.registerOre("batteryAdvanced", GTItems.lithiumBattery);
+
+		// TODO find a better way to register plasma, mainly for recipes
+
+		OreDictionary.registerOre("itemPlasma", GTItems.plasmaHelium);
+		OreDictionary.registerOre("itemPlasma", GTItems.plasmaUU);
+
 	}
 
 }

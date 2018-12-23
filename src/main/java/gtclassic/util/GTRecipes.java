@@ -224,9 +224,6 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTItems.lithiumBatpack, 1), new Object[] { "LCL", "LAL", "L L", 'C',
 				"circuitAdvanced", 'A', "ingotAluminium", 'L', GTItems.lithiumBattery });
 
-		recipes.addRecipe(new ItemStack(GTItems.creditAlk, 1), new Object[] { "DSR", "EPE", "RSD", 'D', "gemDiamond",
-				'S', "gemSapphire", 'R', "gemRuby", 'E', "gemEmerald", 'P', Ic2Items.advancedAlloy });
-
 		// BLOCKS
 
 		recipes.addRecipe(new ItemStack(GTBlocks.highlyadvancedMachineBlock), new Object[] { "CTC", "TBT", "CTC", 'T',
@@ -247,12 +244,6 @@ public class GTRecipes {
 				new Object[] { "CBY", "BRB", "YBS", 'B', GTBlocks.highlyadvancedMachineBlock, 'C',
 						GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'Y', Ic2Items.teslaCoil.copy(), 'B',
 						Ic2Items.advMachine.copy(), 'R', Ic2Items.reactorReflectorIridium.copy() });
-
-		recipes.addRecipe(new ItemStack(GTBlocks.toxicPortalFrame, 2),
-				new Object[] { "TIN", "XMY", "PEH", 'T', GTItems.braintechAerospaceARDT, 'I', GTItems.ingotTitanium,
-						'N', Ic2Items.scrapMetal, 'X', GTItems.proton, 'M', GTBlocks.iridiumReinforcedStoneBlock, 'Y',
-						GTItems.neutron, 'P', Ic2Items.reactorNearDepletedUraniumRod.copy(), 'E', "ingotAluminium", 'H',
-						"toolHammer" });
 
 		// TILES
 
@@ -319,6 +310,8 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood", 'C',
 				"cobblestone", 'I', ingotElectric, 'R', "dustRedstone" });
 
+		recipes.addRecipe(Ic2Items.machine.copy(), new Object[] { "XXX", "X X", "XXX", 'X', "ingotAluminium" });
+
 		recipes.addRecipe(Ic2Items.reactorVent.copy(),
 				new Object[] { "IBI", "B B", "IBI", 'I', ingotElectric, 'B', Blocks.IRON_BARS });
 
@@ -377,7 +370,7 @@ public class GTRecipes {
 
 		recipes.addRecipe(Ic2Items.plasmaCore.copy(),
 				new Object[] { "XYX", "YCY", "XYX", 'X', StackUtil.copyWithSize(Ic2Items.magnet, 2), 'Y',
-						StackUtil.copyWithSize(Ic2Items.advancedAlloy, 4), 'C', GTItems.plasmaUU });
+						StackUtil.copyWithSize(Ic2Items.advancedAlloy, 4), 'C', "itemPlasma" });
 
 	}
 
@@ -665,14 +658,20 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.silicon, 1), 1),
 				new OutputItem(new ItemStack(GTItems.oxygen, 2), 2));
 
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.MAGMA, 64), 4, easygate,
+				new OutputItem(new ItemStack(Items.GOLD_INGOT, 4), 1),
+				new OutputItem(new ItemStack(Items.IRON_INGOT, 16), 2),
+				new OutputItem(new ItemStack(GTItems.tungsten, 4), 3));
+
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.obsidianDust, 64), 10,
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 2), 0),
 				new OutputItem(new ItemStack(GTItems.silicon, 6), 1),
 				new OutputItem(new ItemStack(GTItems.oxygen, 4), 2));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.uuMatter, 1), 8, hardgate,
-				new OutputItem(new ItemStack(GTItems.proton, 4), 0),
-				new OutputItem(new ItemStack(GTItems.neutron, 4), 2));
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.ROTTEN_FLESH, 16), 4, easygate,
+				new OutputItem(new ItemStack(GTItems.methane, 4), 0),
+				new OutputItem(new ItemStack(Items.LEATHER, 4), 1),
+				new OutputItem(new ItemStack(Items.SLIME_BALL, 1), 2));
 
 		// PLACEHOLDER FUSION - second input is set to dueterium in the tile for now
 
