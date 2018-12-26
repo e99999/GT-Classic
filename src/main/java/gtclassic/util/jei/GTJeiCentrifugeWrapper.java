@@ -11,6 +11,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;
 
+@SuppressWarnings("deprecation")
 public class GTJeiCentrifugeWrapper extends BlankRecipeWrapper {
 	RecipeEntry entry;
 

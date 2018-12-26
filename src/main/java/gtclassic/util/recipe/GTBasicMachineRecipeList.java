@@ -21,6 +21,7 @@ public class GTBasicMachineRecipeList extends BasicMachineRecipeList {
 		registryID = id;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void addRecipe(IRecipeInput input, MachineOutput output, String id) {
 		assert output != null;

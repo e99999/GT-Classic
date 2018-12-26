@@ -92,7 +92,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
 						EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack));
 
 				EntityItem ent;
-				for (Iterator var8 = drops.iterator(); var8
+				for (Iterator<ItemStack> var8 = drops.iterator(); var8
 						.hasNext(); ent.motionZ += (entity.world.rand.nextFloat() - entity.world.rand.nextFloat())
 								* 0.1F) {
 					ItemStack item = (ItemStack) var8.next();
@@ -128,7 +128,7 @@ public class GTItemAdvancedChainsaw extends ItemElectricTool implements IStaticT
 						&& ElectricItem.manager.canUse(itemstack, this.getEnergyCost(itemstack))) {
 					List<ItemStack> drops = target.onSheared(itemstack, player.world, pos,
 							EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
-					Iterator var7 = drops.iterator();
+					Iterator<ItemStack> var7 = drops.iterator();
 
 					while (var7.hasNext()) {
 						ItemStack stack = (ItemStack) var7.next();

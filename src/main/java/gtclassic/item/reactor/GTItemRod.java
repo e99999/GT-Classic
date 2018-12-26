@@ -69,6 +69,7 @@ public class GTItemRod extends ItemGrandualInt implements IBootable, ISteamReact
 
 	}
 
+	@SuppressWarnings("unused")
 	private Object getUran(ItemStack stack) {
 		// TODO Auto-generated method stub
 		return null;

@@ -155,7 +155,7 @@ public class GTItems {
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		IForgeRegistry registry = event.getRegistry();
+		IForgeRegistry<Item> registry = event.getRegistry();
 		// items
 		GTClassic.logger.info("Registering Items");
 		GTClassic.logger

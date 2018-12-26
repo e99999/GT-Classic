@@ -99,7 +99,7 @@ public class GTBlocks {
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
-		IForgeRegistry registry = event.getRegistry();
+		IForgeRegistry<Block> registry = event.getRegistry();
 		GTClassic.logger.info("Registering Blocks");
 		for (Block block : blocks) {
 			registry.register(block);
@@ -108,7 +108,7 @@ public class GTBlocks {
 
 	@SubscribeEvent
 	public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
-		final IForgeRegistry registry = event.getRegistry();
+		final IForgeRegistry<Item> registry = event.getRegistry();
 		for (Block block : blocks) {
 			registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName())
 					.setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTClassic.creativeTabGT));
@@ -142,6 +142,7 @@ public class GTBlocks {
 				new ResourceLocation(GTClassic.MODID, "tileFusionComputer"));
 	}
 
+	@SuppressWarnings({ "unused", "deprecation" })
 	private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
 		// overloads deprecated method to properly register tiles
 		GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
