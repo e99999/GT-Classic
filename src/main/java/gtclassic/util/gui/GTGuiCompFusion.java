@@ -32,18 +32,17 @@ public class GTGuiCompFusion extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString(block.getBlockName(), 89, 6, grey);
 
 		if (this.block.getStatus() == 666) {
-			gui.drawString("!", 12, 58, red);
+			gui.drawString("Shape Invalid", 78, 69, red);
 		}
 
 		else if (this.block.getStatus() == 1) {
-			gui.drawString(": )", 12, 58, green);
+			gui.drawString("Shape Complete", 78, 69, green);
 		}
 
 		else if (this.block.getStatus() == 0) {
-			gui.drawString("n", 12, 58, white);
+			gui.drawString("Shape Null", 78, 69, white);
 		}
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 import gtclassic.GTClassic;
 import gtclassic.GTItems;
 import gtclassic.block.container.GTContainerIndustrialCentrifuge;
+import gtclassic.util.GTLang;
 import gtclassic.util.recipe.GTBasicMachineRecipeList;
 import gtclassic.util.recipe.GTRecipeHelpers.IRecipeModifier;
 import ic2.api.classic.item.IMachineUpgradeItem;
@@ -26,6 +27,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -77,6 +79,11 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 		handler.registerSlotType(SlotType.Input, slotInput);
 		handler.registerSlotType(SlotType.SecondInput, slotCell);
 		handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutput4);
+	}
+
+	@Override
+	public LocaleComp getBlockName() {
+		return GTLang.centrifuge;
 	}
 
 	@Override

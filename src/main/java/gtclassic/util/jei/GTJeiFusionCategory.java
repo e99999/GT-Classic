@@ -21,7 +21,7 @@ public class GTJeiFusionCategory implements IRecipeCategory<GTJeiFusionWrapper> 
 	public GTJeiFusionCategory(IGuiHelper helper) {
 		displayName = new ItemStack(GTBlocks.fusionComputer);
 		ResourceLocation texture = new ResourceLocation(GTClassic.MODID, "textures/gui/fusioncomputer.png");
-		this.draw = helper.createDrawable(texture, 86, 15, 84, 56);
+		this.draw = helper.createDrawable(texture, 86, 25, 82, 36);
 	}
 
 	@Override
@@ -47,9 +47,9 @@ public class GTJeiFusionCategory implements IRecipeCategory<GTJeiFusionWrapper> 
 	@Override
 	public void setRecipe(IRecipeLayout layout, GTJeiFusionWrapper arg1, IIngredients ingridient) {
 		IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
-		guiItemStacks.init(0, true, 1, 1); // input
-		guiItemStacks.init(1, true, 1, 37); // cell slot
-		guiItemStacks.init(2, false, 61, 19); // outputs
+		guiItemStacks.init(0, true, 1, 0); // input
+		guiItemStacks.init(1, true, 1, 18); // cell slot
+		guiItemStacks.init(2, false, 61, 9); // outputs
 		guiItemStacks.set(ingridient);
 
 	}

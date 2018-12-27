@@ -20,12 +20,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTContainerFusionComputer extends ContainerTileComponent<GTTileEntityFusionComputer> {
 
 	public static Box2D machineProgressBox = new Box2D(110, 35, 20, 16);
-	public static Vec2i machineProgressPos = new Vec2i(176, 14);
+	public static Vec2i machineProgressPos = new Vec2i(176, 0);
 
 	public GTContainerFusionComputer(InventoryPlayer player, GTTileEntityFusionComputer tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 17, null));// main slot
-		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 53, new BasicItemFilter(GTItems.dueterium)));// second slot
+		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 26, null));// main slot
+		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 44, new BasicItemFilter(GTItems.dueterium)));// second slot
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35)); // output
 
 		this.addPlayerInventory(player);
@@ -38,7 +38,7 @@ public class GTContainerFusionComputer extends ContainerTileComponent<GTTileEnti
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiLoaded(GuiIC2 gui) {
-		gui.disableName();
+		gui.dissableInvName();
 	}
 
 	@Override
