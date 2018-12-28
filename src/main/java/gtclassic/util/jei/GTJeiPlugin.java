@@ -6,6 +6,9 @@ import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.util.GTMachineGui;
+import gtclassic.util.GTMachineGui.GTFusionComputerGui;
+import gtclassic.util.GTMachineGui.GTIndustrialCentrifugeGui;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.jeiIntigration.SubModul;
@@ -37,6 +40,9 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeCatalyst(Ic2Items.industrialWorktable, new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.autoCrafter), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
+
+			registry.addRecipeClickArea(GTIndustrialCentrifugeGui.class, 62, 29, 10, 10, "centrifuge");
+			registry.addRecipeClickArea(GTFusionComputerGui.class, 111, 35, 25, 17, "fusion");
 
 			registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
 				@Override
