@@ -265,50 +265,52 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 				Ic2Items.extractor, 'R', ingotElectric, 'A', Ic2Items.advMachine, 'C', "circuitAdvanced" });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
-				GTItems.dataStorageCircuit, 'C', "circuitAdvanced", 'c', GTBlocks.computerCube });
-
-		recipes.addRecipe(new ItemStack(GTBlocks.matterFabricator, 1),
-				new Object[] { "ETE", "HLH", "ETE", 'E', GTItems.energyFlowCircuit, 'T', Ic2Items.teleporter, 'H',
-						GTBlocks.highlyadvancedMachineBlock, 'L', GTItems.lapotronicEnergyOrb });
-
-		recipes.addRecipe(new ItemStack(GTBlocks.superCondensator, 1),
-				new Object[] { "ELE", "SHS", "ELE", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'H',
-						GTBlocks.highlyadvancedMachineBlock, 'L', GTItems.lapotronicEnergyOrb });
-
-		recipes.addRecipe(new ItemStack(GTBlocks.autoCrafter, 1), new Object[] { " B ", "CcC", " A ", 'B',
-				Ic2Items.battery, 'C', "circuitAdvanced", 'c', "workbench", 'A', Ic2Items.advMachine });
-
-		recipes.addRecipe(new ItemStack(GTBlocks.chargeOMat, 1),
-				new Object[] { "RCR", "AEA", "RMR", 'E', GTItems.lapotronicEnergyOrb, 'R', GTItems.energyFlowCircuit,
-						'A', "chestWood", 'C', GTBlocks.computerCube, 'M', Ic2Items.advMachine.copy() });
-
 		if (GTValues.debugMode) {
+			recipes.addRecipe(new ItemStack(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
+					GTItems.dataStorageCircuit, 'C', "circuitAdvanced", 'c', GTBlocks.computerCube });
+
+			recipes.addRecipe(new ItemStack(GTBlocks.matterFabricator, 1),
+					new Object[] { "ETE", "HLH", "ETE", 'E', GTItems.energyFlowCircuit, 'T', Ic2Items.teleporter, 'H',
+							GTBlocks.highlyadvancedMachineBlock, 'L', GTItems.lapotronicEnergyOrb });
+
+			recipes.addRecipe(new ItemStack(GTBlocks.superCondensator, 1),
+					new Object[] { "ELE", "SHS", "ELE", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor,
+							'H', GTBlocks.highlyadvancedMachineBlock, 'L', GTItems.lapotronicEnergyOrb });
+
+			recipes.addRecipe(new ItemStack(GTBlocks.autoCrafter, 1), new Object[] { " B ", "CcC", " A ", 'B',
+					Ic2Items.battery, 'C', "circuitAdvanced", 'c', "workbench", 'A', Ic2Items.advMachine });
+
+			recipes.addRecipe(new ItemStack(GTBlocks.chargeOMat, 1),
+					new Object[] { "RCR", "AEA", "RMR", 'E', GTItems.lapotronicEnergyOrb, 'R',
+							GTItems.energyFlowCircuit, 'A', "chestWood", 'C', GTBlocks.computerCube, 'M',
+							Ic2Items.advMachine.copy() });
+
 			recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
 					GTItems.dataOrb, 'I', "ingotChrome", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
 					GTItems.dataOrb, 'I', "ingotTitanium", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
-		}
 
-		recipes.addRecipe(new ItemStack(GTBlocks.sonictronBlock, 1),
-				new Object[] { "CRC", "NMN", "CJC", 'C', "circuitBasic", 'N', Blocks.NOTEBLOCK, 'J', Blocks.JUKEBOX,
-						'M', Ic2Items.advMachine.copy(), 'R', "record" });
+			recipes.addRecipe(new ItemStack(GTBlocks.LESU), new Object[] { " G ", "CMC", " G ", 'C', "circuitAdvanced",
+					'M', GTBlocks.lesuMachineBlock, 'G', Ic2Items.glassFiberCable.copy() });
+
+			recipes.addRecipe(new ItemStack(GTBlocks.superConductorWire, 4),
+					new Object[] { "HEH", "SSS", "HEH", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor,
+							'H', GTBlocks.highlyadvancedMachineBlock, });
+
+			recipes.addRecipe(new ItemStack(GTBlocks.IDSU, 1), new Object[] { "PHP", "HEH", "PHP", 'P', "plateIridium",
+					'H', GTBlocks.HESU, 'E', Blocks.ENDER_CHEST });
+
+			recipes.addRecipe(new ItemStack(GTBlocks.sonictronBlock, 1),
+					new Object[] { "CRC", "NMN", "CJC", 'C', "circuitBasic", 'N', Blocks.NOTEBLOCK, 'J', Blocks.JUKEBOX,
+							'M', Ic2Items.advMachine.copy(), 'R', "record" });
+		}
 
 		recipes.addRecipe(new ItemStack(GTBlocks.computerCube, 1), new Object[] { "RGD", "GMG", "DGR", 'D',
 				GTItems.dataOrb, 'R', GTItems.energyFlowCircuit, 'G', "blockGlass", 'M', Ic2Items.advMachine.copy() });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.superConductorWire, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
-				GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'H', GTBlocks.highlyadvancedMachineBlock, });
-
-		recipes.addRecipe(new ItemStack(GTBlocks.IDSU, 1),
-				new Object[] { "PHP", "HEH", "PHP", 'P', "plateIridium", 'H', GTBlocks.HESU, 'E', Blocks.ENDER_CHEST });
-
 		recipes.addRecipe(new ItemStack(GTBlocks.HESU),
 				new Object[] { "OOO", "OCO", "OOO", 'O', GTItems.lapotronicEnergyOrb, 'C', GTBlocks.computerCube });
-
-		recipes.addRecipe(new ItemStack(GTBlocks.LESU), new Object[] { " G ", "CMC", " G ", 'C', "circuitAdvanced", 'M',
-				GTBlocks.lesuMachineBlock, 'G', Ic2Items.glassFiberCable.copy() });
 
 		// IC2C RECIPES
 

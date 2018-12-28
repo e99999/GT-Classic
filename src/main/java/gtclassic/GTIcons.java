@@ -89,7 +89,13 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_supercondensator", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_superconductorwire", 0, 0, 1, 12));
 		
-		addCustomTexture("gtclassic_quantumchest", 0, 1, new ResourceLocation(GTClassic.MODID, "textures/animations/screen.png"));
+		addCustomTexture("gtclassic_quantumchest", 0, 1, location("screen"));
+		addCustomTexture("gtclassic_fusioncomputer", 0, 7, location("screen"));
 
 	}
+	
+	 private static ResourceLocation location(String name)
+	    {
+	        return new ResourceLocation(GTClassic.MODID, "animations/"+name);
+	    }
 }
