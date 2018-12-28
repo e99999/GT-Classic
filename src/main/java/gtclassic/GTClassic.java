@@ -7,6 +7,7 @@ import gtclassic.proxy.GTProxyCommon;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;
+import gtclassic.util.GTValues;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -51,6 +52,9 @@ public class GTClassic {
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 		logger.info("Hello from Gregtech Classic!");
+		if (GTValues.debugMode) {
+			logger.info("WARNING [Gregtech Classic is still in debug mode, this is very very bad if you are not a dev!]");
+		}
 		proxy.postInit(e);
 	}
 

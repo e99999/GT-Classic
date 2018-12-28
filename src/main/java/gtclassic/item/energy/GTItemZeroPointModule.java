@@ -5,6 +5,7 @@ import java.util.Map;
 
 import gtclassic.GTClassic;
 import gtclassic.util.GTLang;
+import gtclassic.util.GTValues;
 import ic2.api.item.ElectricItem;
 import ic2.core.item.base.ItemBatteryBase;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -36,9 +37,18 @@ public class GTItemZeroPointModule extends ItemBatteryBase {
 		this.setCreativeTab(GTClassic.creativeTabGT);
 		this.maxCharge = Integer.MAX_VALUE;
 		this.transferLimit = 13107;
-		this.tier = 1;
+		this.tier = 6;
 		this.provider = true;
 		this.setCreativeTab(GTClassic.creativeTabGT);
+	}
+
+	@Override
+	public int getTier(ItemStack stack) {
+		if (GTValues.debugMode) {
+			return 1;
+		} else {
+			return 6;
+		}
 	}
 
 	@Override

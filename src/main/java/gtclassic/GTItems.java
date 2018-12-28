@@ -31,6 +31,7 @@ import gtclassic.item.tool.GTItemHammerIron;
 import gtclassic.item.tool.GTItemRockCutter;
 import gtclassic.item.tool.GTItemSonictron;
 import gtclassic.item.tool.GTItemTeslaStaff;
+import gtclassic.util.GTValues;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -156,10 +157,7 @@ public class GTItems {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
-		// items
 		GTClassic.logger.info("Registering Items");
-		GTClassic.logger
-				.info("WARNING [The ZPM is still in debug mode if you are reading this e99999 did not do his job]");
 		for (Item item : items) {
 			registry.register(item);
 		}

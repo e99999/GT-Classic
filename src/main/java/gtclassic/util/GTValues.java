@@ -3,6 +3,7 @@ package gtclassic.util;
 public class GTValues {
 
 	// index for storing global variables
+	public static boolean debugMode = true;
 
 	// colors
 	public static int white = 16777215;

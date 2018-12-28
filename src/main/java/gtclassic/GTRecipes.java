@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge.OutputItem;
+import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTRecipeHelpers.IRecipeModifier;
 import gtclassic.util.recipe.GTRecipeHelpers.ModifierType;
 import ic2.api.classic.recipe.ClassicRecipes;
@@ -282,11 +283,13 @@ public class GTRecipes {
 				new Object[] { "RCR", "AEA", "RMR", 'E', GTItems.lapotronicEnergyOrb, 'R', GTItems.energyFlowCircuit,
 						'A', "chestWood", 'C', GTBlocks.computerCube, 'M', Ic2Items.advMachine.copy() });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-				GTItems.dataOrb, 'I', "ingotChrome", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+		if (GTValues.debugMode) {
+			recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
+					GTItems.dataOrb, 'I', "ingotChrome", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-				GTItems.dataOrb, 'I', "ingotTitanium", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+			recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
+					GTItems.dataOrb, 'I', "ingotTitanium", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+		}
 
 		recipes.addRecipe(new ItemStack(GTBlocks.sonictronBlock, 1),
 				new Object[] { "CRC", "NMN", "CJC", 'C', "circuitBasic", 'N', Blocks.NOTEBLOCK, 'J', Blocks.JUKEBOX,

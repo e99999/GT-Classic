@@ -2,6 +2,7 @@ package gtclassic.block.tileentity;
 
 import gtclassic.block.container.GTContainerQuantumChest;
 import gtclassic.util.GTLang;
+import gtclassic.util.GTValues;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
