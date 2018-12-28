@@ -7,6 +7,7 @@ import gtclassic.GTClassic;
 import gtclassic.GTItems;
 import gtclassic.block.container.GTContainerFusionComputer;
 import gtclassic.util.GTLang;
+import gtclassic.util.GTMachineGui.GTFusionComputerGui;
 import gtclassic.util.recipe.GTBasicMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -17,7 +18,6 @@ import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
@@ -97,7 +97,7 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 
 	@Override
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
-		return GuiComponentContainer.class;
+		return GTFusionComputerGui.class;
 	}
 
 	boolean lastState;

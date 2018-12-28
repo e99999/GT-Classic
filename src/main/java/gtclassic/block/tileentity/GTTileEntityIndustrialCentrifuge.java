@@ -7,6 +7,7 @@ import gtclassic.GTClassic;
 import gtclassic.GTItems;
 import gtclassic.block.container.GTContainerIndustrialCentrifuge;
 import gtclassic.util.GTLang;
+import gtclassic.util.GTMachineGui.GTIndustrialCentrifugeGui;
 import gtclassic.util.recipe.GTBasicMachineRecipeList;
 import gtclassic.util.recipe.GTRecipeHelpers.IRecipeModifier;
 import ic2.api.classic.item.IMachineUpgradeItem;
@@ -30,6 +31,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -99,6 +101,12 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	@Override
 	public MachineType getType() {
 		return null;
+	}
+
+	@Override
+	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
+	{
+		return GTIndustrialCentrifugeGui.class;
 	}
 
 	@Override
