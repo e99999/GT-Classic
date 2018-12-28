@@ -673,7 +673,7 @@ public class GTRecipes {
 
 		// PLACEHOLDER FUSION - second input is set to dueterium in the tile for now
 
-		GTTileEntityFusionComputer.addRecipe("dustTungsten", 1, 1, Ic2Items.iridiumOre);
+		GTTileEntityFusionComputer.addRecipe("dustTungsten", 1, 0, Ic2Items.iridiumOre);
 		GTTileEntityFusionComputer.addRecipe(new ItemStack(GTItems.tritium), 1, (new ItemStack(GTItems.plasmaHelium)));
 		GTTileEntityFusionComputer.addRecipe(new ItemStack(GTItems.helium3), 1, (new ItemStack(GTItems.plasmaHelium)));
 		GTTileEntityFusionComputer.addRecipe(StackUtil.copyWithSize(Ic2Items.uuMatter, 10), 0,

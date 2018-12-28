@@ -54,6 +54,7 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 	public GTTileEntityFusionComputer() {
 		super(3, 2048, 10000, 2048);
 		this.status = 0;
+		this.addGuiFields(new String[] { "status" });
 	}
 
 	@Override
@@ -83,6 +84,23 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 	@Override
 	public MachineType getType() {
 		return null;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		this.status = nbt.getInteger("status");
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setInteger("status", this.status);
+		return nbt;
+	}
+
+	public void updateGUI() {
+		this.getNetwork().updateTileGuiField(this, "status");
 	}
 
 	@Override
@@ -141,7 +159,7 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 
 	@Override
 	public ResourceLocation getStartSoundFile() {
-		return Ic2Sounds.electrolyzerOp;
+		return Ic2Sounds.generatorLoop;
 	}
 
 	@Override
@@ -196,6 +214,9 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 	}
 
 	public boolean checkStructure() {
+
+		this.status = 1;
+		updateGUI();
 		if (!world.isAreaLoaded(pos, 3))
 			return false;
 
@@ -237,6 +258,8 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 			return false;
 		}
 
+		this.status = 2;
+		updateGUI();
 		return true;
 	}
 
@@ -254,10 +277,6 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 
 	@Override
 	public void onGuiClosed(EntityPlayer entityPlayer) {
-		if (this.checkStructure()) {
-			this.status = 1;
-		} else {
-			this.status = 666;
-		}
+		// needed for construction
 	}
 }

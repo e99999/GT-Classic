@@ -2,8 +2,10 @@ package gtclassic;
 
 import static ic2.core.platform.textures.Ic2Icons.addSprite;
 import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;
+import static ic2.core.platform.textures.Ic2Icons.addCustomTexture;
 
 import ic2.core.platform.textures.Sprites;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -86,6 +88,8 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_fusioncomputer", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_supercondensator", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_superconductorwire", 0, 0, 1, 12));
+		
+		addCustomTexture("gtclassic_quantumchest", 0, 1, new ResourceLocation(GTClassic.MODID, "textures/animations/screen.png"));
 
 	}
 }
