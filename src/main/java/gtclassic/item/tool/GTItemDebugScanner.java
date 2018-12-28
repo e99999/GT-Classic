@@ -38,7 +38,7 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[59];
+		return Ic2Icons.getTextures("gtclassic_items")[79];
 	}
 
 	@Override

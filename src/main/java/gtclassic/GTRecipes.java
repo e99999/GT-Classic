@@ -18,6 +18,7 @@ import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.item.recipe.upgrades.EnchantmentModifier;
+import ic2.core.platform.config.IC2Config;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.init.Blocks;
@@ -45,12 +46,15 @@ public class GTRecipes {
 
 	static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 
-	static IRecipeInput ingotElectric = new RecipeInputCombined(1,
-			new IRecipeInput[] { new RecipeInputOreDict("ingotAluminium"), new RecipeInputOreDict("ingotRefinedIron"),
-					new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotSteel") });
+	public static IC2Config ic2config;
 
-	static IRecipeInput ingotSteel = new RecipeInputCombined(1,
-			new IRecipeInput[] { new RecipeInputOreDict("ingotRefinedIron"), new RecipeInputOreDict("ingotSteel") });
+	private static String getRefinedIron() { //TODO check if this loads to early because its static
+		return ic2config.getFlag("SteelRecipes") ? "ingotSteel" : "ingotRefinedIron";
+	}
+
+	static IRecipeInput ingotElectric = new RecipeInputCombined(1,
+			new IRecipeInput[] { new RecipeInputOreDict("ingotAluminium"), new RecipeInputOreDict(getRefinedIron()),
+					new RecipeInputOreDict("ingotSilver") });
 
 	static FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
 	static FluidStack lava = new FluidStack(FluidRegistry.LAVA, 1000);
@@ -157,7 +161,7 @@ public class GTRecipes {
 				new Object[] { "DI ", "DI ", "DCB",
 						new EnchantmentModifier(new ItemStack(GTItems.rockCutter), Enchantments.SILK_TOUCH)
 								.setUsesInput(),
-						'D', "gemDiamond", 'I', ingotSteel, 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
+						'D', "gemDiamond", 'I', getRefinedIron(), 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
 
 		recipes.addRecipe(new ItemStack(GTItems.advancedDrill, 1), new Object[] { "DDD", "ICI", "IBI", 'I',
 				"ingotTitanium", 'B', GTItems.lithiumBattery, 'C', GTItems.dataControlCircuit, 'D', "gemDiamond" });
@@ -322,7 +326,7 @@ public class GTRecipes {
 				new Object[] { " X ", "XYX", " X ", 'Y', Ic2Items.generator.copy(), 'X', "ingotAluminium" });
 
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.mixedMetalIngot, 3),
-				new Object[] { "III", "BBB", "TTT", 'I', ingotSteel, 'B', "ingotBronze", 'T', "ingotAluminum" });
+				new Object[] { "III", "BBB", "TTT", 'I', getRefinedIron(), 'B', "ingotBronze", 'T', "ingotAluminum" });
 
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.mixedMetalIngot, 6),
 				new Object[] { "III", "BBB", "TTT", 'I', "ingotTitanium", 'B', "ingotBronze", 'T', ingotElectric });
@@ -452,8 +456,8 @@ public class GTRecipes {
 		IRecipeModifier[] easygate = new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(3000) };
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(GTItems.water, 6), 0,
-				new OutputItem(new ItemStack(GTItems.hydrogen, 4), 1),
-				new OutputItem(new ItemStack(GTItems.oxygen, 2), 2));
+				new OutputItem(new ItemStack(GTItems.hydrogen, 4), 0),
+				new OutputItem(new ItemStack(GTItems.oxygen, 2), 1));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.waterCell, 6), 6,
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.emptyCell, 6), 0),
@@ -461,7 +465,7 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.oxygen, 2), 2));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustCoal", 4, 8,
-				new OutputItem(new ItemStack(GTItems.carbon, 8), 1));
+				new OutputItem(new ItemStack(GTItems.carbon, 8), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.rubberWood, 16), 12,
 				new OutputItem(new ItemStack(GTItems.carbon, 8), 0),
@@ -489,16 +493,16 @@ public class GTRecipes {
 		// TODO - missing 4 throiums rods
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustRuby", 9, 3, easygate,
-				new OutputItem(new ItemStack(GTItems.dustAluminium, 2), 1),
-				new OutputItem(new ItemStack(GTItems.dustChrome, 1), 2),
-				new OutputItem(new ItemStack(GTItems.oxygen, 3), 3));
-
-		GTTileEntityIndustrialCentrifuge.addRecipe("dustSapphire", 8, 3, easygate,
-				new OutputItem(new ItemStack(GTItems.dustAluminium, 2), 1),
+				new OutputItem(new ItemStack(GTItems.dustAluminium, 2), 0),
+				new OutputItem(new ItemStack(GTItems.dustChrome, 1), 1),
 				new OutputItem(new ItemStack(GTItems.oxygen, 3), 2));
 
+		GTTileEntityIndustrialCentrifuge.addRecipe("dustSapphire", 8, 3, easygate,
+				new OutputItem(new ItemStack(GTItems.dustAluminium, 2), 0),
+				new OutputItem(new ItemStack(GTItems.oxygen, 3), 1));
+
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustGreenSapphire", 4, 0,
-				new OutputItem(new ItemStack(GTItems.dustSapphire, 4), 1));
+				new OutputItem(new ItemStack(GTItems.dustSapphire, 4), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustEmerald", 29, 18, easygate,
 				new OutputItem(new ItemStack(GTItems.oxygen, 9), 0),
@@ -513,8 +517,8 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.potassium, 4), 3));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustEnderEye", 16, 0,
-				new OutputItem(new ItemStack(GTItems.dustEnderpearl, 8), 1),
-				new OutputItem(new ItemStack(Items.BLAZE_POWDER, 8), 2));
+				new OutputItem(new ItemStack(GTItems.dustEnderpearl, 8), 0),
+				new OutputItem(new ItemStack(Items.BLAZE_POWDER, 8), 1));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustLazurite", 59, 22, medgate,
 				new OutputItem(new ItemStack(GTItems.sodium, 8), 0),
@@ -523,12 +527,12 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.calcium, 8), 3));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustPyrite", 3, 0,
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 1), 1));
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 1), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustCalcite", 10, 7,
-				new OutputItem(new ItemStack(GTItems.calcium, 2), 1),
-				new OutputItem(new ItemStack(GTItems.carbon, 2), 2),
-				new OutputItem(new ItemStack(GTItems.oxygen, 3), 3));
+				new OutputItem(new ItemStack(GTItems.calcium, 2), 0),
+				new OutputItem(new ItemStack(GTItems.carbon, 2), 1),
+				new OutputItem(new ItemStack(GTItems.oxygen, 3), 2));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustSodalite", 23, 8, easygate,
 				new OutputItem(new ItemStack(GTItems.chlorine, 1), 0),
@@ -543,22 +547,20 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.hydrogen, 10), 3));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.MAGMA_CREAM, 1), 0,
-				new OutputItem(new ItemStack(Items.BLAZE_POWDER, 1), 1),
-				new OutputItem(new ItemStack(Items.SLIME_BALL, 1), 2));
+				new OutputItem(new ItemStack(Items.BLAZE_POWDER, 1), 0),
+				new OutputItem(new ItemStack(Items.SLIME_BALL, 1), 1));
 
 		// TODO MISSING RECIPE REQUIRE THORIUM CELL
 		// input 2 near depleted uranium rod/cells
 		// output 0 -empty cell or something
 		// output 1 -one thorium rod/cell
 
-		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.DIRT, 64), 0,
-				new OutputItem(new ItemStack(Blocks.SAND, 32), 0),
+		GTTileEntityIndustrialCentrifuge.addRecipe("dirt", 64, 0, new OutputItem(new ItemStack(Blocks.SAND, 32), 0),
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.compressedPlantBall, 2), 1),
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.plantBall, 2), 2),
 				new OutputItem(new ItemStack(Items.CLAY_BALL, 2), 3));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.GRASS, 64), 0,
-				new OutputItem(new ItemStack(Blocks.SAND, 32), 0),
+		GTTileEntityIndustrialCentrifuge.addRecipe("grass", 64, 0, new OutputItem(new ItemStack(Blocks.SAND, 32), 0),
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.compressedPlantBall, 2), 1),
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.plantBall, 4), 2),
 				new OutputItem(new ItemStack(Items.CLAY_BALL, 2), 3));
@@ -570,22 +572,22 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(Items.CLAY_BALL, 8), 3));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.BROWN_MUSHROOM_BLOCK, 64), 6,
-				new OutputItem(new ItemStack(GTItems.methane, 6), 1));
+				new OutputItem(new ItemStack(GTItems.methane, 6), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.RED_MUSHROOM_BLOCK, 64), 6,
-				new OutputItem(new ItemStack(GTItems.methane, 6), 1));
+				new OutputItem(new ItemStack(GTItems.methane, 6), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.BROWN_MUSHROOM, 64), 4,
-				new OutputItem(new ItemStack(GTItems.methane, 4), 1));
+				new OutputItem(new ItemStack(GTItems.methane, 4), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.RED_MUSHROOM, 64), 4,
-				new OutputItem(new ItemStack(GTItems.methane, 4), 1));
+				new OutputItem(new ItemStack(GTItems.methane, 4), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.NETHER_WART, 64), 2,
-				new OutputItem(new ItemStack(GTItems.methane, 2), 1));
+				new OutputItem(new ItemStack(GTItems.methane, 2), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.terraWart, 64), 4,
-				new OutputItem(new ItemStack(GTItems.methane, 4), 1));
+				new OutputItem(new ItemStack(GTItems.methane, 4), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("gemLapis", 64, 0, medgate,
 				new OutputItem(new ItemStack(GTItems.dustSodalite, 8), 0),
@@ -594,30 +596,30 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.dustCalcite, 4), 3));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.BLAZE_POWDER, 8), 0,
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.coalDust, 2), 1),
-				new OutputItem(new ItemStack(Items.GUNPOWDER, 1), 2));
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.coalDust, 2), 0),
+				new OutputItem(new ItemStack(Items.GUNPOWDER, 1), 1));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.SAND, 32), 2, medgate,
-				new OutputItem(new ItemStack(GTItems.silicon, 1), 1),
-				new OutputItem(new ItemStack(GTItems.oxygen, 1), 2));
+		GTTileEntityIndustrialCentrifuge.addRecipe("sand", 32, 2, medgate,
+				new OutputItem(new ItemStack(GTItems.silicon, 1), 0),
+				new OutputItem(new ItemStack(GTItems.oxygen, 1), 1));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustFlint", 8, 2, easygate,
-				new OutputItem(new ItemStack(GTItems.silicon, 1), 1),
-				new OutputItem(new ItemStack(GTItems.oxygen, 1), 2));
+				new OutputItem(new ItemStack(GTItems.silicon, 1), 0),
+				new OutputItem(new ItemStack(GTItems.oxygen, 1), 1));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.clayDust, 4), 2, medgate,
-				new OutputItem(new ItemStack(GTItems.lithium, 1), 1),
-				new OutputItem(new ItemStack(GTItems.silicon, 1), 2));
+				new OutputItem(new ItemStack(GTItems.lithium, 1), 0),
+				new OutputItem(new ItemStack(GTItems.silicon, 1), 1));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.stickyResin, 8), 0,
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.rubber, 28), 1),
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.compressedPlantBall, 2), 2),
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.plantBall, 2), 3));
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.rubber, 28), 0),
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.compressedPlantBall, 2), 1),
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.plantBall, 2), 2));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustGlowstone", 16, 1, easygate,
-				new OutputItem(new ItemStack(Items.REDSTONE, 8), 1),
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.goldDust, 8), 2),
-				new OutputItem(new ItemStack(GTItems.helium, 1), 3));
+				new OutputItem(new ItemStack(Items.REDSTONE, 8), 0),
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.goldDust, 8), 1),
+				new OutputItem(new ItemStack(GTItems.helium, 1), 2));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.netherrackDust, 64), 0, easygate,
 				new OutputItem(new ItemStack(Items.GOLD_NUGGET, 4), 0),
@@ -632,9 +634,9 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.tungsten, 4), 3));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.LAVA, 64), 4, easygate,
-				new OutputItem(new ItemStack(Items.GOLD_INGOT, 4), 1),
-				new OutputItem(new ItemStack(Items.IRON_INGOT, 16), 2),
-				new OutputItem(new ItemStack(GTItems.tungsten, 4), 3));
+				new OutputItem(new ItemStack(Items.GOLD_INGOT, 4), 0),
+				new OutputItem(new ItemStack(Items.IRON_INGOT, 16), 1),
+				new OutputItem(new ItemStack(GTItems.tungsten, 4), 2));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.lavaCell, 64), 4, easygate,
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.emptyCell, 64), 0),
@@ -651,17 +653,17 @@ public class GTRecipes {
 		// INDUSTRIAL CENTRIFUGE RECIPES NEW/OUT OF ORDER
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(GTBlocks.sandIron, 8), 0,
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 7), 1),
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.goldDust, 1), 2));
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 7), 0),
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.goldDust, 1), 1));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Items.QUARTZ, 1), 3, easygate,
-				new OutputItem(new ItemStack(GTItems.silicon, 1), 1),
-				new OutputItem(new ItemStack(GTItems.oxygen, 2), 2));
+				new OutputItem(new ItemStack(GTItems.silicon, 1), 0),
+				new OutputItem(new ItemStack(GTItems.oxygen, 2), 1));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.MAGMA, 64), 4, easygate,
-				new OutputItem(new ItemStack(Items.GOLD_INGOT, 4), 1),
-				new OutputItem(new ItemStack(Items.IRON_INGOT, 16), 2),
-				new OutputItem(new ItemStack(GTItems.tungsten, 4), 3));
+				new OutputItem(new ItemStack(Items.GOLD_INGOT, 4), 0),
+				new OutputItem(new ItemStack(Items.IRON_INGOT, 16), 1),
+				new OutputItem(new ItemStack(GTItems.tungsten, 4), 2));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.obsidianDust, 64), 10,
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 2), 0),

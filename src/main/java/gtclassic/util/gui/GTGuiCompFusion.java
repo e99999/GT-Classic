@@ -34,15 +34,15 @@ public class GTGuiCompFusion extends GuiComponent {
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
 
 		if (this.block.getStatus() == 666) {
-			gui.drawString("Shape Invalid", 78, 69, red);
+			gui.drawCenteredString("Shape Invalid", 114, 69, red);
 		}
 
 		else if (this.block.getStatus() == 1) {
-			gui.drawString("Shape Complete", 78, 69, green);
+			gui.drawCenteredString("Shape Complete", 114, 69, green);
 		}
 
 		else if (this.block.getStatus() == 0) {
-			gui.drawString("Shape Null", 78, 69, white);
+			gui.drawCenteredString("Shape Null", 114, 69, white);
 		}
 	}
 
