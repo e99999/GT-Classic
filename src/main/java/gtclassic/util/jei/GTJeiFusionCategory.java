@@ -3,25 +3,33 @@ package gtclassic.util.jei;
 import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
 import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IGuiItemStackGroup;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTJeiFusionCategory implements IRecipeCategory<GTJeiFusionWrapper> {
 
 	ItemStack displayName;
 	IDrawable draw;
 	IDrawable slot;
-	IDrawable arrow;
+	IDrawable progress;
 
 	public GTJeiFusionCategory(IGuiHelper helper) {
 		displayName = new ItemStack(GTBlocks.fusionComputer);
 		ResourceLocation texture = new ResourceLocation(GTClassic.MODID, "textures/gui/fusioncomputer.png");
 		this.draw = helper.createDrawable(texture, 86, 25, 82, 36);
+		IDrawableStatic progressPic = helper.createDrawable(texture, 176, 0, 25, 17);
+		this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void drawExtras(Minecraft arg0) {
+		this.progress.draw(arg0, 25, 10);
 	}
 
 	@Override

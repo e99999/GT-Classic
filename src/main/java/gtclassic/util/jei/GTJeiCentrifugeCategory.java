@@ -3,25 +3,33 @@ package gtclassic.util.jei;
 import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
 import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IGuiItemStackGroup;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTJeiCentrifugeCategory implements IRecipeCategory<GTJeiCentrifugeWrapper> {
 
 	ItemStack displayName;
 	IDrawable draw;
 	IDrawable slot;
-	IDrawable arrow;
+	IDrawable progress;
 
 	public GTJeiCentrifugeCategory(IGuiHelper helper) {
 		displayName = new ItemStack(GTBlocks.industrialCentrifuge);
 		ResourceLocation texture = new ResourceLocation(GTClassic.MODID, "textures/gui/industrialcentrifuge.png");
 		this.draw = helper.createDrawable(texture, 25, 25, 120, 36);
+		IDrawableStatic progressPic = helper.createDrawable(texture, 176, 0, 10, 10);
+		this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void drawExtras(Minecraft arg0) {
+		this.progress.draw(arg0, 37, 4);
 	}
 
 	@Override
