@@ -104,8 +104,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	}
 
 	@Override
-	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-	{
+	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
 		return GTIndustrialCentrifugeGui.class;
 	}
 

@@ -12,13 +12,13 @@ import gtclassic.util.recipe.GTRecipeHelpers.ModifierType;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.item.recipe.upgrades.EnchantmentModifier;
-import ic2.core.platform.config.IC2Config;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.init.Blocks;
@@ -46,10 +46,8 @@ public class GTRecipes {
 
 	static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 
-	public static IC2Config ic2config;
-
-	private static String getRefinedIron() { //TODO check if this loads to early because its static
-		return ic2config.getFlag("SteelRecipes") ? "ingotSteel" : "ingotRefinedIron";
+	private static String getRefinedIron() { // TODO check if this loads to early because its static
+		return IC2.config.getFlag("SteelRecipes") ? "ingotSteel" : "ingotRefinedIron";
 	}
 
 	static IRecipeInput ingotElectric = new RecipeInputCombined(1,
@@ -660,10 +658,8 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.silicon, 1), 0),
 				new OutputItem(new ItemStack(GTItems.oxygen, 2), 1));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.MAGMA, 64), 4, easygate,
-				new OutputItem(new ItemStack(Items.GOLD_INGOT, 4), 0),
-				new OutputItem(new ItemStack(Items.IRON_INGOT, 16), 1),
-				new OutputItem(new ItemStack(GTItems.tungsten, 4), 2));
+		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.MAGMA, 64), 64,
+				new OutputItem(new ItemStack(GTItems.lava, 64), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.obsidianDust, 64), 10,
 				new OutputItem(StackUtil.copyWithSize(Ic2Items.ironDust, 2), 0),

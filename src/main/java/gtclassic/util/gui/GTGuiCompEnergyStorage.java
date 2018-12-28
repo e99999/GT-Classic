@@ -3,6 +3,7 @@ package gtclassic.util.gui;
 import java.util.Arrays;
 import java.util.List;
 
+import gtclassic.util.GTValues;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.buttons.IconButton;
@@ -20,7 +21,6 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 	public static final ItemStack red;
 	byte lastMode;
 	TileEntityElectricBlock block;
-	int white = 16777215;
 
 	public GTGuiCompEnergyStorage(TileEntityElectricBlock tile) {
 		super(Ic2GuiComp.nullBox);
@@ -36,18 +36,18 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString(block.getBlockName(), 12, 8, white);
-		gui.drawString(Ic2GuiLang.energyStorageCharge, 12, 18, white);
+		gui.drawString(block.getBlockName(), 12, 8, GTValues.white);
+		gui.drawString(Ic2GuiLang.energyStorageCharge, 12, 18, GTValues.white);
 		int eu = this.block.getStoredEU();
 		int max = this.block.getMaxEU();
 		if (eu > max) {
 			eu = max;
 		}
 
-		gui.drawString("" + eu, 12, 28, white);
-		gui.drawString("/" + max, 12, 38, white);
+		gui.drawString("" + eu, 12, 28, GTValues.white);
+		gui.drawString("/" + max, 12, 38, GTValues.white);
 		gui.drawString(Ic2GuiLang.energyStorageOutput.getLocalizedFormatted(new Object[] { this.block.output }), 12, 48,
-				white);
+				GTValues.white);
 	}
 
 	@Override

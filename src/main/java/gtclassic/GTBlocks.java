@@ -27,6 +27,7 @@ import gtclassic.block.tileentity.GTTileEntityLightningRod;
 import gtclassic.block.tileentity.GTTileEntityQuantumChest;
 import gtclassic.block.tileentity.GTTileEntitySmallChest;
 import gtclassic.block.tileentity.GTTileEntitySuperCondensator;
+import gtclassic.block.tileentity.GTTileEntityWorkbench;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -70,7 +71,8 @@ public class GTBlocks {
 	public static final GTBlockStorage smallChest = new GTBlockStorage(GTBlockStorageVariants.SMALLCHEST),
 			largeChest = new GTBlockStorage(GTBlockStorageVariants.LARGECHEST),
 			quantumChest = new GTBlockStorage(GTBlockStorageVariants.QUANTUMCHEST),
-			bookShelf = new GTBlockStorage(GTBlockStorageVariants.BOOKSHELF);
+			bookShelf = new GTBlockStorage(GTBlockStorageVariants.BOOKSHELF),
+			workBench = new GTBlockStorage(GTBlockStorageVariants.WORKBENCH);
 
 	public static final GTBlockEnergy IDSU = new GTBlockEnergy(GTBlockEnergyVariants.IDSU),
 			HESU = new GTBlockEnergy(GTBlockEnergyVariants.HESU), LESU = new GTBlockEnergy(GTBlockEnergyVariants.LESU),
@@ -91,7 +93,7 @@ public class GTBlocks {
 			autoCrafter, chargeOMat, computerCube, industrialCentrifuge, matterFabricator, uuMatterAssembler,
 			playerDetector, sonictronBlock,
 
-			bookShelf, smallChest, largeChest, quantumChest,
+			bookShelf, workBench, smallChest, largeChest, quantumChest,
 
 			fusionComputer, lightningRod, IDSU, HESU, LESU, superCondensator, superConductorWire,
 
@@ -131,6 +133,8 @@ public class GTBlocks {
 				new ResourceLocation(GTClassic.MODID, "tileQuantumChest"));
 		GameRegistry.registerTileEntity(GTTileEntityBookshelf.class,
 				new ResourceLocation(GTClassic.MODID, "tileEntityBookshelf"));
+		GameRegistry.registerTileEntity(GTTileEntityWorkbench.class,
+				new ResourceLocation(GTClassic.MODID, "tileEntityWorkbench"));
 
 		GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
 		GameRegistry.registerTileEntity(GTTileEntityIDSU.class, new ResourceLocation(GTClassic.MODID, "tileIDSU"));

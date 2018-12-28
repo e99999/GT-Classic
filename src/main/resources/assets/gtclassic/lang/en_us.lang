@@ -15,9 +15,10 @@ tile.gtclassic.uumassembler.name=UU Matter Assembler
 tile.gtclassic.sonictron.name=Sonictron
 
 #storage blocks
+tile.gtclassic.bookshelf.name=Metal Bookshelf
+tile.gtclassic.workbench.name=Basic Workbench
 tile.gtclassic.smallchest.name=Metal Chest
 tile.gtclassic.largechest.name=Large Metal Chest
-tile.gtclassic.bookshelf.name=Metal Bookshelf
 tile.gtclassic.quantumchest.name=Quantum Chest
 
 #energy blocks

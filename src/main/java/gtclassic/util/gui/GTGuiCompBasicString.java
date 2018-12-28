@@ -3,7 +3,6 @@ package gtclassic.util.gui;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.block.tileentity.GTTileEntityQuantumChest;
 import gtclassic.util.GTValues;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -11,13 +10,17 @@ import ic2.core.platform.registry.Ic2GuiComp;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTGuiCompQuantumChest extends GuiComponent {
+public class GTGuiCompBasicString extends GuiComponent {
 
-	GTTileEntityQuantumChest block;
+	private int posX;
+	private int posY;
+	private String title;
 
-	public GTGuiCompQuantumChest(GTTileEntityQuantumChest tile) {
+	public GTGuiCompBasicString(String title, Integer posX, Integer posY) {
 		super(Ic2GuiComp.nullBox);
-		this.block = tile;
+		this.posX = posX;
+		this.posY = posY;
+		this.title = title;
 	}
 
 	@Override
@@ -28,10 +31,7 @@ public class GTGuiCompQuantumChest extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString("Items:", 12, 20, GTValues.white);
-
-		int stored = this.block.getQuantumCount();
-		gui.drawString("" + stored, 12, 30, GTValues.white);
+		gui.drawString(this.title, this.posX, this.posY, GTValues.grey);
 	}
 
 }

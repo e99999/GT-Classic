@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.block.tileentity.GTTileEntityComputerCube;
+import gtclassic.util.GTValues;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.registry.Ic2GuiComp;
@@ -13,8 +14,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTGuiCompComputerCube extends GuiComponent {
 
 	GTTileEntityComputerCube block;
-	int white = 16777215;
-	int grey = 4210752;
 
 	public GTGuiCompComputerCube(GTTileEntityComputerCube tile) {
 		super(Ic2GuiComp.nullBox);
@@ -30,8 +29,8 @@ public class GTGuiCompComputerCube extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawCenteredString("[" + getTime(gui) + "]", 89, 9, grey);
-		gui.drawCenteredString("G.L.A.D.-OS", 91, 59, white);
+		gui.drawCenteredString("[" + getTime(gui) + "]", 89, 9, GTValues.grey);
+		gui.drawCenteredString("G.L.A.D.-OS", 91, 59, GTValues.white);
 	}
 
 	public String getTime(GuiIC2 gui) {

@@ -10,6 +10,7 @@ import gtclassic.block.tileentity.GTTileEntityBookshelf;
 import gtclassic.block.tileentity.GTTileEntityLargeChest;
 import gtclassic.block.tileentity.GTTileEntityQuantumChest;
 import gtclassic.block.tileentity.GTTileEntitySmallChest;
+import gtclassic.block.tileentity.GTTileEntityWorkbench;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -31,7 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockStorage extends BlockMultiID {
 	public enum GTBlockStorageVariants {
-		SMALLCHEST, LARGECHEST, QUANTUMCHEST, BOOKSHELF,
+		SMALLCHEST, LARGECHEST, QUANTUMCHEST, BOOKSHELF, WORKBENCH
 	}
 
 	GTBlockStorageVariants variant;
@@ -84,6 +85,10 @@ public class GTBlockStorage extends BlockMultiID {
 			return new GTTileEntityBookshelf();
 		}
 
+		else if (this == GTBlocks.workBench) {
+			return new GTTileEntityWorkbench();
+		}
+
 		else {
 			return new TileEntityBlock();
 		}
@@ -107,6 +112,10 @@ public class GTBlockStorage extends BlockMultiID {
 
 		else if (this == GTBlocks.bookShelf) {
 			return Ic2Icons.getTextures("gtclassic_bookshelf");
+		}
+
+		else if (this == GTBlocks.workBench) {
+			return Ic2Icons.getTextures("gtclassic_workbench");
 		}
 
 		else {

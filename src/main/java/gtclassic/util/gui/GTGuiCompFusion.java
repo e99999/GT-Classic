@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
+import gtclassic.util.GTValues;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.registry.Ic2GuiComp;
@@ -13,10 +14,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTGuiCompFusion extends GuiComponent {
 
 	GTTileEntityFusionComputer block;
-	int white = 16777215;
-	int grey = 4210752;
-	int red = 15599112;
-	int green = 9567352;
 
 	public GTGuiCompFusion(GTTileEntityFusionComputer tile) {
 		super(Ic2GuiComp.nullBox);
@@ -34,15 +31,15 @@ public class GTGuiCompFusion extends GuiComponent {
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
 
 		if (this.block.getStatus() == 666) {
-			gui.drawCenteredString("Shape Invalid", 114, 69, red);
+			gui.drawCenteredString("Shape Invalid", 114, 69, GTValues.red);
 		}
 
 		else if (this.block.getStatus() == 1) {
-			gui.drawCenteredString("Shape Complete", 114, 69, green);
+			gui.drawCenteredString("Shape Complete", 114, 69, GTValues.green);
 		}
 
 		else if (this.block.getStatus() == 0) {
-			gui.drawCenteredString("Shape Null", 114, 69, white);
+			gui.drawCenteredString("Scanning...", 114, 69, GTValues.white);
 		}
 	}
 
