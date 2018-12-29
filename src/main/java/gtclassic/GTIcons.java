@@ -89,8 +89,10 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_supercondensator", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_superconductorwire", 0, 0, 1, 12));
 		
-		addCustomTexture("gtclassic_quantumchest", 0, 1, location("screen"));
-		addCustomTexture("gtclassic_fusioncomputer", 0, 7, location("screen"));
+		addCustomTexture("gtclassic_quantumchest", 0, 1, location("screen0"));
+		addCustomTexture("gtclassic_fusioncomputer", 0, 7, location("screen1"));
+		addCustomTexture("gtclassic_industrialcentrifuge", 0, 7, location("centrifuge_top"));
+		addCustomTexture("gtclassic_industrialcentrifuge", 0, 9, location("centrifuge_front"));
 
 	}
 	

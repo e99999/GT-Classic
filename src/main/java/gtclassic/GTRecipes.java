@@ -257,15 +257,16 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTBlocks.lightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
 				GTItems.energyFlowCircuit, 'S', GTBlocks.superCondensator, 'A', GTBlocks.highlyadvancedMachineBlock });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler, 1),
-				new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T',
-						Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D',
-						GTItems.dataOrb, 'B', "batteryAdvanced" });
-
 		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 				Ic2Items.extractor, 'R', ingotElectric, 'A', Ic2Items.advMachine, 'C', "circuitAdvanced" });
 
 		if (GTValues.debugMode) {
+			
+			recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler, 1),
+					new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T',
+							Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D',
+							GTItems.dataOrb, 'B', "batteryAdvanced" });
+			
 			recipes.addRecipe(new ItemStack(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
 					GTItems.dataStorageCircuit, 'C', "circuitAdvanced", 'c', GTBlocks.computerCube });
 
