@@ -1,14 +1,19 @@
 package gtclassic.util.jei;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTItems;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.util.GTLang;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
+import ic2.core.platform.registry.Ic2Formatters;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 
 @SuppressWarnings("deprecation")
@@ -34,5 +39,15 @@ public class GTJeiCentrifugeWrapper extends BlankRecipeWrapper {
 			}
 		}
 		components.setOutputLists(ItemStack.class, outputs);
+	}
+
+	@Override
+	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
+		FontRenderer font = minecraft.fontRenderer;
+
+		font.drawString(
+				GTLang.centrifugeEU.getLocalizedFormatted(new Object[] { Ic2Formatters.bigFormat
+						.format((long) GTTileEntityIndustrialCentrifuge.getRequiredEU(entry.getOutput())) }),
+				36, 24, Color.gray.getRGB());
 	}
 }

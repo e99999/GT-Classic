@@ -131,6 +131,9 @@ public class GTRecipes {
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.bookShelf, 1),
 				new Object[] { Ic2Items.machine, Items.BOOK, Items.BOOK, Items.BOOK });
+		
+		recipes.addShapelessRecipe(new ItemStack(GTBlocks.workBench, 1),
+				new Object[] { Ic2Items.machine, "workbench" });
 
 		recipes.addShapelessRecipe(new ItemStack(GTItems.methane, 4),
 				new Object[] { GTItems.carbon, GTItems.hydrogen, GTItems.hydrogen, GTItems.hydrogen });
@@ -261,12 +264,12 @@ public class GTRecipes {
 				Ic2Items.extractor, 'R', ingotElectric, 'A', Ic2Items.advMachine, 'C', "circuitAdvanced" });
 
 		if (GTValues.debugMode) {
-			
+
 			recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler, 1),
-					new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube, 'T',
-							Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D',
+					new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube,
+							'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D',
 							GTItems.dataOrb, 'B', "batteryAdvanced" });
-			
+
 			recipes.addRecipe(new ItemStack(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
 					GTItems.dataStorageCircuit, 'C', "circuitAdvanced", 'c', GTBlocks.computerCube });
 

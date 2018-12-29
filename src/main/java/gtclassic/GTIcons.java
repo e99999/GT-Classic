@@ -1,8 +1,8 @@
 package gtclassic;
 
+import static ic2.core.platform.textures.Ic2Icons.addCustomTexture;
 import static ic2.core.platform.textures.Ic2Icons.addSprite;
 import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;
-import static ic2.core.platform.textures.Ic2Icons.addCustomTexture;
 
 import ic2.core.platform.textures.Sprites;
 import net.minecraft.util.ResourceLocation;
@@ -88,16 +88,15 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_fusioncomputer", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_supercondensator", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_superconductorwire", 0, 0, 1, 12));
-		
+
 		addCustomTexture("gtclassic_quantumchest", 0, 1, location("screen0"));
 		addCustomTexture("gtclassic_fusioncomputer", 0, 7, location("screen1"));
 		addCustomTexture("gtclassic_industrialcentrifuge", 0, 7, location("centrifuge_top"));
 		addCustomTexture("gtclassic_industrialcentrifuge", 0, 9, location("centrifuge_front"));
 
 	}
-	
-	 private static ResourceLocation location(String name)
-	    {
-	        return new ResourceLocation(GTClassic.MODID, "animations/"+name);
-	    }
+
+	private static ResourceLocation location(String name) {
+		return new ResourceLocation(GTClassic.MODID, "animations/" + name);
+	}
 }

@@ -32,7 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTBlockGenerator extends BlockMultiID {
 	public enum GTBlockGeneratorVariants {
 		// Generators
-		LIGHTNINGROD, FUSIONCOMPUTER,
+		LIGHTNINGROD, FUSIONCOMPUTER, //TODO move fusion to machines?
 	}
 
 	GTBlockGeneratorVariants variant;
@@ -51,7 +51,7 @@ public class GTBlockGenerator extends BlockMultiID {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
+		//TODO add tooltips, its blank because i removed the WIP
 	}
 
 	@Override

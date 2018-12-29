@@ -31,7 +31,6 @@ import gtclassic.item.tool.GTItemHammerIron;
 import gtclassic.item.tool.GTItemRockCutter;
 import gtclassic.item.tool.GTItemSonictron;
 import gtclassic.item.tool.GTItemTeslaStaff;
-import gtclassic.util.GTValues;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

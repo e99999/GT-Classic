@@ -193,6 +193,13 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 		return output.getMetadata().getInteger(CELL_REQUIREMENT);
 	}
 
+	public static int getRequiredEU(MachineOutput output) {
+		if (output == null || output.getMetadata() == null) {
+			return 12000;
+		}
+		return (1000 + output.getMetadata().getInteger("RecipeTime")) * 12;
+	}
+
 	protected static NBTTagCompound createCellRequirement(int amount) {
 		if (amount <= 0) {
 			return null;

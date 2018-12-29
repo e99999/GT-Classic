@@ -3,6 +3,7 @@ package gtclassic.util;
 import gtclassic.GTClassic;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleItemInfoComp;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 
 public class GTLang {
@@ -22,5 +23,7 @@ public class GTLang {
 	public static LocaleComp zpm2 = new LocaleItemInfoComp("tooltip." + GTClassic.MODID + ".zpm2");
 	public static LocaleComp zpm3 = new LocaleItemInfoComp("tooltip." + GTClassic.MODID + ".zpm3");
 	public static LocaleComp zpm4 = new LocaleItemInfoComp("tooltip." + GTClassic.MODID + ".zpm4");
+
+	public static LocaleComp centrifugeEU = new LocaleJEIInfoComp("jei.centrifugeu.name");
 
 }

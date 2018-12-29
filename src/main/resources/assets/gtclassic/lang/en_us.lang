@@ -176,4 +176,6 @@ tooltip.gtclassic.zpm2=until it reaches maximum entropy.
 tooltip.gtclassic.zpm3=Only found as rare loot in jungle temples
 tooltip.gtclassic.zpm4=CANNOT BE RECHARGED
 
+jei.centrifugeu.name=%s EU
+
 itemGroup.gtclassic=GregTech Classic
