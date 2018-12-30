@@ -48,6 +48,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	public static final int slotOutput2 = 4;
 	public static final int slotOutput3 = 5;
 	public static final int slotOutput4 = 6;
+	public static final int defaultLength = 200;
 
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTClassic.MODID,
 			"textures/gui/industrialcentrifuge.png");
@@ -56,7 +57,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("centrifuge");
 
 	public GTTileEntityIndustrialCentrifuge() {
-		super(7, 12, 1000, 32);
+		super(7, 12, defaultLength, 32);
 		setFuelSlot(slotFuel);
 	}
 
@@ -195,9 +196,9 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 
 	public static int getRequiredEU(MachineOutput output) {
 		if (output == null || output.getMetadata() == null) {
-			return 12000;
+			return defaultLength * 12;
 		}
-		return (1000 + output.getMetadata().getInteger("RecipeTime")) * 12;
+		return (defaultLength + output.getMetadata().getInteger("RecipeTime")) * 12;
 	}
 
 	protected static NBTTagCompound createCellRequirement(int amount) {

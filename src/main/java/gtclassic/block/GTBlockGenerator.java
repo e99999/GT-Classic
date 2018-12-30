@@ -16,7 +16,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -24,7 +23,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -32,7 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTBlockGenerator extends BlockMultiID {
 	public enum GTBlockGeneratorVariants {
 		// Generators
-		LIGHTNINGROD, FUSIONCOMPUTER, //TODO move fusion to machines?
+		LIGHTNINGROD, FUSIONCOMPUTER, // TODO move fusion to machines?
 	}
 
 	GTBlockGeneratorVariants variant;
@@ -51,7 +49,7 @@ public class GTBlockGenerator extends BlockMultiID {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		//TODO add tooltips, its blank because i removed the WIP
+		// TODO add tooltips, its blank because i removed the WIP
 	}
 
 	@Override
