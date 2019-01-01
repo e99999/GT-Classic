@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemComponents extends Item implements IStaticTexturedItem {
 	public enum GTItemComponentTypes {
 		ENERGY_FLOW_CIRCUIT(38), DATA_CONTROL_CIRCUIT(39), SUPERCONDUCTOR(42), DATA_STORAGE_CIRCUIT(41), DATA_ORB(43),
-		SILICON_PLATE(55), GLASS_TUBE(63);
+		SILICON_PLATE(55), GLASS_TUBE(20);
 
 		private int id;
 

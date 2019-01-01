@@ -60,8 +60,8 @@ item.gtclassic.lithiumBattery.name=Lithium Battery
 item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
+item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
-item.gtclassic.zeroPointModule.name=Zero Point Module
 item.gtclassic.glass_tube.name=Glass Tube
 
 #elements
@@ -170,11 +170,6 @@ tooltip.gtclassic.craftingtablet=Travelers best friend!
 tooltip.gtclassic.warranty=No Warranty!
 tooltip.gtclassic.tesla=O V E R C H A R G E D
 tooltip.gtclassic.wip=Work in progress
-
-tooltip.gtclassic.zpm1=Extracts vacuum energy from subspace-time
-tooltip.gtclassic.zpm2=until it reaches maximum entropy.
-tooltip.gtclassic.zpm3=Only found as rare loot in jungle temples
-tooltip.gtclassic.zpm4=CANNOT BE RECHARGED
 
 jei.centrifugeu.name=%s EU
 

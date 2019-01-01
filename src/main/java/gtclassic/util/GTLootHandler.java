@@ -22,11 +22,9 @@ public class GTLootHandler {
 
 		String stringRuby = "gtclassic:ruby_gem";
 		String stringSapphire = "gtclassic:sapphire_gem";
-		String stringZPM = "gtclassc:zero_point_module";
 
 		Item itemRuby = GTItems.ruby;
 		Item itemSapphire = GTItems.sapphire;
-		Item itemZPM = GTItems.zeroPointModule;
 
 		if (event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)) {
 			event.getTable().getPool("main")
@@ -58,7 +56,9 @@ public class GTLootHandler {
 
 		else if (event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
 			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemZPM, 1, 0, funcs, new LootCondition[0], stringZPM));
+					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
+			event.getTable().getPool("main")
+					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
 		}
 
 		else if (event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)) {

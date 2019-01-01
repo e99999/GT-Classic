@@ -6,7 +6,6 @@ import gtclassic.item.GTItemDuctTape;
 import gtclassic.item.armor.GTItemEnergyPack;
 import gtclassic.item.energy.GTItemLapotronicEnergyOrb;
 import gtclassic.item.energy.GTItemLithiumBattery;
-import gtclassic.item.energy.GTItemZeroPointModule;
 import gtclassic.item.material.GTItemDust;
 import gtclassic.item.material.GTItemDust.GTItemDustTypes;
 import gtclassic.item.material.GTItemElement;
@@ -24,10 +23,11 @@ import gtclassic.item.reactor.GTItemRod.GTItemRodTypes;
 import gtclassic.item.tool.GTItemAdvancedChainsaw;
 import gtclassic.item.tool.GTItemAdvancedDrill;
 import gtclassic.item.tool.GTItemCraftingTablet;
-import gtclassic.item.tool.GTItemDebugScanner;
+import gtclassic.item.tool.GTItemCreativeScanner;
 import gtclassic.item.tool.GTItemDestructoPack;
 import gtclassic.item.tool.GTItemElectromagnet;
 import gtclassic.item.tool.GTItemHammerIron;
+import gtclassic.item.tool.GTItemPlayerScanner;
 import gtclassic.item.tool.GTItemRockCutter;
 import gtclassic.item.tool.GTItemSonictron;
 import gtclassic.item.tool.GTItemTeslaStaff;
@@ -122,8 +122,8 @@ public class GTItems {
 			"gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128);
 	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45,
 			"gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192);
-	public static final GTItemZeroPointModule zeroPointModule = new GTItemZeroPointModule();
-	public static final GTItemDebugScanner debugScanner = new GTItemDebugScanner();
+	public static final GTItemCreativeScanner debugScanner = new GTItemCreativeScanner();
+	public static final GTItemPlayerScanner portableScanner = new GTItemPlayerScanner();
 
 	public static final Item[] items = {
 
@@ -149,7 +149,7 @@ public class GTItems {
 
 			sonictronItem, destructoPack, craftingTablet, hammerIron, electroMagnet, rockCutter, advancedDrill,
 			advancedChainsaw, teslaStaff, lithiumBattery, lapotronicEnergyOrb, lithiumBatpack, lapotronPack,
-			debugScanner, zeroPointModule
+			portableScanner, debugScanner
 
 	};
 

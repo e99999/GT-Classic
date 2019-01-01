@@ -1,43 +1,84 @@
 package gtclassic.item.tool;
 
-import java.util.Arrays;
-import java.util.List;
-
 import gtclassic.GTClassic;
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityLightningRod;
 import gtclassic.block.tileentity.GTTileEntityQuantumChest;
 import ic2.api.classic.item.IEUReader;
+import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
-import ic2.core.item.base.ItemIC2;
+import ic2.core.item.base.ItemBatteryBase;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
+public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader {
 
-	public GTItemDebugScanner() {
-		this.maxStackSize = 1;
+	public GTItemCreativeScanner() {
+		super(0);
+		this.setRightClick();
 		setRegistryName("debug_scanner");
 		setUnlocalizedName(GTClassic.MODID + ".debug_scanner");
 		setCreativeTab(GTClassic.creativeTabGT);
+		this.maxCharge = Integer.MAX_VALUE;
+		this.transferLimit = Integer.MAX_VALUE;
+		this.tier = 1;
+		this.provider = true;
+	}
+
+	@Override
+	public int getItemStackLimit(ItemStack stack) {
+		return 1;
+	}
+
+	@Override
+	public boolean isDamaged(ItemStack stack) {
+		return true;
+	}
+
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return false;
+	}
+
+	@Override
+	public boolean wantsToPlay(ItemStack stack) {
+		return true;
+	}
+
+	@Override
+	public ResourceLocation createSound(ItemStack stack) {
+		return Ic2Sounds.batteryUse;
+	}
+
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
+			ItemStack full = new ItemStack(this, 1, 0);
+			ElectricItem.manager.charge(full, 2.147483647E9D, Integer.MAX_VALUE, true, false);
+			items.add(full);
+		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getTexture(int meta) {
+	public TextureAtlasSprite getTexture(ItemStack item) {
 		return Ic2Icons.getTextures("gtclassic_items")[79];
 	}
 
@@ -101,30 +142,25 @@ public class GTItemDebugScanner extends ItemIC2 implements IEUReader {
 				IC2.platform.messagePlayer(player, "Stored EU: " + te4.getStored());
 				IC2.platform.messagePlayer(player, "Max EU: " + te4.getCapacity());
 				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+				return EnumActionResult.SUCCESS;
 			}
 
 			else {
 				IC2.platform.messagePlayer(player, "Nothing to read from this");
+				return EnumActionResult.PASS;
 			}
-
 		}
-		return EnumActionResult.SUCCESS;
 
 	}
 
 	@Override
-	public List<Integer> getValidVariants() {
-		return Arrays.asList(0);
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		return ActionResult.newResult(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
 	}
 
 	@Override
 	public boolean isEUReader(ItemStack var1) {
 		return true;
-	}
-
-	@Override
-	public int getTextureEntry(int var1) {
-		return 0;
 	}
 
 }
