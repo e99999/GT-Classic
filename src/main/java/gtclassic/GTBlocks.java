@@ -42,8 +42,8 @@ public class GTBlocks {
 			highlyadvancedMachineBlock = new GTBlockCasing(GTBlockCasingVariants.HIGHLYADVANCED),
 			lesuMachineBlock = new GTBlockCasing(GTBlockCasingVariants.LESU);
 
-	public static final GTBlockMetal iridiumReinforcedStoneBlock = new GTBlockMetal(
-			GTBlockMetalVariants.IRIDIUM_REINFORCED_STONE), rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
+	public static final GTBlockMetal iridiumBlock = new GTBlockMetal(
+			GTBlockMetalVariants.IRIDIUM), rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
 			sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
 			aluminiumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINIUM),
 			chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME),
@@ -83,7 +83,7 @@ public class GTBlocks {
 
 			fusionMachineBlock, highlyadvancedMachineBlock, lesuMachineBlock,
 
-			iridiumReinforcedStoneBlock, rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock,
+			iridiumBlock, rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock,
 
 			iridiumOre, rubyOre, sapphireOre, bauxiteOre, sandIron, iridiumEnd,
 

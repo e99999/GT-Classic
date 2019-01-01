@@ -48,6 +48,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("ingotIridium", GTItems.ingotIridium);
 		OreDictionary.registerOre("ingotTitanium", GTItems.ingotTitanium);
 
+		OreDictionary.registerOre("blockIridium", GTBlocks.iridiumBlock);
 		OreDictionary.registerOre("blockRuby", GTBlocks.rubyBlock);
 		OreDictionary.registerOre("blockSapphire", GTBlocks.sapphireBlock);
 		OreDictionary.registerOre("blockAluminium", GTBlocks.aluminiumBlock);
@@ -72,6 +73,7 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("itemPlasma", GTItems.plasmaHelium);
 		OreDictionary.registerOre("itemPlasma", GTItems.plasmaUU);
+		OreDictionary.registerOre("itemPlasma", Ic2Items.plasmaCell);
 
 	}
 

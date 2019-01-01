@@ -31,7 +31,7 @@ tile.gtclassic.supercondensator.name=Super Condensator
 tile.gtclassic.superconductorwire.name=Super Conductor Wire
 
 #blocks
-tile.gtclassic.iridium_reinforced_stone_block.name=Iridium Reinforced Stone
+tile.gtclassic.iridium_block.name=Iridium Block
 tile.gtclassic.ruby_block.name=Ruby Block
 tile.gtclassic.sapphire_block.name=Sapphire Block
 tile.gtclassic.chrome_block.name=Chrome Block

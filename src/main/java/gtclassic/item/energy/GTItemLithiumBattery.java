@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemLithiumBattery extends ItemBatteryBase implements IAdvancedTexturedItem {
+public class GTItemLithiumBattery extends ItemBatteryBase {
 
 	public GTItemLithiumBattery() {
 		super(0);
@@ -58,6 +58,11 @@ public class GTItemLithiumBattery extends ItemBatteryBase implements IAdvancedTe
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(ItemStack item) {
-		return Ic2Icons.getTextures("gtclassic_items")[57];
+		int meta = item.getItemDamage();
+		if (meta == 0) {
+			return Ic2Icons.getTextures("gtclassic_items")[57];
+		} else {
+			return Ic2Icons.getTextures("gtclassic_items")[56];
+		}
 	}
 }

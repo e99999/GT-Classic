@@ -1,9 +1,5 @@
 package gtclassic;
 
-import java.util.ArrayList;
-
-import com.google.common.collect.Lists;
-
 import gtclassic.block.tileentity.GTTileEntityFusionComputer;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge.OutputItem;
@@ -22,24 +18,20 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.item.recipe.upgrades.EnchantmentModifier;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.registries.ForgeRegistry;
 
 public class GTRecipes {
 
 	public static void init() {
 		GTRecipes.initSmeltingRecipes();
-		// GTRecipes.initReplaceRecipes(); Figure out how to remove advancement errors
-		// when doing this
 		GTRecipes.initShapelessRecipes();
 		GTRecipes.initShapedRecipes();
 		GTRecipes.initMachineRecipes();
@@ -60,11 +52,7 @@ public class GTRecipes {
 
 	public static void initSmeltingRecipes() {
 
-		GameRegistry.addSmelting(GTBlocks.rubyBlock, new ItemStack(GTItems.ruby, 9), 0.1F);
-		GameRegistry.addSmelting(GTBlocks.sapphireBlock, new ItemStack(GTItems.sapphire, 9), 0.1F);
-		GameRegistry.addSmelting(GTBlocks.aluminiumBlock, new ItemStack(GTItems.ingotAluminium, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustAluminium, new ItemStack(GTItems.ingotAluminium, 1), 0.3F);
-		GameRegistry.addSmelting(GTBlocks.chromeBlock, new ItemStack(GTItems.ingotChrome, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustChrome, new ItemStack(GTItems.ingotChrome, 1), 0.3F);
 		GameRegistry.addSmelting(GTBlocks.titaniumBlock, new ItemStack(GTItems.ingotTitanium, 9), 0.1F);
 		GameRegistry.addSmelting(GTItems.dustTitanium, new ItemStack(GTItems.ingotTitanium, 1), 0.3F);
@@ -72,53 +60,7 @@ public class GTRecipes {
 		GameRegistry.addSmelting(GTBlocks.sandIron, new ItemStack(Items.IRON_NUGGET, 3), 0.1F);
 	}
 
-	public static void initReplaceRecipes() {
-		ForgeRegistry<IRecipe> recipeRegistry = (ForgeRegistry<IRecipe>) ForgeRegistries.RECIPES;
-		ArrayList<IRecipe> recipesList = Lists.newArrayList(recipeRegistry.getValuesCollection());
-
-		for (IRecipe r : recipesList) {
-			ItemStack output = r.getRecipeOutput();
-
-			if (output.getItem() == Item.getItemFromBlock(Blocks.IRON_BLOCK)) {
-				recipeRegistry.remove(r.getRegistryName());
-				TileEntityCompressor.addRecipe("ingotIron", 9, new ItemStack(Blocks.IRON_BLOCK), 0.1F);
-			}
-			if (output.getItem() == Item.getItemFromBlock(Blocks.GOLD_BLOCK)) {
-				recipeRegistry.remove(r.getRegistryName());
-				TileEntityCompressor.addRecipe("ingotGold", 9, new ItemStack(Blocks.GOLD_BLOCK), 0.1F);
-			}
-			if (output.getItem() == Item.getItemFromBlock(Blocks.DIAMOND_BLOCK)) {
-				recipeRegistry.remove(r.getRegistryName());
-				TileEntityCompressor.addRecipe("gemDiamond", 9, new ItemStack(Blocks.DIAMOND_BLOCK), 0.1F);
-			}
-			if (output.getItem() == Item.getItemFromBlock(Blocks.EMERALD_BLOCK)) {
-				recipeRegistry.remove(r.getRegistryName());
-				TileEntityCompressor.addRecipe("gemEmerald", 9, new ItemStack(Blocks.EMERALD_BLOCK), 0.1F);
-			}
-			if (output.getItem() == Item.getItemFromBlock(Blocks.LAPIS_BLOCK)) {
-				recipeRegistry.remove(r.getRegistryName());
-				TileEntityCompressor.addRecipe("gemLapis", 9, new ItemStack(Blocks.LAPIS_BLOCK), 0.1F);
-			}
-			if (output.getItem() == Item.getItemFromBlock(Blocks.REDSTONE_BLOCK)) {
-				recipeRegistry.remove(r.getRegistryName());
-				TileEntityCompressor.addRecipe("dustRedstone", 9, new ItemStack(Blocks.REDSTONE_BLOCK), 0.1F);
-			}
-			if (output.getItem() == Item.getItemFromBlock(Blocks.GLOWSTONE)) {
-				recipeRegistry.remove(r.getRegistryName());
-				TileEntityCompressor.addRecipe("dustGlowstone", 4, new ItemStack(Blocks.GLOWSTONE), 0.1F);
-			}
-			if (output.getItem() == Item.getItemFromBlock(Blocks.QUARTZ_BLOCK)) {
-				recipeRegistry.remove(r.getRegistryName());
-				TileEntityCompressor.addRecipe(new ItemStack(Items.QUARTZ, 4), new ItemStack(Blocks.QUARTZ_BLOCK),
-						0.1F);
-			}
-		}
-	}
-
 	public static void initShapelessRecipes() {
-
-		recipes.addShapelessRecipe(new ItemStack(GTBlocks.iridiumReinforcedStoneBlock, 1),
-				new Object[] { Ic2Items.reinforcedStone, "ingotIridium" });
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.smallChest, 1),
 				new Object[] { Ic2Items.machine, "chestWood" });
@@ -150,6 +92,15 @@ public class GTRecipes {
 	}
 
 	public static void initShapedRecipes() {
+
+		// MATERIALS
+
+		ingotUtil(GTBlocks.iridiumBlock, GTItems.ingotIridium, "Iridium");
+		gemUtil(GTBlocks.rubyBlock, GTItems.ruby, "Ruby");
+		gemUtil(GTBlocks.sapphireBlock, GTItems.sapphire, "Sapphire");
+		ingotUtil(GTBlocks.aluminiumBlock, GTItems.ingotAluminium, "Aluminium");
+		ingotUtil(GTBlocks.titaniumBlock, GTItems.ingotTitanium, "Titanium");
+		ingotUtil(GTBlocks.chromeBlock, GTItems.ingotChrome, "Chrome");
 
 		// TOOLS
 
@@ -316,7 +267,7 @@ public class GTRecipes {
 		recipes.addRecipe(new ItemStack(GTBlocks.HESU),
 				new Object[] { "OOO", "OCO", "OOO", 'O', GTItems.lapotronicEnergyOrb, 'C', GTBlocks.computerCube });
 
-		// IC2C RECIPES
+		// IC2C RECIPES (ADDITIONS)
 
 		recipes.addRecipe(new ItemStack(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood", 'C',
 				"cobblestone", 'I', ingotElectric, 'R', "dustRedstone" });
@@ -379,9 +330,14 @@ public class GTRecipes {
 		recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G',
 				"blockGlass", 'I', ingotElectric, 'H', GTItems.helium, 'C', Ic2Items.insulatedCopperCable.copy() });
 
-		recipes.addRecipe(Ic2Items.plasmaCore.copy(),
-				new Object[] { "XYX", "YCY", "XYX", 'X', StackUtil.copyWithSize(Ic2Items.magnet, 2), 'Y',
-						StackUtil.copyWithSize(Ic2Items.advancedAlloy, 4), 'C', "itemPlasma" });
+		// IC2C RECIPES (REPLACEMENTS)
+
+		recipes.overrideRecipe("shaped_Iridium Plate", StackUtil.copyWithSize(Ic2Items.iridiumPlate, 1), "IAI", "ADA",
+				"IAI", 'I', "ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
+
+		recipes.overrideRecipe("shaped_Plasma Core", StackUtil.copyWithSize(Ic2Items.plasmaCore, 1), "XYX", "YCY",
+				"XYX", 'X', StackUtil.copyWithSize(Ic2Items.magnet, 2), 'Y',
+				StackUtil.copyWithSize(Ic2Items.advancedAlloy, 4), 'C', "itemPlasma");
 
 	}
 
@@ -393,12 +349,6 @@ public class GTRecipes {
 		TileEntityCompressor.addRecipe("dustRuby", 1, new ItemStack(GTItems.ruby), 0.1F);
 		TileEntityCompressor.addRecipe("dustEmerald", 1, new ItemStack(Items.EMERALD), 0.1F);
 		TileEntityCompressor.addRecipe(Ic2Items.iridiumOre, 1, new ItemStack(GTItems.ingotIridium), 0.5F);
-
-		TileEntityCompressor.addRecipe("gemRuby", 9, new ItemStack(GTBlocks.rubyBlock), 0.1F);
-		TileEntityCompressor.addRecipe("gemSapphire", 9, new ItemStack(GTBlocks.sapphireBlock), 0.1F);
-		TileEntityCompressor.addRecipe("ingotAluminium", 9, new ItemStack(GTBlocks.aluminiumBlock), 0.1F);
-		TileEntityCompressor.addRecipe("ingotChrome", 9, new ItemStack(GTBlocks.chromeBlock), 0.1F);
-		TileEntityCompressor.addRecipe("ingotTitanium", 9, new ItemStack(GTBlocks.titaniumBlock), 0.1F);
 
 		TileEntityCompressor.addRecipe(new ItemStack(GTItems.silicon, 1),
 				StackUtil.copyWithSize(new ItemStack(GTItems.plateSilicon), 1), 0.2F);
@@ -431,24 +381,15 @@ public class GTRecipes {
 				0.1F);
 		TileEntityMacerator.addRecipe("gemSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustSapphire), 1),
 				0.1F);
+
+		// TODO bug speiger, the below recipes should be autogenerating
+
 		TileEntityMacerator.addRecipe("ingotAluminium", 1,
 				StackUtil.copyWithSize(new ItemStack(GTItems.dustAluminium), 1), 0.1F);
 		TileEntityMacerator.addRecipe("ingotChrome", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustChrome), 1),
 				0.1F);
 		TileEntityMacerator.addRecipe("ingotTitanium", 1,
 				StackUtil.copyWithSize(new ItemStack(GTItems.dustTitanium), 1), 0.1F);
-
-		TileEntityMacerator.addRecipe("blockRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustRuby), 9), 0.1F);
-		TileEntityMacerator.addRecipe("blockEmerald", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustEmerald), 9),
-				0.1F);
-		TileEntityMacerator.addRecipe("blockSapphire", 1,
-				StackUtil.copyWithSize(new ItemStack(GTItems.dustSapphire), 9), 0.1F);
-		TileEntityMacerator.addRecipe("blockAluminium", 1,
-				StackUtil.copyWithSize(new ItemStack(GTItems.dustAluminium), 9), 0.1F);
-		TileEntityMacerator.addRecipe("blockChrome", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustChrome), 9),
-				0.1F);
-		TileEntityMacerator.addRecipe("blockTitanium", 1,
-				StackUtil.copyWithSize(new ItemStack(GTItems.dustTitanium), 9), 0.1F);
 
 		// IC2C EXTRACTOR
 
@@ -687,6 +628,22 @@ public class GTRecipes {
 		GTTileEntityFusionComputer.addRecipe(StackUtil.copyWithSize(Ic2Items.uuMatter, 10), 0,
 				(new ItemStack(GTItems.plasmaUU)));
 
+	}
+
+	public static void ingotUtil(Block block, Item ingot, String name) {
+		String ingotstring = "ingot" + name;
+		String blockstring = "block" + name;
+		recipes.addRecipe(new ItemStack(block, 1), new Object[] { "XXX", "XXX", "XXX", 'X', ingotstring });
+		TileEntityCompressor.addRecipe(ingotstring, 9, new ItemStack(block), 0.1F);
+		recipes.addShapelessRecipe(new ItemStack(ingot, 9), new Object[] { blockstring });
+	}
+	
+	public static void gemUtil(Block block, Item gem, String name) {
+		String gemstring = "gem" + name;
+		String blockstring = "block" + name;
+		recipes.addRecipe(new ItemStack(block, 1), new Object[] { "XXX", "XXX", "XXX", 'X', gemstring });
+		TileEntityCompressor.addRecipe(gemstring, 9, new ItemStack(block), 0.1F);
+		recipes.addShapelessRecipe(new ItemStack(gem, 9), new Object[] { blockstring });
 	}
 
 	public static IRecipeModifier[] euCost(Integer amount) {

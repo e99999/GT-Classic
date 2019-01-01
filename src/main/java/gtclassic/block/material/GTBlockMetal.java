@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockMetal extends Block implements ITexturedBlock {
 	public enum GTBlockMetalVariants {
-		IRIDIUM_REINFORCED_STONE(64), RUBY(65), SAPPHIRE(66), ALUMINIUM(67), TITANIUM(68), CHROME(69);
+		IRIDIUM(64), RUBY(65), SAPPHIRE(66), ALUMINIUM(67), TITANIUM(68), CHROME(69);
 
 		private int id;
 
