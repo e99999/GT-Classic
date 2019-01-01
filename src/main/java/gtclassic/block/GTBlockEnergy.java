@@ -35,11 +35,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockEnergy extends BlockMultiID {
 	public enum GTBlockEnergyVariants {
-		// OTHER STUFF
-		SUPERCONDENSATOR, SUPERCONDUCTORWIRE,
-
-		// STORAGE
-		IDSU, HESU, LESU;
+		IDSU, HESU, LESU, SUPERCONDENSATOR, SUPERCONDUCTORWIRE;
 	}
 
 	GTBlockEnergyVariants variant;
@@ -60,9 +56,6 @@ public class GTBlockEnergy extends BlockMultiID {
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this == GTBlocks.HESU) {
 			tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".hesu3"));
-		} else if (this == GTBlocks.IDSU) {
-			tooltip.add(TextFormatting.DARK_PURPLE + I18n.format("tooltip." + GTClassic.MODID + ".idsu"));
-			tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
 		} else {
 			tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
 		}

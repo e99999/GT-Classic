@@ -49,8 +49,8 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(TextFormatting.DARK_AQUA + I18n.format("tooltip." + GTClassic.MODID + ".tesla"));
 		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".warranty"));
-		tooltip.add(TextFormatting.BLUE + I18n.format("tooltip." + GTClassic.MODID + ".tesla"));
 	}
 
 	@Override

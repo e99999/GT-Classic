@@ -62,7 +62,6 @@ item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
 item.gtclassic.lapotronPack.name=Lapotron Pack
 item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
-item.gtclassic.glass_tube.name=Glass Tube
 
 #elements
 item.gtclassic.hydrogen.name=Hydrogen
@@ -141,6 +140,7 @@ item.gtclassic.data_storage_circuit.name=Data Storage Circuit
 item.gtclassic.braintech_aerospace_ardt.name=Braintech Aerospace Advanced Reinforced Duct Tape FAL-84
 item.gtclassic.data_orb.name=Data Orb
 item.gtclassic.silicon_plate.name=Silicon Plate
+item.gtclassic.glass_tube.name=Glass Tube
 
 tooltip.gtclassic.iridium=Spawns rarely in ALL biomes
 tooltip.gtclassic.ruby=Spawns in HOT biomes
@@ -151,18 +151,21 @@ tooltip.gtclassic.iridiumend=Spawns in the bottom of End Islands
 
 tooltip.gtclassic.beacon=Can be used as a beacon base
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
-tooltip.gtclassic.chest=Decorative item storage
+tooltip.gtclassic.storage=Decorative item storage
+tooltip.gtclassic.workbench=Carfting and storage all-in-one!
 tooltip.gtclassic.quantumchest=2 milliards, uhhm I mean billions, items to store here!
-tooltip.gtclassic.computer=One stop shop utility & information
+tooltip.gtclassic.computer=New OS coming soon!
 tooltip.gtclassic.centrifuge=And round and round and round it goes
 tooltip.gtclassic.superCondensator=In: 65535 EU, Out: 32768 EU 4x
 tooltip.gtclassic.hesu=Max Input: 2048 EU
 tooltip.gtclassic.hesu2=Max Storage: 100000000 EU
-tooltip.gtclassic.hesu3=Huuuuuuuuuge!
-tooltip.gtclassic.idsu=Interdimensional
+tooltip.gtclassic.hesu3=Stores a huge amount of energy
+tooltip.gtclassic.idsu=Cross dimensional energy storage
+tooltip.gtclassic.lightningrod=Turns lightning into huge amounts of power...
+tooltip.gtclassic.fusioncomputer=Combine things into other things!
 
 tooltip.gtclassic.ducttape=The solution to all your problems
-tooltip.gtclassic.rockcutter=For a silky smooth touch
+tooltip.gtclassic.rockcutter=Harvests ores without breaking them
 tooltip.gtclassic.drill=No frills world destroyer!
 tooltip.gtclassic.saw=Makes trees disappear
 tooltip.gtclassic.trashcan=Mobile Trash Bin

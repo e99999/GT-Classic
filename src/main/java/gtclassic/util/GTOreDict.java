@@ -58,7 +58,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("itemRubber",
 				new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
 
-		OreDictionary.registerOre("toolHammer", GTItems.hammerIron);
+		OreDictionary.registerOre("craftingToolForgeHammer", GTItems.hammerIron);
 
 		OreDictionary.registerOre("itemSilicon", GTItems.plateSilicon);
 		OreDictionary.registerOre("plateSilicon", GTItems.plateSilicon);

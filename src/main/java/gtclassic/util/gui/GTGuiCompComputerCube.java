@@ -35,7 +35,7 @@ public class GTGuiCompComputerCube extends GuiComponent {
 
 	public String getTime(GuiIC2 gui) {
 		long time = gui.getPlayer().getEntityWorld().getWorldTime();
-		int hours = (int) ((time / 1000 + 8) % 24);
+		int hours = (int) ((time / 1000 + 7) % 24);
 		int minutes = (int) (60 * (time % 1000) / 1000);
 		return String.format("%02d:%02d", hours, minutes);
 

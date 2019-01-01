@@ -54,12 +54,11 @@ public class GTBlockStorage extends BlockMultiID {
 		if (this == GTBlocks.quantumChest) {
 			tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".quantumchest"));
 			tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
+		} else if (this == GTBlocks.workBench) {
+			tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".workbench"));
+		} else {
+			tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".storage"));
 		}
-
-		else {
-			tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".chest"));
-		}
-
 	}
 
 	@Override
@@ -71,25 +70,15 @@ public class GTBlockStorage extends BlockMultiID {
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.quantumChest) {
 			return new GTTileEntityQuantumChest();
-		}
-
-		else if (this == GTBlocks.smallChest) {
+		} else if (this == GTBlocks.smallChest) {
 			return new GTTileEntitySmallChest();
-		}
-
-		else if (this == GTBlocks.largeChest) {
+		} else if (this == GTBlocks.largeChest) {
 			return new GTTileEntityLargeChest();
-		}
-
-		else if (this == GTBlocks.bookShelf) {
+		} else if (this == GTBlocks.bookShelf) {
 			return new GTTileEntityBookshelf();
-		}
-
-		else if (this == GTBlocks.workBench) {
+		} else if (this == GTBlocks.workBench) {
 			return new GTTileEntityWorkbench();
-		}
-
-		else {
+		} else {
 			return new TileEntityBlock();
 		}
 	}
@@ -97,28 +86,17 @@ public class GTBlockStorage extends BlockMultiID {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite[] getIconSheet(int meta) {
-
 		if (this == GTBlocks.smallChest) {
 			return Ic2Icons.getTextures("gtclassic_smallchest");
-		}
-
-		else if (this == GTBlocks.largeChest) {
+		} else if (this == GTBlocks.largeChest) {
 			return Ic2Icons.getTextures("gtclassic_largechest");
-		}
-
-		else if (this == GTBlocks.quantumChest) {
+		} else if (this == GTBlocks.quantumChest) {
 			return Ic2Icons.getTextures("gtclassic_quantumchest");
-		}
-
-		else if (this == GTBlocks.bookShelf) {
+		} else if (this == GTBlocks.bookShelf) {
 			return Ic2Icons.getTextures("gtclassic_bookshelf");
-		}
-
-		else if (this == GTBlocks.workBench) {
+		} else if (this == GTBlocks.workBench) {
 			return Ic2Icons.getTextures("gtclassic_workbench");
-		}
-
-		else {
+		} else {
 			return Ic2Icons.getTextures("gtclassic_builder");
 		}
 	}

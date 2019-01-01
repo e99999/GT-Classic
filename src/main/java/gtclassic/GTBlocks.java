@@ -4,8 +4,6 @@ import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCasing.GTBlockCasingVariants;
 import gtclassic.block.GTBlockEnergy;
 import gtclassic.block.GTBlockEnergy.GTBlockEnergyVariants;
-import gtclassic.block.GTBlockGenerator;
-import gtclassic.block.GTBlockGenerator.GTBlockGeneratorVariants;
 import gtclassic.block.GTBlockMachine;
 import gtclassic.block.GTBlockMachine.GTBlockMachineVariants;
 import gtclassic.block.GTBlockStorage;
@@ -66,21 +64,20 @@ public class GTBlocks {
 			matterFabricator = new GTBlockMachine(GTBlockMachineVariants.MATTERFABRICATOR),
 			uuMatterAssembler = new GTBlockMachine(GTBlockMachineVariants.UUMASSEMBLER),
 			playerDetector = new GTBlockMachine(GTBlockMachineVariants.PLAYERDETECTOR),
-			sonictronBlock = new GTBlockMachine(GTBlockMachineVariants.SONICTRON);
-
-	public static final GTBlockStorage smallChest = new GTBlockStorage(GTBlockStorageVariants.SMALLCHEST),
-			largeChest = new GTBlockStorage(GTBlockStorageVariants.LARGECHEST),
-			quantumChest = new GTBlockStorage(GTBlockStorageVariants.QUANTUMCHEST),
-			bookShelf = new GTBlockStorage(GTBlockStorageVariants.BOOKSHELF),
-			workBench = new GTBlockStorage(GTBlockStorageVariants.WORKBENCH);
+			sonictronBlock = new GTBlockMachine(GTBlockMachineVariants.SONICTRON),
+			fusionComputer = new GTBlockMachine(GTBlockMachineVariants.FUSIONCOMPUTER),
+			lightningRod = new GTBlockMachine(GTBlockMachineVariants.LIGHTNINGROD);
 
 	public static final GTBlockEnergy IDSU = new GTBlockEnergy(GTBlockEnergyVariants.IDSU),
 			HESU = new GTBlockEnergy(GTBlockEnergyVariants.HESU), LESU = new GTBlockEnergy(GTBlockEnergyVariants.LESU),
 			superCondensator = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDENSATOR),
 			superConductorWire = new GTBlockEnergy(GTBlockEnergyVariants.SUPERCONDUCTORWIRE);
 
-	public static final GTBlockGenerator fusionComputer = new GTBlockGenerator(GTBlockGeneratorVariants.FUSIONCOMPUTER),
-			lightningRod = new GTBlockGenerator(GTBlockGeneratorVariants.LIGHTNINGROD);
+	public static final GTBlockStorage smallChest = new GTBlockStorage(GTBlockStorageVariants.SMALLCHEST),
+			largeChest = new GTBlockStorage(GTBlockStorageVariants.LARGECHEST),
+			quantumChest = new GTBlockStorage(GTBlockStorageVariants.QUANTUMCHEST),
+			bookShelf = new GTBlockStorage(GTBlockStorageVariants.BOOKSHELF),
+			workBench = new GTBlockStorage(GTBlockStorageVariants.WORKBENCH);
 
 	public static final Block[] blocks = {
 
@@ -91,11 +88,11 @@ public class GTBlocks {
 			iridiumOre, rubyOre, sapphireOre, bauxiteOre, sandIron, iridiumEnd,
 
 			autoCrafter, chargeOMat, computerCube, industrialCentrifuge, matterFabricator, uuMatterAssembler,
-			playerDetector, sonictronBlock,
+			playerDetector, sonictronBlock, fusionComputer, lightningRod,
 
-			bookShelf, workBench, smallChest, largeChest, quantumChest,
+			IDSU, HESU, LESU, superCondensator, superConductorWire,
 
-			fusionComputer, lightningRod, IDSU, HESU, LESU, superCondensator, superConductorWire,
+			quantumChest, bookShelf, workBench, smallChest, largeChest
 
 	};
 
