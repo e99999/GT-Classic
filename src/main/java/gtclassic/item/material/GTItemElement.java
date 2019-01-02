@@ -16,9 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemElement extends Item implements IStaticTexturedItem {
 	public enum GTItemElementTypes {
 		HYDROGEN(0), DEUTERIUM(1), TRITIUM(2), HELIUM(3), TUNGSTEN(4), LITHIUM(5), HELIUM3(6), SILICON(7), CARBON(8),
-		METHANE(9), BERILIUM(10), CALCIUM(11), SODIUM(12), CHLORINE(13), POTASSIUM(14), NITROGEN(15), OXYGEN(18),
-
-		WATER(16), LAVA(17), PROTON(19), NEUTRON(20);
+		METHANE(9), BERILIUM(10), CALCIUM(11), SODIUM(12), CHLORINE(13), POTASSIUM(14), NITROGEN(15), OXYGEN(16);
 
 		private int id;
 

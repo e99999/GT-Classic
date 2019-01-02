@@ -54,15 +54,13 @@ public class GTItems {
 			chlorine = new GTItemElement(GTItemElementTypes.CHLORINE),
 			potassium = new GTItemElement(GTItemElementTypes.POTASSIUM),
 			nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN),
-			oxygen = new GTItemElement(GTItemElementTypes.OXYGEN),
-
-			water = new GTItemElement(GTItemElementTypes.WATER), lava = new GTItemElement(GTItemElementTypes.LAVA);
+			oxygen = new GTItemElement(GTItemElementTypes.OXYGEN);
 
 	public static final GTItemPlasma plasmaHydrogen = new GTItemPlasma(GTItemPlasmaTypes.HYDROGEN),
 			plasmaNitrogen = new GTItemPlasma(GTItemPlasmaTypes.NITROGEN),
 			plasmaOxygen = new GTItemPlasma(GTItemPlasmaTypes.OXYGEN),
 			plasmaHelium = new GTItemPlasma(GTItemPlasmaTypes.HELIUM),
-			plasmaIron = new GTItemPlasma(GTItemPlasmaTypes.IRON), plasmaUU = new GTItemPlasma(GTItemPlasmaTypes.UU);
+			plasmaIron = new GTItemPlasma(GTItemPlasmaTypes.IRON);
 
 	public static final GTItemDust dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
 			dustEnderEye = new GTItemDust(GTItemDustTypes.ENDER_EYE),
@@ -130,9 +128,7 @@ public class GTItems {
 			hydrogen, dueterium, tritium, helium, tungsten, lithium, helium3, silicon, carbon, methane, berilium,
 			calcium, sodium, chlorine, potassium, nitrogen, oxygen,
 
-			water, lava,
-
-			plasmaHydrogen, plasmaNitrogen, plasmaOxygen, plasmaHelium, plasmaIron, plasmaUU, glassTube,
+			plasmaHydrogen, plasmaNitrogen, plasmaOxygen, plasmaHelium, plasmaIron, glassTube,
 
 			dustEnderpearl, dustEnderEye, dustLazurite, dustPyrite, dustCalcite, dustFlint, dustUranium, dustBauxite,
 			dustAluminium, dustTitanium, dustChrome, dustRuby, dustSapphire, dustGreenSapphire, dustEmerald,
