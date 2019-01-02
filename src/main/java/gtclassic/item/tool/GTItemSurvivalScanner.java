@@ -24,11 +24,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemPlayerScanner extends BasicElectricItem implements IStaticTexturedItem, IEUReader {
+public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticTexturedItem, IEUReader {
 
 	double energyCost = 100;
 
-	public GTItemPlayerScanner() {
+	public GTItemSurvivalScanner() {
 		this.maxStackSize = 1;
 		this.setHasSubtypes(false);
 		this.setMaxDamage(0);

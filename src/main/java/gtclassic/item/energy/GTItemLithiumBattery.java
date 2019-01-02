@@ -5,7 +5,6 @@ import ic2.api.item.ElectricItem;
 import ic2.core.item.base.ItemBatteryBase;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.platform.textures.obj.IAdvancedTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

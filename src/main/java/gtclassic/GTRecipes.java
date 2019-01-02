@@ -202,6 +202,9 @@ public class GTRecipes {
 						GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'Y', Ic2Items.teslaCoil.copy(), 'B',
 						Ic2Items.advMachine.copy(), 'R', Ic2Items.reactorReflectorIridium.copy() });
 
+		recipes.addRecipe(new ItemStack(GTBlocks.tungsteniridiumBlock),
+				new Object[] { "BBB", "BCB", "BBB", 'B', "dustTungsten", 'C', Ic2Items.iridiumStone.copy() });
+
 		// TILES
 
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionComputer, 1),
@@ -339,6 +342,13 @@ public class GTRecipes {
 				"XYX", 'X', StackUtil.copyWithSize(Ic2Items.magnet, 2), 'Y',
 				StackUtil.copyWithSize(Ic2Items.advancedAlloy, 4), 'C', "itemPlasma");
 
+		recipes.overrideRecipe("shaped_PESU", StackUtil.copyWithSize(Ic2Items.pesu, 1), "XYX", "CCC", "XYX", 'X',
+				GTBlocks.tungsteniridiumBlock, 'Y', Ic2Items.iridiumPlate.copy(), 'C', Ic2Items.pesd.copy());
+
+		recipes.overrideRecipe("shaped_IV-Transformer", StackUtil.copyWithSize(Ic2Items.transformerIV, 1), "XYX", "CVB",
+				"XYX", 'X', GTBlocks.tungsteniridiumBlock, 'Y', Ic2Items.plasmaCable.copy(), 'C',
+				GTItems.energyFlowCircuit, 'V', Ic2Items.transformerEV.copy(), 'B', Ic2Items.pesd);
+
 	}
 
 	public static void initMachineRecipes() {
@@ -429,13 +439,11 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.glassTube, 15), 0),
 				new OutputItem(new ItemStack(GTItems.helium3, 1), 1));
 
-		// GTTileEntityIndustrialCentrifuge.addRecipe("dustUranium", 16, 22,
-		// euCost(250000),
-		// new OutputItem(new ItemStack(GTItems.tungsten, 1), 0),
-		// new OutputItem(StackUtil.copyWithSize(Ic2Items.reactorUraniumRodSingle, 16),
-		// 1));
-		// TODO - missing 1 plutonium rods
-		// TODO - missing 4 throiums rods
+		GTTileEntityIndustrialCentrifuge.addRecipe("dustUranium", 16, 22, euCost(250000),
+				new OutputItem(new ItemStack(GTItems.tungsten, 1), 0),
+				new OutputItem(StackUtil.copyWithSize(Ic2Items.reactorUraniumRodSingle, 16), 1),
+				new OutputItem(new ItemStack(GTItems.rodPlutoniumSingle, 1), 2),
+				new OutputItem(new ItemStack(GTItems.rodThoriumSingle, 4), 3));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustRuby", 9, 3, euCost(25000),
 				new OutputItem(new ItemStack(GTItems.dustAluminium, 2), 0),
@@ -449,7 +457,7 @@ public class GTRecipes {
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustGreenSapphire", 4, 0, euCost(15000),
 				new OutputItem(new ItemStack(GTItems.dustSapphire, 4), 0));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe("dustEmerald", 29, 18, euCost(25000),
+		GTTileEntityIndustrialCentrifuge.addRecipe("dustEmerald", 29, 18, euCost(30000),
 				new OutputItem(new ItemStack(GTItems.oxygen, 9), 0),
 				new OutputItem(new ItemStack(GTItems.dustAluminium, 2), 1),
 				new OutputItem(new ItemStack(GTItems.berilium, 3), 2),
@@ -495,10 +503,9 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(Items.BLAZE_POWDER, 1), 0),
 				new OutputItem(new ItemStack(Items.SLIME_BALL, 1), 1));
 
-		// TODO MISSING RECIPE REQUIRE THORIUM CELL cost 2500
-		// input 2 near depleted uranium rod/cells
-		// output 0 -empty cell or something
-		// output 1 -one thorium rod/cell
+		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.reactorNearDepletedUraniumRod, 2),
+				22, euCost(2500), new OutputItem(StackUtil.copyWithSize(Ic2Items.emptyCell, 1), 0),
+				new OutputItem(new ItemStack(GTItems.rodThoriumSingle, 1), 1));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dirt", 64, 0, euCost(50000),
 				new OutputItem(new ItemStack(Blocks.SAND, 32), 0),
@@ -634,15 +641,15 @@ public class GTRecipes {
 		String ingotstring = "ingot" + name;
 		String blockstring = "block" + name;
 		recipes.addRecipe(new ItemStack(block, 1), new Object[] { "XXX", "XXX", "XXX", 'X', ingotstring });
-		TileEntityCompressor.addRecipe(ingotstring, 9, new ItemStack(block), 0.1F);
+		TileEntityCompressor.addRecipe(ingotstring, 9, new ItemStack(block));
 		recipes.addShapelessRecipe(new ItemStack(ingot, 9), new Object[] { blockstring });
 	}
-	
+
 	public static void gemUtil(Block block, Item gem, String name) {
 		String gemstring = "gem" + name;
 		String blockstring = "block" + name;
 		recipes.addRecipe(new ItemStack(block, 1), new Object[] { "XXX", "XXX", "XXX", 'X', gemstring });
-		TileEntityCompressor.addRecipe(gemstring, 9, new ItemStack(block), 0.1F);
+		TileEntityCompressor.addRecipe(gemstring, 9, new ItemStack(block));
 		recipes.addShapelessRecipe(new ItemStack(gem, 9), new Object[] { blockstring });
 	}
 

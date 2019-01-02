@@ -37,6 +37,7 @@ tile.gtclassic.sapphire_block.name=Sapphire Block
 tile.gtclassic.chrome_block.name=Chrome Block
 tile.gtclassic.aluminium_block.name=Aluminium Block
 tile.gtclassic.titanium_block.name=Titanium Block
+tile.gtclassic.tungsten_iridium_block.name=Tungsten Reinforced Iridium Stone
 
 #ore
 tile.gtclassic.bauxite_ore.name=Bauxite Ore

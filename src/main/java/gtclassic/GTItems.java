@@ -27,9 +27,9 @@ import gtclassic.item.tool.GTItemCreativeScanner;
 import gtclassic.item.tool.GTItemDestructoPack;
 import gtclassic.item.tool.GTItemElectromagnet;
 import gtclassic.item.tool.GTItemHammerIron;
-import gtclassic.item.tool.GTItemPlayerScanner;
 import gtclassic.item.tool.GTItemRockCutter;
 import gtclassic.item.tool.GTItemSonictron;
+import gtclassic.item.tool.GTItemSurvivalScanner;
 import gtclassic.item.tool.GTItemTeslaStaff;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -123,7 +123,7 @@ public class GTItems {
 	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45,
 			"gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192);
 	public static final GTItemCreativeScanner debugScanner = new GTItemCreativeScanner();
-	public static final GTItemPlayerScanner portableScanner = new GTItemPlayerScanner();
+	public static final GTItemSurvivalScanner portableScanner = new GTItemSurvivalScanner();
 
 	public static final Item[] items = {
 

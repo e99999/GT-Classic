@@ -64,7 +64,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IStaticTexture
 
 	@Override
 	public int getEnergyCost(ItemStack stack) {
-		return 250;
+		return 500;
 	}
 
 	@Override

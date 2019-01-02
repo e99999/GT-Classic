@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import gtclassic.block.container.GTContainerBookshelf;
+import gtclassic.util.GTBookshelfFilter;
 import gtclassic.util.GTLang;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
@@ -17,7 +17,6 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -54,7 +53,7 @@ public class GTTileEntityBookshelf extends TileEntityMachine implements IHasGui 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerInputFilter(new BasicItemFilter(Items.BOOK), MathUtil.fromTo(0, 8));
+		handler.registerInputFilter(new GTBookshelfFilter(this), MathUtil.fromTo(0, 8));
 	}
 
 	@Override

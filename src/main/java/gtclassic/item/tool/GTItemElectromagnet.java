@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemElectromagnet extends BasicElectricItem implements IStaticTexturedItem, IAdvancedTexturedItem {
+public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedTexturedItem {
 
 	public ModelResourceLocation[] model = new ModelResourceLocation[2];
 

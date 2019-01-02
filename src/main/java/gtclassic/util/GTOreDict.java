@@ -73,7 +73,7 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("itemPlasma", GTItems.plasmaHelium);
 		OreDictionary.registerOre("itemPlasma", GTItems.plasmaUU);
-		OreDictionary.registerOre("itemPlasma", Ic2Items.plasmaCell);
+		//OreDictionary.registerOre("itemPlasma", Ic2Items.plasmaCell);
 
 	}
 
