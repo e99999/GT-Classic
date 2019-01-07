@@ -38,17 +38,22 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
 
-	public static final GTBlockCasing fusionMachineBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
-			highlyadvancedMachineBlock = new GTBlockCasing(GTBlockCasingVariants.HIGHLYADVANCED),
-			lesuMachineBlock = new GTBlockCasing(GTBlockCasingVariants.LESU);
+	public static final GTBlockCasing 
+			ironCasingBlock = new GTBlockCasing(GTBlockCasingVariants.IRON),
+			aluminiumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.ALUMINIUM),
+			titaniumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TITANIUM),
+			chromeCasingBlock = new GTBlockCasing(GTBlockCasingVariants.CHROME),
+			tungstenCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TUNGSTEN),
+			iridiumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.IRIDIUM),
+			fusionCasingBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
+			lesuCasingBlock = new GTBlockCasing(GTBlockCasingVariants.LESU);
 
 	public static final GTBlockMetal iridiumBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM),
 			rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
 			sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
 			aluminiumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINIUM),
 			titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM),
-			chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME),
-			tungsteniridiumBlock = new GTBlockMetal(GTBlockMetalVariants.TUNGSTEN_IRIDIUM);
+			chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME);
 
 	public static final GTBlockOre iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
 			rubyOre = new GTBlockOre(GTBlockOreVariants.RUBY),
@@ -82,11 +87,13 @@ public class GTBlocks {
 
 	public static final Block[] blocks = {
 
-			fusionMachineBlock, highlyadvancedMachineBlock, lesuMachineBlock,
+			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock, tungstenCasingBlock, iridiumCasingBlock,
+			
+			fusionCasingBlock, lesuCasingBlock,
 
-			iridiumBlock, rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock, tungsteniridiumBlock,
+			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock, iridiumBlock, 
 
-			iridiumOre, rubyOre, sapphireOre, bauxiteOre, sandIron, iridiumEnd,
+			rubyOre, sapphireOre, bauxiteOre, sandIron, iridiumOre, iridiumEnd,
 
 			autoCrafter, chargeOMat, computerCube, industrialCentrifuge, matterFabricator, uuMatterAssembler,
 			playerDetector, sonictronBlock, fusionComputer, lightningRod,

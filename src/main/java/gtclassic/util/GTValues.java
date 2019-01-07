@@ -5,7 +5,7 @@ public class GTValues {
 	// index for storing global variables
 
 	// boolean that renders anything labeled as WIP uncraftable
-	public static boolean debugMode = false;
+	public static boolean debugMode = true;
 
 	// colors
 	public static int white = 16777215;

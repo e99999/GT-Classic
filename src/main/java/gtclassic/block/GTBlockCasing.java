@@ -23,7 +23,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockCasing extends Block implements ITexturedBlock {
 	public enum GTBlockCasingVariants {
-		FUSION(1), HIGHLYADVANCED(29), LESU(5);
+		IRON(50),ALUMINIUM(51),TITANIUM(52),CHROME(53),TUNGSTEN(54),IRIDIUM(55),
+		
+		FUSION(1), LESU(5);
 
 		private int id;
 
@@ -41,8 +43,8 @@ public class GTBlockCasing extends Block implements ITexturedBlock {
 	public GTBlockCasing(GTBlockCasingVariants variant) {
 		super(Material.IRON);
 		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_machineblock");
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_machineblock");
+		setRegistryName(variant.toString().toLowerCase() + "_casingblock");
+		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_casingblock");
 		setCreativeTab(GTClassic.creativeTabGT);
 		setHardness(5.0F);
 		setResistance(30.0F);

@@ -43,7 +43,7 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 
 	public int status;
 
-	public static final IBlockState coilState = GTBlocks.fusionMachineBlock.getDefaultState();
+	public static final IBlockState coilState = GTBlocks.fusionCasingBlock.getDefaultState();
 
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTClassic.MODID,
 			"textures/gui/fusioncomputer.png");
