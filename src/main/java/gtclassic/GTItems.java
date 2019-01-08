@@ -98,7 +98,6 @@ public class GTItems {
 	public static final GTItemComponents glassTube = new GTItemComponents(GTItemComponentTypes.GLASS_TUBE),
 			energyFlowCircuit = new GTItemComponents(GTItemComponentTypes.ENERGY_FLOW_CIRCUIT),
 			dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
-			superConductor = new GTItemComponents(GTItemComponentTypes.SUPERCONDUCTOR),
 			dataStorageCircuit = new GTItemComponents(GTItemComponentTypes.DATA_STORAGE_CIRCUIT),
 			dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB),
 			plateSilicon = new GTItemComponents(GTItemComponentTypes.SILICON_PLATE);
@@ -134,14 +133,14 @@ public class GTItems {
 			dustAluminium, dustTitanium, dustChrome, dustRuby, dustSapphire, dustGreenSapphire, dustEmerald,
 			dustSodalite,
 
-			ruby, sapphire, ingotAluminium, ingotTitanium, ingotChrome, plateSilicon, ingotIridium,
+			ruby, sapphire, ingotAluminium, ingotTitanium, ingotChrome, ingotIridium, plateSilicon,
 
 			heatStorageSingle, heatStorageTriple, heatStorageSix,
 
 			rodThoriumSingle, rodThoriumDouble, rodThoriumQuad, rodPlutoniumSingle, rodPlutoniumDouble,
 			rodPlutoniumQuad,
 
-			energyFlowCircuit, dataControlCircuit, superConductor, dataStorageCircuit, braintechAerospaceARDT, dataOrb,
+			energyFlowCircuit, dataControlCircuit, dataStorageCircuit, dataOrb, braintechAerospaceARDT,
 
 			sonictronItem, destructoPack, craftingTablet, hammerIron, electroMagnet, rockCutter, advancedDrill,
 			advancedChainsaw, teslaStaff, lithiumBattery, lapotronicEnergyOrb, lithiumBatpack, lapotronPack,

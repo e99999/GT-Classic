@@ -10,7 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 public class GTTileEntityIDSU extends TileEntityElectricBlock {
 
 	public GTTileEntityIDSU() {
-		super(4, 2048, 100000000);
+		super(5, 8096, 400000000);
 	}
 
 	@Override

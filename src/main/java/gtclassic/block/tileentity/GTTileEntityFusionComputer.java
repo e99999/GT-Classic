@@ -52,7 +52,7 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("fusion");
 
 	public GTTileEntityFusionComputer() {
-		super(3, 2048, 10000, 2048);
+		super(3, 8096, 10000, 8096);
 		this.status = 0;
 		this.addGuiFields(new String[] { "status" });
 	}

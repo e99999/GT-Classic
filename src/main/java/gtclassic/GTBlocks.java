@@ -42,8 +42,9 @@ public class GTBlocks {
 			aluminiumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.ALUMINIUM),
 			titaniumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TITANIUM),
 			chromeCasingBlock = new GTBlockCasing(GTBlockCasingVariants.CHROME),
-			tungstenCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TUNGSTEN),
 			iridiumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.IRIDIUM),
+			tungstenCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TUNGSTEN),
+			superCasingBlock = new GTBlockCasing(GTBlockCasingVariants.SUPERCONDUCTOR),
 			fusionCasingBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
 			lesuCasingBlock = new GTBlockCasing(GTBlockCasingVariants.LESU);
 
@@ -86,10 +87,9 @@ public class GTBlocks {
 
 	public static final Block[] blocks = {
 
-			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock, tungstenCasingBlock,
-			iridiumCasingBlock,
+			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock, iridiumCasingBlock, tungstenCasingBlock,
 
-			fusionCasingBlock, lesuCasingBlock,
+			superCasingBlock,fusionCasingBlock, lesuCasingBlock,
 
 			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock, iridiumBlock,
 

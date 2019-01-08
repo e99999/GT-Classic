@@ -23,9 +23,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockCasing extends Block implements ITexturedBlock {
 	public enum GTBlockCasingVariants {
-		IRON(50), ALUMINIUM(51), TITANIUM(52), CHROME(53), TUNGSTEN(54), IRIDIUM(55),
+		IRON(50), ALUMINIUM(51), TITANIUM(52), CHROME(53), IRIDIUM(54), TUNGSTEN(55),
 
-		FUSION(1), LESU(5);
+		SUPERCONDUCTOR(0), FUSION(1), LESU(5);
 
 		private int id;
 
