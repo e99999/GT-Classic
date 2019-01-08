@@ -1,8 +1,12 @@
 package gtclassic.util;
 
+import net.minecraft.util.math.AxisAlignedBB;
+
 public class GTValues {
 
 	// index for storing global variables
+	
+	 public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
 	// boolean that renders anything labeled as WIP uncraftable
 	public static boolean debugMode = true;
