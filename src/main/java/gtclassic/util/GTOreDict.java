@@ -72,7 +72,7 @@ public class GTOreDict {
 		// TODO find a better way to register plasma, mainly for recipes
 
 		OreDictionary.registerOre("itemPlasma", GTItems.plasmaHelium);
-		//OreDictionary.registerOre("itemPlasma", Ic2Items.plasmaCell);
+		// OreDictionary.registerOre("itemPlasma", Ic2Items.plasmaCell);
 
 	}
 

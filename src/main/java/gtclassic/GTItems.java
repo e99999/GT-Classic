@@ -79,10 +79,10 @@ public class GTItems {
 	public static final GTItemGem ruby = new GTItemGem(GTItemGemTypes.RUBY),
 			sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE);
 
-	public static final GTItemIngot ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM),
-			ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),
+	public static final GTItemIngot ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),
 			ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
-			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME);
+			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME),
+			ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM);
 
 	public static final GTItemHeatStorage heatStorageSingle = new GTItemHeatStorage(GTItemHeatStorageTypes.SINGLE),
 			heatStorageTriple = new GTItemHeatStorage(GTItemHeatStorageTypes.TRIPLE),
@@ -134,7 +134,7 @@ public class GTItems {
 			dustAluminium, dustTitanium, dustChrome, dustRuby, dustSapphire, dustGreenSapphire, dustEmerald,
 			dustSodalite,
 
-			ruby, sapphire, ingotIridium, ingotAluminium, ingotTitanium, ingotChrome, plateSilicon,
+			ruby, sapphire, ingotAluminium, ingotTitanium, ingotChrome, plateSilicon, ingotIridium,
 
 			heatStorageSingle, heatStorageTriple, heatStorageSix,
 

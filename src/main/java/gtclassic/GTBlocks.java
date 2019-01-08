@@ -38,8 +38,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
 
-	public static final GTBlockCasing 
-			ironCasingBlock = new GTBlockCasing(GTBlockCasingVariants.IRON),
+	public static final GTBlockCasing ironCasingBlock = new GTBlockCasing(GTBlockCasingVariants.IRON),
 			aluminiumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.ALUMINIUM),
 			titaniumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TITANIUM),
 			chromeCasingBlock = new GTBlockCasing(GTBlockCasingVariants.CHROME),
@@ -87,11 +86,12 @@ public class GTBlocks {
 
 	public static final Block[] blocks = {
 
-			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock, tungstenCasingBlock, iridiumCasingBlock,
-			
+			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock, tungstenCasingBlock,
+			iridiumCasingBlock,
+
 			fusionCasingBlock, lesuCasingBlock,
 
-			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock, iridiumBlock, 
+			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock, iridiumBlock,
 
 			rubyOre, sapphireOre, bauxiteOre, sandIron, iridiumOre, iridiumEnd,
 

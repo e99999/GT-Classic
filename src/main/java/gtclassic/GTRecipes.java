@@ -85,7 +85,7 @@ public class GTRecipes {
 						GTItems.oxygen, GTItems.oxygen });
 
 		recipes.addShapelessRecipe(new ItemStack(GTItems.glassTube, 1), new Object[] { GTItems.oxygen });
-		
+
 	}
 
 	public static void initShapedRecipes() {
@@ -181,10 +181,10 @@ public class GTRecipes {
 		// BLOCKS
 
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionCasingBlock),
-				new Object[] { "YVC", "BRB", "SVY", 'V', GTBlocks.chromeCasingBlock, 'C',
-						GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'Y', Ic2Items.teslaCoil.copy(), 'B',
-						GTBlocks.titaniumCasingBlock, 'R', Ic2Items.reactorReflectorIridium.copy() });
-		
+				new Object[] { "YVC", "BRB", "SVY", 'V', GTBlocks.chromeCasingBlock, 'C', GTItems.energyFlowCircuit,
+						'S', GTItems.superConductor, 'Y', Ic2Items.teslaCoil.copy(), 'B', GTBlocks.titaniumCasingBlock,
+						'R', Ic2Items.reactorReflectorIridium.copy() });
+
 		recipes.addRecipe(new ItemStack(GTBlocks.lesuCasingBlock),
 				new Object[] { "BBB", "BCB", "BBB", 'B', "blockLapis", 'C', "circuitBasic" });
 
@@ -228,16 +228,15 @@ public class GTRecipes {
 
 			recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
 					GTItems.dataOrb, 'I', "ingotIron", 'C', "chestWood", 'M', GTBlocks.chromeCasingBlock });
-			
+
 			recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
 					GTItems.dataOrb, 'I', "ingotIron", 'C', "chestWood", 'M', GTBlocks.titaniumCasingBlock });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.LESU), new Object[] { " G ", "CMC", " G ", 'C', "circuitAdvanced",
 					'M', GTBlocks.lesuCasingBlock, 'G', Ic2Items.glassFiberCable.copy() });
 
-			recipes.addRecipe(new ItemStack(GTBlocks.superConductorWire, 4),
-					new Object[] { "HEH", "SSS", "HEH", 'E', GTItems.energyFlowCircuit, 'S', GTItems.superConductor,
-							'H', GTBlocks.iridiumCasingBlock, });
+			recipes.addRecipe(new ItemStack(GTBlocks.superConductorWire, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
+					GTItems.energyFlowCircuit, 'S', GTItems.superConductor, 'H', GTBlocks.iridiumCasingBlock, });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.IDSU, 1), new Object[] { "PHP", "HEH", "PHP", 'P', "plateIridium",
 					'H', GTBlocks.HESU, 'E', Blocks.ENDER_CHEST });
@@ -247,8 +246,9 @@ public class GTRecipes {
 							'M', GTBlocks.ironCasingBlock, 'R', "record" });
 		}
 
-		recipes.addRecipe(new ItemStack(GTBlocks.computerCube, 1), new Object[] { "RGD", "GMG", "DGR", 'D',
-				GTItems.dataOrb, 'R', GTItems.energyFlowCircuit, 'G', "blockGlass", 'M', GTBlocks.titaniumCasingBlock });
+		recipes.addRecipe(new ItemStack(GTBlocks.computerCube, 1),
+				new Object[] { "RGD", "GMG", "DGR", 'D', GTItems.dataOrb, 'R', GTItems.energyFlowCircuit, 'G',
+						"blockGlass", 'M', GTBlocks.titaniumCasingBlock });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.HESU),
 				new Object[] { "OOO", "OCO", "OOO", 'O', GTItems.lapotronicEnergyOrb, 'C', GTBlocks.computerCube });
@@ -570,7 +570,7 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(Items.GOLD_INGOT, 4), 1),
 				new OutputItem(new ItemStack(Items.IRON_INGOT, 16), 2),
 				new OutputItem(new ItemStack(GTItems.tungsten, 4), 3));
-		
+
 		GTTileEntityIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.MAGMA, 64), 4, euCost(250000),
 				new OutputItem(new ItemStack(Items.GOLD_INGOT, 4), 0),
 				new OutputItem(new ItemStack(Items.IRON_INGOT, 16), 1),
