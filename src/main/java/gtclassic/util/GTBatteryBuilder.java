@@ -63,7 +63,7 @@ public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectr
 			items.add(full);
 		}
 	}
-	
+
 	@Override
 	public int getItemStackLimit(ItemStack stack) {
 		return 1;

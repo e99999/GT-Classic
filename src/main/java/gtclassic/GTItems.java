@@ -80,9 +80,8 @@ public class GTItems {
 	public static final GTItemGem ruby = new GTItemGem(GTItemGemTypes.RUBY),
 			sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE);
 
-	public static final GTBatteryBuilder 
-	        smallLithium = new GTBatteryBuilder(GTBlocks.smallLithium, "small_lithium", 100000, 128, 1), 
-			medLithium = new GTBatteryBuilder(GTBlocks.medLithium, "med_lithium", 200000, 256, 2),
+	public static final GTBatteryBuilder smallLithium = new GTBatteryBuilder(GTBlocks.smallLithium, "small_lithium",
+			100000, 128, 1), medLithium = new GTBatteryBuilder(GTBlocks.medLithium, "med_lithium", 200000, 256, 2),
 			largeLithium = new GTBatteryBuilder(GTBlocks.largeLithium, "large_lithium", 400000, 512, 3);
 
 	public static final GTItemIngot ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),

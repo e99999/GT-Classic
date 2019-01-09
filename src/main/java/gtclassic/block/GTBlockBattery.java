@@ -51,15 +51,14 @@ public class GTBlockBattery extends Block implements ITexturedBlock {
 	GTBlockBatteryVariants variant;
 
 	public GTBlockBattery(GTBlockBatteryVariants variant) {
-		super(Material.GLASS);
+		super(Material.CLOTH);
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase() + "_batteryblock");
 		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_batteryblock");
 		setCreativeTab(GTClassic.creativeTabGT);
 		setHardness(0.5F);
 		setResistance(30.0F);
-		setSoundType(SoundType.METAL);
-		//setHarvestLevel("shovel", 0);
+		setSoundType(SoundType.CLOTH);
 	}
 
 	public AxisAlignedBB getBatteryBoundingBox() {

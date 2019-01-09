@@ -182,8 +182,8 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionCasingBlock),
 				new Object[] { "YVC", "BSB", "RVY", 'V', GTBlocks.chromeCasingBlock, 'C', GTItems.energyFlowCircuit,
-						'S', GTBlocks.superCasingBlock, 'Y', Ic2Items.teslaCoil.copy(), 'B', GTBlocks.titaniumCasingBlock,
-						'R', Ic2Items.reactorReflectorIridium.copy() });
+						'S', GTBlocks.superCasingBlock, 'Y', Ic2Items.teslaCoil.copy(), 'B',
+						GTBlocks.titaniumCasingBlock, 'R', Ic2Items.reactorReflectorIridium.copy() });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.lesuCasingBlock),
 				new Object[] { "BBB", "BCB", "BBB", 'B', "blockLapis", 'C', "circuitBasic" });
