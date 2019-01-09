@@ -7,9 +7,10 @@ import javax.annotation.Nullable;
 
 import gtclassic.GTClassic;
 import gtclassic.util.GTValues;
-import ic2.core.block.base.BlockMultiID;
+import ic2.core.block.base.BlockCommonContainer;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockBattery extends BlockMultiID {
+public class GTBlockBattery extends BlockCommonContainer implements ITexturedBlock {
 	public enum GTBlockBatteryVariants {
 		SMALL_LITHIUM(16, 0), MED_LITHIUM(16, 2), LARGE_LITHIUM(16, 3),
 
@@ -153,18 +154,7 @@ public class GTBlockBattery extends BlockMultiID {
 	}
 
 	@Override
-	public TextureAtlasSprite[] getIconSheet(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Integer> getValidMetas() {
-		return Arrays.asList(0);
-	}
-
-	@Override
-	public List<IBlockState> getValidStateList() {
-		return Arrays.asList(getDefaultState());
+	public IBlockState getDefaultBlockState() {
+		return this.getDefaultState();
 	}
 }
