@@ -20,16 +20,17 @@ public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectr
 	public int transferLimit;
 	public int tier;
 
-	public GTBatteryBuilder(Block block, String name, int max, int trans, int tier) {
+	public GTBatteryBuilder(Block block, int max, int trans, int tier) {
 		super(block);
-		this.setRegistryName(name + "_battery");
-		this.setUnlocalizedName(GTClassic.MODID + "." + name + "_battery");
+		this.setRegistryName(block.getUnlocalizedName().replace("tile.gtclassic.", "") +"item");
+		this.setUnlocalizedName(block.getUnlocalizedName().replace("tile.", ""));
 		this.maxCharge = max;
 		this.tier = tier;
 		this.transferLimit = trans;
+		this.setCreativeTab(GTClassic.creativeTabGT);
 		this.setMaxStackSize(1);
 		this.setNoRepair();
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setHasSubtypes(true);
 	}
 
 	@Override

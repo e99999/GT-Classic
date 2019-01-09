@@ -80,10 +80,6 @@ public class GTItems {
 	public static final GTItemGem ruby = new GTItemGem(GTItemGemTypes.RUBY),
 			sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE);
 
-	public static final GTBatteryBuilder smallLithium = new GTBatteryBuilder(GTBlocks.smallLithium, "small_lithium",
-			100000, 128, 1), medLithium = new GTBatteryBuilder(GTBlocks.medLithium, "med_lithium", 200000, 256, 2),
-			largeLithium = new GTBatteryBuilder(GTBlocks.largeLithium, "large_lithium", 400000, 512, 3);
-
 	public static final GTItemIngot ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),
 			ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
 			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME),
@@ -126,6 +122,10 @@ public class GTItems {
 			"gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192);
 	public static final GTItemCreativeScanner debugScanner = new GTItemCreativeScanner();
 	public static final GTItemSurvivalScanner portableScanner = new GTItemSurvivalScanner();
+
+	public static final GTBatteryBuilder smallLithium = new GTBatteryBuilder(GTBlocks.smallLithium, 100000, 128, 1),
+			medLithium = new GTBatteryBuilder(GTBlocks.medLithium, 200000, 256, 2),
+			largeLithium = new GTBatteryBuilder(GTBlocks.largeLithium, 400000, 512, 3);
 
 	public static final Item[] items = {
 
