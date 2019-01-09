@@ -1,46 +1,35 @@
-package gtclassic.block;
+package gtclassic.util;
 
-import java.util.List;
-
-import gtclassic.util.GTValues;
+import gtclassic.GTClassic;
 import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
-import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElectricItem {
+public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectricItem {
 
 	public int maxCharge;
 	public int transferLimit;
 	public int tier;
 
-	protected GTBlockBatteryBase(Block block) {
+	public GTBatteryBuilder(Block block, String name, int max, int trans, int tier) {
 		super(block);
-	}
-
-	public GTBlockBatteryBase(Block block, int max, int trans, int tier) {
-		super(block);
+		this.setRegistryName(name + "_battery");
+		this.setUnlocalizedName(GTClassic.MODID + "." + name + "_battery");
 		this.maxCharge = max;
 		this.tier = tier;
 		this.transferLimit = trans;
 		this.setMaxStackSize(1);
 		this.setNoRepair();
+		this.setCreativeTab(GTClassic.creativeTabGT);
 	}
 
 	@Override

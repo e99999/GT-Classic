@@ -1,5 +1,7 @@
 package gtclassic;
 
+import gtclassic.block.GTBlockBattery;
+import gtclassic.block.GTBlockBattery.GTBlockBatteryVariants;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCasing.GTBlockCasingVariants;
 import gtclassic.block.GTBlockEnergy;
@@ -85,11 +87,22 @@ public class GTBlocks {
 			bookShelf = new GTBlockStorage(GTBlockStorageVariants.BOOKSHELF),
 			workBench = new GTBlockStorage(GTBlockStorageVariants.WORKBENCH);
 
+	public static final GTBlockBattery smallLithium = new GTBlockBattery(GTBlockBatteryVariants.SMALL_LITHIUM),
+			medLithium = new GTBlockBattery(GTBlockBatteryVariants.MED_LITHIUM),
+			largeLithium = new GTBlockBattery(GTBlockBatteryVariants.LARGE_LITHIUM),
+			smallLapotron = new GTBlockBattery(GTBlockBatteryVariants.SMALL_LAPOTRON),
+			medLapotron = new GTBlockBattery(GTBlockBatteryVariants.MED_LAPOTRON),
+			largeLapotron = new GTBlockBattery(GTBlockBatteryVariants.LARGE_LAPOTRON),
+			smallEnergium = new GTBlockBattery(GTBlockBatteryVariants.SMALL_ENERGIUM),
+			medEnergium = new GTBlockBattery(GTBlockBatteryVariants.MED_ENERGIUM),
+			largeEnergium = new GTBlockBattery(GTBlockBatteryVariants.LARGE_ENERGIUM);
+
 	public static final Block[] blocks = {
 
-			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock, iridiumCasingBlock, tungstenCasingBlock,
+			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock, iridiumCasingBlock,
+			tungstenCasingBlock,
 
-			superCasingBlock,fusionCasingBlock, lesuCasingBlock,
+			superCasingBlock, fusionCasingBlock, lesuCasingBlock,
 
 			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock, iridiumBlock,
 
@@ -100,7 +113,10 @@ public class GTBlocks {
 
 			IDSU, HESU, LESU, superCondensator, superConductorWire,
 
-			quantumChest, bookShelf, workBench, smallChest, largeChest
+			quantumChest, bookShelf, workBench, smallChest, largeChest,
+
+			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, smallEnergium,
+			medEnergium, largeEnergium
 
 	};
 

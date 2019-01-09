@@ -1,6 +1,5 @@
 package gtclassic;
 
-import gtclassic.block.GTBlockBatteryTest;
 import gtclassic.item.GTItemComponents;
 import gtclassic.item.GTItemComponents.GTItemComponentTypes;
 import gtclassic.item.GTItemDuctTape;
@@ -32,6 +31,7 @@ import gtclassic.item.tool.GTItemRockCutter;
 import gtclassic.item.tool.GTItemSonictron;
 import gtclassic.item.tool.GTItemSurvivalScanner;
 import gtclassic.item.tool.GTItemTeslaStaff;
+import gtclassic.util.GTBatteryBuilder;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -80,8 +80,11 @@ public class GTItems {
 	public static final GTItemGem ruby = new GTItemGem(GTItemGemTypes.RUBY),
 			sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE);
 
-	public static final GTBlockBatteryTest testBattery = new GTBlockBatteryTest(GTBlocks.chromeBlock);
-	
+	public static final GTBatteryBuilder 
+	        smallLithium = new GTBatteryBuilder(GTBlocks.smallLithium, "small_lithium", 100000, 128, 1), 
+			medLithium = new GTBatteryBuilder(GTBlocks.medLithium, "med_lithium", 200000, 256, 2),
+			largeLithium = new GTBatteryBuilder(GTBlocks.largeLithium, "large_lithium", 400000, 512, 3);
+
 	public static final GTItemIngot ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),
 			ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
 			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME),
@@ -138,7 +141,7 @@ public class GTItems {
 
 			ruby, sapphire, ingotAluminium, ingotTitanium, ingotChrome, ingotIridium, plateSilicon,
 
-			heatStorageSingle, heatStorageTriple, heatStorageSix, testBattery,
+			heatStorageSingle, heatStorageTriple, heatStorageSix,
 
 			rodThoriumSingle, rodThoriumDouble, rodThoriumQuad, rodPlutoniumSingle, rodPlutoniumDouble,
 			rodPlutoniumQuad,
@@ -147,7 +150,9 @@ public class GTItems {
 
 			sonictronItem, destructoPack, craftingTablet, hammerIron, electroMagnet, rockCutter, advancedDrill,
 			advancedChainsaw, teslaStaff, lithiumBattery, lapotronicEnergyOrb, lithiumBatpack, lapotronPack,
-			portableScanner, debugScanner
+			portableScanner, debugScanner,
+
+			smallLithium, medLithium, largeLithium
 
 	};
 
