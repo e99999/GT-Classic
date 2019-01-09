@@ -1,5 +1,6 @@
 package gtclassic;
 
+import gtclassic.block.GTBlockBatteryTest;
 import gtclassic.item.GTItemComponents;
 import gtclassic.item.GTItemComponents.GTItemComponentTypes;
 import gtclassic.item.GTItemDuctTape;
@@ -79,6 +80,8 @@ public class GTItems {
 	public static final GTItemGem ruby = new GTItemGem(GTItemGemTypes.RUBY),
 			sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE);
 
+	public static final GTBlockBatteryTest testBattery = new GTBlockBatteryTest(GTBlocks.chromeBlock);
+	
 	public static final GTItemIngot ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),
 			ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
 			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME),
@@ -135,7 +138,7 @@ public class GTItems {
 
 			ruby, sapphire, ingotAluminium, ingotTitanium, ingotChrome, ingotIridium, plateSilicon,
 
-			heatStorageSingle, heatStorageTriple, heatStorageSix,
+			heatStorageSingle, heatStorageTriple, heatStorageSix, testBattery,
 
 			rodThoriumSingle, rodThoriumDouble, rodThoriumQuad, rodPlutoniumSingle, rodPlutoniumDouble,
 			rodPlutoniumQuad,

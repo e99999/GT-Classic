@@ -25,11 +25,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElectricItem, ITexturedBlock {
-	
+
 	public int maxCharge;
 	public int transferLimit;
 	public int tier;
 	public boolean provider;
+
+	protected GTBlockBatteryBase(Block block) {
+		super(block);
+	}
 
 	public GTBlockBatteryBase(Block block, int max, int trans, int tier) {
 		super(block);
@@ -60,7 +64,7 @@ public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElec
 	public double getTransferLimit(ItemStack var1) {
 		return (double) this.transferLimit;
 	}
-	
+
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
 		if (this.isInCreativeTab(tab)) {
@@ -82,7 +86,7 @@ public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElec
 	public double getDurabilityForDisplay(ItemStack stack) {
 		return 1.0D - ElectricItem.manager.getCharge(stack) / this.getMaxCharge(stack);
 	}
-	
+
 	@Override
 	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
 		return GTValues.FULL_BLOCK_AABB;
@@ -91,7 +95,7 @@ public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElec
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures("gtclassic_blocks")[50];//placeholder/null texture
+		return Ic2Icons.getTextures("gtclassic_blocks")[50];// placeholder/null texture
 	}
 
 	@Override
@@ -110,8 +114,8 @@ public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElec
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromStack(stack);
 	}
-	
-	//weird shit starts here
+
+	// weird shit starts here
 
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
