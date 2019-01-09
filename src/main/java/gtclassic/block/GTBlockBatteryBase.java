@@ -24,12 +24,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElectricItem, ITexturedBlock {
+public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElectricItem {
 
 	public int maxCharge;
 	public int transferLimit;
 	public int tier;
-	public boolean provider;
 
 	protected GTBlockBatteryBase(Block block) {
 		super(block);
@@ -40,14 +39,13 @@ public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElec
 		this.maxCharge = max;
 		this.tier = tier;
 		this.transferLimit = trans;
-		this.provider = true;
 		this.setMaxStackSize(1);
 		this.setNoRepair();
 	}
 
 	@Override
 	public boolean canProvideEnergy(ItemStack var1) {
-		return this.provider;
+		return true;
 	}
 
 	@Override
@@ -76,6 +74,16 @@ public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElec
 			items.add(full);
 		}
 	}
+	
+	@Override
+	public int getItemStackLimit(ItemStack stack) {
+		return 1;
+	}
+
+	@Override
+	public boolean isDamaged(ItemStack stack) {
+		return true;
+	}
 
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
@@ -85,34 +93,6 @@ public class GTBlockBatteryBase extends ItemBlockRare implements IDamagelessElec
 	@Override
 	public double getDurabilityForDisplay(ItemStack stack) {
 		return 1.0D - ElectricItem.manager.getCharge(stack) / this.getMaxCharge(stack);
-	}
-
-	@Override
-	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
-		return GTValues.FULL_BLOCK_AABB;
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures("gtclassic_blocks")[50];// placeholder/null texture
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getParticleTexture(IBlockState state) {
-		return this.getTextureFromState(state, EnumFacing.SOUTH);
-	}
-
-	@Override
-	public List<IBlockState> getValidStates() {
-		return this.getValidStates();
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public IBlockState getStateFromStack(ItemStack stack) {
-		return this.getStateFromStack(stack);
 	}
 
 	// weird shit starts here

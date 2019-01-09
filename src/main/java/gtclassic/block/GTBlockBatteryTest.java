@@ -19,23 +19,7 @@ public class GTBlockBatteryTest extends GTBlockBatteryBase{
 		this.maxCharge = 10000000;
 		this.transferLimit = 8192;
 		this.tier = 4;
-		this.provider = true;
 		this.setCreativeTab(GTClassic.creativeTabGT);
-	}
-	
-	@Override
-	public int getItemStackLimit(ItemStack stack) {
-		return 1;
-	}
-
-	@Override
-	public boolean isDamaged(ItemStack stack) {
-		return true;
-	}
-
-	@Override
-	public boolean showDurabilityBar(ItemStack stack) {
-		return true;
 	}
 
 }
