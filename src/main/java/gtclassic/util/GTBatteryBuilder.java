@@ -22,7 +22,7 @@ public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectr
 
 	public GTBatteryBuilder(Block block, int max, int trans, int tier) {
 		super(block);
-		this.setRegistryName(block.getUnlocalizedName().replace("tile.gtclassic.", "") + "_item");
+		this.setRegistryName(block.getRegistryName() + "_item");
 		this.setUnlocalizedName(block.getUnlocalizedName().replace("tile.", ""));
 		this.maxCharge = max;
 		this.tier = tier;
