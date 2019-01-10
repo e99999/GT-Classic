@@ -125,7 +125,15 @@ public class GTItems {
 
 	public static final GTBatteryBuilder smallLithium = new GTBatteryBuilder(GTBlocks.smallLithium, 100000, 128, 1),
 			medLithium = new GTBatteryBuilder(GTBlocks.medLithium, 200000, 256, 2),
-			largeLithium = new GTBatteryBuilder(GTBlocks.largeLithium, 400000, 512, 3);
+			largeLithium = new GTBatteryBuilder(GTBlocks.largeLithium, 400000, 512, 3),
+
+			smallEnergium = new GTBatteryBuilder(GTBlocks.smallEnergium, 100000, 256, 2),
+			medEnergium = new GTBatteryBuilder(GTBlocks.medEnergium, 1000000, 512, 3),
+			largeEnergium = new GTBatteryBuilder(GTBlocks.largeEnergium, 10000000, 1024, 4),
+
+			smallLapotron = new GTBatteryBuilder(GTBlocks.smallLapotron, 1000000, 1024, 3),
+			medLapotron = new GTBatteryBuilder(GTBlocks.medLapotron, 10000000, 4096, 4),
+			largeLapotron = new GTBatteryBuilder(GTBlocks.largeLapotron, 100000000, 8192, 5);
 
 	public static final Item[] items = {
 
@@ -151,7 +159,8 @@ public class GTItems {
 			advancedChainsaw, teslaStaff, lithiumBattery, lapotronicEnergyOrb, lithiumBatpack, lapotronPack,
 			portableScanner, debugScanner,
 
-			smallLithium, medLithium, largeLithium
+			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, smallEnergium,
+			medEnergium, largeEnergium,
 
 	};
 
