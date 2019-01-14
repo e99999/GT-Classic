@@ -91,6 +91,7 @@ public class GTIcons {
 
 		addCustomTexture("gtclassic_quantumchest", 0, 1, location("screen0"));
 		addCustomTexture("gtclassic_fusioncomputer", 0, 7, location("screen1"));
+		addCustomTexture("gtclassic_industrialcentrifuge", 0, 7, location("centrifuge_top"));
 		addCustomTexture("gtclassic_industrialcentrifuge", 0, 8, location("centrifuge_back"));
 		addCustomTexture("gtclassic_industrialcentrifuge", 0, 9, location("centrifuge_front"));
 

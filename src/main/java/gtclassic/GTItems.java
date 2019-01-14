@@ -1,36 +1,34 @@
 package gtclassic;
 
+import gtclassic.item.GTItemChainsaw;
+import gtclassic.item.GTItemDrill;
 import gtclassic.item.GTItemComponents;
 import gtclassic.item.GTItemComponents.GTItemComponentTypes;
+import gtclassic.item.GTItemCraftingTablet;
+import gtclassic.item.GTItemCreativeScanner;
+import gtclassic.item.GTItemDestructoPack;
 import gtclassic.item.GTItemDuctTape;
-import gtclassic.item.armor.GTItemEnergyPack;
-import gtclassic.item.energy.GTItemLapotronicEnergyOrb;
-import gtclassic.item.energy.GTItemLithiumBattery;
-import gtclassic.item.material.GTItemDust;
-import gtclassic.item.material.GTItemDust.GTItemDustTypes;
-import gtclassic.item.material.GTItemElement;
-import gtclassic.item.material.GTItemElement.GTItemElementTypes;
-import gtclassic.item.material.GTItemGem;
-import gtclassic.item.material.GTItemGem.GTItemGemTypes;
-import gtclassic.item.material.GTItemIngot;
-import gtclassic.item.material.GTItemIngot.GTItemIngotTypes;
-import gtclassic.item.material.GTItemPlasma;
-import gtclassic.item.material.GTItemPlasma.GTItemPlasmaTypes;
-import gtclassic.item.reactor.GTItemHeatStorage;
-import gtclassic.item.reactor.GTItemHeatStorage.GTItemHeatStorageTypes;
-import gtclassic.item.reactor.GTItemRod;
-import gtclassic.item.reactor.GTItemRod.GTItemRodTypes;
-import gtclassic.item.tool.GTItemAdvancedChainsaw;
-import gtclassic.item.tool.GTItemAdvancedDrill;
-import gtclassic.item.tool.GTItemCraftingTablet;
-import gtclassic.item.tool.GTItemCreativeScanner;
-import gtclassic.item.tool.GTItemDestructoPack;
-import gtclassic.item.tool.GTItemElectromagnet;
-import gtclassic.item.tool.GTItemHammerIron;
-import gtclassic.item.tool.GTItemRockCutter;
-import gtclassic.item.tool.GTItemSonictron;
-import gtclassic.item.tool.GTItemSurvivalScanner;
-import gtclassic.item.tool.GTItemTeslaStaff;
+import gtclassic.item.GTItemDust;
+import gtclassic.item.GTItemDust.GTItemDustTypes;
+import gtclassic.item.GTItemElectromagnet;
+import gtclassic.item.GTItemElement;
+import gtclassic.item.GTItemElement.GTItemElementTypes;
+import gtclassic.item.GTItemEnergyPack;
+import gtclassic.item.GTItemGem;
+import gtclassic.item.GTItemGem.GTItemGemTypes;
+import gtclassic.item.GTItemHammerIron;
+import gtclassic.item.GTItemIngot;
+import gtclassic.item.GTItemIngot.GTItemIngotTypes;
+import gtclassic.item.GTItemPlasma;
+import gtclassic.item.GTItemPlasma.GTItemPlasmaTypes;
+import gtclassic.item.GTItemReactorHeat;
+import gtclassic.item.GTItemReactorHeat.GTItemHeatStorageTypes;
+import gtclassic.item.GTItemReactorRod;
+import gtclassic.item.GTItemReactorRod.GTItemRodTypes;
+import gtclassic.item.GTItemRockCutter;
+import gtclassic.item.GTItemSonictron;
+import gtclassic.item.GTItemSurvivalScanner;
+import gtclassic.item.GTItemTeslaStaff;
 import gtclassic.util.GTBatteryBuilder;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -85,16 +83,16 @@ public class GTItems {
 			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME),
 			ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM);
 
-	public static final GTItemHeatStorage heatStorageSingle = new GTItemHeatStorage(GTItemHeatStorageTypes.SINGLE),
-			heatStorageTriple = new GTItemHeatStorage(GTItemHeatStorageTypes.TRIPLE),
-			heatStorageSix = new GTItemHeatStorage(GTItemHeatStorageTypes.SIX);
+	public static final GTItemReactorHeat heatStorageSingle = new GTItemReactorHeat(GTItemHeatStorageTypes.SINGLE),
+			heatStorageTriple = new GTItemReactorHeat(GTItemHeatStorageTypes.TRIPLE),
+			heatStorageSix = new GTItemReactorHeat(GTItemHeatStorageTypes.SIX);
 
-	public static final GTItemRod rodThoriumSingle = new GTItemRod(GTItemRodTypes.SINGLETHORIUM),
-			rodThoriumDouble = new GTItemRod(GTItemRodTypes.DOUBLETHORIUM),
-			rodThoriumQuad = new GTItemRod(GTItemRodTypes.QUADTHORIUM),
-			rodPlutoniumSingle = new GTItemRod(GTItemRodTypes.SINGLEPLUTONIUM),
-			rodPlutoniumDouble = new GTItemRod(GTItemRodTypes.DOUBLEPLUTONIUM),
-			rodPlutoniumQuad = new GTItemRod(GTItemRodTypes.QUADPLUTONIUM);
+	public static final GTItemReactorRod rodThoriumSingle = new GTItemReactorRod(GTItemRodTypes.SINGLETHORIUM),
+			rodThoriumDouble = new GTItemReactorRod(GTItemRodTypes.DOUBLETHORIUM),
+			rodThoriumQuad = new GTItemReactorRod(GTItemRodTypes.QUADTHORIUM),
+			rodPlutoniumSingle = new GTItemReactorRod(GTItemRodTypes.SINGLEPLUTONIUM),
+			rodPlutoniumDouble = new GTItemReactorRod(GTItemRodTypes.DOUBLEPLUTONIUM),
+			rodPlutoniumQuad = new GTItemReactorRod(GTItemRodTypes.QUADPLUTONIUM);
 
 	public static final GTItemComponents glassTube = new GTItemComponents(GTItemComponentTypes.GLASS_TUBE),
 			energyFlowCircuit = new GTItemComponents(GTItemComponentTypes.ENERGY_FLOW_CIRCUIT),
@@ -111,15 +109,15 @@ public class GTItems {
 	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
 	public static final GTItemElectromagnet electroMagnet = new GTItemElectromagnet();
 	public static final GTItemRockCutter rockCutter = new GTItemRockCutter();
-	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
-	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();
+	public static final GTItemDrill advancedDrill = new GTItemDrill();
+	public static final GTItemChainsaw advancedChainsaw = new GTItemChainsaw();
 	public static final GTItemTeslaStaff teslaStaff = new GTItemTeslaStaff();
-	public static final GTItemLithiumBattery lithiumBattery = new GTItemLithiumBattery();
-	public static final GTItemLapotronicEnergyOrb lapotronicEnergyOrb = new GTItemLapotronicEnergyOrb();
+
 	public static final GTItemEnergyPack lithiumBatpack = new GTItemEnergyPack(58,
 			"gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128);
 	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45,
 			"gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192);
+
 	public static final GTItemCreativeScanner debugScanner = new GTItemCreativeScanner();
 	public static final GTItemSurvivalScanner portableScanner = new GTItemSurvivalScanner();
 
@@ -156,8 +154,7 @@ public class GTItems {
 			energyFlowCircuit, dataControlCircuit, dataStorageCircuit, dataOrb, braintechAerospaceARDT,
 
 			sonictronItem, destructoPack, craftingTablet, hammerIron, electroMagnet, rockCutter, advancedDrill,
-			advancedChainsaw, teslaStaff, lithiumBattery, lapotronicEnergyOrb, lithiumBatpack, lapotronPack,
-			portableScanner, debugScanner,
+			advancedChainsaw, teslaStaff, lithiumBatpack, lapotronPack, portableScanner, debugScanner,
 
 			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, smallEnergium,
 			medEnergium, largeEnergium,

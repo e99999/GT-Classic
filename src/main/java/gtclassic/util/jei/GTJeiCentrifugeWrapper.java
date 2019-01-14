@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTItems;
-import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.util.GTLang;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.core.platform.registry.Ic2Formatters;
 import mezz.jei.api.ingredients.IIngredients;
@@ -46,7 +46,7 @@ public class GTJeiCentrifugeWrapper extends BlankRecipeWrapper {
 		FontRenderer font = minecraft.fontRenderer;
 
 		font.drawString(
-				GTLang.centrifugeEU.getLocalizedFormatted(new Object[] { Ic2Formatters.bigFormat
+				GTValues.centrifugeEU.getLocalizedFormatted(new Object[] { Ic2Formatters.bigFormat
 						.format((long) GTTileEntityIndustrialCentrifuge.getRequiredEU(entry.getOutput())) }),
 				36, 24, Color.gray.getRGB());
 	}

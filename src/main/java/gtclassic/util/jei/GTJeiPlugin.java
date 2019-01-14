@@ -4,8 +4,8 @@ import javax.annotation.Nonnull;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
-import gtclassic.block.tileentity.GTTileEntityFusionComputer;
-import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntityFusionComputer;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTMachineGui.GTFusionComputerGui;
 import gtclassic.util.GTMachineGui.GTIndustrialCentrifugeGui;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;

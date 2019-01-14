@@ -67,7 +67,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
 
 		OreDictionary.registerOre("batteryAdvanced", Ic2Items.energyCrystal);
-		OreDictionary.registerOre("batteryAdvanced", GTItems.lithiumBattery);
+		OreDictionary.registerOre("batteryAdvanced", GTItems.smallLithium);
 
 		// TODO find a better way to register plasma, mainly for recipes
 

@@ -2,8 +2,8 @@ package gtclassic;
 
 import org.apache.logging.log4j.Logger;
 
-import gtclassic.commands.GTCommandTeleport;
 import gtclassic.proxy.GTProxyCommon;
+import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;

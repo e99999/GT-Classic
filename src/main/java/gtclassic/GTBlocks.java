@@ -8,26 +8,26 @@ import gtclassic.block.GTBlockEnergy;
 import gtclassic.block.GTBlockEnergy.GTBlockEnergyVariants;
 import gtclassic.block.GTBlockMachine;
 import gtclassic.block.GTBlockMachine.GTBlockMachineVariants;
+import gtclassic.block.GTBlockMetal;
+import gtclassic.block.GTBlockMetal.GTBlockMetalVariants;
+import gtclassic.block.GTBlockOre;
+import gtclassic.block.GTBlockOre.GTBlockOreVariants;
+import gtclassic.block.GTBlockSandIron;
 import gtclassic.block.GTBlockStorage;
 import gtclassic.block.GTBlockStorage.GTBlockStorageVariants;
-import gtclassic.block.material.GTBlockMetal;
-import gtclassic.block.material.GTBlockMetal.GTBlockMetalVariants;
-import gtclassic.block.material.GTBlockOre;
-import gtclassic.block.material.GTBlockOre.GTBlockOreVariants;
-import gtclassic.block.material.GTBlockSandIron;
-import gtclassic.block.tileentity.GTTileEntityBookshelf;
-import gtclassic.block.tileentity.GTTileEntityComputerCube;
-import gtclassic.block.tileentity.GTTileEntityFusionComputer;
-import gtclassic.block.tileentity.GTTileEntityHESU;
-import gtclassic.block.tileentity.GTTileEntityIDSU;
-import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.block.tileentity.GTTileEntityLESU;
-import gtclassic.block.tileentity.GTTileEntityLargeChest;
-import gtclassic.block.tileentity.GTTileEntityLightningRod;
-import gtclassic.block.tileentity.GTTileEntityQuantumChest;
-import gtclassic.block.tileentity.GTTileEntitySmallChest;
-import gtclassic.block.tileentity.GTTileEntitySuperCondensator;
-import gtclassic.block.tileentity.GTTileEntityWorkbench;
+import gtclassic.tileentity.GTTileEntityBookshelf;
+import gtclassic.tileentity.GTTileEntityComputerCube;
+import gtclassic.tileentity.GTTileEntityFusionComputer;
+import gtclassic.tileentity.GTTileEntityEnergyStorage;
+import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntityLapotronicEnergyStorage;
+import gtclassic.tileentity.GTTileEntityLargeChest;
+import gtclassic.tileentity.GTTileEntityLightningRod;
+import gtclassic.tileentity.GTTileEntityQuantumChest;
+import gtclassic.tileentity.GTTileEntitySmallChest;
+import gtclassic.tileentity.GTTileEntitySuperCondensator;
+import gtclassic.tileentity.GTTileEntityWorkbench;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -157,9 +157,9 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileEntityWorkbench.class,
 				new ResourceLocation(GTClassic.MODID, "tileEntityWorkbench"));
 
-		GameRegistry.registerTileEntity(GTTileEntityHESU.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
-		GameRegistry.registerTileEntity(GTTileEntityIDSU.class, new ResourceLocation(GTClassic.MODID, "tileIDSU"));
-		GameRegistry.registerTileEntity(GTTileEntityLESU.class, new ResourceLocation(GTClassic.MODID, "tileLESU"));
+		GameRegistry.registerTileEntity(GTTileEntityEnergyStorage.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
+		GameRegistry.registerTileEntity(GTTileEntityDimensionalEnergyStorage.class, new ResourceLocation(GTClassic.MODID, "tileIDSU"));
+		GameRegistry.registerTileEntity(GTTileEntityLapotronicEnergyStorage.class, new ResourceLocation(GTClassic.MODID, "tileLESU"));
 
 		GameRegistry.registerTileEntity(GTTileEntityLightningRod.class,
 				new ResourceLocation(GTClassic.MODID, "tileLightningRod"));

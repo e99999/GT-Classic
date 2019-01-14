@@ -7,10 +7,10 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
-import gtclassic.block.tileentity.GTTileEntityHESU;
-import gtclassic.block.tileentity.GTTileEntityIDSU;
-import gtclassic.block.tileentity.GTTileEntityLESU;
-import gtclassic.block.tileentity.GTTileEntitySuperCondensator;
+import gtclassic.tileentity.GTTileEntityEnergyStorage;
+import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
+import gtclassic.tileentity.GTTileEntityLapotronicEnergyStorage;
+import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
@@ -69,11 +69,11 @@ public class GTBlockEnergy extends BlockMultiID {
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.HESU) {
-			return new GTTileEntityHESU();
+			return new GTTileEntityEnergyStorage();
 		} else if (this == GTBlocks.IDSU) {
-			return new GTTileEntityIDSU();
+			return new GTTileEntityDimensionalEnergyStorage();
 		} else if (this == GTBlocks.LESU) {
-			return new GTTileEntityLESU();
+			return new GTTileEntityLapotronicEnergyStorage();
 		} else if (this == GTBlocks.superCondensator) {
 			return new GTTileEntitySuperCondensator();
 		} else {

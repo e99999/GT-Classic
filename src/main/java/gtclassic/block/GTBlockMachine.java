@@ -7,10 +7,10 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
-import gtclassic.block.tileentity.GTTileEntityComputerCube;
-import gtclassic.block.tileentity.GTTileEntityFusionComputer;
-import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.block.tileentity.GTTileEntityLightningRod;
+import gtclassic.tileentity.GTTileEntityComputerCube;
+import gtclassic.tileentity.GTTileEntityFusionComputer;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntityLightningRod;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;

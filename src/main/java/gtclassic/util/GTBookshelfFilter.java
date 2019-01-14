@@ -1,6 +1,6 @@
 package gtclassic.util;
 
-import gtclassic.block.tileentity.GTTileEntityBookshelf;
+import gtclassic.tileentity.GTTileEntityBookshelf;
 import ic2.core.inventory.filters.IFilter;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

@@ -6,11 +6,11 @@ import java.util.List;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
-import gtclassic.block.tileentity.GTTileEntityBookshelf;
-import gtclassic.block.tileentity.GTTileEntityLargeChest;
-import gtclassic.block.tileentity.GTTileEntityQuantumChest;
-import gtclassic.block.tileentity.GTTileEntitySmallChest;
-import gtclassic.block.tileentity.GTTileEntityWorkbench;
+import gtclassic.tileentity.GTTileEntityBookshelf;
+import gtclassic.tileentity.GTTileEntityLargeChest;
+import gtclassic.tileentity.GTTileEntityQuantumChest;
+import gtclassic.tileentity.GTTileEntitySmallChest;
+import gtclassic.tileentity.GTTileEntityWorkbench;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;

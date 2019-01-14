@@ -3,7 +3,7 @@ package gtclassic.util.gui;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.block.tileentity.GTTileEntityComputerCube;
+import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.util.GTValues;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
