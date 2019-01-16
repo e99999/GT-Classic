@@ -7,8 +7,8 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
-import gtclassic.tileentity.GTTileEntityEnergyStorage;
 import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
+import gtclassic.tileentity.GTTileEntityEnergyStorage;
 import gtclassic.tileentity.GTTileEntityLapotronicEnergyStorage;
 import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import ic2.core.block.base.BlockMultiID;

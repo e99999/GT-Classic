@@ -1,12 +1,12 @@
 package gtclassic;
 
 import gtclassic.item.GTItemChainsaw;
-import gtclassic.item.GTItemDrill;
 import gtclassic.item.GTItemComponents;
 import gtclassic.item.GTItemComponents.GTItemComponentTypes;
 import gtclassic.item.GTItemCraftingTablet;
 import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
+import gtclassic.item.GTItemDrill;
 import gtclassic.item.GTItemDuctTape;
 import gtclassic.item.GTItemDust;
 import gtclassic.item.GTItemDust.GTItemDustTypes;

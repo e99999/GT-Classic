@@ -1,6 +1,6 @@
 package gtclassic.tileentity;
 
-import gtclassic.container.GTContainerHESU;
+import gtclassic.container.GTContainerEnergyStorage;
 import gtclassic.util.GTValues;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
@@ -15,7 +15,7 @@ public class GTTileEntityEnergyStorage extends TileEntityElectricBlock {
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerHESU(player.inventory, this);
+		return new GTContainerEnergyStorage(player.inventory, this);
 	}
 
 	@Override

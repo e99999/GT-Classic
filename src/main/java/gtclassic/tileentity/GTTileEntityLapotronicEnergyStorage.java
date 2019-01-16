@@ -14,7 +14,7 @@ public class GTTileEntityLapotronicEnergyStorage extends TileEntityElectricBlock
 	static int defaultLESU = 1000000;
 
 	public GTTileEntityLapotronicEnergyStorage() {
-		super(3, 512, defaultLESU);
+		super(2, 128, defaultLESU);
 	}
 
 	@Override

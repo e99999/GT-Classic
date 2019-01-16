@@ -19,7 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerIDSU extends ContainerTileComponent<GTTileEntityDimensionalEnergyStorage> {
+public class GTContainerDimensionalEnergyStorage extends ContainerTileComponent<GTTileEntityDimensionalEnergyStorage> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/energystorage.png");
 
@@ -27,7 +27,7 @@ public class GTContainerIDSU extends ContainerTileComponent<GTTileEntityDimensio
 																		// xy
 	public static Vec2i chargeProgressPos = new Vec2i(0, 251); // where the overlay is located
 
-	public GTContainerIDSU(InventoryPlayer player, GTTileEntityDimensionalEnergyStorage tile) {
+	public GTContainerDimensionalEnergyStorage(InventoryPlayer player, GTTileEntityDimensionalEnergyStorage tile) {
 
 		super(tile);
 		this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50));
@@ -39,7 +39,7 @@ public class GTContainerIDSU extends ContainerTileComponent<GTTileEntityDimensio
 
 		this.addComponent(new GTGuiCompEnergyStorage(tile));
 		this.addComponent(
-				new GTGuiCompEnergyBar(tile, GTContainerIDSU.chargeProgressBox, GTContainerIDSU.chargeProgressPos));
+				new GTGuiCompEnergyBar(tile, GTContainerDimensionalEnergyStorage.chargeProgressBox, GTContainerDimensionalEnergyStorage.chargeProgressPos));
 		this.addPlayerInventory(player);
 	}
 

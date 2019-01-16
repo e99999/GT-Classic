@@ -1,7 +1,5 @@
 package gtclassic;
 
-import gtclassic.block.GTBlockBattery;
-import gtclassic.block.GTBlockBattery.GTBlockBatteryVariants;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCasing.GTBlockCasingVariants;
 import gtclassic.block.GTBlockEnergy;
@@ -15,11 +13,13 @@ import gtclassic.block.GTBlockOre.GTBlockOreVariants;
 import gtclassic.block.GTBlockSandIron;
 import gtclassic.block.GTBlockStorage;
 import gtclassic.block.GTBlockStorage.GTBlockStorageVariants;
+import gtclassic.block.GTBlockTile;
+import gtclassic.block.GTBlockTile.GTBlockTileVariants;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.tileentity.GTTileEntityComputerCube;
-import gtclassic.tileentity.GTTileEntityFusionComputer;
-import gtclassic.tileentity.GTTileEntityEnergyStorage;
 import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
+import gtclassic.tileentity.GTTileEntityEnergyStorage;
+import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLapotronicEnergyStorage;
 import gtclassic.tileentity.GTTileEntityLargeChest;
@@ -87,15 +87,38 @@ public class GTBlocks {
 			bookShelf = new GTBlockStorage(GTBlockStorageVariants.BOOKSHELF),
 			workBench = new GTBlockStorage(GTBlockStorageVariants.WORKBENCH);
 
-	public static final GTBlockBattery smallLithium = new GTBlockBattery(GTBlockBatteryVariants.SMALL_LITHIUM),
-			medLithium = new GTBlockBattery(GTBlockBatteryVariants.MED_LITHIUM),
-			largeLithium = new GTBlockBattery(GTBlockBatteryVariants.LARGE_LITHIUM),
-			smallLapotron = new GTBlockBattery(GTBlockBatteryVariants.SMALL_LAPOTRON),
-			medLapotron = new GTBlockBattery(GTBlockBatteryVariants.MED_LAPOTRON),
-			largeLapotron = new GTBlockBattery(GTBlockBatteryVariants.LARGE_LAPOTRON),
-			smallEnergium = new GTBlockBattery(GTBlockBatteryVariants.SMALL_ENERGIUM),
-			medEnergium = new GTBlockBattery(GTBlockBatteryVariants.MED_ENERGIUM),
-			largeEnergium = new GTBlockBattery(GTBlockBatteryVariants.LARGE_ENERGIUM);
+	public static final GTBlockTile smallLithium = new GTBlockTile(GTBlockTileVariants.SMALL_LITHIUM),
+			smallCoolant = new GTBlockTile(GTBlockTileVariants.SMALL_COOLANT),
+			medCoolant = new GTBlockTile(GTBlockTileVariants.MED_COOLANT),
+			largeCoolant = new GTBlockTile(GTBlockTileVariants.LARGE_COOLANT),
+			
+			smallThorium = new GTBlockTile(GTBlockTileVariants.SMALL_THORIUM),
+			medThorium = new GTBlockTile(GTBlockTileVariants.MED_THORIUM),
+			largeThorium = new GTBlockTile(GTBlockTileVariants.LARGE_THORIUM),
+			
+			smallPlutonium = new GTBlockTile(GTBlockTileVariants.SMALL_PLUTONIUM),
+			medPlutonium = new GTBlockTile(GTBlockTileVariants.MED_PLUTONIUM),
+			largePlutonium = new GTBlockTile(GTBlockTileVariants.LARGE_PLUTONIUM),
+
+			medLithium = new GTBlockTile(GTBlockTileVariants.MED_LITHIUM),
+			largeLithium = new GTBlockTile(GTBlockTileVariants.LARGE_LITHIUM),
+			smallLapotron = new GTBlockTile(GTBlockTileVariants.SMALL_LAPOTRON),
+			medLapotron = new GTBlockTile(GTBlockTileVariants.MED_LAPOTRON),
+			largeLapotron = new GTBlockTile(GTBlockTileVariants.LARGE_LAPOTRON),
+			smallEnergium = new GTBlockTile(GTBlockTileVariants.SMALL_ENERGIUM),
+			medEnergium = new GTBlockTile(GTBlockTileVariants.MED_ENERGIUM),
+			largeEnergium = new GTBlockTile(GTBlockTileVariants.LARGE_ENERGIUM),
+
+			aluminiumDataStick = new GTBlockTile(GTBlockTileVariants.ALUMINIUM_DATASTICK),
+			titaniumDataStick = new GTBlockTile(GTBlockTileVariants.TITANIUM_DATASTICK),
+			chromeDataStick = new GTBlockTile(GTBlockTileVariants.CHROME_DATASTICK),
+
+			aluminiumDataDrive = new GTBlockTile(GTBlockTileVariants.ALUMINIUM_DATADRIVE),
+			titaniumDataDrive = new GTBlockTile(GTBlockTileVariants.TITANIUM_DATADRIVE),
+			chromeDataDrive = new GTBlockTile(GTBlockTileVariants.CHROME_DATADRIVE),
+
+			energyCircuitBlock = new GTBlockTile(GTBlockTileVariants.ENERGY_CIRCUIT),
+			dataCircuitBlock = new GTBlockTile(GTBlockTileVariants.DATA_CIRCUIT);
 
 	public static final Block[] blocks = {
 
@@ -115,8 +138,18 @@ public class GTBlocks {
 
 			quantumChest, bookShelf, workBench, smallChest, largeChest,
 
+			smallCoolant, medCoolant, largeCoolant,
+			
+			smallThorium, medThorium, largeThorium,
+			smallPlutonium, medPlutonium, largePlutonium,
+			
 			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, smallEnergium,
-			medEnergium, largeEnergium
+			medEnergium, largeEnergium,
+
+			aluminiumDataStick, titaniumDataStick, chromeDataStick, aluminiumDataDrive, titaniumDataDrive,
+			chromeDataDrive,
+
+			energyCircuitBlock, dataCircuitBlock,
 
 	};
 
@@ -157,9 +190,12 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileEntityWorkbench.class,
 				new ResourceLocation(GTClassic.MODID, "tileEntityWorkbench"));
 
-		GameRegistry.registerTileEntity(GTTileEntityEnergyStorage.class, new ResourceLocation(GTClassic.MODID, "tileHESU"));
-		GameRegistry.registerTileEntity(GTTileEntityDimensionalEnergyStorage.class, new ResourceLocation(GTClassic.MODID, "tileIDSU"));
-		GameRegistry.registerTileEntity(GTTileEntityLapotronicEnergyStorage.class, new ResourceLocation(GTClassic.MODID, "tileLESU"));
+		GameRegistry.registerTileEntity(GTTileEntityEnergyStorage.class,
+				new ResourceLocation(GTClassic.MODID, "tileHESU"));
+		GameRegistry.registerTileEntity(GTTileEntityDimensionalEnergyStorage.class,
+				new ResourceLocation(GTClassic.MODID, "tileIDSU"));
+		GameRegistry.registerTileEntity(GTTileEntityLapotronicEnergyStorage.class,
+				new ResourceLocation(GTClassic.MODID, "tileLESU"));
 
 		GameRegistry.registerTileEntity(GTTileEntityLightningRod.class,
 				new ResourceLocation(GTClassic.MODID, "tileLightningRod"));

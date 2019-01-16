@@ -25,38 +25,86 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockBattery extends BlockCommonContainer implements ITexturedBlock {
-	public enum GTBlockBatteryVariants {
-		SMALL_LITHIUM(16, 0), MED_LITHIUM(16, 2), LARGE_LITHIUM(16, 3),
+public class GTBlockTile extends BlockCommonContainer implements ITexturedBlock {
 
-		SMALL_LAPOTRON(17, 1), MED_LAPOTRON(17, 2), LARGE_LAPOTRON(17, 3),
+	/*
+	 * GTBlockTileVariants enums
+	 * 
+	 * @param enum name
+	 * 
+	 * @param vertical axis sprite index
+	 * 
+	 * @param horizontal axis sprite index
+	 * 
+	 * @param bounding box model to use, feel free to add your own
+	 */
 
-		SMALL_ENERGIUM(18, 1), MED_ENERGIUM(18, 2), LARGE_ENERGIUM(18, 3);
+	public enum GTBlockTileVariants {
+		SMALL_COOLANT(32, 32, GTValues.SMALLCOOLANT_AABB), 
+		MED_COOLANT(32, 32, GTValues.LARGECOOLANT_AABB),
+		LARGE_COOLANT(32, 32, GTValues.LARGECOOLANT_AABB),
 
-		private int id;
-		private int size;
+		SMALL_THORIUM(32, 32, GTValues.SMALLROD_AABB), 
+		MED_THORIUM(32, 32, GTValues.MEDROD_AABB),
+		LARGE_THORIUM(32, 32, GTValues.LARGEROD_AABB),
 
-		GTBlockBatteryVariants(int id, int size) {
-			this.id = id;
-			this.size = size;
+		SMALL_PLUTONIUM(32, 32, GTValues.SMALLROD_AABB), 
+		MED_PLUTONIUM(32, 32, GTValues.MEDROD_AABB),
+		LARGE_PLUTONIUM(32, 32, GTValues.LARGEROD_AABB),
+
+		SMALL_LITHIUM(16, 16, GTValues.SLIMBATTERY_AABB), 
+		MED_LITHIUM(16, 16, GTValues.MEDBATTERY_AABB),
+		LARGE_LITHIUM(16, 16, GTValues.LARGEBATTERY_AABB),
+
+		SMALL_LAPOTRON(17, 17, GTValues.SMALLBATTERY_AABB), 
+		MED_LAPOTRON(17, 17, GTValues.MEDBATTERY_AABB),
+		LARGE_LAPOTRON(17, 17, GTValues.LARGEBATTERY_AABB),
+
+		SMALL_ENERGIUM(18, 18, GTValues.SMALLBATTERY_AABB), 
+		MED_ENERGIUM(18, 18, GTValues.MEDBATTERY_AABB),
+		LARGE_ENERGIUM(18, 18, GTValues.LARGEBATTERY_AABB),
+
+		ALUMINIUM_DATASTICK(32, 35, GTValues.DATASTICK_AABB), 
+		TITANIUM_DATASTICK(32, 36, GTValues.DATASTICK_AABB),
+		CHROME_DATASTICK(32, 37, GTValues.DATASTICK_AABB),
+
+		ALUMINIUM_DATADRIVE(32, 38, GTValues.DATADRIVE_AABB), 
+		TITANIUM_DATADRIVE(32, 39, GTValues.DATADRIVE_AABB),
+		CHROME_DATADRIVE(32, 40, GTValues.DATADRIVE_AABB),
+
+		ENERGY_CIRCUIT(33, 32, GTValues.CIRCUIT_AABB), 
+		DATA_CIRCUIT(34, 32, GTValues.CIRCUIT_AABB);
+
+		private int vertical;
+		private int horizontal;
+		private AxisAlignedBB box;
+
+		GTBlockTileVariants(int vertical, int horizontal, AxisAlignedBB box) {
+			this.vertical = vertical;
+			this.horizontal = horizontal;
+			this.box = box;
 		}
 
-		public int getID() {
-			return id;
+		public int getVertical() {
+			return vertical;
 		}
 
-		public int getSize() {
-			return size;
+		public int getHorizontal() {
+			return horizontal;
+		}
+
+		public AxisAlignedBB getBox() {
+			return box;
 		}
 	}
 
-	GTBlockBatteryVariants variant;
+	GTBlockTileVariants variant;
 
-	public GTBlockBattery(GTBlockBatteryVariants variant) {
+	public GTBlockTile(GTBlockTileVariants variant) {
 		super(Material.CLOTH);
 		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_batteryblock");
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_batteryblock");
+		setRegistryName(variant.toString().toLowerCase() + "_tileblock");
+		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_tileblock");
 		setCreativeTab(GTClassic.creativeTabGT);
 		setHardness(0.5F);
 		setResistance(30.0F);
@@ -64,17 +112,7 @@ public class GTBlockBattery extends BlockCommonContainer implements ITexturedBlo
 	}
 
 	public AxisAlignedBB getBatteryBoundingBox() {
-		if (variant.getSize() == 0) {
-			return GTValues.BATTERY_BLOCK_AABB;
-		} else if (variant.getSize() == 1) {
-			return GTValues.SMALL_BLOCK_AABB;
-		} else if (variant.getSize() == 2) {
-			return GTValues.MED_BLOCK_AABB;
-		} else if (variant.getSize() == 3) {
-			return GTValues.LARGE_BLOCK_AABB;
-		} else {
-			return FULL_BLOCK_AABB;
-		}
+		return variant.getBox();
 	}
 
 	@Override
@@ -108,12 +146,14 @@ public class GTBlockBattery extends BlockCommonContainer implements ITexturedBlo
 	}
 
 	@Override
+	@Deprecated
 	@SideOnly(Side.CLIENT)
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
 		return getBatteryBoundingBox().offset(pos);
 	}
 
 	@Override
+	@Deprecated
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return getBatteryBoundingBox();
 	}
@@ -127,7 +167,11 @@ public class GTBlockBattery extends BlockCommonContainer implements ITexturedBlo
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
+		if (enumFacing == EnumFacing.UP || enumFacing == EnumFacing.DOWN) {
+			return Ic2Icons.getTextures("gtclassic_blocks")[variant.getVertical()];
+		} else {
+			return Ic2Icons.getTextures("gtclassic_blocks")[variant.getHorizontal()];
+		}
 	}
 
 	@Override

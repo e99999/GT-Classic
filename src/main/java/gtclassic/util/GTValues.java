@@ -13,12 +13,23 @@ public class GTValues {
 	// boolean that renders anything labeled as WIP uncraftable
 	public static boolean debugMode = true;
 
-	// the size and shapes of battery storages
-	public static final AxisAlignedBB BATTERY_BLOCK_AABB = new AxisAlignedBB(0.35D, 0.0D, 0.35D, 0.65D, 0.6D, 0.65D);
-	public static final AxisAlignedBB SMALL_BLOCK_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.4D, 0.7D);
-	public static final AxisAlignedBB MED_BLOCK_AABB = new AxisAlignedBB(0.2D, 0.0D, 0.2D, 0.8D, 0.6D, 0.8D);
-	public static final AxisAlignedBB LARGE_BLOCK_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
-	public static final AxisAlignedBB FULL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+	//custom bounding boxes
+	public static final AxisAlignedBB FULLBLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+	public static final AxisAlignedBB SLIMBATTERY_AABB = new AxisAlignedBB(0.35D, 0.0D, 0.35D, 0.65D, 0.6D, 0.65D);
+	public static final AxisAlignedBB SMALLBATTERY_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.4D, 0.7D);
+	public static final AxisAlignedBB MEDBATTERY_AABB = new AxisAlignedBB(0.2D, 0.0D, 0.2D, 0.8D, 0.6D, 0.8D);
+	public static final AxisAlignedBB LARGEBATTERY_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 0.8D, 0.9D);
+	
+	public static final AxisAlignedBB CIRCUIT_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1D, 1.0D);
+	public static final AxisAlignedBB DATASTICK_AABB = new AxisAlignedBB(0.6D, 0.0D, 0.55D, 0.4D, 0.6D, 0.45D);
+	public static final AxisAlignedBB DATADRIVE_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.1D, 0.9D, 1.0D, 0.9D);
+	
+	public static final AxisAlignedBB SMALLROD_AABB = new AxisAlignedBB(0.6D, 0.0D, 0.6D, 0.4D, 1.0D, 0.4D);
+	public static final AxisAlignedBB MEDROD_AABB = new AxisAlignedBB(0.2D, 0.0D, 0.6D, 0.8D, 1.0D, 0.4D);
+	public static final AxisAlignedBB LARGEROD_AABB = new AxisAlignedBB(0.2D, 0.0D, 0.2D, 0.8D, 1.0D, 0.8D);
+	
+	public static final AxisAlignedBB SMALLCOOLANT_AABB = new AxisAlignedBB(0.7D, 0.0D, 0.35D, 0.3D, 1.0D, 0.65D);
+	public static final AxisAlignedBB LARGECOOLANT_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.35D, 1.0D, 1.0D, 0.65D);
 
 	// colors
 	public static int white = 16777215;
