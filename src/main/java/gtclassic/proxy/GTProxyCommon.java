@@ -22,8 +22,8 @@ public class GTProxyCommon {
 		config = new Configuration(new File(directory.getPath(), "ic2/gtclassic.cfg"));
 		GTConfig.readConfig();
 		config.save();
-		MinecraftForge.EVENT_BUS.register(GTBlocks.class);
 		GTBlocks.registerTiles();
+		MinecraftForge.EVENT_BUS.register(GTBlocks.class);
 		MinecraftForge.EVENT_BUS.register(GTItems.class);
 	}
 
