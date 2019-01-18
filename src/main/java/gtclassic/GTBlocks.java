@@ -24,6 +24,7 @@ import gtclassic.tileentity.GTTileEntityQuantumChest;
 import gtclassic.tileentity.GTTileEntitySmallChest;
 import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import gtclassic.tileentity.GTTileEntityWorkbench;
+import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -61,26 +62,26 @@ public class GTBlocks {
 
 	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
-	public static final GTBlockTile autoCrafter = new GTBlockTile(GTBlockTileVariants.AUTOCRAFTER),
-			chargeOMat = new GTBlockTile(GTBlockTileVariants.CHARGEOMAT),
-			computerCube = new GTBlockTile(GTBlockTileVariants.COMPUTERCUBE),
-			industrialCentrifuge = new GTBlockTile(GTBlockTileVariants.INDUSTRIALCENTRIFUGE),
-			matterFabricator = new GTBlockTile(GTBlockTileVariants.MATTERFABRICATOR),
-			uuMatterAssembler = new GTBlockTile(GTBlockTileVariants.UUMASSEMBLER),
-			playerDetector = new GTBlockTile(GTBlockTileVariants.PLAYERDETECTOR),
-			sonictronBlock = new GTBlockTile(GTBlockTileVariants.SONICTRON),
-			fusionComputer = new GTBlockTile(GTBlockTileVariants.FUSIONCOMPUTER),
-			lightningRod = new GTBlockTile(GTBlockTileVariants.LIGHTNINGROD),
-			IDSU = new GTBlockTile(GTBlockTileVariants.IDSU),
-			HESU = new GTBlockTile(GTBlockTileVariants.HESU), 
-			LESU = new GTBlockTile(GTBlockTileVariants.LESU),
-			superCondensator = new GTBlockTile(GTBlockTileVariants.SUPERCONDENSATOR),
-			superConductorWire = new GTBlockTile(GTBlockTileVariants.SUPERCONDUCTORWIRE),
-			smallChest = new GTBlockTile(GTBlockTileVariants.SMALLCHEST),
-			largeChest = new GTBlockTile(GTBlockTileVariants.LARGECHEST),
-			quantumChest = new GTBlockTile(GTBlockTileVariants.QUANTUMCHEST),
-			bookShelf = new GTBlockTile(GTBlockTileVariants.BOOKSHELF),
-			workBench = new GTBlockTile(GTBlockTileVariants.WORKBENCH);
+	public static final GTBlockTile autoCrafter = new GTBlockTile(GTBlockTileVariants.AUTOCRAFTER, new TileEntityBlock()),
+			chargeOMat = new GTBlockTile(GTBlockTileVariants.CHARGEOMAT, new TileEntityBlock()),
+			computerCube = new GTBlockTile(GTBlockTileVariants.COMPUTERCUBE, new GTTileEntityComputerCube()),
+			industrialCentrifuge = new GTBlockTile(GTBlockTileVariants.INDUSTRIALCENTRIFUGE, new GTTileEntityIndustrialCentrifuge()),
+			matterFabricator = new GTBlockTile(GTBlockTileVariants.MATTERFABRICATOR, new TileEntityBlock()),
+			uuMatterAssembler = new GTBlockTile(GTBlockTileVariants.UUMASSEMBLER, new TileEntityBlock()),
+			playerDetector = new GTBlockTile(GTBlockTileVariants.PLAYERDETECTOR, new TileEntityBlock()),
+			sonictronBlock = new GTBlockTile(GTBlockTileVariants.SONICTRON, new TileEntityBlock()),
+			fusionComputer = new GTBlockTile(GTBlockTileVariants.FUSIONCOMPUTER, new GTTileEntityFusionComputer()),
+			lightningRod = new GTBlockTile(GTBlockTileVariants.LIGHTNINGROD, new GTTileEntityLightningRod()),
+			IDSU = new GTBlockTile(GTBlockTileVariants.IDSU, new GTTileEntityDimensionalEnergyStorage()),
+			HESU = new GTBlockTile(GTBlockTileVariants.HESU, new GTTileEntityEnergyStorage()), 
+			LESU = new GTBlockTile(GTBlockTileVariants.LESU, new GTTileEntityLapotronicEnergyStorage()),
+			superCondensator = new GTBlockTile(GTBlockTileVariants.SUPERCONDENSATOR, new GTTileEntitySuperCondensator()),
+			superConductorWire = new GTBlockTile(GTBlockTileVariants.SUPERCONDUCTORWIRE, new TileEntityBlock()),
+			smallChest = new GTBlockTile(GTBlockTileVariants.SMALLCHEST, new GTTileEntitySmallChest()),
+			largeChest = new GTBlockTile(GTBlockTileVariants.LARGECHEST, new GTTileEntityLargeChest()),
+			quantumChest = new GTBlockTile(GTBlockTileVariants.QUANTUMCHEST, new GTTileEntityQuantumChest()),
+			bookShelf = new GTBlockTile(GTBlockTileVariants.BOOKSHELF, new GTTileEntityBookshelf()),
+			workBench = new GTBlockTile(GTBlockTileVariants.WORKBENCH, new GTTileEntityWorkbench());
 
 	public static final GTBlockItem smallLithium = new GTBlockItem(GTBlockItemVariants.SMALL_LITHIUM),
 			smallCoolant = new GTBlockItem(GTBlockItemVariants.SMALL_COOLANT),

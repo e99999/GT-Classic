@@ -42,63 +42,21 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockTile extends BlockMultiID {
-	
-	static int TYPE_MACHINE = 0;
-	static int TYPE_POWER = 1;
-	static int TYPE_STORAGE = 2;
-	
+
 	public enum GTBlockTileVariants {
-		AUTOCRAFTER(TYPE_MACHINE, "gtclassic_autocrafter", new TileEntityBlock()),
-		COMPUTERCUBE(TYPE_MACHINE, "gtclassic_computercube", new GTTileEntityComputerCube()),
-		CHARGEOMAT(TYPE_MACHINE, "gtclassic_chargeomat", new TileEntityBlock()),
-		INDUSTRIALCENTRIFUGE(TYPE_MACHINE, "gtclassic_industrialcentrifuge", new GTTileEntityIndustrialCentrifuge()),
-		MATTERFABRICATOR(TYPE_MACHINE, "gtclassic_matterfabricator", new TileEntityBlock()),
-		UUMASSEMBLER(TYPE_MACHINE, "gtclassic_uumatterassembler", new TileEntityBlock()),
-		PLAYERDETECTOR(TYPE_MACHINE, "gtclassic_playerdetector", new TileEntityBlock()),
-		SONICTRON(TYPE_MACHINE, "gtclassic_sonictron", new TileEntityBlock()),
-		LIGHTNINGROD(TYPE_MACHINE, "gtclassic_lightningrod", new GTTileEntityLightningRod()),
-		FUSIONCOMPUTER(TYPE_MACHINE, "gtclassic_fusioncomputer", new GTTileEntityFusionComputer()),
-		
-		IDSU(TYPE_POWER, "gtclassic_interdimensionalenergysu", new GTTileEntityDimensionalEnergyStorage()),
-		HESU(TYPE_POWER, "gtclassic_hugeenergysu", new GTTileEntityEnergyStorage()), 
-		LESU(TYPE_POWER, "gtclassic_lapotronicenergysu", new GTTileEntityLapotronicEnergyStorage()), 
-		SUPERCONDENSATOR(TYPE_POWER, "gtclassic_supercondensator", new GTTileEntitySuperCondensator()), 
-		SUPERCONDUCTORWIRE(TYPE_POWER, "gtclassic_superconductorwire", new TileEntityBlock()),
-		
-		SMALLCHEST(TYPE_STORAGE, "gtclassic_smallchest", new GTTileEntitySmallChest()), 
-		LARGECHEST(TYPE_STORAGE, "gtclassic_largechest", new GTTileEntityLargeChest()), 
-		QUANTUMCHEST(TYPE_STORAGE, "gtclassic_quantumchest", new GTTileEntityQuantumChest()),
-		BOOKSHELF(TYPE_STORAGE, "gtclassic_bookshelf", new GTTileEntityBookshelf()), 
-		WORKBENCH(TYPE_STORAGE, "gtclassic_workbench", new GTTileEntityWorkbench());
+		AUTOCRAFTER, COMPUTERCUBE, CHARGEOMAT, INDUSTRIALCENTRIFUGE, MATTERFABRICATOR, UUMASSEMBLER, PLAYERDETECTOR,
+		SONICTRON, LIGHTNINGROD, FUSIONCOMPUTER, IDSU, HESU, LESU, SUPERCONDENSATOR, SUPERCONDUCTORWIRE, SMALLCHEST,
+		LARGECHEST, QUANTUMCHEST, BOOKSHELF, WORKBENCH;
 
-		private int type;
-		private String sprite;
-		private TileEntityBlock tile;
-
-		GTBlockTileVariants(int type, String sprite, TileEntityBlock tile) {
-			this.type = type;
-			this.sprite = sprite;
-			this.tile = tile;
-		}
-		
-		public int getType() {
-			return type;
-		}
-
-		public String getSprite() {
-			return sprite;
-		}
-
-		public TileEntityBlock getTile() {
-			return tile;
-		}
 	}
 
 	GTBlockTileVariants variant;
+	TileEntityBlock tile;
 
-	public GTBlockTile(GTBlockTileVariants variant) {
+	public GTBlockTile(GTBlockTileVariants variant, TileEntityBlock tile) {
 		super(Material.IRON);
 		this.variant = variant;
+		this.tile = tile;
 		setRegistryName(variant.toString().toLowerCase());
 		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
 		setCreativeTab(GTClassic.creativeTabGT);
@@ -111,12 +69,41 @@ public class GTBlockTile extends BlockMultiID {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite[] getIconSheet(int meta) {
-		return Ic2Icons.getTextures(variant.getSprite());
+		return Ic2Icons.getTextures(variant.toString().toLowerCase());
 	}
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		return variant.getTile();
+		/*if (this == GTBlocks.computerCube) {
+			return new GTTileEntityComputerCube();
+		} else if (this == GTBlocks.industrialCentrifuge) {
+			return new GTTileEntityIndustrialCentrifuge();
+		} else if (this == GTBlocks.lightningRod) {
+			return new GTTileEntityLightningRod();
+		} else if (this == GTBlocks.fusionComputer) {
+			return new GTTileEntityFusionComputer();
+		} else if (this == GTBlocks.HESU) {
+			return new GTTileEntityEnergyStorage();
+		} else if (this == GTBlocks.IDSU) {
+			return new GTTileEntityDimensionalEnergyStorage();
+		} else if (this == GTBlocks.LESU) {
+			return new GTTileEntityLapotronicEnergyStorage();
+		} else if (this == GTBlocks.superCondensator) {
+			return new GTTileEntitySuperCondensator();
+		} else if (this == GTBlocks.quantumChest) {
+			return new GTTileEntityQuantumChest();
+		} else if (this == GTBlocks.smallChest) {
+			return new GTTileEntitySmallChest();
+		} else if (this == GTBlocks.largeChest) {
+			return new GTTileEntityLargeChest();
+		} else if (this == GTBlocks.bookShelf) {
+			return new GTTileEntityBookshelf();
+		} else if (this == GTBlocks.workBench) {
+			return new GTTileEntityWorkbench();
+		} else {
+			return new TileEntityBlock();
+		}*/
+		return tile;
 	}
 
 	@Override
@@ -157,7 +144,7 @@ public class GTBlockTile extends BlockMultiID {
 	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
 		return false;
 	}
-	
+
 	@Override
 	@Deprecated
 	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
@@ -186,7 +173,7 @@ public class GTBlockTile extends BlockMultiID {
 		int meta = this.getMetaFromState(state);
 		return meta >= 0 && meta <= 2 ? true : super.canProvidePower(state);
 	}
-	
+
 	@Override
 	public float getEnchantPowerBonus(World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
@@ -227,7 +214,7 @@ public class GTBlockTile extends BlockMultiID {
 				}
 			}
 		}
-		
+
 		else if (this == GTBlocks.IDSU) {
 			for (int i = 0; i < 3; ++i) {
 				int j = rand.nextInt(2) * 2 - 1;
@@ -242,7 +229,5 @@ public class GTBlockTile extends BlockMultiID {
 			}
 		}
 	}
-	
-	
 
 }
