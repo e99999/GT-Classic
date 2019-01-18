@@ -47,16 +47,13 @@ public class GTBlockTile extends BlockMultiID {
 		AUTOCRAFTER, COMPUTERCUBE, CHARGEOMAT, INDUSTRIALCENTRIFUGE, MATTERFABRICATOR, UUMASSEMBLER, PLAYERDETECTOR,
 		SONICTRON, LIGHTNINGROD, FUSIONCOMPUTER, IDSU, HESU, LESU, SUPERCONDENSATOR, SUPERCONDUCTORWIRE, SMALLCHEST,
 		LARGECHEST, QUANTUMCHEST, BOOKSHELF, WORKBENCH;
-
 	}
 
 	GTBlockTileVariants variant;
-	TileEntityBlock tile;
 
-	public GTBlockTile(GTBlockTileVariants variant, TileEntityBlock tile) {
+	public GTBlockTile(GTBlockTileVariants variant) {
 		super(Material.IRON);
 		this.variant = variant;
-		this.tile = tile;
 		setRegistryName(variant.toString().toLowerCase());
 		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
 		setCreativeTab(GTClassic.creativeTabGT);
@@ -74,7 +71,7 @@ public class GTBlockTile extends BlockMultiID {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		/*if (this == GTBlocks.computerCube) {
+		if (this == GTBlocks.computerCube) {
 			return new GTTileEntityComputerCube();
 		} else if (this == GTBlocks.industrialCentrifuge) {
 			return new GTTileEntityIndustrialCentrifuge();
@@ -102,8 +99,8 @@ public class GTBlockTile extends BlockMultiID {
 			return new GTTileEntityWorkbench();
 		} else {
 			return new TileEntityBlock();
-		}*/
-		return tile;
+		}
+
 	}
 
 	@Override

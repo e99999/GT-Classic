@@ -19,9 +19,9 @@ public class GTIcons {
 				new Sprites.SpriteInfo(16, 16)));
 		addSprite(new Sprites.SpriteData("gtclassic_items", "gtclassic:textures/sprites/items.png",
 				new Sprites.SpriteInfo(16, 16)));
-		
-		iterateTileSpriteEnum(); //this is fucking cool as shit
-		
+
+		iterateTileSpriteEnum(); // this is fucking cool as shit
+
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 0, 16, 8));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_items", 0, 0, 16, 5));
 
@@ -44,11 +44,11 @@ public class GTIcons {
 
 	public static void iterateTileSpriteEnum() {
 		EnumSet.allOf(GTBlockTile.GTBlockTileVariants.class)
-				.forEach(variant -> addSprite(new Sprites.SpriteData(""+variant.toString().toLowerCase(),
+				.forEach(variant -> addSprite(new Sprites.SpriteData("" + variant.toString().toLowerCase(),
 						"gtclassic:textures/sprites/" + variant.toString().toLowerCase() + ".png",
 						new Sprites.SpriteInfo(1, 12))));
-		EnumSet.allOf(GTBlockTile.GTBlockTileVariants.class)
-		.forEach(variant -> addTextureEntry(new Sprites.TextureEntry(""+variant.toString().toLowerCase(), 0, 0, 1, 12)));
-	
+		EnumSet.allOf(GTBlockTile.GTBlockTileVariants.class).forEach(variant -> addTextureEntry(
+				new Sprites.TextureEntry("" + variant.toString().toLowerCase(), 0, 0, 1, 12)));
+
 	}
 }

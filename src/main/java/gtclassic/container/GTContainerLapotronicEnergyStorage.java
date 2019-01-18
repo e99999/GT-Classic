@@ -38,8 +38,8 @@ public class GTContainerLapotronicEnergyStorage extends ContainerTileComponent<G
 		}
 
 		this.addComponent(new GTGuiCompEnergyStorage(tile));
-		this.addComponent(
-				new GTGuiCompEnergyBar(tile, GTContainerLapotronicEnergyStorage.chargeProgressBox, GTContainerLapotronicEnergyStorage.chargeProgressPos));
+		this.addComponent(new GTGuiCompEnergyBar(tile, GTContainerLapotronicEnergyStorage.chargeProgressBox,
+				GTContainerLapotronicEnergyStorage.chargeProgressPos));
 		this.addPlayerInventory(player);
 	}
 
