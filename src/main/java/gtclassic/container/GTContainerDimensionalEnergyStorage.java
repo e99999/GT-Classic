@@ -38,8 +38,8 @@ public class GTContainerDimensionalEnergyStorage extends ContainerTileComponent<
 		}
 
 		this.addComponent(new GTGuiCompEnergyStorage(tile));
-		this.addComponent(
-				new GTGuiCompEnergyBar(tile, GTContainerDimensionalEnergyStorage.chargeProgressBox, GTContainerDimensionalEnergyStorage.chargeProgressPos));
+		this.addComponent(new GTGuiCompEnergyBar(tile, GTContainerDimensionalEnergyStorage.chargeProgressBox,
+				GTContainerDimensionalEnergyStorage.chargeProgressPos));
 		this.addPlayerInventory(player);
 	}
 

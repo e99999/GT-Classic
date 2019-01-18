@@ -1,161 +1,139 @@
 package gtclassic.block;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
-import javax.annotation.Nullable;
-
+import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
-import gtclassic.util.GTValues;
-import ic2.core.block.base.BlockCommonContainer;
+import gtclassic.tileentity.GTTileEntityBookshelf;
+import gtclassic.tileentity.GTTileEntityComputerCube;
+import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
+import gtclassic.tileentity.GTTileEntityEnergyStorage;
+import gtclassic.tileentity.GTTileEntityFusionComputer;
+import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tileentity.GTTileEntityLapotronicEnergyStorage;
+import gtclassic.tileentity.GTTileEntityLargeChest;
+import gtclassic.tileentity.GTTileEntityLightningRod;
+import gtclassic.tileentity.GTTileEntityQuantumChest;
+import gtclassic.tileentity.GTTileEntitySmallChest;
+import gtclassic.tileentity.GTTileEntitySuperCondensator;
+import gtclassic.tileentity.GTTileEntityWorkbench;
+import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockTile extends BlockCommonContainer implements ITexturedBlock {
-
-	/*
-	 * GTBlockTileVariants enums
-	 * 
-	 * @param enum name
-	 * 
-	 * @param vertical axis sprite index
-	 * 
-	 * @param horizontal axis sprite index
-	 * 
-	 * @param bounding box model to use, feel free to add your own
-	 */
+public class GTBlockTile extends BlockMultiID {
 
 	public enum GTBlockTileVariants {
-		SMALL_COOLANT(32, 32, GTValues.SMALLCOOLANT_AABB), 
-		MED_COOLANT(32, 32, GTValues.LARGECOOLANT_AABB),
-		LARGE_COOLANT(32, 32, GTValues.LARGECOOLANT_AABB),
-
-		SMALL_THORIUM(32, 32, GTValues.SMALLROD_AABB), 
-		MED_THORIUM(32, 32, GTValues.MEDROD_AABB),
-		LARGE_THORIUM(32, 32, GTValues.LARGEROD_AABB),
-
-		SMALL_PLUTONIUM(32, 32, GTValues.SMALLROD_AABB), 
-		MED_PLUTONIUM(32, 32, GTValues.MEDROD_AABB),
-		LARGE_PLUTONIUM(32, 32, GTValues.LARGEROD_AABB),
-
-		SMALL_LITHIUM(16, 16, GTValues.SLIMBATTERY_AABB), 
-		MED_LITHIUM(16, 16, GTValues.MEDBATTERY_AABB),
-		LARGE_LITHIUM(16, 16, GTValues.LARGEBATTERY_AABB),
-
-		SMALL_LAPOTRON(17, 17, GTValues.SMALLBATTERY_AABB), 
-		MED_LAPOTRON(17, 17, GTValues.MEDBATTERY_AABB),
-		LARGE_LAPOTRON(17, 17, GTValues.LARGEBATTERY_AABB),
-
-		SMALL_ENERGIUM(18, 18, GTValues.SMALLBATTERY_AABB), 
-		MED_ENERGIUM(18, 18, GTValues.MEDBATTERY_AABB),
-		LARGE_ENERGIUM(18, 18, GTValues.LARGEBATTERY_AABB),
-
-		ALUMINIUM_DATASTICK(32, 35, GTValues.DATASTICK_AABB), 
-		TITANIUM_DATASTICK(32, 36, GTValues.DATASTICK_AABB),
-		CHROME_DATASTICK(32, 37, GTValues.DATASTICK_AABB),
-
-		ALUMINIUM_DATADRIVE(32, 38, GTValues.DATADRIVE_AABB), 
-		TITANIUM_DATADRIVE(32, 39, GTValues.DATADRIVE_AABB),
-		CHROME_DATADRIVE(32, 40, GTValues.DATADRIVE_AABB),
-
-		ENERGY_CIRCUIT(33, 32, GTValues.CIRCUIT_AABB), 
-		DATA_CIRCUIT(34, 32, GTValues.CIRCUIT_AABB);
-
-		private int vertical;
-		private int horizontal;
-		private AxisAlignedBB box;
-
-		GTBlockTileVariants(int vertical, int horizontal, AxisAlignedBB box) {
-			this.vertical = vertical;
-			this.horizontal = horizontal;
-			this.box = box;
-		}
-
-		public int getVertical() {
-			return vertical;
-		}
-
-		public int getHorizontal() {
-			return horizontal;
-		}
-
-		public AxisAlignedBB getBox() {
-			return box;
-		}
+		AUTOCRAFTER, COMPUTERCUBE, CHARGEOMAT, INDUSTRIALCENTRIFUGE, MATTERFABRICATOR, UUMASSEMBLER, PLAYERDETECTOR,
+		SONICTRON, LIGHTNINGROD, FUSIONCOMPUTER, IDSU, HESU, LESU, SUPERCONDENSATOR, SUPERCONDUCTORWIRE, SMALLCHEST,
+		LARGECHEST, QUANTUMCHEST, BOOKSHELF, WORKBENCH;
 	}
 
 	GTBlockTileVariants variant;
 
 	public GTBlockTile(GTBlockTileVariants variant) {
-		super(Material.CLOTH);
+		super(Material.IRON);
 		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_tileblock");
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_tileblock");
+		setRegistryName(variant.toString().toLowerCase());
+		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
 		setCreativeTab(GTClassic.creativeTabGT);
-		setHardness(0.5F);
-		setResistance(30.0F);
-		setSoundType(SoundType.CLOTH);
-	}
-
-	public AxisAlignedBB getBatteryBoundingBox() {
-		return variant.getBox();
+		setHardness(4.0F);
+		setResistance(20.0F);
+		setSoundType(SoundType.METAL);
+		setHarvestLevel("pickaxe", 2);
 	}
 
 	@Override
-	@Deprecated
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
-
-	@Override
-	@Deprecated
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
-
-	@Override
-	@Deprecated
-	public boolean isFullBlock(IBlockState state) {
-		return false;
-	}
-
-	@Override
-	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
-		return getBatteryBoundingBox();
-	}
-
-	@Override
-	@Nullable
-	@Deprecated
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess access, BlockPos pos) {
-		return getBatteryBoundingBox();
-	}
-
-	@Override
-	@Deprecated
 	@SideOnly(Side.CLIENT)
-	public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
-		return getBatteryBoundingBox().offset(pos);
+	public TextureAtlasSprite[] getIconSheet(int meta) {
+		return Ic2Icons.getTextures(variant.toString().toLowerCase());
 	}
 
 	@Override
-	@Deprecated
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return getBatteryBoundingBox();
+	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
+		if (this == GTBlocks.computerCube) {
+			return new GTTileEntityComputerCube();
+		} else if (this == GTBlocks.industrialCentrifuge) {
+			return new GTTileEntityIndustrialCentrifuge();
+		} else if (this == GTBlocks.lightningRod) {
+			return new GTTileEntityLightningRod();
+		} else if (this == GTBlocks.fusionComputer) {
+			return new GTTileEntityFusionComputer();
+		} else if (this == GTBlocks.HESU) {
+			return new GTTileEntityEnergyStorage();
+		} else if (this == GTBlocks.IDSU) {
+			return new GTTileEntityDimensionalEnergyStorage();
+		} else if (this == GTBlocks.LESU) {
+			return new GTTileEntityLapotronicEnergyStorage();
+		} else if (this == GTBlocks.superCondensator) {
+			return new GTTileEntitySuperCondensator();
+		} else if (this == GTBlocks.quantumChest) {
+			return new GTTileEntityQuantumChest();
+		} else if (this == GTBlocks.smallChest) {
+			return new GTTileEntitySmallChest();
+		} else if (this == GTBlocks.largeChest) {
+			return new GTTileEntityLargeChest();
+		} else if (this == GTBlocks.bookShelf) {
+			return new GTTileEntityBookshelf();
+		} else if (this == GTBlocks.workBench) {
+			return new GTTileEntityWorkbench();
+		} else {
+			return new TileEntityBlock();
+		}
+
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + "." + variant.toString().toLowerCase()));
+	}
+
+	@Override
+	public List<Integer> getValidMetas() {
+		return Arrays.asList(0);
+	}
+
+	@Override
+	public int getMaxSheetSize(int meta) {
+		return 1;
+	}
+
+	@Override
+	public List<IBlockState> getValidStateList() {
+		IBlockState def = getDefaultState();
+		List<IBlockState> states = new ArrayList<>();
+		for (EnumFacing side : EnumFacing.VALUES) {
+			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+					false));
+			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+					true));
+		}
+		return states;
+	}
+
+	@Override
+	public List<IBlockState> getValidStates() {
+		return getBlockState().getValidStates();
 	}
 
 	@Override
@@ -164,41 +142,89 @@ public class GTBlockTile extends BlockCommonContainer implements ITexturedBlock 
 		return false;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		if (enumFacing == EnumFacing.UP || enumFacing == EnumFacing.DOWN) {
-			return Ic2Icons.getTextures("gtclassic_blocks")[variant.getVertical()];
+	@Deprecated
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof TileEntityElectricBlock) {
+			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
 		} else {
-			return Ic2Icons.getTextures("gtclassic_blocks")[variant.getHorizontal()];
+			return super.getStrongPower(blockState, blockAccess, pos, side);
+		}
+	}
+
+	@Override
+	@Deprecated
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof TileEntityElectricBlock) {
+			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
+		} else {
+			return super.getWeakPower(blockState, blockAccess, pos, side);
+		}
+	}
+
+	@Override
+	@Deprecated
+	public boolean canProvidePower(IBlockState state) {
+		int meta = this.getMetaFromState(state);
+		return meta >= 0 && meta <= 2 ? true : super.canProvidePower(state);
+	}
+
+	@Override
+	public float getEnchantPowerBonus(World world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if ((tile instanceof GTTileEntityBookshelf) && (((GTTileEntityBookshelf) tile).isActive)) {
+			return 2;
+		} else {
+			return 0;
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getParticleTexture(IBlockState state) {
-		return this.getTextureFromState(state, EnumFacing.SOUTH);
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileEntityFusionComputer) {
+			if (((GTTileEntityFusionComputer) tile).isActive) {
+				for (int i = -2; i <= 2; ++i) {
+					for (int j = -2; j <= 2; ++j) {
+						if (i > -2 && i < 2 && j == -1) {
+							j = 2;
+						}
+
+						if (rand.nextInt(4) == 0) {
+							for (int k = 0; k <= 1; ++k) {
+
+								if (!worldIn.isAirBlock(pos.add(i / 2, 0, j / 2))) {
+									break;
+								}
+
+								worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D,
+										(double) pos.getY() + 1.0D, (double) pos.getZ() + 0.5D,
+										(double) ((float) i + rand.nextFloat()) - 0.5D,
+										(double) ((float) k - rand.nextFloat() - 1.0F),
+										(double) ((float) j + rand.nextFloat()) - 0.5D);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		else if (this == GTBlocks.IDSU) {
+			for (int i = 0; i < 3; ++i) {
+				int j = rand.nextInt(2) * 2 - 1;
+				int k = rand.nextInt(2) * 2 - 1;
+				double d0 = pos.getX() + 0.5D + 0.25D * j;
+				double d1 = pos.getY() + rand.nextFloat();
+				double d2 = pos.getZ() + 0.5D + 0.25D * k;
+				double d3 = rand.nextFloat() * j;
+				double d4 = (rand.nextFloat() - 0.5D) * 0.125D;
+				double d5 = rand.nextFloat() * k;
+				worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
+			}
+		}
 	}
 
-	@Override
-	public List<IBlockState> getValidStates() {
-		return Arrays.asList(getDefaultState());
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public IBlockState getStateFromStack(ItemStack stack) {
-		return this.getDefaultState();
-	}
-
-	@Override
-	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IBlockState getDefaultBlockState() {
-		return this.getDefaultState();
-	}
 }
