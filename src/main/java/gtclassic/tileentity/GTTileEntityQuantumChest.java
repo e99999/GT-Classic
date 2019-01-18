@@ -30,9 +30,6 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 	int maxSize = Integer.MAX_VALUE;
 	int quantumCount;
 
-	// TODO i dont feel so good on login and logut, might need unload nbt saving or
-	// on update
-
 	public GTTileEntityQuantumChest() {
 		super(3);
 		this.quantumCount = 0;
@@ -51,8 +48,9 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 	public boolean isSpace() {
 		if (this.quantumCount < maxSize) {
 			return true;
-		} else
+		} else {
 			return false;
+		}
 	}
 
 	public void updateGUI() {
@@ -79,7 +77,7 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 5 == 0) { // temporary measure to prevent duping until i fix the logic
+		/*if (world.getTotalWorldTime() % 5 == 0) { // temporary measure to prevent duping until i fix the logic
 			if (!inventory.get(slotInput).isEmpty() && isSpace()) {
 				if (inventory.get(slotDisplay).isEmpty()) {
 					inventory.set(slotDisplay, inventory.get(slotInput).copy());
@@ -115,7 +113,7 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 				}
 			}
 
-		}
+		}*/
 	}
 
 	public int getDisplayCount() {

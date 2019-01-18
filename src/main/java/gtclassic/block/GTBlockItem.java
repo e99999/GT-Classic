@@ -5,12 +5,13 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
 import gtclassic.util.GTValues;
 import ic2.core.block.base.BlockCommonContainer;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.platform.textures.obj.ITexturedBlock;
+import ic2.core.platform.textures.obj.IBlockTextureModifier;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -25,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockItem extends BlockCommonContainer implements ITexturedBlock {
+public class GTBlockItem extends BlockCommonContainer implements IBlockTextureModifier {
 
 	/*
 	 * GTBlockItemVariants enums
@@ -184,12 +185,40 @@ public class GTBlockItem extends BlockCommonContainer implements ITexturedBlock 
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+		return new TileEntityBlock();
 	}
 
 	@Override
 	public IBlockState getDefaultBlockState() {
 		return this.getDefaultState();
 	}
+
+	@Override
+	public boolean hasTextureRotation(IBlockState var1, EnumFacing var2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int getTextureRotation(IBlockState var1, EnumFacing var2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean hasCustomTextureUV(IBlockState var1, EnumFacing var2) {
+		if (this == GTBlocks.aluminiumDataStick) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public float[] getCustomTextureUV(IBlockState var1, EnumFacing var2) {
+		if (this == GTBlocks.aluminiumDataStick) {
+			return new float[] { 0.0F, 0.0F, 4.8F, 9.6F };
+		}
+		return null;
+	}
+
 }

@@ -20,7 +20,7 @@ public class GTIcons {
 		addSprite(new Sprites.SpriteData("gtclassic_items", "gtclassic:textures/sprites/items.png",
 				new Sprites.SpriteInfo(16, 16)));
 
-		iterateTileSpriteEnum(); // this is fucking cool as shit
+		iterateTileSpriteEnum();
 
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 0, 16, 8));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_items", 0, 0, 16, 5));
@@ -35,11 +35,6 @@ public class GTIcons {
 
 	private static ResourceLocation location(String name) {
 		return new ResourceLocation(GTClassic.MODID, "animations/" + name);
-	}
-
-	public static void iterateEnumPrint() {
-		EnumSet.allOf(GTBlockTile.GTBlockTileVariants.class)
-				.forEach(variant -> GTClassic.logger.info("gtclassic_" + variant.toString().toLowerCase()));
 	}
 
 	public static void iterateTileSpriteEnum() {
