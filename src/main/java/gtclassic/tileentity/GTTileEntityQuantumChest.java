@@ -11,10 +11,8 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -77,43 +75,7 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 
 	@Override
 	public void update() {
-		/*if (world.getTotalWorldTime() % 5 == 0) { // temporary measure to prevent duping until i fix the logic
-			if (!inventory.get(slotInput).isEmpty() && isSpace()) {
-				if (inventory.get(slotDisplay).isEmpty()) {
-					inventory.set(slotDisplay, inventory.get(slotInput).copy());
-					initQuantum(slotDisplay);
-					inventory.set(slotInput, ItemStack.EMPTY);
-				} else if (!inventory.get(slotDisplay).isEmpty()
-						&& StackUtil.isStackEqual(inventory.get(slotInput), inventory.get(slotDisplay), true, true)) {
-					copySlotToQuantum(slotInput);
-					inventory.get(slotDisplay).grow(inventory.get(slotInput).getCount());
-					inventory.set(slotInput, ItemStack.EMPTY);
-				}
-			}
-
-			if (!inventory.get(slotDisplay).isEmpty()) {
-				int size = inventory.get(slotDisplay).getMaxStackSize();
-				if (inventory.get(slotOutput) == ItemStack.EMPTY || inventory.get(slotOutput).getCount() == 0) {
-					if (this.quantumCount > 0) {// first stop gap
-						inventory.set(slotOutput, inventory.get(slotDisplay).copy());
-						if (this.quantumCount >= size) { // second stop gap
-							inventory.get(slotOutput).grow(size);
-							removeQuantumToSlot(size);
-						}
-					} else {
-						inventory.set(slotDisplay, ItemStack.EMPTY);
-						quantumCount = 0;
-						updateGUI();
-					}
-				}
-				if (inventory.get(slotDisplay).getCount() != 0
-						&& StackUtil.isStackEqual(inventory.get(slotDisplay), inventory.get(slotOutput), true, true)
-						&& inventory.get(slotOutput).getCount() <= size - 1) {
-					inventory.get(slotDisplay).shrink(1);
-				}
-			}
-
-		}*/
+		//TODO new data based quantum logic
 	}
 
 	public int getDisplayCount() {

@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTClassic;
-import gtclassic.util.GTValues;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -22,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
+public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModifier {
 
 	/*
 	 * GTBlockItemVariants enums
@@ -36,7 +34,7 @@ public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
 	 * @param bounding box model to use, feel free to add your own
 	 */
 
-	public enum GTBlockItemVariants {
+	public enum GTBlockTileCustomVariants {
 
 		// NAME(TYPE?, AABB, LIGHT LEVEL)
 		SMALL_COOLANT(4, 16), MED_COOLANT(16, 4), LARGE_COOLANT(16, 4),
@@ -45,7 +43,7 @@ public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
 
 		SMALL_PLUTONIUM(4, 16), MED_PLUTONIUM(6, 16), LARGE_PLUTONIUM(10, 16),
 
-		SMALL_LITHIUM(4, 6), MED_LITHIUM(12, 9), LARGE_LITHIUM(14, 14),
+		SMALL_LITHIUM(4, 8), MED_LITHIUM(12, 9), LARGE_LITHIUM(14, 14),
 
 		SMALL_LAPOTRON(6, 6), MED_LAPOTRON(12, 9), LARGE_LAPOTRON(14, 14),
 
@@ -60,7 +58,7 @@ public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
 		private int width;
 		private int height;
 
-		GTBlockItemVariants(int width, int height) {
+		GTBlockTileCustomVariants(int width, int height) {
 			this.width = width;
 			this.height = height;
 		}
@@ -76,8 +74,8 @@ public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
 		}
 
 		public double getOffsetBB() {
-			return (1.0D - (this.width/ 16.0D)) *.5;
-			// returns full block height 1.0 - width (D) as 0.0-1.0D
+			return (1.0D - (this.width / 16.0D)) * .5;
+			// returns full block height 1.0 - width (D) as 0.0-1.0D divided to center block
 		}
 
 		public float getWidth() {
@@ -92,9 +90,9 @@ public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
 
 	}
 
-	GTBlockItemVariants variant;
+	GTBlockTileCustomVariants variant;
 
-	public GTBlockItem(GTBlockItemVariants variant) {
+	public GTBlockTileCustom(GTBlockTileCustomVariants variant) {
 		super(Material.CLOTH);
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase() + "_tileblock");
@@ -105,25 +103,22 @@ public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
 		setSoundType(SoundType.CLOTH);
 	}
 
-	// MY STUFF
-
 	public AxisAlignedBB getVariantBoundingBox() {
-		return new AxisAlignedBB(variant.getOffsetBB(), 0.0D, variant.getOffsetBB(), 
-				variant.getOffsetBB()+variant.getWidthBB(), variant.getHeightBB(), variant.getOffsetBB()+variant.getWidthBB());
+		return new AxisAlignedBB(variant.getOffsetBB(), 0.0D, variant.getOffsetBB(),
+				variant.getOffsetBB() + variant.getWidthBB(), variant.getHeightBB(),
+				variant.getOffsetBB() + variant.getWidthBB());
 	}
-	
+
 	@Override
 	@Deprecated
 	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
 		return false;
 	}
-	
+
 	@Override
 	public int getMaxSheetSize(int meta) {
 		return 1;
 	}
-
-	// MUTLIMACHINESTUFF
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
@@ -158,11 +153,8 @@ public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
 		return Arrays.asList(0);
 	}
 
-	// ADDED OVERRIDES FOR WIERD SHAPE
-
 	@Override
 	public boolean hasFacing() {
-		// sadly this method screws up weird shaped blocks atm
 		return true;
 	}
 
@@ -187,11 +179,8 @@ public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
 	}
 
 	public AxisAlignedBB getRenderBoundingBox(IBlockState state) {
-		GTClassic.logger.info(variant.toString() + ": " + getVariantBoundingBox());
 		return getVariantBoundingBox();
 	}
-
-	// TEXTURE INTERFACE
 
 	@Override
 	public boolean hasTextureRotation(IBlockState var1, EnumFacing var2) {
@@ -210,11 +199,11 @@ public class GTBlockItem extends BlockMultiID implements IBlockTextureModifier {
 
 	@Override
 	public float[] getCustomTextureUV(IBlockState var1, EnumFacing var2) {
-		if (var2 == EnumFacing.UP || var2 == EnumFacing.DOWN){
-		return new float[] {0.0F, 0.0F, variant.getWidth(), variant.getWidth() };
+		if (var2 == EnumFacing.UP || var2 == EnumFacing.DOWN) {
+			return new float[] { 0.0F, 16 - variant.getWidth(), variant.getWidth(), 16 };
 		}
-		return new float[] {0.0F, 0.0F, variant.getWidth(), variant.getHeight() };
-		
+		return new float[] { 0.0F, 16 - variant.getHeight(), variant.getWidth(), 16 };
+
 	}
 
 }

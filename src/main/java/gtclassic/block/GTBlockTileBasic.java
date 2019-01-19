@@ -41,17 +41,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockTile extends BlockMultiID {
+public class GTBlockTileBasic extends BlockMultiID {
 
-	public enum GTBlockTileVariants {
+	public enum GTBlockTileBasicVariants {
 		AUTOCRAFTER, COMPUTERCUBE, CHARGEOMAT, INDUSTRIALCENTRIFUGE, MATTERFABRICATOR, UUMASSEMBLER, PLAYERDETECTOR,
 		SONICTRON, LIGHTNINGROD, FUSIONCOMPUTER, IDSU, HESU, LESU, SUPERCONDENSATOR, SUPERCONDUCTORWIRE, SMALLCHEST,
 		LARGECHEST, QUANTUMCHEST, BOOKSHELF, WORKBENCH;
 	}
 
-	GTBlockTileVariants variant;
+	GTBlockTileBasicVariants variant;
 
-	public GTBlockTile(GTBlockTileVariants variant) {
+	public GTBlockTileBasic(GTBlockTileBasicVariants variant) {
 		super(Material.IRON);
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase());

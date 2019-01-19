@@ -2,15 +2,15 @@ package gtclassic;
 
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCasing.GTBlockCasingVariants;
-import gtclassic.block.GTBlockItem;
-import gtclassic.block.GTBlockItem.GTBlockItemVariants;
+import gtclassic.block.GTBlockTileCustom;
+import gtclassic.block.GTBlockTileCustom.GTBlockTileCustomVariants;
 import gtclassic.block.GTBlockMetal;
 import gtclassic.block.GTBlockMetal.GTBlockMetalVariants;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockOre.GTBlockOreVariants;
 import gtclassic.block.GTBlockSandIron;
-import gtclassic.block.GTBlockTile;
-import gtclassic.block.GTBlockTile.GTBlockTileVariants;
+import gtclassic.block.GTBlockTileBasic;
+import gtclassic.block.GTBlockTileBasic.GTBlockTileBasicVariants;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
@@ -61,58 +61,58 @@ public class GTBlocks {
 
 	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
-	public static final GTBlockTile autoCrafter = new GTBlockTile(GTBlockTileVariants.AUTOCRAFTER),
-			chargeOMat = new GTBlockTile(GTBlockTileVariants.CHARGEOMAT),
-			computerCube = new GTBlockTile(GTBlockTileVariants.COMPUTERCUBE),
-			industrialCentrifuge = new GTBlockTile(GTBlockTileVariants.INDUSTRIALCENTRIFUGE),
-			matterFabricator = new GTBlockTile(GTBlockTileVariants.MATTERFABRICATOR),
-			uuMatterAssembler = new GTBlockTile(GTBlockTileVariants.UUMASSEMBLER),
-			playerDetector = new GTBlockTile(GTBlockTileVariants.PLAYERDETECTOR),
-			sonictronBlock = new GTBlockTile(GTBlockTileVariants.SONICTRON),
-			fusionComputer = new GTBlockTile(GTBlockTileVariants.FUSIONCOMPUTER),
-			lightningRod = new GTBlockTile(GTBlockTileVariants.LIGHTNINGROD),
-			IDSU = new GTBlockTile(GTBlockTileVariants.IDSU), HESU = new GTBlockTile(GTBlockTileVariants.HESU),
-			LESU = new GTBlockTile(GTBlockTileVariants.LESU),
-			superCondensator = new GTBlockTile(GTBlockTileVariants.SUPERCONDENSATOR),
-			superConductorWire = new GTBlockTile(GTBlockTileVariants.SUPERCONDUCTORWIRE),
-			smallChest = new GTBlockTile(GTBlockTileVariants.SMALLCHEST),
-			largeChest = new GTBlockTile(GTBlockTileVariants.LARGECHEST),
-			quantumChest = new GTBlockTile(GTBlockTileVariants.QUANTUMCHEST),
-			bookShelf = new GTBlockTile(GTBlockTileVariants.BOOKSHELF),
-			workBench = new GTBlockTile(GTBlockTileVariants.WORKBENCH);
+	public static final GTBlockTileBasic autoCrafter = new GTBlockTileBasic(GTBlockTileBasicVariants.AUTOCRAFTER),
+			chargeOMat = new GTBlockTileBasic(GTBlockTileBasicVariants.CHARGEOMAT),
+			computerCube = new GTBlockTileBasic(GTBlockTileBasicVariants.COMPUTERCUBE),
+			industrialCentrifuge = new GTBlockTileBasic(GTBlockTileBasicVariants.INDUSTRIALCENTRIFUGE),
+			matterFabricator = new GTBlockTileBasic(GTBlockTileBasicVariants.MATTERFABRICATOR),
+			uuMatterAssembler = new GTBlockTileBasic(GTBlockTileBasicVariants.UUMASSEMBLER),
+			playerDetector = new GTBlockTileBasic(GTBlockTileBasicVariants.PLAYERDETECTOR),
+			sonictronBlock = new GTBlockTileBasic(GTBlockTileBasicVariants.SONICTRON),
+			fusionComputer = new GTBlockTileBasic(GTBlockTileBasicVariants.FUSIONCOMPUTER),
+			lightningRod = new GTBlockTileBasic(GTBlockTileBasicVariants.LIGHTNINGROD),
+			IDSU = new GTBlockTileBasic(GTBlockTileBasicVariants.IDSU), HESU = new GTBlockTileBasic(GTBlockTileBasicVariants.HESU),
+			LESU = new GTBlockTileBasic(GTBlockTileBasicVariants.LESU),
+			superCondensator = new GTBlockTileBasic(GTBlockTileBasicVariants.SUPERCONDENSATOR),
+			superConductorWire = new GTBlockTileBasic(GTBlockTileBasicVariants.SUPERCONDUCTORWIRE),
+			smallChest = new GTBlockTileBasic(GTBlockTileBasicVariants.SMALLCHEST),
+			largeChest = new GTBlockTileBasic(GTBlockTileBasicVariants.LARGECHEST),
+			quantumChest = new GTBlockTileBasic(GTBlockTileBasicVariants.QUANTUMCHEST),
+			bookShelf = new GTBlockTileBasic(GTBlockTileBasicVariants.BOOKSHELF),
+			workBench = new GTBlockTileBasic(GTBlockTileBasicVariants.WORKBENCH);
 
-	public static final GTBlockItem smallLithium = new GTBlockItem(GTBlockItemVariants.SMALL_LITHIUM),
-			smallCoolant = new GTBlockItem(GTBlockItemVariants.SMALL_COOLANT),
-			medCoolant = new GTBlockItem(GTBlockItemVariants.MED_COOLANT),
-			largeCoolant = new GTBlockItem(GTBlockItemVariants.LARGE_COOLANT),
+	public static final GTBlockTileCustom smallLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.SMALL_LITHIUM),
+			smallCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.SMALL_COOLANT),
+			medCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.MED_COOLANT),
+			largeCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.LARGE_COOLANT),
 
-			smallThorium = new GTBlockItem(GTBlockItemVariants.SMALL_THORIUM),
-			medThorium = new GTBlockItem(GTBlockItemVariants.MED_THORIUM),
-			largeThorium = new GTBlockItem(GTBlockItemVariants.LARGE_THORIUM),
+			smallThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.SMALL_THORIUM),
+			medThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.MED_THORIUM),
+			largeThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.LARGE_THORIUM),
 
-			smallPlutonium = new GTBlockItem(GTBlockItemVariants.SMALL_PLUTONIUM),
-			medPlutonium = new GTBlockItem(GTBlockItemVariants.MED_PLUTONIUM),
-			largePlutonium = new GTBlockItem(GTBlockItemVariants.LARGE_PLUTONIUM),
+			smallPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.SMALL_PLUTONIUM),
+			medPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.MED_PLUTONIUM),
+			largePlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.LARGE_PLUTONIUM),
 
-			medLithium = new GTBlockItem(GTBlockItemVariants.MED_LITHIUM),
-			largeLithium = new GTBlockItem(GTBlockItemVariants.LARGE_LITHIUM),
-			smallLapotron = new GTBlockItem(GTBlockItemVariants.SMALL_LAPOTRON),
-			medLapotron = new GTBlockItem(GTBlockItemVariants.MED_LAPOTRON),
-			largeLapotron = new GTBlockItem(GTBlockItemVariants.LARGE_LAPOTRON),
-			smallEnergium = new GTBlockItem(GTBlockItemVariants.SMALL_ENERGIUM),
-			medEnergium = new GTBlockItem(GTBlockItemVariants.MED_ENERGIUM),
-			largeEnergium = new GTBlockItem(GTBlockItemVariants.LARGE_ENERGIUM),
+			medLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.MED_LITHIUM),
+			largeLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.LARGE_LITHIUM),
+			smallLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.SMALL_LAPOTRON),
+			medLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.MED_LAPOTRON),
+			largeLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.LARGE_LAPOTRON),
+			smallEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.SMALL_ENERGIUM),
+			medEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.MED_ENERGIUM),
+			largeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.LARGE_ENERGIUM),
 
-			aluminiumDataStick = new GTBlockItem(GTBlockItemVariants.ALUMINIUM_DATASTICK),
-			titaniumDataStick = new GTBlockItem(GTBlockItemVariants.TITANIUM_DATASTICK),
-			chromeDataStick = new GTBlockItem(GTBlockItemVariants.CHROME_DATASTICK),
+			aluminiumDataStick = new GTBlockTileCustom(GTBlockTileCustomVariants.ALUMINIUM_DATASTICK),
+			titaniumDataStick = new GTBlockTileCustom(GTBlockTileCustomVariants.TITANIUM_DATASTICK),
+			chromeDataStick = new GTBlockTileCustom(GTBlockTileCustomVariants.CHROME_DATASTICK),
 
-			aluminiumDataDrive = new GTBlockItem(GTBlockItemVariants.ALUMINIUM_DATADRIVE),
-			titaniumDataDrive = new GTBlockItem(GTBlockItemVariants.TITANIUM_DATADRIVE),
-			chromeDataDrive = new GTBlockItem(GTBlockItemVariants.CHROME_DATADRIVE),
+			aluminiumDataDrive = new GTBlockTileCustom(GTBlockTileCustomVariants.ALUMINIUM_DATADRIVE),
+			titaniumDataDrive = new GTBlockTileCustom(GTBlockTileCustomVariants.TITANIUM_DATADRIVE),
+			chromeDataDrive = new GTBlockTileCustom(GTBlockTileCustomVariants.CHROME_DATADRIVE),
 
-			energyCircuitBlock = new GTBlockItem(GTBlockItemVariants.ENERGY_CIRCUIT),
-			dataCircuitBlock = new GTBlockItem(GTBlockItemVariants.DATA_CIRCUIT);
+			energyCircuitBlock = new GTBlockTileCustom(GTBlockTileCustomVariants.ENERGY_CIRCUIT),
+			dataCircuitBlock = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_CIRCUIT);
 
 	public static final Block[] blocks = {
 
