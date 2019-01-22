@@ -44,9 +44,26 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTBlockTileBasic extends BlockMultiID {
 
 	public enum GTBlockTileBasicVariants {
-		AUTOCRAFTER, COMPUTERCUBE, CHARGEOMAT, INDUSTRIALCENTRIFUGE, MATTERFABRICATOR, UUMASSEMBLER, PLAYERDETECTOR,
-		SONICTRON, LIGHTNINGROD, FUSIONCOMPUTER, IDSU, HESU, LESU, SUPERCONDENSATOR, SUPERCONDUCTORWIRE, SMALLCHEST,
-		LARGECHEST, QUANTUMCHEST, BOOKSHELF, WORKBENCH;
+		MACHINE_EV_ADVANCEDENERGYSTORAGE, 
+		MACHINE_EV_BASICENERGYSTORAGE, 
+		MACHINE_EV_CHARGEOMAT, 
+		MACHINE_EV_COMPUTERCUBE, 
+		MACHINE_EV_MATTERFABRICATOR, 
+		MACHINE_EV_UUMASSEMBLER, 
+		MACHINE_IV_FUSIONCOMPUTER,
+		MACHINE_IV_LIGHTNINGROD, 
+		MACHINE_IV_SUPERCONDENSATOR, 
+		MACHINE_IV_SUPERCONDUCTORWIRE, 
+		MACHINE_LV_AUTOCRAFTER, 
+		MACHINE_LV_BOOKSHELF, 
+		MACHINE_LV_INDUSTRIALCENTRIFUGE, 
+		MACHINE_LV_LARGECHEST, 
+		MACHINE_LV_PLAYERDETECTOR, 
+		MACHINE_LV_QUANTUMCHEST,
+		MACHINE_LV_SMALLCHEST, 
+		MACHINE_LV_SONICTRON, 
+		MACHINE_LV_WORKBENCH, 
+		MACHINE_MV_MULTIENERGYSTORAGE;
 	}
 
 	GTBlockTileBasicVariants variant;
@@ -64,9 +81,21 @@ public class GTBlockTileBasic extends BlockMultiID {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite[] getIconSheet(int meta) {
-		return Ic2Icons.getTextures(variant.toString().toLowerCase());
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + "." + variant.toString().toLowerCase()));
+	}
+
+	@Override
+	@Deprecated
+	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+		return false;
+	}
+
+	@Override
+	@Deprecated
+	public boolean canProvidePower(IBlockState state) {
+		int meta = this.getMetaFromState(state);
+		return meta >= 0 && meta <= 2 ? true : super.canProvidePower(state);
 	}
 
 	@Override
@@ -104,18 +133,40 @@ public class GTBlockTileBasic extends BlockMultiID {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + "." + variant.toString().toLowerCase()));
+	public float getEnchantPowerBonus(World world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if ((tile instanceof GTTileEntityBookshelf) && (((GTTileEntityBookshelf) tile).isActive)) {
+			return 2;
+		} else {
+			return 0;
+		}
 	}
 
 	@Override
-	public List<Integer> getValidMetas() {
-		return Arrays.asList(0);
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite[] getIconSheet(int meta) {
+		return Ic2Icons.getTextures(variant.toString().toLowerCase());
 	}
 
 	@Override
 	public int getMaxSheetSize(int meta) {
 		return 1;
+	}
+
+	@Override
+	@Deprecated
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof TileEntityElectricBlock) {
+			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
+		} else {
+			return super.getStrongPower(blockState, blockAccess, pos, side);
+		}
+	}
+
+	@Override
+	public List<Integer> getValidMetas() {
+		return Arrays.asList(0);
 	}
 
 	@Override
@@ -138,46 +189,12 @@ public class GTBlockTileBasic extends BlockMultiID {
 
 	@Override
 	@Deprecated
-	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
-		return false;
-	}
-
-	@Override
-	@Deprecated
-	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		TileEntity tile = blockAccess.getTileEntity(pos);
-		if (tile instanceof TileEntityElectricBlock) {
-			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
-		} else {
-			return super.getStrongPower(blockState, blockAccess, pos, side);
-		}
-	}
-
-	@Override
-	@Deprecated
 	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		TileEntity tile = blockAccess.getTileEntity(pos);
 		if (tile instanceof TileEntityElectricBlock) {
 			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
 		} else {
 			return super.getWeakPower(blockState, blockAccess, pos, side);
-		}
-	}
-
-	@Override
-	@Deprecated
-	public boolean canProvidePower(IBlockState state) {
-		int meta = this.getMetaFromState(state);
-		return meta >= 0 && meta <= 2 ? true : super.canProvidePower(state);
-	}
-
-	@Override
-	public float getEnchantPowerBonus(World world, BlockPos pos) {
-		TileEntity tile = world.getTileEntity(pos);
-		if ((tile instanceof GTTileEntityBookshelf) && (((GTTileEntityBookshelf) tile).isActive)) {
-			return 2;
-		} else {
-			return 0;
 		}
 	}
 

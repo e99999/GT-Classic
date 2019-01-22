@@ -25,47 +25,54 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	/*
 	 * GTBlockItemVariants enums
 	 * 
-	 * @param enum name
+	 * @param enum name & sprite sheet
 	 * 
-	 * @param vertical axis sprite index
+	 * @param custom block width
 	 * 
-	 * @param horizontal axis sprite index
+	 * @param custom block height
 	 * 
-	 * @param bounding box model to use, feel free to add your own
 	 */
 
 	public enum GTBlockTileCustomVariants {
 
-		// NAME(TYPE?, AABB, LIGHT LEVEL)
-		SMALL_COOLANT(4, 16), MED_COOLANT(16, 4), LARGE_COOLANT(16, 4),
+		BATTERY_LARGE_ENERGIUM(14, 14), 
+		BATTERY_LARGE_LAPOTRON(14, 14), 
+		BATTERY_LARGE_LITHIUM(14, 14),
+		BATTERY_MED_ENERGIUM(12, 9), 
+		BATTERY_MED_LAPOTRON(12, 9), 
+		BATTERY_MED_LITHIUM(12, 9),
+		BATTERY_SMALL_ENERGIUM(6, 6), 
+		BATTERY_SMALL_LAPOTRON(6, 6), 
+		BATTERY_SMALL_LITHIUM(4, 8), 
+		CIRCUIT_DATA(16, 1),
+		CIRCUIT_ENERGY(16, 1), 
+		COOLAN_LARGE_HELIUM(16, 4), 
+		COOLANT_MED_HELIUM(16, 4), 
+		COOLANT_SMALL_HELIUM(4, 16),
+		DATA_LARGE_ALUMINIUM(14, 16),
+		DATA_LARGE_CHROME(14, 16), 
+		DATA_LARGE_TITANIUM(14, 16),
+		DATA_SMALL_ALUMINIUM(3, 6), 
+		DATA_SMALL_CHROME(3, 6), 
+		DATA_SMALL_TITANIUM(3, 6), 
+		ROD_LARGE_PLUTONIUM(10, 16),
+		ROD_LARGE_THORIUM(10, 16), 
+		ROD_MED_PLUTONOIUM(6, 16), 
+		ROD_MED_THORIUM(6, 16), 
+		ROD_SMALL_PLUTONIUM(4, 16),
+		ROD_SMALL_THORIUM(4, 16);
 
-		SMALL_THORIUM(4, 16), MED_THORIUM(6, 16), LARGE_THORIUM(10, 16),
-
-		SMALL_PLUTONIUM(4, 16), MED_PLUTONIUM(6, 16), LARGE_PLUTONIUM(10, 16),
-
-		SMALL_LITHIUM(4, 8), MED_LITHIUM(12, 9), LARGE_LITHIUM(14, 14),
-
-		SMALL_LAPOTRON(6, 6), MED_LAPOTRON(12, 9), LARGE_LAPOTRON(14, 14),
-
-		SMALL_ENERGIUM(6, 6), MED_ENERGIUM(12, 9), LARGE_ENERGIUM(14, 14),
-
-		ALUMINIUM_DATASTICK(3, 6), TITANIUM_DATASTICK(3, 6), CHROME_DATASTICK(3, 6),
-
-		ALUMINIUM_DATADRIVE(14, 16), TITANIUM_DATADRIVE(14, 16), CHROME_DATADRIVE(14, 16),
-
-		ENERGY_CIRCUIT(16, 1), DATA_CIRCUIT(16, 1);
-
-		private int width;
 		private int height;
+		private int width;
 
 		GTBlockTileCustomVariants(int width, int height) {
 			this.width = width;
 			this.height = height;
 		}
 
-		public double getWidthBB() {
-			return this.width / 16.0D;
-			// returns width as 0.0D-1.0D
+		public float getHeight() {
+			return this.height;
+			// returns width as 0-16
 		}
 
 		public double getHeightBB() {
@@ -83,9 +90,9 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 			// returns width as 0-16
 		}
 
-		public float getHeight() {
-			return this.height;
-			// returns width as 0-16
+		public double getWidthBB() {
+			return this.width / 16.0D;
+			// returns width as 0.0D-1.0D
 		}
 
 	}
@@ -95,18 +102,12 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	public GTBlockTileCustom(GTBlockTileCustomVariants variant) {
 		super(Material.CLOTH);
 		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_tileblock");
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_tileblock");
+		setRegistryName(variant.toString().toLowerCase());
+		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
 		setCreativeTab(GTClassic.creativeTabGT);
 		setHardness(0.5F);
 		setResistance(30.0F);
 		setSoundType(SoundType.CLOTH);
-	}
-
-	public AxisAlignedBB getVariantBoundingBox() {
-		return new AxisAlignedBB(variant.getOffsetBB(), 0.0D, variant.getOffsetBB(),
-				variant.getOffsetBB() + variant.getWidthBB(), variant.getHeightBB(),
-				variant.getOffsetBB() + variant.getWidthBB());
 	}
 
 	@Override
@@ -116,13 +117,22 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	}
 
 	@Override
-	public int getMaxSheetSize(int meta) {
-		return 1;
+	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
+		return new TileEntityBlock();
+	}
+
+	@Deprecated
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return getVariantBoundingBox();
 	}
 
 	@Override
-	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
-		return new TileEntityBlock();
+	public float[] getCustomTextureUV(IBlockState var1, EnumFacing var2) {
+		if (var2 == EnumFacing.UP || var2 == EnumFacing.DOWN) {
+			return new float[] { 0.0F, 16 - variant.getWidth(), variant.getWidth(), 16 };
+		}
+		return new float[] { 0.0F, 16 - variant.getHeight(), variant.getWidth(), 16 };
+
 	}
 
 	@Override
@@ -131,8 +141,22 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	}
 
 	@Override
-	public List<IBlockState> getValidStates() {
-		return getBlockState().getValidStates();
+	public int getMaxSheetSize(int meta) {
+		return 1;
+	}
+
+	public AxisAlignedBB getRenderBoundingBox(IBlockState state) {
+		return getVariantBoundingBox();
+	}
+
+	@Override
+	public int getTextureRotation(IBlockState var1, EnumFacing var2) {
+		return 0;
+	}
+
+	@Override
+	public List<Integer> getValidMetas() {
+		return Arrays.asList(0);
 	}
 
 	@Override
@@ -149,13 +173,34 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	}
 
 	@Override
-	public List<Integer> getValidMetas() {
-		return Arrays.asList(0);
+	public List<IBlockState> getValidStates() {
+		return getBlockState().getValidStates();
+	}
+
+	public AxisAlignedBB getVariantBoundingBox() {
+		return new AxisAlignedBB(variant.getOffsetBB(), 0.0D, variant.getOffsetBB(),
+				variant.getOffsetBB() + variant.getWidthBB(), variant.getHeightBB(),
+				variant.getOffsetBB() + variant.getWidthBB());
+	}
+
+	@Override
+	public boolean hasCustomTextureUV(IBlockState var1, EnumFacing var2) {
+		return true;
 	}
 
 	@Override
 	public boolean hasFacing() {
 		return true;
+	}
+
+	@Override
+	public boolean hasTextureRotation(IBlockState var1, EnumFacing var2) {
+		return false;
+	}
+
+	@Deprecated
+	public boolean isFullCube(IBlockState state) {
+		return false;
 	}
 
 	@Deprecated
@@ -166,44 +211,6 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	@Deprecated
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
-	}
-
-	@Deprecated
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
-
-	@Deprecated
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return getVariantBoundingBox();
-	}
-
-	public AxisAlignedBB getRenderBoundingBox(IBlockState state) {
-		return getVariantBoundingBox();
-	}
-
-	@Override
-	public boolean hasTextureRotation(IBlockState var1, EnumFacing var2) {
-		return false;
-	}
-
-	@Override
-	public int getTextureRotation(IBlockState var1, EnumFacing var2) {
-		return 0;
-	}
-
-	@Override
-	public boolean hasCustomTextureUV(IBlockState var1, EnumFacing var2) {
-		return true;
-	}
-
-	@Override
-	public float[] getCustomTextureUV(IBlockState var1, EnumFacing var2) {
-		if (var2 == EnumFacing.UP || var2 == EnumFacing.DOWN) {
-			return new float[] { 0.0F, 16 - variant.getWidth(), variant.getWidth(), 16 };
-		}
-		return new float[] { 0.0F, 16 - variant.getHeight(), variant.getWidth(), 16 };
-
 	}
 
 }
