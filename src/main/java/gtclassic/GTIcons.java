@@ -31,11 +31,11 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 0, 16, 8));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_items", 0, 0, 16, 5));
 
-		addCustomTexture("quantumchest", 0, 1, location("screen0"));
-		addCustomTexture("fusioncomputer", 0, 7, location("screen1"));
-		addCustomTexture("industrialcentrifuge", 0, 7, location("centrifuge_top"));
-		addCustomTexture("industrialcentrifuge", 0, 8, location("centrifuge_back"));
-		addCustomTexture("industrialcentrifuge", 0, 9, location("centrifuge_front"));
+		addCustomTexture("tile_quantumchest_lv", 0, 1, location("screen0"));
+		addCustomTexture("machine_fusioncomputer_iv", 0, 7, location("screen1"));
+		addCustomTexture("machine_industrialcentrifuge_lv", 0, 7, location("centrifuge_top"));
+		addCustomTexture("machine_industrialcentrifuge_lv", 0, 8, location("centrifuge_back"));
+		addCustomTexture("machine_industrialcentrifuge_lv", 0, 9, location("centrifuge_front"));
 
 	}
 

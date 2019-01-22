@@ -62,57 +62,52 @@ public class GTBlocks {
 	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
 	public static final GTBlockTileBasic 
-			autoCrafter = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_AUTOCRAFTER),
-			chargeOMat = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_EV_CHARGEOMAT),
-			computerCube = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_EV_COMPUTERCUBE),
-			industrialCentrifuge = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_INDUSTRIALCENTRIFUGE),
-			matterFabricator = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_EV_MATTERFABRICATOR),
-			uuMatterAssembler = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_EV_UUMASSEMBLER),
-			playerDetector = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_PLAYERDETECTOR),
-			sonictronBlock = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_SONICTRON),
-			fusionComputer = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_IV_FUSIONCOMPUTER),
-			lightningRod = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_IV_LIGHTNINGROD),
-			IDSU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_EV_ADVANCEDENERGYSTORAGE),
-			HESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_EV_BASICENERGYSTORAGE),
-			LESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_MV_MULTIENERGYSTORAGE),
-			superCondensator = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_IV_SUPERCONDENSATOR),
-			superConductorWire = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_IV_SUPERCONDUCTORWIRE),
-			smallChest = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_SMALLCHEST),
-			largeChest = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_LARGECHEST),
-			quantumChest = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_QUANTUMCHEST),
-			bookShelf = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_BOOKSHELF),
-			workBench = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_WORKBENCH);
+			autoCrafter = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_AUTOCRAFTER_LV),
+			chargeOMat = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_CHARGEOMAT_EV),
+			computerCube = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_COMPUTERCUBE_EV),
+			industrialCentrifuge = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_INDUSTRIALCENTRIFUGE_LV),
+			matterFabricator = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_MATTERFABRICATOR_EV),
+			uuMatterAssembler = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_UUMASSEMBLER_EV),
+			playerDetector = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_PLAYERDETECTOR_LV),
+			sonictronBlock = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_SONICTRON_LV),
+			fusionComputer = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_FUSIONCOMPUTER_IV),
+			lightningRod = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LIGHTNINGROD_IV),
+			IDSU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_ADVANCEDENERGYSTORAGE_EV),
+			HESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_BASICENERGYSTORAGE_EV),
+			LESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_MULTIENERGYSTORAGE_MV),
+			superCondensator = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_SUPERCONDENSATOR_IV),
+			superConductorWire = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_SUPERCONDUCTORWIRE_IV),
+			smallChest = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_SMALLCHEST_LV),
+			largeChest = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_LARGECHEST_LV),
+			quantumChest = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_QUANTUMCHEST_LV),
+			bookShelf = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_BOOKSHELF_LV),
+			workBench = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_WORKBENCH_LV);
 
-	public static final GTBlockTileCustom smallCoolant = new GTBlockTileCustom(
-			GTBlockTileCustomVariants.COOLANT_SMALL_HELIUM),
-			medCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_MED_HELIUM),
-			largeCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_LARGE_HELIUM),
+	public static final GTBlockTileCustom 
+			smallCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_HELIUM_SMALL),
+			medCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_HELIUM_MED),
+			largeCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_HELIUM_LARGE),
 
-			smallThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_SMALL_THORIUM),
-			medThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_MED_THORIUM),
-			largeThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_LARGE_THORIUM),
+			smallThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_THORIUM_SMALL),
+			medThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_THORIUM_MED),
+			largeThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_THORIUM_LARGE),
 
-			smallPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_SMALL_PLUTONIUM),
-			medPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_MED_PLUTONIUM),
-			largePlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_LARGE_PLUTONIUM),
+			smallPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_PLUTONIUM_SMALL),
+			medPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_PLUTONIUM_MED),
+			largePlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_PLUTONIUM_LARGE),
 
-			smallLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_SMALL_LITHIUM),
-			medLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_MED_LITHIUM),
-			largeLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LARGE_LITHIUM),
-			smallLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_SMALL_LAPOTRON),
-			medLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_MED_LAPOTRON),
-			largeLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LARGE_LAPOTRON),
-			smallEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_SMALL_ENERGIUM),
-			medEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_MED_ENERGIUM),
-			largeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LARGE_ENERGIUM),
+			smallLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LITHIUM_SMALL),
+			medLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LITHIUM_MED),
+			largeLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LITHIUM_LARGE),
+			smallLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_SMALL),
+			medLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_MED),
+			largeLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_LARGE),
+			smallEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_SMALL),
+			medEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_MED),
+			largeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_LARGE),
 
-			aluminiumDataStick = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_SMALL_ALUMINIUM),
-			titaniumDataStick = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_SMALL_TITANIUM),
-			chromeDataStick = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_SMALL_CHROME),
-
-			aluminiumDataDrive = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_LARGE_ALUMINIUM),
-			titaniumDataDrive = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_LARGE_TITANIUM),
-			chromeDataDrive = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_LARGE_CHROME),
+			smallData = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_SMALL),
+			largeData = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_LARGE),
 
 			energyCircuitBlock = new GTBlockTileCustom(GTBlockTileCustomVariants.CIRCUIT_ENERGY),
 			dataCircuitBlock = new GTBlockTileCustom(GTBlockTileCustomVariants.CIRCUIT_DATA);
@@ -137,13 +132,15 @@ public class GTBlocks {
 
 			smallCoolant, medCoolant, largeCoolant,
 
-			smallThorium, medThorium, largeThorium, smallPlutonium, medPlutonium, largePlutonium,
+			smallThorium, medThorium, largeThorium, 
+			smallPlutonium, 
+			medPlutonium, largePlutonium,
 
-			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, smallEnergium,
+			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, 
+			smallEnergium,
 			medEnergium, largeEnergium,
 
-			aluminiumDataStick, titaniumDataStick, chromeDataStick, aluminiumDataDrive, titaniumDataDrive,
-			chromeDataDrive,
+			smallData,largeData,
 
 			energyCircuitBlock, dataCircuitBlock,
 

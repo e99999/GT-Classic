@@ -156,7 +156,7 @@ public class GTItems {
 			sonictronItem, destructoPack, craftingTablet, hammerIron, electroMagnet, rockCutter, advancedDrill,
 			advancedChainsaw, teslaStaff, lithiumBatpack, lapotronPack, portableScanner, debugScanner,
 
-			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, smallEnergium,
+			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, //smallEnergium,
 			medEnergium, largeEnergium,
 
 	};
