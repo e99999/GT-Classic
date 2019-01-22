@@ -7,6 +7,7 @@ import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;
 import java.util.EnumSet;
 
 import gtclassic.block.GTBlockTileBasic;
+import gtclassic.block.GTBlockTileCustom;
 import ic2.core.platform.textures.Sprites;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,7 +24,8 @@ public class GTIcons {
 		addSprite(new Sprites.SpriteData("gtclassic_builder", "gtclassic:textures/sprites/builder.png",
 				new Sprites.SpriteInfo(1, 12)));
 
-		iterateTileSpriteEnum();
+		iterateBasicTileSpriteEnum();
+		iterateCustomTileSpriteEnum();
 
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_builder", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 0, 16, 8));
@@ -41,12 +43,22 @@ public class GTIcons {
 		return new ResourceLocation(GTClassic.MODID, "animations/" + name);
 	}
 
-	public static void iterateTileSpriteEnum() {
+	public static void iterateBasicTileSpriteEnum() {
 		EnumSet.allOf(GTBlockTileBasic.GTBlockTileBasicVariants.class)
 				.forEach(variant -> addSprite(new Sprites.SpriteData("" + variant.toString().toLowerCase(),
 						"gtclassic:textures/sprites/" + variant.toString().toLowerCase() + ".png",
 						new Sprites.SpriteInfo(1, 12))));
 		EnumSet.allOf(GTBlockTileBasic.GTBlockTileBasicVariants.class).forEach(variant -> addTextureEntry(
+				new Sprites.TextureEntry("" + variant.toString().toLowerCase(), 0, 0, 1, 12)));
+
+	}
+	
+	public static void iterateCustomTileSpriteEnum() {
+		EnumSet.allOf(GTBlockTileCustom.GTBlockTileCustomVariants.class)
+				.forEach(variant -> addSprite(new Sprites.SpriteData("" + variant.toString().toLowerCase(),
+						"gtclassic:textures/sprites/" + variant.toString().toLowerCase() + ".png",
+						new Sprites.SpriteInfo(1, 12))));
+		EnumSet.allOf(GTBlockTileCustom.GTBlockTileCustomVariants.class).forEach(variant -> addTextureEntry(
 				new Sprites.TextureEntry("" + variant.toString().toLowerCase(), 0, 0, 1, 12)));
 
 	}

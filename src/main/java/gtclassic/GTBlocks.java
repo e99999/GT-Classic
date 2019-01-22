@@ -61,8 +61,8 @@ public class GTBlocks {
 
 	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
-	public static final GTBlockTileBasic autoCrafter = new GTBlockTileBasic(
-			GTBlockTileBasicVariants.MACHINE_LV_AUTOCRAFTER),
+	public static final GTBlockTileBasic 
+			autoCrafter = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_AUTOCRAFTER),
 			chargeOMat = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_EV_CHARGEOMAT),
 			computerCube = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_EV_COMPUTERCUBE),
 			industrialCentrifuge = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LV_INDUSTRIALCENTRIFUGE),
@@ -86,14 +86,14 @@ public class GTBlocks {
 	public static final GTBlockTileCustom smallCoolant = new GTBlockTileCustom(
 			GTBlockTileCustomVariants.COOLANT_SMALL_HELIUM),
 			medCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_MED_HELIUM),
-			largeCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLAN_LARGE_HELIUM),
+			largeCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_LARGE_HELIUM),
 
 			smallThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_SMALL_THORIUM),
 			medThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_MED_THORIUM),
 			largeThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_LARGE_THORIUM),
 
 			smallPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_SMALL_PLUTONIUM),
-			medPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_MED_PLUTONOIUM),
+			medPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_MED_PLUTONIUM),
 			largePlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_LARGE_PLUTONIUM),
 
 			smallLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_SMALL_LITHIUM),
