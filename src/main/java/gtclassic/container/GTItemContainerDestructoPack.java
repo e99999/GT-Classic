@@ -1,7 +1,7 @@
 package gtclassic.container;
 
-import gtclassic.GTClassic;
 import gtclassic.GTItems;
+import gtclassic.GTMod;
 import ic2.core.inventory.container.ContainerItemComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.InvertedFilter;
@@ -11,7 +11,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GTItemContainerDestructoPack extends ContainerItemComponent<GTItemInventoryDestructoPack> {
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/destructopack.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/destructopack.png");
 
 	public GTItemContainerDestructoPack(GTItemInventoryDestructoPack inv, int id, InventoryPlayer player) {
 		super(inv, id);

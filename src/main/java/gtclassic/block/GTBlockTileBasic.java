@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
@@ -62,8 +62,10 @@ public class GTBlockTileBasic extends BlockMultiID {
 		TILE_LARGECHEST_LV,
 		TILE_QUANTUMCHEST_LV, 
 		TILE_SMALLCHEST_LV, 
-		TILE_SUPERCONDUCTORWIRE_IV, 
-		TILE_WORKBENCH_LV;
+		TILE_WORKBENCH_LV,
+		//WIRE_TUNGSTEN_IV,
+		WIRE_ENERGIUM_LUV, 
+		WIRE_LAPOTRON_ZPM;
 	}
 
 	GTBlockTileBasicVariants variant;
@@ -72,8 +74,8 @@ public class GTBlockTileBasic extends BlockMultiID {
 		super(Material.IRON);
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase());
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase());
+		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(4.0F);
 		setResistance(20.0F);
 		setSoundType(SoundType.METAL);
@@ -82,7 +84,7 @@ public class GTBlockTileBasic extends BlockMultiID {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + "." + variant.toString().toLowerCase()));
+		tooltip.add(I18n.format("tooltip." + GTMod.MODID + "." + variant.toString().toLowerCase()));
 	}
 
 	@Override

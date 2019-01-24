@@ -2,7 +2,7 @@ package gtclassic.block;
 
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.BlockFalling;
@@ -25,8 +25,8 @@ public class GTBlockSandIron extends BlockFalling implements ITexturedBlock {
 	public GTBlockSandIron() {
 		super(Material.SAND);
 		setRegistryName("iron_sand");
-		setUnlocalizedName(GTClassic.MODID + ".sandIron");
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + ".sandIron");
+		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(0.5F);
 		setSoundType(SoundType.SAND);
 		setHarvestLevel("shovel", 0);
@@ -34,7 +34,7 @@ public class GTBlockSandIron extends BlockFalling implements ITexturedBlock {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".ironsand"));
+		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".ironsand"));
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class GTBlockSandIron extends BlockFalling implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures("gtclassic_blocks")[84];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[84];
 	}
 
 	@Override

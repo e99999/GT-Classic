@@ -3,7 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.api.classic.reactor.IReactorPlannerComponent;
 import ic2.api.classic.reactor.ISteamReactor;
 import ic2.api.classic.reactor.ISteamReactorComponent;
@@ -44,8 +44,8 @@ public class GTItemReactorRod extends ItemGrandualInt
 	public GTItemReactorRod(GTItemRodTypes variant) {
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase() + "_rod");
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_rod");
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_rod");
+		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
@@ -56,12 +56,12 @@ public class GTItemReactorRod extends ItemGrandualInt
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures("gtclassic_items")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
+		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTMod.MODID + ".wip"));
 	}
 
 	@Override

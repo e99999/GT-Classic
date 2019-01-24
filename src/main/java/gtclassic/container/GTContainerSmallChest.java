@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntitySmallChest;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotBase;
@@ -9,7 +9,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GTContainerSmallChest extends ContainerTileComponent<GTTileEntitySmallChest> {
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/smallchest.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/smallchest.png");
 
 	public GTContainerSmallChest(InventoryPlayer player, GTTileEntitySmallChest tile) {
 		super(tile);

@@ -6,7 +6,7 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.api.classic.item.IMiningDrill;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
@@ -37,17 +37,17 @@ public class GTItemDrill extends ItemElectricTool implements IStaticTexturedItem
 	public GTItemDrill() {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);
 		this.setRegistryName("advanced_drill");
-		this.setUnlocalizedName(GTClassic.MODID + ".advancedDrill");
+		this.setUnlocalizedName(GTMod.MODID + ".advancedDrill");
 		this.attackDamage = 8.0F;
 		this.maxCharge = 100000;
 		this.transferLimit = 128;
 		this.tier = 1;
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".drill"));
+		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".drill"));
 	}
 
 	@Override
@@ -93,7 +93,7 @@ public class GTItemDrill extends ItemElectricTool implements IStaticTexturedItem
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[60];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[60];
 	}
 
 	@Override

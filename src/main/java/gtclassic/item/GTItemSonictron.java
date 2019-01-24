@@ -3,7 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.core.item.base.ItemIC2;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -19,20 +19,20 @@ public class GTItemSonictron extends ItemIC2 {
 
 	public GTItemSonictron() {
 		this.maxStackSize = 1;
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setRegistryName("sonictron_item");
-		this.setUnlocalizedName(GTClassic.MODID + ".sonictronItem");
+		this.setUnlocalizedName(GTMod.MODID + ".sonictronItem");
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTClassic.MODID + ".wip"));
+		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTMod.MODID + ".wip"));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[32];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[57];
 	}
 
 	@Override

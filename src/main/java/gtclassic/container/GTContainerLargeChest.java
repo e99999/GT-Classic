@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntityLargeChest;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerLargeChest extends ContainerTileComponent<GTTileEntityLargeChest> {
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/largechest.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/largechest.png");
 
 	public GTContainerLargeChest(InventoryPlayer player, GTTileEntityLargeChest tile) {
 		super(tile);

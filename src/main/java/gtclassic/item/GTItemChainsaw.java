@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
@@ -51,13 +51,13 @@ public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedI
 		this.efficiency = 12.0F;
 		this.setHarvestLevel("axe", 2);
 		this.setRegistryName("advanced_chainsaw");
-		this.setUnlocalizedName(GTClassic.MODID + ".advancedChainsaw");
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setUnlocalizedName(GTMod.MODID + ".advancedChainsaw");
+		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".saw"));
+		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".saw"));
 	}
 
 	@Override
@@ -193,7 +193,7 @@ public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedI
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[61];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[61];
 	}
 
 	@Override

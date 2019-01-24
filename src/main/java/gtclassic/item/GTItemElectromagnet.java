@@ -3,7 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.BasicElectricItem;
@@ -42,11 +42,11 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
 		this.setRegistryName("electromagnet");
-		this.setUnlocalizedName(GTClassic.MODID + ".electroMagnet");
+		this.setUnlocalizedName(GTMod.MODID + ".electroMagnet");
 		this.maxCharge = 10000;
 		this.transferLimit = 100;
 		this.tier = 1;
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[76 + meta];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[76 + meta];
 	}
 
 	@Override

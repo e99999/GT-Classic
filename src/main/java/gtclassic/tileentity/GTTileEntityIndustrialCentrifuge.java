@@ -3,8 +3,8 @@ package gtclassic.tileentity;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.GTClassic;
 import gtclassic.GTItems;
+import gtclassic.GTMod;
 import gtclassic.container.GTContainerIndustrialCentrifuge;
 import gtclassic.util.GTMachineGui.GTIndustrialCentrifugeGui;
 import gtclassic.util.GTValues;
@@ -50,7 +50,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	public static final int slotOutput4 = 6;
 	public static final int defaultLength = 200;
 
-	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTClassic.MODID,
+	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
 			"textures/gui/industrialcentrifuge.png");
 
 	public static final String CELL_REQUIREMENT = "recipe-cells";

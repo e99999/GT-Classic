@@ -1,6 +1,6 @@
 package gtclassic.util;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
@@ -27,7 +27,7 @@ public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectr
 		this.maxCharge = max;
 		this.tier = tier;
 		this.transferLimit = trans;
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setMaxStackSize(1);
 		this.setNoRepair();
 		this.setHasSubtypes(true);

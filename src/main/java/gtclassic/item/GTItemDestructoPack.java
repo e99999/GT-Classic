@@ -3,7 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.container.GTItemInventoryDestructoPack;
 import ic2.core.IC2;
 import ic2.core.inventory.base.IHandHeldInventory;
@@ -28,14 +28,14 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 
 	public GTItemDestructoPack() {
 		this.maxStackSize = 1;
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setRegistryName("destructo_pack");
-		this.setUnlocalizedName(GTClassic.MODID + ".destructoPack");
+		this.setUnlocalizedName(GTMod.MODID + ".destructoPack");
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".trashcan"));
+		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".trashcan"));
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[33];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[58];
 	}
 
 	@Override

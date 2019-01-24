@@ -2,7 +2,7 @@ package gtclassic.container;
 
 import static ic2.core.block.wiring.container.ContainerElectricBlock.VALID_EQUIPMENT_SLOTS;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntityEnergyStorage;
 import gtclassic.util.gui.GTGuiCompEnergyBar;
 import gtclassic.util.gui.GTGuiCompEnergyStorage;
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerEnergyStorage extends ContainerTileComponent<GTTileEntityEnergyStorage> {
 
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/energystorage.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/energystorage.png");
 
 	public static Box2D chargeProgressBox = new Box2D(8, 73, 116, 5); // where the background to cover is, and the size
 																		// xy

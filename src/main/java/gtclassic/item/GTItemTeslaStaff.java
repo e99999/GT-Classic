@@ -3,7 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.api.item.ElectricItem;
 import ic2.core.item.base.ItemElectricTool;
 import ic2.core.platform.textures.Ic2Icons;
@@ -32,8 +32,8 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 		this.operationEnergyCost = 10000000;
 		this.tier = 4;
 		this.setRegistryName("tesla_staff");
-		this.setUnlocalizedName(GTClassic.MODID + ".teslaStaff");
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setUnlocalizedName(GTMod.MODID + ".teslaStaff");
+		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
@@ -44,13 +44,13 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[47];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[63];
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.DARK_AQUA + I18n.format("tooltip." + GTClassic.MODID + ".tesla"));
-		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".warranty"));
+		tooltip.add(TextFormatting.DARK_AQUA + I18n.format("tooltip." + GTMod.MODID + ".tesla"));
+		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".warranty"));
 	}
 
 	@Override

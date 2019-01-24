@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -27,43 +27,51 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	 * 
 	 * @param enum name & sprite sheet
 	 * 
-	 * @param custom block width
+	 * @param int custom block width
 	 * 
-	 * @param custom block height
+	 * @param intcustom block height
+	 * 
+	 * @param boolean does emit light
 	 * 
 	 */
 
 	public enum GTBlockTileCustomVariants {
 
-		BATTERY_ENERGIUM_LARGE(14, 14), 
-		BATTERY_ENERGIUM_MED(11, 11), 
-		BATTERY_ENERGIUM_SMALL(6, 6),
-		BATTERY_LAPOTRON_LARGE(14, 14), 
-		BATTERY_LAPOTRON_MED(11, 11), 
-		BATTERY_LAPOTRON_SMALL(6, 6),
-		BATTERY_LITHIUM_LARGE(10, 11), 
-		BATTERY_LITHIUM_MED(8, 11), 
-		BATTERY_LITHIUM_SMALL(6, 11), 
-		CIRCUIT_DATA(16, 1),
-		CIRCUIT_ENERGY(16, 1), 
-		COOLANT_HELIUM_LARGE(13, 2), 
-		COOLANT_HELIUM_MED(13, 2), 
-		COOLANT_HELIUM_SMALL(5, 13),
-		DATA_LARGE(12, 4),
-		DATA_SMALL(3, 6), 
-		ROD_PLUTONIUM_LARGE(7, 16),
-		ROD_PLUTONIUM_MED(6, 16), 
-		ROD_PLUTONIUM_SMALL(4, 16), 
-		ROD_THORIUM_LARGE(7, 16), 
-		ROD_THORIUM_MED(6, 16),
-		ROD_THORIUM_SMALL(4, 16);
+		BATTERY_ENERGIUM_HUGE(14, 14, true), 
+		BATTERY_ENERGIUM_LARGE(12, 12, true), 
+		BATTERY_ENERGIUM_MED(10, 10, true), 
+		BATTERY_ENERGIUM_SMALL(8, 8, true), 
+		BATTERY_ENERGIUM_TINY(6, 6, true),
+		
+		BATTERY_LAPOTRON_HUGE(14, 14, true), 
+		BATTERY_LAPOTRON_LARGE(12, 12, true), 
+		BATTERY_LAPOTRON_MED(10, 10, true), 
+		BATTERY_LAPOTRON_SMALL(8, 8, true), 
+		BATTERY_LAPOTRON_TINY(6, 6, true),
+		
+		BATTERY_LITHIUM_LARGE(10, 11, false), 
+		BATTERY_LITHIUM_MED(8, 11, false), 
+		BATTERY_LITHIUM_SMALL(6, 11, false),
+		
+		COOLANT_HELIUM_LARGE(13, 2, false),
+		COOLANT_HELIUM_MED(13, 2, false), 
+		COOLANT_HELIUM_SMALL(5, 13, false), 
+		
+		ROD_PLUTONIUM_LARGE(5, 10, true), 
+		ROD_PLUTONIUM_MED(4, 10, true),
+		ROD_PLUTONIUM_SMALL(3, 10, true), 
+		ROD_THORIUM_LARGE(5, 10, true), 
+		ROD_THORIUM_MED(4, 10, true),
+		ROD_THORIUM_SMALL(3, 10, true);
 
 		private int height;
 		private int width;
+		private boolean light;
 
-		GTBlockTileCustomVariants(int width, int height) {
+		GTBlockTileCustomVariants(int width, int height, boolean light) {
 			this.width = width;
 			this.height = height;
+			this.light = light;
 		}
 
 		public float getHeight() {
@@ -99,11 +107,19 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 		super(Material.CLOTH);
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase());
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase());
+		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(0.5F);
 		setResistance(30.0F);
 		setSoundType(SoundType.CLOTH);
+		setLightLevel(getVariantLightLevel());
+	}
+
+	public float getVariantLightLevel() {
+		if (this.variant.light) {
+			return (float) (this.variant.getWidthBB());
+		}
+		return 0;
 	}
 
 	@Override

@@ -2,8 +2,6 @@ package gtclassic;
 
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCasing.GTBlockCasingVariants;
-import gtclassic.block.GTBlockTileCustom;
-import gtclassic.block.GTBlockTileCustom.GTBlockTileCustomVariants;
 import gtclassic.block.GTBlockMetal;
 import gtclassic.block.GTBlockMetal.GTBlockMetalVariants;
 import gtclassic.block.GTBlockOre;
@@ -11,6 +9,8 @@ import gtclassic.block.GTBlockOre.GTBlockOreVariants;
 import gtclassic.block.GTBlockSandIron;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileBasic.GTBlockTileBasicVariants;
+import gtclassic.block.GTBlockTileCustom;
+import gtclassic.block.GTBlockTileCustom.GTBlockTileCustomVariants;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
@@ -44,7 +44,8 @@ public class GTBlocks {
 			tungstenCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TUNGSTEN),
 			superCasingBlock = new GTBlockCasing(GTBlockCasingVariants.SUPERCONDUCTOR),
 			fusionCasingBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
-			lesuCasingBlock = new GTBlockCasing(GTBlockCasingVariants.LESU);
+			fissionCasingBlock = new GTBlockCasing(GTBlockCasingVariants.FISSION),
+			crystalCasingBlock = new GTBlockCasing(GTBlockCasingVariants.CRYSTAL);
 
 	public static final GTBlockMetal iridiumBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM),
 			rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
@@ -61,8 +62,8 @@ public class GTBlocks {
 
 	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
-	public static final GTBlockTileBasic 
-			autoCrafter = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_AUTOCRAFTER_LV),
+	public static final GTBlockTileBasic autoCrafter = new GTBlockTileBasic(
+			GTBlockTileBasicVariants.MACHINE_AUTOCRAFTER_LV),
 			chargeOMat = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_CHARGEOMAT_EV),
 			computerCube = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_COMPUTERCUBE_EV),
 			industrialCentrifuge = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_INDUSTRIALCENTRIFUGE_LV),
@@ -76,15 +77,16 @@ public class GTBlocks {
 			HESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_BASICENERGYSTORAGE_EV),
 			LESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_MULTIENERGYSTORAGE_MV),
 			superCondensator = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_SUPERCONDENSATOR_IV),
-			superConductorWire = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_SUPERCONDUCTORWIRE_IV),
+			energiumWire = new GTBlockTileBasic(GTBlockTileBasicVariants.WIRE_ENERGIUM_LUV),
+			lapotronWire = new GTBlockTileBasic(GTBlockTileBasicVariants.WIRE_LAPOTRON_ZPM),
 			smallChest = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_SMALLCHEST_LV),
 			largeChest = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_LARGECHEST_LV),
 			quantumChest = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_QUANTUMCHEST_LV),
 			bookShelf = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_BOOKSHELF_LV),
 			workBench = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_WORKBENCH_LV);
 
-	public static final GTBlockTileCustom 
-			smallCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_HELIUM_SMALL),
+	public static final GTBlockTileCustom smallCoolant = new GTBlockTileCustom(
+			GTBlockTileCustomVariants.COOLANT_HELIUM_SMALL),
 			medCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_HELIUM_MED),
 			largeCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_HELIUM_LARGE),
 
@@ -99,25 +101,25 @@ public class GTBlocks {
 			smallLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LITHIUM_SMALL),
 			medLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LITHIUM_MED),
 			largeLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LITHIUM_LARGE),
+
+			tinyLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_TINY),
 			smallLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_SMALL),
 			medLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_MED),
 			largeLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_LARGE),
+			hugeLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_HUGE),
+
+			tinyEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_TINY),
 			smallEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_SMALL),
 			medEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_MED),
 			largeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_LARGE),
-
-			smallData = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_SMALL),
-			largeData = new GTBlockTileCustom(GTBlockTileCustomVariants.DATA_LARGE),
-
-			energyCircuitBlock = new GTBlockTileCustom(GTBlockTileCustomVariants.CIRCUIT_ENERGY),
-			dataCircuitBlock = new GTBlockTileCustom(GTBlockTileCustomVariants.CIRCUIT_DATA);
+			hugeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_HUGE);
 
 	public static final Block[] blocks = {
 
 			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock, iridiumCasingBlock,
 			tungstenCasingBlock,
 
-			superCasingBlock, fusionCasingBlock, lesuCasingBlock,
+			superCasingBlock, fusionCasingBlock, fissionCasingBlock, crystalCasingBlock,
 
 			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock, iridiumBlock,
 
@@ -126,30 +128,23 @@ public class GTBlocks {
 			autoCrafter, chargeOMat, computerCube, industrialCentrifuge, matterFabricator, uuMatterAssembler,
 			playerDetector, sonictronBlock, fusionComputer, lightningRod,
 
-			IDSU, HESU, LESU, superCondensator, superConductorWire,
+			IDSU, HESU, LESU, superCondensator, energiumWire, lapotronWire,
 
 			quantumChest, bookShelf, workBench, smallChest, largeChest,
 
 			smallCoolant, medCoolant, largeCoolant,
 
-			smallThorium, medThorium, largeThorium, 
-			smallPlutonium, 
-			medPlutonium, largePlutonium,
+			smallThorium, medThorium, largeThorium, smallPlutonium, medPlutonium, largePlutonium,
 
-			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, 
-			smallEnergium,
-			medEnergium, largeEnergium,
-
-			smallData,largeData,
-
-			energyCircuitBlock, dataCircuitBlock,
+			smallLithium, medLithium, largeLithium, tinyLapotron, smallLapotron, medLapotron, largeLapotron,
+			hugeLapotron, tinyEnergium, smallEnergium, medEnergium, largeEnergium, hugeEnergium,
 
 	};
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
-		GTClassic.logger.info("Registering Blocks");
+		GTMod.logger.info("Registering Blocks");
 		for (Block block : blocks) {
 			registry.register(block);
 		}
@@ -160,45 +155,45 @@ public class GTBlocks {
 		final IForgeRegistry<Item> registry = event.getRegistry();
 		for (Block block : blocks) {
 			registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName())
-					.setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTClassic.creativeTabGT));
+					.setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTMod.creativeTabGT));
 		}
 	}
 
 	public static void registerTiles() {
 		GameRegistry.registerTileEntity(GTTileEntityIndustrialCentrifuge.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityIndustrialCentrifuge"));
+				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
 		GameRegistry.registerTileEntity(GTTileEntityComputerCube.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityComputerCube"));
+				new ResourceLocation(GTMod.MODID, "tileEntityComputerCube"));
 		GameRegistry.registerTileEntity(GTTileEntitySuperCondensator.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntitySuperCondensator"));
+				new ResourceLocation(GTMod.MODID, "tileEntitySuperCondensator"));
 
 		GameRegistry.registerTileEntity(GTTileEntitySmallChest.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntitySmallChest"));
+				new ResourceLocation(GTMod.MODID, "tileEntitySmallChest"));
 		GameRegistry.registerTileEntity(GTTileEntityLargeChest.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityLargeChest"));
+				new ResourceLocation(GTMod.MODID, "tileEntityLargeChest"));
 		GameRegistry.registerTileEntity(GTTileEntityQuantumChest.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityQuantumChest"));
+				new ResourceLocation(GTMod.MODID, "tileEntityQuantumChest"));
 		GameRegistry.registerTileEntity(GTTileEntityBookshelf.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityBookshelf"));
+				new ResourceLocation(GTMod.MODID, "tileEntityBookshelf"));
 		GameRegistry.registerTileEntity(GTTileEntityWorkbench.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityWorkbench"));
+				new ResourceLocation(GTMod.MODID, "tileEntityWorkbench"));
 
 		GameRegistry.registerTileEntity(GTTileEntityEnergyStorage.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityHESU"));
+				new ResourceLocation(GTMod.MODID, "tileEntityHESU"));
 		GameRegistry.registerTileEntity(GTTileEntityDimensionalEnergyStorage.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityIDSU"));
+				new ResourceLocation(GTMod.MODID, "tileEntityIDSU"));
 		GameRegistry.registerTileEntity(GTTileEntityLapotronicEnergyStorage.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityLESU"));
+				new ResourceLocation(GTMod.MODID, "tileEntityLESU"));
 
 		GameRegistry.registerTileEntity(GTTileEntityLightningRod.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityLightningRod"));
+				new ResourceLocation(GTMod.MODID, "tileEntityLightningRod"));
 		GameRegistry.registerTileEntity(GTTileEntityFusionComputer.class,
-				new ResourceLocation(GTClassic.MODID, "tileEntityFusionComputer"));
+				new ResourceLocation(GTMod.MODID, "tileEntityFusionComputer"));
 	}
 
 	@SuppressWarnings({ "unused", "deprecation" })
 	private static void registerTileEntity(final Class<? extends TileEntity> tileEntityClass, final String name) {
 		// overloads deprecated method to properly register tiles
-		GameRegistry.registerTileEntity(tileEntityClass, GTClassic.MODID + ":" + name);
+		GameRegistry.registerTileEntity(tileEntityClass, GTMod.MODID + ":" + name);
 	}
 }

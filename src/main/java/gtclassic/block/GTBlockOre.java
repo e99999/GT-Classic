@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTClassic;
 import gtclassic.GTItems;
+import gtclassic.GTMod;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
@@ -63,8 +63,8 @@ public class GTBlockOre extends Block implements ITexturedBlock {
 		super(Material.ROCK);
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase() + "_ore");
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_ore");
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_ore");
+		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(variant.getHardness());
 		setResistance(10.0F);
 		setHarvestLevel("pickaxe", variant.getHarvest());
@@ -112,23 +112,23 @@ public class GTBlockOre extends Block implements ITexturedBlock {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this == GTBlocks.iridiumOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".iridium"));
+			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".iridium"));
 		}
 
 		else if (this == GTBlocks.rubyOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".ruby"));
+			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".ruby"));
 		}
 
 		else if (this == GTBlocks.sapphireOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".sapphire"));
+			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".sapphire"));
 		}
 
 		else if (this == GTBlocks.bauxiteOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".bauxite"));
+			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".bauxite"));
 		}
 
 		else if (this == GTBlocks.iridiumEnd) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".iridiumend"));
+			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".iridiumend"));
 		}
 	}
 
@@ -140,7 +140,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[variant.getID()];
 	}
 
 	@Override

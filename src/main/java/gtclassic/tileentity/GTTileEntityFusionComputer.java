@@ -3,8 +3,8 @@ package gtclassic.tileentity;
 import java.util.List;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTClassic;
 import gtclassic.GTItems;
+import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionComputer;
 import gtclassic.util.GTMachineGui.GTFusionComputerGui;
 import gtclassic.util.GTValues;
@@ -45,7 +45,7 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 
 	public static final IBlockState coilState = GTBlocks.fusionCasingBlock.getDefaultState();
 
-	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTClassic.MODID,
+	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
 			"textures/gui/fusioncomputer.png");
 
 	public static final String CELL_REQUIREMENT = "recipe-cells";

@@ -3,7 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -31,8 +31,8 @@ public class GTItemGem extends Item implements IStaticTexturedItem {
 	public GTItemGem(GTItemGemTypes variant) {
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase() + "_gem");
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_gem");
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_gem");
+		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
@@ -43,6 +43,6 @@ public class GTItemGem extends Item implements IStaticTexturedItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures("gtclassic_items")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
 	}
 }

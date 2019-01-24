@@ -2,7 +2,7 @@ package gtclassic.block;
 
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -44,8 +44,8 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
 		super(Material.IRON);
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase() + "_block");
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase() + "_block");
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_block");
+		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
 		setResistance(15.0F);
 		setSoundType(SoundType.METAL);
@@ -65,7 +65,7 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[variant.getID()];
 	}
 
 	@Override
@@ -76,8 +76,8 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".nomobs"));
-		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".beacon"));
+		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".nomobs"));
+		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".beacon"));
 	}
 
 	@Override

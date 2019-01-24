@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntityComputerCube;
 import gtclassic.util.gui.GTGuiCompComputerCube;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -9,7 +9,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GTContainerComputerCube extends ContainerTileComponent<GTTileEntityComputerCube> {
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/computercube0.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/computercube0.png");
 
 	public GTContainerComputerCube(InventoryPlayer player, GTTileEntityComputerCube tile) {
 		super(tile);

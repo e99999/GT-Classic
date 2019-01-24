@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.core.inventory.container.ContainerItemComponent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class GTItemContainerCraftingTablet extends ContainerItemComponent<GTItemInventoryCraftingTablet> {
 
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/craftingtablet.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/craftingtablet.png");
 
 	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 	public InventoryCraftResult craftResult = new InventoryCraftResult();

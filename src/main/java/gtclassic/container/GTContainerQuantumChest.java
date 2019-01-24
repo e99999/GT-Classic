@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
 import gtclassic.util.gui.GTGuiCompQuantumChest;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTContainerQuantumChest extends ContainerTileComponent<GTTileEntityQuantumChest> {
 
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/quantumchest.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/quantumchest.png");
 
 	public GTContainerQuantumChest(InventoryPlayer player, GTTileEntityQuantumChest tile) {
 		super(tile);

@@ -3,7 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.container.GTItemInventoryCraftingTablet;
 import ic2.core.IC2;
 import ic2.core.inventory.base.IHandHeldInventory;
@@ -28,9 +28,9 @@ public class GTItemCraftingTablet extends ItemIC2 implements IHandHeldInventory 
 
 	public GTItemCraftingTablet() {
 		this.maxStackSize = 1;
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setRegistryName("crafting_tablet");
-		this.setUnlocalizedName(GTClassic.MODID + ".craftingTablet");
+		this.setUnlocalizedName(GTMod.MODID + ".craftingTablet");
 	}
 
 	@Override
@@ -44,13 +44,13 @@ public class GTItemCraftingTablet extends ItemIC2 implements IHandHeldInventory 
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTClassic.MODID + ".craftingtablet"));
+		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".craftingtablet"));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[40];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[59];
 	}
 
 	@Override

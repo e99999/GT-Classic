@@ -3,7 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
@@ -34,8 +34,8 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 		this.setMaxDamage(0);
 		this.maxStackSize = 1;
 		setRegistryName("portable_scanner");
-		setUnlocalizedName(GTClassic.MODID + ".portable_scanner");
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + ".portable_scanner");
+		setCreativeTab(GTMod.creativeTabGT);
 		this.maxCharge = 10000;
 		this.transferLimit = 100;
 		this.tier = 1;
@@ -44,7 +44,7 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[78];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[78];
 	}
 
 	@Override

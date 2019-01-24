@@ -3,8 +3,8 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
 import gtclassic.GTItems;
+import gtclassic.GTMod;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemElement extends Item implements IStaticTexturedItem {
 	public enum GTItemElementTypes {
 		HYDROGEN(0), DEUTERIUM(1), TRITIUM(2), HELIUM(3), TUNGSTEN(4), LITHIUM(5), HELIUM3(6), SILICON(7), CARBON(8),
-		METHANE(9), BERILIUM(10), CALCIUM(11), SODIUM(12), CHLORINE(13), POTASSIUM(14), NITROGEN(15), OXYGEN(16);
+		METHANE(9), BERILIUM(10), CALCIUM(11), SODIUM(12), CHLORINE(13), POTASSIUM(14), NITROGEN(15), OXYGEN(16),EMPTY(17);
 
 		private int id;
 
@@ -34,8 +34,8 @@ public class GTItemElement extends Item implements IStaticTexturedItem {
 	public GTItemElement(GTItemElementTypes variant) {
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase());
-		setUnlocalizedName(GTClassic.MODID + "." + variant.toString().toLowerCase());
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase());
+		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
@@ -64,6 +64,6 @@ public class GTItemElement extends Item implements IStaticTexturedItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures("gtclassic_items")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
 	}
 }

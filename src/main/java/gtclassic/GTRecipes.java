@@ -86,6 +86,20 @@ public class GTRecipes {
 
 		recipes.addShapelessRecipe(new ItemStack(GTItems.glassTube, 1), new Object[] { GTItems.oxygen });
 
+		recipes.addShapelessRecipe(new ItemStack(GTItems.lensDiamond, 1),
+				new Object[] { "gemDiamond", GTItems.fileIron });
+
+		recipes.addShapelessRecipe(new ItemStack(GTItems.lensRuby, 1), new Object[] { "gemRuby", GTItems.fileIron });
+
+		recipes.addShapelessRecipe(new ItemStack(GTItems.lensEmerald, 1),
+				new Object[] { "gemEmerald", GTItems.fileIron });
+
+		recipes.addShapelessRecipe(new ItemStack(GTItems.lensSapphire, 1),
+				new Object[] { "gemSapphire", GTItems.fileIron });
+		
+		recipes.addShapelessRecipe(new ItemStack(GTItems.chipRuby, 1),
+				new Object[] { "gemRuby", GTItems.lensEmerald });
+
 	}
 
 	public static void initShapedRecipes() {
@@ -114,10 +128,10 @@ public class GTRecipes {
 						'D', "gemDiamond", 'I', getRefinedIron(), 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
 
 		recipes.addRecipe(new ItemStack(GTItems.advancedDrill, 1), new Object[] { "DDD", "ICI", "IBI", 'I',
-				"ingotTitanium", 'B', GTItems.smallLithium, 'C', GTItems.dataControlCircuit, 'D', "gemDiamond" });
+				"ingotTitanium", 'B', GTItems.smallLithium, 'C', GTItems.circuitEmerald, 'D', "gemDiamond" });
 
 		recipes.addRecipe(new ItemStack(GTItems.advancedChainsaw, 1), new Object[] { " II", "ICI", "BI ", 'I',
-				"ingotTitanium", 'B', GTItems.smallLithium, 'C', GTItems.dataControlCircuit });
+				"ingotTitanium", 'B', GTItems.smallLithium, 'C', GTItems.circuitEmerald, });
 
 		recipes.addRecipe(new ItemStack(GTItems.glassTube, 32),
 				new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
@@ -128,40 +142,43 @@ public class GTRecipes {
 
 		// ITEMS
 
-		recipes.addRecipe(new ItemStack(GTItems.heatStorageSingle, 1),
-				new Object[] { " I ", "IHI", " I ", 'I', "ingotTin", 'H', GTItems.helium });
+		/*
+		 * recipes.addRecipe(new ItemStack(GTItems.heatStorageSingle, 1), new Object[] {
+		 * " I ", "IHI", " I ", 'I', "ingotTin", 'H', GTItems.helium });
+		 * 
+		 * recipes.addRecipe(new ItemStack(GTItems.heatStorageTriple, 1), new Object[] {
+		 * "III", "HHH", "III", 'I', "ingotTin", 'H', GTItems.heatStorageSingle });
+		 * 
+		 * recipes.addRecipe(new ItemStack(GTItems.heatStorageSix, 1), new Object[] {
+		 * "IHI", "IPI", "IHI", 'I', "ingotTin", 'H', GTItems.heatStorageTriple, 'P',
+		 * Ic2Items.denseCopperPlate });
+		 */
 
-		recipes.addRecipe(new ItemStack(GTItems.heatStorageTriple, 1),
-				new Object[] { "III", "HHH", "III", 'I', "ingotTin", 'H', GTItems.heatStorageSingle });
-
-		recipes.addRecipe(new ItemStack(GTItems.heatStorageSix, 1), new Object[] { "IHI", "IPI", "IHI", 'I', "ingotTin",
-				'H', GTItems.heatStorageTriple, 'P', Ic2Items.denseCopperPlate });
-
-		recipes.addRecipe(new ItemStack(GTItems.medLapotron, 1),
+		recipes.addRecipe(new ItemStack(GTItems.smallLapotron, 1),
 				new Object[] { "LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(), 'P', "plateIridium" });
 
-		recipes.addRecipe(new ItemStack(GTItems.dataControlCircuit, 4), new Object[] { "CDC", "DPD", "CDC", 'D',
-				GTItems.dataStorageCircuit, 'C', "circuitAdvanced", 'P', "plateIridium" });
+		recipes.addRecipe(new ItemStack(GTItems.circuitEmerald, 4), new Object[] { "CDC", "DPD", "CDC", 'D',
+				GTItems.chipEmerald, 'C', "circuitAdvanced", 'P', "plateIridium" });
 
-		recipes.addRecipe(new ItemStack(GTItems.dataStorageCircuit, 4),
+		recipes.addRecipe(new ItemStack(GTItems.chipEmerald, 4),
 				new Object[] { "EEE", "ECE", "EEE", 'E', "gemEmerald", 'C', "circuitAdvanced" });
 
-		recipes.addRecipe(new ItemStack(GTItems.dataOrb, 4),
-				new Object[] { "SSS", "SCS", "SSS", 'S', GTItems.dataStorageCircuit, 'C', GTItems.dataControlCircuit });
-
-		recipes.addRecipe(new ItemStack(GTItems.energyFlowCircuit, 4), new Object[] { "CLC", "LPL", "CLC", 'L',
+		recipes.addRecipe(new ItemStack(GTItems.circuitSapphire, 4), new Object[] { "CLC", "LPL", "CLC", 'L',
 				Ic2Items.lapotronCrystal.copy(), 'C', "circuitAdvanced", 'P', "plateIridium" });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.superCasingBlock, 4),
 				new Object[] { "CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(), 'E',
-						GTItems.energyFlowCircuit, 'W', "dustTungsten", 'P', "plateIridium" });
+						GTItems.circuitSapphire, 'W', "dustTungsten", 'P', "plateIridium" });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.superCasingBlock, 4), new Object[] { "CCC", "PWP", "EEE", 'C',
-				GTItems.heatStorageTriple, 'E', GTItems.energyFlowCircuit, 'W', "dustTungsten", 'P', "plateIridium" });
+		// recipes.addRecipe(new ItemStack(GTBlocks.superCasingBlock, 4), new Object[] {
+		// "CCC", "PWP", "EEE", 'C',
+		// GTItems.heatStorageTriple, 'E', GTItems.circuitSapphire, 'W', "dustTungsten",
+		// 'P', "plateIridium" });
 
-		recipes.addRecipe(new ItemStack(GTItems.lapotronPack, 1),
-				new Object[] { "ELE", "SBS", "EPE", 'E', GTItems.energyFlowCircuit, 'S', GTBlocks.superCasingBlock, 'L',
-						GTItems.medLapotron, 'B', Ic2Items.lapPack.copy(), 'P', "plateIridium" });
+		// recipes.addRecipe(new ItemStack(GTItems.lapotronPack, 1),
+		// new Object[] { "ELE", "SBS", "EPE", 'E', GTItems.circuitSapphire, 'S',
+		// GTBlocks.superCasingBlock, 'L',
+		// GTItems.medLapotron, 'B', Ic2Items.lapPack.copy(), 'P', "plateIridium" });
 
 		recipes.addRecipe(new ItemStack(GTItems.destructoPack, 1),
 				new Object[] { "BIB", "ICI", "BIB", 'B', lava, 'C', "circuitBasic", 'I', ingotElectric });
@@ -170,32 +187,33 @@ public class GTRecipes {
 				new Object[] { "BIB", "ICI", "BIB", 'B', "workbench", 'C', "circuitBasic", 'I', ingotElectric });
 
 		recipes.addRecipe(new ItemStack(GTItems.teslaStaff, 1), new Object[] { "LS ", "SP ", "  P", 'L',
-				GTItems.medLapotron, 'S', GTBlocks.superCasingBlock, 'P', "plateIridium" });
+				GTItems.smallLapotron, 'S', GTBlocks.superCasingBlock, 'P', "plateIridium" });
 
 		recipes.addRecipe(new ItemStack(GTItems.smallLithium, 1), new Object[] { " G ", "ALA", "ALA", 'G',
 				Ic2Items.doubleInsulatedGoldCable.copy(), 'A', "ingotAluminium", 'L', "dustLithium" });
 
-		recipes.addRecipe(new ItemStack(GTItems.lithiumBatpack, 1), new Object[] { "LCL", "LAL", "L L", 'C',
-				"circuitAdvanced", 'A', "ingotAluminium", 'L', GTItems.smallLithium });
+		// recipes.addRecipe(new ItemStack(GTItems.lithiumBatpack, 1), new Object[] {
+		// "LCL", "LAL", "L L", 'C',
+		// "circuitAdvanced", 'A', "ingotAluminium", 'L', GTItems.smallLithium });
 
 		// BLOCKS
 
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionCasingBlock),
-				new Object[] { "YVC", "BSB", "RVY", 'V', GTBlocks.chromeCasingBlock, 'C', GTItems.energyFlowCircuit,
-						'S', GTBlocks.superCasingBlock, 'Y', Ic2Items.teslaCoil.copy(), 'B',
-						GTBlocks.titaniumCasingBlock, 'R', Ic2Items.reactorReflectorIridium.copy() });
+				new Object[] { "YVC", "BSB", "RVY", 'V', GTBlocks.chromeCasingBlock, 'C', GTItems.circuitSapphire, 'S',
+						GTBlocks.superCasingBlock, 'Y', Ic2Items.teslaCoil.copy(), 'B', GTBlocks.titaniumCasingBlock,
+						'R', Ic2Items.reactorReflectorIridium.copy() });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.lesuCasingBlock),
-				new Object[] { "BBB", "BCB", "BBB", 'B', "blockLapis", 'C', GTBlocks.aluminiumCasingBlock });
+		recipes.addRecipe(new ItemStack(GTBlocks.crystalCasingBlock),
+				new Object[] { "BBB", "BCB", "BBB", 'B', "blockRuby", 'C', GTBlocks.aluminiumCasingBlock });
 
 		// TILES
 
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionComputer, 1),
-				new Object[] { "ESE", "LCL", "ESE", 'E', GTItems.energyFlowCircuit, 'S', GTBlocks.superCondensator, 'L',
+				new Object[] { "ESE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S', GTBlocks.superCondensator, 'L',
 						GTItems.medLapotron, 'C', GTBlocks.computerCube });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.lightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
-				GTItems.energyFlowCircuit, 'S', GTBlocks.superCondensator, 'A', GTBlocks.titaniumCasingBlock });
+				GTItems.circuitSapphire, 'S', GTBlocks.superCondensator, 'A', GTBlocks.titaniumCasingBlock });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 				Ic2Items.extractor, 'R', ingotElectric, 'A', GTBlocks.ironCasingBlock, 'C', "circuitAdvanced" });
@@ -203,39 +221,40 @@ public class GTRecipes {
 		if (GTValues.debugMode) {
 
 			recipes.addRecipe(new ItemStack(GTBlocks.uuMatterAssembler, 1),
-					new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.dataControlCircuit, 'C', GTBlocks.computerCube,
-							'T', Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D',
-							GTItems.dataOrb, 'B', "batteryAdvanced" });
+					new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.circuitEmerald, 'C', GTBlocks.computerCube, 'T',
+							Ic2Items.teleporter, 'Q', GTBlocks.quantumChest, 'E', GTBlocks.autoCrafter, 'D',
+							GTItems.circuitDiamond, 'B', "batteryAdvanced" });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
-					GTItems.dataStorageCircuit, 'C', "circuitAdvanced", 'c', GTBlocks.computerCube });
+					Blocks.REDSTONE_TORCH, 'C', "circuitAdvanced", 'c', GTBlocks.ironCasingBlock });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.matterFabricator, 1),
-					new Object[] { "ETE", "HLH", "ETE", 'E', GTItems.energyFlowCircuit, 'T', Ic2Items.teleporter, 'H',
-							GTBlocks.titaniumCasingBlock, 'L', GTItems.medLapotron });
+					new Object[] { "ETE", "HLH", "ETE", 'E', GTItems.circuitSapphire, 'T', Ic2Items.teleporter, 'H',
+							GTBlocks.titaniumCasingBlock, 'L', GTItems.smallLapotron });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.superCondensator, 1),
-					new Object[] { "ELE", "SHS", "ELE", 'E', GTItems.energyFlowCircuit, 'S', GTBlocks.superCasingBlock,
-							'H', GTBlocks.iridiumCasingBlock, 'L', GTItems.medLapotron });
+					new Object[] { "ELE", "SHS", "ELE", 'E', GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock,
+							'H', GTBlocks.iridiumCasingBlock, 'L', GTItems.smallLapotron });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.autoCrafter, 1), new Object[] { " B ", "CcC", " A ", 'B',
 					Ic2Items.battery, 'C', "circuitAdvanced", 'c', "workbench", 'A', Ic2Items.advMachine });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.chargeOMat, 1),
-					new Object[] { "RCR", "AEA", "RMR", 'E', GTItems.medLapotron, 'R', GTItems.energyFlowCircuit, 'A',
+					new Object[] { "RCR", "AEA", "RMR", 'E', GTItems.smallLapotron, 'R', GTItems.circuitSapphire, 'A',
 							"chestWood", 'C', GTBlocks.computerCube, 'M', GTBlocks.titaniumCasingBlock });
 
-			recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-					GTItems.dataOrb, 'I', "ingotIron", 'C', "chestWood", 'M', GTBlocks.chromeCasingBlock });
-
-			recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-					GTItems.dataOrb, 'I', "ingotIron", 'C', "chestWood", 'M', GTBlocks.titaniumCasingBlock });
+			recipes.addRecipe(new ItemStack(GTBlocks.quantumChest, 1),
+					new Object[] { "IDI", "CMC", "IDI", 'D', GTItems.circuitDiamond, 'I', GTItems.circuitEmerald, 'C',
+							"chestWood", 'M', GTBlocks.ironCasingBlock });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.LESU), new Object[] { " G ", "CMC", " G ", 'C', "circuitAdvanced",
-					'M', GTBlocks.lesuCasingBlock, 'G', Ic2Items.glassFiberCable.copy() });
+					'M', GTBlocks.crystalCasingBlock, 'G', Ic2Items.glassFiberCable.copy() });
 
-			recipes.addRecipe(new ItemStack(GTBlocks.superConductorWire, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
-					GTItems.energyFlowCircuit, 'S', GTBlocks.superCasingBlock, 'H', GTBlocks.iridiumCasingBlock, });
+			recipes.addRecipe(new ItemStack(GTBlocks.lapotronWire, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
+					GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock, 'H', GTItems.smallLapotron });
+
+			recipes.addRecipe(new ItemStack(GTBlocks.energiumWire, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
+					GTItems.circuitRuby, 'S', GTBlocks.superCasingBlock, 'H', GTItems.smallEnergium });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.IDSU, 1), new Object[] { "PHP", "HEH", "PHP", 'P', "plateIridium",
 					'H', GTBlocks.HESU, 'E', Blocks.ENDER_CHEST });
@@ -246,11 +265,11 @@ public class GTRecipes {
 		}
 
 		recipes.addRecipe(new ItemStack(GTBlocks.computerCube, 1),
-				new Object[] { "RGD", "GMG", "DGR", 'D', GTItems.dataOrb, 'R', GTItems.energyFlowCircuit, 'G',
+				new Object[] { "RGD", "GMG", "DGR", 'D', GTItems.circuitDiamond, 'R', GTItems.circuitSapphire, 'G',
 						"blockGlass", 'M', GTBlocks.titaniumCasingBlock });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.HESU),
-				new Object[] { "OOO", "OCO", "OOO", 'O', GTItems.medLapotron, 'C', GTBlocks.computerCube });
+				new Object[] { "OOO", "OCO", "OOO", 'O', GTItems.smallLapotron, 'C', GTBlocks.computerCube });
 
 		// IC2C RECIPES (ADDITIONS)
 
@@ -329,7 +348,7 @@ public class GTRecipes {
 
 		recipes.overrideRecipe("shaped_IV-Transformer", StackUtil.copyWithSize(Ic2Items.transformerIV, 1), "XYX", "CVB",
 				"XYX", 'X', GTBlocks.tungstenCasingBlock, 'Y', Ic2Items.plasmaCable.copy(), 'C',
-				GTItems.energyFlowCircuit, 'V', Ic2Items.transformerEV.copy(), 'B', Ic2Items.pesd);
+				GTItems.circuitSapphire, 'V', Ic2Items.transformerEV.copy(), 'B', Ic2Items.pesd);
 
 	}
 
@@ -417,11 +436,13 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.glassTube, 15), 0),
 				new OutputItem(new ItemStack(GTItems.helium3, 1), 1));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe("dustUranium", 16, 22, euCost(250000),
-				new OutputItem(new ItemStack(GTItems.tungsten, 1), 0),
-				new OutputItem(StackUtil.copyWithSize(Ic2Items.reactorUraniumRodSingle, 16), 1),
-				new OutputItem(new ItemStack(GTItems.rodPlutoniumSingle, 1), 2),
-				new OutputItem(new ItemStack(GTItems.rodThoriumSingle, 4), 3));
+		/*
+		 * GTTileEntityIndustrialCentrifuge.addRecipe("dustUranium", 16, 22,
+		 * euCost(250000), new OutputItem(new ItemStack(GTItems.tungsten, 1), 0), new
+		 * OutputItem(StackUtil.copyWithSize(Ic2Items.reactorUraniumRodSingle, 16), 1),
+		 * new OutputItem(new ItemStack(GTItems.rodPlutoniumSingle, 1), 2), new
+		 * OutputItem(new ItemStack(GTItems.rodThoriumSingle, 4), 3));
+		 */
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustRuby", 9, 3, euCost(25000),
 				new OutputItem(new ItemStack(GTItems.dustAluminium, 2), 0),
@@ -481,9 +502,12 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(Items.BLAZE_POWDER, 1), 0),
 				new OutputItem(new ItemStack(Items.SLIME_BALL, 1), 1));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.reactorNearDepletedUraniumRod, 2),
-				22, euCost(2500), new OutputItem(StackUtil.copyWithSize(Ic2Items.emptyCell, 1), 0),
-				new OutputItem(new ItemStack(GTItems.rodThoriumSingle, 1), 1));
+		/*
+		 * GTTileEntityIndustrialCentrifuge.addRecipe(StackUtil.copyWithSize(Ic2Items.
+		 * reactorNearDepletedUraniumRod, 2), 22, euCost(2500), new
+		 * OutputItem(StackUtil.copyWithSize(Ic2Items.emptyCell, 1), 0), new
+		 * OutputItem(new ItemStack(GTItems.rodThoriumSingle, 1), 1));
+		 */
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dirt", 64, 0, euCost(50000),
 				new OutputItem(new ItemStack(Blocks.SAND, 32), 0),

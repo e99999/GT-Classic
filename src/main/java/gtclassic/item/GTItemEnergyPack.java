@@ -1,6 +1,6 @@
 package gtclassic.item;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
 import ic2.core.item.armor.base.ItemIC2AdvArmorBase;
@@ -30,8 +30,8 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
 		this.texture = tex; // "gtclassic:textures/models/armor/lithiumbatpack";
 		this.maxEnergy = max; // 600000;
 		this.setRegistryName(reg); // ("lithium_batpack");
-		this.setUnlocalizedName(GTClassic.MODID + unl); // (GTClassic.MODID + ".lithiumBatpack");
-		this.setCreativeTab(GTClassic.creativeTabGT);
+		this.setUnlocalizedName(GTMod.MODID + unl); // (GTClassic.MODID + ".lithiumBatpack");
+		this.setCreativeTab(GTMod.creativeTabGT);
 		this.tier = lvl; // 1;
 		this.transferlimit = limit; // 200;
 		this.rare = EnumRarity.COMMON;
@@ -106,6 +106,6 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[this.indexitem];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[this.indexitem];
 	}
 }

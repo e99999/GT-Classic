@@ -1,6 +1,6 @@
 package gtclassic.item;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityLightningRod;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
@@ -34,8 +34,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		super(0);
 		this.setRightClick();
 		setRegistryName("debug_scanner");
-		setUnlocalizedName(GTClassic.MODID + ".debug_scanner");
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + ".debug_scanner");
+		setCreativeTab(GTMod.creativeTabGT);
 		this.maxCharge = Integer.MAX_VALUE;
 		this.transferLimit = Integer.MAX_VALUE;
 		this.tier = 1;
@@ -79,7 +79,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(ItemStack item) {
-		return Ic2Icons.getTextures("gtclassic_items")[79];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[79];
 	}
 
 	@Override

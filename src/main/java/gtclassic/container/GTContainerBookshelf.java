@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.util.GTBookshelfFilter;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -10,7 +10,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GTContainerBookshelf extends ContainerTileComponent<GTTileEntityBookshelf> {
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/bookshelf.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/bookshelf.png");
 
 	public GTContainerBookshelf(InventoryPlayer player, GTTileEntityBookshelf tile) {
 		super(tile);

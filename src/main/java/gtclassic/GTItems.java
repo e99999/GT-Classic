@@ -13,18 +13,14 @@ import gtclassic.item.GTItemDust.GTItemDustTypes;
 import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemElement;
 import gtclassic.item.GTItemElement.GTItemElementTypes;
-import gtclassic.item.GTItemEnergyPack;
+import gtclassic.item.GTItemFile;
 import gtclassic.item.GTItemGem;
 import gtclassic.item.GTItemGem.GTItemGemTypes;
-import gtclassic.item.GTItemHammerIron;
+import gtclassic.item.GTItemHammer;
 import gtclassic.item.GTItemIngot;
 import gtclassic.item.GTItemIngot.GTItemIngotTypes;
 import gtclassic.item.GTItemPlasma;
 import gtclassic.item.GTItemPlasma.GTItemPlasmaTypes;
-import gtclassic.item.GTItemReactorHeat;
-import gtclassic.item.GTItemReactorHeat.GTItemHeatStorageTypes;
-import gtclassic.item.GTItemReactorRod;
-import gtclassic.item.GTItemReactorRod.GTItemRodTypes;
 import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSonictron;
 import gtclassic.item.GTItemSurvivalScanner;
@@ -53,7 +49,8 @@ public class GTItems {
 			chlorine = new GTItemElement(GTItemElementTypes.CHLORINE),
 			potassium = new GTItemElement(GTItemElementTypes.POTASSIUM),
 			nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN),
-			oxygen = new GTItemElement(GTItemElementTypes.OXYGEN);
+			oxygen = new GTItemElement(GTItemElementTypes.OXYGEN),
+			glassTube = new GTItemElement(GTItemElementTypes.EMPTY);
 
 	public static final GTItemPlasma plasmaHydrogen = new GTItemPlasma(GTItemPlasmaTypes.HYDROGEN),
 			plasmaNitrogen = new GTItemPlasma(GTItemPlasmaTypes.NITROGEN),
@@ -63,6 +60,7 @@ public class GTItems {
 
 	public static final GTItemDust dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
 			dustEnderEye = new GTItemDust(GTItemDustTypes.ENDER_EYE),
+			dustPlastic = new GTItemDust(GTItemDustTypes.PLASTIC),
 			dustLazurite = new GTItemDust(GTItemDustTypes.LAZURITE),
 			dustPyrite = new GTItemDust(GTItemDustTypes.PYRITE), dustCalcite = new GTItemDust(GTItemDustTypes.CALCITE),
 			dustFlint = new GTItemDust(GTItemDustTypes.FLINT), dustUranium = new GTItemDust(GTItemDustTypes.URANIUM),
@@ -83,40 +81,35 @@ public class GTItems {
 			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME),
 			ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM);
 
-	public static final GTItemReactorHeat heatStorageSingle = new GTItemReactorHeat(GTItemHeatStorageTypes.SINGLE),
-			heatStorageTriple = new GTItemReactorHeat(GTItemHeatStorageTypes.TRIPLE),
-			heatStorageSix = new GTItemReactorHeat(GTItemHeatStorageTypes.SIX);
-
-	public static final GTItemReactorRod rodThoriumSingle = new GTItemReactorRod(GTItemRodTypes.SINGLETHORIUM),
-			rodThoriumDouble = new GTItemReactorRod(GTItemRodTypes.DOUBLETHORIUM),
-			rodThoriumQuad = new GTItemReactorRod(GTItemRodTypes.QUADTHORIUM),
-			rodPlutoniumSingle = new GTItemReactorRod(GTItemRodTypes.SINGLEPLUTONIUM),
-			rodPlutoniumDouble = new GTItemReactorRod(GTItemRodTypes.DOUBLEPLUTONIUM),
-			rodPlutoniumQuad = new GTItemReactorRod(GTItemRodTypes.QUADPLUTONIUM);
-
-	public static final GTItemComponents glassTube = new GTItemComponents(GTItemComponentTypes.GLASS_TUBE),
-			energyFlowCircuit = new GTItemComponents(GTItemComponentTypes.ENERGY_FLOW_CIRCUIT),
-			dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
-			dataStorageCircuit = new GTItemComponents(GTItemComponentTypes.DATA_STORAGE_CIRCUIT),
-			dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB),
-			plateSilicon = new GTItemComponents(GTItemComponentTypes.SILICON_PLATE);
+	public static final GTItemComponents bouleSilicon = new GTItemComponents(GTItemComponentTypes.BOULE_SILICON),
+			plateSilicon = new GTItemComponents(GTItemComponentTypes.PLATE_SILICON),
+			platePlastic = new GTItemComponents(GTItemComponentTypes.PLATE_PLASTIC),
+			lensDiamond = new GTItemComponents(GTItemComponentTypes.LENS_DIAMOND),
+			lensRuby = new GTItemComponents(GTItemComponentTypes.LENS_RUBY),
+			lensEmerald = new GTItemComponents(GTItemComponentTypes.LENS_EMERALD),
+			lensSapphire = new GTItemComponents(GTItemComponentTypes.LENS_SAPPHIRE),
+			chipDiamond = new GTItemComponents(GTItemComponentTypes.CHIP_DIAMOND),
+			chipRuby = new GTItemComponents(GTItemComponentTypes.CHIP_RUBY),
+			chipEmerald = new GTItemComponents(GTItemComponentTypes.CHIP_EMERALD),
+			chipSapphire = new GTItemComponents(GTItemComponentTypes.CHIP_SAPPHIRE),
+			circuitEmpty = new GTItemComponents(GTItemComponentTypes.CIRCUIT_EMPTY),
+			circuitDiamond = new GTItemComponents(GTItemComponentTypes.CIRCUIT_DIAMOND),
+			circuitRuby = new GTItemComponents(GTItemComponentTypes.CIRCUIT_RUBY),
+			circuitEmerald = new GTItemComponents(GTItemComponentTypes.CIRCUIT_EMERALD),
+			circuitSapphire = new GTItemComponents(GTItemComponentTypes.CIRCUIT_SAPPHIRE);
 
 	public static final GTItemDuctTape braintechAerospaceARDT = new GTItemDuctTape();
 
 	public static final GTItemSonictron sonictronItem = new GTItemSonictron();
 	public static final GTItemDestructoPack destructoPack = new GTItemDestructoPack();
 	public static final GTItemCraftingTablet craftingTablet = new GTItemCraftingTablet();
-	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
+	public static final GTItemFile fileIron = new GTItemFile();
+	public static final GTItemHammer hammerIron = new GTItemHammer();
 	public static final GTItemElectromagnet electroMagnet = new GTItemElectromagnet();
 	public static final GTItemRockCutter rockCutter = new GTItemRockCutter();
 	public static final GTItemDrill advancedDrill = new GTItemDrill();
 	public static final GTItemChainsaw advancedChainsaw = new GTItemChainsaw();
 	public static final GTItemTeslaStaff teslaStaff = new GTItemTeslaStaff();
-
-	public static final GTItemEnergyPack lithiumBatpack = new GTItemEnergyPack(58,
-			"gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128);
-	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45,
-			"gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192);
 
 	public static final GTItemCreativeScanner debugScanner = new GTItemCreativeScanner();
 	public static final GTItemSurvivalScanner portableScanner = new GTItemSurvivalScanner();
@@ -125,13 +118,17 @@ public class GTItems {
 			medLithium = new GTBatteryBuilder(GTBlocks.medLithium, 200000, 256, 2),
 			largeLithium = new GTBatteryBuilder(GTBlocks.largeLithium, 400000, 512, 3),
 
-			smallEnergium = new GTBatteryBuilder(GTBlocks.smallEnergium, 100000, 256, 2),
-			medEnergium = new GTBatteryBuilder(GTBlocks.medEnergium, 1000000, 512, 3),
-			largeEnergium = new GTBatteryBuilder(GTBlocks.largeEnergium, 10000000, 1024, 4),
+			tinyEnergium = new GTBatteryBuilder(GTBlocks.tinyEnergium, 100000, 256, 2),
+			smallEnergium = new GTBatteryBuilder(GTBlocks.smallEnergium, 1000000, 512, 3),
+			medEnergium = new GTBatteryBuilder(GTBlocks.medEnergium, 10000000, 1024, 4),
+			largeEnergium = new GTBatteryBuilder(GTBlocks.largeEnergium, 100000000, 4096, 5),
+			hugeEnergium = new GTBatteryBuilder(GTBlocks.hugeEnergium, 1000000000, 8192, 6),
 
-			smallLapotron = new GTBatteryBuilder(GTBlocks.smallLapotron, 1000000, 1024, 3),
-			medLapotron = new GTBatteryBuilder(GTBlocks.medLapotron, 10000000, 4096, 4),
-			largeLapotron = new GTBatteryBuilder(GTBlocks.largeLapotron, 100000000, 8192, 5);
+			tinyLapotron = new GTBatteryBuilder(GTBlocks.tinyLapotron, 1000000, 1024, 3),
+			smallLapotron = new GTBatteryBuilder(GTBlocks.smallLapotron, 10000000, 4096, 4),
+			medLapotron = new GTBatteryBuilder(GTBlocks.medLapotron, 100000000, 8192, 5),
+			largeLapotron = new GTBatteryBuilder(GTBlocks.largeLapotron, 1000000000, 16384, 6),
+			hugeLapotron = new GTBatteryBuilder(GTBlocks.hugeLapotron, Integer.MAX_VALUE, 32768, 7);
 
 	public static final Item[] items = {
 
@@ -142,31 +139,32 @@ public class GTItems {
 
 			dustEnderpearl, dustEnderEye, dustLazurite, dustPyrite, dustCalcite, dustFlint, dustUranium, dustBauxite,
 			dustAluminium, dustTitanium, dustChrome, dustRuby, dustSapphire, dustGreenSapphire, dustEmerald,
-			dustSodalite,
+			dustSodalite, dustPlastic,
 
-			ruby, sapphire, ingotAluminium, ingotTitanium, ingotChrome, ingotIridium, plateSilicon,
+			ruby, sapphire, ingotAluminium, ingotTitanium, ingotChrome, ingotIridium,
 
-			heatStorageSingle, heatStorageTriple, heatStorageSix,
+			bouleSilicon, plateSilicon, platePlastic, lensDiamond, lensRuby, lensEmerald, lensSapphire, chipDiamond,
+			chipRuby, chipEmerald, chipSapphire, circuitEmpty, circuitDiamond, circuitRuby, circuitEmerald,
+			circuitSapphire,
 
-			rodThoriumSingle, rodThoriumDouble, rodThoriumQuad, rodPlutoniumSingle, rodPlutoniumDouble,
-			rodPlutoniumQuad,
+			fileIron, hammerIron, braintechAerospaceARDT, sonictronItem, destructoPack, craftingTablet, electroMagnet,
+			rockCutter, advancedDrill, advancedChainsaw, teslaStaff, portableScanner, debugScanner,
 
-			energyFlowCircuit, dataControlCircuit, dataStorageCircuit, dataOrb, braintechAerospaceARDT,
+			smallLithium, medLithium, largeLithium,
 
-			sonictronItem, destructoPack, craftingTablet, hammerIron, electroMagnet, rockCutter, advancedDrill,
-			advancedChainsaw, teslaStaff, lithiumBatpack, lapotronPack, portableScanner, debugScanner,
+			tinyLapotron, smallLapotron, medLapotron, largeLapotron, hugeLapotron,
 
-			smallLithium, medLithium, largeLithium, smallLapotron, medLapotron, largeLapotron, //smallEnergium,
-			medEnergium, largeEnergium,
+			tinyEnergium, smallEnergium, medEnergium, largeEnergium, hugeEnergium,
 
 	};
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
-		GTClassic.logger.info("Registering Items");
+		GTMod.logger.info("Registering Items");
 		for (Item item : items) {
 			registry.register(item);
 		}
 	}
+
 }

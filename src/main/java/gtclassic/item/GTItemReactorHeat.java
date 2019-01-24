@@ -3,8 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTClassic;
-import gtclassic.GTItems;
+import gtclassic.GTMod;
 import ic2.api.reactor.IReactor;
 import ic2.core.item.reactor.ItemReactorHeatStorageBase;
 import ic2.core.platform.textures.Ic2Icons;
@@ -36,8 +35,8 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	public GTItemReactorHeat(GTItemHeatStorageTypes variant) {
 		this.variant = variant;
 		setRegistryName("heatstorage_" + variant.toString().toLowerCase());
-		setUnlocalizedName(GTClassic.MODID + ".heatstorage_" + variant.toString().toLowerCase());
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + ".heatstorage_" + variant.toString().toLowerCase());
+		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
@@ -48,10 +47,10 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures("gtclassic_items")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
 	}
 
-	@Override
+	/*@Override
 	public int getMaxCustomDamage(ItemStack stack) {
 		if (this == GTItems.heatStorageSingle) {
 			return 10000;
@@ -64,7 +63,7 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 		} else {
 			return 0;
 		}
-	}
+	}*/
 
 	@Override
 	public List<ReactorComponentStat> getExtraStats(ItemStack stack) {

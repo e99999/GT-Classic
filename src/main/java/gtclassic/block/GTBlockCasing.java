@@ -2,7 +2,7 @@ package gtclassic.block;
 
 import java.util.List;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -25,7 +25,7 @@ public class GTBlockCasing extends Block implements ITexturedBlock {
 	public enum GTBlockCasingVariants {
 		IRON(50), ALUMINIUM(51), TITANIUM(52), CHROME(53), IRIDIUM(54), TUNGSTEN(55),
 
-		SUPERCONDUCTOR(0), FUSION(1), LESU(5);
+		SUPERCONDUCTOR(0), FUSION(1), FISSION(2), CRYSTAL(3);
 
 		private int id;
 
@@ -44,8 +44,8 @@ public class GTBlockCasing extends Block implements ITexturedBlock {
 		super(Material.IRON);
 		this.variant = variant;
 		setRegistryName("casing_" + variant.toString().toLowerCase());
-		setUnlocalizedName(GTClassic.MODID + "." + "casing_" + variant.toString().toLowerCase());
-		setCreativeTab(GTClassic.creativeTabGT);
+		setUnlocalizedName(GTMod.MODID + "." + "casing_" + variant.toString().toLowerCase());
+		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
 		setResistance(30.0F);
 		setSoundType(SoundType.METAL);
@@ -60,7 +60,7 @@ public class GTBlockCasing extends Block implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures("gtclassic_blocks")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[variant.getID()];
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class GTBlockCasing extends Block implements ITexturedBlock {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTClassic.MODID + ".nomobs"));
+		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".nomobs"));
 	}
 
 	@Override

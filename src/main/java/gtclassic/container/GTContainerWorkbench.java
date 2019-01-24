@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntityWorkbench;
 import gtclassic.util.gui.GTGuiCompBasicString;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -28,7 +28,7 @@ public class GTContainerWorkbench extends ContainerTileComponent<GTTileEntityWor
 	private final BlockPos pos;
 	private final EntityPlayer player;
 
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTClassic.MODID, "textures/gui/workbench.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/workbench.png");
 
 	public GTContainerWorkbench(InventoryPlayer player, GTTileEntityWorkbench tile) {
 		super(tile);
