@@ -3,7 +3,7 @@ package gtclassic.container;
 import static ic2.core.block.wiring.container.ContainerElectricBlock.VALID_EQUIPMENT_SLOTS;
 
 import gtclassic.GTMod;
-import gtclassic.tileentity.GTTileEntityEnergyStorage;
+import gtclassic.tileentity.GTTileEntityQuantumEnergyStorage;
 import gtclassic.util.gui.GTGuiCompEnergyBar;
 import gtclassic.util.gui.GTGuiCompEnergyStorage;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -19,7 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerEnergyStorage extends ContainerTileComponent<GTTileEntityEnergyStorage> {
+public class GTContainerQuantumEnergyStorage extends ContainerTileComponent<GTTileEntityQuantumEnergyStorage> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/energystorage.png");
 
@@ -27,7 +27,7 @@ public class GTContainerEnergyStorage extends ContainerTileComponent<GTTileEntit
 																		// xy
 	public static Vec2i chargeProgressPos = new Vec2i(0, 251); // where the overlay is located
 
-	public GTContainerEnergyStorage(InventoryPlayer player, GTTileEntityEnergyStorage tile) {
+	public GTContainerQuantumEnergyStorage(InventoryPlayer player, GTTileEntityQuantumEnergyStorage tile) {
 
 		super(tile);
 		this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50));
@@ -38,8 +38,8 @@ public class GTContainerEnergyStorage extends ContainerTileComponent<GTTileEntit
 		}
 
 		this.addComponent(new GTGuiCompEnergyStorage(tile));
-		this.addComponent(new GTGuiCompEnergyBar(tile, GTContainerEnergyStorage.chargeProgressBox,
-				GTContainerEnergyStorage.chargeProgressPos));
+		this.addComponent(new GTGuiCompEnergyBar(tile, GTContainerQuantumEnergyStorage.chargeProgressBox,
+				GTContainerQuantumEnergyStorage.chargeProgressPos));
 		this.addPlayerInventory(player);
 	}
 

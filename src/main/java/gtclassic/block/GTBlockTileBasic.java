@@ -7,16 +7,16 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.tileentity.GTTileEntityBasicEnergyStorage;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.tileentity.GTTileEntityComputerCube;
-import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
-import gtclassic.tileentity.GTTileEntityEnergyStorage;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.tileentity.GTTileEntityLapotronicEnergyStorage;
 import gtclassic.tileentity.GTTileEntityLargeChest;
 import gtclassic.tileentity.GTTileEntityLightningRod;
+import gtclassic.tileentity.GTTileEntityMultiEnergyStorage;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
+import gtclassic.tileentity.GTTileEntityQuantumEnergyStorage;
 import gtclassic.tileentity.GTTileEntitySmallChest;
 import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import gtclassic.tileentity.GTTileEntityWorkbench;
@@ -44,7 +44,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTBlockTileBasic extends BlockMultiID {
 
 	public enum GTBlockTileBasicVariants {
-		MACHINE_ADVANCEDENERGYSTORAGE_EV, 
+		MACHINE_QUANTUMENERGYSTORAGE_EV, 
 		MACHINE_AUTOCRAFTER_LV, 
 		MACHINE_BASICENERGYSTORAGE_EV, 
 		MACHINE_CHARGEOMAT_EV, 
@@ -111,11 +111,11 @@ public class GTBlockTileBasic extends BlockMultiID {
 		} else if (this == GTBlocks.fusionComputer) {
 			return new GTTileEntityFusionComputer();
 		} else if (this == GTBlocks.HESU) {
-			return new GTTileEntityEnergyStorage();
+			return new GTTileEntityBasicEnergyStorage();
 		} else if (this == GTBlocks.IDSU) {
-			return new GTTileEntityDimensionalEnergyStorage();
+			return new GTTileEntityQuantumEnergyStorage();
 		} else if (this == GTBlocks.LESU) {
-			return new GTTileEntityLapotronicEnergyStorage();
+			return new GTTileEntityMultiEnergyStorage();
 		} else if (this == GTBlocks.superCondensator) {
 			return new GTTileEntitySuperCondensator();
 		} else if (this == GTBlocks.quantumChest) {

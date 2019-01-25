@@ -11,16 +11,16 @@ import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileBasic.GTBlockTileBasicVariants;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.GTBlockTileCustom.GTBlockTileCustomVariants;
+import gtclassic.tileentity.GTTileEntityBasicEnergyStorage;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.tileentity.GTTileEntityComputerCube;
-import gtclassic.tileentity.GTTileEntityDimensionalEnergyStorage;
-import gtclassic.tileentity.GTTileEntityEnergyStorage;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.tileentity.GTTileEntityLapotronicEnergyStorage;
 import gtclassic.tileentity.GTTileEntityLargeChest;
 import gtclassic.tileentity.GTTileEntityLightningRod;
+import gtclassic.tileentity.GTTileEntityMultiEnergyStorage;
 import gtclassic.tileentity.GTTileEntityQuantumChest;
+import gtclassic.tileentity.GTTileEntityQuantumEnergyStorage;
 import gtclassic.tileentity.GTTileEntitySmallChest;
 import gtclassic.tileentity.GTTileEntitySuperCondensator;
 import gtclassic.tileentity.GTTileEntityWorkbench;
@@ -73,7 +73,7 @@ public class GTBlocks {
 			sonictronBlock = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_SONICTRON_LV),
 			fusionComputer = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_FUSIONCOMPUTER_IV),
 			lightningRod = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LIGHTNINGROD_IV),
-			IDSU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_ADVANCEDENERGYSTORAGE_EV),
+			IDSU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_QUANTUMENERGYSTORAGE_EV),
 			HESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_BASICENERGYSTORAGE_EV),
 			LESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_MULTIENERGYSTORAGE_MV),
 			superCondensator = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_SUPERCONDENSATOR_IV),
@@ -137,7 +137,8 @@ public class GTBlocks {
 			smallThorium, medThorium, largeThorium, smallPlutonium, medPlutonium, largePlutonium,
 
 			smallLithium, medLithium, largeLithium, tinyLapotron, smallLapotron, medLapotron, largeLapotron,
-			hugeLapotron, tinyEnergium, smallEnergium, medEnergium, largeEnergium, hugeEnergium,
+			hugeLapotron, 
+			tinyEnergium, smallEnergium, medEnergium, largeEnergium, hugeEnergium,
 
 	};
 
@@ -178,11 +179,11 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileEntityWorkbench.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityWorkbench"));
 
-		GameRegistry.registerTileEntity(GTTileEntityEnergyStorage.class,
+		GameRegistry.registerTileEntity(GTTileEntityBasicEnergyStorage.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityHESU"));
-		GameRegistry.registerTileEntity(GTTileEntityDimensionalEnergyStorage.class,
+		GameRegistry.registerTileEntity(GTTileEntityQuantumEnergyStorage.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIDSU"));
-		GameRegistry.registerTileEntity(GTTileEntityLapotronicEnergyStorage.class,
+		GameRegistry.registerTileEntity(GTTileEntityMultiEnergyStorage.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityLESU"));
 
 		GameRegistry.registerTileEntity(GTTileEntityLightningRod.class,

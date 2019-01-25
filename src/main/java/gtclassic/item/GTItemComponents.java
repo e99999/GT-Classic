@@ -3,7 +3,6 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
