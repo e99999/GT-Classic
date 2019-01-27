@@ -61,8 +61,7 @@ public class GTBlocks {
 	public static final GTBlockOre iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
 			rubyOre = new GTBlockOre(GTBlockOreVariants.RUBY),
 			sapphireOre = new GTBlockOre(GTBlockOreVariants.SAPPHIRE),
-			bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE),
-			iridiumEnd = new GTBlockOre(GTBlockOreVariants.IRIDIUM_END);
+			bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE);
 
 	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
@@ -132,7 +131,7 @@ public class GTBlocks {
 
 			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock,tungstenBlock,platinumBlock, iridiumBlock,
 
-			rubyOre, sapphireOre, bauxiteOre, sandIron, iridiumOre, iridiumEnd,
+			rubyOre, sapphireOre, bauxiteOre, sandIron, iridiumOre,
 
 			autoCrafter, chargeOMat, computerCube, industrialCentrifuge, matterFabricator, uuMatterAssembler,
 			playerDetector, echophoneBlock, fusionComputer, lightningRod,

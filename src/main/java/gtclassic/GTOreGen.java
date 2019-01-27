@@ -37,10 +37,7 @@ public class GTOreGen implements IWorldGenerator {
 
 		case THE_END:
 
-			if (GTConfig.genIridium) {
-				runGenerator(GTBlocks.iridiumEnd.getDefaultState(), 2, 6, 10, 30,
-						BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-			}
+			//TODO fill this
 
 			break;
 
