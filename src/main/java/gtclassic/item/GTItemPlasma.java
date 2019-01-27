@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemPlasma extends Item implements IStaticTexturedItem {
 
 	public enum GTItemPlasmaTypes {
-		HYDROGEN(16), NITROGEN(15), OXYGEN(16), HELIUM(3), IRON(14);
+		HYDROGEN(0), NITROGEN(15), OXYGEN(0), HELIUM(3), IRON(14);
 
 		private int id;
 

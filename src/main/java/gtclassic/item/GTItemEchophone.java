@@ -15,13 +15,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemSonictron extends ItemIC2 {
+public class GTItemEchophone extends ItemIC2 {
 
-	public GTItemSonictron() {
+	public GTItemEchophone() {
 		this.maxStackSize = 1;
 		this.setCreativeTab(GTMod.creativeTabGT);
-		this.setRegistryName("sonictron_item");
-		this.setUnlocalizedName(GTMod.MODID + ".sonictronItem");
+		this.setRegistryName("echophone_item");
+		this.setUnlocalizedName(GTMod.MODID + ".echophoneItem");
 	}
 
 	@Override

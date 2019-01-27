@@ -21,8 +21,11 @@ import gtclassic.item.GTItemIngot;
 import gtclassic.item.GTItemIngot.GTItemIngotTypes;
 import gtclassic.item.GTItemPlasma;
 import gtclassic.item.GTItemPlasma.GTItemPlasmaTypes;
+import gtclassic.item.GTItemReactorRod.GTItemRodTypes;
+import gtclassic.item.GTItemStick.GTItemStickTypes;
 import gtclassic.item.GTItemRockCutter;
-import gtclassic.item.GTItemSonictron;
+import gtclassic.item.GTItemStick;
+import gtclassic.item.GTItemEchophone;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
 import gtclassic.util.GTBatteryBuilder;
@@ -37,7 +40,6 @@ public class GTItems {
 			dueterium = new GTItemElement(GTItemElementTypes.DEUTERIUM),
 			tritium = new GTItemElement(GTItemElementTypes.TRITIUM),
 			helium = new GTItemElement(GTItemElementTypes.HELIUM),
-			tungsten = new GTItemElement(GTItemElementTypes.TUNGSTEN),
 			lithium = new GTItemElement(GTItemElementTypes.LITHIUM),
 			helium3 = new GTItemElement(GTItemElementTypes.HELIUM3),
 			silicon = new GTItemElement(GTItemElementTypes.SILICON),
@@ -60,7 +62,6 @@ public class GTItems {
 
 	public static final GTItemDust dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
 			dustEnderEye = new GTItemDust(GTItemDustTypes.ENDER_EYE),
-			dustPlastic = new GTItemDust(GTItemDustTypes.PLASTIC),
 			dustLazurite = new GTItemDust(GTItemDustTypes.LAZURITE),
 			dustPyrite = new GTItemDust(GTItemDustTypes.PYRITE), dustCalcite = new GTItemDust(GTItemDustTypes.CALCITE),
 			dustFlint = new GTItemDust(GTItemDustTypes.FLINT), dustUranium = new GTItemDust(GTItemDustTypes.URANIUM),
@@ -71,7 +72,10 @@ public class GTItems {
 			dustSapphire = new GTItemDust(GTItemDustTypes.SAPPHIRE),
 			dustGreenSapphire = new GTItemDust(GTItemDustTypes.GREEN_SAPPHIRE),
 			dustEmerald = new GTItemDust(GTItemDustTypes.EMERALD),
-			dustSodalite = new GTItemDust(GTItemDustTypes.SODALITE);
+			dustSodalite = new GTItemDust(GTItemDustTypes.SODALITE),
+			dustPlatinum = new GTItemDust(GTItemDustTypes.PLATINUM),
+			dustTungsten = new GTItemDust(GTItemDustTypes.TUNGSTEN),
+			dustPlastic = new GTItemDust(GTItemDustTypes.PLASTIC);
 
 	public static final GTItemGem ruby = new GTItemGem(GTItemGemTypes.RUBY),
 			sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE);
@@ -79,7 +83,17 @@ public class GTItems {
 	public static final GTItemIngot ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),
 			ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
 			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME),
-			ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM);
+			ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM),
+			ingotTungsten = new GTItemIngot(GTItemIngotTypes.TUNGSTEN),
+			ingotPlatinum = new GTItemIngot(GTItemIngotTypes.PLATINUM);
+	
+	public static final GTItemStick stickAluminium = new GTItemStick(GTItemStickTypes.ALUMINIUM),
+			stickTitanium = new GTItemStick(GTItemStickTypes.TITANIUM),
+			stickChrome = new GTItemStick(GTItemStickTypes.CHROME),
+			stickIron = new GTItemStick(GTItemStickTypes.IRON),
+			stickTungsten = new GTItemStick(GTItemStickTypes.TUNGSTEN),
+			stickPlatinum = new GTItemStick(GTItemStickTypes.PLATINUM);
+			
 
 	public static final GTItemComponents bouleSilicon = new GTItemComponents(GTItemComponentTypes.BOULE_SILICON),
 			plateSilicon = new GTItemComponents(GTItemComponentTypes.PLATE_SILICON),
@@ -100,7 +114,7 @@ public class GTItems {
 
 	public static final GTItemDuctTape braintechAerospaceARDT = new GTItemDuctTape();
 
-	public static final GTItemSonictron sonictronItem = new GTItemSonictron();
+	public static final GTItemEchophone sonictronItem = new GTItemEchophone();
 	public static final GTItemDestructoPack destructoPack = new GTItemDestructoPack();
 	public static final GTItemCraftingTablet craftingTablet = new GTItemCraftingTablet();
 	public static final GTItemFile fileIron = new GTItemFile();
@@ -132,16 +146,17 @@ public class GTItems {
 
 	public static final Item[] items = {
 
-			hydrogen, dueterium, tritium, helium, tungsten, lithium, helium3, silicon, carbon, methane, berilium,
+			hydrogen, dueterium, tritium, helium, lithium, helium3, silicon, carbon, methane, berilium,
 			calcium, sodium, chlorine, potassium, nitrogen, oxygen,
 
 			plasmaHydrogen, plasmaNitrogen, plasmaOxygen, plasmaHelium, plasmaIron, glassTube,
 
 			dustEnderpearl, dustEnderEye, dustLazurite, dustPyrite, dustCalcite, dustFlint, dustUranium, dustBauxite,
-			dustAluminium, dustTitanium, dustChrome, dustRuby, dustSapphire, dustGreenSapphire, dustEmerald,
+			dustAluminium, dustTitanium, dustChrome, dustTungsten, dustPlatinum, dustRuby, dustSapphire, dustGreenSapphire, dustEmerald,
 			dustSodalite, dustPlastic,
 
-			ruby, sapphire, ingotAluminium, ingotTitanium, ingotChrome, ingotIridium,
+			ruby, sapphire, ingotAluminium, ingotTitanium, ingotChrome,ingotTungsten, ingotPlatinum, ingotIridium,
+			stickIron, stickAluminium, stickTitanium, stickChrome, stickTungsten, stickPlatinum,
 
 			bouleSilicon, plateSilicon, platePlastic, lensDiamond, lensRuby, lensEmerald, lensSapphire, chipDiamond,
 			chipRuby, chipEmerald, chipSapphire, circuitEmpty, circuitDiamond, circuitRuby, circuitEmerald,

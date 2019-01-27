@@ -15,10 +15,11 @@ import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeChest;
 import gtclassic.tileentity.GTTileEntityLightningRod;
 import gtclassic.tileentity.GTTileEntityMultiEnergyStorage;
-import gtclassic.tileentity.GTTileEntityQuantumChest;
+import gtclassic.tileentity.GTTileEntityDigitalChest;
 import gtclassic.tileentity.GTTileEntityQuantumEnergyStorage;
 import gtclassic.tileentity.GTTileEntitySmallChest;
-import gtclassic.tileentity.GTTileEntitySuperCondensator;
+import gtclassic.tileentity.GTTileEntitySuperConductor;
+import gtclassic.tileentity.GTTileEntityDigitalTransformer;
 import gtclassic.tileentity.GTTileEntityWorkbench;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -44,25 +45,30 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTBlockTileBasic extends BlockMultiID {
 
 	public enum GTBlockTileBasicVariants {
-		MACHINE_QUANTUMENERGYSTORAGE_EV, 
 		MACHINE_AUTOCRAFTER_LV, 
 		MACHINE_BASICENERGYSTORAGE_EV, 
 		MACHINE_CHARGEOMAT_EV, 
 		MACHINE_COMPUTERCUBE_EV, 
 		MACHINE_FUSIONCOMPUTER_IV, 
-		MACHINE_INDUSTRIALCENTRIFUGE_LV,
-		MACHINE_LIGHTNINGROD_IV, 
+		MACHINE_INDUSTRIALCENTRIFUGE_LV, 
+		MACHINE_LIGHTNINGROD_IV,
 		MACHINE_MATTERFABRICATOR_EV, 
 		MACHINE_MULTIENERGYSTORAGE_MV, 
 		MACHINE_PLAYERDETECTOR_LV, 
-		MACHINE_SONICTRON_LV, 
-		MACHINE_SUPERCONDENSATOR_IV, 
+		MACHINE_QUANTUMENERGYSTORAGE_EV, 
+		MACHINE_ECHOPHONE_LV, 
+		MACHINE_DIGITALTRANSFORMER_IV, 
 		MACHINE_UUMASSEMBLER_EV, 
 		TILE_BOOKSHELF_LV, 
-		TILE_LARGECHEST_LV,
-		TILE_QUANTUMCHEST_LV, 
-		TILE_SMALLCHEST_LV, 
-		TILE_WORKBENCH_LV,
+		TILE_BOOKSHELF_MV,
+		TILE_LARGECHEST_LV, 
+		TILE_LARGECHEST_MV, 
+		TILE_DIGITALCHEST_LV,
+		TILE_DIGITALCHEST_MV, 
+		TILE_SMALLCHEST_LV,
+		TILE_SMALLCHEST_MV, 
+		TILE_WORKBENCH_LV, 
+		TILE_WORKBENCH_MV,
 		//WIRE_TUNGSTEN_IV,
 		WIRE_ENERGIUM_LUV, 
 		WIRE_LAPOTRON_ZPM;
@@ -116,18 +122,20 @@ public class GTBlockTileBasic extends BlockMultiID {
 			return new GTTileEntityQuantumEnergyStorage();
 		} else if (this == GTBlocks.LESU) {
 			return new GTTileEntityMultiEnergyStorage();
-		} else if (this == GTBlocks.superCondensator) {
-			return new GTTileEntitySuperCondensator();
-		} else if (this == GTBlocks.quantumChest) {
-			return new GTTileEntityQuantumChest();
-		} else if (this == GTBlocks.smallChest) {
+		} else if (this == GTBlocks.digitalTransformerIV) {
+			return new GTTileEntityDigitalTransformer(32768, 65535);
+		} else if (this == GTBlocks.digitalChestLV || this == GTBlocks.digitalChestMV) {
+			return new GTTileEntityDigitalChest();
+		} else if (this == GTBlocks.smallChestLV || this == GTBlocks.smallChestMV) {
 			return new GTTileEntitySmallChest();
-		} else if (this == GTBlocks.largeChest) {
+		} else if (this == GTBlocks.largeChestLV || this == GTBlocks.largeChestMV) {
 			return new GTTileEntityLargeChest();
-		} else if (this == GTBlocks.bookShelf) {
+		} else if (this == GTBlocks.bookShelfLV || this == GTBlocks.bookShelfMV) {
 			return new GTTileEntityBookshelf();
-		} else if (this == GTBlocks.workBench) {
+		} else if (this == GTBlocks.workBenchLV || this == GTBlocks.workBenchMV ) {
 			return new GTTileEntityWorkbench();
+		} else if (this == GTBlocks.energiumWire) {
+			return new GTTileEntitySuperConductor(1.5D, 32769.0D);
 		} else {
 			return new TileEntityBlock();
 		}

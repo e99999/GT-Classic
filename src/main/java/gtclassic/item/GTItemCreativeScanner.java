@@ -3,7 +3,7 @@ package gtclassic.item;
 import gtclassic.GTMod;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityLightningRod;
-import gtclassic.tileentity.GTTileEntityQuantumChest;
+import gtclassic.tileentity.GTTileEntityDigitalChest;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
@@ -126,8 +126,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				return EnumActionResult.SUCCESS;
 			}
 
-			if (tileEntity instanceof GTTileEntityQuantumChest) {
-				GTTileEntityQuantumChest te2 = (GTTileEntityQuantumChest) tileEntity;
+			if (tileEntity instanceof GTTileEntityDigitalChest) {
+				GTTileEntityDigitalChest te2 = (GTTileEntityDigitalChest) tileEntity;
 				IC2.platform.messagePlayer(player, "---Quantum Chest Information---");
 				IC2.platform.messagePlayer(player, "Display Count: " + te2.getDisplayCount());
 				IC2.platform.messagePlayer(player, "Internal Count: " + te2.getQuantumCount());

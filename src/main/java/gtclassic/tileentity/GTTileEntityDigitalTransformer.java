@@ -4,10 +4,10 @@ import ic2.api.classic.network.adv.IBitLevelOverride;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.block.base.tile.TileEntityTransformer;
 
-public class GTTileEntitySuperCondensator extends TileEntityTransformer implements IBitLevelOverride {
+public class GTTileEntityDigitalTransformer extends TileEntityTransformer implements IBitLevelOverride {
 
-	public GTTileEntitySuperCondensator() {
-		super(32768, 65535, 65535);
+	public GTTileEntityDigitalTransformer(int high, int low) {
+		super(low, high, high);
 	}
 
 	@Override

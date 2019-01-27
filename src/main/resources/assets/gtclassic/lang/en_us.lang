@@ -12,14 +12,14 @@ tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
 tile.gtclassic.matterfabricator.name=Matter Fabricator
 tile.gtclassic.playerdetector.name=Player Detector
 tile.gtclassic.uumassembler.name=UU Matter Assembler
-tile.gtclassic.sonictron.name=Sonictron
+tile.gtclassic.machine_echophone_lv.name=Echophone
 
 #storage blocks
 tile.gtclassic.bookshelf.name=Metal Bookshelf
 tile.gtclassic.workbench.name=Basic Workbench
 tile.gtclassic.smallchest.name=Metal Chest
 tile.gtclassic.largechest.name=Large Metal Chest
-tile.gtclassic.quantumchest.name=Quantum Chest
+tile.gtclassic.digitalchest.name=Digital Chest
 
 #energy blocks
 tile.gtclassic.lightningrod.name=Lightning Rod
@@ -37,7 +37,6 @@ tile.gtclassic.sapphire_block.name=Sapphire Block
 tile.gtclassic.chrome_block.name=Chrome Block
 tile.gtclassic.aluminium_block.name=Aluminium Block
 tile.gtclassic.titanium_block.name=Titanium Block
-tile.gtclassic.tungsten_iridium_block.name=Tungsten Reinforced Iridium Stone
 
 #ore
 tile.gtclassic.bauxite_ore.name=Bauxite Ore

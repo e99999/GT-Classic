@@ -27,7 +27,7 @@ public class GTValues {
 
 	public static LocaleComp smallchest = new LocaleBlockComp("tile." + GTMod.MODID + ".smallchest");
 	public static LocaleComp largechest = new LocaleBlockComp("tile." + GTMod.MODID + ".largechest");
-	public static LocaleComp quantumchest = new LocaleBlockComp("tile." + GTMod.MODID + ".quantumchest");
+	public static LocaleComp digitalchest = new LocaleBlockComp("tile." + GTMod.MODID + ".digitalchest");
 	public static LocaleComp bookshelf = new LocaleBlockComp("tile." + GTMod.MODID + ".bookshelf");
 
 	public static LocaleComp centrifugeEU = new LocaleJEIInfoComp("jei.centrifugeu.name");

@@ -37,7 +37,7 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), new String[] { "fusion" });
 			// TODO remove the ic2 worktable once Speiger patches it on his end
 			registry.addRecipeCatalyst(Ic2Items.industrialWorktable, new String[] { "minecraft.crafting" });
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBench), new String[] { "minecraft.crafting" });
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBenchLV), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.autoCrafter), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 

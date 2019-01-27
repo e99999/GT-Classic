@@ -3,7 +3,7 @@ package gtclassic.util.gui;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.tileentity.GTTileEntityQuantumChest;
+import gtclassic.tileentity.GTTileEntityDigitalChest;
 import gtclassic.util.GTValues;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTGuiCompQuantumChest extends GuiComponent {
 
-	GTTileEntityQuantumChest block;
+	GTTileEntityDigitalChest block;
 
-	public GTGuiCompQuantumChest(GTTileEntityQuantumChest tile) {
+	public GTGuiCompQuantumChest(GTTileEntityDigitalChest tile) {
 		super(Ic2GuiComp.nullBox);
 		this.block = tile;
 	}

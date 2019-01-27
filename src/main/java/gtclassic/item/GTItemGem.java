@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemGem extends Item implements IStaticTexturedItem {
 	public enum GTItemGemTypes {
-		RUBY(21), SAPPHIRE(22);
+		RUBY(17), SAPPHIRE(18);
 
 		private int id;
 

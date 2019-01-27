@@ -19,10 +19,11 @@ import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeChest;
 import gtclassic.tileentity.GTTileEntityLightningRod;
 import gtclassic.tileentity.GTTileEntityMultiEnergyStorage;
-import gtclassic.tileentity.GTTileEntityQuantumChest;
+import gtclassic.tileentity.GTTileEntityDigitalChest;
 import gtclassic.tileentity.GTTileEntityQuantumEnergyStorage;
 import gtclassic.tileentity.GTTileEntitySmallChest;
-import gtclassic.tileentity.GTTileEntitySuperCondensator;
+import gtclassic.tileentity.GTTileEntitySuperConductor;
+import gtclassic.tileentity.GTTileEntityDigitalTransformer;
 import gtclassic.tileentity.GTTileEntityWorkbench;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -42,6 +43,7 @@ public class GTBlocks {
 			chromeCasingBlock = new GTBlockCasing(GTBlockCasingVariants.CHROME),
 			iridiumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.IRIDIUM),
 			tungstenCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TUNGSTEN),
+			platinumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.PLATINUM),
 			superCasingBlock = new GTBlockCasing(GTBlockCasingVariants.SUPERCONDUCTOR),
 			fusionCasingBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
 			fissionCasingBlock = new GTBlockCasing(GTBlockCasingVariants.FISSION),
@@ -52,6 +54,8 @@ public class GTBlocks {
 			sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
 			aluminiumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINIUM),
 			titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM),
+			tungstenBlock = new GTBlockMetal(GTBlockMetalVariants.TUNGSTEN),
+			platinumBlock = new GTBlockMetal(GTBlockMetalVariants.PLATINUM),
 			chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME);
 
 	public static final GTBlockOre iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
@@ -70,20 +74,25 @@ public class GTBlocks {
 			matterFabricator = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_MATTERFABRICATOR_EV),
 			uuMatterAssembler = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_UUMASSEMBLER_EV),
 			playerDetector = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_PLAYERDETECTOR_LV),
-			sonictronBlock = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_SONICTRON_LV),
+			echophoneBlock = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_ECHOPHONE_LV),
 			fusionComputer = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_FUSIONCOMPUTER_IV),
 			lightningRod = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LIGHTNINGROD_IV),
 			IDSU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_QUANTUMENERGYSTORAGE_EV),
 			HESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_BASICENERGYSTORAGE_EV),
 			LESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_MULTIENERGYSTORAGE_MV),
-			superCondensator = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_SUPERCONDENSATOR_IV),
+			digitalTransformerIV = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_DIGITALTRANSFORMER_IV),
 			energiumWire = new GTBlockTileBasic(GTBlockTileBasicVariants.WIRE_ENERGIUM_LUV),
 			lapotronWire = new GTBlockTileBasic(GTBlockTileBasicVariants.WIRE_LAPOTRON_ZPM),
-			smallChest = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_SMALLCHEST_LV),
-			largeChest = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_LARGECHEST_LV),
-			quantumChest = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_QUANTUMCHEST_LV),
-			bookShelf = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_BOOKSHELF_LV),
-			workBench = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_WORKBENCH_LV);
+			smallChestLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_SMALLCHEST_LV),
+			largeChestLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_LARGECHEST_LV),
+			digitalChestLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_DIGITALCHEST_LV),
+			bookShelfLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_BOOKSHELF_LV),
+			workBenchLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_WORKBENCH_LV),
+			smallChestMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_SMALLCHEST_MV),
+			largeChestMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_LARGECHEST_MV),
+			digitalChestMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_DIGITALCHEST_MV),
+			bookShelfMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_BOOKSHELF_MV),
+			workBenchMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_WORKBENCH_MV);
 
 	public static final GTBlockTileCustom smallCoolant = new GTBlockTileCustom(
 			GTBlockTileCustomVariants.COOLANT_HELIUM_SMALL),
@@ -116,28 +125,30 @@ public class GTBlocks {
 
 	public static final Block[] blocks = {
 
-			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock, iridiumCasingBlock,
-			tungstenCasingBlock,
+			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock,
+			tungstenCasingBlock, platinumCasingBlock, iridiumCasingBlock,
 
 			superCasingBlock, fusionCasingBlock, fissionCasingBlock, crystalCasingBlock,
 
-			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock, iridiumBlock,
+			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock,tungstenBlock,platinumBlock, iridiumBlock,
 
 			rubyOre, sapphireOre, bauxiteOre, sandIron, iridiumOre, iridiumEnd,
 
 			autoCrafter, chargeOMat, computerCube, industrialCentrifuge, matterFabricator, uuMatterAssembler,
-			playerDetector, sonictronBlock, fusionComputer, lightningRod,
+			playerDetector, echophoneBlock, fusionComputer, lightningRod,
 
-			IDSU, HESU, LESU, superCondensator, energiumWire, lapotronWire,
+			IDSU, HESU, LESU, digitalTransformerIV, energiumWire, lapotronWire,
 
-			quantumChest, bookShelf, workBench, smallChest, largeChest,
+			digitalChestLV, bookShelfLV, workBenchLV, smallChestLV, largeChestLV,
+			digitalChestMV, bookShelfMV, workBenchMV, smallChestMV, largeChestMV,
 
 			smallCoolant, medCoolant, largeCoolant,
 
 			smallThorium, medThorium, largeThorium, smallPlutonium, medPlutonium, largePlutonium,
 
-			smallLithium, medLithium, largeLithium, tinyLapotron, smallLapotron, medLapotron, largeLapotron,
-			hugeLapotron, 
+			smallLithium, medLithium, largeLithium, 
+			tinyLapotron, smallLapotron, medLapotron, largeLapotron,hugeLapotron, 
+			
 			tinyEnergium, smallEnergium, medEnergium, largeEnergium, hugeEnergium,
 
 	};
@@ -165,14 +176,14 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
 		GameRegistry.registerTileEntity(GTTileEntityComputerCube.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityComputerCube"));
-		GameRegistry.registerTileEntity(GTTileEntitySuperCondensator.class,
-				new ResourceLocation(GTMod.MODID, "tileEntitySuperCondensator"));
+		GameRegistry.registerTileEntity(GTTileEntityDigitalTransformer.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityDigitalTransformer"));
 
 		GameRegistry.registerTileEntity(GTTileEntitySmallChest.class,
 				new ResourceLocation(GTMod.MODID, "tileEntitySmallChest"));
 		GameRegistry.registerTileEntity(GTTileEntityLargeChest.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityLargeChest"));
-		GameRegistry.registerTileEntity(GTTileEntityQuantumChest.class,
+		GameRegistry.registerTileEntity(GTTileEntityDigitalChest.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityQuantumChest"));
 		GameRegistry.registerTileEntity(GTTileEntityBookshelf.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityBookshelf"));
@@ -190,6 +201,8 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityLightningRod"));
 		GameRegistry.registerTileEntity(GTTileEntityFusionComputer.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityFusionComputer"));
+		GameRegistry.registerTileEntity(GTTileEntitySuperConductor.class,
+				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductor"));
 	}
 
 	@SuppressWarnings({ "unused", "deprecation" })

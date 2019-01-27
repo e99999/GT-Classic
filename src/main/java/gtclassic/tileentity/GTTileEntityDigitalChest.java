@@ -1,6 +1,6 @@
 package gtclassic.tileentity;
 
-import gtclassic.container.GTContainerQuantumChest;
+import gtclassic.container.GTContainerDigitalChest;
 import gtclassic.util.GTValues;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
@@ -19,19 +19,19 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasGui, ITickable {
+public class GTTileEntityDigitalChest extends TileEntityMachine implements IHasGui, ITickable {
 
 	int slotInput = 0;
 	int slotOutput = 1;
 	int slotDisplay = 2;
 
 	int maxSize = Integer.MAX_VALUE;
-	int quantumCount;
+	int digitalCount;
 
-	public GTTileEntityQuantumChest() {
+	public GTTileEntityDigitalChest() {
 		super(3);
-		this.quantumCount = 0;
-		this.addGuiFields(new String[] { "quantumCount" });
+		this.digitalCount = 0;
+		this.addGuiFields(new String[] { "digitalCount" });
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 	}
 
 	public boolean isSpace() {
-		if (this.quantumCount < maxSize) {
+		if (this.digitalCount < maxSize) {
 			return true;
 		} else {
 			return false;
@@ -52,30 +52,30 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 	}
 
 	public void updateGUI() {
-		this.getNetwork().updateTileGuiField(this, "quantumCount");
+		this.getNetwork().updateTileGuiField(this, "digitalCount");
 	}
 
 	public void initQuantum(int slot) {
-		this.quantumCount = (this.inventory.get(slot).getCount());
+		this.digitalCount = (this.inventory.get(slot).getCount());
 		updateGUI();
 	}
 
 	public void copySlotToQuantum(int slot) {
-		this.quantumCount = this.quantumCount + inventory.get(slot).getCount();
+		this.digitalCount = this.digitalCount + inventory.get(slot).getCount();
 		updateGUI();
 	}
 
 	public void removeQuantumToSlot(int size) {
-		this.quantumCount = this.quantumCount - size;
-		if (quantumCount < 0) {
-			quantumCount = 0;
+		this.digitalCount = this.digitalCount - size;
+		if (digitalCount < 0) {
+			digitalCount = 0;
 		}
 		updateGUI();
 	}
 
 	@Override
 	public void update() {
-		//TODO new data based quantum logic
+		//TODO new data based digital logic
 	}
 
 	public int getDisplayCount() {
@@ -83,24 +83,24 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 	}
 
 	public int getQuantumCount() {
-		return this.quantumCount;
+		return this.digitalCount;
 	}
 
 	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.quantumchest;
+		return GTValues.digitalchest;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.quantumCount = nbt.getInteger("quantumCount");
+		this.digitalCount = nbt.getInteger("digitalCount");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("quantumCount", this.quantumCount);
+		nbt.setInteger("digitalCount", this.digitalCount);
 		return nbt;
 	}
 
@@ -112,7 +112,7 @@ public class GTTileEntityQuantumChest extends TileEntityMachine implements IHasG
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerQuantumChest(player.inventory, this);
+		return new GTContainerDigitalChest(player.inventory, this);
 	}
 
 	@Override
