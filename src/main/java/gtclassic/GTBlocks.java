@@ -7,6 +7,7 @@ import gtclassic.block.GTBlockMetal.GTBlockMetalVariants;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockOre.GTBlockOreVariants;
 import gtclassic.block.GTBlockSandIron;
+import gtclassic.block.GTBlockTest;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileBasic.GTBlockTileBasicVariants;
 import gtclassic.block.GTBlockTileCustom;
@@ -142,6 +143,8 @@ public class GTBlocks {
 			medEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_MED),
 			largeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_LARGE),
 			hugeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_HUGE);
+	
+	public static final GTBlockTest testBlock = new GTBlockTest();
 
 	public static final Block[] blocks = {
 
@@ -200,6 +203,8 @@ public class GTBlocks {
 			tinyLapotron, smallLapotron, medLapotron, largeLapotron,hugeLapotron, 
 			
 			tinyEnergium, smallEnergium, medEnergium, largeEnergium, hugeEnergium,
+			
+			testBlock,
 
 	};
 

@@ -33,7 +33,4 @@ public class GTValues {
 
 	public static LocaleComp centrifugeEU = new LocaleJEIInfoComp("jei.centrifugeu.name");
 	
-	//bounding boxes
-	
-	 public static final AxisAlignedBB LAYER_AABB = new AxisAlignedBB(0.01D, 0.01D, 0.01D, .99D, 0.99D, 0.99D);
 }
