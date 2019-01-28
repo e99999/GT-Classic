@@ -4,6 +4,7 @@ import gtclassic.GTMod;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import net.minecraft.util.math.AxisAlignedBB;
 
 public class GTValues {
 
@@ -31,4 +32,8 @@ public class GTValues {
 	public static LocaleComp bookshelf = new LocaleBlockComp("tile." + GTMod.MODID + ".bookshelf");
 
 	public static LocaleComp centrifugeEU = new LocaleJEIInfoComp("jei.centrifugeu.name");
+	
+	//bounding boxes
+	
+	 public static final AxisAlignedBB LAYER_AABB = new AxisAlignedBB(0.01D, 0.01D, 0.01D, .99D, 0.99D, 0.99D);
 }
