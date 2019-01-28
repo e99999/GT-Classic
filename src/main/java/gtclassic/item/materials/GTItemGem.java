@@ -1,4 +1,4 @@
-package gtclassic.item;
+package gtclassic.item.materials;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +13,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemGem extends Item implements IStaticTexturedItem {
 	public enum GTItemGemTypes {
-		RUBY(17), SAPPHIRE(18);
+		RUBY(17),
+        SAPPHIRE(18),
+        GREEN_SAPPHIRE(19),
+        OLIVINE(22),
+        RED_GARNET(25),
+        YELLOW_GARNET(26);
 
 		private int id;
 
@@ -43,6 +48,6 @@ public class GTItemGem extends Item implements IStaticTexturedItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[variant.getID()];
 	}
 }

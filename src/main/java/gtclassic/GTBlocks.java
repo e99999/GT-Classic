@@ -14,16 +14,16 @@ import gtclassic.block.GTBlockTileCustom.GTBlockTileCustomVariants;
 import gtclassic.tileentity.GTTileEntityBasicEnergyStorage;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.tileentity.GTTileEntityComputerCube;
+import gtclassic.tileentity.GTTileEntityDigitalChest;
+import gtclassic.tileentity.GTTileEntityDigitalTransformer;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityLargeChest;
 import gtclassic.tileentity.GTTileEntityLightningRod;
 import gtclassic.tileentity.GTTileEntityMultiEnergyStorage;
-import gtclassic.tileentity.GTTileEntityDigitalChest;
 import gtclassic.tileentity.GTTileEntityQuantumEnergyStorage;
 import gtclassic.tileentity.GTTileEntitySmallChest;
 import gtclassic.tileentity.GTTileEntitySuperConductor;
-import gtclassic.tileentity.GTTileEntityDigitalTransformer;
 import gtclassic.tileentity.GTTileEntityWorkbench;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -49,19 +49,40 @@ public class GTBlocks {
 			fissionCasingBlock = new GTBlockCasing(GTBlockCasingVariants.FISSION),
 			crystalCasingBlock = new GTBlockCasing(GTBlockCasingVariants.CRYSTAL);
 
-	public static final GTBlockMetal iridiumBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM),
-			rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
-			sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
-			aluminiumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINIUM),
-			titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM),
-			tungstenBlock = new GTBlockMetal(GTBlockMetalVariants.TUNGSTEN),
-			platinumBlock = new GTBlockMetal(GTBlockMetalVariants.PLATINUM),
-			chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME);
+	public static final GTBlockMetal
+	rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
+	sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
+	aluminiumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINIUM),
+	titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM),
+	chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME),
+	steelBlock = new GTBlockMetal(GTBlockMetalVariants.STEEL),
+	brassBlock = new GTBlockMetal(GTBlockMetalVariants.BRASS),
+	leadBlock = new GTBlockMetal(GTBlockMetalVariants.LEAD),
+	electrumBlock = new GTBlockMetal(GTBlockMetalVariants.ELECTRUM),
+	zincBlock = new GTBlockMetal(GTBlockMetalVariants.ZINC),
+	olivineBlock = new GTBlockMetal(GTBlockMetalVariants.OLIVINE),
+	greenSapphireBlock = new GTBlockMetal(GTBlockMetalVariants.GREEN_SAPPHIRE),
+	platinumBlock = new GTBlockMetal(GTBlockMetalVariants.PLATINUM),
+	tungstenBlock = new GTBlockMetal(GTBlockMetalVariants.TUNGSTEN),
+	nickelBlock = new GTBlockMetal(GTBlockMetalVariants.NICKEL),
+	tungstensteelBlock = new GTBlockMetal(GTBlockMetalVariants.TUNGSTENSTEEL),
+	invarBlock = new GTBlockMetal(GTBlockMetalVariants.INVAR),
+	osmiumBlock = new GTBlockMetal(GTBlockMetalVariants.OSMIUM),
+	iridiumBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM);
 
-	public static final GTBlockOre iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
-			rubyOre = new GTBlockOre(GTBlockOreVariants.RUBY),
-			sapphireOre = new GTBlockOre(GTBlockOreVariants.SAPPHIRE),
-			bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE);
+	public static final GTBlockOre
+    galenaOre = new GTBlockOre(GTBlockOreVariants.GALENA),
+    iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
+    rubyOre = new GTBlockOre(GTBlockOreVariants.RUBY),
+    sapphireOre = new GTBlockOre(GTBlockOreVariants.SAPPHIRE),
+    bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE),
+    pyriteOre = new GTBlockOre(GTBlockOreVariants.PYRITE),
+    cinnabarOre = new GTBlockOre(GTBlockOreVariants.CINNABAR),
+    sphaleriteOre = new GTBlockOre(GTBlockOreVariants.SPHALERITE),
+    tungstateOre = new GTBlockOre(GTBlockOreVariants.TUNGSTATE),
+    sheldoniteOre = new GTBlockOre(GTBlockOreVariants.SHELDONITE),
+    olivineOre = new GTBlockOre(GTBlockOreVariants.OLIVINE),
+    sodaliteOre = new GTBlockOre(GTBlockOreVariants.SODALITE);
 
 	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
@@ -129,9 +150,39 @@ public class GTBlocks {
 
 			superCasingBlock, fusionCasingBlock, fissionCasingBlock, crystalCasingBlock,
 
-			rubyBlock, sapphireBlock, aluminiumBlock, titaniumBlock, chromeBlock,tungstenBlock,platinumBlock, iridiumBlock,
+			rubyBlock,
+            sapphireBlock,
+            aluminiumBlock,
+            titaniumBlock,
+            chromeBlock,
+            steelBlock,
+            brassBlock,
+            leadBlock,
+            electrumBlock,
+            zincBlock,
+            olivineBlock,
+            greenSapphireBlock,
+            platinumBlock,
+            tungstenBlock,
+            nickelBlock,
+            tungstensteelBlock,
+            invarBlock,
+            osmiumBlock,
+            iridiumBlock,
 
-			rubyOre, sapphireOre, bauxiteOre, sandIron, iridiumOre,
+            galenaOre,
+            iridiumOre,
+            rubyOre,
+            sapphireOre,
+            bauxiteOre,
+            sandIron,
+            pyriteOre,
+            cinnabarOre,
+            sphaleriteOre,
+            tungstateOre,
+            sheldoniteOre,
+            olivineOre,
+            sodaliteOre,
 
 			autoCrafter, chargeOMat, computerCube, industrialCentrifuge, matterFabricator, uuMatterAssembler,
 			playerDetector, echophoneBlock, fusionComputer, lightningRod,

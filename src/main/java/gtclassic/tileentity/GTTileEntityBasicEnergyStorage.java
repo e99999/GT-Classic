@@ -32,4 +32,16 @@ public class GTTileEntityBasicEnergyStorage extends TileEntityElectricBlock {
 	public LocaleComp getBlockName() {
 		return GTValues.hesu;
 	}
+
+	@Override
+	public void update() {
+		if (this.getStoredEU() > 0) {
+			this.setActive(true);
+			super.update();
+		} else {
+			this.setActive(false);
+			super.update();
+
+		}
+	}
 }

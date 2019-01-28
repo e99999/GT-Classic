@@ -1,8 +1,17 @@
 package gtclassic.util;
 
+import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;
+
+import java.util.EnumSet;
+
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
+import gtclassic.GTMod;
+import gtclassic.block.GTBlockTileBasic;
+import gtclassic.item.materials.GTItemDust;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.textures.Sprites;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -12,7 +21,7 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("dustLithium", GTItems.lithium);
 		OreDictionary.registerOre("dustCarbon", GTItems.carbon);
-
+		
 		OreDictionary.registerOre("dustEnderPearl", GTItems.dustEnderpearl);
 		OreDictionary.registerOre("dustEnderEye", GTItems.dustEnderEye);
 		OreDictionary.registerOre("dustLazurite", GTItems.dustLazurite);
@@ -38,7 +47,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("oreRuby", GTBlocks.rubyOre);
 		OreDictionary.registerOre("oreSapphire", GTBlocks.sapphireOre);
 		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumOre);
-		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumEnd);
 		OreDictionary.registerOre("oreBauxite", GTBlocks.bauxiteOre);
 		OreDictionary.registerOre("oreMagnetite", GTBlocks.sandIron);
 
@@ -89,6 +97,12 @@ public class GTOreDict {
 		OreDictionary.registerOre("itemPlasma", GTItems.plasmaHelium);
 		// OreDictionary.registerOre("itemPlasma", Ic2Items.plasmaCell);
 
+	}
+	
+	public static String formatString(String input) {
+		String name = input;
+		String output = name.substring(0, 1).toUpperCase() + name.substring(1);
+		return output;
 	}
 
 }

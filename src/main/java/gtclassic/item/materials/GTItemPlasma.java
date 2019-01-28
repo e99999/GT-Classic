@@ -1,24 +1,26 @@
-package gtclassic.item;
+package gtclassic.item.materials;
 
 import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemIngot extends Item implements IStaticTexturedItem {
-	public enum GTItemIngotTypes {
-		IRIDIUM(23), ALUMINIUM(24), TITANIUM(28), CHROME(30),PLATINUM(20), TUNGSTEN(22);
+public class GTItemPlasma extends Item implements IStaticTexturedItem {
+
+	public enum GTItemPlasmaTypes {
+		HYDROGEN(0), NITROGEN(15), OXYGEN(0), HELIUM(3), IRON(14);
 
 		private int id;
 
-		GTItemIngotTypes(int id) {
+		GTItemPlasmaTypes(int id) {
 			this.id = id;
 		}
 
@@ -27,22 +29,24 @@ public class GTItemIngot extends Item implements IStaticTexturedItem {
 		}
 	}
 
-	GTItemIngotTypes variant;
-
-	public GTItemIngot(GTItemIngotTypes variant) {
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_ingot");
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_ingot");
-		setCreativeTab(GTMod.creativeTabGT);
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		return true;
 	}
-	
-	public String getFormatName() {
-		String name = variant.toString().toLowerCase();
-		String output = name.substring(0, 1).toUpperCase() + name.substring(1);
-		if (GTValues.debugMode){
-			GTMod.logger.info("Creating ingots: "+ output);
-			}
-		return output;
+
+	@Override
+	public EnumRarity getRarity(ItemStack thisItem) {
+		return EnumRarity.RARE;
+	}
+
+	GTItemPlasmaTypes variant;
+
+	public GTItemPlasma(GTItemPlasmaTypes variant) {
+		this.variant = variant;
+		setRegistryName(variant.toString().toLowerCase() + "_plasma");
+		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_plasma");
+		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override

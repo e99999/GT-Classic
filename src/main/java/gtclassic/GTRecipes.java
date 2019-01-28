@@ -1,6 +1,5 @@
 package gtclassic;
 
-import gtclassic.block.GTBlockCasing;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge.OutputItem;
