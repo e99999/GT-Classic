@@ -1,5 +1,6 @@
 package gtclassic.item.materials;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,8 +8,12 @@ import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.GTRecipes;
 import gtclassic.util.GTValues;
+import gtclassic.util.MyColorInterface;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.IColorEffectedTexture;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
+import ic2.core.util.misc.StackUtil;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,49 +21,21 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class GTItemStick extends Item implements IStaticTexturedItem {
-	public enum GTItemStickTypes {
-		IRON(48),ALUMINIUM(49), TITANIUM(50), CHROME(51),PLATINUM(53), TUNGSTEN(52);
+public class GTItemStick extends Item implements IStaticTexturedItem, MyColorInterface {
 
-		private int id;
+	private String name;
 
-		GTItemStickTypes(int id) {
-			this.id = id;
-		}
-
-		public int getID() {
-			return id;
-		}
-		
-		public String getName() {
-			return name().toLowerCase();
-		}
-		
-	}
-
-	GTItemStickTypes variant;
-
-	public GTItemStick(GTItemStickTypes variant) {
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_stick");
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_stick");
+	public GTItemStick(String name) {
+		this.name = name;
+		setRegistryName(this.name + "_stick");
+		setUnlocalizedName(GTMod.MODID + "." + this.name + "_stick");
 		setCreativeTab(GTMod.creativeTabGT);
 		setRecipe();
 	}
-	
-	public String getFormatName() {
-		String name = variant.toString().toLowerCase();
-		String output = name.substring(0, 1).toUpperCase() + name.substring(1);
-		if (GTValues.debugMode){
-			GTMod.logger.info("Creating sticks/rods: "+ output);
-			}
-		return output;
-	}
-	
+
 	public void setRecipe() {
-		String input = "ingot" + getFormatName();
-		GTRecipes.recipes.addShapelessRecipe(new ItemStack(this, 1),
-				new Object[] { input, "craftingToolFile" });
+		String input = "ingot" + this.name;
+		GTRecipes.recipes.addShapelessRecipe(new ItemStack(this, 1), new Object[] { input, "craftingToolFile" });
 	}
 
 	@Override
@@ -69,6 +46,30 @@ public class GTItemStick extends Item implements IStaticTexturedItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[48];
 	}
+
+	// COLOR STUFF
+
+	public boolean hasColor(ItemStack stack) {
+		return true;
+	}
+
+	public boolean hasOverlay(ItemStack stack) {
+		return true;
+	}
+
+	public void setColor(ItemStack stack, int color) {
+		stack.getOrCreateSubCompound("display").setInteger("color", GTValues.red);
+	}
+
+	public int getColor(ItemStack stack) {
+		return StackUtil.getNbtData(stack).getCompoundTag("display").getInteger("color");
+	}
+
+	@Override
+	public Color getColor(ItemStack stack, int index) {
+		return Color.CYAN;
+	}
+
 }

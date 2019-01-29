@@ -11,11 +11,15 @@ import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;
 import gtclassic.util.GTValues;
+import gtclassic.util.MyColorInterface;
+import gtclassic.util.MyColors;
 import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.core.item.block.ItemBlockRare;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.util.obj.IBootable;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -52,6 +56,7 @@ public class GTMod {
 		GTBlocks.registerTiles();
 		MinecraftForge.EVENT_BUS.register(GTBlocks.class);
 		MinecraftForge.EVENT_BUS.register(GTItems.class);
+		collectItems();
 	}
 
 	@Mod.EventHandler
@@ -76,6 +81,19 @@ public class GTMod {
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GTCommandTeleport());
+	}
+	
+	public static void collectItems()
+	{
+	    MyColors colors = new MyColors();
+	    ItemColors registry = Minecraft.getMinecraft().getItemColors();
+	    for(Item item : Item.REGISTRY)
+	    {
+	        if(item instanceof MyColorInterface)
+	        {
+	            registry.registerItemColorHandler(colors, item);
+	        }
+	    }
 	}
 
 	// TODO unused in prep for changing item/block registration

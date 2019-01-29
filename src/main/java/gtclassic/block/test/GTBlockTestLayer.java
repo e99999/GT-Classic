@@ -24,8 +24,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockTestLayer extends Block implements ILayeredBlockModel, ITexturedBlock {
-	
-	 static final AxisAlignedBB LAYER_BLOCK_AABB = new AxisAlignedBB(0.005D, 0.005D, 0.005D, .99D, .99D, .99D);
+
+	static final AxisAlignedBB LAYER_BLOCK_AABB = new AxisAlignedBB(0.005D, 0.005D, 0.005D, .99D, .99D, .99D);
 
 	public GTBlockTestLayer() {
 		super(Material.ROCK);
@@ -36,7 +36,7 @@ public class GTBlockTestLayer extends Block implements ILayeredBlockModel, IText
 		setSoundType(SoundType.STONE);
 		setHarvestLevel("pickaxe", 1);
 	}
-	
+
 	@Override
 	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
 		return LAYER_BLOCK_AABB;
@@ -47,7 +47,6 @@ public class GTBlockTestLayer extends Block implements ILayeredBlockModel, IText
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[32];
 	}
-	
 
 	@Override
 	@SideOnly(Side.CLIENT)
