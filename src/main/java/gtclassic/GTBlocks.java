@@ -7,11 +7,11 @@ import gtclassic.block.GTBlockMetal.GTBlockMetalVariants;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockOre.GTBlockOreVariants;
 import gtclassic.block.GTBlockSandIron;
-import gtclassic.block.GTBlockTest;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileBasic.GTBlockTileBasicVariants;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.GTBlockTileCustom.GTBlockTileCustomVariants;
+import gtclassic.block.test.GTBlockTestLayer;
 import gtclassic.tileentity.GTTileEntityBasicEnergyStorage;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.tileentity.GTTileEntityComputerCube;
@@ -144,7 +144,7 @@ public class GTBlocks {
 			largeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_LARGE),
 			hugeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_HUGE);
 	
-	public static final GTBlockTest testBlock = new GTBlockTest();
+	public static final GTBlockTestLayer testBlock = new GTBlockTestLayer();
 
 	public static final Block[] blocks = {
 
