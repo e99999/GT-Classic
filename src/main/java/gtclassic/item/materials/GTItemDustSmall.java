@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.GTRecipes;
 import gtclassic.util.GTItemColorInterface;
 import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
@@ -14,16 +15,22 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class GTItemTinyDust extends Item implements IStaticTexturedItem, GTItemColorInterface {
+public class GTItemDustSmall extends Item implements IStaticTexturedItem, GTItemColorInterface {
     
     private String material;
 	
-	public GTItemTinyDust(String material){
+	public GTItemDustSmall(String material){
         this.material = material;
-        setRegistryName(this.material + "_tiny_dust");
-        setUnlocalizedName(GTMod.MODID + "." + this.material + "_tiny_dust");
+        setRegistryName(this.material + "_dustSmall");
+        setUnlocalizedName(GTMod.MODID + "." + this.material + "_dustSmall");
         setCreativeTab(GTMod.creativeTabGT);
+        setRecipes();
     }
+	
+	public void setRecipes() {
+		String input = "dust" + this.material;
+		GTRecipes.recipes.addShapelessRecipe(new ItemStack(this, 4), new Object[] { input });
+	}
 
     @Override
     public List<Integer> getValidVariants() {

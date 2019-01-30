@@ -1,8 +1,6 @@
 package gtclassic.util;
 
 import java.awt.Color;
-import java.util.HashMap; 
-import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 

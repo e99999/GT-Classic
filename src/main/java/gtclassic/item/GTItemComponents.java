@@ -17,7 +17,6 @@ public class GTItemComponents extends Item implements IStaticTexturedItem {
 		
 		
 		BOULE_SILICON(32, false),
-		PLATE_SILICON(33, false),
 		PLATE_PLASTIC(34, false),
 		LENS_DIAMOND(35, true),
 		LENS_RUBY(36, true),

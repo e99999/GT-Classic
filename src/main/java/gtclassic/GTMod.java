@@ -8,16 +8,12 @@ import org.apache.logging.log4j.Logger;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
+import gtclassic.util.GTItemColorInterface;
+import gtclassic.util.GTItemColors;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;
 import gtclassic.util.GTValues;
-import gtclassic.util.GTItemColorInterface;
-import gtclassic.util.GTItemColors;
 import ic2.api.classic.addon.misc.IOverrideObject;
-import ic2.core.item.block.ItemBlockRare;
-import ic2.core.platform.lang.ILocaleBlock;
-import ic2.core.util.obj.IBootable;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.creativetab.CreativeTabs;
@@ -29,7 +25,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = GTMod.MODID, name = GTMod.MODNAME, version = GTMod.MODVERSION, dependencies = GTMod.DEPENDS, useMetadata = true)

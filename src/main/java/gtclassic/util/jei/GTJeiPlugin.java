@@ -9,7 +9,6 @@ import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
 import gtclassic.util.GTMachineGui.GTFusionComputerGui;
 import gtclassic.util.GTMachineGui.GTIndustrialCentrifugeGui;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;

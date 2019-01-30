@@ -1,9 +1,9 @@
 package gtclassic.item;
 
 import gtclassic.GTMod;
+import gtclassic.tileentity.GTTileEntityDigitalChest;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
 import gtclassic.tileentity.GTTileEntityLightningRod;
-import gtclassic.tileentity.GTTileEntityDigitalChest;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;

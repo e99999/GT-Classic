@@ -403,15 +403,6 @@ public class GTRecipes {
 		TileEntityMacerator.addRecipe("gemSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustSapphire), 1),
 				0.1F);
 
-		// TODO bug speiger, the below recipes should be autogenerating
-
-		TileEntityMacerator.addRecipe("ingotAluminium", 1,
-				StackUtil.copyWithSize(new ItemStack(GTItems.dustAluminium), 1), 0.1F);
-		TileEntityMacerator.addRecipe("ingotChrome", 1, StackUtil.copyWithSize(new ItemStack(GTItems.dustChrome), 1),
-				0.1F);
-		TileEntityMacerator.addRecipe("ingotTitanium", 1,
-				StackUtil.copyWithSize(new ItemStack(GTItems.dustTitanium), 1), 0.1F);
-
 		// IC2C EXTRACTOR
 
 		TileEntityExtractor.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.gemRuby), 3), 0.3F);
@@ -463,7 +454,7 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.dustAluminium, 2), 0),
 				new OutputItem(new ItemStack(GTItems.oxygen, 3), 1));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe("dustGreenSapphire", 4, 0, euCost(15000),
+		GTTileEntityIndustrialCentrifuge.addRecipe("dustSapphireGreen", 4, 0, euCost(15000),
 				new OutputItem(new ItemStack(GTItems.dustSapphire, 4), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustEmerald", 29, 18, euCost(30000),
@@ -472,7 +463,7 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.berilium, 3), 2),
 				new OutputItem(new ItemStack(GTItems.silicon, 6), 3));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe("dustEnderPearl", 16, 16, euCost(65000),
+		GTTileEntityIndustrialCentrifuge.addRecipe("dustEnderpearl", 16, 16, euCost(65000),
 				new OutputItem(new ItemStack(GTItems.chlorine, 6), 0),
 				new OutputItem(new ItemStack(GTItems.nitrogen, 5), 1),
 				new OutputItem(new ItemStack(GTItems.berilium, 1), 2),

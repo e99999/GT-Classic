@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.GTRecipes;
 import gtclassic.util.GTItemColorInterface;
 import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
@@ -22,6 +23,12 @@ public class GTItemDust extends Item implements IStaticTexturedItem, GTItemColor
 		setRegistryName(this.material + "_dust");
 		setUnlocalizedName(GTMod.MODID + "." + this.material + "_dust");
 		setCreativeTab(GTMod.creativeTabGT);
+		setRecipes();
+	}
+	
+	public void setRecipes() {
+		String input = "dustSmall" + this.material;
+		GTRecipes.recipes.addShapelessRecipe(new ItemStack(this, 1), new Object[] { input, input, input, input });
 	}
 
 	@Override

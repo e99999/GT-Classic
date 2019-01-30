@@ -1,6 +1,11 @@
 package gtclassic.item.materials;
 
+import java.awt.Color;
+import java.util.Arrays;
+import java.util.List;
+
 import gtclassic.GTMod;
+import gtclassic.GTRecipes;
 import gtclassic.util.GTItemColorInterface;
 import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
@@ -8,10 +13,6 @@ import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.List;
 
 public class GTItemNugget extends Item implements IStaticTexturedItem, GTItemColorInterface {
 
@@ -21,7 +22,13 @@ public class GTItemNugget extends Item implements IStaticTexturedItem, GTItemCol
         setRegistryName(this.material + "_nugget");
         setUnlocalizedName(GTMod.MODID + "." + this.material + "_nugget");
         setCreativeTab(GTMod.creativeTabGT);
+        setRecipes();
     }
+    
+    public void setRecipes() {
+		String input = "ingot" + this.material;
+		GTRecipes.recipes.addShapelessRecipe(new ItemStack(this, 9), new Object[] { input });
+	}
 
     @Override
     public List<Integer> getValidVariants() {

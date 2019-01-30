@@ -1,16 +1,14 @@
 package gtclassic.util;
 
-import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;
-
-import java.util.EnumSet;
-
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
-import gtclassic.block.GTBlockTileBasic;
 import gtclassic.item.materials.GTItemDust;
+import gtclassic.item.materials.GTItemDustSmall;
+import gtclassic.item.materials.GTItemIngot;
+import gtclassic.item.materials.GTItemNugget;
+import gtclassic.item.materials.GTItemPlate;
 import ic2.core.platform.registry.Ic2Items;
-import ic2.core.platform.textures.Sprites;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -18,32 +16,28 @@ import net.minecraftforge.oredict.OreDictionary;
 public class GTOreDict {
 
 	public static void init() {
+		
+		//registering gregtech tools with ore dict
+		OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(GTItems.hammerIron, 1,  OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(GTItems.hammerAluminium, 1,  OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(GTItems.hammerTitanium, 1,  OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(GTItems.hammerTungstenSteel, 1,  OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolFile", new ItemStack(GTItems.fileIron,1,OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolFile", new ItemStack(GTItems.fileAluminium,1,OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolFile", new ItemStack(GTItems.fileTitanium,1,OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolFile", new ItemStack(GTItems.fileTungstenSteel,1,OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("itemRubber", new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
 
 		OreDictionary.registerOre("dustLithium", GTItems.lithium);
 		OreDictionary.registerOre("dustCarbon", GTItems.carbon);
 		
-		OreDictionary.registerOre("dustEnderPearl", GTItems.dustEnderpearl);
-		OreDictionary.registerOre("dustEnderEye", GTItems.dustEnderEye);
-		OreDictionary.registerOre("dustLazurite", GTItems.dustLazurite);
-		OreDictionary.registerOre("dyeBlue", GTItems.dustLazurite);
-		OreDictionary.registerOre("dustPyrite", GTItems.dustPyrite);
-		OreDictionary.registerOre("dustCalcite", GTItems.dustCalcite);
-		OreDictionary.registerOre("dustFlint", GTItems.dustFlint);
-		OreDictionary.registerOre("dustUranium", GTItems.dustUranium);
-		OreDictionary.registerOre("dustBauxite", GTItems.dustBauxite);
-		OreDictionary.registerOre("dustAluminium", GTItems.dustAluminium);
-		OreDictionary.registerOre("dustAluminum", GTItems.dustAluminium);
-		OreDictionary.registerOre("dustTitanium", GTItems.dustTitanium);
-		OreDictionary.registerOre("dustChrome", GTItems.dustChrome);
-		OreDictionary.registerOre("dustRuby", GTItems.dustRuby);
-		OreDictionary.registerOre("dustSapphire", GTItems.dustSapphire);
-		OreDictionary.registerOre("dustGreenSapphire", GTItems.dustGreenSapphire);
-		OreDictionary.registerOre("dustEmerald", GTItems.dustEmerald);
-		OreDictionary.registerOre("dustSodalite", GTItems.dustSodalite);
-		OreDictionary.registerOre("dustTungsten", GTItems.dustTungsten);
-		OreDictionary.registerOre("dustPlatinum", GTItems.dustPlatinum);
+		registerMaterials();
 		
-
+		//TODO bug speiger about this ore dict
+		
+		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
+		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
+		
 		OreDictionary.registerOre("oreRuby", GTBlocks.rubyOre);
 		OreDictionary.registerOre("oreSapphire", GTBlocks.sapphireOre);
 		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumOre);
@@ -52,13 +46,6 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("gemRuby", GTItems.gemRuby);
 		OreDictionary.registerOre("gemSapphire", GTItems.gemSapphire);
-		OreDictionary.registerOre("ingotAluminium", GTItems.ingotAluminium);
-		OreDictionary.registerOre("ingotAluminum", GTItems.ingotAluminium);
-		OreDictionary.registerOre("ingotTitanium", GTItems.ingotTitanium);
-		OreDictionary.registerOre("ingotTungsten", GTItems.ingotTungsten);
-		OreDictionary.registerOre("ingotPlatinum", GTItems.ingotPlatinum);
-		OreDictionary.registerOre("ingotChrome", GTItems.ingotChrome);
-		OreDictionary.registerOre("ingotIridium", GTItems.ingotIridium);
 		
 		OreDictionary.registerOre("stickIron", GTItems.stickIron);
 		OreDictionary.registerOre("stickAluminium", GTItems.stickAluminium);
@@ -78,14 +65,9 @@ public class GTOreDict {
 		OreDictionary.registerOre("blockTungsten", GTBlocks.tungstenBlock);
 		OreDictionary.registerOre("blockPlatinum", GTBlocks.platinumBlock);
 
-		OreDictionary.registerOre("itemRubber",
-				new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
 
-		OreDictionary.registerOre("craftingToolForgeHammer", GTItems.hammerIron);
-		OreDictionary.registerOre("craftingToolFile", GTItems.fileIron);
 
 		OreDictionary.registerOre("itemSilicon", GTItems.plateSilicon);
-		OreDictionary.registerOre("plateSilicon", GTItems.plateSilicon);
 
 		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
 
@@ -97,12 +79,47 @@ public class GTOreDict {
 		OreDictionary.registerOre("itemPlasma", GTItems.plasmaHelium);
 		// OreDictionary.registerOre("itemPlasma", Ic2Items.plasmaCell);
 
+	
+
 	}
 	
-	public static String formatString(String input) {
-		String name = input;
-		String output = name.substring(0, 1).toUpperCase() + name.substring(1);
-		return output;
+	public static String convertUnlocal(String replace, Item item) {
+		return replace + item.getUnlocalizedName().replace("_"+replace, "").replace("item.gtclassic.", "");
+	}
+	
+	public static void registerMaterials() {
+		for (Item item : Item.REGISTRY) {
+			if (item instanceof GTItemDust) {
+				if (GTValues.debugMode) {
+					GTMod.logger.info("Registering with ore dict: " + convertUnlocal("dust", item));
+				}
+				OreDictionary.registerOre(convertUnlocal("dust", item), item);
+			}
+			if (item instanceof GTItemDustSmall) {
+				if (GTValues.debugMode) {
+					GTMod.logger.info("Registering with ore dict: " + convertUnlocal("dustSmall", item));
+				}
+				OreDictionary.registerOre(convertUnlocal("dustSmall", item), item);
+			}
+			if (item instanceof GTItemIngot) {
+				if (GTValues.debugMode) {
+					GTMod.logger.info("Registering with ore dict: "+ convertUnlocal("ingot", item));
+				}
+				OreDictionary.registerOre(convertUnlocal("ingot", item), item);
+			}
+			if (item instanceof GTItemNugget) {
+				if (GTValues.debugMode) {
+					GTMod.logger.info("Registering with ore dict: "+ convertUnlocal("nugget", item));
+				}
+				OreDictionary.registerOre(convertUnlocal("nugget", item), item);
+			}
+			if (item instanceof GTItemPlate) {
+				if (GTValues.debugMode) {
+					GTMod.logger.info("Registering with ore dict: "+ convertUnlocal("plate", item));
+				}
+				OreDictionary.registerOre(convertUnlocal("plate", item), item);
+			}
+		}
 	}
 
 }
