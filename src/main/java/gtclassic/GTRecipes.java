@@ -347,7 +347,9 @@ public class GTRecipes {
 
 		// IC2C RECIPES (REPLACEMENTS)
 
-		recipes.overrideRecipe("shaped_Iridium Plate", StackUtil.copyWithSize(Ic2Items.iridiumPlate, 1), "IAI", "ADA",
+		//TODO find out how to not make errors fill up the logger when removing recipes tied to advancements
+		
+		/*recipes.overrideRecipe("shaped_Iridium Plate", StackUtil.copyWithSize(Ic2Items.iridiumPlate, 1), "IAI", "ADA",
 				"IAI", 'I', "ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
 
 		recipes.overrideRecipe("shaped_Plasma Core", StackUtil.copyWithSize(Ic2Items.plasmaCore, 1), "XYX", "YCY",
@@ -359,7 +361,7 @@ public class GTRecipes {
 
 		recipes.overrideRecipe("shaped_IV-Transformer", StackUtil.copyWithSize(Ic2Items.transformerIV, 1), "XYX", "CVB",
 				"XYX", 'X', GTBlocks.tungstenCasingBlock, 'Y', Ic2Items.plasmaCable.copy(), 'C',
-				GTItems.circuitSapphire, 'V', Ic2Items.transformerEV.copy(), 'B', Ic2Items.pesd);
+				GTItems.circuitSapphire, 'V', Ic2Items.transformerEV.copy(), 'B', Ic2Items.pesd);*/
 
 	}
 

@@ -38,5 +38,6 @@ public class GTItemPlate extends Item implements IStaticTexturedItem, GTItemColo
 	public Color getColor(ItemStack stack, int index) {
 		return GTValues.getColor(this.material);
 	}
+    
 }
 
