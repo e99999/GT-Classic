@@ -20,20 +20,15 @@ import gtclassic.item.GTItemTeslaStaff;
 import gtclassic.item.materials.GTItemDust;
 import gtclassic.item.materials.GTItemDust.GTItemDustTypes;
 import gtclassic.item.materials.GTItemGem;
-import gtclassic.item.materials.GTItemGem.GTItemGemTypes;
 import gtclassic.item.materials.GTItemIngot;
-import gtclassic.item.materials.GTItemIngot.GTItemIngotTypes;
 import gtclassic.item.materials.GTItemNugget;
-import gtclassic.item.materials.GTItemNugget.GTItemNuggetTypes;
 import gtclassic.item.materials.GTItemPlasma;
 import gtclassic.item.materials.GTItemPlasma.GTItemPlasmaTypes;
 import gtclassic.item.materials.GTItemPlate;
-import gtclassic.item.materials.GTItemPlate.GTItemPlateTypes;
 import gtclassic.item.materials.GTItemStick;
 import gtclassic.item.materials.GTItemTinyDust;
 import gtclassic.item.materials.GTItemTinyDust.GTItemTinyDustTypes;
 import gtclassic.util.GTBatteryBuilder;
-import gtclassic.util.GTValues;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -192,86 +187,97 @@ public class GTItems {
 	tinyDustGlowstone = new GTItemTinyDust(GTItemTinyDustTypes.GLOWSTONE);
 
 	public static final GTItemGem
-	ruby = new GTItemGem(GTItemGemTypes.RUBY),
-	sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE),
-	greenSapphire = new GTItemGem(GTItemGemTypes.GREEN_SAPPHIRE),
-	olivine = new GTItemGem(GTItemGemTypes.OLIVINE),
-	redGarnet = new GTItemGem(GTItemGemTypes.RED_GARNET),
-	yellowGarnet = new GTItemGem(GTItemGemTypes.YELLOW_GARNET);
+	gemGarnetRed = new GTItemGem("GarnetRed"),
+	gemGarnetYellow = new GTItemGem("GarnetYellow"),
+	gemOlivine = new GTItemGem("Olivine"),
+	gemRuby = new GTItemGem("Ruby"),
+	gemSapphire = new GTItemGem("Sapphire"),
+	gemSapphireGreen = new GTItemGem("SapphireGreen");
 
 	public static final GTItemIngot
-	ingotHotTungstensteel = new GTItemIngot(GTItemIngotTypes.HOT_TUNGSTENSTEEL),
-	ingotTungstensteel = new GTItemIngot(GTItemIngotTypes.TUNGSTENSTEEL),
-	ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM),
-	ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),
-	ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
-	ingotTungsten = new GTItemIngot(GTItemIngotTypes.TUNGSTEN),
-	ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME),
-	ingotElectrum = new GTItemIngot(GTItemIngotTypes.ELECTRUM),
-	ingotLead = new GTItemIngot(GTItemIngotTypes.LEAD),
-	ingotZinc = new GTItemIngot(GTItemIngotTypes.ZINC),
-	ingotBrass = new GTItemIngot(GTItemIngotTypes.BRASS),
-	ingotSteel = new GTItemIngot(GTItemIngotTypes.STEEL),
-	ingotPlatinum = new GTItemIngot(GTItemIngotTypes.PLATINUM),
-	ingotNickel = new GTItemIngot(GTItemIngotTypes.NICKEL),
-	ingotInvar = new GTItemIngot(GTItemIngotTypes.INVAR),
-	ingotOsmium = new GTItemIngot(GTItemIngotTypes.OSMIUM),
-	ingotThorium = new GTItemIngot(GTItemIngotTypes.THORIUM),
-	ingotPlutonium = new GTItemIngot(GTItemIngotTypes.PLUTONIUM);
+	ingotAluminium = new GTItemIngot("Aluminium"),
+	ingotBrass = new GTItemIngot("Brass"),
+	ingotChrome = new GTItemIngot("Chrome"),
+	ingotElectrum = new GTItemIngot("Electrum"),
+	ingotInvar = new GTItemIngot("Invar"),
+	ingotIridium = new GTItemIngot("Iridium"),
+	ingotLead = new GTItemIngot("Lead"),
+	ingotNickel = new GTItemIngot("Nickel"),
+	ingotOsmium = new GTItemIngot("Osmium"),
+	ingotPlatinum = new GTItemIngot("Platinum"),
+	ingotPlutonium = new GTItemIngot("Plutonium"),
+	ingotSteel = new GTItemIngot("Steel"),
+	ingotThorium = new GTItemIngot("Thorium"),
+	ingotTitanium = new GTItemIngot("Titanium"),
+	ingotTungsten = new GTItemIngot("Tungsten"),
+	ingotTungstensteel = new GTItemIngot("TungstenSteel"),
+	ingotZinc = new GTItemIngot("Zinc");
 	
 	public static final GTItemPlate
-	plateSilicon = new GTItemPlate(GTItemPlateTypes.SILICON),
-	plateIron = new GTItemPlate(GTItemPlateTypes.IRON),
-	plateGold = new GTItemPlate(GTItemPlateTypes.GOLD),
-	plateRefinedIron = new GTItemPlate(GTItemPlateTypes.REFINEDIRON),
-	plateTin = new GTItemPlate(GTItemPlateTypes.TIN),
-	plateCopper = new GTItemPlate(GTItemPlateTypes.COPPER),
-	plateSilver = new GTItemPlate(GTItemPlateTypes.SILVER),
-	plateBronze = new GTItemPlate(GTItemPlateTypes.BRONZE),
-	plateElectrum = new GTItemPlate(GTItemPlateTypes.ELECTRUM),
-	plateNickel = new GTItemPlate(GTItemPlateTypes.NICKEL),
-	plateInvar = new GTItemPlate(GTItemPlateTypes.INVAR),
-	plateLead = new GTItemPlate(GTItemPlateTypes.LEAD),
-	plateAluminum = new GTItemPlate(GTItemPlateTypes.ALUMINIUM),
-	plateChrome = new GTItemPlate(GTItemPlateTypes.CHROME),
-	plateTitanium = new GTItemPlate(GTItemPlateTypes.TITANIUM),
-	plateSteel = new GTItemPlate(GTItemPlateTypes.STEEL),
-	platePlatinum = new GTItemPlate(GTItemPlateTypes.PLATINUM),
-	plateTungsten = new GTItemPlate(GTItemPlateTypes.TUNGSTEN),
-	plateBrass = new GTItemPlate(GTItemPlateTypes.BRASS),
-	plateZinc = new GTItemPlate(GTItemPlateTypes.ZINC),
-	plateTungstensteel = new GTItemPlate(GTItemPlateTypes.TUNGSTENSTEEL),
-	plateOsmium = new GTItemPlate(GTItemPlateTypes.OSMIUM),
-	plateMagnalium = new GTItemPlate(GTItemPlateTypes.MAGNALIUM);
+	plateAluminum = new GTItemPlate("Aluminium"),
+	plateBrass = new GTItemPlate("Brass"),
+	plateBronze = new GTItemPlate("Bronze"),
+	plateChrome = new GTItemPlate("Chrome"),
+	plateCopper = new GTItemPlate("Copper"),
+	plateElectrum = new GTItemPlate("Electrum"),
+	plateGold = new GTItemPlate("Gold"),
+	plateInvar = new GTItemPlate("Invar"),
+	plateIron = new GTItemPlate("Iron"),
+	plateLead = new GTItemPlate("Lead"),
+	plateMagnalium = new GTItemPlate("Magnalium"),
+	plateNickel = new GTItemPlate("Nickel"),
+	plateOsmium = new GTItemPlate("Osmium"),
+	platePlatinum = new GTItemPlate("Platinum"),
+	plateRefinedIron = new GTItemPlate("RefinedIron"),
+	plateSilicon = new GTItemPlate("Silicon"),
+	plateSilver = new GTItemPlate("Silver"),
+	plateSteel = new GTItemPlate("Steel"),
+	plateTin = new GTItemPlate("Tin"),
+	plateTitanium = new GTItemPlate("Titanium"),
+	plateTungsten = new GTItemPlate("Tungsten"),
+	plateTungstensteel = new GTItemPlate("TungstenSteel"),
+	plateZinc = new GTItemPlate("Zinc");
 	
 	public static final GTItemStick 
-			stickAluminium = new GTItemStick("Aluminium", GTValues.Aluminium),
-			stickTitanium = new GTItemStick("Titanium", GTValues.Titanium),
-			stickChrome = new GTItemStick("Chrome", GTValues.Chrome),
-			stickIron = new GTItemStick("Iron", GTValues.Iron),
-			stickTungsten = new GTItemStick("Tungsten", GTValues.Tungsten),
-			stickPlatinum = new GTItemStick("Platinum", GTValues.Platinum),
-			stickBrass = new GTItemStick("Brass", GTValues.Brass);
+	stickAluminium = new GTItemStick("Aluminium"),
+	stickBrass = new GTItemStick("Brass"),
+	stickBronze =  new GTItemStick("Bronze"),
+	stickChrome = new GTItemStick("Chrome"),
+	stickCopper = new GTItemStick("Copper"),
+	stickElectrum = new GTItemStick("Electrum"),
+	stickInvar = new GTItemStick("Invar"),
+	stickIridium = new GTItemStick("Iridium"),
+	stickIron = new GTItemStick("Iron"),
+	stickLead = new GTItemStick("Lead"),
+	stickNickel = new GTItemStick("Nickel"),
+	stickOsmium = new GTItemStick("Osmium"),
+	stickPlatinum = new GTItemStick("Platinum"),
+	stickSilver = new GTItemStick("Silver"),
+	stickSteel = new GTItemStick("Steel"),
+	stickTin = new GTItemStick("Tin"),
+	stickTitanium = new GTItemStick("Titanium"),
+	stickTungsten = new GTItemStick("Tungsten"),
+	stickZinc = new GTItemStick("Zinc");
 	
 	public static final GTItemNugget
-	nuggetIridium = new GTItemNugget(GTItemNuggetTypes.IRIDIUM),
-	nuggetSilver = new GTItemNugget(GTItemNuggetTypes.SILVER),
-	nuggetAluminium = new GTItemNugget(GTItemNuggetTypes.ALUMINIUM),
-	nuggetTitanium = new GTItemNugget(GTItemNuggetTypes.TITANIUM),
-	nuggetChrome = new GTItemNugget(GTItemNuggetTypes.CHROME),
-	nuggetElectrum = new GTItemNugget(GTItemNuggetTypes.ELECTRUM),
-	nuggetTungsten = new GTItemNugget(GTItemNuggetTypes.TUNGSTEN),
-	nuggetLead = new GTItemNugget(GTItemNuggetTypes.LEAD),
-	nuggetZinc = new GTItemNugget(GTItemNuggetTypes.ZINC),
-	nuggetBrass = new GTItemNugget(GTItemNuggetTypes.BRASS),
-	nuggetSteel = new GTItemNugget(GTItemNuggetTypes.STEEL),
-	nuggetPlatinum = new GTItemNugget(GTItemNuggetTypes.PLATINUM),
-	nuggetNickel = new GTItemNugget(GTItemNuggetTypes.NICKEL),
-	nuggetInvar = new GTItemNugget(GTItemNuggetTypes.INVAR),
-	nuggetOsmium = new GTItemNugget(GTItemNuggetTypes.OSMIUM),
-	nuggetCopper = new GTItemNugget(GTItemNuggetTypes.COPPER),
-	nuggetTin = new GTItemNugget(GTItemNuggetTypes.TIN),
-	nuggetBronze = new GTItemNugget(GTItemNuggetTypes.BRONZE);
+	nuggetAluminium = new GTItemNugget("Aluminium"),
+	nuggetBrass = new GTItemNugget("Brass"),
+	nuggetBronze = new GTItemNugget("Bronze"),
+	nuggetChrome = new GTItemNugget("Chrome"),
+	nuggetCopper = new GTItemNugget("Copper"),
+	nuggetElectrum = new GTItemNugget("Electrum"),
+	nuggetInvar = new GTItemNugget("Invar"),
+	nuggetIridium = new GTItemNugget("Iridium"),
+	nuggetLead = new GTItemNugget("Lead"),
+	nuggetNickel = new GTItemNugget("Nickel"),
+	nuggetOsmium = new GTItemNugget("Osmium"),
+	nuggetPlatinum = new GTItemNugget("Platinum"),
+	nuggetSilver = new GTItemNugget("Silver"),
+	nuggetSteel = new GTItemNugget("Steel"),
+	nuggetTin = new GTItemNugget("Tin"),
+	nuggetTitanium = new GTItemNugget("Titanium"),
+	nuggetTungsten = new GTItemNugget("Tungsten"),
+	nuggetZinc = new GTItemNugget("Zinc");
 
 	public static final GTItemComponents bouleSilicon = new GTItemComponents(GTItemComponentTypes.BOULE_SILICON),
 			platePlastic = new GTItemComponents(GTItemComponentTypes.PLATE_PLASTIC),
@@ -452,14 +458,13 @@ public class GTItems {
 			tinyDustRedstone,
 			tinyDustGlowstone,
 
-			ruby,
-			sapphire,
-			greenSapphire,
-			olivine,
-			redGarnet,
-			yellowGarnet,
+			gemGarnetRed,
+			gemGarnetYellow,
+			gemOlivine,
+			gemRuby,
+			gemSapphire,
+			gemSapphireGreen,
 			
-			ingotHotTungstensteel,
 			ingotTungstensteel,
 			ingotIridium,
 			ingotAluminium,
@@ -502,7 +507,25 @@ public class GTItems {
 			plateOsmium,
 			plateMagnalium,
 			
-			stickIron, stickAluminium, stickTitanium, stickChrome, stickTungsten, stickPlatinum, stickBrass,
+			stickAluminium,
+			stickBrass,
+			stickBronze,
+			stickChrome,
+			stickCopper,
+			stickElectrum,
+			stickInvar,
+			stickIridium,
+			stickIron,
+			stickLead,
+			stickNickel,
+			stickOsmium,
+			stickPlatinum,
+			stickSilver,
+			stickSteel,
+			stickTin ,
+			stickTitanium,
+			stickTungsten,
+			stickZinc,
 			
 			nuggetIridium,
 			nuggetSilver,

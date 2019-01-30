@@ -23,20 +23,18 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class GTItemStick extends Item implements IStaticTexturedItem, GTItemColorInterface {
 
-	private String name;
-	private Color color;
+	private String material;
 
-	public GTItemStick(String name, Color color) {
-		this.name = name;
-		this.color = color;
-		setRegistryName(this.name + "_stick");
-		setUnlocalizedName(GTMod.MODID + "." + this.name + "_stick");
+	public GTItemStick(String material) {
+		this.material = material;
+		setRegistryName(this.material + "_stick");
+		setUnlocalizedName(GTMod.MODID + "." + this.material + "_stick");
 		setCreativeTab(GTMod.creativeTabGT);
 		setRecipe();
 	}
 
 	public void setRecipe() {
-		String input = "ingot" + this.name;
+		String input = "ingot" + this.material;
 		GTRecipes.recipes.addShapelessRecipe(new ItemStack(this, 1), new Object[] { input, "craftingToolFile" });
 	}
 
@@ -48,30 +46,14 @@ public class GTItemStick extends Item implements IStaticTexturedItem, GTItemColo
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[48];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[6];
 	}
-
-	// COLOR STUFF
-
-	public boolean hasColor(ItemStack stack) {
-		return true;
-	}
-
-	public boolean hasOverlay(ItemStack stack) {
-		return true;
-	}
-
-	public void setColor(ItemStack stack, int color) {
-		stack.getOrCreateSubCompound("display").setInteger("color", GTValues.red);
-	}
-
-	public int getColor(ItemStack stack) {
-		return StackUtil.getNbtData(stack).getCompoundTag("display").getInteger("color");
-	}
-
+	
 	@Override
 	public Color getColor(ItemStack stack, int index) {
-		return this.color;
+		return GTValues.getColor(this.material);
 	}
+	
+	
 
 }

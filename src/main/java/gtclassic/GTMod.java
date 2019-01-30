@@ -91,7 +91,10 @@ public class GTMod {
 	    {
 	        if(item instanceof GTItemColorInterface)
 	        {
-	            registry.registerItemColorHandler(colors, item);
+	            if (GTValues.debugMode) {
+	            	logger.info("Registering item color modification:"+item.getUnlocalizedName());
+	            }
+	        	registry.registerItemColorHandler(colors, item);
 	        }
 	    }
 	}

@@ -115,8 +115,8 @@ public class GTRecipes {
 
 		// MATERIALS
 		
-		gemUtil(GTBlocks.rubyBlock, GTItems.ruby, "Ruby");
-		gemUtil(GTBlocks.sapphireBlock, GTItems.sapphire, "Sapphire");
+		gemUtil(GTBlocks.rubyBlock, GTItems.gemRuby, "Ruby");
+		gemUtil(GTBlocks.sapphireBlock, GTItems.gemSapphire, "Sapphire");
 		ingotUtil(GTBlocks.aluminiumBlock, GTItems.ingotAluminium, "Aluminium");
 		ingotUtil(GTBlocks.titaniumBlock, GTItems.ingotTitanium, "Titanium");
 		ingotUtil(GTBlocks.chromeBlock, GTItems.ingotChrome, "Chrome");
@@ -367,8 +367,8 @@ public class GTRecipes {
 
 		// IC2C COMPRESSOR
 
-		TileEntityCompressor.addRecipe("dustSapphire", 1, new ItemStack(GTItems.sapphire), 0.1F);
-		TileEntityCompressor.addRecipe("dustRuby", 1, new ItemStack(GTItems.ruby), 0.1F);
+		TileEntityCompressor.addRecipe("dustSapphire", 1, new ItemStack(GTItems.gemSapphire), 0.1F);
+		TileEntityCompressor.addRecipe("dustRuby", 1, new ItemStack(GTItems.gemRuby), 0.1F);
 		TileEntityCompressor.addRecipe("dustEmerald", 1, new ItemStack(Items.EMERALD), 0.1F);
 		TileEntityCompressor.addRecipe(Ic2Items.iridiumOre, 1, new ItemStack(GTItems.ingotIridium), 0.5F);
 
@@ -412,8 +412,8 @@ public class GTRecipes {
 
 		// IC2C EXTRACTOR
 
-		TileEntityExtractor.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.ruby), 3), 0.3F);
-		TileEntityExtractor.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.sapphire), 3),
+		TileEntityExtractor.addRecipe("oreRuby", 1, StackUtil.copyWithSize(new ItemStack(GTItems.gemRuby), 3), 0.3F);
+		TileEntityExtractor.addRecipe("oreSapphire", 1, StackUtil.copyWithSize(new ItemStack(GTItems.gemSapphire), 3),
 				0.3F);
 
 		// INDUSTRIAL CENTRIFUGE RECIPES IN ORDER OF ORIGINAL GT1

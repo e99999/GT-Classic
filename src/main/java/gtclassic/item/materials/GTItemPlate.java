@@ -1,56 +1,26 @@
 package gtclassic.item.materials;
 
 import gtclassic.GTMod;
+import gtclassic.util.GTItemColorInterface;
+import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
-public class GTItemPlate extends Item implements IStaticTexturedItem {
-    public enum GTItemPlateTypes{
-    	SILICON(21),
-    	IRON(27),
-        GOLD(28),
-        REFINEDIRON(29),
-        TIN(30),
-        COPPER(31),
-        SILVER(32),
-        BRONZE(33),
-        ELECTRUM(34),
-        NICKEL(35),
-        INVAR(36),
-        LEAD(37),
-        ALUMINIUM(38),
-        CHROME(39),
-        TITANIUM(40),
-        STEEL(41),
-        PLATINUM(42),
-        TUNGSTEN(43),
-        BRASS(44),
-        ZINC(45),
-        TUNGSTENSTEEL(46),
-        OSMIUM(47),
-        MAGNALIUM(48);
-        
-    	private int id;
-
-        GTItemPlateTypes(int id){
-            this.id = id;
-        }
-
-        public int getID(){
-            return id;
-        }
-    }
-
-    GTItemPlateTypes variant;
-    public GTItemPlate(GTItemPlateTypes variant){
-        this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_plate");
-        setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_plate");
+public class GTItemPlate extends Item implements IStaticTexturedItem, GTItemColorInterface {
+    
+	private String material;
+	
+	public GTItemPlate(String material){
+		this.material = material;
+        setRegistryName(this.material + "_plate");
+        setUnlocalizedName(GTMod.MODID + "." + this.material + "_plate");
         setCreativeTab(GTMod.creativeTabGT);
     }
 
@@ -61,7 +31,12 @@ public class GTItemPlate extends Item implements IStaticTexturedItem {
 
     @Override
     public TextureAtlasSprite getTexture(int i) {
-        return Ic2Icons.getTextures(GTMod.MODID + "_materials")[variant.getID()];
+        return Ic2Icons.getTextures(GTMod.MODID + "_materials")[5];
     }
+    
+    @Override
+	public Color getColor(ItemStack stack, int index) {
+		return GTValues.getColor(this.material);
+	}
 }
 

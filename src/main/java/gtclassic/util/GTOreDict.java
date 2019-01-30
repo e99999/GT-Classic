@@ -50,8 +50,8 @@ public class GTOreDict {
 		OreDictionary.registerOre("oreBauxite", GTBlocks.bauxiteOre);
 		OreDictionary.registerOre("oreMagnetite", GTBlocks.sandIron);
 
-		OreDictionary.registerOre("gemRuby", GTItems.ruby);
-		OreDictionary.registerOre("gemSapphire", GTItems.sapphire);
+		OreDictionary.registerOre("gemRuby", GTItems.gemRuby);
+		OreDictionary.registerOre("gemSapphire", GTItems.gemSapphire);
 		OreDictionary.registerOre("ingotAluminium", GTItems.ingotAluminium);
 		OreDictionary.registerOre("ingotAluminum", GTItems.ingotAluminium);
 		OreDictionary.registerOre("ingotTitanium", GTItems.ingotTitanium);

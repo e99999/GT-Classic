@@ -1,68 +1,31 @@
 package gtclassic.item.materials;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.util.GTItemColorInterface;
 import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemIngot extends Item implements IStaticTexturedItem {
-	public enum GTItemIngotTypes {
+public class GTItemIngot extends Item implements IStaticTexturedItem, GTItemColorInterface {
+	
+	private String material;
 
-        HOT_TUNGSTENSTEEL(1),
-        TUNGSTENSTEEL(2),
-        IRIDIUM(3),
-        ALUMINIUM(4),
-        TITANIUM(5),
-        CHROME(6),
-        ELECTRUM(7),
-        TUNGSTEN(8),
-        LEAD(9),
-        ZINC(10),
-        BRASS(11),
-        STEEL(12),
-        PLATINUM(13),
-        NICKEL(14),
-        INVAR(15),
-        OSMIUM(16),
-        THORIUM(23),
-        PLUTONIUM(24);
-
-		private int id;
-
-		GTItemIngotTypes(int id) {
-			this.id = id;
-		}
-
-		public int getID() {
-			return id;
-		}
-	}
-
-	GTItemIngotTypes variant;
-
-	public GTItemIngot(GTItemIngotTypes variant) {
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_ingot");
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_ingot");
+	public GTItemIngot(String material) {
+		this.material = material;
+		setRegistryName(this.material + "_ingot");
+		setUnlocalizedName(GTMod.MODID + "." + this.material + "_ingot");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 	
-	public String getFormatName() {
-		String name = variant.toString().toLowerCase();
-		String output = name.substring(0, 1).toUpperCase() + name.substring(1);
-		if (GTValues.debugMode){
-			GTMod.logger.info("Creating ingots: "+ output);
-			}
-		return output;
-	}
-
 	@Override
 	public List<Integer> getValidVariants() {
 		return Arrays.asList(0);
@@ -71,6 +34,11 @@ public class GTItemIngot extends Item implements IStaticTexturedItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[variant.getID()];
+		 return Ic2Icons.getTextures(GTMod.MODID + "_materials")[3];
+	}
+
+	@Override
+	public Color getColor(ItemStack stack, int index) {
+		return GTValues.getColor(this.material);
 	}
 }

@@ -1,42 +1,27 @@
 package gtclassic.item.materials;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.util.GTItemColorInterface;
+import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemGem extends Item implements IStaticTexturedItem {
-	public enum GTItemGemTypes {
-		RUBY(17),
-        SAPPHIRE(18),
-        GREEN_SAPPHIRE(19),
-        OLIVINE(22),
-        RED_GARNET(25),
-        YELLOW_GARNET(26);
-
-		private int id;
-
-		GTItemGemTypes(int id) {
-			this.id = id;
-		}
-
-		public int getID() {
-			return id;
-		}
-	}
-
-	GTItemGemTypes variant;
-
-	public GTItemGem(GTItemGemTypes variant) {
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_gem");
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_gem");
+public class GTItemGem extends Item implements IStaticTexturedItem, GTItemColorInterface {
+	
+	private String material;
+	public GTItemGem(String material) {
+		this.material = material;
+		setRegistryName(this.material + "_gem");
+		setUnlocalizedName(GTMod.MODID + "." + this.material + "_gem");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
@@ -48,6 +33,11 @@ public class GTItemGem extends Item implements IStaticTexturedItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[variant.getID()];
+		 return Ic2Icons.getTextures(GTMod.MODID + "_materials")[2];
+	}
+	
+	@Override
+	public Color getColor(ItemStack stack, int index) {
+		return GTValues.getColor(this.material);
 	}
 }

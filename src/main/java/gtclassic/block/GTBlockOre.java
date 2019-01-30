@@ -85,6 +85,8 @@ public class GTBlockOre extends Block implements ITexturedBlock {
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune){
         ArrayList<ItemStack> drops = new ArrayList<>();
         
+       //TODO MOVE THESE AND ADD FORTUNE DROPS
+        
         //Nether Ores
         if (this == GTBlocks.cinnabarOre) {
 
@@ -106,7 +108,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         		drops.add(new ItemStack(GTItems.dustZinc, 1));
         	}
         	if(RANDOM.nextFloat()<0.125f) {
-        		drops.add(new ItemStack(GTItems.yellowGarnet, 1));
+        		drops.add(new ItemStack(GTItems.gemGarnetYellow, 1));
         	}
         }
         
@@ -127,7 +129,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         }
         
         if (this == GTBlocks.olivineOre) {
-        drops.add(new ItemStack(GTItems.olivine, 1));
+        drops.add(new ItemStack(GTItems.gemOlivine, 1));
         }
         
         
@@ -142,19 +144,19 @@ public class GTBlockOre extends Block implements ITexturedBlock {
         
         if (this == GTBlocks.rubyOre) {
         	if(RANDOM.nextFloat()>0.10f) {
-        		drops.add(new ItemStack(GTItems.ruby, 1));
+        		drops.add(new ItemStack(GTItems.gemRuby, 1));
         		}
         	else {
-        		drops.add(new ItemStack(GTItems.redGarnet, 1));
+        		drops.add(new ItemStack(GTItems.gemGarnetRed, 1));
         	}
         }
         
         if (this == GTBlocks.sapphireOre) {//iron and add xp
         	if(RANDOM.nextFloat()>0.10f) {
-        		drops.add(new ItemStack(GTItems.sapphire, 1));
+        		drops.add(new ItemStack(GTItems.gemSapphire, 1));
         		}
         	else {
-        		drops.add(new ItemStack(GTItems.greenSapphire, 1));
+        		drops.add(new ItemStack(GTItems.gemSapphireGreen, 1));
         	}
         }
         

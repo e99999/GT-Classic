@@ -24,8 +24,8 @@ public class GTLootHandler {
 		String stringRuby = GTMod.MODID+":ruby_gem";
 		String stringSapphire = GTMod.MODID+":sapphire_gem";
 
-		Item itemRuby = GTItems.ruby;
-		Item itemSapphire = GTItems.sapphire;
+		Item itemRuby = GTItems.gemRuby;
+		Item itemSapphire = GTItems.gemSapphire;
 
 		if (event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)) {
 			event.getTable().getPool("main")
