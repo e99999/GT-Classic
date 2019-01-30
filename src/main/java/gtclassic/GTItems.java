@@ -33,6 +33,7 @@ import gtclassic.item.materials.GTItemStick;
 import gtclassic.item.materials.GTItemTinyDust;
 import gtclassic.item.materials.GTItemTinyDust.GTItemTinyDustTypes;
 import gtclassic.util.GTBatteryBuilder;
+import gtclassic.util.GTValues;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -243,12 +244,14 @@ public class GTItems {
 	plateOsmium = new GTItemPlate(GTItemPlateTypes.OSMIUM),
 	plateMagnalium = new GTItemPlate(GTItemPlateTypes.MAGNALIUM);
 	
-	public static final GTItemStick stickAluminium = new GTItemStick("Aluminium"),
-			stickTitanium = new GTItemStick("Titanium"),
-			stickChrome = new GTItemStick("Chrome"),
-			stickIron = new GTItemStick("Iron"),
-			stickTungsten = new GTItemStick("Tungsten"),
-			stickPlatinum = new GTItemStick("Platinum");
+	public static final GTItemStick 
+			stickAluminium = new GTItemStick("Aluminium", GTValues.Aluminium),
+			stickTitanium = new GTItemStick("Titanium", GTValues.Titanium),
+			stickChrome = new GTItemStick("Chrome", GTValues.Chrome),
+			stickIron = new GTItemStick("Iron", GTValues.Iron),
+			stickTungsten = new GTItemStick("Tungsten", GTValues.Tungsten),
+			stickPlatinum = new GTItemStick("Platinum", GTValues.Platinum),
+			stickBrass = new GTItemStick("Brass", GTValues.Brass);
 	
 	public static final GTItemNugget
 	nuggetIridium = new GTItemNugget(GTItemNuggetTypes.IRIDIUM),
@@ -499,7 +502,7 @@ public class GTItems {
 			plateOsmium,
 			plateMagnalium,
 			
-			stickIron, stickAluminium, stickTitanium, stickChrome, stickTungsten, stickPlatinum,
+			stickIron, stickAluminium, stickTitanium, stickChrome, stickTungsten, stickPlatinum, stickBrass,
 			
 			nuggetIridium,
 			nuggetSilver,

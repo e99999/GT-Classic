@@ -11,8 +11,8 @@ import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;
 import gtclassic.util.GTValues;
-import gtclassic.util.MyColorInterface;
-import gtclassic.util.MyColors;
+import gtclassic.util.GTItemColorInterface;
+import gtclassic.util.GTItemColors;
 import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.core.item.block.ItemBlockRare;
 import ic2.core.platform.lang.ILocaleBlock;
@@ -56,11 +56,11 @@ public class GTMod {
 		GTBlocks.registerTiles();
 		MinecraftForge.EVENT_BUS.register(GTBlocks.class);
 		MinecraftForge.EVENT_BUS.register(GTItems.class);
-		collectItems();
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
+		registerTintedItems();
 		GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
 		GTOreDict.init();
 		GTRecipes.init();
@@ -83,73 +83,16 @@ public class GTMod {
 		event.registerServerCommand(new GTCommandTeleport());
 	}
 	
-	public static void collectItems()
+	public static void registerTintedItems()
 	{
-	    MyColors colors = new MyColors();
+	    GTItemColors colors = new GTItemColors();
 	    ItemColors registry = Minecraft.getMinecraft().getItemColors();
 	    for(Item item : Item.REGISTRY)
 	    {
-	        if(item instanceof MyColorInterface)
+	        if(item instanceof GTItemColorInterface)
 	        {
 	            registry.registerItemColorHandler(colors, item);
 	        }
 	    }
-	}
-
-	// TODO unused in prep for changing item/block registration
-	public Block createBlock(Block par1, Class<? extends ItemBlockRare> par2) {
-		return this.createBlock(par1, par2, false);
-	}
-
-	// TODO unused in prep for changing item/block registration
-	public Block createBlock(Block par1, Class<? extends ItemBlockRare> par2, boolean subType) {
-		String replace = par1.getUnlocalizedName().replace("tile.", "");
-		if (overrides.containsKey(replace)) {
-
-			IOverrideObject obj = (IOverrideObject) overrides.remove(replace);
-			return this.createBlock(obj.getBlock(), (Class<? extends ItemBlockRare>) obj.getItemBlock());
-
-		} else {
-			ForgeRegistries.BLOCKS.register(par1.setRegistryName(MODID, replace));
-
-			try {
-				ItemBlockRare item = (ItemBlockRare) par2.getConstructor(Block.class).newInstance(par1);
-				if (subType) {
-
-					item.setHasSubtypes(true);
-				}
-				if (par1 instanceof ILocaleBlock) {
-
-					item.setUnlocalizedName(((ILocaleBlock) par1).getName());
-				}
-				ForgeRegistries.ITEMS.register(item.setRegistryName(par1.getRegistryName()));
-
-			} catch (Exception var6) {
-				;
-			}
-
-			if (par1 instanceof IBootable) {
-
-				((IBootable) par1).onLoad();
-			}
-			return par1;
-		}
-	}
-
-	// TODO unused in prep for changing item/block registration
-	public Item createItem(Item par1) {
-		String replace = par1.getUnlocalizedName().replace("item.", "");
-		if (overrides.containsKey(replace)) {
-
-			IOverrideObject obj = (IOverrideObject) overrides.remove(replace);
-			return this.createItem(obj.getItem());
-		} else {
-			ForgeRegistries.ITEMS.register(par1.setRegistryName(MODID, replace));
-			if (par1 instanceof IBootable) {
-
-				((IBootable) par1).onLoad();
-			}
-			return par1;
-		}
 	}
 }

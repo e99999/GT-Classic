@@ -8,7 +8,7 @@ import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.GTRecipes;
 import gtclassic.util.GTValues;
-import gtclassic.util.MyColorInterface;
+import gtclassic.util.GTItemColorInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IColorEffectedTexture;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -21,12 +21,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class GTItemStick extends Item implements IStaticTexturedItem, MyColorInterface {
+public class GTItemStick extends Item implements IStaticTexturedItem, GTItemColorInterface {
 
 	private String name;
+	private Color color;
 
-	public GTItemStick(String name) {
+	public GTItemStick(String name, Color color) {
 		this.name = name;
+		this.color = color;
 		setRegistryName(this.name + "_stick");
 		setUnlocalizedName(GTMod.MODID + "." + this.name + "_stick");
 		setCreativeTab(GTMod.creativeTabGT);
@@ -69,7 +71,7 @@ public class GTItemStick extends Item implements IStaticTexturedItem, MyColorInt
 
 	@Override
 	public Color getColor(ItemStack stack, int index) {
-		return Color.CYAN;
+		return this.color;
 	}
 
 }
