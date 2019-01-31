@@ -1,8 +1,12 @@
 package gtclassic.block;
 
+import java.awt.Color;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.GTRecipes;
+import gtclassic.util.GTValues;
+import gtclassic.util.color.GTColorBlockInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -16,63 +20,25 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockMetal extends Block implements ITexturedBlock {
-	public enum GTBlockMetalVariants {
-		IRIDIUM(64),
-		RUBY(65), 
-        SAPPHIRE(66),
-        ALUMINIUM(67), 
-        TITANIUM(68), 
-        CHROME(69), 
-        STEEL(70), 
-        BRASS(71), 
-        LEAD(72), 
-        ELECTRUM(73), 
-        ZINC(74), 
-        OLIVINE(75), 
-        GREEN_SAPPHIRE(76), 
-        PLATINUM(77), 
-        TUNGSTEN(78), 
-        NICKEL(79), 
-        INVAR(80),
-        TUNGSTENSTEEL(81), 
-        OSMIUM(82);
+public class GTBlockCasing1 extends Block implements ITexturedBlock, GTColorBlockInterface {
 
-		private int id;
+	String material;
 
-		GTBlockMetalVariants(int id) {
-			this.id = id;
-		}
-
-		public int getID() {
-			return id;
-		}
-	}
-
-	GTBlockMetalVariants variant;
-
-	public GTBlockMetal(GTBlockMetalVariants variant) {
+	public GTBlockCasing1(String material) {
 		super(Material.IRON);
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_block");
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_block");
+		this.material = material;
+		setRegistryName(this.material + "_casing");
+		setUnlocalizedName(GTMod.MODID + "." + this.material + "_casing");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
-		setResistance(15.0F);
+		setResistance(30.0F);
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);
-	}
-
-	@Override
-	public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
-		return true;
 	}
 
 	@Override
@@ -83,7 +49,7 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[13];
 	}
 
 	@Override
@@ -95,7 +61,6 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".nomobs"));
-		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".beacon"));
 	}
 
 	@Override
@@ -113,5 +78,10 @@ public class GTBlockMetal extends Block implements ITexturedBlock {
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());
+	}
+
+	@Override
+	public Color getColor(Block block, int index) {
+		return GTValues.getColor(this.material);
 	}
 }

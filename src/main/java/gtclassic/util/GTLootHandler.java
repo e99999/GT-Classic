@@ -21,8 +21,8 @@ public class GTLootHandler {
 
 		// TODO make a config option to disable this stuff
 
-		String stringRuby = GTMod.MODID+":ruby_gem";
-		String stringSapphire = GTMod.MODID+":sapphire_gem";
+		String stringRuby = GTMod.MODID + ":ruby_gem";
+		String stringSapphire = GTMod.MODID + ":sapphire_gem";
 
 		Item itemRuby = GTItems.gemRuby;
 		Item itemSapphire = GTItems.gemSapphire;

@@ -1,9 +1,9 @@
 package gtclassic;
 
-import gtclassic.block.GTBlockCasing;
-import gtclassic.block.GTBlockCasing.GTBlockCasingVariants;
-import gtclassic.block.GTBlockMetal;
-import gtclassic.block.GTBlockMetal.GTBlockMetalVariants;
+import gtclassic.block.GTBlockCasing1;
+import gtclassic.block.GTBlockCasing2;
+import gtclassic.block.GTBlockCasing2.GTBlockCasing2Variants;
+import gtclassic.block.GTBlockMaterial;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockOre.GTBlockOreVariants;
 import gtclassic.block.GTBlockSandIron;
@@ -26,9 +26,9 @@ import gtclassic.tileentity.GTTileEntityQuantumEnergyStorage;
 import gtclassic.tileentity.GTTileEntitySmallChest;
 import gtclassic.tileentity.GTTileEntitySuperConductor;
 import gtclassic.tileentity.GTTileEntityWorkbench;
+import gtclassic.util.color.GTColorItemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -38,37 +38,50 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
 
-	public static final GTBlockCasing ironCasingBlock = new GTBlockCasing(GTBlockCasingVariants.IRON),
-			aluminiumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.ALUMINIUM),
-			titaniumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TITANIUM),
-			chromeCasingBlock = new GTBlockCasing(GTBlockCasingVariants.CHROME),
-			iridiumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.IRIDIUM),
-			tungstenCasingBlock = new GTBlockCasing(GTBlockCasingVariants.TUNGSTEN),
-			platinumCasingBlock = new GTBlockCasing(GTBlockCasingVariants.PLATINUM),
-			superCasingBlock = new GTBlockCasing(GTBlockCasingVariants.SUPERCONDUCTOR),
-			fusionCasingBlock = new GTBlockCasing(GTBlockCasingVariants.FUSION),
-			fissionCasingBlock = new GTBlockCasing(GTBlockCasingVariants.FISSION),
-			crystalCasingBlock = new GTBlockCasing(GTBlockCasingVariants.CRYSTAL);
+	public static final GTBlockCasing1 casingAluminium = new GTBlockCasing1("Aluminium"),
+			casingBrass = new GTBlockCasing1("Brass"),
+			casingBronze = new GTBlockCasing1("Bronze"),
+			casingChrome = new GTBlockCasing1("Chrome"),
+			casingCopper = new GTBlockCasing1("Copper"),
+			casingElectrum = new GTBlockCasing1("Electrum"),
+			casingInvar = new GTBlockCasing1("Invar"),
+			casingIridium = new GTBlockCasing1("Iridium"),
+			casingIron = new GTBlockCasing1("Iron"),
+			casingLead = new GTBlockCasing1("Lead"),
+			casingNickel = new GTBlockCasing1("Nickel"),
+			casingOsmium = new GTBlockCasing1("Osmium"),
+			casingPlatinum = new GTBlockCasing1("Platinum"),
+			casingSilver = new GTBlockCasing1("Silver"),
+			casingSteel = new GTBlockCasing1("Steel"),
+			casingTin = new GTBlockCasing1("Tin"),
+			casingTitanium = new GTBlockCasing1("Titanium"),
+			casingTungsten = new GTBlockCasing1("Tungsten"),
+			casingZinc = new GTBlockCasing1("Zinc");
 
-	public static final GTBlockMetal rubyBlock = new GTBlockMetal(GTBlockMetalVariants.RUBY),
-			sapphireBlock = new GTBlockMetal(GTBlockMetalVariants.SAPPHIRE),
-			aluminiumBlock = new GTBlockMetal(GTBlockMetalVariants.ALUMINIUM),
-			titaniumBlock = new GTBlockMetal(GTBlockMetalVariants.TITANIUM),
-			chromeBlock = new GTBlockMetal(GTBlockMetalVariants.CHROME),
-			steelBlock = new GTBlockMetal(GTBlockMetalVariants.STEEL),
-			brassBlock = new GTBlockMetal(GTBlockMetalVariants.BRASS),
-			leadBlock = new GTBlockMetal(GTBlockMetalVariants.LEAD),
-			electrumBlock = new GTBlockMetal(GTBlockMetalVariants.ELECTRUM),
-			zincBlock = new GTBlockMetal(GTBlockMetalVariants.ZINC),
-			olivineBlock = new GTBlockMetal(GTBlockMetalVariants.OLIVINE),
-			greenSapphireBlock = new GTBlockMetal(GTBlockMetalVariants.GREEN_SAPPHIRE),
-			platinumBlock = new GTBlockMetal(GTBlockMetalVariants.PLATINUM),
-			tungstenBlock = new GTBlockMetal(GTBlockMetalVariants.TUNGSTEN),
-			nickelBlock = new GTBlockMetal(GTBlockMetalVariants.NICKEL),
-			tungstensteelBlock = new GTBlockMetal(GTBlockMetalVariants.TUNGSTENSTEEL),
-			invarBlock = new GTBlockMetal(GTBlockMetalVariants.INVAR),
-			osmiumBlock = new GTBlockMetal(GTBlockMetalVariants.OSMIUM),
-			iridiumBlock = new GTBlockMetal(GTBlockMetalVariants.IRIDIUM);
+	public static final GTBlockCasing2 superCasingBlock = new GTBlockCasing2(GTBlockCasing2Variants.SUPERCONDUCTOR),
+			fusionCasingBlock = new GTBlockCasing2(GTBlockCasing2Variants.FUSION),
+			fissionCasingBlock = new GTBlockCasing2(GTBlockCasing2Variants.FISSION),
+			crystalCasingBlock = new GTBlockCasing2(GTBlockCasing2Variants.CRYSTAL);
+
+	public static final GTBlockMaterial rubyBlock = new GTBlockMaterial("Ruby", 1),
+			sapphireBlock = new GTBlockMaterial("Sapphire", 1),
+			aluminiumBlock = new GTBlockMaterial("Aluminium", 0),
+			titaniumBlock = new GTBlockMaterial("Titanium", 0),
+			chromeBlock = new GTBlockMaterial("Chrome", 0),
+			steelBlock = new GTBlockMaterial("Steel", 0),
+			brassBlock = new GTBlockMaterial("Brass", 0),
+			leadBlock = new GTBlockMaterial("Lead", 0),
+			electrumBlock = new GTBlockMaterial("Electrum", 0),
+			zincBlock = new GTBlockMaterial("Zinc", 0),
+			olivineBlock = new GTBlockMaterial("Olivine", 1),
+			greenSapphireBlock = new GTBlockMaterial("SapphireGreen", 1),
+			platinumBlock = new GTBlockMaterial("Platinum", 0),
+			tungstenBlock = new GTBlockMaterial("Tungsten", 0),
+			nickelBlock = new GTBlockMaterial("Nickel", 0),
+			tungstensteelBlock = new GTBlockMaterial("TungstenSteel", 0),
+			invarBlock = new GTBlockMaterial("Invar", 0),
+			osmiumBlock = new GTBlockMaterial("Osmium", 0),
+			iridiumBlock = new GTBlockMaterial("Iridium", 0);
 
 	public static final GTBlockOre galenaOre = new GTBlockOre(GTBlockOreVariants.GALENA),
 			iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
@@ -146,8 +159,25 @@ public class GTBlocks {
 
 	public static final Block[] blocks = {
 
-			ironCasingBlock, aluminiumCasingBlock, titaniumCasingBlock, chromeCasingBlock,
-			tungstenCasingBlock, platinumCasingBlock, iridiumCasingBlock,
+			casingAluminium,
+			casingBrass,
+			casingBronze,
+			casingChrome,
+			casingCopper,
+			casingElectrum,
+			casingInvar,
+			casingIridium,
+			casingIron,
+			casingLead,
+			casingNickel,
+			casingOsmium,
+			casingPlatinum,
+			casingSilver,
+			casingSteel,
+			casingTin,
+			casingTitanium,
+			casingTungsten,
+			casingZinc,
 
 			superCasingBlock, fusionCasingBlock, fissionCasingBlock, crystalCasingBlock,
 
@@ -185,22 +215,22 @@ public class GTBlocks {
 			olivineOre,
 			sodaliteOre,
 
-			autoCrafter, 
-			chargeOMat, 
-			computerCube, 
-			industrialCentrifuge, 
-			matterFabricator, 
+			autoCrafter,
+			chargeOMat,
+			computerCube,
+			industrialCentrifuge,
+			matterFabricator,
 			uuMatterAssembler,
-			playerDetector, 
-			echophoneBlock, 
-			fusionComputer, 
+			playerDetector,
+			echophoneBlock,
+			fusionComputer,
 			lightningRod,
 
-			IDSU, 
-			HESU, 
-			LESU, 
-			digitalTransformerIV, 
-			energiumWire, 
+			IDSU,
+			HESU,
+			LESU,
+			digitalTransformerIV,
+			energiumWire,
 			lapotronWire,
 
 			digitalChestLV, bookShelfLV, workBenchLV, smallChestLV, largeChestLV,
@@ -232,7 +262,7 @@ public class GTBlocks {
 	public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
 		final IForgeRegistry<Item> registry = event.getRegistry();
 		for (Block block : blocks) {
-			registry.register(new ItemBlock(block).setRegistryName(block.getRegistryName())
+			registry.register(new GTColorItemBlock(block).setRegistryName(block.getRegistryName())
 					.setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTMod.creativeTabGT));
 		}
 	}

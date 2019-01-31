@@ -290,7 +290,7 @@ public class GTItems {
 	public static final GTItemEchophone sonictronItem = new GTItemEchophone();
 	public static final GTItemDestructoPack destructoPack = new GTItemDestructoPack();
 	public static final GTItemCraftingTablet craftingTablet = new GTItemCraftingTablet();
-	
+
 	public static final GTItemFile fileIron = new GTItemFile("Iron", 256),
 			fileAluminium = new GTItemFile("Aluminium", 128),
 			fileTitanium = new GTItemFile("Titanium", 2560),

@@ -54,52 +54,59 @@ public class GTRecipes {
 
 	public static void SmeltingRecipes() {
 
-		GameRegistry.addSmelting(GTItems.dustAluminium, new ItemStack(GTItems.ingotAluminium, 1), 0.3F);
-		GameRegistry.addSmelting(GTItems.dustChrome, new ItemStack(GTItems.ingotChrome, 1), 0.3F);
-		GameRegistry.addSmelting(GTBlocks.titaniumBlock, new ItemStack(GTItems.ingotTitanium, 9), 0.1F);
-		GameRegistry.addSmelting(GTItems.dustTitanium, new ItemStack(GTItems.ingotTitanium, 1), 0.3F);
+		/*
+		 * GameRegistry.addSmelting(GTItems.dustAluminium, new
+		 * ItemStack(GTItems.ingotAluminium, 1), 0.3F);
+		 * GameRegistry.addSmelting(GTItems.dustChrome, new
+		 * ItemStack(GTItems.ingotChrome, 1), 0.3F);
+		 * GameRegistry.addSmelting(GTBlocks.titaniumBlock, new
+		 * ItemStack(GTItems.ingotTitanium, 9), 0.1F);
+		 * GameRegistry.addSmelting(GTItems.dustTitanium, new
+		 * ItemStack(GTItems.ingotTitanium, 1), 0.3F);
+		 */
 
 		GameRegistry.addSmelting(GTBlocks.sandIron, new ItemStack(Items.IRON_NUGGET, 3), 0.1F);
 	}
 
 	public static void ShapelessRecipes() {
 
-		//lv storage blocks
-		
+		// lv storage blocks
+
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.smallChestLV, 1),
-				new Object[] { GTBlocks.ironCasingBlock, "chestWood" });
+				new Object[] { GTBlocks.casingIron, "chestWood" });
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.largeChestLV, 1),
 				new Object[] { GTBlocks.smallChestLV, GTBlocks.smallChestLV });
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.largeChestLV, 1),
-				new Object[] { "chestWood", "chestWood", GTBlocks.ironCasingBlock, GTBlocks.ironCasingBlock });
+				new Object[] { "chestWood", "chestWood", GTBlocks.casingIron, GTBlocks.casingIron });
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.bookShelfLV, 1),
-				new Object[] { GTBlocks.ironCasingBlock, Items.BOOK, Items.BOOK, Items.BOOK });
+				new Object[] { GTBlocks.casingIron, Items.BOOK, Items.BOOK, Items.BOOK });
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.workBenchLV, 1),
-				new Object[] { GTBlocks.ironCasingBlock, "workbench" });
-		
-		//mv storage blocks
-		
+				new Object[] { GTBlocks.casingIron, "workbench" });
+
+		// mv storage blocks
+
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.smallChestMV, 1),
-				new Object[] { GTBlocks.aluminiumCasingBlock, "chestWood" });
+				new Object[] { GTBlocks.casingAluminium, "chestWood" });
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.largeChestMV, 1),
 				new Object[] { GTBlocks.smallChestMV, GTBlocks.smallChestMV });
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.largeChestMV, 1),
-				new Object[] { "chestWood", "chestWood", GTBlocks.aluminiumCasingBlock, GTBlocks.aluminiumCasingBlock });
+				new Object[] { "chestWood", "chestWood", GTBlocks.casingAluminium,
+						GTBlocks.casingAluminium });
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.bookShelfMV, 1),
-				new Object[] { GTBlocks.aluminiumCasingBlock, Items.BOOK, Items.BOOK, Items.BOOK });
+				new Object[] { GTBlocks.casingAluminium, Items.BOOK, Items.BOOK, Items.BOOK });
 
 		recipes.addShapelessRecipe(new ItemStack(GTBlocks.workBenchMV, 1),
-				new Object[] { GTBlocks.aluminiumCasingBlock, "workbench" });
+				new Object[] { GTBlocks.casingAluminium, "workbench" });
 
-		//chemicals and stuff
-		
+		// chemicals and stuff
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.methane, 4),
 				new Object[] { GTItems.carbon, GTItems.hydrogen, GTItems.hydrogen, GTItems.hydrogen });
 
@@ -114,29 +121,19 @@ public class GTRecipes {
 	public static void ShapedRecipes() {
 
 		// MATERIALS
-		
-		gemUtil(GTBlocks.rubyBlock, GTItems.gemRuby, "Ruby");
-		gemUtil(GTBlocks.sapphireBlock, GTItems.gemSapphire, "Sapphire");
-		ingotUtil(GTBlocks.aluminiumBlock, GTItems.ingotAluminium, "Aluminium");
-		ingotUtil(GTBlocks.titaniumBlock, GTItems.ingotTitanium, "Titanium");
-		ingotUtil(GTBlocks.chromeBlock, GTItems.ingotChrome, "Chrome");
-		ingotUtil(GTBlocks.tungstenBlock, GTItems.ingotTungsten, "Tungsten");
-		ingotUtil(GTBlocks.platinumBlock, GTItems.ingotPlatinum, "Platinum");
-		ingotUtil(GTBlocks.iridiumBlock, GTItems.ingotIridium, "Iridium");
-		
-		casingUtil(GTBlocks.ironCasingBlock, "Iron");
-		casingUtil(GTBlocks.aluminiumCasingBlock, "Aluminium");
-		casingUtil(GTBlocks.titaniumCasingBlock, "Titanium");
-		casingUtil(GTBlocks.chromeCasingBlock, "Chrome");
-		casingUtil(GTBlocks.tungstenCasingBlock, "Tungsten");
-		casingUtil(GTBlocks.platinumCasingBlock, "Platinum");
-		
-		recipes.addRecipe(new ItemStack(GTBlocks.iridiumCasingBlock, 1), new Object[] { "XXX", "X X", "XXX", 'X', "plateIridium"});
+
+		/*
+		 * gemUtil(GTBlocks.rubyBlock, GTItems.gemRuby, "Ruby");
+		 * gemUtil(GTBlocks.sapphireBlock, GTItems.gemSapphire, "Sapphire");
+		 * ingotUtil(GTBlocks.aluminiumBlock, GTItems.ingotAluminium, "Aluminium");
+		 * ingotUtil(GTBlocks.titaniumBlock, GTItems.ingotTitanium, "Titanium");
+		 * ingotUtil(GTBlocks.chromeBlock, GTItems.ingotChrome, "Chrome");
+		 * ingotUtil(GTBlocks.tungstenBlock, GTItems.ingotTungsten, "Tungsten");
+		 * ingotUtil(GTBlocks.platinumBlock, GTItems.ingotPlatinum, "Platinum");
+		 * ingotUtil(GTBlocks.iridiumBlock, GTItems.ingotIridium, "Iridium");
+		 */
 
 		// TOOLS
-
-		recipes.addRecipe(new ItemStack(GTItems.hammerIron, 1),
-				new Object[] { "II ", "IIS", "II ", 'I', "ingotIron", 'S', Items.STICK });
 
 		recipes.addRecipe(new ItemStack(GTItems.electroMagnet, 1), new Object[] { "M M", "WMW", "IBI", 'M',
 				Ic2Items.magnet, 'B', Ic2Items.battery, 'I', ingotElectric, 'W', Ic2Items.copperCable });
@@ -176,7 +173,7 @@ public class GTRecipes {
 
 		recipes.addRecipe(new ItemStack(GTItems.smallLapotron, 1),
 				new Object[] { "LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(), 'P', "plateIridium" });
-		
+
 		recipes.addRecipe(new ItemStack(GTBlocks.superCasingBlock, 4),
 				new Object[] { "CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(), 'E',
 						GTItems.circuitSapphire, 'W', "dustTungsten", 'P', "plateIridium" });
@@ -210,24 +207,25 @@ public class GTRecipes {
 		// BLOCKS
 
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionCasingBlock),
-				new Object[] { "YVC", "BSB", "RVY", 'V', GTBlocks.chromeCasingBlock, 'C', GTItems.circuitSapphire, 'S',
-						GTBlocks.superCasingBlock, 'Y', Ic2Items.teslaCoil.copy(), 'B', GTBlocks.titaniumCasingBlock,
+				new Object[] { "YVC", "BSB", "RVY", 'V', GTBlocks.casingChrome, 'C', GTItems.circuitSapphire, 'S',
+						GTBlocks.superCasingBlock, 'Y', Ic2Items.teslaCoil.copy(), 'B', GTBlocks.casingTitanium,
 						'R', Ic2Items.reactorReflectorIridium.copy() });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.crystalCasingBlock),
-				new Object[] { "BBB", "BCB", "BBB", 'B', "blockRuby", 'C', GTBlocks.aluminiumCasingBlock });
+				new Object[] { "BBB", "BCB", "BBB", 'B', "blockRuby", 'C', GTBlocks.casingAluminium });
 
 		// TILES
 
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionComputer, 1),
-				new Object[] { "ESE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S', GTBlocks.digitalTransformerIV, 'L',
+				new Object[] { "ESE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S', GTBlocks.digitalTransformerIV,
+						'L',
 						GTItems.medLapotron, 'C', GTBlocks.computerCube });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.lightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
-				GTItems.circuitSapphire, 'S', GTBlocks.digitalTransformerIV, 'A', GTBlocks.titaniumCasingBlock });
+				GTItems.circuitSapphire, 'S', GTBlocks.digitalTransformerIV, 'A', GTBlocks.casingTitanium });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
-				Ic2Items.extractor, 'R', ingotElectric, 'A', GTBlocks.ironCasingBlock, 'C', "circuitAdvanced" });
+				Ic2Items.extractor, 'R', ingotElectric, 'A', GTBlocks.casingIron, 'C', "circuitAdvanced" });
 
 		if (GTValues.debugMode) {
 
@@ -237,26 +235,26 @@ public class GTRecipes {
 							GTItems.circuitDiamond, 'B', "batteryAdvanced" });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
-					Blocks.REDSTONE_TORCH, 'C', "circuitAdvanced", 'c', GTBlocks.ironCasingBlock });
+					Blocks.REDSTONE_TORCH, 'C', "circuitAdvanced", 'c', GTBlocks.casingIron });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.matterFabricator, 1),
 					new Object[] { "ETE", "HLH", "ETE", 'E', GTItems.circuitSapphire, 'T', Ic2Items.teleporter, 'H',
-							GTBlocks.titaniumCasingBlock, 'L', GTItems.smallLapotron });
+							GTBlocks.casingTitanium, 'L', GTItems.smallLapotron });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.digitalTransformerIV, 1),
 					new Object[] { "ELE", "SHS", "ELE", 'E', GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock,
-							'H', GTBlocks.iridiumCasingBlock, 'L', GTItems.smallLapotron });
+							'H', GTBlocks.casingIridium, 'L', GTItems.smallLapotron });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.autoCrafter, 1), new Object[] { " B ", "CcC", " A ", 'B',
 					Ic2Items.battery, 'C', "circuitAdvanced", 'c', "workbench", 'A', Ic2Items.advMachine });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.chargeOMat, 1),
 					new Object[] { "RCR", "AEA", "RMR", 'E', GTItems.smallLapotron, 'R', GTItems.circuitSapphire, 'A',
-							"chestWood", 'C', GTBlocks.computerCube, 'M', GTBlocks.titaniumCasingBlock });
+							"chestWood", 'C', GTBlocks.computerCube, 'M', GTBlocks.casingTitanium });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.digitalChestLV, 1),
 					new Object[] { "IDI", "CMC", "IDI", 'D', GTItems.circuitDiamond, 'I', GTItems.circuitEmerald, 'C',
-							"chestWood", 'M', GTBlocks.ironCasingBlock });
+							"chestWood", 'M', GTBlocks.casingIron });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.LESU), new Object[] { " G ", "CMC", " G ", 'C', "circuitAdvanced",
 					'M', GTBlocks.crystalCasingBlock, 'G', Ic2Items.glassFiberCable.copy() });
@@ -272,12 +270,12 @@ public class GTRecipes {
 
 			recipes.addRecipe(new ItemStack(GTBlocks.echophoneBlock, 1),
 					new Object[] { "CRC", "NMN", "CJC", 'C', "circuitBasic", 'N', Blocks.NOTEBLOCK, 'J', Blocks.JUKEBOX,
-							'M', GTBlocks.ironCasingBlock, 'R', "record" });
+							'M', GTBlocks.casingIron, 'R', "record" });
 		}
 
 		recipes.addRecipe(new ItemStack(GTBlocks.computerCube, 1),
 				new Object[] { "RGD", "GMG", "DGR", 'D', GTItems.circuitDiamond, 'R', GTItems.circuitSapphire, 'G',
-						"blockGlass", 'M', GTBlocks.titaniumCasingBlock });
+						"blockGlass", 'M', GTBlocks.casingTitanium });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.HESU),
 				new Object[] { "OOO", "OCO", "OOO", 'O', GTItems.smallLapotron, 'C', GTBlocks.computerCube });
@@ -347,21 +345,32 @@ public class GTRecipes {
 
 		// IC2C RECIPES (REPLACEMENTS)
 
-		//TODO find out how to not make errors fill up the logger when removing recipes tied to advancements
-		
-		/*recipes.overrideRecipe("shaped_Iridium Plate", StackUtil.copyWithSize(Ic2Items.iridiumPlate, 1), "IAI", "ADA",
-				"IAI", 'I', "ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
+		// TODO find out how to not make errors fill up the logger when removing recipes
+		// tied to advancements
 
-		recipes.overrideRecipe("shaped_Plasma Core", StackUtil.copyWithSize(Ic2Items.plasmaCore, 1), "XYX", "YCY",
-				"XYX", 'X', StackUtil.copyWithSize(Ic2Items.magnet, 2), 'Y',
-				StackUtil.copyWithSize(Ic2Items.advancedAlloy, 4), 'C', "itemPlasma");
-
-		recipes.overrideRecipe("shaped_PESU", StackUtil.copyWithSize(Ic2Items.pesu, 1), "XYX", "CCC", "XYX", 'X',
-				GTBlocks.tungstenCasingBlock, 'Y', Ic2Items.iridiumPlate.copy(), 'C', Ic2Items.pesd.copy());
-
-		recipes.overrideRecipe("shaped_IV-Transformer", StackUtil.copyWithSize(Ic2Items.transformerIV, 1), "XYX", "CVB",
-				"XYX", 'X', GTBlocks.tungstenCasingBlock, 'Y', Ic2Items.plasmaCable.copy(), 'C',
-				GTItems.circuitSapphire, 'V', Ic2Items.transformerEV.copy(), 'B', Ic2Items.pesd);*/
+		/*
+		 * recipes.overrideRecipe("shaped_Iridium Plate",
+		 * StackUtil.copyWithSize(Ic2Items.iridiumPlate, 1), "IAI", "ADA",
+		 * "IAI", 'I', "ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D',
+		 * "gemDiamond");
+		 * 
+		 * recipes.overrideRecipe("shaped_Plasma Core",
+		 * StackUtil.copyWithSize(Ic2Items.plasmaCore, 1), "XYX", "YCY",
+		 * "XYX", 'X', StackUtil.copyWithSize(Ic2Items.magnet, 2), 'Y',
+		 * StackUtil.copyWithSize(Ic2Items.advancedAlloy, 4), 'C', "itemPlasma");
+		 * 
+		 * recipes.overrideRecipe("shaped_PESU", StackUtil.copyWithSize(Ic2Items.pesu,
+		 * 1), "XYX", "CCC", "XYX", 'X',
+		 * GTBlocks.tungstenCasingBlock, 'Y', Ic2Items.iridiumPlate.copy(), 'C',
+		 * Ic2Items.pesd.copy());
+		 * 
+		 * recipes.overrideRecipe("shaped_IV-Transformer",
+		 * StackUtil.copyWithSize(Ic2Items.transformerIV, 1), "XYX", "CVB",
+		 * "XYX", 'X', GTBlocks.tungstenCasingBlock, 'Y', Ic2Items.plasmaCable.copy(),
+		 * 'C',
+		 * GTItems.circuitSapphire, 'V', Ic2Items.transformerEV.copy(), 'B',
+		 * Ic2Items.pesd);
+		 */
 
 	}
 
@@ -634,29 +643,27 @@ public class GTRecipes {
 		GTTileEntityFusionComputer.addRecipe(new ItemStack(GTItems.helium3), 1, (new ItemStack(GTItems.plasmaHelium)));
 
 	}
-	
-	
-	public static void circuitRecipes () {
-		
-		//furnace smelting of plastic boards
-		
+
+	public static void circuitRecipes() {
+
+		// furnace smelting of plastic boards
+
 		GameRegistry.addSmelting(GTItems.dustPlastic, new ItemStack(GTItems.platePlastic, 1), 0.1F);
-		
-		//temporary compressing boule from silicon and cutting
-		
+
+		// temporary compressing boule from silicon and cutting
+
 		TileEntityCompressor.addRecipe(new ItemStack(GTItems.silicon, 9),
 				StackUtil.copyWithSize(new ItemStack(GTItems.bouleSilicon), 1), 0.2F);
-		
+
 		TileEntitySawMill.addRecipe(new ItemStack(GTItems.bouleSilicon, 1),
 				StackUtil.copyWithSize(new ItemStack(GTItems.plateSilicon), 9), 0.2F);
-		
-		
-		//file gems into lenes
-		
+
+		// file gems into lenes
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.lensDiamond, 1),
 				new Object[] { "gemDiamond", GTItems.fileIron });
 
-		recipes.addShapelessRecipe(new ItemStack(GTItems.lensRuby, 1), 
+		recipes.addShapelessRecipe(new ItemStack(GTItems.lensRuby, 1),
 				new Object[] { "gemRuby", GTItems.fileIron });
 
 		recipes.addShapelessRecipe(new ItemStack(GTItems.lensEmerald, 1),
@@ -664,46 +671,40 @@ public class GTRecipes {
 
 		recipes.addShapelessRecipe(new ItemStack(GTItems.lensSapphire, 1),
 				new Object[] { "gemSapphire", GTItems.fileIron });
-		
-		//making the empty circuits
-		
+
+		// making the empty circuits
+
 		recipes.addRecipe(new ItemStack(GTItems.circuitEmpty, 4), new Object[] { "CDC", "DPD", "CDC", 'D',
 				GTItems.plateSilicon, 'C', "circuitAdvanced", 'P', "plateIridium" });
-		
-		//temporary recipe to make chipsets
-		
+
+		// temporary recipe to make chipsets
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.chipDiamond, 1),
 				new Object[] { "gemDiamond", GTItems.lensEmerald });
-		
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.chipRuby, 1),
 				new Object[] { "gemRuby", GTItems.lensEmerald });
-		
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.chipEmerald, 1),
 				new Object[] { "gemEmerald", GTItems.lensEmerald });
-		
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.chipSapphire, 1),
 				new Object[] { "gemSapphire", GTItems.lensEmerald });
-		
-		//crafting empty circuits into filled ones
-		
+
+		// crafting empty circuits into filled ones
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.circuitDiamond, 1),
 				new Object[] { GTItems.circuitEmpty, GTItems.chipDiamond });
-		
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.circuitRuby, 1),
 				new Object[] { GTItems.circuitEmpty, GTItems.chipRuby });
-		
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.circuitEmerald, 1),
 				new Object[] { GTItems.circuitEmpty, GTItems.chipEmerald });
-		
+
 		recipes.addShapelessRecipe(new ItemStack(GTItems.circuitSapphire, 1),
 				new Object[] { GTItems.circuitEmpty, GTItems.chipSapphire });
-		
-	}
-	
-	public static void casingUtil(Block casing, String name) {
-		String ingotstring = "ingot" + name;
-		String rodstring = "stick" + name;
-		recipes.addRecipe(new ItemStack(casing, 1), new Object[] { "IXX", "X X", "XXI", 'X', ingotstring, 'I', rodstring });
+
 	}
 
 	public static void ingotUtil(Block block, Item ingot, String name) {

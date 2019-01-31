@@ -97,6 +97,6 @@ public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 	}
 
 	public boolean checkPos(BlockPos pos) {
-		return world.getBlockState(pos) == GTBlocks.ironCasingBlock.getDefaultState();
+		return world.getBlockState(pos) == GTBlocks.casingIron.getDefaultState();
 	}
 }

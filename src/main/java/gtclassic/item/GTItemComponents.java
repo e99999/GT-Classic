@@ -14,8 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemComponents extends Item implements IStaticTexturedItem {
 	public enum GTItemComponentTypes {
-		
-		
+
 		BOULE_SILICON(32, false),
 		PLATE_PLASTIC(34, false),
 		LENS_DIAMOND(35, true),
@@ -43,7 +42,7 @@ public class GTItemComponents extends Item implements IStaticTexturedItem {
 		public int getID() {
 			return id;
 		}
-		
+
 		public boolean isContainerItem() {
 			return containeritem;
 		}
@@ -57,12 +56,12 @@ public class GTItemComponents extends Item implements IStaticTexturedItem {
 		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
-	
+
 	@Override
 	public boolean hasContainerItem(ItemStack itemStack) {
 		return variant.isContainerItem();
 	}
-	
+
 	@Override
 	public ItemStack getContainerItem(ItemStack itemStack) {
 		return itemStack.copy();

@@ -75,7 +75,7 @@ public class GTTileEntityDigitalChest extends TileEntityMachine implements IHasG
 
 	@Override
 	public void update() {
-		//TODO new data based digital logic
+		// TODO new data based digital logic
 	}
 
 	public int getDisplayCount() {

@@ -21,15 +21,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockCasing extends Block implements ITexturedBlock {
-	public enum GTBlockCasingVariants {
-		IRON(50), ALUMINIUM(51), TITANIUM(52), CHROME(53), IRIDIUM(54), TUNGSTEN(55), PLATINUM(56),
+public class GTBlockCasing2 extends Block implements ITexturedBlock {
+	public enum GTBlockCasing2Variants {
 
 		SUPERCONDUCTOR(0), FUSION(1), FISSION(2), CRYSTAL(3);
 
 		private int id;
 
-		GTBlockCasingVariants(int id) {
+		GTBlockCasing2Variants(int id) {
 			this.id = id;
 		}
 
@@ -38,9 +37,9 @@ public class GTBlockCasing extends Block implements ITexturedBlock {
 		}
 	}
 
-	GTBlockCasingVariants variant;
+	GTBlockCasing2Variants variant;
 
-	public GTBlockCasing(GTBlockCasingVariants variant) {
+	public GTBlockCasing2(GTBlockCasing2Variants variant) {
 		super(Material.IRON);
 		this.variant = variant;
 		setRegistryName(variant.toString().toLowerCase() + "_casing");

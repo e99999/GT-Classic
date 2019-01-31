@@ -33,17 +33,17 @@ public class GTBlockOre extends Block implements ITexturedBlock {
 	public enum GTBlockOreVariants {
 
 		GALENA(96, 1, 3.0F),
-        IRIDIUM(97, 3, 20.0F),
-        RUBY(98, 2, 4.0F),
-        SAPPHIRE(99, 2, 4.0F),
-        BAUXITE(100, 1, 3.0F),
-        PYRITE(102, 1, 2.0F),
-        CINNABAR(103, 2, 3.0F),
-        SPHALERITE(104, 1, 2.0F),
-        TUNGSTATE(105, 2, 4.0F),
-        SHELDONITE(106, 3, 3.5F),
-        OLIVINE(107, 3, 3.0F),
-        SODALITE(108, 2, 3.0F);
+		IRIDIUM(97, 3, 20.0F),
+		RUBY(98, 2, 4.0F),
+		SAPPHIRE(99, 2, 4.0F),
+		BAUXITE(100, 1, 3.0F),
+		PYRITE(102, 1, 2.0F),
+		CINNABAR(103, 2, 3.0F),
+		SPHALERITE(104, 1, 2.0F),
+		TUNGSTATE(105, 2, 4.0F),
+		SHELDONITE(106, 3, 3.5F),
+		OLIVINE(107, 3, 3.0F),
+		SODALITE(108, 2, 3.0F);
 
 		private int id;
 		private int harvest;
@@ -82,110 +82,103 @@ public class GTBlockOre extends Block implements ITexturedBlock {
 		setSoundType(SoundType.STONE);
 	}
 
-	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune){
-        ArrayList<ItemStack> drops = new ArrayList<>();
-        
-       //TODO MOVE THESE AND ADD FORTUNE DROPS
-        
-        //Nether Ores
-        if (this == GTBlocks.cinnabarOre) {
+	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
+		ArrayList<ItemStack> drops = new ArrayList<>();
 
-        drops.add(new ItemStack(GTItems.dustCinnabar, 2));
-            if(RANDOM.nextFloat()<0.25f) {
-                drops.add(new ItemStack(Items.REDSTONE, 1));
-            }
+		// TODO MOVE THESE AND ADD FORTUNE DROPS
 
+		// Nether Ores
+		if (this == GTBlocks.cinnabarOre) {
 
-        }
-        
-        if (this == GTBlocks.pyriteOre) {
-        drops.add(new ItemStack(GTItems.dustPyrite, 2));
-        }
-        
-        if (this == GTBlocks.sphaleriteOre) {
-        drops.add(new ItemStack(GTItems.dustSphalerite, 1));
-        	if(RANDOM.nextFloat()<0.25f) {
-        		drops.add(new ItemStack(GTItems.dustZinc, 1));
-        	}
-        	if(RANDOM.nextFloat()<0.125f) {
-        		drops.add(new ItemStack(GTItems.gemGarnetYellow, 1));
-        	}
-        }
-        
-        //End Ores
-        if (this == GTBlocks.tungstateOre) {
-        drops.add(new ItemStack(GTBlocks.tungstateOre, 1));
-        }
-        
-        if (this == GTBlocks.sheldoniteOre) {
-        drops.add(new ItemStack(GTBlocks.sheldoniteOre, 1));
-        }
-        
-        if (this == GTBlocks.sodaliteOre) {
-        drops.add(new ItemStack(GTItems.dustSodalite, 6));
-            if(RANDOM.nextFloat()<0.25f) {
-                drops.add(new ItemStack(GTItems.dustAluminium, 1));
-            }
-        }
-        
-        if (this == GTBlocks.olivineOre) {
-        drops.add(new ItemStack(GTItems.gemOlivine, 1));
-        }
-        
-        
-        //Default Ores
-        if (this == GTBlocks.galenaOre) {
-        drops.add(new ItemStack(GTBlocks.galenaOre, 1));
-        }
-        
-        if (this == GTBlocks.iridiumOre) {
-        drops.add(Ic2Items.iridiumOre);
-        }
-        
-        if (this == GTBlocks.rubyOre) {
-        	if(RANDOM.nextFloat()>0.10f) {
-        		drops.add(new ItemStack(GTItems.gemRuby, 1));
-        		}
-        	else {
-        		drops.add(new ItemStack(GTItems.gemGarnetRed, 1));
-        	}
-        }
-        
-        if (this == GTBlocks.sapphireOre) {//iron and add xp
-        	if(RANDOM.nextFloat()>0.10f) {
-        		drops.add(new ItemStack(GTItems.gemSapphire, 1));
-        		}
-        	else {
-        		drops.add(new ItemStack(GTItems.gemSapphireGreen, 1));
-        	}
-        }
-        
-        if (this == GTBlocks.bauxiteOre) {//stone
-            drops.add(new ItemStack(GTBlocks.bauxiteOre, 1));
-            }
-        
-        return drops;
-    }
+			drops.add(new ItemStack(GTItems.dustCinnabar, 2));
+			if (RANDOM.nextFloat() < 0.25f) {
+				drops.add(new ItemStack(Items.REDSTONE, 1));
+			}
+
+		}
+
+		if (this == GTBlocks.pyriteOre) {
+			drops.add(new ItemStack(GTItems.dustPyrite, 2));
+		}
+
+		if (this == GTBlocks.sphaleriteOre) {
+			drops.add(new ItemStack(GTItems.dustSphalerite, 1));
+			if (RANDOM.nextFloat() < 0.25f) {
+				drops.add(new ItemStack(GTItems.dustZinc, 1));
+			}
+			if (RANDOM.nextFloat() < 0.125f) {
+				drops.add(new ItemStack(GTItems.gemGarnetYellow, 1));
+			}
+		}
+
+		// End Ores
+		if (this == GTBlocks.tungstateOre) {
+			drops.add(new ItemStack(GTBlocks.tungstateOre, 1));
+		}
+
+		if (this == GTBlocks.sheldoniteOre) {
+			drops.add(new ItemStack(GTBlocks.sheldoniteOre, 1));
+		}
+
+		if (this == GTBlocks.sodaliteOre) {
+			drops.add(new ItemStack(GTItems.dustSodalite, 6));
+			if (RANDOM.nextFloat() < 0.25f) {
+				drops.add(new ItemStack(GTItems.dustAluminium, 1));
+			}
+		}
+
+		if (this == GTBlocks.olivineOre) {
+			drops.add(new ItemStack(GTItems.gemOlivine, 1));
+		}
+
+		// Default Ores
+		if (this == GTBlocks.galenaOre) {
+			drops.add(new ItemStack(GTBlocks.galenaOre, 1));
+		}
+
+		if (this == GTBlocks.iridiumOre) {
+			drops.add(Ic2Items.iridiumOre);
+		}
+
+		if (this == GTBlocks.rubyOre) {
+			if (RANDOM.nextFloat() > 0.10f) {
+				drops.add(new ItemStack(GTItems.gemRuby, 1));
+			} else {
+				drops.add(new ItemStack(GTItems.gemGarnetRed, 1));
+			}
+		}
+
+		if (this == GTBlocks.sapphireOre) {// iron and add xp
+			if (RANDOM.nextFloat() > 0.10f) {
+				drops.add(new ItemStack(GTItems.gemSapphire, 1));
+			} else {
+				drops.add(new ItemStack(GTItems.gemSapphireGreen, 1));
+			}
+		}
+
+		if (this == GTBlocks.bauxiteOre) {// stone
+			drops.add(new ItemStack(GTBlocks.bauxiteOre, 1));
+		}
+
+		return drops;
+	}
 
 	@Override
-    public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune){
-    	Random rand = world instanceof World ? ((World)world).rand : new Random();    
-    	int xp = 0;
-    	
-    		if (this == GTBlocks.sphaleriteOre){
-    			xp = MathHelper.getInt(rand, 0, 2);
-            }
-    		else if (this == GTBlocks.iridiumOre){
-            	xp = MathHelper.getInt(rand, 3, 7);
-            }
-    		else if (this == GTBlocks.rubyOre){
-    			xp = MathHelper.getInt(rand, 2, 5);
-            }
-    		else if (this == GTBlocks.sapphireOre){
-    			xp = MathHelper.getInt(rand, 2, 5);
-            }
-            return xp;
-    }
+	public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
+		Random rand = world instanceof World ? ((World) world).rand : new Random();
+		int xp = 0;
+
+		if (this == GTBlocks.sphaleriteOre) {
+			xp = MathHelper.getInt(rand, 0, 2);
+		} else if (this == GTBlocks.iridiumOre) {
+			xp = MathHelper.getInt(rand, 3, 7);
+		} else if (this == GTBlocks.rubyOre) {
+			xp = MathHelper.getInt(rand, 2, 5);
+		} else if (this == GTBlocks.sapphireOre) {
+			xp = MathHelper.getInt(rand, 2, 5);
+		}
+		return xp;
+	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {

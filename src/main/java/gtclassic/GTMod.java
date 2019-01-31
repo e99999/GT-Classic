@@ -8,13 +8,17 @@ import org.apache.logging.log4j.Logger;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
-import gtclassic.util.GTItemColorInterface;
-import gtclassic.util.GTItemColors;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;
 import gtclassic.util.GTValues;
+import gtclassic.util.color.GTColorBlock;
+import gtclassic.util.color.GTColorBlockInterface;
+import gtclassic.util.color.GTColorItem;
+import gtclassic.util.color.GTColorItemInterface;
 import ic2.api.classic.addon.misc.IOverrideObject;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -55,6 +59,7 @@ public class GTMod {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
+		registerTintedBlocks();
 		registerTintedItems();
 		GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
 		GTOreDict.init();
@@ -77,20 +82,30 @@ public class GTMod {
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GTCommandTeleport());
 	}
-	
-	public static void registerTintedItems()
-	{
-	    GTItemColors colors = new GTItemColors();
-	    ItemColors registry = Minecraft.getMinecraft().getItemColors();
-	    for(Item item : Item.REGISTRY)
-	    {
-	        if(item instanceof GTItemColorInterface)
-	        {
-	            if (GTValues.debugMode) {
-	            	logger.info("Registering item color modification:"+item.getUnlocalizedName());
-	            }
-	        	registry.registerItemColorHandler(colors, item);
-	        }
-	    }
+
+	public static void registerTintedItems() {
+		GTColorItem colors = new GTColorItem();
+		ItemColors registry = Minecraft.getMinecraft().getItemColors();
+		for (Item item : Item.REGISTRY) {
+			if (item instanceof GTColorItemInterface) {
+				if (GTValues.debugMode) {
+					logger.info("Registering item color modification:" + item.getUnlocalizedName());
+				}
+				registry.registerItemColorHandler(colors, item);
+			}
+		}
+	}
+
+	public static void registerTintedBlocks() {
+		GTColorBlock colors = new GTColorBlock();
+		BlockColors registry = Minecraft.getMinecraft().getBlockColors();
+		for (Block block : Block.REGISTRY) {
+			if (block instanceof GTColorBlockInterface) {
+				if (GTValues.debugMode) {
+					logger.info("Registering block color modification:" + block.getUnlocalizedName());
+				}
+				registry.registerBlockColorHandler(colors, block);
+			}
+		}
 	}
 }

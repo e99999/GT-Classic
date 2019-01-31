@@ -6,8 +6,8 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.GTRecipes;
-import gtclassic.util.GTItemColorInterface;
 import gtclassic.util.GTValues;
+import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -17,23 +17,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemFile extends Item implements IStaticTexturedItem, GTItemColorInterface, ILayeredItemModel {
+public class GTItemFile extends Item implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	String material;
-	
+
 	public GTItemFile(String material, Integer durability) {
 		this.maxStackSize = 1;
 		this.material = material;
 		this.setMaxDamage(durability);
-		setRegistryName(this.material+"_file");
-		setUnlocalizedName(GTMod.MODID + "."+ this.material +"_file");
+		setRegistryName(this.material + "_file");
+		setUnlocalizedName(GTMod.MODID + "." + this.material + "_file");
 		setCreativeTab(GTMod.creativeTabGT);
 		setRecipes();
 	}
-	
+
 	public void setRecipes() {
 		String input = "plate" + this.material;
-		GTRecipes.recipes.addRecipe(new ItemStack(this, 1), new Object[] { "X  ", "X  ", "C  ", 'X', input, 'C', "stickWood" });
+		GTRecipes.recipes.addRecipe(new ItemStack(this, 1),
+				new Object[] { "X  ", "X  ", "C  ", 'X', input, 'C', "stickWood" });
 	}
 
 	@Override
@@ -57,12 +58,13 @@ public class GTItemFile extends Item implements IStaticTexturedItem, GTItemColor
 	public TextureAtlasSprite getTexture(int meta) {
 		return Ic2Icons.getTextures("gtclassic_items")[8];
 	}
-	
+
 	@Override
 	public Color getColor(ItemStack stack, int index) {
-		if (index == 0){return GTValues.getColor("Wood");
-		}
-		else return GTValues.getColor(this.material);
+		if (index == 0) {
+			return GTValues.getColor("Wood");
+		} else
+			return GTValues.getColor(this.material);
 	}
 
 	@Override
@@ -77,7 +79,7 @@ public class GTItemFile extends Item implements IStaticTexturedItem, GTItemColor
 
 	@Override
 	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[8+var1];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[8 + var1];
 	}
 
 }

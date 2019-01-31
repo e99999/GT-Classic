@@ -6,15 +6,15 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.GTRecipes;
-import gtclassic.util.GTItemColorInterface;
 import gtclassic.util.GTValues;
+import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class GTItemDust extends Item implements IStaticTexturedItem, GTItemColorInterface {
+public class GTItemDust extends Item implements IStaticTexturedItem, GTColorItemInterface {
 
 	private String material;
 
@@ -25,7 +25,7 @@ public class GTItemDust extends Item implements IStaticTexturedItem, GTItemColor
 		setCreativeTab(GTMod.creativeTabGT);
 		setRecipes();
 	}
-	
+
 	public void setRecipes() {
 		String input = "dustSmall" + this.material;
 		GTRecipes.recipes.addShapelessRecipe(new ItemStack(this, 1), new Object[] { input, input, input, input });
