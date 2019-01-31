@@ -41,6 +41,7 @@ public class GTBlockCasing1 extends Block implements ITexturedBlock, GTColorBloc
 		setHarvestLevel("pickaxe", 2);
 	}
 
+
 	@Override
 	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
 		return FULL_BLOCK_AABB;

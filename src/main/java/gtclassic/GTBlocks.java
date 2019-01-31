@@ -8,7 +8,6 @@ import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockOre.GTBlockOreVariants;
 import gtclassic.block.GTBlockSandIron;
 import gtclassic.block.GTBlockTileBasic;
-import gtclassic.block.GTBlockTileBasic.GTBlockTileBasicVariants;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.GTBlockTileCustom.GTBlockTileCustomVariants;
 import gtclassic.block.test.GTBlockTestLayer;
@@ -37,6 +36,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
+
+	public static final String[] textureTileCustom = {
+			/*
+			 * This will be where a textures can iterate and be loaded instead of the enum
+			 * system
+			 */
+	};
 
 	public static final GTBlockCasing1 casingAluminium = new GTBlockCasing1("Aluminium"),
 			casingBrass = new GTBlockCasing1("Brass"),
@@ -98,33 +104,62 @@ public class GTBlocks {
 
 	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
 
-	public static final GTBlockTileBasic autoCrafter = new GTBlockTileBasic(
-			GTBlockTileBasicVariants.MACHINE_AUTOCRAFTER_LV),
-			chargeOMat = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_CHARGEOMAT_EV),
-			computerCube = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_COMPUTERCUBE_EV),
-			industrialCentrifuge = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_INDUSTRIALCENTRIFUGE_LV),
-			matterFabricator = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_MATTERFABRICATOR_EV),
-			uuMatterAssembler = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_UUMASSEMBLER_EV),
-			playerDetector = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_PLAYERDETECTOR_LV),
-			echophoneBlock = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_ECHOPHONE_LV),
-			fusionComputer = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_FUSIONCOMPUTER_IV),
-			lightningRod = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_LIGHTNINGROD_IV),
-			IDSU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_QUANTUMENERGYSTORAGE_EV),
-			HESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_BASICENERGYSTORAGE_EV),
-			LESU = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_MULTIENERGYSTORAGE_MV),
-			digitalTransformerIV = new GTBlockTileBasic(GTBlockTileBasicVariants.MACHINE_DIGITALTRANSFORMER_IV),
-			energiumWire = new GTBlockTileBasic(GTBlockTileBasicVariants.WIRE_ENERGIUM_LUV),
-			lapotronWire = new GTBlockTileBasic(GTBlockTileBasicVariants.WIRE_LAPOTRON_ZPM),
-			smallChestLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_SMALLCHEST_LV),
-			largeChestLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_LARGECHEST_LV),
-			digitalChestLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_DIGITALCHEST_LV),
-			bookShelfLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_BOOKSHELF_LV),
-			workBenchLV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_WORKBENCH_LV),
-			smallChestMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_SMALLCHEST_MV),
-			largeChestMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_LARGECHEST_MV),
-			digitalChestMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_DIGITALCHEST_MV),
-			bookShelfMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_BOOKSHELF_MV),
-			workBenchMV = new GTBlockTileBasic(GTBlockTileBasicVariants.TILE_WORKBENCH_MV);
+	public static final String[] textureTileBasic = {
+			"machine_autocrafter_lv",
+			"machine_chargeomat_ev",
+			"machine_computercube_ev",
+			"machine_industrialcentrifuge_lv", 
+			"machine_matterfabricator_ev", 
+			"machine_uumassembler_ev",
+			"machine_playerdetector_lv",
+			"machine_echophone_lv",
+			"machine_fusioncomputer_iv",
+			"machine_lightningrod_iv",
+			"machine_quantumenergystorage_ev",
+			"machine_basicenergystorage_ev",
+			"machine_multienergystorage_mv",
+			"machine_digitaltransformer_iv",
+			"wire_energium_luv",
+			"wire_lapotron_zpm",
+			"tile_smallchest_lv",
+			"tile_largechest_lv",
+			"tile_digitalchest_lv",
+			"tile_bookshelf_lv",
+			"tile_workbench_lv",
+			"tile_smallchest_mv",
+			"tile_largechest_mv",
+			"tile_digitalchest_mv", 
+			"tile_bookshelf_mv",
+			"tile_workbench_mv"
+	};
+
+	public static final GTBlockTileBasic 
+	        autoCrafter = new GTBlockTileBasic("machine_autocrafter_lv"),
+			chargeOMat = new GTBlockTileBasic("machine_chargeomat_ev"),
+			computerCube = new GTBlockTileBasic("machine_computercube_ev"),
+			industrialCentrifuge = new GTBlockTileBasic("machine_industrialcentrifuge_lv"),
+			matterFabricator = new GTBlockTileBasic("machine_matterfabricator_ev"),
+			uuMatterAssembler = new GTBlockTileBasic("machine_uumassembler_ev"),
+			playerDetector = new GTBlockTileBasic("machine_playerdetector_lv"),
+			echophoneBlock = new GTBlockTileBasic("machine_echophone_lv"),
+			fusionComputer = new GTBlockTileBasic("machine_fusioncomputer_iv"),
+			lightningRod = new GTBlockTileBasic("machine_lightningrod_iv"),
+			IDSU = new GTBlockTileBasic("machine_quantumenergystorage_ev"),
+			HESU = new GTBlockTileBasic("machine_basicenergystorage_ev"),
+			LESU = new GTBlockTileBasic("machine_multienergystorage_mv"),
+			digitalTransformerIV = new GTBlockTileBasic("machine_digitaltransformer_iv"),
+			energiumWire = new GTBlockTileBasic("wire_energium_luv"),
+			lapotronWire = new GTBlockTileBasic("wire_lapotron_zpm"),
+			smallChestLV = new GTBlockTileBasic("tile_smallchest_lv"),
+			largeChestLV = new GTBlockTileBasic("tile_largechest_lv"),
+			digitalChestLV = new GTBlockTileBasic("tile_digitalchest_lv"),
+			bookShelfLV = new GTBlockTileBasic("tile_bookshelf_lv"),
+			workBenchLV = new GTBlockTileBasic("tile_workbench_lv"),
+			smallChestMV = new GTBlockTileBasic("tile_smallchest_mv"),
+			largeChestMV = new GTBlockTileBasic("tile_largechest_mv"),
+			digitalChestMV = new GTBlockTileBasic("tile_digitalchest_mv"),
+			bookShelfMV = new GTBlockTileBasic("tile_bookshelf_mv"),
+			workBenchMV = new GTBlockTileBasic("tile_workbench_mv");
 
 	public static final GTBlockTileCustom smallCoolant = new GTBlockTileCustom(
 			GTBlockTileCustomVariants.COOLANT_HELIUM_SMALL),

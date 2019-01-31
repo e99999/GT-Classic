@@ -43,44 +43,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockTileBasic extends BlockMultiID {
+	
+	String name;
+	String texture;
 
-	public enum GTBlockTileBasicVariants {
-		MACHINE_AUTOCRAFTER_LV,
-		MACHINE_BASICENERGYSTORAGE_EV,
-		MACHINE_CHARGEOMAT_EV,
-		MACHINE_COMPUTERCUBE_EV,
-		MACHINE_FUSIONCOMPUTER_IV,
-		MACHINE_INDUSTRIALCENTRIFUGE_LV,
-		MACHINE_LIGHTNINGROD_IV,
-		MACHINE_MATTERFABRICATOR_EV,
-		MACHINE_MULTIENERGYSTORAGE_MV,
-		MACHINE_PLAYERDETECTOR_LV,
-		MACHINE_QUANTUMENERGYSTORAGE_EV,
-		MACHINE_ECHOPHONE_LV,
-		MACHINE_DIGITALTRANSFORMER_IV,
-		MACHINE_UUMASSEMBLER_EV,
-		TILE_BOOKSHELF_LV,
-		TILE_BOOKSHELF_MV,
-		TILE_LARGECHEST_LV,
-		TILE_LARGECHEST_MV,
-		TILE_DIGITALCHEST_LV,
-		TILE_DIGITALCHEST_MV,
-		TILE_SMALLCHEST_LV,
-		TILE_SMALLCHEST_MV,
-		TILE_WORKBENCH_LV,
-		TILE_WORKBENCH_MV,
-		// WIRE_TUNGSTEN_IV,
-		WIRE_ENERGIUM_LUV,
-		WIRE_LAPOTRON_ZPM;
-	}
-
-	GTBlockTileBasicVariants variant;
-
-	public GTBlockTileBasic(GTBlockTileBasicVariants variant) {
+	public GTBlockTileBasic(String name) {
 		super(Material.IRON);
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase());
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase());
+		this.name = name;
+		setRegistryName(this.name);
+		setUnlocalizedName(GTMod.MODID + "." + this.name);
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(4.0F);
 		setResistance(20.0F);
@@ -90,7 +61,7 @@ public class GTBlockTileBasic extends BlockMultiID {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTMod.MODID + "." + variant.toString().toLowerCase()));
+		//TODO put tooltip into constructor and add machine info
 	}
 
 	@Override
@@ -155,7 +126,7 @@ public class GTBlockTileBasic extends BlockMultiID {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite[] getIconSheet(int meta) {
-		return Ic2Icons.getTextures(variant.toString().toLowerCase());
+		return Ic2Icons.getTextures(this.name);
 	}
 
 	@Override
