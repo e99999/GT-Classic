@@ -26,7 +26,7 @@ public class GTIcons {
 				new Sprites.SpriteInfo(1, 12)));
 
 		collectBasicTileSprites();
-		iterateCustomTileSpriteEnum();
+		collectCustomTileSprites();
 
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_builder", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 12));
@@ -54,13 +54,10 @@ public class GTIcons {
 		}
 	}
 
-	public static void iterateCustomTileSpriteEnum() {
-		EnumSet.allOf(GTBlockTileCustom.GTBlockTileCustomVariants.class)
-				.forEach(variant -> addSprite(new Sprites.SpriteData("" + variant.toString().toLowerCase(),
-						GTMod.MODID + ":textures/sprites/" + variant.toString().toLowerCase() + ".png",
-						new Sprites.SpriteInfo(1, 12))));
-		EnumSet.allOf(GTBlockTileCustom.GTBlockTileCustomVariants.class).forEach(variant -> addTextureEntry(
-				new Sprites.TextureEntry("" + variant.toString().toLowerCase(), 0, 0, 1, 12)));
-
+	public static void collectCustomTileSprites() {
+		for (String string : GTBlocks.textureTileCustom) {
+			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string + ".png", new Sprites.SpriteInfo(1, 12)));
+			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));
+		}
 	}
 }

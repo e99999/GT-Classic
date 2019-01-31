@@ -9,7 +9,6 @@ import gtclassic.block.GTBlockOre.GTBlockOreVariants;
 import gtclassic.block.GTBlockSandIron;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
-import gtclassic.block.GTBlockTileCustom.GTBlockTileCustomVariants;
 import gtclassic.block.test.GTBlockTestLayer;
 import gtclassic.tileentity.GTTileEntityBasicEnergyStorage;
 import gtclassic.tileentity.GTTileEntityBookshelf;
@@ -36,13 +35,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
-
-	public static final String[] textureTileCustom = {
-			/*
-			 * This will be where a textures can iterate and be loaded instead of the enum
-			 * system
-			 */
-	};
 
 	public static final GTBlockCasing1 casingAluminium = new GTBlockCasing1("Aluminium"),
 			casingBrass = new GTBlockCasing1("Brass"),
@@ -108,8 +100,8 @@ public class GTBlocks {
 			"machine_autocrafter_lv",
 			"machine_chargeomat_ev",
 			"machine_computercube_ev",
-			"machine_industrialcentrifuge_lv", 
-			"machine_matterfabricator_ev", 
+			"machine_industrialcentrifuge_lv",
+			"machine_matterfabricator_ev",
 			"machine_uumassembler_ev",
 			"machine_playerdetector_lv",
 			"machine_echophone_lv",
@@ -128,13 +120,12 @@ public class GTBlocks {
 			"tile_workbench_lv",
 			"tile_smallchest_mv",
 			"tile_largechest_mv",
-			"tile_digitalchest_mv", 
+			"tile_digitalchest_mv",
 			"tile_bookshelf_mv",
 			"tile_workbench_mv"
 	};
 
-	public static final GTBlockTileBasic 
-	        autoCrafter = new GTBlockTileBasic("machine_autocrafter_lv"),
+	public static final GTBlockTileBasic autoCrafter = new GTBlockTileBasic("machine_autocrafter_lv"),
 			chargeOMat = new GTBlockTileBasic("machine_chargeomat_ev"),
 			computerCube = new GTBlockTileBasic("machine_computercube_ev"),
 			industrialCentrifuge = new GTBlockTileBasic("machine_industrialcentrifuge_lv"),
@@ -161,34 +152,59 @@ public class GTBlocks {
 			bookShelfMV = new GTBlockTileBasic("tile_bookshelf_mv"),
 			workBenchMV = new GTBlockTileBasic("tile_workbench_mv");
 
-	public static final GTBlockTileCustom smallCoolant = new GTBlockTileCustom(
-			GTBlockTileCustomVariants.COOLANT_HELIUM_SMALL),
-			medCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_HELIUM_MED),
-			largeCoolant = new GTBlockTileCustom(GTBlockTileCustomVariants.COOLANT_HELIUM_LARGE),
+	public static final String[] textureTileCustom = {
+			"coolant_helium_small",
+			"coolant_helium_med",
+			"coolant_helium_large",
+			"rod_thorium_small",
+			"rod_thorium_med",
+			"rod_thorium_large",
+			"rod_plutonium_small",
+			"rod_plutonium_med",
+			"rod_plutonium_large",
+			"battery_lithium_small",
+			"battery_lithium_med",
+			"battery_lithium_large",
+			"battery_lapotron_tiny",
+			"battery_lapotron_small",
+			"battery_lapotron_med",
+			"battery_lapotron_large",
+			"battery_lapotron_huge",
+			"battery_energium_tiny",
+			"battery_energium_small",
+			"battery_energium_med",
+			"battery_energium_large",
+			"battery_energium_huge",
+	};
 
-			smallThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_THORIUM_SMALL),
-			medThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_THORIUM_MED),
-			largeThorium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_THORIUM_LARGE),
+	public static final GTBlockTileCustom 
+			smallCoolant = new GTBlockTileCustom("coolant_helium_small", 5, 13, false),
+			medCoolant = new GTBlockTileCustom("coolant_helium_med", 13, 2, false),
+			largeCoolant = new GTBlockTileCustom("coolant_helium_large", 13, 2, false),
 
-			smallPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_PLUTONIUM_SMALL),
-			medPlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_PLUTONIUM_MED),
-			largePlutonium = new GTBlockTileCustom(GTBlockTileCustomVariants.ROD_PLUTONIUM_LARGE),
+			smallThorium = new GTBlockTileCustom("rod_thorium_small", 3, 10, true),
+			medThorium = new GTBlockTileCustom("rod_thorium_med", 4, 10, true),
+			largeThorium = new GTBlockTileCustom("rod_thorium_large", 5, 10, true),
 
-			smallLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LITHIUM_SMALL),
-			medLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LITHIUM_MED),
-			largeLithium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LITHIUM_LARGE),
+			smallPlutonium = new GTBlockTileCustom("rod_plutonium_small", 3, 10, true),
+			medPlutonium = new GTBlockTileCustom("rod_plutonium_med", 4, 10, true),
+			largePlutonium = new GTBlockTileCustom("rod_plutonium_large", 5, 10, true),
 
-			tinyLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_TINY),
-			smallLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_SMALL),
-			medLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_MED),
-			largeLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_LARGE),
-			hugeLapotron = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_LAPOTRON_HUGE),
+			smallLithium = new GTBlockTileCustom("battery_lithium_small", 6, 11, false),
+			medLithium = new GTBlockTileCustom("battery_lithium_med", 8, 11, false),
+			largeLithium = new GTBlockTileCustom("battery_lithium_large", 10, 11, false),
 
-			tinyEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_TINY),
-			smallEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_SMALL),
-			medEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_MED),
-			largeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_LARGE),
-			hugeEnergium = new GTBlockTileCustom(GTBlockTileCustomVariants.BATTERY_ENERGIUM_HUGE);
+			tinyLapotron = new GTBlockTileCustom("battery_lapotron_tiny", 6, 6, true),
+			smallLapotron = new GTBlockTileCustom("battery_lapotron_small", 8, 8, true),
+			medLapotron = new GTBlockTileCustom("battery_lapotron_med", 10, 10, true),
+			largeLapotron = new GTBlockTileCustom("battery_lapotron_large", 12, 12, true),
+			hugeLapotron = new GTBlockTileCustom("battery_lapotron_huge", 14, 14, true),
+
+			tinyEnergium = new GTBlockTileCustom("battery_energium_tiny", 6, 6, true),
+			smallEnergium = new GTBlockTileCustom("battery_energium_small", 8, 8, true),
+			medEnergium = new GTBlockTileCustom("battery_energium_med", 10, 10, true),
+			largeEnergium = new GTBlockTileCustom("battery_energium_large", 12, 12, true),
+			hugeEnergium = new GTBlockTileCustom("battery_energium_huge", 14, 14, true);
 
 	public static final GTBlockTestLayer testBlock = new GTBlockTestLayer();
 

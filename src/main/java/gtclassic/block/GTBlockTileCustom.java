@@ -22,102 +22,54 @@ import net.minecraft.world.World;
 
 public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModifier {
 
-	/*
-	 * GTBlockItemVariants enums
-	 * 
-	 * @param enum name & sprite sheet
-	 * 
-	 * @param int custom block width
-	 * 
-	 * @param intcustom block height
-	 * 
-	 * @param boolean does emit light
-	 * 
-	 */
+	String name;
+	int height;
+	int width;
+	boolean light;
 
-	public enum GTBlockTileCustomVariants {
-
-		BATTERY_ENERGIUM_HUGE(14, 14, true),
-		BATTERY_ENERGIUM_LARGE(12, 12, true),
-		BATTERY_ENERGIUM_MED(10, 10, true),
-		BATTERY_ENERGIUM_SMALL(8, 8, true),
-		BATTERY_ENERGIUM_TINY(6, 6, true),
-
-		BATTERY_LAPOTRON_HUGE(14, 14, true),
-		BATTERY_LAPOTRON_LARGE(12, 12, true),
-		BATTERY_LAPOTRON_MED(10, 10, true),
-		BATTERY_LAPOTRON_SMALL(8, 8, true),
-		BATTERY_LAPOTRON_TINY(6, 6, true),
-
-		BATTERY_LITHIUM_LARGE(10, 11, false),
-		BATTERY_LITHIUM_MED(8, 11, false),
-		BATTERY_LITHIUM_SMALL(6, 11, false),
-
-		COOLANT_HELIUM_LARGE(13, 2, false),
-		COOLANT_HELIUM_MED(13, 2, false),
-		COOLANT_HELIUM_SMALL(5, 13, false),
-
-		ROD_PLUTONIUM_LARGE(5, 10, true),
-		ROD_PLUTONIUM_MED(4, 10, true),
-		ROD_PLUTONIUM_SMALL(3, 10, true),
-		ROD_THORIUM_LARGE(5, 10, true),
-		ROD_THORIUM_MED(4, 10, true),
-		ROD_THORIUM_SMALL(3, 10, true);
-
-		private int height;
-		private int width;
-		private boolean light;
-
-		GTBlockTileCustomVariants(int width, int height, boolean light) {
-			this.width = width;
-			this.height = height;
-			this.light = light;
-		}
-
-		public float getHeight() {
-			return this.height;
-			// returns width as 0-16
-		}
-
-		public double getHeightBB() {
-			return this.height / 16.0D;
-			// returns height as 0.0D-1.0D
-		}
-
-		public double getOffsetBB() {
-			return (1.0D - (this.width / 16.0D)) * .5;
-			// returns full block height 1.0 - width (D) as 0.0-1.0D divided to center block
-		}
-
-		public float getWidth() {
-			return this.width;
-			// returns width as 0-16
-		}
-
-		public double getWidthBB() {
-			return this.width / 16.0D;
-			// returns width as 0.0D-1.0D
-		}
-
-	}
-
-	GTBlockTileCustomVariants variant;
-
-	public GTBlockTileCustom(GTBlockTileCustomVariants variant) {
+	public GTBlockTileCustom(String name, Integer width, Integer height, Boolean light) {
 		super(Material.CLOTH);
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase());
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase());
+		this.name = name;
+		this.height = height;
+		this.width = width;
+		this.light = light;
+		setRegistryName(this.name);
+		setUnlocalizedName(GTMod.MODID + "." + this.name);
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(0.5F);
 		setResistance(30.0F);
 		setSoundType(SoundType.CLOTH);
 		setLightLevel(getVariantLightLevel());
 	}
+	
+	public float getHeight() {
+		return this.height;
+		// returns width as 0-16
+	}
+
+	public double getHeightBB() {
+		return this.height / 16.0D;
+		// returns height as 0.0D-1.0D
+	}
+
+	public double getOffsetBB() {
+		return (1.0D - (this.width / 16.0D)) * .5;
+		// returns full block height 1.0 - width (D) as 0.0-1.0D divided to center block
+	}
+
+	public float getWidth() {
+		return this.width;
+		// returns width as 0-16
+	}
+
+	public double getWidthBB() {
+		return this.width / 16.0D;
+		// returns width as 0.0D-1.0D
+	}
 
 	public float getVariantLightLevel() {
-		if (this.variant.light) {
-			return (float) (this.variant.getWidthBB());
+		if (this.light) {
+			return (float) (this.getWidthBB());
 		}
 		return 0;
 	}
@@ -141,15 +93,15 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	@Override
 	public float[] getCustomTextureUV(IBlockState var1, EnumFacing var2) {
 		if (var2 == EnumFacing.UP || var2 == EnumFacing.DOWN) {
-			return new float[] { 0.0F, 16 - variant.getWidth(), variant.getWidth(), 16 };
+			return new float[] { 0.0F, 16 - this.getWidth(), this.getWidth(), 16 };
 		}
-		return new float[] { 0.0F, 16 - variant.getHeight(), variant.getWidth(), 16 };
+		return new float[] { 0.0F, 16 - this.getHeight(), this.getWidth(), 16 };
 
 	}
 
 	@Override
 	public TextureAtlasSprite[] getIconSheet(int arg0) {
-		return Ic2Icons.getTextures(variant.toString().toLowerCase());
+		return Ic2Icons.getTextures(this.name);
 	}
 
 	@Override
@@ -190,9 +142,9 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	}
 
 	public AxisAlignedBB getVariantBoundingBox() {
-		return new AxisAlignedBB(variant.getOffsetBB(), 0.0D, variant.getOffsetBB(),
-				variant.getOffsetBB() + variant.getWidthBB(), variant.getHeightBB(),
-				variant.getOffsetBB() + variant.getWidthBB());
+		return new AxisAlignedBB(this.getOffsetBB(), 0.0D, this.getOffsetBB(),
+				this.getOffsetBB() + this.getWidthBB(), this.getHeightBB(),
+				this.getOffsetBB() + this.getWidthBB());
 	}
 
 	@Override
