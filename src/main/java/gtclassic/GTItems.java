@@ -1,8 +1,9 @@
 package gtclassic;
 
+import java.awt.Color;
+
 import gtclassic.item.GTItemChainsaw;
 import gtclassic.item.GTItemComponents;
-import gtclassic.item.GTItemComponents.GTItemComponentTypes;
 import gtclassic.item.GTItemCraftingTablet;
 import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
@@ -18,12 +19,10 @@ import gtclassic.item.GTItemTeslaStaff;
 import gtclassic.item.materials.GTItemDust;
 import gtclassic.item.materials.GTItemDustSmall;
 import gtclassic.item.materials.GTItemElement;
-import gtclassic.item.materials.GTItemElement.GTItemElementTypes;
 import gtclassic.item.materials.GTItemGem;
 import gtclassic.item.materials.GTItemIngot;
 import gtclassic.item.materials.GTItemNugget;
 import gtclassic.item.materials.GTItemPlasma;
-import gtclassic.item.materials.GTItemPlasma.GTItemPlasmaTypes;
 import gtclassic.item.materials.GTItemPlate;
 import gtclassic.item.materials.GTItemStick;
 import gtclassic.util.GTBatteryBuilder;
@@ -34,29 +33,29 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTItems {
 
-	public static final GTItemElement hydrogen = new GTItemElement(GTItemElementTypes.HYDROGEN),
-			dueterium = new GTItemElement(GTItemElementTypes.DEUTERIUM),
-			tritium = new GTItemElement(GTItemElementTypes.TRITIUM),
-			helium = new GTItemElement(GTItemElementTypes.HELIUM),
-			lithium = new GTItemElement(GTItemElementTypes.LITHIUM),
-			helium3 = new GTItemElement(GTItemElementTypes.HELIUM3),
-			silicon = new GTItemElement(GTItemElementTypes.SILICON),
-			carbon = new GTItemElement(GTItemElementTypes.CARBON),
-			methane = new GTItemElement(GTItemElementTypes.METHANE),
-			berilium = new GTItemElement(GTItemElementTypes.BERILIUM),
-			calcium = new GTItemElement(GTItemElementTypes.CALCIUM),
-			sodium = new GTItemElement(GTItemElementTypes.SODIUM),
-			chlorine = new GTItemElement(GTItemElementTypes.CHLORINE),
-			potassium = new GTItemElement(GTItemElementTypes.POTASSIUM),
-			nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN),
-			oxygen = new GTItemElement(GTItemElementTypes.OXYGEN),
-			glassTube = new GTItemElement(GTItemElementTypes.EMPTY);
+	public static final GTItemElement hydrogen = new GTItemElement("Hyrdogen", Color.blue),
+			dueterium = new GTItemElement("Dueterium", Color.yellow),
+			tritium = new GTItemElement("Tritium", Color.red),
+			helium = new GTItemElement("Helium", Color.yellow),
+			lithium = new GTItemElement("Lithium", Color.lightGray),
+			helium3 = new GTItemElement("Helium3", Color.yellow),
+			silicon = new GTItemElement("Silicon", Color.black),
+			carbon = new GTItemElement("Carbon", Color.black),
+			methane = new GTItemElement("Methane", Color.pink),
+			berilium = new GTItemElement("Berilium", Color.green),
+			calcium = new GTItemElement("Calacium", Color.white),
+			sodium = new GTItemElement("Sodium", Color.blue),
+			chlorine = new GTItemElement("Chlorine", Color.cyan),
+			potassium = new GTItemElement("Potassium", Color.white),
+			nitrogen = new GTItemElement("Nitrogen", Color.white),
+			oxygen = new GTItemElement("Oxygen", Color.white),
+			glassTube = new GTItemElement("Empty", Color.white);
 
-	public static final GTItemPlasma plasmaHydrogen = new GTItemPlasma(GTItemPlasmaTypes.HYDROGEN),
-			plasmaNitrogen = new GTItemPlasma(GTItemPlasmaTypes.NITROGEN),
-			plasmaOxygen = new GTItemPlasma(GTItemPlasmaTypes.OXYGEN),
-			plasmaHelium = new GTItemPlasma(GTItemPlasmaTypes.HELIUM),
-			plasmaIron = new GTItemPlasma(GTItemPlasmaTypes.IRON);
+	public static final GTItemPlasma plasmaHydrogen = new GTItemPlasma("Hyrdogen", Color.blue),
+			plasmaNitrogen = new GTItemPlasma("Nitrogen", Color.white),
+			plasmaOxygen = new GTItemPlasma("Oxygen", Color.white),
+			plasmaHelium = new GTItemPlasma("Helium", Color.yellow),
+			plasmaIron = new GTItemPlasma("Iron", Color.red);
 
 	public static final GTItemDust dustAlmandine = new GTItemDust("Almandine"),
 			dustAluminium = new GTItemDust("Aluminium"),
@@ -273,24 +272,23 @@ public class GTItems {
 			nuggetTungstenSteel = new GTItemNugget("TungstenSteel"),
 			nuggetZinc = new GTItemNugget("Zinc");
 
-	public static final GTItemComponents bouleSilicon = new GTItemComponents(GTItemComponentTypes.BOULE_SILICON),
-			platePlastic = new GTItemComponents(GTItemComponentTypes.PLATE_PLASTIC),
-			lensDiamond = new GTItemComponents(GTItemComponentTypes.LENS_DIAMOND),
-			lensRuby = new GTItemComponents(GTItemComponentTypes.LENS_RUBY),
-			lensEmerald = new GTItemComponents(GTItemComponentTypes.LENS_EMERALD),
-			lensSapphire = new GTItemComponents(GTItemComponentTypes.LENS_SAPPHIRE),
-			chipDiamond = new GTItemComponents(GTItemComponentTypes.CHIP_DIAMOND),
-			chipRuby = new GTItemComponents(GTItemComponentTypes.CHIP_RUBY),
-			chipEmerald = new GTItemComponents(GTItemComponentTypes.CHIP_EMERALD),
-			chipSapphire = new GTItemComponents(GTItemComponentTypes.CHIP_SAPPHIRE),
-			circuitEmpty = new GTItemComponents(GTItemComponentTypes.CIRCUIT_EMPTY),
-			circuitDiamond = new GTItemComponents(GTItemComponentTypes.CIRCUIT_DIAMOND),
-			circuitRuby = new GTItemComponents(GTItemComponentTypes.CIRCUIT_RUBY),
-			circuitEmerald = new GTItemComponents(GTItemComponentTypes.CIRCUIT_EMERALD),
-			circuitSapphire = new GTItemComponents(GTItemComponentTypes.CIRCUIT_SAPPHIRE);
+	public static final GTItemComponents bouleSilicon = new GTItemComponents("bouleSilicon", 32, false),
+			platePlastic = new GTItemComponents("platePlastic", 34, false),
+			lensDiamond = new GTItemComponents("lensDiamond", 35, true),
+			lensRuby = new GTItemComponents("lensRuby", 36, true),
+			lensEmerald = new GTItemComponents("lensEmerald", 37, true),
+			lensSapphire = new GTItemComponents("lensSapphire", 38, true),
+			chipDiamond = new GTItemComponents("chipDiamond", 39, false),
+			chipRuby = new GTItemComponents("chipRuby", 40, false),
+			chipEmerald = new GTItemComponents("chipEmerald", 41, false),
+			chipSapphire = new GTItemComponents("chipSapphire", 42, false),
+			circuitEmpty = new GTItemComponents("circuitEmpty", 43, false),
+			circuitDiamond = new GTItemComponents("circuitDiamond", 44, false),
+			circuitRuby = new GTItemComponents("circuitRuby", 45, false),
+			circuitEmerald = new GTItemComponents("circuitEmerald", 46, false),
+			circuitSapphire = new GTItemComponents("circutSapphire", 47, false);
 
 	public static final GTItemDuctTape braintechAerospaceARDT = new GTItemDuctTape();
-
 	public static final GTItemEchophone sonictronItem = new GTItemEchophone();
 	public static final GTItemDestructoPack destructoPack = new GTItemDestructoPack();
 	public static final GTItemCraftingTablet craftingTablet = new GTItemCraftingTablet();

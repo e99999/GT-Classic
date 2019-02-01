@@ -2,11 +2,9 @@ package gtclassic;
 
 import gtclassic.block.GTBlockCasing1;
 import gtclassic.block.GTBlockCasing2;
-import gtclassic.block.GTBlockCasing2.GTBlockCasing2Variants;
 import gtclassic.block.GTBlockMaterial;
-import gtclassic.block.GTBlockOre;
-import gtclassic.block.GTBlockOre.GTBlockOreVariants;
-import gtclassic.block.GTBlockSandIron;
+import gtclassic.block.GTBlockOreSand;
+import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.test.GTBlockTestLayer;
@@ -56,10 +54,10 @@ public class GTBlocks {
 			casingTungsten = new GTBlockCasing1("Tungsten"),
 			casingZinc = new GTBlockCasing1("Zinc");
 
-	public static final GTBlockCasing2 superCasingBlock = new GTBlockCasing2(GTBlockCasing2Variants.SUPERCONDUCTOR),
-			fusionCasingBlock = new GTBlockCasing2(GTBlockCasing2Variants.FUSION),
-			fissionCasingBlock = new GTBlockCasing2(GTBlockCasing2Variants.FISSION),
-			crystalCasingBlock = new GTBlockCasing2(GTBlockCasing2Variants.CRYSTAL);
+	public static final GTBlockCasing2 superCasingBlock = new GTBlockCasing2("Superconductor", 0),
+			fusionCasingBlock = new GTBlockCasing2("Fusion", 1),
+			fissionCasingBlock = new GTBlockCasing2("Fission", 2),
+			crystalCasingBlock = new GTBlockCasing2("Crystal", 3);
 
 	public static final GTBlockMaterial rubyBlock = new GTBlockMaterial("Ruby", 1),
 			sapphireBlock = new GTBlockMaterial("Sapphire", 1),
@@ -81,20 +79,20 @@ public class GTBlocks {
 			osmiumBlock = new GTBlockMaterial("Osmium", 0),
 			iridiumBlock = new GTBlockMaterial("Iridium", 0);
 
-	public static final GTBlockOre galenaOre = new GTBlockOre(GTBlockOreVariants.GALENA),
-			iridiumOre = new GTBlockOre(GTBlockOreVariants.IRIDIUM),
-			rubyOre = new GTBlockOre(GTBlockOreVariants.RUBY),
-			sapphireOre = new GTBlockOre(GTBlockOreVariants.SAPPHIRE),
-			bauxiteOre = new GTBlockOre(GTBlockOreVariants.BAUXITE),
-			pyriteOre = new GTBlockOre(GTBlockOreVariants.PYRITE),
-			cinnabarOre = new GTBlockOre(GTBlockOreVariants.CINNABAR),
-			sphaleriteOre = new GTBlockOre(GTBlockOreVariants.SPHALERITE),
-			tungstateOre = new GTBlockOre(GTBlockOreVariants.TUNGSTATE),
-			sheldoniteOre = new GTBlockOre(GTBlockOreVariants.SHELDONITE),
-			olivineOre = new GTBlockOre(GTBlockOreVariants.OLIVINE),
-			sodaliteOre = new GTBlockOre(GTBlockOreVariants.SODALITE);
+	public static final GTBlockOreStone galenaOre = new GTBlockOreStone("Galena", 0, 1, 3.0F),
+			iridiumOre = new GTBlockOreStone("Iridium", 1, 3, 20.0F),
+			rubyOre = new GTBlockOreStone("Ruby", 2, 2, 4.0F),
+			sapphireOre = new GTBlockOreStone("Sapphire", 3, 2, 4.0F),
+			bauxiteOre = new GTBlockOreStone("Bauxite", 4, 1, 3.0F),
+			pyriteOre = new GTBlockOreStone("Pyrite", 6, 1, 2.0F),
+			cinnabarOre = new GTBlockOreStone("Cinnabar", 7, 2, 3.0F),
+			sphaleriteOre = new GTBlockOreStone("Sphalerite", 8, 1, 2.0F),
+			tungstateOre = new GTBlockOreStone("Tungstate", 9, 2, 4.0F),
+			sheldoniteOre = new GTBlockOreStone("Sheldonite", 10, 3, 3.5F),
+			olivineOre = new GTBlockOreStone("Olivine", 11, 3, 3.0F),
+			sodaliteOre = new GTBlockOreStone("Sodalite", 12, 2, 3.0F);
 
-	public static final GTBlockSandIron sandIron = new GTBlockSandIron();
+	public static final GTBlockOreSand sandIron = new GTBlockOreSand("Iron", 5);
 
 	public static final String[] textureTileBasic = {
 			"machine_autocrafter_lv",
@@ -177,8 +175,7 @@ public class GTBlocks {
 			"battery_energium_huge",
 	};
 
-	public static final GTBlockTileCustom 
-			smallCoolant = new GTBlockTileCustom("coolant_helium_small", 5, 13, false),
+	public static final GTBlockTileCustom smallCoolant = new GTBlockTileCustom("coolant_helium_small", 5, 13, false),
 			medCoolant = new GTBlockTileCustom("coolant_helium_med", 13, 2, false),
 			largeCoolant = new GTBlockTileCustom("coolant_helium_large", 13, 2, false),
 

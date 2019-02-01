@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 
 public class GTItemPlate extends Item implements IStaticTexturedItem, GTColorItemInterface {
 
-	private String material;
+	String material;
 
 	public GTItemPlate(String material) {
 		this.material = material;

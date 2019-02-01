@@ -66,8 +66,9 @@ public class GTItemHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 	public Color getColor(ItemStack stack, int index) {
 		if (index == 0) {
 			return GTValues.getColor("Wood");
-		} else
+		} else {
 			return GTValues.getColor(this.material);
+		}
 	}
 
 	@Override

@@ -45,5 +45,5 @@ public class GTItemDust extends Item implements IStaticTexturedItem, GTColorItem
 	public Color getColor(ItemStack stack, int index) {
 		return GTValues.getColor(this.material);
 	}
-	
+
 }

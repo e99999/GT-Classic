@@ -10,22 +10,25 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockSandIron extends BlockFalling implements ITexturedBlock {
+public class GTBlockOreSand extends BlockFalling implements ITexturedBlock {
 
-	public GTBlockSandIron() {
+	String name;
+	int id;
+
+	public GTBlockOreSand(String name, int id) {
 		super(Material.SAND);
-		setRegistryName("iron_sand");
-		setUnlocalizedName(GTMod.MODID + ".sandIron");
+		this.name = name;
+		this.id = id;
+		setRegistryName(this.name + "_sand");
+		setUnlocalizedName(GTMod.MODID + "." + this.name + "_sand");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(0.5F);
 		setSoundType(SoundType.SAND);
@@ -34,7 +37,7 @@ public class GTBlockSandIron extends BlockFalling implements ITexturedBlock {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".ironsand"));
+		// TODO add tooltips
 	}
 
 	@Override
@@ -45,7 +48,7 @@ public class GTBlockSandIron extends BlockFalling implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[101];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[this.id];
 	}
 
 	@Override

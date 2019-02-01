@@ -29,56 +29,25 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockOre extends Block implements ITexturedBlock {
-	public enum GTBlockOreVariants {
+public class GTBlockOreStone extends Block implements ITexturedBlock {
 
-		GALENA(96, 1, 3.0F),
-		IRIDIUM(97, 3, 20.0F),
-		RUBY(98, 2, 4.0F),
-		SAPPHIRE(99, 2, 4.0F),
-		BAUXITE(100, 1, 3.0F),
-		PYRITE(102, 1, 2.0F),
-		CINNABAR(103, 2, 3.0F),
-		SPHALERITE(104, 1, 2.0F),
-		TUNGSTATE(105, 2, 4.0F),
-		SHELDONITE(106, 3, 3.5F),
-		OLIVINE(107, 3, 3.0F),
-		SODALITE(108, 2, 3.0F);
+	String name;
+	int id;
+	int harvest;
+	float hardness;
 
-		private int id;
-		private int harvest;
-		private float hardness;
-
-		GTBlockOreVariants(int id, int harvest, float hardness) {
-			this.id = id;
-			this.harvest = harvest;
-			this.hardness = hardness;
-		}
-
-		public int getID() {
-			return id;
-		}
-
-		public int getHarvest() {
-			return harvest;
-		}
-
-		public float getHardness() {
-			return hardness;
-		}
-	}
-
-	GTBlockOreVariants variant;
-
-	public GTBlockOre(GTBlockOreVariants variant) {
+	public GTBlockOreStone(String name, int id, int harvest, float hardness) {
 		super(Material.ROCK);
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_ore");
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_ore");
+		this.name = name;
+		this.id = id;
+		this.harvest = harvest;
+		this.hardness = hardness;
+		setRegistryName(this.name + "_ore");
+		setUnlocalizedName(GTMod.MODID + "." + this.name + "_ore");
 		setCreativeTab(GTMod.creativeTabGT);
-		setHardness(variant.getHardness());
+		setHardness(this.hardness);
 		setResistance(10.0F);
-		setHarvestLevel("pickaxe", variant.getHarvest());
+		setHarvestLevel("pickaxe", this.harvest);
 		setSoundType(SoundType.STONE);
 	}
 
@@ -207,7 +176,7 @@ public class GTBlockOre extends Block implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[this.id];
 	}
 
 	@Override

@@ -13,53 +13,23 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemComponents extends Item implements IStaticTexturedItem {
-	public enum GTItemComponentTypes {
 
-		BOULE_SILICON(32, false),
-		PLATE_PLASTIC(34, false),
-		LENS_DIAMOND(35, true),
-		LENS_RUBY(36, true),
-		LENS_EMERALD(37, true),
-		LENS_SAPPHIRE(38, true),
-		CHIP_DIAMOND(39, false),
-		CHIP_RUBY(40, false),
-		CHIP_EMERALD(41, false),
-		CHIP_SAPPHIRE(42, false),
-		CIRCUIT_EMPTY(43, false),
-		CIRCUIT_DIAMOND(44, false),
-		CIRCUIT_RUBY(45, false),
-		CIRCUIT_EMERALD(46, false),
-		CIRCUIT_SAPPHIRE(47, false);
+	String name;
+	int id;
+	boolean containeritem;
 
-		private int id;
-		private boolean containeritem;
-
-		GTItemComponentTypes(int id, boolean containeritem) {
-			this.id = id;
-			this.containeritem = containeritem;
-		}
-
-		public int getID() {
-			return id;
-		}
-
-		public boolean isContainerItem() {
-			return containeritem;
-		}
-	}
-
-	GTItemComponentTypes variant;
-
-	public GTItemComponents(GTItemComponentTypes variant) {
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase());
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase());
+	public GTItemComponents(String name, int id, boolean containeritem) {
+		this.name = name;
+		this.id = id;
+		this.containeritem = containeritem;
+		setRegistryName(this.name);
+		setUnlocalizedName(GTMod.MODID + "." + this.name);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
 	public boolean hasContainerItem(ItemStack itemStack) {
-		return variant.isContainerItem();
+		return this.containeritem;
 	}
 
 	@Override
@@ -75,6 +45,6 @@ public class GTItemComponents extends Item implements IStaticTexturedItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[this.id];
 	}
 }

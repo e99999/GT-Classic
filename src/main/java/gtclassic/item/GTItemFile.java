@@ -63,8 +63,9 @@ public class GTItemFile extends Item implements IStaticTexturedItem, GTColorItem
 	public Color getColor(ItemStack stack, int index) {
 		if (index == 0) {
 			return GTValues.getColor("Wood");
-		} else
+		} else {
 			return GTValues.getColor(this.material);
+		}
 	}
 
 	@Override

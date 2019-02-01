@@ -22,28 +22,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockCasing2 extends Block implements ITexturedBlock {
-	public enum GTBlockCasing2Variants {
 
-		SUPERCONDUCTOR(0), FUSION(1), FISSION(2), CRYSTAL(3);
+	String name;
+	int id;
 
-		private int id;
-
-		GTBlockCasing2Variants(int id) {
-			this.id = id;
-		}
-
-		public int getID() {
-			return id;
-		}
-	}
-
-	GTBlockCasing2Variants variant;
-
-	public GTBlockCasing2(GTBlockCasing2Variants variant) {
+	public GTBlockCasing2(String name, int id) {
 		super(Material.IRON);
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_casing");
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_casing");
+		this.name = name;
+		this.id = id;
+		setRegistryName(this.name + "_casing");
+		setUnlocalizedName(GTMod.MODID + "." + this.name + "_casing");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
 		setResistance(30.0F);
@@ -59,7 +47,7 @@ public class GTBlockCasing2 extends Block implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_casings")[this.id];
 	}
 
 	@Override

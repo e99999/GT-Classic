@@ -4,10 +4,6 @@ import static ic2.core.platform.textures.Ic2Icons.addCustomTexture;
 import static ic2.core.platform.textures.Ic2Icons.addSprite;
 import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;
 
-import java.util.EnumSet;
-
-import gtclassic.block.GTBlockTileBasic;
-import gtclassic.block.GTBlockTileCustom;
 import ic2.core.platform.textures.Sprites;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,10 +14,17 @@ public class GTIcons {
 	public static void loadSprites() {
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_blocks", GTMod.MODID + ":textures/sprites/sprites_blocks.png",
 				new Sprites.SpriteInfo(16, 16)));
+
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_items", GTMod.MODID + ":textures/sprites/sprites_items.png",
 				new Sprites.SpriteInfo(16, 16)));
+
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_materials",
 				GTMod.MODID + ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 16)));
+
+		addSprite(
+				new Sprites.SpriteData(GTMod.MODID + "_casings", GTMod.MODID + ":textures/sprites/sprites_casings.png",
+						new Sprites.SpriteInfo(16, 16)));
+
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_builder", GTMod.MODID + ":textures/sprites/builder.png",
 				new Sprites.SpriteInfo(1, 12)));
 
@@ -33,6 +36,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 5));
 
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 4));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_casings", 0, 0, 16, 4));
 
 		addCustomTexture("tile_digitalchest_lv", 0, 1, location("digitalchestlv_top"));
 		addCustomTexture("tile_digitalchest_mv", 0, 1, location("digitalchestmv_top"));
@@ -46,17 +50,19 @@ public class GTIcons {
 	private static ResourceLocation location(String name) {
 		return new ResourceLocation(GTMod.MODID, "animations/" + name);
 	}
-	
+
 	public static void collectBasicTileSprites() {
 		for (String string : GTBlocks.textureTileBasic) {
-			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string + ".png", new Sprites.SpriteInfo(1, 12)));
+			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string + ".png",
+					new Sprites.SpriteInfo(1, 12)));
 			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));
 		}
 	}
 
 	public static void collectCustomTileSprites() {
 		for (String string : GTBlocks.textureTileCustom) {
-			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string + ".png", new Sprites.SpriteInfo(1, 12)));
+			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string + ".png",
+					new Sprites.SpriteInfo(1, 12)));
 			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));
 		}
 	}

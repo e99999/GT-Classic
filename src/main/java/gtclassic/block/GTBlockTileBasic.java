@@ -29,7 +29,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -43,7 +42,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockTileBasic extends BlockMultiID {
-	
+
 	String name;
 	String texture;
 
@@ -61,7 +60,7 @@ public class GTBlockTileBasic extends BlockMultiID {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		//TODO put tooltip into constructor and add machine info
+		// TODO put tooltip into constructor and add machine info
 	}
 
 	@Override

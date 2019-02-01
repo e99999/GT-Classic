@@ -6,7 +6,6 @@ import java.util.List;
 import gtclassic.GTMod;
 import gtclassic.util.GTValues;
 import gtclassic.util.color.GTColorBlockInterface;
-import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -30,9 +29,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTBlockMaterial extends Block implements ITexturedBlock, GTColorBlockInterface {
 
 	String material;
-	Integer type;
+	int type;
 
-	public GTBlockMaterial(String material, Integer type) {
+	public GTBlockMaterial(String material, int type) {
 		super(Material.IRON);
 		this.material = material;
 		this.type = type;

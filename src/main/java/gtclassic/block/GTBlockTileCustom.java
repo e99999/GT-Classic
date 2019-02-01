@@ -41,7 +41,7 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 		setSoundType(SoundType.CLOTH);
 		setLightLevel(getVariantLightLevel());
 	}
-	
+
 	public float getHeight() {
 		return this.height;
 		// returns width as 0-16

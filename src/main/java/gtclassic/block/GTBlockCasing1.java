@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.GTRecipes;
 import gtclassic.util.GTValues;
 import gtclassic.util.color.GTColorBlockInterface;
 import ic2.core.platform.textures.Ic2Icons;
@@ -40,7 +39,6 @@ public class GTBlockCasing1 extends Block implements ITexturedBlock, GTColorBloc
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);
 	}
-
 
 	@Override
 	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {

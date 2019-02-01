@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemStick extends Item implements IStaticTexturedItem, GTColorItemInterface {
 
-	private String material;
+	String material;
 
 	public GTItemStick(String material) {
 		this.material = material;
