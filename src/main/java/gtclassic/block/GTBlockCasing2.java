@@ -30,8 +30,8 @@ public class GTBlockCasing2 extends Block implements ITexturedBlock {
 		super(Material.IRON);
 		this.name = name;
 		this.id = id;
-		setRegistryName(this.name + "_casing");
-		setUnlocalizedName(GTMod.MODID + "." + this.name + "_casing");
+		setRegistryName(this.name.toLowerCase() + "_casing");
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_casing");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
 		setResistance(30.0F);

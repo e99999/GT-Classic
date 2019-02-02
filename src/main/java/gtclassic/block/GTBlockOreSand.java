@@ -27,8 +27,8 @@ public class GTBlockOreSand extends BlockFalling implements ITexturedBlock {
 		super(Material.SAND);
 		this.name = name;
 		this.id = id;
-		setRegistryName(this.name + "_sand");
-		setUnlocalizedName(GTMod.MODID + "." + this.name + "_sand");
+		setRegistryName(this.name.toLowerCase() + "_sand");
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_sand");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(0.5F);
 		setSoundType(SoundType.SAND);

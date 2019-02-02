@@ -24,8 +24,8 @@ public class GTItemPlasma extends Item implements IStaticTexturedItem, GTColorIt
 	public GTItemPlasma(String name, Color color) {
 		this.name = name;
 		this.color = color;
-		setRegistryName(this.name + "_plasma");
-		setUnlocalizedName(GTMod.MODID + "." + this.name + "_plasma");
+		setRegistryName(this.name.toLowerCase() + "_plasma");
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_plasma");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

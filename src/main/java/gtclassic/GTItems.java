@@ -220,6 +220,7 @@ public class GTItems {
 			plateNickel = new GTItemPlate("Nickel"),
 			plateOsmium = new GTItemPlate("Osmium"),
 			platePlatinum = new GTItemPlate("Platinum"),
+			platePlutonium = new GTItemPlate("Plutonium"),
 			plateRefinedIron = new GTItemPlate("RefinedIron"),
 			plateSilicon = new GTItemPlate("Silicon"),
 			plateSilver = new GTItemPlate("Silver"),
@@ -303,10 +304,19 @@ public class GTItems {
 			hammerTitanium = new GTItemHammer("Titanium", 8.0F, 2560, 3),
 			hammerTungstenSteel = new GTItemHammer("TungstenSteel", 10.0F, 5120, 4);
 
+	public static final GTItemDrill advancedDrill = new GTItemDrill("Diamond", 32.0F, 100000, 128, 1);
+	public static final GTItemDrill advancedDrill2 = new GTItemDrill("Diamond", 64.0F, 200000, 256, 2);
+	public static final GTItemDrill advancedDrill3 = new GTItemDrill("Diamond", 128.0F, 400000, 512, 3);
+	
+	public static final GTItemChainsaw advancedChainsaw = new GTItemChainsaw("Steel", 12.0F, 100000, 128, 1);
+	public static final GTItemChainsaw advancedChainsaw2 = new GTItemChainsaw("Tungsten", 24.0F, 200000, 256, 2);
+	public static final GTItemChainsaw advancedChainsaw3 = new GTItemChainsaw("TungstenSteel", 48.0F, 400000, 512, 3);
+
+	public static final GTItemRockCutter rockCutter = new GTItemRockCutter("Diamond", 1.0F, 10000, 100, 1);
+	public static final GTItemRockCutter rockCutter2 = new GTItemRockCutter("Ruby", 2.0F, 100000, 256, 2);
+	public static final GTItemRockCutter rockCutter3 = new GTItemRockCutter("Sapphire", 4.0F, 1000000, 1024, 3);
+	
 	public static final GTItemElectromagnet electroMagnet = new GTItemElectromagnet();
-	public static final GTItemRockCutter rockCutter = new GTItemRockCutter();
-	public static final GTItemDrill advancedDrill = new GTItemDrill();
-	public static final GTItemChainsaw advancedChainsaw = new GTItemChainsaw();
 	public static final GTItemTeslaStaff teslaStaff = new GTItemTeslaStaff();
 
 	public static final GTItemCreativeScanner debugScanner = new GTItemCreativeScanner();
@@ -517,6 +527,7 @@ public class GTItems {
 			plateNickel,
 			plateOsmium,
 			platePlatinum,
+			platePlutonium,
 			plateRefinedIron,
 			plateSilicon,
 			plateSilver,
@@ -589,19 +600,29 @@ public class GTItems {
 			fileAluminium,
 			fileTitanium,
 			fileTungstenSteel,
+			
 			hammerIron,
 			hammerAluminium,
 			hammerTitanium,
 			hammerTungstenSteel,
+			
+			advancedDrill,
+			advancedDrill2,
+			advancedDrill3,
+			
+			advancedChainsaw,
+			advancedChainsaw2,
+			advancedChainsaw3,
+			
+			rockCutter,
+			rockCutter2,
+			rockCutter3,
 
-			braintechAerospaceARDT,
-			sonictronItem,
 			destructoPack,
 			craftingTablet,
+			braintechAerospaceARDT,
+			sonictronItem,
 			electroMagnet,
-			rockCutter,
-			advancedDrill,
-			advancedChainsaw,
 			teslaStaff,
 			portableScanner,
 			debugScanner,

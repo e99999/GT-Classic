@@ -59,10 +59,10 @@ public class GTMod {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
+		GTOreDict.init();
 		registerTintedBlocks();
 		registerTintedItems();
 		GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
-		GTOreDict.init();
 		GTRecipes.init();
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
 		proxy.init(e);

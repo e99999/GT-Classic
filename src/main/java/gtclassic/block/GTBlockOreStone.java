@@ -42,8 +42,8 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 		this.id = id;
 		this.harvest = harvest;
 		this.hardness = hardness;
-		setRegistryName(this.name + "_ore");
-		setUnlocalizedName(GTMod.MODID + "." + this.name + "_ore");
+		setRegistryName(this.name.toLowerCase() + "_ore");
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_ore");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(this.hardness);
 		setResistance(10.0F);

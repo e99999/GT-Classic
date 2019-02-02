@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.GTRecipes;
 import gtclassic.util.GTValues;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
@@ -22,15 +21,9 @@ public class GTItemIngot extends Item implements IStaticTexturedItem, GTColorIte
 
 	public GTItemIngot(String material) {
 		this.material = material;
-		setRegistryName(this.material + "_ingot");
-		setUnlocalizedName(GTMod.MODID + "." + this.material + "_ingot");
+		setRegistryName(this.material.toLowerCase() + "_ingot");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.toLowerCase() + "_ingot");
 		setCreativeTab(GTMod.creativeTabGT);
-		setRecipes();
-	}
-
-	public void setRecipes() {
-		String input = "nugget" + this.material;
-		GTRecipes.recipes.addRecipe(new ItemStack(this, 1), new Object[] { "XXX", "XXX", "XXX", 'X', input });
 	}
 
 	@Override

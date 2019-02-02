@@ -21,8 +21,8 @@ public class GTItemGem extends Item implements IStaticTexturedItem, GTColorItemI
 
 	public GTItemGem(String material) {
 		this.material = material;
-		setRegistryName(this.material + "_gem");
-		setUnlocalizedName(GTMod.MODID + "." + this.material + "_gem");
+		setRegistryName(this.material.toLowerCase() + "_gem");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.toLowerCase() + "_gem");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

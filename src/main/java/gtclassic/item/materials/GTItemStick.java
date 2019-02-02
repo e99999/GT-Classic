@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.GTRecipes;
 import gtclassic.util.GTValues;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
@@ -22,15 +21,9 @@ public class GTItemStick extends Item implements IStaticTexturedItem, GTColorIte
 
 	public GTItemStick(String material) {
 		this.material = material;
-		setRegistryName(this.material + "_stick");
-		setUnlocalizedName(GTMod.MODID + "." + this.material + "_stick");
+		setRegistryName(this.material.toLowerCase() + "_stick");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.toLowerCase() + "_stick");
 		setCreativeTab(GTMod.creativeTabGT);
-		setRecipes();
-	}
-
-	public void setRecipes() {
-		String input = "ingot" + this.material;
-		GTRecipes.recipes.addShapelessRecipe(new ItemStack(this, 1), new Object[] { input, "craftingToolFile" });
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import gtclassic.GTMod;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import net.minecraft.util.text.TextFormatting;
 
 public class GTValues {
 
@@ -43,7 +44,8 @@ public class GTValues {
 	 * in the constructor to the correct color until it can be pulled
 	 * from a material entry itself.
 	 */
-	private static final ImmutableMap<String, Color> MAT_COLOR = ImmutableMap.<String, Color>builder()
+	private static final ImmutableMap<String, Color> 
+	MAT_COLOR = ImmutableMap.<String, Color>builder()
 			.put("Almandine", new Color(255, 0, 0))
 			.put("Aluminium", new Color(128, 200, 240))
 			.put("Andradite", new Color(150, 120, 0))
@@ -60,7 +62,7 @@ public class GTValues {
 			.put("Coal", new Color(70, 70, 70))
 			.put("Copper", new Color(255, 100, 0))
 			.put("DarkAshes", new Color(50, 50, 50))
-			.put("Diamond", new Color(200, 255, 255))
+			.put("Diamond", new Color(100, 240, 245))
 			.put("Electrum", new Color(255, 255, 100))
 			.put("Emerald", new Color(80, 255, 80))
 			.put("EnderEye", new Color(160, 250, 230))
@@ -105,7 +107,7 @@ public class GTValues {
 			.put("Silver", new Color(220, 220, 255))
 			.put("Sodalite", new Color(20, 20, 255))
 			.put("Spessartine", new Color(255, 100, 100))
-			.put("Sphalerite", new Color(255, 255, 255))
+			.put("Sphalerite", new Color(200, 140, 40))
 			.put("Steel", new Color(128, 128, 128))
 			.put("Sulfur", new Color(200, 200, 0))
 			.put("Thorium", new Color(0, 30, 0))
@@ -121,6 +123,43 @@ public class GTValues {
 
 	public static Color getColor(String name) {
 		return MAT_COLOR.get(name);
+	}
+	
+	public static Color getTierColor(int tier) {
+		if (tier == 1){return getColor("Iron");}
+		if (tier == 2){return getColor("Aluminium");}
+		if (tier == 3){return getColor("Platinum");}
+		if (tier == 4){return getColor("Titanium");}
+		if (tier == 5){return getColor("TungstenSteel");}
+		if (tier == 6){return getColor("Chrome");}
+		if (tier == 7){return getColor("Iridium");}
+		if (tier == 8){return getColor("Osmium");}
+		else { return Color.white;}
+	}
+	
+	public static String getTierString(int tier) {
+		if (tier == 1){return "LV";}
+		if (tier == 2){return "MV";}
+		if (tier == 3){return "HV";}
+		if (tier == 4){return "EV";}
+		if (tier == 5){return "IV";}
+		if (tier == 6){return "LuV";}
+		if (tier == 7){return "ZPM";}
+		if (tier == 8){return "UV";}
+		if (tier == 9){return "MAX";}
+		else { return "null";}
+	}
+	
+	public static TextFormatting getTierTextColor(int tier) {
+		if (tier == 1){return TextFormatting.GRAY;}
+		if (tier == 2){return TextFormatting.DARK_AQUA;}
+		if (tier == 3){return TextFormatting.YELLOW;}
+		if (tier == 4){return TextFormatting.LIGHT_PURPLE;}
+		if (tier == 5){return TextFormatting.DARK_BLUE;}
+		if (tier == 6){return TextFormatting.GREEN;}
+		if (tier == 7){return TextFormatting.WHITE;}
+		if (tier == 8){return TextFormatting.BLUE;}
+		else {return TextFormatting.WHITE;}
 	}
 
 }

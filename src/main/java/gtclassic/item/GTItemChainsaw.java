@@ -1,15 +1,19 @@
 package gtclassic.item;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.util.GTValues;
+import gtclassic.util.color.GTColorItemInterface;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -38,26 +42,39 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedItem {
+public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel { 
+	
+	
 	public static final ItemStack ironAxe;
+	String material;
+	float speed;
 
-	public GTItemChainsaw() {
+	public GTItemChainsaw(String material, float speed, int charge, int transfer, int tier) {
 		super(0.0F, 0.0F, ToolMaterial.IRON);
+		this.material = material;
 		this.attackDamage = 8.0F;
-		this.maxCharge = 100000;
-		this.transferLimit = 128;
-		this.operationEnergyCost = 50;
-		this.tier = 1;
-		this.efficiency = 12.0F;
+		this.maxCharge = charge;
+		this.transferLimit = transfer;
+		this.operationEnergyCost = transfer;
+		this.tier = tier;
+		this.efficiency = speed;
 		this.setHarvestLevel("axe", 2);
-		this.setRegistryName("advanced_chainsaw");
-		this.setUnlocalizedName(GTMod.MODID + ".advancedChainsaw");
+		this.setRegistryName(getChainsawName());
+		this.setUnlocalizedName(GTMod.MODID + "." + getChainsawName());
 		this.setCreativeTab(GTMod.creativeTabGT);
+	}
+	
+	public String getChainsawName() {
+		return ("chainsaw_" + this.material + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".saw"));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Tier: " + GTValues.getTierString(this.tier)));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Efficiency: " + String.valueOf(this.efficiency)));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Size: " + String.valueOf(this.maxCharge)));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
 	}
 
 	@Override
@@ -191,12 +208,6 @@ public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedI
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[61];
-	}
-
-	@Override
 	public EnumEnchantmentType getType(ItemStack item) {
 		return EnumEnchantmentType.DIGGER;
 	}
@@ -233,5 +244,35 @@ public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedI
 
 	static {
 		ironAxe = new ItemStack(Items.IRON_AXE);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTexture(int i) {
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[34];
+	}
+
+	@Override
+	public Color getColor(ItemStack stack, int index) {
+		if (index == 0) {
+			return GTValues.getTierColor(this.tier);
+		} else {
+			return GTValues.getColor(this.material);
+		}
+	}
+
+	@Override
+	public boolean isLayered(ItemStack var1) {
+		return true;
+	}
+
+	@Override
+	public int getLayers(ItemStack var1) {
+		return 2;
+	}
+
+	@Override
+	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[34 + var1];
 	}
 }

@@ -35,8 +35,8 @@ public class GTBlockMaterial extends Block implements ITexturedBlock, GTColorBlo
 		super(Material.IRON);
 		this.material = material;
 		this.type = type;
-		setRegistryName(this.material + "_block");
-		setUnlocalizedName(GTMod.MODID + "." + this.material + "_block");
+		setRegistryName(this.material.toLowerCase() + "_block");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.toLowerCase() + "_block");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
 		setResistance(15.0F);
@@ -57,7 +57,7 @@ public class GTBlockMaterial extends Block implements ITexturedBlock, GTColorBlo
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[14 + this.type];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[62 + this.type];
 	}
 
 	@Override

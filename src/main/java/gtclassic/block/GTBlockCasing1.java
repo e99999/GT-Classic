@@ -31,8 +31,8 @@ public class GTBlockCasing1 extends Block implements ITexturedBlock, GTColorBloc
 	public GTBlockCasing1(String material) {
 		super(Material.IRON);
 		this.material = material;
-		setRegistryName(this.material + "_casing");
-		setUnlocalizedName(GTMod.MODID + "." + this.material + "_casing");
+		setRegistryName(this.material.toLowerCase() + "_casing");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.toLowerCase() + "_casing");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
 		setResistance(30.0F);
@@ -48,7 +48,7 @@ public class GTBlockCasing1 extends Block implements ITexturedBlock, GTColorBloc
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[13];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[61];
 	}
 
 	@Override

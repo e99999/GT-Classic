@@ -1,5 +1,6 @@
 package gtclassic.item;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -7,10 +8,13 @@ import java.util.Set;
 import com.google.common.collect.ImmutableSet;
 
 import gtclassic.GTMod;
+import gtclassic.util.GTValues;
+import gtclassic.util.color.GTColorItemInterface;
 import ic2.api.classic.item.IMiningDrill;
 import ic2.api.item.ElectricItem;
 import ic2.core.item.base.ItemElectricTool;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -28,22 +32,36 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemRockCutter extends ItemElectricTool implements IStaticTexturedItem, IMiningDrill {
+public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel { 
+	
+	String material;
+	float speed;
 
-	public GTItemRockCutter() {
+	public GTItemRockCutter(String material, float speed, int charge, int transfer, int tier) {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);
-		this.setRegistryName("rock_cutter");
-		this.setUnlocalizedName(GTMod.MODID + ".rockCutter");
+		this.material = material;
+		this.speed = speed;
+		this.tier = tier;
 		this.attackDamage = 1.0F;
-		this.maxCharge = 10000;
-		this.transferLimit = 100;
-		this.tier = 1;
+		this.maxCharge = charge;
+		this.transferLimit = transfer;
+		this.setRegistryName(getRockCutterName());
+		this.setUnlocalizedName(GTMod.MODID + "." + getRockCutterName());
 		this.setCreativeTab(GTMod.creativeTabGT);
+	}
+	
+	public String getRockCutterName() {
+		return ("rockcutter_" + this.material + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".rockcutter"));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Tier: " + GTValues.getTierString(this.tier)));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Speed: " + String.valueOf(this.speed)));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Size: " + String.valueOf(this.maxCharge)));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Cost: " + String.valueOf(this.transferLimit*10)));
 	}
 
 	@Override
@@ -64,18 +82,18 @@ public class GTItemRockCutter extends ItemElectricTool implements IStaticTexture
 
 	@Override
 	public int getEnergyCost(ItemStack stack) {
-		return 500;
+		return (this.transferLimit*10);
 	}
 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
-		return 1.0F;
+		return this.speed;
 	}
 
 	@Override
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {
 		if (canMine(stack)) {
-			return 1.0F;
+			return this.speed;
 		} else {
 			return 0.0F;
 		}
@@ -89,12 +107,6 @@ public class GTItemRockCutter extends ItemElectricTool implements IStaticTexture
 	@Override
 	public List<Integer> getValidVariants() {
 		return Arrays.asList(0);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[62];
 	}
 
 	@Override
@@ -130,5 +142,35 @@ public class GTItemRockCutter extends ItemElectricTool implements IStaticTexture
 	@Override
 	public boolean canMineBlock(ItemStack stack, IBlockState state, IBlockAccess access, BlockPos pos) {
 		return ForgeHooks.canToolHarvestBlock(access, pos, stack);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getTexture(int i) {
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[36];
+	}
+
+	@Override
+	public Color getColor(ItemStack stack, int index) {
+		if (index == 0) {
+			return GTValues.getTierColor(this.tier);
+		} else {
+			return GTValues.getColor(this.material);
+		}
+	}
+
+	@Override
+	public boolean isLayered(ItemStack var1) {
+		return true;
+	}
+
+	@Override
+	public int getLayers(ItemStack var1) {
+		return 2;
+	}
+
+	@Override
+	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[36 + var1];
 	}
 }

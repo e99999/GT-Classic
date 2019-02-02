@@ -33,8 +33,8 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 		this.height = height;
 		this.width = width;
 		this.light = light;
-		setRegistryName(this.name);
-		setUnlocalizedName(GTMod.MODID + "." + this.name);
+		setRegistryName(this.name.toLowerCase());
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(0.5F);
 		setResistance(30.0F);

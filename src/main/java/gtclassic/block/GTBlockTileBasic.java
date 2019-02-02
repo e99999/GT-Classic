@@ -49,8 +49,8 @@ public class GTBlockTileBasic extends BlockMultiID {
 	public GTBlockTileBasic(String name) {
 		super(Material.IRON);
 		this.name = name;
-		setRegistryName(this.name);
-		setUnlocalizedName(GTMod.MODID + "." + this.name);
+		setRegistryName(this.name.toLowerCase());
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(4.0F);
 		setResistance(20.0F);

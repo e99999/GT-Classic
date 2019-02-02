@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.GTRecipes;
 import gtclassic.util.GTValues;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
@@ -30,13 +29,6 @@ public class GTItemHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 		setRegistryName(this.material + "_hammer");
 		setUnlocalizedName(GTMod.MODID + "." + this.material + "_hammer");
 		setCreativeTab(GTMod.creativeTabGT);
-		setRecipes();
-	}
-
-	public void setRecipes() {
-		String input = "ingot" + this.material;
-		GTRecipes.recipes.addRecipe(new ItemStack(this, 1),
-				new Object[] { "XX ", "XXC", "XX ", 'X', input, 'C', "stickWood" });
 	}
 
 	@Override

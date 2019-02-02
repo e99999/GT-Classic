@@ -54,6 +54,7 @@ public class GTBlocks {
 			casingTungsten = new GTBlockCasing1("Tungsten"),
 			casingZinc = new GTBlockCasing1("Zinc");
 
+
 	public static final GTBlockCasing2 superCasingBlock = new GTBlockCasing2("Superconductor", 0),
 			fusionCasingBlock = new GTBlockCasing2("Fusion", 1),
 			fissionCasingBlock = new GTBlockCasing2("Fission", 2),

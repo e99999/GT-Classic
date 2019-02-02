@@ -24,8 +24,8 @@ public class GTItemElement extends Item implements IStaticTexturedItem, GTColorI
 	public GTItemElement(String name, Color color) {
 		this.name = name;
 		this.color = color;
-		setRegistryName(this.name);
-		setUnlocalizedName(GTMod.MODID + "." + this.name);
+		setRegistryName(this.name.toLowerCase());
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
