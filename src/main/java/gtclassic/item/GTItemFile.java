@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.util.GTValues;
+import gtclassic.materialsnew.GTMaterial;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -18,14 +18,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemFile extends Item implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
-	String material;
+	GTMaterial material;
 
-	public GTItemFile(String material, Integer durability) {
+	public GTItemFile(GTMaterial material) {
 		this.maxStackSize = 1;
 		this.material = material;
-		this.setMaxDamage(durability);
-		setRegistryName(this.material.toLowerCase() + "_file");
-		setUnlocalizedName(GTMod.MODID + "." + this.material.toLowerCase() + "_file");
+		this.setMaxDamage(this.material.getDurability());
+		setRegistryName(this.material.getName() + "_file");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_file");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
@@ -54,9 +54,9 @@ public class GTItemFile extends Item implements IStaticTexturedItem, GTColorItem
 	@Override
 	public Color getColor(ItemStack stack, int index) {
 		if (index == 0) {
-			return GTValues.getColor("Wood");
+			return GTMaterial.Wood.getColor();
 		} else {
-			return GTValues.getColor(this.material);
+			return this.material.getColor();
 		}
 	}
 

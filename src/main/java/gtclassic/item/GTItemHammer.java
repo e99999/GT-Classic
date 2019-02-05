@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.util.GTValues;
+import gtclassic.materialsnew.GTMaterial;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -18,16 +18,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemHammer extends ItemPickaxe implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
-	String material;
+	GTMaterial material;
 
-	public GTItemHammer(String material, Float speed, Integer durability, Integer level) {
+	public GTItemHammer(GTMaterial material) {
 		super(ToolMaterial.IRON);
 		this.material = material;
-		this.efficiency = speed;
-		this.setHarvestLevel("pickaxe", level);
-		this.setMaxDamage(durability * 2);
-		setRegistryName(this.material.toLowerCase() + "_hammer");
-		setUnlocalizedName(GTMod.MODID + "." + this.material.toLowerCase() + "_hammer");
+		this.efficiency = this.material.getSpeed();
+		this.setHarvestLevel("pickaxe", this.material.getLevel());
+		this.setMaxDamage(this.material.getDurability() * 2);
+		setRegistryName(this.material.getName() + "_hammer");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_hammer");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
@@ -57,9 +57,9 @@ public class GTItemHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 	@Override
 	public Color getColor(ItemStack stack, int index) {
 		if (index == 0) {
-			return GTValues.getColor("Wood");
+			return GTMaterial.Wood.getColor();
 		} else {
-			return GTValues.getColor(this.material);
+			return this.material.getColor();
 		}
 	}
 

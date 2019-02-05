@@ -89,7 +89,7 @@ public class GTValues {
 			.put("Nickel", new Color(200, 200, 250))
 			.put("Obsidian", new Color(80, 50, 100))
 			.put("Olivine", new Color(150, 255, 150))
-			.put("Osmium", new Color(50, 50, 255))//
+			.put("Osmium", new Color(50, 50, 255))
 			.put("Phosphor", new Color(255, 255, 0))
 			.put("Plastic", new Color(200, 200, 200))
 			.put("Platinum", new Color(215, 212, 137))

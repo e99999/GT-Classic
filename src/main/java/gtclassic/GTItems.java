@@ -25,6 +25,7 @@ import gtclassic.item.materials.GTItemNugget;
 import gtclassic.item.materials.GTItemPlasma;
 import gtclassic.item.materials.GTItemPlate;
 import gtclassic.item.materials.GTItemStick;
+import gtclassic.materialsnew.GTMaterial;
 import gtclassic.util.GTBatteryBuilder;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -294,27 +295,27 @@ public class GTItems {
 	public static final GTItemDestructoPack destructoPack = new GTItemDestructoPack();
 	public static final GTItemCraftingTablet craftingTablet = new GTItemCraftingTablet();
 
-	public static final GTItemFile fileIron = new GTItemFile("Iron", 256),
-			fileAluminium = new GTItemFile("Aluminium", 128),
-			fileTitanium = new GTItemFile("Titanium", 2560),
-			fileTungstenSteel = new GTItemFile("TungstenSteel", 5120);
+	public static final GTItemFile fileIron = new GTItemFile(GTMaterial.Iron),
+			fileAluminium = new GTItemFile(GTMaterial.Aluminium),
+			fileTitanium = new GTItemFile(GTMaterial.Titanium),
+			fileTungstenSteel = new GTItemFile(GTMaterial.TungstenSteel);
 
-	public static final GTItemHammer hammerIron = new GTItemHammer("Iron", 6.0F, 256, 2),
-			hammerAluminium = new GTItemHammer("Aluminium", 10.0F, 128, 2),
-			hammerTitanium = new GTItemHammer("Titanium", 8.0F, 2560, 3),
-			hammerTungstenSteel = new GTItemHammer("TungstenSteel", 10.0F, 5120, 4);
+	public static final GTItemHammer hammerIron = new GTItemHammer(GTMaterial.Iron),
+			hammerAluminium = new GTItemHammer(GTMaterial.Aluminium),
+			hammerTitanium = new GTItemHammer(GTMaterial.Titanium),
+			hammerTungstenSteel = new GTItemHammer(GTMaterial.TungstenSteel);
 
-	public static final GTItemDrill advancedDrill = new GTItemDrill("Diamond", 32.0F, 100000, 128, 1);
-	public static final GTItemDrill advancedDrill2 = new GTItemDrill("Diamond", 64.0F, 200000, 256, 2);
-	public static final GTItemDrill advancedDrill3 = new GTItemDrill("Diamond", 128.0F, 400000, 512, 3);
+	public static final GTItemDrill advancedDrill = new GTItemDrill(GTMaterial.Diamond, 100000, 128, 1);
+	public static final GTItemDrill advancedDrill2 = new GTItemDrill(GTMaterial.Diamond, 200000, 256, 2);
+	public static final GTItemDrill advancedDrill3 = new GTItemDrill(GTMaterial.Diamond, 400000, 512, 3);
 
-	public static final GTItemChainsaw advancedChainsaw = new GTItemChainsaw("Steel", 12.0F, 100000, 128, 1);
-	public static final GTItemChainsaw advancedChainsaw2 = new GTItemChainsaw("Steel", 24.0F, 200000, 256, 2);
-	public static final GTItemChainsaw advancedChainsaw3 = new GTItemChainsaw("Steel", 48.0F, 400000, 512, 3);
+	public static final GTItemChainsaw advancedChainsaw = new GTItemChainsaw(GTMaterial.Steel, 100000, 128, 1);
+	public static final GTItemChainsaw advancedChainsaw2 = new GTItemChainsaw(GTMaterial.Titanium, 200000, 256, 2);
+	public static final GTItemChainsaw advancedChainsaw3 = new GTItemChainsaw(GTMaterial.TungstenSteel, 400000, 512, 3);
 
-	public static final GTItemRockCutter rockCutter = new GTItemRockCutter("Diamond", 1.0F, 10000, 100, 1);
-	public static final GTItemRockCutter rockCutter2 = new GTItemRockCutter("Diamond", 2.0F, 100000, 256, 2);
-	public static final GTItemRockCutter rockCutter3 = new GTItemRockCutter("Diamond", 4.0F, 1000000, 1024, 3);
+	public static final GTItemRockCutter rockCutter = new GTItemRockCutter(GTMaterial.Diamond, 10000, 100, 1);
+	public static final GTItemRockCutter rockCutter2 = new GTItemRockCutter(GTMaterial.Diamond, 100000, 256, 2);
+	public static final GTItemRockCutter rockCutter3 = new GTItemRockCutter(GTMaterial.Diamond, 1000000, 1024, 3);
 
 	public static final GTItemElectromagnet electroMagnet = new GTItemElectromagnet();
 	public static final GTItemTeslaStaff teslaStaff = new GTItemTeslaStaff();

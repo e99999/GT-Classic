@@ -1,6 +1,6 @@
 package gtclassic.materialsnew;
 
-public enum MaterialFlag {
+public enum GTMaterialFlag {
 
 	SMALLDUST,
 	DUST,
@@ -14,7 +14,7 @@ public enum MaterialFlag {
 
 	private int mask;
 
-	MaterialFlag() {
+	GTMaterialFlag() {
 		this.mask = 1 << ordinal();
 	}
 

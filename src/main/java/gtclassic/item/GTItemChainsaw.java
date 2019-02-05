@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.materialsnew.GTMaterial;
 import gtclassic.util.GTValues;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.api.item.ElectricItem;
@@ -46,18 +47,17 @@ public class GTItemChainsaw extends ItemElectricTool
 		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	public static final ItemStack ironAxe;
-	String material;
-	float speed;
+	GTMaterial material;
 
-	public GTItemChainsaw(String material, float speed, int charge, int transfer, int tier) {
+	public GTItemChainsaw(GTMaterial material, int charge, int transfer, int tier) {
 		super(0.0F, 0.0F, ToolMaterial.IRON);
 		this.material = material;
-		this.attackDamage = 8.0F;
+		this.attackDamage = 1.0F;
 		this.maxCharge = charge;
 		this.transferLimit = transfer;
 		this.operationEnergyCost = transfer;
 		this.tier = tier;
-		this.efficiency = speed;
+		this.efficiency = (this.material.getSpeed() * 2) * this.tier;
 		this.setHarvestLevel("axe", 2);
 		this.setRegistryName(getChainsawName());
 		this.setUnlocalizedName(GTMod.MODID + "." + getChainsawName());
@@ -65,15 +65,19 @@ public class GTItemChainsaw extends ItemElectricTool
 	}
 
 	public String getChainsawName() {
-		return ("chainsaw_" + this.material + "_" + GTValues.getTierString(this.tier)).toLowerCase();
+		return ("chainsaw_" + this.material.getName() + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Tier: " + GTValues.getTierString(this.tier)));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material.getName()));
 		tooltip.add(
-				GTValues.getTierTextColor(this.tier) + I18n.format("Efficiency: " + String.valueOf(this.efficiency)));
+				GTValues.getTierTextColor(this.tier)
+						+ I18n.format("Efficiency: " + String.valueOf((this.material.getSpeed() * 2) * this.tier)));
+		tooltip.add(
+				GTValues.getTierTextColor(this.tier)
+						+ I18n.format("Damage: " + String.valueOf((this.material.getSpeed() * 2))));
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Size: " + String.valueOf(this.maxCharge)));
 		tooltip.add(
 				GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
@@ -225,7 +229,8 @@ public class GTItemChainsaw extends ItemElectricTool
 			return true;
 		} else {
 			if (ElectricItem.manager.use(stack, this.operationEnergyCost, attacker)) {
-				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 10.0F);
+				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker),
+						this.material.getSpeed() * 2);
 			} else {
 				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1.0F);
 			}
@@ -259,7 +264,7 @@ public class GTItemChainsaw extends ItemElectricTool
 		if (index == 0) {
 			return GTValues.getToolColor(this.tier);
 		} else {
-			return GTValues.getColor(this.material);
+			return this.material.getColor();
 		}
 	}
 

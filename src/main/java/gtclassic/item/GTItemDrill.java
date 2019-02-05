@@ -8,6 +8,7 @@ import java.util.Set;
 import com.google.common.collect.ImmutableSet;
 
 import gtclassic.GTMod;
+import gtclassic.materialsnew.GTMaterial;
 import gtclassic.util.GTValues;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.api.classic.item.IMiningDrill;
@@ -39,14 +40,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemDrill extends ItemElectricTool
 		implements IMiningDrill, IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
-	String material;
-	float speed;
+	GTMaterial material;
 
-	public GTItemDrill(String material, float speed, int charge, int transfer, int tier) {
+	public GTItemDrill(GTMaterial material, int charge, int transfer, int tier) {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);
 		this.material = material;
 		this.tier = tier;
-		this.speed = speed;
 		this.maxCharge = charge;
 		this.transferLimit = transfer;
 		this.setRegistryName(getDrillName());
@@ -56,14 +55,15 @@ public class GTItemDrill extends ItemElectricTool
 	}
 
 	public String getDrillName() {
-		return ("drill_" + this.material + "_" + GTValues.getTierString(this.tier)).toLowerCase();
+		return ("drill_" + this.material.getName() + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Tier: " + GTValues.getTierString(this.tier)));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Speed: " + String.valueOf(this.speed)));
+		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material.getName()));
+		tooltip.add(GTValues.getTierTextColor(this.tier)
+				+ I18n.format("Speed: " + String.valueOf(this.getMiningSpeed(stack))));
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Size: " + String.valueOf(this.maxCharge)));
 		tooltip.add(
 				GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
@@ -86,7 +86,7 @@ public class GTItemDrill extends ItemElectricTool
 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
-		return this.speed;
+		return (this.material.getSpeed() * 4) * this.tier;
 	}
 
 	@Override
@@ -170,7 +170,7 @@ public class GTItemDrill extends ItemElectricTool
 		if (index == 0) {
 			return GTValues.getToolColor(this.tier);
 		} else {
-			return GTValues.getColor(this.material);
+			return this.material.getColor();
 		}
 	}
 
