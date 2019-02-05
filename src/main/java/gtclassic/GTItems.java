@@ -43,7 +43,7 @@ public class GTItems {
 			carbon = new GTItemElement("Carbon", Color.black),
 			methane = new GTItemElement("Methane", Color.pink),
 			berilium = new GTItemElement("Berilium", Color.green),
-			calcium = new GTItemElement("Calacium", Color.white),
+			calcium = new GTItemElement("Calcium", Color.white),
 			sodium = new GTItemElement("Sodium", Color.blue),
 			chlorine = new GTItemElement("Chlorine", Color.cyan),
 			potassium = new GTItemElement("Potassium", Color.white),
