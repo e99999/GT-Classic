@@ -42,9 +42,9 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel { 
-	
-	
+public class GTItemChainsaw extends ItemElectricTool
+		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
+
 	public static final ItemStack ironAxe;
 	String material;
 	float speed;
@@ -63,7 +63,7 @@ public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedI
 		this.setUnlocalizedName(GTMod.MODID + "." + getChainsawName());
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
-	
+
 	public String getChainsawName() {
 		return ("chainsaw_" + this.material + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
@@ -72,9 +72,11 @@ public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedI
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Tier: " + GTValues.getTierString(this.tier)));
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Efficiency: " + String.valueOf(this.efficiency)));
+		tooltip.add(
+				GTValues.getTierTextColor(this.tier) + I18n.format("Efficiency: " + String.valueOf(this.efficiency)));
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Size: " + String.valueOf(this.maxCharge)));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
+		tooltip.add(
+				GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
 	}
 
 	@Override
@@ -245,7 +247,7 @@ public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedI
 	static {
 		ironAxe = new ItemStack(Items.IRON_AXE);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
@@ -255,7 +257,7 @@ public class GTItemChainsaw extends ItemElectricTool implements IStaticTexturedI
 	@Override
 	public Color getColor(ItemStack stack, int index) {
 		if (index == 0) {
-			return GTValues.getTierColor(this.tier);
+			return GTValues.getToolColor(this.tier);
 		} else {
 			return GTValues.getColor(this.material);
 		}

@@ -32,8 +32,9 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel { 
-	
+public class GTItemRockCutter extends ItemElectricTool
+		implements IMiningDrill, IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
+
 	String material;
 	float speed;
 
@@ -49,7 +50,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 		this.setUnlocalizedName(GTMod.MODID + "." + getRockCutterName());
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
-	
+
 	public String getRockCutterName() {
 		return ("rockcutter_" + this.material + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
@@ -60,8 +61,10 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material));
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Speed: " + String.valueOf(this.speed)));
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Size: " + String.valueOf(this.maxCharge)));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Cost: " + String.valueOf(this.transferLimit*10)));
+		tooltip.add(
+				GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
+		tooltip.add(
+				GTValues.getTierTextColor(this.tier) + I18n.format("Cost: " + String.valueOf(this.transferLimit * 10)));
 	}
 
 	@Override
@@ -82,7 +85,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 
 	@Override
 	public int getEnergyCost(ItemStack stack) {
-		return (this.transferLimit*10);
+		return (this.transferLimit * 10);
 	}
 
 	@Override
@@ -143,7 +146,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 	public boolean canMineBlock(ItemStack stack, IBlockState state, IBlockAccess access, BlockPos pos) {
 		return ForgeHooks.canToolHarvestBlock(access, pos, stack);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
@@ -153,7 +156,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 	@Override
 	public Color getColor(ItemStack stack, int index) {
 		if (index == 0) {
-			return GTValues.getTierColor(this.tier);
+			return GTValues.getToolColor(this.tier);
 		} else {
 			return GTValues.getColor(this.material);
 		}

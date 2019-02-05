@@ -463,7 +463,7 @@ public class GTRecipes {
 				new OutputItem(new ItemStack(GTItems.dustAluminium, 2), 0),
 				new OutputItem(new ItemStack(GTItems.oxygen, 3), 1));
 
-		GTTileEntityIndustrialCentrifuge.addRecipe("dustSapphireGreen", 4, 0, euCost(15000),
+		GTTileEntityIndustrialCentrifuge.addRecipe("dustGreenSapphire", 4, 0, euCost(15000),
 				new OutputItem(new ItemStack(GTItems.dustSapphire, 4), 0));
 
 		GTTileEntityIndustrialCentrifuge.addRecipe("dustEmerald", 29, 18, euCost(30000),

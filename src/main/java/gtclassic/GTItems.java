@@ -76,7 +76,7 @@ public class GTItems {
 			dustEndstone = new GTItemDust("Endstone"),
 			dustFlint = new GTItemDust("Flint"),
 			dustGalena = new GTItemDust("Galena"),
-			dustGreenSapphire = new GTItemDust("SapphireGreen"),
+			dustGreenSapphire = new GTItemDust("GreenSapphire"),
 			dustGrossular = new GTItemDust("Grossular"),
 			dustInvar = new GTItemDust("Invar"),
 			dustLazurite = new GTItemDust("Lazurite"),
@@ -93,7 +93,7 @@ public class GTItems {
 			dustPlutonium = new GTItemDust("Plutonium"),
 			dustPyrite = new GTItemDust("Pyrite"),
 			dustPyrope = new GTItemDust("Pyrope"),
-			dustRedGarnet = new GTItemDust("GarnetRed"),
+			dustRedGarnet = new GTItemDust("RedGarnet"),
 			dustRedRock = new GTItemDust("RedRock"),
 			dustRuby = new GTItemDust("Ruby"),
 			dustSaltpeter = new GTItemDust("Saltpeter"),
@@ -109,7 +109,7 @@ public class GTItems {
 			dustUranium = new GTItemDust("Uranium"),
 			dustUvarovite = new GTItemDust("Uvarovite"),
 			dustWoodPulp = new GTItemDust("Wood"),
-			dustYellowGarnet = new GTItemDust("GarnetYellow"),
+			dustYellowGarnet = new GTItemDust("YellowGarnet"),
 			dustZinc = new GTItemDust("Zinc");
 
 	public static final GTItemDustSmall smallDustAlmandine = new GTItemDustSmall("Almandine"),
@@ -138,7 +138,7 @@ public class GTItems {
 			smallDustGalena = new GTItemDustSmall("Galena"),
 			smallDustGlowstone = new GTItemDustSmall("Glowstone"),
 			smallDustGold = new GTItemDustSmall("Gold"),
-			smallDustGreenSapphire = new GTItemDustSmall("SapphireGreen"),
+			smallDustGreenSapphire = new GTItemDustSmall("GreenSapphire"),
 			smallDustGrossular = new GTItemDustSmall("Grossular"),
 			smallDustGunpowder = new GTItemDustSmall("Gunpowder"),
 			smallDustInvar = new GTItemDustSmall("Invar"),
@@ -158,7 +158,7 @@ public class GTItems {
 			smallDustPlutonium = new GTItemDustSmall("Plutonium"),
 			smallDustPyrite = new GTItemDustSmall("Pyrite"),
 			smallDustPyrope = new GTItemDustSmall("Pyrope"),
-			smallDustRedGarnet = new GTItemDustSmall("GarnetRed"),
+			smallDustRedGarnet = new GTItemDustSmall("RedGarnet"),
 			smallDustRedRock = new GTItemDustSmall("RedRock"),
 			smallDustRedstone = new GTItemDustSmall("Redstone"),
 			smallDustRuby = new GTItemDustSmall("Ruby"),
@@ -177,15 +177,15 @@ public class GTItems {
 			smallDustUranium = new GTItemDustSmall("Uranium"),
 			smallDustUvarovite = new GTItemDustSmall("Uvarovite"),
 			smallDustWoodPulp = new GTItemDustSmall("Wood"),
-			smallDustYellowGarnet = new GTItemDustSmall("GarnetYellow"),
+			smallDustYellowGarnet = new GTItemDustSmall("YellowGarnet"),
 			smallDustZinc = new GTItemDustSmall("Zinc");
 
-	public static final GTItemGem gemGarnetRed = new GTItemGem("GarnetRed"),
-			gemGarnetYellow = new GTItemGem("GarnetYellow"),
+	public static final GTItemGem gemRedGarnet = new GTItemGem("RedGarnet"),
+			gemYellowGarnet = new GTItemGem("YellowGarnet"),
 			gemOlivine = new GTItemGem("Olivine"),
 			gemRuby = new GTItemGem("Ruby"),
 			gemSapphire = new GTItemGem("Sapphire"),
-			gemSapphireGreen = new GTItemGem("SapphireGreen");
+			gemGreenSapphire = new GTItemGem("GreenSapphire");
 
 	public static final GTItemIngot ingotAluminium = new GTItemIngot("Aluminium"),
 			ingotBrass = new GTItemIngot("Brass"),
@@ -307,15 +307,15 @@ public class GTItems {
 	public static final GTItemDrill advancedDrill = new GTItemDrill("Diamond", 32.0F, 100000, 128, 1);
 	public static final GTItemDrill advancedDrill2 = new GTItemDrill("Diamond", 64.0F, 200000, 256, 2);
 	public static final GTItemDrill advancedDrill3 = new GTItemDrill("Diamond", 128.0F, 400000, 512, 3);
-	
+
 	public static final GTItemChainsaw advancedChainsaw = new GTItemChainsaw("Steel", 12.0F, 100000, 128, 1);
-	public static final GTItemChainsaw advancedChainsaw2 = new GTItemChainsaw("Tungsten", 24.0F, 200000, 256, 2);
-	public static final GTItemChainsaw advancedChainsaw3 = new GTItemChainsaw("TungstenSteel", 48.0F, 400000, 512, 3);
+	public static final GTItemChainsaw advancedChainsaw2 = new GTItemChainsaw("Steel", 24.0F, 200000, 256, 2);
+	public static final GTItemChainsaw advancedChainsaw3 = new GTItemChainsaw("Steel", 48.0F, 400000, 512, 3);
 
 	public static final GTItemRockCutter rockCutter = new GTItemRockCutter("Diamond", 1.0F, 10000, 100, 1);
-	public static final GTItemRockCutter rockCutter2 = new GTItemRockCutter("Ruby", 2.0F, 100000, 256, 2);
-	public static final GTItemRockCutter rockCutter3 = new GTItemRockCutter("Sapphire", 4.0F, 1000000, 1024, 3);
-	
+	public static final GTItemRockCutter rockCutter2 = new GTItemRockCutter("Diamond", 2.0F, 100000, 256, 2);
+	public static final GTItemRockCutter rockCutter3 = new GTItemRockCutter("Diamond", 4.0F, 1000000, 1024, 3);
+
 	public static final GTItemElectromagnet electroMagnet = new GTItemElectromagnet();
 	public static final GTItemTeslaStaff teslaStaff = new GTItemTeslaStaff();
 
@@ -487,12 +487,12 @@ public class GTItems {
 			smallDustYellowGarnet,
 			smallDustZinc,
 
-			gemGarnetRed,
-			gemGarnetYellow,
+			gemRedGarnet,
+			gemYellowGarnet,
 			gemOlivine,
 			gemRuby,
 			gemSapphire,
-			gemSapphireGreen,
+			gemGreenSapphire,
 
 			ingotAluminium,
 			ingotBrass,
@@ -600,20 +600,20 @@ public class GTItems {
 			fileAluminium,
 			fileTitanium,
 			fileTungstenSteel,
-			
+
 			hammerIron,
 			hammerAluminium,
 			hammerTitanium,
 			hammerTungstenSteel,
-			
+
 			advancedDrill,
 			advancedDrill2,
 			advancedDrill3,
-			
+
 			advancedChainsaw,
 			advancedChainsaw2,
 			advancedChainsaw3,
-			
+
 			rockCutter,
 			rockCutter2,
 			rockCutter3,

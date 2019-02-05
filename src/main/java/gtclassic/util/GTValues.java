@@ -44,8 +44,7 @@ public class GTValues {
 	 * in the constructor to the correct color until it can be pulled
 	 * from a material entry itself.
 	 */
-	private static final ImmutableMap<String, Color> 
-	MAT_COLOR = ImmutableMap.<String, Color>builder()
+	private static final ImmutableMap<String, Color> MAT_COLOR = ImmutableMap.<String, Color>builder()
 			.put("Almandine", new Color(255, 0, 0))
 			.put("Aluminium", new Color(128, 200, 240))
 			.put("Andradite", new Color(150, 120, 0))
@@ -70,8 +69,9 @@ public class GTValues {
 			.put("Endstone", new Color(255, 255, 255))
 			.put("Flint", new Color(0, 32, 64))
 			.put("Galena", new Color(100, 60, 100))
-			.put("GarnetRed", new Color(200, 80, 80))
-			.put("GarnetYellow", new Color(200, 200, 80))
+			.put("GalvanizedSteel", new Color(250, 240, 240))
+			.put("RedGarnet", new Color(200, 80, 80))
+			.put("YellowGarnet", new Color(200, 200, 80))
 			.put("Glowstone", new Color(255, 255, 0))
 			.put("Gold", new Color(255, 255, 30))
 			.put("Grossular", new Color(200, 100, 0))
@@ -102,7 +102,7 @@ public class GTValues {
 			.put("Ruby", new Color(255, 100, 100))
 			.put("Saltpeter", new Color(230, 230, 230))
 			.put("Sapphire", new Color(100, 100, 200))
-			.put("SapphireGreen", new Color(100, 200, 130))
+			.put("GreenSapphire", new Color(100, 200, 130))
 			.put("Silicon", new Color(60, 60, 80))
 			.put("Silver", new Color(220, 220, 255))
 			.put("Sodalite", new Color(20, 20, 255))
@@ -124,42 +124,124 @@ public class GTValues {
 	public static Color getColor(String name) {
 		return MAT_COLOR.get(name);
 	}
-	
-	public static Color getTierColor(int tier) {
-		if (tier == 1){return getColor("Iron");}
-		if (tier == 2){return getColor("Aluminium");}
-		if (tier == 3){return getColor("Platinum");}
-		if (tier == 4){return getColor("Titanium");}
-		if (tier == 5){return getColor("TungstenSteel");}
-		if (tier == 6){return getColor("Chrome");}
-		if (tier == 7){return getColor("Iridium");}
-		if (tier == 8){return getColor("Osmium");}
-		else { return Color.white;}
+
+	public static Color getToolColor(int tier) {
+		if (tier == 1) {
+			return getColor("Iron");
+		}
+		if (tier == 2) {
+			return getColor("Titanium");
+		}
+		if (tier == 3) {
+			return getColor("TungstenSteel");
+		}
+		if (tier == 4) {
+			return getColor("Chrome");
+		}
+		if (tier == 5) {
+			return getColor("Iridium");
+		}
+		if (tier == 6) {
+			return getColor("Osmium");
+		}
+		if (tier == 7) {
+			return getColor("Iridium");
+		}
+		if (tier == 8) {
+			return getColor("Iridium");
+		} else {
+			return Color.white;
+		}
 	}
-	
+
+	public static Color getMachineColor(int tier) {
+		if (tier == 1) {
+			return getColor("Iron");
+		}
+		if (tier == 2) {
+			return getColor("Aluminium");
+		}
+		if (tier == 3) {
+			return getColor("Platinum");
+		}
+		if (tier == 4) {
+			return getColor("Titanium");
+		}
+		if (tier == 5) {
+			return getColor("TungstenSteel");
+		}
+		if (tier == 6) {
+			return getColor("Chrome");
+		}
+		if (tier == 7) {
+			return getColor("Iridium");
+		}
+		if (tier == 8) {
+			return getColor("Osmium");
+		} else {
+			return Color.white;
+		}
+	}
+
 	public static String getTierString(int tier) {
-		if (tier == 1){return "LV";}
-		if (tier == 2){return "MV";}
-		if (tier == 3){return "HV";}
-		if (tier == 4){return "EV";}
-		if (tier == 5){return "IV";}
-		if (tier == 6){return "LuV";}
-		if (tier == 7){return "ZPM";}
-		if (tier == 8){return "UV";}
-		if (tier == 9){return "MAX";}
-		else { return "null";}
+		if (tier == 1) {
+			return "LV";
+		}
+		if (tier == 2) {
+			return "MV";
+		}
+		if (tier == 3) {
+			return "HV";
+		}
+		if (tier == 4) {
+			return "EV";
+		}
+		if (tier == 5) {
+			return "IV";
+		}
+		if (tier == 6) {
+			return "LuV";
+		}
+		if (tier == 7) {
+			return "ZPM";
+		}
+		if (tier == 8) {
+			return "UV";
+		}
+		if (tier == 9) {
+			return "MAX";
+		} else {
+			return "null";
+		}
 	}
-	
+
 	public static TextFormatting getTierTextColor(int tier) {
-		if (tier == 1){return TextFormatting.GRAY;}
-		if (tier == 2){return TextFormatting.DARK_AQUA;}
-		if (tier == 3){return TextFormatting.YELLOW;}
-		if (tier == 4){return TextFormatting.LIGHT_PURPLE;}
-		if (tier == 5){return TextFormatting.DARK_BLUE;}
-		if (tier == 6){return TextFormatting.GREEN;}
-		if (tier == 7){return TextFormatting.WHITE;}
-		if (tier == 8){return TextFormatting.BLUE;}
-		else {return TextFormatting.WHITE;}
+		if (tier == 1) {
+			return TextFormatting.GRAY;
+		}
+		if (tier == 2) {
+			return TextFormatting.DARK_AQUA;
+		}
+		if (tier == 3) {
+			return TextFormatting.YELLOW;
+		}
+		if (tier == 4) {
+			return TextFormatting.LIGHT_PURPLE;
+		}
+		if (tier == 5) {
+			return TextFormatting.DARK_BLUE;
+		}
+		if (tier == 6) {
+			return TextFormatting.GREEN;
+		}
+		if (tier == 7) {
+			return TextFormatting.WHITE;
+		}
+		if (tier == 8) {
+			return TextFormatting.BLUE;
+		} else {
+			return TextFormatting.WHITE;
+		}
 	}
 
 }

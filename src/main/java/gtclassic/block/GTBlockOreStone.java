@@ -76,7 +76,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 				drops.add(new ItemStack(GTItems.dustZinc, 1));
 			}
 			if (RANDOM.nextFloat() < 0.125f) {
-				drops.add(new ItemStack(GTItems.gemGarnetYellow, 1));
+				drops.add(new ItemStack(GTItems.gemYellowGarnet, 1));
 			}
 		}
 
@@ -113,7 +113,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 			if (RANDOM.nextFloat() > 0.10f) {
 				drops.add(new ItemStack(GTItems.gemRuby, 1));
 			} else {
-				drops.add(new ItemStack(GTItems.gemGarnetRed, 1));
+				drops.add(new ItemStack(GTItems.gemRedGarnet, 1));
 			}
 		}
 
@@ -121,7 +121,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 			if (RANDOM.nextFloat() > 0.10f) {
 				drops.add(new ItemStack(GTItems.gemSapphire, 1));
 			} else {
-				drops.add(new ItemStack(GTItems.gemSapphireGreen, 1));
+				drops.add(new ItemStack(GTItems.gemGreenSapphire, 1));
 			}
 		}
 

@@ -24,8 +24,8 @@ public class GTItemFile extends Item implements IStaticTexturedItem, GTColorItem
 		this.maxStackSize = 1;
 		this.material = material;
 		this.setMaxDamage(durability);
-		setRegistryName(this.material + "_file");
-		setUnlocalizedName(GTMod.MODID + "." + this.material + "_file");
+		setRegistryName(this.material.toLowerCase() + "_file");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.toLowerCase() + "_file");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

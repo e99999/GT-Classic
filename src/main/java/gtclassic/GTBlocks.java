@@ -54,7 +54,6 @@ public class GTBlocks {
 			casingTungsten = new GTBlockCasing1("Tungsten"),
 			casingZinc = new GTBlockCasing1("Zinc");
 
-
 	public static final GTBlockCasing2 superCasingBlock = new GTBlockCasing2("Superconductor", 0),
 			fusionCasingBlock = new GTBlockCasing2("Fusion", 1),
 			fissionCasingBlock = new GTBlockCasing2("Fission", 2),
@@ -71,7 +70,7 @@ public class GTBlocks {
 			electrumBlock = new GTBlockMaterial("Electrum", 0),
 			zincBlock = new GTBlockMaterial("Zinc", 0),
 			olivineBlock = new GTBlockMaterial("Olivine", 1),
-			greenSapphireBlock = new GTBlockMaterial("SapphireGreen", 1),
+			greenSapphireBlock = new GTBlockMaterial("GreenSapphire", 1),
 			platinumBlock = new GTBlockMaterial("Platinum", 0),
 			tungstenBlock = new GTBlockMaterial("Tungsten", 0),
 			nickelBlock = new GTBlockMaterial("Nickel", 0),

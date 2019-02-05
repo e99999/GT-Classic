@@ -26,8 +26,8 @@ public class GTItemHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 		this.efficiency = speed;
 		this.setHarvestLevel("pickaxe", level);
 		this.setMaxDamage(durability * 2);
-		setRegistryName(this.material + "_hammer");
-		setUnlocalizedName(GTMod.MODID + "." + this.material + "_hammer");
+		setRegistryName(this.material.toLowerCase() + "_hammer");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.toLowerCase() + "_hammer");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

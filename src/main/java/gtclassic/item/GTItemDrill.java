@@ -36,11 +36,12 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemDrill extends ItemElectricTool implements IMiningDrill, IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel { 
+public class GTItemDrill extends ItemElectricTool
+		implements IMiningDrill, IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	String material;
 	float speed;
-	
+
 	public GTItemDrill(String material, float speed, int charge, int transfer, int tier) {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);
 		this.material = material;
@@ -53,7 +54,7 @@ public class GTItemDrill extends ItemElectricTool implements IMiningDrill, IStat
 		this.attackDamage = 8.0F;
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
-	
+
 	public String getDrillName() {
 		return ("drill_" + this.material + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
@@ -64,7 +65,8 @@ public class GTItemDrill extends ItemElectricTool implements IMiningDrill, IStat
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material));
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Speed: " + String.valueOf(this.speed)));
 		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Size: " + String.valueOf(this.maxCharge)));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
+		tooltip.add(
+				GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
 	}
 
 	@Override
@@ -156,7 +158,7 @@ public class GTItemDrill extends ItemElectricTool implements IMiningDrill, IStat
 	public boolean canMineBlock(ItemStack d, IBlockState state, IBlockAccess access, BlockPos pos) {
 		return ForgeHooks.canToolHarvestBlock(access, pos, d);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
@@ -166,7 +168,7 @@ public class GTItemDrill extends ItemElectricTool implements IMiningDrill, IStat
 	@Override
 	public Color getColor(ItemStack stack, int index) {
 		if (index == 0) {
-			return GTValues.getTierColor(this.tier);
+			return GTValues.getToolColor(this.tier);
 		} else {
 			return GTValues.getColor(this.material);
 		}
