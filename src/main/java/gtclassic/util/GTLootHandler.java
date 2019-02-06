@@ -1,6 +1,5 @@
 package gtclassic.util;
 
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.materialsnew.GTMaterial;
 import gtclassic.materialsnew.GTMaterialFlag;

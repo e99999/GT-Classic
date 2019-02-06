@@ -11,21 +11,14 @@ import gtclassic.item.GTItemEchophone;
 import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
-import gtclassic.item.materials.GTItemDust;
-import gtclassic.item.materials.GTItemDustSmall;
 import gtclassic.item.materials.GTItemElement;
-import gtclassic.item.materials.GTItemGem;
-import gtclassic.item.materials.GTItemIngot;
-import gtclassic.item.materials.GTItemNugget;
 import gtclassic.item.materials.GTItemPlasma;
-import gtclassic.item.materials.GTItemPlate;
-import gtclassic.item.materials.GTItemStick;
 import gtclassic.materialsnew.GTMaterial;
 import gtclassic.materialsnew.GTMaterialGen;
 import gtclassic.tool.GTToolChainsaw;
-import gtclassic.tool.GTToolMiningDrill;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
+import gtclassic.tool.GTToolMiningDrill;
 import gtclassic.tool.GTToolRockCutter;
 import gtclassic.util.GTBatteryBuilder;
 import net.minecraft.item.Item;
@@ -219,7 +212,7 @@ public class GTItems {
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
 		GTMod.logger.info("Registering Items");
-		for (Item item : GTMaterialGen.itemMap.values()){
+		for (Item item : GTMaterialGen.itemMap.values()) {
 			registry.register(item);
 		}
 		for (Item item : items) {

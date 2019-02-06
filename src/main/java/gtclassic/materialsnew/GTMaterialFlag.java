@@ -2,14 +2,14 @@ package gtclassic.materialsnew;
 
 public enum GTMaterialFlag {
 
-	SMALLDUST("dustSmall","_dustsmall", 1),
-	DUST("dust","_dust", 0),
-	GEM("gem","_gem", 2),
-	INGOT("ingot","_ingot", 3),
-	NUGGET("nugget","_nugget", 4),
-	PLATE("plate","_plate", 5),
+	SMALLDUST("dustSmall", "_dustsmall", 1),
+	DUST("dust", "_dust", 0),
+	GEM("gem", "_gem", 2),
+	INGOT("ingot", "_ingot", 3),
+	NUGGET("nugget", "_nugget", 4),
+	PLATE("plate", "_plate", 5),
 	STICK("stick", "_stick", 6),
-	BLOCK("block","_block", 62),
+	BLOCK("block", "_block", 62),
 	CASING("casing", "_casing", 61);
 
 	private int mask;
@@ -27,7 +27,7 @@ public enum GTMaterialFlag {
 	public int getMask() {
 		return mask;
 	}
-	
+
 	public String getPrefix() {
 		return prefix;
 
@@ -37,7 +37,7 @@ public enum GTMaterialFlag {
 		return suffix;
 
 	}
-	
+
 	public int getTextureID() {
 		return id;
 

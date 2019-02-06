@@ -65,7 +65,7 @@ public class GTMod {
 		registerTintedBlocks();
 		registerTintedItems();
 		GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
-		//GTRecipes.init();
+		// GTRecipes.init();
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
 		proxy.init(e);
 	}

@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.materialsnew.GTMaterial;
-import gtclassic.materialsnew.GTMaterialFlag;
 import gtclassic.materialsnew.GTMaterialGen;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
@@ -61,7 +59,6 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 
 		// Nether Ores
 		if (this == GTBlocks.cinnabarOre) {
-
 			drops.add(GTMaterialGen.getDust(GTMaterial.Cinnabar, 2));
 			if (RANDOM.nextFloat() < 0.25f) {
 				drops.add(new ItemStack(Items.REDSTONE, 1));

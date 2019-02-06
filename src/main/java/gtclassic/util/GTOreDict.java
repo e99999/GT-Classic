@@ -36,7 +36,7 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
 		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
-		
+
 		OreDictionary.registerOre("oreGalena", GTBlocks.galenaOre);
 		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumOre);
 		OreDictionary.registerOre("oreRuby", GTBlocks.rubyOre);
@@ -60,7 +60,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("blockTitanium", GTBlocks.titaniumBlock);
 		OreDictionary.registerOre("blockTungsten", GTBlocks.tungstenBlock);
 		OreDictionary.registerOre("blockPlatinum", GTBlocks.platinumBlock);
-
 
 		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
 
