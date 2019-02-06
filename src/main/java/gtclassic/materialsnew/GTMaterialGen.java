@@ -1,13 +1,14 @@
 package gtclassic.materialsnew;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class GTMaterialGen {
 	
-	public static HashMap<String, Item> itemMap = new HashMap<>();
+	public static LinkedHashMap<String, Item> itemMap = new LinkedHashMap<>();
 
     public static void generateMaterials() {
         for (GTMaterial mat : GTMaterial.values()) {
@@ -22,10 +23,29 @@ public class GTMaterialGen {
         }
     }
 
-    //How to get an item
+    //How to get an itemstack of any material
     public static ItemStack getStack(GTMaterial mat, GTMaterialFlag flag, int count) {
         return new ItemStack(itemMap.get(mat.getName() + "_" + flag.getSuffix()), 1, count);
     }
+    
+    public static ItemStack getSmallDust(GTMaterial mat, int count) {
+        return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.SMALLDUST.getSuffix()), 1, count);
+    }
+    
+    public static ItemStack getDust(GTMaterial mat, int count) {
+        return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.DUST.getSuffix()), 1, count);
+    }
+    
+    public static ItemStack getGem(GTMaterial mat, int count) {
+        return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.GEM.getSuffix()), 1, count);
+    }
+    
+    //How to get an item (mostly for weird cases that require an item instance specifically)
+    public static Item getItem(GTMaterial mat, GTMaterialFlag flag) {
+        return itemMap.get(mat.getName() + "_" + flag.getSuffix());
+    }
+    
+    
     
     //Utility method for generateItems()
     public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {

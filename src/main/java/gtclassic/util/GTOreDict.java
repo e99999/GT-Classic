@@ -36,26 +36,7 @@ public class GTOreDict {
 
 		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
 		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
-		OreDictionary.registerOre("dustEnderpearl", GTItems.dustEnderpearl);
-		OreDictionary.registerOre("dustEnderEye", GTItems.dustEnderEye);
-		OreDictionary.registerOre("dustLazurite", GTItems.dustLazurite);
-		OreDictionary.registerOre("dyeBlue", GTItems.dustLazurite);
-		OreDictionary.registerOre("dustPyrite", GTItems.dustPyrite);
-		OreDictionary.registerOre("dustCalcite", GTItems.dustCalcite);
-		OreDictionary.registerOre("dustFlint", GTItems.dustFlint);
-		OreDictionary.registerOre("dustUranium", GTItems.dustUranium);
-		OreDictionary.registerOre("dustBauxite", GTItems.dustBauxite);
-		OreDictionary.registerOre("dustAluminium", GTItems.dustAluminium);
-		OreDictionary.registerOre("dustAluminum", GTItems.dustAluminium);
-		OreDictionary.registerOre("dustTitanium", GTItems.dustTitanium);
-		OreDictionary.registerOre("dustChrome", GTItems.dustChrome);
-		OreDictionary.registerOre("dustRuby", GTItems.dustRuby);
-		OreDictionary.registerOre("dustSapphire", GTItems.dustSapphire);
-		OreDictionary.registerOre("dustGreenSapphire", GTItems.dustGreenSapphire);
-		OreDictionary.registerOre("dustEmerald", GTItems.dustEmerald);
-		OreDictionary.registerOre("dustSodalite", GTItems.dustSodalite);
-		OreDictionary.registerOre("dustTungsten", GTItems.dustTungsten);
-
+		
 		OreDictionary.registerOre("oreGalena", GTBlocks.galenaOre);
 		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumOre);
 		OreDictionary.registerOre("oreRuby", GTBlocks.rubyOre);
@@ -70,14 +51,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("oreOlivine", GTBlocks.olivineOre);
 		OreDictionary.registerOre("oreSodalite", GTBlocks.sodaliteOre);
 
-		OreDictionary.registerOre("gemRuby", GTItems.gemRuby);
-		OreDictionary.registerOre("gemSapphire", GTItems.gemSapphire);
-		OreDictionary.registerOre("ingotAluminium", GTItems.ingotAluminium);
-		OreDictionary.registerOre("ingotAluminum", GTItems.ingotAluminium);
-		OreDictionary.registerOre("ingotChrome", GTItems.ingotChrome);
-		OreDictionary.registerOre("ingotIridium", GTItems.ingotIridium);
-		OreDictionary.registerOre("ingotTitanium", GTItems.ingotTitanium);
-
 		OreDictionary.registerOre("blockIridium", GTBlocks.iridiumBlock);
 		OreDictionary.registerOre("blockRuby", GTBlocks.rubyBlock);
 		OreDictionary.registerOre("blockSapphire", GTBlocks.sapphireBlock);
@@ -88,7 +61,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("blockTungsten", GTBlocks.tungstenBlock);
 		OreDictionary.registerOre("blockPlatinum", GTBlocks.platinumBlock);
 
-		OreDictionary.registerOre("itemSilicon", GTItems.plateSilicon);
 
 		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
 

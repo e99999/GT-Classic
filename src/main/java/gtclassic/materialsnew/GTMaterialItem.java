@@ -22,39 +22,13 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	public GTMaterialItem(GTMaterial material, GTMaterialFlag flag) {
 		this.material = material;
 		this.flag = flag;
-		setRegistryName(this.material.getName() + flag.getSuffix());
+		setRegistryName(this.material.getName() + this.getSuffix());
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + this.getSuffix());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	public String getSuffix() {
 		return flag.getSuffix();
-	}
-	
-	public int getIDFromFlag() {
-		if (this.flag == (GTMaterialFlag.SMALLDUST)) {
-			return 0;
-		}
-		if (this.flag == (GTMaterialFlag.DUST)) {
-			return 1;
-		}
-		if (this.flag == (GTMaterialFlag.GEM)) {
-			return 2;
-		}
-		if (this.flag == (GTMaterialFlag.INGOT)) {
-			return 3;
-		}
-		if (this.flag == (GTMaterialFlag.NUGGET)) {
-			return 4;
-		}
-		if (this.flag == (GTMaterialFlag.PLATE)) {
-			return 5;
-		}
-		if (this.flag == (GTMaterialFlag.STICK)) {
-			return 6;
-		} else {
-			return 0;
-		}
 	}
 
 	@Override
@@ -65,7 +39,7 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[getIDFromFlag()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[flag.getTextureID()];
 	}
 
 	@Override

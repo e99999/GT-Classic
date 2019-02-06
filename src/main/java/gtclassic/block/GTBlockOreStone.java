@@ -7,6 +7,9 @@ import java.util.Random;
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
+import gtclassic.materialsnew.GTMaterial;
+import gtclassic.materialsnew.GTMaterialFlag;
+import gtclassic.materialsnew.GTMaterialGen;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
@@ -54,12 +57,12 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
 
-		// TODO MOVE THESE AND ADD FORTUNE DROPS
+		// TODO ADD FORTUNE DROPS
 
 		// Nether Ores
 		if (this == GTBlocks.cinnabarOre) {
 
-			drops.add(new ItemStack(GTItems.dustCinnabar, 2));
+			drops.add(GTMaterialGen.getDust(GTMaterial.Cinnabar, 2));
 			if (RANDOM.nextFloat() < 0.25f) {
 				drops.add(new ItemStack(Items.REDSTONE, 1));
 			}
@@ -67,16 +70,16 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 		}
 
 		if (this == GTBlocks.pyriteOre) {
-			drops.add(new ItemStack(GTItems.dustPyrite, 2));
+			drops.add(GTMaterialGen.getDust(GTMaterial.Pyrite, 2));
 		}
 
 		if (this == GTBlocks.sphaleriteOre) {
-			drops.add(new ItemStack(GTItems.dustSphalerite, 1));
+			drops.add(GTMaterialGen.getDust(GTMaterial.Sphalerite, 1));
 			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(new ItemStack(GTItems.dustZinc, 1));
+				drops.add(GTMaterialGen.getDust(GTMaterial.Zinc, 1));
 			}
 			if (RANDOM.nextFloat() < 0.125f) {
-				drops.add(new ItemStack(GTItems.gemYellowGarnet, 1));
+				drops.add(GTMaterialGen.getGem(GTMaterial.GarnetYellow, 1));
 			}
 		}
 
@@ -90,14 +93,14 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 		}
 
 		if (this == GTBlocks.sodaliteOre) {
-			drops.add(new ItemStack(GTItems.dustSodalite, 6));
+			drops.add(GTMaterialGen.getDust(GTMaterial.Sodalite, 6));
 			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(new ItemStack(GTItems.dustAluminium, 1));
+				drops.add(GTMaterialGen.getDust(GTMaterial.Aluminium, 1));
 			}
 		}
 
 		if (this == GTBlocks.olivineOre) {
-			drops.add(new ItemStack(GTItems.gemOlivine, 1));
+			drops.add(GTMaterialGen.getGem(GTMaterial.Olivine, 1));
 		}
 
 		// Default Ores
@@ -111,17 +114,17 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 
 		if (this == GTBlocks.rubyOre) {
 			if (RANDOM.nextFloat() > 0.10f) {
-				drops.add(new ItemStack(GTItems.gemRuby, 1));
+				drops.add(GTMaterialGen.getGem(GTMaterial.Ruby, 1));
 			} else {
-				drops.add(new ItemStack(GTItems.gemRedGarnet, 1));
+				drops.add(GTMaterialGen.getGem(GTMaterial.GarnetRed, 1));
 			}
 		}
 
 		if (this == GTBlocks.sapphireOre) {// iron and add xp
 			if (RANDOM.nextFloat() > 0.10f) {
-				drops.add(new ItemStack(GTItems.gemSapphire, 1));
+				drops.add(GTMaterialGen.getGem(GTMaterial.Sapphire, 1));
 			} else {
-				drops.add(new ItemStack(GTItems.gemGreenSapphire, 1));
+				drops.add(GTMaterialGen.getGem(GTMaterial.SapphireGreen, 1));
 			}
 		}
 

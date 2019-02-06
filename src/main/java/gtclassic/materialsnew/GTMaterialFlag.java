@@ -2,8 +2,8 @@ package gtclassic.materialsnew;
 
 public enum GTMaterialFlag {
 
-	SMALLDUST("dustSmall","_dustsmall", 0),
-	DUST("dust","_dust", 1),
+	SMALLDUST("dustSmall","_dustsmall", 1),
+	DUST("dust","_dust", 0),
 	GEM("gem","_gem", 2),
 	INGOT("ingot","_ingot", 3),
 	NUGGET("nugget","_nugget", 4),

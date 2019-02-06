@@ -2,6 +2,9 @@ package gtclassic.util;
 
 import gtclassic.GTItems;
 import gtclassic.GTMod;
+import gtclassic.materialsnew.GTMaterial;
+import gtclassic.materialsnew.GTMaterialFlag;
+import gtclassic.materialsnew.GTMaterialGen;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -24,8 +27,8 @@ public class GTLootHandler {
 		String stringRuby = GTMod.MODID + ":ruby_gem";
 		String stringSapphire = GTMod.MODID + ":sapphire_gem";
 
-		Item itemRuby = GTItems.gemRuby;
-		Item itemSapphire = GTItems.gemSapphire;
+		Item itemRuby = GTMaterialGen.getItem(GTMaterial.Ruby, GTMaterialFlag.GEM);
+		Item itemSapphire = GTMaterialGen.getItem(GTMaterial.Sapphire, GTMaterialFlag.GEM);
 
 		if (event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)) {
 			event.getTable().getPool("main")
