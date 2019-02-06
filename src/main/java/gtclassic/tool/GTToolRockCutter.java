@@ -1,4 +1,4 @@
-package gtclassic.item;
+package gtclassic.tool;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -33,12 +33,12 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemRockCutter extends ItemElectricTool
+public class GTToolRockCutter extends ItemElectricTool
 		implements IMiningDrill, IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	GTMaterial material;
 
-	public GTItemRockCutter(GTMaterial material, int charge, int transfer, int tier) {
+	public GTToolRockCutter(GTMaterial material, int charge, int transfer, int tier) {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);
 		this.material = material;
 		this.tier = tier;

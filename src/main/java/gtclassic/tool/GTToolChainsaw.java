@@ -1,4 +1,4 @@
-package gtclassic.item;
+package gtclassic.tool;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -43,13 +43,13 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemChainsaw extends ItemElectricTool
+public class GTToolChainsaw extends ItemElectricTool
 		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	public static final ItemStack ironAxe;
 	GTMaterial material;
 
-	public GTItemChainsaw(GTMaterial material, int charge, int transfer, int tier) {
+	public GTToolChainsaw(GTMaterial material, int charge, int transfer, int tier) {
 		super(0.0F, 0.0F, ToolMaterial.IRON);
 		this.material = material;
 		this.attackDamage = 1.0F;

@@ -187,7 +187,7 @@ public class GTMaterial {
 	}
 
 	/** Helper for looping **/
-	public Collection<GTMaterial> values() {
+	public static Collection<GTMaterial> values() {
 		return generatedMap.values();
 	}
 }

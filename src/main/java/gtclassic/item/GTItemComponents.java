@@ -22,8 +22,8 @@ public class GTItemComponents extends Item implements IStaticTexturedItem {
 		this.name = name;
 		this.id = id;
 		this.containeritem = containeritem;
-		setRegistryName(this.name);
-		setUnlocalizedName(GTMod.MODID + "." + this.name);
+		setRegistryName(this.name.toLowerCase());
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

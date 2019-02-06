@@ -1,4 +1,4 @@
-package gtclassic.item;
+package gtclassic.tool;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -11,27 +11,24 @@ import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemFile extends Item implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
+public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	GTMaterial material;
 
-	public GTItemFile(GTMaterial material) {
-		this.maxStackSize = 1;
+	public GTToolHammer(GTMaterial material) {
+		super(ToolMaterial.IRON);
 		this.material = material;
-		this.setMaxDamage(this.material.getDurability());
-		setRegistryName(this.material.getName() + "_file");
-		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_file");
+		this.efficiency = this.material.getSpeed();
+		this.setHarvestLevel("pickaxe", this.material.getLevel());
+		this.setMaxDamage(this.material.getDurability() * 2);
+		setRegistryName(this.material.getName() + "_hammer");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_hammer");
 		setCreativeTab(GTMod.creativeTabGT);
-	}
-
-	@Override
-	public boolean hasContainerItem(ItemStack itemStack) {
-		return true;
 	}
 
 	@Override
@@ -41,14 +38,20 @@ public class GTItemFile extends Item implements IStaticTexturedItem, GTColorItem
 	}
 
 	@Override
+	@Deprecated
+	public boolean hasContainerItem() {
+		return true;
+	}
+
+	@Override
 	public List<Integer> getValidVariants() {
 		return Arrays.asList(0);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[8];
+	public TextureAtlasSprite getTexture(int i) {
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[6];
 	}
 
 	@Override
@@ -72,7 +75,7 @@ public class GTItemFile extends Item implements IStaticTexturedItem, GTColorItem
 
 	@Override
 	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[8 + var1];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[6 + var1];
 	}
 
 }

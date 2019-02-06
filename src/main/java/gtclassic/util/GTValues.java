@@ -5,6 +5,7 @@ import java.awt.Color;
 import com.google.common.collect.ImmutableMap;
 
 import gtclassic.GTMod;
+import gtclassic.materialsnew.GTMaterial;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -127,28 +128,28 @@ public class GTValues {
 
 	public static Color getToolColor(int tier) {
 		if (tier == 1) {
-			return getColor("Iron");
+			return GTMaterial.Iron.getColor();
 		}
 		if (tier == 2) {
-			return getColor("Titanium");
+			return GTMaterial.Titanium.getColor();
 		}
 		if (tier == 3) {
-			return getColor("TungstenSteel");
+			return GTMaterial.TungstenSteel.getColor();
 		}
 		if (tier == 4) {
-			return getColor("Chrome");
+			return GTMaterial.Chrome.getColor();
 		}
 		if (tier == 5) {
-			return getColor("Iridium");
+			return GTMaterial.Iridium.getColor();
 		}
 		if (tier == 6) {
-			return getColor("Osmium");
+			return GTMaterial.Osmium.getColor();
 		}
 		if (tier == 7) {
-			return getColor("Iridium");
+			return GTMaterial.Osmium.getColor();
 		}
 		if (tier == 8) {
-			return getColor("Iridium");
+			return GTMaterial.Osmium.getColor();
 		} else {
 			return Color.white;
 		}
@@ -156,28 +157,28 @@ public class GTValues {
 
 	public static Color getMachineColor(int tier) {
 		if (tier == 1) {
-			return getColor("Iron");
+			return GTMaterial.Iron.getColor();
 		}
 		if (tier == 2) {
-			return getColor("Aluminium");
+			return GTMaterial.Aluminium.getColor();
 		}
 		if (tier == 3) {
-			return getColor("Platinum");
+			return GTMaterial.Platinum.getColor();
 		}
 		if (tier == 4) {
-			return getColor("Titanium");
+			return GTMaterial.Titanium.getColor();
 		}
 		if (tier == 5) {
-			return getColor("TungstenSteel");
+			return GTMaterial.Tungsten.getColor();
 		}
 		if (tier == 6) {
-			return getColor("Chrome");
+			return GTMaterial.Chrome.getColor();
 		}
 		if (tier == 7) {
-			return getColor("Iridium");
+			return GTMaterial.Iridium.getColor();
 		}
 		if (tier == 8) {
-			return getColor("Osmium");
+			return GTMaterial.Osmium.getColor();
 		} else {
 			return Color.white;
 		}

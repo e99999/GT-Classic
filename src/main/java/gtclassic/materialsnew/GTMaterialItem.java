@@ -17,41 +17,44 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColorItemInterface {
 
 	private GTMaterial material;
-	private int type;
+	private GTMaterialFlag flag;
 
-	public GTMaterialItem(GTMaterial material, int type) {
+	public GTMaterialItem(GTMaterial material, GTMaterialFlag flag) {
 		this.material = material;
-		this.type = type;
-		setRegistryName(this.material.getName() + this.getSuffix());
+		this.flag = flag;
+		setRegistryName(this.material.getName() + flag.getSuffix());
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + this.getSuffix());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	public String getSuffix() {
-		if (this.type == 0) {
-			return "_dustsmall";
+		return flag.getSuffix();
+	}
+	
+	public int getIDFromFlag() {
+		if (this.flag == (GTMaterialFlag.SMALLDUST)) {
+			return 0;
 		}
-		if (this.type == 1) {
-			return "_dust";
+		if (this.flag == (GTMaterialFlag.DUST)) {
+			return 1;
 		}
-		if (this.type == 2) {
-			return "_gem";
+		if (this.flag == (GTMaterialFlag.GEM)) {
+			return 2;
 		}
-		if (this.type == 3) {
-			return "_ingot";
+		if (this.flag == (GTMaterialFlag.INGOT)) {
+			return 3;
 		}
-		if (this.type == 4) {
-			return "_nugget";
+		if (this.flag == (GTMaterialFlag.NUGGET)) {
+			return 4;
 		}
-		if (this.type == 5) {
-			return "_plate";
+		if (this.flag == (GTMaterialFlag.PLATE)) {
+			return 5;
 		}
-		if (this.type == 6) {
-			return "_stick";
+		if (this.flag == (GTMaterialFlag.STICK)) {
+			return 6;
 		} else {
-			return "_null";
+			return 0;
 		}
-
 	}
 
 	@Override
@@ -62,7 +65,7 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[this.type];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[getIDFromFlag()];
 	}
 
 	@Override
