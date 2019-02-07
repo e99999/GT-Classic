@@ -1,4 +1,4 @@
-package gtclassic.util.color;
+package gtclassic.color;
 
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;

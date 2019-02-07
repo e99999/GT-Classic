@@ -1,8 +1,8 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
-import gtclassic.tileentity.GTTileEntityWorkbench;
-import gtclassic.util.gui.GTGuiCompBasicString;
+import gtclassic.gui.GTGuiCompBasicString;
+import gtclassic.tile.GTTileWorkbench;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerWorkbench extends ContainerTileComponent<GTTileEntityWorkbench> {
+public class GTContainerWorkbench extends ContainerTileComponent<GTTileWorkbench> {
 
 	private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 	private InventoryCraftResult craftResult = new InventoryCraftResult();
@@ -30,7 +30,7 @@ public class GTContainerWorkbench extends ContainerTileComponent<GTTileEntityWor
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/workbench.png");
 
-	public GTContainerWorkbench(InventoryPlayer player, GTTileEntityWorkbench tile) {
+	public GTContainerWorkbench(InventoryPlayer player, GTTileWorkbench tile) {
 		super(tile);
 		this.world = player.player.getEntityWorld();
 		this.pos = player.player.getPosition();

@@ -1,4 +1,4 @@
-package gtclassic.tileentity;
+package gtclassic.tile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMachine {
+public class GTTileIndustrialCentrifuge extends TileEntityBasicElectricMachine {
 	public static final int slotInput = 0;
 	public static final int slotCell = 1;
 	public static final int slotFuel = 2;
@@ -56,7 +56,7 @@ public class GTTileEntityIndustrialCentrifuge extends TileEntityBasicElectricMac
 	public static final String CELL_REQUIREMENT = "recipe-cells";
 	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("centrifuge");
 
-	public GTTileEntityIndustrialCentrifuge() {
+	public GTTileIndustrialCentrifuge() {
 		super(7, 12, defaultLength, 32);
 		setFuelSlot(slotFuel);
 	}

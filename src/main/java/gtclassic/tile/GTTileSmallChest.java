@@ -1,6 +1,7 @@
-package gtclassic.tileentity;
+package gtclassic.tile;
 
-import gtclassic.container.GTContainerWorkbench;
+import gtclassic.container.GTContainerSmallChest;
+import gtclassic.util.GTValues;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -9,15 +10,21 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileEntityWorkbench extends TileEntityMachine implements IHasGui {
+public class GTTileSmallChest extends TileEntityMachine implements IHasGui {
 
-	public GTTileEntityWorkbench() {
-		super(26);
+	public GTTileSmallChest() {
+		super(27);
+	}
+
+	@Override
+	public LocaleComp getBlockName() {
+		return GTValues.smallchest;
 	}
 
 	@Override
@@ -28,14 +35,14 @@ public class GTTileEntityWorkbench extends TileEntityMachine implements IHasGui 
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerWorkbench(player.inventory, this);
+		return new GTContainerSmallChest(player.inventory, this);
 	}
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 26; i++) {
 			handler.registerDefaultSlotAccess(AccessRule.Both, i);
 			handler.registerDefaultSlotsForSide(RotationList.ALL, i);
 			handler.registerSlotType(SlotType.Input, i);

@@ -1,14 +1,14 @@
 package gtclassic.util;
 
-import gtclassic.tileentity.GTTileEntityBookshelf;
+import gtclassic.tile.GTTileBookshelf;
 import ic2.core.inventory.filters.IFilter;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class GTBookshelfFilter implements IFilter {
-	GTTileEntityBookshelf bookshelf;
+	GTTileBookshelf bookshelf;
 
-	public GTBookshelfFilter(GTTileEntityBookshelf tile) {
+	public GTBookshelfFilter(GTTileBookshelf tile) {
 		this.bookshelf = tile;
 	}
 

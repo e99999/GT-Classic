@@ -1,4 +1,4 @@
-package gtclassic.tileentity;
+package gtclassic.tile;
 
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyConductor;
@@ -6,12 +6,12 @@ import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.util.EnumFacing;
 
-public class GTTileEntitySuperConductor extends TileEntityBlock implements IEnergyConductor {
+public class GTTileSuperConductor extends TileEntityBlock implements IEnergyConductor {
 
 	double loss;
 	double energy;
 
-	public GTTileEntitySuperConductor(double loss, double energy) {
+	public GTTileSuperConductor(double loss, double energy) {
 		this.loss = loss;
 		this.energy = energy;
 

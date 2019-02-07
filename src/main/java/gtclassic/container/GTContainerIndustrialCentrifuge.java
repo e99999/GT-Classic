@@ -1,7 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.GTItems;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tile.GTTileIndustrialCentrifuge;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -15,12 +15,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTileEntityIndustrialCentrifuge> {
+public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTileIndustrialCentrifuge> {
 
 	public static Box2D machineProgressBoxRight = new Box2D(62, 29, 10, 10);
 	public static Vec2i machineProgressPosRight = new Vec2i(176, 0);
 
-	public GTContainerIndustrialCentrifuge(InventoryPlayer player, GTTileEntityIndustrialCentrifuge tile) {
+	public GTContainerIndustrialCentrifuge(InventoryPlayer player, GTTileIndustrialCentrifuge tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 26, 26, null));
 		this.addSlotToContainer(new SlotCustom(tile, 1, 44, 26, new BasicItemFilter(GTItems.glassTube)));

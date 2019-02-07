@@ -1,4 +1,4 @@
-package gtclassic.tileentity;
+package gtclassic.tile;
 
 import gtclassic.container.GTContainerComputerCube;
 import ic2.core.block.base.tile.TileEntityMachine;
@@ -11,11 +11,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileEntityComputerCube extends TileEntityMachine implements IHasGui {
+public class GTTileComputerCube extends TileEntityMachine implements IHasGui {
 
 	public int index;
 
-	public GTTileEntityComputerCube() {
+	public GTTileComputerCube() {
 		super(1);
 		this.index = 0;
 	}

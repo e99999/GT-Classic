@@ -71,7 +71,7 @@ public class GTMaterial {
 	public static GTMaterial Basalt = new GTMaterial("Basalt", 1.0F, 0, 1, new Color(30, 20, 20), DUST_ALL);
 	public static GTMaterial Bauxite = new GTMaterial("Bauxite", 1.0F, 0, 1, new Color(200, 100, 0), DUST_ALL);
 	public static GTMaterial Brass = new GTMaterial("Brass", 7.0F, 96, 1, new Color(255, 180, 0), METAL_ALL);
-	public static GTMaterial Bronze = new GTMaterial("Bronze", 6.0F, 192, 2, new Color(255, 180, 0), METAL_IC2);
+	public static GTMaterial Bronze = new GTMaterial("Bronze", 6.0F, 192, 2, new Color(255, 128, 0), METAL_IC2);
 	public static GTMaterial Calcite = new GTMaterial("Calcite", 1.0F, 0, 1, new Color(250, 230, 220), DUST_ALL);
 	public static GTMaterial Charcoal = new GTMaterial("Charcoal", 1.0F, 0, 1, new Color(100, 70, 70), SMALLDUST);
 	public static GTMaterial Chrome = new GTMaterial("Chrome", 11.0F, 256, 3, new Color(245, 206, 227), METAL_ALL);
@@ -85,7 +85,7 @@ public class GTMaterial {
 	public static GTMaterial Emerald = new GTMaterial("Emerald", 7.0F, 256, 3, new Color(80, 255, 80), DUST_ALL);
 	public static GTMaterial EnderEye = new GTMaterial("Endereye", 1.0F, 0, 1, new Color(160, 250, 230), DUST_ALL);
 	public static GTMaterial EnderPearl = new GTMaterial("Enderpearl", 1.0F, 0, 1, new Color(108, 220, 200), DUST_ALL);
-	public static GTMaterial Endstone = new GTMaterial("Endstone", 1.0F, 0, 1, new Color(255, 255, 255), DUST_ALL);
+	public static GTMaterial Endstone = new GTMaterial("Endstone", 1.0F, 0, 1, new Color(250, 250, 198), DUST_ALL);
 	public static GTMaterial Flint = new GTMaterial("Flint", 1.0F, 0, 1, new Color(0, 32, 64), DUST_ALL);
 	public static GTMaterial Galena = new GTMaterial("Galena", 1.0F, 0, 1, new Color(100, 60, 100), DUST_ALL);
 	public static GTMaterial GalvenizedSteel = new GTMaterial("GalvenizedSteel", 8.0F, 512, 3, new Color(250, 240, 240),

@@ -1,9 +1,9 @@
-package gtclassic.util.gui;
+package gtclassic.gui;
 
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.tileentity.GTTileEntityFusionComputer;
+import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.util.GTValues;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTGuiCompFusion extends GuiComponent {
 
-	GTTileEntityFusionComputer block;
+	GTTileFusionComputer block;
 
-	public GTGuiCompFusion(GTTileEntityFusionComputer tile) {
+	public GTGuiCompFusion(GTTileFusionComputer tile) {
 		super(Ic2GuiComp.nullBox);
 		this.block = tile;
 	}

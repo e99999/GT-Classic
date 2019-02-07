@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.util.color.GTColorBlockInterface;
+import gtclassic.color.GTColorBlockInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;

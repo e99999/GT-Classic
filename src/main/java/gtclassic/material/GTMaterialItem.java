@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.util.color.GTColorItemInterface;
+import gtclassic.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -36,7 +36,7 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		return this.flag == GTMaterialFlag.PLASMA || material == GTMaterial.Thorium;
+		return this.flag == GTMaterialFlag.PLASMA || material == GTMaterial.Thorium || material == GTMaterial.Uranium;
 	}
 
 	@Override

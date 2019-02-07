@@ -5,18 +5,19 @@ import java.util.Map;
 
 import org.apache.logging.log4j.Logger;
 
+import gtclassic.color.GTColorBlock;
+import gtclassic.color.GTColorBlockInterface;
+import gtclassic.color.GTColorItem;
+import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
+import gtclassic.recipe.GTRecipe;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;
 import gtclassic.util.GTValues;
-import gtclassic.util.color.GTColorBlock;
-import gtclassic.util.color.GTColorBlockInterface;
-import gtclassic.util.color.GTColorItem;
-import gtclassic.util.color.GTColorItemInterface;
 import ic2.api.classic.addon.misc.IOverrideObject;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -66,8 +67,8 @@ public class GTMod {
 		GTOreDict.init();
 		registerTintedBlocks();
 		registerTintedItems();
+		GTRecipe.init();
 		GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
-		// GTRecipes.init();
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
 		proxy.init(e);
 	}

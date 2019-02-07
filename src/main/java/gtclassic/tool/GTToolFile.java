@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
-import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;

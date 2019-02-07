@@ -6,7 +6,7 @@ import java.util.List;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tileentity.GTTileEntityFusionComputer;
+import gtclassic.tile.GTTileFusionComputer;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
@@ -26,7 +26,7 @@ public class GTJeiFusionWrapper extends BlankRecipeWrapper {
 		// materials
 		components.setInputs(ItemStack.class, Arrays.asList(entry.getInput().getInputs(), Arrays.asList(
 				(GTMaterialGen.getChemical(GTMaterial.Dueterium, 1)),
-				GTTileEntityFusionComputer.getRequiredCells(entry.getOutput()))));
+				GTTileFusionComputer.getRequiredCells(entry.getOutput()))));
 		List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
 		int count = 0;
 		for (ItemStack stack : entry.getOutput().copy().getAllOutputs()) {

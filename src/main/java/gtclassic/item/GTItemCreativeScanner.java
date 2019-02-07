@@ -1,9 +1,9 @@
 package gtclassic.item;
 
 import gtclassic.GTMod;
-import gtclassic.tileentity.GTTileEntityDigitalChest;
-import gtclassic.tileentity.GTTileEntityFusionComputer;
-import gtclassic.tileentity.GTTileEntityLightningRod;
+import gtclassic.tile.GTTileDigitalChest;
+import gtclassic.tile.GTTileFusionComputer;
+import gtclassic.tile.GTTileLightningRod;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
@@ -100,8 +100,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				return EnumActionResult.PASS;
 			}
 
-			if (tileEntity instanceof GTTileEntityLightningRod) {
-				GTTileEntityLightningRod te = (GTTileEntityLightningRod) tileEntity;
+			if (tileEntity instanceof GTTileLightningRod) {
+				GTTileLightningRod te = (GTTileLightningRod) tileEntity;
 				IC2.platform.messagePlayer(player, "---Lightning Rod Multi Block Information---");
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + te.checkStructure());
 				IC2.platform.messagePlayer(player,
@@ -115,8 +115,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				return EnumActionResult.SUCCESS;
 			}
 
-			if (tileEntity instanceof GTTileEntityFusionComputer) {
-				GTTileEntityFusionComputer te1 = (GTTileEntityFusionComputer) tileEntity;
+			if (tileEntity instanceof GTTileFusionComputer) {
+				GTTileFusionComputer te1 = (GTTileFusionComputer) tileEntity;
 				IC2.platform.messagePlayer(player, "---Fusion Computer Multi Block Information---");
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + te1.checkStructure());
 				IC2.platform.messagePlayer(player, "Active: " + te1.getActive());
@@ -126,8 +126,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				return EnumActionResult.SUCCESS;
 			}
 
-			if (tileEntity instanceof GTTileEntityDigitalChest) {
-				GTTileEntityDigitalChest te2 = (GTTileEntityDigitalChest) tileEntity;
+			if (tileEntity instanceof GTTileDigitalChest) {
+				GTTileDigitalChest te2 = (GTTileDigitalChest) tileEntity;
 				IC2.platform.messagePlayer(player, "---Quantum Chest Information---");
 				IC2.platform.messagePlayer(player, "Display Count: " + te2.getDisplayCount());
 				IC2.platform.messagePlayer(player, "Internal Count: " + te2.getQuantumCount());

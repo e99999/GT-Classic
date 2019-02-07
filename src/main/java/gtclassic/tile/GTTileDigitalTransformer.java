@@ -1,12 +1,12 @@
-package gtclassic.tileentity;
+package gtclassic.tile;
 
 import ic2.api.classic.network.adv.IBitLevelOverride;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.block.base.tile.TileEntityTransformer;
 
-public class GTTileEntityDigitalTransformer extends TileEntityTransformer implements IBitLevelOverride {
+public class GTTileDigitalTransformer extends TileEntityTransformer implements IBitLevelOverride {
 
-	public GTTileEntityDigitalTransformer(int high, int low) {
+	public GTTileDigitalTransformer(int high, int low) {
 		super(low, high, high);
 	}
 

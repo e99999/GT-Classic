@@ -1,4 +1,4 @@
-package gtclassic.tileentity;
+package gtclassic.tile;
 
 import gtclassic.container.GTContainerDigitalChest;
 import gtclassic.util.GTValues;
@@ -19,7 +19,7 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileEntityDigitalChest extends TileEntityMachine implements IHasGui, ITickable {
+public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, ITickable {
 
 	int slotInput = 0;
 	int slotOutput = 1;
@@ -28,7 +28,7 @@ public class GTTileEntityDigitalChest extends TileEntityMachine implements IHasG
 	int maxSize = Integer.MAX_VALUE;
 	int digitalCount;
 
-	public GTTileEntityDigitalChest() {
+	public GTTileDigitalChest() {
 		super(3);
 		this.digitalCount = 0;
 		this.addGuiFields(new String[] { "digitalCount" });

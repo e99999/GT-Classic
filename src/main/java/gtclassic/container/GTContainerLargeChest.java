@@ -1,7 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
-import gtclassic.tileentity.GTTileEntityLargeChest;
+import gtclassic.tile.GTTileLargeChest;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
@@ -11,10 +11,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerLargeChest extends ContainerTileComponent<GTTileEntityLargeChest> {
+public class GTContainerLargeChest extends ContainerTileComponent<GTTileLargeChest> {
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/largechest.png");
 
-	public GTContainerLargeChest(InventoryPlayer player, GTTileEntityLargeChest tile) {
+	public GTContainerLargeChest(InventoryPlayer player, GTTileLargeChest tile) {
 		super(tile);
 
 		for (int y = 0; y < 6; ++y) {

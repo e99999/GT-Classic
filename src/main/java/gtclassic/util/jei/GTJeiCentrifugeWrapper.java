@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTItems;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.core.platform.registry.Ic2Formatters;
@@ -28,7 +28,7 @@ public class GTJeiCentrifugeWrapper extends BlankRecipeWrapper {
 	public void getIngredients(IIngredients components) {
 		components.setInputLists(ItemStack.class,
 				Arrays.asList(entry.getInput().getInputs(), Arrays.asList(new ItemStack(GTItems.glassTube,
-						GTTileEntityIndustrialCentrifuge.getRequiredCells(entry.getOutput())))));
+						GTTileIndustrialCentrifuge.getRequiredCells(entry.getOutput())))));
 		List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
 		int count = 0;
 		for (ItemStack stack : entry.getOutput().copy().getAllOutputs()) {
@@ -47,7 +47,7 @@ public class GTJeiCentrifugeWrapper extends BlankRecipeWrapper {
 
 		font.drawString(
 				GTValues.centrifugeEU.getLocalizedFormatted(new Object[] { Ic2Formatters.bigFormat
-						.format((long) GTTileEntityIndustrialCentrifuge.getRequiredEU(entry.getOutput())) }),
+						.format((long) GTTileIndustrialCentrifuge.getRequiredEU(entry.getOutput())) }),
 				36, 24, Color.gray.getRGB());
 	}
 }

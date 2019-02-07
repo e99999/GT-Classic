@@ -1,7 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
-import gtclassic.tileentity.GTTileEntityBookshelf;
+import gtclassic.tile.GTTileBookshelf;
 import gtclassic.util.GTBookshelfFilter;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotCustom;
@@ -9,10 +9,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GTContainerBookshelf extends ContainerTileComponent<GTTileEntityBookshelf> {
+public class GTContainerBookshelf extends ContainerTileComponent<GTTileBookshelf> {
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/bookshelf.png");
 
-	public GTContainerBookshelf(InventoryPlayer player, GTTileEntityBookshelf tile) {
+	public GTContainerBookshelf(InventoryPlayer player, GTTileBookshelf tile) {
 		super(tile);
 
 		this.addSlotToContainer(new SlotCustom(tile, 0, 52, 24, new GTBookshelfFilter(tile)));

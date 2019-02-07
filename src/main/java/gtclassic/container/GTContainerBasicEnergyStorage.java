@@ -3,9 +3,9 @@ package gtclassic.container;
 import static ic2.core.block.wiring.container.ContainerElectricBlock.VALID_EQUIPMENT_SLOTS;
 
 import gtclassic.GTMod;
-import gtclassic.tileentity.GTTileEntityBasicEnergyStorage;
-import gtclassic.util.gui.GTGuiCompEnergyBar;
-import gtclassic.util.gui.GTGuiCompEnergyStorage;
+import gtclassic.gui.GTGuiCompEnergyBar;
+import gtclassic.gui.GTGuiCompEnergyStorage;
+import gtclassic.tile.GTTileBasicEnergyStorage;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotArmor;
@@ -19,7 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerBasicEnergyStorage extends ContainerTileComponent<GTTileEntityBasicEnergyStorage> {
+public class GTContainerBasicEnergyStorage extends ContainerTileComponent<GTTileBasicEnergyStorage> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/energystorage.png");
 
@@ -27,7 +27,7 @@ public class GTContainerBasicEnergyStorage extends ContainerTileComponent<GTTile
 																		// xy
 	public static Vec2i chargeProgressPos = new Vec2i(0, 251); // where the overlay is located
 
-	public GTContainerBasicEnergyStorage(InventoryPlayer player, GTTileEntityBasicEnergyStorage tile) {
+	public GTContainerBasicEnergyStorage(InventoryPlayer player, GTTileBasicEnergyStorage tile) {
 
 		super(tile);
 		this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50));

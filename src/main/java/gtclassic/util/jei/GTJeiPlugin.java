@@ -4,8 +4,8 @@ import javax.annotation.Nonnull;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
-import gtclassic.tileentity.GTTileEntityFusionComputer;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tile.GTTileFusionComputer;
+import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.util.GTMachineGui.GTFusionComputerGui;
 import gtclassic.util.GTMachineGui.GTIndustrialCentrifugeGui;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -47,7 +47,7 @@ public class GTJeiPlugin implements IModPlugin {
 					return new GTJeiCentrifugeWrapper(var1);
 				}
 			}, "centrifuge");
-			registry.addRecipes(GTTileEntityIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
+			registry.addRecipes(GTTileIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
 
 			registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
 				@Override
@@ -55,7 +55,7 @@ public class GTJeiPlugin implements IModPlugin {
 					return new GTJeiFusionWrapper(var1);
 				}
 			}, "fusion");
-			registry.addRecipes(GTTileEntityFusionComputer.RECIPE_LIST.getRecipeMap(), "fusion");
+			registry.addRecipes(GTTileFusionComputer.RECIPE_LIST.getRecipeMap(), "fusion");
 
 		}
 	}

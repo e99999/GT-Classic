@@ -6,9 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
 import gtclassic.util.GTValues;
-import gtclassic.util.color.GTColorItemInterface;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;

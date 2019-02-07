@@ -7,20 +7,20 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.tileentity.GTTileEntityBasicEnergyStorage;
-import gtclassic.tileentity.GTTileEntityBookshelf;
-import gtclassic.tileentity.GTTileEntityComputerCube;
-import gtclassic.tileentity.GTTileEntityDigitalChest;
-import gtclassic.tileentity.GTTileEntityDigitalTransformer;
-import gtclassic.tileentity.GTTileEntityFusionComputer;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.tileentity.GTTileEntityLargeChest;
-import gtclassic.tileentity.GTTileEntityLightningRod;
-import gtclassic.tileentity.GTTileEntityMultiEnergyStorage;
-import gtclassic.tileentity.GTTileEntityQuantumEnergyStorage;
-import gtclassic.tileentity.GTTileEntitySmallChest;
-import gtclassic.tileentity.GTTileEntitySuperConductor;
-import gtclassic.tileentity.GTTileEntityWorkbench;
+import gtclassic.tile.GTTileBasicEnergyStorage;
+import gtclassic.tile.GTTileBookshelf;
+import gtclassic.tile.GTTileComputerCube;
+import gtclassic.tile.GTTileDigitalChest;
+import gtclassic.tile.GTTileDigitalTransformer;
+import gtclassic.tile.GTTileFusionComputer;
+import gtclassic.tile.GTTileIndustrialCentrifuge;
+import gtclassic.tile.GTTileLargeChest;
+import gtclassic.tile.GTTileLightningRod;
+import gtclassic.tile.GTTileMultiEnergyStorage;
+import gtclassic.tile.GTTileQuantumEnergyStorage;
+import gtclassic.tile.GTTileSmallChest;
+import gtclassic.tile.GTTileSuperConductor;
+import gtclassic.tile.GTTileWorkbench;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
@@ -79,33 +79,33 @@ public class GTBlockTileBasic extends BlockMultiID {
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.computerCube) {
-			return new GTTileEntityComputerCube();
+			return new GTTileComputerCube();
 		} else if (this == GTBlocks.industrialCentrifuge) {
-			return new GTTileEntityIndustrialCentrifuge();
+			return new GTTileIndustrialCentrifuge();
 		} else if (this == GTBlocks.lightningRod) {
-			return new GTTileEntityLightningRod();
+			return new GTTileLightningRod();
 		} else if (this == GTBlocks.fusionComputer) {
-			return new GTTileEntityFusionComputer();
+			return new GTTileFusionComputer();
 		} else if (this == GTBlocks.HESU) {
-			return new GTTileEntityBasicEnergyStorage();
+			return new GTTileBasicEnergyStorage();
 		} else if (this == GTBlocks.IDSU) {
-			return new GTTileEntityQuantumEnergyStorage();
+			return new GTTileQuantumEnergyStorage();
 		} else if (this == GTBlocks.LESU) {
-			return new GTTileEntityMultiEnergyStorage();
+			return new GTTileMultiEnergyStorage();
 		} else if (this == GTBlocks.digitalTransformerIV) {
-			return new GTTileEntityDigitalTransformer(32768, 65535);
+			return new GTTileDigitalTransformer(32768, 65535);
 		} else if (this == GTBlocks.digitalChestLV || this == GTBlocks.digitalChestMV) {
-			return new GTTileEntityDigitalChest();
+			return new GTTileDigitalChest();
 		} else if (this == GTBlocks.smallChestLV || this == GTBlocks.smallChestMV) {
-			return new GTTileEntitySmallChest();
+			return new GTTileSmallChest();
 		} else if (this == GTBlocks.largeChestLV || this == GTBlocks.largeChestMV) {
-			return new GTTileEntityLargeChest();
+			return new GTTileLargeChest();
 		} else if (this == GTBlocks.bookShelfLV || this == GTBlocks.bookShelfMV) {
-			return new GTTileEntityBookshelf();
+			return new GTTileBookshelf();
 		} else if (this == GTBlocks.workBenchLV || this == GTBlocks.workBenchMV) {
-			return new GTTileEntityWorkbench();
+			return new GTTileWorkbench();
 		} else if (this == GTBlocks.energiumWire) {
-			return new GTTileEntitySuperConductor(1.5D, 32769.0D);
+			return new GTTileSuperConductor(1.5D, 32769.0D);
 		} else {
 			return new TileEntityBlock();
 		}
@@ -115,7 +115,7 @@ public class GTBlockTileBasic extends BlockMultiID {
 	@Override
 	public float getEnchantPowerBonus(World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
-		if ((tile instanceof GTTileEntityBookshelf) && (((GTTileEntityBookshelf) tile).isActive)) {
+		if ((tile instanceof GTTileBookshelf) && (((GTTileBookshelf) tile).isActive)) {
 			return 2;
 		} else {
 			return 0;
@@ -182,8 +182,8 @@ public class GTBlockTileBasic extends BlockMultiID {
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileEntityFusionComputer) {
-			if (((GTTileEntityFusionComputer) tile).isActive) {
+		if (tile instanceof GTTileFusionComputer) {
+			if (((GTTileFusionComputer) tile).isActive) {
 				for (int i = -2; i <= 2; ++i) {
 					for (int j = -2; j <= 2; ++j) {
 						if (i > -2 && i < 2 && j == -1) {

@@ -137,4 +137,10 @@ public class GTMaterialGen {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.STICK.getSuffix()), count, 0);
 	}
 
+	public static ItemStack getIc2(ItemStack itemStack, int newSize) {
+		ItemStack ret = itemStack.copy();
+		ret.setCount(newSize);
+		return ret;
+	}
+
 }

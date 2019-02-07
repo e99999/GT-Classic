@@ -92,6 +92,7 @@ public class GTItems {
 
 	public static final Item[] items = {
 
+			glassTube,
 			bouleSilicon,
 			platePlastic,
 			lensDiamond,

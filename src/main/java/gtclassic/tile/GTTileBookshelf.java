@@ -1,6 +1,10 @@
-package gtclassic.tileentity;
+package gtclassic.tile;
 
-import gtclassic.container.GTContainerLargeChest;
+import java.util.HashSet;
+import java.util.Set;
+
+import gtclassic.container.GTContainerBookshelf;
+import gtclassic.util.GTBookshelfFilter;
 import gtclassic.util.GTValues;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
@@ -9,22 +13,30 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
-import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileEntityLargeChest extends TileEntityMachine implements IHasGui {
+public class GTTileBookshelf extends TileEntityMachine implements IHasGui {
 
-	public GTTileEntityLargeChest() {
-		super(54);
+	Set<Integer> storedSlots = new HashSet<Integer>();
+
+	public GTTileBookshelf() {
+		super(8);
 	}
 
 	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.largechest;
+		return GTValues.bookshelf;
+	}
+
+	@Override
+	public boolean canUpdate() {
+		return false;
 	}
 
 	@Override
@@ -35,19 +47,13 @@ public class GTTileEntityLargeChest extends TileEntityMachine implements IHasGui
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerLargeChest(player.inventory, this);
+		return new GTContainerBookshelf(player.inventory, this);
 	}
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-
-		for (int i = 0; i < 54; i++) {
-			handler.registerDefaultSlotAccess(AccessRule.Both, i);
-			handler.registerDefaultSlotsForSide(RotationList.ALL, i);
-			handler.registerSlotType(SlotType.Input, i);
-			handler.registerSlotType(SlotType.Output, i);
-		}
+		handler.registerInputFilter(new GTBookshelfFilter(this), MathUtil.fromTo(0, 8));
 	}
 
 	@Override
@@ -56,13 +62,37 @@ public class GTTileEntityLargeChest extends TileEntityMachine implements IHasGui
 	}
 
 	@Override
+	public void onLoaded() {
+		super.onLoaded();
+		for (int i = 0; i < 8; i++) {
+			if (getStackInSlot(i).getCount() > 0) {
+				storedSlots.add(i);
+				continue;
+			}
+			storedSlots.remove(i);
+		}
+		setActive(storedSlots.size() > 0);
+	}
+
+	@Override
+	public void setStackInSlot(int slot, ItemStack stack) {
+		super.setStackInSlot(slot, stack);
+		if (isSimulating()) {
+			if (stack.getCount() > 0) {
+				storedSlots.add(slot);
+			} else {
+				storedSlots.remove(slot);
+			}
+			setActive(storedSlots.size() > 0);
+		}
+	}
+
+	@Override
 	public void onGuiClosed(EntityPlayer entityPlayer) {
-		// needed for construction
 	}
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
 	}
-
 }

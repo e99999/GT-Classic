@@ -6,22 +6,22 @@ import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.test.GTBlockTestLayer;
+import gtclassic.color.GTColorItemBlock;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tileentity.GTTileEntityBasicEnergyStorage;
-import gtclassic.tileentity.GTTileEntityBookshelf;
-import gtclassic.tileentity.GTTileEntityComputerCube;
-import gtclassic.tileentity.GTTileEntityDigitalChest;
-import gtclassic.tileentity.GTTileEntityDigitalTransformer;
-import gtclassic.tileentity.GTTileEntityFusionComputer;
-import gtclassic.tileentity.GTTileEntityIndustrialCentrifuge;
-import gtclassic.tileentity.GTTileEntityLargeChest;
-import gtclassic.tileentity.GTTileEntityLightningRod;
-import gtclassic.tileentity.GTTileEntityMultiEnergyStorage;
-import gtclassic.tileentity.GTTileEntityQuantumEnergyStorage;
-import gtclassic.tileentity.GTTileEntitySmallChest;
-import gtclassic.tileentity.GTTileEntitySuperConductor;
-import gtclassic.tileentity.GTTileEntityWorkbench;
-import gtclassic.util.color.GTColorItemBlock;
+import gtclassic.tile.GTTileBasicEnergyStorage;
+import gtclassic.tile.GTTileBookshelf;
+import gtclassic.tile.GTTileComputerCube;
+import gtclassic.tile.GTTileDigitalChest;
+import gtclassic.tile.GTTileDigitalTransformer;
+import gtclassic.tile.GTTileFusionComputer;
+import gtclassic.tile.GTTileIndustrialCentrifuge;
+import gtclassic.tile.GTTileLargeChest;
+import gtclassic.tile.GTTileLightningRod;
+import gtclassic.tile.GTTileMultiEnergyStorage;
+import gtclassic.tile.GTTileQuantumEnergyStorage;
+import gtclassic.tile.GTTileSmallChest;
+import gtclassic.tile.GTTileSuperConductor;
+import gtclassic.tile.GTTileWorkbench;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -254,36 +254,36 @@ public class GTBlocks {
 	}
 
 	public static void registerTiles() {
-		GameRegistry.registerTileEntity(GTTileEntityIndustrialCentrifuge.class,
+		GameRegistry.registerTileEntity(GTTileIndustrialCentrifuge.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
-		GameRegistry.registerTileEntity(GTTileEntityComputerCube.class,
+		GameRegistry.registerTileEntity(GTTileComputerCube.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityComputerCube"));
-		GameRegistry.registerTileEntity(GTTileEntityDigitalTransformer.class,
+		GameRegistry.registerTileEntity(GTTileDigitalTransformer.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityDigitalTransformer"));
 
-		GameRegistry.registerTileEntity(GTTileEntitySmallChest.class,
+		GameRegistry.registerTileEntity(GTTileSmallChest.class,
 				new ResourceLocation(GTMod.MODID, "tileEntitySmallChest"));
-		GameRegistry.registerTileEntity(GTTileEntityLargeChest.class,
+		GameRegistry.registerTileEntity(GTTileLargeChest.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityLargeChest"));
-		GameRegistry.registerTileEntity(GTTileEntityDigitalChest.class,
+		GameRegistry.registerTileEntity(GTTileDigitalChest.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityQuantumChest"));
-		GameRegistry.registerTileEntity(GTTileEntityBookshelf.class,
+		GameRegistry.registerTileEntity(GTTileBookshelf.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityBookshelf"));
-		GameRegistry.registerTileEntity(GTTileEntityWorkbench.class,
+		GameRegistry.registerTileEntity(GTTileWorkbench.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityWorkbench"));
 
-		GameRegistry.registerTileEntity(GTTileEntityBasicEnergyStorage.class,
+		GameRegistry.registerTileEntity(GTTileBasicEnergyStorage.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityHESU"));
-		GameRegistry.registerTileEntity(GTTileEntityQuantumEnergyStorage.class,
+		GameRegistry.registerTileEntity(GTTileQuantumEnergyStorage.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIDSU"));
-		GameRegistry.registerTileEntity(GTTileEntityMultiEnergyStorage.class,
+		GameRegistry.registerTileEntity(GTTileMultiEnergyStorage.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityLESU"));
 
-		GameRegistry.registerTileEntity(GTTileEntityLightningRod.class,
+		GameRegistry.registerTileEntity(GTTileLightningRod.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityLightningRod"));
-		GameRegistry.registerTileEntity(GTTileEntityFusionComputer.class,
+		GameRegistry.registerTileEntity(GTTileFusionComputer.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityFusionComputer"));
-		GameRegistry.registerTileEntity(GTTileEntitySuperConductor.class,
+		GameRegistry.registerTileEntity(GTTileSuperConductor.class,
 				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductor"));
 	}
 

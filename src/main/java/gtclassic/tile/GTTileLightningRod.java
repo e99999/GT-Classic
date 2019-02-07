@@ -1,4 +1,4 @@
-package gtclassic.tileentity;
+package gtclassic.tile;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
@@ -12,12 +12,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 
-public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
+public class GTTileLightningRod extends TileEntityGeneratorBase {
 
 	public int casingheight;
 	public int chance;
 
-	public GTTileEntityLightningRod() {
+	public GTTileLightningRod() {
 		super(0);
 		this.maxStorage = 100000000;
 		this.production = 8096;

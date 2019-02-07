@@ -1,4 +1,4 @@
-package gtclassic.tileentity;
+package gtclassic.tile;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
-public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
+public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 
 	public static final int slotInput = 0;
 	public static final int slotCell = 1;
@@ -52,7 +52,7 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 	public static final String CELL_REQUIREMENT = "recipe-cells";
 	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("fusion");
 
-	public GTTileEntityFusionComputer() {
+	public GTTileFusionComputer() {
 		super(5, 8192, 10000, 8192);
 		this.status = 0;
 		this.addGuiFields(new String[] { "status" });

@@ -1,8 +1,8 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
-import gtclassic.tileentity.GTTileEntityDigitalChest;
-import gtclassic.util.gui.GTGuiCompQuantumChest;
+import gtclassic.gui.GTGuiCompQuantumChest;
+import gtclassic.tile.GTTileDigitalChest;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotDisplay;
@@ -11,11 +11,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GTContainerDigitalChest extends ContainerTileComponent<GTTileEntityDigitalChest> {
+public class GTContainerDigitalChest extends ContainerTileComponent<GTTileDigitalChest> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/digitalchest.png");
 
-	public GTContainerDigitalChest(InventoryPlayer player, GTTileEntityDigitalChest tile) {
+	public GTContainerDigitalChest(InventoryPlayer player, GTTileDigitalChest tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotBase(tile, 0, 80, 17));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 1, 80, 53));
