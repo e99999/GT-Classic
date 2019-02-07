@@ -3,7 +3,6 @@ package gtclassic.tileentity;
 import java.util.List;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionComputer;
 import gtclassic.material.GTMaterial;

@@ -5,11 +5,11 @@ public enum GTMaterialFlag {
 	SMALLDUST("_dustsmall", 1, false),
 	DUST("_dust", 0, false),
 	GEM("_gem", 2, false),
-	INGOT( "_ingot", 3, false),
+	INGOT("_ingot", 3, false),
 	NUGGET("_nugget", 4, false),
 	PLATE("_plate", 5, false),
 	STICK("_stick", 6, false),
-	CHEMICAL("_tube", 13 , true), 
+	CHEMICAL("_tube", 13, true),
 	PLASMA("_plasma_tube", 13, true),
 	PARTICLE("_particle", 15, false),
 	BLOCK("_block", 62, false),
@@ -40,7 +40,7 @@ public enum GTMaterialFlag {
 		return id;
 
 	}
-	
+
 	public boolean isLayered() {
 		return layered;
 	}

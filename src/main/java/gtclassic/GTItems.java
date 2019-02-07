@@ -1,7 +1,5 @@
 package gtclassic;
 
-import java.awt.Color;
-
 import gtclassic.item.GTItemComponents;
 import gtclassic.item.GTItemCraftingTablet;
 import gtclassic.item.GTItemCreativeScanner;
@@ -163,9 +161,12 @@ public class GTItems {
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
 		GTMod.logger.info("Registering Items");
+
+		// Registers all materials with item based flags as materials
 		for (Item item : GTMaterialGen.itemMap.values()) {
 			registry.register(item);
 		}
+		// Registers static item references in this class
 		for (Item item : items) {
 			registry.register(item);
 		}

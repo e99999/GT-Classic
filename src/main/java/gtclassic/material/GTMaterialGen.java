@@ -2,16 +2,26 @@ package gtclassic.material;
 
 import java.util.LinkedHashMap;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class GTMaterialGen {
 
 	public static LinkedHashMap<String, Item> itemMap = new LinkedHashMap<>();
+	public static LinkedHashMap<String, Block> blockMap = new LinkedHashMap<>();
 
 	public static void init() {
 
-		// Expand for all flags etc
+		// Add material entries and flags to correct maps
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialBlockUtil(mat, GTMaterialFlag.CASING);
+		}
+
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialBlockUtil(mat, GTMaterialFlag.BLOCK);
+		}
+
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.PARTICLE);
 		}
@@ -45,10 +55,15 @@ public class GTMaterialGen {
 
 	}
 
-	// Utility method for generateItems()
 	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {
 		if (mat.hasFlag(flag)) {
 			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItem(mat, flag));
+		}
+	}
+
+	public static void materialBlockUtil(GTMaterial mat, GTMaterialFlag flag) {
+		if (mat.hasFlag(flag)) {
+			blockMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialBlock(mat, flag));
 		}
 	}
 
@@ -57,22 +72,39 @@ public class GTMaterialGen {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + flag.getSuffix()), count, 0);
 	}
 
+	// How to get an itemstack of any block material
+	public static ItemStack getBlockStack(GTMaterial mat, GTMaterialFlag flag, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + flag.getSuffix()), count, 0);
+	}
+
 	// How to get an item for instances that require an item
 	public static Item getItem(GTMaterial mat, GTMaterialFlag flag) {
 		return itemMap.get(mat.getName() + "_" + flag.getSuffix());
 	}
-	
-	
-	//instances per flag
-	
+
+	// How to get block for instances that require a block
+	public static Block getBlock(GTMaterial mat, GTMaterialFlag flag) {
+		return blockMap.get(mat.getName() + "_" + flag.getSuffix());
+	}
+
+	// Instances per flag, most of the mod will references these
+
+	public static ItemStack getCasing(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.CASING.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getMaterialBlock(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.BLOCK.getSuffix()), count, 0);
+	}
+
 	public static ItemStack getParticle(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.PARTICLE.getSuffix()), count, 0);
 	}
-	
+
 	public static ItemStack getChemical(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.CHEMICAL.getSuffix()), count, 0);
 	}
-	
+
 	public static ItemStack getPlasma(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.PLASMA.getSuffix()), count, 0);
 	}

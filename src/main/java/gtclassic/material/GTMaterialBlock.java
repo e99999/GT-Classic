@@ -1,8 +1,10 @@
-package gtclassic.block;
+package gtclassic.material;
 
+import java.awt.Color;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.util.color.GTColorBlockInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -16,27 +18,34 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockCasing2 extends Block implements ITexturedBlock {
+public class GTMaterialBlock extends Block implements ITexturedBlock, GTColorBlockInterface {
 
-	String name;
-	int id;
+	private GTMaterial material;
+	private GTMaterialFlag flag;
 
-	public GTBlockCasing2(String name, int id) {
+	public GTMaterialBlock(GTMaterial material, GTMaterialFlag flag) {
 		super(Material.IRON);
-		this.name = name;
-		this.id = id;
-		setRegistryName(this.name.toLowerCase() + "_casing");
-		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_casing");
+		this.material = material;
+		this.flag = flag;
+		setRegistryName(this.material.getName() + this.flag.getSuffix());
+		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + this.flag.getSuffix());
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
-		setResistance(30.0F);
+		setResistance(15.0F);
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);
+	}
+
+	@Override
+	public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
+		return this.flag == GTMaterialFlag.BLOCK;
 	}
 
 	@Override
@@ -47,7 +56,11 @@ public class GTBlockCasing2 extends Block implements ITexturedBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_casings")[this.id];
+		if (this.material.hasFlag(GTMaterialFlag.GEM) && this.flag == GTMaterialFlag.BLOCK) {
+			return Ic2Icons.getTextures(GTMod.MODID + "_materials")[flag.getTextureID() + 1];
+		} else {
+			return Ic2Icons.getTextures(GTMod.MODID + "_materials")[flag.getTextureID()];
+		}
 	}
 
 	@Override
@@ -59,6 +72,9 @@ public class GTBlockCasing2 extends Block implements ITexturedBlock {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".nomobs"));
+		if (this.flag == GTMaterialFlag.BLOCK) {
+			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".beacon"));
+		}
 	}
 
 	@Override
@@ -76,5 +92,10 @@ public class GTBlockCasing2 extends Block implements ITexturedBlock {
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());
+	}
+
+	@Override
+	public Color getColor(Block block, int index) {
+		return this.material.getColor();
 	}
 }

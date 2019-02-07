@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;

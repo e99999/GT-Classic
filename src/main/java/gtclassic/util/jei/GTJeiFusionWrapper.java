@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
@@ -23,9 +22,11 @@ public class GTJeiFusionWrapper extends BlankRecipeWrapper {
 
 	@Override
 	public void getIngredients(IIngredients components) {
-		//TODO SEE IF THIS FUCKED ANYTHING! i changed setinputlist to work with new materials
+		// TODO SEE IF THIS FUCKED ANYTHING! i changed setinputlist to work with new
+		// materials
 		components.setInputs(ItemStack.class, Arrays.asList(entry.getInput().getInputs(), Arrays.asList(
-				(GTMaterialGen.getChemical(GTMaterial.Dueterium, 1)), GTTileEntityFusionComputer.getRequiredCells(entry.getOutput()))));
+				(GTMaterialGen.getChemical(GTMaterial.Dueterium, 1)),
+				GTTileEntityFusionComputer.getRequiredCells(entry.getOutput()))));
 		List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
 		int count = 0;
 		for (ItemStack stack : entry.getOutput().copy().getAllOutputs()) {

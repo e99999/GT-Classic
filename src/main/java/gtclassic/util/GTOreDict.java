@@ -3,6 +3,7 @@ package gtclassic.util;
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -10,30 +11,18 @@ public class GTOreDict {
 
 	public static void init() {
 
-		// registering gregtech tools with ore dict
-		OreDictionary.registerOre("craftingToolForgeHammer",
-				new ItemStack(GTItems.hammerIron, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolForgeHammer",
-				new ItemStack(GTItems.hammerAluminium, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolForgeHammer",
-				new ItemStack(GTItems.hammerTitanium, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolForgeHammer",
-				new ItemStack(GTItems.hammerTungstenSteel, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolFile", new ItemStack(GTItems.fileIron, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolFile",
-				new ItemStack(GTItems.fileAluminium, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolFile",
-				new ItemStack(GTItems.fileTitanium, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolFile",
-				new ItemStack(GTItems.fileTungstenSteel, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("itemRubber",
-				new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
+		// Register tools with ore dict
+		registerHammer(GTItems.hammerIron);
+		registerHammer(GTItems.hammerAluminium);
+		registerHammer(GTItems.hammerTitanium);
+		registerHammer(GTItems.hammerTungstenSteel);
+		registerFile(GTItems.fileIron);
+		registerFile(GTItems.fileAluminium);
+		registerFile(GTItems.fileTitanium);
+		registerFile(GTItems.fileTungstenSteel);
+		registerRubber(GTItems.braintechAerospaceARDT);
 
-		// TODO bug speiger about this ore dict
-
-		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
-		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
-
+		// Register ores... with ore dict
 		OreDictionary.registerOre("oreGalena", GTBlocks.galenaOre);
 		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumOre);
 		OreDictionary.registerOre("oreRuby", GTBlocks.rubyOre);
@@ -48,24 +37,26 @@ public class GTOreDict {
 		OreDictionary.registerOre("oreOlivine", GTBlocks.olivineOre);
 		OreDictionary.registerOre("oreSodalite", GTBlocks.sodaliteOre);
 
-		OreDictionary.registerOre("blockIridium", GTBlocks.iridiumBlock);
-		OreDictionary.registerOre("blockRuby", GTBlocks.rubyBlock);
-		OreDictionary.registerOre("blockSapphire", GTBlocks.sapphireBlock);
-		OreDictionary.registerOre("blockAluminium", GTBlocks.aluminiumBlock);
-		OreDictionary.registerOre("blockAluminum", GTBlocks.aluminiumBlock);
-		OreDictionary.registerOre("blockChrome", GTBlocks.chromeBlock);
-		OreDictionary.registerOre("blockTitanium", GTBlocks.titaniumBlock);
-		OreDictionary.registerOre("blockTungsten", GTBlocks.tungstenBlock);
-		OreDictionary.registerOre("blockPlatinum", GTBlocks.platinumBlock);
-
+		// Register some missing Ic2c stuff
+		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
+		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
 		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
 
-		OreDictionary.registerOre("batteryAdvanced", Ic2Items.energyCrystal);
-		OreDictionary.registerOre("batteryAdvanced", GTItems.smallLithium);
+	}
 
-		// TODO find a better way to register plasma, mainly for recipes
-		// OreDictionary.registerOre("itemPlasma", Ic2Items.plasmaCell);
+	public static void registerHammer(Item tool) {
+		OreDictionary.registerOre("craftingToolForgeHammer",
+				new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+	}
 
+	public static void registerFile(Item tool) {
+		OreDictionary.registerOre("craftingToolFile",
+				new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+	}
+
+	public static void registerRubber(Item tool) {
+		OreDictionary.registerOre("itemRubber",
+				new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 }

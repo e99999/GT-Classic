@@ -1,6 +1,5 @@
 package gtclassic.material;
 
-import gtclassic.GTMod;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GTMaterialDict {
@@ -9,7 +8,17 @@ public class GTMaterialDict {
 
 		for (GTMaterial mat : GTMaterial.values()) {
 
-			// Iterating through small dusts
+			// Iterating through resource blocks
+			if (mat.hasFlag(GTMaterialFlag.CASING)) {
+				OreDictionary.registerOre("casingMachine" + mat.getDisplayName(), GTMaterialGen.getCasing(mat, 1));
+			}
+
+			// Iterating through resource blocks
+			if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
+				OreDictionary.registerOre("block" + mat.getDisplayName(), GTMaterialGen.getMaterialBlock(mat, 1));
+			}
+
+			// Small dusts
 			if (mat.hasFlag(GTMaterialFlag.SMALLDUST)) {
 				OreDictionary.registerOre("dustSmall" + mat.getDisplayName(), GTMaterialGen.getSmallDust(mat, 1));
 			}

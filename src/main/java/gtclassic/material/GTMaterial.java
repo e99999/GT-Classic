@@ -45,7 +45,7 @@ public class GTMaterial {
 	public static GTMaterial Test1 = new GTMaterial("Test1", 1.0F, 0, 1, Color.red, PARTICLE);
 	public static GTMaterial Test2 = new GTMaterial("Test2", 1.0F, 0, 1, Color.blue, PARTICLE);
 	public static GTMaterial Test3 = new GTMaterial("Test3", 1.0F, 0, 1, Color.green, PARTICLE);
-	
+
 	public static GTMaterial Hydrogen = new GTMaterial("Hydrogen", 1.0F, 0, 1, Color.blue, CHEM);
 	public static GTMaterial Dueterium = new GTMaterial("Dueterium", 1.0F, 0, 1, Color.yellow, CHEM);
 	public static GTMaterial Tritium = new GTMaterial("Tritium", 1.0F, 0, 1, Color.red, CHEM);

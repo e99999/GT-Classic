@@ -1,6 +1,5 @@
 package gtclassic.container;
 
-import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tileentity.GTTileEntityFusionComputer;
@@ -27,7 +26,8 @@ public class GTContainerFusionComputer extends ContainerTileComponent<GTTileEnti
 	public GTContainerFusionComputer(InventoryPlayer player, GTTileEntityFusionComputer tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 26, null));// main slot
-		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 44, new BasicItemFilter(GTMaterialGen.getChemical(GTMaterial.Dueterium, 1))));// second slot
+		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 44,
+				new BasicItemFilter(GTMaterialGen.getChemical(GTMaterial.Dueterium, 1))));// second slot
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35)); // output
 
 		this.addPlayerInventory(player);

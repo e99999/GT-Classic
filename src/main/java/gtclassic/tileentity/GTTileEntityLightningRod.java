@@ -1,6 +1,8 @@
 package gtclassic.tileentity;
 
-import gtclassic.GTBlocks;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialFlag;
+import gtclassic.material.GTMaterialGen;
 import ic2.core.block.base.tile.TileEntityGeneratorBase;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.util.math.Box2D;
@@ -97,6 +99,7 @@ public class GTTileEntityLightningRod extends TileEntityGeneratorBase {
 	}
 
 	public boolean checkPos(BlockPos pos) {
-		return world.getBlockState(pos) == GTBlocks.casingIron.getDefaultState();
+		return world.getBlockState(pos) == GTMaterialGen.getBlock(GTMaterial.Iron, GTMaterialFlag.CASING)
+				.getDefaultState();
 	}
 }

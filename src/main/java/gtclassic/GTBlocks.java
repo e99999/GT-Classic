@@ -1,13 +1,12 @@
 package gtclassic;
 
-import gtclassic.block.GTBlockCasing1;
-import gtclassic.block.GTBlockCasing2;
-import gtclassic.block.GTBlockMaterial;
+import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockOreSand;
 import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.test.GTBlockTestLayer;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.tileentity.GTTileEntityBasicEnergyStorage;
 import gtclassic.tileentity.GTTileEntityBookshelf;
 import gtclassic.tileentity.GTTileEntityComputerCube;
@@ -34,50 +33,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTBlocks {
 
-	public static final GTBlockCasing1 casingAluminium = new GTBlockCasing1("Aluminium"),
-			casingBrass = new GTBlockCasing1("Brass"),
-			casingBronze = new GTBlockCasing1("Bronze"),
-			casingChrome = new GTBlockCasing1("Chrome"),
-			casingCopper = new GTBlockCasing1("Copper"),
-			casingElectrum = new GTBlockCasing1("Electrum"),
-			casingInvar = new GTBlockCasing1("Invar"),
-			casingIridium = new GTBlockCasing1("Iridium"),
-			casingIron = new GTBlockCasing1("Iron"),
-			casingLead = new GTBlockCasing1("Lead"),
-			casingNickel = new GTBlockCasing1("Nickel"),
-			casingOsmium = new GTBlockCasing1("Osmium"),
-			casingPlatinum = new GTBlockCasing1("Platinum"),
-			casingSilver = new GTBlockCasing1("Silver"),
-			casingSteel = new GTBlockCasing1("Steel"),
-			casingTin = new GTBlockCasing1("Tin"),
-			casingTitanium = new GTBlockCasing1("Titanium"),
-			casingTungsten = new GTBlockCasing1("Tungsten"),
-			casingZinc = new GTBlockCasing1("Zinc");
-
-	public static final GTBlockCasing2 superCasingBlock = new GTBlockCasing2("Superconductor", 0),
-			fusionCasingBlock = new GTBlockCasing2("Fusion", 1),
-			fissionCasingBlock = new GTBlockCasing2("Fission", 2),
-			crystalCasingBlock = new GTBlockCasing2("Crystal", 3);
-
-	public static final GTBlockMaterial rubyBlock = new GTBlockMaterial("Ruby", 1),
-			sapphireBlock = new GTBlockMaterial("Sapphire", 1),
-			aluminiumBlock = new GTBlockMaterial("Aluminium", 0),
-			titaniumBlock = new GTBlockMaterial("Titanium", 0),
-			chromeBlock = new GTBlockMaterial("Chrome", 0),
-			steelBlock = new GTBlockMaterial("Steel", 0),
-			brassBlock = new GTBlockMaterial("Brass", 0),
-			leadBlock = new GTBlockMaterial("Lead", 0),
-			electrumBlock = new GTBlockMaterial("Electrum", 0),
-			zincBlock = new GTBlockMaterial("Zinc", 0),
-			olivineBlock = new GTBlockMaterial("Olivine", 1),
-			greenSapphireBlock = new GTBlockMaterial("GreenSapphire", 1),
-			platinumBlock = new GTBlockMaterial("Platinum", 0),
-			tungstenBlock = new GTBlockMaterial("Tungsten", 0),
-			nickelBlock = new GTBlockMaterial("Nickel", 0),
-			tungstensteelBlock = new GTBlockMaterial("TungstenSteel", 0),
-			invarBlock = new GTBlockMaterial("Invar", 0),
-			osmiumBlock = new GTBlockMaterial("Osmium", 0),
-			iridiumBlock = new GTBlockMaterial("Iridium", 0);
+	public static final GTBlockCasing superCasingBlock = new GTBlockCasing("Superconductor", 0),
+			fusionCasingBlock = new GTBlockCasing("Fusion", 1),
+			fissionCasingBlock = new GTBlockCasing("Fission", 2),
+			crystalCasingBlock = new GTBlockCasing("Crystal", 3);
 
 	public static final GTBlockOreStone galenaOre = new GTBlockOreStone("Galena", 0, 1, 3.0F),
 			iridiumOre = new GTBlockOreStone("Iridium", 1, 3, 20.0F),
@@ -207,47 +166,10 @@ public class GTBlocks {
 
 	public static final Block[] blocks = {
 
-			casingAluminium,
-			casingBrass,
-			casingBronze,
-			casingChrome,
-			casingCopper,
-			casingElectrum,
-			casingInvar,
-			casingIridium,
-			casingIron,
-			casingLead,
-			casingNickel,
-			casingOsmium,
-			casingPlatinum,
-			casingSilver,
-			casingSteel,
-			casingTin,
-			casingTitanium,
-			casingTungsten,
-			casingZinc,
-
-			superCasingBlock, fusionCasingBlock, fissionCasingBlock, crystalCasingBlock,
-
-			rubyBlock,
-			sapphireBlock,
-			aluminiumBlock,
-			titaniumBlock,
-			chromeBlock,
-			steelBlock,
-			brassBlock,
-			leadBlock,
-			electrumBlock,
-			zincBlock,
-			olivineBlock,
-			greenSapphireBlock,
-			platinumBlock,
-			tungstenBlock,
-			nickelBlock,
-			tungstensteelBlock,
-			invarBlock,
-			osmiumBlock,
-			iridiumBlock,
+			superCasingBlock,
+			fusionCasingBlock,
+			fissionCasingBlock,
+			crystalCasingBlock,
 
 			galenaOre,
 			iridiumOre,
@@ -301,6 +223,13 @@ public class GTBlocks {
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		GTMod.logger.info("Registering Blocks");
+
+		// Registers materials with block based material flags from material block map
+		for (Block block : GTMaterialGen.blockMap.values()) {
+			registry.register(block);
+		}
+
+		// Registers the static block references in this class
 		for (Block block : blocks) {
 			registry.register(block);
 		}
@@ -309,6 +238,15 @@ public class GTBlocks {
 	@SubscribeEvent
 	public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
 		final IForgeRegistry<Item> registry = event.getRegistry();
+
+		// Registers materials with block based material flags from material block map
+		// as items
+		for (Block block : GTMaterialGen.blockMap.values()) {
+			registry.register(new GTColorItemBlock(block).setRegistryName(block.getRegistryName())
+					.setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTMod.creativeTabGT));
+		}
+
+		// Registers the static block references in this class as items
 		for (Block block : blocks) {
 			registry.register(new GTColorItemBlock(block).setRegistryName(block.getRegistryName())
 					.setUnlocalizedName(block.getUnlocalizedName()).setCreativeTab(GTMod.creativeTabGT));
