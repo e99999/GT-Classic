@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.materialsnew.GTMaterial;
+import gtclassic.material.GTMaterial;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -48,7 +48,7 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[8];
+		return Ic2Icons.getTextures("gtclassic_items")[18];
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 
 	@Override
 	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[8 + var1];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[18 + var1];
 	}
 
 }

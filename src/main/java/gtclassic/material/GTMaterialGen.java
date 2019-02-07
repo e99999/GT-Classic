@@ -1,4 +1,4 @@
-package gtclassic.materialsnew;
+package gtclassic.material;
 
 import java.util.LinkedHashMap;
 
@@ -12,6 +12,15 @@ public class GTMaterialGen {
 	public static void init() {
 
 		// Expand for all flags etc
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialItemUtil(mat, GTMaterialFlag.PARTICLE);
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialItemUtil(mat, GTMaterialFlag.CHEMICAL);
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialItemUtil(mat, GTMaterialFlag.PLASMA);
+		}
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.SMALLDUST);
 		}
@@ -51,6 +60,21 @@ public class GTMaterialGen {
 	// How to get an item for instances that require an item
 	public static Item getItem(GTMaterial mat, GTMaterialFlag flag) {
 		return itemMap.get(mat.getName() + "_" + flag.getSuffix());
+	}
+	
+	
+	//instances per flag
+	
+	public static ItemStack getParticle(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.PARTICLE.getSuffix()), count, 0);
+	}
+	
+	public static ItemStack getChemical(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.CHEMICAL.getSuffix()), count, 0);
+	}
+	
+	public static ItemStack getPlasma(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.PLASMA.getSuffix()), count, 0);
 	}
 
 	public static ItemStack getSmallDust(GTMaterial mat, int count) {

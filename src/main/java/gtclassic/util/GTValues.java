@@ -5,7 +5,7 @@ import java.awt.Color;
 import com.google.common.collect.ImmutableMap;
 
 import gtclassic.GTMod;
-import gtclassic.materialsnew.GTMaterial;
+import gtclassic.material.GTMaterial;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;

@@ -29,9 +29,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("itemRubber",
 				new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
 
-		OreDictionary.registerOre("dustLithium", GTItems.lithium);
-		OreDictionary.registerOre("dustCarbon", GTItems.carbon);
-
 		// TODO bug speiger about this ore dict
 
 		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
@@ -67,8 +64,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("batteryAdvanced", GTItems.smallLithium);
 
 		// TODO find a better way to register plasma, mainly for recipes
-
-		OreDictionary.registerOre("itemPlasma", GTItems.plasmaHelium);
 		// OreDictionary.registerOre("itemPlasma", Ic2Items.plasmaCell);
 
 	}

@@ -6,8 +6,8 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.materialsnew.GTMaterial;
-import gtclassic.materialsnew.GTMaterialGen;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;

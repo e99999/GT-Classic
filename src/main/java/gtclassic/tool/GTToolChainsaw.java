@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.materialsnew.GTMaterial;
+import gtclassic.material.GTMaterial;
 import gtclassic.util.GTValues;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.api.item.ElectricItem;

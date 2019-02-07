@@ -11,10 +11,8 @@ import gtclassic.item.GTItemEchophone;
 import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
-import gtclassic.item.materials.GTItemElement;
-import gtclassic.item.materials.GTItemPlasma;
-import gtclassic.materialsnew.GTMaterial;
-import gtclassic.materialsnew.GTMaterialGen;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.tool.GTToolChainsaw;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
@@ -28,31 +26,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTItems {
 
-	public static final GTItemElement hydrogen = new GTItemElement("Hyrdogen", Color.blue),
-			dueterium = new GTItemElement("Dueterium", Color.yellow),
-			tritium = new GTItemElement("Tritium", Color.red),
-			helium = new GTItemElement("Helium", Color.yellow),
-			lithium = new GTItemElement("Lithium", Color.lightGray),
-			helium3 = new GTItemElement("Helium3", Color.yellow),
-			silicon = new GTItemElement("Silicon", Color.black),
-			carbon = new GTItemElement("Carbon", Color.black),
-			methane = new GTItemElement("Methane", Color.pink),
-			berilium = new GTItemElement("Berilium", Color.green),
-			calcium = new GTItemElement("Calcium", Color.white),
-			sodium = new GTItemElement("Sodium", Color.blue),
-			chlorine = new GTItemElement("Chlorine", Color.cyan),
-			potassium = new GTItemElement("Potassium", Color.white),
-			nitrogen = new GTItemElement("Nitrogen", Color.white),
-			oxygen = new GTItemElement("Oxygen", Color.white),
-			glassTube = new GTItemElement("Empty", Color.white);
-
-	public static final GTItemPlasma plasmaHydrogen = new GTItemPlasma("Hyrdogen", Color.blue),
-			plasmaNitrogen = new GTItemPlasma("Nitrogen", Color.white),
-			plasmaOxygen = new GTItemPlasma("Oxygen", Color.white),
-			plasmaHelium = new GTItemPlasma("Helium", Color.yellow),
-			plasmaIron = new GTItemPlasma("Iron", Color.red);
-
-	public static final GTItemComponents bouleSilicon = new GTItemComponents("bouleSilicon", 32, false),
+	public static final GTItemComponents glassTube = new GTItemComponents("glassTube", 0, false),
+			bouleSilicon = new GTItemComponents("bouleSilicon", 32, false),
 			platePlastic = new GTItemComponents("platePlastic", 34, false),
 			lensDiamond = new GTItemComponents("lensDiamond", 35, true),
 			lensRuby = new GTItemComponents("lensRuby", 36, true),
@@ -73,15 +48,15 @@ public class GTItems {
 	public static final GTItemDestructoPack destructoPack = new GTItemDestructoPack();
 	public static final GTItemCraftingTablet craftingTablet = new GTItemCraftingTablet();
 
-	public static final GTToolFile fileIron = new GTToolFile(GTMaterial.Iron),
-			fileAluminium = new GTToolFile(GTMaterial.Aluminium),
-			fileTitanium = new GTToolFile(GTMaterial.Titanium),
-			fileTungstenSteel = new GTToolFile(GTMaterial.TungstenSteel);
+	public static final GTToolFile fileIron = new GTToolFile(GTMaterial.Iron);
+	public static final GTToolFile fileAluminium = new GTToolFile(GTMaterial.Aluminium);
+	public static final GTToolFile fileTitanium = new GTToolFile(GTMaterial.Titanium);
+	public static final GTToolFile fileTungstenSteel = new GTToolFile(GTMaterial.TungstenSteel);
 
-	public static final GTToolHammer hammerIron = new GTToolHammer(GTMaterial.Iron),
-			hammerAluminium = new GTToolHammer(GTMaterial.Aluminium),
-			hammerTitanium = new GTToolHammer(GTMaterial.Titanium),
-			hammerTungstenSteel = new GTToolHammer(GTMaterial.TungstenSteel);
+	public static final GTToolHammer hammerIron = new GTToolHammer(GTMaterial.Iron);
+	public static final GTToolHammer hammerAluminium = new GTToolHammer(GTMaterial.Aluminium);
+	public static final GTToolHammer hammerTitanium = new GTToolHammer(GTMaterial.Titanium);
+	public static final GTToolHammer hammerTungstenSteel = new GTToolHammer(GTMaterial.TungstenSteel);
 
 	public static final GTToolMiningDrill advancedDrill = new GTToolMiningDrill(GTMaterial.Diamond, 100000, 128, 1);
 	public static final GTToolMiningDrill advancedDrill2 = new GTToolMiningDrill(GTMaterial.Diamond, 200000, 256, 2);
@@ -118,30 +93,6 @@ public class GTItems {
 			hugeLapotron = new GTBatteryBuilder(GTBlocks.hugeLapotron, Integer.MAX_VALUE, 32768, 7);
 
 	public static final Item[] items = {
-
-			hydrogen,
-			dueterium,
-			tritium,
-			helium,
-			lithium,
-			helium3,
-			silicon,
-			carbon,
-			methane,
-			berilium,
-			calcium,
-			sodium,
-			chlorine,
-			potassium,
-			nitrogen,
-			oxygen,
-
-			plasmaHydrogen,
-			plasmaNitrogen,
-			plasmaOxygen,
-			plasmaHelium,
-			plasmaIron,
-			glassTube,
 
 			bouleSilicon,
 			platePlastic,

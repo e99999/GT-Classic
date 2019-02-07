@@ -6,6 +6,8 @@ import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionComputer;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTMachineGui.GTFusionComputerGui;
 import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTBasicMachineRecipeList;
@@ -65,7 +67,7 @@ public class GTTileEntityFusionComputer extends TileEntityBasicElectricMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotCell);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput);
-		handler.registerInputFilter(new BasicItemFilter(GTItems.dueterium), slotCell);
+		handler.registerInputFilter(new BasicItemFilter(GTMaterialGen.getChemical(GTMaterial.Dueterium, 1)), slotCell);
 		handler.registerSlotType(SlotType.Input, slotInput);
 		handler.registerSlotType(SlotType.SecondInput, slotCell);
 		handler.registerSlotType(SlotType.Output, slotOutput);

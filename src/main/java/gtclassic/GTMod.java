@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.apache.logging.log4j.Logger;
 
-import gtclassic.materialsnew.GTMaterialDict;
-import gtclassic.materialsnew.GTMaterialGen;
+import gtclassic.material.GTMaterialDict;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;

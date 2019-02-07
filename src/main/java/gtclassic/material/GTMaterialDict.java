@@ -1,4 +1,4 @@
-package gtclassic.materialsnew;
+package gtclassic.material;
 
 import gtclassic.GTMod;
 import net.minecraftforge.oredict.OreDictionary;

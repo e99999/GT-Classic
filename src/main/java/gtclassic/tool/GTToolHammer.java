@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.materialsnew.GTMaterial;
+import gtclassic.material.GTMaterial;
 import gtclassic.util.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -51,7 +51,7 @@ public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[6];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[16];
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 
 	@Override
 	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[6 + var1];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[16 + var1];
 	}
 
 }

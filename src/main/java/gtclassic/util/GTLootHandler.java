@@ -1,9 +1,9 @@
 package gtclassic.util;
 
 import gtclassic.GTMod;
-import gtclassic.materialsnew.GTMaterial;
-import gtclassic.materialsnew.GTMaterialFlag;
-import gtclassic.materialsnew.GTMaterialGen;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialFlag;
+import gtclassic.material.GTMaterialGen;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
