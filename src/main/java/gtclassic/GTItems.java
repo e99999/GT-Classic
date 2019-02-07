@@ -47,12 +47,10 @@ public class GTItems {
 	public static final GTItemCraftingTablet craftingTablet = new GTItemCraftingTablet();
 
 	public static final GTToolFile fileIron = new GTToolFile(GTMaterial.Iron);
-	public static final GTToolFile fileAluminium = new GTToolFile(GTMaterial.Aluminium);
 	public static final GTToolFile fileTitanium = new GTToolFile(GTMaterial.Titanium);
 	public static final GTToolFile fileTungstenSteel = new GTToolFile(GTMaterial.TungstenSteel);
 
 	public static final GTToolHammer hammerIron = new GTToolHammer(GTMaterial.Iron);
-	public static final GTToolHammer hammerAluminium = new GTToolHammer(GTMaterial.Aluminium);
 	public static final GTToolHammer hammerTitanium = new GTToolHammer(GTMaterial.Titanium);
 	public static final GTToolHammer hammerTungstenSteel = new GTToolHammer(GTMaterial.TungstenSteel);
 
@@ -110,12 +108,10 @@ public class GTItems {
 			circuitSapphire,
 
 			fileIron,
-			fileAluminium,
 			fileTitanium,
 			fileTungstenSteel,
 
 			hammerIron,
-			hammerAluminium,
 			hammerTitanium,
 			hammerTungstenSteel,
 

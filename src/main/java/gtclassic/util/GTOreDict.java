@@ -13,11 +13,9 @@ public class GTOreDict {
 
 		// Register tools with ore dict
 		registerHammer(GTItems.hammerIron);
-		registerHammer(GTItems.hammerAluminium);
 		registerHammer(GTItems.hammerTitanium);
 		registerHammer(GTItems.hammerTungstenSteel);
 		registerFile(GTItems.fileIron);
-		registerFile(GTItems.fileAluminium);
 		registerFile(GTItems.fileTitanium);
 		registerFile(GTItems.fileTungstenSteel);
 		registerRubber(GTItems.braintechAerospaceARDT);

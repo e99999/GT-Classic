@@ -36,7 +36,8 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		return this.flag == GTMaterialFlag.PLASMA || material == GTMaterial.Thorium || material == GTMaterial.Uranium;
+		return this.flag == GTMaterialFlag.PLASMA || material == GTMaterial.Thorium || material == GTMaterial.Uranium
+				|| material == GTMaterial.Plutonium;
 	}
 
 	@Override
