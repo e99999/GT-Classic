@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.logging.log4j.Logger;
 
+import gtclassic.materialsnew.GTMaterialDict;
 import gtclassic.materialsnew.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.util.GTCommandTeleport;
@@ -54,13 +55,14 @@ public class GTMod {
 		logger = event.getModLog();
 		proxy.preInit(event);
 		GTBlocks.registerTiles();
-		GTMaterialGen.generateMaterials();
+		GTMaterialGen.init();
 		MinecraftForge.EVENT_BUS.register(GTBlocks.class);
 		MinecraftForge.EVENT_BUS.register(GTItems.class);
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
+		GTMaterialDict.init();
 		GTOreDict.init();
 		registerTintedBlocks();
 		registerTintedItems();

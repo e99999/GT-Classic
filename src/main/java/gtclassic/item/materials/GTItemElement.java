@@ -82,7 +82,7 @@ public class GTItemElement extends Item implements IStaticTexturedItem, GTColorI
 	}
 
 	@Override
-	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[10 + var1];
+	public TextureAtlasSprite getTexture(int index, ItemStack var2) {
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[10 + index];
 	}
 }

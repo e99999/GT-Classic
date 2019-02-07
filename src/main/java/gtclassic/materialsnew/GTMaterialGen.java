@@ -9,7 +9,7 @@ public class GTMaterialGen {
 
 	public static LinkedHashMap<String, Item> itemMap = new LinkedHashMap<>();
 
-	public static void generateMaterials() {
+	public static void init() {
 
 		// Expand for all flags etc
 		for (GTMaterial mat : GTMaterial.values()) {
@@ -36,9 +36,21 @@ public class GTMaterialGen {
 
 	}
 
+	// Utility method for generateItems()
+	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {
+		if (mat.hasFlag(flag)) {
+			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItem(mat, flag));
+		}
+	}
+
 	// How to get an itemstack of any material
 	public static ItemStack getStack(GTMaterial mat, GTMaterialFlag flag, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + flag.getSuffix()), count, 0);
+	}
+
+	// How to get an item for instances that require an item
+	public static Item getItem(GTMaterial mat, GTMaterialFlag flag) {
+		return itemMap.get(mat.getName() + "_" + flag.getSuffix());
 	}
 
 	public static ItemStack getSmallDust(GTMaterial mat, int count) {
@@ -53,17 +65,20 @@ public class GTMaterialGen {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.GEM.getSuffix()), count, 0);
 	}
 
-	// How to get an item (mostly for weird cases that require an item instance
-	// specifically)
-	public static Item getItem(GTMaterial mat, GTMaterialFlag flag) {
-		return itemMap.get(mat.getName() + "_" + flag.getSuffix());
+	public static ItemStack getIngot(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.INGOT.getSuffix()), count, 0);
 	}
 
-	// Utility method for generateItems()
-	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {
-		if (mat.hasFlag(flag)) {
-			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItem(mat, flag));
-		}
+	public static ItemStack getNugget(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.NUGGET.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getPlate(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.PLATE.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getStick(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.STICK.getSuffix()), count, 0);
 	}
 
 }

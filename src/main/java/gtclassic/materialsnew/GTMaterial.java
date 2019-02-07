@@ -160,6 +160,10 @@ public class GTMaterial {
 
 	/** Getters/Setters **/
 
+	public String getDisplayName() {
+		return displayName;
+	}
+
 	public String getName() {
 		return name;
 	}

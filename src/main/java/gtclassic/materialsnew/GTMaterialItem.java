@@ -22,13 +22,9 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	public GTMaterialItem(GTMaterial material, GTMaterialFlag flag) {
 		this.material = material;
 		this.flag = flag;
-		setRegistryName(this.material.getName() + this.getSuffix());
-		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + this.getSuffix());
+		setRegistryName(this.material.getName() + this.flag.getSuffix());
+		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + this.flag.getSuffix());
 		setCreativeTab(GTMod.creativeTabGT);
-	}
-
-	public String getSuffix() {
-		return flag.getSuffix();
 	}
 
 	@Override
