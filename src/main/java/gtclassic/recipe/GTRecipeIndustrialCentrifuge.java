@@ -165,18 +165,18 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getDust(M.Sulfur, 4), 2),
 				new OutputItem(GT.getIc2(Ic2Items.coalDust, 1), 3));
 
-		GTTileIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.LAVA, 64), 0, euCost(250000),
+		GTTileIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.LAVA, 16), 0, euCost(75000),
 				new OutputItem(GT.getIngot(M.Electrum, 1), 0),
 				new OutputItem(GT.getIc2(Ic2Items.copperIngot, 4), 1),
 				new OutputItem(GT.getSmallDust(M.Tungsten, 1), 2));
 
-		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.lavaCell, 16), 0, euCost(250000),
+		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.lavaCell, 16), 0, euCost(75000),
 				new OutputItem(GT.getIc2(Ic2Items.emptyCell, 16), 0),
 				new OutputItem(GT.getIngot(M.Electrum, 1), 1),
 				new OutputItem(GT.getIc2(Ic2Items.copperIngot, 4), 2),
 				new OutputItem(GT.getSmallDust(M.Tungsten, 1), 3));
 
-		GTTileIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.MAGMA, 64), 0, euCost(250000),
+		GTTileIndustrialCentrifuge.addRecipe(new ItemStack(Blocks.MAGMA, 16), 0, euCost(75000),
 				new OutputItem(GT.getIngot(M.Electrum, 1), 0),
 				new OutputItem(GT.getIc2(Ic2Items.copperIngot, 4), 1),
 				new OutputItem(GT.getSmallDust(M.Tungsten, 1), 2));

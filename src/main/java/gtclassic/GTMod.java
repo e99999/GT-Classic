@@ -59,12 +59,12 @@ public class GTMod {
 		GTMaterialGen.init();
 		MinecraftForge.EVENT_BUS.register(GTBlocks.class);
 		MinecraftForge.EVENT_BUS.register(GTItems.class);
+		GTMaterialDict.init();
+		GTOreDict.init();
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
-		GTMaterialDict.init();
-		GTOreDict.init();
 		registerTintedBlocks();
 		registerTintedItems();
 		GTRecipe.init();

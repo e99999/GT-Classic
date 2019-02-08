@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.google.common.base.Strings;
 
+import gtclassic.GTMod;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
@@ -39,7 +40,7 @@ public class GTBasicMachineRecipeList extends BasicMachineRecipeList {
 			ItemWithMeta meta = new ItemWithMeta(stack);
 			RecipeEntry entry = recipeMap.get(meta);
 			if (entry != null) {
-				FMLLog.getLogger().info("Found Overlap with recipe: " + entry.getInput() + " Its not getting Added");
+				GTMod.logger.info("Found Overlap with recipe: " + entry.getInput() + " Its not getting Added");
 				return;
 			}
 			addMap.put(meta, toAdd);
