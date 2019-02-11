@@ -284,30 +284,15 @@ public class GTRecipeIndustrialCentrifuge {
 		GTTileIndustrialCentrifuge.addRecipe("dustDarkAshes", 2, 1, euCost(1250),
 				new OutputItem(GT.getDust(M.Ashes, 1), 0),
 				new OutputItem(GT.getChemical(M.Carbon, 1), 1));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustGranite", 4, 0, euCost(1000),
-				new OutputItem(GT.getDust(M.Calcite, 2), 0),
-				new OutputItem(GT.getDust(M.Flint, 1), 1),
-				new OutputItem(GT.getIc2(Ic2Items.clayDust, 1), 2));
-
+		
 		GTTileIndustrialCentrifuge.addRecipe("dustRedRock", 4, 0, euCost(1000),
 				new OutputItem(GT.getDust(M.Calcite, 2), 0),
 				new OutputItem(GT.getDust(M.Flint, 1), 1),
-				new OutputItem(GT.getIc2(Ic2Items.clayDust, 1), 2));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustDiorite", 8, 0, euCost(6000),
-				new OutputItem(GT.getDust(M.Magnesium, 1), 0),
-				new OutputItem(GT.getDust(M.Calcite, 7), 1));
+				new OutputItem(GT.getIc2(Ic2Items.clayDust, 1), 2));	
 
 		GTTileIndustrialCentrifuge.addRecipe("dustMarble", 8, 0, euCost(6000),
 				new OutputItem(GT.getDust(M.Magnesium, 1), 0),
 				new OutputItem(GT.getDust(M.Calcite, 7), 1));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustAndestite", 16, 0, euCost(10000),
-				new OutputItem(GT.getDust(M.DarkAshes, 4), 0),
-				new OutputItem(GT.getDust(M.Olivine, 1), 1),
-				new OutputItem(GT.getDust(M.Calcite, 3), 2),
-				new OutputItem(GT.getDust(M.Flint, 8), 3));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustBasalt", 16, 0, euCost(10000),
 				new OutputItem(GT.getDust(M.DarkAshes, 4), 0),
