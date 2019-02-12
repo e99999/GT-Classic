@@ -37,44 +37,43 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener
-{
+public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
+		implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
 	@NetworkField(index = 7)
 	public float progress = 0;
-	
+
 	// Defaults
 	public int defaultEnergyConsume;
 	public int defaultOperationLength;
 	public int defaultMaxInput;
 	public int defaultEnergyStorage;
-	
+
 	// Currents WithUpgrades
 	public int energyConsume;
 	public int operationLength;
 	public float progressPerTick;
 	@NetworkField(index = 8)
 	public float soundLevel = 1F;
-	
+
 	// Current Usage & Time
 	@NetworkField(index = 9)
 	public int recipeOperation;
 	@NetworkField(index = 10)
 	public int recipeEnergy;
-	
+
 	@NetworkField(index = 11)
 	public boolean redstoneInverted;
 	@NetworkField(index = 12)
 	public boolean redstoneSensitive;
 	public boolean defaultSensitive;
-	
+
 	public MultiRecipe lastRecipe;
 	public final boolean supportsUpgrades;
 	public final int upgradeSlots;
-	
+
 	LinkedList<IStackOutput> outputs = new LinkedList<IStackOutput>();
-	
-	public GTTileBaseMultiInputMachine(int slots, int upgrades, int energyPerTick, int maxProgress, int maxinput)
-	{
+
+	public GTTileBaseMultiInputMachine(int slots, int upgrades, int energyPerTick, int maxProgress, int maxinput) {
 		super(slots + upgrades, maxinput);
 		supportsUpgrades = upgrades > 0;
 		upgradeSlots = upgrades;
@@ -89,180 +88,137 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine 
 		addGuiFields("recipeOperation", "recipeEnergy", "progress");
 		addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
 	}
-	
+
 	@Override
-	public void update()
-	{
+	public void update() {
 		handleRedstone();
 		updateNeighbors();
 		boolean noRoom = addToInventory();
 		MultiRecipe recipe = getRecipe();
 		boolean canWork = canWork() && !noRoom;
 		boolean operate = (canWork && recipe != null);
-		if(operate)
-		{
+		if (operate) {
 			handleChargeSlot(maxEnergy);
 		}
-		if(operate && energy >= energyConsume)
-		{
-			if(!getActive())
-			{
+		if (operate && energy >= energyConsume) {
+			if (!getActive()) {
 				getNetwork().initiateTileEntityEvent(this, 0, false);
 			}
 			setActive(true);
-			progress+=progressPerTick;
+			progress += progressPerTick;
 			useEnergy(recipeEnergy);
-			if(progress >= recipeOperation)
-			{
+			if (progress >= recipeOperation) {
 				process(recipe);
 				progress = 0;
 				notifyNeighbors();
 			}
 			getNetwork().updateTileGuiField(this, "progress");
-		}
-		else
-		{
-			if(getActive())
-			{
-				if(progress != 0)
-				{
+		} else {
+			if (getActive()) {
+				if (progress != 0) {
 					getNetwork().initiateTileEntityEvent(this, 1, false);
-				}
-				else
-				{
+				} else {
 					getNetwork().initiateTileEntityEvent(this, 2, false);
 				}
 			}
-			if(recipe == null && progress != 0)
-			{
+			if (recipe == null && progress != 0) {
 				progress = 0;
 				getNetwork().updateTileGuiField(this, "progress");
 			}
 			setActive(false);
 		}
-		if(supportsUpgrades)
-		{
-			for(int i = 0;i < upgradeSlots;i++)
-			{
+		if (supportsUpgrades) {
+			for (int i = 0; i < upgradeSlots; i++) {
 				ItemStack item = inventory.get(i + inventory.size() - upgradeSlots);
-				if(item.getItem() instanceof IMachineUpgradeItem)
-				{
-					((IMachineUpgradeItem)item.getItem()).onTick(item, this);
+				if (item.getItem() instanceof IMachineUpgradeItem) {
+					((IMachineUpgradeItem) item.getItem()).onTick(item, this);
 				}
 			}
 		}
 		updateComparators();
 	}
-	
-	public void process(MultiRecipe recipe)
-	{
-		for(ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData()))
-		{
+
+	public void process(MultiRecipe recipe) {
+		for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
 			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
 		}
-		for(int slot : getInputSlots())
-		{
+		for (int slot : getInputSlots()) {
 			IRecipeInput input = recipe.getInput(slot);
-			if(input == null)
-			{
+			if (input == null) {
 				continue;
 			}
 			ItemStack stack = inventory.get(slot);
-			if(stack.getItem().hasContainerItem(stack))
-			{
+			if (stack.getItem().hasContainerItem(stack)) {
 				inventory.set(slot, stack.getItem().getContainerItem(stack));
-			}
-			else
-			{
+			} else {
 				stack.shrink(input.getAmount());
 			}
 		}
 		addToInventory();
-		if(supportsUpgrades)
-		{
-			for(int i = 0;i < upgradeSlots;i++)
-			{
+		if (supportsUpgrades) {
+			for (int i = 0; i < upgradeSlots; i++) {
 				ItemStack item = inventory.get(i + inventory.size() - upgradeSlots);
-				if(item.getItem() instanceof IMachineUpgradeItem)
-				{
-					((IMachineUpgradeItem)item.getItem()).onProcessFinished(item, this);
+				if (item.getItem() instanceof IMachineUpgradeItem) {
+					((IMachineUpgradeItem) item.getItem()).onProcessFinished(item, this);
 				}
 			}
 		}
 	}
-	
-	public boolean addToInventory()
-	{
-		if(outputs.isEmpty())
-		{
+
+	public boolean addToInventory() {
+		if (outputs.isEmpty()) {
 			return false;
 		}
-		for(Iterator<IStackOutput> iter = outputs.iterator();iter.hasNext();)
-		{
+		for (Iterator<IStackOutput> iter = outputs.iterator(); iter.hasNext();) {
 			IStackOutput output = iter.next();
-			if(output.addToInventory(this))
-			{
+			if (output.addToInventory(this)) {
 				iter.remove();
 			}
 		}
 		return outputs.size() > 0;
 	}
-	
-	public MultiRecipe getRecipe()
-	{
-		if(lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE)
-		{
+
+	public MultiRecipe getRecipe() {
+		if (lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
 			return null;
 		}
-		if(lastRecipe != null)
-		{
-			if(checkRecipe(lastRecipe))
-			{
+		if (lastRecipe != null) {
+			if (checkRecipe(lastRecipe)) {
 				return lastRecipe;
 			}
 			lastRecipe = null;
 			applyRecipeEffect(null);
 		}
-		if(lastRecipe == null)
-		{
-			lastRecipe = getRecipeList().getRecipe(new Predicate<MultiRecipe>(){
+		if (lastRecipe == null) {
+			lastRecipe = getRecipeList().getRecipe(new Predicate<MultiRecipe>() {
 				@Override
-				public boolean test(MultiRecipe t)
-				{
+				public boolean test(MultiRecipe t) {
 					return checkRecipe(t);
 				}
 			});
-			if(lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE)
-			{
+			if (lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
 				return null;
 			}
 			applyRecipeEffect(lastRecipe.getOutputs());
 		}
-		if(lastRecipe == null)
-		{
+		if (lastRecipe == null) {
 			return null;
 		}
 		int empty = 0;
 		int[] outputSlots = getOutputSlots();
-		for(int slot : outputSlots)
-		{
-			if(getStackInSlot(slot).isEmpty())
-			{
+		for (int slot : outputSlots) {
+			if (getStackInSlot(slot).isEmpty()) {
 				empty++;
 			}
 		}
-		if(empty == outputSlots.length)
-		{
+		if (empty == outputSlots.length) {
 			return lastRecipe;
 		}
-		for(ItemStack output : lastRecipe.getOutputs().getAllOutputs())
-		{
-			for(int outputSlot : getOutputSlots())
-			{
-				if(StackUtil.isStackEqual(inventory.get(outputSlot), output, false, true))
-				{
-					if(inventory.get(outputSlot).getCount() + output.getCount() <= inventory.get(outputSlot).getMaxStackSize())
-					{
+		for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
+			for (int outputSlot : getOutputSlots()) {
+				if (StackUtil.isStackEqual(inventory.get(outputSlot), output, false, true)) {
+					if (inventory.get(outputSlot).getCount() + output.getCount() <= inventory.get(outputSlot)
+							.getMaxStackSize()) {
 						return lastRecipe;
 					}
 				}
@@ -270,35 +226,27 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine 
 		}
 		return lastRecipe;
 	}
-	
+
 	@Override
-	public void setStackInSlot(int slot, ItemStack stack)
-	{
+	public void setStackInSlot(int slot, ItemStack stack) {
 		super.setStackInSlot(slot, stack);
-		if(lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE && isRecipeSlot(slot))
-		{
+		if (lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE && isRecipeSlot(slot)) {
 			lastRecipe = null;
 		}
 	}
-	
-	public void applyRecipeEffect(MachineOutput output)
-	{
-		if(output == null || output.getMetadata() == null)
-		{
-			if(recipeEnergy != energyConsume)
-			{
+
+	public void applyRecipeEffect(MachineOutput output) {
+		if (output == null || output.getMetadata() == null) {
+			if (recipeEnergy != energyConsume) {
 				recipeEnergy = energyConsume;
-				if(recipeEnergy < 1)
-				{
+				if (recipeEnergy < 1) {
 					recipeEnergy = 1;
 				}
 				getNetwork().updateTileGuiField(this, "recipeEnergy");
 			}
-			if(recipeOperation != operationLength)
-			{
+			if (recipeOperation != operationLength) {
 				recipeOperation = operationLength;
-				if(recipeOperation < 1)
-				{
+				if (recipeOperation < 1) {
 					recipeOperation = 1;
 				}
 				getNetwork().updateTileGuiField(this, "recipeOperation");
@@ -307,43 +255,37 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine 
 		}
 		NBTTagCompound nbt = output.getMetadata();
 		double energyMod = nbt.hasKey("RecipeEnergyModifier") ? nbt.getDouble("RecipeEnergyModifier") : 1F;
-		int newEnergy = TileEntityBasicElectricMachine.applyModifier(energyConsume, nbt.getInteger("RecipeEnergy"), energyMod);
-		if(newEnergy != recipeEnergy)
-		{
+		int newEnergy = TileEntityBasicElectricMachine.applyModifier(energyConsume, nbt.getInteger("RecipeEnergy"),
+				energyMod);
+		if (newEnergy != recipeEnergy) {
 			recipeEnergy = newEnergy;
-			if(recipeEnergy < 1)
-			{
+			if (recipeEnergy < 1) {
 				recipeEnergy = 1;
 			}
 			getNetwork().updateTileGuiField(this, "recipeEnergy");
 		}
 		double progMod = nbt.hasKey("RecipeTimeModifier") ? nbt.getDouble("RecipeTimeModifier") : 1F;
-		int newProgress = TileEntityBasicElectricMachine.applyModifier(operationLength, nbt.getInteger("RecipeTime"), progMod);
-		if(newProgress != recipeOperation)
-		{
+		int newProgress = TileEntityBasicElectricMachine.applyModifier(operationLength, nbt.getInteger("RecipeTime"),
+				progMod);
+		if (newProgress != recipeOperation) {
 			recipeOperation = newProgress;
-			if(recipeOperation < 1)
-			{
+			if (recipeOperation < 1) {
 				recipeOperation = 1;
 			}
 			getNetwork().updateTileGuiField(this, "recipeOperation");
 		}
 	}
-	
+
 	@Override
-	public void onLoaded()
-	{
+	public void onLoaded() {
 		super.onLoaded();
-		if(isSimulating())
-		{
+		if (isSimulating()) {
 			setOverclockRates();
 		}
 	}
-	
-	public void setOverclockRates()
-	{
-		if(!supportsUpgrades)
-		{
+
+	public void setOverclockRates() {
+		if (!supportsUpgrades) {
 			return;
 		}
 		lastRecipe = null;
@@ -359,12 +301,10 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine 
 		float soundModfier = 1.0F;
 		boolean redstonePowered = false;
 		redstoneSensitive = defaultSensitive;
-		for(int i = 0;i < 4;i++)
-		{
+		for (int i = 0; i < 4; i++) {
 			ItemStack item = inventory.get(i + inventory.size() - 4);
-			if(item.getItem() instanceof IMachineUpgradeItem)
-			{
-				IMachineUpgradeItem upgrade = (IMachineUpgradeItem)item.getItem();
+			if (item.getItem() instanceof IMachineUpgradeItem) {
+				IMachineUpgradeItem upgrade = (IMachineUpgradeItem) item.getItem();
 				upgrade.onInstalling(item, this);
 				extraProcessSpeed += upgrade.getExtraProcessSpeed(item, this) * item.getCount();
 				processingSpeedMultiplier *= Math.pow(upgrade.getProcessSpeedMultiplier(item, this), item.getCount());
@@ -376,46 +316,41 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine 
 				energyStorageMultiplier *= Math.pow(upgrade.getEnergyStorageMultiplier(item, this), item.getCount());
 				soundModfier *= Math.pow(upgrade.getSoundVolumeMultiplier(item, this), item.getCount());
 				extraTier += upgrade.getExtraTier(item, this) * item.getCount();
-				if(upgrade.useRedstoneInverter(item, this))
-				{
+				if (upgrade.useRedstoneInverter(item, this)) {
 					redstonePowered = true;
 				}
 			}
 		}
 		redstoneInverted = redstonePowered;
-		progressPerTick = TileEntityBasicElectricMachine.applyFloatModifier(1, extraProcessSpeed, processingSpeedMultiplier);
-		energyConsume = TileEntityBasicElectricMachine.applyModifier(defaultEnergyConsume, extraEnergyDemand, energyDemandMultiplier);
-		operationLength = TileEntityBasicElectricMachine.applyModifier(defaultOperationLength, extraProcessTime, processTimeMultiplier);
-		setMaxEnergy(TileEntityBasicElectricMachine.applyModifier(defaultEnergyStorage, extraEnergyStorage, energyStorageMultiplier));
+		progressPerTick = TileEntityBasicElectricMachine.applyFloatModifier(1, extraProcessSpeed,
+				processingSpeedMultiplier);
+		energyConsume = TileEntityBasicElectricMachine.applyModifier(defaultEnergyConsume, extraEnergyDemand,
+				energyDemandMultiplier);
+		operationLength = TileEntityBasicElectricMachine.applyModifier(defaultOperationLength, extraProcessTime,
+				processTimeMultiplier);
+		setMaxEnergy(TileEntityBasicElectricMachine.applyModifier(defaultEnergyStorage, extraEnergyStorage,
+				energyStorageMultiplier));
 		tier = baseTier + extraTier;
-		if(tier > 13)
-		{
+		if (tier > 13) {
 			tier = 13;
 		}
-		maxInput = (int)EnergyNet.instance.getPowerFromTier(tier);
-		if(energy > maxEnergy)
-		{
+		maxInput = (int) EnergyNet.instance.getPowerFromTier(tier);
+		if (energy > maxEnergy) {
 			energy = maxEnergy;
 		}
 		soundLevel = soundModfier;
-		if(progressPerTick < 0.01F)
-		{
+		if (progressPerTick < 0.01F) {
 			progressPerTick = 0.01F;
 		}
-		if(operationLength < 1)
-		{
+		if (operationLength < 1) {
 			operationLength = 1;
 		}
-		if(energyConsume < 1)
-		{
+		if (energyConsume < 1) {
 			energyConsume = 1;
 		}
-		if(lastRecipe == null || lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE)
-		{
+		if (lastRecipe == null || lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
 			applyRecipeEffect(null);
-		}
-		else
-		{
+		} else {
 			applyRecipeEffect(lastRecipe.getOutputs());
 		}
 		getNetwork().updateTileEntityField(this, "redstoneInverted");
@@ -424,165 +359,137 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine 
 		getNetwork().updateTileGuiField(this, "maxInput");
 		getNetwork().updateTileGuiField(this, "energy");
 	}
-	
-	public boolean checkRecipe(MultiRecipe entry)
-	{
-		for(int slot : getInputSlots())
-		{
-			if(!entry.matches(slot, inventory.get(slot)))
-			{
+
+	public boolean checkRecipe(MultiRecipe entry) {
+		for (int slot : getInputSlots()) {
+			if (!entry.matches(slot, inventory.get(slot))) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	public abstract int[] getInputSlots();
-	
+
 	public abstract IFilter[] getInputFilters(int[] slots);
-	
+
 	public abstract boolean isRecipeSlot(int slot);
-	
+
 	public abstract int[] getOutputSlots();
-	
+
 	public abstract GTMultiInputRecipeList getRecipeList();
-	
-	public boolean canWork()
-	{
-		if(!redstoneSensitive)
-		{
+
+	public boolean canWork() {
+		if (!redstoneSensitive) {
 			return true;
 		}
 		return isRedstonePowered();
 	}
-	
+
 	@Override
-	public boolean supportsNotify()
-	{
+	public boolean supportsNotify() {
 		return true;
 	}
 
 	@Override
-	public double getEnergy()
-	{
+	public double getEnergy() {
 		return energy;
 	}
 
 	@Override
-	public boolean useEnergy(double amount, boolean simulate)
-	{
-		if(energy < amount)
-		{
+	public boolean useEnergy(double amount, boolean simulate) {
+		if (energy < amount) {
 			return false;
 		}
-		if(!simulate)
-		{
-			useEnergy((int)amount);
+		if (!simulate) {
+			useEnergy((int) amount);
 		}
 		return true;
 	}
 
 	@Override
-	public void setRedstoneSensitive(boolean active)
-	{
-		if(redstoneSensitive != active)
-		{
+	public void setRedstoneSensitive(boolean active) {
+		if (redstoneSensitive != active) {
 			redstoneSensitive = active;
 		}
 	}
 
 	@Override
-	public boolean isRedstoneSensitive()
-	{
+	public boolean isRedstoneSensitive() {
 		return redstoneSensitive;
 	}
 
 	@Override
-	public boolean isProcessing()
-	{
+	public boolean isProcessing() {
 		return getActive();
 	}
 
 	@Override
-	public boolean isValidInput(ItemStack par1)
-	{
+	public boolean isValidInput(ItemStack par1) {
 		return getRecipeList().isValidRecipeInput(par1);
 	}
 
 	@Override
-	public World getMachineWorld()
-	{
+	public World getMachineWorld() {
 		return getWorld();
 	}
 
 	@Override
-	public BlockPos getMachinePos()
-	{
+	public BlockPos getMachinePos() {
 		return getPos();
 	}
 
 	@Override
-	public int getEnergyUsage()
-	{
+	public int getEnergyUsage() {
 		return recipeEnergy;
 	}
 
 	@Override
-	public float getProgress()
-	{
+	public float getProgress() {
 		return progress;
 	}
 
 	@Override
-	public float getMaxProgress()
-	{
+	public float getMaxProgress() {
 		return recipeOperation;
 	}
 
 	@Override
-	public IHasInventory getOutputInventory()
-	{
+	public IHasInventory getOutputInventory() {
 		return new RangedInventoryWrapper(this, getOutputSlots());
 	}
 
 	@Override
-	public IHasInventory getInputInventory()
-	{
+	public IHasInventory getInputInventory() {
 		int[] input = getInputSlots();
 		RangedInventoryWrapper result = new RangedInventoryWrapper(this, input).addFilters(getInputFilters(input));
 		return result;
 	}
-	
+
 	@Override
-	public boolean canInteractWith(EntityPlayer player)
-	{
+	public boolean canInteractWith(EntityPlayer player) {
 		return !isInvalid();
 	}
-	
+
 	@Override
-	public void onNetworkEvent(int event)
-	{
-		
+	public void onNetworkEvent(int event) {
+
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-	{
+	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
 		return GuiComponentContainer.class;
 	}
 
 	@Override
-	public void onGuiClosed(EntityPlayer player)
-	{
-		
+	public void onGuiClosed(EntityPlayer player) {
+
 	}
 
 	@Override
-	public boolean hasGui(EntityPlayer player)
-	{
+	public boolean hasGui(EntityPlayer player) {
 		return false;
 	}
-	
-	
+
 }

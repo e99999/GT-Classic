@@ -13,53 +13,42 @@ import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.FMLLog;
 
-public class GTMultiInputRecipeList
-{
-	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(), new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid");
-	
+public class GTMultiInputRecipeList {
+	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(),
+			new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid");
+
 	protected List<MultiRecipe> recipes = new ArrayList<MultiRecipe>();
 	protected Map<String, MultiRecipe> recipeMap = new LinkedHashMap<String, MultiRecipe>();
 	protected Map<ItemWithMeta, List<IRecipeInput>> validInputs = new LinkedHashMap<ItemWithMeta, List<IRecipeInput>>();
 	String category;
-	
-	public GTMultiInputRecipeList(String category)
-	{
+
+	public GTMultiInputRecipeList(String category) {
 		this.category = category;
 	}
-	
-	
-	public void addRecipe(List<IRecipeInput> inputs, MachineOutput output, String id)
-	{
-		if(recipeMap.containsKey(id) || !RecipeManager.register(category, id))
-		{
+
+	public void addRecipe(List<IRecipeInput> inputs, MachineOutput output, String id) {
+		if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
 			return;
 		}
-		for(int i = 0;i<inputs.size();i++)
-		{
-			if(inputs.get(i) != null && isListInvalid(inputs.get(i).getInputs()))
-			{
-				FMLLog.getLogger().info("Recipe["+id+"] has a invalid input");
+		for (int i = 0; i < inputs.size(); i++) {
+			if (inputs.get(i) != null && isListInvalid(inputs.get(i).getInputs())) {
+				FMLLog.getLogger().info("Recipe[" + id + "] has a invalid input");
 				return;
 			}
 		}
-		if(isListInvalid(output.getAllOutputs()))
-		{
-			FMLLog.getLogger().info("Recipe["+id+"] has a invalid output");
+		if (isListInvalid(output.getAllOutputs())) {
+			FMLLog.getLogger().info("Recipe[" + id + "] has a invalid output");
 			return;
 		}
 		MultiRecipe recipe = new MultiRecipe(inputs, output, id);
 		recipes.add(recipe);
 		recipeMap.put(id, recipe);
-		for(int i = 0;i<inputs.size();i++)
-		{
-			if(inputs.get(i) != null)
-			{
-				for(ItemStack stack : inputs.get(i).getInputs())
-				{
+		for (int i = 0; i < inputs.size(); i++) {
+			if (inputs.get(i) != null) {
+				for (ItemStack stack : inputs.get(i).getInputs()) {
 					ItemWithMeta meta = new ItemWithMeta(stack);
 					List<IRecipeInput> list = validInputs.get(meta);
-					if(list == null)
-					{
+					if (list == null) {
 						list = new ArrayList<IRecipeInput>();
 						validInputs.put(meta, list);
 					}
@@ -68,108 +57,86 @@ public class GTMultiInputRecipeList
 			}
 		}
 	}
-	
-	public boolean isValidRecipeInput(ItemStack stack)
-	{
+
+	public boolean isValidRecipeInput(ItemStack stack) {
 		List<IRecipeInput> inputs = validInputs.get(new ItemWithMeta(stack));
-		if(inputs == null)
-		{
+		if (inputs == null) {
 			return false;
 		}
-		for(IRecipeInput input : inputs)
-		{
-			if(input.matches(stack))
-			{
+		for (IRecipeInput input : inputs) {
+			if (input.matches(stack)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
-	public MultiRecipe getRecipe(Predicate<MultiRecipe> checker)
-	{
-		for(MultiRecipe recipe : recipes)
-		{
-			if(checker.test(recipe))
-			{
+
+	public MultiRecipe getRecipe(Predicate<MultiRecipe> checker) {
+		for (MultiRecipe recipe : recipes) {
+			if (checker.test(recipe)) {
 				return recipe;
 			}
 		}
 		return INVALID_RECIPE;
 	}
-	
-	public MultiRecipe getFromID(String id)
-	{
+
+	public MultiRecipe getFromID(String id) {
 		return recipeMap.get(id);
 	}
-	
-	private boolean isListInvalid(List<ItemStack> list)
-	{
-		if(list.isEmpty())
-		{
+
+	private boolean isListInvalid(List<ItemStack> list) {
+		if (list.isEmpty()) {
 			return false;
 		}
-		for(ItemStack stack : list)
-		{
-			if(stack.isEmpty())
-			{
+		for (ItemStack stack : list) {
+			if (stack.isEmpty()) {
 				return false;
 			}
 		}
 		return true;
 	}
-	
-	public static class MultiRecipe
-	{
+
+	public static class MultiRecipe {
 		List<IRecipeInput> inputs;
 		MachineOutput outputs;
 		String id;
-		
-		public MultiRecipe(List<IRecipeInput> inputs, MachineOutput outputs, String id)
-		{
+
+		public MultiRecipe(List<IRecipeInput> inputs, MachineOutput outputs, String id) {
 			this.inputs = inputs;
 			this.outputs = outputs;
 			this.id = id;
 		}
-		
-		public String getRecipeID()
-		{
+
+		public String getRecipeID() {
 			return id;
 		}
-		
-		public int getInputSize()
-		{
+
+		public int getInputSize() {
 			return inputs.size();
 		}
-		
-		public IRecipeInput getInput(int slot)
-		{
-			if(inputs.size() >= slot)
-			{
+
+		public IRecipeInput getInput(int slot) {
+			if (inputs.size() >= slot) {
 				return null;
 			}
 			return inputs.get(slot);
 		}
-		
-		public boolean matches(int slot, ItemStack stack)
-		{
-			if(inputs.size() >= slot)
-			{
+
+		public boolean matches(int slot, ItemStack stack) {
+			if (inputs.size() >= slot) {
 				return stack.isEmpty();
 			}
 			IRecipeInput input = inputs.get(slot);
 			return input == null ? stack.isEmpty() : (input.matches(stack) && input.getAmount() <= stack.getCount());
 		}
-		
-		public List<IRecipeInput> getInputs()
-		{
+
+		public List<IRecipeInput> getInputs() {
 			return inputs;
 		}
-		
-		public MachineOutput getOutputs()
-		{
+
+		public MachineOutput getOutputs() {
 			return outputs;
 		}
-		
+
 	}
 }

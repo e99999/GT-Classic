@@ -17,11 +17,10 @@ public class GTCreativeTab extends CreativeTabs {
 	public ItemStack getTabIconItem() {
 		return new ItemStack(GTItems.debugScanner);
 	}
-	
+
 	@Override
-	public boolean hasSearchBar()
-	{
+	public boolean hasSearchBar() {
 		return true;
 	}
-	
+
 }

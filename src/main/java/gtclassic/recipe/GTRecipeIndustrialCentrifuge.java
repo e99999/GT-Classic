@@ -295,19 +295,9 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getDust(M.Flint, 1), 1),
 				new OutputItem(GT.getIc2(Ic2Items.clayDust, 1), 2));
 
-		GTTileIndustrialCentrifuge.addRecipe("dustDiorite", 8, 0, euCost(6000),
-				new OutputItem(GT.getDust(M.Magnesium, 1), 0),
-				new OutputItem(GT.getDust(M.Calcite, 7), 1));
-
 		GTTileIndustrialCentrifuge.addRecipe("dustMarble", 8, 0, euCost(6000),
 				new OutputItem(GT.getDust(M.Magnesium, 1), 0),
 				new OutputItem(GT.getDust(M.Calcite, 7), 1));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustAndestite", 16, 0, euCost(10000),
-				new OutputItem(GT.getDust(M.DarkAshes, 4), 0),
-				new OutputItem(GT.getDust(M.Olivine, 1), 1),
-				new OutputItem(GT.getDust(M.Calcite, 3), 2),
-				new OutputItem(GT.getDust(M.Flint, 8), 3));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustBasalt", 16, 0, euCost(10000),
 				new OutputItem(GT.getDust(M.DarkAshes, 4), 0),
@@ -430,7 +420,7 @@ public class GTRecipeIndustrialCentrifuge {
 
 	}
 
-	public static IRecipeModifier[] euCost(Integer amount) {
+	public static IRecipeModifier[] euCost(int amount) {
 		return new IRecipeModifier[] {
 				ModifierType.RECIPE_LENGTH.create((amount / 12) - GTTileIndustrialCentrifuge.defaultLength) };
 	}

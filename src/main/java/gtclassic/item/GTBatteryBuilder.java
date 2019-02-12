@@ -23,9 +23,8 @@ public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectr
 
 	public GTBatteryBuilder(Block block) {
 		super(block);
-		if(block instanceof GTBlockBattery)
-		{
-			GTBlockBattery battery = (GTBlockBattery)block;
+		if (block instanceof GTBlockBattery) {
+			GTBlockBattery battery = (GTBlockBattery) block;
 			maxCharge = battery.max;
 			transferLimit = battery.trans;
 			tier = battery.tier;

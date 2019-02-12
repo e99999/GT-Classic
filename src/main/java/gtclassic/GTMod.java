@@ -1,8 +1,5 @@
 package gtclassic;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.logging.log4j.Logger;
 
 import gtclassic.color.GTColorBlock;
@@ -18,7 +15,6 @@ import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;
 import gtclassic.util.GTValues;
-import ic2.api.classic.addon.misc.IOverrideObject;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;

@@ -40,6 +40,7 @@ public class GTTileLightningRod extends TileEntityGeneratorBase {
 			}
 		}
 		updateComparators();
+		updateActive();
 	}
 
 	@Override
@@ -101,5 +102,13 @@ public class GTTileLightningRod extends TileEntityGeneratorBase {
 	public boolean checkPos(BlockPos pos) {
 		return world.getBlockState(pos) == GTMaterialGen.getBlock(GTMaterial.Iron, GTMaterialFlag.CASING)
 				.getDefaultState();
+	}
+
+	public void updateActive() {
+		if (this.getStoredEU() > 0) {
+			this.setActive(true);
+		} else {
+			this.setActive(false);
+		}
 	}
 }

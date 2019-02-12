@@ -143,8 +143,7 @@ public class GTTileIndustrialCentrifuge extends TileEntityBasicElectricMachine {
 	@Override
 	public void operateOnce(IRecipeInput input, MachineOutput output, List<IStackOutput> list) {
 		List<ItemStack> result = output.getRecipeOutput(getWorld().rand, getTileData());
-		for(int i = 0;i<result.size();i++)
-		{
+		for (int i = 0; i < result.size(); i++) {
 			list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 4)));
 		}
 		consumeInput(input);
