@@ -1,6 +1,9 @@
 package gtclassic.util;
 
-import gtclassic.GTItems;
+import gtclassic.GTMod;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialFlag;
+import gtclassic.material.GTMaterialGen;
 import net.minecraft.item.Item;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -20,11 +23,11 @@ public class GTLootHandler {
 
 		// TODO make a config option to disable this stuff
 
-		String stringRuby = "gtclassic:ruby_gem";
-		String stringSapphire = "gtclassic:sapphire_gem";
+		String stringRuby = GTMod.MODID + ":ruby_gem";
+		String stringSapphire = GTMod.MODID + ":sapphire_gem";
 
-		Item itemRuby = GTItems.ruby;
-		Item itemSapphire = GTItems.sapphire;
+		Item itemRuby = GTMaterialGen.getItem(GTMaterial.Ruby, GTMaterialFlag.GEM);
+		Item itemSapphire = GTMaterialGen.getItem(GTMaterial.Sapphire, GTMaterialFlag.GEM);
 
 		if (event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)) {
 			event.getTable().getPool("main")

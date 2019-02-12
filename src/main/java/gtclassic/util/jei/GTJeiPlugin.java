@@ -4,12 +4,11 @@ import javax.annotation.Nonnull;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
-import gtclassic.block.tileentity.GTTileEntityFusionComputer;
-import gtclassic.block.tileentity.GTTileEntityIndustrialCentrifuge;
+import gtclassic.tile.GTTileFusionComputer;
+import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.util.GTMachineGui.GTFusionComputerGui;
 import gtclassic.util.GTMachineGui.GTIndustrialCentrifugeGui;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
@@ -35,9 +34,7 @@ public class GTJeiPlugin implements IModPlugin {
 
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), new String[] { "fusion" });
-			// TODO remove the ic2 worktable once Speiger patches it on his end
-			registry.addRecipeCatalyst(Ic2Items.industrialWorktable, new String[] { "minecraft.crafting" });
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBench), new String[] { "minecraft.crafting" });
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBenchLV), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.autoCrafter), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 
@@ -50,7 +47,7 @@ public class GTJeiPlugin implements IModPlugin {
 					return new GTJeiCentrifugeWrapper(var1);
 				}
 			}, "centrifuge");
-			registry.addRecipes(GTTileEntityIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
+			registry.addRecipes(GTTileIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
 
 			registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
 				@Override
@@ -58,7 +55,7 @@ public class GTJeiPlugin implements IModPlugin {
 					return new GTJeiFusionWrapper(var1);
 				}
 			}, "fusion");
-			registry.addRecipes(GTTileEntityFusionComputer.RECIPE_LIST.getRecipeMap(), "fusion");
+			registry.addRecipes(GTTileFusionComputer.RECIPE_LIST.getRecipeMap(), "fusion");
 
 		}
 	}

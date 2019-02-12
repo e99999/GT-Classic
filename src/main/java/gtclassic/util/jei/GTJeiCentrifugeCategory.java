@@ -1,7 +1,7 @@
 package gtclassic.util.jei;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTClassic;
+import gtclassic.GTMod;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -25,7 +25,7 @@ public class GTJeiCentrifugeCategory implements IRecipeCategory<GTJeiCentrifugeW
 
 	public GTJeiCentrifugeCategory(IGuiHelper helper) {
 		displayName = new ItemStack(GTBlocks.industrialCentrifuge);
-		ResourceLocation texture = new ResourceLocation(GTClassic.MODID, "textures/gui/industrialcentrifuge.png");
+		ResourceLocation texture = new ResourceLocation(GTMod.MODID, "textures/gui/industrialcentrifuge.png");
 		this.draw = helper.createDrawable(texture, 25, 25, 120, 36);
 		IDrawableStatic progressPic = helper.createDrawable(texture, 176, 0, 10, 10);
 		this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
@@ -43,7 +43,7 @@ public class GTJeiCentrifugeCategory implements IRecipeCategory<GTJeiCentrifugeW
 
 	@Override
 	public String getModName() {
-		return "gtclassic";
+		return GTMod.MODID;
 	}
 
 	@Override

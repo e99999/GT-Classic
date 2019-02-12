@@ -1,160 +1,101 @@
 package gtclassic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gtclassic.item.GTItemComponents;
-import gtclassic.item.GTItemComponents.GTItemComponentTypes;
+import gtclassic.item.GTItemCraftingTablet;
+import gtclassic.item.GTItemCreativeScanner;
+import gtclassic.item.GTItemDestructoPack;
 import gtclassic.item.GTItemDuctTape;
-import gtclassic.item.armor.GTItemEnergyPack;
-import gtclassic.item.energy.GTItemLapotronicEnergyOrb;
-import gtclassic.item.energy.GTItemLithiumBattery;
-import gtclassic.item.material.GTItemDust;
-import gtclassic.item.material.GTItemDust.GTItemDustTypes;
-import gtclassic.item.material.GTItemElement;
-import gtclassic.item.material.GTItemElement.GTItemElementTypes;
-import gtclassic.item.material.GTItemGem;
-import gtclassic.item.material.GTItemGem.GTItemGemTypes;
-import gtclassic.item.material.GTItemIngot;
-import gtclassic.item.material.GTItemIngot.GTItemIngotTypes;
-import gtclassic.item.material.GTItemPlasma;
-import gtclassic.item.material.GTItemPlasma.GTItemPlasmaTypes;
-import gtclassic.item.reactor.GTItemHeatStorage;
-import gtclassic.item.reactor.GTItemHeatStorage.GTItemHeatStorageTypes;
-import gtclassic.item.reactor.GTItemRod;
-import gtclassic.item.reactor.GTItemRod.GTItemRodTypes;
-import gtclassic.item.tool.GTItemAdvancedChainsaw;
-import gtclassic.item.tool.GTItemAdvancedDrill;
-import gtclassic.item.tool.GTItemCraftingTablet;
-import gtclassic.item.tool.GTItemCreativeScanner;
-import gtclassic.item.tool.GTItemDestructoPack;
-import gtclassic.item.tool.GTItemElectromagnet;
-import gtclassic.item.tool.GTItemHammerIron;
-import gtclassic.item.tool.GTItemRockCutter;
-import gtclassic.item.tool.GTItemSonictron;
-import gtclassic.item.tool.GTItemSurvivalScanner;
-import gtclassic.item.tool.GTItemTeslaStaff;
+import gtclassic.item.GTItemEchophone;
+import gtclassic.item.GTItemElectromagnet;
+import gtclassic.item.GTItemSurvivalScanner;
+import gtclassic.item.GTItemTeslaStaff;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
+import gtclassic.tool.GTToolChainsaw;
+import gtclassic.tool.GTToolFile;
+import gtclassic.tool.GTToolHammer;
+import gtclassic.tool.GTToolMiningDrill;
+import gtclassic.tool.GTToolRockCutter;
+import ic2.core.IC2;
 import net.minecraft.item.Item;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.registries.IForgeRegistry;
 
 public class GTItems {
 
-	public static final GTItemElement hydrogen = new GTItemElement(GTItemElementTypes.HYDROGEN),
-			dueterium = new GTItemElement(GTItemElementTypes.DEUTERIUM),
-			tritium = new GTItemElement(GTItemElementTypes.TRITIUM),
-			helium = new GTItemElement(GTItemElementTypes.HELIUM),
-			tungsten = new GTItemElement(GTItemElementTypes.TUNGSTEN),
-			lithium = new GTItemElement(GTItemElementTypes.LITHIUM),
-			helium3 = new GTItemElement(GTItemElementTypes.HELIUM3),
-			silicon = new GTItemElement(GTItemElementTypes.SILICON),
-			carbon = new GTItemElement(GTItemElementTypes.CARBON),
-			methane = new GTItemElement(GTItemElementTypes.METHANE),
-			berilium = new GTItemElement(GTItemElementTypes.BERILIUM),
-			calcium = new GTItemElement(GTItemElementTypes.CALCIUM),
-			sodium = new GTItemElement(GTItemElementTypes.SODIUM),
-			chlorine = new GTItemElement(GTItemElementTypes.CHLORINE),
-			potassium = new GTItemElement(GTItemElementTypes.POTASSIUM),
-			nitrogen = new GTItemElement(GTItemElementTypes.NITROGEN),
-			oxygen = new GTItemElement(GTItemElementTypes.OXYGEN);
+	static List<Item> toRegister = new ArrayList<Item>();
+	public static final GTItemComponents glassTube = createItem(new GTItemComponents("glassTube", 0, false));
+	public static final GTItemComponents bouleSilicon = createItem(new GTItemComponents("bouleSilicon", 32, false));
+	public static final GTItemComponents platePlastic = createItem(new GTItemComponents("platePlastic", 34, false));
+	public static final GTItemComponents lensDiamond = createItem(new GTItemComponents("lensDiamond", 35, true));
+	public static final GTItemComponents lensRuby = createItem(new GTItemComponents("lensRuby", 36, true));
+	public static final GTItemComponents lensEmerald = createItem(new GTItemComponents("lensEmerald", 37, true));
+	public static final GTItemComponents lensSapphire = createItem(new GTItemComponents("lensSapphire", 38, true));
+	public static final GTItemComponents chipDiamond = createItem(new GTItemComponents("chipDiamond", 39, false));
+	public static final GTItemComponents chipRuby = createItem(new GTItemComponents("chipRuby", 40, false));
+	public static final GTItemComponents chipEmerald = createItem(new GTItemComponents("chipEmerald", 41, false));
+	public static final GTItemComponents chipSapphire = createItem(new GTItemComponents("chipSapphire", 42, false));
+	public static final GTItemComponents circuitEmpty = createItem(new GTItemComponents("circuitEmpty", 43, false));
+	public static final GTItemComponents circuitDiamond = createItem(new GTItemComponents("circuitDiamond", 44, false));
+	public static final GTItemComponents circuitRuby = createItem(new GTItemComponents("circuitRuby", 45, false));
+	public static final GTItemComponents circuitEmerald = createItem(new GTItemComponents("circuitEmerald", 46, false));
+	public static final GTItemComponents circuitSapphire = createItem(
+			new GTItemComponents("circutSapphire", 47, false));
 
-	public static final GTItemPlasma plasmaHydrogen = new GTItemPlasma(GTItemPlasmaTypes.HYDROGEN),
-			plasmaNitrogen = new GTItemPlasma(GTItemPlasmaTypes.NITROGEN),
-			plasmaOxygen = new GTItemPlasma(GTItemPlasmaTypes.OXYGEN),
-			plasmaHelium = new GTItemPlasma(GTItemPlasmaTypes.HELIUM),
-			plasmaIron = new GTItemPlasma(GTItemPlasmaTypes.IRON);
+	public static final GTItemDuctTape braintechAerospaceARDT = createItem(new GTItemDuctTape());
+	public static final GTItemEchophone sonictronItem = createItem(new GTItemEchophone());
+	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
+	public static final GTItemCraftingTablet craftingTablet = createItem(new GTItemCraftingTablet());
 
-	public static final GTItemDust dustEnderpearl = new GTItemDust(GTItemDustTypes.ENDERPEARL),
-			dustEnderEye = new GTItemDust(GTItemDustTypes.ENDER_EYE),
-			dustLazurite = new GTItemDust(GTItemDustTypes.LAZURITE),
-			dustPyrite = new GTItemDust(GTItemDustTypes.PYRITE), dustCalcite = new GTItemDust(GTItemDustTypes.CALCITE),
-			dustFlint = new GTItemDust(GTItemDustTypes.FLINT), dustUranium = new GTItemDust(GTItemDustTypes.URANIUM),
-			dustBauxite = new GTItemDust(GTItemDustTypes.BAUXITE),
-			dustAluminium = new GTItemDust(GTItemDustTypes.ALUMINIUM),
-			dustTitanium = new GTItemDust(GTItemDustTypes.TITANIUM),
-			dustChrome = new GTItemDust(GTItemDustTypes.CHROME), dustRuby = new GTItemDust(GTItemDustTypes.RUBY),
-			dustSapphire = new GTItemDust(GTItemDustTypes.SAPPHIRE),
-			dustGreenSapphire = new GTItemDust(GTItemDustTypes.GREEN_SAPPHIRE),
-			dustEmerald = new GTItemDust(GTItemDustTypes.EMERALD),
-			dustSodalite = new GTItemDust(GTItemDustTypes.SODALITE);
+	public static final GTToolFile fileIron = createItem(new GTToolFile(GTMaterial.Iron));
+	public static final GTToolFile fileTitanium = createItem(new GTToolFile(GTMaterial.Titanium));
+	public static final GTToolFile fileTungstenSteel = createItem(new GTToolFile(GTMaterial.TungstenSteel));
 
-	public static final GTItemGem ruby = new GTItemGem(GTItemGemTypes.RUBY),
-			sapphire = new GTItemGem(GTItemGemTypes.SAPPHIRE);
+	public static final GTToolHammer hammerIron = createItem(new GTToolHammer(GTMaterial.Iron));
+	public static final GTToolHammer hammerTitanium = createItem(new GTToolHammer(GTMaterial.Titanium));
+	public static final GTToolHammer hammerTungstenSteel = createItem(new GTToolHammer(GTMaterial.TungstenSteel));
 
-	public static final GTItemIngot ingotIridium = new GTItemIngot(GTItemIngotTypes.IRIDIUM),
-			ingotAluminium = new GTItemIngot(GTItemIngotTypes.ALUMINIUM),
-			ingotTitanium = new GTItemIngot(GTItemIngotTypes.TITANIUM),
-			ingotChrome = new GTItemIngot(GTItemIngotTypes.CHROME);
+	public static final GTToolMiningDrill advancedDrill = createItem(
+			new GTToolMiningDrill(GTMaterial.Diamond, 100000, 128, 1));
+	public static final GTToolMiningDrill advancedDrill2 = createItem(
+			new GTToolMiningDrill(GTMaterial.Diamond, 200000, 256, 2));
+	public static final GTToolMiningDrill advancedDrill3 = createItem(
+			new GTToolMiningDrill(GTMaterial.Diamond, 400000, 512, 3));
 
-	public static final GTItemHeatStorage heatStorageSingle = new GTItemHeatStorage(GTItemHeatStorageTypes.SINGLE),
-			heatStorageTriple = new GTItemHeatStorage(GTItemHeatStorageTypes.TRIPLE),
-			heatStorageSix = new GTItemHeatStorage(GTItemHeatStorageTypes.SIX);
+	public static final GTToolChainsaw advancedChainsaw = createItem(
+			new GTToolChainsaw(GTMaterial.Steel, 100000, 128, 1));
+	public static final GTToolChainsaw advancedChainsaw2 = createItem(
+			new GTToolChainsaw(GTMaterial.Titanium, 200000, 256, 2));
+	public static final GTToolChainsaw advancedChainsaw3 = createItem(
+			new GTToolChainsaw(GTMaterial.TungstenSteel, 400000, 512, 3));
 
-	public static final GTItemRod rodThoriumSingle = new GTItemRod(GTItemRodTypes.SINGLETHORIUM),
-			rodThoriumDouble = new GTItemRod(GTItemRodTypes.DOUBLETHORIUM),
-			rodThoriumQuad = new GTItemRod(GTItemRodTypes.QUADTHORIUM),
-			rodPlutoniumSingle = new GTItemRod(GTItemRodTypes.SINGLEPLUTONIUM),
-			rodPlutoniumDouble = new GTItemRod(GTItemRodTypes.DOUBLEPLUTONIUM),
-			rodPlutoniumQuad = new GTItemRod(GTItemRodTypes.QUADPLUTONIUM);
+	public static final GTToolRockCutter rockCutter = createItem(
+			new GTToolRockCutter(GTMaterial.Diamond, 10000, 100, 1));
+	public static final GTToolRockCutter rockCutter2 = createItem(
+			new GTToolRockCutter(GTMaterial.Diamond, 100000, 256, 2));
+	public static final GTToolRockCutter rockCutter3 = createItem(
+			new GTToolRockCutter(GTMaterial.Diamond, 1000000, 1024, 3));
 
-	public static final GTItemComponents glassTube = new GTItemComponents(GTItemComponentTypes.GLASS_TUBE),
-			energyFlowCircuit = new GTItemComponents(GTItemComponentTypes.ENERGY_FLOW_CIRCUIT),
-			dataControlCircuit = new GTItemComponents(GTItemComponentTypes.DATA_CONTROL_CIRCUIT),
-			superConductor = new GTItemComponents(GTItemComponentTypes.SUPERCONDUCTOR),
-			dataStorageCircuit = new GTItemComponents(GTItemComponentTypes.DATA_STORAGE_CIRCUIT),
-			dataOrb = new GTItemComponents(GTItemComponentTypes.DATA_ORB),
-			plateSilicon = new GTItemComponents(GTItemComponentTypes.SILICON_PLATE);
+	public static final GTItemElectromagnet electroMagnet = createItem(new GTItemElectromagnet());
+	public static final GTItemTeslaStaff teslaStaff = createItem(new GTItemTeslaStaff());
 
-	public static final GTItemDuctTape braintechAerospaceARDT = new GTItemDuctTape();
+	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
+	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 
-	public static final GTItemSonictron sonictronItem = new GTItemSonictron();
-	public static final GTItemDestructoPack destructoPack = new GTItemDestructoPack();
-	public static final GTItemCraftingTablet craftingTablet = new GTItemCraftingTablet();
-	public static final GTItemHammerIron hammerIron = new GTItemHammerIron();
-	public static final GTItemElectromagnet electroMagnet = new GTItemElectromagnet();
-	public static final GTItemRockCutter rockCutter = new GTItemRockCutter();
-	public static final GTItemAdvancedDrill advancedDrill = new GTItemAdvancedDrill();
-	public static final GTItemAdvancedChainsaw advancedChainsaw = new GTItemAdvancedChainsaw();
-	public static final GTItemTeslaStaff teslaStaff = new GTItemTeslaStaff();
-	public static final GTItemLithiumBattery lithiumBattery = new GTItemLithiumBattery();
-	public static final GTItemLapotronicEnergyOrb lapotronicEnergyOrb = new GTItemLapotronicEnergyOrb();
-	public static final GTItemEnergyPack lithiumBatpack = new GTItemEnergyPack(58,
-			"gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128);
-	public static final GTItemEnergyPack lapotronPack = new GTItemEnergyPack(45,
-			"gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192);
-	public static final GTItemCreativeScanner debugScanner = new GTItemCreativeScanner();
-	public static final GTItemSurvivalScanner portableScanner = new GTItemSurvivalScanner();
+	public static <T extends Item> T createItem(T item) {
+		toRegister.add(item);
+		return item;
+	}
 
-	public static final Item[] items = {
+	public static void registerItems() {
+		for (Item item : GTMaterialGen.itemMap.values()) {
+			IC2.getInstance().createItem(item);
+		}
 
-			hydrogen, dueterium, tritium, helium, tungsten, lithium, helium3, silicon, carbon, methane, berilium,
-			calcium, sodium, chlorine, potassium, nitrogen, oxygen,
-
-			plasmaHydrogen, plasmaNitrogen, plasmaOxygen, plasmaHelium, plasmaIron, glassTube,
-
-			dustEnderpearl, dustEnderEye, dustLazurite, dustPyrite, dustCalcite, dustFlint, dustUranium, dustBauxite,
-			dustAluminium, dustTitanium, dustChrome, dustRuby, dustSapphire, dustGreenSapphire, dustEmerald,
-			dustSodalite,
-
-			ruby, sapphire, ingotIridium, ingotAluminium, ingotTitanium, ingotChrome, plateSilicon,
-
-			heatStorageSingle, heatStorageTriple, heatStorageSix,
-
-			rodThoriumSingle, rodThoriumDouble, rodThoriumQuad, rodPlutoniumSingle, rodPlutoniumDouble,
-			rodPlutoniumQuad,
-
-			energyFlowCircuit, dataControlCircuit, superConductor, dataStorageCircuit, braintechAerospaceARDT, dataOrb,
-
-			sonictronItem, destructoPack, craftingTablet, hammerIron, electroMagnet, rockCutter, advancedDrill,
-			advancedChainsaw, teslaStaff, lithiumBattery, lapotronicEnergyOrb, lithiumBatpack, lapotronPack,
-			portableScanner, debugScanner
-
-	};
-
-	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		IForgeRegistry<Item> registry = event.getRegistry();
-		GTClassic.logger.info("Registering Items");
-		for (Item item : items) {
-			registry.register(item);
+		for (Item item : toRegister) {
+			IC2.getInstance().createItem(item);
 		}
 	}
+
 }

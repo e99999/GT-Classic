@@ -12,91 +12,59 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTIcons {
 	@SideOnly(Side.CLIENT)
 	public static void loadSprites() {
-		addSprite(new Sprites.SpriteData("gtclassic_blocks", "gtclassic:textures/sprites/blocks.png",
-				new Sprites.SpriteInfo(16, 16)));
-		addSprite(new Sprites.SpriteData("gtclassic_items", "gtclassic:textures/sprites/items.png",
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_blocks", GTMod.MODID + ":textures/sprites/sprites_blocks.png",
 				new Sprites.SpriteInfo(16, 16)));
 
-		addSprite(new Sprites.SpriteData("gtclassic_builder", "gtclassic:textures/sprites/builder.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_autocrafter", "gtclassic:textures/sprites/autocrafter.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_chargeomat", "gtclassic:textures/sprites/chargeomat.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_computercube", "gtclassic:textures/sprites/computercube.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_industrialcentrifuge",
-				"gtclassic:textures/sprites/industrialcentrifuge.png", new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_matterfabricator",
-				"gtclassic:textures/sprites/matterfabricator.png", new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_playerdetector", "gtclassic:textures/sprites/playerdetector.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_uumatterassembler", "gtclassic:textures/sprites/uumassembler.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_sonictron", "gtclassic:textures/sprites/sonictron.png",
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_items", GTMod.MODID + ":textures/sprites/sprites_items.png",
+				new Sprites.SpriteInfo(16, 16)));
+
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_materials",
+				GTMod.MODID + ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 16)));
+
+		addSprite(
+				new Sprites.SpriteData(GTMod.MODID + "_casings", GTMod.MODID + ":textures/sprites/sprites_casings.png",
+						new Sprites.SpriteInfo(16, 16)));
+
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_builder", GTMod.MODID + ":textures/sprites/builder.png",
 				new Sprites.SpriteInfo(1, 12)));
 
-		addSprite(new Sprites.SpriteData("gtclassic_smallchest", "gtclassic:textures/sprites/smallchest.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_largechest", "gtclassic:textures/sprites/largechest.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_quantumchest", "gtclassic:textures/sprites/quantumchest.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_bookshelf", "gtclassic:textures/sprites/bookshelf.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_workbench", "gtclassic:textures/sprites/workbench.png",
-				new Sprites.SpriteInfo(1, 12)));
+		collectBasicTileSprites();
+		collectCustomTileSprites();
 
-		addSprite(new Sprites.SpriteData("gtclassic_hugeenergysu", "gtclassic:textures/sprites/hugeenergysu.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_interdimensionalenergysu",
-				"gtclassic:textures/sprites/interdimensionalenergysu.png", new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_lapotronicenergysu",
-				"gtclassic:textures/sprites/lapotronicenergysu.png", new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_lightningrod", "gtclassic:textures/sprites/lightningrod.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_fusioncomputer", "gtclassic:textures/sprites/fusioncomputer.png",
-				new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_supercondensator",
-				"gtclassic:textures/sprites/supercondensator.png", new Sprites.SpriteInfo(1, 12)));
-		addSprite(new Sprites.SpriteData("gtclassic_superconductorwire",
-				"gtclassic:textures/sprites/superconductorwire.png", new Sprites.SpriteInfo(1, 12)));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_builder", 0, 0, 1, 12));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 12));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 5));
 
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_blocks", 0, 0, 16, 8));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_items", 0, 0, 16, 5));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 4));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_casings", 0, 0, 16, 4));
 
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_builder", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_autocrafter", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_chargeomat", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_computercube", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_industrialcentrifuge", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_matterfabricator", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_playerdetector", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_uumatterassembler", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_sonictron", 0, 0, 1, 12));
-
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_smallchest", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_largechest", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_quantumchest", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_bookshelf", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_workbench", 0, 0, 1, 12));
-
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_hugeenergysu", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_interdimensionalenergysu", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_lapotronicenergysu", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_lightningrod", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_fusioncomputer", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_supercondensator", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry("gtclassic_superconductorwire", 0, 0, 1, 12));
-
-		addCustomTexture("gtclassic_quantumchest", 0, 1, location("screen0"));
-		addCustomTexture("gtclassic_fusioncomputer", 0, 7, location("screen1"));
-		addCustomTexture("gtclassic_industrialcentrifuge", 0, 7, location("centrifuge_top"));
-		addCustomTexture("gtclassic_industrialcentrifuge", 0, 9, location("centrifuge_front"));
+		addCustomTexture("tile_digitalchest_lv", 0, 1, location("digitalchestlv_top"));
+		addCustomTexture("tile_digitalchest_mv", 0, 1, location("digitalchestmv_top"));
+		addCustomTexture("machine_fusioncomputer_iv", 0, 7, location("fusion_top"));
+		addCustomTexture("machine_industrialcentrifuge_lv", 0, 7, location("centrifuge_top"));
+		addCustomTexture("machine_industrialcentrifuge_lv", 0, 8, location("centrifuge_back"));
+		addCustomTexture("machine_industrialcentrifuge_lv", 0, 9, location("centrifuge_front"));
+		addCustomTexture(GTMod.MODID + "_materials", 15, 0, location("particle"));
 
 	}
 
 	private static ResourceLocation location(String name) {
-		return new ResourceLocation(GTClassic.MODID, "animations/" + name);
+		return new ResourceLocation(GTMod.MODID, "animations/" + name);
+	}
+
+	public static void collectBasicTileSprites() {
+		for (String string : GTBlocks.textureTileBasic) {
+			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string + ".png",
+					new Sprites.SpriteInfo(1, 12)));
+			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));
+		}
+	}
+
+	public static void collectCustomTileSprites() {
+		for (String string : GTBlocks.textureTileCustom) {
+			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string + ".png",
+					new Sprites.SpriteInfo(1, 12)));
+			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));
+		}
 	}
 }
