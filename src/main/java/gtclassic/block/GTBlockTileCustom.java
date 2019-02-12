@@ -27,7 +27,7 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 	int width;
 	boolean light;
 
-	public GTBlockTileCustom(String name, Integer width, Integer height, Boolean light) {
+	public GTBlockTileCustom(String name, int width, int height, boolean light) {
 		super(Material.CLOTH);
 		this.name = name;
 		this.height = height;

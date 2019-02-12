@@ -21,7 +21,6 @@ public class GTItemContainerCraftingTablet extends ContainerItemComponent<GTItem
 	public InventoryCraftResult craftResult = new InventoryCraftResult();
 
 	private final World world;
-	@SuppressWarnings("unused") // because guess what.. it is used on line 32
 	private final BlockPos pos;
 	private final EntityPlayer player;
 

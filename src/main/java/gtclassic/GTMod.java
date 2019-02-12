@@ -1,5 +1,8 @@
 package gtclassic;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.logging.log4j.Logger;
 
 import gtclassic.color.GTColorBlock;
@@ -15,6 +18,7 @@ import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTOreDict;
 import gtclassic.util.GTValues;
+import ic2.api.classic.addon.misc.IOverrideObject;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -52,14 +56,14 @@ public class GTMod {
 		proxy.preInit(event);
 		GTBlocks.registerTiles();
 		GTMaterialGen.init();
-		MinecraftForge.EVENT_BUS.register(GTBlocks.class);
-		MinecraftForge.EVENT_BUS.register(GTItems.class);
+		GTBlocks.registerBlocks();
+		GTItems.registerItems();
+		GTMaterialDict.init();
+		GTOreDict.init();
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
-		GTMaterialDict.init();
-		GTOreDict.init();
 		registerTintedBlocks();
 		registerTintedItems();
 		GTRecipe.init();

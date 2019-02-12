@@ -2,11 +2,11 @@ package gtclassic.color;
 
 import java.awt.Color;
 
+import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class GTColorItemBlock extends ItemBlock implements GTColorItemInterface {
+public class GTColorItemBlock extends ItemBlockRare implements GTColorItemInterface {
 
 	Block block;
 

@@ -1,6 +1,5 @@
 package gtclassic.tile;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.GTItems;
@@ -9,15 +8,16 @@ import gtclassic.container.GTContainerIndustrialCentrifuge;
 import gtclassic.util.GTMachineGui.GTIndustrialCentrifugeGui;
 import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTBasicMachineRecipeList;
-import gtclassic.util.recipe.GTRecipeHelpers.IRecipeModifier;
-import ic2.api.classic.item.IMachineUpgradeItem;
+import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.api.classic.tile.IStackOutput;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
+import ic2.core.block.base.util.output.SimpleStackOutput;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -141,45 +141,14 @@ public class GTTileIndustrialCentrifuge extends TileEntityBasicElectricMachine {
 	}
 
 	@Override
-	public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list) {
-		super.operateOnce(input, output, list);
+	public void operateOnce(IRecipeInput input, MachineOutput output, List<IStackOutput> list) {
+		List<ItemStack> result = output.getRecipeOutput(getWorld().rand, getTileData());
+		for(int i = 0;i<result.size();i++)
+		{
+			list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 4)));
+		}
+		consumeInput(input);
 		getStackInSlot(slotCell).shrink(getRequiredCells(output));
-	}
-
-	@Override
-	public void operate(RecipeEntry entry) {
-		IRecipeInput input = entry.getInput();
-		MachineOutput output = entry.getOutput().copy();
-		for (int i = 0; i < 4; i++) {
-			ItemStack itemStack = inventory.get(i + inventory.size() - 4);
-			if (itemStack.getItem() instanceof IMachineUpgradeItem) {
-				IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
-				item.onProcessEndPre(itemStack, this, output);
-			}
-		}
-		List<ItemStack> list = new ArrayList<ItemStack>();
-		operateOnce(input, output, list);
-		for (int i = 0; i < 4; i++) {
-			ItemStack itemStack = inventory.get(i + inventory.size() - 4);
-			if (itemStack.getItem() instanceof IMachineUpgradeItem) {
-				IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
-				item.onProcessEndPost(itemStack, this, input, output, list);
-			}
-		}
-		if (list.size() > 0) {
-			for (int i = 0; i < 4 && i < list.size(); i++) {
-				// Dangerous thing here. Might dupe items if there is random rolls
-				ItemStack toAdd = list.get(i);
-				if (toAdd.isEmpty()) {
-					continue;
-				}
-				if (getStackInSlot(slotOutput + i).isEmpty()) {
-					setStackInSlot(slotOutput + i, toAdd);
-				} else {
-					getStackInSlot(slotOutput + i).grow(toAdd.getCount());
-				}
-			}
-		}
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class GTRecipeIterators {
 
@@ -29,19 +30,15 @@ public class GTRecipeIterators {
 			String plate = "plate" + mat.getDisplayName();
 			String block = "block" + mat.getDisplayName();
 
-			if (mat.hasFlag(GTMaterialFlag.SMALLDUST)) {
-				// Regular dust to small dust,
+			if (mat.hasFlag(GTMaterialFlag.SMALLDUST) && mat.hasFlag(GTMaterialFlag.DUST)) {
+				// Small dust to regular dust
+				recipes.addShapelessRecipe(GT.getDust(mat, 1), new Object[] { smalldust, smalldust, smalldust, smalldust });
+
+				// Small dust to regular dust compressor
+				TileEntityCompressor.addRecipe(smalldust, 4, GT.getDust(mat, 1), 0.0F);
+
+				// Regular dust to small dust
 				recipes.addShapelessRecipe(GT.getSmallDust(mat, 4), new Object[] { dust });
-
-				if (mat.hasFlag(GTMaterialFlag.DUST)) {
-					// Small dust to regular dust
-					recipes.addShapelessRecipe(GT.getDust(mat, 1),
-							new Object[] { smalldust, smalldust, smalldust, smalldust });
-
-					// Small dust to regular dust compressor
-					TileEntityCompressor.addRecipe(smalldust, 4, GT.getDust(mat, 1), 0.0F);
-				}
-
 			}
 
 			if (mat.hasFlag(GTMaterialFlag.INGOT)) {

@@ -70,7 +70,6 @@ public class GTItemReactorRod extends ItemGrandualInt
 
 	}
 
-	@SuppressWarnings("unused")
 	private Object getUran(ItemStack stack) {
 		// TODO Auto-generated method stub
 		return null;
