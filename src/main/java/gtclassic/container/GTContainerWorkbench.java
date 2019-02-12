@@ -24,7 +24,6 @@ public class GTContainerWorkbench extends ContainerTileComponent<GTTileWorkbench
 	private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 	private InventoryCraftResult craftResult = new InventoryCraftResult();
 	private final World world;
-	@SuppressWarnings("unused")
 	private final BlockPos pos;
 	private final EntityPlayer player;
 

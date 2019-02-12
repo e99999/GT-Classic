@@ -9,6 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTCreativeTab extends CreativeTabs {
 	public GTCreativeTab(String label) {
 		super(label);
+		setBackgroundImageName("item_search.png");
 	}
 
 	@Override
@@ -16,4 +17,11 @@ public class GTCreativeTab extends CreativeTabs {
 	public ItemStack getTabIconItem() {
 		return new ItemStack(GTItems.debugScanner);
 	}
+	
+	@Override
+	public boolean hasSearchBar()
+	{
+		return true;
+	}
+	
 }

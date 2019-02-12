@@ -13,6 +13,7 @@ import gtclassic.util.recipe.GTBasicMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.api.classic.tile.IStackOutput;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -145,7 +146,7 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 	}
 
 	@Override
-	public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list) {
+	public void operateOnce(IRecipeInput input, MachineOutput output, List<IStackOutput> list) {
 		super.operateOnce(input, output, list);
 		getStackInSlot(slotCell).shrink(getRequiredCells(output));
 	}
