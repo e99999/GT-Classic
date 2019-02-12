@@ -1,24 +1,39 @@
 package gtclassic.util.jei;
-import gtclassic.GTClassic;
+
+import gtclassic.GTBlocks;
+import gtclassic.GTMod;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IDrawableAnimated;
+import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTJeiCentrifugeCategory implements IRecipeCategory<GTJeiCentrifugeWrapper> {
-	
+
 	ItemStack displayName;
 	IDrawable draw;
 	IDrawable slot;
-	IDrawable arrow;
-	
+	IDrawable progress;
+
 	public GTJeiCentrifugeCategory(IGuiHelper helper) {
-		ResourceLocation texture = new ResourceLocation(GTClassic.MODID, "textures/gui/jeicentrifuge.png");
-		this.draw = helper.createDrawable(texture, 10, 10, 78, 78);
+		displayName = new ItemStack(GTBlocks.industrialCentrifuge);
+		ResourceLocation texture = new ResourceLocation(GTMod.MODID, "textures/gui/industrialcentrifuge.png");
+		this.draw = helper.createDrawable(texture, 25, 25, 120, 36);
+		IDrawableStatic progressPic = helper.createDrawable(texture, 176, 0, 10, 10);
+		this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void drawExtras(Minecraft arg0) {
+		this.progress.draw(arg0, 37, 4);
 	}
 
 	@Override
@@ -28,13 +43,12 @@ public class GTJeiCentrifugeCategory implements IRecipeCategory<GTJeiCentrifugeW
 
 	@Override
 	public String getModName() {
-		return "gtclassic";
+		return GTMod.MODID;
 	}
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		return displayName.getDisplayName();
 	}
 
 	@Override
@@ -45,14 +59,14 @@ public class GTJeiCentrifugeCategory implements IRecipeCategory<GTJeiCentrifugeW
 	@Override
 	public void setRecipe(IRecipeLayout layout, GTJeiCentrifugeWrapper arg1, IIngredients ingridient) {
 		IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
-		 guiItemStacks.init(0, true, 31, 31); //input
-	     guiItemStacks.init(1, true, 1, 1); //cell slot
-	     guiItemStacks.init(2, false, 1, 31); //outputs
-	     guiItemStacks.init(3, false, 31, 1);
-	     guiItemStacks.init(4, false, 61, 31);
-	     guiItemStacks.init(5, false, 31, 61);
-	     guiItemStacks.set(ingridient);
-		
+		guiItemStacks.init(0, true, 0, 0); // input
+		guiItemStacks.init(1, true, 18, 0); // cell slot
+		guiItemStacks.init(2, false, 48, 0); // outputs
+		guiItemStacks.init(3, false, 66, 0);
+		guiItemStacks.init(4, false, 84, 0);
+		guiItemStacks.init(5, false, 102, 0);
+		guiItemStacks.set(ingridient);
+
 	}
 
 }

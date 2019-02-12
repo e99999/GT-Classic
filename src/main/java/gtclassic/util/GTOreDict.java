@@ -1,6 +1,9 @@
 package gtclassic.util;
 
+import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -8,59 +11,50 @@ public class GTOreDict {
 
 	public static void init() {
 
-		OreDictionary.registerOre("dustTungsten", GTItems.tungsten);
-		OreDictionary.registerOre("dustLithium", GTItems.lithium);
-		OreDictionary.registerOre("itemSilicon", GTItems.silicon);
-		OreDictionary.registerOre("dustCarbon", GTItems.carbon);
+		// Register tools with ore dict
+		registerHammer(GTItems.hammerIron);
+		registerHammer(GTItems.hammerTitanium);
+		registerHammer(GTItems.hammerTungstenSteel);
+		registerFile(GTItems.fileIron);
+		registerFile(GTItems.fileTitanium);
+		registerFile(GTItems.fileTungstenSteel);
+		registerRubber(GTItems.braintechAerospaceARDT);
 
-		OreDictionary.registerOre("dustEnderPearl", GTItems.dustEnderpearl);
-		OreDictionary.registerOre("dustEnderEye", GTItems.dustEnderEye);
-		OreDictionary.registerOre("dustLazurite", GTItems.dustLazurite);
-		OreDictionary.registerOre("dyeBlue", GTItems.dustLazurite);
-		OreDictionary.registerOre("dustPyrite", GTItems.dustPyrite);
-		OreDictionary.registerOre("dustCalcite", GTItems.dustCalcite);
-		OreDictionary.registerOre("dustFlint", GTItems.dustFlint);
-		OreDictionary.registerOre("dustUranium", GTItems.dustUranium);
-		OreDictionary.registerOre("dustBauxite", GTItems.dustBauxite);
-		OreDictionary.registerOre("dustAluminium", GTItems.dustAluminium);
-		OreDictionary.registerOre("dustAluminum", GTItems.dustAluminium);
-		OreDictionary.registerOre("dustTitanium", GTItems.dustTitanium);
-		OreDictionary.registerOre("dustChrome", GTItems.dustChrome);
-		OreDictionary.registerOre("dustRuby", GTItems.dustRuby);
-		OreDictionary.registerOre("dustSapphire", GTItems.dustSapphire);
-		OreDictionary.registerOre("dustGreenSapphire", GTItems.dustGreenSapphire);
-		OreDictionary.registerOre("dustEmerald", GTItems.dustEmerald);
-		OreDictionary.registerOre("dustSodalite", GTItems.dustSodalite);
-
+		// Register ores... with ore dict
+		OreDictionary.registerOre("oreGalena", GTBlocks.galenaOre);
+		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumOre);
 		OreDictionary.registerOre("oreRuby", GTBlocks.rubyOre);
 		OreDictionary.registerOre("oreSapphire", GTBlocks.sapphireOre);
-		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumOre);
-		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumEnd);
 		OreDictionary.registerOre("oreBauxite", GTBlocks.bauxiteOre);
 		OreDictionary.registerOre("oreMagnetite", GTBlocks.sandIron);
+		OreDictionary.registerOre("orePyrite", GTBlocks.pyriteOre);
+		OreDictionary.registerOre("oreCinnabar", GTBlocks.cinnabarOre);
+		OreDictionary.registerOre("oreSphalerite", GTBlocks.sphaleriteOre);
+		OreDictionary.registerOre("oreTungstate", GTBlocks.tungstateOre);
+		OreDictionary.registerOre("oreSheldonite", GTBlocks.sheldoniteOre);
+		OreDictionary.registerOre("oreOlivine", GTBlocks.olivineOre);
+		OreDictionary.registerOre("oreSodalite", GTBlocks.sodaliteOre);
 
-		OreDictionary.registerOre("gemRuby", GTItems.ruby);
-		OreDictionary.registerOre("gemSapphire", GTItems.sapphire);
-		OreDictionary.registerOre("ingotAluminium", GTItems.ingotAluminium);
-		OreDictionary.registerOre("ingotAluminum", GTItems.ingotAluminium);
-		OreDictionary.registerOre("ingotChrome", GTItems.ingotChrome);
-		OreDictionary.registerOre("ingotIridium", GTItems.ingotIridium);
-		OreDictionary.registerOre("ingotTitanium", GTItems.ingotTitanium);
+		// Register some missing Ic2c stuff
+		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
+		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
+		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
 
-		OreDictionary.registerOre("blockRuby", GTBlocks.rubyBlock);
-		OreDictionary.registerOre("blockSapphire", GTBlocks.sapphireBlock);
-		OreDictionary.registerOre("blockAluminium", GTBlocks.aluminiumBlock);
-		OreDictionary.registerOre("blockAluminum", GTBlocks.aluminiumBlock);
-		OreDictionary.registerOre("blockChrome", GTBlocks.chromeBlock);
-		OreDictionary.registerOre("blockTitanium", GTBlocks.titaniumBlock);
+	}
 
+	public static void registerHammer(Item tool) {
+		OreDictionary.registerOre("craftingToolForgeHammer",
+				new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+	}
+
+	public static void registerFile(Item tool) {
+		OreDictionary.registerOre("craftingToolFile",
+				new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+	}
+
+	public static void registerRubber(Item tool) {
 		OreDictionary.registerOre("itemRubber",
-				new ItemStack(GTItems.braintechAerospaceARDT, 1, OreDictionary.WILDCARD_VALUE));
-
-		OreDictionary.registerOre("toolHammer", GTItems.hammerIron);
-
-		OreDictionary.registerOre("batteryAdvanced", Ic2Items.energyCrystal);
-		OreDictionary.registerOre("batteryAdvanced", GTItems.lithiumBattery);
+				new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 }

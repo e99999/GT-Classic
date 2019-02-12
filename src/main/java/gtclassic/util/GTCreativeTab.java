@@ -1,5 +1,6 @@
 package gtclassic.util;
 
+import gtclassic.GTItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -13,6 +14,6 @@ public class GTCreativeTab extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ItemStack getTabIconItem() {
-		return new ItemStack(GTItems.zeroPointModule);
+		return new ItemStack(GTItems.debugScanner);
 	}
 }

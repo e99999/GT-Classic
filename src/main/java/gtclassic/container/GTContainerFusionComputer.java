@@ -1,8 +1,9 @@
 package gtclassic.container;
 
-import gtclassic.tileentity.GTTileEntityFusionComputer;
-import gtclassic.util.GTItems;
-import gtclassic.util.guicomponents.GTGuiCompFusion;
+import gtclassic.gui.GTGuiCompFusion;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
+import gtclassic.tile.GTTileFusionComputer;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.GuiIC2;
@@ -17,15 +18,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerFusionComputer extends ContainerTileComponent<GTTileEntityFusionComputer> {
+public class GTContainerFusionComputer extends ContainerTileComponent<GTTileFusionComputer> {
 
 	public static Box2D machineProgressBox = new Box2D(110, 35, 20, 16);
-	public static Vec2i machineProgressPos = new Vec2i(176, 14);
+	public static Vec2i machineProgressPos = new Vec2i(176, 0);
 
-	public GTContainerFusionComputer(InventoryPlayer player, GTTileEntityFusionComputer tile) {
+	public GTContainerFusionComputer(InventoryPlayer player, GTTileFusionComputer tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 17, null));// main slot
-		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 53, new BasicItemFilter(GTItems.dueterium)));// second slot
+		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 26, null));// main slot
+		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 44,
+				new BasicItemFilter(GTMaterialGen.getChemical(GTMaterial.Dueterium, 1))));// second slot
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35)); // output
 
 		this.addPlayerInventory(player);
@@ -38,7 +40,7 @@ public class GTContainerFusionComputer extends ContainerTileComponent<GTTileEnti
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiLoaded(GuiIC2 gui) {
-		gui.disableName();
+		gui.dissableInvName();
 	}
 
 	@Override
