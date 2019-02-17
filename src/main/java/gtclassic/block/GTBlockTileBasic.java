@@ -7,6 +7,7 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBookshelf;
 import gtclassic.tile.GTTileComputerCube;
@@ -82,6 +83,8 @@ public class GTBlockTileBasic extends BlockMultiID {
 			return new GTTileComputerCube();
 		} else if (this == GTBlocks.industrialCentrifuge) {
 			return new GTTileIndustrialCentrifuge();
+		} else if (this == GTBlocks.alloySmelter) {
+			return new GTTileAlloySmelter();
 		} else if (this == GTBlocks.lightningRod) {
 			return new GTTileLightningRod();
 		} else if (this == GTBlocks.fusionComputer) {

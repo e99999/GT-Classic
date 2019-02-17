@@ -35,6 +35,7 @@ public class GTValues {
 	public static LocaleComp qesu = new LocaleBlockComp("tile." + GTMod.MODID + ".qesu");
 	public static LocaleComp mesu = new LocaleBlockComp("tile." + GTMod.MODID + ".mesu");
 	public static LocaleComp centrifuge = new LocaleBlockComp("tile." + GTMod.MODID + ".industrialcentrifuge");
+	public static LocaleComp alloysmelter = new LocaleBlockComp("tile." + GTMod.MODID + ".alloysmelter");
 	public static LocaleComp fusion = new LocaleBlockComp("tile." + GTMod.MODID + ".fusioncomputer");
 
 	public static LocaleComp smallchest = new LocaleBlockComp("tile." + GTMod.MODID + ".smallchest");

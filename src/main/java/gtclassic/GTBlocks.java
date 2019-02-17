@@ -12,6 +12,7 @@ import gtclassic.block.GTBlockTileCustom;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBookshelf;
 import gtclassic.tile.GTTileComputerCube;
@@ -61,6 +62,8 @@ public class GTBlocks {
 	public static final GTBlockTileBasic computerCube = registerBlock(new GTBlockTileBasic("machine_computercube_ev"));
 	public static final GTBlockTileBasic industrialCentrifuge = registerBlock(
 			new GTBlockTileBasic("machine_industrialcentrifuge_lv"));
+	public static final GTBlockTileBasic alloySmelter = registerBlock(
+			new GTBlockTileBasic("machine_alloysmelter_lv"));
 	public static final GTBlockTileBasic matterFabricator = registerBlock(
 			new GTBlockTileBasic("machine_matterfabricator_ev"));
 	public static final GTBlockTileBasic uuMatterAssembler = registerBlock(
@@ -146,7 +149,7 @@ public class GTBlocks {
 	// GTBlockTestLayer());
 
 	public static final String[] textureTileBasic = { "machine_autocrafter_lv", "machine_chargeomat_ev",
-			"machine_computercube_ev", "machine_industrialcentrifuge_lv", "machine_matterfabricator_ev",
+			"machine_computercube_ev", "machine_industrialcentrifuge_lv", "machine_alloysmelter_lv", "machine_matterfabricator_ev",
 			"machine_uumassembler_ev", "machine_playerdetector_lv", "machine_echophone_lv", "machine_fusioncomputer_iv",
 			"machine_lightningrod_iv", "machine_quantumenergystorage_ev", "machine_basicenergystorage_ev",
 			"machine_multienergystorage_mv", "machine_digitaltransformer_iv", "wire_energium_luv", "wire_lapotron_zpm",
@@ -222,5 +225,7 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityFusionComputer"));
 		GameRegistry.registerTileEntity(GTTileSuperConductor.class,
 				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductor"));
+		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
 	}
 }

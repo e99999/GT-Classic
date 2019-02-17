@@ -5,7 +5,7 @@ import java.util.List;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerIndustrialCentrifuge;
-import gtclassic.util.GTMachineGui.GTIndustrialCentrifugeGui;
+import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTBasicMachineRecipeList;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;

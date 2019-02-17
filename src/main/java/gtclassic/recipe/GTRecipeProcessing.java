@@ -2,6 +2,7 @@ package gtclassic.recipe;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tile.GTTileAlloySmelter;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
@@ -43,6 +44,12 @@ public class GTRecipeProcessing {
 		TileEntityExtractor.addRecipe("oreRuby", 1, GT.getGem(M.Ruby, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, GT.getGem(M.Sapphire, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreOlivine", 1, GT.getGem(M.Olivine, 3), 0.1F);
+		
+		//ignore this
+		
+		GTTileAlloySmelter.addRecipe("ingotTin", 1, "ingotCopper", 3, GT.getIc2(Ic2Items.bronzeIngot, 4));
+		GTTileAlloySmelter.addRecipe(GT.getIc2(Ic2Items.tinIngot, 1), GT.getIc2(Ic2Items.copperIngot, 3), GT.getIc2(Ic2Items.bronzeIngot, 4));
+		
 	}
 
 }

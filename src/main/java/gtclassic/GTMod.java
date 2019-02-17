@@ -88,9 +88,6 @@ public class GTMod {
 		ItemColors registry = Minecraft.getMinecraft().getItemColors();
 		for (Item item : Item.REGISTRY) {
 			if (item instanceof GTColorItemInterface) {
-				if (GTValues.debugMode) {
-					logger.info("Registering item color modification:" + item.getUnlocalizedName());
-				}
 				registry.registerItemColorHandler(colors, item);
 			}
 		}
@@ -101,9 +98,6 @@ public class GTMod {
 		BlockColors registry = Minecraft.getMinecraft().getBlockColors();
 		for (Block block : Block.REGISTRY) {
 			if (block instanceof GTColorBlockInterface) {
-				if (GTValues.debugMode) {
-					logger.info("Registering block color modification:" + block.getUnlocalizedName());
-				}
 				registry.registerBlockColorHandler(colors, block);
 			}
 		}
