@@ -7,6 +7,8 @@ import java.util.List;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
+import ic2.api.classic.recipe.ClassicRecipes;
+import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -19,6 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	GTMaterial material;
+	public static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 
 	public GTToolFile(GTMaterial material) {
 		this.maxStackSize = 1;
@@ -27,6 +30,12 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 		setRegistryName(this.material.getName() + "_file");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_file");
 		setCreativeTab(GTMod.creativeTabGT);
+		setRecipe();
+	}
+
+	public void setRecipe() {
+		String plate = "plate" + this.material.getDisplayName();
+		recipes.addRecipe(new ItemStack(this), new Object[] { "X  ", "X  ", "S  ", 'X', plate, 'S', "stickWood" });
 	}
 
 	@Override

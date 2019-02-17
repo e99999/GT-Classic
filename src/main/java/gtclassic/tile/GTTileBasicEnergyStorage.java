@@ -30,7 +30,7 @@ public class GTTileBasicEnergyStorage extends TileEntityElectricBlock {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.hesu;
+		return GTValues.besu;
 	}
 
 	@Override

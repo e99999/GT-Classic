@@ -38,6 +38,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -70,17 +71,14 @@ public class GTToolChainsaw extends ItemElectricTool
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Tier: " + GTValues.getTierString(this.tier)));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Material: " + this.material.getName()));
+		tooltip.add(TextFormatting.DARK_BLUE + I18n.format("Tier: " + GTValues.getTierString(this.tier)));
+		tooltip.add(TextFormatting.GOLD + I18n.format("Material: " + this.material.getDisplayName()));
+		tooltip.add(TextFormatting.BLUE
+				+ I18n.format("Efficiency: " + String.valueOf((this.material.getSpeed() * 2) * this.tier)));
 		tooltip.add(
-				GTValues.getTierTextColor(this.tier)
-						+ I18n.format("Efficiency: " + String.valueOf((this.material.getSpeed() * 2) * this.tier)));
-		tooltip.add(
-				GTValues.getTierTextColor(this.tier)
-						+ I18n.format("Damage: " + String.valueOf((this.material.getSpeed() * 2))));
-		tooltip.add(GTValues.getTierTextColor(this.tier) + I18n.format("Size: " + String.valueOf(this.maxCharge)));
-		tooltip.add(
-				GTValues.getTierTextColor(this.tier) + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
+				TextFormatting.LIGHT_PURPLE + I18n.format("Damage: " + String.valueOf((this.material.getSpeed() * 2))));
+		tooltip.add(TextFormatting.GREEN + I18n.format("Size: " + String.valueOf(this.maxCharge)));
+		tooltip.add(TextFormatting.RED + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
 	}
 
 	@Override

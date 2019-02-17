@@ -58,7 +58,7 @@ public class GTItemDuctTape extends Item implements IStaticTexturedItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[56];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[32];
 	}
 
 	@Override

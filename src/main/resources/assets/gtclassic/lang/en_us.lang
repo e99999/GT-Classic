@@ -24,9 +24,9 @@ tile.gtclassic.digitalchest.name=Digital Chest
 #energy blocks
 tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.fusioncomputer.name=Fusion Computer
-tile.gtclassic.idsu.name=IDSU
-tile.gtclassic.hesu.name=HESU
-tile.gtclassic.lesu.name=LESU Controller
+tile.gtclassic.qesu.name=QESU
+tile.gtclassic.besu.name=BESU
+tile.gtclassic.mesu.name=MESU
 tile.gtclassic.supercondensator.name=Super Condensator
 tile.gtclassic.superconductorwire.name=Super Conductor Wire
 
@@ -57,9 +57,7 @@ item.gtclassic.advancedDrill.name=Advanced Drill
 item.gtclassic.advancedChainsaw.name=Advanced Chainsaw
 item.gtclassic.teslaStaff.name=Tesla Staff
 item.gtclassic.lithiumBattery.name=Lithium Battery
-item.gtclassic.lithiumBatpack.name=Lithium Batpack
 item.gtclassic.lapotronicEnergyOrb.name=Lapotronic Energy Orb
-item.gtclassic.lapotronPack.name=Lapotron Pack
 item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
 
@@ -173,4 +171,4 @@ tooltip.gtclassic.wip=Work in progress
 
 jei.centrifugeu.name=%s EU
 
-itemGroup.gtclassic=GregTech Classic
+itemGroup.gtclassic=GT-Classic

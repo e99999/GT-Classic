@@ -44,7 +44,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[63];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[36];
 	}
 
 	@Override

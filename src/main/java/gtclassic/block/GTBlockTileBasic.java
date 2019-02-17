@@ -60,7 +60,7 @@ public class GTBlockTileBasic extends BlockMultiID {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		// TODO put tooltip into constructor and add machine info
+		// TODO put tooltip into arguments and add machine info
 	}
 
 	@Override
@@ -86,11 +86,11 @@ public class GTBlockTileBasic extends BlockMultiID {
 			return new GTTileLightningRod();
 		} else if (this == GTBlocks.fusionComputer) {
 			return new GTTileFusionComputer();
-		} else if (this == GTBlocks.HESU) {
+		} else if (this == GTBlocks.basicEnergyStorage) {
 			return new GTTileBasicEnergyStorage();
-		} else if (this == GTBlocks.IDSU) {
+		} else if (this == GTBlocks.quantumEnergyStorage) {
 			return new GTTileQuantumEnergyStorage();
-		} else if (this == GTBlocks.LESU) {
+		} else if (this == GTBlocks.multiEnergyStorage) {
 			return new GTTileMultiEnergyStorage();
 		} else if (this == GTBlocks.digitalTransformerIV) {
 			return new GTTileDigitalTransformer(32768, 65535);
@@ -209,7 +209,7 @@ public class GTBlockTileBasic extends BlockMultiID {
 			}
 		}
 
-		else if (this == GTBlocks.IDSU) {
+		else if (this == GTBlocks.quantumEnergyStorage) {
 			for (int i = 0; i < 3; ++i) {
 				int j = rand.nextInt(2) * 2 - 1;
 				int k = rand.nextInt(2) * 2 - 1;

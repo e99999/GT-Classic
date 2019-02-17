@@ -51,20 +51,10 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	}
 
 	/*
-	 * @Override
-	 * public int getMaxCustomDamage(ItemStack stack) {
-	 * if (this == GTItems.heatStorageSingle) {
-	 * return 10000;
-	 * }
-	 * if (this == GTItems.heatStorageTriple) {
-	 * return 30000;
-	 * }
-	 * if (this == GTItems.heatStorageSix) {
-	 * return 60000;
-	 * } else {
-	 * return 0;
-	 * }
-	 * }
+	 * @Override public int getMaxCustomDamage(ItemStack stack) { if (this ==
+	 * GTItems.heatStorageSingle) { return 10000; } if (this ==
+	 * GTItems.heatStorageTriple) { return 30000; } if (this ==
+	 * GTItems.heatStorageSix) { return 60000; } else { return 0; } }
 	 */
 
 	@Override

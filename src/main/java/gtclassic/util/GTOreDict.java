@@ -3,6 +3,7 @@ package gtclassic.util;
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -35,6 +36,9 @@ public class GTOreDict {
 		OreDictionary.registerOre("oreOlivine", GTBlocks.olivineOre);
 		OreDictionary.registerOre("oreSodalite", GTBlocks.sodaliteOre);
 
+		// Just doing this to make iteration with gun powder easier
+		OreDictionary.registerOre("dustGunpowder", Items.GUNPOWDER);
+
 		// Register some missing Ic2c stuff
 		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
 		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
@@ -43,18 +47,15 @@ public class GTOreDict {
 	}
 
 	public static void registerHammer(Item tool) {
-		OreDictionary.registerOre("craftingToolForgeHammer",
-				new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 	public static void registerFile(Item tool) {
-		OreDictionary.registerOre("craftingToolFile",
-				new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolFile", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 	public static void registerRubber(Item tool) {
-		OreDictionary.registerOre("itemRubber",
-				new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("itemRubber", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 }

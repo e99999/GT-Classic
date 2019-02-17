@@ -12,13 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemComponents extends Item implements IStaticTexturedItem {
+public class GTItemComponent extends Item implements IStaticTexturedItem {
 
 	String name;
 	int id;
 	boolean containeritem;
 
-	public GTItemComponents(String name, int id, boolean containeritem) {
+	public GTItemComponent(String name, int id, boolean containeritem) {
 		this.name = name;
 		this.id = id;
 		this.containeritem = containeritem;

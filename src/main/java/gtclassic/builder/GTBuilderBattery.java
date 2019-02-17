@@ -1,4 +1,4 @@
-package gtclassic.util;
+package gtclassic.builder;
 
 import gtclassic.GTMod;
 import ic2.api.classic.item.IDamagelessElectricItem;
@@ -14,13 +14,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 
-public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectricItem {
+public class GTBuilderBattery extends ItemBlockRare implements IDamagelessElectricItem {
 
 	public int maxCharge;
 	public int transferLimit;
 	public int tier;
 
-	public GTBatteryBuilder(Block block, int max, int trans, int tier) {
+	public GTBuilderBattery(Block block, int max, int trans, int tier) {
 		super(block);
 		this.setRegistryName(block.getRegistryName() + "_item");
 		this.setUnlocalizedName(block.getUnlocalizedName().replace("tile.", ""));

@@ -32,7 +32,7 @@ public class GTItemEchophone extends ItemIC2 {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[57];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[33];
 	}
 
 	@Override

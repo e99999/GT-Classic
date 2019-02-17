@@ -7,6 +7,8 @@ import java.util.List;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
+import ic2.api.classic.recipe.ClassicRecipes;
+import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -19,6 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	GTMaterial material;
+	public static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 
 	public GTToolHammer(GTMaterial material) {
 		super(ToolMaterial.IRON);
@@ -29,6 +32,12 @@ public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 		setRegistryName(this.material.getName() + "_hammer");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_hammer");
 		setCreativeTab(GTMod.creativeTabGT);
+		setRecipe();
+	}
+
+	public void setRecipe() {
+		String ingot = "ingot" + this.material.getDisplayName();
+		recipes.addRecipe(new ItemStack(this), new Object[] { "XX ", "XXS", "XX ", 'X', ingot, 'S', "stickWood" });
 	}
 
 	@Override

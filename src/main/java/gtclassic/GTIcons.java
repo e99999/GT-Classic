@@ -21,9 +21,8 @@ public class GTIcons {
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_materials",
 				GTMod.MODID + ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 16)));
 
-		addSprite(
-				new Sprites.SpriteData(GTMod.MODID + "_casings", GTMod.MODID + ":textures/sprites/sprites_casings.png",
-						new Sprites.SpriteInfo(16, 16)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_casings",
+				GTMod.MODID + ":textures/sprites/sprites_casings.png", new Sprites.SpriteInfo(16, 16)));
 
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_builder", GTMod.MODID + ":textures/sprites/builder.png",
 				new Sprites.SpriteInfo(1, 12)));
