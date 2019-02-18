@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerAlloySmelter;
 import gtclassic.gui.GTGuiMachine.GTAlloySmelterGui;
@@ -60,6 +61,7 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
 				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
+		handler.registerInputFilter(new MachineFilter(this), slotInput0, slotInput1);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
 		handler.registerSlotType(SlotType.Fuel, slotFuel);
 		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1);
@@ -143,7 +145,7 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, input.get(0).toString());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
 	}
 
 }

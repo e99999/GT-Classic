@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
+import gtclassic.GTMod;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.recipes.managers.RecipeManager;
@@ -32,12 +33,12 @@ public class GTMultiInputRecipeList {
 		}
 		for (int i = 0; i < inputs.size(); i++) {
 			if (inputs.get(i) != null && isListInvalid(inputs.get(i).getInputs())) {
-				FMLLog.getLogger().info("Recipe[" + id + "] has a invalid input");
+				GTMod.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
 				return;
 			}
 		}
 		if (isListInvalid(output.getAllOutputs())) {
-			FMLLog.getLogger().info("Recipe[" + id + "] has a invalid output");
+			GTMod.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
 			return;
 		}
 		MultiRecipe recipe = new MultiRecipe(inputs, output, id);
@@ -86,14 +87,14 @@ public class GTMultiInputRecipeList {
 
 	private boolean isListInvalid(List<ItemStack> list) {
 		if (list.isEmpty()) {
-			return false;
+			return true;
 		}
 		for (ItemStack stack : list) {
 			if (stack.isEmpty()) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	public static class MultiRecipe {
