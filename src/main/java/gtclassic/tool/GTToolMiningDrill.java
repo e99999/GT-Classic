@@ -61,12 +61,9 @@ public class GTToolMiningDrill extends ItemElectricTool
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.DARK_BLUE + I18n.format("Tier: " + GTValues.getTierString(this.tier)));
 		tooltip.add(TextFormatting.YELLOW + I18n.format("Level: " + this.getLevelString()));
 		tooltip.add(TextFormatting.GOLD + I18n.format("Material: " + this.material.getDisplayName()));
 		tooltip.add(TextFormatting.BLUE + I18n.format("Speed: " + String.valueOf(this.getMiningSpeed(stack))));
-		tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("Size: " + String.valueOf(this.maxCharge)));
-		tooltip.add(TextFormatting.GREEN + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
 	}
 
 	@Override
@@ -102,7 +99,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
-		return (this.material.getSpeed() * 4) * this.tier;
+		return (this.material.getSpeed() * 2) * this.tier;
 	}
 
 	@Override
@@ -173,6 +170,11 @@ public class GTToolMiningDrill extends ItemElectricTool
 	@Override
 	public boolean canMineBlock(ItemStack d, IBlockState state, IBlockAccess access, BlockPos pos) {
 		return ForgeHooks.canToolHarvestBlock(access, pos, d);
+	}
+
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return true;
 	}
 
 	@Override

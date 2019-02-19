@@ -57,11 +57,8 @@ public class GTToolRockCutter extends ItemElectricTool
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.DARK_BLUE + I18n.format("Tier: " + GTValues.getTierString(this.tier)));
 		tooltip.add(TextFormatting.GOLD + I18n.format("Material: " + this.material.getDisplayName()));
-		tooltip.add(TextFormatting.BLUE + I18n.format("Size: " + String.valueOf(this.maxCharge)));
-		tooltip.add(TextFormatting.LIGHT_PURPLE + I18n.format("Transfer: " + String.valueOf(this.transferLimit)));
-		tooltip.add(TextFormatting.GREEN + I18n.format("Cost: " + String.valueOf(this.transferLimit * 10)));
+		tooltip.add(TextFormatting.RED + I18n.format("Cost: " + String.valueOf(this.transferLimit * 10)));
 	}
 
 	@Override

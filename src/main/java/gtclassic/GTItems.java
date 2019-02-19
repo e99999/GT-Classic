@@ -38,6 +38,14 @@ public class GTItems {
 	public static final GTItemComponent circuitRuby = createItem(new GTItemComponent("circuit_ruby", 8, false));
 	public static final GTItemComponent circuitEmerald = createItem(new GTItemComponent("circuit_emerald", 9, false));
 	public static final GTItemComponent circuitSapphire = createItem(new GTItemComponent("circut_sapphire", 10, false));
+	public static final GTItemComponent moldBlank = createItem(new GTItemComponent("mold_blank", 48, false));
+	public static final GTItemComponent moldBlock = createItem(new GTItemComponent("mold_block", 49, true));
+	public static final GTItemComponent moldIngot = createItem(new GTItemComponent("mold_ingot", 50, true));
+	public static final GTItemComponent moldNugget = createItem(new GTItemComponent("mold_nugget", 51, true));
+	public static final GTItemComponent moldPlate = createItem(new GTItemComponent("mold_plate", 52, true));
+	public static final GTItemComponent moldStick = createItem(new GTItemComponent("mold_stick", 53, true));
+	public static final GTItemComponent moldCable = createItem(new GTItemComponent("mold_cable", 54, true));
+	public static final GTItemComponent moldTube = createItem(new GTItemComponent("mold_tube", 55, true));
 
 	public static final GTToolFile fileBronze = createItem(new GTToolFile(GTMaterial.Bronze));
 	public static final GTToolFile fileIron = createItem(new GTToolFile(GTMaterial.Iron));

@@ -27,11 +27,23 @@ public class GTItemBlockDuctTape extends ItemBlockRare {
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(255);
+		this.setHasSubtypes(false);
+		this.setNoRepair();
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack thisItem) {
 		return EnumRarity.UNCOMMON;
+	}
+
+	@Override
+	public boolean isEnchantable(ItemStack stack) {
+		return false;
+	}
+
+	@Override
+	public int getMetadata(int damage) {
+		return 0;
 	}
 
 	@Override
