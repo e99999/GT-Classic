@@ -15,7 +15,7 @@ public class GTGuiMachine {
 			super(container);
 		}
 	}
-	
+
 	public static class GTAlloySmelterGui extends MachineGui {
 		public GTAlloySmelterGui(ContainerComponent container) {
 			super(container);

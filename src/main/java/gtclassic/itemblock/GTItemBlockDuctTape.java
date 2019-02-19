@@ -1,0 +1,65 @@
+package gtclassic.itemblock;
+
+import java.util.List;
+
+import gtclassic.GTMod;
+import ic2.api.classic.energy.tile.IInsulationModifieableConductor;
+import ic2.core.IC2;
+import ic2.core.item.block.ItemBlockRare;
+import ic2.core.platform.registry.Ic2Sounds;
+import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+public class GTItemBlockDuctTape extends ItemBlockRare {
+
+	public GTItemBlockDuctTape(Block block) {
+		super(block);
+		this.setCreativeTab(GTMod.creativeTabGT);
+		this.setMaxStackSize(1);
+		this.setMaxDamage(255);
+	}
+
+	@Override
+	public EnumRarity getRarity(ItemStack thisItem) {
+		return EnumRarity.UNCOMMON;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".ducttape"));
+	}
+
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
+			EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+		TileEntity tileEntity = worldIn.getTileEntity(pos);
+		IInsulationModifieableConductor wire = (IInsulationModifieableConductor) tileEntity;
+
+		if (player.isSneaking()) {
+			super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+			return EnumActionResult.PASS;
+		} else if (tileEntity instanceof IInsulationModifieableConductor) {
+			if (wire.tryAddInsulation()) {
+				player.getHeldItem(hand).damageItem(1, player);
+				IC2.audioManager.playOnce(player, Ic2Sounds.painterUse);
+				return EnumActionResult.SUCCESS;
+			} else {
+				return EnumActionResult.FAIL;
+			}
+		} else {
+			return EnumActionResult.FAIL;
+		}
+	}
+
+}

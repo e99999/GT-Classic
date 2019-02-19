@@ -1,4 +1,4 @@
-package gtclassic.item;
+package gtclassic.itemblock;
 
 import gtclassic.GTMod;
 import gtclassic.block.GTBlockBattery;
@@ -15,13 +15,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 
-public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectricItem {
+public class GTItemBlockBattery extends ItemBlockRare implements IDamagelessElectricItem {
 
 	public int maxCharge;
 	public int transferLimit;
 	public int tier;
 
-	public GTBatteryBuilder(Block block) {
+	public GTItemBlockBattery(Block block) {
 		super(block);
 		if (block instanceof GTBlockBattery) {
 			GTBlockBattery battery = (GTBlockBattery) block;

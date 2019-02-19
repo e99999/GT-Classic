@@ -1,4 +1,4 @@
-package gtclassic.block.test;
+package gtclassic.block;
 
 import java.util.List;
 

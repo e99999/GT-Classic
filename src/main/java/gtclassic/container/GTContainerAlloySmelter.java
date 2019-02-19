@@ -14,13 +14,13 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTContainerAlloySmelter extends ContainerTileComponent<GTTileAlloySmelter> {
 
-	public static Box2D machineProgressBox = new Box2D(77, 24, 20, 18); //the progress bar and size
-	public static Vec2i machineProgressPos = new Vec2i(176, 0); //where the overlay is
+	public static Box2D machineProgressBox = new Box2D(77, 24, 20, 18); // the progress bar and size
+	public static Vec2i machineProgressPos = new Vec2i(176, 0); // where the overlay is
 
 	public GTContainerAlloySmelter(InventoryPlayer player, GTTileAlloySmelter tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 35, 25, null));// main slot
-		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, null)); //second slot
+		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, null)); // second slot
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 3, 80, 63)); // battery
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 107, 25)); // output
 		this.addPlayerInventory(player);

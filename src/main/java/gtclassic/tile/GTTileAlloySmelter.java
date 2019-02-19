@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerAlloySmelter;
 import gtclassic.gui.GTGuiMachine.GTAlloySmelterGui;
-import gtclassic.tile.base.GTTileBaseMultiInputMachine;
 import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
@@ -42,8 +40,8 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
-	public static final int slotFuel = 3;
 	public static final int slotOutput = 2;
+	public static final int slotFuel = 3;
 
 	public GTTileAlloySmelter() {
 		super(4, 0, 16, 1000, 32);
@@ -61,7 +59,6 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
 				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
-		handler.registerInputFilter(new MachineFilter(this), slotInput0, slotInput1);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
 		handler.registerSlotType(SlotType.Fuel, slotFuel);
 		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1);
@@ -98,7 +95,8 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
 		IFilter[] filter = { new MachineFilter(this) };
-		return filter;
+		// return filter;
+		return null;
 	}
 
 	@Override
@@ -132,15 +130,15 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 
 	public static void addRecipe(String input1, int amount1, String input2, int amount2, ItemStack output) {
 		List<IRecipeInput> inputs = new ArrayList<>();
-		inputs.add((IRecipeInput)(new RecipeInputOreDict(input1, amount1)));
-		inputs.add((IRecipeInput)(new RecipeInputOreDict(input2, amount2)));
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input2, amount2)));
 		addRecipe(inputs, new MachineOutput(null, output));
 	}
-	
+
 	public static void addRecipe(ItemStack input1, ItemStack input2, ItemStack output) {
 		List<IRecipeInput> inputs = new ArrayList<>();
-		inputs.add((IRecipeInput)(new RecipeInputItemStack(input1)));
-		inputs.add((IRecipeInput)(new RecipeInputItemStack(input2)));
+		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));
+		inputs.add((IRecipeInput) (new RecipeInputItemStack(input2)));
 		addRecipe(inputs, new MachineOutput(null, output));
 	}
 

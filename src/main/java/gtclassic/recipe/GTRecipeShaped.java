@@ -115,7 +115,7 @@ public class GTRecipeShaped {
 						GTBlocks.medLapotron, 'C', GTBlocks.fusionCasingBlock, 'P', "platePlutonium" });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.lightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
-				GTItems.circuitSapphire, 'S', "casingMachineTungstenSteel", 'A', "plateIridium" });
+				GTItems.circuitSapphire, 'S', "casingMachineIridium", 'A', "stickTungstenSteel" });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.industrialCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 				Ic2Items.extractor, 'R', GTValues.plateElectric, 'A', "casingMachineSteel", 'C', "circuitAdvanced" });
@@ -167,10 +167,6 @@ public class GTRecipeShaped {
 
 			recipes.addRecipe(new ItemStack(GTBlocks.quantumEnergyStorage, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
 					"plateIridium", 'H', GTBlocks.basicEnergyStorage, 'E', Blocks.ENDER_CHEST });
-
-			recipes.addRecipe(new ItemStack(GTBlocks.echophoneBlock, 1),
-					new Object[] { "CRC", "NMN", "CJC", 'C', "circuitBasic", 'N', Blocks.NOTEBLOCK, 'J', Blocks.JUKEBOX,
-							'M', "casingMachineSteel", 'R', "record" });
 
 			recipes.addRecipe(new ItemStack(GTBlocks.digitalChestLV, 1), new Object[] { "IDI", "CMC", "IDI", 'D',
 					GTItems.circuitDiamond, 'I', GTItems.circuitEmerald, 'C', "chestWood", 'M', "casingMachineSteel" });

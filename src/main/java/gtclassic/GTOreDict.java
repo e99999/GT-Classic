@@ -1,7 +1,5 @@
-package gtclassic.util;
+package gtclassic;
 
-import gtclassic.GTBlocks;
-import gtclassic.GTItems;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -13,13 +11,16 @@ public class GTOreDict {
 	public static void init() {
 
 		// Register tools with ore dict
+		registerHammer(GTItems.hammerBronze);
 		registerHammer(GTItems.hammerIron);
+		registerHammer(GTItems.hammerSteel);
 		registerHammer(GTItems.hammerTitanium);
 		registerHammer(GTItems.hammerTungstenSteel);
+		registerFile(GTItems.fileBronze);
 		registerFile(GTItems.fileIron);
+		registerFile(GTItems.fileSteel);
 		registerFile(GTItems.fileTitanium);
 		registerFile(GTItems.fileTungstenSteel);
-		registerRubber(GTItems.braintechAerospaceARDT);
 
 		// Register ores... with ore dict
 		OreDictionary.registerOre("oreGalena", GTBlocks.galenaOre);
@@ -52,10 +53,6 @@ public class GTOreDict {
 
 	public static void registerFile(Item tool) {
 		OreDictionary.registerOre("craftingToolFile", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
-	}
-
-	public static void registerRubber(Item tool) {
-		OreDictionary.registerOre("itemRubber", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 }

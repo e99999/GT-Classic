@@ -18,6 +18,16 @@ public class GTRecipeProcessing {
 	public static void recipesProcessing() {
 
 		/*
+		 * Recipes specific to GT Classic ores
+		 */
+		TileEntityMacerator.addRecipe("oreBauxite", 1, GT.getDust(M.Bauxite, 4), 0.1F);
+		TileEntityMacerator.addRecipe("oreIridium", 1, GT.getIc2(Ic2Items.iridiumOre, 2), 0.5F);
+
+		TileEntityExtractor.addRecipe("oreRuby", 1, GT.getGem(M.Ruby, 3), 0.1F);
+		TileEntityExtractor.addRecipe("oreSapphire", 1, GT.getGem(M.Sapphire, 3), 0.1F);
+		TileEntityExtractor.addRecipe("oreOlivine", 1, GT.getGem(M.Olivine, 3), 0.1F);
+
+		/*
 		 * Maceration recipes not covered by Ic2c automatically or that need to be
 		 * different
 		 */
@@ -27,8 +37,6 @@ public class GTRecipeProcessing {
 		TileEntityMacerator.addRecipe(new ItemStack(Items.ENDER_EYE, 1), GT.getDust(M.EnderEye, 1), 0.2F);
 		TileEntityMacerator.addRecipe("gemDiamond", 1, GT.getDust(M.Diamond, 1), 0.1F);
 		TileEntityMacerator.addRecipe("gemEmerald", 1, GT.getDust(M.Emerald, 1), 0.1F);
-		TileEntityMacerator.addRecipe("oreBauxite", 1, GT.getDust(M.Bauxite, 4), 0.1F);
-		TileEntityMacerator.addRecipe("oreIridium", 1, GT.getIc2(Ic2Items.iridiumOre, 2), 0.5F);
 
 		/*
 		 * Compressor recipes
@@ -38,18 +46,12 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustEmerald", 1, new ItemStack(Items.EMERALD), 0.1F);
 		TileEntityCompressor.addRecipe("dustDiamond", 1, new ItemStack(Items.DIAMOND), 0.1F);
 
-		/*
-		 * Extraction recipes
-		 */
-		TileEntityExtractor.addRecipe("oreRuby", 1, GT.getGem(M.Ruby, 3), 0.1F);
-		TileEntityExtractor.addRecipe("oreSapphire", 1, GT.getGem(M.Sapphire, 3), 0.1F);
-		TileEntityExtractor.addRecipe("oreOlivine", 1, GT.getGem(M.Olivine, 3), 0.1F);
-		
-		//ignore this
-		
+		// ignore this
+
 		GTTileAlloySmelter.addRecipe("ingotTin", 1, "ingotCopper", 3, GT.getIc2(Ic2Items.bronzeIngot, 4));
-		GTTileAlloySmelter.addRecipe(GT.getIc2(Ic2Items.tinIngot, 1), GT.getIc2(Ic2Items.copperIngot, 3), GT.getIc2(Ic2Items.bronzeIngot, 4));
-		
+		GTTileAlloySmelter.addRecipe(GT.getIc2(Ic2Items.tinIngot, 1), GT.getIc2(Ic2Items.copperIngot, 3),
+				GT.getIc2(Ic2Items.bronzeIngot, 4));
+
 	}
 
 }

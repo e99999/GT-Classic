@@ -13,7 +13,6 @@ import gtclassic.recipe.GTRecipe;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
-import gtclassic.util.GTOreDict;
 import gtclassic.util.GTValues;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;

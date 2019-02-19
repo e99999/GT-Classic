@@ -54,9 +54,8 @@ public class GTRecipeShapeless {
 
 		// Duct Tape
 
-		recipes.addShapelessRecipe(new ItemStack(GTItems.braintechAerospaceARDT, 1),
-				new Object[] { GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64),
-						GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64) });
+		recipes.addShapelessRecipe(new ItemStack(GTBlocks.DuctTape, 1), new Object[] { GT.getIc2(Ic2Items.rubber, 64),
+				GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64) });
 
 		// Filing down GregTech crystals into Ic2 ones
 

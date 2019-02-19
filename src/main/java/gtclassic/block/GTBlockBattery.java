@@ -1,10 +1,10 @@
 package gtclassic.block;
 
-import gtclassic.item.GTBatteryBuilder;
-import gtclassic.util.helpers.ICustomItemBlock;
+import gtclassic.itemblock.GTItemBlockBattery;
+import gtclassic.itemblock.GTItemBlockInterface;
 import ic2.core.item.block.ItemBlockRare;
 
-public class GTBlockBattery extends GTBlockTileCustom implements ICustomItemBlock {
+public class GTBlockBattery extends GTBlockTileCustom implements GTItemBlockInterface {
 	public int max;
 	public int trans;
 	public int tier;
@@ -18,6 +18,6 @@ public class GTBlockBattery extends GTBlockTileCustom implements ICustomItemBloc
 
 	@Override
 	public Class<? extends ItemBlockRare> getCustomItemBlock() {
-		return GTBatteryBuilder.class;
+		return GTItemBlockBattery.class;
 	}
 }
