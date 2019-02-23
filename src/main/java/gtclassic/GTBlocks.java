@@ -16,6 +16,7 @@ import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileBasicEnergyStorage;
+import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBookshelf;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
@@ -199,6 +200,8 @@ public class GTBlocks {
 
 	public static void registerTiles() {
 
+		GameRegistry.registerTileEntity(GTTileBlockCustom.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityCustomBlock"));
 		GameRegistry.registerTileEntity(GTTileIndustrialCentrifuge.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
 		GameRegistry.registerTileEntity(GTTileComputerCube.class,

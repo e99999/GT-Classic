@@ -58,6 +58,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 		setSoundType(SoundType.STONE);
 	}
 
+	@Override
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
 

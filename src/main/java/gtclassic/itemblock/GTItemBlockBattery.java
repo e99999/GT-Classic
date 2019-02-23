@@ -91,8 +91,6 @@ public class GTItemBlockBattery extends ItemBlockRare implements IDamagelessElec
 		return 1.0D - ElectricItem.manager.getCharge(stack) / this.getMaxCharge(stack);
 	}
 
-	// weird shit starts here
-
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
 		return 20000;
