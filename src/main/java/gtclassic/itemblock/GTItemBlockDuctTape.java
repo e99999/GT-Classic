@@ -20,7 +20,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GTItemBlockDuctTape extends ItemBlockRare {
+public class GTItemBlockDuctTape extends GTItemBlockRare {
 
 	public GTItemBlockDuctTape(Block block) {
 		super(block);

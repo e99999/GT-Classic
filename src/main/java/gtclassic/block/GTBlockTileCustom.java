@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IBlockTextureModifier;
@@ -20,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModifier {
+public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureModifier {
 
 	String name;
 	int height;
@@ -128,9 +127,9 @@ public class GTBlockTileCustom extends BlockMultiID implements IBlockTextureModi
 		IBlockState def = getDefaultState();
 		List<IBlockState> states = new ArrayList<>();
 		for (EnumFacing side : EnumFacing.VALUES) {
-			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+			states.add(def.withProperty(allFacings, side).withProperty(active,
 					false));
-			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+			states.add(def.withProperty(allFacings, side).withProperty(active,
 					true));
 		}
 		return states;

@@ -13,6 +13,7 @@ import gtclassic.block.GTBlockTileCustom;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.itemblock.GTItemBlockInterface;
+import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileBasicEnergyStorage;
@@ -195,7 +196,7 @@ public class GTBlocks {
 		if (block instanceof GTColorBlockInterface) {
 			return GTColorItemBlock.class;
 		}
-		return ItemBlockRare.class;
+		return GTItemBlockRare.class;
 	}
 
 	public static void registerTiles() {
