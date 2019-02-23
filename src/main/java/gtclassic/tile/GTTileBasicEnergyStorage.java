@@ -35,13 +35,7 @@ public class GTTileBasicEnergyStorage extends TileEntityElectricBlock {
 
 	@Override
 	public void update() {
-		if (this.getStoredEU() > 0) {
-			this.setActive(true);
-			super.update();
-		} else {
-			this.setActive(false);
-			super.update();
-
-		}
+		this.setActive(this.getStoredEU() > 0);
+		super.update();
 	}
 }
