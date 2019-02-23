@@ -12,7 +12,6 @@ import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.block.machine.recipes.managers.RecipeManager;
 import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.FMLLog;
 
 public class GTBasicMachineRecipeList extends BasicMachineRecipeList {
 	String registryID;

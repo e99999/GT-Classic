@@ -1,17 +1,28 @@
 package gtclassic.block;
 
-import gtclassic.item.GTBatteryBuilder;
-import gtclassic.util.helpers.ICustomItemBlock;
-import ic2.core.item.block.ItemBlockRare;
+import java.util.Random;
 
-public class GTBlockBattery extends GTBlockTileCustom implements ICustomItemBlock
-{
+import gtclassic.itemblock.GTItemBlockBattery;
+import gtclassic.itemblock.GTItemBlockInterface;
+import gtclassic.tile.GTTileBlockCustom;
+import ic2.api.item.ElectricItem;
+import ic2.core.IC2;
+import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.item.block.ItemBlockRare;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+public class GTBlockBattery extends GTBlockTileCustom implements GTItemBlockInterface {
 	public int max;
 	public int trans;
 	public int tier;
-	
-	public GTBlockBattery(String name, int width, int height, boolean light, int max, int trans, int tier)
-	{
+	public int charge;
+
+	public GTBlockBattery(String name, int width, int height, boolean light, int max, int trans, int tier) {
 		super(name, width, height, light);
 		this.max = max;
 		this.trans = trans;
@@ -19,8 +30,30 @@ public class GTBlockBattery extends GTBlockTileCustom implements ICustomItemBloc
 	}
 
 	@Override
-	public Class<? extends ItemBlockRare> getCustomItemBlock()
-	{
-		return GTBatteryBuilder.class;
+	public Class<? extends ItemBlockRare> getCustomItemBlock() {
+		return GTItemBlockBattery.class;
+	}
+
+	@Override
+	public TileEntityBlock createNewTileEntity(World world, int arg1) {
+		return new GTTileBlockCustom();
+	}
+
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
+		if (!IC2.platform.isRendering()) {
+			TileEntity tile = worldIn.getTileEntity(pos);
+			if (tile instanceof GTTileBlockCustom) {
+				this.charge = (int) ElectricItem.manager.getCharge(stack);
+				((GTTileBlockCustom) tile).setData(this.charge);
+				((GTTileBlockCustom) tile).setItem(stack);
+			}
+		}
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+	}
+
+	public int quantityDropped(IBlockState state, int fortune, Random random) {
+		return 0;
 	}
 }

@@ -34,6 +34,6 @@ public class GTTileMultiEnergyStorage extends TileEntityElectricBlock {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.lesu;
+		return GTValues.mesu;
 	}
 }

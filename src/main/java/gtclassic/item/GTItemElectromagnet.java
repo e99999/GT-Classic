@@ -102,7 +102,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[76 + meta];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[37 + meta];
 	}
 
 	@Override

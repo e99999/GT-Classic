@@ -5,15 +5,18 @@ import java.util.List;
 
 import gtclassic.block.GTBlockBattery;
 import gtclassic.block.GTBlockCasing;
+import gtclassic.block.GTBlockDuctTape;
 import gtclassic.block.GTBlockOreSand;
 import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
-import gtclassic.block.test.GTBlockTestLayer;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
+import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileBasicEnergyStorage;
+import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBookshelf;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
@@ -27,7 +30,6 @@ import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileSmallChest;
 import gtclassic.tile.GTTileSuperConductor;
 import gtclassic.tile.GTTileWorkbench;
-import gtclassic.util.helpers.ICustomItemBlock;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
@@ -60,17 +62,26 @@ public class GTBlocks {
 	public static final GTBlockTileBasic autoCrafter = registerBlock(new GTBlockTileBasic("machine_autocrafter_lv"));
 	public static final GTBlockTileBasic chargeOMat = registerBlock(new GTBlockTileBasic("machine_chargeomat_ev"));
 	public static final GTBlockTileBasic computerCube = registerBlock(new GTBlockTileBasic("machine_computercube_ev"));
-	public static final GTBlockTileBasic industrialCentrifuge = registerBlock(new GTBlockTileBasic("machine_industrialcentrifuge_lv"));
-	public static final GTBlockTileBasic matterFabricator = registerBlock(new GTBlockTileBasic("machine_matterfabricator_ev"));
-	public static final GTBlockTileBasic uuMatterAssembler = registerBlock(new GTBlockTileBasic("machine_uumassembler_ev"));
-	public static final GTBlockTileBasic playerDetector = registerBlock(new GTBlockTileBasic("machine_playerdetector_lv"));
-	public static final GTBlockTileBasic echophoneBlock = registerBlock(new GTBlockTileBasic("machine_echophone_lv"));
-	public static final GTBlockTileBasic fusionComputer = registerBlock(new GTBlockTileBasic("machine_fusioncomputer_iv"));
+	public static final GTBlockTileBasic industrialCentrifuge = registerBlock(
+			new GTBlockTileBasic("machine_industrialcentrifuge_lv"));
+	public static final GTBlockTileBasic alloySmelter = registerBlock(new GTBlockTileBasic("machine_alloysmelter_lv"));
+	public static final GTBlockTileBasic matterFabricator = registerBlock(
+			new GTBlockTileBasic("machine_matterfabricator_ev"));
+	public static final GTBlockTileBasic uuMatterAssembler = registerBlock(
+			new GTBlockTileBasic("machine_uumassembler_ev"));
+	public static final GTBlockTileBasic playerDetector = registerBlock(
+			new GTBlockTileBasic("machine_playerdetector_lv"));
+	public static final GTBlockTileBasic fusionComputer = registerBlock(
+			new GTBlockTileBasic("machine_fusioncomputer_iv"));
 	public static final GTBlockTileBasic lightningRod = registerBlock(new GTBlockTileBasic("machine_lightningrod_iv"));
-	public static final GTBlockTileBasic IDSU = registerBlock(new GTBlockTileBasic("machine_quantumenergystorage_ev"));
-	public static final GTBlockTileBasic HESU = registerBlock(new GTBlockTileBasic("machine_basicenergystorage_ev"));
-	public static final GTBlockTileBasic LESU = registerBlock(new GTBlockTileBasic("machine_multienergystorage_mv"));
-	public static final GTBlockTileBasic digitalTransformerIV = registerBlock(new GTBlockTileBasic("machine_digitaltransformer_iv"));
+	public static final GTBlockTileBasic quantumEnergyStorage = registerBlock(
+			new GTBlockTileBasic("machine_quantumenergystorage_ev"));
+	public static final GTBlockTileBasic basicEnergyStorage = registerBlock(
+			new GTBlockTileBasic("machine_basicenergystorage_ev"));
+	public static final GTBlockTileBasic multiEnergyStorage = registerBlock(
+			new GTBlockTileBasic("machine_multienergystorage_mv"));
+	public static final GTBlockTileBasic digitalTransformerIV = registerBlock(
+			new GTBlockTileBasic("machine_digitaltransformer_iv"));
 	public static final GTBlockTileBasic energiumWire = registerBlock(new GTBlockTileBasic("wire_energium_luv"));
 	public static final GTBlockTileBasic lapotronWire = registerBlock(new GTBlockTileBasic("wire_lapotron_zpm"));
 	public static final GTBlockTileBasic smallChestLV = registerBlock(new GTBlockTileBasic("tile_smallchest_lv"));
@@ -84,128 +95,113 @@ public class GTBlocks {
 	public static final GTBlockTileBasic bookShelfMV = registerBlock(new GTBlockTileBasic("tile_bookshelf_mv"));
 	public static final GTBlockTileBasic workBenchMV = registerBlock(new GTBlockTileBasic("tile_workbench_mv"));
 
+	public static final GTBlockTileCustom Echophone = registerBlock(
+			new GTBlockTileCustom("block_echophone", 8, 14, false));
 
-	public static final GTBlockTileCustom smallCoolant = registerBlock(new GTBlockTileCustom("coolant_helium_small", 5, 13, false));
-	public static final GTBlockTileCustom medCoolant = registerBlock(new GTBlockTileCustom("coolant_helium_med", 13, 2, false));
-	public static final GTBlockTileCustom largeCoolant = registerBlock(new GTBlockTileCustom("coolant_helium_large", 13, 2, false));
+	public static final GTBlockDuctTape DuctTape = registerBlock(new GTBlockDuctTape("block_ducttape", 10, 4, false));
 
-	public static final GTBlockTileCustom smallThorium = registerBlock(new GTBlockTileCustom("rod_thorium_small", 3, 10, true));
-	public static final GTBlockTileCustom medThorium = registerBlock(new GTBlockTileCustom("rod_thorium_med", 4, 10, true));
-	public static final GTBlockTileCustom largeThorium = registerBlock(new GTBlockTileCustom("rod_thorium_large", 5, 10, true));
+	public static final GTBlockTileCustom smallCoolant = registerBlock(
+			new GTBlockTileCustom("coolant_helium_small", 5, 13, false));
+	public static final GTBlockTileCustom medCoolant = registerBlock(
+			new GTBlockTileCustom("coolant_helium_med", 13, 5, false));
+	public static final GTBlockTileCustom largeCoolant = registerBlock(
+			new GTBlockTileCustom("coolant_helium_large", 13, 5, false));
 
-	public static final GTBlockTileCustom smallPlutonium = registerBlock(new GTBlockTileCustom("rod_plutonium_small", 3, 10, true));
-	public static final GTBlockTileCustom medPlutonium = registerBlock(new GTBlockTileCustom("rod_plutonium_med", 4, 10, true));
-	public static final GTBlockTileCustom largePlutonium = registerBlock(new GTBlockTileCustom("rod_plutonium_large", 5, 10, true));
+	public static final GTBlockTileCustom smallThorium = registerBlock(
+			new GTBlockTileCustom("rod_thorium_small", 3, 10, true));
+	public static final GTBlockTileCustom medThorium = registerBlock(
+			new GTBlockTileCustom("rod_thorium_med", 4, 10, true));
+	public static final GTBlockTileCustom largeThorium = registerBlock(
+			new GTBlockTileCustom("rod_thorium_large", 5, 10, true));
 
-	public static final GTBlockBattery smallLithium = registerBlock(new GTBlockBattery("battery_lithium_small", 6, 11, false, 100000, 128, 1));
-	public static final GTBlockBattery medLithium = registerBlock(new GTBlockBattery("battery_lithium_med", 8, 11, false, 200000, 256, 2));
-	public static final GTBlockBattery largeLithium = registerBlock(new GTBlockBattery("battery_lithium_large", 10, 11, false, 400000, 512, 3));
+	public static final GTBlockTileCustom smallPlutonium = registerBlock(
+			new GTBlockTileCustom("rod_plutonium_small", 3, 10, true));
+	public static final GTBlockTileCustom medPlutonium = registerBlock(
+			new GTBlockTileCustom("rod_plutonium_med", 4, 10, true));
+	public static final GTBlockTileCustom largePlutonium = registerBlock(
+			new GTBlockTileCustom("rod_plutonium_large", 5, 10, true));
 
-	public static final GTBlockBattery tinyLapotron = registerBlock(new GTBlockBattery("battery_lapotron_tiny", 6, 6, true, 100000, 256, 2));
-	public static final GTBlockBattery smallLapotron = registerBlock(new GTBlockBattery("battery_lapotron_small", 8, 8, true, 1000000, 512, 3));
-	public static final GTBlockBattery medLapotron = registerBlock(new GTBlockBattery("battery_lapotron_med", 10, 10, true, 10000000, 1024, 4));
-	public static final GTBlockBattery largeLapotron = registerBlock(new GTBlockBattery("battery_lapotron_large", 12, 12, true, 100000000, 4096, 5));
-	public static final GTBlockBattery hugeLapotron = registerBlock(new GTBlockBattery("battery_lapotron_huge", 14, 14, true, 1000000000, 8192, 6));
+	public static final GTBlockBattery smallLithium = registerBlock(
+			new GTBlockBattery("battery_lithium_small", 6, 11, false, 100000, 128, 1));
+	public static final GTBlockBattery medLithium = registerBlock(
+			new GTBlockBattery("battery_lithium_med", 8, 11, false, 200000, 256, 2));
+	public static final GTBlockBattery largeLithium = registerBlock(
+			new GTBlockBattery("battery_lithium_large", 10, 11, false, 400000, 512, 3));
 
-	public static final GTBlockBattery tinyEnergium = registerBlock(new GTBlockBattery("battery_energium_tiny", 6, 6, true, 1000000, 1024, 3));
-	public static final GTBlockBattery smallEnergium = registerBlock(new GTBlockBattery("battery_energium_small", 8, 8, true, 10000000, 4096, 4));
-	public static final GTBlockBattery medEnergium = registerBlock(new GTBlockBattery("battery_energium_med", 10, 10, true, 100000000, 8192, 5));
-	public static final GTBlockBattery largeEnergium = registerBlock(new GTBlockBattery("battery_energium_large", 12, 12, true, 1000000000, 16384, 6));
-	public static final GTBlockBattery hugeEnergium = registerBlock(new GTBlockBattery("battery_energium_huge", 14, 14, true, Integer.MAX_VALUE, 32768, 7));
+	public static final GTBlockBattery tinyEnergium = registerBlock(
+			new GTBlockBattery("battery_energium_tiny", 6, 6, true, 100000, 256, 2));
+	public static final GTBlockBattery smallEnergium = registerBlock(
+			new GTBlockBattery("battery_energium_small", 8, 8, true, 1000000, 512, 3));
+	public static final GTBlockBattery medEnergium = registerBlock(
+			new GTBlockBattery("battery_energium_med", 10, 10, true, 10000000, 1024, 4));
+	public static final GTBlockBattery largeEnergium = registerBlock(
+			new GTBlockBattery("battery_energium_large", 12, 12, true, 100000000, 4096, 5));
+	public static final GTBlockBattery hugeEnergium = registerBlock(
+			new GTBlockBattery("battery_energium_huge", 14, 14, true, 1000000000, 8192, 6));
 
-	public static final GTBlockTestLayer testBlock = registerBlock(new GTBlockTestLayer());
-	
-	public static final String[] textureTileBasic = {
-			"machine_autocrafter_lv",
-			"machine_chargeomat_ev",
-			"machine_computercube_ev",
-			"machine_industrialcentrifuge_lv",
-			"machine_matterfabricator_ev",
-			"machine_uumassembler_ev",
-			"machine_playerdetector_lv",
-			"machine_echophone_lv",
-			"machine_fusioncomputer_iv",
-			"machine_lightningrod_iv",
-			"machine_quantumenergystorage_ev",
-			"machine_basicenergystorage_ev",
-			"machine_multienergystorage_mv",
-			"machine_digitaltransformer_iv",
-			"wire_energium_luv",
-			"wire_lapotron_zpm",
-			"tile_smallchest_lv",
-			"tile_largechest_lv",
-			"tile_digitalchest_lv",
-			"tile_bookshelf_lv",
-			"tile_workbench_lv",
-			"tile_smallchest_mv",
-			"tile_largechest_mv",
-			"tile_digitalchest_mv",
-			"tile_bookshelf_mv",
-			"tile_workbench_mv"
-	};
-	
-	public static final String[] textureTileCustom = {
-			"coolant_helium_small",
-			"coolant_helium_med",
-			"coolant_helium_large",
-			"rod_thorium_small",
-			"rod_thorium_med",
-			"rod_thorium_large",
-			"rod_plutonium_small",
-			"rod_plutonium_med",
-			"rod_plutonium_large",
-			"battery_lithium_small",
-			"battery_lithium_med",
-			"battery_lithium_large",
-			"battery_lapotron_tiny",
-			"battery_lapotron_small",
-			"battery_lapotron_med",
-			"battery_lapotron_large",
-			"battery_lapotron_huge",
-			"battery_energium_tiny",
-			"battery_energium_small",
-			"battery_energium_med",
-			"battery_energium_large",
-			"battery_energium_huge",
-	};
-	
-	public static void registerBlocks()
-	{
-		for(Block block : toRegister)
-		{
+	public static final GTBlockBattery tinyLapotron = registerBlock(
+			new GTBlockBattery("battery_lapotron_tiny", 6, 6, true, 1000000, 1024, 3));
+	public static final GTBlockBattery smallLapotron = registerBlock(
+			new GTBlockBattery("battery_lapotron_small", 8, 8, true, 10000000, 4096, 4));
+	public static final GTBlockBattery medLapotron = registerBlock(
+			new GTBlockBattery("battery_lapotron_med", 10, 10, true, 100000000, 8192, 5));
+	public static final GTBlockBattery largeLapotron = registerBlock(
+			new GTBlockBattery("battery_lapotron_large", 12, 12, true, 1000000000, 16384, 6));
+	public static final GTBlockBattery hugeLapotron = registerBlock(
+			new GTBlockBattery("battery_lapotron_huge", 14, 14, true, Integer.MAX_VALUE, 32768, 7));
+
+	// public static final GTBlockTestLayer testBlock = registerBlock(new
+	// GTBlockTestLayer());
+
+	public static final String[] textureTileBasic = { "machine_autocrafter_lv", "machine_chargeomat_ev",
+			"machine_computercube_ev", "machine_industrialcentrifuge_lv", "machine_alloysmelter_lv",
+			"machine_matterfabricator_ev", "machine_uumassembler_ev", "machine_playerdetector_lv",
+			"machine_fusioncomputer_iv", "machine_lightningrod_iv", "machine_quantumenergystorage_ev",
+			"machine_basicenergystorage_ev", "machine_multienergystorage_mv", "machine_digitaltransformer_iv",
+			"wire_energium_luv", "wire_lapotron_zpm", "tile_smallchest_lv", "tile_largechest_lv",
+			"tile_digitalchest_lv", "tile_bookshelf_lv", "tile_workbench_lv", "tile_smallchest_mv",
+			"tile_largechest_mv", "tile_digitalchest_mv", "tile_bookshelf_mv", "tile_workbench_mv" };
+
+	public static final String[] textureTileCustom = { "block_ducttape", "block_echophone", "coolant_helium_small",
+			"coolant_helium_med", "coolant_helium_large", "rod_thorium_small", "rod_thorium_med", "rod_thorium_large",
+			"rod_plutonium_small", "rod_plutonium_med", "rod_plutonium_large", "battery_lithium_small",
+			"battery_lithium_med", "battery_lithium_large", "battery_lapotron_tiny", "battery_lapotron_small",
+			"battery_lapotron_med", "battery_lapotron_large", "battery_lapotron_huge", "battery_energium_tiny",
+			"battery_energium_small", "battery_energium_med", "battery_energium_large", "battery_energium_huge", };
+
+	public static void registerBlocks() {
+		for (Block block : GTMaterialGen.blockMap.values()) {
 			createBlock(block);
 		}
-		for (Block block : GTMaterialGen.blockMap.values()) 
-		{
+
+		for (Block block : toRegister) {
 			createBlock(block);
 		}
 	}
-	
-	static <T extends Block> T registerBlock(T block)
-	{
+
+	static <T extends Block> T registerBlock(T block) {
 		toRegister.add(block);
 		return block;
 	}
-	
-	public static void createBlock(Block block)
-	{
+
+	public static void createBlock(Block block) {
 		IC2.getInstance().createBlock(block, getItemBlock(block));
 	}
-	
-	static Class<? extends ItemBlockRare> getItemBlock(Block block)
-	{
-		if(block instanceof ICustomItemBlock)
-		{
-			return ((ICustomItemBlock)block).getCustomItemBlock();
+
+	static Class<? extends ItemBlockRare> getItemBlock(Block block) {
+		if (block instanceof GTItemBlockInterface) {
+			return ((GTItemBlockInterface) block).getCustomItemBlock();
 		}
-		if(block instanceof GTColorBlockInterface)
-		{
+		if (block instanceof GTColorBlockInterface) {
 			return GTColorItemBlock.class;
 		}
 		return ItemBlockRare.class;
 	}
 
 	public static void registerTiles() {
+
+		GameRegistry.registerTileEntity(GTTileBlockCustom.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityCustomBlock"));
 		GameRegistry.registerTileEntity(GTTileIndustrialCentrifuge.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
 		GameRegistry.registerTileEntity(GTTileComputerCube.class,
@@ -237,5 +233,7 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityFusionComputer"));
 		GameRegistry.registerTileEntity(GTTileSuperConductor.class,
 				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductor"));
+		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
 	}
 }

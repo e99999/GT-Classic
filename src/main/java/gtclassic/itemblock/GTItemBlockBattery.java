@@ -1,6 +1,7 @@
-package gtclassic.util;
+package gtclassic.itemblock;
 
 import gtclassic.GTMod;
+import gtclassic.block.GTBlockBattery;
 import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
@@ -11,22 +12,27 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectricItem {
+public class GTItemBlockBattery extends ItemBlockRare implements IDamagelessElectricItem {
 
 	public int maxCharge;
 	public int transferLimit;
 	public int tier;
 
-	public GTBatteryBuilder(Block block, int max, int trans, int tier) {
+	public GTItemBlockBattery(Block block) {
 		super(block);
-		this.setRegistryName(block.getRegistryName() + "_item");
-		this.setUnlocalizedName(block.getUnlocalizedName().replace("tile.", ""));
-		this.maxCharge = max;
-		this.tier = tier;
-		this.transferLimit = trans;
+		if (block instanceof GTBlockBattery) {
+			GTBlockBattery battery = (GTBlockBattery) block;
+			maxCharge = battery.max;
+			transferLimit = battery.trans;
+			tier = battery.tier;
+		}
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setMaxStackSize(1);
 		this.setNoRepair();
@@ -85,11 +91,20 @@ public class GTBatteryBuilder extends ItemBlockRare implements IDamagelessElectr
 		return 1.0D - ElectricItem.manager.getCharge(stack) / this.getMaxCharge(stack);
 	}
 
-	// weird shit starts here
-
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
 		return 20000;
+	}
+
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
+			EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (player.isSneaking()) {
+			super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+			return EnumActionResult.PASS;
+		} else {
+			return EnumActionResult.SUCCESS;
+		}
 	}
 
 	@Override

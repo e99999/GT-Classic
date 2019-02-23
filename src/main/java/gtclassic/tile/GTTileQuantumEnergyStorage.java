@@ -30,6 +30,6 @@ public class GTTileQuantumEnergyStorage extends TileEntityElectricBlock {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.idsu;
+		return GTValues.qesu;
 	}
 }

@@ -1,6 +1,7 @@
 package gtclassic.item;
 
 import gtclassic.GTMod;
+import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileLightningRod;
@@ -79,7 +80,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(ItemStack item) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[79];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[40];
 	}
 
 	@Override
@@ -142,6 +143,15 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "Output: " + te4.getOutput());
 				IC2.platform.messagePlayer(player, "Stored EU: " + te4.getStored());
 				IC2.platform.messagePlayer(player, "Max EU: " + te4.getCapacity());
+				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+				return EnumActionResult.SUCCESS;
+			}
+
+			if (tileEntity instanceof GTTileBlockCustom) {
+				GTTileBlockCustom te5 = (GTTileBlockCustom) tileEntity;
+				IC2.platform.messagePlayer(player, "---GT Item Block Information---");
+				IC2.platform.messagePlayer(player, "int Stored: " + te5.getData());
+				IC2.platform.messagePlayer(player, "Stack Stored: " + te5.getItem().getUnlocalizedName());
 				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}

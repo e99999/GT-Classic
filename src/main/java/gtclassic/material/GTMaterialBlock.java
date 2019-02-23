@@ -5,6 +5,10 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.color.GTColorBlockInterface;
+import ic2.core.platform.lang.ILocaleBlock;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
+import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -25,15 +29,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTMaterialBlock extends Block implements ITexturedBlock, GTColorBlockInterface {
+public class GTMaterialBlock extends Block implements ITexturedBlock, GTColorBlockInterface, ILocaleBlock {
 
 	private GTMaterial material;
 	private GTMaterialFlag flag;
+	LocaleComp comp;
 
 	public GTMaterialBlock(GTMaterial material, GTMaterialFlag flag) {
 		super(Material.IRON);
 		this.material = material;
 		this.flag = flag;
+		this.comp = Ic2Lang.nullKey;
 		setRegistryName(this.material.getName() + this.flag.getSuffix());
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + this.flag.getSuffix());
 		setCreativeTab(GTMod.creativeTabGT);
@@ -97,5 +103,20 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, GTColorBlo
 	@Override
 	public Color getColor(Block block, int index) {
 		return this.material.getColor();
+	}
+
+	public LocaleComp getName() {
+		return this.comp;
+	}
+
+	public Block setUnlocalizedName(LocaleComp name) {
+		this.comp = name;
+		return super.setUnlocalizedName(name.getUnlocalized());
+	}
+
+	@Override
+	public Block setUnlocalizedName(String name) {
+		this.comp = new LocaleBlockComp("tile." + name);
+		return super.setUnlocalizedName(name);
 	}
 }

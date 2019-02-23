@@ -8,7 +8,11 @@ import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import ic2.core.platform.lang.ILocaleBlock;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -30,12 +34,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockOreStone extends Block implements ITexturedBlock {
+public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlock {
 
 	String name;
 	int id;
 	int harvest;
 	float hardness;
+	LocaleComp comp;
 
 	public GTBlockOreStone(String name, int id, int harvest, float hardness) {
 		super(Material.ROCK);
@@ -43,6 +48,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 		this.id = id;
 		this.harvest = harvest;
 		this.hardness = hardness;
+		this.comp = Ic2Lang.nullKey;
 		setRegistryName(this.name.toLowerCase() + "_ore");
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_ore");
 		setCreativeTab(GTMod.creativeTabGT);
@@ -52,6 +58,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 		setSoundType(SoundType.STONE);
 	}
 
+	@Override
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
 
@@ -192,5 +199,20 @@ public class GTBlockOreStone extends Block implements ITexturedBlock {
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());
+	}
+
+	public LocaleComp getName() {
+		return this.comp;
+	}
+
+	public Block setUnlocalizedName(LocaleComp name) {
+		this.comp = name;
+		return super.setUnlocalizedName(name.getUnlocalized());
+	}
+
+	@Override
+	public Block setUnlocalizedName(String name) {
+		this.comp = new LocaleBlockComp("tile." + name);
+		return super.setUnlocalizedName(name);
 	}
 }

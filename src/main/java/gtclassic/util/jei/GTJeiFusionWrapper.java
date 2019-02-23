@@ -24,9 +24,10 @@ public class GTJeiFusionWrapper extends BlankRecipeWrapper {
 	public void getIngredients(IIngredients components) {
 		// TODO SEE IF THIS FUCKED ANYTHING! i changed setinputlist to work with new
 		// materials
-		components.setInputs(ItemStack.class, Arrays.asList(entry.getInput().getInputs(), Arrays.asList(
-				(GTMaterialGen.getChemical(GTMaterial.Dueterium, 1)),
-				GTTileFusionComputer.getRequiredCells(entry.getOutput()))));
+		components.setInputs(ItemStack.class,
+				Arrays.asList(entry.getInput().getInputs(),
+						Arrays.asList((GTMaterialGen.getChemical(GTMaterial.Dueterium, 1)),
+								GTTileFusionComputer.getRequiredCells(entry.getOutput()))));
 		List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
 		int count = 0;
 		for (ItemStack stack : entry.getOutput().copy().getAllOutputs()) {

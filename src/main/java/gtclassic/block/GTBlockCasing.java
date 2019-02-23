@@ -3,6 +3,10 @@ package gtclassic.block;
 import java.util.List;
 
 import gtclassic.GTMod;
+import ic2.core.platform.lang.ILocaleBlock;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
+import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -21,15 +25,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockCasing extends Block implements ITexturedBlock {
+public class GTBlockCasing extends Block implements ITexturedBlock, ILocaleBlock {
 
 	String name;
 	int id;
+	LocaleComp comp;
 
 	public GTBlockCasing(String name, int id) {
 		super(Material.IRON);
 		this.name = name;
 		this.id = id;
+		this.comp = Ic2Lang.nullKey;
 		setRegistryName(this.name.toLowerCase() + "_casing");
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_casing");
 		setCreativeTab(GTMod.creativeTabGT);
@@ -76,5 +82,20 @@ public class GTBlockCasing extends Block implements ITexturedBlock {
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());
+	}
+
+	public LocaleComp getName() {
+		return this.comp;
+	}
+
+	public Block setUnlocalizedName(LocaleComp name) {
+		this.comp = name;
+		return super.setUnlocalizedName(name.getUnlocalized());
+	}
+
+	@Override
+	public Block setUnlocalizedName(String name) {
+		this.comp = new LocaleBlockComp("tile." + name);
+		return super.setUnlocalizedName(name);
 	}
 }
