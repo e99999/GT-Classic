@@ -42,7 +42,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockTileBasic extends BlockMultiID {
+public class GTBlockTileBasic extends GTBlockMultiID {
 
 	String name;
 	String texture;
@@ -157,9 +157,9 @@ public class GTBlockTileBasic extends BlockMultiID {
 		IBlockState def = getDefaultState();
 		List<IBlockState> states = new ArrayList<>();
 		for (EnumFacing side : EnumFacing.VALUES) {
-			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+			states.add(def.withProperty(allFacings, side).withProperty(active,
 					false));
-			states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active,
+			states.add(def.withProperty(allFacings, side).withProperty(active,
 					true));
 		}
 		return states;
