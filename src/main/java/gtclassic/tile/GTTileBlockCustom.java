@@ -3,9 +3,8 @@ package gtclassic.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.GTMod;
-import gtclassic.block.GTBlockBattery;
-import gtclassic.itemblock.GTItemBlockDuctTape;
+import gtclassic.itemblock.GTItemBlockBattery;
+import ic2.api.item.ElectricItem;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.item.ItemStack;
@@ -59,14 +58,16 @@ public class GTTileBlockCustom extends TileEntityBlock implements IItemContainer
 	}
 
 	public void setItem(ItemStack item) {
-		GTMod.logger.info("item set: " + item.getUnlocalizedName());
 		this.drop = item.copy();
 	}
 
 	public void updateActive() {
-		if (this.data > 1000 && this.getBlockType() instanceof GTBlockBattery) {
+		if (this.drop.getItem() instanceof GTItemBlockBattery && ElectricItem.manager.getCharge(this.drop) > 1000) {
 			this.setActive(true);
+		} else {
+			this.setActive(false);
 		}
+
 	}
 
 	@Override

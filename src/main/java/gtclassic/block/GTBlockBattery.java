@@ -5,7 +5,6 @@ import java.util.Random;
 import gtclassic.itemblock.GTItemBlockBattery;
 import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.tile.GTTileBlockCustom;
-import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
