@@ -1,13 +1,17 @@
 package gtclassic.block;
 
+import java.util.Random;
+
 import gtclassic.itemblock.GTItemBlockDuctTape;
 import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.tile.GTTileBlockCustom;
+import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -26,24 +30,26 @@ public class GTBlockDuctTape extends GTBlockTileCustom implements GTItemBlockInt
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World world, int arg1) {
-		return new GTTileBlockCustom(this.damage);
+		return new GTTileBlockCustom();
 	}
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
 			ItemStack stack) {
-		this.damage = (stack.getMaxDamage() - stack.getItemDamage());
+		if (!IC2.platform.isRendering()) {
+			TileEntity tile = worldIn.getTileEntity(pos);
+			if (tile instanceof GTTileBlockCustom) {
+				this.damage = (stack.getMaxDamage() - stack.getItemDamage());
+				((GTTileBlockCustom) tile).setData(this.damage);
+				((GTTileBlockCustom) tile).setItem(stack);
+			}
+		}
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 	}
 
-	// @Override
-	// public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos,
-	// IBlockState state, int fortune) {
-	// ArrayList<ItemStack> drops = new ArrayList<>();
-	// ItemStack stack = new ItemStack(this);
-	// stack.setItemDamage(100);
-	// drops.add(stack);
-	// return drops;
-	// }
+	@Override
+	public int quantityDropped(IBlockState state, int fortune, Random random) {
+		return 0;
+	}
 
 }

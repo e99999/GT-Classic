@@ -151,6 +151,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				GTTileBlockCustom te5 = (GTTileBlockCustom) tileEntity;
 				IC2.platform.messagePlayer(player, "---GT Item Block Information---");
 				IC2.platform.messagePlayer(player, "int Stored: " + te5.getData());
+				IC2.platform.messagePlayer(player, "Stack Stored: " + te5.getItem().getUnlocalizedName());
 				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}
