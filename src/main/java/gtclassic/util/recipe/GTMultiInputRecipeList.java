@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import gtclassic.GTMod;
@@ -12,6 +13,7 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.recipes.managers.RecipeManager;
 import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class GTMultiInputRecipeList {
 	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(),
@@ -27,6 +29,7 @@ public class GTMultiInputRecipeList {
 	}
 
 	public void addRecipe(List<IRecipeInput> inputs, MachineOutput output, String id) {
+		id = getRecipeID(recipeMap.keySet(), id, 0);
 		if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
 			return;
 		}
@@ -56,6 +59,20 @@ public class GTMultiInputRecipeList {
 				}
 			}
 		}
+	}
+	
+	public static String getRecipeID(Set<String> ids, String base, int index)
+	{
+		String newString = base;
+		if(index > 0)
+		{
+			newString = newString + "_"+index;
+		}
+		if(ids.contains(newString))
+		{
+			return getRecipeID(ids, base, index + 1);
+		}
+		return newString;
 	}
 
 	public boolean isValidRecipeInput(ItemStack stack) {
@@ -116,14 +133,14 @@ public class GTMultiInputRecipeList {
 		}
 
 		public IRecipeInput getInput(int slot) {
-			if (inputs.size() >= slot) {
+			if (inputs.size() <= slot) {
 				return null;
 			}
 			return inputs.get(slot);
 		}
 
 		public boolean matches(int slot, ItemStack stack) {
-			if (inputs.size() >= slot) {
+			if (inputs.size() <= slot) {
 				return stack.isEmpty();
 			}
 			IRecipeInput input = inputs.get(slot);
