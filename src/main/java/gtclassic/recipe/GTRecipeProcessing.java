@@ -49,7 +49,7 @@ public class GTRecipeProcessing {
 		// ignore this
 
 		GTTileAlloySmelter.addRecipe("ingotTin", 1, "ingotCopper", 3, GT.getIc2(Ic2Items.bronzeIngot, 4));
-		GTTileAlloySmelter.addRecipe(GT.getIc2(Ic2Items.tinIngot, 1), GT.getIc2(Ic2Items.copperIngot, 3),
+		GTTileAlloySmelter.addRecipe("ingotCopper", 3, "ingotTin", 1,
 				GT.getIc2(Ic2Items.bronzeIngot, 4));
 
 	}
