@@ -3,6 +3,7 @@ package gtclassic.recipe;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileAlloySmelter;
+import gtclassic.tile.GTTileFusionComputer;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
@@ -49,8 +50,9 @@ public class GTRecipeProcessing {
 		// ignore this
 
 		GTTileAlloySmelter.addRecipe("ingotTin", 1, "ingotCopper", 3, GT.getIc2(Ic2Items.bronzeIngot, 4));
-		GTTileAlloySmelter.addRecipe("ingotCopper", 3, "ingotTin", 1,
-				GT.getIc2(Ic2Items.bronzeIngot, 4));
+		GTTileAlloySmelter.addRecipe("ingotCopper", 3, "ingotTin", 1, GT.getIc2(Ic2Items.bronzeIngot, 4));
+
+		GTTileFusionComputer.addRecipe("dustTungsten", 1, 1, GT.getIc2(Ic2Items.uuMatter, 1));
 
 	}
 

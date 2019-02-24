@@ -4,28 +4,33 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialGen;
-import gtclassic.tile.GTTileFusionComputer;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;
 
 @SuppressWarnings("deprecation")
-public class GTJeiFusionWrapper extends BlankRecipeWrapper {
+public class GTJeiAlloySmelterWrapper extends BlankRecipeWrapper {
 	RecipeEntry entry;
 
-	public GTJeiFusionWrapper(RecipeEntry recipe) {
+	public GTJeiAlloySmelterWrapper(RecipeEntry recipe) {
 		this.entry = recipe;
 	}
 
 	@Override
 	public void getIngredients(IIngredients components) {
-		components.setInputs(ItemStack.class,
-				Arrays.asList(entry.getInput().getInputs(),
-						Arrays.asList((GTMaterialGen.getChemical(GTMaterial.Dueterium, 1)),
-								GTTileFusionComputer.getRequiredCells(entry.getOutput()))));
+
+		List<List<ItemStack>> inputs = new ArrayList<List<ItemStack>>();
+		int countin = 0;
+		for (ItemStack stack : entry.getInput().getInputs()) {
+			inputs.add(Arrays.asList(stack));
+			countin++;
+			if (countin >= 2) {
+				break;
+			}
+		}
+		components.setInputLists(ItemStack.class, inputs);
+
 		List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
 		int count = 0;
 		for (ItemStack stack : entry.getOutput().copy().getAllOutputs()) {

@@ -34,7 +34,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -99,7 +98,6 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		MultiRecipe recipe = getRecipe();
 		boolean canWork = canWork() && !noRoom;
 		boolean operate = (canWork && recipe != null);
-		progressPerTick = 20F;
 		if (operate) {
 			handleChargeSlot(maxEnergy);
 		}
@@ -219,7 +217,8 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
 			for (int outputSlot : getOutputSlots()) {
 				if (StackUtil.isStackEqual(inventory.get(outputSlot), output, false, true)) {
-					if (inventory.get(outputSlot).getCount() + output.getCount() <= inventory.get(outputSlot).getMaxStackSize()) {
+					if (inventory.get(outputSlot).getCount() + output.getCount() <= inventory.get(outputSlot)
+							.getMaxStackSize()) {
 						return lastRecipe;
 					}
 				}

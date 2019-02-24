@@ -45,6 +45,7 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 
 	public GTTileAlloySmelter() {
 		super(4, 0, 16, 1000, 32);
+		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
 	}
 

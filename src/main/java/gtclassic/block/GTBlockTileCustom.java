@@ -127,10 +127,8 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 		IBlockState def = getDefaultState();
 		List<IBlockState> states = new ArrayList<>();
 		for (EnumFacing side : EnumFacing.VALUES) {
-			states.add(def.withProperty(allFacings, side).withProperty(active,
-					false));
-			states.add(def.withProperty(allFacings, side).withProperty(active,
-					true));
+			states.add(def.withProperty(allFacings, side).withProperty(active, false));
+			states.add(def.withProperty(allFacings, side).withProperty(active, true));
 		}
 		return states;
 	}

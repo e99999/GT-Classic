@@ -4,8 +4,10 @@ import javax.annotation.Nonnull;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
+import gtclassic.gui.GTGuiMachine.GTAlloySmelterGui;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
+import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -32,14 +34,24 @@ public class GTJeiPlugin implements IModPlugin {
 
 		if (SubModul.load) {
 
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.alloySmelter), new String[] { "alloysmelter" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), new String[] { "fusion" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBenchLV), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.autoCrafter), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 
+			registry.addRecipeClickArea(GTAlloySmelterGui.class, 62, 29, 10, 10, "alloysmelter");
 			registry.addRecipeClickArea(GTIndustrialCentrifugeGui.class, 62, 29, 10, 10, "centrifuge");
 			registry.addRecipeClickArea(GTFusionComputerGui.class, 111, 35, 25, 17, "fusion");
+
+			registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
+				@Override
+				public IRecipeWrapper getRecipeWrapper(RecipeEntry var1) {
+					return new GTJeiAlloySmelterWrapper(var1);
+				}
+			}, "alloysmelter");
+			registry.addRecipes(GTTileAlloySmelter.RECIPE_LIST.getRecipeList(), "alloysmelter");
 
 			registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
 				@Override
@@ -62,6 +74,7 @@ public class GTJeiPlugin implements IModPlugin {
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
+		registry.addRecipeCategories(new GTJeiAlloySmelterCategory(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new GTJeiCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new GTJeiFusionCategory(registry.getJeiHelpers().getGuiHelper()));
 	}

@@ -22,7 +22,6 @@ import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileSmallChest;
 import gtclassic.tile.GTTileSuperConductor;
 import gtclassic.tile.GTTileWorkbench;
-import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -157,10 +156,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		IBlockState def = getDefaultState();
 		List<IBlockState> states = new ArrayList<>();
 		for (EnumFacing side : EnumFacing.VALUES) {
-			states.add(def.withProperty(allFacings, side).withProperty(active,
-					false));
-			states.add(def.withProperty(allFacings, side).withProperty(active,
-					true));
+			states.add(def.withProperty(allFacings, side).withProperty(active, false));
+			states.add(def.withProperty(allFacings, side).withProperty(active, true));
 		}
 		return states;
 	}

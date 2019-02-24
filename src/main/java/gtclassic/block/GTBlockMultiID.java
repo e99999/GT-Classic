@@ -10,44 +10,36 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 
-public abstract class GTBlockMultiID extends BlockMultiID
-{
-	
-	public GTBlockMultiID(Material materialIn)
-	{
+public abstract class GTBlockMultiID extends BlockMultiID {
+
+	public GTBlockMultiID(Material materialIn) {
 		super(materialIn);
 	}
-	
+
 	@Override
-	public List<Integer> getValidMetas()
-	{
+	public List<Integer> getValidMetas() {
 		return Arrays.asList(0);
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
+	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainerIC2(this, allFacings, active);
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
+	public int getMetaFromState(IBlockState state) {
 		return 0;
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
+	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState();
 	}
 
 	@Override
-	public IBlockState getDefaultBlockState()
-	{
+	public IBlockState getDefaultBlockState() {
 		IBlockState state = getDefaultState().withProperty(active, false);
-		if(hasFacing())
-		{
+		if (hasFacing()) {
 			state = state.withProperty(allFacings, EnumFacing.NORTH);
 		}
 		return state;
