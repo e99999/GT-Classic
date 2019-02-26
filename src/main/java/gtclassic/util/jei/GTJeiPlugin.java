@@ -8,7 +8,7 @@ import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
-import gtclassic.util.jei.category.GTJeiAlloySmelterCategory;
+import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -72,7 +72,7 @@ public class GTJeiPlugin implements IModPlugin {
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
-		registry.addRecipeCategories(new GTJeiAlloySmelterCategory(registry.getJeiHelpers().getGuiHelper(), GTBlocks.alloySmelter, "alloysmelter"));
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "alloysmelter", GTBlocks.alloySmelter));
 
 
 		registry.addRecipeCategories(new GTJeiCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));

@@ -20,11 +20,11 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 
     @Override
     public void getIngredients(IIngredients ingredients) {
-
         ArrayList<ItemStack> inputs = new ArrayList<>();
         for (IRecipeInput input : multiRecipe.getInputs()) {
             inputs.addAll(input.getInputs());
         }
+
         ingredients.setInputs(VanillaTypes.ITEM, inputs);
         ingredients.setOutputs(VanillaTypes.ITEM, multiRecipe.getOutputs().getAllOutputs());
     }
