@@ -44,6 +44,10 @@ public class GTBlocks {
 	public static final GTBlockCasing fusionCasingBlock = registerBlock(new GTBlockCasing("Fusion", 1));
 	public static final GTBlockCasing fissionCasingBlock = registerBlock(new GTBlockCasing("Fission", 2));
 	public static final GTBlockCasing crystalCasingBlock = registerBlock(new GTBlockCasing("Crystal", 3));
+	
+	public static final GTBlockCasing kanthalCoilBlock = registerBlock(new GTBlockCasing("Kanthal", 13));
+	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("Nichrome", 14));
+	public static final GTBlockCasing constantanCoilBlock = registerBlock(new GTBlockCasing("Constantan", 15));
 
 	public static final GTBlockOreStone galenaOre = registerBlock(new GTBlockOreStone("Galena", 0, 1, 3.0F));
 	public static final GTBlockOreStone iridiumOre = registerBlock(new GTBlockOreStone("Iridium", 1, 3, 20.0F));
@@ -59,6 +63,8 @@ public class GTBlocks {
 	public static final GTBlockOreStone sodaliteOre = registerBlock(new GTBlockOreStone("Sodalite", 12, 2, 3.0F));
 
 	public static final GTBlockOreSand sandIron = registerBlock(new GTBlockOreSand("Iron", 5));
+	
+	public static final GTBlockTileBasic bloomery = registerBlock(new GTBlockTileBasic("machine_bloomery"));
 
 	public static final GTBlockTileBasic autoCrafter = registerBlock(new GTBlockTileBasic("machine_autocrafter_lv"));
 	public static final GTBlockTileBasic chargeOMat = registerBlock(new GTBlockTileBasic("machine_chargeomat_ev"));
@@ -154,7 +160,7 @@ public class GTBlocks {
 	// public static final GTBlockTestLayer testBlock = registerBlock(new
 	// GTBlockTestLayer());
 
-	public static final String[] textureTileBasic = { "machine_autocrafter_lv", "machine_chargeomat_ev",
+	public static final String[] textureTileBasic = {"machine_bloomery", "machine_autocrafter_lv", "machine_chargeomat_ev",
 			"machine_computercube_ev", "machine_industrialcentrifuge_lv", "machine_alloysmelter_lv",
 			"machine_matterfabricator_ev", "machine_uumassembler_ev", "machine_playerdetector_lv",
 			"machine_fusioncomputer_iv", "machine_lightningrod_iv", "machine_quantumenergystorage_ev",

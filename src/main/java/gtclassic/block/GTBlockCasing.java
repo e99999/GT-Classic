@@ -39,7 +39,7 @@ public class GTBlockCasing extends Block implements ITexturedBlock, ILocaleBlock
 		setRegistryName(this.name.toLowerCase() + "_casing");
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_casing");
 		setCreativeTab(GTMod.creativeTabGT);
-		setHardness(5.0F);
+		setHardness(3.0F);
 		setResistance(30.0F);
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);

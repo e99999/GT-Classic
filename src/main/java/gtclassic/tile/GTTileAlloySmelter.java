@@ -41,7 +41,7 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 	public static final int slotFuel = 3;
 
 	public GTTileAlloySmelter() {
-		super(4, 0, 16, 1000, 32);
+		super(4, 0, 16, 200, 32);
 		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
 	}
@@ -125,6 +125,13 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
+	}
+	
+	public static void addRecipe(String input1, int amount1, ItemStack input2, ItemStack output) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
+		inputs.add((IRecipeInput) (new RecipeInputItemStack(input2)));
+		addRecipe(inputs, new MachineOutput(null, output));
 	}
 
 	public static void addRecipe(String input1, int amount1, String input2, int amount2, ItemStack output) {

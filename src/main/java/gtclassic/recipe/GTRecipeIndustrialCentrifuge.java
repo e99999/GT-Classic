@@ -261,6 +261,13 @@ public class GTRecipeIndustrialCentrifuge {
 
 		GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Sulfur, 1), 0, euCost(200),
 				new OutputItem(new ItemStack(glassTube, 1), 0), new OutputItem(GT.getDust(M.Sulfur, 1), 1));
+		
+		/*
+		 * Recipes from the GT2 Electrolyzer
+		 */
+
+ 		GTTileIndustrialCentrifuge.addRecipe("dustSphalerite", 5, 0, euCost(5000),
+				new OutputItem(GT.getDust(M.Zinc, 2), 0), new OutputItem(GT.getDust(M.Sulfur, 1), 1));
 	}
 
 	public static void recipesCentrifuge3() {
