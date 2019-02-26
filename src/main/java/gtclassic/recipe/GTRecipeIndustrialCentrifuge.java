@@ -1,6 +1,5 @@
 package gtclassic.recipe;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
@@ -261,12 +260,12 @@ public class GTRecipeIndustrialCentrifuge {
 
 		GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Sulfur, 1), 0, euCost(200),
 				new OutputItem(new ItemStack(glassTube, 1), 0), new OutputItem(GT.getDust(M.Sulfur, 1), 1));
-		
+
 		/*
 		 * Recipes from the GT2 Electrolyzer
 		 */
 
- 		GTTileIndustrialCentrifuge.addRecipe("dustSphalerite", 5, 0, euCost(5000),
+		GTTileIndustrialCentrifuge.addRecipe("dustSphalerite", 5, 0, euCost(5000),
 				new OutputItem(GT.getDust(M.Zinc, 2), 0), new OutputItem(GT.getDust(M.Sulfur, 1), 1));
 	}
 
@@ -276,8 +275,8 @@ public class GTRecipeIndustrialCentrifuge {
 		 * purpose to new materials added by GregTech and vanilla Minecraft since GT1
 		 * and GT2.
 		 */
-		GTTileIndustrialCentrifuge.addRecipe(new ItemStack(GTBlocks.sandIron, 8), 0, euCost(15000),
-				new OutputItem(GT.getIc2(Ic2Items.ironDust, 7), 0), new OutputItem(GT.getIc2(Ic2Items.goldDust, 1), 1));
+		GTTileIndustrialCentrifuge.addRecipe(GT.getDust(M.Magnetite, 2), 0, euCost(1000),
+				new OutputItem(GT.getIc2(Ic2Items.ironDust, 1), 0));
 
 		GTTileIndustrialCentrifuge.addRecipe(new ItemStack(Items.QUARTZ, 1), 3, euCost(8000),
 				new OutputItem(GT.getChemical(M.Silicon, 1), 0), new OutputItem(GT.getChemical(M.Oxygen, 2), 1));

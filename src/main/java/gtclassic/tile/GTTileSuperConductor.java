@@ -1,66 +1,26 @@
 package gtclassic.tile;
 
-import ic2.api.energy.tile.IEnergyAcceptor;
-import ic2.api.energy.tile.IEnergyConductor;
-import ic2.api.energy.tile.IEnergyEmitter;
-import ic2.core.block.base.tile.TileEntityBlock;
-import net.minecraft.util.EnumFacing;
+import ic2.core.block.base.tile.TileEntityElectricBlock;
 
-public class GTTileSuperConductor extends TileEntityBlock implements IEnergyConductor {
+public class GTTileSuperConductor extends TileEntityElectricBlock {
 
-	double loss;
-	double energy;
-
-	public GTTileSuperConductor(double loss, double energy) {
-		this.loss = loss;
-		this.energy = energy;
-
+	public GTTileSuperConductor(int tier, int energy) {
+		super(tier, energy, energy * 2);
 	}
 
 	@Override
-	public boolean acceptsEnergyFrom(IEnergyEmitter var1, EnumFacing var2) {
-		return true;
+	public int getProcessRate() {
+		return 512;
 	}
 
 	@Override
-	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing var2) {
-		return true;
+	public double getWrenchDropRate() {
+		return 1.0D;
 	}
 
 	@Override
-	public double getConductionLoss() {
-		return this.loss;
-		// return 1.5D;
+	public void update() {
+		this.setActive(this.getStoredEU() > 0);
+		super.update();
 	}
-
-	@Override
-	public double getConductorBreakdownEnergy() {
-		return this.energy;
-		// return 32769.0D;
-	}
-
-	@Override
-	public double getInsulationBreakdownEnergy() {
-		return this.energy;
-		// return 32769.0D;
-	}
-
-	@Override
-	public double getInsulationEnergyAbsorption() {
-		return this.energy;
-		// return 32769.0D;
-	}
-
-	@Override
-	public void removeConductor() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeInsulation() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

@@ -44,7 +44,7 @@ public class GTBlocks {
 	public static final GTBlockCasing fusionCasingBlock = registerBlock(new GTBlockCasing("Fusion", 1));
 	public static final GTBlockCasing fissionCasingBlock = registerBlock(new GTBlockCasing("Fission", 2));
 	public static final GTBlockCasing crystalCasingBlock = registerBlock(new GTBlockCasing("Crystal", 3));
-	
+
 	public static final GTBlockCasing kanthalCoilBlock = registerBlock(new GTBlockCasing("Kanthal", 13));
 	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("Nichrome", 14));
 	public static final GTBlockCasing constantanCoilBlock = registerBlock(new GTBlockCasing("Constantan", 15));
@@ -54,6 +54,7 @@ public class GTBlocks {
 	public static final GTBlockOreStone rubyOre = registerBlock(new GTBlockOreStone("Ruby", 2, 2, 4.0F));
 	public static final GTBlockOreStone sapphireOre = registerBlock(new GTBlockOreStone("Sapphire", 3, 2, 4.0F));
 	public static final GTBlockOreStone bauxiteOre = registerBlock(new GTBlockOreStone("Bauxite", 4, 1, 3.0F));
+	public static final GTBlockOreSand magnetiteOre = registerBlock(new GTBlockOreSand("Magnetite", 5));
 	public static final GTBlockOreStone pyriteOre = registerBlock(new GTBlockOreStone("Pyrite", 6, 1, 2.0F));
 	public static final GTBlockOreStone cinnabarOre = registerBlock(new GTBlockOreStone("Cinnabar", 7, 2, 3.0F));
 	public static final GTBlockOreStone sphaleriteOre = registerBlock(new GTBlockOreStone("Sphalerite", 8, 1, 2.0F));
@@ -62,10 +63,7 @@ public class GTBlocks {
 	public static final GTBlockOreStone olivineOre = registerBlock(new GTBlockOreStone("Olivine", 11, 3, 3.0F));
 	public static final GTBlockOreStone sodaliteOre = registerBlock(new GTBlockOreStone("Sodalite", 12, 2, 3.0F));
 
-	public static final GTBlockOreSand sandIron = registerBlock(new GTBlockOreSand("Iron", 5));
-	
 	public static final GTBlockTileBasic bloomery = registerBlock(new GTBlockTileBasic("machine_bloomery"));
-
 	public static final GTBlockTileBasic autoCrafter = registerBlock(new GTBlockTileBasic("machine_autocrafter_lv"));
 	public static final GTBlockTileBasic chargeOMat = registerBlock(new GTBlockTileBasic("machine_chargeomat_ev"));
 	public static final GTBlockTileBasic computerCube = registerBlock(new GTBlockTileBasic("machine_computercube_ev"));
@@ -160,14 +158,15 @@ public class GTBlocks {
 	// public static final GTBlockTestLayer testBlock = registerBlock(new
 	// GTBlockTestLayer());
 
-	public static final String[] textureTileBasic = {"machine_bloomery", "machine_autocrafter_lv", "machine_chargeomat_ev",
-			"machine_computercube_ev", "machine_industrialcentrifuge_lv", "machine_alloysmelter_lv",
-			"machine_matterfabricator_ev", "machine_uumassembler_ev", "machine_playerdetector_lv",
-			"machine_fusioncomputer_iv", "machine_lightningrod_iv", "machine_quantumenergystorage_ev",
-			"machine_basicenergystorage_ev", "machine_multienergystorage_mv", "machine_digitaltransformer_iv",
-			"wire_energium_luv", "wire_lapotron_zpm", "tile_smallchest_lv", "tile_largechest_lv",
-			"tile_digitalchest_lv", "tile_bookshelf_lv", "tile_workbench_lv", "tile_smallchest_mv",
-			"tile_largechest_mv", "tile_digitalchest_mv", "tile_bookshelf_mv", "tile_workbench_mv" };
+	public static final String[] textureTileBasic = { "machine_bloomery", "machine_autocrafter_lv",
+			"machine_chargeomat_ev", "machine_computercube_ev", "machine_industrialcentrifuge_lv",
+			"machine_alloysmelter_lv", "machine_matterfabricator_ev", "machine_uumassembler_ev",
+			"machine_playerdetector_lv", "machine_fusioncomputer_iv", "machine_lightningrod_iv",
+			"machine_quantumenergystorage_ev", "machine_basicenergystorage_ev", "machine_multienergystorage_mv",
+			"machine_digitaltransformer_iv", "wire_energium_luv", "wire_lapotron_zpm", "tile_smallchest_lv",
+			"tile_largechest_lv", "tile_digitalchest_lv", "tile_bookshelf_lv", "tile_workbench_lv",
+			"tile_smallchest_mv", "tile_largechest_mv", "tile_digitalchest_mv", "tile_bookshelf_mv",
+			"tile_workbench_mv" };
 
 	public static final String[] textureTileCustom = { "block_ducttape", "block_echophone", "coolant_helium_small",
 			"coolant_helium_med", "coolant_helium_large", "rod_thorium_small", "rod_thorium_med", "rod_thorium_large",

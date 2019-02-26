@@ -1,5 +1,7 @@
 package gtclassic.util.jei;
 
+import javax.annotation.Nonnull;
+
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.gui.GTGuiMachine;
@@ -22,8 +24,6 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nonnull;
-
 @JEIPlugin
 public class GTJeiPlugin implements IModPlugin {
 
@@ -36,16 +36,11 @@ public class GTJeiPlugin implements IModPlugin {
 	public void register(@Nonnull IModRegistry registry) {
 
 		if (SubModul.load) {
-
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), new String[] { "fusion" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBenchLV), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.autoCrafter), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 
-			registry.addRecipeClickArea(GTIndustrialCentrifugeGui.class, 62, 29, 10, 10, "centrifuge");
-			registry.addRecipeClickArea(GTFusionComputerGui.class, 111, 35, 25, 17, "fusion");
-
+			// Centrifuge - to be refactored
 			registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
 				@Override
 				public IRecipeWrapper getRecipeWrapper(RecipeEntry var1) {
@@ -53,7 +48,10 @@ public class GTJeiPlugin implements IModPlugin {
 				}
 			}, "centrifuge");
 			registry.addRecipes(GTTileIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
+			registry.addRecipeClickArea(GTIndustrialCentrifugeGui.class, 62, 29, 10, 10, "centrifuge");
 
+			// Fusion - to be refactored
 			registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
 				@Override
 				public IRecipeWrapper getRecipeWrapper(RecipeEntry var1) {
@@ -61,19 +59,22 @@ public class GTJeiPlugin implements IModPlugin {
 				}
 			}, "fusion");
 			registry.addRecipes(GTTileFusionComputer.RECIPE_LIST.getRecipeMap(), "fusion");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), new String[] { "fusion" });
+			registry.addRecipeClickArea(GTFusionComputerGui.class, 111, 35, 25, 17, "fusion");
 
-
-			registry.addRecipeClickArea(GTGuiMachine.GTAlloySmelterGui.class, 62, 29, 10, 10, "alloysmelter");
-			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "alloysmelter");
+			// Alloy Smelter
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
+					"alloysmelter");
 			registry.addRecipes(GTTileAlloySmelter.RECIPE_LIST.getRecipeList(), "alloysmelter");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.alloySmelter), "alloysmelter");
+			registry.addRecipeClickArea(GTGuiMachine.GTAlloySmelterGui.class, 78, 25, 20, 16, "alloysmelter");
 		}
 	}
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
-		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "alloysmelter", GTBlocks.alloySmelter));
-
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
+				"alloysmelter", GTBlocks.alloySmelter));
 
 		registry.addRecipeCategories(new GTJeiCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new GTJeiFusionCategory(registry.getJeiHelpers().getGuiHelper()));

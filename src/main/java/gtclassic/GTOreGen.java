@@ -119,7 +119,7 @@ public class GTOreGen implements IWorldGenerator {
 			}
 
 			if (BiomeDictionary.hasType(biomegenbase, Type.RIVER) && ((GTConfig.genOverworldBlackSand))) {
-				runGenerator(GTBlocks.sandIron.getDefaultState(), 32, 4, 48, 72, BlockMatcher.forBlock(Blocks.SAND),
+				runGenerator(GTBlocks.magnetiteOre.getDefaultState(), 32, 4, 48, 72, BlockMatcher.forBlock(Blocks.SAND),
 						world, random, chunkX, chunkZ);
 			}
 

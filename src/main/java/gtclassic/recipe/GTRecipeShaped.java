@@ -64,10 +64,6 @@ public class GTRecipeShaped {
 		recipes.addRecipe(new ItemStack(GTItems.teslaStaff, 1), new Object[] { " SL", " PS", "P  ", 'L',
 				GTBlocks.smallLapotron, 'S', GTBlocks.superCasingBlock, 'P', "stickIridium" });
 
-		recipes.addRecipe(new ItemStack(GTBlocks.superCasingBlock, 4),
-				new Object[] { "CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(), 'E',
-						GTItems.circuitSapphire, 'W', "stickTungsten", 'P', "plateIridium" });
-
 		/*
 		 * recipes.addRecipe(new ItemStack(GTItems.heatStorageSingle, 1), new Object[] {
 		 * " I ", "IHI", " I ", 'I', "ingotTin", 'H', GTItems.helium });
@@ -92,13 +88,25 @@ public class GTRecipeShaped {
 		 * Recipes for blocks
 		 */
 
+		recipes.addRecipe(new ItemStack(GTBlocks.superCasingBlock, 4),
+				new Object[] { "CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(), 'E',
+						GTItems.circuitSapphire, 'W', "casingMachineTungsten", 'P', "plateIridium" });
+
 		recipes.addRecipe(new ItemStack(GTBlocks.fusionCasingBlock),
-				new Object[] { "YVC", "BSB", "RVY", 'V', "casingMachineChrome", 'C', GTItems.circuitSapphire, 'S',
-						GTBlocks.superCasingBlock, 'Y', Ic2Items.teslaCoil.copy(), 'B', "casingMachineTitanium", 'R',
-						Ic2Items.reactorReflectorIridium.copy() });
+				new Object[] { "CRC", "BSB", "CRC", 'C', GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock, 'B',
+						GTBlocks.nichromeCoilBlock, 'R', Ic2Items.reactorReflectorIridium.copy() });
 
 		recipes.addRecipe(new ItemStack(GTBlocks.crystalCasingBlock),
 				new Object[] { "BBB", "BCB", "BBB", 'B', "blockRuby", 'C', "casingMachineAluminium" });
+
+		recipes.addRecipe(new ItemStack(GTBlocks.kanthalCoilBlock),
+				new Object[] { "XXX", "XXX", "XXX", 'X', "stickKanthal" });
+
+		recipes.addRecipe(new ItemStack(GTBlocks.nichromeCoilBlock),
+				new Object[] { "XXX", "XXX", "XXX", 'X', "stickNichrome" });
+
+		recipes.addRecipe(new ItemStack(GTBlocks.constantanCoilBlock),
+				new Object[] { "XXX", "XXX", "XXX", 'X', "stickConstantan" });
 
 		recipes.addRecipe(new ItemStack(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood", 'C',
 				"cobblestone", 'I', GTValues.ingotElectric, 'R', "dustRedstone" });

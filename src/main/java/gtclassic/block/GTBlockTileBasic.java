@@ -20,7 +20,6 @@ import gtclassic.tile.GTTileLightningRod;
 import gtclassic.tile.GTTileMultiEnergyStorage;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileSmallChest;
-import gtclassic.tile.GTTileSuperConductor;
 import gtclassic.tile.GTTileWorkbench;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
@@ -107,7 +106,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		} else if (this == GTBlocks.workBenchLV || this == GTBlocks.workBenchMV) {
 			return new GTTileWorkbench();
 		} else if (this == GTBlocks.energiumWire) {
-			return new GTTileSuperConductor(1.5D, 32769.0D);
+			// return new GTTileSuperConductor(6, 32768);
+			return new TileEntityBlock();
 		} else {
 			return new TileEntityBlock();
 		}

@@ -3,7 +3,6 @@ package gtclassic.recipe;
 import gtclassic.GTBlocks;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileFusionComputer;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
@@ -35,7 +34,7 @@ public class GTRecipeProcessing {
 		GameRegistry.addSmelting(GTBlocks.galenaOre, (GT.getIngot(M.Lead, 1)), 0.1F);
 		GameRegistry.addSmelting(GT.getDust(M.Galena, 1), (GT.getIngot(M.Lead, 1)), 0.1F);
 		GameRegistry.addSmelting(GTBlocks.iridiumOre, (GT.getIc2(Ic2Items.iridiumOre, 1)), 0.1F);
-		GameRegistry.addSmelting(GTBlocks.sandIron, new ItemStack(Items.IRON_NUGGET, 3), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Magnetite, 1), new ItemStack(Items.IRON_NUGGET, 3), 0.1F);
 		GameRegistry.addSmelting(GTBlocks.pyriteOre, new ItemStack(Items.IRON_INGOT), 0.1F);
 
 		TileEntityExtractor.addRecipe("oreRuby", 1, GT.getGem(M.Ruby, 3), 0.1F);
@@ -62,29 +61,10 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustDiamond", 1, new ItemStack(Items.DIAMOND), 0.1F);
 
 		/*
-		 * Alloy Smelter Recipes
-		 */
-
-		alloyUtil("Tin", 1, "Copper", 3, GT.getIc2(Ic2Items.bronzeIngot, 4));
-		alloyUtil("Zinc", 1, "Copper", 3, GT.getIngot(M.Brass, 4));
-		alloyUtil("Iron", 2, "Nickel", 1, GT.getIngot(M.Invar, 3));
-		alloyUtil("Gold", 1, "Lead", 1, GT.getIngot(M.Electrum, 2));
-
-		/*
 		 * Just a test fusion recipe
 		 */
 		GTTileFusionComputer.addRecipe("dustTungsten", 1, 1, GT.getIc2(Ic2Items.uuMatter, 1));
 
-	}
-
-	/*
-	 * Simple utility to generate recipe variants for the Alloy Smelter
-	 */
-	public static void alloyUtil(String input1, int amount1, String input2, int amount2, ItemStack output) {
-		GTTileAlloySmelter.addRecipe("ingot" + input1, amount1, "ingot" + input2, amount2, output);
-		GTTileAlloySmelter.addRecipe("ingot" + input2, amount2, "ingot" + input1, amount1, output);
-		GTTileAlloySmelter.addRecipe("dust" + input1, amount1, "dust" + input2, amount2, output);
-		GTTileAlloySmelter.addRecipe("dust" + input2, amount2, "dust" + input1, amount1, output);
 	}
 
 	/*

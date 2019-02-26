@@ -12,13 +12,13 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class GTRecipeIterators {
+public class GTRecipeMaterials {
 
 	public static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 	static GTMaterialGen GT;
 	static GTMaterial M;
 
-	public static void recipeIterators1() {
+	public static void recipeMaterials1() {
 		/*
 		 * The statements below iterate through the material registry to create recipes
 		 * for the correct corresponding items and blocks.
@@ -123,7 +123,7 @@ public class GTRecipeIterators {
 		}
 	}
 
-	public static void recipeIterators2() {
+	public static void recipeMaterials2() {
 		/*
 		 * This is where I will store recipes that are part of the material registry but
 		 * are tied to other mods/vanilla so they cannot be created through iteration.

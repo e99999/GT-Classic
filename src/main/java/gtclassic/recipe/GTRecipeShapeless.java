@@ -69,6 +69,10 @@ public class GTRecipeShapeless {
 
 		recipes.addShapelessRecipe(new ItemStack(GTItems.glassTube, 1), new Object[] { GT.getChemical(M.Oxygen, 1) });
 
+		// Dust Recipes
+
+		recipes.addShapelessRecipe(GT.getDust(M.Constantan, 2), new Object[] { "dustCopper", "dustNickel" });
+
 	}
 
 }
