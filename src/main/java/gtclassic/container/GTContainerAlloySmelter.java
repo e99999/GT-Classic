@@ -25,7 +25,7 @@ public class GTContainerAlloySmelter extends ContainerTileComponent<GTTileAlloyS
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 107, 25)); // output
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerAlloySmelter.machineProgressBox,
-				GTContainerAlloySmelter.machineProgressPos));
+			GTContainerAlloySmelter.machineProgressPos));
 	}
 
 	@Override

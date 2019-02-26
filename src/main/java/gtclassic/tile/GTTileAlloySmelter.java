@@ -1,9 +1,5 @@
 package gtclassic.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerAlloySmelter;
 import gtclassic.gui.GTGuiMachine.GTAlloySmelterGui;
@@ -14,11 +10,7 @@ import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.ArrayFilter;
-import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.filters.CommonFilters;
-import ic2.core.inventory.filters.IFilter;
-import ic2.core.inventory.filters.MachineFilter;
+import ic2.core.inventory.filters.*;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
@@ -26,11 +18,16 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.math.Vec2i;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 
