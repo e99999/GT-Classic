@@ -9,6 +9,7 @@ import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileBasicEnergyStorage;
+import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileBookshelf;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
@@ -81,6 +82,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.computerCube) {
 			return new GTTileComputerCube();
+		} else if (this == GTBlocks.bloomery) {
+			return new GTTileBloomery();
 		} else if (this == GTBlocks.industrialCentrifuge) {
 			return new GTTileIndustrialCentrifuge();
 		} else if (this == GTBlocks.alloySmelter) {
@@ -107,9 +110,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			return new GTTileWorkbench();
 		} else if (this == GTBlocks.digitalTransformerIV) {
 			return new GTTileDigitalTransformer();
-		} else if (this == GTBlocks.energiumWire) {
+		} else if (this == GTBlocks.energiumCable) {
 			 return new GTTileSuperConductorLow();
-		} else if (this == GTBlocks.lapotronWire) {
+		} else if (this == GTBlocks.lapotronCable) {
 			 return new GTTileSuperConductorHigh();
 		} else {
 			return new TileEntityBlock();

@@ -129,6 +129,9 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.basicEnergyStorage),
 				new Object[] { "OOO", "OCO", "OOO", 'O', GTBlocks.smallLapotron, 'C', GTBlocks.computerCube });
 
+		recipes.addRecipe(GT.get(GTBlocks.alloySmelter), new Object[] { "PBP", "CFC", "PBP", 'P', "plateInvar", 'B',
+				GTBlocks.constantanCoilBlock, 'C', "circuitBasic", 'F', Ic2Items.electroFurnace.copy() });
+
 		/*
 		 * Below many recipes are disabled because they arent finished!
 		 */
@@ -161,10 +164,10 @@ public class GTRecipeShaped {
 			recipes.addRecipe(GT.get(GTBlocks.multiEnergyStorage), new Object[] { " G ", "CMC", " G ", 'C',
 					"circuitAdvanced", 'M', GTBlocks.crystalCasingBlock, 'G', Ic2Items.glassFiberCable.copy() });
 
-			recipes.addRecipe(GT.get(GTBlocks.lapotronWire, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
+			recipes.addRecipe(GT.get(GTBlocks.lapotronCable, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
 					GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock, 'H', GTBlocks.smallLapotron });
 
-			recipes.addRecipe(GT.get(GTBlocks.energiumWire, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
+			recipes.addRecipe(GT.get(GTBlocks.energiumCable, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
 					GTItems.circuitRuby, 'S', GTBlocks.superCasingBlock, 'H', GTBlocks.smallEnergium });
 
 			recipes.addRecipe(GT.get(GTBlocks.quantumEnergyStorage, 1), new Object[] { "PHP", "HEH", "PHP", 'P',

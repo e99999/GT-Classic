@@ -2,6 +2,7 @@ package gtclassic.item;
 
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileBlockCustom;
+import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileLightningRod;
@@ -134,6 +135,15 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "---Quantum Chest Information---");
 				IC2.platform.messagePlayer(player, "Display Count: " + te2.getDisplayCount());
 				IC2.platform.messagePlayer(player, "Internal Count: " + te2.getQuantumCount());
+				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+				return EnumActionResult.SUCCESS;
+			}
+			
+			if (tileEntity instanceof GTTileBloomery) {
+				GTTileBloomery bloom = (GTTileBloomery) tileEntity;
+				IC2.platform.messagePlayer(player, "---Bloomery Information---");
+				bloom.checkStructure();
+				IC2.platform.messagePlayer(player, "" + bloom.structureStatus());
 				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}

@@ -29,10 +29,4 @@ public class GTTileDigitalTransformer extends TileEntityTransformer implements I
 		return fieldID == 3;
 	}
 
-	@Override
-	public void update() {
-		this.setActive(this.getStoredEU() > 0);
-		super.update();
-	}
-
 }

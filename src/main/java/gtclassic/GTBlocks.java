@@ -18,6 +18,7 @@ import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBlockCustom;
+import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileBookshelf;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
@@ -88,8 +89,8 @@ public class GTBlocks {
 			new GTBlockTileBasic("machine_multienergystorage_mv"));
 	public static final GTBlockTileBasic digitalTransformerIV = registerBlock(
 			new GTBlockTileBasic("machine_digitaltransformer_iv"));
-	public static final GTBlockTileBasic energiumWire = registerBlock(new GTBlockTileBasic("wire_energium_luv"));
-	public static final GTBlockTileBasic lapotronWire = registerBlock(new GTBlockTileBasic("wire_lapotron_zpm"));
+	public static final GTBlockTileBasic energiumCable = registerBlock(new GTBlockTileBasic("cable_energium_luv"));
+	public static final GTBlockTileBasic lapotronCable = registerBlock(new GTBlockTileBasic("cable_lapotron_zpm"));
 	public static final GTBlockTileBasic smallChestLV = registerBlock(new GTBlockTileBasic("tile_smallchest_lv"));
 	public static final GTBlockTileBasic largeChestLV = registerBlock(new GTBlockTileBasic("tile_largechest_lv"));
 	public static final GTBlockTileBasic digitalChestLV = registerBlock(new GTBlockTileBasic("tile_digitalchest_lv"));
@@ -164,7 +165,7 @@ public class GTBlocks {
 			"machine_alloysmelter_lv", "machine_matterfabricator_ev", "machine_uumassembler_ev",
 			"machine_playerdetector_lv", "machine_fusioncomputer_iv", "machine_lightningrod_iv",
 			"machine_quantumenergystorage_ev", "machine_basicenergystorage_ev", "machine_multienergystorage_mv",
-			"machine_digitaltransformer_iv", "wire_energium_luv", "wire_lapotron_zpm", "tile_smallchest_lv",
+			"machine_digitaltransformer_iv", "cable_energium_luv", "cable_lapotron_zpm", "tile_smallchest_lv",
 			"tile_largechest_lv", "tile_digitalchest_lv", "tile_bookshelf_lv", "tile_workbench_lv",
 			"tile_smallchest_mv", "tile_largechest_mv", "tile_digitalchest_mv", "tile_bookshelf_mv",
 			"tile_workbench_mv" };
@@ -209,8 +210,13 @@ public class GTBlocks {
 
 		GameRegistry.registerTileEntity(GTTileBlockCustom.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityCustomBlock"));
+
+		GameRegistry.registerTileEntity(GTTileBloomery.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityBloomery"));
 		GameRegistry.registerTileEntity(GTTileIndustrialCentrifuge.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
+		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
 		GameRegistry.registerTileEntity(GTTileComputerCube.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityComputerCube"));
 		GameRegistry.registerTileEntity(GTTileDigitalTransformer.class,
@@ -242,7 +248,5 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductorLow"));
 		GameRegistry.registerTileEntity(GTTileSuperConductorHigh.class,
 				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductorHigh"));
-		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,
-				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
 	}
 }
