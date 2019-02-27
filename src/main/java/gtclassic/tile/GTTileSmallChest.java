@@ -21,6 +21,11 @@ public class GTTileSmallChest extends TileEntityMachine implements IHasGui {
 	public GTTileSmallChest() {
 		super(27);
 	}
+	
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return true;
+	}
 
 	@Override
 	public LocaleComp getBlockName() {

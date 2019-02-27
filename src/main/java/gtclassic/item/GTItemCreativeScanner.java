@@ -6,9 +6,11 @@ import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileLightningRod;
 import ic2.api.classic.item.IEUReader;
+import ic2.api.energy.EnergyNet;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
+import ic2.core.block.base.tile.TileEntityTransformer;
 import ic2.core.item.base.ItemBatteryBase;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
@@ -140,18 +142,30 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				TileEntityElectricBlock te4 = (TileEntityElectricBlock) tileEntity;
 				IC2.platform.messagePlayer(player, "---Electric Storage Information---");
 				IC2.platform.messagePlayer(player, "Tier: " + te4.getTier());
+				IC2.platform.messagePlayer(player, "Max Input: " + te4.getMaxEU());
 				IC2.platform.messagePlayer(player, "Output: " + te4.getOutput());
 				IC2.platform.messagePlayer(player, "Stored EU: " + te4.getStored());
 				IC2.platform.messagePlayer(player, "Max EU: " + te4.getCapacity());
 				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}
+			
+			if (tileEntity instanceof TileEntityTransformer) {
+				TileEntityTransformer te5 = (TileEntityTransformer) tileEntity;
+				IC2.platform.messagePlayer(player, "---Electric Tile Information---");
+				IC2.platform.messagePlayer(player, "Low EU: " + te5.lowOutput);
+				IC2.platform.messagePlayer(player, "Low Tier: " + EnergyNet.instance.getTierFromPower((double)te5.lowOutput));
+				IC2.platform.messagePlayer(player, "High EU: " + te5.highOutput);
+				IC2.platform.messagePlayer(player, "High Tier: " + EnergyNet.instance.getTierFromPower((double)te5.highOutput));
+				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+				return EnumActionResult.SUCCESS;
+			}
 
 			if (tileEntity instanceof GTTileBlockCustom) {
-				GTTileBlockCustom te5 = (GTTileBlockCustom) tileEntity;
+				GTTileBlockCustom te6 = (GTTileBlockCustom) tileEntity;
 				IC2.platform.messagePlayer(player, "---GT Item Block Information---");
-				IC2.platform.messagePlayer(player, "int Stored: " + te5.getData());
-				IC2.platform.messagePlayer(player, "Stack Stored: " + te5.getItem().getUnlocalizedName());
+				IC2.platform.messagePlayer(player, "int Stored: " + te6.getData());
+				IC2.platform.messagePlayer(player, "Stack Stored: " + te6.getItem().getUnlocalizedName());
 				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 				return EnumActionResult.SUCCESS;
 			}

@@ -29,7 +29,8 @@ import gtclassic.tile.GTTileLightningRod;
 import gtclassic.tile.GTTileMultiEnergyStorage;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileSmallChest;
-import gtclassic.tile.GTTileSuperConductor;
+import gtclassic.tile.GTTileSuperConductorHigh;
+import gtclassic.tile.GTTileSuperConductorLow;
 import gtclassic.tile.GTTileWorkbench;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
@@ -237,8 +238,10 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityLightningRod"));
 		GameRegistry.registerTileEntity(GTTileFusionComputer.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityFusionComputer"));
-		GameRegistry.registerTileEntity(GTTileSuperConductor.class,
-				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductor"));
+		GameRegistry.registerTileEntity(GTTileSuperConductorLow.class,
+				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductorLow"));
+		GameRegistry.registerTileEntity(GTTileSuperConductorHigh.class,
+				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductorHigh"));
 		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
 	}

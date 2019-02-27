@@ -19,6 +19,11 @@ public class GTTileComputerCube extends TileEntityMachine implements IHasGui {
 		super(1);
 		this.index = 0;
 	}
+	
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return true;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

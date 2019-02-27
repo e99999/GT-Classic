@@ -21,6 +21,11 @@ public class GTTileLargeChest extends TileEntityMachine implements IHasGui {
 	public GTTileLargeChest() {
 		super(54);
 	}
+	
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return true;
+	}
 
 	@Override
 	public LocaleComp getBlockName() {

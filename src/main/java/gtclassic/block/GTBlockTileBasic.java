@@ -20,6 +20,8 @@ import gtclassic.tile.GTTileLightningRod;
 import gtclassic.tile.GTTileMultiEnergyStorage;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileSmallChest;
+import gtclassic.tile.GTTileSuperConductorHigh;
+import gtclassic.tile.GTTileSuperConductorLow;
 import gtclassic.tile.GTTileWorkbench;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
@@ -51,7 +53,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		setRegistryName(this.name.toLowerCase());
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
-		setHardness(4.0F);
+		setBlockUnbreakable();
 		setResistance(20.0F);
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);
@@ -93,8 +95,6 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			return new GTTileQuantumEnergyStorage();
 		} else if (this == GTBlocks.multiEnergyStorage) {
 			return new GTTileMultiEnergyStorage();
-		} else if (this == GTBlocks.digitalTransformerIV) {
-			return new GTTileDigitalTransformer(32768, 65535);
 		} else if (this == GTBlocks.digitalChestLV || this == GTBlocks.digitalChestMV) {
 			return new GTTileDigitalChest();
 		} else if (this == GTBlocks.smallChestLV || this == GTBlocks.smallChestMV) {
@@ -105,9 +105,12 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			return new GTTileBookshelf();
 		} else if (this == GTBlocks.workBenchLV || this == GTBlocks.workBenchMV) {
 			return new GTTileWorkbench();
+		} else if (this == GTBlocks.digitalTransformerIV) {
+			return new GTTileDigitalTransformer();
 		} else if (this == GTBlocks.energiumWire) {
-			// return new GTTileSuperConductor(6, 32768);
-			return new TileEntityBlock();
+			 return new GTTileSuperConductorLow();
+		} else if (this == GTBlocks.lapotronWire) {
+			 return new GTTileSuperConductorHigh();
 		} else {
 			return new TileEntityBlock();
 		}
