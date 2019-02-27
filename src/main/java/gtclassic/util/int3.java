@@ -129,32 +129,6 @@ public class int3 {
         return set(x + facing.getFrontOffsetX() * n, y + facing.getFrontOffsetY() * n, z + facing.getFrontOffsetZ() * n);
     }
 
-    public int3 offset(int2 n, Dir... directions) {
-        if (facing != null && directions.length >= 2) {
-            offset(n.x, directions[0].getRotatedFacing(facing));
-            offset(n.y, directions[1].getRotatedFacing(facing));
-        }
-        return this;
-    }
-
-    public int3 offset(int3 n, Dir... directions) {
-        if (facing != null && directions.length >= 3) {
-            offset(n.x, directions[0].getRotatedFacing(facing));
-            offset(n.y, directions[1].getRotatedFacing(facing));
-            offset(n.z, directions[2].getRotatedFacing(facing));
-        }
-        return this;
-    }
-
-    public int3 offset(int3 n, EnumFacing... facings) {
-        if (facings.length >= 3) {
-            offset(n.x, facings[0]);
-            offset(n.y, facings[1]);
-            offset(n.z, facings[2]);
-        }
-        return this;
-    }
-
     public BlockPos asBlockPos() {
         return new BlockPos(x, y, z);
     }

@@ -1,7 +1,5 @@
 package gtclassic.tile;
 
-import java.util.List;
-
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionComputer;
@@ -9,6 +7,7 @@ import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
+import gtclassic.util.int3;
 import gtclassic.util.recipe.GTBasicMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -33,9 +32,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
+
+import java.util.List;
 
 public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 
@@ -222,55 +221,23 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 		if (!world.isAreaLoaded(pos, 3))
 			return false;
 
-		BlockPos working;
-
-		// Check line shapes
-		working = pos.offset(EnumFacing.NORTH, 3);
-		if (!(checkPos(working) && checkPos(working, EnumFacing.EAST, 1) && checkPos(working, EnumFacing.WEST, 1))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.SOUTH, 3);
-		if (!(checkPos(working) && checkPos(working, EnumFacing.EAST, 1) && checkPos(working, EnumFacing.WEST, 1))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.EAST, 3);
-		if (!(checkPos(working) && checkPos(working, EnumFacing.NORTH, 1) && checkPos(working, EnumFacing.SOUTH, 1))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.WEST, 3);
-		if (!(checkPos(working) && checkPos(working, EnumFacing.NORTH, 1) && checkPos(working, EnumFacing.SOUTH, 1))) {
-			return false;
-		}
-
-		// Check corner shapes
-		working = pos.offset(EnumFacing.NORTH, 2).offset(EnumFacing.EAST, 2);
-		if (!(checkPos(working) && checkPos(working, EnumFacing.WEST, 1) && checkPos(working, EnumFacing.SOUTH, 1))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.NORTH, 2).offset(EnumFacing.WEST, 2);
-		if (!(checkPos(working) && checkPos(working, EnumFacing.EAST, 1) && checkPos(working, EnumFacing.SOUTH, 1))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.SOUTH, 2).offset(EnumFacing.EAST, 2);
-		if (!(checkPos(working) && checkPos(working, EnumFacing.WEST, 1) && checkPos(working, EnumFacing.NORTH, 1))) {
-			return false;
-		}
-		working = pos.offset(EnumFacing.SOUTH, 2).offset(EnumFacing.WEST, 2);
-		if (!(checkPos(working) && checkPos(working, EnumFacing.EAST, 1) && checkPos(working, EnumFacing.NORTH, 1))) {
-			return false;
-		}
+		int3 working = new int3(getPos(), getFacing());
+		if (!(
+			checkPos(working.forward(3)) && checkPos(working.right(1)) && checkPos(working.back(1)) && checkPos(working.right(1)) &&
+			checkPos(working.back(1)) && checkPos(working.right(1)) && checkPos(working.back(1)) && checkPos(working.back(1)) &&
+			checkPos(working.left(1)) && checkPos(working.back(1)) && checkPos(working.left(1)) && checkPos(working.back(1)) &&
+			checkPos(working.left(1)) && checkPos(working.left(1)) && checkPos(working.forward(1)) && checkPos(working.left(1)) &&
+			checkPos(working.forward(1)) && checkPos(working.left(1)) && checkPos(working.forward(1)) && checkPos(working.forward(1)) &&
+			checkPos(working.right(1)) && checkPos(working.forward(1)) && checkPos(working.right(1)) && checkPos(working.forward(1))
+		)) return false;
 
 		this.status = 2;
 		updateGUI();
 		return true;
 	}
 
-	public boolean checkPos(BlockPos pos) {
-		return world.getBlockState(pos) == coilState;
-	}
-
-	public boolean checkPos(BlockPos pos, EnumFacing facing, int offset) {
-		return checkPos(pos.offset(facing, offset));
+	public boolean checkPos(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == coilState;
 	}
 
 	public int getStatus() {
