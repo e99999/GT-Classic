@@ -27,15 +27,19 @@ import gtclassic.tile.GTTileWorkbench;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -182,6 +186,19 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		} else {
 			return super.getWeakPower(blockState, blockAccess, pos, side);
 		}
+	}
+
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+		if (this == GTBlocks.bloomery
+				&& StackUtil.isStackEqual(playerIn.getHeldItemMainhand(), new ItemStack(Items.FLINT_AND_STEEL))) {
+			TileEntity te = worldIn.getTileEntity(pos);
+			if (te instanceof GTTileBloomery) {
+				return ((GTTileBloomery) te).canWork();
+			}
+		}
+		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 
 	@Override
