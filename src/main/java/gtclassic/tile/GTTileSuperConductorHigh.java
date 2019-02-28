@@ -27,10 +27,10 @@ public class GTTileSuperConductorHigh extends TileEntityTransformer {
 	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing side) {
 		return this.getFacing() != side;
 	}
-	
+
 	@Override
 	public void handleRedstone() {
-		//removing this from the base class
+		// removing this from the base class
 	}
 
 	// @Override

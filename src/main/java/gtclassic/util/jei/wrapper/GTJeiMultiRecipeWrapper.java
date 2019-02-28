@@ -32,9 +32,8 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		// TODO draw EU etc
 	}
-	
-	public MultiRecipe getMultiRecipe()
-	{
+
+	public MultiRecipe getMultiRecipe() {
 		return multiRecipe;
 	}
 }

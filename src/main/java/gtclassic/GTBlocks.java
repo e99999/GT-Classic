@@ -211,8 +211,7 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileBlockCustom.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityCustomBlock"));
 
-		GameRegistry.registerTileEntity(GTTileBloomery.class,
-				new ResourceLocation(GTMod.MODID, "tileEntityBloomery"));
+		GameRegistry.registerTileEntity(GTTileBloomery.class, new ResourceLocation(GTMod.MODID, "tileEntityBloomery"));
 		GameRegistry.registerTileEntity(GTTileIndustrialCentrifuge.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
 		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,

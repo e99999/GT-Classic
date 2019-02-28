@@ -111,9 +111,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		} else if (this == GTBlocks.digitalTransformerIV) {
 			return new GTTileDigitalTransformer();
 		} else if (this == GTBlocks.energiumCable) {
-			 return new GTTileSuperConductorLow();
+			return new GTTileSuperConductorLow();
 		} else if (this == GTBlocks.lapotronCable) {
-			 return new GTTileSuperConductorHigh();
+			return new GTTileSuperConductorHigh();
 		} else {
 			return new TileEntityBlock();
 		}

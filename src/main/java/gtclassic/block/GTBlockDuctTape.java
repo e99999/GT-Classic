@@ -40,7 +40,6 @@ public class GTBlockDuctTape extends GTBlockTileCustom implements GTItemBlockInt
 			TileEntity tile = worldIn.getTileEntity(pos);
 			if (tile instanceof GTTileBlockCustom) {
 				this.damage = (stack.getMaxDamage() - stack.getItemDamage());
-				((GTTileBlockCustom) tile).setData(this.damage);
 				((GTTileBlockCustom) tile).setItem(stack);
 			}
 		}

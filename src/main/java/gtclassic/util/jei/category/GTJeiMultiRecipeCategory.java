@@ -71,8 +71,7 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 			itemGroup.set(actualIndex, list.getInputs());
 			index++;
 			actualIndex++;
-			if(index >= 6)
-			{
+			if (index >= 6) {
 				break;
 			}
 		}
@@ -84,8 +83,7 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 			itemGroup.set(actualIndex, stack);
 			index++;
 			actualIndex++;
-			if(index >= 6)
-			{
+			if (index >= 6) {
 				break;
 			}
 		}

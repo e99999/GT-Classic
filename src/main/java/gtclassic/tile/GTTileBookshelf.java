@@ -28,7 +28,7 @@ public class GTTileBookshelf extends TileEntityMachine implements IHasGui {
 	public GTTileBookshelf() {
 		super(8);
 	}
-	
+
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;

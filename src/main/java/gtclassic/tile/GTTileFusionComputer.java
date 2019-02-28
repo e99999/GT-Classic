@@ -1,5 +1,7 @@
 package gtclassic.tile;
 
+import java.util.List;
+
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionComputer;
@@ -34,8 +36,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.List;
-
 public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 
 	public static final int slotInput = 0;
@@ -53,7 +53,7 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 	public static final IMachineRecipeList RECIPE_LIST = new GTBasicMachineRecipeList("fusion");
 
 	public GTTileFusionComputer() {
-		super(5, 8192, 10000, 8192);
+		super(3, 8192, 10000, 8192);
 		this.status = 0;
 		this.addGuiFields(new String[] { "status" });
 	}
@@ -222,14 +222,15 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 			return false;
 
 		int3 working = new int3(getPos(), getFacing());
-		if (!(
-			checkPos(working.forward(3)) && checkPos(working.right(1)) && checkPos(working.back(1)) && checkPos(working.right(1)) &&
-			checkPos(working.back(1)) && checkPos(working.right(1)) && checkPos(working.back(1)) && checkPos(working.back(1)) &&
-			checkPos(working.left(1)) && checkPos(working.back(1)) && checkPos(working.left(1)) && checkPos(working.back(1)) &&
-			checkPos(working.left(1)) && checkPos(working.left(1)) && checkPos(working.forward(1)) && checkPos(working.left(1)) &&
-			checkPos(working.forward(1)) && checkPos(working.left(1)) && checkPos(working.forward(1)) && checkPos(working.forward(1)) &&
-			checkPos(working.right(1)) && checkPos(working.forward(1)) && checkPos(working.right(1)) && checkPos(working.forward(1))
-		)) return false;
+		if (!(checkPos(working.forward(3)) && checkPos(working.right(1)) && checkPos(working.back(1))
+				&& checkPos(working.right(1)) && checkPos(working.back(1)) && checkPos(working.right(1))
+				&& checkPos(working.back(1)) && checkPos(working.back(1)) && checkPos(working.left(1))
+				&& checkPos(working.back(1)) && checkPos(working.left(1)) && checkPos(working.back(1))
+				&& checkPos(working.left(1)) && checkPos(working.left(1)) && checkPos(working.forward(1))
+				&& checkPos(working.left(1)) && checkPos(working.forward(1)) && checkPos(working.left(1))
+				&& checkPos(working.forward(1)) && checkPos(working.forward(1)) && checkPos(working.right(1))
+				&& checkPos(working.forward(1)) && checkPos(working.right(1)) && checkPos(working.forward(1))))
+			return false;
 
 		this.status = 2;
 		updateGUI();

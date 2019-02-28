@@ -9,8 +9,7 @@ import ic2.core.block.base.tile.TileEntityTransformer;
 public class GTTileDigitalTransformer extends TileEntityTransformer implements IBitLevelOverride {
 
 	public GTTileDigitalTransformer() {
-		super((int) EnergyNet.instance.getPowerFromTier(6), 
-				(int) EnergyNet.instance.getPowerFromTier(7),
+		super((int) EnergyNet.instance.getPowerFromTier(6), (int) EnergyNet.instance.getPowerFromTier(7),
 				(int) EnergyNet.instance.getPowerFromTier(8));
 	}
 

@@ -10,16 +10,34 @@ import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
+import gtclassic.tile.GTTileBlockCustom;
+import gtclassic.tile.GTTileBloomery;
+import gtclassic.tile.GTTileDigitalChest;
+import gtclassic.tile.GTTileFusionComputer;
+import gtclassic.tile.GTTileLightningRod;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTValues;
+import ic2.api.energy.EnergyNet;
+import ic2.core.IC2;
+import ic2.core.block.base.tile.TileEntityElectricBlock;
+import ic2.core.block.base.tile.TileEntityTransformer;
+import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -100,5 +118,90 @@ public class GTMod {
 				registry.registerBlockColorHandler(colors, block);
 			}
 		}
+	}
+
+	/*
+	 * The logic for both the creative and survival scanners, dont know if this is
+	 * the best place but since its helped me construct this entire mod I felt it
+	 * earned a place in the main class : )
+	 */
+
+	public static EnumActionResult scanBlock(EntityPlayer player, World world, BlockPos pos, EnumFacing side,
+			float hitX, float hitY, float hitZ, EnumHand hand) {
+
+		TileEntity tileEntity = world.getTileEntity(pos);
+		IBlockState state = world.getBlockState(pos);
+
+		if (player.isSneaking() || !IC2.platform.isSimulating()) {
+			return EnumActionResult.PASS;
+		} else {
+			IC2.platform.messagePlayer(player, "--- " + state.getBlock().getLocalizedName() + " ---");
+			IC2.platform.messagePlayer(player, "State: " + state.toString());
+			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+
+			if (tileEntity instanceof GTTileLightningRod) {
+				GTTileLightningRod rod = (GTTileLightningRod) tileEntity;
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + rod.checkStructure());
+				IC2.platform.messagePlayer(player,
+						"Casing Block Amount: " + (rod.casingheight - (rod.getPos().getY() + 1)));
+				IC2.platform.messagePlayer(player, "Casing Block Level: " + rod.casingheight);
+				IC2.platform.messagePlayer(player, "Weather Height: " + world.getPrecipitationHeight(pos).getY());
+				IC2.platform.messagePlayer(player, "Block Up Level: " + (rod.getPos().getY() + 1));
+				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.thunderingStrength) * 100) + "%");
+				IC2.platform.messagePlayer(player,
+						"1 out of " + rod.chance + " chance to strike based on fence height");
+			}
+
+			if (tileEntity instanceof GTTileFusionComputer) {
+				GTTileFusionComputer fusion = (GTTileFusionComputer) tileEntity;
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + fusion.checkStructure());
+				IC2.platform.messagePlayer(player, "Active: " + fusion.getActive());
+				IC2.platform.messagePlayer(player, "Progress: " + ((int) (fusion.getProgress() / 100)) + "%");
+				IC2.platform.messagePlayer(player, "Stored EU: " + fusion.getStoredEU());
+			}
+
+			if (tileEntity instanceof GTTileDigitalChest) {
+				GTTileDigitalChest chest = (GTTileDigitalChest) tileEntity;
+				IC2.platform.messagePlayer(player, "Display Count: " + chest.getDisplayCount());
+				IC2.platform.messagePlayer(player, "Internal Count: " + chest.getQuantumCount());
+			}
+
+			if (tileEntity instanceof GTTileBloomery) {
+				GTTileBloomery bloom = (GTTileBloomery) tileEntity;
+				bloom.checkStructure();
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.getStatus());
+				bloom.checkRecipeBoundingBox();
+				IC2.platform.messagePlayer(player, "Recipe Area: " + bloom.getRecipeArea().toString());
+				IC2.platform.messagePlayer(player, "Recipe: " + bloom.getRecipe());
+			}
+
+			if (tileEntity instanceof TileEntityElectricBlock) {
+				TileEntityElectricBlock eu = (TileEntityElectricBlock) tileEntity;
+				IC2.platform.messagePlayer(player, "Tier: " + eu.getTier());
+				IC2.platform.messagePlayer(player, "Max Input: " + eu.getMaxEU());
+				IC2.platform.messagePlayer(player, "Output: " + eu.getOutput());
+				IC2.platform.messagePlayer(player, "Stored EU: " + eu.getStored());
+				IC2.platform.messagePlayer(player, "Max EU: " + eu.getCapacity());
+			}
+
+			if (tileEntity instanceof TileEntityTransformer) {
+				TileEntityTransformer transformer = (TileEntityTransformer) tileEntity;
+				IC2.platform.messagePlayer(player, "Low EU: " + transformer.lowOutput);
+				IC2.platform.messagePlayer(player,
+						"Low Tier: " + EnergyNet.instance.getTierFromPower((double) transformer.lowOutput));
+				IC2.platform.messagePlayer(player, "High EU: " + transformer.highOutput);
+				IC2.platform.messagePlayer(player,
+						"High Tier: " + EnergyNet.instance.getTierFromPower((double) transformer.highOutput));
+			}
+
+			if (tileEntity instanceof GTTileBlockCustom) {
+				GTTileBlockCustom blockcustom = (GTTileBlockCustom) tileEntity;
+				IC2.platform.messagePlayer(player, "Stack Stored: " + blockcustom.getItem().getUnlocalizedName());
+			}
+
+			return EnumActionResult.SUCCESS;
+
+		}
+
 	}
 }

@@ -19,7 +19,7 @@ public class GTTileWorkbench extends TileEntityMachine implements IHasGui {
 	public GTTileWorkbench() {
 		super(26);
 	}
-	
+
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
