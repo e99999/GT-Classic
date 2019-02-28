@@ -14,13 +14,13 @@ import net.minecraft.util.math.AxisAlignedBB;
 
 public class GTTileBloomery extends TileEntityMachine {
 
-	IBlockState brick = Blocks.BRICK_BLOCK.getDefaultState();
-	IBlockState door = Blocks.IRON_TRAPDOOR.getDefaultState();
-
-	AxisAlignedBB recipeBB = new AxisAlignedBB(pos).offset(0.0D, 0.0D, 1.0D);
-
 	String status = "null";
 	String recipe = "null";
+	
+	IBlockState brick = Blocks.BRICK_BLOCK.getDefaultState();
+	IBlockState door = Blocks.IRON_TRAPDOOR.getDefaultState();
+	
+	AxisAlignedBB recipeBB = null;
 
 	public GTTileBloomery() {
 		super(0);
@@ -32,6 +32,7 @@ public class GTTileBloomery extends TileEntityMachine {
 	}
 
 	public boolean checkRecipeBoundingBox() {
+		recipeBB = new AxisAlignedBB(new int3(pos, getFacing()).back(1).asBlockPos());
 		List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, recipeBB);
 		for (EntityItem item : items) {
 			if (item.getItem() == new ItemStack(Items.IRON_INGOT)) {
@@ -39,11 +40,13 @@ public class GTTileBloomery extends TileEntityMachine {
 				return true;
 			}
 		}
+
 		if (items.isEmpty()) {
 			recipe = "Recipe is finding nothing at all";
 			return false;
+		
 		} else {
-			recipe = "Recipe Invalid";
+			recipe = items.toString();
 			return false;
 		}
 	}
@@ -71,10 +74,10 @@ public class GTTileBloomery extends TileEntityMachine {
 				&& isBrick(dir.up(1)) && isBrick(dir.back(2)) && isBrick(dir.down(1)))) {
 
 			this.setActive(false);
-			status = "Structure is not correct";
+			status = "false";
 			return false;
 		}
-		status = "Structure correct!";
+		status = "true";
 		this.setActive(true);
 		return true;
 	}
@@ -97,10 +100,6 @@ public class GTTileBloomery extends TileEntityMachine {
 
 	public String getRecipe() {
 		return this.recipe;
-	}
-
-	public String getRecipeArea() {
-		return this.recipeBB.toString();
 	}
 
 }

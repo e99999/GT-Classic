@@ -27,8 +27,8 @@ public class GTRecipeAlloySmelter {
 		alloyUtil("Copper", 1, "Nickel", 1, GT.getIngot(M.Constantan, 2));
 
 		// These recipes break because of ore dict
-		GTTileAlloySmelter.addRecipe("sand", 5, GT.get(GTItems.moldTube, 32), GT.get(GTItems.glassTube, 32));
-		GTTileAlloySmelter.addRecipe("blockGlass", 5, GT.get(GTItems.moldTube, 32), GT.get(GTItems.glassTube, 32));
+		GTTileAlloySmelter.addRecipe("sand", 5, GT.get(GTItems.moldTube), GT.get(GTItems.glassTube, 32));
+		GTTileAlloySmelter.addRecipe("blockGlass", 5, GT.get(GTItems.moldTube), GT.get(GTItems.glassTube, 32));
 
 	}
 

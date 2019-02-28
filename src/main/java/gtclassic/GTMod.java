@@ -171,7 +171,6 @@ public class GTMod {
 				bloom.checkStructure();
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.getStatus());
 				bloom.checkRecipeBoundingBox();
-				IC2.platform.messagePlayer(player, "Recipe Area: " + bloom.getRecipeArea().toString());
 				IC2.platform.messagePlayer(player, "Recipe: " + bloom.getRecipe());
 			}
 

@@ -41,8 +41,9 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 	public static final int slotInput = 0;
 	public static final int slotCell = 1;
 	public static final int slotOutput = 2;
-
-	public int status;
+	
+	boolean lastState;
+	boolean firstCheck = true;
 
 	public static final IBlockState coilState = GTBlocks.fusionCasingBlock.getDefaultState();
 
@@ -54,8 +55,6 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 
 	public GTTileFusionComputer() {
 		super(3, 8192, 10000, 8192);
-		this.status = 0;
-		this.addGuiFields(new String[] { "status" });
 	}
 
 	@Override
@@ -88,23 +87,6 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-		this.status = nbt.getInteger("status");
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-		nbt.setInteger("status", this.status);
-		return nbt;
-	}
-
-	public void updateGUI() {
-		this.getNetwork().updateTileGuiField(this, "status");
-	}
-
-	@Override
 	public ResourceLocation getGuiTexture() {
 		return GUI_LOCATION;
 	}
@@ -118,9 +100,6 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
 		return GTFusionComputerGui.class;
 	}
-
-	boolean lastState;
-	boolean firstCheck = true;
 
 	@Override
 	public boolean canWork() {
@@ -216,8 +195,6 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 
 	public boolean checkStructure() {
 
-		this.status = 1;
-		updateGUI();
 		if (!world.isAreaLoaded(pos, 3))
 			return false;
 
@@ -229,20 +206,14 @@ public class GTTileFusionComputer extends TileEntityBasicElectricMachine {
 				&& checkPos(working.left(1)) && checkPos(working.left(1)) && checkPos(working.forward(1))
 				&& checkPos(working.left(1)) && checkPos(working.forward(1)) && checkPos(working.left(1))
 				&& checkPos(working.forward(1)) && checkPos(working.forward(1)) && checkPos(working.right(1))
-				&& checkPos(working.forward(1)) && checkPos(working.right(1)) && checkPos(working.forward(1))))
+				&& checkPos(working.forward(1)) && checkPos(working.right(1)) && checkPos(working.forward(1)))) {
 			return false;
-
-		this.status = 2;
-		updateGUI();
+		}
 		return true;
 	}
 
 	public boolean checkPos(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == coilState;
-	}
-
-	public int getStatus() {
-		return this.status;
 	}
 
 	@Override

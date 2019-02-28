@@ -1,12 +1,10 @@
 package gtclassic.container;
 
-import gtclassic.gui.GTGuiCompFusion;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileFusionComputer;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotOutput;
@@ -15,8 +13,6 @@ import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerFusionComputer extends ContainerTileComponent<GTTileFusionComputer> {
 
@@ -33,14 +29,6 @@ public class GTContainerFusionComputer extends ContainerTileComponent<GTTileFusi
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerFusionComputer.machineProgressBox,
 				GTContainerFusionComputer.machineProgressPos));
-
-		this.addComponent(new GTGuiCompFusion(tile));
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void onGuiLoaded(GuiIC2 gui) {
-		gui.dissableInvName();
 	}
 
 	@Override
