@@ -63,7 +63,8 @@ public class GTRecipeProcessing {
 		/*
 		 * Just a test fusion recipe
 		 */
-		GTTileFusionComputer.addRecipe("dustTungsten", 1, 1, GT.getIc2(Ic2Items.uuMatter, 1));
+		GTTileFusionComputer.addRecipe("dustTungsten",1, GT.getChemical(M.Lithium, 1), GT.getIc2(Ic2Items.iridiumOre, 1));
+		GTTileFusionComputer.addRecipe("dustTungsten",1, GT.getChemical(M.Berilium, 1), GT.getDust(M.Platinum, 1));
 
 	}
 

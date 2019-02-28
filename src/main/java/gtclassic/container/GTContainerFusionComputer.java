@@ -21,10 +21,9 @@ public class GTContainerFusionComputer extends ContainerTileComponent<GTTileFusi
 
 	public GTContainerFusionComputer(InventoryPlayer player, GTTileFusionComputer tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 26, null));// main slot
-		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 44,
-				new BasicItemFilter(GTMaterialGen.getChemical(GTMaterial.Dueterium, 1))));// second slot
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35)); // output
+		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 26, null));
+		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 44, null));
+		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35));
 
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerFusionComputer.machineProgressBox,
