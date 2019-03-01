@@ -3,13 +3,13 @@ package gtclassic.recipe;
 import gtclassic.GTBlocks;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileFusionComputer;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.platform.registry.Ic2Items;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -65,14 +65,18 @@ public class GTRecipeProcessing {
 		/*
 		 * Just a test fusion recipe
 		 */
-		GTTileFusionComputer.addRecipe("dustTungsten",1, GT.getChemical(M.Lithium, 1), GT.getIc2(Ic2Items.iridiumOre, 1));
-		GTTileFusionComputer.addRecipe("dustTungsten",1, GT.getChemical(M.Berilium, 1), GT.getDust(M.Platinum, 1));
-		
+		GTTileFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Lithium, 1),
+				GT.getIc2(Ic2Items.iridiumOre, 1));
+		GTTileFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Berilium, 1), GT.getDust(M.Platinum, 1));
+
 		/*
-		 * Ass Line test recipes
+		 * Test recipes for new machines
 		 */
-		
-		GTTileAssemblyLine.addRecipe(GT.get(Blocks.DIRT), GT.get(Blocks.DIRT), GT.get(Items.DIAMOND), GT.get(Items.EMERALD));
+
+		GTTileAssemblyLine.addRecipe("plateTungsten", 1, GT.get(GTBlocks.smallLapotron, 8),
+				GT.get(GTBlocks.medLapotron, 1));
+
+		GTTileArcFurnace.addRecipe("ingotIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
 
 	}
 

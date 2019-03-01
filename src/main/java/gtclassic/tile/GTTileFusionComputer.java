@@ -30,12 +30,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileFusionComputer extends GTTileBaseMultiInputMachine  {
+public class GTTileFusionComputer extends GTTileBaseMultiInputMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
 	public static final int slotOutput = 2;
-	
+
 	boolean lastState;
 	boolean firstCheck = true;
 
@@ -46,7 +46,7 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine  {
 			"textures/gui/fusioncomputer.png");
 
 	public GTTileFusionComputer() {
-		super(3,0, 8192, 10000, 8192);
+		super(3, 0, 8192, 10000, 8192);
 		maxEnergy = 10000;
 	}
 
@@ -61,12 +61,12 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine  {
 		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1);
 		handler.registerSlotType(SlotType.Output, slotOutput);
 	}
-	
+
 	@Override
 	public LocaleComp getBlockName() {
 		return GTValues.fusion;
 	}
-	
+
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
 		// TODO Auto-generated method stub
@@ -77,12 +77,12 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine  {
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
 		return new GTContainerFusionComputer(player.inventory, this);
 	}
-	
+
 	@Override
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
 		return GTFusionComputerGui.class;
 	}
-	
+
 	@Override
 	public int[] getInputSlots() {
 		int[] input = { slotInput0, slotInput1 };
@@ -97,7 +97,7 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine  {
 
 	@Override
 	public boolean isRecipeSlot(int slot) {
-			return true;
+		return true;
 	}
 
 	@Override
@@ -114,12 +114,11 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine  {
 	public ResourceLocation getGuiTexture() {
 		return GUI_LOCATION;
 	}
-	
+
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
 	}
-
 
 	@Override
 	public boolean canWork() {
@@ -140,7 +139,7 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine  {
 		inputs.add((IRecipeInput) (new RecipeInputItemStack(input2)));
 		addRecipe(inputs, new MachineOutput(null, output));
 	}
-	
+
 	public static void addRecipe(ItemStack input1, String input2, int amount2, ItemStack output) {
 		List<IRecipeInput> inputs = new ArrayList<>();
 		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));

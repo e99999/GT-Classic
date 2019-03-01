@@ -16,6 +16,7 @@ import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileAlloySmelter;
+import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBlockCustom;
@@ -164,15 +165,15 @@ public class GTBlocks {
 	// public static final GTBlockTestLayer testBlock = registerBlock(new
 	// GTBlockTestLayer());
 
-	public static final String[] textureTileBasic = { "machine_bloomery", "machine_assemblyline_lv","machine_arcfurnace_hv",
-			"machine_chargeomat_ev", "machine_computercube_ev", "machine_industrialcentrifuge_lv",
-			"machine_alloysmelter_lv", "machine_matterfabricator_ev", "machine_uumassembler_ev",
-			"machine_playerdetector_lv", "machine_fusioncomputer_iv", "machine_lightningrod_iv",
-			"machine_quantumenergystorage_ev", "machine_basicenergystorage_ev", "machine_multienergystorage_mv",
-			"machine_digitaltransformer_iv", "cable_energium_luv", "cable_lapotron_zpm", "tile_smallchest_lv",
-			"tile_largechest_lv", "tile_digitalchest_lv", "tile_bookshelf_lv", "tile_workbench_lv",
-			"tile_smallchest_mv", "tile_largechest_mv", "tile_digitalchest_mv", "tile_bookshelf_mv",
-			"tile_workbench_mv" };
+	public static final String[] textureTileBasic = { "machine_bloomery", "machine_assemblyline_lv",
+			"machine_arcfurnace_hv", "machine_chargeomat_ev", "machine_computercube_ev",
+			"machine_industrialcentrifuge_lv", "machine_alloysmelter_lv", "machine_matterfabricator_ev",
+			"machine_uumassembler_ev", "machine_playerdetector_lv", "machine_fusioncomputer_iv",
+			"machine_lightningrod_iv", "machine_quantumenergystorage_ev", "machine_basicenergystorage_ev",
+			"machine_multienergystorage_mv", "machine_digitaltransformer_iv", "cable_energium_luv",
+			"cable_lapotron_zpm", "tile_smallchest_lv", "tile_largechest_lv", "tile_digitalchest_lv",
+			"tile_bookshelf_lv", "tile_workbench_lv", "tile_smallchest_mv", "tile_largechest_mv",
+			"tile_digitalchest_mv", "tile_bookshelf_mv", "tile_workbench_mv" };
 
 	public static final String[] textureTileCustom = { "block_ducttape", "block_echophone", "coolant_helium_small",
 			"coolant_helium_med", "coolant_helium_large", "rod_thorium_small", "rod_thorium_med", "rod_thorium_large",
@@ -222,6 +223,8 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
 		GameRegistry.registerTileEntity(GTTileAssemblyLine.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityAssemblyArray"));
+		GameRegistry.registerTileEntity(GTTileArcFurnace.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityArcFurnace"));
 		GameRegistry.registerTileEntity(GTTileComputerCube.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityComputerCube"));
 		GameRegistry.registerTileEntity(GTTileDigitalTransformer.class,

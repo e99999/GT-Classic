@@ -8,6 +8,7 @@ import gtclassic.gui.GTGuiMachine;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import gtclassic.tile.GTTileAlloySmelter;
+import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
@@ -70,6 +71,13 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipes(GTTileAssemblyLine.RECIPE_LIST.getRecipeList(), "assemblyline");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.assLine), "assemblyline");
 			registry.addRecipeClickArea(GTGuiMachine.GTAssemblyLineGui.class, 78, 25, 20, 16, "assemblyline");
+
+			// Arc Furnace
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
+					"arcfurnace");
+			registry.addRecipes(GTTileArcFurnace.RECIPE_LIST.getRecipeList(), "arcfurnace");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.arcFurnace), "arcfurnace");
+			registry.addRecipeClickArea(GTGuiMachine.GTArcFurnaceGui.class, 58, 28, 20, 11, "arcfurnace");
 		}
 	}
 
@@ -79,11 +87,14 @@ public class GTJeiPlugin implements IModPlugin {
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "fusion",
 				GTBlocks.fusionComputer));
-		
+
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
 				"alloysmelter", GTBlocks.alloySmelter));
-		
+
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
 				"assemblyline", GTBlocks.assLine));
+
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "arcfurnace",
+				GTBlocks.arcFurnace));
 	}
 }

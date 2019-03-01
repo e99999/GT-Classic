@@ -158,7 +158,7 @@ public class GTMod {
 				IC2.platform.messagePlayer(player, "Progress: " + ((int) (fusion.getProgress() / 100)) + "%");
 				IC2.platform.messagePlayer(player, "Stored EU: " + fusion.getStoredEU());
 			}
-			
+
 			if (tileEntity instanceof GTTileAssemblyLine) {
 				GTTileAssemblyLine ass = (GTTileAssemblyLine) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + ass.checkStructure());

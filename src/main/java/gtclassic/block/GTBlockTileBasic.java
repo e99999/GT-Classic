@@ -8,6 +8,7 @@ import java.util.Random;
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileAlloySmelter;
+import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBloomery;
@@ -95,6 +96,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			return new GTTileAlloySmelter();
 		} else if (this == GTBlocks.assLine) {
 			return new GTTileAssemblyLine();
+		} else if (this == GTBlocks.arcFurnace) {
+			return new GTTileArcFurnace();
 		} else if (this == GTBlocks.lightningRod) {
 			return new GTTileLightningRod();
 		} else if (this == GTBlocks.fusionComputer) {

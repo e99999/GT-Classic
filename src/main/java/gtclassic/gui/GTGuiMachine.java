@@ -21,9 +21,15 @@ public class GTGuiMachine {
 			super(container);
 		}
 	}
-	
-	public static class GTAssemblyLineGui extends MachineGui{
+
+	public static class GTAssemblyLineGui extends MachineGui {
 		public GTAssemblyLineGui(ContainerComponent container) {
+			super(container);
+		}
+	}
+
+	public static class GTArcFurnaceGui extends MachineGui {
+		public GTArcFurnaceGui(ContainerComponent container) {
 			super(container);
 		}
 	}

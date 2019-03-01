@@ -4,7 +4,6 @@ import gtclassic.tile.GTTileAssemblyLine;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
-import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;

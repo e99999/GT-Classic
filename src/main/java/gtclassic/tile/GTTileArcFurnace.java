@@ -6,8 +6,8 @@ import java.util.Set;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.container.GTContainerAssemblyLine;
-import gtclassic.gui.GTGuiMachine.GTAssemblyLineGui;
+import gtclassic.container.GTContainerArcFurnace;
+import gtclassic.gui.GTGuiMachine.GTArcFurnaceGui;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
@@ -25,49 +25,47 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
-import ic2.core.platform.registry.Ic2States;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
+public class GTTileArcFurnace extends GTTileBaseMultiInputMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
-	public static final int slotOutput0 = 2;
-	public static final int slotOutput1 = 3;
+	public static final int slotInput2 = 2;
+	public static final int slotOutput0 = 3;
+	public static final int slotOutput1 = 4;
+	public static final int slotOutput2 = 5;
 
 	boolean lastState;
 	boolean firstCheck = true;
 
-	public static final IBlockState casingGrate = GTBlocks.grateCasingBlock.getDefaultState();
-	public static final IBlockState casingMachineSteel = GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING)
+	public static final IBlockState casingHeat = GTBlocks.heatCasingBlock.getDefaultState();
+	public static final IBlockState casingMachine = GTMaterialGen.getBlock(GTMaterial.Iron, GTMaterialFlag.CASING)
 			.getDefaultState();
-	public static final IBlockState casingMachineAl = GTMaterialGen
-			.getBlock(GTMaterial.Aluminium, GTMaterialFlag.CASING).getDefaultState();
-	public static final IBlockState glass = Ic2States.reinforcedGlass;
 
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("assemblyline");
+	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("arcfurnace");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
-			"textures/gui/assemblyline.png");
+			"textures/gui/arcfurnace.png");
 
-	public GTTileAssemblyLine() {
-		super(4, 0, 120, 500, 512);
+	public GTTileArcFurnace() {
+		super(6, 0, 120, 500, 512);
 		maxEnergy = 10000;
 	}
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput0, slotInput1);
-		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput0, slotOutput1);
+		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput0, slotInput1, slotInput2);
+		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput0, slotOutput1, slotOutput2);
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput0, slotOutput1);
-		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1);
-		handler.registerSlotType(SlotType.Output, slotOutput0, slotOutput1);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1, slotInput2);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput0, slotOutput1, slotOutput2);
+		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1, slotInput2);
+		handler.registerSlotType(SlotType.Output, slotOutput0, slotOutput1, slotOutput2);
 	}
 
 	// @Override
@@ -83,17 +81,17 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerAssemblyLine(player.inventory, this);
+		return new GTContainerArcFurnace(player.inventory, this);
 	}
 
 	@Override
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
-		return GTAssemblyLineGui.class;
+		return GTArcFurnaceGui.class;
 	}
 
 	@Override
 	public int[] getInputSlots() {
-		int[] input = { slotInput0, slotInput1 };
+		int[] input = { slotInput0, slotInput1, slotInput2 };
 		return input;
 	}
 
@@ -110,7 +108,7 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public int[] getOutputSlots() {
-		int[] output = { slotOutput0, slotOutput1 };
+		int[] output = { slotOutput0, slotOutput1, slotOutput2 };
 		return output;
 	}
 
@@ -141,36 +139,36 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 		return superCall;
 	}
 
-	public static void addRecipe(ItemStack input0, String string, ItemStack output0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void addRecipe(String input0, int amount0, ItemStack input1, ItemStack output0) {
+	public static void addRecipe(String input0, int amount0, String input1, int amount1, ItemStack output0) {
 		List<IRecipeInput> inputs = new ArrayList<>();
 		List<ItemStack> outputs = new ArrayList<>();
 		inputs.add((IRecipeInput) (new RecipeInputOreDict(input0, amount0)));
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));
-		outputs.add(output0);
-		addRecipe(inputs, new MachineOutput(null, outputs));
-	}
-
-	public static void addRecipe(ItemStack input0, String input1, int amount1, ItemStack output0) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		List<ItemStack> outputs = new ArrayList<>();
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(input0)));
 		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
 		outputs.add(output0);
 		addRecipe(inputs, new MachineOutput(null, outputs));
 	}
 
-	public static void addRecipe(ItemStack input0, ItemStack input1, ItemStack output0, ItemStack output1) {
+	public static void addRecipe(String input0, int amount0, String input1, int amount1, ItemStack output0,
+			ItemStack output1) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		List<ItemStack> outputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input0, amount0)));
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
+		outputs.add(output0);
+		outputs.add(output1);
+		addRecipe(inputs, new MachineOutput(null, outputs));
+	}
+
+	public static void addRecipe(ItemStack input0, ItemStack input1, ItemStack input2, ItemStack output0,
+			ItemStack output1, ItemStack output2) {
 		List<IRecipeInput> inputs = new ArrayList<>();
 		List<ItemStack> outputs = new ArrayList<>();
 		inputs.add((IRecipeInput) (new RecipeInputItemStack(input0)));
 		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));
+		inputs.add((IRecipeInput) (new RecipeInputItemStack(input2)));
 		outputs.add(output0);
 		outputs.add(output1);
+		outputs.add(output2);
 		addRecipe(inputs, new MachineOutput(null, outputs));
 	}
 
@@ -179,57 +177,49 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 	}
 
 	public boolean checkStructure() {
-		if (!world.isAreaLoaded(pos, 3))
+		if (!world.isAreaLoaded(pos, 3)) {
 			return false;
+		}
 
 		int3 dir = new int3(getPos(), getFacing());
 
-		for (int i = 0; i < 6; i++) {
-			if (!(isFactoryCasing(dir.right(1)))) {
-				return false;
-			}
-		}
-		if (!isGlass(dir.down(1))) {
+		// layer 0
+		if (!(isHeatCasing(dir.left(1)) && isHeatCasing(dir.back(1)) && isHeatCasing(dir.back(1))
+				&& isHeatCasing(dir.back(1)) && isHeatCasing(dir.right(1)) && isHeatCasing(dir.forward(1))
+				&& isHeatCasing(dir.forward(1)) && isHeatCasing(dir.right(1)) && isHeatCasing(dir.back(1))
+				&& isHeatCasing(dir.back(1)) && isHeatCasing(dir.forward(3))
+				// layer 1
+				&& isMachineCasing(dir.up(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
+				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.left(1)) && isAir(dir.forward(1))
+				&& isAir(dir.forward(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(1))
+				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
+				// layer 2
+				&& isMachineCasing(dir.up(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
+				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.right(1)) && isMachineCasing(dir.back(1))
+				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.right(1))
+				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
+				&& isMachineCasing(dir.forward(1)))) {
 			return false;
 		}
-		for (int i = 0; i < 6; i++) {
-			if (!(isGlass(dir.left(1)))) {
-				return false;
-			}
-		}
-		if (!isMachineCasing(dir.down(1))) {
-			return false;
-		}
-		for (int i = 0; i < 6; i++) {
-			if (!(isMachineCasing(dir.right(1)))) {
-				return false;
-			}
-		}
-		if (!isGlass(dir.up(1))) {
-			return false;
-		}
-		if (!isMachineCasing(dir.back(1))) {
-			return false;
-		}
-		for (int i = 0; i < 6; i++) {
-			if (!(isMachineCasing(dir.left(1)))) {
-				return false;
-			}
-		}
+
 		return true;
+
 	}
 
-	public boolean isFactoryCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == casingGrate;
+	public boolean isHeatCasing(int3 pos) {
+		world.setBlockState(pos.asBlockPos(), casingHeat);
+		return true;
+		// return world.getBlockState(pos.asBlockPos()) == casingHeat;
 	}
 
 	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == casingMachineSteel
-				|| world.getBlockState(pos.asBlockPos()) == casingMachineAl;
+		world.setBlockState(pos.asBlockPos(), casingMachine);
+		return true;
+		// return world.getBlockState(pos.asBlockPos()) == casingMachine;
 	}
 
-	public boolean isGlass(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == glass;
+	public boolean isAir(int3 pos) {
+		return world.isAirBlock(pos.asBlockPos());
 	}
 
 }
