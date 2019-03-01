@@ -10,6 +10,7 @@ import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
+import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileDigitalChest;
@@ -136,9 +137,7 @@ public class GTMod {
 			return EnumActionResult.PASS;
 		} else {
 			IC2.platform.messagePlayer(player, "--- " + state.getBlock().getLocalizedName() + " ---");
-			IC2.platform.messagePlayer(player, "State: " + state.toString());
 			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
-
 			if (tileEntity instanceof GTTileLightningRod) {
 				GTTileLightningRod rod = (GTTileLightningRod) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + rod.checkStructure());
@@ -158,6 +157,14 @@ public class GTMod {
 				IC2.platform.messagePlayer(player, "Active: " + fusion.getActive());
 				IC2.platform.messagePlayer(player, "Progress: " + ((int) (fusion.getProgress() / 100)) + "%");
 				IC2.platform.messagePlayer(player, "Stored EU: " + fusion.getStoredEU());
+			}
+			
+			if (tileEntity instanceof GTTileAssemblyLine) {
+				GTTileAssemblyLine ass = (GTTileAssemblyLine) tileEntity;
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + ass.checkStructure());
+				IC2.platform.messagePlayer(player, "Active: " + ass.getActive());
+				IC2.platform.messagePlayer(player, "Progress: " + ((int) (ass.getProgress() / 100)) + "%");
+				IC2.platform.messagePlayer(player, "Stored EU: " + ass.getStoredEU());
 			}
 
 			if (tileEntity instanceof GTTileDigitalChest) {

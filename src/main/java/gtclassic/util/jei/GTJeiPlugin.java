@@ -8,6 +8,7 @@ import gtclassic.gui.GTGuiMachine;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import gtclassic.tile.GTTileAlloySmelter;
+import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
@@ -37,7 +38,6 @@ public class GTJeiPlugin implements IModPlugin {
 
 		if (SubModul.load) {
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBenchLV), new String[] { "minecraft.crafting" });
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.autoCrafter), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 
 			// Centrifuge - to be refactored
@@ -52,8 +52,7 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeClickArea(GTIndustrialCentrifugeGui.class, 62, 29, 10, 10, "centrifuge");
 
 			// Fusion
-			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
-					"fusion");
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "fusion");
 			registry.addRecipes(GTTileFusionComputer.RECIPE_LIST.getRecipeList(), "fusion");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), "fusion");
 			registry.addRecipeClickArea(GTFusionComputerGui.class, 111, 35, 25, 17, "fusion");
@@ -64,16 +63,27 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipes(GTTileAlloySmelter.RECIPE_LIST.getRecipeList(), "alloysmelter");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.alloySmelter), "alloysmelter");
 			registry.addRecipeClickArea(GTGuiMachine.GTAlloySmelterGui.class, 78, 25, 20, 16, "alloysmelter");
+
+			// Assembly Line
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
+					"assemblyline");
+			registry.addRecipes(GTTileAssemblyLine.RECIPE_LIST.getRecipeList(), "assemblyline");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.assLine), "assemblyline");
+			registry.addRecipeClickArea(GTGuiMachine.GTAssemblyLineGui.class, 78, 25, 20, 16, "assemblyline");
 		}
 	}
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(new GTJeiCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
+
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "fusion",
+				GTBlocks.fusionComputer));
 		
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
-				"fusion", GTBlocks.fusionComputer));
-		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
 				"alloysmelter", GTBlocks.alloySmelter));
+		
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
+				"assemblyline", GTBlocks.assLine));
 	}
 }

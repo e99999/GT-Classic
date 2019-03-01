@@ -16,6 +16,7 @@ import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileAlloySmelter;
+import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBloomery;
@@ -46,6 +47,8 @@ public class GTBlocks {
 	public static final GTBlockCasing fusionCasingBlock = registerBlock(new GTBlockCasing("Fusion", 1));
 	public static final GTBlockCasing fissionCasingBlock = registerBlock(new GTBlockCasing("Fission", 2));
 	public static final GTBlockCasing crystalCasingBlock = registerBlock(new GTBlockCasing("Crystal", 3));
+	public static final GTBlockCasing grateCasingBlock = registerBlock(new GTBlockCasing("Grate", 4));
+	public static final GTBlockCasing heatCasingBlock = registerBlock(new GTBlockCasing("Heat", 5));
 
 	public static final GTBlockCasing kanthalCoilBlock = registerBlock(new GTBlockCasing("Kanthal", 13));
 	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("Nichrome", 14));
@@ -66,12 +69,13 @@ public class GTBlocks {
 	public static final GTBlockOreStone sodaliteOre = registerBlock(new GTBlockOreStone("Sodalite", 12, 2, 3.0F));
 
 	public static final GTBlockTileBasic bloomery = registerBlock(new GTBlockTileBasic("machine_bloomery"));
-	public static final GTBlockTileBasic autoCrafter = registerBlock(new GTBlockTileBasic("machine_autocrafter_lv"));
 	public static final GTBlockTileBasic chargeOMat = registerBlock(new GTBlockTileBasic("machine_chargeomat_ev"));
 	public static final GTBlockTileBasic computerCube = registerBlock(new GTBlockTileBasic("machine_computercube_ev"));
 	public static final GTBlockTileBasic industrialCentrifuge = registerBlock(
 			new GTBlockTileBasic("machine_industrialcentrifuge_lv"));
 	public static final GTBlockTileBasic alloySmelter = registerBlock(new GTBlockTileBasic("machine_alloysmelter_lv"));
+	public static final GTBlockTileBasic assLine = registerBlock(new GTBlockTileBasic("machine_assemblyline_lv"));
+	public static final GTBlockTileBasic arcFurnace = registerBlock(new GTBlockTileBasic("machine_arcfurnace_hv"));
 	public static final GTBlockTileBasic matterFabricator = registerBlock(
 			new GTBlockTileBasic("machine_matterfabricator_ev"));
 	public static final GTBlockTileBasic uuMatterAssembler = registerBlock(
@@ -160,7 +164,7 @@ public class GTBlocks {
 	// public static final GTBlockTestLayer testBlock = registerBlock(new
 	// GTBlockTestLayer());
 
-	public static final String[] textureTileBasic = { "machine_bloomery", "machine_autocrafter_lv",
+	public static final String[] textureTileBasic = { "machine_bloomery", "machine_assemblyline_lv","machine_arcfurnace_hv",
 			"machine_chargeomat_ev", "machine_computercube_ev", "machine_industrialcentrifuge_lv",
 			"machine_alloysmelter_lv", "machine_matterfabricator_ev", "machine_uumassembler_ev",
 			"machine_playerdetector_lv", "machine_fusioncomputer_iv", "machine_lightningrod_iv",
@@ -216,6 +220,8 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
 		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
+		GameRegistry.registerTileEntity(GTTileAssemblyLine.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityAssemblyArray"));
 		GameRegistry.registerTileEntity(GTTileComputerCube.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityComputerCube"));
 		GameRegistry.registerTileEntity(GTTileDigitalTransformer.class,

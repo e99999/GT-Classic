@@ -3,11 +3,13 @@ package gtclassic.recipe;
 import gtclassic.GTBlocks;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileFusionComputer;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -65,6 +67,12 @@ public class GTRecipeProcessing {
 		 */
 		GTTileFusionComputer.addRecipe("dustTungsten",1, GT.getChemical(M.Lithium, 1), GT.getIc2(Ic2Items.iridiumOre, 1));
 		GTTileFusionComputer.addRecipe("dustTungsten",1, GT.getChemical(M.Berilium, 1), GT.getDust(M.Platinum, 1));
+		
+		/*
+		 * Ass Line test recipes
+		 */
+		
+		GTTileAssemblyLine.addRecipe(GT.get(Blocks.DIRT), GT.get(Blocks.DIRT), GT.get(Items.DIAMOND), GT.get(Items.EMERALD));
 
 	}
 

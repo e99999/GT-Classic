@@ -21,4 +21,10 @@ public class GTGuiMachine {
 			super(container);
 		}
 	}
+	
+	public static class GTAssemblyLineGui extends MachineGui{
+		public GTAssemblyLineGui(ContainerComponent container) {
+			super(container);
+		}
+	}
 }

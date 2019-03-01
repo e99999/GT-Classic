@@ -140,7 +140,7 @@ public class GTRecipeShaped {
 
 			recipes.addRecipe(GT.get(GTBlocks.uuMatterAssembler, 1),
 					new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.circuitEmerald, 'C', GTBlocks.computerCube, 'T',
-							Ic2Items.teleporter, 'Q', GTBlocks.digitalChestLV, 'E', GTBlocks.autoCrafter, 'D',
+							Ic2Items.teleporter, 'Q', GTBlocks.digitalChestLV, 'E', GTItems.craftingTablet, 'D',
 							GTItems.circuitDiamond, 'B', GTBlocks.tinyEnergium });
 
 			recipes.addRecipe(GT.get(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
@@ -153,9 +153,6 @@ public class GTRecipeShaped {
 			recipes.addRecipe(GT.get(GTBlocks.digitalTransformerIV, 1),
 					new Object[] { "ELE", "SHS", "ELE", 'E', GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock,
 							'H', "casingMachineIridium", 'L', GTBlocks.smallLapotron });
-
-			recipes.addRecipe(GT.get(GTBlocks.autoCrafter, 1), new Object[] { " B ", "CcC", " A ", 'B',
-					Ic2Items.battery, 'C', "circuitAdvanced", 'c', "workbench", 'A', "casingMachineSteel" });
 
 			recipes.addRecipe(GT.get(GTBlocks.chargeOMat, 1),
 					new Object[] { "RCR", "AEA", "RMR", 'E', GTBlocks.smallLapotron, 'R', GTItems.circuitSapphire, 'A',
