@@ -44,8 +44,10 @@ public class GTRecipeMaterials {
 					recipes.addShapelessRecipe(GT.getDust(mat, 1),
 							new Object[] { smalldust, smalldust, smalldust, smalldust });
 
-					// Small dust to regular dust compressor
-					TileEntityCompressor.addRecipe(smalldust, 4, GT.getDust(mat, 1), 0.0F);
+					if (mat != M.Graphite) {
+						// Small dust to regular dust compressor
+						TileEntityCompressor.addRecipe(smalldust, 4, GT.getDust(mat, 1), 0.0F);
+					}
 				}
 
 			}

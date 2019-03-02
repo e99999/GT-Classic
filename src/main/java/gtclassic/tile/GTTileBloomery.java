@@ -2,22 +2,32 @@ package gtclassic.tile;
 
 import java.util.List;
 
+import gtclassic.container.GTContainerBloomery;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.inventory.base.IHasGui;
+import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.inventory.gui.GuiComponentContainer;
+import ic2.core.inventory.management.AccessRule;
+import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.inventory.management.SlotType;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileBloomery extends TileEntityMachine implements ITickable {
+public class GTTileBloomery extends TileEntityMachine implements ITickable, IHasGui {
 
 	String status = "null";
 	String recipe = "null";
@@ -29,17 +39,51 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable {
 
 	AxisAlignedBB recipeBB = null;
 
-	ItemStack iron = new ItemStack(Items.IRON_INGOT, 9);
-	ItemStack coal = new ItemStack(Items.COAL, 4);
+	ItemStack iron = new ItemStack(Blocks.IRON_BLOCK);
+	ItemStack coal = new ItemStack(Blocks.COAL_BLOCK);
 
 	public GTTileBloomery() {
-		super(0);
+		super(1);
 		setWorld(world);
 	}
 
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
+	}
+
+	@Override
+	public boolean canInteractWith(EntityPlayer player) {
+		return !this.isInvalid();
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
+		return GuiComponentContainer.class;
+	}
+
+	@Override
+	public ContainerIC2 getGuiContainer(EntityPlayer player) {
+		return new GTContainerBloomery(player.inventory, this);
+	}
+
+	@Override
+	protected void addSlots(InventoryHandler handler) {
+		handler.registerDefaultSlotAccess(AccessRule.Export, 0);
+		handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
+		handler.registerSlotType(SlotType.Output, 0);
+	}
+
+	@Override
+	public boolean hasGui(EntityPlayer arg0) {
+		return true;
+	}
+
+	@Override
+	public void onGuiClosed(EntityPlayer arg0) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -108,13 +152,14 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable {
 		 */
 		status = "Checking...";
 		int3 dir = new int3(getPos(), getFacing());
-		if (!(isBrick(dir.down(1)) &&
+		if (!(isBrick(dir.left(1)) &&
 		// layer -1
-				isBrick(dir.left(1)) && isBrick(dir.back(1)) && isBrick(dir.back(1)) && isBrick(dir.right(1))
-				&& isBrick(dir.forward(1)) && isBrick(dir.forward(1)) && isBrick(dir.right(1)) && isBrick(dir.back(2))
+				isBrick(dir.down(1)) && isBrick(dir.back(1)) && isBrick(dir.back(1)) && isBrick(dir.right(1))
+				&& isBrick(dir.forward(1)) && isBrick(dir.back(1)) && isBrick(dir.right(1))
 				// layer 0
-				&& isBrick(dir.up(1)) && isDoor(dir.forward(1)) && isBrick(dir.forward(1)) && isBrick(dir.left(2))
-				&& isBrick(dir.back(1)) && isBrick(dir.back(1)) && isBrick(dir.right(1)) && isBrick(dir.up(1))
+				&& isBrick(dir.up(1)) && isDoor(dir.forward(1)) && isBrick(dir.forward(1)) && isBrick(dir.down(1))
+				&& isBrick(dir.up(1)) && isBrick(dir.left(2)) && isBrick(dir.back(1)) && isBrick(dir.back(1))
+				&& isBrick(dir.right(1)) && isBrick(dir.up(1))
 				// layer 1
 				&& isBrick(dir.forward(2)) && isBrick(dir.left(1)) && isBrick(dir.back(1)) && isBrick(dir.back(1))
 				&& isBrick(dir.right(1)) && isBrick(dir.right(1)) && isBrick(dir.forward(2)) && isBrick(dir.back(1))
@@ -144,7 +189,6 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable {
 
 	public void setSteel(int3 pos) {
 		world.setBlockState(pos.asBlockPos(), steel);
-
 	}
 
 	public void setAir(int3 pos) {

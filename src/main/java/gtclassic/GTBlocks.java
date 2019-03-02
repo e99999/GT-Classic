@@ -51,23 +51,24 @@ public class GTBlocks {
 	public static final GTBlockCasing grateCasingBlock = registerBlock(new GTBlockCasing("Grate", 4));
 	public static final GTBlockCasing heatCasingBlock = registerBlock(new GTBlockCasing("Heat", 5));
 
-	public static final GTBlockCasing kanthalCoilBlock = registerBlock(new GTBlockCasing("Kanthal", 13));
-	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("Nichrome", 14));
-	public static final GTBlockCasing constantanCoilBlock = registerBlock(new GTBlockCasing("Constantan", 15));
+	public static final GTBlockCasing constantanCoilBlock = registerBlock(new GTBlockCasing("Constantan", 13));
+	public static final GTBlockCasing graphiteCoilBlock = registerBlock(new GTBlockCasing("Graphite", 14));
+	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("Nichrome", 15));
 
 	public static final GTBlockOreStone galenaOre = registerBlock(new GTBlockOreStone("Galena", 0, 1, 3.0F));
 	public static final GTBlockOreStone iridiumOre = registerBlock(new GTBlockOreStone("Iridium", 1, 3, 20.0F));
 	public static final GTBlockOreStone rubyOre = registerBlock(new GTBlockOreStone("Ruby", 2, 2, 4.0F));
 	public static final GTBlockOreStone sapphireOre = registerBlock(new GTBlockOreStone("Sapphire", 3, 2, 4.0F));
-	public static final GTBlockOreStone bauxiteOre = registerBlock(new GTBlockOreStone("Bauxite", 4, 1, 3.0F));
-	public static final GTBlockOreSand magnetiteOre = registerBlock(new GTBlockOreSand("Magnetite", 5));
-	public static final GTBlockOreStone pyriteOre = registerBlock(new GTBlockOreStone("Pyrite", 6, 1, 2.0F));
-	public static final GTBlockOreStone cinnabarOre = registerBlock(new GTBlockOreStone("Cinnabar", 7, 2, 3.0F));
-	public static final GTBlockOreStone sphaleriteOre = registerBlock(new GTBlockOreStone("Sphalerite", 8, 1, 2.0F));
-	public static final GTBlockOreStone tungstateOre = registerBlock(new GTBlockOreStone("Tungstate", 9, 2, 4.0F));
-	public static final GTBlockOreStone sheldoniteOre = registerBlock(new GTBlockOreStone("Sheldonite", 10, 3, 3.5F));
-	public static final GTBlockOreStone olivineOre = registerBlock(new GTBlockOreStone("Olivine", 11, 3, 3.0F));
-	public static final GTBlockOreStone sodaliteOre = registerBlock(new GTBlockOreStone("Sodalite", 12, 2, 3.0F));
+	public static final GTBlockOreStone calciteOre = registerBlock(new GTBlockOreStone("Calcite", 4, 1, 3.0F));
+	public static final GTBlockOreStone bauxiteOre = registerBlock(new GTBlockOreStone("Bauxite", 5, 1, 3.0F));
+	public static final GTBlockOreSand magnetiteOre = registerBlock(new GTBlockOreSand("Magnetite", 6));
+	public static final GTBlockOreStone pyriteOre = registerBlock(new GTBlockOreStone("Pyrite", 9, 1, 2.0F));
+	public static final GTBlockOreStone cinnabarOre = registerBlock(new GTBlockOreStone("Cinnabar", 10, 2, 3.0F));
+	public static final GTBlockOreStone sphaleriteOre = registerBlock(new GTBlockOreStone("Sphalerite", 11, 1, 2.0F));
+	public static final GTBlockOreStone tungstateOre = registerBlock(new GTBlockOreStone("Tungstate", 12, 2, 4.0F));
+	public static final GTBlockOreStone sheldoniteOre = registerBlock(new GTBlockOreStone("Sheldonite", 13, 3, 3.5F));
+	public static final GTBlockOreStone olivineOre = registerBlock(new GTBlockOreStone("Olivine", 14, 3, 3.0F));
+	public static final GTBlockOreStone sodaliteOre = registerBlock(new GTBlockOreStone("Sodalite", 15, 2, 3.0F));
 
 	public static final GTBlockTileBasic bloomery = registerBlock(new GTBlockTileBasic("machine_bloomery"));
 	public static final GTBlockTileBasic chargeOMat = registerBlock(new GTBlockTileBasic("machine_chargeomat_ev"));

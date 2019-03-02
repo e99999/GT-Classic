@@ -94,13 +94,14 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.crystalCasingBlock),
 				new Object[] { "BBB", "BCB", "BBB", 'B', "blockRuby", 'C', "casingMachineAluminium" });
 
-		recipes.addRecipe(GT.get(GTBlocks.kanthalCoilBlock), new Object[] { "XXX", "XXX", "XXX", 'X', "stickKanthal" });
+		recipes.addRecipe(GT.get(GTBlocks.constantanCoilBlock),
+				new Object[] { "XXX", "XXX", "XXX", 'X', "stickConstantan" });
+
+		recipes.addRecipe(GT.get(GTBlocks.graphiteCoilBlock),
+				new Object[] { "XXX", "XXX", "XXX", 'X', "stickGraphite" });
 
 		recipes.addRecipe(GT.get(GTBlocks.nichromeCoilBlock),
 				new Object[] { "XXX", "XXX", "XXX", 'X', "stickNichrome" });
-
-		recipes.addRecipe(GT.get(GTBlocks.constantanCoilBlock),
-				new Object[] { "XXX", "XXX", "XXX", 'X', "stickConstantan" });
 
 		recipes.addRecipe(GT.get(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood", 'C',
 				"cobblestone", 'I', GTValues.ingotElectric, 'R', "dustRedstone" });
@@ -112,9 +113,12 @@ public class GTRecipeShaped {
 		 * Recipes for tiles and machines
 		 */
 
+		recipes.addRecipe(GT.get(GTBlocks.bloomery),
+				new Object[] { "XXX", "XFX", "XXX", 'X', "plateBronze", 'F', Blocks.FURNACE });
+
 		recipes.addRecipe(GT.get(GTBlocks.fusionComputer, 1),
 				new Object[] { "EPE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S', "plateTungstenSteel", 'L',
-						GTBlocks.medLapotron, 'C', GTBlocks.fusionCasingBlock, 'P', "platePlutonium" });
+						"plateIridium", 'C', GTBlocks.computerCube, 'P', "platePlutonium" });
 
 		recipes.addRecipe(GT.get(GTBlocks.lightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
 				GTItems.circuitSapphire, 'S', "casingMachineIridium", 'A', "stickTungstenSteel" });

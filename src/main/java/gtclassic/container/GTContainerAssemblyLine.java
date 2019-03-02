@@ -13,15 +13,15 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTContainerAssemblyLine extends ContainerTileComponent<GTTileAssemblyLine> {
 
-	public static Box2D machineProgressBox = new Box2D(77, 24, 20, 18); // the progress bar and size
+	public static Box2D machineProgressBox = new Box2D(88, 24, 20, 18); // the progress bar and size
 	public static Vec2i machineProgressPos = new Vec2i(176, 0); // where the overlay is
 
 	public GTContainerAssemblyLine(InventoryPlayer player, GTTileAssemblyLine tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 35, 25, null));// main slot
-		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, null)); // second slot
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 107, 25)); // output
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 125, 25)); // output
+		this.addSlotToContainer(new SlotCustom(tile, 0, 26, 25, null));// main slot
+		this.addSlotToContainer(new SlotCustom(tile, 1, 44, 25, null)); // second slot
+		this.addSlotToContainer(new SlotCustom(tile, 2, 62, 25, null)); // third slot
+		this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 116, 25)); // output
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerAssemblyLine.machineProgressBox,
 				GTContainerAssemblyLine.machineProgressPos));

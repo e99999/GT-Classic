@@ -10,6 +10,7 @@ import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
+import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBloomery;
@@ -155,7 +156,8 @@ public class GTMod {
 				GTTileFusionComputer fusion = (GTTileFusionComputer) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + fusion.checkStructure());
 				IC2.platform.messagePlayer(player, "Active: " + fusion.getActive());
-				IC2.platform.messagePlayer(player, "Progress: " + ((int) (fusion.getProgress() / 100)) + "%");
+				IC2.platform.messagePlayer(player,
+						"Progress: " + ((int) (fusion.getProgress() / fusion.getMaxProgress())) + "%");
 				IC2.platform.messagePlayer(player, "Stored EU: " + fusion.getStoredEU());
 			}
 
@@ -163,8 +165,18 @@ public class GTMod {
 				GTTileAssemblyLine ass = (GTTileAssemblyLine) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + ass.checkStructure());
 				IC2.platform.messagePlayer(player, "Active: " + ass.getActive());
-				IC2.platform.messagePlayer(player, "Progress: " + ((int) (ass.getProgress() / 100)) + "%");
+				IC2.platform.messagePlayer(player,
+						"Progress: " + ((int) (ass.getProgress() / ass.getMaxProgress())) + "%");
 				IC2.platform.messagePlayer(player, "Stored EU: " + ass.getStoredEU());
+			}
+
+			if (tileEntity instanceof GTTileArcFurnace) {
+				GTTileArcFurnace arc = (GTTileArcFurnace) tileEntity;
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + arc.checkStructure());
+				IC2.platform.messagePlayer(player, "Active: " + arc.getActive());
+				IC2.platform.messagePlayer(player,
+						"Progress: " + ((int) (arc.getProgress() / arc.getMaxProgress())) + "%");
+				IC2.platform.messagePlayer(player, "Stored EU: " + arc.getStoredEU());
 			}
 
 			if (tileEntity instanceof GTTileDigitalChest) {

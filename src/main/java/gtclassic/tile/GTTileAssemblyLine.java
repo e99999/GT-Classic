@@ -24,7 +24,6 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
-import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2States;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -36,8 +35,8 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
-	public static final int slotOutput0 = 2;
-	public static final int slotOutput1 = 3;
+	public static final int slotInput2 = 2;
+	public static final int slotOutput0 = 3;
 
 	boolean lastState;
 	boolean firstCheck = true;
@@ -61,13 +60,14 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput0, slotInput1);
-		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput0, slotOutput1);
+		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput0, slotInput1, slotInput2);
+		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput0);
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput0, slotOutput1);
-		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1);
-		handler.registerSlotType(SlotType.Output, slotOutput0, slotOutput1);
+		handler.registerDefaultSlotsForSide(RotationList.WEST, slotInput1);
+		handler.registerDefaultSlotsForSide(RotationList.EAST, slotInput2);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput0);
+		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1, slotInput2);
+		handler.registerSlotType(SlotType.Output, slotOutput0);
 	}
 
 	// @Override
@@ -93,7 +93,7 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public int[] getInputSlots() {
-		int[] input = { slotInput0, slotInput1 };
+		int[] input = { slotInput0, slotInput1, slotInput2 };
 		return input;
 	}
 
@@ -110,7 +110,7 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public int[] getOutputSlots() {
-		int[] output = { slotOutput0, slotOutput1 };
+		int[] output = { slotOutput0 };
 		return output;
 	}
 
@@ -146,31 +146,13 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 
 	}
 
-	public static void addRecipe(String input0, int amount0, ItemStack input1, ItemStack output0) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		List<ItemStack> outputs = new ArrayList<>();
-		inputs.add((IRecipeInput) (new RecipeInputOreDict(input0, amount0)));
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));
-		outputs.add(output0);
-		addRecipe(inputs, new MachineOutput(null, outputs));
-	}
-
-	public static void addRecipe(ItemStack input0, String input1, int amount1, ItemStack output0) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		List<ItemStack> outputs = new ArrayList<>();
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(input0)));
-		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
-		outputs.add(output0);
-		addRecipe(inputs, new MachineOutput(null, outputs));
-	}
-
-	public static void addRecipe(ItemStack input0, ItemStack input1, ItemStack output0, ItemStack output1) {
+	public static void addRecipe(ItemStack input0, ItemStack input1, ItemStack input2, ItemStack output0) {
 		List<IRecipeInput> inputs = new ArrayList<>();
 		List<ItemStack> outputs = new ArrayList<>();
 		inputs.add((IRecipeInput) (new RecipeInputItemStack(input0)));
 		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));
+		inputs.add((IRecipeInput) (new RecipeInputItemStack(input2)));
 		outputs.add(output0);
-		outputs.add(output1);
 		addRecipe(inputs, new MachineOutput(null, outputs));
 	}
 

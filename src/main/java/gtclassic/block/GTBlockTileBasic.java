@@ -38,11 +38,13 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -200,7 +202,10 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (this == GTBlocks.bloomery
 				&& StackUtil.isStackEqual(playerIn.getHeldItemMainhand(), new ItemStack(Items.FLINT_AND_STEEL))) {
 			TileEntity te = worldIn.getTileEntity(pos);
-			if (te instanceof GTTileBloomery) {
+			if (te instanceof GTTileBloomery && ((GTTileBloomery) te).isActive) {
+				return false;
+			}
+			if (te instanceof GTTileBloomery && !((GTTileBloomery) te).isActive) {
 				return ((GTTileBloomery) te).canWork();
 			}
 		}
@@ -210,35 +215,12 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileFusionComputer) {
-			if (((GTTileFusionComputer) tile).isActive) {
-				for (int i = -2; i <= 2; ++i) {
-					for (int j = -2; j <= 2; ++j) {
-						if (i > -2 && i < 2 && j == -1) {
-							j = 2;
-						}
+		particleQuantumEnergy(stateIn, worldIn, pos, rand);
+		particleBloomery(stateIn, worldIn, pos, rand);
+	}
 
-						if (rand.nextInt(4) == 0) {
-							for (int k = 0; k <= 1; ++k) {
-
-								if (!worldIn.isAirBlock(pos.add(i / 2, 0, j / 2))) {
-									break;
-								}
-
-								worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D,
-										(double) pos.getY() + 1.0D, (double) pos.getZ() + 0.5D,
-										(double) ((float) i + rand.nextFloat()) - 0.5D,
-										(double) ((float) k - rand.nextFloat() - 1.0F),
-										(double) ((float) j + rand.nextFloat()) - 0.5D);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		else if (this == GTBlocks.quantumEnergyStorage) {
+	public void particleQuantumEnergy(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		if (this == GTBlocks.quantumEnergyStorage) {
 			for (int i = 0; i < 3; ++i) {
 				int j = rand.nextInt(2) * 2 - 1;
 				int k = rand.nextInt(2) * 2 - 1;
@@ -249,6 +231,44 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				double d4 = (rand.nextFloat() - 0.5D) * 0.125D;
 				double d5 = rand.nextFloat() * k;
 				worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
+			}
+		}
+	}
+
+	@SuppressWarnings("incomplete-switch")
+	public void particleBloomery(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileBloomery) {
+			if (((GTTileBloomery) tile).isActive) {
+				EnumFacing enumfacing = getFacing(worldIn, pos);
+				double d0 = (double) pos.getX() + 0.5D;
+				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
+				double d2 = (double) pos.getZ() + 0.5D;
+				double d3 = 0.52D;
+				double d4 = rand.nextDouble() * 0.6D - 0.3D;
+
+				if (rand.nextDouble() < 0.1D) {
+					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D,
+							SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+				}
+
+				switch (enumfacing) {
+				case WEST:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					break;
+				case EAST:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					break;
+				case NORTH:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
+					break;
+				case SOUTH:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
+				}
 			}
 		}
 	}

@@ -70,7 +70,7 @@ public class GTJeiPlugin implements IModPlugin {
 					"assemblyline");
 			registry.addRecipes(GTTileAssemblyLine.RECIPE_LIST.getRecipeList(), "assemblyline");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.assLine), "assemblyline");
-			registry.addRecipeClickArea(GTGuiMachine.GTAssemblyLineGui.class, 78, 25, 20, 16, "assemblyline");
+			registry.addRecipeClickArea(GTGuiMachine.GTAssemblyLineGui.class, 88, 25, 20, 16, "assemblyline");
 
 			// Arc Furnace
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,

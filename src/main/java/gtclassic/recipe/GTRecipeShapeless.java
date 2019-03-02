@@ -80,8 +80,6 @@ public class GTRecipeShapeless {
 
 		recipes.addShapelessRecipe(GT.getSmallDust(M.Nichrome, 15),
 				new Object[] { "dustNickel", "dustNickel", "dustNickel", "dustNickel", "dustChrome" });
-		recipes.addShapelessRecipe(GT.getDust(M.Kanthal, 3),
-				new Object[] { "dustNickel", "dustAluminium", "dustIron" });
 
 	}
 

@@ -101,6 +101,10 @@ public class GTOreGen implements IWorldGenerator {
 				runGenerator(GTBlocks.galenaOre.getDefaultState(), 16, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE),
 						world, random, chunkX, chunkZ);
 			}
+			if (GTConfig.genOverworldCalcite) {
+				runGenerator(GTBlocks.calciteOre.getDefaultState(), 16, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE),
+						world, random, chunkX, chunkZ);
+			}
 
 			if (GTConfig.genOverworldIridium) {
 				runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 2, 0, 128, BlockMatcher.forBlock(Blocks.STONE),

@@ -207,15 +207,11 @@ public class GTTileArcFurnace extends GTTileBaseMultiInputMachine {
 	}
 
 	public boolean isHeatCasing(int3 pos) {
-		world.setBlockState(pos.asBlockPos(), casingHeat);
-		return true;
-		// return world.getBlockState(pos.asBlockPos()) == casingHeat;
+		return world.getBlockState(pos.asBlockPos()) == casingHeat;
 	}
 
 	public boolean isMachineCasing(int3 pos) {
-		world.setBlockState(pos.asBlockPos(), casingMachine);
-		return true;
-		// return world.getBlockState(pos.asBlockPos()) == casingMachine;
+		return world.getBlockState(pos.asBlockPos()) == casingMachine;
 	}
 
 	public boolean isAir(int3 pos) {

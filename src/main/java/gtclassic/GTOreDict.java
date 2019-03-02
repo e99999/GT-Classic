@@ -28,11 +28,12 @@ public class GTOreDict {
 		OreDictionary.registerOre("oreRuby", GTBlocks.rubyOre);
 		OreDictionary.registerOre("oreSapphire", GTBlocks.sapphireOre);
 		OreDictionary.registerOre("oreBauxite", GTBlocks.bauxiteOre);
+		OreDictionary.registerOre("oreCalcite", GTBlocks.calciteOre);
 		OreDictionary.registerOre("oreMagnetite", GTBlocks.magnetiteOre);
 		OreDictionary.registerOre("orePyrite", GTBlocks.pyriteOre);
 		OreDictionary.registerOre("oreCinnabar", GTBlocks.cinnabarOre);
 		OreDictionary.registerOre("oreSphalerite", GTBlocks.sphaleriteOre);
-		OreDictionary.registerOre("oreTungstate", GTBlocks.tungstateOre);
+		OreDictionary.registerOre("oreTungsten", GTBlocks.tungstateOre);
 		OreDictionary.registerOre("oreSheldonite", GTBlocks.sheldoniteOre);
 		OreDictionary.registerOre("oreOlivine", GTBlocks.olivineOre);
 		OreDictionary.registerOre("oreSodalite", GTBlocks.sodaliteOre);

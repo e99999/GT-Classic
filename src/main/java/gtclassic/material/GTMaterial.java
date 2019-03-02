@@ -52,8 +52,6 @@ public class GTMaterial {
 	public static GTMaterial Potassium = new GTMaterial("Potassium", 1.0F, 0, 1, Color.white, false, CHEM);
 	public static GTMaterial Nitrogen = new GTMaterial("Nitrogen", 1.0F, 0, 1, Color.white, false, CHEM, PLASMA);
 	public static GTMaterial Oxygen = new GTMaterial("Oxygen", 1.0F, 0, 1, Color.white, false, CHEM, PLASMA);
-	public static GTMaterial CalciumCarbonate = new GTMaterial("CalciumCarbonate", 1.0F, 0, 1, Color.black, false,
-			CHEM);
 	public static GTMaterial SulfuricAcid = new GTMaterial("SulfuricAcid", 1.0F, 0, 1, Color.orange, false, CHEM);
 
 	/** Material Instances **/
@@ -101,6 +99,8 @@ public class GTMaterial {
 			SMALLDUST);
 	public static GTMaterial Gold = new GTMaterial("Gold", 12.0F, 64, 2, new Color(255, 255, 30), true, METAL_MC);
 	public static GTMaterial Granite = new GTMaterial("Granite", 1.0F, 0, 1, new Color(165, 89, 39), false, DUST_ALL);
+	public static GTMaterial Graphite = new GTMaterial("Graphite", 5.0F, 32, 2, new Color(96, 96, 96), false, SMALLDUST,
+			DUST, NUGGET, INGOT, STICK, PLATE);
 	public static GTMaterial Grossular = new GTMaterial("Grossular", 1.0F, 0, 1, new Color(200, 100, 0), false,
 			DUST_ALL);
 	public static GTMaterial Gunpowder = new GTMaterial("Gunpowder", 1.0F, 0, 1, new Color(128, 128, 128), false,
@@ -110,8 +110,6 @@ public class GTMaterial {
 	public static GTMaterial Iron = new GTMaterial("Iron", 6.0F, 256, 2, new Color(184, 184, 184), true, PLASMA,
 			SMALLDUST, PLATE, STICK, CASING);
 	public static GTMaterial Invar = new GTMaterial("Invar", 6.0F, 256, 2, new Color(180, 180, 120), true, METAL_ALL);
-	public static GTMaterial Kanthal = new GTMaterial("Kanthal", 6.0F, 64, 2, new Color(196, 172, 46), false, SMALLDUST,
-			DUST, NUGGET, INGOT, STICK);
 	public static GTMaterial Lazurite = new GTMaterial("Lazurite", 1.0F, 0, 1, new Color(100, 120, 255), false,
 			DUST_ALL);
 	public static GTMaterial Lead = new GTMaterial("Lead", 8.0F, 64, 1, new Color(140, 100, 140), true, METAL_ALL);
@@ -165,7 +163,7 @@ public class GTMaterial {
 	public static GTMaterial Thorium = new GTMaterial("Thorium", 6.0F, 512, 2, new Color(0, 30, 0), false, SMALLDUST,
 			DUST, NUGGET, INGOT);
 	public static GTMaterial Tin = new GTMaterial("Tin", 1.0F, 0, 1, new Color(220, 220, 220), true, METAL_IC2);
-	public static GTMaterial Titanium = new GTMaterial("Titanium", 8.0F, 2560, 3, new Color(170, 143, 222), false,
+	public static GTMaterial Titanium = new GTMaterial("Titanium", 8.0F, 2560, 3, new Color(170, 143, 222), true,
 			METAL_ALL);
 	public static GTMaterial Tungsten = new GTMaterial("Tungsten", 8.0F, 5120, 3, new Color(50, 50, 50), false,
 			METAL_ALL);
