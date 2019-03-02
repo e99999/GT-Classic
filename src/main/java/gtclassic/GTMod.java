@@ -187,10 +187,10 @@ public class GTMod {
 
 			if (tileEntity instanceof GTTileBloomery) {
 				GTTileBloomery bloom = (GTTileBloomery) tileEntity;
-				bloom.checkStructure();
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.getStatus());
-				bloom.checkRecipeBoundingBox();
-				IC2.platform.messagePlayer(player, "Recipe: " + bloom.getRecipe());
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
+				IC2.platform.messagePlayer(player, "Active: " + bloom.getActive());
+				IC2.platform.messagePlayer(player,
+						"Progress: " + ((bloom.getProgress() / bloom.getMaxProgress())) + "%");
 			}
 
 			if (tileEntity instanceof TileEntityElectricBlock) {

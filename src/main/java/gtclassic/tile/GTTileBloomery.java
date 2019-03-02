@@ -21,6 +21,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -29,8 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileBloomery extends TileEntityMachine implements ITickable, IHasGui {
 
-	String status = "null";
-	String recipe = "null";
+	boolean ready = false;
 
 	IBlockState brick = Blocks.BRICK_BLOCK.getDefaultState();
 	IBlockState door = Blocks.IRON_TRAPDOOR.getDefaultState();
@@ -39,8 +39,18 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 
 	AxisAlignedBB recipeBB = null;
 
-	ItemStack iron = new ItemStack(Blocks.IRON_BLOCK);
-	ItemStack coal = new ItemStack(Blocks.COAL_BLOCK);
+	ItemStack ironblock = new ItemStack(Blocks.IRON_BLOCK);
+	ItemStack coalblock = new ItemStack(Blocks.COAL_BLOCK);
+
+	ItemStack iron = new ItemStack(Items.IRON_INGOT, 9);
+	ItemStack coal = new ItemStack(Items.COAL, 9);
+	ItemStack charcoal = new ItemStack(Items.COAL, 9, 1);
+
+	EntityItem entityIron = null;
+	EntityItem entityCoal = null;
+
+	int currentProgress = 0;
+	int maxProgress = 600;
 
 	public GTTileBloomery() {
 		super(1);
@@ -83,26 +93,36 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 	@Override
 	public void onGuiClosed(EntityPlayer arg0) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void update() {
 		/*
-		 * I use the getActive method to ping update() here, so I can also get the world
-		 * time. If the tile isActive then structure begins to make Steel.
+		 * if the bloomery is ready to work the following logic executes
 		 */
-		if (getActive()) {
+		if (ready) {
+			currentProgress = currentProgress + 1;
+			setActive(true);
+			if (entityIron != null) {
+				world.removeEntity(entityIron);
+			}
+			if (entityCoal != null) {
+				world.removeEntity(entityCoal);
+			}
 			int3 dir = new int3(pos, getFacing());
 			setLava(dir.back(1));
 			setLava(dir.up(1));
 			setLava(dir.up(1));
 			setLava(dir.up(1));
-			if (world.getTotalWorldTime() % 256 == 0) { // TODO extend the time after testing
+			// MABYEDO add a check for the lava and structure check during progress to keep
+			// people from fucking with it
+			if (currentProgress == maxProgress) { // TODO extend the time after testing - bear recommends 4.5 minutes
 				setAir(dir.down(0));
 				setAir(dir.down(1));
 				setAir(dir.down(1));
 				setSteel(dir.down(1));
+				ready = false;
+				currentProgress = 0;
 				this.setActive(false);
 			}
 		}
@@ -113,34 +133,61 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		 * Checks the strucure then the recipe area to see if it can execute the recipe
 		 * logic
 		 */
-		if (!getActive() && checkRecipeBoundingBox() && checkStructure()) {
-			this.setActive(true);
+		if (!getActive() && isRecipeValid() && checkStructure()) {
+			ready = true;
 			return true;
 		}
-		this.setActive(false);
 		return false;
 	}
 
-	public boolean checkRecipeBoundingBox() {
+	public boolean isEntityValid(EntityItem entity, ItemStack stack) {
+		return StackUtil.isStackEqual(entity.getItem(), stack) && entity.getItem().getCount() >= stack.getCount();
+	}
+
+	public boolean isRecipeValid() {
 		/*
 		 * checks blocks space directly behind the tile for correct recipe stacks
 		 */
+
+		boolean ironFound = false;
+		boolean coalFound = false;
+		entityIron = null;
+		entityCoal = null;
+
 		recipeBB = new AxisAlignedBB(new int3(pos, getFacing()).back(1).asBlockPos());
 		List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, recipeBB);
 		for (EntityItem item : items) {
-			// TODO make this check or coal AND iron, for now this is fine to test logic
-			if (StackUtil.isStackEqual(item.getItem(), iron)) {
-				recipe = "Recipe Valid!";
-				return true;
+
+			if (isEntityValid(item, iron)) {
+				entityIron = item;
+				ironFound = true;
+			}
+			if (isEntityValid(item, ironblock)) {
+				entityIron = item;
+				ironFound = true;
+			}
+			if (isEntityValid(item, coal)) {
+				entityCoal = item;
+				coalFound = true;
+			}
+			if (isEntityValid(item, charcoal)) {
+				entityCoal = item;
+				coalFound = true;
+			}
+			if (isEntityValid(item, coalblock)) {
+				entityCoal = item;
+				coalFound = true;
 			}
 		}
 
+		if (ironFound && coalFound) {
+			return true;
+		}
+
 		if (items.isEmpty()) {
-			recipe = "Recipe is finding nothing at all";
 			return false;
 
 		} else {
-			recipe = items.toString();
 			return false;
 		}
 	}
@@ -150,7 +197,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		 * Important to remember this structure check steps to the last position, so the
 		 * next step is based on the previous pos position.
 		 */
-		status = "Checking...";
+
 		int3 dir = new int3(getPos(), getFacing());
 		if (!(isBrick(dir.left(1)) &&
 		// layer -1
@@ -168,10 +215,8 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 				&& isBrick(dir.down(1)) && isBrick(dir.forward(1)) && isBrick(dir.right(1)) && isBrick(dir.up(1))
 				&& isBrick(dir.up(1)) && isBrick(dir.back(2)) && isBrick(dir.down(1)))) {
 
-			status = "false";
 			return false;
 		}
-		status = "true";
 		return true;
 	}
 
@@ -195,12 +240,12 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		world.setBlockState(pos.asBlockPos(), Blocks.AIR.getDefaultState());
 	}
 
-	public String getStatus() {
-		return this.status;
+	public int getProgress() {
+		return currentProgress;
 	}
 
-	public String getRecipe() {
-		return this.recipe;
+	public int getMaxProgress() {
+		return maxProgress;
 	}
 
 }
