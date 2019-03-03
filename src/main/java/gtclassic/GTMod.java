@@ -156,27 +156,27 @@ public class GTMod {
 				GTTileFusionComputer fusion = (GTTileFusionComputer) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + fusion.checkStructure());
 				IC2.platform.messagePlayer(player, "Active: " + fusion.getActive());
-				IC2.platform.messagePlayer(player,
-						"Progress: " + ((int) (fusion.getProgress() / fusion.getMaxProgress())) + "%");
 				IC2.platform.messagePlayer(player, "Stored EU: " + fusion.getStoredEU());
+				IC2.platform.messagePlayer(player,
+						"Progress: " + (Math.round((fusion.getProgress() / fusion.getMaxProgress()) * 100)) + "%");
 			}
 
 			if (tileEntity instanceof GTTileAssemblyLine) {
 				GTTileAssemblyLine ass = (GTTileAssemblyLine) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + ass.checkStructure());
 				IC2.platform.messagePlayer(player, "Active: " + ass.getActive());
-				IC2.platform.messagePlayer(player,
-						"Progress: " + ((int) (ass.getProgress() / ass.getMaxProgress())) + "%");
 				IC2.platform.messagePlayer(player, "Stored EU: " + ass.getStoredEU());
+				IC2.platform.messagePlayer(player,
+						"Progress: " + (Math.round((ass.getProgress() / ass.getMaxProgress()) * 100)) + "%");
 			}
 
 			if (tileEntity instanceof GTTileArcFurnace) {
 				GTTileArcFurnace arc = (GTTileArcFurnace) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + arc.checkStructure());
 				IC2.platform.messagePlayer(player, "Active: " + arc.getActive());
-				IC2.platform.messagePlayer(player,
-						"Progress: " + ((int) (arc.getProgress() / arc.getMaxProgress())) + "%");
 				IC2.platform.messagePlayer(player, "Stored EU: " + arc.getStoredEU());
+				IC2.platform.messagePlayer(player,
+						"Progress: " + (Math.round((arc.getProgress() / arc.getMaxProgress()) * 100)) + "%");
 			}
 
 			if (tileEntity instanceof GTTileDigitalChest) {
@@ -188,9 +188,11 @@ public class GTMod {
 			if (tileEntity instanceof GTTileBloomery) {
 				GTTileBloomery bloom = (GTTileBloomery) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
+				IC2.platform.messagePlayer(player, "Correct Recipe: " + bloom.isRecipeValid());
+				IC2.platform.messagePlayer(player, "Can Output Dark Ash: " + bloom.canOutputDarkAsh());
 				IC2.platform.messagePlayer(player, "Active: " + bloom.getActive());
 				IC2.platform.messagePlayer(player,
-						"Progress: " + ((bloom.getProgress() / bloom.getMaxProgress())) + "%");
+						"Progress: " + (Math.round((bloom.getProgress() / bloom.getMaxProgress()) * 100)) + "%");
 			}
 
 			if (tileEntity instanceof TileEntityElectricBlock) {

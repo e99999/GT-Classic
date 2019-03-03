@@ -29,7 +29,6 @@ import gtclassic.tile.GTTileWorkbench;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -199,8 +198,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-		if (this == GTBlocks.bloomery
-				&& StackUtil.isStackEqual(playerIn.getHeldItemMainhand(), new ItemStack(Items.FLINT_AND_STEEL))) {
+		if (this == GTBlocks.bloomery && ItemStack.areItemsEqualIgnoreDurability(playerIn.getHeldItemMainhand(),
+				new ItemStack(Items.FLINT_AND_STEEL))) {
 			TileEntity te = worldIn.getTileEntity(pos);
 			if (te instanceof GTTileBloomery && ((GTTileBloomery) te).isActive) {
 				return false;
