@@ -2,6 +2,7 @@ package gtclassic.material;
 
 import java.util.LinkedHashMap;
 
+import gtclassic.GTMod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -65,6 +66,11 @@ public class GTMaterialGen {
 		if (mat.hasFlag(flag)) {
 			blockMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialBlock(mat, flag));
 		}
+	}
+
+	public static void localizationUtil(GTMaterial mat, GTMaterialFlag flag) {
+		GTMod.logger.info("item.gtclassic." + mat.getName() + flag.getSuffix() + ".name=" + "_REP0_"
+				+ mat.getDisplayName() + "_REP1_");
 	}
 
 	// How to get an itemstack of any material

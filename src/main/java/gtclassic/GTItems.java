@@ -25,8 +25,7 @@ public class GTItems {
 	static List<Item> toRegister = new ArrayList<Item>();
 	public static final GTItemComponent glassTube = createItem(new GTItemComponent("glass_tube", 0, false));
 	public static final GTItemComponent bouleSilicon = createItem(new GTItemComponent("silicon_boule", 1, false));
-	public static final GTItemComponent boardRefinedIron = createItem(
-			new GTItemComponent("refinediron_circuit_board", 2, false));
+	public static final GTItemComponent boardSteel = createItem(new GTItemComponent("steel_circuit_board", 2, false));
 	public static final GTItemComponent boardAluminium = createItem(
 			new GTItemComponent("aluminium_circuit_board", 3, false));
 	public static final GTItemComponent boardElectrum = createItem(
@@ -59,19 +58,13 @@ public class GTItems {
 	public static final GTToolHammer hammerTitanium = createItem(new GTToolHammer(GTMaterial.Titanium));
 	public static final GTToolHammer hammerTungstenSteel = createItem(new GTToolHammer(GTMaterial.TungstenSteel));
 
-	public static final GTToolMiningDrill advancedDrill = createItem(
-			new GTToolMiningDrill(GTMaterial.Steel, 100000, 128, 1));
-	public static final GTToolMiningDrill advancedDrill2 = createItem(
-			new GTToolMiningDrill(GTMaterial.Diamond, 200000, 256, 2));
-	public static final GTToolMiningDrill advancedDrill3 = createItem(
-			new GTToolMiningDrill(GTMaterial.Diamond, 400000, 512, 3));
+	public static final GTToolMiningDrill advancedDrill = createItem(new GTToolMiningDrill(GTMaterial.Steel));
+	public static final GTToolMiningDrill advancedDrill2 = createItem(new GTToolMiningDrill(GTMaterial.Diamond));
+	public static final GTToolMiningDrill advancedDrill3 = createItem(new GTToolMiningDrill(GTMaterial.TungstenSteel));
 
-	public static final GTToolChainsaw advancedChainsaw = createItem(
-			new GTToolChainsaw(GTMaterial.Steel, 100000, 128, 1));
-	public static final GTToolChainsaw advancedChainsaw2 = createItem(
-			new GTToolChainsaw(GTMaterial.Titanium, 200000, 256, 2));
-	public static final GTToolChainsaw advancedChainsaw3 = createItem(
-			new GTToolChainsaw(GTMaterial.TungstenSteel, 400000, 512, 3));
+	public static final GTToolChainsaw advancedChainsaw = createItem(new GTToolChainsaw(GTMaterial.Steel));
+	public static final GTToolChainsaw advancedChainsaw2 = createItem(new GTToolChainsaw(GTMaterial.Diamond));
+	public static final GTToolChainsaw advancedChainsaw3 = createItem(new GTToolChainsaw(GTMaterial.TungstenSteel));
 
 	public static final GTToolRockCutter rockCutter = createItem(
 			new GTToolRockCutter(GTMaterial.Diamond, 10000, 100, 1));

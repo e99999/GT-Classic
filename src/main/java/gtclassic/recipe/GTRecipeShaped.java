@@ -30,18 +30,6 @@ public class GTRecipeShaped {
 				new EnchantmentModifier(GT.get(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(), 'D',
 				"dustDiamond", 'I', GTValues.plateElectric, 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
 
-		recipes.addRecipe(GT.get(GTItems.advancedDrill, 1), new Object[] { "III", "ICI", "IBI", 'I', "plateSteel", 'B',
-				GTBlocks.smallLithium, 'C', "circuitBasic" });
-
-		recipes.addRecipe(GT.get(GTItems.advancedDrill2, 1), new Object[] { "DDD", "ICI", "IBI", 'I', "plateTitanium",
-				'B', GTBlocks.medLithium, 'C', "circuitAdvanced", 'D', "gemDiamond" });
-
-		recipes.addRecipe(GT.get(GTItems.advancedDrill3, 1), new Object[] { "DDD", "ICI", "IBI", 'I',
-				"plateTungstenSteel", 'B', GTBlocks.largeLithium, 'C', GTItems.circuitEmerald, 'D', "gemDiamond" });
-
-		recipes.addRecipe(GT.get(GTItems.advancedChainsaw2, 1), new Object[] { " II", "ICI", "BI ", 'I',
-				"plateTitanium", 'B', GTBlocks.medLithium, 'C', "circuitAdvanced", });
-
 		recipes.addRecipe(GT.get(GTItems.glassTube, 32), new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
 
 		recipes.addRecipe(GT.get(GTBlocks.smallLapotron, 1),

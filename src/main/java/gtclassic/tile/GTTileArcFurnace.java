@@ -25,6 +25,8 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,10 +70,10 @@ public class GTTileArcFurnace extends GTTileBaseMultiInputMachine {
 		handler.registerSlotType(SlotType.Output, slotOutput0, slotOutput1, slotOutput2);
 	}
 
-	// @Override
-	// public LocaleComp getBlockName() {
-	// return GTValues.fusion;
-	// }
+	@Override
+	public LocaleComp getBlockName() {
+		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+	}
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {

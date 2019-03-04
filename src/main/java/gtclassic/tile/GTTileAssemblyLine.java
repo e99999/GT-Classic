@@ -24,6 +24,8 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2States;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -44,8 +46,6 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 	public static final IBlockState casingGrate = GTBlocks.grateCasingBlock.getDefaultState();
 	public static final IBlockState casingMachineSteel = GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING)
 			.getDefaultState();
-	public static final IBlockState casingMachineAl = GTMaterialGen
-			.getBlock(GTMaterial.Aluminium, GTMaterialFlag.CASING).getDefaultState();
 	public static final IBlockState glass = Ic2States.reinforcedGlass;
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("assemblyline");
@@ -70,10 +70,10 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 		handler.registerSlotType(SlotType.Output, slotOutput0);
 	}
 
-	// @Override
-	// public LocaleComp getBlockName() {
-	// return GTValues.fusion;
-	// }
+	@Override
+	public LocaleComp getBlockName() {
+		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+	}
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
@@ -206,8 +206,7 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 	}
 
 	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == casingMachineSteel
-				|| world.getBlockState(pos.asBlockPos()) == casingMachineAl;
+		return world.getBlockState(pos.asBlockPos()) == casingMachineSteel;
 	}
 
 	public boolean isGlass(int3 pos) {

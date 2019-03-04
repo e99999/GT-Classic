@@ -1,9 +1,9 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerMultiEnergyStorage;
-import gtclassic.util.GTValues;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -33,7 +33,14 @@ public class GTTileMultiEnergyStorage extends TileEntityElectricBlock {
 	}
 
 	@Override
-	public LocaleComp getBlockName() {
-		return GTValues.mesu;
+	public void update() {
+		this.setActive(this.getStoredEU() > 0);
+		super.update();
 	}
+
+	@Override
+	public LocaleComp getBlockName() {
+		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+	}
+
 }

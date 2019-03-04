@@ -19,19 +19,18 @@ public class GTRecipeShapeless {
 
 		// LV item storage
 
-		recipes.addShapelessRecipe(GT.get(GTBlocks.smallChestLV, 1),
-				new Object[] { "casingMachineSteel", "chestWood" });
+		recipes.addShapelessRecipe(GT.get(GTBlocks.smallChestLV, 1), new Object[] { "casingMachineIron", "chestWood" });
 
 		recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestLV, 1),
 				new Object[] { GTBlocks.smallChestLV, GTBlocks.smallChestLV });
 
 		recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestLV, 1),
-				new Object[] { "chestWood", "chestWood", "casingMachineSteel", "casingMachineSteel" });
+				new Object[] { "chestWood", "chestWood", "casingMachineIron", "casingMachineIron" });
 
 		recipes.addShapelessRecipe(GT.get(GTBlocks.bookShelfLV, 1),
-				new Object[] { "casingMachineSteel", Items.BOOK, Items.BOOK, Items.BOOK });
+				new Object[] { "casingMachineIron", Items.BOOK, Items.BOOK, Items.BOOK });
 
-		recipes.addShapelessRecipe(GT.get(GTBlocks.workBenchLV, 1), new Object[] { "casingMachineSteel", "workbench" });
+		recipes.addShapelessRecipe(GT.get(GTBlocks.workBenchLV, 1), new Object[] { "casingMachineIron", "workbench" });
 
 		// MV item storage
 

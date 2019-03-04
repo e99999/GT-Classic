@@ -8,7 +8,6 @@ import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionComputer;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
-import gtclassic.util.GTValues;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
@@ -23,6 +22,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -64,7 +64,7 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.fusion;
+		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
 	}
 
 	@Override

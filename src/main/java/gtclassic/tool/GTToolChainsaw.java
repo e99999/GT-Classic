@@ -50,23 +50,20 @@ public class GTToolChainsaw extends ItemElectricTool
 	public static final ItemStack ironAxe;
 	GTMaterial material;
 
-	public GTToolChainsaw(GTMaterial material, int charge, int transfer, int tier) {
+	public GTToolChainsaw(GTMaterial material) {
 		super(0.0F, 0.0F, ToolMaterial.IRON);
 		this.material = material;
-		this.attackDamage = 1.0F;
-		this.maxCharge = charge;
-		this.transferLimit = transfer;
-		this.operationEnergyCost = transfer;
-		this.tier = tier;
+		this.tier = material.getLevel() - 1;
+		if (this.tier <= 0) {
+			this.tier = 1;
+		}
+		this.maxCharge = (int) (Math.pow(2, this.tier) * 50000);
+		this.transferLimit = (int) (Math.pow(2, this.tier) * 64);
 		this.efficiency = (this.material.getSpeed() * 2) * this.tier;
 		this.setHarvestLevel("axe", 2);
-		this.setRegistryName(getChainsawName());
-		this.setUnlocalizedName(GTMod.MODID + "." + getChainsawName());
+		this.setRegistryName("chainsaw_" + this.material.getName());
+		this.setUnlocalizedName(GTMod.MODID + "." + "chainsaw_" + this.material.getName());
 		this.setCreativeTab(GTMod.creativeTabGT);
-	}
-
-	public String getChainsawName() {
-		return ("chainsaw_" + this.material.getName() + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
 
 	@Override

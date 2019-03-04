@@ -43,20 +43,19 @@ public class GTToolMiningDrill extends ItemElectricTool
 
 	GTMaterial material;
 
-	public GTToolMiningDrill(GTMaterial material, int charge, int transfer, int tier) {
+	public GTToolMiningDrill(GTMaterial material) {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);
 		this.material = material;
-		this.tier = tier;
-		this.maxCharge = charge;
-		this.transferLimit = transfer;
-		this.setRegistryName(getDrillName());
-		this.setUnlocalizedName(GTMod.MODID + "." + getDrillName());
+		this.tier = material.getLevel() - 1;
+		if (this.tier <= 0) {
+			this.tier = 1;
+		}
+		this.maxCharge = (int) (Math.pow(2, this.tier) * 50000);
+		this.transferLimit = (int) (Math.pow(2, this.tier) * 64);
+		this.setRegistryName("drill_" + this.material.getName());
+		this.setUnlocalizedName(GTMod.MODID + "." + "drill_" + this.material.getName());
 		this.attackDamage = 8.0F;
 		this.setCreativeTab(GTMod.creativeTabGT);
-	}
-
-	public String getDrillName() {
-		return ("drill_" + this.material.getName() + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
 
 	@Override
@@ -77,18 +76,17 @@ public class GTToolMiningDrill extends ItemElectricTool
 
 	@Override
 	public int getHarvestLevel(ItemStack stack, String toolClass, EntityPlayer player, IBlockState blockState) {
-		if (this.tier == 1) {
-			return 2;
-		} else {
-			return 3;
-		}
+		return this.material.getLevel();
 	}
 
 	public String getLevelString() {
 		if (this.tier == 1) {
 			return "Diamond";
-		} else {
+		}
+		if (this.tier == 2) {
 			return "Obsidian";
+		} else {
+			return "???";
 		}
 	}
 

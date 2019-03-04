@@ -2,13 +2,11 @@ package gtclassic.util;
 
 import java.awt.Color;
 
-import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -31,18 +29,6 @@ public class GTValues {
 	public static int green = 9567352;
 
 	// lang
-	public static LocaleComp besu = new LocaleBlockComp("tile." + GTMod.MODID + ".besu");
-	public static LocaleComp qesu = new LocaleBlockComp("tile." + GTMod.MODID + ".qesu");
-	public static LocaleComp mesu = new LocaleBlockComp("tile." + GTMod.MODID + ".mesu");
-	public static LocaleComp centrifuge = new LocaleBlockComp("tile." + GTMod.MODID + ".industrialcentrifuge");
-	public static LocaleComp alloysmelter = new LocaleBlockComp("tile." + GTMod.MODID + ".alloysmelter");
-	public static LocaleComp fusion = new LocaleBlockComp("tile." + GTMod.MODID + ".fusioncomputer");
-
-	public static LocaleComp smallchest = new LocaleBlockComp("tile." + GTMod.MODID + ".smallchest");
-	public static LocaleComp largechest = new LocaleBlockComp("tile." + GTMod.MODID + ".largechest");
-	public static LocaleComp digitalchest = new LocaleBlockComp("tile." + GTMod.MODID + ".digitalchest");
-	public static LocaleComp bookshelf = new LocaleBlockComp("tile." + GTMod.MODID + ".bookshelf");
-
 	public static LocaleComp centrifugeEU = new LocaleJEIInfoComp("jei.centrifugeu.name");
 
 	// recipe stuff

@@ -7,7 +7,6 @@ import java.util.Set;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerAlloySmelter;
 import gtclassic.gui.GTGuiMachine.GTAlloySmelterGui;
-import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.machine.MachineOutput;
@@ -24,6 +23,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.client.gui.GuiScreen;
@@ -69,7 +69,7 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.alloysmelter;
+		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
 	}
 
 	@Override
