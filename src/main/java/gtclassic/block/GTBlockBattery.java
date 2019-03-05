@@ -46,7 +46,6 @@ public class GTBlockBattery extends GTBlockTileCustom implements GTItemBlockInte
 			TileEntity tile = worldIn.getTileEntity(pos);
 			if (tile instanceof GTTileBlockCustom) {
 				this.charge = (int) ElectricItem.manager.getCharge(stack);
-				((GTTileBlockCustom) tile).setData(this.charge);
 				((GTTileBlockCustom) tile).setItem(stack);
 			}
 		}

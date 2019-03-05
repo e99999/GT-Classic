@@ -9,6 +9,8 @@ public class GTRecipe {
 	 */
 
 	public static void init() {
+		GTRecipeAlloySmelter.recipesAlloySmelter1();
+		GTRecipeAlloySmelter.recipesAlloySmelter2();
 		GTRecipeCircuitry.recipesCircutry();
 		GTRecipeIndustrialCentrifuge.recipesCentrifuge1();
 		GTRecipeIndustrialCentrifuge.recipesCentrifuge2();
@@ -16,6 +18,7 @@ public class GTRecipe {
 		GTRecipeIndustrialCentrifuge.recipesCentrifuge4();
 		GTRecipeIterators.recipeIterators1();
 		GTRecipeIterators.recipeIterators2();
+		GTRecipeIterators.recipeIterators3();
 		GTRecipeMod.recipesIC2();
 		GTRecipeProcessing.recipesProcessing();
 		GTRecipeShaped.recipeShaped1();

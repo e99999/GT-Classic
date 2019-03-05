@@ -36,7 +36,7 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString(block.getBlockName(), 12, 8, GTValues.white);
+		gui.drawString("Energy Storage: ", 12, 8, GTValues.white);
 		gui.drawString(Ic2GuiLang.energyStorageCharge, 12, 18, GTValues.white);
 		int eu = this.block.getStoredEU();
 		int max = this.block.getMaxEU();

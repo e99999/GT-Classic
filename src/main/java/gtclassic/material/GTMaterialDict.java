@@ -51,6 +51,7 @@ public class GTMaterialDict {
 			// Sticks
 			if (mat.hasFlag(GTMaterialFlag.STICK)) {
 				OreDictionary.registerOre("stick" + mat.getDisplayName(), GTMaterialGen.getStick(mat, 1));
+				OreDictionary.registerOre("rod" + mat.getDisplayName(), GTMaterialGen.getStick(mat, 1));
 			}
 
 		}

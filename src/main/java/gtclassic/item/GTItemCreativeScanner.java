@@ -1,14 +1,8 @@
 package gtclassic.item;
 
 import gtclassic.GTMod;
-import gtclassic.tile.GTTileBlockCustom;
-import gtclassic.tile.GTTileDigitalChest;
-import gtclassic.tile.GTTileFusionComputer;
-import gtclassic.tile.GTTileLightningRod;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.item.ElectricItem;
-import ic2.core.IC2;
-import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.item.base.ItemBatteryBase;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
@@ -17,7 +11,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -91,77 +84,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	@Override
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
 			float hitY, float hitZ, EnumHand hand) {
-		if (player.isSneaking()) {
-			return EnumActionResult.PASS;
-		} else {
-
-			TileEntity tileEntity = world.getTileEntity(pos);
-
-			if (!IC2.platform.isSimulating()) {
-				return EnumActionResult.PASS;
-			}
-
-			if (tileEntity instanceof GTTileLightningRod) {
-				GTTileLightningRod te = (GTTileLightningRod) tileEntity;
-				IC2.platform.messagePlayer(player, "---Lightning Rod Multi Block Information---");
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + te.checkStructure());
-				IC2.platform.messagePlayer(player,
-						"Casing Block Amount: " + (te.casingheight - (te.getPos().getY() + 1)));
-				IC2.platform.messagePlayer(player, "Casing Block Level: " + te.casingheight);
-				IC2.platform.messagePlayer(player, "Weather Height: " + world.getPrecipitationHeight(pos).getY());
-				IC2.platform.messagePlayer(player, "Block Up Level: " + (te.getPos().getY() + 1));
-				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.thunderingStrength) * 100) + "%");
-				IC2.platform.messagePlayer(player, "1 out of " + te.chance + " chance to strike based on fence height");
-				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
-				return EnumActionResult.SUCCESS;
-			}
-
-			if (tileEntity instanceof GTTileFusionComputer) {
-				GTTileFusionComputer te1 = (GTTileFusionComputer) tileEntity;
-				IC2.platform.messagePlayer(player, "---Fusion Computer Multi Block Information---");
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + te1.checkStructure());
-				IC2.platform.messagePlayer(player, "Active: " + te1.getActive());
-				IC2.platform.messagePlayer(player, "Progress: " + ((int) (te1.getProgress() / 100)) + "%");
-				IC2.platform.messagePlayer(player, "Stored EU: " + te1.getStoredEU());
-				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
-				return EnumActionResult.SUCCESS;
-			}
-
-			if (tileEntity instanceof GTTileDigitalChest) {
-				GTTileDigitalChest te2 = (GTTileDigitalChest) tileEntity;
-				IC2.platform.messagePlayer(player, "---Quantum Chest Information---");
-				IC2.platform.messagePlayer(player, "Display Count: " + te2.getDisplayCount());
-				IC2.platform.messagePlayer(player, "Internal Count: " + te2.getQuantumCount());
-				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
-				return EnumActionResult.SUCCESS;
-			}
-
-			if (tileEntity instanceof TileEntityElectricBlock) {
-				TileEntityElectricBlock te4 = (TileEntityElectricBlock) tileEntity;
-				IC2.platform.messagePlayer(player, "---Electric Storage Information---");
-				IC2.platform.messagePlayer(player, "Tier: " + te4.getTier());
-				IC2.platform.messagePlayer(player, "Output: " + te4.getOutput());
-				IC2.platform.messagePlayer(player, "Stored EU: " + te4.getStored());
-				IC2.platform.messagePlayer(player, "Max EU: " + te4.getCapacity());
-				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
-				return EnumActionResult.SUCCESS;
-			}
-
-			if (tileEntity instanceof GTTileBlockCustom) {
-				GTTileBlockCustom te5 = (GTTileBlockCustom) tileEntity;
-				IC2.platform.messagePlayer(player, "---GT Item Block Information---");
-				IC2.platform.messagePlayer(player, "int Stored: " + te5.getData());
-				IC2.platform.messagePlayer(player, "Stack Stored: " + te5.getItem().getUnlocalizedName());
-				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
-				return EnumActionResult.SUCCESS;
-			}
-
-			else {
-				IC2.platform.messagePlayer(player, "Nothing to read from this");
-				return EnumActionResult.PASS;
-			}
-		}
-
+		return GTMod.scanBlock(player, world, pos, side, hitX, hitY, hitZ, hand);
 	}
 
 	@Override

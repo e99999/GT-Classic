@@ -8,21 +8,20 @@ import java.util.Random;
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileAlloySmelter;
+import gtclassic.tile.GTTileArcFurnace;
+import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBasicEnergyStorage;
-import gtclassic.tile.GTTileBookshelf;
+import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
-import gtclassic.tile.GTTileLargeChest;
 import gtclassic.tile.GTTileLightningRod;
 import gtclassic.tile.GTTileMultiEnergyStorage;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
-import gtclassic.tile.GTTileSmallChest;
-import gtclassic.tile.GTTileSuperConductor;
-import gtclassic.tile.GTTileWorkbench;
-import ic2.core.block.base.BlockMultiID;
+import gtclassic.tile.GTTileSuperConductorHigh;
+import gtclassic.tile.GTTileSuperConductorLow;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -32,10 +31,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -53,7 +57,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		setRegistryName(this.name.toLowerCase());
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
-		setHardness(4.0F);
+		setBlockUnbreakable();
 		setResistance(20.0F);
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);
@@ -81,10 +85,16 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.computerCube) {
 			return new GTTileComputerCube();
+		} else if (this == GTBlocks.bloomery) {
+			return new GTTileBloomery();
 		} else if (this == GTBlocks.industrialCentrifuge) {
 			return new GTTileIndustrialCentrifuge();
 		} else if (this == GTBlocks.alloySmelter) {
 			return new GTTileAlloySmelter();
+		} else if (this == GTBlocks.assLine) {
+			return new GTTileAssemblyLine();
+		} else if (this == GTBlocks.arcFurnace) {
+			return new GTTileArcFurnace();
 		} else if (this == GTBlocks.lightningRod) {
 			return new GTTileLightningRod();
 		} else if (this == GTBlocks.fusionComputer) {
@@ -95,34 +105,18 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			return new GTTileQuantumEnergyStorage();
 		} else if (this == GTBlocks.multiEnergyStorage) {
 			return new GTTileMultiEnergyStorage();
-		} else if (this == GTBlocks.digitalTransformerIV) {
-			return new GTTileDigitalTransformer(32768, 65535);
-		} else if (this == GTBlocks.digitalChestLV || this == GTBlocks.digitalChestMV) {
+		} else if (this == GTBlocks.digitalChest) {
 			return new GTTileDigitalChest();
-		} else if (this == GTBlocks.smallChestLV || this == GTBlocks.smallChestMV) {
-			return new GTTileSmallChest();
-		} else if (this == GTBlocks.largeChestLV || this == GTBlocks.largeChestMV) {
-			return new GTTileLargeChest();
-		} else if (this == GTBlocks.bookShelfLV || this == GTBlocks.bookShelfMV) {
-			return new GTTileBookshelf();
-		} else if (this == GTBlocks.workBenchLV || this == GTBlocks.workBenchMV) {
-			return new GTTileWorkbench();
-		} else if (this == GTBlocks.energiumWire) {
-			return new GTTileSuperConductor(1.5D, 32769.0D);
+		} else if (this == GTBlocks.digitalTransformerIV) {
+			return new GTTileDigitalTransformer();
+		} else if (this == GTBlocks.energiumCable) {
+			return new GTTileSuperConductorLow();
+		} else if (this == GTBlocks.lapotronCable) {
+			return new GTTileSuperConductorHigh();
 		} else {
 			return new TileEntityBlock();
 		}
 
-	}
-
-	@Override
-	public float getEnchantPowerBonus(World world, BlockPos pos) {
-		TileEntity tile = world.getTileEntity(pos);
-		if ((tile instanceof GTTileBookshelf) && (((GTTileBookshelf) tile).isActive)) {
-			return 2;
-		} else {
-			return 0;
-		}
 	}
 
 	@Override
@@ -157,10 +151,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		IBlockState def = getDefaultState();
 		List<IBlockState> states = new ArrayList<>();
 		for (EnumFacing side : EnumFacing.VALUES) {
-			states.add(def.withProperty(allFacings, side).withProperty(active,
-					false));
-			states.add(def.withProperty(allFacings, side).withProperty(active,
-					true));
+			states.add(def.withProperty(allFacings, side).withProperty(active, false));
+			states.add(def.withProperty(allFacings, side).withProperty(active, true));
 		}
 		return states;
 	}
@@ -181,38 +173,31 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		}
 	}
 
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+
+		if (this == GTBlocks.bloomery && ItemStack.areItemsEqualIgnoreDurability(playerIn.getHeldItemMainhand(),
+				new ItemStack(Items.FLINT_AND_STEEL))) {
+			TileEntity te = worldIn.getTileEntity(pos);
+			if (te instanceof GTTileBloomery && ((GTTileBloomery) te).isActive) {
+				return false;
+			}
+			if (te instanceof GTTileBloomery && !((GTTileBloomery) te).isActive) {
+				return ((GTTileBloomery) te).canWork();
+			}
+		}
+		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileFusionComputer) {
-			if (((GTTileFusionComputer) tile).isActive) {
-				for (int i = -2; i <= 2; ++i) {
-					for (int j = -2; j <= 2; ++j) {
-						if (i > -2 && i < 2 && j == -1) {
-							j = 2;
-						}
+		particleQuantumEnergy(stateIn, worldIn, pos, rand);
+		particleBloomery(stateIn, worldIn, pos, rand);
+	}
 
-						if (rand.nextInt(4) == 0) {
-							for (int k = 0; k <= 1; ++k) {
-
-								if (!worldIn.isAirBlock(pos.add(i / 2, 0, j / 2))) {
-									break;
-								}
-
-								worldIn.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, (double) pos.getX() + 0.5D,
-										(double) pos.getY() + 1.0D, (double) pos.getZ() + 0.5D,
-										(double) ((float) i + rand.nextFloat()) - 0.5D,
-										(double) ((float) k - rand.nextFloat() - 1.0F),
-										(double) ((float) j + rand.nextFloat()) - 0.5D);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		else if (this == GTBlocks.quantumEnergyStorage) {
+	public void particleQuantumEnergy(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		if (this == GTBlocks.quantumEnergyStorage) {
 			for (int i = 0; i < 3; ++i) {
 				int j = rand.nextInt(2) * 2 - 1;
 				int k = rand.nextInt(2) * 2 - 1;
@@ -223,6 +208,44 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				double d4 = (rand.nextFloat() - 0.5D) * 0.125D;
 				double d5 = rand.nextFloat() * k;
 				worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, d3, d4, d5);
+			}
+		}
+	}
+
+	@SuppressWarnings("incomplete-switch")
+	public void particleBloomery(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileBloomery) {
+			if (((GTTileBloomery) tile).isActive) {
+				EnumFacing enumfacing = getFacing(worldIn, pos);
+				double d0 = (double) pos.getX() + 0.5D;
+				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
+				double d2 = (double) pos.getZ() + 0.5D;
+				double d3 = 0.52D;
+				double d4 = rand.nextDouble() * 0.6D - 0.3D;
+
+				if (rand.nextDouble() < 0.1D) {
+					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D,
+							SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+				}
+
+				switch (enumfacing) {
+				case WEST:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					break;
+				case EAST:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					break;
+				case NORTH:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
+					break;
+				case SOUTH:
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
+					worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
+				}
 			}
 		}
 	}

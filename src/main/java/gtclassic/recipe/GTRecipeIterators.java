@@ -1,14 +1,21 @@
 package gtclassic.recipe;
 
+import gtclassic.block.GTBlockTileStorage;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tool.GTToolChainsaw;
+import gtclassic.tool.GTToolFile;
+import gtclassic.tool.GTToolHammer;
+import gtclassic.tool.GTToolMiningDrill;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.block.Block;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -31,7 +38,7 @@ public class GTRecipeIterators {
 			String gem = "gem" + mat.getDisplayName();
 			String ingot = "ingot" + mat.getDisplayName();
 			String nugget = "nugget" + mat.getDisplayName();
-			String stick = "stick" + mat.getDisplayName();
+			String stick = "rod" + mat.getDisplayName();
 			String plate = "plate" + mat.getDisplayName();
 			String block = "block" + mat.getDisplayName();
 
@@ -44,8 +51,10 @@ public class GTRecipeIterators {
 					recipes.addShapelessRecipe(GT.getDust(mat, 1),
 							new Object[] { smalldust, smalldust, smalldust, smalldust });
 
-					// Small dust to regular dust compressor
-					TileEntityCompressor.addRecipe(smalldust, 4, GT.getDust(mat, 1), 0.0F);
+					if (mat != M.Graphite) {
+						// Small dust to regular dust compressor
+						TileEntityCompressor.addRecipe(smalldust, 4, GT.getDust(mat, 1), 0.0F);
+					}
 				}
 
 			}
@@ -153,6 +162,54 @@ public class GTRecipeIterators {
 		ingotUtil(Ic2Items.bronzeIngot, M.Bronze);
 		ingotUtil(Ic2Items.silverIngot, M.Silver);
 
+	}
+
+	public static void recipeIterators3() {
+		for (Item item : Item.REGISTRY) {
+			if (item instanceof GTToolFile) {
+				recipes.addRecipe(new ItemStack(item), new Object[] { "X  ", "X  ", "S  ", 'X',
+						((GTToolFile) item).getRecipePrimary(), 'S', "stickWood" });
+			}
+			if (item instanceof GTToolHammer) {
+				recipes.addRecipe(new ItemStack(item), new Object[] { "XX ", "XXS", "XX ", 'X',
+						((GTToolHammer) item).getRecipePrimary(), 'S', "stickWood" });
+			}
+			if (item instanceof GTToolMiningDrill) {
+				recipes.addRecipe(new ItemStack(item),
+						new Object[] { "XXX", "SCS", "SBS", 'X', ((GTToolMiningDrill) item).getRecipePrimary(), 'S',
+								((GTToolMiningDrill) item).getRecipeSecondary(), 'C',
+								((GTToolMiningDrill) item).getRecipeCircuit(), 'B',
+								((GTToolMiningDrill) item).getRecipeBattery() });
+			}
+			if (item instanceof GTToolChainsaw) {
+				recipes.addRecipe(new ItemStack(item),
+						new Object[] { "SXX", "BCX", "SXX", 'X', ((GTToolChainsaw) item).getRecipePrimary(), 'S',
+								((GTToolChainsaw) item).getRecipeSecondary(), 'C',
+								((GTToolChainsaw) item).getRecipeCircuit(), 'B',
+								((GTToolChainsaw) item).getRecipeBattery() });
+			}
+		}
+		for (Block block : Block.REGISTRY) {
+			if (block instanceof GTBlockTileStorage) {
+				GTBlockTileStorage tile = (GTBlockTileStorage) block;
+				if (tile.getType() == 0) {
+					recipes.addShapelessRecipe(new ItemStack(block),
+							new Object[] { tile.getRecipePrimary(), tile.getRecipeSecondary() });
+				}
+				if (tile.getType() == 1) {
+					recipes.addShapelessRecipe(new ItemStack(block), new Object[] { tile.getRecipePrimary(),
+							tile.getRecipePrimary(), tile.getRecipeSecondary(), tile.getRecipeSecondary() });
+				}
+				if (tile.getType() == 2) {
+					recipes.addShapelessRecipe(new ItemStack(block),
+							new Object[] { tile.getRecipePrimary(), tile.getRecipeSecondary() });
+				}
+				if (tile.getType() == 3) {
+					recipes.addShapelessRecipe(new ItemStack(block),
+							new Object[] { tile.getRecipePrimary(), tile.getRecipeSecondary() });
+				}
+			}
+		}
 	}
 
 	public static void dustUtil(ItemStack stack, GTMaterial material) {

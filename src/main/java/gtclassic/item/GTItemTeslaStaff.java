@@ -29,7 +29,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 		this.attackDamage = 1.0F;
 		this.maxCharge = 10000000;
 		this.transferLimit = 2048;
-		this.operationEnergyCost = 10000000;
+		this.operationEnergyCost = 2000000;
 		this.tier = 4;
 		this.setRegistryName("tesla_staff");
 		this.setUnlocalizedName(GTMod.MODID + ".teslaStaff");

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
@@ -50,23 +51,20 @@ public class GTToolChainsaw extends ItemElectricTool
 	public static final ItemStack ironAxe;
 	GTMaterial material;
 
-	public GTToolChainsaw(GTMaterial material, int charge, int transfer, int tier) {
+	public GTToolChainsaw(GTMaterial material) {
 		super(0.0F, 0.0F, ToolMaterial.IRON);
 		this.material = material;
-		this.attackDamage = 1.0F;
-		this.maxCharge = charge;
-		this.transferLimit = transfer;
-		this.operationEnergyCost = transfer;
-		this.tier = tier;
+		this.tier = material.getLevel() - 1;
+		if (this.tier <= 0) {
+			this.tier = 1;
+		}
+		this.maxCharge = (int) (Math.pow(2, this.tier) * 50000);
+		this.transferLimit = (int) (Math.pow(2, this.tier) * 64);
 		this.efficiency = (this.material.getSpeed() * 2) * this.tier;
 		this.setHarvestLevel("axe", 2);
-		this.setRegistryName(getChainsawName());
-		this.setUnlocalizedName(GTMod.MODID + "." + getChainsawName());
+		this.setRegistryName("chainsaw_" + this.material.getName());
+		this.setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_chainsaw");
 		this.setCreativeTab(GTMod.creativeTabGT);
-	}
-
-	public String getChainsawName() {
-		return ("chainsaw_" + this.material.getName() + "_" + GTValues.getTierString(this.tier)).toLowerCase();
 	}
 
 	@Override
@@ -279,5 +277,51 @@ public class GTToolChainsaw extends ItemElectricTool
 	@Override
 	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[34 + var1];
+	}
+
+	public String getRecipePrimary() {
+		return "plate" + this.material.getDisplayName();
+	}
+
+	public String getRecipeSecondary() {
+		if (this.tier == 1) {
+			return "plateSteel";
+		}
+		if (this.tier == 2) {
+			return "plateTitanium";
+		}
+		if (this.tier == 3) {
+			return "plateTungstensteel";
+		}
+		if (this.tier == 4) {
+			return "plateChrome";
+		}
+		if (this.tier == 5) {
+			return "plateIridium";
+		} else {
+			return "plateOsmium";
+		}
+	}
+
+	public String getRecipeCircuit() {
+		if (this.tier == 1) {
+			return "circuitBasic";
+		}
+		if (this.tier == 2) {
+			return "circuitAdvanced";
+		} else {
+			return "circuitElite";
+		}
+	}
+
+	public ItemStack getRecipeBattery() {
+		if (this.tier == 1) {
+			return new ItemStack(GTBlocks.smallLithium);
+		}
+		if (this.tier == 2) {
+			return new ItemStack(GTBlocks.medLithium);
+		} else {
+			return new ItemStack(GTBlocks.largeLithium);
+		}
 	}
 }

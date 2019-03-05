@@ -6,7 +6,6 @@ import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerIndustrialCentrifuge;
 import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
-import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTBasicMachineRecipeList;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -28,6 +27,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
@@ -86,7 +86,7 @@ public class GTTileIndustrialCentrifuge extends TileEntityBasicElectricMachine {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.centrifuge;
+		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
 	}
 
 	@Override

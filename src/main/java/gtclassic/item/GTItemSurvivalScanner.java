@@ -6,12 +6,9 @@ import java.util.List;
 import gtclassic.GTMod;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.item.ElectricItem;
-import ic2.core.IC2;
 import ic2.core.item.base.BasicElectricItem;
-import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -50,14 +47,11 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 	@Override
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
 			float hitY, float hitZ, EnumHand hand) {
-		if (player.isSneaking() || !IC2.platform.isSimulating() || !canScan(player.getHeldItemMainhand())) {
+		if (!canScan(player.getHeldItemMainhand())) {
 			return EnumActionResult.PASS;
 		} else {
-			IBlockState state = world.getBlockState(pos);
-			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
-			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 			ElectricItem.manager.use(player.getHeldItemMainhand(), energyCost, (EntityLivingBase) null);
-			return EnumActionResult.SUCCESS;
+			return GTMod.scanBlock(player, world, pos, side, hitX, hitY, hitZ, hand);
 		}
 	}
 

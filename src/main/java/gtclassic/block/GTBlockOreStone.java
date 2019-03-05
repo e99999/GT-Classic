@@ -64,24 +64,24 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 
 		// Nether Ore Drops
 		if (this == GTBlocks.cinnabarOre) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.Cinnabar, 2 + RANDOM.nextInt(fortune)));
+			drops.add(GTMaterialGen.getDust(GTMaterial.Cinnabar, 2));
 			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(new ItemStack(Items.REDSTONE, 1 + RANDOM.nextInt(fortune)));
+				drops.add(new ItemStack(Items.REDSTONE, 1));
 			}
 
 		}
 
 		if (this == GTBlocks.pyriteOre) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.Pyrite, 2 + RANDOM.nextInt(fortune)));
+			drops.add(GTMaterialGen.getDust(GTMaterial.Pyrite, 2));
 		}
 
 		if (this == GTBlocks.sphaleriteOre) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.Sphalerite, 1 + RANDOM.nextInt(fortune)));
+			drops.add(GTMaterialGen.getDust(GTMaterial.Sphalerite, 1));
 			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(GTMaterialGen.getDust(GTMaterial.Zinc, 1 + RANDOM.nextInt(fortune)));
+				drops.add(GTMaterialGen.getDust(GTMaterial.Zinc, 1));
 			}
 			if (RANDOM.nextFloat() < 0.125f) {
-				drops.add(GTMaterialGen.getGem(GTMaterial.GarnetYellow, 1 + RANDOM.nextInt(fortune)));
+				drops.add(GTMaterialGen.getGem(GTMaterial.GarnetYellow, 1));
 			}
 		}
 
@@ -95,14 +95,14 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 		}
 
 		if (this == GTBlocks.sodaliteOre) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.Sodalite, 6 + RANDOM.nextInt(fortune)));
+			drops.add(GTMaterialGen.getDust(GTMaterial.Sodalite, 6));
 			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(GTMaterialGen.getDust(GTMaterial.Aluminium, 1 + RANDOM.nextInt(fortune)));
+				drops.add(GTMaterialGen.getDust(GTMaterial.Aluminium, 1));
 			}
 		}
 
 		if (this == GTBlocks.olivineOre) {
-			drops.add(GTMaterialGen.getGem(GTMaterial.Olivine, 1 + RANDOM.nextInt(fortune)));
+			drops.add(GTMaterialGen.getGem(GTMaterial.Olivine, 1));
 		}
 
 		// Overworld/Modded Dim Ores
@@ -116,22 +116,26 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 
 		if (this == GTBlocks.rubyOre) {
 			if (RANDOM.nextFloat() > 0.10f) {
-				drops.add(GTMaterialGen.getGem(GTMaterial.Ruby, 1 + RANDOM.nextInt(fortune)));
+				drops.add(GTMaterialGen.getGem(GTMaterial.Ruby, 1));
 			} else {
-				drops.add(GTMaterialGen.getGem(GTMaterial.GarnetRed, 1 + RANDOM.nextInt(fortune)));
+				drops.add(GTMaterialGen.getGem(GTMaterial.GarnetRed, 1));
 			}
 		}
 
 		if (this == GTBlocks.sapphireOre) {
 			if (RANDOM.nextFloat() > 0.10f) {
-				drops.add(GTMaterialGen.getGem(GTMaterial.Sapphire, 1 + RANDOM.nextInt(fortune)));
+				drops.add(GTMaterialGen.getGem(GTMaterial.Sapphire, 1));
 			} else {
-				drops.add(GTMaterialGen.getGem(GTMaterial.SapphireGreen, 1 + RANDOM.nextInt(fortune)));
+				drops.add(GTMaterialGen.getGem(GTMaterial.SapphireGreen, 1));
 			}
 		}
 
 		if (this == GTBlocks.bauxiteOre) {
 			drops.add(new ItemStack(GTBlocks.bauxiteOre, 1));
+		}
+
+		if (this == GTBlocks.calciteOre) {
+			drops.add(new ItemStack(GTBlocks.calciteOre, 1));
 		}
 
 		return drops;
@@ -156,21 +160,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (this == GTBlocks.iridiumOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".iridium"));
-		}
-
-		else if (this == GTBlocks.rubyOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".ruby"));
-		}
-
-		else if (this == GTBlocks.sapphireOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".sapphire"));
-		}
-
-		else if (this == GTBlocks.bauxiteOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".bauxite"));
-		}
+		tooltip.add(TextFormatting.ITALIC + I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
 	}
 
 	@Override

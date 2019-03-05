@@ -18,7 +18,6 @@ public class GTTileBlockCustom extends TileEntityBlock implements IItemContainer
 	 * placed.
 	 */
 
-	private int data;
 	private ItemStack drop = ItemStack.EMPTY;
 
 	public GTTileBlockCustom() {
@@ -27,7 +26,6 @@ public class GTTileBlockCustom extends TileEntityBlock implements IItemContainer
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("data", this.data);
 		nbt.setTag("drop", drop.writeToNBT(new NBTTagCompound()));
 		return nbt;
 	}
@@ -35,7 +33,6 @@ public class GTTileBlockCustom extends TileEntityBlock implements IItemContainer
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.data = nbt.getInteger("data");
 		this.drop = new ItemStack(nbt.getCompoundTag("drop"));
 	}
 
@@ -45,16 +42,8 @@ public class GTTileBlockCustom extends TileEntityBlock implements IItemContainer
 		super.onLoaded();
 	}
 
-	public int getData() {
-		return this.data;
-	}
-
 	public ItemStack getItem() {
 		return this.drop;
-	}
-
-	public void setData(int data) {
-		this.data = data;
 	}
 
 	public void setItem(ItemStack item) {

@@ -37,8 +37,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 4));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_casings", 0, 0, 16, 4));
 
-		addCustomTexture("tile_digitalchest_lv", 0, 1, location("digitalchestlv_top"));
-		addCustomTexture("tile_digitalchest_mv", 0, 1, location("digitalchestmv_top"));
+		addCustomTexture("tile_digitalchest", 0, 1, location("digitalchest_top"));
 		addCustomTexture("machine_fusioncomputer_iv", 0, 7, location("fusion_top"));
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 7, location("centrifuge_top"));
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 8, location("centrifuge_back"));

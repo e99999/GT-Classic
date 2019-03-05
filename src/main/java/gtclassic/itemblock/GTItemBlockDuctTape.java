@@ -5,7 +5,6 @@ import java.util.List;
 import gtclassic.GTMod;
 import ic2.api.classic.energy.tile.IInsulationModifieableConductor;
 import ic2.core.IC2;
-import ic2.core.item.block.ItemBlockRare;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;

@@ -1,6 +1,7 @@
 package gtclassic.util.recipe;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,6 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.recipes.managers.RecipeManager;
 import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.FMLLog;
 
 public class GTMultiInputRecipeList {
 	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(),
@@ -41,6 +41,9 @@ public class GTMultiInputRecipeList {
 		}
 		if (isListInvalid(output.getAllOutputs())) {
 			GTMod.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
+			for (int i = 0; i < inputs.size(); i++) {
+				GTMod.logger.info("Recipe[" + inputs.get(i) + "] as input " + category);
+			}
 			return;
 		}
 		MultiRecipe recipe = new MultiRecipe(inputs, output, id);
@@ -60,16 +63,13 @@ public class GTMultiInputRecipeList {
 			}
 		}
 	}
-	
-	public static String getRecipeID(Set<String> ids, String base, int index)
-	{
+
+	public static String getRecipeID(Set<String> ids, String base, int index) {
 		String newString = base;
-		if(index > 0)
-		{
-			newString = newString + "_"+index;
+		if (index > 0) {
+			newString = newString + "_" + index;
 		}
-		if(ids.contains(newString))
-		{
+		if (ids.contains(newString)) {
 			return getRecipeID(ids, base, index + 1);
 		}
 		return newString;
@@ -155,5 +155,9 @@ public class GTMultiInputRecipeList {
 			return outputs;
 		}
 
+	}
+
+	public Collection<MultiRecipe> getRecipeList() {
+		return new ArrayList<MultiRecipe>(recipes);
 	}
 }

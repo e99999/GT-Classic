@@ -7,7 +7,6 @@ import java.util.Set;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerAlloySmelter;
 import gtclassic.gui.GTGuiMachine.GTAlloySmelterGui;
-import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.machine.MachineOutput;
@@ -24,6 +23,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.client.gui.GuiScreen;
@@ -44,7 +44,8 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 	public static final int slotFuel = 3;
 
 	public GTTileAlloySmelter() {
-		super(4, 0, 16, 1000, 32);
+		super(4, 0, 16, 200, 32);
+		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
 	}
 
@@ -68,7 +69,7 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.alloysmelter;
+		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
 	}
 
 	@Override
@@ -127,6 +128,20 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
+	}
+
+	public static void addRecipe(String input1, int amount1, ItemStack input2, ItemStack output) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
+		inputs.add((IRecipeInput) (new RecipeInputItemStack(input2)));
+		addRecipe(inputs, new MachineOutput(null, output));
+	}
+
+	public static void addRecipe(ItemStack input1, String input2, int amount2, ItemStack output) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input2, amount2)));
+		addRecipe(inputs, new MachineOutput(null, output));
 	}
 
 	public static void addRecipe(String input1, int amount1, String input2, int amount2, ItemStack output) {

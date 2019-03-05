@@ -5,7 +5,6 @@ import java.util.Set;
 
 import gtclassic.container.GTContainerBookshelf;
 import gtclassic.util.GTBookshelfFilter;
-import gtclassic.util.GTValues;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -13,6 +12,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
@@ -30,8 +30,13 @@ public class GTTileBookshelf extends TileEntityMachine implements IHasGui {
 	}
 
 	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return true;
+	}
+
+	@Override
 	public LocaleComp getBlockName() {
-		return GTValues.bookshelf;
+		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
 	}
 
 	@Override
