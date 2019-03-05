@@ -113,9 +113,9 @@ public class GTRecipeAlloySmelter {
 	 */
 	public static void alloyUtil(String input1, int amount1, String input2, int amount2, ItemStack output) {
 		GTTileAlloySmelter.addRecipe("ingot" + input1, amount1, "ingot" + input2, amount2, output);
-		GTTileAlloySmelter.addRecipe("ingot" + input2, amount2, "ingot" + input1, amount1, output);
+//		GTTileAlloySmelter.addRecipe("ingot" + input2, amount2, "ingot" + input1, amount1, output);
 		GTTileAlloySmelter.addRecipe("dust" + input1, amount1, "dust" + input2, amount2, output);
-		GTTileAlloySmelter.addRecipe("dust" + input2, amount2, "dust" + input1, amount1, output);
+//		GTTileAlloySmelter.addRecipe("dust" + input2, amount2, "dust" + input1, amount1, output);
 	}
 
 	/*

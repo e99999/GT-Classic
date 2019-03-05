@@ -1,7 +1,10 @@
 package gtclassic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import gtclassic.item.GTItemComponent;
 import gtclassic.item.GTItemCraftingTablet;
@@ -54,7 +57,9 @@ public class GTItems {
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
-
+	
+	private static Set<GTMaterial> powerMaterials = new HashSet<GTMaterial>();
+	
 	public static <T extends Item> T createItem(T item) {
 		toRegister.add(item);
 		return item;
@@ -73,6 +78,7 @@ public class GTItems {
 	}
 
 	public static void generateTools() {
+		powerMaterials.addAll(Arrays.asList(GTMaterial.Silicon, GTMaterial.Tin, GTMaterial.Copper, GTMaterial.Lead, GTMaterial.Iron, GTMaterial.Bronze, GTMaterial.Brass, GTMaterial.Zinc, GTMaterial.RefinedIron, GTMaterial.Graphite));
 		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon)) {
 				IC2.getInstance().createItem(new GTToolFile(mat));
@@ -101,37 +107,7 @@ public class GTItems {
 	}
 
 	public static boolean canBePowerTool(GTMaterial mat) {
-		if (mat.equals(GTMaterial.Silicon)) {
-			return false;
-		}
-		if (mat.equals(GTMaterial.Tin)) {
-			return false;
-		}
-		if (mat.equals(GTMaterial.Copper)) {
-			return false;
-		}
-		if (mat.equals(GTMaterial.Lead)) {
-			return false;
-		}
-		if (mat.equals(GTMaterial.Iron)) {
-			return false;
-		}
-		if (mat.equals(GTMaterial.Bronze)) {
-			return false;
-		}
-		if (mat.equals(GTMaterial.Brass)) {
-			return false;
-		}
-		if (mat.equals(GTMaterial.Zinc)) {
-			return false;
-		}
-		if (mat.equals(GTMaterial.RefinedIron)) {
-			return false;
-		}
-		if (mat.equals(GTMaterial.Graphite)) {
-			return false;
-		}
-		return true;
+		return powerMaterials.contains(mat);
 	}
 
 }

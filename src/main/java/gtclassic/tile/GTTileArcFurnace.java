@@ -96,6 +96,15 @@ public class GTTileArcFurnace extends GTTileBaseMultiInputMachine {
 		int[] input = { slotInput0, slotInput1, slotInput2 };
 		return input;
 	}
+	
+	@Override
+	public int[][] getRecipeMutations()
+	{
+		return new int[][]{
+			{slotInput0, slotInput1, slotInput2},
+			{slotInput0, slotInput2, slotInput1},
+		};
+	}
 
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
