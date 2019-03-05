@@ -93,14 +93,10 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 		int[] input = { slotInput0, slotInput1 };
 		return input;
 	}
-	
+
 	@Override
-	public int[][] getRecipeMutations()
-	{
-		return new int[][]{
-			{slotInput0, slotInput1},
-			{slotInput1, slotInput0}
-		};
+	public int[][] getRecipeMutations() {
+		return new int[][] { { slotInput0, slotInput1 }, { slotInput1, slotInput0 } };
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntitySawMill;
+import ic2.core.platform.registry.Ic2Items;
 
 public class GTRecipeCircuitry {
 
@@ -40,6 +41,14 @@ public class GTRecipeCircuitry {
 
 		recipes.addRecipe(GT.get(GTBlocks.tinyLapotron, 1),
 				new Object[] { "LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', "circuitBasic", 'L', "dustLazurite" });
+		
+		recipes.overrideRecipe("shaped_Electronic Circuit",
+				 GT.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RSR", "CCC", 'R',
+					"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy(), 'S', "plateSteel");
+		
+		recipes.overrideRecipe("shaped_Electronic Circuit_1",
+				 GT.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CSC", "CRC", 'R',
+					"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy(), 'S', "plateSteel");
 
 	}
 

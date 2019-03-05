@@ -20,7 +20,7 @@ public class GTValues {
 	 */
 
 	// boolean that renders anything labeled as WIP uncraftable
-	public static boolean debugMode = true;
+	public static boolean debugMode = false;
 
 	// colors
 	public static int white = 16777215;

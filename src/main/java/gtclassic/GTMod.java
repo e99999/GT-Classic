@@ -2,10 +2,6 @@ package gtclassic;
 
 import org.apache.logging.log4j.Logger;
 
-import gtclassic.color.GTColorBlock;
-import gtclassic.color.GTColorBlockInterface;
-import gtclassic.color.GTColorItem;
-import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
@@ -26,14 +22,9 @@ import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.block.base.tile.TileEntityTransformer;
 import ic2.core.platform.registry.Ic2Sounds;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -79,8 +70,6 @@ public class GTMod {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
-		registerTintedBlocks();
-		registerTintedItems();
 		GTRecipe.init();
 		GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
@@ -100,26 +89,6 @@ public class GTMod {
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GTCommandTeleport());
-	}
-
-	public static void registerTintedItems() {
-		GTColorItem colors = new GTColorItem();
-		ItemColors registry = Minecraft.getMinecraft().getItemColors();
-		for (Item item : Item.REGISTRY) {
-			if (item instanceof GTColorItemInterface) {
-				registry.registerItemColorHandler(colors, item);
-			}
-		}
-	}
-
-	public static void registerTintedBlocks() {
-		GTColorBlock colors = new GTColorBlock();
-		BlockColors registry = Minecraft.getMinecraft().getBlockColors();
-		for (Block block : Block.REGISTRY) {
-			if (block instanceof GTColorBlockInterface) {
-				registry.registerBlockColorHandler(colors, block);
-			}
-		}
 	}
 
 	/*

@@ -66,7 +66,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	@NetworkField(index = 12)
 	public boolean redstoneSensitive;
 	public boolean defaultSensitive;
-	
+
 	public int[] currentMutation = getRecipeMutations()[0];
 	public MultiRecipe lastRecipe;
 	public final boolean supportsUpgrades;
@@ -145,7 +145,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
 		}
 		int[] inputs = getInputSlots();
-		for (int i = 0;i<inputs.length;i++) {
+		for (int i = 0; i < inputs.length; i++) {
 			IRecipeInput input = recipe.getInput(inputs[i]);
 			if (input == null) {
 				continue;
@@ -195,10 +195,8 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 			lastRecipe = getRecipeList().getRecipe(new Predicate<MultiRecipe>() {
 				@Override
 				public boolean test(MultiRecipe t) {
-					for(int[] mutation : getRecipeMutations())
-					{
-						if(checkRecipe(t, mutation))
-						{
+					for (int[] mutation : getRecipeMutations()) {
+						if (checkRecipe(t, mutation)) {
 							currentMutation = mutation;
 							return true;
 						}
@@ -372,7 +370,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 
 	public boolean checkRecipe(MultiRecipe entry, int[] mutation) {
 		int[] inputs = getInputSlots();
-		for (int i = 0;i<inputs.length;i++) {
+		for (int i = 0; i < inputs.length; i++) {
 			if (!entry.matches(inputs[i], inventory.get(mutation[i]))) {
 				return false;
 			}
@@ -381,8 +379,8 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	}
 
 	public abstract int[] getInputSlots();
-	
-	public abstract	int[][] getRecipeMutations();
+
+	public abstract int[][] getRecipeMutations();
 
 	public abstract IFilter[] getInputFilters(int[] slots);
 

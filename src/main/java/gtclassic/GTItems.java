@@ -57,9 +57,9 @@ public class GTItems {
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
-	
+
 	private static Set<GTMaterial> powerMaterials = new HashSet<GTMaterial>();
-	
+
 	public static <T extends Item> T createItem(T item) {
 		toRegister.add(item);
 		return item;
@@ -78,7 +78,9 @@ public class GTItems {
 	}
 
 	public static void generateTools() {
-		powerMaterials.addAll(Arrays.asList(GTMaterial.Silicon, GTMaterial.Tin, GTMaterial.Copper, GTMaterial.Lead, GTMaterial.Iron, GTMaterial.Bronze, GTMaterial.Brass, GTMaterial.Zinc, GTMaterial.RefinedIron, GTMaterial.Graphite));
+		powerMaterials.addAll(Arrays.asList(GTMaterial.Silicon, GTMaterial.Gold, GTMaterial.Tin, GTMaterial.Copper,
+				GTMaterial.Lead, GTMaterial.Iron, GTMaterial.Bronze, GTMaterial.Brass, GTMaterial.Zinc,
+				GTMaterial.RefinedIron, GTMaterial.Graphite));
 		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon)) {
 				IC2.getInstance().createItem(new GTToolFile(mat));

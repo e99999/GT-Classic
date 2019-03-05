@@ -8,6 +8,7 @@ import gtclassic.tool.GTToolChainsaw;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
 import gtclassic.tool.GTToolMiningDrill;
+import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
@@ -174,19 +175,21 @@ public class GTRecipeIterators {
 				recipes.addRecipe(new ItemStack(item), new Object[] { "XX ", "XXS", "XX ", 'X',
 						((GTToolHammer) item).getRecipePrimary(), 'S', "stickWood" });
 			}
-			if (item instanceof GTToolMiningDrill) {
-				recipes.addRecipe(new ItemStack(item),
-						new Object[] { "XXX", "SCS", "SBS", 'X', ((GTToolMiningDrill) item).getRecipePrimary(), 'S',
-								((GTToolMiningDrill) item).getRecipeSecondary(), 'C',
-								((GTToolMiningDrill) item).getRecipeCircuit(), 'B',
-								((GTToolMiningDrill) item).getRecipeBattery() });
-			}
-			if (item instanceof GTToolChainsaw) {
-				recipes.addRecipe(new ItemStack(item),
-						new Object[] { "SXX", "BCX", "SXX", 'X', ((GTToolChainsaw) item).getRecipePrimary(), 'S',
-								((GTToolChainsaw) item).getRecipeSecondary(), 'C',
-								((GTToolChainsaw) item).getRecipeCircuit(), 'B',
-								((GTToolChainsaw) item).getRecipeBattery() });
+			if (GTValues.debugMode) { // disabling these in game until the tools are damagable
+				if (item instanceof GTToolMiningDrill) {
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "XXX", "SCS", "SBS", 'X', ((GTToolMiningDrill) item).getRecipePrimary(), 'S',
+									((GTToolMiningDrill) item).getRecipeSecondary(), 'C',
+									((GTToolMiningDrill) item).getRecipeCircuit(), 'B',
+									((GTToolMiningDrill) item).getRecipeBattery() });
+				}
+				if (item instanceof GTToolChainsaw) {
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "SXX", "BCX", "SXX", 'X', ((GTToolChainsaw) item).getRecipePrimary(), 'S',
+									((GTToolChainsaw) item).getRecipeSecondary(), 'C',
+									((GTToolChainsaw) item).getRecipeCircuit(), 'B',
+									((GTToolChainsaw) item).getRecipeBattery() });
+				}
 			}
 		}
 		for (Block block : Block.REGISTRY) {

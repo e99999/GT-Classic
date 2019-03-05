@@ -62,8 +62,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 	ItemStack charcoal = new ItemStack(Items.COAL, 9, 1);
 
 	public static final BloomeryRecipeList RECIPE_LIST = new BloomeryRecipeList();
-	
-	
+
 	BloomeryRecipe activeRecipe = null;
 	@NetworkField(index = 7)
 	float progress = 0;
@@ -76,7 +75,10 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		super(1);
 		setWorld(world);
 		addGuiFields("progress", "recipeOperation");
-		RECIPE_LIST.addRecipe("Test", GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.BLOCK).getDefaultState(), 1, 1200, new RecipeInputItemStack(ironblock), new RecipeInputItemStack(coalblock));
+		RECIPE_LIST.addRecipe("Test", GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.BLOCK).getDefaultState(),
+				4, 6000, new RecipeInputItemStack(ironblock), new RecipeInputItemStack(coalblock));
+		RECIPE_LIST.addRecipe("Test2", GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.BLOCK).getDefaultState(),
+				4, 6000, new RecipeInputItemStack(ironblock), new RecipeInputItemStack(charcoalblock));
 	}
 
 	@Override
@@ -128,8 +130,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		this.setActive(nbt.getBoolean("active"));
 		this.progress = nbt.getFloat("progress");
 		this.recipeOperation = nbt.getFloat("RecipeTime");
-		if(nbt.hasKey("RecipeID"))
-		{
+		if (nbt.hasKey("RecipeID")) {
 			activeRecipe = RECIPE_LIST.getFromID(nbt.getString("RecipeID"));
 		}
 		FMLLog.getLogger().info(activeRecipe);
@@ -142,8 +143,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		nbt.setBoolean("active", this.getActive());
 		nbt.setFloat("progress", this.progress);
 		nbt.setFloat("RecipeTime", recipeOperation);
-		if(activeRecipe != null)
-		{
+		if (activeRecipe != null) {
 			nbt.setString("RecipeID", activeRecipe.getId());
 		}
 		return nbt;
@@ -154,8 +154,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		/*
 		 * if the bloomery canWork() the following logic executes
 		 */
-		if(activeRecipe == null)
-		{
+		if (activeRecipe == null) {
 			processing = false;
 			progress = 0;
 			this.setActive(false);
@@ -193,8 +192,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 	}
 
 	public void recipeFirstTick() {
-		for(EntityItem item : world.getEntitiesWithinAABB(EntityItem.class, recipeBB))
-		{
+		for (EntityItem item : world.getEntitiesWithinAABB(EntityItem.class, recipeBB)) {
 			world.removeEntity(item);
 		}
 		recipeOperation = activeRecipe.getRecipeTime();
@@ -300,7 +298,8 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 	}
 
 	public void setSteel(int3 pos) {
-		world.setBlockState(pos.asBlockPos(), activeRecipe == null ? Blocks.AIR.getDefaultState() : activeRecipe.getState());
+		world.setBlockState(pos.asBlockPos(),
+				activeRecipe == null ? Blocks.AIR.getDefaultState() : activeRecipe.getState());
 	}
 
 	public void setAir(int3 pos) {
@@ -314,30 +313,23 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 	public float getMaxProgress() {
 		return recipeOperation;
 	}
-	
-	
-	public static class BloomeryRecipeList
-	{
+
+	public static class BloomeryRecipeList {
 		List<BloomeryRecipe> recipes = new ArrayList<BloomeryRecipe>();
 		Map<String, BloomeryRecipe> recipeMap = new HashMap<String, BloomeryRecipe>();
-		
-		public void addRecipe(String id, IBlockState output, int ashAmount, int recipeTime, IRecipeInput...inputs)
-		{
-			if(output == null || output.getBlock() == Blocks.AIR)
-			{
-				FMLLog.getLogger().info("Bloomery Recipe Invalid: "+id);
+
+		public void addRecipe(String id, IBlockState output, int ashAmount, int recipeTime, IRecipeInput... inputs) {
+			if (output == null || output.getBlock() == Blocks.AIR) {
+				FMLLog.getLogger().info("Bloomery Recipe Invalid: " + id);
 				return;
 			}
-			if(recipeMap.containsKey(id))	
-			{
-				FMLLog.getLogger().info("Bloomery Recipe Invalid: "+id);
+			if (recipeMap.containsKey(id)) {
+				FMLLog.getLogger().info("Bloomery Recipe Invalid: " + id);
 				return;
 			}
-			for(IRecipeInput input : inputs)
-			{
-				if(isListInvalid(input.getInputs()))
-				{
-					FMLLog.getLogger().info("Bloomery Recipe Invalid: "+id);
+			for (IRecipeInput input : inputs) {
+				if (isListInvalid(input.getInputs())) {
+					FMLLog.getLogger().info("Bloomery Recipe Invalid: " + id);
 					return;
 				}
 			}
@@ -345,47 +337,36 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 			recipes.add(recipe);
 			recipeMap.put(id, recipe);
 		}
-		
-		public BloomeryRecipe getFromID(String id)
-		{
+
+		public BloomeryRecipe getFromID(String id) {
 			return recipeMap.get(id);
 		}
-		
-		public BloomeryRecipe getRecipe(List<EntityItem> entities)
-		{
-			if(entities.isEmpty())
-			{
+
+		public BloomeryRecipe getRecipe(List<EntityItem> entities) {
+			if (entities.isEmpty()) {
 				return null;
 			}
 			List<ItemStack> list = new ArrayList<ItemStack>();
-			for(EntityItem item : entities)
-			{
+			for (EntityItem item : entities) {
 				list.add(item.getItem());
 			}
-			for(BloomeryRecipe recipe : recipes)
-			{
-				if(matches(recipe, new LinkedList<ItemStack>(list)) == 0)
-				{
+			for (BloomeryRecipe recipe : recipes) {
+				if (matches(recipe, new LinkedList<ItemStack>(list)) == 0) {
 					return recipe;
 				}
 			}
 			return null;
 		}
-		
-		public int matches(BloomeryRecipe recipe, LinkedList<ItemStack> list)
-		{
+
+		public int matches(BloomeryRecipe recipe, LinkedList<ItemStack> list) {
 			List<IRecipeInput> inputs = new ArrayList<IRecipeInput>(recipe.getItems());
-			for(Iterator<IRecipeInput> iter = inputs.iterator();iter.hasNext();)
-			{
+			for (Iterator<IRecipeInput> iter = inputs.iterator(); iter.hasNext();) {
 				IRecipeInput input = iter.next();
 				Iterator<ItemStack> stacks = list.iterator();
-				while(stacks.hasNext())
-				{
+				while (stacks.hasNext()) {
 					ItemStack stack = stacks.next();
-					if(input.matches(stack))
-					{
-						if(input.getAmount() != stack.getCount())
-						{
+					if (input.matches(stack)) {
+						if (input.getAmount() != stack.getCount()) {
 							return input.getAmount() > stack.getCount() ? -3 : -4;
 						}
 						stacks.remove();
@@ -394,13 +375,12 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 					}
 				}
 			}
-			if(inputs.isEmpty())
-			{
+			if (inputs.isEmpty()) {
 				return list.isEmpty() ? 0 : -1;
 			}
 			return -2;
 		}
-		
+
 		private boolean isListInvalid(List<ItemStack> list) {
 			if (list.isEmpty()) {
 				return true;
@@ -413,46 +393,39 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 			return false;
 		}
 	}
-	
-	public static class BloomeryRecipe
-	{
+
+	public static class BloomeryRecipe {
 		List<IRecipeInput> items = new ArrayList<IRecipeInput>();
 		int ashOutput;
 		int recipeTime;
 		IBlockState state;
 		String id;
-		
-		public BloomeryRecipe(String id, IBlockState output, int ash, int recipeTime, IRecipeInput...inputs)
-		{
+
+		public BloomeryRecipe(String id, IBlockState output, int ash, int recipeTime, IRecipeInput... inputs) {
 			items.addAll(Arrays.asList(inputs));
 			state = output;
 			ashOutput = ash;
 			this.id = id;
 			this.recipeTime = recipeTime;
 		}
-		
-		public String getId()
-		{
+
+		public String getId() {
 			return id;
 		}
-		
-		public int getAshOutput()
-		{
+
+		public int getAshOutput() {
 			return ashOutput;
 		}
-		
-		public int getRecipeTime()
-		{
+
+		public int getRecipeTime() {
 			return recipeTime;
 		}
-		
-		public List<IRecipeInput> getItems()
-		{
+
+		public List<IRecipeInput> getItems() {
 			return items;
 		}
-		
-		public IBlockState getState()
-		{
+
+		public IBlockState getState() {
 			return state;
 		}
 	}
