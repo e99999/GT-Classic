@@ -32,12 +32,6 @@ public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 		setRegistryName(this.material.getName() + "_hammer");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_hammer");
 		setCreativeTab(GTMod.creativeTabGT);
-		setRecipe();
-	}
-
-	public void setRecipe() {
-		String ingot = "ingot" + this.material.getDisplayName();
-		recipes.addRecipe(new ItemStack(this), new Object[] { "XX ", "XXS", "XX ", 'X', ingot, 'S', "stickWood" });
 	}
 
 	@Override
@@ -85,6 +79,10 @@ public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 	@Override
 	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[16 + var1];
+	}
+
+	public String getRecipePrimary() {
+		return "ingot" + this.material.getDisplayName();
 	}
 
 }

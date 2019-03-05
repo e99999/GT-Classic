@@ -1,7 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
-import gtclassic.gui.GTGuiCompVerticalProgressComp;
+import gtclassic.gui.GTGuiCompVerticalProgress;
 import gtclassic.tile.GTTileBloomery;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotOutput;
@@ -21,7 +21,7 @@ public class GTContainerBloomery extends ContainerTileComponent<GTTileBloomery> 
 		super(tile);
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 0, 80, 37));
 		this.addPlayerInventory(player, 0, 0);
-		this.addComponent(new GTGuiCompVerticalProgressComp(tile, GTContainerBloomery.machineProgressBoxRight,
+		this.addComponent(new GTGuiCompVerticalProgress(tile, GTContainerBloomery.machineProgressBoxRight,
 				GTContainerBloomery.machineProgressPosRight));
 	}
 

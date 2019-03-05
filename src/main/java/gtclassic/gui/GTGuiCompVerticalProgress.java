@@ -13,12 +13,12 @@ import ic2.core.util.math.Vec2i;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTGuiCompVerticalProgressComp extends GuiComponent {
+public class GTGuiCompVerticalProgress extends GuiComponent {
 
 	IProgressMachine progress;
 	Vec2i texPos;
 
-	public GTGuiCompVerticalProgressComp(IProgressMachine tile, Box2D box, Vec2i pos) {
+	public GTGuiCompVerticalProgress(IProgressMachine tile, Box2D box, Vec2i pos) {
 		super(box);
 		this.progress = tile;
 		this.texPos = pos;

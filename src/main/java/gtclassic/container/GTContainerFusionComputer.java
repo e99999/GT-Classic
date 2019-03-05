@@ -13,14 +13,14 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTContainerFusionComputer extends ContainerTileComponent<GTTileFusionComputer> {
 
-	public static Box2D machineProgressBox = new Box2D(110, 35, 20, 16);
+	public static Box2D machineProgressBox = new Box2D(69, 35, 25, 17);
 	public static Vec2i machineProgressPos = new Vec2i(176, 0);
 
 	public GTContainerFusionComputer(InventoryPlayer player, GTTileFusionComputer tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 26, null));
-		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 44, null));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35));
+		this.addSlotToContainer(new SlotCustom(tile, 0, 46, 26, null));
+		this.addSlotToContainer(new SlotCustom(tile, 1, 46, 44, null));
+		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 106, 35));
 
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerFusionComputer.machineProgressBox,

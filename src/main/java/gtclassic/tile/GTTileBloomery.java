@@ -48,6 +48,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 	ItemStack coalblock = new ItemStack(Blocks.COAL_BLOCK);
 	ItemStack charcoalblock = GTMaterialGen.getIc2(Ic2Items.charcoalBlock, 1);
 	ItemStack iron = new ItemStack(Items.IRON_INGOT, 9);
+	ItemStack steeldust = GTMaterialGen.getDust(GTMaterial.Steel, 9);
 	ItemStack coal = new ItemStack(Items.COAL, 9);
 	ItemStack charcoal = new ItemStack(Items.COAL, 9, 1);
 
@@ -222,6 +223,10 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		for (EntityItem item : items) {
 
 			if (isEntityValid(item, iron)) {
+				entityIron = item;
+				ironFound = true;
+			}
+			if (isEntityValid(item, steeldust)) {
 				entityIron = item;
 				ironFound = true;
 			}

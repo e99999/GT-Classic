@@ -167,7 +167,7 @@ public class GTMaterial {
 			METAL_ALL);
 	public static GTMaterial Tungsten = new GTMaterial("Tungsten", 8.0F, 5120, 3, new Color(50, 50, 50), false,
 			METAL_ALL);
-	public static GTMaterial TungstenSteel = new GTMaterial("TungstenSteel", 10.0F, 5120, 4, new Color(100, 100, 160),
+	public static GTMaterial TungstenSteel = new GTMaterial("Tungstensteel", 10.0F, 5120, 4, new Color(100, 100, 160),
 			false, METAL_ALL);
 	public static GTMaterial Uranium = new GTMaterial("Uranium", 6.0F, 512, 3, new Color(50, 240, 50), false, DUST_ALL);
 	public static GTMaterial Uvarovite = new GTMaterial("Uvarovite", 1.0F, 0, 1, new Color(180, 255, 180), false,

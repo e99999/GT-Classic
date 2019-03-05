@@ -30,7 +30,6 @@ public class GTRecipeProcessing {
 		maceratorUtil("orePyrite", 1, GT.getDust(M.Pyrite, 5));
 		maceratorUtil("oreCinnabar", 1, GT.getDust(M.Cinnabar, 5));
 		maceratorUtil("oreSphalerite", 1, GT.getDust(M.Sphalerite, 5));
-		maceratorUtil("oreSheldonite", 1, GT.getDust(M.Platinum, 2));
 		maceratorUtil("oreSodalite", 1, GT.getDust(M.Sodalite, 12));
 
 		GameRegistry.addSmelting(GTBlocks.galenaOre, (GT.getIngot(M.Lead, 1)), 0.1F);
@@ -87,7 +86,7 @@ public class GTRecipeProcessing {
 	 */
 	public static void maceratorUtil(String input, int amount, ItemStack output) {
 		TileEntityMacerator.oreBlacklist.add(input);
-		TileEntityMacerator.addRecipe(input, amount, output, 0.1F);
+		TileEntityMacerator.addRecipe(input, amount, output);
 	}
 
 }

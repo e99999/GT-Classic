@@ -38,7 +38,8 @@ public class GTJeiPlugin implements IModPlugin {
 	public void register(@Nonnull IModRegistry registry) {
 
 		if (SubModul.load) {
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBenchLV), new String[] { "minecraft.crafting" });
+			// registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBenchLV), new String[]
+			// { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 
 			// Centrifuge - to be refactored

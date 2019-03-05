@@ -7,7 +7,6 @@ import gtclassic.material.GTMaterialGen;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.registry.Ic2Items;
-import net.minecraft.init.Items;
 
 public class GTRecipeShapeless {
 
@@ -19,35 +18,40 @@ public class GTRecipeShapeless {
 
 		// LV item storage
 
-		recipes.addShapelessRecipe(GT.get(GTBlocks.smallChestLV, 1), new Object[] { "casingMachineIron", "chestWood" });
-
-		recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestLV, 1),
-				new Object[] { GTBlocks.smallChestLV, GTBlocks.smallChestLV });
-
-		recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestLV, 1),
-				new Object[] { "chestWood", "chestWood", "casingMachineIron", "casingMachineIron" });
-
-		recipes.addShapelessRecipe(GT.get(GTBlocks.bookShelfLV, 1),
-				new Object[] { "casingMachineIron", Items.BOOK, Items.BOOK, Items.BOOK });
-
-		recipes.addShapelessRecipe(GT.get(GTBlocks.workBenchLV, 1), new Object[] { "casingMachineIron", "workbench" });
-
-		// MV item storage
-
-		recipes.addShapelessRecipe(GT.get(GTBlocks.smallChestMV, 1),
-				new Object[] { "casingMachineAluminium", "chestWood" });
-
-		recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestMV, 1),
-				new Object[] { GTBlocks.smallChestMV, GTBlocks.smallChestMV });
-
-		recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestMV, 1),
-				new Object[] { "chestWood", "chestWood", "casingMachineAluminium", "casingMachineAluminium" });
-
-		recipes.addShapelessRecipe(GT.get(GTBlocks.bookShelfMV, 1),
-				new Object[] { "casingMachineAluminium", Items.BOOK, Items.BOOK, Items.BOOK });
-
-		recipes.addShapelessRecipe(GT.get(GTBlocks.workBenchMV, 1),
-				new Object[] { "casingMachineAluminium", "workbench" });
+		/*
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.smallChestLV, 1), new Object[] {
+		 * "casingMachineIron", "chestWood" });
+		 * 
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestLV, 1), new Object[] {
+		 * GTBlocks.smallChestLV, GTBlocks.smallChestLV });
+		 * 
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestLV, 1), new Object[] {
+		 * "chestWood", "chestWood", "casingMachineIron", "casingMachineIron" });
+		 * 
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.bookShelfLV, 1), new Object[] {
+		 * "casingMachineIron", Items.BOOK, Items.BOOK, Items.BOOK });
+		 * 
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.workBenchLV, 1), new Object[] {
+		 * "casingMachineIron", "workbench" });
+		 * 
+		 * // MV item storage
+		 * 
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.smallChestMV, 1), new Object[] {
+		 * "casingMachineAluminium", "chestWood" });
+		 * 
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestMV, 1), new Object[] {
+		 * GTBlocks.smallChestMV, GTBlocks.smallChestMV });
+		 * 
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestMV, 1), new Object[] {
+		 * "chestWood", "chestWood", "casingMachineAluminium", "casingMachineAluminium"
+		 * });
+		 * 
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.bookShelfMV, 1), new Object[] {
+		 * "casingMachineAluminium", Items.BOOK, Items.BOOK, Items.BOOK });
+		 * 
+		 * recipes.addShapelessRecipe(GT.get(GTBlocks.workBenchMV, 1), new Object[] {
+		 * "casingMachineAluminium", "workbench" });
+		 */
 
 		// Duct Tape
 

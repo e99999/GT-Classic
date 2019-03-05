@@ -53,7 +53,7 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 			"textures/gui/assemblyline.png");
 
 	public GTTileAssemblyLine() {
-		super(4, 0, 120, 500, 512);
+		super(4, 0, 120, 1024, 512);
 		maxEnergy = 10000;
 	}
 

@@ -30,12 +30,6 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 		setRegistryName(this.material.getName() + "_file");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_file");
 		setCreativeTab(GTMod.creativeTabGT);
-		setRecipe();
-	}
-
-	public void setRecipe() {
-		String plate = "plate" + this.material.getDisplayName();
-		recipes.addRecipe(new ItemStack(this), new Object[] { "X  ", "X  ", "S  ", 'X', plate, 'S', "stickWood" });
 	}
 
 	@Override
@@ -82,6 +76,10 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 	@Override
 	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[18 + var1];
+	}
+
+	public String getRecipePrimary() {
+		return "plate" + this.material.getDisplayName();
 	}
 
 }

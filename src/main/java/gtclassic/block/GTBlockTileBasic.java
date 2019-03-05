@@ -12,20 +12,16 @@ import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBloomery;
-import gtclassic.tile.GTTileBookshelf;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
-import gtclassic.tile.GTTileLargeChest;
 import gtclassic.tile.GTTileLightningRod;
 import gtclassic.tile.GTTileMultiEnergyStorage;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
-import gtclassic.tile.GTTileSmallChest;
 import gtclassic.tile.GTTileSuperConductorHigh;
 import gtclassic.tile.GTTileSuperConductorLow;
-import gtclassic.tile.GTTileWorkbench;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -109,16 +105,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			return new GTTileQuantumEnergyStorage();
 		} else if (this == GTBlocks.multiEnergyStorage) {
 			return new GTTileMultiEnergyStorage();
-		} else if (this == GTBlocks.digitalChestLV || this == GTBlocks.digitalChestMV) {
+		} else if (this == GTBlocks.digitalChest) {
 			return new GTTileDigitalChest();
-		} else if (this == GTBlocks.smallChestLV || this == GTBlocks.smallChestMV) {
-			return new GTTileSmallChest();
-		} else if (this == GTBlocks.largeChestLV || this == GTBlocks.largeChestMV) {
-			return new GTTileLargeChest();
-		} else if (this == GTBlocks.bookShelfLV || this == GTBlocks.bookShelfMV) {
-			return new GTTileBookshelf();
-		} else if (this == GTBlocks.workBenchLV || this == GTBlocks.workBenchMV) {
-			return new GTTileWorkbench();
 		} else if (this == GTBlocks.digitalTransformerIV) {
 			return new GTTileDigitalTransformer();
 		} else if (this == GTBlocks.energiumCable) {
@@ -129,16 +117,6 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			return new TileEntityBlock();
 		}
 
-	}
-
-	@Override
-	public float getEnchantPowerBonus(World world, BlockPos pos) {
-		TileEntity tile = world.getTileEntity(pos);
-		if ((tile instanceof GTTileBookshelf) && (((GTTileBookshelf) tile).isActive)) {
-			return 2;
-		} else {
-			return 0;
-		}
 	}
 
 	@Override

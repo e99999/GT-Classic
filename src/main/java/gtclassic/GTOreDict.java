@@ -1,6 +1,9 @@
 package gtclassic;
 
+import gtclassic.tool.GTToolFile;
+import gtclassic.tool.GTToolHammer;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,17 +13,14 @@ public class GTOreDict {
 
 	public static void init() {
 
-		// Register tools with ore dict
-		registerHammer(GTItems.hammerBronze);
-		registerHammer(GTItems.hammerIron);
-		registerHammer(GTItems.hammerSteel);
-		registerHammer(GTItems.hammerTitanium);
-		registerHammer(GTItems.hammerTungstenSteel);
-		registerFile(GTItems.fileBronze);
-		registerFile(GTItems.fileIron);
-		registerFile(GTItems.fileSteel);
-		registerFile(GTItems.fileTitanium);
-		registerFile(GTItems.fileTungstenSteel);
+		for (Item item : Item.REGISTRY) {
+			if (item instanceof GTToolFile) {
+				registerFile(item);
+			}
+			if (item instanceof GTToolHammer) {
+				registerHammer(item);
+			}
+		}
 
 		// Register ores... with ore dict
 		OreDictionary.registerOre("oreGalena", GTBlocks.galenaOre);
@@ -39,8 +39,10 @@ public class GTOreDict {
 		OreDictionary.registerOre("oreOlivine", GTBlocks.olivineOre);
 		OreDictionary.registerOre("oreSodalite", GTBlocks.sodaliteOre);
 
-		// Just doing this to make iteration with gun powder easier
+		// Just doing these to make iteration & unification easier in some cases
 		OreDictionary.registerOre("dustGunpowder", Items.GUNPOWDER);
+		OreDictionary.registerOre("circuitElite", GTItems.circuitSapphire);
+		OreDictionary.registerOre("bookshelf", Blocks.BOOKSHELF);
 
 		// Register some missing Ic2c stuff
 		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
@@ -49,12 +51,12 @@ public class GTOreDict {
 
 	}
 
-	public static void registerHammer(Item tool) {
-		OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
-	}
-
 	public static void registerFile(Item tool) {
 		OreDictionary.registerOre("craftingToolFile", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+	}
+
+	public static void registerHammer(Item tool) {
+		OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 }

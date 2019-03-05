@@ -46,7 +46,7 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine {
 			"textures/gui/fusioncomputer.png");
 
 	public GTTileFusionComputer() {
-		super(3, 0, 8192, 10000, 8192);
+		super(3, 0, 8192, 4096, 8192);
 		maxEnergy = 10000;
 	}
 

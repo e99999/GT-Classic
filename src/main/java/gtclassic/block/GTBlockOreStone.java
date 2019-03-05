@@ -160,21 +160,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (this == GTBlocks.iridiumOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".iridium"));
-		}
-
-		else if (this == GTBlocks.rubyOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".ruby"));
-		}
-
-		else if (this == GTBlocks.sapphireOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".sapphire"));
-		}
-
-		else if (this == GTBlocks.bauxiteOre) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".bauxite"));
-		}
+		tooltip.add(TextFormatting.ITALIC + I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
 	}
 
 	@Override
