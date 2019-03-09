@@ -98,16 +98,20 @@ public class GTOreGen implements IWorldGenerator {
 		default:
 
 			if (GTConfig.genOverworldGalena) {
-				runGenerator(GTBlocks.galenaOre.getDefaultState(), 16, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE),
+				runGenerator(GTBlocks.galenaOre.getDefaultState(), 8, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE),
 						world, random, chunkX, chunkZ);
 			}
 			if (GTConfig.genOverworldCalcite) {
-				runGenerator(GTBlocks.calciteOre.getDefaultState(), 16, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE),
+				runGenerator(GTBlocks.calciteOre.getDefaultState(), 12, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE),
 						world, random, chunkX, chunkZ);
 			}
 
 			if (GTConfig.genOverworldIridium) {
 				runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 2, 0, 128, BlockMatcher.forBlock(Blocks.STONE),
+						world, random, chunkX, chunkZ);
+			}
+			if (GTConfig.genOverworldGermanite) {
+				runGenerator(GTBlocks.germaniteOre.getDefaultState(), 4, 2, 0, 20, BlockMatcher.forBlock(Blocks.STONE),
 						world, random, chunkX, chunkZ);
 			}
 
@@ -123,8 +127,8 @@ public class GTOreGen implements IWorldGenerator {
 			}
 
 			if (BiomeDictionary.hasType(biomegenbase, Type.RIVER) && ((GTConfig.genOverworldBlackSand))) {
-				runGenerator(GTBlocks.magnetiteOre.getDefaultState(), 32, 4, 48, 72, BlockMatcher.forBlock(Blocks.SAND),
-						world, random, chunkX, chunkZ);
+				runGenerator(GTBlocks.magnetiteSand.getDefaultState(), 32, 4, 48, 72,
+						BlockMatcher.forBlock(Blocks.SAND), world, random, chunkX, chunkZ);
 			}
 
 			if ((BiomeDictionary.hasType(biomegenbase, Type.FOREST)

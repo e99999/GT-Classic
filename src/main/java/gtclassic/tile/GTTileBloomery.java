@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerBloomery;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
@@ -29,7 +30,6 @@ import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockCom
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.item.EntityItem;
@@ -48,16 +48,15 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 
 	IBlockState brick = Blocks.BRICK_BLOCK.getDefaultState();
 	IBlockState door = Blocks.IRON_TRAPDOOR.getDefaultState();
-	IBlockState lava = Blocks.FLOWING_LAVA.getDefaultState();
+	IBlockState fire = Blocks.FIRE.getDefaultState();
 	IBlockState steel = GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.BLOCK).getDefaultState();
 
 	AxisAlignedBB recipeBB = null;
 
-	ItemStack ironblock = new ItemStack(Blocks.IRON_BLOCK);
+	ItemStack ironore = new ItemStack(Blocks.IRON_ORE);
 	ItemStack coalblock = new ItemStack(Blocks.COAL_BLOCK);
 	ItemStack charcoalblock = GTMaterialGen.getIc2(Ic2Items.charcoalBlock, 1);
-	ItemStack iron = new ItemStack(Items.IRON_INGOT, 9);
-	ItemStack steeldust = GTMaterialGen.getDust(GTMaterial.Steel, 9);
+	ItemStack iron = new ItemStack(Items.IRON_INGOT, 4);
 	ItemStack coal = new ItemStack(Items.COAL, 9);
 	ItemStack charcoal = new ItemStack(Items.COAL, 9, 1);
 
@@ -67,7 +66,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 	@NetworkField(index = 7)
 	float progress = 0;
 	@NetworkField(index = 8)
-	float recipeOperation = 600.0F; // TODO extend the time after testing - bear recommends 4.5 minutes
+	float recipeOperation = 600.0F;
 	boolean processing = false;
 	int slotOutput = 0;
 
@@ -75,10 +74,10 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		super(1);
 		setWorld(world);
 		addGuiFields("progress", "recipeOperation");
-		RECIPE_LIST.addRecipe("Test", GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.BLOCK).getDefaultState(),
-				4, 6000, new RecipeInputItemStack(ironblock), new RecipeInputItemStack(coalblock));
-		RECIPE_LIST.addRecipe("Test2", GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.BLOCK).getDefaultState(),
-				4, 6000, new RecipeInputItemStack(ironblock), new RecipeInputItemStack(charcoalblock));
+		RECIPE_LIST.addRecipe("Test", GTBlocks.bloomBlock.getDefaultState(), 4, 6000, new RecipeInputItemStack(iron),
+				new RecipeInputItemStack(coalblock));
+		RECIPE_LIST.addRecipe("Test2", GTBlocks.bloomBlock.getDefaultState(), 4, 6000, new RecipeInputItemStack(iron),
+				new RecipeInputItemStack(charcoalblock));
 	}
 
 	@Override
@@ -163,9 +162,10 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 			progress = progress + 1.0F;
 			getNetwork().updateTileGuiField(this, "progress");
 			if (world.getTotalWorldTime() % 120 == 0) {
-				isLavaStillPresent();
+				isFireStillPresent();
 			}
-			if (progress >= recipeOperation && isLavaStillPresent()) {
+			// TODO add in structure check every x amount of sticks
+			if (progress >= recipeOperation) {
 				recipeLastTick();
 				outputDarkAsh();
 				processing = false;
@@ -198,10 +198,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		recipeOperation = activeRecipe.getRecipeTime();
 		getNetwork().updateTileGuiField(this, "recipeOperation");
 		int3 dir = new int3(pos, getFacing());
-		setLava(dir.back(1));
-		setLava(dir.up(1));
-		setLava(dir.up(1));
-		setLava(dir.up(1));
+		setFire(dir.back(1));
 	}
 
 	public void recipeLastTick() {
@@ -211,23 +208,15 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		 */
 		int3 dir = new int3(pos, getFacing());
 		setSteel(dir.back(1));
-		setAir(dir.up(1));
-		setAir(dir.up(1));
-		setAir(dir.up(1));
 	}
 
-	public boolean isLavaStillPresent() {
+	public boolean isFireStillPresent() {
 		/*
 		 * This checks if lava is still present inside the bloomery
 		 */
 		int3 dir = new int3(pos, getFacing());
-		if (!(isLava(dir.back(1)) && isLava(dir.up(1)) && isLava(dir.up(1)) && isLava(dir.up(1)))) {
-			processing = false;
-			progress = 0;
-			getNetwork().updateTileGuiField(this, "progress");
-			this.setActive(false);
-			return false;
-
+		if (!isFire(dir.back(1))) {
+			setFire(dir.back(0));
 		}
 		return true;
 	}
@@ -289,12 +278,12 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		return world.getBlockState(pos.asBlockPos()) == brick;
 	}
 
-	public boolean isLava(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()).getMaterial() == Material.LAVA;
+	public boolean isFire(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == fire;
 	}
 
-	public void setLava(int3 pos) {
-		world.setBlockState(pos.asBlockPos(), lava);
+	public void setFire(int3 pos) {
+		world.setBlockState(pos.asBlockPos(), fire);
 	}
 
 	public void setSteel(int3 pos) {
@@ -312,6 +301,10 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 
 	public float getMaxProgress() {
 		return recipeOperation;
+	}
+
+	public IBlockState getActiveRecipe() {
+		return activeRecipe.state;
 	}
 
 	public static class BloomeryRecipeList {

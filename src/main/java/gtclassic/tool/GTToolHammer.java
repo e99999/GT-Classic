@@ -28,7 +28,7 @@ public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 		this.material = material;
 		this.efficiency = this.material.getSpeed();
 		this.setHarvestLevel("pickaxe", this.material.getLevel());
-		this.setMaxDamage(this.material.getDurability() * 2);
+		this.setMaxDamage((this.material.getDurability() * 2) + 64);
 		setRegistryName(this.material.getName() + "_hammer");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_hammer");
 		setCreativeTab(GTMod.creativeTabGT);
@@ -81,8 +81,8 @@ public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[16 + var1];
 	}
 
-	public String getRecipePrimary() {
-		return "ingot" + this.material.getDisplayName();
+	public GTMaterial getMaterial() {
+		return this.material;
 	}
 
 }

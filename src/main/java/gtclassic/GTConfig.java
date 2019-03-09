@@ -29,6 +29,7 @@ public class GTConfig {
 	public static boolean genOverworldSapphire = true;
 	public static boolean genOverworldBauxite = true;
 	public static boolean genOverworldCalcite = true;
+	public static boolean genOverworldGermanite = true;
 	public static boolean genOverworldBlackSand = true;
 
 	public static void readConfig() {
@@ -79,6 +80,8 @@ public class GTConfig {
 		genOverworldRuby = cfg.getBoolean("genRuby", CATEGORY_GENERATION, genOverworldRuby, "Generate Overworld Ruby");
 		genOverworldSapphire = cfg.getBoolean("genSapphire", CATEGORY_GENERATION, genOverworldSapphire,
 				"Generate Overworld Sapphire");
+		genOverworldGermanite = cfg.getBoolean("genGermanite", CATEGORY_GENERATION, genOverworldGermanite,
+				"Generate Overworld Germanite");
 		genOverworldBauxite = cfg.getBoolean("genBauxite", CATEGORY_GENERATION, genOverworldBauxite,
 				"Generate Overworld Bauxite");
 		genOverworldCalcite = cfg.getBoolean("genCalcite", CATEGORY_GENERATION, genOverworldCalcite,

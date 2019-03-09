@@ -128,6 +128,6 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[41];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[9];
 	}
 }

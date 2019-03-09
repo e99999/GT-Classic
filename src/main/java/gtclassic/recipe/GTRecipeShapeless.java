@@ -84,6 +84,14 @@ public class GTRecipeShapeless {
 		recipes.addShapelessRecipe(GT.getSmallDust(M.Nichrome, 15),
 				new Object[] { "dustNickel", "dustNickel", "dustNickel", "dustNickel", "dustChrome" });
 
+		// In world process, recipe equivalents
+
+		recipes.addShapelessRecipe(GT.getCasing(M.RefinedIron, 1),
+				new Object[] { "craftingToolFile", Ic2Items.machine.copy() });
+
+		recipes.addShapelessRecipe(GT.get(GTBlocks.slagSand),
+				new Object[] { "sand", "dustSlag", "dustSlag", "dustSlag" });
+
 	}
 
 }

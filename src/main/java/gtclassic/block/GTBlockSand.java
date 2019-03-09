@@ -2,11 +2,13 @@ package gtclassic.block;
 
 import java.util.List;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Lang;
+import ic2.core.platform.registry.Ic2States;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
@@ -19,17 +21,18 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockOreSand extends BlockFalling implements ITexturedBlock, ILocaleBlock {
+public class GTBlockSand extends BlockFalling implements ITexturedBlock, ILocaleBlock {
 
 	String name;
 	int id;
 	LocaleComp comp;
 
-	public GTBlockOreSand(String name, int id) {
+	public GTBlockSand(String name, int id) {
 		super(Material.SAND);
 		this.name = name;
 		this.id = id;
@@ -88,6 +91,48 @@ public class GTBlockOreSand extends BlockFalling implements ITexturedBlock, ILoc
 	public Block setUnlocalizedName(String name) {
 		this.comp = new LocaleBlockComp("tile." + name);
 		return super.setUnlocalizedName(name);
+	}
+
+	protected boolean tryTouchWater(World worldIn, BlockPos pos, IBlockState state) {
+		boolean flag = false;
+
+		if (this != GTBlocks.slagcreteSand) {
+			return false;
+		}
+		for (EnumFacing enumfacing : EnumFacing.values()) {
+			if (enumfacing != EnumFacing.DOWN) {
+				BlockPos blockpos = pos.offset(enumfacing);
+
+				if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER) {
+					flag = true;
+					break;
+				}
+			}
+		}
+
+		if (flag) {
+			worldIn.setBlockState(pos, Ic2States.reinforcedStone);
+		}
+
+		return flag;
+	}
+
+	@Override
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+		if (!this.tryTouchWater(worldIn, pos, state)) {
+			super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
+		}
+	}
+
+	/**
+	 * Called after the block is set in the Chunk data, but before the Tile Entity
+	 * is set
+	 */
+	@Override
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+		if (!this.tryTouchWater(worldIn, pos, state)) {
+			super.onBlockAdded(worldIn, pos, state);
+		}
 	}
 
 }

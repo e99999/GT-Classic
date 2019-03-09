@@ -7,7 +7,6 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
@@ -206,49 +205,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[32 + var1];
 	}
 
-	public String getRecipePrimary() {
-		return "plate" + this.material.getDisplayName();
-	}
-
-	public String getRecipeSecondary() {
-		if (this.tier == 1) {
-			return "plateSteel";
-		}
-		if (this.tier == 2) {
-			return "plateTitanium";
-		}
-		if (this.tier == 3) {
-			return "plateTungstensteel";
-		}
-		if (this.tier == 4) {
-			return "plateChrome";
-		}
-		if (this.tier == 5) {
-			return "plateIridium";
-		} else {
-			return "plateOsmium";
-		}
-	}
-
-	public String getRecipeCircuit() {
-		if (this.tier == 1) {
-			return "circuitBasic";
-		}
-		if (this.tier == 2) {
-			return "circuitAdvanced";
-		} else {
-			return "circuitElite";
-		}
-	}
-
-	public ItemStack getRecipeBattery() {
-		if (this.tier == 1) {
-			return new ItemStack(GTBlocks.smallLithium);
-		}
-		if (this.tier == 2) {
-			return new ItemStack(GTBlocks.medLithium);
-		} else {
-			return new ItemStack(GTBlocks.largeLithium);
-		}
+	public GTMaterial getMaterial() {
+		return this.material;
 	}
 }

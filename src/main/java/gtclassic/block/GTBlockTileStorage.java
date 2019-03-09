@@ -44,7 +44,7 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setBlockUnbreakable();
-		setResistance(this.material.getLevel() * 4.0F);
+		setResistance(this.material.getLevel() * 8.0F);
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);
 	}
@@ -133,25 +133,8 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 		return this.type;
 	}
 
-	public String getRecipePrimary() {
-		return "casingMachine" + this.material.getDisplayName();
-	}
-
-	public String getRecipeSecondary() {
-		if (this.type == 0) {
-			return "chest";
-		}
-		if (this.type == 1) {
-			return "chest";
-		}
-		if (this.type == 2) {
-			return "bookshelf";
-		}
-		if (this.type == 3) {
-			return "workbench";
-		} else {
-			return "plankWood";
-		}
+	public GTMaterial getMaterial() {
+		return this.material;
 	}
 
 }

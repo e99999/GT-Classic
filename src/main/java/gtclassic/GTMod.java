@@ -8,6 +8,7 @@ import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
 import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
+import gtclassic.tile.GTTileBaseMultiInputMachine;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileDigitalChest;
@@ -18,9 +19,16 @@ import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTValues;
 import ic2.api.energy.EnergyNet;
+import ic2.api.reactor.IReactor;
+import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
+import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
+import ic2.core.block.base.tile.TileEntityGeneratorBase;
 import ic2.core.block.base.tile.TileEntityTransformer;
+import ic2.core.block.crop.TileEntityCrop;
+import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -106,8 +114,62 @@ public class GTMod {
 		if (player.isSneaking() || !IC2.platform.isSimulating()) {
 			return EnumActionResult.PASS;
 		} else {
-			IC2.platform.messagePlayer(player, "--- " + state.getBlock().getLocalizedName() + " ---");
+			IC2.platform.messagePlayer(player,
+					"-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ() + " -----");
+			IC2.platform.messagePlayer(player, "Name: " + state.getBlock().getLocalizedName());
+			IC2.platform.messagePlayer(player, "Block: " + state.getBlock().getUnlocalizedName());
+			IC2.platform.messagePlayer(player, "State: " + state);
+			IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
+			IC2.platform.messagePlayer(player,
+					"Blast Resistance: " + state.getBlock().getExplosionResistance(null) * 5.0F);
 			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+			if (tileEntity instanceof TileEntityBlock) {
+				TileEntityBlock te = (TileEntityBlock) tileEntity;
+				IC2.platform.messagePlayer(player, "Active: " + te.getActive());
+				IC2.platform.messagePlayer(player, "Facing: " + te.getFacing());
+			}
+			if (tileEntity instanceof TileEntityGeneratorBase) {
+				TileEntityGeneratorBase te2 = (TileEntityGeneratorBase) tileEntity;
+				IC2.platform.messagePlayer(player, "Fuel: " + te2.fuel);
+				IC2.platform.messagePlayer(player, "Storage: " + te2.storage + " EU");
+			}
+			if (tileEntity instanceof TileEntityElecMachine) {
+				TileEntityElecMachine te3 = (TileEntityElecMachine) tileEntity;
+				IC2.platform.messagePlayer(player, "Tier: " + te3.getTier());
+				IC2.platform.messagePlayer(player, "Energy: " + te3.energy + " EU");
+			}
+			if (tileEntity instanceof IEnergyStorage) {
+				IEnergyStorage te4 = (IEnergyStorage) tileEntity;
+				IC2.platform.messagePlayer(player, "Stored: " + te4.getStored() + " EU");
+			}
+			if (tileEntity instanceof IReactor) {
+				IReactor te5 = (IReactor) tileEntity;
+				IC2.platform.messagePlayer(player, "Reactor Heat: " + te5.getHeat());
+				IC2.platform.messagePlayer(player, "Max Heat: " + te5.getMaxHeat());
+				IC2.platform.messagePlayer(player, "HEM: " + te5.getHeatEffectModifier());
+				IC2.platform.messagePlayer(player, "Output: " + te5.getReactorEnergyOutput() + " EU");
+			}
+			if (tileEntity instanceof IPersonalBlock) {
+				IPersonalBlock te6 = (IPersonalBlock) tileEntity;
+				IC2.platform.messagePlayer(player, "Can Access: " + te6.canAccess(player.getUniqueID()));
+			}
+			if (tileEntity instanceof TileEntityCrop) {
+				TileEntityCrop te7 = (TileEntityCrop) tileEntity;
+				IC2.platform.messagePlayer(player,
+						"Crop=" + te7.getCrop() + " Size=" + te7.getCurrentSize() + " Growth=" + te7.getStatGrowth()
+								+ " Gain=" + te7.getStatGain() + " Resistance=" + te7.getStatResistance()
+								+ " Nutrients=" + te7.getTerrainNutrients() + " Water=" + te7.getTerrainHumidity()
+								+ " GrowthPoints=" + te7.getGrowthPoints());
+			}
+
+			if (tileEntity instanceof GTTileBaseMultiInputMachine) {
+				GTTileBaseMultiInputMachine multi = (GTTileBaseMultiInputMachine) tileEntity;
+				IC2.platform.messagePlayer(player,
+						"Progress: " + (Math.round((multi.getProgress() / multi.getMaxProgress()) * 100)) + "%");
+				IC2.platform.messagePlayer(player, "Default Input: " + multi.defaultEnergyConsume + " EU");
+				IC2.platform.messagePlayer(player, "Max Input: " + multi.defaultMaxInput + " EU");
+			}
+
 			if (tileEntity instanceof GTTileLightningRod) {
 				GTTileLightningRod rod = (GTTileLightningRod) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + rod.checkStructure());
@@ -124,28 +186,16 @@ public class GTMod {
 			if (tileEntity instanceof GTTileFusionComputer) {
 				GTTileFusionComputer fusion = (GTTileFusionComputer) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + fusion.checkStructure());
-				IC2.platform.messagePlayer(player, "Active: " + fusion.getActive());
-				IC2.platform.messagePlayer(player, "Stored EU: " + fusion.getStoredEU());
-				IC2.platform.messagePlayer(player,
-						"Progress: " + (Math.round((fusion.getProgress() / fusion.getMaxProgress()) * 100)) + "%");
 			}
 
 			if (tileEntity instanceof GTTileAssemblyLine) {
 				GTTileAssemblyLine ass = (GTTileAssemblyLine) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + ass.checkStructure());
-				IC2.platform.messagePlayer(player, "Active: " + ass.getActive());
-				IC2.platform.messagePlayer(player, "Stored EU: " + ass.getStoredEU());
-				IC2.platform.messagePlayer(player,
-						"Progress: " + (Math.round((ass.getProgress() / ass.getMaxProgress()) * 100)) + "%");
 			}
 
 			if (tileEntity instanceof GTTileArcFurnace) {
 				GTTileArcFurnace arc = (GTTileArcFurnace) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + arc.checkStructure());
-				IC2.platform.messagePlayer(player, "Active: " + arc.getActive());
-				IC2.platform.messagePlayer(player, "Stored EU: " + arc.getStoredEU());
-				IC2.platform.messagePlayer(player,
-						"Progress: " + (Math.round((arc.getProgress() / arc.getMaxProgress()) * 100)) + "%");
 			}
 
 			if (tileEntity instanceof GTTileDigitalChest) {
@@ -157,28 +207,24 @@ public class GTMod {
 			if (tileEntity instanceof GTTileBloomery) {
 				GTTileBloomery bloom = (GTTileBloomery) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
-				IC2.platform.messagePlayer(player, "Correct Recipe: " + bloom.isRecipeValid());
-				IC2.platform.messagePlayer(player, "Can Output Dark Ash: " + bloom.canOutputDarkAsh());
-				IC2.platform.messagePlayer(player, "Active: " + bloom.getActive());
 				IC2.platform.messagePlayer(player,
 						"Progress: " + (Math.round((bloom.getProgress() / bloom.getMaxProgress()) * 100)) + "%");
+				IC2.platform.messagePlayer(player, "Recipe State: " + bloom.getActiveRecipe());
 			}
 
 			if (tileEntity instanceof TileEntityElectricBlock) {
 				TileEntityElectricBlock eu = (TileEntityElectricBlock) tileEntity;
 				IC2.platform.messagePlayer(player, "Tier: " + eu.getTier());
-				IC2.platform.messagePlayer(player, "Max Input: " + eu.getMaxEU());
-				IC2.platform.messagePlayer(player, "Output: " + eu.getOutput());
-				IC2.platform.messagePlayer(player, "Stored EU: " + eu.getStored());
-				IC2.platform.messagePlayer(player, "Max EU: " + eu.getCapacity());
+				IC2.platform.messagePlayer(player, "Capacity: " + eu.getMaxEU() + " EU");
+				IC2.platform.messagePlayer(player, "Output: " + eu.getOutput() + " EU");
 			}
 
 			if (tileEntity instanceof TileEntityTransformer) {
 				TileEntityTransformer transformer = (TileEntityTransformer) tileEntity;
-				IC2.platform.messagePlayer(player, "Low EU: " + transformer.lowOutput);
+				IC2.platform.messagePlayer(player, "Low: " + transformer.lowOutput + " EU");
 				IC2.platform.messagePlayer(player,
 						"Low Tier: " + EnergyNet.instance.getTierFromPower((double) transformer.lowOutput));
-				IC2.platform.messagePlayer(player, "High EU: " + transformer.highOutput);
+				IC2.platform.messagePlayer(player, "High: " + transformer.highOutput + " EU");
 				IC2.platform.messagePlayer(player,
 						"High Tier: " + EnergyNet.instance.getTierFromPower((double) transformer.highOutput));
 			}

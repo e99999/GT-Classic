@@ -23,7 +23,7 @@ public class GTProxyClient extends GTProxyCommon {
 		super.preInit(e);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
-	
+
 	@Override
 	public void init(FMLInitializationEvent e) {
 		super.init(e);
@@ -36,7 +36,7 @@ public class GTProxyClient extends GTProxyCommon {
 	public void onIconLoad(SpriteReloadEvent event) {
 		GTIcons.loadSprites();
 	}
-	
+
 	public static void registerTintedItems() {
 		GTColorItem colors = new GTColorItem();
 		ItemColors registry = Minecraft.getMinecraft().getItemColors();

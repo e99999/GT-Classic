@@ -21,34 +21,23 @@ import gtclassic.tool.GTToolChainsaw;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
 import gtclassic.tool.GTToolMiningDrill;
+import gtclassic.tool.GTToolWrench;
 import ic2.core.IC2;
 import net.minecraft.item.Item;
 
 public class GTItems {
 
 	static List<Item> toRegister = new ArrayList<Item>();
-	public static final GTItemComponent glassTube = createItem(new GTItemComponent("glass_tube", 0, false));
-	public static final GTItemComponent bouleSilicon = createItem(new GTItemComponent("silicon_boule", 1, false));
-	public static final GTItemComponent boardSteel = createItem(new GTItemComponent("steel_circuit_board", 2, false));
-	public static final GTItemComponent boardAluminium = createItem(
-			new GTItemComponent("aluminium_circuit_board", 3, false));
-	public static final GTItemComponent boardElectrum = createItem(
-			new GTItemComponent("electrum_circuit_board", 4, false));
-	public static final GTItemComponent boardPlatinum = createItem(
-			new GTItemComponent("platinum_circuit_board", 5, false));
-	public static final GTItemComponent circuitParts = createItem(new GTItemComponent("circuit_parts", 6, false));
-	public static final GTItemComponent circuitDiamond = createItem(new GTItemComponent("circuit_diamond", 7, false));
-	public static final GTItemComponent circuitRuby = createItem(new GTItemComponent("circuit_ruby", 8, false));
-	public static final GTItemComponent circuitEmerald = createItem(new GTItemComponent("circuit_emerald", 9, false));
-	public static final GTItemComponent circuitSapphire = createItem(new GTItemComponent("circut_sapphire", 10, false));
-	public static final GTItemComponent moldBlank = createItem(new GTItemComponent("mold_blank", 48, false));
-	public static final GTItemComponent moldBlock = createItem(new GTItemComponent("mold_block", 49, true));
-	public static final GTItemComponent moldIngot = createItem(new GTItemComponent("mold_ingot", 50, true));
-	public static final GTItemComponent moldNugget = createItem(new GTItemComponent("mold_nugget", 51, true));
-	public static final GTItemComponent moldPlate = createItem(new GTItemComponent("mold_plate", 52, true));
-	public static final GTItemComponent moldStick = createItem(new GTItemComponent("mold_stick", 53, true));
-	public static final GTItemComponent moldCable = createItem(new GTItemComponent("mold_cable", 54, true));
-	public static final GTItemComponent moldTube = createItem(new GTItemComponent("mold_tube", 55, true));
+	public static final GTItemComponent glassTube = createItem(new GTItemComponent("glass_tube", 0, 0, false));
+
+	public static final GTItemComponent moldBlank = createItem(new GTItemComponent("mold_blank", 0, 1, false));
+	public static final GTItemComponent moldBlock = createItem(new GTItemComponent("mold_block", 1, 1, true));
+	public static final GTItemComponent moldIngot = createItem(new GTItemComponent("mold_ingot", 2, 1, true));
+	public static final GTItemComponent moldNugget = createItem(new GTItemComponent("mold_nugget", 3, 1, true));
+	public static final GTItemComponent moldPlate = createItem(new GTItemComponent("mold_plate", 4, 1, true));
+	public static final GTItemComponent moldStick = createItem(new GTItemComponent("mold_stick", 5, 1, true));
+	public static final GTItemComponent moldCable = createItem(new GTItemComponent("mold_cable", 6, 1, true));
+	public static final GTItemComponent moldTube = createItem(new GTItemComponent("mold_tube", 7, 1, true));
 
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
 	public static final GTItemCraftingTablet craftingTablet = createItem(new GTItemCraftingTablet());
@@ -80,17 +69,26 @@ public class GTItems {
 	public static void generateTools() {
 		powerMaterials.addAll(Arrays.asList(GTMaterial.Silicon, GTMaterial.Gold, GTMaterial.Tin, GTMaterial.Copper,
 				GTMaterial.Lead, GTMaterial.Iron, GTMaterial.Bronze, GTMaterial.Brass, GTMaterial.Zinc,
-				GTMaterial.RefinedIron, GTMaterial.Graphite));
+				GTMaterial.RefinedIron, GTMaterial.Graphite, GTMaterial.Germanium));
 		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon)) {
+			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon)
+					&& !mat.equals(GTMaterial.Graphite)) {
 				IC2.getInstance().createItem(new GTToolFile(mat));
 			}
 
 		}
 
 		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon)) {
+			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon)
+					&& !mat.equals(GTMaterial.Graphite)) {
 				IC2.getInstance().createItem(new GTToolHammer(mat));
+			}
+		}
+
+		for (GTMaterial mat : GTMaterial.values()) {
+			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon) && !mat.equals(GTMaterial.Graphite)
+					&& !mat.equals(GTMaterial.Bronze)) {
+				IC2.getInstance().createItem(new GTToolWrench(mat));
 			}
 		}
 
@@ -109,7 +107,7 @@ public class GTItems {
 	}
 
 	public static boolean canBePowerTool(GTMaterial mat) {
-		return powerMaterials.contains(mat);
+		return !powerMaterials.contains(mat);
 	}
 
 }

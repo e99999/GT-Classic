@@ -28,7 +28,7 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getChemical(M.Oxygen, 2), 2));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustCoal", 4, 8, euCost(7500),
-				new OutputItem(GT.getChemical(M.Carbon, 8), 0));
+				new OutputItem(GT.getChemical(M.Carbon, 4), 0), new OutputItem(GT.getDust(M.Germanium, 1), 1));
 
 		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.rubberWood, 16), 12, euCost(25000),
 				new OutputItem(GT.getChemical(M.Carbon, 8), 0), new OutputItem(GT.getIc2(Ic2Items.stickyResin, 8), 1),
@@ -68,7 +68,7 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getChemical(M.Sodium, 8), 0), new OutputItem(GT.getDust(M.Aluminium, 6), 1),
 				new OutputItem(GT.getChemical(M.Silicon, 6), 2), new OutputItem(GT.getChemical(M.Calcium, 8), 3));
 
-		GTTileIndustrialCentrifuge.addRecipe("dustPyrite", 3, 0, euCost(15000),
+		GTTileIndustrialCentrifuge.addRecipe("dustPyrite", 2, 0, euCost(15000),
 				new OutputItem(GT.getIc2(Ic2Items.ironDust, 1), 0));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustCalcite", 10, 7, euCost(50000),
@@ -81,7 +81,7 @@ public class GTRecipeIndustrialCentrifuge {
 
 		GTTileIndustrialCentrifuge.addRecipe("dustBauxite", 24, 16, euCost(250000),
 				new OutputItem(GT.getChemical(M.Oxygen, 6), 0), new OutputItem(GT.getDust(M.Aluminium, 16), 1),
-				new OutputItem(GT.getDust(M.Titanium, 1), 2), new OutputItem(GT.getChemical(M.Hydrogen, 10), 3));
+				new OutputItem(GT.getDust(M.Rutile, 1), 2), new OutputItem(GT.getChemical(M.Hydrogen, 10), 3));
 
 		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.MAGMA_CREAM, 1), 0, euCost(2500),
 				new OutputItem(GT.get(Items.BLAZE_POWDER, 1), 0), new OutputItem(GT.get(Items.SLIME_BALL, 1), 1));
@@ -179,8 +179,8 @@ public class GTRecipeIndustrialCentrifuge {
 		GTTileIndustrialCentrifuge.addRecipe("dustLead", 2, 0, euCost(12000),
 				new OutputItem(GT.getSmallDust(M.Silver, 1), 0));
 
-		GTTileIndustrialCentrifuge.addRecipe("dustZinc", 1, 0, euCost(5000),
-				new OutputItem(GT.getSmallDust(M.Tin, 1), 0));
+		GTTileIndustrialCentrifuge.addRecipe("dustZinc", 2, 0, euCost(5000),
+				new OutputItem(GT.getSmallDust(M.Germanium, 1), 0));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustBrass", 1, 0, euCost(7500),
 				new OutputItem(GT.getSmallDust(M.Copper, 3), 0), new OutputItem(GT.getSmallDust(M.Zinc, 1), 1));
@@ -208,7 +208,7 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getSmallDust(M.Sodalite, 2), 0), new OutputItem(GT.getDust(M.Lazurite, 3), 1),
 				new OutputItem(GT.getSmallDust(M.Pyrite, 1), 2), new OutputItem(GT.getSmallDust(M.Calcite, 1), 3));
 
-		GTTileIndustrialCentrifuge.addRecipe("dustRedstone", 4, 0, euCost(35000),
+		GTTileIndustrialCentrifuge.addRecipe("dustRedstone", 16, 4, euCost(35000),
 				new OutputItem(GT.getChemical(M.Mercury, 3), 0), new OutputItem(GT.getChemical(M.Silicon, 1), 1),
 				new OutputItem(GT.getDust(M.Pyrite, 5), 2), new OutputItem(GT.getDust(M.Ruby, 1), 3));
 
@@ -249,8 +249,17 @@ public class GTRecipeIndustrialCentrifuge {
 		 * Recipes from the GT2 Electrolyzer
 		 */
 
-		GTTileIndustrialCentrifuge.addRecipe("dustSphalerite", 5, 0, euCost(5000),
-				new OutputItem(GT.getDust(M.Zinc, 2), 0), new OutputItem(GT.getDust(M.Sulfur, 1), 1));
+		GTTileIndustrialCentrifuge.addRecipe("dustSphalerite", 4, 0, euCost(5000),
+				new OutputItem(GT.getDust(M.Zinc, 1), 0), new OutputItem(GT.getDust(M.Germanium, 1), 1),
+				new OutputItem(GT.getDust(M.Sulfur, 1), 2));
+
+		GTTileIndustrialCentrifuge.addRecipe("dustGalena", 4, 0, euCost(5000), new OutputItem(GT.getDust(M.Lead, 1), 0),
+				new OutputItem(GT.getSmallDust(M.Silver, 1), 1), new OutputItem(GT.getDust(M.Sulfur, 1), 2));
+
+		GTTileIndustrialCentrifuge.addRecipe("dustGermanite", 4, 0, euCost(5000),
+				new OutputItem(GT.getDust(M.Germanium, 1), 0), new OutputItem(GT.getIc2(Ic2Items.tinDust, 1), 1),
+				new OutputItem(GT.getDust(M.Sulfur, 1), 2));
+
 	}
 
 	public static void recipesCentrifuge3() {
@@ -259,7 +268,7 @@ public class GTRecipeIndustrialCentrifuge {
 		 * purpose to new materials added by GregTech and vanilla Minecraft since GT1
 		 * and GT2.
 		 */
-		GTTileIndustrialCentrifuge.addRecipe(GT.getDust(M.Magnetite, 2), 0, euCost(1000),
+		GTTileIndustrialCentrifuge.addRecipe("dustMagnetite", 2, 0, euCost(1000),
 				new OutputItem(GT.getIc2(Ic2Items.ironDust, 1), 0));
 
 		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.QUARTZ, 1), 3, euCost(8000),
@@ -275,6 +284,9 @@ public class GTRecipeIndustrialCentrifuge {
 		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.ROTTEN_FLESH, 16), 4, euCost(25000),
 				new OutputItem(GT.getChemical(M.Methane, 1), 0), new OutputItem(GT.get(Items.LEATHER, 2), 1),
 				new OutputItem(GT.get(Items.SLIME_BALL, 1), 2));
+
+		GTTileIndustrialCentrifuge.addRecipe("dustTungsten", 2, 0, euCost(12000),
+				new OutputItem(GT.getSmallDust(M.Manganese, 2), 0));
 	}
 
 	public static void recipesCentrifuge4() {

@@ -8,6 +8,7 @@ import gtclassic.tool.GTToolChainsaw;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
 import gtclassic.tool.GTToolMiningDrill;
+import gtclassic.tool.GTToolWrench;
 import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
@@ -39,7 +40,7 @@ public class GTRecipeIterators {
 			String gem = "gem" + mat.getDisplayName();
 			String ingot = "ingot" + mat.getDisplayName();
 			String nugget = "nugget" + mat.getDisplayName();
-			String stick = "rod" + mat.getDisplayName();
+			String stick = "stick" + mat.getDisplayName();
 			String plate = "plate" + mat.getDisplayName();
 			String block = "block" + mat.getDisplayName();
 
@@ -94,7 +95,7 @@ public class GTRecipeIterators {
 			if (mat.hasFlag(GTMaterialFlag.PLATE) && (mat != M.Silicon)) {
 				// Plate crafting recipe
 				recipes.addRecipe(GT.getPlate(mat, 1),
-						new Object[] { "H  ", "X  ", "X  ", 'H', "craftingToolForgeHammer", 'X', ingot });
+						new Object[] { "H", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
 
 				// If a dust is present create a maceration recipe
 				if (mat.hasFlag(GTMaterialFlag.DUST)) {
@@ -104,7 +105,7 @@ public class GTRecipeIterators {
 
 			if (mat.hasFlag(GTMaterialFlag.STICK)) {
 				// Stick crafting recipe
-				recipes.addShapelessRecipe(GT.getStick(mat, 1), new Object[] { "craftingToolFile", ingot });
+				recipes.addShapelessRecipe(GT.getStick(mat, 2), new Object[] { "craftingToolFile", ingot });
 
 				// If a dust is present create a maceration recipe
 				if (mat.hasFlag(GTMaterialFlag.DUST)) {
@@ -128,7 +129,8 @@ public class GTRecipeIterators {
 
 			if (mat.hasFlag(GTMaterialFlag.CASING)) {
 				// Casing crafting recipe
-				recipes.addRecipe(GT.getCasing(mat, 1), new Object[] { "SXX", "X X", "XXS", 'X', plate, 'S', stick });
+				recipes.addRecipe(GT.getCasing(mat, 1),
+						new Object[] { "SXX", "XWX", "XXS", 'X', plate, 'S', stick, 'W', "craftingToolWrench" });
 			}
 		}
 	}
@@ -168,48 +170,55 @@ public class GTRecipeIterators {
 	public static void recipeIterators3() {
 		for (Item item : Item.REGISTRY) {
 			if (item instanceof GTToolFile) {
-				recipes.addRecipe(new ItemStack(item), new Object[] { "X  ", "X  ", "S  ", 'X',
-						((GTToolFile) item).getRecipePrimary(), 'S', "stickWood" });
+				GTToolFile file = (GTToolFile) item;
+				String plate = "plate" + file.getMaterial().getDisplayName();
+				recipes.addRecipe(new ItemStack(item), new Object[] { "P", "P", "S", 'P', plate, 'S', "stickWood" });
 			}
 			if (item instanceof GTToolHammer) {
-				recipes.addRecipe(new ItemStack(item), new Object[] { "XX ", "XXS", "XX ", 'X',
-						((GTToolHammer) item).getRecipePrimary(), 'S', "stickWood" });
+				GTToolHammer hammer = (GTToolHammer) item;
+				String ingot = "ingot" + hammer.getMaterial().getDisplayName();
+				recipes.addRecipe(new ItemStack(item),
+						new Object[] { "II ", "IIS", "II ", 'I', ingot, 'S', "stickWood" });
+			}
+			if (item instanceof GTToolWrench) {
+				GTToolWrench wrench = (GTToolWrench) item;
+				String ingot = "ingot" + wrench.getMaterial().getDisplayName();
+				recipes.addRecipe(new ItemStack(item), new Object[] { "I I", "III", " I ", 'I', ingot });
 			}
 			if (GTValues.debugMode) { // disabling these in game until the tools are damagable
 				if (item instanceof GTToolMiningDrill) {
-					recipes.addRecipe(new ItemStack(item),
-							new Object[] { "XXX", "SCS", "SBS", 'X', ((GTToolMiningDrill) item).getRecipePrimary(), 'S',
-									((GTToolMiningDrill) item).getRecipeSecondary(), 'C',
-									((GTToolMiningDrill) item).getRecipeCircuit(), 'B',
-									((GTToolMiningDrill) item).getRecipeBattery() });
+					// TODO not finished yet
 				}
 				if (item instanceof GTToolChainsaw) {
-					recipes.addRecipe(new ItemStack(item),
-							new Object[] { "SXX", "BCX", "SXX", 'X', ((GTToolChainsaw) item).getRecipePrimary(), 'S',
-									((GTToolChainsaw) item).getRecipeSecondary(), 'C',
-									((GTToolChainsaw) item).getRecipeCircuit(), 'B',
-									((GTToolChainsaw) item).getRecipeBattery() });
+					// TODO not finished yet
 				}
 			}
 		}
 		for (Block block : Block.REGISTRY) {
 			if (block instanceof GTBlockTileStorage) {
 				GTBlockTileStorage tile = (GTBlockTileStorage) block;
-				if (tile.getType() == 0) {
-					recipes.addShapelessRecipe(new ItemStack(block),
-							new Object[] { tile.getRecipePrimary(), tile.getRecipeSecondary() });
+				GTMaterial material = tile.getMaterial();
+				String cabinet = "chest" + material.getDisplayName();
+				String casing = "casingMachine" + material.getDisplayName();
+				String plate = "plate" + material.getDisplayName();
+				String stick = "stick" + material.getDisplayName();
+				String wrench = "craftingToolWrench";
+				String hammer = "craftingToolForgeHammer";
+				if (tile.getType() == 0) { // cabinet
+					recipes.addRecipe(new ItemStack(block),
+							new Object[] { "HPW", "P P", "PPP", 'P', plate, 'S', stick, 'H', hammer, 'W', wrench });
 				}
-				if (tile.getType() == 1) {
-					recipes.addShapelessRecipe(new ItemStack(block), new Object[] { tile.getRecipePrimary(),
-							tile.getRecipePrimary(), tile.getRecipeSecondary(), tile.getRecipeSecondary() });
+				if (tile.getType() == 1) {// large cabinet
+					recipes.addRecipe(new ItemStack(block),
+							new Object[] { "SPS", "CMC", "SPS", 'P', plate, 'S', stick, 'C', cabinet, 'M', casing });
 				}
-				if (tile.getType() == 2) {
-					recipes.addShapelessRecipe(new ItemStack(block),
-							new Object[] { tile.getRecipePrimary(), tile.getRecipeSecondary() });
+				if (tile.getType() == 2) {// bookshelf
+					recipes.addRecipe(new ItemStack(block),
+							new Object[] { "PPP", "H W", "PPP", 'P', plate, 'S', stick, 'H', hammer, 'W', wrench });
 				}
-				if (tile.getType() == 3) {
-					recipes.addShapelessRecipe(new ItemStack(block),
-							new Object[] { tile.getRecipePrimary(), tile.getRecipeSecondary() });
+				if (tile.getType() == 3) {// workbench
+					recipes.addRecipe(new ItemStack(block), new Object[] { "PHP", "SWS", "PCP", 'P', plate, 'S', stick,
+							'H', hammer, 'W', "workbench", 'C', "chestWood" });
 				}
 			}
 		}

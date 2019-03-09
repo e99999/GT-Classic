@@ -50,7 +50,7 @@ public class GTItemCraftingTablet extends ItemIC2 implements IHandHeldInventory 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[35];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[3];
 	}
 
 	@Override

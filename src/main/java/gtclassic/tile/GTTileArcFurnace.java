@@ -46,7 +46,7 @@ public class GTTileArcFurnace extends GTTileBaseMultiInputMachine {
 	boolean firstCheck = true;
 
 	public static final IBlockState casingHeat = GTBlocks.heatCasingBlock.getDefaultState();
-	public static final IBlockState casingMachine = GTMaterialGen.getBlock(GTMaterial.Iron, GTMaterialFlag.CASING)
+	public static final IBlockState casingMachine = GTMaterialGen.getBlock(GTMaterial.Invar, GTMaterialFlag.CASING)
 			.getDefaultState();
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("arcfurnace");

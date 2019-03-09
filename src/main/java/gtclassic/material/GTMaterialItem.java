@@ -9,9 +9,20 @@ import gtclassic.color.GTColorItemInterface;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -19,6 +30,7 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 
 	private GTMaterial material;
 	private GTMaterialFlag flag;
+	public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 3);
 
 	public GTMaterialItem(GTMaterial material, GTMaterialFlag flag) {
 		this.material = material;
@@ -70,6 +82,61 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	@Override
 	public TextureAtlasSprite getTexture(int index, ItemStack var2) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[flag.getTextureID() + index];
+	}
+
+	/**
+	 * Called when a Block is right-clicked with this Item
+	 */
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing,
+			float hitX, float hitY, float hitZ) {
+		IBlockState state = world.getBlockState(pos);
+		// TODO refactor everything below into a cleaner method to add the drops from
+		// materials
+		if (this.flag == GTMaterialFlag.DUST && state.getBlock() == Blocks.CAULDRON
+				&& state.getValue(LEVEL).intValue() > 0) {
+			if (this.material == GTMaterial.Sphalerite) {
+				player.setHeldItem(hand,
+						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
+				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Zinc, 1), false);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Germanium, 1), false);
+				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
+						1.0F);
+				return EnumActionResult.SUCCESS;
+			}
+			if (this.material == GTMaterial.Cinnabar) {
+				player.setHeldItem(hand,
+						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
+				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Redstone, 1), false);
+				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
+						1.0F);
+				return EnumActionResult.SUCCESS;
+			}
+			if (this.material == GTMaterial.Galena) {
+				player.setHeldItem(hand,
+						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
+				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Lead, 1), false);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Silver, 1), false);
+				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
+						1.0F);
+				return EnumActionResult.SUCCESS;
+			}
+			if (this.material == GTMaterial.Germanite) {
+				player.setHeldItem(hand,
+						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
+				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Germanium, 1), false);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Tin, 1), false);
+				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
+						1.0F);
+				return EnumActionResult.SUCCESS;
+			}
+		}
+
+		return EnumActionResult.PASS;
 	}
 
 }

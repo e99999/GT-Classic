@@ -591,6 +591,7 @@ tooltip.gtclassic.galena_ore=Spawns in ALL biomes
 tooltip.gtclassic.iridium_ore=Spawns rarely in ALL biomes
 tooltip.gtclassic.ruby_ore=Spawns in HOT biomes
 tooltip.gtclassic.sapphire_ore=Spawns in OCEAN & COLD biomes
+tooltip.gtclassic.germanite_ore=Spawns in ALL biomes below y level 20
 tooltip.gtclassic.calcite_ore=Spawns in ALL biomes
 tooltip.gtclassic.bauxite_ore=Spawns in FOREST & PLAINS biomes
 tooltip.gtclassic.pyrite_ore=Spawns in NETHER biomes

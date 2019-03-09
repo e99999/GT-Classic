@@ -15,12 +15,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemComponent extends Item implements IStaticTexturedItem {
 
 	String name;
-	int id;
+	int x;
+	int y;
 	boolean containeritem;
 
-	public GTItemComponent(String name, int id, boolean containeritem) {
+	public GTItemComponent(String name, int x, int y, boolean containeritem) {
 		this.name = name;
-		this.id = id;
+		this.x = x;
+		this.y = y;
 		this.containeritem = containeritem;
 		setRegistryName(this.name.toLowerCase());
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
@@ -45,6 +47,6 @@ public class GTItemComponent extends Item implements IStaticTexturedItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[this.id];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[(this.y * 16) + this.x];
 	}
 }

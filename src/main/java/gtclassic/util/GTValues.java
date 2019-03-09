@@ -37,11 +37,11 @@ public class GTValues {
 
 	public static IRecipeInput ingotElectric = new RecipeInputCombined(1,
 			new IRecipeInput[] { new RecipeInputOreDict("ingotAluminium"), new RecipeInputOreDict(getIC2Ingot()),
-					new RecipeInputOreDict("ingotSilver") });
+					new RecipeInputOreDict("ingotSteel") });
 
 	public static IRecipeInput plateElectric = new RecipeInputCombined(1,
 			new IRecipeInput[] { new RecipeInputOreDict("plateAluminium"), new RecipeInputOreDict(getIC2Plate()),
-					new RecipeInputOreDict("plateSilver") });
+					new RecipeInputOreDict("plateSteel") });
 
 	public static String getIC2Ingot() {
 		return IC2.getRefinedIron();

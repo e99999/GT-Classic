@@ -1,13 +1,12 @@
 package gtclassic.recipe;
 
-import gtclassic.GTBlocks;
-import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
-import ic2.core.block.machine.low.TileEntityCompressor;
-import ic2.core.block.machine.low.TileEntitySawMill;
+import ic2.api.recipe.IRecipeInput;
+import ic2.core.item.recipe.entry.RecipeInputCombined;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 
 public class GTRecipeCircuitry {
@@ -16,6 +15,9 @@ public class GTRecipeCircuitry {
 	static GTMaterialGen GT;
 	static GTMaterial M;
 
+	public static IRecipeInput basicCircuitPlate = new RecipeInputCombined(1,
+			new IRecipeInput[] { new RecipeInputOreDict("plateSilicon"), new RecipeInputOreDict("plateGermanium") });
+
 	public static void recipesCircutry() {
 
 		/*
@@ -23,32 +25,22 @@ public class GTRecipeCircuitry {
 		 * For now they allow testing and progression to happen.
 		 */
 
-		// Compressing silicon in boule
-		TileEntityCompressor.addRecipe(GT.getChemical(M.Silicon, 9), (GT.get(GTItems.bouleSilicon, 1)), 0.2F);
+		// recipes.addRecipe(GT.get(GTBlocks.tinyEnergium, 1),
+		// new Object[] { "RRR", "RDR", "RRR", 'D', "gemRuby", 'R', "dustRedstone" });
 
-		// Cutting the boule into silicon plates
-		TileEntitySawMill.addRecipe(GT.get(GTItems.bouleSilicon, 1), (GT.getPlate(M.Silicon, 9)), 0.2F);
+		// recipes.addRecipe(GT.get(GTBlocks.tinyLapotron, 1),
+		// new Object[] { "LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', "circuitBasic",
+		// 'L', "gemLapis" });
 
-		/*
-		 * Temporary recipes for getting the gregtech energy crystals required to
-		 * progress
-		 */
-		recipes.addRecipe(GT.get(GTBlocks.tinyEnergium, 1),
-				new Object[] { "RRR", "RDR", "RRR", 'D', "gemRuby", 'R', "dustRedstone" });
+		// recipes.addRecipe(GT.get(GTBlocks.tinyLapotron, 1),
+		// new Object[] { "LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', "circuitBasic",
+		// 'L', "dustLazurite" });
 
-		recipes.addRecipe(GT.get(GTBlocks.tinyLapotron, 1),
-				new Object[] { "LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', "circuitBasic", 'L', "gemLapis" });
+		recipes.overrideRecipe("shaped_Electronic Circuit", GT.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RSR", "CCC",
+				'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy(), 'S', basicCircuitPlate);
 
-		recipes.addRecipe(GT.get(GTBlocks.tinyLapotron, 1),
-				new Object[] { "LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', "circuitBasic", 'L', "dustLazurite" });
-		
-		recipes.overrideRecipe("shaped_Electronic Circuit",
-				 GT.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RSR", "CCC", 'R',
-					"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy(), 'S', "plateSteel");
-		
-		recipes.overrideRecipe("shaped_Electronic Circuit_1",
-				 GT.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CSC", "CRC", 'R',
-					"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy(), 'S', "plateSteel");
+		recipes.overrideRecipe("shaped_Electronic Circuit_1", GT.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CSC",
+				"CRC", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy(), 'S', basicCircuitPlate);
 
 	}
 

@@ -27,10 +27,10 @@ public class GTRecipeShaped {
 				'B', Ic2Items.battery, 'I', GTValues.plateElectric, 'W', Ic2Items.copperCable });
 
 		recipes.addRecipe(GT.get(GTItems.rockCutter, 1),
-				new Object[] { "DIS", "DIG", "DCB",
+				new Object[] { "DI ", "DI ", "DCB",
 						new EnchantmentModifier(GT.get(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(),
 						'D', "gemDiamond", 'I', GTValues.plateElectric, 'C', "circuitBasic", 'B',
-						Ic2Items.battery.copy(), 'S', "rodElectrum", 'G', "gemLapis" });
+						Ic2Items.battery.copy()});
 
 		recipes.addRecipe(GT.get(GTItems.glassTube, 32), new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
 
@@ -47,7 +47,7 @@ public class GTRecipeShaped {
 				"circuitBasic", 'I', GTValues.plateElectric });
 
 		recipes.addRecipe(GT.get(GTItems.teslaStaff, 1), new Object[] { " SL", " PS", "P  ", 'L',
-				GTBlocks.smallLapotron, 'S', GTBlocks.superCasingBlock, 'P', "rodIridium" });
+				GTBlocks.smallLapotron, 'S', GTBlocks.superCasingBlock, 'P', "stickIridium" });
 
 		/*
 		 * recipes.addRecipe(GT.get(GTItems.heatStorageSingle, 1), new Object[] { " I ",
@@ -73,23 +73,28 @@ public class GTRecipeShaped {
 		 * Recipes for blocks
 		 */
 
-		recipes.addRecipe(GT.get(GTBlocks.superCasingBlock, 4),
-				new Object[] { "CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(), 'E',
-						GTItems.circuitSapphire, 'W', "casingMachineTungsten", 'P', "plateIridium" });
+		// recipes.addRecipe(GT.get(GTBlocks.superCasingBlock, 4),
+		// new Object[] { "CCC", "PWP", "EEE", 'C',
+		// Ic2Items.reactorCoolantCellSix.copy(), 'E',
+		// GTItems.circuitSapphire, 'W', "casingMachineTungsten", 'P', "plateIridium"
+		// });
 
-		recipes.addRecipe(GT.get(GTBlocks.fusionCasingBlock),
-				new Object[] { "CRC", "BSB", "CRC", 'C', GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock, 'B',
-						"casingMachineChrome", 'R', Ic2Items.reactorReflectorIridium.copy() });
+		// recipes.addRecipe(GT.get(GTBlocks.fusionCasingBlock),
+		// new Object[] { "CRC", "BSB", "CRC", 'C', GTItems.circuitSapphire, 'S',
+		// GTBlocks.superCasingBlock, 'B',
+		// "casingMachineChrome", 'R', Ic2Items.reactorReflectorIridium.copy() });
 
 		recipes.addRecipe(GT.get(GTBlocks.crystalCasingBlock),
 				new Object[] { "BBB", "BCB", "BBB", 'B', "blockRuby", 'C', "casingMachineAluminium" });
 
 		recipes.addRecipe(GT.get(GTBlocks.constantanCoilBlock),
-				new Object[] { "XXX", "XXX", "XXX", 'X', "rodConstantan" });
+				new Object[] { "XXX", "XXX", "XXX", 'X', "stickConstantan" });
 
-		recipes.addRecipe(GT.get(GTBlocks.graphiteCoilBlock), new Object[] { "XXX", "XXX", "XXX", 'X', "rodGraphite" });
+		recipes.addRecipe(GT.get(GTBlocks.graphiteCoilBlock),
+				new Object[] { "XXX", "XXX", "XXX", 'X', "stickGraphite" });
 
-		recipes.addRecipe(GT.get(GTBlocks.nichromeCoilBlock), new Object[] { "XXX", "XXX", "XXX", 'X', "rodNichrome" });
+		recipes.addRecipe(GT.get(GTBlocks.nichromeCoilBlock),
+				new Object[] { "XXX", "XXX", "XXX", 'X', "stickNichrome" });
 
 		recipes.addRecipe(GT.get(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood", 'C',
 				"cobblestone", 'I', GTValues.ingotElectric, 'R', "dustRedstone" });
@@ -104,19 +109,23 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.bloomery),
 				new Object[] { "XXX", "XFX", "XXX", 'X', "plateBronze", 'F', Blocks.FURNACE });
 
-		recipes.addRecipe(GT.get(GTBlocks.fusionComputer, 1),
-				new Object[] { "EPE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S', "plateTungstensteel", 'L',
-						"plateIridium", 'C', GTBlocks.computerCube, 'P', "platePlutonium" });
+		// recipes.addRecipe(GT.get(GTBlocks.fusionComputer, 1),
+		// new Object[] { "EPE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S',
+		// "plateTungstensteel", 'L',
+		// "plateIridium", 'C', GTBlocks.computerCube, 'P', "platePlutonium" });
 
-		recipes.addRecipe(GT.get(GTBlocks.lightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
-				GTItems.circuitSapphire, 'S', "casingMachineIridium", 'A', "rodTungstensteel" });
+		// recipes.addRecipe(GT.get(GTBlocks.lightningRod, 1), new Object[] { "EAE",
+		// "ASA", "EAE", 'E',
+		// GTItems.circuitSapphire, 'S', "casingMachineIridium", 'A',
+		// "stickTungstensteel" });
 
 		recipes.addRecipe(GT.get(GTBlocks.industrialCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 				Ic2Items.extractor, 'R', GTValues.plateElectric, 'A', "casingMachineSteel", 'C', "circuitAdvanced" });
 
-		recipes.addRecipe(GT.get(GTBlocks.computerCube, 1),
-				new Object[] { "RGD", "GMG", "DGR", 'D', GTItems.circuitDiamond, 'R', GTItems.circuitSapphire, 'G',
-						"blockGlass", 'M', "casingMachineTitanium" });
+		// recipes.addRecipe(GT.get(GTBlocks.computerCube, 1),
+		// new Object[] { "RGD", "GMG", "DGR", 'D', GTItems.circuitDiamond, 'R',
+		// GTItems.circuitSapphire, 'G',
+		// "blockGlass", 'M', "casingMachineTitanium" });
 
 		recipes.addRecipe(GT.get(GTBlocks.basicEnergyStorage),
 				new Object[] { "OOO", "OCO", "OOO", 'O', GTBlocks.smallLapotron, 'C', GTBlocks.computerCube });
@@ -130,41 +139,51 @@ public class GTRecipeShaped {
 
 		if (GTValues.debugMode) {
 
-			recipes.addRecipe(GT.get(GTBlocks.matterReplicator, 1),
-					new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.circuitEmerald, 'C', GTBlocks.computerCube, 'T',
-							Ic2Items.teleporter, 'Q', GTBlocks.digitalChest, 'E', GTItems.craftingTablet, 'D',
-							GTItems.circuitDiamond, 'B', GTBlocks.tinyEnergium });
+			// recipes.addRecipe(GT.get(GTBlocks.matterReplicator, 1),
+			// new Object[] { "dCd", "TQE", "DBD", 'd', GTItems.circuitEmerald, 'C',
+			// GTBlocks.computerCube, 'T',
+			// Ic2Items.teleporter, 'Q', GTBlocks.digitalChest, 'E', GTItems.craftingTablet,
+			// 'D',
+			// GTItems.circuitDiamond, 'B', GTBlocks.tinyEnergium });
 
 			recipes.addRecipe(GT.get(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
 					Blocks.REDSTONE_TORCH, 'C', "circuitAdvanced", 'c', "casingMachineSteel" });
 
-			recipes.addRecipe(GT.get(GTBlocks.matterFabricator, 1),
-					new Object[] { "ETE", "HLH", "ETE", 'E', GTItems.circuitSapphire, 'T', Ic2Items.teleporter, 'H',
-							"casingMachineTitanium", 'L', GTBlocks.smallLapotron });
+			// recipes.addRecipe(GT.get(GTBlocks.matterFabricator, 1),
+			// new Object[] { "ETE", "HLH", "ETE", 'E', GTItems.circuitSapphire, 'T',
+			// Ic2Items.teleporter, 'H',
+			// "casingMachineTitanium", 'L', GTBlocks.smallLapotron });
 
-			recipes.addRecipe(GT.get(GTBlocks.digitalTransformerIV, 1),
-					new Object[] { "ELE", "SHS", "ELE", 'E', GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock,
-							'H', "casingMachineIridium", 'L', GTBlocks.smallLapotron });
+			// recipes.addRecipe(GT.get(GTBlocks.digitalTransformerIV, 1),
+			// new Object[] { "ELE", "SHS", "ELE", 'E', GTItems.circuitSapphire, 'S',
+			// GTBlocks.superCasingBlock,
+			// 'H', "casingMachineIridium", 'L', GTBlocks.smallLapotron });
 
-			recipes.addRecipe(GT.get(GTBlocks.chargeOMat, 1),
-					new Object[] { "RCR", "AEA", "RMR", 'E', GTBlocks.smallLapotron, 'R', GTItems.circuitSapphire, 'A',
-							"chestWood", 'C', GTBlocks.computerCube, 'M', "casingMachineTitanium" });
+			// recipes.addRecipe(GT.get(GTBlocks.chargeOMat, 1),
+			// new Object[] { "RCR", "AEA", "RMR", 'E', GTBlocks.smallLapotron, 'R',
+			// GTItems.circuitSapphire, 'A',
+			// "chestWood", 'C', GTBlocks.computerCube, 'M', "casingMachineTitanium" });
 
 			recipes.addRecipe(GT.get(GTBlocks.multiEnergyStorage), new Object[] { " G ", "CMC", " G ", 'C',
 					"circuitAdvanced", 'M', GTBlocks.crystalCasingBlock, 'G', Ic2Items.glassFiberCable.copy() });
 
-			recipes.addRecipe(GT.get(GTBlocks.lapotronCable, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
-					GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock, 'H', GTBlocks.smallLapotron });
+			// recipes.addRecipe(GT.get(GTBlocks.lapotronCable, 4), new Object[] { "HEH",
+			// "SSS", "HEH", 'E',
+			// GTItems.circuitSapphire, 'S', GTBlocks.superCasingBlock, 'H',
+			// GTBlocks.smallLapotron });
 
-			recipes.addRecipe(GT.get(GTBlocks.energiumCable, 4), new Object[] { "HEH", "SSS", "HEH", 'E',
-					GTItems.circuitRuby, 'S', GTBlocks.superCasingBlock, 'H', GTBlocks.smallEnergium });
+			// recipes.addRecipe(GT.get(GTBlocks.energiumCable, 4), new Object[] { "HEH",
+			// "SSS", "HEH", 'E',
+			// GTItems.circuitRuby, 'S', GTBlocks.superCasingBlock, 'H',
+			// GTBlocks.smallEnergium });
 
 			recipes.addRecipe(GT.get(GTBlocks.quantumEnergyStorage, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
 					"plateIridium", 'H', GTBlocks.basicEnergyStorage, 'E', Blocks.ENDER_CHEST });
 
-			recipes.addRecipe(GT.get(GTBlocks.digitalChest, 1),
-					new Object[] { "IDI", "CMC", "IDI", 'D', GTItems.circuitDiamond, 'I', GTItems.circuitEmerald, 'C',
-							"chestWood", 'M', "casingMachineTitanium" });
+			// recipes.addRecipe(GT.get(GTBlocks.digitalChest, 1),
+			// new Object[] { "IDI", "CMC", "IDI", 'D', GTItems.circuitDiamond, 'I',
+			// GTItems.circuitEmerald, 'C',
+			// "chestWood", 'M', "casingMachineTitanium" });
 
 		}
 	}
