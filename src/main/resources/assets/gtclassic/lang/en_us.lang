@@ -1,4 +1,5 @@
 #material casings
+tile.gtclassic.germanium_casing.name=Germanium Machine Casing
 tile.gtclassic.invar_casing.name=Invar Machine Casing
 tile.gtclassic.zinc_casing.name=Zinc Machine Casing
 tile.gtclassic.bronze_casing.name=Bronze Machine Casing
@@ -13,14 +14,17 @@ tile.gtclassic.platinum_casing.name=Platinum Machine Casing
 tile.gtclassic.tin_casing.name=Tin Machine Casing
 tile.gtclassic.chrome_casing.name=Chrome Machine Casing
 tile.gtclassic.brass_casing.name=Brass Machine Casing
+tile.gtclassic.tungsten_casing.name=Tungsten Machine Casing
 tile.gtclassic.tungstensteel_casing.name=Tungstensteel Machine Casing
 tile.gtclassic.titanium_casing.name=Titanium Machine Casing
 tile.gtclassic.iridium_casing.name=Iridium Machine Casing
 tile.gtclassic.nickel_casing.name=Nickel Machine Casing
 tile.gtclassic.osmium_casing.name=Osmium Machine Casing
 tile.gtclassic.iron_casing.name=Iron Machine Casing
+tile.gtclassic.refinediron_casing.name=Refined Iron Machine Casing
 
 #blocks
+tile.gtclassic.germanium_block.name=Block of Germanium
 tile.gtclassic.tungsten_block.name=Block of Tungsten
 tile.gtclassic.invar_block.name=Block of Invar
 tile.gtclassic.zinc_block.name=Block of Zinc
@@ -40,6 +44,8 @@ tile.gtclassic.iridium_block.name=Block of Iridium
 tile.gtclassic.nickel_block.name=Block of Nickel
 tile.gtclassic.osmium_block.name=Block of Osmium
 tile.gtclassic.ruby_block.name=Block of Ruby
+tile.gtclassic.tantalum_block.name=Block of Tantalum
+tile.gtclassic.manganese_block.name=Block of Manganese
 
 #storage blocks
 tile.gtclassic.tungsten_storage_0.name=Tungsten Cabinet
@@ -118,6 +124,14 @@ tile.gtclassic.iron_storage_0.name=Iron Cabinet
 tile.gtclassic.iron_storage_1.name=Large Iron Cabinet
 tile.gtclassic.iron_storage_2.name=Iron Bookshelf
 tile.gtclassic.iron_storage_3.name=Iron Workbench
+tile.gtclassic.refinediron_storage_0.name=Refined Iron Cabinet
+tile.gtclassic.refinediron_storage_1.name=Large Refined Iron Cabinet
+tile.gtclassic.refinediron_storage_2.name=Refined Iron Bookshelf
+tile.gtclassic.refinediron_storage_3.name=Refined Iron Workbench
+tile.gtclassic.germanium_storage_0.name=Germanium Cabinet
+tile.gtclassic.germanium_storage_1.name=Large Germanium Cabinet
+tile.gtclassic.germanium_storage_2.name=Germanium Bookshelf
+tile.gtclassic.germanium_storage_3.name=Germanium Workbench
 
 #ore
 tile.gtclassic.galena_ore.name=Galena Ore
@@ -126,6 +140,7 @@ tile.gtclassic.ruby_ore.name=Ruby Ore
 tile.gtclassic.sapphire_ore.name=Sapphire Ore
 tile.gtclassic.calcite_ore.name=Calcite Ore
 tile.gtclassic.bauxite_ore.name=Bauxite Ore
+tile.gtclassic.tantalite_ore.name=Tantalite
 tile.gtclassic.pyrite_ore.name=Pyrite Ore
 tile.gtclassic.cinnabar_ore.name=Cinnabar Ore
 tile.gtclassic.sphalerite_ore.name=Sphalerite Ore
@@ -137,10 +152,18 @@ tile.gtclassic.sodalite_ore.name=Sodalite Ore
 #sands
 tile.gtclassic.magnetite_sand.name=Black Sand
 
+#blocks
+tile.gtclassic.bloom_block.name=Refined Iron Bloom
+tile.gtclassic.slag_sand.name=Slag Sand
+tile.gtclassic.slagcrete_sand.name=Reinforced Concrete
+tile.gtclassic.slagglass_block.name=Slag Glass
+
 #machine casings
 tile.gtclassic.superconductor_casing.name=Superconductor Casing
 tile.gtclassic.fusion_casing.name=Fusion Casing
 tile.gtclassic.fission_casing.name=Fission Casing
+tile.gtclassic.plastic_casing.name=Plastic Casing
+tile.gtclassic.structure_casing.name=Structure Casing
 tile.gtclassic.crystal_casing.name=Energium Casing
 tile.gtclassic.grate_casing.name=Grate Casing
 tile.gtclassic.heat_casing.name=Heat Casing
@@ -150,11 +173,12 @@ tile.gtclassic.nichrome_casing.name=Nichrome Coil
 
 #tiles
 tile.gtclassic.machine_bloomery.name=Bloomery
+tile.gtclassic.machine_blastfurnace_lv.name=Blast Furnace
 tile.gtclassic.machine_chargeomat_ev.name=Charge-O-Mat
 tile.gtclassic.machine_computercube_ev.name=Computer Cube
 tile.gtclassic.machine_industrialcentrifuge_lv.name=Industrial Centrifuge
 tile.gtclassic.machine_alloysmelter_lv.name=Alloy Smelter
-tile.gtclassic.machine_assemblyline_lv.name=Assembly Line Controller
+tile.gtclassic.machine_assemblyline_hv.name=Assembly Line Controller
 tile.gtclassic.machine_arcfurnace_hv.name=Arc Furnace Controller
 tile.gtclassic.machine_matterfabricator_ev.name=Matter Fabricator
 tile.gtclassic.machine_matterreplicator_ev.name=Matter Replicator
@@ -165,18 +189,12 @@ tile.gtclassic.machine_quantumenergystorage_ev.name=Quantum Energy Storage Unit
 tile.gtclassic.machine_basicenergystorage_ev.name=Energy Storage Unit
 tile.gtclassic.machine_multienergystorage_mv.name=Energium Feild Controller
 tile.gtclassic.machine_digitaltransformer_iv.name=Digital Transformer
+tile.gtclassic.tile_digitalchest.name=Digital Chest
 tile.gtclassic.cable_energium_luv.name=Energium Superconductor Cable
 tile.gtclassic.cable_lapotron_zpm.name=Lapotronic Superconductor Cable
-tile.gtclassic.tile_smallchest_lv.name=Iron Chest
-tile.gtclassic.tile_largechest_lv.name=Large Iron Chest
-tile.gtclassic.tile_digitalchest_lv.name=Iron Digital Chest
-tile.gtclassic.tile_bookshelf_lv.name=Iron Bookshelf
-tile.gtclassic.tile_workbench_lv.name=Iron Workibench
-tile.gtclassic.tile_smallchest_mv.name=Aluminium Chest
-tile.gtclassic.tile_largechest_mv.name=Large Aluminium Chest
-tile.gtclassic.tile_digitalchest_mv.name=Aluminium Digital Chest
-tile.gtclassic.tile_bookshelf_mv.name=Aluminium Bookshelf
-tile.gtclassic.tile_workbench_mv.name=Aluminium Workbench
+tile.gtclassic.block_resinbottle.name=Liquid Sticky Resin
+tile.gtclassic.block_resinchunk.name=Drop of Liquid Sticky Resin
+tile.gtclassic.block_resinboard.name=Uncut Sticky Resin Board
 tile.gtclassic.block_echophone.name=Echophone
 tile.gtclassic.block_ducttape.name=Braintech Aerospace Advanced Reinforced Duct Tape FAL-84
 tile.gtclassic.coolant_helium_small.name=60k Helium Coolant Cell
@@ -304,6 +322,16 @@ item.gtclassic.diamond_dustsmall.name=Small Diamond Dust
 item.gtclassic.granite_dustsmall.name=Small Granite Dust
 item.gtclassic.iron_dustsmall.name=Small Iron Dust
 item.gtclassic.nichrome_dustsmall.name=Small Nichrome Dust
+item.gtclassic.germanium_dustsmall.name=Small Germanium Dust
+item.gtclassic.tantalite_dustsmall.name=Small Tantalite Dust
+item.gtclassic.tantalum_dustsmall.name=Small Tantalum Dust
+item.gtclassic.sheldonite_dustsmall.name=Small Sheldonite Dust
+item.gtclassic.tungstate_dustsmall.name=Small Tungstate Dust
+item.gtclassic.slag_dustsmall.name=Small Slag Dust
+item.gtclassic.plastic_dustsmall.name=Small Plastic Dust
+item.gtclassic.nobium_dustsmall.name=Small Nobium Dust
+item.gtclassic.rutile_dustsmall.name=Small Rutile Dust
+item.gtclassic.niobium_dustsmall.name=Small Niobium Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -365,6 +393,16 @@ item.gtclassic.ruby_dust.name=Ruby Dust
 item.gtclassic.diamond_dust.name=Diamond Dust
 item.gtclassic.granite_dust.name=Granite Dust
 item.gtclassic.nichrome_dust.name=Nichrome Dust
+item.gtclassic.germanium_dust.name=Germanium Dust
+item.gtclassic.tantalite_dust.name=Tantalite Dust
+item.gtclassic.tantalum_dust.name=Tantalum Dust
+item.gtclassic.sheldonite_dust.name=Sheldonite Dust
+item.gtclassic.tungstate_dust.name=Tungstate Dust
+item.gtclassic.slag_dust.name=Slag Dust
+item.gtclassic.plastic_dust.name=Plastic Dust
+item.gtclassic.nobium_dust.name=Nobium Dust
+item.gtclassic.rutile_dust.name=Rutile Dust
+item.gtclassic.niobium_dust.name=Niobium Dust
 
 #gems
 item.gtclassic.redgarnet_gem.name=Red Garnet
@@ -396,6 +434,9 @@ item.gtclassic.iridium_ingot.name=Iridium Ingot
 item.gtclassic.nickel_ingot.name=Nickel Ingot
 item.gtclassic.osmium_ingot.name=Osmium Ingot
 item.gtclassic.nichrome_ingot.name=Nichrome Ingot
+item.gtclassic.germanium_ingot.name=Germanium Ingot
+item.gtclassic.tantalum_ingot.name=Tantalum Ingot
+item.gtclassic.manganese_ingot.name=Manganese Ingot
 
 #nuggets
 item.gtclassic.tungsten_nugget.name=Tungsten Nugget
@@ -423,6 +464,9 @@ item.gtclassic.iridium_nugget.name=Iridium Nugget
 item.gtclassic.nickel_nugget.name=Nickel Nugget
 item.gtclassic.osmium_nugget.name=Osmium Nugget
 item.gtclassic.nichrome_nugget.name=Nichrome Nugget
+item.gtclassic.manganese_nugget.name=Manganese Nugget
+item.gtclassic.germanium_nugget.name=Germanium Nugget
+item.gtclassic.tantalum_nugget.name=Tantalum Nugget
 
 #plates
 item.gtclassic.tungsten_plate.name=Tungsten Plate
@@ -450,6 +494,11 @@ item.gtclassic.nickel_plate.name=Nickel Plate
 item.gtclassic.osmium_plate.name=Osmium Plate
 item.gtclassic.silicon_plate.name=Silicon Plate
 item.gtclassic.iron_plate.name=Iron Plate
+item.gtclassic.germanium_plate.name=Germanium Plate
+item.gtclassic.manganese_plate.name=Manganese Plate
+item.gtclassic.constantan_plate.name=Constantan Plate
+item.gtclassic.nichrome_plate.name=Nichrome Plate
+item.gtclassic.tantalum_plate.name=Tantalum Plate
 
 #sticks
 item.gtclassic.tungsten_stick.name=Tungsten Rod
@@ -476,6 +525,9 @@ item.gtclassic.nickel_stick.name=Nickel Rod
 item.gtclassic.osmium_stick.name=Osmium Rod
 item.gtclassic.iron_stick.name=Iron Rod
 item.gtclassic.nichrome_stick.name=Nichrome Rod
+item.gtclassic.refinediron_stick.name=Refined Iron Rod
+item.gtclassic.germanium_stick.name=Germanium Rod
+item.gtclassic.tantalum_stick.name=Tantalum Rod
 
 #material tools
 item.gtclassic.tungsten_file.name=Tungsten File
@@ -502,6 +554,9 @@ item.gtclassic.titanium_file.name=Titanium File
 item.gtclassic.nickel_file.name=Nickel File
 item.gtclassic.osmium_file.name=Osmium File
 item.gtclassic.iron_file.name=Iron File
+item.gtclassic.germanium_file.name=Germanium File
+item.gtclassic.constantan_file.name=Constantan File
+item.gtclassic.nichrome_file.name=Nichrome File
 item.gtclassic.tungsten_hammer.name=Tungsten Hammer
 item.gtclassic.invar_hammer.name=Invar Hammer
 item.gtclassic.zinc_hammer.name=Zinc Hammer
@@ -526,6 +581,36 @@ item.gtclassic.titanium_hammer.name=Titanium Hammer
 item.gtclassic.nickel_hammer.name=Nickel Hammer
 item.gtclassic.osmium_hammer.name=Osmium Hammer
 item.gtclassic.iron_hammer.name=Iron Hammer
+item.gtclassic.germanium_hammer.name=Germanium Hammer
+item.gtclassic.constantan_hammer.name=Constantan Hammer
+item.gtclassic.nichrome_hammer.name=Nichrome Hammer
+item.gtclassic.tungsten_wrench.name=Tungsten Wrench
+item.gtclassic.invar_wrench.name=Invar Wrench
+item.gtclassic.zinc_wrench.name=Zinc Wrench
+item.gtclassic.bronze_wrench.name=Bronze Wrench
+item.gtclassic.silver_wrench.name=Silver Wrench
+item.gtclassic.steel_wrench.name=Steel Wrench
+item.gtclassic.magnalium_wrench.name=Magnalium Wrench
+item.gtclassic.gold_wrench.name=Gold Wrench
+item.gtclassic.copper_wrench.name=Copper Wrench
+item.gtclassic.electrum_wrench.name=Electrum Wrench
+item.gtclassic.lead_wrench.name=Lead Wrench
+item.gtclassic.aluminium_wrench.name=Aluminium Wrench
+item.gtclassic.graphite_wrench.name=Graphite Wrench
+item.gtclassic.platinum_wrench.name=Platinum Wrench
+item.gtclassic.tin_wrench.name=Tin Wrench
+item.gtclassic.chrome_wrench.name=Chrome Wrench
+item.gtclassic.brass_wrench.name=Brass Wrench
+item.gtclassic.plutonium_wrench.name=Plutonium Wrench
+item.gtclassic.refinediron_wrench.name=Refined Iron Wrench
+item.gtclassic.tungstensteel_wrench.name=Tungstensteel Wrench
+item.gtclassic.titanium_wrench.name=Titanium Wrench
+item.gtclassic.nickel_wrench.name=Nickel Wrench
+item.gtclassic.osmium_wrench.name=Osmium Wrench
+item.gtclassic.iron_wrench.name=Iron Wrench
+item.gtclassic.germanium_wrench.name=Germanium Wrench
+item.gtclassic.constantan_wrench.name=Constantan Wrench
+item.gtclassic.nichrome_wrench.name=Nichrome Wrench
 item.gtclassic.tungsten_miningdrill.name=Tungsten Drill
 item.gtclassic.invar_miningdrill.name=Invar Drill
 item.gtclassic.silver_miningdrill.name=Silver Drill
@@ -540,6 +625,8 @@ item.gtclassic.tungstensteel_miningdrill.name=Tungstensteel Drill
 item.gtclassic.titanium_miningdrill.name=Titanium Drill
 item.gtclassic.nickel_miningdrill.name=Nickel Drill
 item.gtclassic.osmium_miningdrill.name=Osmium Drill
+item.gtclassic.constantan_miningdrill.name=Constantan Drill
+item.gtclassic.nichrome_miningdrill.name=Nichrome Drill
 item.gtclassic.tungsten_chainsaw.name=Tungsten Chainsaw
 item.gtclassic.invar_chainsaw.name=Invar Chainsaw
 item.gtclassic.silver_chainsaw.name=Silver Chainsaw
@@ -555,19 +642,17 @@ item.gtclassic.titanium_chainsaw.name=Titanium Chainsaw
 item.gtclassic.nickel_chainsaw.name=Nickel Chainsaw
 item.gtclassic.osmium_chainsaw.name=Osmium Chainsaw
 item.gtclassic.iron_chainsaw.name=Iron Chainsaw
+item.gtclassic.constantan_chainsaw.name=Constantan Chainsaw
+item.gtclassic.nichrome_chainsaw.name=Nichrome Chainsaw
 
 #components
 item.gtclassic.glass_tube.name=Empty Glass Tube
-item.gtclassic.silicon_boule.name=Silicon Boule
-item.gtclassic.steel_circuit_board.name=Steel Circuit Board
-item.gtclassic.aluminium_circuit_board.name=Aluminium Circuit Board
-item.gtclassic.electrum_circuit_board.name=Electrum Circuit Board
-item.gtclassic.platinum_circuit_board.name=Platinum Circuit Board
-item.gtclassic.circuit_parts.name=Circuit Parts
-item.gtclassic.circuit_diamond.name=Logic Circuit
-item.gtclassic.circuit_ruby.name=Processing Circuit
-item.gtclassic.circuit_emerald.name=Data Circuit
-item.gtclassic.circut_sapphire.name=Energy Circuit
+item.gtclassic.magnifying_glass.name=Magnifying Glass
+item.gtclassic.resin_pcb.name=Resin PCB
+item.gtclassic.germanium_substrate.name=Germanium Substrate
+item.gtclassic.basic_transistor.name=Basic Transistor
+item.gtclassic.basic_capacitor.name=Basic Capacitor
+
 item.gtclassic.mold_blank.name=Blank Mold
 item.gtclassic.mold_block.name=Block Mold
 item.gtclassic.mold_ingot.name=Ingot Mold
@@ -591,9 +676,9 @@ tooltip.gtclassic.galena_ore=Spawns in ALL biomes
 tooltip.gtclassic.iridium_ore=Spawns rarely in ALL biomes
 tooltip.gtclassic.ruby_ore=Spawns in HOT biomes
 tooltip.gtclassic.sapphire_ore=Spawns in OCEAN & COLD biomes
-tooltip.gtclassic.germanite_ore=Spawns in ALL biomes below y level 20
 tooltip.gtclassic.calcite_ore=Spawns in ALL biomes
 tooltip.gtclassic.bauxite_ore=Spawns in FOREST & PLAINS biomes
+tooltip.gtclassic.tantalite_ore=Spawns in NETHER biomes
 tooltip.gtclassic.pyrite_ore=Spawns in NETHER biomes
 tooltip.gtclassic.cinnabar_ore=Spawns in NETHER biomes
 tooltip.gtclassic.sphalerite_ore=Spawns in NETHER biomes
@@ -608,7 +693,6 @@ tooltip.gtclassic.beacon=Can be used as a beacon base
 tooltip.gtclassic.nomobs=Mobs can't spawn on this Block
 tooltip.gtclassic.storage=Decorative item storage
 tooltip.gtclassic.workbench=Carfting and storage all-in-one!
-tooltip.gtclassic.quantumchest=2 milliards, uhhm I mean billions, items to store here!
 tooltip.gtclassic.computercube=New OS coming soon!
 tooltip.gtclassic.centrifuge=And round and round and round it goes
 tooltip.gtclassic.hesu3=Stores a huge amount of energy

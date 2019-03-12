@@ -11,6 +11,7 @@ import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBasicEnergyStorage;
+import gtclassic.tile.GTTileBlastFurnace;
 import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
@@ -87,6 +88,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			return new GTTileComputerCube();
 		} else if (this == GTBlocks.bloomery) {
 			return new GTTileBloomery();
+		} else if (this == GTBlocks.blastFurnace) {
+			return new GTTileBlastFurnace();
 		} else if (this == GTBlocks.industrialCentrifuge) {
 			return new GTTileIndustrialCentrifuge();
 		} else if (this == GTBlocks.alloySmelter) {

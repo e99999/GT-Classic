@@ -15,6 +15,7 @@ public class GTConfig {
 	public static boolean compatSuperTech = false;
 
 	// generation
+	public static boolean genNetherTantalite = true;
 	public static boolean genNetherPyrite = true;
 	public static boolean genNetherCinnabar = true;
 	public static boolean genNetherSphalerite = true;
@@ -29,7 +30,6 @@ public class GTConfig {
 	public static boolean genOverworldSapphire = true;
 	public static boolean genOverworldBauxite = true;
 	public static boolean genOverworldCalcite = true;
-	public static boolean genOverworldGermanite = true;
 	public static boolean genOverworldBlackSand = true;
 
 	public static void readConfig() {
@@ -57,6 +57,8 @@ public class GTConfig {
 
 	private static void initGenerationConfig(Configuration cfg) {
 		cfg.addCustomCategoryComment(CATEGORY_GENERATION, "Generation configuration");
+		genNetherTantalite = cfg.getBoolean("genNetherTantlite", CATEGORY_GENERATION, genNetherTantalite,
+				"Generate Nether Tantalite");
 		genNetherPyrite = cfg.getBoolean("genNetherPyrite", CATEGORY_GENERATION, genNetherPyrite,
 				"Generate Nether Pyrite Ore");
 		genNetherCinnabar = cfg.getBoolean("genNetherCinnabar", CATEGORY_GENERATION, genNetherCinnabar,
@@ -80,8 +82,6 @@ public class GTConfig {
 		genOverworldRuby = cfg.getBoolean("genRuby", CATEGORY_GENERATION, genOverworldRuby, "Generate Overworld Ruby");
 		genOverworldSapphire = cfg.getBoolean("genSapphire", CATEGORY_GENERATION, genOverworldSapphire,
 				"Generate Overworld Sapphire");
-		genOverworldGermanite = cfg.getBoolean("genGermanite", CATEGORY_GENERATION, genOverworldGermanite,
-				"Generate Overworld Germanite");
 		genOverworldBauxite = cfg.getBoolean("genBauxite", CATEGORY_GENERATION, genOverworldBauxite,
 				"Generate Overworld Bauxite");
 		genOverworldCalcite = cfg.getBoolean("genCalcite", CATEGORY_GENERATION, genOverworldCalcite,

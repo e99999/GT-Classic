@@ -33,4 +33,10 @@ public class GTGuiMachine {
 			super(container);
 		}
 	}
+
+	public static class GTBlastFurnaceGui extends MachineGui {
+		public GTBlastFurnaceGui(ContainerComponent container) {
+			super(container);
+		}
+	}
 }

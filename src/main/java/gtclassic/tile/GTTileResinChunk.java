@@ -22,16 +22,15 @@ public class GTTileResinChunk extends TileEntityBlock implements ITickable {
 
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 120 == 0 && checkHeat()) {
+		if (world.getTotalWorldTime() % 20 == 0 && checkHeat()) {
 			this.progress = this.progress + 1;
-			if (this.progress > 3) {
+			if (this.progress > 2) {
 				this.setActive(true);
 			}
 			GTMod.logger.info("chunk heat: " + this.progress);
 			if (this.progress >= 5) {
 				this.progress = 0;
-				world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
+				world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				world.setBlockState(this.pos, GTBlocks.resinBoard.getDefaultBlockState());
 				TileEntity tile = world.getTileEntity(pos);
 				if (tile instanceof TileEntityBlock) {

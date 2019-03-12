@@ -36,6 +36,10 @@ public class GTOreGen implements IWorldGenerator {
 		switch (world.provider.getDimensionType()) {
 
 		case NETHER:
+			if (GTConfig.genNetherTantalite) {
+				runGenerator(GTBlocks.tantaliteOre.getDefaultState(), 16, 4, 32, 96,
+						BlockMatcher.forBlock(Blocks.NETHERRACK), world, random, chunkX, chunkZ);
+			}
 			if (GTConfig.genNetherPyrite) {
 				runGenerator(GTBlocks.pyriteOre.getDefaultState(), 16, 4, 0, 64,
 						BlockMatcher.forBlock(Blocks.NETHERRACK), world, random, chunkX, chunkZ);
@@ -108,10 +112,6 @@ public class GTOreGen implements IWorldGenerator {
 
 			if (GTConfig.genOverworldIridium) {
 				runGenerator(GTBlocks.iridiumOre.getDefaultState(), 2, 2, 0, 128, BlockMatcher.forBlock(Blocks.STONE),
-						world, random, chunkX, chunkZ);
-			}
-			if (GTConfig.genOverworldGermanite) {
-				runGenerator(GTBlocks.germaniteOre.getDefaultState(), 4, 2, 0, 20, BlockMatcher.forBlock(Blocks.STONE),
 						world, random, chunkX, chunkZ);
 			}
 

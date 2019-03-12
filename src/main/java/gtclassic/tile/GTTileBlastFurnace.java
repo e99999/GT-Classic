@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.container.GTContainerArcFurnace;
-import gtclassic.gui.GTGuiMachine.GTArcFurnaceGui;
+import gtclassic.container.GTContainerBlastFurnace;
+import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
@@ -33,7 +32,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileArcFurnace extends GTTileBaseMultiBlockMachine {
+public class GTTileBlastFurnace extends GTTileBaseMultiBlockMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
@@ -42,17 +41,19 @@ public class GTTileArcFurnace extends GTTileBaseMultiBlockMachine {
 	public static final int slotOutput1 = 4;
 	public static final int slotOutput2 = 5;
 
-	public static final IBlockState casingHeat = GTBlocks.heatCasingBlock.getDefaultState();
-	public static final IBlockState casingMachine = GTMaterialGen.getBlock(GTMaterial.Invar, GTMaterialFlag.CASING)
-			.getDefaultState();
+	boolean lastState;
+	boolean firstCheck = true;
 
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("arcfurnace");
+	public static final IBlockState casingMachine = GTMaterialGen
+			.getBlock(GTMaterial.RefinedIron, GTMaterialFlag.CASING).getDefaultState();
+
+	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("blastfurnace");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
-			"textures/gui/arcfurnace.png");
+			"textures/gui/blastfurnace.png");
 
-	public GTTileArcFurnace() {
-		super(6, 0, 120, 500, 512);
-		maxEnergy = 10000;
+	public GTTileBlastFurnace() {
+		super(6, 0, 20, 1000, 32);
+		maxEnergy = 1000;
 	}
 
 	@Override
@@ -80,12 +81,12 @@ public class GTTileArcFurnace extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerArcFurnace(player.inventory, this);
+		return new GTContainerBlastFurnace(player.inventory, this);
 	}
 
 	@Override
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
-		return GTArcFurnaceGui.class;
+		return GTBlastFurnaceGui.class;
 	}
 
 	@Override
@@ -130,6 +131,14 @@ public class GTTileArcFurnace extends GTTileBaseMultiBlockMachine {
 		return true;
 	}
 
+	public static void addRecipe(String input0, int amount0, ItemStack output0) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		List<ItemStack> outputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input0, amount0)));
+		outputs.add(output0);
+		addRecipe(inputs, new MachineOutput(null, outputs));
+	}
+
 	public static void addRecipe(String input0, int amount0, String input1, int amount1, ItemStack output0) {
 		List<IRecipeInput> inputs = new ArrayList<>();
 		List<ItemStack> outputs = new ArrayList<>();
@@ -172,34 +181,61 @@ public class GTTileArcFurnace extends GTTileBaseMultiBlockMachine {
 		if (!world.isAreaLoaded(pos, 3)) {
 			return false;
 		}
-
+		// im not doing this layer by layer, instead ill loop up and over the structure
+		// vertically then finish the base layers last
 		int3 dir = new int3(getPos(), getFacing());
 
-		// layer 0
-		if (!(isHeatCasing(dir.left(1)) && isHeatCasing(dir.back(1)) && isHeatCasing(dir.back(1))
-				&& isHeatCasing(dir.back(1)) && isHeatCasing(dir.right(1)) && isHeatCasing(dir.forward(1))
-				&& isHeatCasing(dir.forward(1)) && isHeatCasing(dir.right(1)) && isHeatCasing(dir.back(1))
-				&& isHeatCasing(dir.back(1)) && isHeatCasing(dir.forward(3))
-				// layer 1
-				&& isMachineCasing(dir.up(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
-				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.left(1)) && isAir(dir.forward(1))
-				&& isAir(dir.forward(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(1))
-				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
-				// layer 2
-				&& isMachineCasing(dir.up(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
-				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.right(1)) && isMachineCasing(dir.back(1))
-				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.right(1))
-				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
-				&& isMachineCasing(dir.forward(1)))) {
+		for (int i = 0; i < 6; i++) {
+			if (!(isMachineCasing(dir.up(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.back(1))) {// peak
 			return false;
+		}
+		for (int i = 0; i < 5; i++) {
+			if (!(isAir(dir.down(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.down(1))) {
+			return false;
+		}
+		if (!isMachineCasing(dir.back(1))) {
+			return false;
+		}
+		for (int i = 0; i < 6; i++) {
+			if (!(isMachineCasing(dir.up(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.forward(1))) {// peak again
+			return false;
+		}
+		if (!isMachineCasing(dir.left(1))) {
+			return false;
+		}
+		for (int i = 0; i < 6; i++) {
+			if (!(isMachineCasing(dir.down(1)))) {
+				return false;
+			}
+		}
+		if (!(isMachineCasing(dir.right(2)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(2))
+				&& isMachineCasing(dir.back(2)) && isMachineCasing(dir.right(2)) && isMachineCasing(dir.up(1))
+				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(2))
+				&& isMachineCasing(dir.back(2)) && isMachineCasing(dir.up(1)) && isMachineCasing(dir.right(2))
+				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(2))
+				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.right(2)))) {
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.up(1)))) {
+				return false;
+			}
 		}
 
 		return true;
 
-	}
-
-	public boolean isHeatCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == casingHeat;
 	}
 
 	public boolean isMachineCasing(int3 pos) {

@@ -164,39 +164,14 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getIc2(Ic2Items.compressedPlantBall, 1), 1),
 				new OutputItem(GT.getIc2(Ic2Items.plantBall, 1), 2));
 
-		GTTileIndustrialCentrifuge.addRecipe("dustCopper", 3, 0, euCost(12000),
-				new OutputItem(GT.getSmallDust(M.Gold, 1), 0), new OutputItem(GT.getSmallDust(M.Nickel, 1), 1));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustGold", 3, 0, euCost(12000),
-				new OutputItem(GT.getSmallDust(M.Copper, 1), 0), new OutputItem(GT.getSmallDust(M.Nickel, 1), 1));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustIron", 2, 0, euCost(7500),
-				new OutputItem(GT.getSmallDust(M.Tin, 1), 0), new OutputItem(GT.getSmallDust(M.Nickel, 1), 1));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustSilver", 2, 0, euCost(12000),
-				new OutputItem(GT.getSmallDust(M.Lead, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustLead", 2, 0, euCost(12000),
-				new OutputItem(GT.getSmallDust(M.Silver, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustZinc", 2, 0, euCost(5000),
-				new OutputItem(GT.getSmallDust(M.Germanium, 1), 0));
-
 		GTTileIndustrialCentrifuge.addRecipe("dustBrass", 1, 0, euCost(7500),
 				new OutputItem(GT.getSmallDust(M.Copper, 3), 0), new OutputItem(GT.getSmallDust(M.Zinc, 1), 1));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustBronze", 2, 0, euCost(7500),
 				new OutputItem(GT.getSmallDust(M.Copper, 6), 0), new OutputItem(GT.getSmallDust(M.Tin, 2), 1));
 
-		GTTileIndustrialCentrifuge.addRecipe("dustTin", 2, 0, euCost(10500),
-				new OutputItem(GT.getSmallDust(M.Zinc, 1), 0), new OutputItem(GT.getSmallDust(M.Iron, 1), 1));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustNickel", 3, 0, euCost(17500),
-				new OutputItem(GT.getSmallDust(M.Iron, 1), 0), new OutputItem(GT.getSmallDust(M.Gold, 1), 1),
-				new OutputItem(GT.getSmallDust(M.Copper, 1), 2));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustPlatinum", 2, 0, euCost(15000),
-				new OutputItem(GT.getNugget(M.Iridium, 1), 0), new OutputItem(GT.getSmallDust(M.Nickel, 1), 1));
+		GTTileIndustrialCentrifuge.addRecipe("dustSheldonite", 2, 0, euCost(15000),
+				new OutputItem(GT.getNugget(M.Iridium, 1), 0), new OutputItem(GT.getSmallDust(M.Platinum, 2), 1));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustElectrum", 2, 0, euCost(5000),
 				new OutputItem(GT.getSmallDust(M.Gold, 2), 0), new OutputItem(GT.getSmallDust(M.Silver, 2), 1));
@@ -254,11 +229,14 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getDust(M.Sulfur, 1), 2));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustGalena", 4, 0, euCost(5000), new OutputItem(GT.getDust(M.Lead, 1), 0),
-				new OutputItem(GT.getSmallDust(M.Silver, 1), 1), new OutputItem(GT.getDust(M.Sulfur, 1), 2));
+				new OutputItem(GT.getDust(M.Silver, 1), 1), new OutputItem(GT.getDust(M.Sulfur, 1), 2));
 
-		GTTileIndustrialCentrifuge.addRecipe("dustGermanite", 4, 0, euCost(5000),
-				new OutputItem(GT.getDust(M.Germanium, 1), 0), new OutputItem(GT.getIc2(Ic2Items.tinDust, 1), 1),
-				new OutputItem(GT.getDust(M.Sulfur, 1), 2));
+		GTTileIndustrialCentrifuge.addRecipe("dustTantalite", 4, 0, euCost(5000),
+				new OutputItem(GT.getDust(M.Niobium, 1), 0), new OutputItem(GT.getDust(M.Tantalum, 1), 1),
+				new OutputItem(GT.getDust(M.Manganese, 1), 2));
+
+		GTTileIndustrialCentrifuge.addRecipe("dustTungstate", 4, 0, euCost(5000),
+				new OutputItem(GT.getDust(M.Tungsten, 2), 0), new OutputItem(GT.getDust(M.Manganese, 1), 1));
 
 	}
 
@@ -269,7 +247,7 @@ public class GTRecipeIndustrialCentrifuge {
 		 * and GT2.
 		 */
 		GTTileIndustrialCentrifuge.addRecipe("dustMagnetite", 2, 0, euCost(1000),
-				new OutputItem(GT.getIc2(Ic2Items.ironDust, 1), 0));
+				new OutputItem(GT.getIc2(Ic2Items.ironDust, 1), 0), new OutputItem(GT.get(Items.GOLD_NUGGET), 1));
 
 		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.QUARTZ, 1), 3, euCost(8000),
 				new OutputItem(GT.getChemical(M.Silicon, 1), 0), new OutputItem(GT.getChemical(M.Oxygen, 2), 1));
@@ -284,9 +262,6 @@ public class GTRecipeIndustrialCentrifuge {
 		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.ROTTEN_FLESH, 16), 4, euCost(25000),
 				new OutputItem(GT.getChemical(M.Methane, 1), 0), new OutputItem(GT.get(Items.LEATHER, 2), 1),
 				new OutputItem(GT.get(Items.SLIME_BALL, 1), 2));
-
-		GTTileIndustrialCentrifuge.addRecipe("dustTungsten", 2, 0, euCost(12000),
-				new OutputItem(GT.getSmallDust(M.Manganese, 2), 0));
 	}
 
 	public static void recipesCentrifuge4() {

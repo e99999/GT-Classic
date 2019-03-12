@@ -6,13 +6,11 @@ import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
-import gtclassic.tile.GTTileArcFurnace;
-import gtclassic.tile.GTTileAssemblyLine;
+import gtclassic.tile.GTTileBaseMultiBlockMachine;
 import gtclassic.tile.GTTileBaseMultiInputMachine;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileDigitalChest;
-import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileLightningRod;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
@@ -170,6 +168,11 @@ public class GTMod {
 				IC2.platform.messagePlayer(player, "Max Input: " + multi.defaultMaxInput + " EU");
 			}
 
+			if (tileEntity instanceof GTTileBaseMultiBlockMachine) {
+				GTTileBaseMultiBlockMachine multi = (GTTileBaseMultiBlockMachine) tileEntity;
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
+			}
+
 			if (tileEntity instanceof GTTileLightningRod) {
 				GTTileLightningRod rod = (GTTileLightningRod) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + rod.checkStructure());
@@ -183,33 +186,18 @@ public class GTMod {
 						"1 out of " + rod.chance + " chance to strike based on fence height");
 			}
 
-			if (tileEntity instanceof GTTileFusionComputer) {
-				GTTileFusionComputer fusion = (GTTileFusionComputer) tileEntity;
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + fusion.checkStructure());
-			}
-
-			if (tileEntity instanceof GTTileAssemblyLine) {
-				GTTileAssemblyLine ass = (GTTileAssemblyLine) tileEntity;
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + ass.checkStructure());
-			}
-
-			if (tileEntity instanceof GTTileArcFurnace) {
-				GTTileArcFurnace arc = (GTTileArcFurnace) tileEntity;
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + arc.checkStructure());
-			}
-
-			if (tileEntity instanceof GTTileDigitalChest) {
-				GTTileDigitalChest chest = (GTTileDigitalChest) tileEntity;
-				IC2.platform.messagePlayer(player, "Display Count: " + chest.getDisplayCount());
-				IC2.platform.messagePlayer(player, "Internal Count: " + chest.getQuantumCount());
-			}
-
 			if (tileEntity instanceof GTTileBloomery) {
 				GTTileBloomery bloom = (GTTileBloomery) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
 				IC2.platform.messagePlayer(player,
 						"Progress: " + (Math.round((bloom.getProgress() / bloom.getMaxProgress()) * 100)) + "%");
 				IC2.platform.messagePlayer(player, "Recipe State: " + bloom.getActiveRecipe());
+			}
+
+			if (tileEntity instanceof GTTileDigitalChest) {
+				GTTileDigitalChest chest = (GTTileDigitalChest) tileEntity;
+				IC2.platform.messagePlayer(player, "Display Count: " + chest.getDisplayCount());
+				IC2.platform.messagePlayer(player, "Internal Count: " + chest.getQuantumCount());
 			}
 
 			if (tileEntity instanceof TileEntityElectricBlock) {

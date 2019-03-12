@@ -30,7 +30,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileFusionComputer extends GTTileBaseMultiInputMachine {
+public class GTTileFusionComputer extends GTTileBaseMultiBlockMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
@@ -125,19 +125,6 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine {
 		return true;
 	}
 
-	@Override
-	public boolean canWork() {
-		boolean superCall = super.canWork();
-		if (superCall) {
-			if (world.getTotalWorldTime() % 1200 == 0 || firstCheck) {
-				lastState = checkStructure();
-				firstCheck = false;
-			}
-			superCall = superCall && lastState;
-		}
-		return superCall;
-	}
-
 	public static void addRecipe(String input1, int amount1, ItemStack input2, ItemStack output) {
 		List<IRecipeInput> inputs = new ArrayList<>();
 		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
@@ -170,6 +157,7 @@ public class GTTileFusionComputer extends GTTileBaseMultiInputMachine {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
 	}
 
+	@Override
 	public boolean checkStructure() {
 
 		if (!world.isAreaLoaded(pos, 3))

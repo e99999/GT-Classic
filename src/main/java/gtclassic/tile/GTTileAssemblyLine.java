@@ -33,7 +33,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
+public class GTTileAssemblyLine extends GTTileBaseMultiBlockMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
@@ -135,24 +135,6 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 		return true;
 	}
 
-	@Override
-	public boolean canWork() {
-		boolean superCall = super.canWork();
-		if (superCall) {
-			if (world.getTotalWorldTime() % 600 == 0 || firstCheck) {
-				lastState = checkStructure();
-				firstCheck = false;
-			}
-			superCall = superCall && lastState;
-		}
-		return superCall;
-	}
-
-	public static void addRecipe(ItemStack input0, String string, ItemStack output0) {
-		// TODO Auto-generated method stub
-
-	}
-
 	public static void addRecipe(ItemStack input0, ItemStack input1, ItemStack input2, ItemStack output0) {
 		List<IRecipeInput> inputs = new ArrayList<>();
 		List<ItemStack> outputs = new ArrayList<>();
@@ -167,6 +149,7 @@ public class GTTileAssemblyLine extends GTTileBaseMultiInputMachine {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
 	}
 
+	@Override
 	public boolean checkStructure() {
 		if (!world.isAreaLoaded(pos, 3))
 			return false;

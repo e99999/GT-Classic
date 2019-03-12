@@ -3,7 +3,7 @@ package gtclassic.recipe;
 import gtclassic.GTBlocks;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tile.GTTileArcFurnace;
+import gtclassic.tile.GTTileBlastFurnace;
 import gtclassic.tile.GTTileFusionComputer;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
@@ -74,7 +74,16 @@ public class GTRecipeProcessing {
 		 * Test recipes for new machines
 		 */
 
-		GTTileArcFurnace.addRecipe("ingotIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
+		// GTTileArcFurnace.addRecipe("ingotIron", 1, "dustCoal", 2,
+		// GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
+		GTTileBlastFurnace.addRecipe("ingotIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1),
+				GT.getDust(M.DarkAshes, 2));
+		GTTileBlastFurnace.addRecipe("oreIron", 1, "dustCalcite", 2, GT.getIc2(Ic2Items.refinedIronIngot, 2),
+				GT.getSmallDust(M.Slag, 2));
+		GTTileBlastFurnace.addRecipe("dustTantalum", 1, GT.getIngot(M.Tantalum, 1));
+		GTTileBlastFurnace.addRecipe("dustSmallTantalum", 4, GT.getIngot(M.Tantalum, 1));
+		GTTileBlastFurnace.addRecipe("dustTungsten", 1, GT.getIngot(M.Tungsten, 1));
+		GTTileBlastFurnace.addRecipe("dustSmallTungsten", 4, GT.getIngot(M.Tungsten, 1));
 
 	}
 

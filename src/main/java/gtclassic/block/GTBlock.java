@@ -69,7 +69,7 @@ public class GTBlock extends Block implements ITexturedBlock, ILocaleBlock {
 
 		// blooms
 		if (this == GTBlocks.bloomBlock) {
-			drops.add(GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 4));
+			drops.add(GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
 			drops.add(GTMaterialGen.getDust(GTMaterial.Slag, 1));
 		} else {
 			drops.add(GTMaterialGen.get(this));

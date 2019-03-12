@@ -46,7 +46,7 @@ public class GTToolWrench extends ItemToolWrench implements GTColorItemInterface
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[20];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[22];
 	}
 
 	@Override

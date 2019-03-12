@@ -8,6 +8,7 @@ import gtclassic.block.GTBlockBattery;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockDuctTape;
 import gtclassic.block.GTBlockOre;
+import gtclassic.block.GTBlockResinBottle;
 import gtclassic.block.GTBlockSand;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
@@ -23,6 +24,7 @@ import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBasicEnergyStorage;
+import gtclassic.tile.GTTileBlastFurnace;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileBookshelf;
@@ -56,10 +58,10 @@ public class GTBlocks {
 	public static final GTBlockOre iridiumOre = registerBlock(new GTBlockOre("Iridium", 1, 3, 20.0F));
 	public static final GTBlockOre rubyOre = registerBlock(new GTBlockOre("Ruby", 2, 2, 4.0F));
 	public static final GTBlockOre sapphireOre = registerBlock(new GTBlockOre("Sapphire", 3, 2, 4.0F));
-	public static final GTBlockOre germaniteOre = registerBlock(new GTBlockOre("Germanite", 4, 1, 3.0F));
-	public static final GTBlockOre calciteOre = registerBlock(new GTBlockOre("Calcite", 5, 1, 3.0F));
-	public static final GTBlockOre bauxiteOre = registerBlock(new GTBlockOre("Bauxite", 6, 1, 3.0F));
-	public static final GTBlockSand magnetiteSand = registerBlock(new GTBlockSand("Magnetite", 8));
+	public static final GTBlockOre calciteOre = registerBlock(new GTBlockOre("Calcite", 4, 1, 3.0F));
+	public static final GTBlockOre bauxiteOre = registerBlock(new GTBlockOre("Bauxite", 5, 1, 3.0F));
+	public static final GTBlockSand magnetiteSand = registerBlock(new GTBlockSand("Magnetite", 7));
+	public static final GTBlockOre tantaliteOre = registerBlock(new GTBlockOre("Tantalite", 8, 1, 3.0F));
 	public static final GTBlockOre pyriteOre = registerBlock(new GTBlockOre("Pyrite", 9, 1, 2.0F));
 	public static final GTBlockOre cinnabarOre = registerBlock(new GTBlockOre("Cinnabar", 10, 2, 3.0F));
 	public static final GTBlockOre sphaleriteOre = registerBlock(new GTBlockOre("Sphalerite", 11, 1, 2.0F));
@@ -89,12 +91,13 @@ public class GTBlocks {
 	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("Nichrome", 15));
 
 	public static final GTBlockTileBasic bloomery = registerBlock(new GTBlockTileBasic("machine_bloomery"));
+	public static final GTBlockTileBasic blastFurnace = registerBlock(new GTBlockTileBasic("machine_blastfurnace_lv"));
 	public static final GTBlockTileBasic chargeOMat = registerBlock(new GTBlockTileBasic("machine_chargeomat_ev"));
 	public static final GTBlockTileBasic computerCube = registerBlock(new GTBlockTileBasic("machine_computercube_ev"));
 	public static final GTBlockTileBasic industrialCentrifuge = registerBlock(
 			new GTBlockTileBasic("machine_industrialcentrifuge_lv"));
 	public static final GTBlockTileBasic alloySmelter = registerBlock(new GTBlockTileBasic("machine_alloysmelter_lv"));
-	public static final GTBlockTileBasic assLine = registerBlock(new GTBlockTileBasic("machine_assemblyline_lv"));
+	public static final GTBlockTileBasic assLine = registerBlock(new GTBlockTileBasic("machine_assemblyline_hv"));
 	public static final GTBlockTileBasic arcFurnace = registerBlock(new GTBlockTileBasic("machine_arcfurnace_hv"));
 	public static final GTBlockTileBasic matterFabricator = registerBlock(
 			new GTBlockTileBasic("machine_matterfabricator_ev"));
@@ -117,12 +120,12 @@ public class GTBlocks {
 	public static final GTBlockTileBasic energiumCable = registerBlock(new GTBlockTileBasic("cable_energium_luv"));
 	public static final GTBlockTileBasic lapotronCable = registerBlock(new GTBlockTileBasic("cable_lapotron_zpm"));
 
-	public static final GTBlockTileCustom resinBottle = registerBlock(
-			new GTBlockTileCustom("tile_resinbottle", 4, 8, false));
+	public static final GTBlockResinBottle resinBottle = registerBlock(
+			new GTBlockResinBottle("block_resinbottle", 4, 8, false));
 	public static final GTBlockTileCustom resinChunk = registerBlock(
-			new GTBlockTileCustom("tile_resinchunk", 4, 3, false));
+			new GTBlockTileCustom("block_resinchunk", 4, 3, false));
 	public static final GTBlockTileCustom resinBoard = registerBlock(
-			new GTBlockTileCustom("tile_resinboard", 12, 1, false));
+			new GTBlockTileCustom("block_resinboard", 12, 1, false));
 	public static final GTBlockTileCustom Echophone = registerBlock(
 			new GTBlockTileCustom("block_echophone", 8, 14, false));
 
@@ -181,8 +184,8 @@ public class GTBlocks {
 	// public static final GTBlockTestLayer testBlock = registerBlock(new
 	// GTBlockTestLayer());
 
-	public static final String[] textureTileBasic = { "machine_bloomery", "machine_assemblyline_lv",
-			"machine_arcfurnace_hv", "machine_chargeomat_ev", "machine_computercube_ev",
+	public static final String[] textureTileBasic = { "machine_bloomery", "machine_blastfurnace_lv",
+			"machine_assemblyline_hv", "machine_arcfurnace_hv", "machine_chargeomat_ev", "machine_computercube_ev",
 			"machine_industrialcentrifuge_lv", "machine_alloysmelter_lv", "machine_matterfabricator_ev",
 			"machine_matterreplicator_ev", "machine_playerdetector_lv", "machine_fusioncomputer_iv",
 			"machine_lightningrod_iv", "machine_quantumenergystorage_ev", "machine_basicenergystorage_ev",
@@ -190,8 +193,8 @@ public class GTBlocks {
 			"cable_lapotron_zpm", "tile_digitalchest", "tile_smallchest", "tile_largechest", "tile_bookshelf",
 			"tile_workbench" };
 
-	public static final String[] textureTileCustom = { "tile_resinbottle","tile_resinchunk", "tile_resinboard", "block_ducttape",
-			"block_echophone", "coolant_helium_small", "coolant_helium_med", "coolant_helium_large",
+	public static final String[] textureTileCustom = { "block_resinbottle", "block_resinchunk", "block_resinboard",
+			"block_ducttape", "block_echophone", "coolant_helium_small", "coolant_helium_med", "coolant_helium_large",
 			"rod_thorium_small", "rod_thorium_med", "rod_thorium_large", "rod_plutonium_small", "rod_plutonium_med",
 			"rod_plutonium_large", "battery_lithium_small", "battery_lithium_med", "battery_lithium_large",
 			"battery_lapotron_tiny", "battery_lapotron_small", "battery_lapotron_med", "battery_lapotron_large",
@@ -255,9 +258,11 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
 		GameRegistry.registerTileEntity(GTTileAssemblyLine.class,
-				new ResourceLocation(GTMod.MODID, "tileEntityAssemblyArray"));
+				new ResourceLocation(GTMod.MODID, "tileEntityAssemblyLine"));
 		GameRegistry.registerTileEntity(GTTileArcFurnace.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityArcFurnace"));
+		GameRegistry.registerTileEntity(GTTileBlastFurnace.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityBlastFurnace"));
 		GameRegistry.registerTileEntity(GTTileComputerCube.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityComputerCube"));
 		GameRegistry.registerTileEntity(GTTileDigitalTransformer.class,

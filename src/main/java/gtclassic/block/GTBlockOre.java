@@ -68,11 +68,21 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 			if (RANDOM.nextFloat() < 0.25f) {
 				drops.add(new ItemStack(Items.REDSTONE, 1));
 			}
+			if (RANDOM.nextFloat() < 0.25f) {
+				drops.add(GTMaterialGen.getSmallDust(GTMaterial.Sulfur, 1));
+			}
 
+		}
+
+		if (this == GTBlocks.tantaliteOre) {
+			drops.add(new ItemStack(GTBlocks.tantaliteOre, 1));
 		}
 
 		if (this == GTBlocks.pyriteOre) {
 			drops.add(GTMaterialGen.getDust(GTMaterial.Pyrite, 2));
+			if (RANDOM.nextFloat() < 0.125f) {
+				drops.add(GTMaterialGen.getSmallDust(GTMaterial.Sulfur, 1));
+			}
 		}
 
 		if (this == GTBlocks.sphaleriteOre) {
@@ -82,6 +92,9 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 			}
 			if (RANDOM.nextFloat() < 0.125f) {
 				drops.add(GTMaterialGen.getGem(GTMaterial.GarnetYellow, 1));
+			}
+			if (RANDOM.nextFloat() < 0.25f) {
+				drops.add(GTMaterialGen.getSmallDust(GTMaterial.Sulfur, 1));
 			}
 		}
 
@@ -137,9 +150,6 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 		if (this == GTBlocks.calciteOre) {
 			drops.add(new ItemStack(GTBlocks.calciteOre, 1));
 		}
-		if (this == GTBlocks.germaniteOre) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.Germanite, 2));
-		}
 		return drops;
 	}
 
@@ -150,15 +160,18 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 
 		if (this == GTBlocks.sphaleriteOre) {
 			xp = MathHelper.getInt(rand, 0, 2);
+		} else if (this == GTBlocks.pyriteOre) {
+			xp = MathHelper.getInt(rand, 0, 2);
 		} else if (this == GTBlocks.iridiumOre) {
 			xp = MathHelper.getInt(rand, 3, 7);
 		} else if (this == GTBlocks.rubyOre) {
 			xp = MathHelper.getInt(rand, 2, 5);
 		} else if (this == GTBlocks.sapphireOre) {
 			xp = MathHelper.getInt(rand, 2, 5);
-		} else if (this == GTBlocks.germaniteOre) {
-			xp = MathHelper.getInt(rand, 0, 2);
-
+		} else if (this == GTBlocks.olivineOre) {
+			xp = MathHelper.getInt(rand, 2, 5);
+		} else if (this == GTBlocks.sodaliteOre) {
+			xp = MathHelper.getInt(rand, 1, 3);
 		}
 		return xp;
 	}

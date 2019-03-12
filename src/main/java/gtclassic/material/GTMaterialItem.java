@@ -95,6 +95,20 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 		// materials
 		if (this.flag == GTMaterialFlag.DUST && state.getBlock() == Blocks.CAULDRON
 				&& state.getValue(LEVEL).intValue() > 0) {
+			if (this.material == GTMaterial.Tantalite) {
+				player.setHeldItem(hand,
+						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
+				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Niobium, 1), false);
+				if (world.rand.nextInt(4) < 1) {
+					player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Tantalum, 1), false);
+				} else {
+					player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Manganese, 1), false);
+				}
+				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
+						1.0F);
+				return EnumActionResult.SUCCESS;
+			}
 			if (this.material == GTMaterial.Sphalerite) {
 				player.setHeldItem(hand,
 						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
@@ -124,16 +138,26 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 						1.0F);
 				return EnumActionResult.SUCCESS;
 			}
-			if (this.material == GTMaterial.Germanite) {
+			if (this.material == GTMaterial.Tungstate) {
 				player.setHeldItem(hand,
 						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
 				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Germanium, 1), false);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Tin, 1), false);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Tungsten, 1), false);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Manganese, 1), false);
 				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
 						1.0F);
 				return EnumActionResult.SUCCESS;
 			}
+			if (this.material == GTMaterial.Sheldonite) {
+				player.setHeldItem(hand,
+						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
+				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
+				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Platinum, 2), false);
+				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
+						1.0F);
+				return EnumActionResult.SUCCESS;
+			}
+
 		}
 
 		return EnumActionResult.PASS;

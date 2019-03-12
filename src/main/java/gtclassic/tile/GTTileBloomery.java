@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTMod;
 import gtclassic.container.GTContainerBloomery;
 import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
 import ic2.api.classic.network.adv.NetworkField;
@@ -40,23 +40,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileBloomery extends TileEntityMachine implements ITickable, IHasGui, IProgressMachine {
 
 	IBlockState brick = Blocks.BRICK_BLOCK.getDefaultState();
-	IBlockState door = Blocks.IRON_TRAPDOOR.getDefaultState();
 	IBlockState fire = Blocks.FIRE.getDefaultState();
-	IBlockState steel = GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.BLOCK).getDefaultState();
 
 	AxisAlignedBB recipeBB = null;
 
 	ItemStack ironore = new ItemStack(Blocks.IRON_ORE);
 	ItemStack coalblock = new ItemStack(Blocks.COAL_BLOCK);
 	ItemStack charcoalblock = GTMaterialGen.getIc2(Ic2Items.charcoalBlock, 1);
-	ItemStack iron = new ItemStack(Items.IRON_INGOT, 4);
+	ItemStack iron = new ItemStack(Items.IRON_INGOT, 3);
 	ItemStack coal = new ItemStack(Items.COAL, 9);
 	ItemStack charcoal = new ItemStack(Items.COAL, 9, 1);
 
@@ -132,7 +129,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		if (nbt.hasKey("RecipeID")) {
 			activeRecipe = RECIPE_LIST.getFromID(nbt.getString("RecipeID"));
 		}
-		FMLLog.getLogger().info(activeRecipe);
+		GTMod.logger.info(activeRecipe);
 	}
 
 	@Override
@@ -313,16 +310,16 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 
 		public void addRecipe(String id, IBlockState output, int ashAmount, int recipeTime, IRecipeInput... inputs) {
 			if (output == null || output.getBlock() == Blocks.AIR) {
-				FMLLog.getLogger().info("Bloomery Recipe Invalid: " + id);
+				GTMod.logger.info("Bloomery Recipe Invalid: " + id);
 				return;
 			}
 			if (recipeMap.containsKey(id)) {
-				FMLLog.getLogger().info("Bloomery Recipe Invalid: " + id);
+				GTMod.logger.info("Bloomery Recipe Invalid: " + id);
 				return;
 			}
 			for (IRecipeInput input : inputs) {
 				if (isListInvalid(input.getInputs())) {
-					FMLLog.getLogger().info("Bloomery Recipe Invalid: " + id);
+					GTMod.logger.info("Bloomery Recipe Invalid: " + id);
 					return;
 				}
 			}

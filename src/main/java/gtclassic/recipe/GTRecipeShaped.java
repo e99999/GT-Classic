@@ -29,8 +29,7 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTItems.rockCutter, 1),
 				new Object[] { "DI ", "DI ", "DCB",
 						new EnchantmentModifier(GT.get(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(),
-						'D', "gemDiamond", 'I', GTValues.plateElectric, 'C', "circuitBasic", 'B',
-						Ic2Items.battery.copy()});
+						'D', "gemDiamond", 'I', "plateSteel", 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
 
 		recipes.addRecipe(GT.get(GTItems.glassTube, 32), new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
 
@@ -99,6 +98,9 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood", 'C',
 				"cobblestone", 'I', GTValues.ingotElectric, 'R', "dustRedstone" });
 
+		recipes.addRecipe(GT.get(GTBlocks.slagcreteSand),
+				new Object[] { "XXX", "XSX", "XXX", 'X', "gravel", 'S', GTBlocks.slagSand });
+
 	}
 
 	public static void recipeShaped3() {
@@ -120,7 +122,7 @@ public class GTRecipeShaped {
 		// "stickTungstensteel" });
 
 		recipes.addRecipe(GT.get(GTBlocks.industrialCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
-				Ic2Items.extractor, 'R', GTValues.plateElectric, 'A', "casingMachineSteel", 'C', "circuitAdvanced" });
+				Ic2Items.extractor, 'R', "plateSteel", 'A', "casingMachineSteel", 'C', "circuitBasic" });
 
 		// recipes.addRecipe(GT.get(GTBlocks.computerCube, 1),
 		// new Object[] { "RGD", "GMG", "DGR", 'D', GTItems.circuitDiamond, 'R',
@@ -147,7 +149,7 @@ public class GTRecipeShaped {
 			// GTItems.circuitDiamond, 'B', GTBlocks.tinyEnergium });
 
 			recipes.addRecipe(GT.get(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
-					Blocks.REDSTONE_TORCH, 'C', "circuitAdvanced", 'c', "casingMachineSteel" });
+					Blocks.REDSTONE_TORCH, 'C', "circuitAdvanced", 'c', "casingRefinedIron" });
 
 			// recipes.addRecipe(GT.get(GTBlocks.matterFabricator, 1),
 			// new Object[] { "ETE", "HLH", "ETE", 'E', GTItems.circuitSapphire, 'T',
@@ -164,8 +166,10 @@ public class GTRecipeShaped {
 			// GTItems.circuitSapphire, 'A',
 			// "chestWood", 'C', GTBlocks.computerCube, 'M', "casingMachineTitanium" });
 
-			recipes.addRecipe(GT.get(GTBlocks.multiEnergyStorage), new Object[] { " G ", "CMC", " G ", 'C',
-					"circuitAdvanced", 'M', GTBlocks.crystalCasingBlock, 'G', Ic2Items.glassFiberCable.copy() });
+			// recipes.addRecipe(GT.get(GTBlocks.multiEnergyStorage), new Object[] { " G ",
+			// "CMC", " G ", 'C',
+			// "circuitAdvanced", 'M', GTBlocks.crystalCasingBlock, 'G',
+			// Ic2Items.glassFiberCable.copy() });
 
 			// recipes.addRecipe(GT.get(GTBlocks.lapotronCable, 4), new Object[] { "HEH",
 			// "SSS", "HEH", 'E',
