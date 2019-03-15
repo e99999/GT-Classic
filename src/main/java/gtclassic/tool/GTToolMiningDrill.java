@@ -43,9 +43,9 @@ public class GTToolMiningDrill extends ItemElectricTool
 
 	GTMaterial material;
 
-	public GTToolMiningDrill(GTMaterial material) {
+	public GTToolMiningDrill(ToolMaterial tmat) {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);
-		this.material = material;
+		this.material = GTToolMaterial.getGTMaterial(tmat);
 		this.tier = material.getLevel() - 1;
 		if (this.tier <= 0) {
 			this.tier = 1;
@@ -86,7 +86,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 		if (this.tier == 2) {
 			return "Obsidian";
 		} else {
-			return "???";
+			return "Insane";
 		}
 	}
 

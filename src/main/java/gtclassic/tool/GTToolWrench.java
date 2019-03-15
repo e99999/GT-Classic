@@ -18,9 +18,9 @@ public class GTToolWrench extends ItemToolWrench implements GTColorItemInterface
 
 	GTMaterial material;
 
-	public GTToolWrench(GTMaterial material) {
+	public GTToolWrench(ToolMaterial tmat) {
 		this.maxStackSize = 1;
-		this.material = material;
+		this.material = GTToolMaterial.getGTMaterial(tmat);
 		this.setMaxDamage(this.material.getDurability() + 32);
 		setRegistryName(this.material.getName() + "_wrench");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_wrench");
@@ -46,7 +46,7 @@ public class GTToolWrench extends ItemToolWrench implements GTColorItemInterface
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[22];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[20];
 	}
 
 	@Override

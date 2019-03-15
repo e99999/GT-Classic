@@ -78,7 +78,7 @@ public class GTRecipeProcessing {
 		// GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
 		GTTileBlastFurnace.addRecipe("ingotIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1),
 				GT.getDust(M.DarkAshes, 2));
-		GTTileBlastFurnace.addRecipe("oreIron", 1, "dustCalcite", 2, GT.getIc2(Ic2Items.refinedIronIngot, 2),
+		GTTileBlastFurnace.addRecipe("oreIron", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 3),
 				GT.getSmallDust(M.Slag, 2));
 		GTTileBlastFurnace.addRecipe("dustTantalum", 1, GT.getIngot(M.Tantalum, 1));
 		GTTileBlastFurnace.addRecipe("dustSmallTantalum", 4, GT.getIngot(M.Tantalum, 1));

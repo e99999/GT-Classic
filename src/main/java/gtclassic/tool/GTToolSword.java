@@ -12,39 +12,23 @@ import ic2.core.platform.textures.obj.ICustomItemCameraTransform;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTToolHammer extends ItemPickaxe
+public class GTToolSword extends ItemSword
 		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel, ICustomItemCameraTransform {
 
-	GTMaterial material;
+	ToolMaterial tmaterial;
 
-	public GTToolHammer(ToolMaterial tmat) {
-		super(ToolMaterial.IRON);
-		this.material = GTToolMaterial.getGTMaterial(tmat);
-		this.efficiency = this.material.getSpeed() * (this.material.getLevel() / 2);
-		this.setHarvestLevel("pickaxe", this.material.getLevel());
-		this.setMaxDamage((this.material.getDurability() * 2) + 64);
-		setRegistryName(this.material.getName() + "_hammer");
-		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_hammer");
+	public GTToolSword(ToolMaterial tmaterial) {
+		super(tmaterial);
+		this.tmaterial = tmaterial;
+		setRegistryName(tmaterial.toString().toLowerCase() + "_sword");
+		setUnlocalizedName(GTMod.MODID + "." + tmaterial.toString().toLowerCase() + "_sword");
 		setCreativeTab(GTMod.creativeTabGT);
-		GTMod.logger.info(this.getUnlocalizedName() + ".name=" + this.material.getDisplayName() + " REP");
-	}
-
-	@Override
-	public ItemStack getContainerItem(ItemStack itemStack) {
-		ItemStack copy = itemStack.copy();
-		return copy.attemptDamageItem(1, itemRand, null) ? ItemStack.EMPTY : copy;
-	}
-
-	@Override
-	@Deprecated
-	public boolean hasContainerItem() {
-		return true;
 	}
 
 	@Override
@@ -54,8 +38,8 @@ public class GTToolHammer extends ItemPickaxe
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[16];
+	public TextureAtlasSprite getTexture(int meta) {
+		return Ic2Icons.getTextures("gtclassic_items")[23];
 	}
 
 	@Override
@@ -63,7 +47,7 @@ public class GTToolHammer extends ItemPickaxe
 		if (index == 0) {
 			return GTMaterial.Wood.getColor();
 		} else {
-			return this.material.getColor();
+			return GTToolMaterial.getGTMaterial(tmaterial).getColor();
 		}
 	}
 
@@ -79,11 +63,7 @@ public class GTToolHammer extends ItemPickaxe
 
 	@Override
 	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[16 + var1];
-	}
-
-	public GTMaterial getMaterial() {
-		return this.material;
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[23 + var1];
 	}
 
 	public ResourceLocation getCustomTransform(int meta) {
@@ -93,6 +73,10 @@ public class GTToolHammer extends ItemPickaxe
 	@Override
 	public boolean hasCustomTransform(int var1) {
 		return true;
+	}
+
+	public GTMaterial getMaterial() {
+		return GTToolMaterial.getGTMaterial(tmaterial);
 	}
 
 }

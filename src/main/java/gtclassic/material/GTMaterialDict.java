@@ -54,6 +54,11 @@ public class GTMaterialDict {
 				OreDictionary.registerOre("rod" + mat.getDisplayName(), GTMaterialGen.getStick(mat, 1));
 			}
 
+			// Gears
+			if (mat.hasFlag(GTMaterialFlag.GEAR)) {
+				OreDictionary.registerOre("gear" + mat.getDisplayName(), GTMaterialGen.getGear(mat, 1));
+			}
+
 		}
 
 	}

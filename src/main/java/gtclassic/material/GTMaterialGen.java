@@ -51,6 +51,9 @@ public class GTMaterialGen {
 			materialItemUtil(mat, GTMaterialFlag.PLATE);
 		}
 		for (GTMaterial mat : GTMaterial.values()) {
+			materialItemUtil(mat, GTMaterialFlag.GEAR);
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.STICK);
 		}
 
@@ -141,6 +144,10 @@ public class GTMaterialGen {
 
 	public static ItemStack getStick(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.STICK.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getGear(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.GEAR.getSuffix()), count, 0);
 	}
 
 	public static ItemStack getIc2(ItemStack itemStack, int count) {

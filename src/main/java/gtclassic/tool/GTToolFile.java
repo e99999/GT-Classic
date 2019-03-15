@@ -9,8 +9,6 @@ import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
-import ic2.api.classic.recipe.ClassicRecipes;
-import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.registry.Ic2States;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -33,11 +31,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	GTMaterial material;
-	public static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 
-	public GTToolFile(GTMaterial material) {
+	public GTToolFile(ToolMaterial tmat) {
 		this.maxStackSize = 1;
-		this.material = material;
+		this.material = GTToolMaterial.getGTMaterial(tmat);
 		this.setMaxDamage((this.material.getDurability() * 2) + 64);
 		setRegistryName(this.material.getName() + "_file");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_file");

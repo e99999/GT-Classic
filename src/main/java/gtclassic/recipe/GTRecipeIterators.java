@@ -4,18 +4,24 @@ import gtclassic.block.GTBlockTileStorage;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tool.GTToolAxe;
 import gtclassic.tool.GTToolChainsaw;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
 import gtclassic.tool.GTToolMiningDrill;
+import gtclassic.tool.GTToolPickaxe;
+import gtclassic.tool.GTToolShovel;
+import gtclassic.tool.GTToolSword;
 import gtclassic.tool.GTToolWrench;
 import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
+import ic2.core.item.recipe.upgrades.EnchantmentModifier;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.block.Block;
+import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -92,7 +98,7 @@ public class GTRecipeIterators {
 				recipes.addShapelessRecipe(GT.getNugget(mat, 9), new Object[] { ingot });
 			}
 
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && (mat != M.Silicon)) {
+			if (mat.hasFlag(GTMaterialFlag.PLATE) && (mat != M.Silicon) && (!mat.hasFlag(GTMaterialFlag.GEM))) {
 				// Plate crafting recipe
 				recipes.addRecipe(GT.getPlate(mat, 1),
 						new Object[] { "H", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
@@ -171,19 +177,95 @@ public class GTRecipeIterators {
 		for (Item item : Item.REGISTRY) {
 			if (item instanceof GTToolFile) {
 				GTToolFile file = (GTToolFile) item;
-				String plate = "plate" + file.getMaterial().getDisplayName();
-				recipes.addRecipe(new ItemStack(item), new Object[] { "P", "P", "S", 'P', plate, 'S', "stickWood" });
+				if (file.getMaterial().equals(GTMaterial.Diamond) || file.getMaterial().hasFlag(GTMaterialFlag.GEM)) {
+					String input = "gem" + file.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "P ", "P ", "SF", 'P', input, 'S', "stickWood", 'F', "craftingToolFile" });
+
+				} else {
+					String input = "plate" + file.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "P", "P", "S", 'P', input, 'S', "stickWood" });
+				}
 			}
 			if (item instanceof GTToolHammer) {
 				GTToolHammer hammer = (GTToolHammer) item;
-				String ingot = "ingot" + hammer.getMaterial().getDisplayName();
-				recipes.addRecipe(new ItemStack(item),
-						new Object[] { "II ", "IIS", "II ", 'I', ingot, 'S', "stickWood" });
+				if (hammer.getMaterial().equals(GTMaterial.Diamond)
+						|| hammer.getMaterial().hasFlag(GTMaterialFlag.GEM)) {
+					String input = "gem" + hammer.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item), new Object[] { "II ", "IIS", "IIF", 'I', input, 'S',
+							"stickWood", 'F', "craftingToolFile" });
+				} else {
+					String input = "ingot" + hammer.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "II ", "IIS", "II ", 'I', input, 'S', "stickWood" });
+				}
 			}
 			if (item instanceof GTToolWrench) {
 				GTToolWrench wrench = (GTToolWrench) item;
-				String ingot = "ingot" + wrench.getMaterial().getDisplayName();
-				recipes.addRecipe(new ItemStack(item), new Object[] { "I I", "III", " I ", 'I', ingot });
+				if (wrench.getMaterial().equals(GTMaterial.Diamond)
+						|| wrench.getMaterial().hasFlag(GTMaterialFlag.GEM)) {
+					String input = "gem" + wrench.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "IFI", "III", " I ", 'I', input, 'F', "craftingToolFile" });
+				} else {
+					String input = "ingot" + wrench.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item), new Object[] { "I I", "III", " I ", 'I', input });
+				}
+			}
+			if (item instanceof GTToolSword) {
+				GTToolSword sword = (GTToolSword) item;
+				if (sword.getMaterial().equals(GTMaterial.Flint)) {
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "P", "P", "S", 'P',
+									new EnchantmentModifier(GT.get(item), Enchantments.FLAME).setUsesInput(), 'P',
+									Items.FLINT, 'S', "stickWood" });
+				} else {
+					String input = "plate" + sword.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "PF", "P ", "S ", 'P', input, 'S', "stickWood", 'F', "craftingToolFile" });
+				}
+			}
+			if (item instanceof GTToolShovel) {
+				GTToolShovel shovel = (GTToolShovel) item;
+				if (shovel.getMaterial().equals(GTMaterial.Flint)) {
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "P", "S", 'P',
+									new EnchantmentModifier(GT.get(item), Enchantments.FLAME).setUsesInput(), 'P',
+									Items.FLINT, 'S', "stickWood" });
+				} else {
+					String input = "plate" + shovel.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "P", "S", "S", 'P', input, 'S', "stickWood", });
+				}
+			}
+			if (item instanceof GTToolAxe) {
+				GTToolAxe axe = (GTToolAxe) item;
+				if (axe.getMaterial().equals(GTMaterial.Flint)) {
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "PP", "PS", 'P',
+									new EnchantmentModifier(GT.get(item), Enchantments.FLAME).setUsesInput(), 'P',
+									Items.FLINT, 'S', "stickWood" });
+				} else {
+					String plate = "plate" + axe.getMaterial().getDisplayName();
+					String ingot = "ingot" + axe.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "PI", "PS", " S", 'P', plate, 'I', ingot, 'S', "stickWood" });
+				}
+			}
+			if (item instanceof GTToolPickaxe) {
+				GTToolPickaxe pickaxe = (GTToolPickaxe) item;
+				if (pickaxe.getMaterial().equals(GTMaterial.Flint)) {
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "PPP", " S ", 'P',
+									new EnchantmentModifier(GT.get(item), Enchantments.FLAME).setUsesInput(), 'P',
+									Items.FLINT, 'S', "stickWood" });
+				} else {
+					String plate = "plate" + pickaxe.getMaterial().getDisplayName();
+					String ingot = "ingot" + pickaxe.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "PII", " S ", " S ", 'P', plate, 'I', ingot, 'S', "stickWood" });
+				}
 			}
 			if (GTValues.debugMode) { // disabling these in game until the tools are damagable
 				if (item instanceof GTToolMiningDrill) {

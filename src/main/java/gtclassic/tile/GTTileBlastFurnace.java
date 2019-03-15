@@ -52,7 +52,7 @@ public class GTTileBlastFurnace extends GTTileBaseMultiBlockMachine {
 			"textures/gui/blastfurnace.png");
 
 	public GTTileBlastFurnace() {
-		super(6, 0, 20, 1000, 32);
+		super(6, 0, 20, 400, 32);
 		maxEnergy = 1000;
 	}
 

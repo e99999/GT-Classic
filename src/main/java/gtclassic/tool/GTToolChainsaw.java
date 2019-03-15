@@ -50,9 +50,9 @@ public class GTToolChainsaw extends ItemElectricTool
 	public static final ItemStack ironAxe;
 	GTMaterial material;
 
-	public GTToolChainsaw(GTMaterial material) {
+	public GTToolChainsaw(ToolMaterial tmat) {
 		super(0.0F, 0.0F, ToolMaterial.IRON);
-		this.material = material;
+		this.material = GTToolMaterial.getGTMaterial(tmat);
 		this.tier = material.getLevel() - 1;
 		if (this.tier <= 0) {
 			this.tier = 1;

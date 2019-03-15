@@ -1,13 +1,17 @@
 package gtclassic.recipe;
 
+import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.init.Items;
 
 public class GTRecipeCircuitry {
 
@@ -36,11 +40,33 @@ public class GTRecipeCircuitry {
 		// new Object[] { "LCL", "LDL", "LCL", 'D', "gemSapphire", 'C', "circuitBasic",
 		// 'L', "dustLazurite" });
 
-		recipes.overrideRecipe("shaped_Electronic Circuit", GT.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RSR", "CCC",
-				'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy(), 'S', basicCircuitPlate);
+		recipes.addShapelessRecipe(GT.get(GTItems.magnifyingGlass), new Object[] { "paneGlass", "stickIron" });
 
-		recipes.overrideRecipe("shaped_Electronic Circuit_1", GT.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CSC",
-				"CRC", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy(), 'S', basicCircuitPlate);
+		recipes.addRecipe(GT.get(GTItems.ironKnife, 1), new Object[] { "PPS", 'P', "plateIron", 'S', "stickWood" });
+
+		recipes.addShapelessRecipe(GT.get(GTBlocks.resinBottle),
+				new Object[] { Items.GLASS_BOTTLE, GT.getIc2(Ic2Items.stickyResin, 1), GTValues.water });
+
+		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB), new Object[] { GTItems.ironKnife, GTBlocks.resinBoard });
+		recipes.addShapelessRecipe(GT.get(GTItems.germaniumSubstrate),
+				new Object[] { GTItems.ironKnife, "plateGermanium" });
+
+		recipes.addRecipe(GT.get(GTBlocks.blastFurnace, 1), new Object[] { "PBP", "PFP", "PWP", 'P', "plateRefinedIron",
+				'B', Ic2Items.battery.copy(), 'F', Ic2Items.ironFurnace.copy(), 'W', Ic2Items.copperCable });
+
+		recipes.addRecipe(GT.get(GTItems.basicTransistor, 1),
+				new Object[] { "WPW", 'W', GT.getIc2(Ic2Items.tinCable, 1), 'P', GTItems.germaniumSubstrate });
+
+		recipes.addShapelessRecipe(GT.get(GTItems.basicCapacitor),
+				new Object[] { "dustRedstone", "plateManganese", "stickTantalum", "dustTantalum" });
+
+		recipes.overrideRecipe("shaped_Electronic Circuit", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "TSC", "WWW",
+				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', Ic2Items.copperCable.copy(), 'S',
+				GTItems.resinPCB);
+
+		recipes.overrideRecipe("shaped_Electronic Circuit_1", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "CST",
+				"WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', Ic2Items.copperCable.copy(), 'S',
+				GTItems.resinPCB);
 
 	}
 

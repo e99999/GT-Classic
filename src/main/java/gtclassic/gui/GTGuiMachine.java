@@ -39,4 +39,11 @@ public class GTGuiMachine {
 			super(container);
 		}
 	}
+
+	public static class GTBloomeryGui extends MachineGui {
+		public GTBloomeryGui(ContainerComponent container) {
+			super(container);
+		}
+	}
+
 }

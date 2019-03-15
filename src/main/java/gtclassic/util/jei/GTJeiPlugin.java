@@ -11,6 +11,7 @@ import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBlastFurnace;
+import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
@@ -87,6 +88,12 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipes(GTTileBlastFurnace.RECIPE_LIST.getRecipeList(), "blastfurnace");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.blastFurnace), "blastfurnace");
 			registry.addRecipeClickArea(GTGuiMachine.GTBlastFurnaceGui.class, 58, 28, 20, 11, "blastfurnace");
+
+			// Bloomery
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "bloomery");
+			registry.addRecipes(GTTileBloomery.JEI_RECIPE_LIST.getRecipeList(), "bloomery");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.bloomery), "bloomery");
+			registry.addRecipeClickArea(GTGuiMachine.GTBloomeryGui.class, 82, 20, 20, 11, "bloomery");
 		}
 	}
 
@@ -108,5 +115,8 @@ public class GTJeiPlugin implements IModPlugin {
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
 				"blastfurnace", GTBlocks.blastFurnace));
+
+		registry.addRecipeCategories(
+				new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "bloomery", GTBlocks.bloomery));
 	}
 }

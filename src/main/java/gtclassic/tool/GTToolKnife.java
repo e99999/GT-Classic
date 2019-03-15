@@ -10,8 +10,6 @@ import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import ic2.api.classic.recipe.ClassicRecipes;
-import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -32,8 +30,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
+	GTMaterial material;
+
 	public GTToolKnife(GTMaterial material) {
-		super(ToolMaterial.GOLD);
+		super(ToolMaterial.IRON);
 		this.material = material;
 		this.setMaxDamage((this.material.getDurability()) + 64);
 		setRegistryName(this.material.getName() + "_knife");
@@ -41,8 +41,11 @@ public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTCol
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
-	GTMaterial material;
-	public static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		return true;
+	}
 
 	@Override
 	public boolean hasContainerItem(ItemStack itemStack) {
@@ -63,7 +66,7 @@ public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTCol
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[20];
+		return Ic2Icons.getTextures("gtclassic_items")[21];
 	}
 
 	@Override
@@ -87,7 +90,7 @@ public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTCol
 
 	@Override
 	public TextureAtlasSprite getTexture(int var1, ItemStack var2) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[20 + var1];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[21 + var1];
 	}
 
 	public GTMaterial getMaterial() {

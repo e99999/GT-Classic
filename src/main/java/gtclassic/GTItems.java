@@ -1,10 +1,7 @@
 package gtclassic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import gtclassic.item.GTItemComponent;
 import gtclassic.item.GTItemCraftingTablet;
@@ -16,14 +13,9 @@ import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
 import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tool.GTToolChainsaw;
-import gtclassic.tool.GTToolFile;
-import gtclassic.tool.GTToolHammer;
+import gtclassic.tool.GTToolGen;
 import gtclassic.tool.GTToolKnife;
-import gtclassic.tool.GTToolMiningDrill;
-import gtclassic.tool.GTToolWrench;
 import ic2.core.IC2;
 import net.minecraft.item.Item;
 
@@ -61,8 +53,6 @@ public class GTItems {
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
 
-	private static Set<GTMaterial> powerMaterials = new HashSet<GTMaterial>();
-
 	public static <T extends Item> T createItem(T item) {
 		toRegister.add(item);
 		return item;
@@ -73,71 +63,10 @@ public class GTItems {
 			IC2.getInstance().createItem(item);
 		}
 
-		generateTools();
+		GTToolGen.generateTools();
 
 		for (Item item : toRegister) {
 			IC2.getInstance().createItem(item);
 		}
 	}
-
-	/*
-	 * This is a very dirty way to generate tools from the material registry without
-	 * having tools be part of the registry, it will eventually be refactored but
-	 * for now it makes adding and removing tools easy.
-	 * 
-	 */
-
-	public static void generateTools() {
-		powerMaterials.addAll(
-				Arrays.asList(GTMaterial.Silicon, GTMaterial.Gold, GTMaterial.Tin, GTMaterial.Copper, GTMaterial.Lead,
-						GTMaterial.Iron, GTMaterial.Bronze, GTMaterial.Brass, GTMaterial.Zinc, GTMaterial.RefinedIron,
-						GTMaterial.Graphite, GTMaterial.Germanium, GTMaterial.Tantalum, GTMaterial.Manganese));
-		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon) && !mat.equals(GTMaterial.Graphite)
-					&& !mat.equals(GTMaterial.Tantalum) && !mat.equals(GTMaterial.Manganese)) {
-				IC2.getInstance().createItem(new GTToolFile(mat));
-			}
-
-		}
-
-		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon) && !mat.equals(GTMaterial.Graphite)
-					&& !mat.equals(GTMaterial.Tantalum) && !mat.equals(GTMaterial.Manganese)) {
-				IC2.getInstance().createItem(new GTToolHammer(mat));
-			}
-		}
-
-		// for (GTMaterial mat : GTMaterial.values()) {
-		// if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon) &&
-		// !mat.equals(GTMaterial.Graphite)
-		// && !mat.equals(GTMaterial.Tantalum) && !mat.equals(GTMaterial.Manganese)) {
-		// IC2.getInstance().createItem(new GTToolKnife(mat));
-		// }
-		// }
-
-		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && !mat.equals(GTMaterial.Silicon) && !mat.equals(GTMaterial.Graphite)
-					&& !mat.equals(GTMaterial.Tantalum) && !mat.equals(GTMaterial.Manganese)) {
-				IC2.getInstance().createItem(new GTToolWrench(mat));
-			}
-		}
-
-		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && canBePowerTool(mat)) {
-				IC2.getInstance().createItem(new GTToolMiningDrill(mat));
-			}
-		}
-
-		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && canBePowerTool(mat)) {
-				IC2.getInstance().createItem(new GTToolChainsaw(mat));
-			}
-		}
-
-	}
-
-	public static boolean canBePowerTool(GTMaterial mat) {
-		return !powerMaterials.contains(mat);
-	}
-
 }
