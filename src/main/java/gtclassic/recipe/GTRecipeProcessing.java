@@ -1,16 +1,22 @@
 package gtclassic.recipe;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import gtclassic.GTBlocks;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileBlastFurnace;
 import gtclassic.tile.GTTileFusionComputer;
+import ic2.api.classic.recipe.ClassicRecipes;
+import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GTRecipeProcessing {
@@ -18,7 +24,12 @@ public class GTRecipeProcessing {
 	static GTMaterialGen GT;
 	static GTMaterial M;
 
+	static IMachineRecipeList smelting = ClassicRecipes.furnace;
+
 	public static void recipesProcessing() {
+
+		removeSmelting(GT.getIc2(Ic2Items.rubber, 1));
+		removeSmelting(GT.getIc2(Ic2Items.refinedIronIngot, 1));
 
 		/*
 		 * Recipes specific to GT Classic blocks
@@ -52,6 +63,7 @@ public class GTRecipeProcessing {
 		TileEntityMacerator.addRecipe(GT.get(Items.ENDER_EYE, 1), GT.getDust(M.EnderEye, 1), 0.2F);
 		TileEntityMacerator.addRecipe("gemDiamond", 1, GT.getDust(M.Diamond, 1), 0.1F);
 		TileEntityMacerator.addRecipe("gemEmerald", 1, GT.getDust(M.Emerald, 1), 0.1F);
+		TileEntityMacerator.addRecipe("plateRefinedIron", 1, GT.getIc2(Ic2Items.ironDust, 1));
 
 		/*
 		 * Compressor recipes
@@ -78,8 +90,14 @@ public class GTRecipeProcessing {
 		// GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
 		GTTileBlastFurnace.addRecipe("ingotIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1),
 				GT.getDust(M.DarkAshes, 2));
+		GTTileBlastFurnace.addRecipe("ingotRefinedIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1),
+				GT.getDust(M.DarkAshes, 2));
 		GTTileBlastFurnace.addRecipe("oreIron", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 3),
 				GT.getSmallDust(M.Slag, 2));
+		GTTileBlastFurnace.addRecipe("dustPyrite", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 2),
+				GT.getSmallDust(M.Slag, 1));
+		GTTileBlastFurnace.addRecipe("dustMagnetite", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 2),
+				GT.getSmallDust(M.Slag, 1));
 		GTTileBlastFurnace.addRecipe("dustTantalum", 1, GT.getIngot(M.Tantalum, 1));
 		GTTileBlastFurnace.addRecipe("dustSmallTantalum", 4, GT.getIngot(M.Tantalum, 1));
 		GTTileBlastFurnace.addRecipe("dustTungsten", 1, GT.getIngot(M.Tungsten, 1));
@@ -93,6 +111,22 @@ public class GTRecipeProcessing {
 	public static void maceratorUtil(String input, int amount, ItemStack output) {
 		TileEntityMacerator.oreBlacklist.add(input);
 		TileEntityMacerator.addRecipe(input, amount, output);
+	}
+
+	/*
+	 * removing smelting recipes code by Muramasa
+	 */
+	public static void removeSmelting(ItemStack resultStack) {
+		ItemStack recipeResult;
+		Map<ItemStack, ItemStack> recipes = FurnaceRecipes.instance().getSmeltingList();
+		Iterator<ItemStack> iterator = recipes.keySet().iterator();
+		while (iterator.hasNext()) {
+			ItemStack tmpRecipe = iterator.next();
+			recipeResult = recipes.get(tmpRecipe);
+			if (ItemStack.areItemStacksEqual(resultStack, recipeResult)) {
+				iterator.remove();
+			}
+		}
 	}
 
 }

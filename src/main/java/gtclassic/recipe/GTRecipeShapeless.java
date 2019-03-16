@@ -74,6 +74,10 @@ public class GTRecipeShapeless {
 		recipes.addShapelessRecipe(GT.getDust(M.Invar, 2), new Object[] { "dustIron", "dustIron", "dustNickel" });
 		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.bronzeDust, 1),
 				new Object[] { "dustSmallCopper", "dustSmallCopper", "dustSmallCopper", "dustSmallTin" });
+		recipes.addShapelessRecipe(GT.getDust(M.Brass, 4),
+				new Object[] { "dustCopper", "dustCopper", "dustCopper", "dustZinc" });
+		recipes.addShapelessRecipe(GT.getDust(M.Brass, 1),
+				new Object[] { "dustSmallCopper", "dustSmallCopper", "dustSmallCopper", "dustSmallZinc" });
 		recipes.addShapelessRecipe(GT.getDust(M.Electrum, 2), new Object[] { "dustGold", "dustSilver" });
 		recipes.addShapelessRecipe(GT.getDust(M.Electrum, 1),
 				new Object[] { "dustSmallGold", "dustSmallGold", "dustSmallSilver", "dustSmallSilver" });

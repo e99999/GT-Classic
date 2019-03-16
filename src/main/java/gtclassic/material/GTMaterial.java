@@ -164,12 +164,12 @@ public class GTMaterial {
 	public static GTMaterial Sphalerite = new GTMaterial("Sphalerite", 1.0F, 0, 1, new Color(200, 140, 40), false,
 			DUST_ALL);
 	public static GTMaterial Steel = new GTMaterial("Steel", 6.0F, 512, 2, new Color(128, 128, 128), false, METAL_ALL);
-	public static GTMaterial Stone = new GTMaterial("Slag", 1.0F, 0, 1, new Color(196, 196, 196), false, DUST_ALL);
+	public static GTMaterial Stone = new GTMaterial("Stone", 1.0F, 0, 1, new Color(196, 196, 196), false, DUST_ALL);
 	public static GTMaterial Sulfur = new GTMaterial("Sulfur", 1.0F, 0, 1, new Color(200, 200, 0), false, SMALLDUST,
 			DUST, CHEM, PLASMA);
 	public static GTMaterial Tantalite = new GTMaterial("Tantalite", 1.0F, 0, 1, new Color(102, 77, 61), false,
 			DUST_ALL);
-	public static GTMaterial Tantalum = new GTMaterial("Tantalum", 8.0F, 5120, 3, new Color(156, 156, 156), false, DUST,
+	public static GTMaterial Tantalum = new GTMaterial("Tantalum", 8.0F, 5120, 3, new Color(96, 96, 96), false, DUST,
 			SMALLDUST, NUGGET, INGOT, STICK, PLATE, BLOCK);
 	public static GTMaterial Thorium = new GTMaterial("Thorium", 6.0F, 512, 2, new Color(0, 30, 0), false, SMALLDUST,
 			DUST, NUGGET, INGOT);

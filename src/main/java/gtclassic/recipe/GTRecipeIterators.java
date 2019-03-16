@@ -98,7 +98,7 @@ public class GTRecipeIterators {
 				recipes.addShapelessRecipe(GT.getNugget(mat, 9), new Object[] { ingot });
 			}
 
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && (mat != M.Silicon) && (!mat.hasFlag(GTMaterialFlag.GEM))) {
+			if (mat.hasFlag(GTMaterialFlag.PLATE) && (mat != M.Silicon)) {
 				// Plate crafting recipe
 				recipes.addRecipe(GT.getPlate(mat, 1),
 						new Object[] { "H", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
@@ -218,7 +218,7 @@ public class GTRecipeIterators {
 				if (sword.getMaterial().equals(GTMaterial.Flint)) {
 					recipes.addRecipe(new ItemStack(item),
 							new Object[] { "P", "P", "S", 'P',
-									new EnchantmentModifier(GT.get(item), Enchantments.FLAME).setUsesInput(), 'P',
+									new EnchantmentModifier(GT.get(item), Enchantments.FIRE_ASPECT).setUsesInput(), 'P',
 									Items.FLINT, 'S', "stickWood" });
 				} else {
 					String input = "plate" + sword.getMaterial().getDisplayName();
@@ -231,7 +231,7 @@ public class GTRecipeIterators {
 				if (shovel.getMaterial().equals(GTMaterial.Flint)) {
 					recipes.addRecipe(new ItemStack(item),
 							new Object[] { "P", "S", 'P',
-									new EnchantmentModifier(GT.get(item), Enchantments.FLAME).setUsesInput(), 'P',
+									new EnchantmentModifier(GT.get(item), Enchantments.FIRE_ASPECT).setUsesInput(), 'P',
 									Items.FLINT, 'S', "stickWood" });
 				} else {
 					String input = "plate" + shovel.getMaterial().getDisplayName();
@@ -244,7 +244,7 @@ public class GTRecipeIterators {
 				if (axe.getMaterial().equals(GTMaterial.Flint)) {
 					recipes.addRecipe(new ItemStack(item),
 							new Object[] { "PP", "PS", 'P',
-									new EnchantmentModifier(GT.get(item), Enchantments.FLAME).setUsesInput(), 'P',
+									new EnchantmentModifier(GT.get(item), Enchantments.FIRE_ASPECT).setUsesInput(), 'P',
 									Items.FLINT, 'S', "stickWood" });
 				} else {
 					String plate = "plate" + axe.getMaterial().getDisplayName();
@@ -258,7 +258,7 @@ public class GTRecipeIterators {
 				if (pickaxe.getMaterial().equals(GTMaterial.Flint)) {
 					recipes.addRecipe(new ItemStack(item),
 							new Object[] { "PPP", " S ", 'P',
-									new EnchantmentModifier(GT.get(item), Enchantments.FLAME).setUsesInput(), 'P',
+									new EnchantmentModifier(GT.get(item), Enchantments.FIRE_ASPECT).setUsesInput(), 'P',
 									Items.FLINT, 'S', "stickWood" });
 				} else {
 					String plate = "plate" + pickaxe.getMaterial().getDisplayName();

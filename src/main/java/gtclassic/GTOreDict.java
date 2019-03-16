@@ -65,6 +65,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
 		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
 		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
+		OreDictionary.registerOre("blockCharcoal", Ic2Items.charcoalBlock);
 
 		// Registering Aluminium for idiots
 		GTMaterial aluminium = GTMaterial.Aluminium;

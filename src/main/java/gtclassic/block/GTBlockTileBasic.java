@@ -186,6 +186,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				return false;
 			}
 			if (te instanceof GTTileBloomery && !((GTTileBloomery) te).isActive) {
+				playerIn.getHeldItem(hand).damageItem(1, playerIn);
 				return ((GTTileBloomery) te).canWork();
 			}
 		}

@@ -11,10 +11,14 @@ import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ICustomItemCameraTransform;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -82,4 +86,33 @@ public class GTToolAxe extends ItemAxe
 		return GTToolMaterial.getGTMaterial(tmaterial);
 	}
 
+	@Override
+	public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player) {
+		World worldIn = player.world;
+		if (!player.isSneaking()) {
+			for (int i = 1; i < 60; i++) {
+				BlockPos nextPos = pos.up(i);
+				IBlockState nextState = worldIn.getBlockState(nextPos);
+				if (nextState.getBlock().isWood(worldIn, nextPos)) {
+					breakBlock(nextPos, itemstack, worldIn, pos, player);
+				}
+			}
+		}
+		return false;
+	}
+
+	public void breakBlock(BlockPos pos, ItemStack saw, World world, BlockPos oldPos, EntityPlayer player) {
+		if (oldPos == pos) {
+			return;
+		}
+
+		IBlockState blockState = world.getBlockState(pos);
+		if (blockState.getBlockHardness(world, pos) == -1.0F) {
+			return;
+		}
+		player.getHeldItem(player.swingingHand).damageItem(1, player);
+		blockState.getBlock().harvestBlock(world, player, pos, blockState, world.getTileEntity(pos), saw);
+		world.setBlockToAir(pos);
+		world.removeTileEntity(pos);
+	}
 }

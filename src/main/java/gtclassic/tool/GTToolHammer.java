@@ -32,7 +32,6 @@ public class GTToolHammer extends ItemPickaxe
 		setRegistryName(this.material.getName() + "_hammer");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_hammer");
 		setCreativeTab(GTMod.creativeTabGT);
-		GTMod.logger.info(this.getUnlocalizedName() + ".name=" + this.material.getDisplayName() + " REP");
 	}
 
 	@Override

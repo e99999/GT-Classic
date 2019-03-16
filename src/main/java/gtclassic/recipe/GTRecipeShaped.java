@@ -86,6 +86,8 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.crystalCasingBlock),
 				new Object[] { "BBB", "BCB", "BBB", 'B', "blockRuby", 'C', "casingMachineAluminium" });
 
+		recipes.addRecipe(GT.get(GTBlocks.copperCoilBlock), new Object[] { "XXX", "XXX", "XXX", 'X', "stickCopper" });
+
 		recipes.addRecipe(GT.get(GTBlocks.constantanCoilBlock),
 				new Object[] { "XXX", "XXX", "XXX", 'X', "stickConstantan" });
 

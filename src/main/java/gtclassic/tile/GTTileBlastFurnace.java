@@ -52,8 +52,8 @@ public class GTTileBlastFurnace extends GTTileBaseMultiBlockMachine {
 			"textures/gui/blastfurnace.png");
 
 	public GTTileBlastFurnace() {
-		super(6, 0, 20, 400, 32);
-		maxEnergy = 1000;
+		super(6, 0, 20, 800, 32);
+		maxEnergy = 100;
 	}
 
 	@Override

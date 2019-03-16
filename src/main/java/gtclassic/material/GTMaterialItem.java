@@ -101,9 +101,9 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
 				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Niobium, 1), false);
 				if (world.rand.nextInt(4) < 1) {
-					player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Tantalum, 1), false);
-				} else {
 					player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Manganese, 1), false);
+				} else {
+					player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Tantalum, 1), false);
 				}
 				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
 						1.0F);

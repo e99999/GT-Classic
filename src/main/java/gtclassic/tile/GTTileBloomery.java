@@ -32,7 +32,6 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
-import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -77,17 +76,24 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		addGuiFields("progress", "recipeOperation");
 		RECIPE_LIST.addRecipe("recipe0", bloom, 4, 400,
 				new RecipeInputItemStack(GTMaterialGen.get(Items.IRON_INGOT, 3)),
-				new RecipeInputItemStack(GTMaterialGen.getIc2(Ic2Items.charcoalBlock, 1)));
+				new RecipeInputOreDict("blockCharcoal", 1));
 		RECIPE_LIST.addRecipe("recipe1", bloom, 4, 400,
 				new RecipeInputItemStack(GTMaterialGen.get(Items.IRON_INGOT, 3)),
-				new RecipeInputItemStack(GTMaterialGen.get(Blocks.COAL_BLOCK)));
+				new RecipeInputOreDict("blockCoal", 1));
 		RECIPE_LIST.addRecipe("recipe2", bloom, 4, 400, new RecipeInputItemStack(GTMaterialGen.get(Blocks.IRON_ORE, 1)),
 				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Calcite, 1)),
-				new RecipeInputItemStack(GTMaterialGen.get(Blocks.COAL_BLOCK)));
+				new RecipeInputOreDict("blockCoal", 1));
 		RECIPE_LIST.addRecipe("recipe3", bloom, 4, 400, new RecipeInputItemStack(GTMaterialGen.get(Blocks.IRON_ORE, 1)),
 				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Calcite, 1)),
-				new RecipeInputItemStack(GTMaterialGen.getIc2(Ic2Items.charcoalBlock, 1)));
-		RECIPE_LIST.addRecipe("recipe4", Ic2States.charcoalBlock, 1, 800, new RecipeInputOreDict("logWood", 10));
+				new RecipeInputOreDict("blockCharcoal", 1));
+		RECIPE_LIST.addRecipe("recipe6", bloom, 4, 400,
+				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Pyrite, 2)),
+				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Calcite, 2)),
+				new RecipeInputOreDict("blockCharcoal", 1));
+		RECIPE_LIST.addRecipe("recipe7", bloom, 4, 400,
+				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Pyrite, 2)),
+				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Calcite, 2)),
+				new RecipeInputOreDict("blockCoal", 1));
 	}
 
 	@Override

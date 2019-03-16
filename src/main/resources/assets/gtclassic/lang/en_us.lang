@@ -167,9 +167,10 @@ tile.gtclassic.structure_casing.name=Structure Casing
 tile.gtclassic.crystal_casing.name=Energium Casing
 tile.gtclassic.grate_casing.name=Grate Casing
 tile.gtclassic.heat_casing.name=Heat Casing
-tile.gtclassic.constantan_casing.name=Constantan Coil
-tile.gtclassic.graphite_casing.name=Graphite Coil
-tile.gtclassic.nichrome_casing.name=Nichrome Coil
+tile.gtclassic.coppercoil_casing.name=Copper Coil
+tile.gtclassic.constantancoil_casing.name=Constantan Coil
+tile.gtclassic.graphitecoil_casing.name=Graphite Coil
+tile.gtclassic.nichromecoil_casing.name=Nichrome Coil
 
 #tiles
 tile.gtclassic.machine_bloomery.name=Bloomery

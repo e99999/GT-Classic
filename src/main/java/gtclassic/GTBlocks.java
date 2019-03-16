@@ -86,9 +86,10 @@ public class GTBlocks {
 	public static final GTBlockCasing plasticCasingBlock = registerBlock(new GTBlockCasing("Plastic", 6));
 	public static final GTBlockCasing structureCasingBlock = registerBlock(new GTBlockCasing("Structure", 7));
 
-	public static final GTBlockCasing constantanCoilBlock = registerBlock(new GTBlockCasing("Constantan", 13));
-	public static final GTBlockCasing graphiteCoilBlock = registerBlock(new GTBlockCasing("Graphite", 14));
-	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("Nichrome", 15));
+	public static final GTBlockCasing copperCoilBlock = registerBlock(new GTBlockCasing("CopperCoil", 12));
+	public static final GTBlockCasing constantanCoilBlock = registerBlock(new GTBlockCasing("ConstantanCoil", 13));
+	public static final GTBlockCasing graphiteCoilBlock = registerBlock(new GTBlockCasing("GraphiteCoil", 14));
+	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("NichromeCoil", 15));
 
 	public static final GTBlockTileBasic bloomery = registerBlock(new GTBlockTileBasic("machine_bloomery"));
 	public static final GTBlockTileBasic blastFurnace = registerBlock(new GTBlockTileBasic("machine_blastfurnace_lv"));
