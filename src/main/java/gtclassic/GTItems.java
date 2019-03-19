@@ -44,6 +44,7 @@ public class GTItems {
 	public static final GTItemComponent moldStick = createItem(new GTItemComponent("mold_stick", 5, 1, true));
 	public static final GTItemComponent moldCable = createItem(new GTItemComponent("mold_cable", 6, 1, true));
 	public static final GTItemComponent moldTube = createItem(new GTItemComponent("mold_tube", 7, 1, true));
+	public static final GTItemComponent moldGear = createItem(new GTItemComponent("mold_gear", 8, 1, true));
 
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
 	public static final GTItemCraftingTablet craftingTablet = createItem(new GTItemCraftingTablet());

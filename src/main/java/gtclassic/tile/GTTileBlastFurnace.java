@@ -91,13 +91,14 @@ public class GTTileBlastFurnace extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public int[] getInputSlots() {
-		int[] input = { slotInput0, slotInput1, slotInput2 };
-		return input;
+		return new int[] { slotInput0, slotInput1, slotInput2 };
 	}
 
 	@Override
 	public int[][] getRecipeMutations() {
-		return new int[][] { { slotInput0, slotInput1, slotInput2 }, { slotInput0, slotInput2, slotInput1 }, };
+		return new int[][] { { slotInput0, slotInput1, slotInput2 }, { slotInput0, slotInput2, slotInput1 },
+				{ slotInput2, slotInput1, slotInput0 }, { slotInput1, slotInput2, slotInput0 },
+				{ slotInput1, slotInput0, slotInput2 }, { slotInput2, slotInput0, slotInput1 } };
 	}
 
 	@Override
@@ -113,8 +114,7 @@ public class GTTileBlastFurnace extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public int[] getOutputSlots() {
-		int[] output = { slotOutput0, slotOutput1, slotOutput2 };
-		return output;
+		return new int[] { slotOutput0, slotOutput1, slotOutput2 };
 	}
 
 	@Override
@@ -190,7 +190,7 @@ public class GTTileBlastFurnace extends GTTileBaseMultiBlockMachine {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.back(1))) {// peak
+		if (!isAir(dir.back(1))) {// peak
 			return false;
 		}
 		for (int i = 0; i < 5; i++) {
@@ -209,7 +209,7 @@ public class GTTileBlastFurnace extends GTTileBaseMultiBlockMachine {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.forward(1))) {// peak again
+		if (!isAir(dir.forward(1))) {// peak again
 			return false;
 		}
 		if (!isMachineCasing(dir.left(1))) {

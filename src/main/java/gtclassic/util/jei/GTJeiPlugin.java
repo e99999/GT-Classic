@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
+import gtclassic.container.GTContainerWorkbench;
 import gtclassic.gui.GTGuiMachine;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
@@ -11,7 +12,6 @@ import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileArcFurnace;
 import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBlastFurnace;
-import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
@@ -26,6 +26,8 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
+import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
+import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.item.ItemStack;
 
 @JEIPlugin
@@ -89,11 +91,9 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.blastFurnace), "blastfurnace");
 			registry.addRecipeClickArea(GTGuiMachine.GTBlastFurnaceGui.class, 58, 28, 20, 11, "blastfurnace");
 
-			// Bloomery
-			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "bloomery");
-			registry.addRecipes(GTTileBloomery.JEI_RECIPE_LIST.getRecipeList(), "bloomery");
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.bloomery), "bloomery");
-			registry.addRecipeClickArea(GTGuiMachine.GTBloomeryGui.class, 82, 20, 20, 11, "bloomery");
+			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
+			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class,
+					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
 		}
 	}
 
@@ -115,8 +115,5 @@ public class GTJeiPlugin implements IModPlugin {
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
 				"blastfurnace", GTBlocks.blastFurnace));
-
-		registry.addRecipeCategories(
-				new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "bloomery", GTBlocks.bloomery));
 	}
 }

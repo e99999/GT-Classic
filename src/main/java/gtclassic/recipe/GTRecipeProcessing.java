@@ -4,16 +4,23 @@ import java.util.Iterator;
 import java.util.Map;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTConfig;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileBlastFurnace;
+import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileFusionComputer;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
+import ic2.core.item.recipe.entry.RecipeInputCombined;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -76,18 +83,28 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustSmallGraphite", 4, GT.getIngot(M.Graphite, 1), 0.1F);
 
 		/*
-		 * Just a few test fusion recipes
+		 * Bloomery Recipes
+		 * 
 		 */
-		GTTileFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Lithium, 1),
-				GT.getIc2(Ic2Items.iridiumOre, 1));
-		GTTileFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Berilium, 1), GT.getDust(M.Platinum, 1));
+		IBlockState bloom = GTBlocks.bloomBlock.getDefaultState();
+		IRecipeInput fuel = new RecipeInputCombined(1,
+				new IRecipeInput[] { new RecipeInputOreDict("blockCoal"), new RecipeInputOreDict("blockCharcoal"),
+						new RecipeInputItemStack(new ItemStack(Items.COAL, 9)),
+						new RecipeInputItemStack(new ItemStack(Items.COAL, 9, 1)) });
+
+		GTTileBloomery.RECIPE_LIST.addRecipe("ingotIron", bloom, 4, 400, new RecipeInputOreDict("ingotIron", 3), fuel);
+		GTTileBloomery.RECIPE_LIST.addRecipe("dustIron", bloom, 4, 400, new RecipeInputOreDict("dustIron", 3), fuel);
+		GTTileBloomery.RECIPE_LIST.addRecipe("oreIron", bloom, 4, 400, new RecipeInputOreDict("oreIron", 1),
+				new RecipeInputOreDict("dustCalcite", 1), fuel);
+		GTTileBloomery.RECIPE_LIST.addRecipe("dustPyrite", bloom, 4, 400, new RecipeInputOreDict("dustPyrite", 2),
+				new RecipeInputOreDict("dustCalcite", 2), fuel);
+		GTTileBloomery.RECIPE_LIST.addRecipe("dustMagnetite", bloom, 4, 400, new RecipeInputOreDict("dustMagnetite", 2),
+				new RecipeInputOreDict("dustCalcite", 2), fuel);
 
 		/*
-		 * Test recipes for new machines
+		 * GT Blast Furnace recipes
 		 */
 
-		// GTTileArcFurnace.addRecipe("ingotIron", 1, "dustCoal", 2,
-		// GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
 		GTTileBlastFurnace.addRecipe("ingotIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1),
 				GT.getDust(M.DarkAshes, 2));
 		GTTileBlastFurnace.addRecipe("ingotRefinedIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1),
@@ -102,6 +119,18 @@ public class GTRecipeProcessing {
 		GTTileBlastFurnace.addRecipe("dustSmallTantalum", 4, GT.getIngot(M.Tantalum, 1));
 		GTTileBlastFurnace.addRecipe("dustTungsten", 1, GT.getIngot(M.Tungsten, 1));
 		GTTileBlastFurnace.addRecipe("dustSmallTungsten", 4, GT.getIngot(M.Tungsten, 1));
+
+		if (GTConfig.harderAluminium) {
+			GTTileBlastFurnace.addRecipe("dustAluminium", 1, GT.getIngot(M.Aluminium, 1));
+			GTTileBlastFurnace.addRecipe("dustSmallAluminium", 4, GT.getIngot(M.Aluminium, 1));
+		}
+
+		/*
+		 * Just a few test fusion recipes
+		 */
+		GTTileFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Lithium, 1),
+				GT.getIc2(Ic2Items.iridiumOre, 1));
+		GTTileFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Berilium, 1), GT.getDust(M.Platinum, 1));
 
 	}
 

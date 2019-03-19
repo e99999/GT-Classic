@@ -7,10 +7,14 @@ import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
+import ic2.api.recipe.IRecipeInput;
+import ic2.core.item.recipe.entry.RecipeInputCombined;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.item.recipe.upgrades.EnchantmentModifier;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
+import net.minecraft.item.ItemStack;
 
 public class GTRecipeShaped {
 
@@ -18,13 +22,22 @@ public class GTRecipeShaped {
 	static GTMaterialGen GT;
 	static GTMaterial M;
 
+	static String hammer = "craftingToolForgeHammer";
+	static String file = "craftingToolFile";
+	static String wrench = "craftingToolWrench";
+
 	public static void recipeShaped1() {
 		/*
 		 * Recipes for tools and items
 		 */
 
+		IRecipeInput plateAnyIron = new RecipeInputCombined(1, new IRecipeInput[] { new RecipeInputOreDict("plateIron"),
+				new RecipeInputOreDict("plateRefinedIron"), new RecipeInputOreDict("plateSteel") });
+
+		recipes.addRecipe(GT.get(GTItems.ironKnife, 1), new Object[] { "PPS", 'P', "plateIron", 'S', "stickWood" });
+
 		recipes.addRecipe(GT.get(GTItems.electroMagnet, 1), new Object[] { "M M", "WMW", "IBI", 'M', Ic2Items.magnet,
-				'B', Ic2Items.battery, 'I', GTValues.plateElectric, 'W', Ic2Items.copperCable });
+				'B', Ic2Items.battery, 'I', plateAnyIron, 'W', Ic2Items.copperCable });
 
 		recipes.addRecipe(GT.get(GTItems.rockCutter, 1),
 				new Object[] { "DI ", "DI ", "DCB",
@@ -33,17 +46,14 @@ public class GTRecipeShaped {
 
 		recipes.addRecipe(GT.get(GTItems.glassTube, 32), new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
 
-		recipes.addRecipe(GT.get(GTBlocks.smallLapotron, 1),
-				new Object[] { "LLL", "LPL", "LLL", 'L', GTBlocks.tinyLapotron, 'P', "plateIridium" });
-
 		recipes.addRecipe(GT.get(GTBlocks.smallLithium, 1), new Object[] { " G ", "ALA", "ALA", 'G',
 				Ic2Items.doubleInsulatedGoldCable.copy(), 'A', "plateAluminium", 'L', GT.getChemical(M.Lithium, 1) });
 
-		recipes.addRecipe(GT.get(GTItems.destructoPack, 1), new Object[] { "BIB", "ICI", "BIB", 'B', GTValues.lava, 'C',
-				"circuitBasic", 'I', GTValues.plateElectric });
+		recipes.addRecipe(GT.get(GTItems.destructoPack, 1),
+				new Object[] { "BIB", "ICI", "BIB", 'B', GTValues.lava, 'C', "circuitBasic", 'I', plateAnyIron });
 
-		recipes.addRecipe(GT.get(GTItems.craftingTablet, 1), new Object[] { "BIB", "ICI", "BIB", 'B', "workbench", 'C',
-				"circuitBasic", 'I', GTValues.plateElectric });
+		recipes.addRecipe(GT.get(GTItems.craftingTablet, 1),
+				new Object[] { "BIB", "ICI", "BIB", 'B', "workbench", 'C', "circuitBasic", 'I', plateAnyIron });
 
 		recipes.addRecipe(GT.get(GTItems.teslaStaff, 1), new Object[] { " SL", " PS", "P  ", 'L',
 				GTBlocks.smallLapotron, 'S', GTBlocks.superCasingBlock, 'P', "stickIridium" });
@@ -64,6 +74,18 @@ public class GTRecipeShaped {
 		 * "PWP", "EEE", 'C', GTItems.heatStorageTriple, 'E', GTItems.circuitSapphire,
 		 * 'W', "dustTungsten", 'P', "plateIridium" });
 		 */
+
+		// mold recipes
+		ItemStack mold = GT.get(GTItems.moldBlank, 1);
+		recipes.addRecipe(mold, new Object[] { "H", "P", "P", 'H', hammer, 'P', "plateSteel" });
+		recipes.addRecipe(GT.get(GTItems.moldBlock, 1), new Object[] { "F", "P", " ", 'F', file, 'P', mold });
+		recipes.addRecipe(GT.get(GTItems.moldCable, 1), new Object[] { " F", "P ", "  ", 'F', file, 'P', mold });
+		recipes.addRecipe(GT.get(GTItems.moldIngot, 1), new Object[] { "  ", "PF", "  ", 'F', file, 'P', mold });
+		recipes.addRecipe(GT.get(GTItems.moldNugget, 1), new Object[] { "  ", "P ", " F", 'F', file, 'P', mold });
+		recipes.addRecipe(GT.get(GTItems.moldPlate, 1), new Object[] { " ", "P", "F", 'F', file, 'P', mold });
+		recipes.addRecipe(GT.get(GTItems.moldStick, 1), new Object[] { "  ", " P", "F ", 'F', file, 'P', mold });
+		recipes.addRecipe(GT.get(GTItems.moldTube, 1), new Object[] { "  ", "FP", "  ", 'F', file, 'P', mold });
+		recipes.addRecipe(GT.get(GTItems.moldGear, 1), new Object[] { "F ", " P", "  ", 'F', file, 'P', mold });
 
 	}
 
@@ -97,12 +119,21 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.nichromeCoilBlock),
 				new Object[] { "XXX", "XXX", "XXX", 'X', "stickNichrome" });
 
+		recipes.addRecipe(GT.get(Blocks.TORCH, 3), new Object[] { "R", "I", 'I', "stickWood", 'R', "dustSulfur" });
+		recipes.addRecipe(GT.get(Blocks.TORCH, 4), new Object[] { "R", "I", 'I', "stickWood", 'R', "dustCoal" });
+		recipes.addRecipe(GT.get(Blocks.TORCH, 4), new Object[] { "R", "I", 'I', "stickWood", 'R', "dustCharcoal" });
+
+		IRecipeInput ingotMetal = new RecipeInputCombined(1,
+				new IRecipeInput[] { new RecipeInputOreDict("ingotIron"), new RecipeInputOreDict("ingotRefinedIron"),
+						new RecipeInputOreDict("ingotAluminium"), new RecipeInputOreDict("ingotAluminum"),
+						new RecipeInputOreDict("ingotBronze"), new RecipeInputOreDict("ingotBrass"),
+						new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotSteel") });
+
 		recipes.addRecipe(GT.get(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood", 'C',
-				"cobblestone", 'I', GTValues.ingotElectric, 'R', "dustRedstone" });
+				"cobblestone", 'I', ingotMetal, 'R', "dustRedstone" });
 
 		recipes.addRecipe(GT.get(GTBlocks.slagcreteSand),
 				new Object[] { "XXX", "XSX", "XXX", 'X', "gravel", 'S', GTBlocks.slagSand });
-
 	}
 
 	public static void recipeShaped3() {
@@ -112,6 +143,12 @@ public class GTRecipeShaped {
 
 		recipes.addRecipe(GT.get(GTBlocks.bloomery),
 				new Object[] { "XXX", "XFX", "XXX", 'X', "plateBronze", 'F', Blocks.FURNACE });
+
+		recipes.addRecipe(GT.get(GTBlocks.mortar),
+				new Object[] { " X ", "CXC", "CCC", 'X', "ingotRefinedIron", 'C', Blocks.HARDENED_CLAY });
+
+		recipes.addRecipe(GT.get(GTBlocks.blastFurnace, 1), new Object[] { "PCP", "PFP", "PCP", 'P', "plateRefinedIron",
+				'B', Ic2Items.battery.copy(), 'F', Ic2Items.ironFurnace.copy(), 'C', GTBlocks.copperCoilBlock });
 
 		// recipes.addRecipe(GT.get(GTBlocks.fusionComputer, 1),
 		// new Object[] { "EPE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S',
@@ -124,18 +161,18 @@ public class GTRecipeShaped {
 		// "stickTungstensteel" });
 
 		recipes.addRecipe(GT.get(GTBlocks.industrialCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
-				Ic2Items.extractor, 'R', "plateSteel", 'A', "casingMachineSteel", 'C', "circuitBasic" });
+				Ic2Items.extractor, 'R', "gearSteel", 'A', "stickSteel", 'C', "circuitBasic" });
 
 		// recipes.addRecipe(GT.get(GTBlocks.computerCube, 1),
 		// new Object[] { "RGD", "GMG", "DGR", 'D', GTItems.circuitDiamond, 'R',
 		// GTItems.circuitSapphire, 'G',
 		// "blockGlass", 'M', "casingMachineTitanium" });
 
-		recipes.addRecipe(GT.get(GTBlocks.basicEnergyStorage),
-				new Object[] { "OOO", "OCO", "OOO", 'O', GTBlocks.smallLapotron, 'C', GTBlocks.computerCube });
-
 		recipes.addRecipe(GT.get(GTBlocks.alloySmelter), new Object[] { "PBP", "CFC", "PBP", 'P', "plateInvar", 'B',
 				GTBlocks.constantanCoilBlock, 'C', "circuitBasic", 'F', Ic2Items.electroFurnace.copy() });
+
+		recipes.addRecipe(GT.get(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D', Blocks.OBSERVER,
+				'C', "circuitBasic", 'c', "casingMachineRefinedIron" });
 
 		/*
 		 * Below many recipes are disabled because they arent finished!
@@ -149,9 +186,6 @@ public class GTRecipeShaped {
 			// Ic2Items.teleporter, 'Q', GTBlocks.digitalChest, 'E', GTItems.craftingTablet,
 			// 'D',
 			// GTItems.circuitDiamond, 'B', GTBlocks.tinyEnergium });
-
-			recipes.addRecipe(GT.get(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
-					Blocks.REDSTONE_TORCH, 'C', "circuitAdvanced", 'c', "casingRefinedIron" });
 
 			// recipes.addRecipe(GT.get(GTBlocks.matterFabricator, 1),
 			// new Object[] { "ETE", "HLH", "ETE", 'E', GTItems.circuitSapphire, 'T',
@@ -182,6 +216,9 @@ public class GTRecipeShaped {
 			// "SSS", "HEH", 'E',
 			// GTItems.circuitRuby, 'S', GTBlocks.superCasingBlock, 'H',
 			// GTBlocks.smallEnergium });
+
+			recipes.addRecipe(GT.get(GTBlocks.basicEnergyStorage),
+					new Object[] { "OOO", "OCO", "OOO", 'O', GTBlocks.smallLapotron, 'C', GTBlocks.computerCube });
 
 			recipes.addRecipe(GT.get(GTBlocks.quantumEnergyStorage, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
 					"plateIridium", 'H', GTBlocks.basicEnergyStorage, 'E', Blocks.ENDER_CHEST });

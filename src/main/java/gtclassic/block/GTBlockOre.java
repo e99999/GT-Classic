@@ -22,7 +22,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -62,116 +61,36 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
 
-		// Nether Ore Drops
-		if (this == GTBlocks.cinnabarOre) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.Cinnabar, 2));
-			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(new ItemStack(Items.REDSTONE, 1));
-			}
-			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(GTMaterialGen.getSmallDust(GTMaterial.Sulfur, 1));
-			}
-
+		if (this == GTBlocks.iridiumOre) {
+			drops.add(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1));
+			return drops;
 		}
-
-		if (this == GTBlocks.tantaliteOre) {
-			drops.add(new ItemStack(GTBlocks.tantaliteOre, 1));
-		}
-
-		if (this == GTBlocks.pyriteOre) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.Pyrite, 2));
-			if (RANDOM.nextFloat() < 0.125f) {
-				drops.add(GTMaterialGen.getSmallDust(GTMaterial.Sulfur, 1));
-			}
-		}
-
-		if (this == GTBlocks.sphaleriteOre) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.Sphalerite, 1));
-			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(GTMaterialGen.getDust(GTMaterial.Zinc, 1));
-			}
-			if (RANDOM.nextFloat() < 0.125f) {
-				drops.add(GTMaterialGen.getGem(GTMaterial.GarnetYellow, 1));
-			}
-			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(GTMaterialGen.getSmallDust(GTMaterial.Sulfur, 1));
-			}
-		}
-
-		// End Ore Drops
-		if (this == GTBlocks.tungstateOre) {
-			drops.add(new ItemStack(GTBlocks.tungstateOre, 1));
-		}
-
-		if (this == GTBlocks.sheldoniteOre) {
-			drops.add(new ItemStack(GTBlocks.sheldoniteOre, 1));
-		}
-
-		if (this == GTBlocks.sodaliteOre) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.Sodalite, 6));
-			if (RANDOM.nextFloat() < 0.25f) {
-				drops.add(GTMaterialGen.getDust(GTMaterial.Aluminium, 1));
-			}
-		}
-
 		if (this == GTBlocks.olivineOre) {
 			drops.add(GTMaterialGen.getGem(GTMaterial.Olivine, 1));
+			return drops;
 		}
-
-		// Overworld/Modded Dim Ores
-		if (this == GTBlocks.galenaOre) {
-			drops.add(new ItemStack(GTBlocks.galenaOre, 1));
-		}
-
-		if (this == GTBlocks.iridiumOre) {
-			drops.add(Ic2Items.iridiumOre);
-		}
-
-		if (this == GTBlocks.rubyOre) {
-			if (RANDOM.nextFloat() > 0.10f) {
-				drops.add(GTMaterialGen.getGem(GTMaterial.Ruby, 1));
-			} else {
-				drops.add(GTMaterialGen.getGem(GTMaterial.GarnetRed, 1));
-			}
-		}
-
 		if (this == GTBlocks.sapphireOre) {
-			if (RANDOM.nextFloat() > 0.10f) {
-				drops.add(GTMaterialGen.getGem(GTMaterial.Sapphire, 1));
-			} else {
-				drops.add(GTMaterialGen.getGem(GTMaterial.SapphireGreen, 1));
-			}
+			drops.add(GTMaterialGen.getGem(GTMaterial.Sapphire, 1));
+			return drops;
 		}
-
-		if (this == GTBlocks.bauxiteOre) {
-			drops.add(new ItemStack(GTBlocks.bauxiteOre, 1));
+		if (this == GTBlocks.rubyOre) {
+			drops.add(GTMaterialGen.getGem(GTMaterial.Ruby, 1));
+			return drops;
+		} else {
+			drops.add(GTMaterialGen.get(this));
+			return drops;
 		}
-
-		if (this == GTBlocks.calciteOre) {
-			drops.add(new ItemStack(GTBlocks.calciteOre, 1));
-		}
-		return drops;
 	}
 
 	@Override
 	public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World) world).rand : new Random();
 		int xp = 0;
-
-		if (this == GTBlocks.sphaleriteOre) {
-			xp = MathHelper.getInt(rand, 0, 2);
-		} else if (this == GTBlocks.pyriteOre) {
-			xp = MathHelper.getInt(rand, 0, 2);
-		} else if (this == GTBlocks.iridiumOre) {
+		if (this == GTBlocks.iridiumOre) {
 			xp = MathHelper.getInt(rand, 3, 7);
-		} else if (this == GTBlocks.rubyOre) {
+		}
+		if (this == GTBlocks.rubyOre || this == GTBlocks.sapphireOre || this == GTBlocks.olivineOre) {
 			xp = MathHelper.getInt(rand, 2, 5);
-		} else if (this == GTBlocks.sapphireOre) {
-			xp = MathHelper.getInt(rand, 2, 5);
-		} else if (this == GTBlocks.olivineOre) {
-			xp = MathHelper.getInt(rand, 2, 5);
-		} else if (this == GTBlocks.sodaliteOre) {
-			xp = MathHelper.getInt(rand, 1, 3);
 		}
 		return xp;
 	}

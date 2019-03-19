@@ -107,8 +107,7 @@ public class GTTileFusionComputer extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public int[] getOutputSlots() {
-		int[] output = { slotOutput };
-		return output;
+		return new int[] { slotOutput };
 	}
 
 	@Override

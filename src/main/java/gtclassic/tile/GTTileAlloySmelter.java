@@ -90,8 +90,7 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public int[] getInputSlots() {
-		int[] input = { slotInput0, slotInput1 };
-		return input;
+		return new int[] { slotInput0, slotInput1 };
 	}
 
 	@Override
@@ -108,17 +107,12 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public boolean isRecipeSlot(int slot) {
-		if (slot == slotFuel) {
-			return false;
-		} else {
-			return true;
-		}
+		return slot != slotFuel;
 	}
 
 	@Override
 	public int[] getOutputSlots() {
-		int[] output = { slotOutput };
-		return output;
+		return new int[] { slotOutput };
 	}
 
 	@Override

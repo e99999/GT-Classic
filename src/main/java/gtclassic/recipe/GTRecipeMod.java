@@ -2,7 +2,6 @@ package gtclassic.recipe;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.registry.Ic2Items;
@@ -30,10 +29,10 @@ public class GTRecipeMod {
 				Ic2Items.reactorReflector, 'B', GT.getChemical(M.Berilium, 1) });
 
 		recipes.addRecipe(GT.getIc2(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G', "blockGlass", 'I',
-				GTValues.ingotElectric, 'H', GT.getChemical(M.Helium, 1), 'C', Ic2Items.insulatedCopperCable.copy() });
+				"ingotSilver", 'H', GT.getChemical(M.Helium, 1), 'C', Ic2Items.insulatedCopperCable.copy() });
 
 		recipes.addRecipe(GT.getIc2(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G', "blockGlass", 'I',
-				GTValues.ingotElectric, 'H', GT.getChemical(M.Mercury, 1), 'C', Ic2Items.insulatedCopperCable.copy() });
+				"ingotSilver", 'H', GT.getChemical(M.Mercury, 1), 'C', Ic2Items.insulatedCopperCable.copy() });
 
 		recipes.addRecipe(GT.getIc2(Ic2Items.mixedMetalIngot, 3),
 				new Object[] { "III", "BBB", "TTT", 'I', "plateSteel", 'B', "plateBronze", 'T', "plateAluminium" });

@@ -30,7 +30,6 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 
 	private GTMaterial material;
 	private GTMaterialFlag flag;
-	public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 3);
 
 	public GTMaterialItem(GTMaterial material, GTMaterialFlag flag) {
 		this.material = material;
@@ -88,79 +87,35 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing,
+	public EnumActionResult onItemUse(EntityPlayer e, World w, BlockPos p, EnumHand h, EnumFacing facing,
 			float hitX, float hitY, float hitZ) {
-		IBlockState state = world.getBlockState(pos);
-		// TODO refactor everything below into a cleaner method to add the drops from
-		// materials
-		if (this.flag == GTMaterialFlag.DUST && state.getBlock() == Blocks.CAULDRON
-				&& state.getValue(LEVEL).intValue() > 0) {
-			if (this.material == GTMaterial.Tantalite) {
-				player.setHeldItem(hand,
-						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
-				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Niobium, 1), false);
-				if (world.rand.nextInt(4) < 1) {
-					player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Manganese, 1), false);
-				} else {
-					player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Tantalum, 1), false);
-				}
-				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
-				return EnumActionResult.SUCCESS;
-			}
-			if (this.material == GTMaterial.Sphalerite) {
-				player.setHeldItem(hand,
-						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
-				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Zinc, 1), false);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Germanium, 1), false);
-				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
-				return EnumActionResult.SUCCESS;
-			}
-			if (this.material == GTMaterial.Cinnabar) {
-				player.setHeldItem(hand,
-						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
-				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Redstone, 1), false);
-				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
-				return EnumActionResult.SUCCESS;
-			}
-			if (this.material == GTMaterial.Galena) {
-				player.setHeldItem(hand,
-						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
-				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Lead, 1), false);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Silver, 1), false);
-				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
-				return EnumActionResult.SUCCESS;
-			}
-			if (this.material == GTMaterial.Tungstate) {
-				player.setHeldItem(hand,
-						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
-				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Tungsten, 1), false);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Manganese, 1), false);
-				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
-				return EnumActionResult.SUCCESS;
-			}
-			if (this.material == GTMaterial.Sheldonite) {
-				player.setHeldItem(hand,
-						new ItemStack(player.getHeldItem(hand).getItem(), player.getHeldItem(hand).getCount() - 1));
-				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
-				player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Platinum, 2), false);
-				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
-				return EnumActionResult.SUCCESS;
-			}
-
-		}
-
+		washDust(e, w, p, h, GTMaterial.Tantalite, GTMaterial.Niobium, GTMaterial.Tantalite);
+		washDust(e, w, p, h, GTMaterial.Sphalerite, GTMaterial.Zinc, GTMaterial.Germanium);
+		washDust(e, w, p, h, GTMaterial.Cinnabar, GTMaterial.Redstone, GTMaterial.Redstone);
+		washDust(e, w, p, h, GTMaterial.Sheldonite, GTMaterial.Platinum, GTMaterial.Platinum);
+		washDust(e, w, p, h, GTMaterial.Tungstate, GTMaterial.Tungsten, GTMaterial.Manganese);
+		washDust(e, w, p, h, GTMaterial.Galena, GTMaterial.Lead, GTMaterial.Silver);
 		return EnumActionResult.PASS;
 	}
 
+	/**
+	 * Creates the behavior of washing dust if the input material matches
+	 */
+	public EnumActionResult washDust(EntityPlayer player, World world, BlockPos pos, EnumHand hand, GTMaterial input,
+			GTMaterial... outputs) {
+		IBlockState state = world.getBlockState(pos);
+		PropertyInteger level = PropertyInteger.create("level", 0, 3);
+		if (this.material == input && this.flag == GTMaterialFlag.DUST) {
+			if (state.getBlock() == Blocks.CAULDRON && state.getValue(level).intValue() > 0) {
+				player.getHeldItem(hand).shrink(1);
+				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(level).intValue() - 1);
+				for (GTMaterial mat : outputs) {
+					player.dropItem(GTMaterialGen.getSmallDust(mat, 1), false);
+				}
+				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
+						1.0F);
+			}
+		}
+		return EnumActionResult.SUCCESS;
+	}
 }

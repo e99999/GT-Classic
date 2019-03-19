@@ -90,8 +90,7 @@ public class GTTileArcFurnace extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public int[] getInputSlots() {
-		int[] input = { slotInput0, slotInput1, slotInput2 };
-		return input;
+		return new int[] { slotInput0, slotInput1, slotInput2 };
 	}
 
 	@Override
@@ -112,8 +111,7 @@ public class GTTileArcFurnace extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public int[] getOutputSlots() {
-		int[] output = { slotOutput0, slotOutput1, slotOutput2 };
-		return output;
+		return new int[] { slotOutput0, slotOutput1, slotOutput2 };
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.util.Collection;
 import java.util.HashMap;
 
+import gtclassic.GTConfig;
+
 public class GTMaterial {
 
 	static GTMaterialFlag PARTICLE = GTMaterialFlag.PARTICLE;
@@ -53,8 +55,8 @@ public class GTMaterial {
 
 	/** Material Instances **/
 	public static GTMaterial Almandine = new GTMaterial("Almandine", 1.0F, 0, 1, new Color(255, 0, 0), false, DUST_ALL);
-	public static GTMaterial Aluminium = new GTMaterial("Aluminium", 10.0F, 128, 2, new Color(128, 200, 240), true,
-			METAL_ALL);
+	public static GTMaterial Aluminium = new GTMaterial("Aluminium", 10.0F, 128, 2, new Color(128, 200, 240),
+			!GTConfig.harderAluminium, METAL_ALL);
 	public static GTMaterial Andradite = new GTMaterial("Andradite", 1.0F, 0, 1, new Color(150, 120, 0), false,
 			DUST_ALL);
 	public static GTMaterial Ashes = new GTMaterial("Ashes", 1.0F, 0, 1, new Color(150, 150, 150), false, DUST_ALL);
@@ -112,7 +114,7 @@ public class GTMaterial {
 	public static GTMaterial Lazurite = new GTMaterial("Lazurite", 1.0F, 0, 1, new Color(100, 120, 255), false,
 			DUST_ALL);
 	public static GTMaterial Lead = new GTMaterial("Lead", 8.0F, 64, 1, new Color(140, 100, 140), true, METAL_ALL);
-	public static GTMaterial Maganlium = new GTMaterial("Magnalium", 6.0F, 256, 2, new Color(200, 190, 255), true,
+	public static GTMaterial Maganlium = new GTMaterial("Magnalium", 6.0F, 256, 2, new Color(200, 190, 255), false,
 			INGOT, NUGGET, PLATE);
 	public static GTMaterial Magnesium = new GTMaterial("Magnesium", 1.0F, 0, 1, new Color(255, 200, 200), false,
 			DUST_ALL);

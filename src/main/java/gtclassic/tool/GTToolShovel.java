@@ -22,13 +22,21 @@ public class GTToolShovel extends ItemSpade
 		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel, ICustomItemCameraTransform {
 
 	ToolMaterial tmaterial;
+	GTMaterial material;
 
 	public GTToolShovel(ToolMaterial tmaterial) {
 		super(tmaterial);
 		this.tmaterial = tmaterial;
+		this.material = GTToolMaterial.getGTMaterial(tmaterial);
 		setRegistryName(tmaterial.toString().toLowerCase() + "_shovel");
 		setUnlocalizedName(GTMod.MODID + "." + tmaterial.toString().toLowerCase() + "_shovel");
 		setCreativeTab(GTMod.creativeTabGT);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		return (this.material == GTMaterial.Flint) ? false : super.hasEffect(stack);
 	}
 
 	@Override

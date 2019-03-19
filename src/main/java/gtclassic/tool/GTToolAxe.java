@@ -39,6 +39,12 @@ public class GTToolAxe extends ItemAxe
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		return (this.material == GTMaterial.Flint) ? false : super.hasEffect(stack);
+	}
+
+	@Override
 	public int getLayers(ItemStack arg0) {
 		return 2;
 	}

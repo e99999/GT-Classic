@@ -22,13 +22,21 @@ public class GTToolSword extends ItemSword
 		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel, ICustomItemCameraTransform {
 
 	ToolMaterial tmaterial;
+	GTMaterial material;
 
 	public GTToolSword(ToolMaterial tmaterial) {
 		super(tmaterial);
 		this.tmaterial = tmaterial;
+		this.material = GTToolMaterial.getGTMaterial(tmaterial);
 		setRegistryName(tmaterial.toString().toLowerCase() + "_sword");
 		setUnlocalizedName(GTMod.MODID + "." + tmaterial.toString().toLowerCase() + "_sword");
 		setCreativeTab(GTMod.creativeTabGT);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		return (this.material == GTMaterial.Flint) ? false : super.hasEffect(stack);
 	}
 
 	@Override

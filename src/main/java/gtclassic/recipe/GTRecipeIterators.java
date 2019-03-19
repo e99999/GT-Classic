@@ -1,5 +1,6 @@
 package gtclassic.recipe;
 
+import gtclassic.GTConfig;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
@@ -100,8 +101,13 @@ public class GTRecipeIterators {
 
 			if (mat.hasFlag(GTMaterialFlag.PLATE) && (mat != M.Silicon)) {
 				// Plate crafting recipe
-				recipes.addRecipe(GT.getPlate(mat, 1),
-						new Object[] { "H", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
+				if (GTConfig.harderPlates) {
+					recipes.addRecipe(GT.getPlate(mat, 1),
+							new Object[] { "H", "X", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
+				} else {
+					recipes.addRecipe(GT.getPlate(mat, 1),
+							new Object[] { "H", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
+				}
 
 				// If a dust is present create a maceration recipe
 				if (mat.hasFlag(GTMaterialFlag.DUST)) {
@@ -109,9 +115,19 @@ public class GTRecipeIterators {
 				}
 			}
 
+			if (mat.hasFlag(GTMaterialFlag.GEAR)) {
+				// Casing crafting recipe
+				recipes.addRecipe(GT.getGear(mat, 1),
+						new Object[] { " X ", "XWX", " X ", 'X', plate, 'W', "craftingToolWrench" });
+			}
+
 			if (mat.hasFlag(GTMaterialFlag.STICK)) {
 				// Stick crafting recipe
-				recipes.addShapelessRecipe(GT.getStick(mat, 2), new Object[] { "craftingToolFile", ingot });
+				if (GTConfig.harderRods) {
+					recipes.addShapelessRecipe(GT.getStick(mat, 1), new Object[] { "craftingToolFile", ingot });
+				} else {
+					recipes.addShapelessRecipe(GT.getStick(mat, 2), new Object[] { "craftingToolFile", ingot });
+				}
 
 				// If a dust is present create a maceration recipe
 				if (mat.hasFlag(GTMaterialFlag.DUST)) {

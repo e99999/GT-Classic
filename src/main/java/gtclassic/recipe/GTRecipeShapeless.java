@@ -7,6 +7,8 @@ import gtclassic.material.GTMaterialGen;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 
 public class GTRecipeShapeless {
 
@@ -16,55 +18,12 @@ public class GTRecipeShapeless {
 
 	public static void recipeShapeless1() {
 
-		// LV item storage
-
-		/*
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.smallChestLV, 1), new Object[] {
-		 * "casingMachineIron", "chestWood" });
-		 * 
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestLV, 1), new Object[] {
-		 * GTBlocks.smallChestLV, GTBlocks.smallChestLV });
-		 * 
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestLV, 1), new Object[] {
-		 * "chestWood", "chestWood", "casingMachineIron", "casingMachineIron" });
-		 * 
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.bookShelfLV, 1), new Object[] {
-		 * "casingMachineIron", Items.BOOK, Items.BOOK, Items.BOOK });
-		 * 
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.workBenchLV, 1), new Object[] {
-		 * "casingMachineIron", "workbench" });
-		 * 
-		 * // MV item storage
-		 * 
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.smallChestMV, 1), new Object[] {
-		 * "casingMachineAluminium", "chestWood" });
-		 * 
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestMV, 1), new Object[] {
-		 * GTBlocks.smallChestMV, GTBlocks.smallChestMV });
-		 * 
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.largeChestMV, 1), new Object[] {
-		 * "chestWood", "chestWood", "casingMachineAluminium", "casingMachineAluminium"
-		 * });
-		 * 
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.bookShelfMV, 1), new Object[] {
-		 * "casingMachineAluminium", Items.BOOK, Items.BOOK, Items.BOOK });
-		 * 
-		 * recipes.addShapelessRecipe(GT.get(GTBlocks.workBenchMV, 1), new Object[] {
-		 * "casingMachineAluminium", "workbench" });
-		 */
+		recipes.addShapelessRecipe(GT.get(GTItems.magnifyingGlass), new Object[] { "paneGlass", "stickIron" });
 
 		// Duct Tape
 
 		recipes.addShapelessRecipe(GT.get(GTBlocks.DuctTape, 1), new Object[] { GT.getIc2(Ic2Items.rubber, 64),
 				GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64) });
-
-		// Filing down GregTech crystals into Ic2 ones
-
-		recipes.addShapelessRecipe(Ic2Items.energyCrystal.copy(),
-				new Object[] { "craftingToolFile", GTBlocks.tinyEnergium });
-
-		recipes.addShapelessRecipe(Ic2Items.lapotronCrystal,
-				new Object[] { "craftingToolFile", GTBlocks.tinyLapotron });
 
 		// Converting Oxygen back to empty tubes
 
@@ -95,6 +54,41 @@ public class GTRecipeShapeless {
 
 		recipes.addShapelessRecipe(GT.get(GTBlocks.slagSand),
 				new Object[] { "sand", "dustSlag", "dustSlag", "dustSlag" });
+
+		String g = "gravel";
+		ItemStack s = GT.get(GTBlocks.slagSand);
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 0),
+				new Object[] { "dyeWhite", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 1),
+				new Object[] { "dyeOrange", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 2),
+				new Object[] { "dyeMagenta", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 3),
+				new Object[] { "dyeLightBlue", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 4),
+				new Object[] { "dyeYellow", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 5),
+				new Object[] { "dyeLime", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 6),
+				new Object[] { "dyePink", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 7),
+				new Object[] { "dyeGray", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 8),
+				new Object[] { "dyeLightGray", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 9),
+				new Object[] { "dyeCyan", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 10),
+				new Object[] { "dyePurple", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 11),
+				new Object[] { "dyeBlue", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 12),
+				new Object[] { "dyeBrown", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 13),
+				new Object[] { "dyeGreen", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 14),
+				new Object[] { "dyeRed", s, s, s, s, g, g, g, g });
+		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 15),
+				new Object[] { "dyeBlack", s, s, s, s, g, g, g, g });
 
 	}
 

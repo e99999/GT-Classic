@@ -79,6 +79,9 @@ public class GTOreDict {
 		OreDictionary.registerOre("stickAluminum", (GTMaterialGen.getStick(aluminium, 1)));
 		OreDictionary.registerOre("rodAluminum", (GTMaterialGen.getStick(aluminium, 1)));
 
+		// Stuff to fit with how other mods have done it
+		OreDictionary.registerOre("dustAsh", (GTMaterialGen.getDust(GTMaterial.Ashes, 1)));
+
 	}
 
 	public static void registerFile(Item tool) {

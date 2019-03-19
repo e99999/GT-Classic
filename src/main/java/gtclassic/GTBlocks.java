@@ -36,6 +36,7 @@ import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.tile.GTTileLargeChest;
 import gtclassic.tile.GTTileLightningRod;
 import gtclassic.tile.GTTileMultiEnergyStorage;
+import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileResinBoard;
 import gtclassic.tile.GTTileResinChunk;
@@ -127,6 +128,7 @@ public class GTBlocks {
 			new GTBlockTileCustom("block_resinchunk", 4, 3, false));
 	public static final GTBlockTileCustom resinBoard = registerBlock(
 			new GTBlockTileCustom("block_resinboard", 12, 1, false));
+	public static final GTBlockTileCustom mortar = registerBlock(new GTBlockTileCustom("block_mortar", 10, 4, false));
 	public static final GTBlockTileCustom Echophone = registerBlock(
 			new GTBlockTileCustom("block_echophone", 8, 14, false));
 
@@ -195,12 +197,12 @@ public class GTBlocks {
 			"tile_workbench" };
 
 	public static final String[] textureTileCustom = { "block_resinbottle", "block_resinchunk", "block_resinboard",
-			"block_ducttape", "block_echophone", "coolant_helium_small", "coolant_helium_med", "coolant_helium_large",
-			"rod_thorium_small", "rod_thorium_med", "rod_thorium_large", "rod_plutonium_small", "rod_plutonium_med",
-			"rod_plutonium_large", "battery_lithium_small", "battery_lithium_med", "battery_lithium_large",
-			"battery_lapotron_tiny", "battery_lapotron_small", "battery_lapotron_med", "battery_lapotron_large",
-			"battery_lapotron_huge", "battery_energium_tiny", "battery_energium_small", "battery_energium_med",
-			"battery_energium_large", "battery_energium_huge", };
+			"block_mortar", "block_ducttape", "block_echophone", "coolant_helium_small", "coolant_helium_med",
+			"coolant_helium_large", "rod_thorium_small", "rod_thorium_med", "rod_thorium_large", "rod_plutonium_small",
+			"rod_plutonium_med", "rod_plutonium_large", "battery_lithium_small", "battery_lithium_med",
+			"battery_lithium_large", "battery_lapotron_tiny", "battery_lapotron_small", "battery_lapotron_med",
+			"battery_lapotron_large", "battery_lapotron_huge", "battery_energium_tiny", "battery_energium_small",
+			"battery_energium_med", "battery_energium_large", "battery_energium_huge", };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -258,6 +260,8 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
 		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
+		GameRegistry.registerTileEntity(GTTilePlayerDetector.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityPlayerDetector"));
 		GameRegistry.registerTileEntity(GTTileAssemblyLine.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityAssemblyLine"));
 		GameRegistry.registerTileEntity(GTTileArcFurnace.class,

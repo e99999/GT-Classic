@@ -38,22 +38,21 @@ public class GTRecipeAlloySmelter {
 		 */
 
 		for (GTMaterial mat : GTMaterial.values()) {
-
-			String smalldust = "dustSmall" + mat.getDisplayName();
 			String dust = "dust" + mat.getDisplayName();
-			String gem = "gem" + mat.getDisplayName();
 			String ingot = "ingot" + mat.getDisplayName();
 			String nugget = "nugget" + mat.getDisplayName();
-			String stick = "stick" + mat.getDisplayName();
-			String plate = "plate" + mat.getDisplayName();
-			String block = "block" + mat.getDisplayName();
 
-			if (mat.getSmeltable() && mat != mat.RefinedIron && mat != mat.Maganlium) {
+			if (mat.getSmeltable() && !mat.equals(mat.RefinedIron)) {
 
 				if (mat.hasFlag(GTMaterialFlag.PLATE)) {
 					GTTileAlloySmelter.addRecipe(ingot, 1, GT.get(GTItems.moldPlate), GT.getPlate(mat, 1));
 					GTTileAlloySmelter.addRecipe(nugget, 9, GT.get(GTItems.moldPlate), GT.getPlate(mat, 1));
 					GTTileAlloySmelter.addRecipe(dust, 1, GT.get(GTItems.moldPlate), GT.getPlate(mat, 1));
+				}
+				if (mat.hasFlag(GTMaterialFlag.GEAR)) {
+					GTTileAlloySmelter.addRecipe(ingot, 4, GT.get(GTItems.moldGear), GT.getGear(mat, 1));
+					GTTileAlloySmelter.addRecipe(nugget, 36, GT.get(GTItems.moldGear), GT.getGear(mat, 1));
+					GTTileAlloySmelter.addRecipe(dust, 4, GT.get(GTItems.moldGear), GT.getGear(mat, 1));
 				}
 
 				if (mat.hasFlag(GTMaterialFlag.STICK)) {
@@ -85,6 +84,7 @@ public class GTRecipeAlloySmelter {
 		 */
 
 		GTTileAlloySmelter.addRecipe("ingotRefinedIron", 1, GT.get(GTItems.moldPlate), GT.getPlate(M.RefinedIron, 1));
+		GTTileAlloySmelter.addRecipe("ingotRefinedIron", 1, GT.get(GTItems.moldStick), GT.getStick(M.RefinedIron, 2));
 
 		smeltingUtil("Iron", 9, GT.get(GTItems.moldBlock), GT.get(Blocks.IRON_BLOCK, 1));
 		smeltingUtil("Gold", 9, GT.get(GTItems.moldBlock), GT.get(Blocks.GOLD_BLOCK, 1));
@@ -113,9 +113,10 @@ public class GTRecipeAlloySmelter {
 	 */
 	public static void alloyUtil(String input1, int amount1, String input2, int amount2, ItemStack output) {
 		GTTileAlloySmelter.addRecipe("ingot" + input1, amount1, "ingot" + input2, amount2, output);
-//		GTTileAlloySmelter.addRecipe("ingot" + input2, amount2, "ingot" + input1, amount1, output);
 		GTTileAlloySmelter.addRecipe("dust" + input1, amount1, "dust" + input2, amount2, output);
-//		GTTileAlloySmelter.addRecipe("dust" + input2, amount2, "dust" + input1, amount1, output);
+		GTTileAlloySmelter.addRecipe("dust" + input1, amount1, "ingot" + input2, amount2, output);
+		GTTileAlloySmelter.addRecipe("ingot" + input1, amount1, "dust" + input2, amount2, output);
+
 	}
 
 	/*

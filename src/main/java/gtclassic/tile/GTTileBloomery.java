@@ -14,10 +14,9 @@ import gtclassic.container.GTContainerBloomery;
 import gtclassic.gui.GTGuiMachine.GTBloomeryGui;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTValues;
 import gtclassic.util.int3;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.network.adv.NetworkField;
-import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -27,8 +26,6 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.item.recipe.entry.RecipeInputItemStack;
-import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
@@ -60,7 +57,6 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 	IBlockState bloom = GTBlocks.bloomBlock.getDefaultState();
 
 	public static final BloomeryRecipeList RECIPE_LIST = new BloomeryRecipeList();
-	public static final GTMultiInputRecipeList JEI_RECIPE_LIST = new GTMultiInputRecipeList("bloomery");
 
 	BloomeryRecipe activeRecipe = null;
 	@NetworkField(index = 7)
@@ -74,26 +70,6 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		super(1);
 		setWorld(world);
 		addGuiFields("progress", "recipeOperation");
-		RECIPE_LIST.addRecipe("recipe0", bloom, 4, 400,
-				new RecipeInputItemStack(GTMaterialGen.get(Items.IRON_INGOT, 3)),
-				new RecipeInputOreDict("blockCharcoal", 1));
-		RECIPE_LIST.addRecipe("recipe1", bloom, 4, 400,
-				new RecipeInputItemStack(GTMaterialGen.get(Items.IRON_INGOT, 3)),
-				new RecipeInputOreDict("blockCoal", 1));
-		RECIPE_LIST.addRecipe("recipe2", bloom, 4, 400, new RecipeInputItemStack(GTMaterialGen.get(Blocks.IRON_ORE, 1)),
-				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Calcite, 1)),
-				new RecipeInputOreDict("blockCoal", 1));
-		RECIPE_LIST.addRecipe("recipe3", bloom, 4, 400, new RecipeInputItemStack(GTMaterialGen.get(Blocks.IRON_ORE, 1)),
-				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Calcite, 1)),
-				new RecipeInputOreDict("blockCharcoal", 1));
-		RECIPE_LIST.addRecipe("recipe6", bloom, 4, 400,
-				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Pyrite, 2)),
-				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Calcite, 2)),
-				new RecipeInputOreDict("blockCharcoal", 1));
-		RECIPE_LIST.addRecipe("recipe7", bloom, 4, 400,
-				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Pyrite, 2)),
-				new RecipeInputItemStack(GTMaterialGen.getDust(GTMaterial.Calcite, 2)),
-				new RecipeInputOreDict("blockCoal", 1));
 	}
 
 	@Override
@@ -147,7 +123,9 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		if (nbt.hasKey("RecipeID")) {
 			activeRecipe = RECIPE_LIST.getFromID(nbt.getString("RecipeID"));
 		}
-		GTMod.logger.info(activeRecipe);
+		if (GTValues.debugMode) {
+			GTMod.logger.info(activeRecipe);
+		}
 	}
 
 	@Override
@@ -259,9 +237,9 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 				isBrick(dir.down(1)) && isBrick(dir.back(1)) && isBrick(dir.back(1)) && isBrick(dir.right(1))
 				&& isBrick(dir.forward(1)) && isBrick(dir.back(1)) && isBrick(dir.right(1))
 				// layer 0
-				&& isBrick(dir.up(1)) && isBrick(dir.forward(2)) && isBrick(dir.down(1)) && isBrick(dir.up(1))
-				&& isBrick(dir.left(2)) && isBrick(dir.back(1)) && isBrick(dir.back(1)) && isBrick(dir.right(1))
-				&& isBrick(dir.up(1))
+				&& isBrick(dir.up(1)) && isDoor(dir.forward(1)) && isBrick(dir.forward(1)) && isBrick(dir.down(1))
+				&& isBrick(dir.up(1)) && isBrick(dir.left(2)) && isBrick(dir.back(1)) && isBrick(dir.back(1))
+				&& isBrick(dir.right(1)) && isBrick(dir.up(1))
 				// layer 1
 				&& isBrick(dir.forward(2)) && isBrick(dir.left(1)) && isBrick(dir.back(1)) && isBrick(dir.back(1))
 				&& isBrick(dir.right(1)) && isBrick(dir.right(1)) && isBrick(dir.forward(2)) && isBrick(dir.back(1))
@@ -297,6 +275,10 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 		return world.getBlockState(pos.asBlockPos()) == fire;
 	}
 
+	public boolean isDoor(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()).getBlock() == Blocks.IRON_TRAPDOOR;
+	}
+
 	public void setFire(int3 pos) {
 		world.setBlockState(pos.asBlockPos(), fire);
 	}
@@ -328,23 +310,25 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 
 		public void addRecipe(String id, IBlockState output, int ashAmount, int recipeTime, IRecipeInput... inputs) {
 			if (output == null || output.getBlock() == Blocks.AIR) {
-				GTMod.logger.info("Bloomery Recipe Invalid: " + id);
+				if (GTValues.debugMode) {
+					GTMod.logger.info("Bloomery Recipe Invalid: " + id);
+				}
 				return;
 			}
 			if (recipeMap.containsKey(id)) {
-				GTMod.logger.info("Bloomery Recipe Invalid: " + id);
+				if (GTValues.debugMode) {
+					GTMod.logger.info("Bloomery Recipe Invalid: " + id);
+				}
 				return;
 			}
 			for (IRecipeInput input : inputs) {
 				if (isListInvalid(input.getInputs())) {
-					GTMod.logger.info("Bloomery Recipe Invalid: " + id);
+					if (GTValues.debugMode) {
+						GTMod.logger.info("Bloomery Recipe Invalid: " + id);
+					}
 					return;
 				}
 			}
-			List<ItemStack> jeioutputs = new ArrayList<>();
-			jeioutputs.add(new ItemStack(output.getBlock()));
-			jeioutputs.add(GTMaterialGen.getDust(GTMaterial.DarkAshes, ashAmount));
-			JEI_RECIPE_LIST.addRecipe(Arrays.asList(inputs), new MachineOutput(null, jeioutputs), id);
 			BloomeryRecipe recipe = new BloomeryRecipe(id, output, ashAmount, recipeTime, inputs);
 			recipes.add(recipe);
 			recipeMap.put(id, recipe);

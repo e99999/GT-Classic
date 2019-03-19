@@ -93,8 +93,7 @@ public class GTTileAssemblyLine extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public int[] getInputSlots() {
-		int[] input = { slotInput0, slotInput1, slotInput2 };
-		return input;
+		return new int[] { slotInput0, slotInput1, slotInput2 };
 	}
 
 	@Override
@@ -117,8 +116,7 @@ public class GTTileAssemblyLine extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public int[] getOutputSlots() {
-		int[] output = { slotOutput0 };
-		return output;
+		return new int[] { slotOutput0 };
 	}
 
 	@Override

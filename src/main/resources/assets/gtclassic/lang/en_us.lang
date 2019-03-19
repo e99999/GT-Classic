@@ -196,6 +196,7 @@ tile.gtclassic.cable_lapotron_zpm.name=Lapotronic Superconductor Cable
 tile.gtclassic.block_resinbottle.name=Liquid Sticky Resin
 tile.gtclassic.block_resinchunk.name=Drop of Liquid Sticky Resin
 tile.gtclassic.block_resinboard.name=Uncut Sticky Resin Board
+tile.gtclassic.block_mortar.name=Mortar
 tile.gtclassic.block_echophone.name=Echophone
 tile.gtclassic.block_ducttape.name=Braintech Aerospace Advanced Reinforced Duct Tape FAL-84
 tile.gtclassic.coolant_helium_small.name=60k Helium Coolant Cell
@@ -803,6 +804,7 @@ item.gtclassic.mold_plate.name=Plate Mold
 item.gtclassic.mold_stick.name=Rod Mold
 item.gtclassic.mold_cable.name=Cable Mold
 item.gtclassic.mold_tube.name=Tube Mold
+item.gtclassic.mold_gear.name=Gear Mold
 
 #tools
 item.gtclassic.destructoPack.name=Destructopack

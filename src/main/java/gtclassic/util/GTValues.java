@@ -3,10 +3,7 @@ package gtclassic.util;
 import java.awt.Color;
 
 import gtclassic.material.GTMaterial;
-import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
-import ic2.core.item.recipe.entry.RecipeInputCombined;
-import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -34,14 +31,6 @@ public class GTValues {
 	// recipe stuff
 	public static FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
 	public static FluidStack lava = new FluidStack(FluidRegistry.LAVA, 1000);
-
-	public static IRecipeInput ingotElectric = new RecipeInputCombined(1,
-			new IRecipeInput[] { new RecipeInputOreDict("ingotAluminium"), new RecipeInputOreDict(getIC2Ingot()),
-					new RecipeInputOreDict("ingotSteel") });
-
-	public static IRecipeInput plateElectric = new RecipeInputCombined(1,
-			new IRecipeInput[] { new RecipeInputOreDict("plateAluminium"), new RecipeInputOreDict(getIC2Plate()),
-					new RecipeInputOreDict("plateSteel") });
 
 	public static String getIC2Ingot() {
 		return IC2.getRefinedIron();

@@ -14,8 +14,6 @@ public class GTRecipe {
 		GTRecipeCircuitry.recipesCircutry();
 		GTRecipeIndustrialCentrifuge.recipesCentrifuge1();
 		GTRecipeIndustrialCentrifuge.recipesCentrifuge2();
-		GTRecipeIndustrialCentrifuge.recipesCentrifuge3();
-		GTRecipeIndustrialCentrifuge.recipesCentrifuge4();
 		GTRecipeIterators.recipeIterators1();
 		GTRecipeIterators.recipeIterators2();
 		GTRecipeIterators.recipeIterators3();
