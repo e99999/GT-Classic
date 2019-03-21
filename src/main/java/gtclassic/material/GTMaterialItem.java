@@ -87,14 +87,15 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer e, World w, BlockPos p, EnumHand h, EnumFacing facing,
-			float hitX, float hitY, float hitZ) {
-		washDust(e, w, p, h, GTMaterial.Tantalite, GTMaterial.Niobium, GTMaterial.Tantalite);
+	public EnumActionResult onItemUse(EntityPlayer e, World w, BlockPos p, EnumHand h, EnumFacing facing, float hitX,
+			float hitY, float hitZ) {
+		washDust(e, w, p, h, GTMaterial.Tantalite, GTMaterial.Niobium, GTMaterial.Tantalum, GTMaterial.Manganese);
 		washDust(e, w, p, h, GTMaterial.Sphalerite, GTMaterial.Zinc, GTMaterial.Germanium);
 		washDust(e, w, p, h, GTMaterial.Cinnabar, GTMaterial.Redstone, GTMaterial.Redstone);
 		washDust(e, w, p, h, GTMaterial.Sheldonite, GTMaterial.Platinum, GTMaterial.Platinum);
 		washDust(e, w, p, h, GTMaterial.Tungstate, GTMaterial.Tungsten, GTMaterial.Manganese);
 		washDust(e, w, p, h, GTMaterial.Galena, GTMaterial.Lead, GTMaterial.Silver);
+		washDust(e, w, p, h, GTMaterial.DarkAshes, GTMaterial.Ashes, GTMaterial.Ashes);
 		return EnumActionResult.PASS;
 	}
 

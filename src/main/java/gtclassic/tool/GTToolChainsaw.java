@@ -5,13 +5,16 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -60,6 +63,7 @@ public class GTToolChainsaw extends ItemElectricTool
 		this.maxCharge = (int) (Math.pow(2, this.tier) * 50000);
 		this.transferLimit = (int) (Math.pow(2, this.tier) * 64);
 		this.efficiency = (this.material.getSpeed() * 2) * this.tier;
+		this.setMaxDamage(this.material.getDurability() * (this.tier * 100));
 		this.setHarvestLevel("axe", 2);
 		this.setRegistryName("chainsaw_" + this.material.getName());
 		this.setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_chainsaw");
@@ -71,6 +75,8 @@ public class GTToolChainsaw extends ItemElectricTool
 		tooltip.add(TextFormatting.GOLD + I18n.format("Material: " + this.material.getDisplayName()));
 		tooltip.add(TextFormatting.BLUE
 				+ I18n.format("Efficiency: " + String.valueOf((this.material.getSpeed() * 2) * this.tier)));
+		tooltip.add(TextFormatting.RED
+				+ I18n.format("Uses Remaining: " + String.valueOf(this.getMaxDamage() - this.getDamage(stack))));
 	}
 
 	@Override
@@ -191,6 +197,20 @@ public class GTToolChainsaw extends ItemElectricTool
 		if (blockState.getBlockHardness(world, pos) == -1.0F) {
 			return;
 		}
+		if (this.getDamage(saw) == this.getMaxDamage()) {
+			if (this.tier == 1) {
+				player.dropItem(GTMaterialGen.get(GTBlocks.smallLithium), false);
+				player.dropItem(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), false);
+				player.dropItem(GTMaterialGen.getPlate(GTMaterial.Steel, 5), false);
+			}
+			if (this.tier == 2) {
+				player.dropItem(GTMaterialGen.get(GTBlocks.medLithium), false);
+				player.dropItem(GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), false);
+				player.dropItem(GTMaterialGen.getPlate(GTMaterial.Titanium, 5), false);
+			}
+			// TODO add tier 3 when parts are available
+		}
+		saw.damageItem(1, player);
 		ElectricItem.manager.use(saw, this.getEnergyCost(saw), player);
 		blockState.getBlock().harvestBlock(world, player, pos, blockState, world.getTileEntity(pos), saw);
 		world.setBlockToAir(pos);

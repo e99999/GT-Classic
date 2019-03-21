@@ -7,14 +7,17 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
 import ic2.api.classic.item.IMiningDrill;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -50,6 +53,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 		if (this.tier <= 0) {
 			this.tier = 1;
 		}
+		this.setMaxDamage(this.material.getDurability() * (this.tier * 100));
 		this.maxCharge = (int) (Math.pow(2, this.tier) * 50000);
 		this.transferLimit = (int) (Math.pow(2, this.tier) * 64);
 		this.setRegistryName("drill_" + this.material.getName());
@@ -63,6 +67,8 @@ public class GTToolMiningDrill extends ItemElectricTool
 		tooltip.add(TextFormatting.YELLOW + I18n.format("Level: " + this.getLevelString()));
 		tooltip.add(TextFormatting.GOLD + I18n.format("Material: " + this.material.getDisplayName()));
 		tooltip.add(TextFormatting.BLUE + I18n.format("Speed: " + String.valueOf(this.getMiningSpeed(stack))));
+		tooltip.add(TextFormatting.RED
+				+ I18n.format("Uses Remaining: " + String.valueOf(this.getMaxDamage() - this.getDamage(stack))));
 	}
 
 	@Override
@@ -97,7 +103,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
-		return (this.material.getSpeed() * 2) * this.tier;
+		return (this.material.getSpeed() * (this.tier * 3));
 	}
 
 	@Override
@@ -112,6 +118,20 @@ public class GTToolMiningDrill extends ItemElectricTool
 			IC2.achievements.issueStat((EntityPlayer) entityLiving, "blocksDrilled");
 		}
 		IC2.audioManager.playOnce(entityLiving, Ic2Sounds.drillHard);
+		if (entityLiving instanceof EntityPlayer && this.getDamage(stack) == this.getMaxDamage()) {
+			if (this.tier == 1) {
+				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.get(GTBlocks.smallLithium), false);
+				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), false);
+				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.getPlate(GTMaterial.Steel, 5), false);
+			}
+			if (this.tier == 2) {
+				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.get(GTBlocks.medLithium), false);
+				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), false);
+				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.getPlate(GTMaterial.Titanium, 5), false);
+			}
+			// TODO add tier 3 when parts are available
+		}
+		stack.damageItem(1, entityLiving);
 		return super.onBlockDestroyed(stack, worldIn, blockIn, pos, entityLiving);
 	}
 

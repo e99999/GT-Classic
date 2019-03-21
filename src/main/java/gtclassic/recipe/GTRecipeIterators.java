@@ -1,5 +1,6 @@
 package gtclassic.recipe;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.material.GTMaterial;
@@ -14,7 +15,6 @@ import gtclassic.tool.GTToolPickaxe;
 import gtclassic.tool.GTToolShovel;
 import gtclassic.tool.GTToolSword;
 import gtclassic.tool.GTToolWrench;
-import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
@@ -67,92 +67,94 @@ public class GTRecipeIterators {
 				}
 
 			}
-
-			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
-				// Ingot crafting recipe
-				recipes.addRecipe(GT.getIngot(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
-
-				if (mat.hasFlag(GTMaterialFlag.DUST) && mat.getSmeltable()) {
-					GameRegistry.addSmelting(GT.getDust(mat, 1), (GT.getIngot(mat, 1)), 0.1F);
-				}
-
-			}
-
-			if (mat.hasFlag(GTMaterialFlag.GEM)) {
-				// Dust to gem
-				TileEntityCompressor.addRecipe(dust, 1, GT.getGem(mat, 1), 0.0F);
-
-				// Inverse
-				TileEntityMacerator.addRecipe(gem, 1, GT.getDust(mat, 1), 0.0F);
-
-				if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
-					// Block and gem related logic
-					recipes.addShapelessRecipe(GT.getGem(mat, 9), new Object[] { block });
-					TileEntityCompressor.addRecipe(gem, 9, GT.getMaterialBlock(mat, 1), 0.0F);
-					TileEntityMacerator.addRecipe(block, 1, GT.getDust(mat, 9), 0.0F);
-					recipes.addRecipe(GT.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', gem });
-				}
-			}
-
-			if (mat.hasFlag(GTMaterialFlag.NUGGET)) {
-				// Nugget crafting recipe
-				recipes.addShapelessRecipe(GT.getNugget(mat, 9), new Object[] { ingot });
-			}
-
-			if (mat.hasFlag(GTMaterialFlag.PLATE) && (mat != M.Silicon)) {
-				// Plate crafting recipe
-				if (GTConfig.harderPlates) {
-					recipes.addRecipe(GT.getPlate(mat, 1),
-							new Object[] { "H", "X", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
-				} else {
-					recipes.addRecipe(GT.getPlate(mat, 1),
-							new Object[] { "H", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
-				}
-
-				// If a dust is present create a maceration recipe
-				if (mat.hasFlag(GTMaterialFlag.DUST)) {
-					TileEntityMacerator.addRecipe(plate, 1, GT.getDust(mat, 1), 0.0F);
-				}
-			}
-
-			if (mat.hasFlag(GTMaterialFlag.GEAR)) {
-				// Casing crafting recipe
-				recipes.addRecipe(GT.getGear(mat, 1),
-						new Object[] { " X ", "XWX", " X ", 'X', plate, 'W', "craftingToolWrench" });
-			}
-
-			if (mat.hasFlag(GTMaterialFlag.STICK)) {
-				// Stick crafting recipe
-				if (GTConfig.harderRods) {
-					recipes.addShapelessRecipe(GT.getStick(mat, 1), new Object[] { "craftingToolFile", ingot });
-				} else {
-					recipes.addShapelessRecipe(GT.getStick(mat, 2), new Object[] { "craftingToolFile", ingot });
-				}
-
-				// If a dust is present create a maceration recipe
-				if (mat.hasFlag(GTMaterialFlag.DUST)) {
-					TileEntityMacerator.addRecipe(stick, 1, GT.getSmallDust(mat, 2), 0.0F);
-				}
-			}
-
-			if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
-
+			if (!mat.equals(M.Chrome)) {// this is because chrome is special
 				if (mat.hasFlag(GTMaterialFlag.INGOT)) {
-					// Block crafting recipe
-					recipes.addRecipe(GT.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', ingot });
-					TileEntityCompressor.addRecipe(ingot, 9, GT.getMaterialBlock(mat, 1), 0.0F);
+					// Ingot crafting recipe
+					recipes.addRecipe(GT.getIngot(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
+
+					if (mat.hasFlag(GTMaterialFlag.DUST) && mat.getSmeltable()) {
+						GameRegistry.addSmelting(GT.getDust(mat, 1), (GT.getIngot(mat, 1)), 0.1F);
+					}
+
+				}
+
+				if (mat.hasFlag(GTMaterialFlag.GEM)) {
+					// Dust to gem
+					TileEntityCompressor.addRecipe(dust, 1, GT.getGem(mat, 1), 0.0F);
 
 					// Inverse
-					recipes.addShapelessRecipe(GT.getIngot(mat, 9), new Object[] { block });
-					TileEntityMacerator.addRecipe(block, 1, GT.getDust(mat, 9), 0.0F);
+					TileEntityMacerator.addRecipe(gem, 1, GT.getDust(mat, 1), 0.0F);
+
+					if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
+						// Block and gem related logic
+						recipes.addShapelessRecipe(GT.getGem(mat, 9), new Object[] { block });
+						TileEntityCompressor.addRecipe(gem, 9, GT.getMaterialBlock(mat, 1), 0.0F);
+						TileEntityMacerator.addRecipe(block, 1, GT.getDust(mat, 9), 0.0F);
+						recipes.addRecipe(GT.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', gem });
+					}
 				}
 
-			}
+				if (mat.hasFlag(GTMaterialFlag.NUGGET)) {
+					// Nugget crafting recipe
+					recipes.addShapelessRecipe(GT.getNugget(mat, 9), new Object[] { ingot });
+				}
 
-			if (mat.hasFlag(GTMaterialFlag.CASING)) {
-				// Casing crafting recipe
-				recipes.addRecipe(GT.getCasing(mat, 1),
-						new Object[] { "SXX", "XWX", "XXS", 'X', plate, 'S', stick, 'W', "craftingToolWrench" });
+				if (mat.hasFlag(GTMaterialFlag.PLATE) && (mat != M.Silicon)) {
+					// Plate crafting recipe
+					if (GTConfig.harderPlates) {
+						recipes.addRecipe(GT.getPlate(mat, 1),
+								new Object[] { "H", "X", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
+					} else {
+						recipes.addRecipe(GT.getPlate(mat, 1),
+								new Object[] { "H", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
+					}
+
+					// If a dust is present create a maceration recipe
+					if (mat.hasFlag(GTMaterialFlag.DUST)) {
+						TileEntityMacerator.addRecipe(plate, 1, GT.getDust(mat, 1), 0.0F);
+					}
+				}
+
+				if (mat.hasFlag(GTMaterialFlag.GEAR)) {
+					// Casing crafting recipe
+					recipes.addRecipe(GT.getGear(mat, 1),
+							new Object[] { " X ", "XWX", " X ", 'X', plate, 'W', "craftingToolWrench" });
+				}
+
+				if (mat.hasFlag(GTMaterialFlag.STICK)) {
+					// Stick crafting recipe
+					if (GTConfig.harderRods) {
+						recipes.addShapelessRecipe(GT.getStick(mat, 1), new Object[] { "craftingToolFile", ingot });
+					} else {
+						recipes.addShapelessRecipe(GT.getStick(mat, 2), new Object[] { "craftingToolFile", ingot });
+					}
+
+					// If a dust is present create a maceration recipe
+					if (mat.hasFlag(GTMaterialFlag.DUST)) {
+						TileEntityMacerator.addRecipe(stick, 1, GT.getSmallDust(mat, 2), 0.0F);
+					}
+				}
+
+				if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
+
+					if (mat.hasFlag(GTMaterialFlag.INGOT)) {
+						// Block crafting recipe
+						recipes.addRecipe(GT.getMaterialBlock(mat, 1),
+								new Object[] { "XXX", "XXX", "XXX", 'X', ingot });
+						TileEntityCompressor.addRecipe(ingot, 9, GT.getMaterialBlock(mat, 1), 0.0F);
+
+						// Inverse
+						recipes.addShapelessRecipe(GT.getIngot(mat, 9), new Object[] { block });
+						TileEntityMacerator.addRecipe(block, 1, GT.getDust(mat, 9), 0.0F);
+					}
+
+				}
+
+				if (mat.hasFlag(GTMaterialFlag.CASING)) {
+					// Casing crafting recipe
+					recipes.addRecipe(GT.getCasing(mat, 1),
+							new Object[] { "SXX", "XWX", "XXS", 'X', plate, 'S', stick, 'W', "craftingToolWrench" });
+				}
 			}
 		}
 	}
@@ -283,13 +285,23 @@ public class GTRecipeIterators {
 							new Object[] { "PII", " S ", " S ", 'P', plate, 'I', ingot, 'S', "stickWood" });
 				}
 			}
-			if (GTValues.debugMode) { // disabling these in game until the tools are damagable
-				if (item instanceof GTToolMiningDrill) {
-					// TODO not finished yet
+
+			if (item instanceof GTToolMiningDrill) {
+				GTToolMiningDrill drill = (GTToolMiningDrill) item;
+				if (drill.getTier(new ItemStack(item)) == 1) {
+					String plate = "plate" + drill.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item), new Object[] { "TTT", "PCP", "PBP", 'T', plate, 'P',
+							"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.smallLithium });
 				}
-				if (item instanceof GTToolChainsaw) {
-					// TODO not finished yet
+			}
+			if (item instanceof GTToolChainsaw) {
+				GTToolChainsaw chainsaw = (GTToolChainsaw) item;
+				if (chainsaw.getTier(new ItemStack(item)) == 1) {
+					String plate = "plate" + chainsaw.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item), new Object[] { "PPT", "BCT", "PPT", 'T', plate, 'P',
+							"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.smallLithium });
 				}
+
 			}
 		}
 		for (Block block : Block.REGISTRY) {

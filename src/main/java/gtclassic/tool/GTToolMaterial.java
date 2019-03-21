@@ -29,7 +29,6 @@ public class GTToolMaterial {
 	public static final ToolMaterial Steel = createToolMaterial(m.Steel);
 	public static final ToolMaterial Electrum = createToolMaterial(m.Electrum);
 	public static final ToolMaterial Constantan = createToolMaterial(m.Constantan);
-	public static final ToolMaterial Aluminium = createToolMaterial(m.Aluminium);
 	public static final ToolMaterial Platinum = createToolMaterial(m.Platinum);
 	public static final ToolMaterial Iridium = createToolMaterial(m.Iridium);
 	public static final ToolMaterial Chrome = createToolMaterial(m.Chrome);
@@ -47,8 +46,8 @@ public class GTToolMaterial {
 	 * This is the array that you can iterate to make new tools
 	 */
 	public static final ToolMaterial[] toolMaterial = { Flint, Bronze, Iron, Gold, Diamond, Tungsten, Invar, Silver,
-			Steel, Electrum, Constantan, Aluminium, Platinum, Iridium, Chrome, Brass, Plutonium, RefinedIron,
-			Tungstensteel, Titanium, Nickel, Nichrome, Osmium, Tantalum };
+			Steel, Electrum, Constantan, Platinum, Iridium, Chrome, Brass, Plutonium, RefinedIron, Tungstensteel,
+			Titanium, Nickel, Nichrome, Osmium, Tantalum };
 
 	/*
 	 * This is map to allow access to a GTMaterial equivalent of the Tool Material
@@ -56,12 +55,11 @@ public class GTToolMaterial {
 	public static final ImmutableMap<ToolMaterial, GTMaterial> MAT_REG = ImmutableMap
 			.<ToolMaterial, GTMaterial>builder().put(Tungsten, GTMaterial.Tungsten).put(Invar, GTMaterial.Invar)
 			.put(Silver, GTMaterial.Silver).put(Steel, GTMaterial.Steel).put(Electrum, GTMaterial.Electrum)
-			.put(Constantan, GTMaterial.Constantan).put(Aluminium, GTMaterial.Aluminium)
-			.put(Platinum, GTMaterial.Platinum).put(Iridium, GTMaterial.Iridium).put(Chrome, GTMaterial.Chrome)
-			.put(Brass, GTMaterial.Brass).put(Plutonium, GTMaterial.Plutonium).put(RefinedIron, GTMaterial.RefinedIron)
-			.put(Tungstensteel, GTMaterial.TungstenSteel).put(Titanium, GTMaterial.Titanium)
-			.put(Nickel, GTMaterial.Nickel).put(Nichrome, GTMaterial.Nichrome).put(Osmium, GTMaterial.Osmium)
-			.put(Tantalum, GTMaterial.Tantalum).put(Flint, GTMaterial.Flint)
+			.put(Constantan, GTMaterial.Constantan).put(Platinum, GTMaterial.Platinum).put(Iridium, GTMaterial.Iridium)
+			.put(Chrome, GTMaterial.Chrome).put(Brass, GTMaterial.Brass).put(Plutonium, GTMaterial.Plutonium)
+			.put(RefinedIron, GTMaterial.RefinedIron).put(Tungstensteel, GTMaterial.TungstenSteel)
+			.put(Titanium, GTMaterial.Titanium).put(Nickel, GTMaterial.Nickel).put(Nichrome, GTMaterial.Nichrome)
+			.put(Osmium, GTMaterial.Osmium).put(Tantalum, GTMaterial.Tantalum).put(Flint, GTMaterial.Flint)
 
 			.put(Bronze, GTMaterial.Bronze).put(Gold, GTMaterial.Gold).put(Iron, GTMaterial.Iron)
 			.put(Diamond, GTMaterial.Diamond).build();

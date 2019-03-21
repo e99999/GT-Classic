@@ -93,7 +93,7 @@ public class GTJeiPlugin implements IModPlugin {
 
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
 			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class,
-					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 36);
+					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);
 		}
 	}
 

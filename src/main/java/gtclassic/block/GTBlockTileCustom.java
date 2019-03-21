@@ -21,6 +21,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -239,11 +240,15 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 		addDrops(w, p, e, h, "ingotIron", GT.getIc2(Ic2Items.ironDust, 1));
 		addDrops(w, p, e, h, "ingotGold", GT.getIc2(Ic2Items.goldDust, 1));
 		addDrops(w, p, e, h, "ingotTin", GT.getIc2(Ic2Items.tinDust, 1));
+		addDrops(w, p, e, h, "ingotBronze", GT.getIc2(Ic2Items.bronzeDust, 1));
 		addDrops(w, p, e, h, "ingotCopper", GT.getIc2(Ic2Items.copperDust, 1));
 		addDrops(w, p, e, h, "ingotAluminum", GT.getDust(M.Aluminium, 1));
 		addDrops(w, p, e, h, "bone", new ItemStack(Items.DYE, 4, 15));
+		addDrops(w, p, e, h, "gravel", new ItemStack(Items.FLINT));
 		addDrops(w, p, e, h, GT.get(Items.COAL), GT.getIc2(Ic2Items.coalDust, 1));
 		addDrops(w, p, e, h, new ItemStack(Items.COAL, 1, 1), GT.getIc2(Ic2Items.charcoalDust, 1));
+		addDrops(w, p, e, h, GT.get(Items.CLAY_BALL), GT.getSmallDust(M.Clay, 1));
+		addDrops(w, p, e, h, GT.get(Blocks.CLAY), GT.getSmallDust(M.Clay, 4));
 
 		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.getSmeltable() && mat.hasFlag(GTMaterialFlag.INGOT) && mat.hasFlag(GTMaterialFlag.DUST)) {

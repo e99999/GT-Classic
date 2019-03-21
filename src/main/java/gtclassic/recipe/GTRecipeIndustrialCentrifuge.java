@@ -20,6 +20,21 @@ public class GTRecipeIndustrialCentrifuge {
 
 	public static void recipesCentrifuge1() {
 
+		/*
+		 * Below are two temp recipes so bear can test on stream and get some aluminium
+		 */
+
+		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.clayDust, 4), 3, euCost(16000),
+				new OutputItem(GT.getChemical(M.Lithium, 1), 0), new OutputItem(GT.getChemical(M.Silicon, 1), 1),
+				new OutputItem(GT.getDust(M.Aluminium, 1), 2));
+
+		GTTileIndustrialCentrifuge.addRecipe("dustBauxite", 24, 16, euCost(250000),
+				new OutputItem(GT.getChemical(M.Oxygen, 6), 0), new OutputItem(GT.getDust(M.Aluminium, 16), 1),
+				new OutputItem(GT.getDust(M.Rutile, 1), 2), new OutputItem(GT.getChemical(M.Hydrogen, 10), 3));
+		/*
+		 * Back to normal recipes
+		 */
+
 		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.rubberWood, 16), 12, euCost(25000),
 				new OutputItem(GT.getChemical(M.Carbon, 8), 0), new OutputItem(GT.getIc2(Ic2Items.stickyResin, 8), 1),
 				new OutputItem(GT.getIc2(Ic2Items.plantBall, 6), 2), new OutputItem(GT.getChemical(M.Methane, 4), 3));

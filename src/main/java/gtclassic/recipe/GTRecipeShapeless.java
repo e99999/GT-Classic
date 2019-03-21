@@ -4,10 +4,12 @@ import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class GTRecipeShapeless {
@@ -54,6 +56,19 @@ public class GTRecipeShapeless {
 
 		recipes.addShapelessRecipe(GT.get(GTBlocks.slagSand),
 				new Object[] { "sand", "dustSlag", "dustSlag", "dustSlag" });
+		
+		
+		//random stuff
+		recipes.addShapelessRecipe(GT.get(Items.IRON_INGOT),
+				new Object[] { "ingotRefinedIron", "dustAsh"});
+		
+		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.fertilizer, 1),
+				new Object[] { "dustSulfur", "dustAsh", "dustCalcite"});
+		
+		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.fertilizer, 2),
+				new Object[] { "dustSulfur", "dustDarkAshes", "dustCalcite"});
+		
+		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.constructionFoam, 3), new Object[]{"dustClay", GTValues.water, "dustAsh", "dustCoal"});
 
 		String g = "gravel";
 		ItemStack s = GT.get(GTBlocks.slagSand);

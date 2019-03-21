@@ -119,7 +119,7 @@ public class GTMaterial {
 	public static GTMaterial Magnesium = new GTMaterial("Magnesium", 1.0F, 0, 1, new Color(255, 200, 200), false,
 			DUST_ALL);
 	public static GTMaterial Magnetite = new GTMaterial("Magnetite", 1.0F, 0, 1, new Color(0, 0, 0), true, DUST_ALL);
-	public static GTMaterial Manganese = new GTMaterial("Manganese", 1.0F, 0, 1, new Color(250, 250, 250), true,
+	public static GTMaterial Manganese = new GTMaterial("Manganese", 1.0F, 0, 1, new Color(250, 235, 250), true,
 			SMALLDUST, DUST, NUGGET, INGOT, PLATE, BLOCK);
 	public static GTMaterial Marble = new GTMaterial("Marble", 1.0F, 0, 1, new Color(200, 200, 200), false, DUST_ALL);//
 	public static GTMaterial Netherrack = new GTMaterial("Netherrack", 1.0F, 0, 1, new Color(200, 0, 0), false,
