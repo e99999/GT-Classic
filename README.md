@@ -2,11 +2,11 @@
 ![alt text](https://cdn.discordapp.com/attachments/443994226003279874/554727328815513650/2019-03-08_18.24.24.png)
 # About 
 GT Classic is a combination of content and features from all GregTech's (and some new) arranged into an addon for IC2 Classic 1.12.2.
-The goal is create a crossroads where new and old GT players can have a meaningful and unincumbered experience.
+The goal is create a crossroads where new and old GT players can have a meaningful and unencumbered experience. Join the discussion in Bear989's GT Help Discord https://discord.gg/W7CPXE8
 
 # Current State
-The project is not available to download/play at this time please check back soon. Right now I am working on early game and will be
-realeasing alpha downnloads soon for testing.
+I am currently still creating the chemistry and progression. However stable downloads for pre-alpha testing are now available [here](https://bearsden.overminddl1.com/Downloads/GT%20Classics(E99999)/) 
+which are updated weekly.
 
 # Issues
 Please report any issues you find to the issue tracker on this repository. Include as much information as possible including as version and steps to reproduce.
