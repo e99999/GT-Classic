@@ -8,18 +8,18 @@ import java.util.Random;
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileAlloySmelter;
-import gtclassic.tile.GTTileArcFurnace;
-import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBasicEnergyStorage;
-import gtclassic.tile.GTTileBlastFurnace;
-import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
-import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
-import gtclassic.tile.GTTileLightningRod;
+import gtclassic.tile.GTTileMultiArcFurnace;
+import gtclassic.tile.GTTileMultiAssemblyLine;
+import gtclassic.tile.GTTileMultiBlastFurnace;
+import gtclassic.tile.GTTileMultiBloomery;
 import gtclassic.tile.GTTileMultiEnergyStorage;
+import gtclassic.tile.GTTileMultiFusionComputer;
+import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileSuperConductorHigh;
@@ -88,9 +88,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (this == GTBlocks.computerCube) {
 			return new GTTileComputerCube();
 		} else if (this == GTBlocks.bloomery) {
-			return new GTTileBloomery();
+			return new GTTileMultiBloomery();
 		} else if (this == GTBlocks.blastFurnace) {
-			return new GTTileBlastFurnace();
+			return new GTTileMultiBlastFurnace();
 		} else if (this == GTBlocks.industrialCentrifuge) {
 			return new GTTileIndustrialCentrifuge();
 		} else if (this == GTBlocks.alloySmelter) {
@@ -98,13 +98,13 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		} else if (this == GTBlocks.playerDetector) {
 			return new GTTilePlayerDetector();
 		} else if (this == GTBlocks.assLine) {
-			return new GTTileAssemblyLine();
+			return new GTTileMultiAssemblyLine();
 		} else if (this == GTBlocks.arcFurnace) {
-			return new GTTileArcFurnace();
+			return new GTTileMultiArcFurnace();
 		} else if (this == GTBlocks.lightningRod) {
-			return new GTTileLightningRod();
+			return new GTTileMultiLightningRod();
 		} else if (this == GTBlocks.fusionComputer) {
-			return new GTTileFusionComputer();
+			return new GTTileMultiFusionComputer();
 		} else if (this == GTBlocks.basicEnergyStorage) {
 			return new GTTileBasicEnergyStorage();
 		} else if (this == GTBlocks.quantumEnergyStorage) {
@@ -186,12 +186,12 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (this == GTBlocks.bloomery && ItemStack.areItemsEqualIgnoreDurability(playerIn.getHeldItemMainhand(),
 				new ItemStack(Items.FLINT_AND_STEEL))) {
 			TileEntity te = worldIn.getTileEntity(pos);
-			if (te instanceof GTTileBloomery && ((GTTileBloomery) te).isActive) {
+			if (te instanceof GTTileMultiBloomery && ((GTTileMultiBloomery) te).isActive) {
 				return false;
 			}
-			if (te instanceof GTTileBloomery && !((GTTileBloomery) te).isActive) {
+			if (te instanceof GTTileMultiBloomery && !((GTTileMultiBloomery) te).isActive) {
 				playerIn.getHeldItem(hand).damageItem(1, playerIn);
-				return ((GTTileBloomery) te).canWork();
+				return ((GTTileMultiBloomery) te).canWork();
 			}
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
@@ -268,8 +268,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	@SuppressWarnings("incomplete-switch")
 	public void particleBloomery(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileBloomery) {
-			if (((GTTileBloomery) tile).isActive) {
+		if (tile instanceof GTTileMultiBloomery) {
+			if (((GTTileMultiBloomery) tile).isActive) {
 				EnumFacing enumfacing = getFacing(worldIn, pos);
 				double d0 = (double) pos.getX() + 0.5D;
 				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;

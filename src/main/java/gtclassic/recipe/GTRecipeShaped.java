@@ -46,8 +46,8 @@ public class GTRecipeShaped {
 
 		recipes.addRecipe(GT.get(GTItems.glassTube, 32), new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
 
-		recipes.addRecipe(GT.get(GTBlocks.smallLithium, 1), new Object[] { " G ", "ALA", "ALA", 'G',
-				Ic2Items.goldCable, 'A', "plateAluminium", 'L', GT.getChemical(M.Lithium, 1) });
+		recipes.addRecipe(GT.get(GTBlocks.smallLithium, 1), new Object[] { " G ", "ALA", "ALA", 'G', Ic2Items.goldCable,
+				'A', "plateAluminium", 'L', GT.getChemical(M.Lithium, 1) });
 
 		recipes.addRecipe(GT.get(GTItems.destructoPack, 1),
 				new Object[] { "BIB", "ICI", "BIB", 'B', GTValues.lava, 'C', "circuitBasic", 'I', plateAnyIron });
@@ -131,7 +131,7 @@ public class GTRecipeShaped {
 
 		recipes.addRecipe(GT.get(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood", 'C',
 				"cobblestone", 'I', ingotMetal, 'R', "dustRedstone" });
-		
+
 		recipes.addRecipe(GT.get(Blocks.HOPPER), new Object[] { "I I", "ICI", " I ", 'W', "plankWood", 'C',
 				"cobblestone", 'I', ingotMetal, 'C', "chestWood" });
 

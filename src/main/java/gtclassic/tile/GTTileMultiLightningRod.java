@@ -12,12 +12,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 
-public class GTTileLightningRod extends TileEntityGeneratorBase {
+public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 
 	public int casingheight;
 	public int chance;
 
-	public GTTileLightningRod() {
+	public GTTileMultiLightningRod() {
 		super(0);
 		this.maxStorage = 100000000;
 		this.production = 8096;

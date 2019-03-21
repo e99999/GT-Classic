@@ -9,9 +9,9 @@ import gtclassic.recipe.GTRecipe;
 import gtclassic.tile.GTTileBaseMultiBlockMachine;
 import gtclassic.tile.GTTileBaseMultiInputMachine;
 import gtclassic.tile.GTTileBlockCustom;
-import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileDigitalChest;
-import gtclassic.tile.GTTileLightningRod;
+import gtclassic.tile.GTTileMultiBloomery;
+import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
@@ -173,8 +173,8 @@ public class GTMod {
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
 			}
 
-			if (tileEntity instanceof GTTileLightningRod) {
-				GTTileLightningRod rod = (GTTileLightningRod) tileEntity;
+			if (tileEntity instanceof GTTileMultiLightningRod) {
+				GTTileMultiLightningRod rod = (GTTileMultiLightningRod) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + rod.checkStructure());
 				IC2.platform.messagePlayer(player,
 						"Casing Block Amount: " + (rod.casingheight - (rod.getPos().getY() + 1)));
@@ -186,8 +186,8 @@ public class GTMod {
 						"1 out of " + rod.chance + " chance to strike based on fence height");
 			}
 
-			if (tileEntity instanceof GTTileBloomery) {
-				GTTileBloomery bloom = (GTTileBloomery) tileEntity;
+			if (tileEntity instanceof GTTileMultiBloomery) {
+				GTTileMultiBloomery bloom = (GTTileMultiBloomery) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
 				IC2.platform.messagePlayer(player,
 						"Progress: " + (Math.round((bloom.getProgress() / bloom.getMaxProgress()) * 100)) + "%");

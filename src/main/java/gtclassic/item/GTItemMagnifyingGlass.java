@@ -5,7 +5,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileBaseMultiBlockMachine;
-import gtclassic.tile.GTTileBloomery;
+import gtclassic.tile.GTTileMultiBloomery;
 import ic2.core.IC2;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -57,8 +57,8 @@ public class GTItemMagnifyingGlass extends Item implements IStaticTexturedItem {
 			world.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.BLOCKS, 1.0F,
 					1.0F);
 
-			if (tileEntity instanceof GTTileBloomery) {
-				GTTileBloomery bloom = (GTTileBloomery) tileEntity;
+			if (tileEntity instanceof GTTileMultiBloomery) {
+				GTTileMultiBloomery bloom = (GTTileMultiBloomery) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
 			}
 

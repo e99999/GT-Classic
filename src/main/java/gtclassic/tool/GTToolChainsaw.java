@@ -62,6 +62,7 @@ public class GTToolChainsaw extends ItemElectricTool
 		}
 		this.maxCharge = (int) (Math.pow(2, this.tier) * 50000);
 		this.transferLimit = (int) (Math.pow(2, this.tier) * 64);
+		this.operationEnergyCost = this.transferLimit;
 		this.efficiency = (this.material.getSpeed() * 2) * this.tier;
 		this.setMaxDamage(this.material.getDurability() * (this.tier * 100));
 		this.setHarvestLevel("axe", 2);
@@ -160,7 +161,6 @@ public class GTToolChainsaw extends ItemElectricTool
 						entityitem.setDefaultPickupDelay();
 						player.world.spawnEntity(entityitem);
 					}
-
 					ElectricItem.manager.use(itemstack, this.getEnergyCost(itemstack), player);
 					player.addStat(StatList.getBlockStats(block));
 					if (block == Blocks.WEB) {

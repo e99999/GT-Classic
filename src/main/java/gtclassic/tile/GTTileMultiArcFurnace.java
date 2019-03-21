@@ -33,7 +33,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileArcFurnace extends GTTileBaseMultiBlockMachine {
+public class GTTileMultiArcFurnace extends GTTileBaseMultiBlockMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
@@ -50,7 +50,7 @@ public class GTTileArcFurnace extends GTTileBaseMultiBlockMachine {
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
 			"textures/gui/arcfurnace.png");
 
-	public GTTileArcFurnace() {
+	public GTTileMultiArcFurnace() {
 		super(6, 0, 120, 500, 512);
 		maxEnergy = 10000;
 	}

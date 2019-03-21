@@ -41,7 +41,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 
-public class GTTileBloomery extends TileEntityMachine implements ITickable, IHasGui, IProgressMachine {
+public class GTTileMultiBloomery extends TileEntityMachine implements ITickable, IHasGui, IProgressMachine {
 
 	IBlockState brick = Blocks.BRICK_BLOCK.getDefaultState();
 	IBlockState fire = Blocks.FIRE.getDefaultState();
@@ -66,7 +66,7 @@ public class GTTileBloomery extends TileEntityMachine implements ITickable, IHas
 	boolean processing = false;
 	int slotOutput = 0;
 
-	public GTTileBloomery() {
+	public GTTileMultiBloomery() {
 		super(1);
 		setWorld(world);
 		addGuiFields("progress", "recipeOperation");

@@ -32,7 +32,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileBlastFurnace extends GTTileBaseMultiBlockMachine {
+public class GTTileMultiBlastFurnace extends GTTileBaseMultiBlockMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
@@ -51,7 +51,7 @@ public class GTTileBlastFurnace extends GTTileBaseMultiBlockMachine {
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
 			"textures/gui/blastfurnace.png");
 
-	public GTTileBlastFurnace() {
+	public GTTileMultiBlastFurnace() {
 		super(6, 0, 20, 800, 32);
 		maxEnergy = 100;
 	}

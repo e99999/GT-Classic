@@ -9,11 +9,11 @@ import gtclassic.gui.GTGuiMachine;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import gtclassic.tile.GTTileAlloySmelter;
-import gtclassic.tile.GTTileArcFurnace;
-import gtclassic.tile.GTTileAssemblyLine;
-import gtclassic.tile.GTTileBlastFurnace;
-import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
+import gtclassic.tile.GTTileMultiArcFurnace;
+import gtclassic.tile.GTTileMultiAssemblyLine;
+import gtclassic.tile.GTTileMultiBlastFurnace;
+import gtclassic.tile.GTTileMultiFusionComputer;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -59,7 +59,7 @@ public class GTJeiPlugin implements IModPlugin {
 
 			// Fusion
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "fusion");
-			registry.addRecipes(GTTileFusionComputer.RECIPE_LIST.getRecipeList(), "fusion");
+			registry.addRecipes(GTTileMultiFusionComputer.RECIPE_LIST.getRecipeList(), "fusion");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), "fusion");
 			registry.addRecipeClickArea(GTFusionComputerGui.class, 111, 35, 25, 17, "fusion");
 
@@ -73,21 +73,21 @@ public class GTJeiPlugin implements IModPlugin {
 			// Assembly Line
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
 					"assemblyline");
-			registry.addRecipes(GTTileAssemblyLine.RECIPE_LIST.getRecipeList(), "assemblyline");
+			registry.addRecipes(GTTileMultiAssemblyLine.RECIPE_LIST.getRecipeList(), "assemblyline");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.assLine), "assemblyline");
 			registry.addRecipeClickArea(GTGuiMachine.GTAssemblyLineGui.class, 88, 25, 20, 16, "assemblyline");
 
 			// Arc Furnace
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
 					"arcfurnace");
-			registry.addRecipes(GTTileArcFurnace.RECIPE_LIST.getRecipeList(), "arcfurnace");
+			registry.addRecipes(GTTileMultiArcFurnace.RECIPE_LIST.getRecipeList(), "arcfurnace");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.arcFurnace), "arcfurnace");
 			registry.addRecipeClickArea(GTGuiMachine.GTArcFurnaceGui.class, 58, 28, 20, 11, "arcfurnace");
 
 			// Blast Furnace
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
 					"blastfurnace");
-			registry.addRecipes(GTTileBlastFurnace.RECIPE_LIST.getRecipeList(), "blastfurnace");
+			registry.addRecipes(GTTileMultiBlastFurnace.RECIPE_LIST.getRecipeList(), "blastfurnace");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.blastFurnace), "blastfurnace");
 			registry.addRecipeClickArea(GTGuiMachine.GTBlastFurnaceGui.class, 58, 28, 20, 11, "blastfurnace");
 

@@ -30,7 +30,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileFusionComputer extends GTTileBaseMultiBlockMachine {
+public class GTTileMultiFusionComputer extends GTTileBaseMultiBlockMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
@@ -45,7 +45,7 @@ public class GTTileFusionComputer extends GTTileBaseMultiBlockMachine {
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
 			"textures/gui/fusioncomputer.png");
 
-	public GTTileFusionComputer() {
+	public GTTileMultiFusionComputer() {
 		super(3, 0, 8192, 4096, 8192);
 		maxEnergy = 10000;
 	}

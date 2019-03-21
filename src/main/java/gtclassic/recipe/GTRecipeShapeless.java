@@ -56,19 +56,18 @@ public class GTRecipeShapeless {
 
 		recipes.addShapelessRecipe(GT.get(GTBlocks.slagSand),
 				new Object[] { "sand", "dustSlag", "dustSlag", "dustSlag" });
-		
-		
-		//random stuff
-		recipes.addShapelessRecipe(GT.get(Items.IRON_INGOT),
-				new Object[] { "ingotRefinedIron", "dustAsh"});
-		
+
+		// random stuff
+		recipes.addShapelessRecipe(GT.get(Items.IRON_INGOT), new Object[] { "ingotRefinedIron", "dustAsh" });
+
 		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.fertilizer, 1),
-				new Object[] { "dustSulfur", "dustAsh", "dustCalcite"});
-		
+				new Object[] { "dustSulfur", "dustAsh", "dustCalcite" });
+
 		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.fertilizer, 2),
-				new Object[] { "dustSulfur", "dustDarkAshes", "dustCalcite"});
-		
-		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.constructionFoam, 3), new Object[]{"dustClay", GTValues.water, "dustAsh", "dustCoal"});
+				new Object[] { "dustSulfur", "dustDarkAshes", "dustCalcite" });
+
+		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.constructionFoam, 3),
+				new Object[] { "dustClay", GTValues.water, "dustAsh", "dustCoal" });
 
 		String g = "gravel";
 		ItemStack s = GT.get(GTBlocks.slagSand);

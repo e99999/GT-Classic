@@ -33,7 +33,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileAssemblyLine extends GTTileBaseMultiBlockMachine {
+public class GTTileMultiAssemblyLine extends GTTileBaseMultiBlockMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
@@ -52,7 +52,7 @@ public class GTTileAssemblyLine extends GTTileBaseMultiBlockMachine {
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
 			"textures/gui/assemblyline.png");
 
-	public GTTileAssemblyLine() {
+	public GTTileMultiAssemblyLine() {
 		super(4, 0, 120, 1024, 512);
 		maxEnergy = 10000;
 	}

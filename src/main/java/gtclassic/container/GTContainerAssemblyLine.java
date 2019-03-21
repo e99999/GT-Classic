@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.tile.GTTileAssemblyLine;
+import gtclassic.tile.GTTileMultiAssemblyLine;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
@@ -11,12 +11,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GTContainerAssemblyLine extends ContainerTileComponent<GTTileAssemblyLine> {
+public class GTContainerAssemblyLine extends ContainerTileComponent<GTTileMultiAssemblyLine> {
 
 	public static Box2D machineProgressBox = new Box2D(88, 24, 20, 18); // the progress bar and size
 	public static Vec2i machineProgressPos = new Vec2i(176, 0); // where the overlay is
 
-	public GTContainerAssemblyLine(InventoryPlayer player, GTTileAssemblyLine tile) {
+	public GTContainerAssemblyLine(InventoryPlayer player, GTTileMultiAssemblyLine tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 26, 25, null));// main slot
 		this.addSlotToContainer(new SlotCustom(tile, 1, 44, 25, null)); // second slot

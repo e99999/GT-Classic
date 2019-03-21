@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.tile.GTTileArcFurnace;
+import gtclassic.tile.GTTileMultiArcFurnace;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
@@ -11,12 +11,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GTContainerArcFurnace extends ContainerTileComponent<GTTileArcFurnace> {
+public class GTContainerArcFurnace extends ContainerTileComponent<GTTileMultiArcFurnace> {
 
 	public static Box2D machineProgressBox = new Box2D(58, 28, 20, 11); // the progress bar and size
 	public static Vec2i machineProgressPos = new Vec2i(176, 0); // where the overlay is
 
-	public GTContainerArcFurnace(InventoryPlayer player, GTTileArcFurnace tile) {
+	public GTContainerArcFurnace(InventoryPlayer player, GTTileMultiArcFurnace tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 34, 16, null));// main slot
 		this.addSlotToContainer(new SlotCustom(tile, 1, 34, 34, null)); // second slot

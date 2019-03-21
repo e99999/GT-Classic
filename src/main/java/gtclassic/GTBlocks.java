@@ -21,21 +21,21 @@ import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileAlloySmelter;
-import gtclassic.tile.GTTileArcFurnace;
-import gtclassic.tile.GTTileAssemblyLine;
 import gtclassic.tile.GTTileBasicEnergyStorage;
-import gtclassic.tile.GTTileBlastFurnace;
 import gtclassic.tile.GTTileBlockCustom;
-import gtclassic.tile.GTTileBloomery;
 import gtclassic.tile.GTTileBookshelf;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
-import gtclassic.tile.GTTileFusionComputer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.tile.GTTileLargeChest;
-import gtclassic.tile.GTTileLightningRod;
+import gtclassic.tile.GTTileMultiArcFurnace;
+import gtclassic.tile.GTTileMultiAssemblyLine;
+import gtclassic.tile.GTTileMultiBlastFurnace;
+import gtclassic.tile.GTTileMultiBloomery;
 import gtclassic.tile.GTTileMultiEnergyStorage;
+import gtclassic.tile.GTTileMultiFusionComputer;
+import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileResinBoard;
@@ -255,18 +255,19 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileResinBoard.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityResinBoard"));
 
-		GameRegistry.registerTileEntity(GTTileBloomery.class, new ResourceLocation(GTMod.MODID, "tileEntityBloomery"));
+		GameRegistry.registerTileEntity(GTTileMultiBloomery.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityBloomery"));
 		GameRegistry.registerTileEntity(GTTileIndustrialCentrifuge.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
 		GameRegistry.registerTileEntity(GTTileAlloySmelter.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityAlloySmelter"));
 		GameRegistry.registerTileEntity(GTTilePlayerDetector.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityPlayerDetector"));
-		GameRegistry.registerTileEntity(GTTileAssemblyLine.class,
+		GameRegistry.registerTileEntity(GTTileMultiAssemblyLine.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityAssemblyLine"));
-		GameRegistry.registerTileEntity(GTTileArcFurnace.class,
+		GameRegistry.registerTileEntity(GTTileMultiArcFurnace.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityArcFurnace"));
-		GameRegistry.registerTileEntity(GTTileBlastFurnace.class,
+		GameRegistry.registerTileEntity(GTTileMultiBlastFurnace.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityBlastFurnace"));
 		GameRegistry.registerTileEntity(GTTileComputerCube.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityComputerCube"));
@@ -291,9 +292,9 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileMultiEnergyStorage.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityLESU"));
 
-		GameRegistry.registerTileEntity(GTTileLightningRod.class,
+		GameRegistry.registerTileEntity(GTTileMultiLightningRod.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityLightningRod"));
-		GameRegistry.registerTileEntity(GTTileFusionComputer.class,
+		GameRegistry.registerTileEntity(GTTileMultiFusionComputer.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityFusionComputer"));
 		GameRegistry.registerTileEntity(GTTileSuperConductorLow.class,
 				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductorLow"));
