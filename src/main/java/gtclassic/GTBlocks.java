@@ -8,6 +8,7 @@ import gtclassic.block.GTBlockBattery;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockDuctTape;
 import gtclassic.block.GTBlockOre;
+import gtclassic.block.GTBlockRedMud;
 import gtclassic.block.GTBlockResinBottle;
 import gtclassic.block.GTBlockSand;
 import gtclassic.block.GTBlockTileBasic;
@@ -15,6 +16,7 @@ import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
+import gtclassic.fluid.GTFluidBlockSlurry;
 import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterial;
@@ -77,6 +79,7 @@ public class GTBlocks {
 	public static final GTBlockSand slagcreteSand = registerBlock(new GTBlockSand("Slagcrete", 18));
 	public static final GTBlock slagGlass = registerBlock(
 			new GTBlock(Material.GLASS, "SlagGlass", 19, 2.0F, "pickaxe", 0, SoundType.GLASS));
+	public static final GTBlockRedMud slurryDry = registerBlock(new GTBlockRedMud());
 
 	public static final GTBlockCasing superCasingBlock = registerBlock(new GTBlockCasing("Superconductor", 0));
 	public static final GTBlockCasing fusionCasingBlock = registerBlock(new GTBlockCasing("Fusion", 1));
@@ -183,6 +186,8 @@ public class GTBlocks {
 			new GTBlockBattery("battery_lapotron_large", 12, 12, true, 1000000000, 16384, 6));
 	public static final GTBlockBattery hugeLapotron = registerBlock(
 			new GTBlockBattery("battery_lapotron_huge", 14, 14, true, Integer.MAX_VALUE, 32768, 7));
+
+	public static final GTFluidBlockSlurry slurryBlock = registerBlock(new GTFluidBlockSlurry());
 
 	// public static final GTBlockTestLayer testBlock = registerBlock(new
 	// GTBlockTestLayer());

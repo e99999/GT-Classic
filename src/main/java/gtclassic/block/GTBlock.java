@@ -88,6 +88,12 @@ public class GTBlock extends Block implements ITexturedBlock, ILocaleBlock {
 		return FULL_BLOCK_AABB;
 	}
 
+	@Override
+	@Deprecated
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return this.getRenderBoundingBox(state);
+	}
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
@@ -156,23 +162,25 @@ public class GTBlock extends Block implements ITexturedBlock, ILocaleBlock {
 		return this.mat != Material.GLASS;
 	}
 
+	@Deprecated
+	public boolean isNormalCube(IBlockState state) {
+		return this.mat != Material.GLASS;
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos,
 			EnumFacing side) {
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
-
 		if (this.mat == Material.GLASS) {
 			if (blockState != iblockstate) {
 				return true;
 			}
-
 			if (block == this) {
 				return false;
 			}
 		}
-
 		return true;
 	}
 }

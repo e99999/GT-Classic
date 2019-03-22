@@ -66,6 +66,7 @@ public class GTMod {
 	public synchronized void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
 		proxy.preInit(event);
+		GTFluids.registerFluids();
 		GTBlocks.registerTiles();
 		GTMaterialGen.init();
 		GTBlocks.registerBlocks();
