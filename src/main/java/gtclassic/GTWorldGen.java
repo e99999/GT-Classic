@@ -17,7 +17,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class GTOreGen implements IWorldGenerator {
+public class GTWorldGen implements IWorldGenerator {
 
 	/*
 	 * The block to generate. (IBlockState) The amount of blocks to generate. (int)

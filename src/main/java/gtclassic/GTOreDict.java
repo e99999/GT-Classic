@@ -61,11 +61,12 @@ public class GTOreDict {
 		OreDictionary.registerOre("dustGunpowder", Items.GUNPOWDER);
 		OreDictionary.registerOre("bookshelf", Blocks.BOOKSHELF);
 
-		// Register some missing Ic2c stuff
+		// Register some missing Ic2c stuff cause Speiger is a bad doge
 		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
 		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
 		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
 		OreDictionary.registerOre("blockCharcoal", Ic2Items.charcoalBlock);
+		OreDictionary.registerOre("logRubber", Ic2Items.rubberWood);
 
 		// Registering Aluminium for idiots
 		GTMaterial aluminium = GTMaterial.Aluminium;
@@ -81,6 +82,7 @@ public class GTOreDict {
 
 		// Stuff to fit with how other mods have done it
 		OreDictionary.registerOre("dustAsh", (GTMaterialGen.getDust(GTMaterial.Ashes, 1)));
+		OreDictionary.registerOre("dustEnderEye", (GTMaterialGen.getDust(GTMaterial.EnderEye, 1)));
 
 	}
 

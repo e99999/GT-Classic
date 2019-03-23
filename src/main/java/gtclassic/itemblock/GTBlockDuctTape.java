@@ -1,9 +1,8 @@
-package gtclassic.block;
+package gtclassic.itemblock;
 
 import java.util.Random;
 
-import gtclassic.itemblock.GTItemBlockDuctTape;
-import gtclassic.itemblock.GTItemBlockInterface;
+import gtclassic.block.GTBlockTileCustom;
 import gtclassic.tile.GTTileBlockCustom;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;

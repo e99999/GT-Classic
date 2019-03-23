@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 public class GTFluidSlurry extends Fluid {
-	protected static int mapColor = 0xff000000;
+	protected static int mapColor = 0xFFFFFFFF;
 	protected static float overlayAlpha = 0.2F;
 	protected static SoundEvent emptySound = SoundEvents.ITEM_BUCKET_EMPTY;
 	protected static SoundEvent fillSound = SoundEvents.ITEM_BUCKET_FILL;

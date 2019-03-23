@@ -1,6 +1,8 @@
 package gtclassic.recipe;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import gtclassic.GTBlocks;
@@ -10,8 +12,10 @@ import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiBloomery;
 import gtclassic.tile.GTTileMultiFusionComputer;
+import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
@@ -32,6 +36,12 @@ public class GTRecipeProcessing {
 	static GTMaterial M;
 
 	static IMachineRecipeList smelting = ClassicRecipes.furnace;
+
+	public static final GTMultiInputRecipeList BLOOM_RECIPE_LIST = new GTMultiInputRecipeList("bloomery");
+	public static final IRecipeInput fuel = new RecipeInputCombined(1,
+			new IRecipeInput[] { new RecipeInputOreDict("blockCoal"), new RecipeInputOreDict("blockCharcoal"),
+					new RecipeInputItemStack(new ItemStack(Items.COAL, 9)),
+					new RecipeInputItemStack(new ItemStack(Items.COAL, 9, 1)) });
 
 	public static void recipesProcessing() {
 
@@ -86,11 +96,8 @@ public class GTRecipeProcessing {
 		 * Bloomery Recipes
 		 * 
 		 */
+
 		IBlockState bloom = GTBlocks.bloomBlock.getDefaultState();
-		IRecipeInput fuel = new RecipeInputCombined(1,
-				new IRecipeInput[] { new RecipeInputOreDict("blockCoal"), new RecipeInputOreDict("blockCharcoal"),
-						new RecipeInputItemStack(new ItemStack(Items.COAL, 9)),
-						new RecipeInputItemStack(new ItemStack(Items.COAL, 9, 1)) });
 
 		GTTileMultiBloomery.RECIPE_LIST.addRecipe("ingotIron", bloom, 4, 400, new RecipeInputOreDict("ingotIron", 3),
 				fuel);
@@ -102,6 +109,12 @@ public class GTRecipeProcessing {
 				new RecipeInputOreDict("dustCalcite", 2), fuel);
 		GTTileMultiBloomery.RECIPE_LIST.addRecipe("dustMagnetite", bloom, 4, 400,
 				new RecipeInputOreDict("dustMagnetite", 2), new RecipeInputOreDict("dustCalcite", 2), fuel);
+
+		addFakeBloomRecipe("ingotIron", 3, GT.get(GTBlocks.bloomBlock));
+		addFakeBloomRecipe("dustIron", 3, GT.get(GTBlocks.bloomBlock));
+		addFakeBloomRecipe("oreIron", 1, "dustCalcite", 1, GT.get(GTBlocks.bloomBlock));
+		addFakeBloomRecipe("dustPyrite", 2, "dustCalcite", 2, GT.get(GTBlocks.bloomBlock));
+		addFakeBloomRecipe("dustMagnetite", 2, "dustCalcite", 2, GT.get(GTBlocks.bloomBlock));
 
 		/*
 		 * GT Blast Furnace recipes
@@ -159,6 +172,37 @@ public class GTRecipeProcessing {
 				iterator.remove();
 			}
 		}
+	}
+
+	/*
+	 * fake recipes for the bloomery to show in JEI
+	 */
+	public static void addFakeBloomRecipe(String input1, int amount1, String input2, int amount2, ItemStack output) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		List<ItemStack> outputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input2, amount2)));
+		inputs.add(fuel);
+		outputs.add(output);
+		outputs.add(GT.getDust(GTMaterial.DarkAshes, 4));
+		addFakeBloomRecipe(inputs, new MachineOutput(null, outputs));
+	}
+
+	public static void addFakeBloomRecipe(String input1, int amount1, ItemStack output) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		List<ItemStack> outputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
+		inputs.add(fuel);
+		outputs.add(output);
+		outputs.add(GT.getDust(GTMaterial.DarkAshes, 4));
+		addFakeBloomRecipe(inputs, new MachineOutput(null, outputs));
+	}
+
+	/*
+	 * fake recipes for the bloomery to show in JEI
+	 */
+	static void addFakeBloomRecipe(List<IRecipeInput> input, MachineOutput output) {
+		BLOOM_RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
 	}
 
 }

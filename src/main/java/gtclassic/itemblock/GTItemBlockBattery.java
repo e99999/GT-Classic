@@ -1,7 +1,6 @@
 package gtclassic.itemblock;
 
 import gtclassic.GTMod;
-import gtclassic.block.GTBlockBattery;
 import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;

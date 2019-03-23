@@ -3,20 +3,21 @@ package gtclassic;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.block.GTBlock;
-import gtclassic.block.GTBlockBattery;
 import gtclassic.block.GTBlockCasing;
-import gtclassic.block.GTBlockDuctTape;
+import gtclassic.block.GTBlockGlass;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockRedMud;
-import gtclassic.block.GTBlockResinBottle;
 import gtclassic.block.GTBlockSand;
+import gtclassic.block.GTBlockStone;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.fluid.GTFluidBlockSlurry;
+import gtclassic.itemblock.GTBlockBattery;
+import gtclassic.itemblock.GTBlockDuctTape;
+import gtclassic.itemblock.GTBlockResinBottle;
 import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterial;
@@ -49,8 +50,6 @@ import gtclassic.tile.GTTileWorkbench;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -73,12 +72,13 @@ public class GTBlocks {
 	public static final GTBlockOre olivineOre = registerBlock(new GTBlockOre("Olivine", 14, 3, 3.0F));
 	public static final GTBlockOre sodaliteOre = registerBlock(new GTBlockOre("Sodalite", 15, 2, 3.0F));
 
-	public static final GTBlock bloomBlock = registerBlock(
-			new GTBlock(Material.ROCK, "Bloom", 16, 1.0F, "pickaxe", 0, SoundType.STONE));
+	public static final GTBlockStone bloomBlock = registerBlock(new GTBlockStone("Bloom", 16, 1.0F, 0));
+
 	public static final GTBlockSand slagSand = registerBlock(new GTBlockSand("Slag", 17));
 	public static final GTBlockSand slagcreteSand = registerBlock(new GTBlockSand("Slagcrete", 18));
-	public static final GTBlock slagGlass = registerBlock(
-			new GTBlock(Material.GLASS, "SlagGlass", 19, 2.0F, "pickaxe", 0, SoundType.GLASS));
+
+	public static final GTBlockGlass slagGlass = registerBlock(new GTBlockGlass("Slag", 19));
+
 	public static final GTBlockRedMud slurryDry = registerBlock(new GTBlockRedMud());
 
 	public static final GTBlockCasing superCasingBlock = registerBlock(new GTBlockCasing("Superconductor", 0));

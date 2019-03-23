@@ -78,7 +78,7 @@ public class GTMod {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
 		GTRecipe.init();
-		GameRegistry.registerWorldGenerator(new GTOreGen(), 0);
+		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
 		proxy.init(e);
 	}

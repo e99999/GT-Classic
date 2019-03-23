@@ -82,7 +82,7 @@ public class GTMaterial {
 	public static GTMaterial Electrum = new GTMaterial("Electrum", 12.0F, 64, 2, new Color(255, 255, 100), true,
 			METAL_ALL);
 	public static GTMaterial Emerald = new GTMaterial("Emerald", 7.0F, 256, 3, new Color(80, 255, 80), false, DUST_ALL);
-	public static GTMaterial EnderEye = new GTMaterial("Endereye", 1.0F, 0, 1, new Color(160, 250, 230), false,
+	public static GTMaterial EnderEye = new GTMaterial("EnderEye", 1.0F, 0, 1, new Color(160, 250, 230), false,
 			DUST_ALL);
 	public static GTMaterial EnderPearl = new GTMaterial("Enderpearl", 1.0F, 0, 1, new Color(108, 220, 200), false,
 			DUST_ALL);

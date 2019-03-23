@@ -23,7 +23,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -34,33 +33,27 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlock extends Block implements ITexturedBlock, ILocaleBlock {
+public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock {
 
 	String name;
 	int id;
 	float hardness;
-	String tool;
 	int level;
-	SoundType sound;
-	Material mat;
 	LocaleComp comp;
 
-	public GTBlock(Material mat, String name, int id, float hardness, String tool, int level, SoundType sound) {
-		super(mat);
-		this.mat = mat;
+	public GTBlockStone(String name, int id, float hardness, int level) {
+		super(Material.ROCK);
 		this.name = name;
 		this.id = id;
 		this.hardness = hardness;
-		this.tool = tool;
 		this.level = level;
-		this.sound = sound;
 		this.comp = Ic2Lang.nullKey;
 		setRegistryName(this.name.toLowerCase() + "_block");
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_block");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(this.hardness);
-		setHarvestLevel(this.tool, this.level);
-		setSoundType(this.sound);
+		setHarvestLevel("pickaxe", this.level);
+		setSoundType(SoundType.STONE);
 	}
 
 	@Override
@@ -86,12 +79,6 @@ public class GTBlock extends Block implements ITexturedBlock, ILocaleBlock {
 	@Override
 	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
 		return FULL_BLOCK_AABB;
-	}
-
-	@Override
-	@Deprecated
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return this.getRenderBoundingBox(state);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -140,47 +127,5 @@ public class GTBlock extends Block implements ITexturedBlock, ILocaleBlock {
 			xp = MathHelper.getInt(rand, 1, 5);
 		}
 		return xp;
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public BlockRenderLayer getBlockLayer() {
-		if (this.mat == Material.GLASS) {
-			return BlockRenderLayer.TRANSLUCENT;
-		}
-		return BlockRenderLayer.SOLID;
-	}
-
-	@Override
-	@Deprecated
-	public boolean isOpaqueCube(IBlockState state) {
-		return this.mat != Material.GLASS;
-	}
-
-	@Override
-	public boolean isFullCube(IBlockState state) {
-		return this.mat != Material.GLASS;
-	}
-
-	@Deprecated
-	public boolean isNormalCube(IBlockState state) {
-		return this.mat != Material.GLASS;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos,
-			EnumFacing side) {
-		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
-		Block block = iblockstate.getBlock();
-		if (this.mat == Material.GLASS) {
-			if (blockState != iblockstate) {
-				return true;
-			}
-			if (block == this) {
-				return false;
-			}
-		}
-		return true;
 	}
 }
