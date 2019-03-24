@@ -20,7 +20,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -30,6 +32,7 @@ public class GTBlockGlass extends BlockGlass implements ITexturedBlock, ILocaleB
 	String name;
 	int id;
 	LocaleComp comp;
+	Material mat = Material.GLASS;
 
 	public GTBlockGlass(String name, int id) {
 		super(Material.GLASS, false);
@@ -48,6 +51,32 @@ public class GTBlockGlass extends BlockGlass implements ITexturedBlock, ILocaleB
 		tooltip.add(TextFormatting.ITALIC + I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
 	}
 
+	@SideOnly(Side.CLIENT)	
+	@Override	
+	public BlockRenderLayer getBlockLayer() {	
+		if (this.mat == Material.GLASS) {	
+			return BlockRenderLayer.TRANSLUCENT;	
+		}	
+		return BlockRenderLayer.SOLID;	
+	}	
+
+ 	@Override	
+	@Deprecated	
+	public boolean isOpaqueCube(IBlockState state) {	
+		return this.mat != Material.GLASS;	
+	}	
+
+ 	@Override	
+	public boolean isFullCube(IBlockState state) {	
+		return this.mat != Material.GLASS;	
+	}	
+
+ 	@Deprecated	
+	public boolean isNormalCube(IBlockState state) {	
+		return this.mat != Material.GLASS;	
+	}	
+
+
 	public LocaleComp getName() {
 		return this.comp;
 	}
@@ -61,12 +90,6 @@ public class GTBlockGlass extends BlockGlass implements ITexturedBlock, ILocaleB
 	public Block setUnlocalizedName(String name) {
 		this.comp = new LocaleBlockComp("tile." + name);
 		return super.setUnlocalizedName(name);
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
 	}
 
 	@SideOnly(Side.CLIENT)

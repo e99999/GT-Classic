@@ -8,16 +8,16 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
-public class GTFluidSlurry extends Fluid {
+public class GTFluid extends Fluid {
 	protected static int mapColor = 0xFFFFFFFF;
 	protected static float overlayAlpha = 0.2F;
 	protected static SoundEvent emptySound = SoundEvents.ITEM_BUCKET_EMPTY;
 	protected static SoundEvent fillSound = SoundEvents.ITEM_BUCKET_FILL;
 	protected static Material material = Material.WATER;
 
-	public GTFluidSlurry(String name) {
-		super(name, new ResourceLocation(GTMod.MODID, "fluids/" + name + "_still"),
-				new ResourceLocation(GTMod.MODID, "fluids/" + name + "_flow"));
+	public GTFluid(String name) {
+		super(name, new ResourceLocation(GTMod.MODID, "fluids/" + name),
+				new ResourceLocation(GTMod.MODID, "fluids/" + name));
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class GTFluidSlurry extends Fluid {
 		return mapColor;
 	}
 
-	public GTFluidSlurry setColor(int parColor) {
+	public GTFluid setColor(int parColor) {
 		mapColor = parColor;
 		return this;
 	}
@@ -34,13 +34,13 @@ public class GTFluidSlurry extends Fluid {
 		return overlayAlpha;
 	}
 
-	public GTFluidSlurry setAlpha(float parOverlayAlpha) {
+	public GTFluid setAlpha(float parOverlayAlpha) {
 		overlayAlpha = parOverlayAlpha;
 		return this;
 	}
 
 	@Override
-	public GTFluidSlurry setEmptySound(SoundEvent parSound) {
+	public GTFluid setEmptySound(SoundEvent parSound) {
 		emptySound = parSound;
 		return this;
 	}
@@ -51,7 +51,7 @@ public class GTFluidSlurry extends Fluid {
 	}
 
 	@Override
-	public GTFluidSlurry setFillSound(SoundEvent parSound) {
+	public GTFluid setFillSound(SoundEvent parSound) {
 		fillSound = parSound;
 		return this;
 	}
@@ -61,7 +61,7 @@ public class GTFluidSlurry extends Fluid {
 		return fillSound;
 	}
 
-	public GTFluidSlurry setMaterial(Material parMaterial) {
+	public GTFluid setMaterial(Material parMaterial) {
 		material = parMaterial;
 		return this;
 	}

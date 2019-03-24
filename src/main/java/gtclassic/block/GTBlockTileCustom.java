@@ -108,6 +108,7 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 		return new TileEntityBlock();
 	}
 
+	@Override
 	@Deprecated
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return getVariantBoundingBox();

@@ -29,7 +29,7 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 	LocaleComp comp;
 
 	public GTFluidBlockSlurry() {
-		super(GTFluids.fluidSlurry, Material.WATER);
+		super(GTFluids.slurryFluid, Material.WATER);
 		this.comp = Ic2Lang.nullKey;
 		setRegistryName("fluid_slurry");
 		setUnlocalizedName(GTMod.MODID + "." + "fluid_slurry");
@@ -62,7 +62,7 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 				worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 1.0F,
 						1.0F);
 				GTMod.logger.info("Slurry block dried at: " + pos.toString());
-				worldIn.setBlockState(pos, GTBlocks.slurryDry.getDefaultState());
+				worldIn.setBlockState(pos, GTBlocks.mudBlock.getDefaultState());
 			}
 		}
 		super.updateTick(worldIn, pos, state, rand);
@@ -74,7 +74,7 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTFluidModel(GTFluids.fluidSlurry);
+		return new GTFluidModel(GTFluids.slurryFluid);
 	}
 
 	@Override

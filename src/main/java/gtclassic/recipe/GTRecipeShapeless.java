@@ -27,10 +27,6 @@ public class GTRecipeShapeless {
 		recipes.addShapelessRecipe(GT.get(GTBlocks.DuctTape, 1), new Object[] { GT.getIc2(Ic2Items.rubber, 64),
 				GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64) });
 
-		// Converting Oxygen back to empty tubes
-
-		recipes.addShapelessRecipe(GT.get(GTItems.glassTube, 1), new Object[] { GT.getChemical(M.Oxygen, 1) });
-
 		// Dust Recipes
 		recipes.addShapelessRecipe(GT.getDust(M.Invar, 2), new Object[] { "dustIron", "dustIron", "dustNickel" });
 		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.bronzeDust, 1),

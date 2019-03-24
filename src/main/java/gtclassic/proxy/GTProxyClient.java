@@ -1,11 +1,14 @@
 package gtclassic.proxy;
 
+import gtclassic.GTFluids;
 import gtclassic.GTIcons;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorBlock;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItem;
 import gtclassic.color.GTColorItemInterface;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialFlag;
 import ic2.core.platform.textures.Ic2Icons.SpriteReloadEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -45,8 +48,14 @@ public class GTProxyClient extends GTProxyCommon {
 
 	@SubscribeEvent
 	public static void onRegisterTexture(TextureStitchEvent.Pre event) {
-		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/slurry_still"));
-		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/slurry_flow"));
+		for (String name : GTFluids.textureFluids) {
+		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/"+name));
+		}
+		for (GTMaterial mat: GTMaterial.values()) {
+			if (mat.hasFlag(GTMaterialFlag.FLUID)) {
+				event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/"+ mat.getDisplayName().toLowerCase()));	
+			}
+		}
 	}
 
 	public static void registerTintedItems() {

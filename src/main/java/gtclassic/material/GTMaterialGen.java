@@ -26,9 +26,9 @@ public class GTMaterialGen {
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.PARTICLE);
 		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			materialItemUtil(mat, GTMaterialFlag.CHEMICAL);
-		}
+		//for (GTMaterial mat : GTMaterial.values()) {
+		//	materialItemUtil(mat, GTMaterialFlag.CHEMICAL);
+		//}
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.PLASMA);
 		}
@@ -110,9 +110,9 @@ public class GTMaterialGen {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.PARTICLE.getSuffix()), count, 0);
 	}
 
-	public static ItemStack getChemical(GTMaterial mat, int count) {
-		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.CHEMICAL.getSuffix()), count, 0);
-	}
+	//public static ItemStack getChemical(GTMaterial mat, int count) {
+	//	return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.CHEMICAL.getSuffix()), count, 0);
+	//}
 
 	public static ItemStack getPlasma(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.PLASMA.getSuffix()), count, 0);

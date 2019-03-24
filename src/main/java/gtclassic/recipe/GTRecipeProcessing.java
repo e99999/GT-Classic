@@ -85,7 +85,7 @@ public class GTRecipeProcessing {
 		/*
 		 * Compressor recipes
 		 */
-		TileEntityCompressor.addRecipe(GT.getChemical(M.Carbon, 8), GT.getIc2(Ic2Items.carbonFiber, 1), 0.1F);
+		TileEntityCompressor.addRecipe(GT.getDust(M.Carbon, 8), GT.getIc2(Ic2Items.carbonFiber, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustUranium", 1, GT.getIc2(Ic2Items.uraniumIngot, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustEmerald", 1, GT.get(Items.EMERALD), 0.1F);
 		TileEntityCompressor.addRecipe("dustDiamond", 1, GT.get(Items.DIAMOND), 0.1F);
@@ -143,10 +143,10 @@ public class GTRecipeProcessing {
 		/*
 		 * Just a few test fusion recipes
 		 */
-		GTTileMultiFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Lithium, 1),
-				GT.getIc2(Ic2Items.iridiumOre, 1));
-		GTTileMultiFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Berilium, 1),
-				GT.getDust(M.Platinum, 1));
+		//GTTileMultiFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Lithium, 1),
+		//		GT.getIc2(Ic2Items.iridiumOre, 1));
+		//GTTileMultiFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Berilium, 1),
+		//		GT.getDust(M.Platinum, 1));
 
 	}
 

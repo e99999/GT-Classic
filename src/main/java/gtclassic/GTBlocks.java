@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.block.GTBlockCasing;
+import gtclassic.block.GTBlockCustom;
 import gtclassic.block.GTBlockGlass;
 import gtclassic.block.GTBlockOre;
-import gtclassic.block.GTBlockRedMud;
 import gtclassic.block.GTBlockSand;
 import gtclassic.block.GTBlockStone;
 import gtclassic.block.GTBlockTileBasic;
@@ -79,7 +79,7 @@ public class GTBlocks {
 
 	public static final GTBlockGlass slagGlass = registerBlock(new GTBlockGlass("Slag", 19));
 
-	public static final GTBlockRedMud slurryDry = registerBlock(new GTBlockRedMud());
+	public static final GTBlockCustom mudBlock = registerBlock(new GTBlockCustom("Mud", 21, 16, 2));
 
 	public static final GTBlockCasing superCasingBlock = registerBlock(new GTBlockCasing("Superconductor", 0));
 	public static final GTBlockCasing fusionCasingBlock = registerBlock(new GTBlockCasing("Fusion", 1));

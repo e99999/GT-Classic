@@ -1,13 +1,13 @@
 package gtclassic.block;
 
 import java.util.List;
-
 import gtclassic.GTMod;
 import ic2.core.platform.lang.ILocaleBlock;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.IBlockTextureModifier;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -24,52 +24,94 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockRedMud extends Block implements ITexturedBlock, ILocaleBlock {
+public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock, IBlockTextureModifier {
 
+	String name;
+	int height;
+	int width;
+	int id;
 	LocaleComp comp;
-	public static final AxisAlignedBB MUD_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1D, 1.0D);
 
-	public GTBlockRedMud() {
+	public GTBlockCustom(String name, int id, int width, int height) {
 		super(Material.ROCK);
+		this.name = name;
+		this.id = id;
+		this.height = height;
+		this.width = width;
 		this.comp = Ic2Lang.nullKey;
-		setRegistryName("mud_block");
-		setUnlocalizedName(GTMod.MODID + "." + "mud_block");
+		setRegistryName(this.name.toLowerCase() + "_block");
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_block");
 		setCreativeTab(GTMod.creativeTabGT);
-		setHardness(1.0F);
-		setHarvestLevel("pickaxe", 0);
+		setHardness(2.0F);
+		setHarvestLevel("pickaxe", 1);
 		setSoundType(SoundType.STONE);
+	}
+	
+	public float getHeight() {
+		return this.height;
+		// returns width as 0-16
+	}
+
+	public double getHeightBB() {
+		return this.height / 16.0D;
+		// returns height as 0.0D-1.0D
+	}
+
+	public double getOffsetBB() {
+		return (1.0D - (this.width / 16.0D)) * .5;
+		// returns full block height 1.0 - width (D) as 0.0-1.0D divided to center block
+	}
+
+	public float getWidth() {
+		return this.width;
+		// returns width as 0-16
+	}
+
+	public double getWidthBB() {
+		return this.width / 16.0D;
+		// returns width as 0.0D-1.0D
+	}
+	
+	public AxisAlignedBB getVariantBoundingBox() {
+		return new AxisAlignedBB(this.getOffsetBB(), 0.0D, this.getOffsetBB(), this.getOffsetBB() + this.getWidthBB(),
+				this.getHeightBB(), this.getOffsetBB() + this.getWidthBB());
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		// TODO add tooltips
 	}
+	
+	@Deprecated
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
 
-	@Override
+	@Deprecated
+	public boolean isNormalCube(IBlockState state) {
+		return false;
+	}
+
+	@Deprecated
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state) {
-		return false;
-	}
-
-	@Override
 	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
-		return MUD_BLOCK_AABB;
+		return getVariantBoundingBox();
 	}
-
+	
 	@Override
 	@Deprecated
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return MUD_BLOCK_AABB;
+		return getVariantBoundingBox();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[21];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[this.id];
 	}
 
 	@Override
@@ -102,6 +144,30 @@ public class GTBlockRedMud extends Block implements ITexturedBlock, ILocaleBlock
 	public Block setUnlocalizedName(String name) {
 		this.comp = new LocaleBlockComp("tile." + name);
 		return super.setUnlocalizedName(name);
+	}
+
+	@Override
+	public boolean hasTextureRotation(IBlockState var1, EnumFacing var2) {
+		return false;
+	}
+
+	@Override
+	public int getTextureRotation(IBlockState var1, EnumFacing var2) {
+		return 0;
+	}
+
+	@Override
+	public boolean hasCustomTextureUV(IBlockState var1, EnumFacing var2) {
+		return true;
+	}
+
+	@Override
+	public float[] getCustomTextureUV(IBlockState var1, EnumFacing var2) {
+		if (var2 == EnumFacing.UP || var2 == EnumFacing.DOWN) {
+			return new float[] { 0.0F, 16 - this.getWidth(), this.getWidth(), 16 };
+		}
+		return new float[] { 0.0F, 16 - this.getHeight(), this.getWidth(), 16 };
+
 	}
 
 }
