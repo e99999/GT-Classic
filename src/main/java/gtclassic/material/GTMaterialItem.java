@@ -6,6 +6,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
+import gtclassic.recipe.GTRecipeCauldron;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -46,13 +47,6 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack stack) {
-		return this.flag == GTMaterialFlag.PLASMA || material == GTMaterial.Thorium || material == GTMaterial.Uranium
-				|| material == GTMaterial.Plutonium;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[flag.getTextureID()];
 	}
@@ -61,8 +55,6 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	public Color getColor(ItemStack stack, int index) {
 		if (index == 0) {
 			return this.material.getColor();
-		} else if (index == 1 && this.flag == GTMaterialFlag.PLASMA) {
-			return Color.yellow;
 		} else {
 			return Color.white;
 		}
@@ -89,13 +81,10 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer e, World w, BlockPos p, EnumHand h, EnumFacing facing, float hitX,
 			float hitY, float hitZ) {
-		washDust(e, w, p, h, GTMaterial.Tantalite, GTMaterial.Niobium, GTMaterial.Tantalum, GTMaterial.Manganese);
-		washDust(e, w, p, h, GTMaterial.Sphalerite, GTMaterial.Zinc, GTMaterial.Germanium);
-		washDust(e, w, p, h, GTMaterial.Cinnabar, GTMaterial.Redstone, GTMaterial.Redstone);
-		washDust(e, w, p, h, GTMaterial.Sheldonite, GTMaterial.Platinum, GTMaterial.Platinum);
-		washDust(e, w, p, h, GTMaterial.Tungstate, GTMaterial.Tungsten, GTMaterial.Manganese);
-		washDust(e, w, p, h, GTMaterial.Galena, GTMaterial.Lead, GTMaterial.Silver);
-		washDust(e, w, p, h, GTMaterial.DarkAshes, GTMaterial.Ashes, GTMaterial.Ashes);
+
+		for (GTRecipeCauldron.GTRecipeCauldronEnum recipes : GTRecipeCauldron.GTRecipeCauldronEnum.values()) {
+			washDust(e, w, p, h, recipes.getInput(), recipes.getOutputs());
+		}
 		return EnumActionResult.PASS;
 	}
 

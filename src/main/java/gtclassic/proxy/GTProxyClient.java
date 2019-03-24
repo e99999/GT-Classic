@@ -49,11 +49,16 @@ public class GTProxyClient extends GTProxyCommon {
 	@SubscribeEvent
 	public static void onRegisterTexture(TextureStitchEvent.Pre event) {
 		for (String name : GTFluids.textureFluids) {
-		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/"+name));
+			event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/" + name));
 		}
-		for (GTMaterial mat: GTMaterial.values()) {
+		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.hasFlag(GTMaterialFlag.FLUID)) {
-				event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/"+ mat.getDisplayName().toLowerCase()));	
+				event.getMap().registerSprite(
+						new ResourceLocation(GTMod.MODID, "fluids/" + mat.getDisplayName().toLowerCase()));
+			}
+			if (mat.hasFlag(GTMaterialFlag.PLASMA)) {
+				event.getMap().registerSprite(
+						new ResourceLocation(GTMod.MODID, "fluids/" + mat.getDisplayName().toLowerCase() + "plasma"));
 			}
 		}
 	}

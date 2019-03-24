@@ -11,7 +11,6 @@ import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiBloomery;
-import gtclassic.tile.GTTileMultiFusionComputer;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -38,6 +37,7 @@ public class GTRecipeProcessing {
 	static IMachineRecipeList smelting = ClassicRecipes.furnace;
 
 	public static final GTMultiInputRecipeList BLOOM_RECIPE_LIST = new GTMultiInputRecipeList("bloomery");
+
 	public static final IRecipeInput fuel = new RecipeInputCombined(1,
 			new IRecipeInput[] { new RecipeInputOreDict("blockCoal"), new RecipeInputOreDict("blockCharcoal"),
 					new RecipeInputItemStack(new ItemStack(Items.COAL, 9)),
@@ -143,10 +143,12 @@ public class GTRecipeProcessing {
 		/*
 		 * Just a few test fusion recipes
 		 */
-		//GTTileMultiFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Lithium, 1),
-		//		GT.getIc2(Ic2Items.iridiumOre, 1));
-		//GTTileMultiFusionComputer.addRecipe("dustTungsten", 1, GT.getChemical(M.Berilium, 1),
-		//		GT.getDust(M.Platinum, 1));
+		// GTTileMultiFusionComputer.addRecipe("dustTungsten", 1,
+		// GT.getChemical(M.Lithium, 1),
+		// GT.getIc2(Ic2Items.iridiumOre, 1));
+		// GTTileMultiFusionComputer.addRecipe("dustTungsten", 1,
+		// GT.getChemical(M.Berilium, 1),
+		// GT.getDust(M.Platinum, 1));
 
 	}
 

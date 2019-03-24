@@ -1,10 +1,11 @@
 package gtclassic.block;
 
 import java.util.List;
+
 import gtclassic.GTMod;
 import ic2.core.platform.lang.ILocaleBlock;
-import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IBlockTextureModifier;
@@ -46,7 +47,7 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 		setHarvestLevel("pickaxe", 1);
 		setSoundType(SoundType.STONE);
 	}
-	
+
 	public float getHeight() {
 		return this.height;
 		// returns width as 0-16
@@ -71,7 +72,7 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 		return this.width / 16.0D;
 		// returns width as 0.0D-1.0D
 	}
-	
+
 	public AxisAlignedBB getVariantBoundingBox() {
 		return new AxisAlignedBB(this.getOffsetBB(), 0.0D, this.getOffsetBB(), this.getOffsetBB() + this.getWidthBB(),
 				this.getHeightBB(), this.getOffsetBB() + this.getWidthBB());
@@ -81,7 +82,7 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		// TODO add tooltips
 	}
-	
+
 	@Deprecated
 	public boolean isFullCube(IBlockState state) {
 		return false;
@@ -101,7 +102,7 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
 		return getVariantBoundingBox();
 	}
-	
+
 	@Override
 	@Deprecated
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

@@ -11,6 +11,7 @@ public class GTRecipe {
 	public static void init() {
 		GTRecipeAlloySmelter.recipesAlloySmelter1();
 		GTRecipeAlloySmelter.recipesAlloySmelter2();
+		GTRecipeCauldron.recipesCauldron();
 		GTRecipeCircuitry.recipesCircutry();
 		GTRecipeIndustrialCentrifuge.recipesCentrifuge1();
 		GTRecipeIndustrialCentrifuge.recipesCentrifuge2();

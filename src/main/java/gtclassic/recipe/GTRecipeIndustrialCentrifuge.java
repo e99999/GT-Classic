@@ -24,30 +24,39 @@ public class GTRecipeIndustrialCentrifuge {
 		 * Below are two temp recipes so bear can test on stream and get some aluminium
 		 */
 
-		//GTTileIndustrialCentrifuge.addRecipe("dustClay", 4, 3, euCost(16000),
-		//		new OutputItem(GT.getChemical(M.Lithium, 1), 0), new OutputItem(GT.getChemical(M.Silicon, 1), 1),
-		//		new OutputItem(GT.getDust(M.Aluminium, 1), 2));
+		// GTTileIndustrialCentrifuge.addRecipe("dustClay", 4, 3, euCost(16000),
+		// new OutputItem(GT.getChemical(M.Lithium, 1), 0), new
+		// OutputItem(GT.getChemical(M.Silicon, 1), 1),
+		// new OutputItem(GT.getDust(M.Aluminium, 1), 2));
 
-		//GTTileIndustrialCentrifuge.addRecipe("dustBauxite", 24, 16, euCost(250000),
-		//		new OutputItem(GT.getChemical(M.Oxygen, 6), 0), new OutputItem(GT.getDust(M.Aluminium, 16), 1),
-		//		new OutputItem(GT.getDust(M.Rutile, 1), 2), new OutputItem(GT.getChemical(M.Hydrogen, 10), 3));
+		// GTTileIndustrialCentrifuge.addRecipe("dustBauxite", 24, 16, euCost(250000),
+		// new OutputItem(GT.getChemical(M.Oxygen, 6), 0), new
+		// OutputItem(GT.getDust(M.Aluminium, 16), 1),
+		// new OutputItem(GT.getDust(M.Rutile, 1), 2), new
+		// OutputItem(GT.getChemical(M.Hydrogen, 10), 3));
 		/*
 		 * Back to normal recipes
 		 */
 
 		/*
-		GTTileIndustrialCentrifuge.addRecipe("logRubber", 16, 12, euCost(25000),
-				new OutputItem(GT.getDust(M.Carbon, 8), 0), new OutputItem(GT.getIc2(Ic2Items.stickyResin, 8), 1),
-				new OutputItem(GT.getIc2(Ic2Items.plantBall, 6), 2), new OutputItem(GT.getChemical(M.Methane, 4), 3));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Hydrogen, 4), 0, euCost(6000),
-				new OutputItem(GT.get(glassTube, 3), 0), new OutputItem(GT.getChemical(M.Dueterium, 1), 1));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Dueterium, 4), 0, euCost(6000),
-				new OutputItem(GT.get(glassTube, 3), 0), new OutputItem(GT.getChemical(M.Tritium, 1), 1));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Helium, 16), 0, euCost(18000),
-				new OutputItem(GT.get(glassTube, 15), 0), new OutputItem(GT.getChemical(M.Helium3, 1), 1));*/
+		 * GTTileIndustrialCentrifuge.addRecipe("logRubber", 16, 12, euCost(25000), new
+		 * OutputItem(GT.getDust(M.Carbon, 8), 0), new
+		 * OutputItem(GT.getIc2(Ic2Items.stickyResin, 8), 1), new
+		 * OutputItem(GT.getIc2(Ic2Items.plantBall, 6), 2), new
+		 * OutputItem(GT.getChemical(M.Methane, 4), 3));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Hydrogen, 4), 0,
+		 * euCost(6000), new OutputItem(GT.get(glassTube, 3), 0), new
+		 * OutputItem(GT.getChemical(M.Dueterium, 1), 1));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Dueterium, 4), 0,
+		 * euCost(6000), new OutputItem(GT.get(glassTube, 3), 0), new
+		 * OutputItem(GT.getChemical(M.Tritium, 1), 1));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Helium, 16), 0,
+		 * euCost(18000), new OutputItem(GT.get(glassTube, 15), 0), new
+		 * OutputItem(GT.getChemical(M.Helium3, 1), 1));
+		 */
 
 		GTTileIndustrialCentrifuge.addRecipe("dustGreenSapphire", 4, 0, euCost(15000),
 				new OutputItem(GT.getDust(M.Sapphire, 4), 0));
@@ -76,14 +85,20 @@ public class GTRecipeIndustrialCentrifuge {
 		GTTileIndustrialCentrifuge.addRecipe("dustGlowstone", 16, 1, euCost(25000),
 				new OutputItem(GT.get(Items.REDSTONE, 8), 0), new OutputItem(GT.getIc2(Ic2Items.goldDust, 8), 1));
 
-		//GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.GOLDEN_APPLE, 1), 1, euCost(50000),
-				//new OutputItem(GT.getChemical(M.Methane, 1), 0), new OutputItem(GT.get(Items.GOLD_INGOT, 8), 1));
+		// GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.GOLDEN_APPLE, 1), 1,
+		// euCost(50000),
+		// new OutputItem(GT.getChemical(M.Methane, 1), 0), new
+		// OutputItem(GT.get(Items.GOLD_INGOT, 8), 1));
 
-		//GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.GOLDEN_CARROT, 1), 1, euCost(50000),
-				//new OutputItem(GT.getChemical(M.Methane, 1), 0), new OutputItem(GT.get(Items.GOLD_NUGGET, 6), 1));
+		// GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.GOLDEN_CARROT, 1), 1,
+		// euCost(50000),
+		// new OutputItem(GT.getChemical(M.Methane, 1), 0), new
+		// OutputItem(GT.get(Items.GOLD_NUGGET, 6), 1));
 
-		//GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.SPECKLED_MELON, 1), 1, euCost(50000),
-				//new OutputItem(GT.getChemical(M.Methane, 1), 0), new OutputItem(GT.get(Items.GOLD_NUGGET, 6), 1));
+		// GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.SPECKLED_MELON, 1), 1,
+		// euCost(50000),
+		// new OutputItem(GT.getChemical(M.Methane, 1), 0), new
+		// OutputItem(GT.get(Items.GOLD_NUGGET, 6), 1));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustNetherrack", 16, 0, euCost(12000),
 				new OutputItem(GT.get(Items.GOLD_NUGGET, 1), 0), new OutputItem(GT.get(Items.REDSTONE, 1), 1),
@@ -139,13 +154,17 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getSmallDust(M.Sodalite, 2), 0), new OutputItem(GT.getDust(M.Lazurite, 3), 1),
 				new OutputItem(GT.getSmallDust(M.Pyrite, 1), 2), new OutputItem(GT.getSmallDust(M.Calcite, 1), 3));
 
-		//GTTileIndustrialCentrifuge.addRecipe("dustRedstone", 16, 4, euCost(35000),
-		//		new OutputItem(GT.getChemical(M.Mercury, 3), 0), new OutputItem(GT.getChemical(M.Silicon, 1), 1),
-		//		new OutputItem(GT.getDust(M.Pyrite, 5), 2), new OutputItem(GT.getDust(M.Ruby, 1), 3));
+		// GTTileIndustrialCentrifuge.addRecipe("dustRedstone", 16, 4, euCost(35000),
+		// new OutputItem(GT.getChemical(M.Mercury, 3), 0), new
+		// OutputItem(GT.getChemical(M.Silicon, 1), 1),
+		// new OutputItem(GT.getDust(M.Pyrite, 5), 2), new OutputItem(GT.getDust(M.Ruby,
+		// 1), 3));
 
-		//GTTileIndustrialCentrifuge.addRecipe("dustEndstone", 16, 2, euCost(100000),
-		//		new OutputItem(GT.get(Blocks.SAND, 12), 0), new OutputItem(GT.getChemical(M.Helium3, 1), 1),
-		//		new OutputItem(GT.getChemical(M.Helium, 1), 2), new OutputItem(GT.getSmallDust(M.Tungsten, 1), 3));
+		// GTTileIndustrialCentrifuge.addRecipe("dustEndstone", 16, 2, euCost(100000),
+		// new OutputItem(GT.get(Blocks.SAND, 12), 0), new
+		// OutputItem(GT.getChemical(M.Helium3, 1), 1),
+		// new OutputItem(GT.getChemical(M.Helium, 1), 2), new
+		// OutputItem(GT.getSmallDust(M.Tungsten, 1), 3));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustRedGarnet", 16, 0, euCost(15000),
 				new OutputItem(GT.getDust(M.Pyrope, 3), 0), new OutputItem(GT.getDust(M.Almandine, 5), 1),
@@ -173,12 +192,15 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getDust(M.DarkAshes, 4), 0), new OutputItem(GT.getDust(M.Olivine, 1), 1),
 				new OutputItem(GT.getDust(M.Calcite, 3), 2), new OutputItem(GT.getDust(M.Flint, 8), 3));
 
-		//GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Sulfur, 1), 0, euCost(200),
-		//		new OutputItem(GT.get(glassTube, 1), 0), new OutputItem(GT.getDust(M.Sulfur, 1), 1));
+		// GTTileIndustrialCentrifuge.addRecipe(GT.getChemical(M.Sulfur, 1), 0,
+		// euCost(200),
+		// new OutputItem(GT.get(glassTube, 1), 0), new OutputItem(GT.getDust(M.Sulfur,
+		// 1), 1));
 
-		//GTTileIndustrialCentrifuge.addRecipe("dustObsidian", 64, 10, euCost(16000),
-		//		new OutputItem(GT.getIc2(Ic2Items.ironDust, 2), 0), new OutputItem(GT.getChemical(M.Silicon, 6), 1),
-		//		new OutputItem(GT.getChemical(M.Oxygen, 4), 2));
+		// GTTileIndustrialCentrifuge.addRecipe("dustObsidian", 64, 10, euCost(16000),
+		// new OutputItem(GT.getIc2(Ic2Items.ironDust, 2), 0), new
+		// OutputItem(GT.getChemical(M.Silicon, 6), 1),
+		// new OutputItem(GT.getChemical(M.Oxygen, 4), 2));
 	}
 
 	public static void recipesCentrifuge2() {
@@ -186,95 +208,96 @@ public class GTRecipeIndustrialCentrifuge {
 		 * Recipes solely focused on getting methane from various things, at some point
 		 * i will probably create some sort of dataset to collect all food and similar
 		 * items from other mods.
-		 
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.APPLE, 32), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.MUSHROOM_STEW, 16), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.BREAD, 64), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.PORKCHOP, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_PORKCHOP, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.BEEF, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_BEEF, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.FISH, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_FISH, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.CHICKEN, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_CHICKEN, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.MUTTON, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_MUTTON, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.MELON, 64), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.PUMPKIN, 16), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.SPIDER_EYE, 32), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.CARROT, 16), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.POTATO, 16), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.POISONOUS_POTATO, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.BAKED_POTATO, 24), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKIE, 64), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.CAKE, 8), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.BROWN_MUSHROOM_BLOCK, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.RED_MUSHROOM_BLOCK, 12), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.BROWN_MUSHROOM, 32), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.RED_MUSHROOM, 32), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.NETHER_WART, 32), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.terraWart, 16), 1, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0));
-
-		GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.ROTTEN_FLESH, 16), 4, euCost(25000),
-				new OutputItem(GT.getChemical(M.Methane, 1), 0), new OutputItem(GT.get(Items.LEATHER, 2), 1),
-				new OutputItem(GT.get(Items.SLIME_BALL, 1), 2));
-*/
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.APPLE, 32), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.MUSHROOM_STEW, 16), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.BREAD, 64), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.PORKCHOP, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_PORKCHOP, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.BEEF, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_BEEF, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.FISH, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_FISH, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.CHICKEN, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_CHICKEN, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.MUTTON, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKED_MUTTON, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.MELON, 64), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.PUMPKIN, 16), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.SPIDER_EYE, 32), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.CARROT, 16), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.POTATO, 16), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.POISONOUS_POTATO, 12), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.BAKED_POTATO, 24), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.COOKIE, 64), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.CAKE, 8), 1, euCost(25000),
+		 * new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.BROWN_MUSHROOM_BLOCK, 12),
+		 * 1, euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.RED_MUSHROOM_BLOCK, 12),
+		 * 1, euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.BROWN_MUSHROOM, 32), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Blocks.RED_MUSHROOM, 32), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.NETHER_WART, 32), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.terraWart, 16), 1,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0));
+		 * 
+		 * GTTileIndustrialCentrifuge.addRecipe(GT.get(Items.ROTTEN_FLESH, 16), 4,
+		 * euCost(25000), new OutputItem(GT.getChemical(M.Methane, 1), 0), new
+		 * OutputItem(GT.get(Items.LEATHER, 2), 1), new
+		 * OutputItem(GT.get(Items.SLIME_BALL, 1), 2));
+		 */
 	}
 
 	public static IRecipeModifier[] euCost(int amount) {

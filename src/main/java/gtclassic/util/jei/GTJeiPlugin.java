@@ -8,6 +8,7 @@ import gtclassic.container.GTContainerWorkbench;
 import gtclassic.gui.GTGuiMachine;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
+import gtclassic.recipe.GTRecipeCauldron;
 import gtclassic.recipe.GTRecipeProcessing;
 import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
@@ -29,6 +30,8 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 @JEIPlugin
@@ -98,6 +101,11 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.bloomery), "bloomery");
 			registry.addRecipeClickArea(GTGuiMachine.GTBloomeryGui.class, 79, 18, 20, 11, "bloomery");
 
+			// Washing
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "washing");
+			registry.addRecipes(GTRecipeCauldron.RECIPE_LIST.getRecipeList(), "washing");
+			registry.addRecipeCatalyst(new ItemStack(Items.CAULDRON), "washing");
+
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
 			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class,
 					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);
@@ -125,5 +133,8 @@ public class GTJeiPlugin implements IModPlugin {
 
 		registry.addRecipeCategories(
 				new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "bloomery", GTBlocks.bloomery));
+
+		registry.addRecipeCategories(
+				new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "washing", Blocks.WATER));
 	}
 }
