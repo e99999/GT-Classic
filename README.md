@@ -6,7 +6,7 @@ The goal is create a crossroads where new and old GT players can have a meaningf
 
 # Current State
 I am currently still creating the chemistry and progression. However stable downloads for pre-alpha testing are now available [here](https://bearsden.overminddl1.com/Downloads/GT%20Classics(E99999)/) 
-which are updated weekly.
+which are updated weekly. *WARNING the mod is basically a sketchboard of evolving ideas, please do not complain about missing blocks or items as various updates could break previous worlds.*
 
 # Issues
 Please report any issues you find to the issue tracker on this repository. Include as much information as possible including as version and steps to reproduce.
