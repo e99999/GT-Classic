@@ -8,6 +8,7 @@ import gtclassic.item.GTItemCraftingTablet;
 import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
 import gtclassic.item.GTItemElectromagnet;
+import gtclassic.item.GTItemFluidTube;
 import gtclassic.item.GTItemMagnifyingGlass;
 import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSurvivalScanner;
@@ -25,7 +26,6 @@ public class GTItems {
 
 	public static final GTToolKnife ironKnife = createItem(new GTToolKnife(GTMaterial.Iron));
 
-	public static final GTItemComponent glassTube = createItem(new GTItemComponent("glass_tube", 0, 0, false));
 	public static final GTItemMagnifyingGlass magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 
 	public static final GTItemComponent resinPCB = createItem(new GTItemComponent("resin_pcb", 12, 0, false));
@@ -53,6 +53,9 @@ public class GTItems {
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
+
+	public static final GTItemFluidTube testTube = createItem(new GTItemFluidTube()); // This is my testing fluid
+																						// container
 
 	public static <T extends Item> T createItem(T item) {
 		toRegister.add(item);

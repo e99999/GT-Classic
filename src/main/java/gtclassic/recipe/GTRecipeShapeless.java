@@ -1,6 +1,7 @@
 package gtclassic.recipe;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTFluids;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
@@ -11,6 +12,7 @@ import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public class GTRecipeShapeless {
 

@@ -222,34 +222,6 @@ tile.gtclassic.battery_lapotron_med.name=Medium Lapotron Crystal
 tile.gtclassic.battery_lapotron_large.name=Large Lapotron Crystal
 tile.gtclassic.battery_lapotron_huge.name=Huge Lapotron Crystal
 
-#chemicals
-item.gtclassic.berilium_tube.name=Berilium
-item.gtclassic.hydrogen_tube.name=Hydrogen
-item.gtclassic.carbon_tube.name=Carbon
-item.gtclassic.sulfur_tube.name=Sulfur
-item.gtclassic.tritium_tube.name=Tritium
-item.gtclassic.helium3_tube.name=Helium3
-item.gtclassic.helium_tube.name=Helium
-item.gtclassic.lithium_tube.name=Lithium
-item.gtclassic.oxygen_tube.name=Oxygen
-item.gtclassic.sodium_tube.name=Sodium
-item.gtclassic.methane_tube.name=Methane
-item.gtclassic.sulfuricacid_tube.name=SulfuricAcid
-item.gtclassic.potassium_tube.name=Potassium
-item.gtclassic.dueterium_tube.name=Dueterium
-item.gtclassic.mercury_tube.name=Mercury
-item.gtclassic.calcium_tube.name=Calcium
-item.gtclassic.nitrogen_tube.name=Nitrogen
-item.gtclassic.chlorine_tube.name=Chlorine
-item.gtclassic.silicon_tube.name=Silicon
-
-#plasma
-item.gtclassic.sulfur_plasma_tube.name=Sulfur Plasma
-item.gtclassic.helium_plasma_tube.name=Helium Plasma
-item.gtclassic.oxygen_plasma_tube.name=Oxygen Plasma
-item.gtclassic.nitrogen_plasma_tube.name=Nitrogen Plasma
-item.gtclassic.iron_plasma_tube.name=Iron Plasma
-
 #small dusts
 item.gtclassic.saltpeter_dustsmall.name=Small Saltpeter Dust
 item.gtclassic.glowstone_dustsmall.name=Small Glowstone Dust
@@ -780,7 +752,7 @@ item.gtclassic.tantalum_chainsaw.name=Tantalum Chainsaw
 item.gtclassic.iron_knife.name=Bear989's Magical "Special" Testing Knife
 
 #components
-item.gtclassic.glass_tube.name=Empty Glass Tube
+item.gtclassic.test_tube.name=Glass Tube
 item.gtclassic.magnifying_glass.name=Magnifying Glass
 item.gtclassic.resin_pcb.name=Resin PCB
 item.gtclassic.germanium_substrate.name=Germanium Substrate
@@ -805,6 +777,27 @@ item.gtclassic.teslaStaff.name=Tesla Staff
 item.gtclassic.rockcutter.name=Rock Cutter
 item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
+
+#fluids
+fluid.slurry=Slurry
+fluid.hydrogen=Hydrogen
+fluid.tritium=Tritium
+fluid.helium3=Helium-3
+fluid.helium=Helium
+fluid.heliumplasma=Helium Plasma
+fluid.lithium=Lithium
+fluid.deuterium=Deuterium
+fluid.beryllium=Beryllium
+fluid.oxygen=Oxygen
+fluid.sodium=Sodium
+fluid.methane=Methane
+fluid.sulfuricacid=Sulfuric Acid
+fluid.potassium=Potassium
+fluid.mercury=Mercury
+fluid.calcium=Calcium
+fluid.nitrogen=Nitrogen
+fluid.nitrogenplasma=Nitrogen Plasma
+fluid.chlorine=Chlorine
 
 #tooltips
 tooltip.gtclassic.galena_ore=Spawns in ALL biomes

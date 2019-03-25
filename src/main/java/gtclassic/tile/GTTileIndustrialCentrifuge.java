@@ -75,7 +75,7 @@ public class GTTileIndustrialCentrifuge extends TileEntityBasicElectricMachine {
 				slotOutput4);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
 				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
-		handler.registerInputFilter(new BasicItemFilter(GTItems.glassTube), slotCell);
+		handler.registerInputFilter(new BasicItemFilter(GTItems.testTube), slotCell);
 		handler.registerInputFilter(filter, slotInput);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
 		handler.registerSlotType(SlotType.Fuel, slotFuel);

@@ -65,7 +65,7 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "fusion");
 			registry.addRecipes(GTTileMultiFusionComputer.RECIPE_LIST.getRecipeList(), "fusion");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), "fusion");
-			registry.addRecipeClickArea(GTFusionComputerGui.class, 111, 35, 25, 17, "fusion");
+			registry.addRecipeClickArea(GTFusionComputerGui.class, 69, 34, 25, 17, "fusion");
 
 			// Alloy Smelter
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,

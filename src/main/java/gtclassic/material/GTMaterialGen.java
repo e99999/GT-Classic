@@ -2,10 +2,15 @@ package gtclassic.material;
 
 import java.util.LinkedHashMap;
 
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class GTMaterialGen {
 
@@ -134,6 +139,16 @@ public class GTMaterialGen {
 
 	public static ItemStack getGear(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.GEAR.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getFluid(GTMaterial mat, int count) {
+		String name = mat.getDisplayName().toLowerCase();
+		FluidStack fluid = FluidRegistry.getFluidStack(name, 1000);
+		ItemStack stack = new ItemStack(GTItems.testTube);
+		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+		handler.fill(fluid, true);
+		stack.setCount(count);
+		return stack;
 	}
 
 	public static ItemStack getIc2(ItemStack itemStack, int count) {

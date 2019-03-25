@@ -41,6 +41,13 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 	float hardness;
 	LocaleComp comp;
 
+	/*
+	 * future ore plans? Bismuthinite Borax Cassiterite Cinnabar Cryolite Galena
+	 * Garnierite Graphite Gypsum Hematite Jet Kaolinite (bauxite) Lapis (sodalite)
+	 * Lignite Limonite Magnetite Malachite Pitchblende Sheldonite Saltpeter
+	 * Sphalerite Sylvite Tetrahedrite
+	 */
+
 	public GTBlockOre(String name, int id, int harvest, float hardness) {
 		super(Material.ROCK);
 		this.name = name;

@@ -44,11 +44,10 @@ public class GTRecipeShaped {
 						new EnchantmentModifier(GT.get(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(),
 						'D', "gemDiamond", 'I', "plateSteel", 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
 
-		recipes.addRecipe(GT.get(GTItems.glassTube, 32), new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
+		recipes.addRecipe(GT.get(GTItems.testTube, 32), new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
 
-		// recipes.addRecipe(GT.get(GTBlocks.smallLithium, 1), new Object[] { " G ",
-		// "ALA", "ALA", 'G', Ic2Items.goldCable,
-		// 'A', "plateAluminium", 'L', GT.getChemical(M.Lithium, 1) });
+		recipes.addRecipe(GT.get(GTBlocks.smallLithium, 1), new Object[] { " G ", "ALA", "ALA", 'G', Ic2Items.goldCable,
+				'A', "plateAluminium", 'L', GT.getFluid(M.Lithium, 1) });
 
 		recipes.addRecipe(GT.get(GTItems.destructoPack, 1),
 				new Object[] { "BIB", "ICI", "BIB", 'B', GTValues.lava, 'C', "circuitBasic", 'I', plateAnyIron });

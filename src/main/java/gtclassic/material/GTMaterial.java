@@ -158,6 +158,8 @@ public class GTMaterial {
 			DUST_ALL);
 	public static GTMaterial Sphalerite = new GTMaterial("Sphalerite", 1.0F, 0, 1, new Color(200, 140, 40), false,
 			DUST_ALL);
+	public static GTMaterial StainlessSteel = new GTMaterial("StainlessSteel", 7.0F, 480, 2, new Color(200, 200, 220),
+			false, METAL_ALL);
 	public static GTMaterial Steel = new GTMaterial("Steel", 6.0F, 512, 2, new Color(128, 128, 128), false, METAL_ALL);
 	public static GTMaterial Stone = new GTMaterial("Stone", 1.0F, 0, 1, new Color(196, 196, 196), false, DUST_ALL);
 	public static GTMaterial Sulfur = new GTMaterial("Sulfur", 1.0F, 0, 1, new Color(200, 200, 0), false, SMALLDUST,
