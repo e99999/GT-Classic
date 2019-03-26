@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTFluids;
 import gtclassic.GTMod;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
@@ -23,13 +22,14 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBlock, ICustomModeledBlock {
 
 	LocaleComp comp;
 
 	public GTFluidBlockSlurry() {
-		super(GTFluids.slurryFluid, Material.WATER);
+		super(FluidRegistry.getFluid("slurry"), Material.WATER);
 		this.comp = Ic2Lang.nullKey;
 		setRegistryName("fluid_slurry");
 		setUnlocalizedName(GTMod.MODID + "." + "fluid_slurry");
@@ -74,7 +74,7 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTFluidModel(GTFluids.slurryFluid);
+		return new GTFluidModel(FluidRegistry.getFluid("slurry"));
 	}
 
 	@Override

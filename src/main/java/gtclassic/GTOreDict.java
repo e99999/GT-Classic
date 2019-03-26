@@ -1,5 +1,7 @@
 package gtclassic;
 
+import gtclassic.block.GTBlockOreSand;
+import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
@@ -38,24 +40,18 @@ public class GTOreDict {
 					OreDictionary.registerOre(name, new ItemStack(block));
 				}
 			}
+			// Register ores... with ore dict
+			if (block instanceof GTBlockOreStone) {
+				GTBlockOreStone ore = (GTBlockOreStone) block;
+				String name = "ore" + ore.getOreEntry().getMaterial().getDisplayName();
+				OreDictionary.registerOre(name, new ItemStack(block));
+			}
+			if (block instanceof GTBlockOreSand) {
+				GTBlockOreSand sand = (GTBlockOreSand) block;
+				String name = "dust" + sand.getOreEntry().getMaterial().getDisplayName();
+				OreDictionary.registerOre(name, new ItemStack(block));
+			}
 		}
-
-		// Register ores... with ore dict
-		OreDictionary.registerOre("oreGalena", GTBlocks.galenaOre);
-		OreDictionary.registerOre("oreIridium", GTBlocks.iridiumOre);
-		OreDictionary.registerOre("oreRuby", GTBlocks.rubyOre);
-		OreDictionary.registerOre("oreSapphire", GTBlocks.sapphireOre);
-		OreDictionary.registerOre("oreBauxite", GTBlocks.bauxiteOre);
-		OreDictionary.registerOre("oreCalcite", GTBlocks.calciteOre);
-		OreDictionary.registerOre("dustMagnetite", GTBlocks.magnetiteSand);
-		OreDictionary.registerOre("oreTantalite", GTBlocks.tantaliteOre);
-		OreDictionary.registerOre("orePyrite", GTBlocks.pyriteOre);
-		OreDictionary.registerOre("oreCinnabar", GTBlocks.cinnabarOre);
-		OreDictionary.registerOre("oreSphalerite", GTBlocks.sphaleriteOre);
-		OreDictionary.registerOre("oreTungstate", GTBlocks.tungstateOre);
-		OreDictionary.registerOre("oreSheldonite", GTBlocks.sheldoniteOre);
-		OreDictionary.registerOre("oreOlivine", GTBlocks.olivineOre);
-		OreDictionary.registerOre("oreSodalite", GTBlocks.sodaliteOre);
 
 		// Just doing these to make iteration & unification easier in some cases
 		OreDictionary.registerOre("dustGunpowder", Items.GUNPOWDER);

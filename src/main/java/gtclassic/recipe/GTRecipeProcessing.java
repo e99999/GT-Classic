@@ -59,11 +59,6 @@ public class GTRecipeProcessing {
 		maceratorUtil("oreSphalerite", 1, GT.getDust(M.Sphalerite, 5));
 		maceratorUtil("oreSodalite", 1, GT.getDust(M.Sodalite, 12));
 
-		GameRegistry.addSmelting(GT.getDust(M.Galena, 1), (GT.getNugget(M.Lead, 3)), 0.1F);
-		GameRegistry.addSmelting(GTBlocks.iridiumOre, (GT.getIc2(Ic2Items.iridiumOre, 1)), 0.1F);
-		GameRegistry.addSmelting(GT.getDust(M.Magnetite, 1), GT.get(Items.IRON_NUGGET, 3), 0.1F);
-		GameRegistry.addSmelting(GT.get(GTBlocks.magnetiteSand), GT.get(Items.IRON_NUGGET, 3), 0.1F);
-		GameRegistry.addSmelting(GTBlocks.pyriteOre, GT.get(Items.IRON_INGOT), 0.1F);
 		GameRegistry.addSmelting(GTBlocks.slagSand, GT.get(GTBlocks.slagGlass), 0.1F);
 
 		TileEntityExtractor.addRecipe("oreRuby", 1, GT.getGem(M.Ruby, 3), 0.1F);
@@ -92,6 +87,7 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustDiamond", 1, GT.get(Items.DIAMOND), 0.1F);
 		TileEntityCompressor.addRecipe("dustGraphite", 1, GT.getIngot(M.Graphite, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustSmallGraphite", 4, GT.getIngot(M.Graphite, 1), 0.1F);
+		TileEntityCompressor.addRecipe("dustZirconium", 4, GT.getIc2(Ic2Items.industrialDiamond, 1), 0.1F);
 
 		/*
 		 * Bloomery Recipes
@@ -110,12 +106,15 @@ public class GTRecipeProcessing {
 				new RecipeInputOreDict("dustCalcite", 2), fuel);
 		GTTileMultiBloomery.RECIPE_LIST.addRecipe("dustMagnetite", bloom, 4, 400,
 				new RecipeInputOreDict("dustMagnetite", 2), new RecipeInputOreDict("dustCalcite", 2), fuel);
+		GTTileMultiBloomery.RECIPE_LIST.addRecipe("dustLimonite", bloom, 4, 400,
+				new RecipeInputOreDict("dustLimonite", 2), new RecipeInputOreDict("dustCalcite", 2), fuel);
 
 		addFakeBloomRecipe("ingotIron", 3, GT.get(GTBlocks.bloomBlock));
 		addFakeBloomRecipe("dustIron", 3, GT.get(GTBlocks.bloomBlock));
 		addFakeBloomRecipe("oreIron", 1, "dustCalcite", 1, GT.get(GTBlocks.bloomBlock));
 		addFakeBloomRecipe("dustPyrite", 2, "dustCalcite", 2, GT.get(GTBlocks.bloomBlock));
 		addFakeBloomRecipe("dustMagnetite", 2, "dustCalcite", 2, GT.get(GTBlocks.bloomBlock));
+		addFakeBloomRecipe("dustLimonite", 2, "dustCalcite", 2, GT.get(GTBlocks.bloomBlock));
 
 		/*
 		 * GT Blast Furnace recipes
@@ -131,10 +130,10 @@ public class GTRecipeProcessing {
 				GT.getSmallDust(M.Slag, 1));
 		GTTileMultiBlastFurnace.addRecipe("dustMagnetite", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 2),
 				GT.getSmallDust(M.Slag, 1));
+		GTTileMultiBlastFurnace.addRecipe("dustLimonite", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 2),
+				GT.getSmallDust(M.Slag, 1));
 		GTTileMultiBlastFurnace.addRecipe("dustTantalum", 1, GT.getIngot(M.Tantalum, 1));
 		GTTileMultiBlastFurnace.addRecipe("dustSmallTantalum", 4, GT.getIngot(M.Tantalum, 1));
-		GTTileMultiBlastFurnace.addRecipe("dustTungsten", 1, GT.getIngot(M.Tungsten, 1));
-		GTTileMultiBlastFurnace.addRecipe("dustSmallTungsten", 4, GT.getIngot(M.Tungsten, 1));
 
 		if (GTConfig.harderAluminium) {
 			GTTileMultiBlastFurnace.addRecipe("dustAluminium", 1, GT.getIngot(M.Aluminium, 1));

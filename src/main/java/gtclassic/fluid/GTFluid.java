@@ -18,17 +18,23 @@ public class GTFluid extends Fluid {
 	protected static SoundEvent emptySound = SoundEvents.ITEM_BUCKET_EMPTY;
 	protected static SoundEvent fillSound = SoundEvents.ITEM_BUCKET_FILL;
 	protected static Material material = Material.WATER;
+	GTMaterial mat = null;
 
 	public GTFluid(GTMaterial mat, GTMaterialFlag flag) {
 		super(mat.getDisplayName().toLowerCase() + flag.getSuffix(),
 				new ResourceLocation(GTMod.MODID, "fluids/" + mat.getDisplayName().toLowerCase() + flag.getSuffix()),
 				new ResourceLocation(GTMod.MODID, "fluids/" + mat.getDisplayName().toLowerCase() + flag.getSuffix()));
+		this.mat = mat;
 	}
 
 	public GTFluid(String name, Color color) {
 		super(name, new ResourceLocation(GTMod.MODID, "fluids/" + name),
 				new ResourceLocation(GTMod.MODID, "fluids/" + name));
 		this.mapColor = color.hashCode();
+	}
+
+	public GTMaterial getGTMaterial() {
+		return this.mat != null ? this.mat : GTMaterial.Mercury;
 	}
 
 	@Override

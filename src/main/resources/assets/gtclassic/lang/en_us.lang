@@ -22,6 +22,8 @@ tile.gtclassic.nickel_casing.name=Nickel Machine Casing
 tile.gtclassic.osmium_casing.name=Osmium Machine Casing
 tile.gtclassic.iron_casing.name=Iron Machine Casing
 tile.gtclassic.refinediron_casing.name=Refined Iron Machine Casing
+tile.gtclassic.stainlesssteel_casing.name=Stainless Steel Machine Casing
+tile.gtclassic.bismuth_casing.name=Bismuth Machine Casing
 
 #blocks
 tile.gtclassic.germanium_block.name=Block of Germanium
@@ -46,6 +48,8 @@ tile.gtclassic.osmium_block.name=Block of Osmium
 tile.gtclassic.ruby_block.name=Block of Ruby
 tile.gtclassic.tantalum_block.name=Block of Tantalum
 tile.gtclassic.manganese_block.name=Block of Manganese
+tile.gtclassic.stainlesssteel_block.name=Block of Stainless Steel
+tile.gtclassic.bismuth_block.name=Block of Bismuth
 
 #storage blocks
 tile.gtclassic.tungsten_storage_0.name=Tungsten Cabinet
@@ -132,6 +136,14 @@ tile.gtclassic.germanium_storage_0.name=Germanium Cabinet
 tile.gtclassic.germanium_storage_1.name=Large Germanium Cabinet
 tile.gtclassic.germanium_storage_2.name=Germanium Bookshelf
 tile.gtclassic.germanium_storage_3.name=Germanium Workbench
+tile.gtclassic.stainlesssteel_storage_0.name=Stainless Steel Cabinet
+tile.gtclassic.stainlesssteel_storage_1.name=Large Stainless Steel Cabinet
+tile.gtclassic.stainlesssteel_storage_2.name=Stainless Steel Bookshelf
+tile.gtclassic.stainlesssteel_storage_3.name=Stainless Steel Workbench
+tile.gtclassic.bismuth_storage_0.name=Bismuth Cabinet
+tile.gtclassic.bismuth_storage_1.name=Large Bismuth Cabinet
+tile.gtclassic.bismuth_storage_2.name=Bismuth Bookshelf
+tile.gtclassic.bismuth_storage_3.name=Bismuth Workbench
 
 #ore
 tile.gtclassic.galena_ore.name=Galena Ore
@@ -140,7 +152,7 @@ tile.gtclassic.ruby_ore.name=Ruby Ore
 tile.gtclassic.sapphire_ore.name=Sapphire Ore
 tile.gtclassic.calcite_ore.name=Calcite Ore
 tile.gtclassic.bauxite_ore.name=Bauxite Ore
-tile.gtclassic.tantalite_ore.name=Tantalite
+tile.gtclassic.tantalite_ore.name=Tantalite Ore
 tile.gtclassic.pyrite_ore.name=Pyrite Ore
 tile.gtclassic.cinnabar_ore.name=Cinnabar Ore
 tile.gtclassic.sphalerite_ore.name=Sphalerite Ore
@@ -148,15 +160,29 @@ tile.gtclassic.tungstate_ore.name=Tungstate Ore
 tile.gtclassic.sheldonite_ore.name=Sheldonite Ore
 tile.gtclassic.olivine_ore.name=Olivine Ore
 tile.gtclassic.sodalite_ore.name=Sodalite Ore
+tile.gtclassic.chromite_ore.name=Chromite Ore
+tile.gtclassic.cryolite_ore.name=Cryolite Ore
+tile.gtclassic.garnierite_ore.name=Garnierite Ore
+tile.gtclassic.graphite_ore.name=Graphite Ore
+tile.gtclassic.coal_ore.name=Lignite Coal Ore
+tile.gtclassic.limonite_ore.name=Brown Limonite Ore
+tile.gtclassic.malachite_ore.name=Malachite Ore
+tile.gtclassic.saltpeter_ore.name=Saltpeter Ore
+tile.gtclassic.sulfur_ore.name=Sulfur Ore
+tile.gtclassic.tetrahedrite_ore.name=Tetrahedrite Ore
 
 #sands
+tile.gtclassic.cassiterite_sand.name=Cassiterite Sand
+tile.gtclassic.bismuth_sand.name=Bismuth Sand
 tile.gtclassic.magnetite_sand.name=Black Sand
+tile.gtclassic.zirconium_sand.name=Zirconium Sand
 
 #blocks
 tile.gtclassic.bloom_block.name=Refined Iron Bloom
 tile.gtclassic.slag_sand.name=Slag Sand
 tile.gtclassic.slagcrete_sand.name=Reinforced Concrete
-tile.gtclassic.slagglass_block.name=Slag Glass
+tile.gtclassic.slag_glass.name=Slag Glass
+tile.gtclassic.mud_block.name=Red Mud
 
 #machine casings
 tile.gtclassic.superconductor_casing.name=Superconductor Casing
@@ -306,6 +332,18 @@ item.gtclassic.plastic_dustsmall.name=Small Plastic Dust
 item.gtclassic.nobium_dustsmall.name=Small Nobium Dust
 item.gtclassic.rutile_dustsmall.name=Small Rutile Dust
 item.gtclassic.niobium_dustsmall.name=Small Niobium Dust
+item.gtclassic.carbon_dustsmall.name=Small Carbon Dust
+item.gtclassic.silicon_dustsmall.name=Small Silicon Dust
+item.gtclassic.stainlesssteel_dustsmall.name=Small Stainless Steel Dust
+item.gtclassic.bismuth_dustsmall.name=Small Bismuth Dust
+item.gtclassic.chromite_dustsmall.name=Small Chromite Dust
+item.gtclassic.zirconium_dustsmall.name=Small Zirconium Dust
+item.gtclassic.malachite_dustsmall.name=Small Malachite Dust
+item.gtclassic.limonite_dustsmall.name=Small Limonite Dust
+item.gtclassic.garnierite_dustsmall.name=Small Garnierite Dust
+item.gtclassic.cryolite_dustsmall.name=Small Cryolite Dust
+item.gtclassic.cassiterite_dustsmall.name=Small Cassiterite Dust
+item.gtclassic.tetrahedrite_dustsmall.name=Small Tetrahedrite Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -377,6 +415,18 @@ item.gtclassic.plastic_dust.name=Plastic Dust
 item.gtclassic.nobium_dust.name=Nobium Dust
 item.gtclassic.rutile_dust.name=Rutile Dust
 item.gtclassic.niobium_dust.name=Niobium Dust
+item.gtclassic.carbon_dust.name=Carbon Dust
+item.gtclassic.stainlesssteel_dust.name=Stainless Steel Dust
+item.gtclassic.silicon_dust.name=Silicon Dust
+item.gtclassic.bismuth_dust.name=Bismuth Dust
+item.gtclassic.chromite_dust.name=Chromite Dust
+item.gtclassic.zirconium_dust.name=Zirconium Dust
+item.gtclassic.malachite_dust.name=Malachite Dust
+item.gtclassic.limonite_dust.name=Limonite Dust
+item.gtclassic.garnierite_dust.name=Garnierite Dust
+item.gtclassic.cryolite_dust.name=Cryolite Dust
+item.gtclassic.cassiterite_dust.name=Cassiterite Dust
+item.gtclassic.tetrahedrite_dust.name=Tetrahedrite Dust
 
 #gems
 item.gtclassic.redgarnet_gem.name=Red Garnet
@@ -411,6 +461,8 @@ item.gtclassic.nichrome_ingot.name=Nichrome Ingot
 item.gtclassic.germanium_ingot.name=Germanium Ingot
 item.gtclassic.tantalum_ingot.name=Tantalum Ingot
 item.gtclassic.manganese_ingot.name=Manganese Ingot
+item.gtclassic.stainlesssteel_ingot.name=Stainless Steel Ingot
+item.gtclassic.bismuth_ingot.name=Bismuth Ingot
 
 #nuggets
 item.gtclassic.tungsten_nugget.name=Tungsten Nugget
@@ -441,6 +493,8 @@ item.gtclassic.nichrome_nugget.name=Nichrome Nugget
 item.gtclassic.manganese_nugget.name=Manganese Nugget
 item.gtclassic.germanium_nugget.name=Germanium Nugget
 item.gtclassic.tantalum_nugget.name=Tantalum Nugget
+item.gtclassic.stainlesssteel_nugget.name=Stainless Steel Nugget
+item.gtclassic.bismuth_nugget.name=Bismuth Nugget
 
 #plates
 item.gtclassic.tungsten_plate.name=Tungsten Plate
@@ -473,6 +527,8 @@ item.gtclassic.manganese_plate.name=Manganese Plate
 item.gtclassic.constantan_plate.name=Constantan Plate
 item.gtclassic.nichrome_plate.name=Nichrome Plate
 item.gtclassic.tantalum_plate.name=Tantalum Plate
+item.gtclassic.stainlesssteel_plate.name=Stainless Steel Plate
+item.gtclassic.bismuth_plate.name=Bismuth Plate
 
 #gear
 item.gtclassic.tungsten_gear.name=Tungsten Gear
@@ -505,6 +561,8 @@ item.gtclassic.constantan_gear.name=Constantan Gear
 item.gtclassic.nichrome_gear.name=Nichrome Gear
 item.gtclassic.tantalum_gear.name=Tantalum Gear
 item.gtclassic.iridium_gear.name=Iridium Gear
+item.gtclassic.stainlesssteel_gear.name=Stainless Gear
+item.gtclassic.bismuth_gear.name=Bismuth Gear
 
 #sticks
 item.gtclassic.tungsten_stick.name=Tungsten Rod
@@ -534,6 +592,8 @@ item.gtclassic.nichrome_stick.name=Nichrome Rod
 item.gtclassic.refinediron_stick.name=Refined Iron Rod
 item.gtclassic.germanium_stick.name=Germanium Rod
 item.gtclassic.tantalum_stick.name=Tantalum Rod
+item.gtclassic.stainlesssteel_stick.name=Stainless Steel Rod
+item.gtclassic.bismuth_stick.name=Bismuth Rod
 
 #material tools
 #files
@@ -559,6 +619,7 @@ item.gtclassic.nickel_file.name=Nickel File
 item.gtclassic.nichrome_file.name=Nichrome File
 item.gtclassic.osmium_file.name=Osmium File
 item.gtclassic.tantalum_file.name=Tantalum File
+item.gtclassic.bismuth_file.name=Bismuth File
 #hammers
 item.gtclassic.bronze_hammer.name=Bronze Hammer
 item.gtclassic.iron_hammer.name=Iron Hammer
@@ -582,6 +643,7 @@ item.gtclassic.nickel_hammer.name=Nickel Hammer
 item.gtclassic.nichrome_hammer.name=Nichrome Hammer
 item.gtclassic.osmium_hammer.name=Osmium Hammer
 item.gtclassic.tantalum_hammer.name=Tantalum Hammer
+item.gtclassic.bismuth_hammer.name=Bismuth Hammer
 #wrenches
 item.gtclassic.bronze_wrench.name=Bronze Wrench
 item.gtclassic.iron_wrench.name=Iron Wrench
@@ -605,6 +667,7 @@ item.gtclassic.nickel_wrench.name=Nickel Wrench
 item.gtclassic.nichrome_wrench.name=Nichrome Wrench
 item.gtclassic.osmium_wrench.name=Osmium Wrench
 item.gtclassic.tantalum_wrench.name=Tantalum Wrench
+item.gtclassic.bismuth_wrench.name=Bismuth Wrench
 #swords
 item.gtclassic.flint_sword.name=Flint Sword
 item.gtclassic.bronze_sword.name=Bronze Sword
@@ -629,6 +692,7 @@ item.gtclassic.nickel_sword.name=Nickel Sword
 item.gtclassic.nichrome_sword.name=Nichrome Sword
 item.gtclassic.osmium_sword.name=Osmium Sword
 item.gtclassic.tantalum_sword.name=Tantalum Sword
+item.gtclassic.bismuth_sword.name=Bismuth Sword
 #shovels
 item.gtclassic.flint_shovel.name=Flint Shovel
 item.gtclassic.bronze_shovel.name=Bronze Shovel
@@ -653,6 +717,7 @@ item.gtclassic.nickel_shovel.name=Nickel Shovel
 item.gtclassic.nichrome_shovel.name=Nichrome Shovel
 item.gtclassic.osmium_shovel.name=Osmium Shovel
 item.gtclassic.tantalum_shovel.name=Tantalum Shovel
+item.gtclassic.bismuth_shovel.name=Bismuth Shovel
 #axes
 item.gtclassic.flint_axe.name=Flint Axe
 item.gtclassic.bronze_axe.name=Bronze Axe
@@ -677,6 +742,7 @@ item.gtclassic.nickel_axe.name=Nickel Axe
 item.gtclassic.nichrome_axe.name=Nichrome Axe
 item.gtclassic.osmium_axe.name=Osmium Axe
 item.gtclassic.tantalum_axe.name=Tantalum Axe
+item.gtclassic.bismuth_axe.name=Bismuth Axe
 #pickaxes
 item.gtclassic.flint_pickaxe.name=Flint Pickaxe
 item.gtclassic.bronze_pickaxe.name=Bronze Pickaxe
@@ -701,6 +767,7 @@ item.gtclassic.nickel_pickaxe.name=Nickel Pickaxe
 item.gtclassic.nichrome_pickaxe.name=Nichrome Pickaxe
 item.gtclassic.osmium_pickaxe.name=Osmium Pickaxe
 item.gtclassic.tantalum_pickaxe.name=Tantalum Pickaxe
+item.gtclassic.bismuth_pickaxe.name=Bismuth Pickaxe
 #drills
 item.gtclassic.bronze_miningdrill.name=Bronze Drill
 item.gtclassic.iron_miningdrill.name=Iron Drill

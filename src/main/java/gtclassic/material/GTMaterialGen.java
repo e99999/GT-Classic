@@ -4,6 +4,8 @@ import java.util.LinkedHashMap;
 
 import gtclassic.GTItems;
 import gtclassic.GTMod;
+import gtclassic.GTOreGen;
+import gtclassic.block.GTBlockOreStone;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -96,6 +98,10 @@ public class GTMaterialGen {
 	}
 
 	// Instances per flag, most of the mod will references these
+
+	public ItemStack getStoneOre(GTOreGen entry, int count) {
+		return new ItemStack(new GTBlockOreStone(entry, entry.getId(), entry.getLevel(), entry.getHardness()));
+	}
 
 	public static ItemStack getCasing(GTMaterial mat, int count) {
 		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.CASING.getSuffix()), count, 0);

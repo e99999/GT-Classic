@@ -21,7 +21,7 @@ public class GTToolGen {
 
 	public static void generateTools() {
 		blacklistPowerTools.addAll(Arrays.asList(GTToolMaterial.Flint, GTToolMaterial.Iron, GTToolMaterial.Bronze,
-				GTToolMaterial.Gold, GTToolMaterial.Brass, GTToolMaterial.RefinedIron));
+				GTToolMaterial.Gold, GTToolMaterial.Brass, GTToolMaterial.RefinedIron, GTToolMaterial.Bismuth));
 
 		blacklistVanillaTools.addAll(
 				Arrays.asList(GTToolMaterial.Iron, GTToolMaterial.Bronze, GTToolMaterial.Gold, GTToolMaterial.Diamond));

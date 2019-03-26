@@ -6,7 +6,8 @@ import java.util.List;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCustom;
 import gtclassic.block.GTBlockGlass;
-import gtclassic.block.GTBlockOre;
+import gtclassic.block.GTBlockOreSand;
+import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockSand;
 import gtclassic.block.GTBlockStone;
 import gtclassic.block.GTBlockTileBasic;
@@ -50,35 +51,18 @@ import gtclassic.tile.GTTileWorkbench;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GTBlocks {
 
 	static final List<Block> toRegister = new ArrayList<Block>();
-	public static final GTBlockOre galenaOre = registerBlock(new GTBlockOre("Galena", 0, 1, 3.0F));
-	public static final GTBlockOre iridiumOre = registerBlock(new GTBlockOre("Iridium", 1, 3, 20.0F));
-	public static final GTBlockOre rubyOre = registerBlock(new GTBlockOre("Ruby", 2, 2, 4.0F));
-	public static final GTBlockOre sapphireOre = registerBlock(new GTBlockOre("Sapphire", 3, 2, 4.0F));
-	public static final GTBlockOre calciteOre = registerBlock(new GTBlockOre("Calcite", 4, 1, 3.0F));
-	public static final GTBlockOre bauxiteOre = registerBlock(new GTBlockOre("Bauxite", 5, 1, 3.0F));
-	public static final GTBlockSand magnetiteSand = registerBlock(new GTBlockSand("Magnetite", 7));
-	public static final GTBlockOre tantaliteOre = registerBlock(new GTBlockOre("Tantalite", 8, 1, 3.0F));
-	public static final GTBlockOre pyriteOre = registerBlock(new GTBlockOre("Pyrite", 9, 1, 2.0F));
-	public static final GTBlockOre cinnabarOre = registerBlock(new GTBlockOre("Cinnabar", 10, 2, 3.0F));
-	public static final GTBlockOre sphaleriteOre = registerBlock(new GTBlockOre("Sphalerite", 11, 1, 2.0F));
-	public static final GTBlockOre tungstateOre = registerBlock(new GTBlockOre("Tungstate", 12, 2, 4.0F));
-	public static final GTBlockOre sheldoniteOre = registerBlock(new GTBlockOre("Sheldonite", 13, 3, 3.5F));
-	public static final GTBlockOre olivineOre = registerBlock(new GTBlockOre("Olivine", 14, 3, 3.0F));
-	public static final GTBlockOre sodaliteOre = registerBlock(new GTBlockOre("Sodalite", 15, 2, 3.0F));
 
 	public static final GTBlockStone bloomBlock = registerBlock(new GTBlockStone("Bloom", 16, 1.0F, 0));
-
 	public static final GTBlockSand slagSand = registerBlock(new GTBlockSand("Slag", 17));
 	public static final GTBlockSand slagcreteSand = registerBlock(new GTBlockSand("Slagcrete", 18));
-
 	public static final GTBlockGlass slagGlass = registerBlock(new GTBlockGlass("Slag", 19));
-
 	public static final GTBlockCustom mudBlock = registerBlock(new GTBlockCustom("Mud", 21, 16, 2));
 
 	public static final GTBlockCasing superCasingBlock = registerBlock(new GTBlockCasing("Superconductor", 0));
@@ -215,6 +199,7 @@ public class GTBlocks {
 		}
 
 		registerStorageBlocks();
+		registerOreBlocks();
 
 		for (Block block : toRegister) {
 			createBlock(block);
@@ -238,6 +223,17 @@ public class GTBlocks {
 			return GTColorItemBlock.class;
 		}
 		return GTItemBlockRare.class;
+	}
+
+	public static void registerOreBlocks() {
+		for (GTOreGen ore : GTOreGen.values()) {
+			if (ore.getType().equals(Blocks.STONE)) {
+				createBlock(new GTBlockOreStone(ore, ore.getId(), ore.getLevel(), ore.getHardness()));
+			}
+			if (ore.getType().equals(Blocks.SAND) || ore.getType().equals(Blocks.GRAVEL)) {
+				createBlock(new GTBlockOreSand(ore, ore.getId(), ore.getLevel(), ore.getHardness()));
+			}
+		}
 	}
 
 	public static void registerStorageBlocks() {

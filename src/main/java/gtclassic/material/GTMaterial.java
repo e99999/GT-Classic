@@ -40,23 +40,29 @@ public class GTMaterial {
 	public static GTMaterial Ashes = new GTMaterial("Ashes", 1.0F, 0, 1, new Color(150, 150, 150), false, DUST_ALL);
 	public static GTMaterial Basalt = new GTMaterial("Basalt", 1.0F, 0, 1, new Color(30, 20, 20), false, DUST_ALL);//
 	public static GTMaterial Bauxite = new GTMaterial("Bauxite", 1.0F, 0, 1, new Color(200, 100, 0), false, DUST_ALL);
-	public static GTMaterial Beryllium = new GTMaterial("Beryllium", 1.0F, 0, 1, Color.green, false, FLUID);
+	public static GTMaterial Beryllium = new GTMaterial("Beryllium", 1.0F, 0, 1, new Color(30, 80, 50), false, FLUID);
+	public static GTMaterial Bismuth = new GTMaterial("Bismuth", 6.0F, 96, 2, new Color(100, 160, 160), true,
+			METAL_ALL);
 	public static GTMaterial Brass = new GTMaterial("Brass", 7.0F, 96, 1, new Color(255, 180, 0), true, METAL_ALL);
 	public static GTMaterial Bronze = new GTMaterial("Bronze", 6.0F, 192, 2, new Color(230, 83, 34), true, METAL_IC2);
 	public static GTMaterial Calcite = new GTMaterial("Calcite", 1.0F, 0, 1, new Color(250, 230, 220), false, DUST_ALL);
-	public static GTMaterial Calcium = new GTMaterial("Calcium", 1.0F, 0, 1, Color.white, false, FLUID);
+	public static GTMaterial Calcium = new GTMaterial("Calcium", 1.0F, 0, 1, new Color(155, 96, 80), false, FLUID);
 	public static GTMaterial Carbon = new GTMaterial("Carbon", 1.0F, 0, 1, Color.black, false, DUST_ALL);
+	public static GTMaterial Cassiterite = new GTMaterial("Cassiterite", 1.0F, 0, 1, new Color(220, 220, 220), false,
+			DUST_ALL);
 	public static GTMaterial Charcoal = new GTMaterial("Charcoal", 1.0F, 0, 1, new Color(100, 70, 70), false,
 			SMALLDUST);
-	public static GTMaterial Chlorine = new GTMaterial("Chlorine", 1.0F, 0, 1, Color.cyan, false, FLUID);
+	public static GTMaterial Chlorine = new GTMaterial("Chlorine", 1.0F, 0, 1, new Color(50, 150, 150), false, FLUID);
 	public static GTMaterial Chrome = new GTMaterial("Chrome", 11.0F, 256, 3, new Color(245, 206, 227), false,
 			METAL_ALL);
+	public static GTMaterial Chromite = new GTMaterial("Chromite", 1.0F, 0, 1, new Color(35, 20, 15), false, DUST_ALL);
 	public static GTMaterial Cinnabar = new GTMaterial("Cinnabar", 1.0F, 0, 1, new Color(150, 0, 0), false, DUST_ALL);
 	public static GTMaterial Clay = new GTMaterial("Clay", 1.0F, 0, 1, new Color(200, 200, 220), false, SMALLDUST);
 	public static GTMaterial Coal = new GTMaterial("Coal", 1.0F, 0, 1, new Color(70, 70, 70), false, SMALLDUST);
 	public static GTMaterial Constantan = new GTMaterial("Constantan", 8.0F, 128, 2, new Color(196, 116, 77), true,
 			SMALLDUST, DUST, NUGGET, INGOT, PLATE, STICK);
 	public static GTMaterial Copper = new GTMaterial("Copper", 1.0F, 0, 1, new Color(180, 113, 61), true, METAL_IC2);
+	public static GTMaterial Cryolite = new GTMaterial("Cryolite", 1.0F, 0, 1, Color.white, false, DUST_ALL);
 	public static GTMaterial DarkAshes = new GTMaterial("DarkAshes", 1.0F, 0, 1, new Color(50, 50, 50), false,
 			DUST_ALL);
 	public static GTMaterial Diamond = new GTMaterial("Diamond", 8.0F, 1280, 3, new Color(51, 235, 203), false,
@@ -77,6 +83,8 @@ public class GTMaterial {
 			SMALLDUST, DUST, GEM);
 	public static GTMaterial GarnetYellow = new GTMaterial("YellowGarnet", 7.0F, 128, 2, new Color(200, 200, 80), false,
 			SMALLDUST, DUST, GEM);
+	public static GTMaterial Garnierite = new GTMaterial("Garnierite", 1.0F, 0, 1, new Color(50, 200, 70), false,
+			DUST_ALL);
 	public static GTMaterial Germanium = new GTMaterial("Germanium", 8.0F, 64, 1, new Color(250, 250, 250), true,
 			METAL_ALL);
 	public static GTMaterial Glowstone = new GTMaterial("Glowstone", 1.0F, 0, 1, new Color(255, 255, 0), false,
@@ -100,7 +108,9 @@ public class GTMaterial {
 	public static GTMaterial Lazurite = new GTMaterial("Lazurite", 1.0F, 0, 1, new Color(100, 120, 255), false,
 			DUST_ALL);
 	public static GTMaterial Lead = new GTMaterial("Lead", 8.0F, 64, 1, new Color(140, 100, 140), true, METAL_ALL);
-	public static GTMaterial Lithium = new GTMaterial("Lithium", 1.0F, 0, 1, Color.lightGray, false, FLUID);
+	public static GTMaterial Limonite = new GTMaterial("Limonite", 1.0F, 0, 1, new Color(200, 100, 0), false, DUST_ALL);
+	public static GTMaterial Lithium = new GTMaterial("Lithium", 1.0F, 0, 1, new Color(87, 150, 204), false, FLUID);
+	public static GTMaterial Malachite = new GTMaterial("Malachite", 1.0F, 0, 1, new Color(5, 95, 5), false, DUST_ALL);
 	public static GTMaterial Maganlium = new GTMaterial("Magnalium", 6.0F, 256, 2, new Color(200, 190, 255), false,
 			INGOT, NUGGET, PLATE);
 	public static GTMaterial Magnesium = new GTMaterial("Magnesium", 1.0F, 0, 1, new Color(255, 200, 200), false,
@@ -109,22 +119,23 @@ public class GTMaterial {
 	public static GTMaterial Manganese = new GTMaterial("Manganese", 1.0F, 0, 1, new Color(250, 235, 250), true,
 			SMALLDUST, DUST, NUGGET, INGOT, PLATE, BLOCK);
 	public static GTMaterial Marble = new GTMaterial("Marble", 1.0F, 0, 1, new Color(200, 200, 200), false, DUST_ALL);//
-	public static GTMaterial Methane = new GTMaterial("Methane", 1.0F, 0, 1, Color.pink, false, FLUID);
-	public static GTMaterial Mercury = new GTMaterial("Mercury", 1.0F, 0, 1, Color.gray, false, FLUID);
+	public static GTMaterial Methane = new GTMaterial("Methane", 1.0F, 0, 1, new Color(255, 50, 130), false, FLUID);
+	public static GTMaterial Mercury = new GTMaterial("Mercury", 1.0F, 0, 1, Color.white, false, FLUID);
 	public static GTMaterial Netherrack = new GTMaterial("Netherrack", 1.0F, 0, 1, new Color(200, 0, 0), false,
 			SMALLDUST);
 	public static GTMaterial Nichrome = new GTMaterial("Nichrome", 10.0F, 256, 3, new Color(88, 133, 188), false,
 			SMALLDUST, DUST, NUGGET, INGOT, PLATE, STICK);
 	public static GTMaterial Nickel = new GTMaterial("Nickel", 6.0F, 64, 2, new Color(200, 200, 250), true, METAL_ALL);
 	public static GTMaterial Niobium = new GTMaterial("Niobium", 1.0F, 0, 1, new Color(200, 200, 200), false, DUST_ALL);
-	public static GTMaterial Nitrogen = new GTMaterial("Nitrogen", 1.0F, 0, 1, Color.white, false, FLUID, PLASMA);
+	public static GTMaterial Nitrogen = new GTMaterial("Nitrogen", 1.0F, 0, 1, new Color(0, 190, 190), false, FLUID,
+			PLASMA);
 	public static GTMaterial Obsidian = new GTMaterial("Obsidian", 1.0F, 0, 1, new Color(80, 50, 100), false,
 			SMALLDUST);
 	public static GTMaterial Olivine = new GTMaterial("Olivine", 7.0F, 256, 2, new Color(150, 255, 150), false,
 			GEM_ALL);
 	public static GTMaterial Osmium = new GTMaterial("Osmium", 16.0F, 1280, 4, new Color(50, 50, 255), false,
 			METAL_ALL);
-	public static GTMaterial Oxygen = new GTMaterial("Oxygen", 1.0F, 0, 1, Color.white, false, FLUID);
+	public static GTMaterial Oxygen = new GTMaterial("Oxygen", 1.0F, 0, 1, new Color(100, 160, 220), false, FLUID);
 	public static GTMaterial Phosphor = new GTMaterial("Phosphor", 1.0F, 0, 1, new Color(255, 255, 0), false, DUST_ALL);
 	public static GTMaterial Plastic = new GTMaterial("Plastic", 1.0F, 0, 1, new Color(235, 235, 235), false, DUST,
 			SMALLDUST);
@@ -152,6 +163,7 @@ public class GTMaterial {
 	public static GTMaterial Silicon = new GTMaterial("Silicon", 1.0F, 0, 1, new Color(60, 60, 80), false, DUST_ALL);
 	public static GTMaterial Silver = new GTMaterial("Silver", 10.0F, 64, 2, new Color(215, 225, 230), true, METAL_IC2);
 	public static GTMaterial Slag = new GTMaterial("Slag", 1.0F, 0, 1, new Color(64, 48, 0), false, DUST_ALL);
+	public static GTMaterial Slurry = new GTMaterial("Slurry", 1.0F, 0, 1, new Color(135, 92, 50), false, FLUID);
 	public static GTMaterial Sodalite = new GTMaterial("Sodalite", 1.0F, 0, 1, new Color(20, 20, 255), false, DUST_ALL);
 	public static GTMaterial Sodium = new GTMaterial("Sodium", 1.0F, 0, 1, Color.blue, false, FLUID);
 	public static GTMaterial Spessartine = new GTMaterial("Spessartine", 1.0F, 0, 1, new Color(255, 100, 100), false,
@@ -169,6 +181,8 @@ public class GTMaterial {
 			DUST_ALL);
 	public static GTMaterial Tantalum = new GTMaterial("Tantalum", 8.0F, 5120, 3, new Color(96, 96, 96), false, DUST,
 			SMALLDUST, NUGGET, INGOT, STICK, PLATE, BLOCK);
+	public static GTMaterial Tetrahedrite = new GTMaterial("Tetrahedrite", 1.0F, 0, 1, new Color(200, 32, 0), false,
+			DUST_ALL);
 	public static GTMaterial Thorium = new GTMaterial("Thorium", 6.0F, 512, 2, new Color(0, 30, 0), false, SMALLDUST,
 			DUST, NUGGET, INGOT);
 	public static GTMaterial Tin = new GTMaterial("Tin", 1.0F, 0, 1, new Color(220, 220, 220), true, METAL_IC2);
@@ -186,6 +200,8 @@ public class GTMaterial {
 			DUST_ALL);
 	public static GTMaterial Wood = new GTMaterial("Wood", 1.0F, 0, 1, new Color(137, 103, 39), false, DUST_ALL);
 	public static GTMaterial Zinc = new GTMaterial("Zinc", 1.0F, 0, 1, new Color(250, 240, 240), true, METAL_ALL);
+	public static GTMaterial Zirconium = new GTMaterial("Zirconium", 1.0F, 0, 1, new Color(180, 210, 210), false,
+			DUST_ALL);
 
 	/** Instance Members **/
 	private String name, displayName;
@@ -197,6 +213,16 @@ public class GTMaterial {
 	private Color color;
 	// Expand for needs
 
+	/**
+	 * 
+	 * @param displayName - The name of the material
+	 * @param speed       - Speed the material for tools
+	 * @param durability  - Durability for material tools
+	 * @param level       - Harvest Level for material tools
+	 * @param color       - Color of material
+	 * @param smeltable   - Determines if a material requires sepcial processing
+	 * @param flags       - Types of items and blocks to generate from material
+	 */
 	public GTMaterial(String displayName, float speed, int durability, int level, Color color, boolean smeltable,
 			GTMaterialFlag... flags) {
 		this.displayName = displayName;

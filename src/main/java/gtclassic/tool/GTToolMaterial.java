@@ -20,6 +20,7 @@ public class GTToolMaterial {
 	// TODO add flint tools
 	public static final ToolMaterial Flint = createToolMaterial(m.Flint);
 	public static final ToolMaterial Bronze = createToolMaterial(m.Bronze);
+	public static final ToolMaterial Bismuth = createToolMaterial(m.Bismuth);
 	public static final ToolMaterial Gold = createToolMaterial(m.Gold);
 	public static final ToolMaterial Iron = createToolMaterial(m.Iron);
 	public static final ToolMaterial Diamond = createToolMaterial(m.Diamond);
@@ -47,7 +48,7 @@ public class GTToolMaterial {
 	 */
 	public static final ToolMaterial[] toolMaterial = { Flint, Bronze, Iron, Gold, Diamond, Tungsten, Invar, Silver,
 			Steel, Electrum, Constantan, Platinum, Iridium, Chrome, Brass, Plutonium, RefinedIron, Tungstensteel,
-			Titanium, Nickel, Nichrome, Osmium, Tantalum };
+			Titanium, Nickel, Nichrome, Osmium, Tantalum, Bismuth };
 
 	/*
 	 * This is map to allow access to a GTMaterial equivalent of the Tool Material
@@ -60,6 +61,7 @@ public class GTToolMaterial {
 			.put(RefinedIron, GTMaterial.RefinedIron).put(Tungstensteel, GTMaterial.TungstenSteel)
 			.put(Titanium, GTMaterial.Titanium).put(Nickel, GTMaterial.Nickel).put(Nichrome, GTMaterial.Nichrome)
 			.put(Osmium, GTMaterial.Osmium).put(Tantalum, GTMaterial.Tantalum).put(Flint, GTMaterial.Flint)
+			.put(Bismuth, GTMaterial.Bismuth)
 
 			.put(Bronze, GTMaterial.Bronze).put(Gold, GTMaterial.Gold).put(Iron, GTMaterial.Iron)
 			.put(Diamond, GTMaterial.Diamond).build();

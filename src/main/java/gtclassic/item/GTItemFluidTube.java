@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
+import gtclassic.fluid.GTFluid;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
@@ -28,6 +29,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
@@ -51,6 +53,7 @@ public class GTItemFluidTube extends Item
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(getFluidName(stack));
+		tooltip.add(getFluidTemp(stack));
 	}
 
 	public String getFluidName(ItemStack stack) {
@@ -61,12 +64,12 @@ public class GTItemFluidTube extends Item
 		return "Empty";
 	}
 
-	public String getFluidUnlocalName(ItemStack stack) {
+	public String getFluidTemp(ItemStack stack) {
 		FluidStack fluid = FluidUtil.getFluidContained(stack);
 		if (fluid != null) {
-			return fluid.getUnlocalizedName();
+			return "" + fluid.getFluid().getTemperature() + "K";
 		}
-		return "null";
+		return "";
 	}
 
 	@Override
@@ -88,18 +91,17 @@ public class GTItemFluidTube extends Item
 
 	@SideOnly(Side.CLIENT)
 	public ModelResourceLocation createResourceLocationForStack(ItemStack stack) {
-		int damage = stack.getItemDamage();
+		boolean hasFluid = FluidUtil.getFluidContained(stack) != null;
 		ResourceLocation location = this.getRegistryName();
 		String name = stack.getUnlocalizedName();
-		this.model[damage] = new ModelResourceLocation(
-				location.getResourceDomain() + name.substring(name.indexOf(".") + 1) + damage, "inventory");
-		return this.model[damage];
+		this.model[hasFluid ? 1 : 0] = new ModelResourceLocation(
+				location.getResourceDomain() + name.substring(name.indexOf(".") + 1) + (hasFluid ? 1 : 0), "inventory");
+		return this.model[hasFluid ? 1 : 0];
 	}
 
 	@SideOnly(Side.CLIENT)
 	public ModelResourceLocation getResourceLocationForStack(ItemStack stack) {
-		int damage = stack.getItemDamage();
-		return this.model[damage];
+		return this.model[FluidUtil.getFluidContained(stack) != null ? 1 : 0];
 	}
 
 	public boolean isLayered(ItemStack stack) {
@@ -117,7 +119,7 @@ public class GTItemFluidTube extends Item
 
 	@Override
 	public List<ItemStack> getValidItemVariants() {
-		return Arrays.asList(empty, GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1));
+		return Arrays.asList(GTMaterialGen.get(GTItems.testTube), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1));
 	}
 
 	@Override
@@ -129,9 +131,17 @@ public class GTItemFluidTube extends Item
 	@Override
 	public Color getColor(ItemStack stack, int index) {
 		FluidStack fluid = FluidUtil.getFluidContained(stack);
-		// trying color
 		if (fluid != null && index == 1) {
-			return new Color(fluid.getFluid().getColor());
+			if (fluid.getFluid() == FluidRegistry.WATER) {
+				return Color.blue;
+			}
+			if (fluid.getFluid() == FluidRegistry.LAVA) {
+				return Color.red;
+			}
+		}
+		if (fluid != null && index == 1 && fluid.getFluid() instanceof GTFluid) {
+			GTFluid gtFluid = (GTFluid) fluid.getFluid();
+			return gtFluid.getGTMaterial().getColor();
 		}
 		return Color.white;
 	}

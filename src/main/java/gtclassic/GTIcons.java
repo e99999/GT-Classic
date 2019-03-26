@@ -12,6 +12,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTIcons {
 	@SideOnly(Side.CLIENT)
 	public static void loadSprites() {
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_ores", GTMod.MODID + ":textures/sprites/sprites_ores.png",
+				new Sprites.SpriteInfo(16, 16)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_blocks", GTMod.MODID + ":textures/sprites/sprites_blocks.png",
 				new Sprites.SpriteInfo(16, 16)));
 
@@ -31,6 +33,7 @@ public class GTIcons {
 		collectCustomTileSprites();
 
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_builder", 0, 0, 1, 12));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_ores", 0, 0, 16, 3));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 5));
 

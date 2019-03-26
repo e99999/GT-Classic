@@ -2,6 +2,8 @@ package gtclassic.recipe;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
+import gtclassic.block.GTBlockOreSand;
+import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
@@ -189,6 +191,17 @@ public class GTRecipeIterators {
 		ingotUtil(Ic2Items.bronzeIngot, M.Bronze);
 		ingotUtil(Ic2Items.silverIngot, M.Silver);
 
+		GameRegistry.addSmelting(GT.getDust(M.Bismuth, 1), GT.getNugget(M.Bismuth, 6), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Cassiterite, 1), GT.getNugget(M.Tin, 3), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Galena, 1), GT.getNugget(M.Lead, 3), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Garnierite, 1), GT.getNugget(M.Nickel, 3), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Limonite, 1), GT.get(Items.IRON_NUGGET, 3), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Magnetite, 1), GT.get(Items.IRON_NUGGET, 3), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Malachite, 1), GT.getNugget(M.Copper, 1), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Pyrite, 1), GT.get(Items.IRON_NUGGET, 3), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Sphalerite, 1), GT.getNugget(M.Zinc, 3), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Tetrahedrite, 1), GT.getNugget(M.Copper, 3), 0.1F);
+
 	}
 
 	public static void recipeIterators3() {
@@ -305,6 +318,24 @@ public class GTRecipeIterators {
 			}
 		}
 		for (Block block : Block.REGISTRY) {
+			if (block instanceof GTBlockOreStone) {
+				GTBlockOreStone ore = (GTBlockOreStone) block;
+				if (ore.getOreEntry().isSmeltable()) {
+					ItemStack output = ore.getOreEntry().getOutput();
+					if (output != null) {
+						GameRegistry.addSmelting(block, output, 0.1F);
+					}
+				}
+			}
+			if (block instanceof GTBlockOreSand) {
+				GTBlockOreSand sand = (GTBlockOreSand) block;
+				if (sand.getOreEntry().isSmeltable()) {
+					ItemStack output = sand.getOreEntry().getOutput();
+					if (output != null) {
+						GameRegistry.addSmelting(block, output, 0.1F);
+					}
+				}
+			}
 			if (block instanceof GTBlockTileStorage) {
 				GTBlockTileStorage tile = (GTBlockTileStorage) block;
 				GTMaterial material = tile.getMaterial();
