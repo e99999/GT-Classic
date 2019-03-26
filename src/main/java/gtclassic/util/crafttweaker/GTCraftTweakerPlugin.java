@@ -6,11 +6,10 @@ import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.oredict.IOreDictEntry;
 import ic2.api.recipe.IRecipeInput;
-import ic2.core.item.recipe.entry.RecipeInputArray;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class GTCraftTweakerPlugin {
     static IRecipeInput of(IItemStack item) {
@@ -18,8 +17,9 @@ public class GTCraftTweakerPlugin {
     }
 
     static IRecipeInput of(IIngredient ingredient) {
-        // TODO Dealing with null
-        if (ingredient instanceof IItemStack) {
+        if (ingredient == null) {
+            return new RecipeInputItemStack(ItemStack.EMPTY);
+        } else if (ingredient instanceof IItemStack) {
             return GTCraftTweakerPlugin.of((IItemStack)ingredient);
         } else if (ingredient instanceof IOreDictEntry) {
             return new RecipeInputOreDict(((IOreDictEntry)ingredient).getName(), ingredient.getAmount());
