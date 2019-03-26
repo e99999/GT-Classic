@@ -37,31 +37,11 @@ minecraft {
 }
 
 repositories {
-    maven {
-        name = "jei"
-        url = "http://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name = "jared"
-        url = "http://maven.blamejared.com"
-    }
+    
 }
 
 dependencies {
-    deobfCompile group: 'mezz.jei', name: 'jei_1.12.2', version: jei_version
-
-    deobfCompile(group: 'CraftTweaker2', name: 'ZenScript', version: craft_tweaker_version) {
-        exclude group: 'org.ow2.asm'
-        exclude group: 'com.google.code.gson'
-    }
-    deobfCompile(group: 'CraftTweaker2', name: 'CraftTweaker2-API', version: craft_tweaker_version) {
-        exclude group: 'org.ow2.asm'
-        exclude group: 'com.google.code.gson'
-    }
-    deobfCompile(group: 'CraftTweaker2', name: 'CraftTweaker2-MC1120-Main', version: "1.12-${craft_tweaker_version}") {
-        exclude group: 'org.ow2.asm'
-        exclude group: 'com.google.code.gson'
-    }
+    
 }
 
 processResources {
