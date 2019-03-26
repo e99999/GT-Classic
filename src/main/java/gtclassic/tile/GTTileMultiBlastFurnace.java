@@ -172,48 +172,10 @@ public class GTTileMultiBlastFurnace extends GTTileBaseMultiBlockMachine {
 		addRecipe(inputs, new MachineOutput(null, outputs));
 	}
 
-	public static void addRecipe(IRecipeInput input0, ItemStack... output) {
-		List<IRecipeInput> inputs = new ArrayList<>();
+	public static void addRecipe(List<IRecipeInput> inputs, ItemStack... output){
 		List<ItemStack> outputs = new ArrayList<>();
-		inputs.add(input0);
 		for (ItemStack stack : output){
 			outputs.add(stack);
-		}
-		addRecipe(inputs, new MachineOutput(null, outputs));
-	}
-
-	public static void addRecipe(IRecipeInput input0, IRecipeInput input1, ItemStack... output) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		List<ItemStack> outputs = new ArrayList<>();
-		inputs.add(input0);
-		inputs.add(input1);
-		for (ItemStack stack : output){
-			outputs.add(stack);
-		}
-		addRecipe(inputs, new MachineOutput(null, outputs));
-	}
-
-	public static void addRecipe(IRecipeInput input0, IRecipeInput input1, IRecipeInput input2, ItemStack... output) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		List<ItemStack> outputs = new ArrayList<>();
-		inputs.add(input0);
-		inputs.add(input1);
-		inputs.add(input2);
-		for (ItemStack stack : output){
-			outputs.add(stack);
-		}
-		addRecipe(inputs, new MachineOutput(null, outputs));
-	}
-
-	public static void addRecipe(IRecipeInput[] input, ItemStack[] output){
-		List<IRecipeInput> inputs = new ArrayList<>();
-		List<ItemStack> outputs = new ArrayList<>();
-		int i;
-		for (i = 0; i == input.length; i++){
-			inputs.add(input[i]);
-		}
-		for (i = 0; i == output.length; i++){
-			outputs.add(output[i]);
 		}
 		addRecipe(inputs, new MachineOutput(null, outputs));
 	}

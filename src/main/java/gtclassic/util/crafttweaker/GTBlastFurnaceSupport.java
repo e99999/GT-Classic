@@ -12,19 +12,21 @@ import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 @ZenClass("mods.gtclassic.BlastFurnace")
 public class GTBlastFurnaceSupport {
     @ZenMethod
     public static void addRecipe(IItemStack[] output, IIngredient input1) {
-        CraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerPlugin.of(input1), new RecipeInputItemStack(ItemStack.EMPTY), new RecipeInputItemStack(ItemStack.EMPTY), CraftTweakerMC.getItemStacks(output)));
+        CraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerPlugin.of(input1), null, null, CraftTweakerMC.getItemStacks(output)));
     }
 
     @ZenMethod
     public static void addRecipe(IItemStack[] output, IIngredient input1, IIngredient input2) {
-        CraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerPlugin.of(input1), GTCraftTweakerPlugin.of(input2), new RecipeInputItemStack(ItemStack.EMPTY), CraftTweakerMC.getItemStacks(output)));
+        CraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerPlugin.of(input1), GTCraftTweakerPlugin.of(input2), null, CraftTweakerMC.getItemStacks(output)));
     }
 
     @ZenMethod
@@ -48,7 +50,15 @@ public class GTBlastFurnaceSupport {
 
         @Override
         public void apply() {
-            GTTileMultiBlastFurnace.addRecipe(input1, input2, input3, output);
+            List<IRecipeInput> inputs = new ArrayList<>();
+            inputs.add(input1);
+            if (input2 != null){
+                inputs.add(input2);
+            }
+            if (input3 != null){
+                inputs.add(input3);
+            }
+            GTTileMultiBlastFurnace.addRecipe(inputs, output);
         }
 
         @Override
