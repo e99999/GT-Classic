@@ -14,7 +14,6 @@ import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.tile.GTTileMultiArcFurnace;
-import gtclassic.tile.GTTileMultiAssemblyLine;
 import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiBloomery;
 import gtclassic.tile.GTTileMultiEnergyStorage;
@@ -87,37 +86,50 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.computerCube) {
 			return new GTTileComputerCube();
-		} else if (this == GTBlocks.bloomery) {
+		}
+		if (this == GTBlocks.bloomery) {
 			return new GTTileMultiBloomery();
-		} else if (this == GTBlocks.blastFurnace) {
+		}
+		if (this == GTBlocks.blastFurnace) {
 			return new GTTileMultiBlastFurnace();
-		} else if (this == GTBlocks.industrialCentrifuge) {
+		}
+		if (this == GTBlocks.industrialCentrifuge) {
 			return new GTTileIndustrialCentrifuge();
-		} else if (this == GTBlocks.alloySmelter) {
+		}
+		if (this == GTBlocks.alloySmelter) {
 			return new GTTileAlloySmelter();
-		} else if (this == GTBlocks.playerDetector) {
+		}
+		if (this == GTBlocks.playerDetector) {
 			return new GTTilePlayerDetector();
-		} else if (this == GTBlocks.assLine) {
-			return new GTTileMultiAssemblyLine();
-		} else if (this == GTBlocks.arcFurnace) {
+		}
+		if (this == GTBlocks.arcFurnace) {
 			return new GTTileMultiArcFurnace();
-		} else if (this == GTBlocks.lightningRod) {
+		}
+		if (this == GTBlocks.lightningRod) {
 			return new GTTileMultiLightningRod();
-		} else if (this == GTBlocks.fusionComputer) {
+		}
+		if (this == GTBlocks.fusionComputer) {
 			return new GTTileMultiFusionComputer();
-		} else if (this == GTBlocks.basicEnergyStorage) {
+		}
+		if (this == GTBlocks.basicEnergyStorage) {
 			return new GTTileBasicEnergyStorage();
-		} else if (this == GTBlocks.quantumEnergyStorage) {
+		}
+		if (this == GTBlocks.quantumEnergyStorage) {
 			return new GTTileQuantumEnergyStorage();
-		} else if (this == GTBlocks.multiEnergyStorage) {
+		}
+		if (this == GTBlocks.multiEnergyStorage) {
 			return new GTTileMultiEnergyStorage();
-		} else if (this == GTBlocks.digitalChest) {
+		}
+		if (this == GTBlocks.digitalChest) {
 			return new GTTileDigitalChest();
-		} else if (this == GTBlocks.digitalTransformerIV) {
+		}
+		if (this == GTBlocks.digitalTransformerIV) {
 			return new GTTileDigitalTransformer();
-		} else if (this == GTBlocks.energiumCable) {
+		}
+		if (this == GTBlocks.energiumCable) {
 			return new GTTileSuperConductorLow();
-		} else if (this == GTBlocks.lapotronCable) {
+		}
+		if (this == GTBlocks.lapotronCable) {
 			return new GTTileSuperConductorHigh();
 		} else {
 			return new TileEntityBlock();

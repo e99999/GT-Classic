@@ -5,6 +5,7 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.util.GTValues;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -23,6 +24,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBlock, ICustomModeledBlock {
 
@@ -61,7 +64,10 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 			if (rand.nextInt(32) == 0) {
 				worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 1.0F,
 						1.0F);
-				GTMod.logger.info("Slurry block dried at: " + pos.toString());
+				if (GTValues.debugMode) {
+					GTMod.logger.info("Slurry block dried at: " + pos.toString());
+				}
+
 				worldIn.setBlockState(pos, GTBlocks.mudBlock.getDefaultState());
 			}
 		}
@@ -73,6 +79,7 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BaseModel getModelFromState(IBlockState state) {
 		return new GTFluidModel(FluidRegistry.getFluid("slurry"));
 	}

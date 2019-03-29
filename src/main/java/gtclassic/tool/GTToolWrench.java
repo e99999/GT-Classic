@@ -28,6 +28,19 @@ public class GTToolWrench extends ItemToolWrench implements GTColorItemInterface
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
+				|| material.equals(material.Uranium)) {
+			return true;
+		}
+		if (material.equals(material.Flint)) {
+			return false;
+		}
+		return super.hasEffect(stack);
+	}
+
+	@Override
 	public boolean hasContainerItem(ItemStack itemStack) {
 		return true;
 	}

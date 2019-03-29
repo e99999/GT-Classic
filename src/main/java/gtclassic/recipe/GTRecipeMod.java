@@ -27,6 +27,9 @@ public class GTRecipeMod {
 		// Ic2Items.generator.copy(), 'X', "plateSilicon", 'Y', "blockGlass", 'P',
 		// Ic2Items.carbonPlate });
 
+		recipes.overrideRecipe("shaped_Iridium Plate", GT.getIc2(Ic2Items.iridiumPlate, 1), "IAI", "ADA", "IAI", 'I',
+				"ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
+
 		recipes.addRecipe(Ic2Items.reactorReflectorThick.copy(),
 				new Object[] { " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GT.getFluid(M.Beryllium, 1) });
 

@@ -53,6 +53,19 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
+				|| material.equals(material.Uranium)) {
+			return true;
+		}
+		if (material.equals(material.Flint)) {
+			return false;
+		}
+		return super.hasEffect(stack);
+	}
+
+	@Override
 	public List<Integer> getValidVariants() {
 		return Arrays.asList(0);
 	}

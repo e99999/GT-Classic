@@ -6,13 +6,9 @@ import java.util.List;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
-import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileResinBoard;
 import gtclassic.tile.GTTileResinChunk;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IBlockTextureModifier;
 import net.minecraft.block.SoundType;
@@ -20,19 +16,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureModifier {
 
@@ -40,9 +28,6 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 	int height;
 	int width;
 	boolean light;
-
-	GTMaterialGen GT;
-	GTMaterial M;
 
 	public GTBlockTileCustom(String name, int width, int height, boolean light) {
 		super(Material.CLOTH);
@@ -196,107 +181,6 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 	@Deprecated
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
-	}
-
-	/*
-	 * Below is just for the mortar which will get moved when the mortar has a
-	 * custom model
-	 */
-	@Override
-	public boolean onBlockActivated(World w, BlockPos p, IBlockState state, EntityPlayer e, EnumHand h,
-			EnumFacing facing, float hitX, float hitY, float hitZ) {
-
-		if (this != GTBlocks.mortar) {
-			return super.onBlockActivated(w, p, state, e, h, facing, hitX, hitY, hitZ);
-		}
-		// TODO add xp drops and hunger usage
-		// Nether Drops cinnabar add redstone, sphalerite yellow garniet
-		addDrops(w, p, e, h, "oreCinnabar", GT.getDust(M.Cinnabar, 1), GT.getSmallDust(M.Sulfur, 1));
-		addDrops(w, p, e, h, "oreTantalite", GT.getDust(M.Tantalite, 1), GT.getSmallDust(M.Sulfur, 1));
-		addDrops(w, p, e, h, "orePyrite", GT.getDust(M.Pyrite, 1), GT.getSmallDust(M.Sulfur, 1));
-		addDrops(w, p, e, h, "oreSphalerite", GT.getDust(M.Sphalerite, 1), GT.getSmallDust(M.Sulfur, 1));
-		// End Ore drops sodalite add aluminium
-		addDrops(w, p, e, h, "oreTungstate", GT.getDust(M.Tungstate, 1), GT.getSmallDust(M.Manganese, 1));
-		addDrops(w, p, e, h, "oreSheldonite", GT.getDust(M.Sheldonite, 1), GT.getSmallDust(M.Platinum, 1));
-		addDrops(w, p, e, h, "oreSodalite", GT.getDust(M.Sodalite, 6), GT.getSmallDust(M.Aluminium, 1));
-		addDrops(w, p, e, h, "oreOlivine", GT.getDust(M.Olivine, 1), GT.getSmallDust(M.Emerald, 1));
-		// Overworld ore drops
-		addDrops(w, p, e, h, "oreGalena", GT.getDust(M.Galena, 1), GT.getSmallDust(M.Silver, 1));
-		addDrops(w, p, e, h, "oreIridium", GT.getIc2(Ic2Items.iridiumOre, 1), GT.getSmallDust(M.Platinum, 1));
-		addDrops(w, p, e, h, "oreRuby", GT.getDust(M.Ruby, 1), GT.getSmallDust(M.GarnetRed, 1));
-		addDrops(w, p, e, h, "oreSapphire", GT.getDust(M.Sapphire, 1), GT.getSmallDust(M.SapphireGreen, 1));
-		addDrops(w, p, e, h, "oreBauxite", GT.getDust(M.Bauxite, 3), GT.getSmallDust(M.Bauxite, 1));
-		addDrops(w, p, e, h, "oreCalcite", GT.getDust(M.Calcite, 1), GT.getSmallDust(M.Calcite, 2));
-		addDrops(w, p, e, h, "oreIron", GT.getIc2(Ic2Items.ironDust, 1), GT.getSmallDust(M.Nickel, 1));
-		addDrops(w, p, e, h, "oreGold", GT.getIc2(Ic2Items.goldDust, 1), GT.getSmallDust(M.Silver, 1));
-		addDrops(w, p, e, h, "oreSilver", GT.getIc2(Ic2Items.silverDust, 1), GT.getSmallDust(M.Gold, 1));
-		addDrops(w, p, e, h, "oreTin", GT.getIc2(Ic2Items.tinDust, 1), GT.getSmallDust(M.Germanium, 1));
-		addDrops(w, p, e, h, "oreCoal", GT.getIc2(Ic2Items.coalDust, 1), GT.getSmallDust(M.Coal, 1));
-		addDrops(w, p, e, h, "oreRedstone", GT.get(Items.REDSTONE, 4), GT.getSmallDust(M.Cinnabar, 1));
-		addDrops(w, p, e, h, "oreDiamond", GT.getDust(M.Diamond, 1), GT.getSmallDust(M.Graphite, 1));
-		addDrops(w, p, e, h, "oreEmerald", GT.getDust(M.Emerald, 1), GT.getSmallDust(M.Olivine, 1));
-		addDrops(w, p, e, h, "oreLapis", GT.getDust(M.Lazurite, 8), GT.getSmallDust(M.Sodalite, 1));
-		// Material drops
-		addDrops(w, p, e, h, "ingotRefinedIron", GT.getIc2(Ic2Items.ironDust, 1));
-		addDrops(w, p, e, h, "ingotIron", GT.getIc2(Ic2Items.ironDust, 1));
-		addDrops(w, p, e, h, "ingotGold", GT.getIc2(Ic2Items.goldDust, 1));
-		addDrops(w, p, e, h, "ingotTin", GT.getIc2(Ic2Items.tinDust, 1));
-		addDrops(w, p, e, h, "ingotBronze", GT.getIc2(Ic2Items.bronzeDust, 1));
-		addDrops(w, p, e, h, "ingotCopper", GT.getIc2(Ic2Items.copperDust, 1));
-		addDrops(w, p, e, h, "ingotAluminum", GT.getDust(M.Aluminium, 1));
-		addDrops(w, p, e, h, "bone", new ItemStack(Items.DYE, 4, 15));
-		addDrops(w, p, e, h, "gravel", new ItemStack(Items.FLINT));
-		addDrops(w, p, e, h, GT.get(Items.COAL), GT.getIc2(Ic2Items.coalDust, 1));
-		addDrops(w, p, e, h, new ItemStack(Items.COAL, 1, 1), GT.getIc2(Ic2Items.charcoalDust, 1));
-		addDrops(w, p, e, h, GT.get(Items.CLAY_BALL), GT.getSmallDust(M.Clay, 1));
-		addDrops(w, p, e, h, GT.get(Blocks.CLAY), GT.getSmallDust(M.Clay, 4));
-
-		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.getSmeltable() && mat.hasFlag(GTMaterialFlag.INGOT) && mat.hasFlag(GTMaterialFlag.DUST)) {
-				addDrops(w, p, e, h, "ingot" + mat.getDisplayName(), GT.getDust(mat, 1));
-			}
-		}
-
-		return true;
-	}
-
-	public static String getOreName(ItemStack stack) {
-		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
-			return OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[0]);
-		} else {
-			return "null";
-		}
-
-	}
-
-	public boolean addDrops(World worldIn, BlockPos pos, EntityPlayer playerIn, EnumHand hand, String input,
-			ItemStack... outputs) {
-		ItemStack handstack = playerIn.getHeldItemMainhand();
-
-		if (getOreName(handstack).equals(input)) {
-			playerIn.getHeldItem(hand).shrink(1);
-			for (ItemStack stack : outputs) {
-				playerIn.dropItem(stack, false);
-			}
-			// FoodStats food = playerIn.getFoodStats();
-			// food.setFoodLevel(food.getFoodLevel()-1);
-			worldIn.playSound(playerIn, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		}
-		return true;
-	}
-
-	public boolean addDrops(World worldIn, BlockPos pos, EntityPlayer playerIn, EnumHand hand, ItemStack input,
-			ItemStack... outputs) {
-		ItemStack handstack = playerIn.getHeldItemMainhand();
-
-		if (ItemStack.areItemsEqual(handstack, input)) {
-			playerIn.getHeldItem(hand).shrink(1);
-			for (ItemStack stack : outputs) {
-				playerIn.dropItem(stack, false);
-			}
-			worldIn.playSound(playerIn, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		}
-		return true;
 	}
 
 }

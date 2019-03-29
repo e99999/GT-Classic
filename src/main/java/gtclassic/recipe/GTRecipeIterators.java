@@ -191,7 +191,7 @@ public class GTRecipeIterators {
 		ingotUtil(Ic2Items.bronzeIngot, M.Bronze);
 		ingotUtil(Ic2Items.silverIngot, M.Silver);
 
-		GameRegistry.addSmelting(GT.getDust(M.Bismuth, 1), GT.getNugget(M.Bismuth, 6), 0.1F);
+		GameRegistry.addSmelting(GT.getDust(M.Bismuthtine, 1), GT.getNugget(M.Bismuth, 3), 0.1F);
 		GameRegistry.addSmelting(GT.getDust(M.Cassiterite, 1), GT.getNugget(M.Tin, 3), 0.1F);
 		GameRegistry.addSmelting(GT.getDust(M.Galena, 1), GT.getNugget(M.Lead, 3), 0.1F);
 		GameRegistry.addSmelting(GT.getDust(M.Garnierite, 1), GT.getNugget(M.Nickel, 3), 0.1F);
@@ -248,7 +248,7 @@ public class GTRecipeIterators {
 				GTToolSword sword = (GTToolSword) item;
 				if (sword.getMaterial().equals(GTMaterial.Flint)) {
 					recipes.addRecipe(new ItemStack(item),
-							new Object[] { "P", "P", "S", 'P',
+							new Object[] { "P", "S", 'P',
 									new EnchantmentModifier(GT.get(item), Enchantments.FIRE_ASPECT).setUsesInput(), 'P',
 									Items.FLINT, 'S', "stickWood" });
 				} else {

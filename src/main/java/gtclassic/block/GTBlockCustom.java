@@ -1,11 +1,16 @@
 package gtclassic.block;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IBlockTextureModifier;
@@ -16,6 +21,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -169,6 +175,18 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 		}
 		return new float[] { 0.0F, 16 - this.getHeight(), this.getWidth(), 16 };
 
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
+		ArrayList<ItemStack> drops = new ArrayList<>();
+		if (this == GTBlocks.mudBlock) {
+			drops.add(GTMaterialGen.getDust(GTMaterial.RedMud, 1));
+			return drops;
+		} else {
+			drops.add(GTMaterialGen.get(this));
+			return drops;
+		}
 	}
 
 }

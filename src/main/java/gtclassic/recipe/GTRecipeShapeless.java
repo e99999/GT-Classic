@@ -45,6 +45,11 @@ public class GTRecipeShapeless {
 		recipes.addShapelessRecipe(GT.getSmallDust(M.Nichrome, 15),
 				new Object[] { "dustNickel", "dustNickel", "dustNickel", "dustNickel", "dustChrome" });
 
+		recipes.addShapelessRecipe(GT.getDust(M.BismuthBronze, 4),
+				new Object[] { "dustBismuth", "dustBrass", "dustBrass", "dustBrass" });
+		recipes.addShapelessRecipe(GT.getDust(M.BismuthBronze, 1),
+				new Object[] { "dustSmallBismuth", "dustSmallBrass", "dustSmallBrass", "dustSmallBrass" });
+
 		// In world process, recipe equivalents
 
 		recipes.addShapelessRecipe(GT.getCasing(M.RefinedIron, 1),

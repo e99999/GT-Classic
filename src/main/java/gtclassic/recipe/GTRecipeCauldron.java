@@ -26,7 +26,8 @@ public class GTRecipeCauldron {
 
 		TANTALITE(M.Tantalite, M.Niobium, M.Tantalum, M.Manganese), SPHALERITE(M.Sphalerite, M.Zinc, M.Germanium),
 		CINNABAR(M.Cinnabar, M.Redstone, M.Redstone), SHELDONITE(M.Sheldonite, M.Platinum, M.Platinum),
-		TUNGSTATE(M.Tungstate, M.Tungsten, M.Manganese), GALENA(M.Galena, M.Lead, M.Silver),
+		GALENA(M.Galena, M.Lead, M.Silver), TETRAHEDRITE(M.Tetrahedrite, M.Copper, M.Zinc),
+		MALACHITE(M.Malachite, M.Copper, M.Calcite), CASSITERITE(M.Cassiterite, M.Tin, M.Tantalum),
 		DARKASHES(M.DarkAshes, M.Ashes, M.Ashes);
 
 		GTMaterial input;

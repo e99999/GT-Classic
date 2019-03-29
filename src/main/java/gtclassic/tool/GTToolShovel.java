@@ -36,7 +36,14 @@ public class GTToolShovel extends ItemSpade
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		return (this.material == GTMaterial.Flint) ? false : super.hasEffect(stack);
+		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
+				|| material.equals(material.Uranium)) {
+			return true;
+		}
+		if (material.equals(material.Flint)) {
+			return false;
+		}
+		return super.hasEffect(stack);
 	}
 
 	@Override

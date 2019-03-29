@@ -87,7 +87,7 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustDiamond", 1, GT.get(Items.DIAMOND), 0.1F);
 		TileEntityCompressor.addRecipe("dustGraphite", 1, GT.getIngot(M.Graphite, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustSmallGraphite", 4, GT.getIngot(M.Graphite, 1), 0.1F);
-		TileEntityCompressor.addRecipe("dustZirconium", 4, GT.getIc2(Ic2Items.industrialDiamond, 1), 0.1F);
+		TileEntityCompressor.addRecipe("dustZirconium", 32, GT.getIc2(Ic2Items.industrialDiamond, 1), 0.1F);
 
 		/*
 		 * Bloomery Recipes
@@ -134,6 +134,8 @@ public class GTRecipeProcessing {
 				GT.getSmallDust(M.Slag, 1));
 		GTTileMultiBlastFurnace.addRecipe("dustTantalum", 1, GT.getIngot(M.Tantalum, 1));
 		GTTileMultiBlastFurnace.addRecipe("dustSmallTantalum", 4, GT.getIngot(M.Tantalum, 1));
+		GTTileMultiBlastFurnace.addRecipe("dustTantalum", 1, GT.getIngot(M.Tantalum, 1));
+		GTTileMultiBlastFurnace.addRecipe("dustChromite", 1, GT.getNugget(M.Chrome, 3));
 
 		if (GTConfig.harderAluminium) {
 			GTTileMultiBlastFurnace.addRecipe("dustAluminium", 1, GT.getIngot(M.Aluminium, 1));

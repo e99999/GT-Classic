@@ -22,6 +22,7 @@ public class GTRecipeAlloySmelter {
 		 */
 		alloyUtil("Tin", 1, "Copper", 3, GT.getIc2(Ic2Items.bronzeIngot, 4));
 		alloyUtil("Zinc", 1, "Copper", 3, GT.getIngot(M.Brass, 4));
+		alloyUtil("Bismuth", 1, "Brass", 3, GT.getIngot(M.BismuthBronze, 4));
 		alloyUtil("Iron", 2, "Nickel", 1, GT.getIngot(M.Invar, 3));
 		alloyUtil("Gold", 1, "Silver", 1, GT.getIngot(M.Electrum, 2));
 		alloyUtil("Copper", 1, "Nickel", 1, GT.getIngot(M.Constantan, 2));

@@ -81,6 +81,19 @@ public class GTToolChainsaw extends ItemElectricTool
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
+				|| material.equals(material.Uranium)) {
+			return true;
+		}
+		if (material.equals(material.Flint)) {
+			return false;
+		}
+		return super.hasEffect(stack);
+	}
+
+	@Override
 	public boolean canHarvestBlock(IBlockState state, ItemStack stack) {
 		return ironAxe.canHarvestBlock(state) || state.getBlock() == Blocks.WEB;
 	}

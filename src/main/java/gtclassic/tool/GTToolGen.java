@@ -21,7 +21,7 @@ public class GTToolGen {
 
 	public static void generateTools() {
 		blacklistPowerTools.addAll(Arrays.asList(GTToolMaterial.Flint, GTToolMaterial.Iron, GTToolMaterial.Bronze,
-				GTToolMaterial.Gold, GTToolMaterial.Brass, GTToolMaterial.RefinedIron, GTToolMaterial.Bismuth));
+				GTToolMaterial.Gold, GTToolMaterial.Brass, GTToolMaterial.RefinedIron, GTToolMaterial.BismuthBronze));
 
 		blacklistVanillaTools.addAll(
 				Arrays.asList(GTToolMaterial.Iron, GTToolMaterial.Bronze, GTToolMaterial.Gold, GTToolMaterial.Diamond));
@@ -39,7 +39,7 @@ public class GTToolGen {
 		}
 
 		for (ToolMaterial tmat : GTToolMaterial.toolMaterial) {
-			if (!tmat.equals(GTToolMaterial.Flint)) {
+			if (!tmat.equals(GTToolMaterial.Flint) && !tmat.equals(GTToolMaterial.Bronze)) {
 				IC2.getInstance().createItem(new GTToolWrench(tmat));
 			}
 		}

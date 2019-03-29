@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 public enum GTOreGen {
 
 	BAUXITE(0, GTMaterial.Bauxite, Blocks.STONE, 1, 3.0F, false, null),
-	BISMUTH(1, GTMaterial.Bismuth, Blocks.SAND, 0, 0.5F, true, GTMaterialGen.getNugget(GTMaterial.Bismuth, 6)),
+	BISMUTHTINE(1, GTMaterial.Bismuthtine, Blocks.SAND, 0, 0.5F, true, GTMaterialGen.getNugget(GTMaterial.Bismuth, 3)),
 	CALCITE(2, GTMaterial.Calcite, Blocks.STONE, 1, 3.0F, false, null),
 	CASSITERITE(3, GTMaterial.Cassiterite, Blocks.SAND, 0, 0.5F, true, GTMaterialGen.getNugget(GTMaterial.Tin, 3)),
 	CHROMITE(4, GTMaterial.Chromite, Blocks.STONE, 3, 5.0F, false, null),
