@@ -151,18 +151,6 @@ public class GTTileIndustrialElectrolyzer extends GTTileBaseMultiInputMachine {
 		addRecipe(inlist, new MachineOutput(mods, outlist));
 	}
 
-	public static void addRecipe(IRecipeInput[] inputs, ItemStack... outputs) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
-		addRecipe(inlist, new MachineOutput(null, outlist));
-	}
-
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
 	}

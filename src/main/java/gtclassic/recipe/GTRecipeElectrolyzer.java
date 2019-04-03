@@ -13,7 +13,7 @@ import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class GTRecipeIndustrialElectrolyzer {
+public class GTRecipeElectrolyzer {
 
 	static GTMaterialGen GT;
 	static GTMaterial M;

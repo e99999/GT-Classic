@@ -9,13 +9,15 @@ public class GTRecipe {
 	 */
 
 	public static void init() {
-		GTRecipeElectricSmelter.recipesAlloySmelter1();
-		GTRecipeElectricSmelter.recipesAlloySmelter2();
+		GTRecipeFusion.recipesFusion();
+		GTRecipeBlastFurnace.recipesBlastFurnace();
+		GTRecipeSmelter.recipesElectricSmelter1();
+		GTRecipeSmelter.recipesElectricSmelter2();
 		GTRecipeCauldron.recipesCauldron();
 		GTRecipeCircuitry.recipesCircutry();
-		GTRecipeIndustrialCentrifuge.recipesCentrifuge1();
-		GTRecipeIndustrialCentrifuge.recipesCentrifuge2();
-		GTRecipeIndustrialElectrolyzer.recipesElectrolyzer();
+		GTRecipeCentrifuge.recipesCentrifuge1();
+		GTRecipeCentrifuge.recipesCentrifuge2();
+		GTRecipeElectrolyzer.recipesElectrolyzer();
 		GTRecipeIterators.recipeIterators1();
 		GTRecipeIterators.recipeIterators2();
 		GTRecipeIterators.recipeIterators3();

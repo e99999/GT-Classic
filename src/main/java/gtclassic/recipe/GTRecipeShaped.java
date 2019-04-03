@@ -14,6 +14,7 @@ import ic2.core.item.recipe.upgrades.EnchantmentModifier;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class GTRecipeShaped {
@@ -145,13 +146,17 @@ public class GTRecipeShaped {
 				new Object[] { "XXX", "XFX", "XXX", 'X', "plateBronze", 'F', Blocks.FURNACE });
 
 		recipes.addRecipe(GT.get(GTBlocks.charcoalPit),
-				new Object[] { "XPX", "XWX", "XXX", 'X', "plateBronze", 'P', "plateRefinedIron", 'W', wrench });
+				new Object[] { "XPX", "XWX", "XFX", 'X', "plateBronze", 'P', "plateRefinedIron", 'W', wrench, 'F', Items.FLINT });
 
 		recipes.addRecipe(GT.get(GTBlocks.mortar),
 				new Object[] { " X ", "CXC", "CCC", 'X', "ingotRefinedIron", 'C', Blocks.HARDENED_CLAY });
 
 		recipes.addRecipe(GT.get(GTBlocks.blastFurnace, 1), new Object[] { "PCP", "PFP", "PCP", 'P', "plateRefinedIron",
 				'B', Ic2Items.battery.copy(), 'F', Ic2Items.ironFurnace.copy(), 'C', GTBlocks.copperCoilBlock });
+
+		recipes.addRecipe(GT.get(GTBlocks.industrialElectrolyzer, 1),
+				new Object[] { "WEW", "RCR", 'W', Ic2Items.goldCable.copy(), 'E', Ic2Items.electrolyzer.copy(), 'R',
+						Ic2Items.doubleInsulatedGoldCable, 'C', "casingMachineStainlessSteel" });
 
 		// recipes.addRecipe(GT.get(GTBlocks.fusionComputer, 1),
 		// new Object[] { "EPE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S',

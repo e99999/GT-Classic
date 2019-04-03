@@ -12,7 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
-public class GTRecipeIndustrialCentrifuge {
+public class GTRecipeCentrifuge {
 
 	static GTMaterialGen GT;
 	static GTMaterial M;

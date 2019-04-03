@@ -22,6 +22,13 @@ public class GTRecipeShapeless {
 
 		recipes.addShapelessRecipe(GT.get(GTItems.magnifyingGlass), new Object[] { "paneGlass", "stickIron" });
 
+		recipes.addShapelessRecipe(GT.get(GTBlocks.plastic4CasingBlock, 4), new Object[] { GTBlocks.plastic1CasingBlock,
+				GTBlocks.plastic1CasingBlock, GTBlocks.plastic1CasingBlock, GTBlocks.plastic1CasingBlock });
+
+		recipes.addShapelessRecipe(GT.get(GTBlocks.plastic16CasingBlock, 4),
+				new Object[] { GTBlocks.plastic4CasingBlock, GTBlocks.plastic4CasingBlock, GTBlocks.plastic4CasingBlock,
+						GTBlocks.plastic4CasingBlock });
+
 		// Duct Tape
 
 		recipes.addShapelessRecipe(GT.get(GTBlocks.DuctTape, 1), new Object[] { GT.getIc2(Ic2Items.rubber, 64),
@@ -49,13 +56,12 @@ public class GTRecipeShapeless {
 				new Object[] { "dustBismuth", "dustBrass", "dustBrass", "dustBrass" });
 		recipes.addShapelessRecipe(GT.getDust(M.BismuthBronze, 1),
 				new Object[] { "dustSmallBismuth", "dustSmallBrass", "dustSmallBrass", "dustSmallBrass" });
-		
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 9),
-				new Object[] { "dustIron", "dustIron", "dustIron", "dustIron","dustIron","dustIron","dustNickel","dustManganese","dustChrome" });
-		
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 9),
-				new Object[] { "dustIron", "dustIron", "dustIron", "dustIron","dustIron","dustNiobium","dustNiobium","dustNickel","dustChrome" });
 
+		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 9), new Object[] { "dustIron", "dustIron", "dustIron",
+				"dustIron", "dustIron", "dustIron", "dustNickel", "dustManganese", "dustChrome" });
+
+		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 9), new Object[] { "dustIron", "dustIron", "dustIron",
+				"dustIron", "dustIron", "dustNiobium", "dustNiobium", "dustNickel", "dustChrome" });
 
 		// In world process, recipe equivalents
 

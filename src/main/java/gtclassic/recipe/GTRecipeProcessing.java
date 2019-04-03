@@ -6,12 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTConfig;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiBloomery;
-import gtclassic.tile.GTTileMultiFusionComputer;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -116,42 +113,6 @@ public class GTRecipeProcessing {
 		addFakeBloomRecipe("dustPyrite", 2, "dustCalcite", 2, GT.get(GTBlocks.bloomBlock));
 		addFakeBloomRecipe("dustMagnetite", 2, "dustCalcite", 2, GT.get(GTBlocks.bloomBlock));
 		addFakeBloomRecipe("dustLimonite", 2, "dustCalcite", 2, GT.get(GTBlocks.bloomBlock));
-
-		/*
-		 * GT Blast Furnace recipes
-		 */
-
-		GTTileMultiBlastFurnace.addRecipe("ingotIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1),
-				GT.getDust(M.DarkAshes, 2));
-		GTTileMultiBlastFurnace.addRecipe("ingotRefinedIron", 1, "dustCoal", 2, GT.getIngot(M.Steel, 1),
-				GT.getDust(M.DarkAshes, 2));
-		GTTileMultiBlastFurnace.addRecipe("oreIron", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 3),
-				GT.getSmallDust(M.Slag, 2));
-		GTTileMultiBlastFurnace.addRecipe("dustPyrite", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 2),
-				GT.getSmallDust(M.Slag, 1));
-		GTTileMultiBlastFurnace.addRecipe("dustMagnetite", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 2),
-				GT.getSmallDust(M.Slag, 1));
-		GTTileMultiBlastFurnace.addRecipe("dustLimonite", 1, "dustCalcite", 1, GT.getIc2(Ic2Items.refinedIronIngot, 2),
-				GT.getSmallDust(M.Slag, 1));
-		GTTileMultiBlastFurnace.addRecipe("dustTantalum", 1, GT.getIngot(M.Tantalum, 1));
-		GTTileMultiBlastFurnace.addRecipe("dustSmallTantalum", 4, GT.getIngot(M.Tantalum, 1));
-		GTTileMultiBlastFurnace.addRecipe("dustTantalum", 1, GT.getIngot(M.Tantalum, 1));
-		GTTileMultiBlastFurnace.addRecipe("dustChromite", 1, GT.getNugget(M.Chrome, 3));
-
-		GTTileMultiBlastFurnace.addRecipe("dustStainlessSteel", 1, GT.getIngot(M.StainlessSteel, 1));
-		GTTileMultiBlastFurnace.addRecipe("dustSmallStainlessSteel", 4, GT.getIngot(M.StainlessSteel, 1));
-
-		if (GTConfig.harderAluminium) {
-			GTTileMultiBlastFurnace.addRecipe("dustAluminium", 1, GT.getIngot(M.Aluminium, 1));
-			GTTileMultiBlastFurnace.addRecipe("dustSmallAluminium", 4, GT.getIngot(M.Aluminium, 1));
-		}
-
-		/*
-		 * Just a few test fusion recipes
-		 */
-		GTTileMultiFusionComputer.addRecipe("dustTungsten", 1, GT.getFluid(M.Lithium, 1),
-				GT.getIc2(Ic2Items.iridiumOre, 1));
-		GTTileMultiFusionComputer.addRecipe("dustTungsten", 1, GT.getFluid(M.Beryllium, 1), GT.getDust(M.Platinum, 1));
 
 	}
 

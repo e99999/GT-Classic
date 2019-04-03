@@ -13,6 +13,8 @@ import ic2.core.platform.textures.obj.IAdvancedTexturedItem;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -42,11 +44,16 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
 		this.setRegistryName("electromagnet");
-		this.setUnlocalizedName(GTMod.MODID + ".electroMagnet");
+		this.setUnlocalizedName(GTMod.MODID + ".electromagnet");
 		this.maxCharge = 10000;
 		this.transferLimit = 100;
 		this.tier = 1;
 		this.setCreativeTab(GTMod.creativeTabGT);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
 	}
 
 	@Override

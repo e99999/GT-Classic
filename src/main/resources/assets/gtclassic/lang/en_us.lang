@@ -205,15 +205,17 @@ tile.gtclassic.bloom_block.name=Refined Iron Bloom
 tile.gtclassic.slag_sand.name=Slag Sand
 tile.gtclassic.slagcrete_sand.name=Reinforced Concrete
 tile.gtclassic.slag_glass.name=Slag Glass
+tile.gtclassic.charcoal_sand.name=Charcoal Ash Pile
 tile.gtclassic.mud_block.name=Red Mud
 
 #machine casings
 tile.gtclassic.superconductor_casing.name=Superconductor Casing
 tile.gtclassic.fusion_casing.name=Fusion Casing
 tile.gtclassic.fission_casing.name=Fission Casing
-tile.gtclassic.plastic_casing.name=Plastic Casing
-tile.gtclassic.structure_casing.name=Structure Casing
-tile.gtclassic.crystal_casing.name=Energium Casing
+tile.gtclassic.plastic1_casing.name=Plastic Casing x 1
+tile.gtclassic.plastic4_casing.name=Plastic Casing x 4
+tile.gtclassic.plastic16_casing.name=Plastic Casing x 16
+
 tile.gtclassic.heat_casing.name=Heat Casing
 tile.gtclassic.coppercoil_casing.name=Copper Coil
 tile.gtclassic.constantancoil_casing.name=Constantan Coil
@@ -233,14 +235,14 @@ tile.gtclassic.machine_arcfurnace_hv.name=Arc Furnace Controller (HV)
 tile.gtclassic.machine_matterfabricator_ev.name=Matter Fabricator (EV)
 tile.gtclassic.machine_matterreplicator_ev.name=Matter Replicator (EV)
 tile.gtclassic.machine_playerdetector_lv.name=Player Detector (LV)
-tile.gtclassic.machine_fusioncomputer_iv.name=Fusion Controller (IV)
+tile.gtclassic.machine_fusioncomputer_luv.name=Fusion Controller (LuV)
 tile.gtclassic.machine_lightningrod_iv.name=Lightning Rod (IV)
 tile.gtclassic.machine_quantumenergystorage_ev.name=Quantum Energy Storage Unit (EV)
 tile.gtclassic.machine_basicenergystorage_ev.name=Energy Storage Unit (EV)
 tile.gtclassic.machine_multienergystorage_mv.name=Energium Feild Controller (MV)
-tile.gtclassic.machine_digitaltransformer_iv.name=Digital Transformer (ZPM to LuV)
+tile.gtclassic.machine_digitaltransformer_luv.name=Digital Transformer (ZPM to LuV)
 tile.gtclassic.tile_digitalchest.name=Digital Chest
-tile.gtclassic.cable_energium_luv.name=Energium Superconductor Cable (Luv)
+tile.gtclassic.cable_energium_luv.name=Energium Superconductor Cable (LuV)
 tile.gtclassic.cable_lapotron_zpm.name=Lapotronic Superconductor Cable (ZPM)
 tile.gtclassic.block_resinbottle.name=Liquid Sticky Resin
 tile.gtclassic.block_resinchunk.name=Drop of Liquid Sticky Resin
@@ -369,6 +371,9 @@ item.gtclassic.garnierite_dustsmall.name=Small Garnierite Dust
 item.gtclassic.cryolite_dustsmall.name=Small Cryolite Dust
 item.gtclassic.cassiterite_dustsmall.name=Small Cassiterite Dust
 item.gtclassic.tetrahedrite_dustsmall.name=Small Tetrahedrite Dust
+item.gtclassic.alumina_dustsmall.name=Small Alumina Dust
+item.gtclassic.redmud_dustsmall.name=Small Red Mud Dust
+item.gtclassic.stone_dustsmall.name=Small Stone Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -456,6 +461,7 @@ item.gtclassic.cassiterite_dust.name=Cassiterite Dust
 item.gtclassic.tetrahedrite_dust.name=Tetrahedrite Dust
 item.gtclassic.alumina_dust.name=Alumina Dust
 item.gtclassic.redmud_dust.name=Red Mud Dust
+item.gtclassic.stone_dust.name=Stone Dust
 
 #gems
 item.gtclassic.redgarnet_gem.name=Red Garnet
@@ -873,10 +879,10 @@ item.gtclassic.mold_tube.name=Tube Mold
 item.gtclassic.mold_gear.name=Gear Mold
 
 #tools
-item.gtclassic.destructoPack.name=Destructopack
-item.gtclassic.craftingTablet.name=Crafting Tablet
-item.gtclassic.electroMagnet.name=Electromagnet
-item.gtclassic.teslaStaff.name=Tesla Staff
+item.gtclassic.destructo_pack.name=Destructopack
+item.gtclassic.crafting_tablet.name=Crafting Tablet
+item.gtclassic.electromagnet.name=Electromagnet
+item.gtclassic.tesla_staff.name=Tesla Staff
 item.gtclassic.rockcutter.name=Rock Cutter
 item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
@@ -903,7 +909,10 @@ fluid.nitrogenplasma=Nitrogen Plasma
 fluid.chlorine=Chlorine
 
 #block tooltips
-tooltip.gtclassic.machine_chargeomat_ev0=Charges things
+tooltip.gtclassic.machine_chargeomat_ev0=Charges lots of things
+tooltip.gtclassic.machine_computercube_ev0=Does computerThings();
+tooltip.gtclassic.machine_industrialcentrifuge_lv0=Separates contents by spinning them at high speeds
+tooltip.gtclassic.machine_electricsmelter_lv0=Used to melt and shape materials
 
 tooltip.gtclassic.bloom_block=Drops 3 Refined Iron and 1 Slag Dust
 
@@ -915,6 +924,10 @@ tooltip.gtclassic.block_resinboard=Can be clicked with a knife to cut
 
 #item tooltips
 tooltip.gtclassic.magnifying_glass=Debugs multi-blocks and gives general info
+tooltip.gtclassic.destructo_pack=Mobile trash can
+tooltip.gtclassic.crafting_tablet=Temporary crafting on the go
+tooltip.gtclassic.electromagnet=Become a walking vacuum!
+tooltip.gtclassic.tesla_staff=O V E R C H A R G E D
 
 #extended tooltips
 tooltip.gtclassic.machine_bloomery0=Turns Iron into Refined Iron
@@ -934,6 +947,12 @@ tooltip.gtclassic.machine_blastfurnace_lv0=Smelts at temps too hot for a normal 
 tooltip.gtclassic.machine_blastfurnace_lv1=Structure Requirements:
 tooltip.gtclassic.machine_blastfurnace_lv2=1 Blast Furnace Controller,
 tooltip.gtclassic.machine_blastfurnace_lv3=40 GregTech Refined Iron Casings
+
+tooltip.gtclassic.machine_playerdetector_lv0=Detects player activity in a radius
+tooltip.gtclassic.machine_playerdetector_lv1=0eu = 8 blocks, 1eu = 32 blocks
+
+tooltip.gtclassic.machine_industrialelectrolyzer_mv0=*Slaps roof of Electrolyzer*
+tooltip.gtclassic.machine_industrialelectrolyzer_mv1=This bad boy can process so much stuff!
 
 #generalized tooltips getting reused
 tooltip.gtclassic.beacon=Can be used as a beacon base

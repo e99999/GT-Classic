@@ -38,7 +38,7 @@ public class GTMaterial {
 			!GTConfig.harderAluminium, METAL_ALL);
 	public static GTMaterial Andradite = new GTMaterial("Andradite", 1.0F, 0, 1, new Color(150, 120, 0), false,
 			DUST_ALL);
-	public static GTMaterial Ashes = new GTMaterial("Ashes", 1.0F, 0, 1, new Color(150, 150, 150), false, DUST_ALL);
+	public static GTMaterial Ashes = new GTMaterial("Ashes", 1.0F, 0, 1, new Color(192, 192, 192), false, DUST_ALL);
 	public static GTMaterial Basalt = new GTMaterial("Basalt", 1.0F, 0, 1, new Color(30, 20, 20), false, DUST_ALL);//
 	public static GTMaterial Bauxite = new GTMaterial("Bauxite", 1.0F, 0, 1, new Color(200, 100, 0), false, DUST_ALL);
 	public static GTMaterial Beryllium = new GTMaterial("Beryllium", 1.0F, 0, 1, new Color(30, 80, 50), false, FLUID);

@@ -71,9 +71,11 @@ public class GTBlocks {
 	public static final GTBlockCasing fusionCasingBlock = registerBlock(new GTBlockCasing("Fusion", 1));
 	public static final GTBlockCasing fissionCasingBlock = registerBlock(new GTBlockCasing("Fission", 2));
 
-	public static final GTBlockCasing heatCasingBlock = registerBlock(new GTBlockCasing("Heat", 5));
-	public static final GTBlockCasing plasticCasingBlock = registerBlock(new GTBlockCasing("Plastic", 6));
-	public static final GTBlockCasing structureCasingBlock = registerBlock(new GTBlockCasing("Structure", 7));
+	public static final GTBlockCasing plastic1CasingBlock = registerBlock(new GTBlockCasing("Plastic1", 3));
+	public static final GTBlockCasing plastic4CasingBlock = registerBlock(new GTBlockCasing("Plastic4", 4));
+	public static final GTBlockCasing plastic16CasingBlock = registerBlock(new GTBlockCasing("Plastic16", 5));
+
+	public static final GTBlockCasing heatCasingBlock = registerBlock(new GTBlockCasing("Heat", 6));
 
 	public static final GTBlockCasing copperCoilBlock = registerBlock(new GTBlockCasing("CopperCoil", 12));
 	public static final GTBlockCasing constantanCoilBlock = registerBlock(new GTBlockCasing("ConstantanCoil", 13));
@@ -91,7 +93,7 @@ public class GTBlocks {
 	public static final GTBlockTileBasic electricSmelter = registerBlock(
 			new GTBlockTileBasic("machine_electricsmelter_lv"));
 	public static final GTBlockTileBasic industrialElectrolyzer = registerBlock(
-			new GTBlockTileBasic("machine_industrialelectrolyzer_mv"));
+			new GTBlockTileBasic("machine_industrialelectrolyzer_mv", 1));
 	public static final GTBlockTileBasic arcFurnace = registerBlock(new GTBlockTileBasic("machine_arcfurnace_hv"));
 	public static final GTBlockTileBasic matterFabricator = registerBlock(
 			new GTBlockTileBasic("machine_matterfabricator_ev"));
@@ -101,14 +103,14 @@ public class GTBlocks {
 	public static final GTBlockTileBasic playerDetector = registerBlock(
 			new GTBlockTileBasic("machine_playerdetector_lv", 1));
 	public static final GTBlockTileBasic fusionComputer = registerBlock(
-			new GTBlockTileBasic("machine_fusioncomputer_iv"));
+			new GTBlockTileBasic("machine_fusioncomputer_luv"));
 	public static final GTBlockTileBasic lightningRod = registerBlock(new GTBlockTileBasic("machine_lightningrod_iv"));
 	public static final GTBlockTileBasic quantumEnergyStorage = registerBlock(
 			new GTBlockTileBasic("machine_quantumenergystorage_ev"));
 	public static final GTBlockTileBasic basicEnergyStorage = registerBlock(
 			new GTBlockTileBasic("machine_basicenergystorage_ev"));
 	public static final GTBlockTileBasic digitalTransformerIV = registerBlock(
-			new GTBlockTileBasic("machine_digitaltransformer_iv"));
+			new GTBlockTileBasic("machine_digitaltransformer_luv"));
 	public static final GTBlockTileBasic energiumCable = registerBlock(new GTBlockTileBasic("cable_energium_luv", 1));
 	public static final GTBlockTileBasic lapotronCable = registerBlock(new GTBlockTileBasic("cable_lapotron_zpm"));
 
@@ -183,8 +185,8 @@ public class GTBlocks {
 			"machine_blastfurnace_lv", "machine_arcfurnace_hv", "machine_chargeomat_ev", "machine_computercube_ev",
 			"machine_industrialcentrifuge_lv", "machine_industrialelectrolyzer_mv", "machine_electricsmelter_lv",
 			"machine_matterfabricator_ev", "machine_matterreplicator_ev", "machine_playerdetector_lv",
-			"machine_fusioncomputer_iv", "machine_lightningrod_iv", "machine_quantumenergystorage_ev",
-			"machine_basicenergystorage_ev", "machine_digitaltransformer_iv", "cable_energium_luv",
+			"machine_fusioncomputer_luv", "machine_lightningrod_iv", "machine_quantumenergystorage_ev",
+			"machine_basicenergystorage_ev", "machine_digitaltransformer_luv", "cable_energium_luv",
 			"cable_lapotron_zpm", "tile_digitalchest", "tile_smallchest", "tile_largechest", "tile_bookshelf",
 			"tile_workbench", "tile_hatch" };
 

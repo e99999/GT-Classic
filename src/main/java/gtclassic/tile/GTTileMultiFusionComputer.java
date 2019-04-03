@@ -11,6 +11,7 @@ import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
+import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -20,14 +21,13 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.item.recipe.entry.RecipeInputItemStack;
-import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
 public class GTTileMultiFusionComputer extends GTTileBaseMultiBlockMachine {
@@ -36,9 +36,6 @@ public class GTTileMultiFusionComputer extends GTTileBaseMultiBlockMachine {
 	public static final int slotInput1 = 1;
 	public static final int slotOutput = 2;
 
-	boolean lastState;
-	boolean firstCheck = true;
-
 	public static final IBlockState coilState = GTBlocks.fusionCasingBlock.getDefaultState();
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("fusion");
@@ -46,8 +43,8 @@ public class GTTileMultiFusionComputer extends GTTileBaseMultiBlockMachine {
 			"textures/gui/fusioncomputer.png");
 
 	public GTTileMultiFusionComputer() {
-		super(3, 0, 8192, 4096, 8192);
-		maxEnergy = 10000;
+		super(3, 0, 32768);
+		maxEnergy = 100000;
 	}
 
 	@Override
@@ -124,32 +121,21 @@ public class GTTileMultiFusionComputer extends GTTileBaseMultiBlockMachine {
 		return true;
 	}
 
-	public static void addRecipe(String input1, int amount1, ItemStack input2, ItemStack output) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(input2)));
-		addRecipe(inputs, new MachineOutput(null, output));
-	}
+	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
+		List<IRecipeInput> inlist = new ArrayList<>();
+		List<ItemStack> outlist = new ArrayList<>();
 
-	public static void addRecipe(ItemStack input1, String input2, int amount2, ItemStack output) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));
-		inputs.add((IRecipeInput) (new RecipeInputOreDict(input2, amount2)));
-		addRecipe(inputs, new MachineOutput(null, output));
-	}
-
-	public static void addRecipe(String input1, int amount1, String input2, int amount2, ItemStack output) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
-		inputs.add((IRecipeInput) (new RecipeInputOreDict(input2, amount2)));
-		addRecipe(inputs, new MachineOutput(null, output));
-	}
-
-	public static void addRecipe(ItemStack input1, ItemStack input2, ItemStack output) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(input2)));
-		addRecipe(inputs, new MachineOutput(null, output));
+		for (IRecipeInput input : inputs) {
+			inlist.add(input);
+		}
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifiers) {
+			modifier.apply(mods);
+		}
+		for (ItemStack output : outputs) {
+			outlist.add(output);
+		}
+		addRecipe(inlist, new MachineOutput(mods, outlist));
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {

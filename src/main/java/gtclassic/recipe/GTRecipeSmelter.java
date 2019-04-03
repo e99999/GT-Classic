@@ -11,12 +11,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class GTRecipeElectricSmelter {
+public class GTRecipeSmelter {
 
 	static GTMaterialGen GT;
 	static GTMaterial M;
 
-	public static void recipesAlloySmelter1() {
+	public static void recipesElectricSmelter1() {
 
 		/*
 		 * Alloy Smelter Recipes
@@ -32,11 +32,11 @@ public class GTRecipeElectricSmelter {
 		GTTileElectricSmelter.addRecipe("blockGlass", 5, GT.get(GTItems.moldTube), GT.get(GTItems.testTube, 32));
 		GTTileElectricSmelter.addRecipe("dustPlastic", 1, GT.get(GTItems.moldPlate), GT.get(GTItems.plasticPCB, 1));
 		GTTileElectricSmelter.addRecipe("dustPlastic", 9, GT.get(GTItems.moldBlock),
-				GT.get(GTBlocks.plasticCasingBlock, 1));
+				GT.get(GTBlocks.plastic1CasingBlock, 1));
 
 	}
 
-	public static void recipesAlloySmelter2() {
+	public static void recipesElectricSmelter2() {
 		/*
 		 * Iterator recipes for processing materials into other forms
 		 */
