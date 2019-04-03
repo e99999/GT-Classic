@@ -1,9 +1,13 @@
 package gtclassic.util.crafttweaker;
 
+import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
+import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
+import crafttweaker.mc1120.commands.CraftTweakerCommand;
+import crafttweaker.mc1120.util.CraftTweakerPlatformUtils;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.tile.GTTileMultiBlastFurnace;
 import ic2.api.recipe.IRecipeInput;
@@ -18,52 +22,34 @@ import java.util.List;
 import java.util.Locale;
 
 @ZenClass("mods.gtclassic.BlastFurnace")
+@ZenRegister
 public class GTBlastFurnaceSupport {
     @ZenMethod
-    public static void addRecipe(IItemStack[] output, IIngredient input1) {
-        CraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerPlugin.of(input1), null, null, CraftTweakerMC.getItemStacks(output)));
-    }
-
-    @ZenMethod
-    public static void addRecipe(IItemStack[] output, IIngredient input1, IIngredient input2) {
-        CraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerPlugin.of(input1), GTCraftTweakerPlugin.of(input2), null, CraftTweakerMC.getItemStacks(output)));
-    }
-
-    @ZenMethod
-    public static void addRecipe(IItemStack[] output, IIngredient input1, IIngredient input2, IIngredient input3) {
-        CraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerPlugin.of(input1), GTCraftTweakerPlugin.of(input2), GTCraftTweakerPlugin.of(input3), CraftTweakerMC.getItemStacks(output)));
+    public static void addRecipe(IItemStack[] output, IIngredient[] input1) {
+        CraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerPlugin.of(input1), CraftTweakerMC.getItemStacks(output)));
     }
 
     private static final class BlastFurnaceRecipeAction implements IAction {
-
-        private final IRecipeInput input1;
-        private final IRecipeInput input2;
-        private final IRecipeInput input3;
+        private final IRecipeInput[] input;
         private final ItemStack[] output;
 
-        BlastFurnaceRecipeAction(IRecipeInput input1, IRecipeInput input2, IRecipeInput input3, ItemStack... output) {
-            this.input1 = input1;
-            this.input2 = input2;
-            this.input3 = input3;
+        BlastFurnaceRecipeAction(IRecipeInput[] input, ItemStack... output) {
+            this.input = input;
             this.output = output;
         }
 
         @Override
         public void apply() {
-            List<IRecipeInput> inputs = new ArrayList<>();
-            inputs.add(input1);
-            if (input2 != null){
-                inputs.add(input2);
+            if (input.length > 3){
+                CraftTweakerAPI.logError("Recipe can only have a max of three inputs!");
+            }else {
+                GTTileMultiBlastFurnace.addRecipe(input, output);
             }
-            if (input3 != null){
-                inputs.add(input3);
-            }
-            GTTileMultiBlastFurnace.addRecipe(inputs, output);
         }
 
         @Override
         public String describe() {
-            return String.format(Locale.ENGLISH, "Add Recipe[%s, %S, %s -> %s] to %s", this.input1, this.input2, this.input3, Arrays.deepToString(this.output), GTTileIndustrialCentrifuge.RECIPE_LIST);
+            return String.format(Locale.ENGLISH, "Add Recipe[%s -> %s] to %s", Arrays.deepToString(this.input), Arrays.deepToString(this.output), GTTileMultiBlastFurnace.RECIPE_LIST);
         }
     }
 }

@@ -172,8 +172,12 @@ public class GTTileMultiBlastFurnace extends GTTileBaseMultiBlockMachine {
 		addRecipe(inputs, new MachineOutput(null, outputs));
 	}
 
-	public static void addRecipe(List<IRecipeInput> inputs, ItemStack... output){
+	public static void addRecipe(IRecipeInput[] inputList, ItemStack... output){
+		List<IRecipeInput> inputs = new ArrayList<>();
 		List<ItemStack> outputs = new ArrayList<>();
+		for (IRecipeInput input : inputList){
+			inputs.add(input);
+		}
 		for (ItemStack stack : output){
 			outputs.add(stack);
 		}

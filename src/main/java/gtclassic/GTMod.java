@@ -72,7 +72,6 @@ public class GTMod {
 		GTMaterialGen.init();
 		GTBlocks.registerBlocks();
 		GTItems.registerItems();
-		GTCraftTweakerPlugin.preInit();
 		GTMaterialDict.init();
 		GTOreDict.init();
 	}

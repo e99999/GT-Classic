@@ -36,12 +36,4 @@ public class GTCraftTweakerPlugin {
         }
         return out;
     }
-
-    public static void preInit(){
-        if (Loader.isModLoaded("crafttweaker")){
-            CraftTweakerAPI.registerClass(GTAlloySmelterSupport.class);
-            CraftTweakerAPI.registerClass(GTBlastFurnaceSupport.class);
-            CraftTweakerAPI.registerClass(GTFusionComputerSupport.class);
-        }
-    }
 }

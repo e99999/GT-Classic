@@ -1,6 +1,7 @@
 package gtclassic.util.crafttweaker;
 
 import crafttweaker.IAction;
+import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
@@ -15,6 +16,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import java.util.Locale;
 
 @ZenClass("mods.gtclassic.FusionComputer")
+@ZenRegister
 public class GTFusionComputerSupport {
     @ZenMethod
     public static void addRecipe(IItemStack output, IIngredient input1, IIngredient input2) {
