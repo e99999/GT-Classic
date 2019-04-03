@@ -17,9 +17,7 @@ public class GTCraftTweakerPlugin {
     }
 
     static IRecipeInput of(IIngredient ingredient) {
-        if (ingredient == null) {
-            return new RecipeInputItemStack(ItemStack.EMPTY);
-        } else if (ingredient instanceof IItemStack) {
+        if (ingredient instanceof IItemStack) {
             return GTCraftTweakerPlugin.of((IItemStack)ingredient);
         } else if (ingredient instanceof IOreDictEntry) {
             return new RecipeInputOreDict(((IOreDictEntry)ingredient).getName(), ingredient.getAmount());

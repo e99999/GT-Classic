@@ -41,7 +41,7 @@ public class GTBlastFurnaceSupport {
         @Override
         public void apply() {
             if (input.length > 3){
-                CraftTweakerAPI.logError("Recipe can only have a max of three inputs!");
+                CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > " + "Recipe can only have a max of three inputs!");
             }else {
                 GTTileMultiBlastFurnace.addRecipe(input, output);
             }
