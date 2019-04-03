@@ -11,6 +11,7 @@ import gtclassic.tile.GTTileBaseMultiInputMachine;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileMultiBloomery;
+import gtclassic.tile.GTTileMultiCharcoalPit;
 import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
@@ -193,6 +194,13 @@ public class GTMod {
 				IC2.platform.messagePlayer(player,
 						"Progress: " + (Math.round((bloom.getProgress() / bloom.getMaxProgress()) * 100)) + "%");
 				IC2.platform.messagePlayer(player, "Recipe State: " + bloom.getActiveRecipe());
+			}
+
+			if (tileEntity instanceof GTTileMultiCharcoalPit) {
+				GTTileMultiCharcoalPit pit = (GTTileMultiCharcoalPit) tileEntity;
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + pit.checkStructure());
+				IC2.platform.messagePlayer(player,
+						"Progress: " + (Math.round((pit.getProgress() / pit.getMaxProgress()) * 100)) + "%");
 			}
 
 			if (tileEntity instanceof GTTileDigitalChest) {

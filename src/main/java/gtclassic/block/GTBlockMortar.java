@@ -1,9 +1,13 @@
 package gtclassic.block;
 
+import java.util.List;
+
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -23,6 +27,11 @@ public class GTBlockMortar extends GTBlockTileCustom {
 
 	public GTBlockMortar() {
 		super("block_mortar", 10, 4, false);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
 	}
 
 	/*

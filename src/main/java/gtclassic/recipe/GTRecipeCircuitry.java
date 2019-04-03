@@ -34,7 +34,8 @@ public class GTRecipeCircuitry {
 				new Object[] { Items.GLASS_BOTTLE, GT.getIc2(Ic2Items.stickyResin, 1), GTValues.water });
 
 		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB), new Object[] { GTItems.ironKnife, GTBlocks.resinBoard });
-		recipes.addShapelessRecipe(GT.get(GTItems.germaniumSubstrate),
+
+		recipes.addShapelessRecipe(GT.get(GTItems.germaniumSubstrate, 4),
 				new Object[] { GTItems.ironKnife, "plateGermanium" });
 
 		recipes.addRecipe(GT.get(GTItems.basicTransistor, 1),
@@ -47,11 +48,11 @@ public class GTRecipeCircuitry {
 
 		recipes.overrideRecipe("shaped_Electronic Circuit", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "TSC", "WWW",
 				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', Ic2Items.copperCable.copy(), 'S',
-				GTItems.resinPCB);
+				"pcbBasic");
 
 		recipes.overrideRecipe("shaped_Electronic Circuit_1", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "CST",
 				"WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', Ic2Items.copperCable.copy(), 'S',
-				GTItems.resinPCB);
+				"pcbBasic");
 
 		recipes.overrideRecipe("shaped_RE-Battery", GT.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT", 'T',
 				"ingotTin", 'R', "dustRedstone", 'C', Ic2Items.copperCable.copy());

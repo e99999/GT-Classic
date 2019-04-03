@@ -105,9 +105,6 @@ public class GTRecipeShaped {
 		// GTBlocks.superCasingBlock, 'B',
 		// "casingMachineChrome", 'R', Ic2Items.reactorReflectorIridium.copy() });
 
-		recipes.addRecipe(GT.get(GTBlocks.crystalCasingBlock),
-				new Object[] { "BBB", "BCB", "BBB", 'B', "blockRuby", 'C', "casingMachineAluminium" });
-
 		recipes.addRecipe(GT.get(GTBlocks.copperCoilBlock), new Object[] { "XXX", "XXX", "XXX", 'X', "stickCopper" });
 
 		recipes.addRecipe(GT.get(GTBlocks.constantanCoilBlock),
@@ -147,6 +144,9 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.bloomery),
 				new Object[] { "XXX", "XFX", "XXX", 'X', "plateBronze", 'F', Blocks.FURNACE });
 
+		recipes.addRecipe(GT.get(GTBlocks.charcoalPit),
+				new Object[] { "XPX", "XWX", "XXX", 'X', "plateBronze", 'P', "plateRefinedIron", 'W', wrench });
+
 		recipes.addRecipe(GT.get(GTBlocks.mortar),
 				new Object[] { " X ", "CXC", "CCC", 'X', "ingotRefinedIron", 'C', Blocks.HARDENED_CLAY });
 
@@ -171,7 +171,7 @@ public class GTRecipeShaped {
 		// GTItems.circuitSapphire, 'G',
 		// "blockGlass", 'M', "casingMachineTitanium" });
 
-		recipes.addRecipe(GT.get(GTBlocks.alloySmelter), new Object[] { "PBP", "CFC", "PBP", 'P', "plateInvar", 'B',
+		recipes.addRecipe(GT.get(GTBlocks.electricSmelter), new Object[] { "PBP", "CFC", "PBP", 'P', "plateInvar", 'B',
 				GTBlocks.constantanCoilBlock, 'C', "circuitBasic", 'F', Ic2Items.electroFurnace.copy() });
 
 		recipes.addRecipe(GT.get(GTBlocks.playerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D', Blocks.OBSERVER,

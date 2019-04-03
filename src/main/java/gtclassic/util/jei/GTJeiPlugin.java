@@ -10,8 +10,9 @@ import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import gtclassic.recipe.GTRecipeCauldron;
 import gtclassic.recipe.GTRecipeProcessing;
-import gtclassic.tile.GTTileAlloySmelter;
+import gtclassic.tile.GTTileElectricSmelter;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
+import gtclassic.tile.GTTileIndustrialElectrolyzer;
 import gtclassic.tile.GTTileMultiArcFurnace;
 import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiFusionComputer;
@@ -60,18 +61,26 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
 			registry.addRecipeClickArea(GTIndustrialCentrifugeGui.class, 62, 29, 10, 10, "centrifuge");
 
+			// Electrolyzer
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
+					"gt.electrolyzer");
+			registry.addRecipes(GTTileIndustrialElectrolyzer.RECIPE_LIST.getRecipeList(), "gt.electrolyzer");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialElectrolyzer), "gt.electrolyzer");
+			registry.addRecipeClickArea(GTGuiMachine.GTIndustrialElectrolyzerGui.class, 72, 34, 30, 16,
+					"gt.electrolyzer");
+
 			// Fusion
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "fusion");
 			registry.addRecipes(GTTileMultiFusionComputer.RECIPE_LIST.getRecipeList(), "fusion");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.fusionComputer), "fusion");
 			registry.addRecipeClickArea(GTFusionComputerGui.class, 69, 34, 25, 17, "fusion");
 
-			// Alloy Smelter
+			// Electric Smelter
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
-					"alloysmelter");
-			registry.addRecipes(GTTileAlloySmelter.RECIPE_LIST.getRecipeList(), "alloysmelter");
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.alloySmelter), "alloysmelter");
-			registry.addRecipeClickArea(GTGuiMachine.GTAlloySmelterGui.class, 78, 25, 20, 16, "alloysmelter");
+					"electricsmelter");
+			registry.addRecipes(GTTileElectricSmelter.RECIPE_LIST.getRecipeList(), "electricsmelter");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.electricSmelter), "electricsmelter");
+			registry.addRecipeClickArea(GTGuiMachine.GTElectricSmelterGui.class, 78, 25, 20, 16, "electricsmelter");
 
 			// Arc Furnace
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
@@ -108,11 +117,14 @@ public class GTJeiPlugin implements IModPlugin {
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		registry.addRecipeCategories(new GTJeiCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
 
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
+				"gt.electrolyzer", GTBlocks.industrialElectrolyzer));
+
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "fusion",
 				GTBlocks.fusionComputer));
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
-				"alloysmelter", GTBlocks.alloySmelter));
+				"electricsmelter", GTBlocks.electricSmelter));
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "arcfurnace",
 				GTBlocks.arcFurnace));

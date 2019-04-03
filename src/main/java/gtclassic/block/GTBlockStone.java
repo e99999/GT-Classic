@@ -27,7 +27,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -73,7 +72,7 @@ public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock 
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.ITALIC + I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
 	}
 
 	@Override

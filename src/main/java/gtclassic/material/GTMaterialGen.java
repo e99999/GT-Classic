@@ -157,6 +157,15 @@ public class GTMaterialGen {
 		return stack;
 	}
 
+	public static ItemStack getModFluid(String name, int count) {
+		FluidStack fluid = FluidRegistry.getFluidStack(name, 1000);
+		ItemStack stack = new ItemStack(GTItems.testTube);
+		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+		handler.fill(fluid, true);
+		stack.setCount(count);
+		return stack;
+	}
+
 	public static ItemStack getIc2(ItemStack itemStack, int count) {
 		ItemStack ret = itemStack.copy();
 		ret.setCount(count);

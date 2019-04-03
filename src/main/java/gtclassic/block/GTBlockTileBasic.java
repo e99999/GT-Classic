@@ -7,16 +7,17 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.tile.GTTileAlloySmelter;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
+import gtclassic.tile.GTTileElectricSmelter;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
+import gtclassic.tile.GTTileIndustrialElectrolyzer;
 import gtclassic.tile.GTTileMultiArcFurnace;
 import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiBloomery;
-import gtclassic.tile.GTTileMultiEnergyStorage;
+import gtclassic.tile.GTTileMultiCharcoalPit;
 import gtclassic.tile.GTTileMultiFusionComputer;
 import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.tile.GTTilePlayerDetector;
@@ -30,6 +31,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,10 +53,25 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 
 	String name;
 	String texture;
+	int size = 0;
 
 	public GTBlockTileBasic(String name) {
 		super(Material.IRON);
 		this.name = name;
+		this.size = 1;
+		setRegistryName(this.name.toLowerCase());
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
+		setCreativeTab(GTMod.creativeTabGT);
+		setBlockUnbreakable();
+		setResistance(20.0F);
+		setSoundType(SoundType.METAL);
+		setHarvestLevel("pickaxe", 2);
+	}
+
+	public GTBlockTileBasic(String name, int additionalInfo) {
+		super(Material.IRON);
+		this.name = name;
+		this.size = additionalInfo + 1;
 		setRegistryName(this.name.toLowerCase());
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
@@ -66,7 +83,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		// TODO put tooltip into arguments and add machine info
+		for (int i = 0; i < this.size; i++) {
+			tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip") + i));
+		}
 	}
 
 	@Override
@@ -90,14 +109,20 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (this == GTBlocks.bloomery) {
 			return new GTTileMultiBloomery();
 		}
+		if (this == GTBlocks.charcoalPit) {
+			return new GTTileMultiCharcoalPit();
+		}
 		if (this == GTBlocks.blastFurnace) {
 			return new GTTileMultiBlastFurnace();
 		}
 		if (this == GTBlocks.industrialCentrifuge) {
 			return new GTTileIndustrialCentrifuge();
 		}
-		if (this == GTBlocks.alloySmelter) {
-			return new GTTileAlloySmelter();
+		if (this == GTBlocks.industrialElectrolyzer) {
+			return new GTTileIndustrialElectrolyzer();
+		}
+		if (this == GTBlocks.electricSmelter) {
+			return new GTTileElectricSmelter();
 		}
 		if (this == GTBlocks.playerDetector) {
 			return new GTTilePlayerDetector();
@@ -116,9 +141,6 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.quantumEnergyStorage) {
 			return new GTTileQuantumEnergyStorage();
-		}
-		if (this == GTBlocks.multiEnergyStorage) {
-			return new GTTileMultiEnergyStorage();
 		}
 		if (this == GTBlocks.digitalChest) {
 			return new GTTileDigitalChest();
@@ -195,8 +217,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-		if (this == GTBlocks.bloomery && ItemStack.areItemsEqualIgnoreDurability(playerIn.getHeldItemMainhand(),
-				new ItemStack(Items.FLINT_AND_STEEL))) {
+		if (this == GTBlocks.bloomery && playerIn.getHeldItemMainhand().getItem().equals(Items.FLINT_AND_STEEL)) {
 			TileEntity te = worldIn.getTileEntity(pos);
 			if (te instanceof GTTileMultiBloomery && ((GTTileMultiBloomery) te).isActive) {
 				return false;
@@ -204,6 +225,16 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			if (te instanceof GTTileMultiBloomery && !((GTTileMultiBloomery) te).isActive) {
 				playerIn.getHeldItem(hand).damageItem(1, playerIn);
 				return ((GTTileMultiBloomery) te).canWork();
+			}
+		}
+		if (this == GTBlocks.charcoalPit && playerIn.getHeldItemMainhand().getItem().equals(Items.FLINT_AND_STEEL)) {
+			TileEntity te = worldIn.getTileEntity(pos);
+			if (te instanceof GTTileMultiCharcoalPit && ((GTTileMultiCharcoalPit) te).isActive) {
+				return false;
+			}
+			if (te instanceof GTTileMultiCharcoalPit && !((GTTileMultiCharcoalPit) te).isActive) {
+				playerIn.getHeldItem(hand).damageItem(1, playerIn);
+				return ((GTTileMultiCharcoalPit) te).canWork();
 			}
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
@@ -215,6 +246,26 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		particleQuantumEnergy(stateIn, worldIn, pos, rand);
 		particleBloomery(stateIn, worldIn, pos, rand);
 		particleDetector(stateIn, worldIn, pos, rand);
+		particleCharcoalPit(stateIn, worldIn, pos, rand);
+	}
+
+	public void particleCharcoalPit(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileMultiCharcoalPit) {
+			if (((GTTileMultiCharcoalPit) tile).isActive) {
+				if (rand.nextInt(16) == 0) {
+					worldIn.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F),
+							(double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS,
+							1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+				}
+				for (int i = 0; i < 3; ++i) {
+					double d0 = (double) pos.getX() + rand.nextDouble();
+					double d1 = (double) pos.getY() + rand.nextDouble() * 0.5D + 0.5D;
+					double d2 = (double) pos.getZ() + rand.nextDouble();
+					worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+				}
+			}
+		}
 	}
 
 	public void particleDetector(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {

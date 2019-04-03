@@ -6,14 +6,18 @@ import java.util.List;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileBaseMultiBlockMachine;
 import gtclassic.tile.GTTileMultiBloomery;
+import gtclassic.tile.GTTileMultiCharcoalPit;
 import ic2.core.IC2;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -31,6 +35,11 @@ public class GTItemMagnifyingGlass extends Item implements IStaticTexturedItem {
 		setRegistryName("magnifying_glass");
 		setUnlocalizedName(GTMod.MODID + "." + "magnifying_glass");
 		setCreativeTab(GTMod.creativeTabGT);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
 	}
 
 	@Override
@@ -60,6 +69,13 @@ public class GTItemMagnifyingGlass extends Item implements IStaticTexturedItem {
 			if (tileEntity instanceof GTTileMultiBloomery) {
 				GTTileMultiBloomery bloom = (GTTileMultiBloomery) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
+			}
+
+			if (tileEntity instanceof GTTileMultiCharcoalPit) {
+				GTTileMultiCharcoalPit pit = (GTTileMultiCharcoalPit) tileEntity;
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + pit.checkStructure());
+				IC2.platform.messagePlayer(player, "Charcoal looks about "
+						+ (Math.round((pit.getProgress() / pit.getMaxProgress()) * 100)) + "% finished");
 			}
 
 			if (tileEntity instanceof GTTileBaseMultiBlockMachine) {

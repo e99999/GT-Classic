@@ -1,9 +1,13 @@
 package gtclassic.block;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -18,10 +22,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -48,6 +55,22 @@ public class GTBlockSand extends BlockFalling implements ITexturedBlock, ILocale
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		// TODO add tooltips
+	}
+
+	@Override
+	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
+		ArrayList<ItemStack> drops = new ArrayList<>();
+
+		// blooms
+		if (this == GTBlocks.charcoalPile) {
+			drops.add(new ItemStack(Items.COAL, 2, 1));
+			drops.add(GTMaterialGen.getDust(GTMaterial.Ashes, 1));
+			drops.add(GTMaterialGen.getSmallDust(GTMaterial.Charcoal, 1));
+		} else {
+			drops.add(GTMaterialGen.get(this));
+		}
+
+		return drops;
 	}
 
 	@Override
@@ -133,6 +156,16 @@ public class GTBlockSand extends BlockFalling implements ITexturedBlock, ILocale
 		if (!this.tryTouchWater(worldIn, pos, state)) {
 			super.onBlockAdded(worldIn, pos, state);
 		}
+	}
+
+	@Override
+	public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
+		Random rand = world instanceof World ? ((World) world).rand : new Random();
+		int xp = 0;
+		if (this == GTBlocks.charcoalPile) {
+			xp = MathHelper.getInt(rand, 1, 3);
+		}
+		return xp;
 	}
 
 }

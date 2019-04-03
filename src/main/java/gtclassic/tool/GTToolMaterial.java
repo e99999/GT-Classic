@@ -92,7 +92,7 @@ public class GTToolMaterial {
 
 	public static float a(GTMaterial mat) {
 		// creates attack damage from speed
-		return mat.getSpeed() / 2.0F;
+		return (mat.getSpeed() / 2.0F) + (mat.getDurability() / 1000);
 	}
 
 	public static int e(GTMaterial mat) {

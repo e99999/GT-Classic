@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 import gtclassic.GTMod;
-import gtclassic.container.GTContainerAlloySmelter;
-import gtclassic.gui.GTGuiMachine.GTAlloySmelterGui;
+import gtclassic.container.GTContainerElectricSmelter;
+import gtclassic.gui.GTGuiMachine.GTElectricSmelterGui;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.machine.MachineOutput;
@@ -32,18 +32,18 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
+public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("alloysmelter");
+	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("electricsmelter");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
-			"textures/gui/alloysmelter.png");
+			"textures/gui/electricsmelter.png");
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
 	public static final int slotOutput = 2;
 	public static final int slotFuel = 3;
 
-	public GTTileAlloySmelter() {
+	public GTTileElectricSmelter() {
 		super(4, 0, 16, 200, 32);
 		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
@@ -80,12 +80,12 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerAlloySmelter(player.inventory, this);
+		return new GTContainerElectricSmelter(player.inventory, this);
 	}
 
 	@Override
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
-		return GTAlloySmelterGui.class;
+		return GTElectricSmelterGui.class;
 	}
 
 	@Override

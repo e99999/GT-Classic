@@ -10,20 +10,20 @@ public class GTGuiMachine {
 		}
 	}
 
+	public static class GTIndustrialElectrolyzerGui extends MachineGui {
+		public GTIndustrialElectrolyzerGui(ContainerComponent container) {
+			super(container);
+		}
+	}
+
 	public static class GTFusionComputerGui extends MachineGui {
 		public GTFusionComputerGui(ContainerComponent container) {
 			super(container);
 		}
 	}
 
-	public static class GTAlloySmelterGui extends MachineGui {
-		public GTAlloySmelterGui(ContainerComponent container) {
-			super(container);
-		}
-	}
-
-	public static class GTAssemblyLineGui extends MachineGui {
-		public GTAssemblyLineGui(ContainerComponent container) {
+	public static class GTElectricSmelterGui extends MachineGui {
+		public GTElectricSmelterGui(ContainerComponent container) {
 			super(container);
 		}
 	}

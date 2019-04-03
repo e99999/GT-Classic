@@ -80,7 +80,9 @@ public class GTOreDict {
 		// Stuff to fit with how other mods have done it
 		OreDictionary.registerOre("dustAsh", (GTMaterialGen.getDust(GTMaterial.Ashes, 1)));
 		OreDictionary.registerOre("dustEnderEye", (GTMaterialGen.getDust(GTMaterial.EnderEye, 1)));
-		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getPlate(GTMaterial.Silicon, 1)));
+		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getIngot(GTMaterial.Silicon, 1)));
+		OreDictionary.registerOre("pcbBasic", (GTMaterialGen.get(GTItems.resinPCB, 1)));
+		OreDictionary.registerOre("pcbBasic", (GTMaterialGen.get(GTItems.plasticPCB, 1)));
 
 	}
 

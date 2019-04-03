@@ -42,7 +42,8 @@ public class GTRecipeProcessing {
 	public static final IRecipeInput fuel = new RecipeInputCombined(1,
 			new IRecipeInput[] { new RecipeInputOreDict("blockCoal"), new RecipeInputOreDict("blockCharcoal"),
 					new RecipeInputItemStack(new ItemStack(Items.COAL, 9)),
-					new RecipeInputItemStack(new ItemStack(Items.COAL, 9, 1)) });
+					new RecipeInputItemStack(new ItemStack(Items.COAL, 9, 1)),
+					new RecipeInputOreDict("dustCharcoal", 9), new RecipeInputOreDict("dustCoal", 9), });
 
 	public static void recipesProcessing() {
 
@@ -136,6 +137,9 @@ public class GTRecipeProcessing {
 		GTTileMultiBlastFurnace.addRecipe("dustSmallTantalum", 4, GT.getIngot(M.Tantalum, 1));
 		GTTileMultiBlastFurnace.addRecipe("dustTantalum", 1, GT.getIngot(M.Tantalum, 1));
 		GTTileMultiBlastFurnace.addRecipe("dustChromite", 1, GT.getNugget(M.Chrome, 3));
+
+		GTTileMultiBlastFurnace.addRecipe("dustStainlessSteel", 1, GT.getIngot(M.StainlessSteel, 1));
+		GTTileMultiBlastFurnace.addRecipe("dustSmallStainlessSteel", 4, GT.getIngot(M.StainlessSteel, 1));
 
 		if (GTConfig.harderAluminium) {
 			GTTileMultiBlastFurnace.addRecipe("dustAluminium", 1, GT.getIngot(M.Aluminium, 1));

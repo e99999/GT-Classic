@@ -7,6 +7,7 @@ import gtclassic.GTMod;
 import gtclassic.tile.GTTileResinChunk;
 import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,6 +33,11 @@ public class GTItemBlockResinBottle extends GTItemBlockRare {
 	}
 
 	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
+	}
+
+	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return false;
 	}
@@ -39,11 +45,6 @@ public class GTItemBlockResinBottle extends GTItemBlockRare {
 	@Override
 	public int getMetadata(int damage) {
 		return 0;
-	}
-
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		// TODO this shit
 	}
 
 	@Override

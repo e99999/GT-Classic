@@ -21,11 +21,9 @@ public class GTRecipeMod {
 				new Object[] { "Rcc", "AAC", " AA", 'A', Ic2Items.advancedAlloy.copy(), 'C',
 						Ic2Items.advancedCircuit.copy(), 'c', GT.getFluid(M.Helium, 1), 'R', "dustRedstone" });
 
-		// recipes.addRecipe(GT.getIc2(Ic2Items.solarPanel, 1),
-		// new Object[] { "YYY", "XPX", "CVC", 'C', Ic2Items.electricCircuit.copy(),
-		// 'V',
-		// Ic2Items.generator.copy(), 'X', "plateSilicon", 'Y', "blockGlass", 'P',
-		// Ic2Items.carbonPlate });
+		recipes.addRecipe(GT.getIc2(Ic2Items.solarPanel, 2),
+				new Object[] { "YYY", "XPX", "CVC", 'C', Ic2Items.electricCircuit.copy(), 'V',
+						Ic2Items.generator.copy(), 'X', "plateSilicon", 'Y', "blockGlass", 'P', Ic2Items.carbonPlate });
 
 		recipes.overrideRecipe("shaped_Iridium Plate", GT.getIc2(Ic2Items.iridiumPlate, 1), "IAI", "ADA", "IAI", 'I',
 				"ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");

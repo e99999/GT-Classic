@@ -41,6 +41,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_casings", 0, 0, 16, 4));
 
 		addCustomTexture("machine_bloomery", 0, 9, location("bloomery_front"));
+		addCustomTexture("machine_charcoalpit", 0, 7, location("charcoalpit_top"));
 		addCustomTexture("tile_digitalchest", 0, 1, location("digitalchest_top"));
 		addCustomTexture("machine_fusioncomputer_iv", 0, 7, location("fusion_top"));
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 7, location("centrifuge_top"));

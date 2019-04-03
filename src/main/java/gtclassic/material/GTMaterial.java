@@ -166,7 +166,7 @@ public class GTMaterial {
 			false, GEM_ALL);
 	public static GTMaterial Sheldonite = new GTMaterial("Sheldonite", 1.0F, 0, 1, new Color(215, 212, 137), false,
 			DUST_ALL);
-	public static GTMaterial Silicon = new GTMaterial("Silicon", 1.0F, 0, 1, new Color(60, 60, 80), false, SMALLDUST,
+	public static GTMaterial Silicon = new GTMaterial("Silicon", 1.0F, 0, 1, new Color(60, 60, 80), true, SMALLDUST,
 			DUST, NUGGET, INGOT, PLATE);
 	public static GTMaterial Silver = new GTMaterial("Silver", 10.0F, 64, 2, new Color(215, 225, 230), true, METAL_IC2);
 	public static GTMaterial Slag = new GTMaterial("Slag", 1.0F, 0, 1, new Color(64, 48, 0), false, DUST_ALL);
