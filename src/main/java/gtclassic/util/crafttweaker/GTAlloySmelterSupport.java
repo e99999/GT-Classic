@@ -5,9 +5,7 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import gtclassic.tile.GTTileAlloySmelter;
-import ic2.api.classic.recipe.ClassicRecipes;
-import ic2.api.classic.recipe.machine.MachineOutput;
+import gtclassic.tile.GTTileMultiFusionComputer;
 import ic2.api.recipe.IRecipeInput;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -37,12 +35,12 @@ public class GTAlloySmelterSupport {
 
         @Override
         public void apply() {
-            GTTileAlloySmelter.addRecipe(input1, input2, output);
+            //GTTileAlloySmelter.addRecipe(input1, input2, output);
         }
 
         @Override
         public String describe() {
-            return String.format(Locale.ENGLISH, "Add Recipe[%s, %s -> %s] to %s", this.input1, this.input2, this.output, GTTileAlloySmelter.RECIPE_LIST);
+            return String.format(Locale.ENGLISH, "Add Recipe[%s, %s -> %s] to %s", this.input1, this.input2, this.output, GTTileMultiFusionComputer.RECIPE_LIST);
         }
     }
 

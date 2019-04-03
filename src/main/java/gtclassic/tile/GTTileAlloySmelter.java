@@ -157,13 +157,6 @@ public class GTTileAlloySmelter extends GTTileBaseMultiInputMachine {
 		addRecipe(inputs, new MachineOutput(null, output));
 	}
 
-	public static void addRecipe(IRecipeInput input1, IRecipeInput input2, ItemStack output){
-		List<IRecipeInput> inputs = new ArrayList<>();
-		inputs.add(input1);
-		inputs.add(input2);
-		addRecipe(inputs, new MachineOutput(null, output));
-	}
-
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
 	}
