@@ -75,7 +75,7 @@ public class GTRecipeSmelter {
 					GTTileElectricSmelter.addRecipe(dust, 1, GT.get(GTItems.moldNugget), GT.getNugget(mat, 9));
 					if (mat != M.Bronze && mat != M.Silver && mat != M.Copper && mat != M.Tin) {
 						GTTileElectricSmelter.addRecipe(nugget, 9, GT.get(GTItems.moldIngot), GT.getIngot(mat, 1));
-						GTTileElectricSmelter.addRecipe(dust, 9, GT.get(GTItems.moldIngot), GT.getIngot(mat, 1));
+						GTTileElectricSmelter.addRecipe(dust, 1, GT.get(GTItems.moldIngot), GT.getIngot(mat, 1));
 					}
 				}
 
