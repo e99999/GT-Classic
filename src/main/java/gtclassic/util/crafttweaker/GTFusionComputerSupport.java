@@ -37,7 +37,7 @@ public class GTFusionComputerSupport {
 
         @Override
         public void apply() {
-            GTTileMultiFusionComputer.addRecipe(input1, input2, output);
+            //GTTileMultiFusionComputer.addRecipe(input1, input2, output);
         }
 
         @Override

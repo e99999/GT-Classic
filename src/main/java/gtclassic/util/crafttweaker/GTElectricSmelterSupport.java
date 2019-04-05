@@ -13,21 +13,21 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.Locale;
 
-@ZenClass("mods.gtclassic.AlloySmelter")
+@ZenClass("mods.gtclassic.ElectricSmelter")
 @ZenRegister
-public class GTAlloySmelterSupport {
+public class GTElectricSmelterSupport {
     @ZenMethod
     public static void addRecipe(IItemStack output, IIngredient input1, IIngredient input2) {
-        CraftTweakerActions.apply(new AlloySmelterRecipeAction(GTCraftTweakerPlugin.of(input1), GTCraftTweakerPlugin.of(input2), CraftTweakerMC.getItemStack(output)));
+        CraftTweakerActions.apply(new ElectricSmelterRecipeAction(GTCraftTweakerPlugin.of(input1), GTCraftTweakerPlugin.of(input2), CraftTweakerMC.getItemStack(output)));
     }
 
-    private static final class AlloySmelterRecipeAction implements IAction {
+    private static final class ElectricSmelterRecipeAction implements IAction {
 
         private final IRecipeInput input1;
         private final IRecipeInput input2;
         private final ItemStack output;
 
-        AlloySmelterRecipeAction(IRecipeInput input1, IRecipeInput input2, ItemStack output) {
+        ElectricSmelterRecipeAction(IRecipeInput input1, IRecipeInput input2, ItemStack output) {
             this.input1 = input1;
             this.input2 = input2;
             this.output = output;
