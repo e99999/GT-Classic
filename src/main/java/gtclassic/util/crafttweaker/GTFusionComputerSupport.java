@@ -5,8 +5,6 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import gtclassic.tile.GTTileAlloySmelter;
-import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiFusionComputer;
 import ic2.api.recipe.IRecipeInput;
 import net.minecraft.item.ItemStack;
