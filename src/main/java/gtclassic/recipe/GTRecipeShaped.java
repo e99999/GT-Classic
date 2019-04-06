@@ -145,8 +145,8 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.bloomery),
 				new Object[] { "XXX", "XFX", "XXX", 'X', "plateBronze", 'F', Blocks.FURNACE });
 
-		recipes.addRecipe(GT.get(GTBlocks.charcoalPit),
-				new Object[] { "XPX", "XWX", "XFX", 'X', "plateBronze", 'P', "plateRefinedIron", 'W', wrench, 'F', Items.FLINT });
+		recipes.addRecipe(GT.get(GTBlocks.charcoalPit), new Object[] { "XPX", "XWX", "XFX", 'X', "plateBronze", 'P',
+				"plateRefinedIron", 'W', wrench, 'F', Items.FLINT });
 
 		recipes.addRecipe(GT.get(GTBlocks.mortar),
 				new Object[] { " X ", "CXC", "CCC", 'X', "ingotRefinedIron", 'C', Blocks.HARDENED_CLAY });

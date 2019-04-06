@@ -74,7 +74,7 @@ public class GTItemFluidTube extends Item
 
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
-		return new FluidHandlerItemStackSimple.Consumable(stack, size);
+		return new FluidHandlerItemStackSimple.SwapEmpty(stack, stack, size);
 	}
 
 	@Override

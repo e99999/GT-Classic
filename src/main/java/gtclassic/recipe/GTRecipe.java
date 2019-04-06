@@ -1,5 +1,7 @@
 package gtclassic.recipe;
 
+import gtclassic.GTOreRegistry;
+
 public class GTRecipe {
 
 	/*
@@ -9,6 +11,8 @@ public class GTRecipe {
 	 */
 
 	public static void init() {
+		GTOreRegistry.oreDirectSmelting();
+
 		GTRecipeFusion.recipesFusion();
 		GTRecipeBlastFurnace.recipesBlastFurnace();
 		GTRecipeSmelter.recipesElectricSmelter1();

@@ -134,13 +134,16 @@ public class GTRecipeCentrifuge {
 				new OutputItem(GT.get(Blocks.SAND, 12), 0), new OutputItem(GT.getFluid(M.Helium3, 1), 1),
 				new OutputItem(GT.getFluid(M.Helium, 1), 2), new OutputItem(GT.getSmallDust(M.Tungstate, 1), 3));
 
-		GTTileIndustrialCentrifuge.addRecipe("dustRedGarnet", 16, 0, euCost(15000),
-				new OutputItem(GT.getDust(M.Pyrope, 3), 0), new OutputItem(GT.getDust(M.Almandine, 5), 1),
-				new OutputItem(GT.getDust(M.Spessartine, 8), 2));
+		// GTTileIndustrialCentrifuge.addRecipe("dustRedGarnet", 16, 0, euCost(15000),
+		// new OutputItem(GT.getDust(M.Pyrope, 3), 0), new
+		// OutputItem(GT.getDust(M.Almandine, 5), 1),
+		// new OutputItem(GT.getDust(M.Spessartine, 8), 2));
 
-		GTTileIndustrialCentrifuge.addRecipe("dustYellowGarnet", 16, 0, euCost(15000),
-				new OutputItem(GT.getDust(M.Andradite, 5), 0), new OutputItem(GT.getDust(M.Grossular, 8), 1),
-				new OutputItem(GT.getDust(M.Uvarovite, 3), 2));
+		// GTTileIndustrialCentrifuge.addRecipe("dustYellowGarnet", 16, 0,
+		// euCost(15000),
+		// new OutputItem(GT.getDust(M.Andradite, 5), 0), new
+		// OutputItem(GT.getDust(M.Grossular, 8), 1),
+		// new OutputItem(GT.getDust(M.Uvarovite, 3), 2));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustDarkAshes", 2, 0, euCost(1250),
 				new OutputItem(GT.getDust(M.Ashes, 1), 0), new OutputItem(GT.getDust(M.Carbon, 1), 1));

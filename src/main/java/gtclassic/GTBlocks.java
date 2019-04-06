@@ -231,12 +231,14 @@ public class GTBlocks {
 	}
 
 	public static void registerOreBlocks() {
-		for (GTOreGen ore : GTOreGen.values()) {
+		for (GTOreRegistry ore : GTOreRegistry.values()) {
 			if (ore.getType().equals(Blocks.STONE)) {
-				createBlock(new GTBlockOreStone(ore, ore.getId(), ore.getLevel(), ore.getHardness()));
+				createBlock(new GTBlockOreStone(ore, ore.getId(), ore.getMaterial().getLevel(),
+						ore.getMaterial().getSpeed()));
 			}
 			if (ore.getType().equals(Blocks.SAND) || ore.getType().equals(Blocks.GRAVEL)) {
-				createBlock(new GTBlockOreSand(ore, ore.getId(), ore.getLevel(), ore.getHardness()));
+				createBlock(new GTBlockOreSand(ore, ore.getId(), ore.getMaterial().getLevel(),
+						ore.getMaterial().getSpeed()));
 			}
 		}
 	}

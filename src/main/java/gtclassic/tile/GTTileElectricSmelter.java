@@ -9,6 +9,7 @@ import gtclassic.container.GTContainerElectricSmelter;
 import gtclassic.gui.GTGuiMachine.GTElectricSmelterGui;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
+import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -30,6 +31,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
 public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
@@ -155,6 +157,23 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 		inputs.add((IRecipeInput) (new RecipeInputItemStack(input1)));
 		inputs.add((IRecipeInput) (new RecipeInputItemStack(input2)));
 		addRecipe(inputs, new MachineOutput(null, output));
+	}
+
+	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
+		List<IRecipeInput> inlist = new ArrayList<>();
+		List<ItemStack> outlist = new ArrayList<>();
+
+		for (IRecipeInput input : inputs) {
+			inlist.add(input);
+		}
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifiers) {
+			modifier.apply(mods);
+		}
+		for (ItemStack output : outputs) {
+			outlist.add(output);
+		}
+		addRecipe(inlist, new MachineOutput(mods, outlist));
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {

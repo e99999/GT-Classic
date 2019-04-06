@@ -18,8 +18,8 @@ public class GTRecipeMod {
 		 */
 
 		recipes.addRecipe(Ic2Items.miningLaser.copy(),
-				new Object[] { "Rcc", "AAC", " AA", 'A', Ic2Items.advancedAlloy.copy(), 'C',
-						Ic2Items.advancedCircuit.copy(), 'c', GT.getFluid(M.Helium, 1), 'R', "dustRedstone" });
+				new Object[] { "Rcc", "AAC", " AA", 'A', Ic2Items.advancedAlloy.copy(), 'C', "circuitAdvanced", 'c',
+						GT.getFluid(M.Helium, 1), 'R', "dustRedstone" });
 
 		recipes.addRecipe(GT.getIc2(Ic2Items.solarPanel, 2),
 				new Object[] { "YYY", "XPX", "CVC", 'C', Ic2Items.electricCircuit.copy(), 'V',

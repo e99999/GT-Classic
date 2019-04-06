@@ -34,6 +34,9 @@ public class GTRecipeSmelter {
 		GTTileElectricSmelter.addRecipe("dustPlastic", 9, GT.get(GTItems.moldBlock),
 				GT.get(GTBlocks.plastic1CasingBlock, 1));
 
+		GTTileElectricSmelter.addRecipe("dustSilicon", 1, GT.get(GTItems.testTube), GT.getFluid(M.Silicon, 1));
+		GTTileElectricSmelter.addRecipe("dustCryolite", 1, GT.get(GTItems.testTube), GT.getFluid(M.Cryolite, 1));
+
 	}
 
 	public static void recipesElectricSmelter2() {

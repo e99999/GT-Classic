@@ -3,6 +3,7 @@ package gtclassic.tool;
 import com.google.common.collect.ImmutableMap;
 
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 
@@ -102,7 +103,8 @@ public class GTToolMaterial {
 
 	public static ToolMaterial createToolMaterial(GTMaterial mat) {
 		// takes everything above and creates the tool material enum entry
-		return EnumHelper.addToolMaterial(n(mat), l(mat), d(mat), s(mat), a(mat), e(mat));
+		return EnumHelper.addToolMaterial(n(mat), l(mat), d(mat), s(mat), a(mat), e(mat))
+				.setRepairItem(GTMaterialGen.getIngot(mat, 1));
 	}
 
 }

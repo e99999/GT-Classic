@@ -2,8 +2,6 @@ package gtclassic.recipe;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
-import gtclassic.block.GTBlockOreSand;
-import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
@@ -246,9 +244,14 @@ public class GTRecipeIterators {
 				GTToolSword sword = (GTToolSword) item;
 				if (sword.getMaterial().equals(GTMaterial.Flint)) {
 					recipes.addRecipe(new ItemStack(item),
-							new Object[] { "P", "S", 'P',
+							new Object[] { "P", "P", "S", 'P',
 									new EnchantmentModifier(GT.get(item), Enchantments.FIRE_ASPECT).setUsesInput(), 'P',
 									Items.FLINT, 'S', "stickWood" });
+					recipes.addRecipe(new ItemStack(item),
+							new Object[] { "PPS", 'P',
+									new EnchantmentModifier(GT.get(item), Enchantments.FIRE_ASPECT).setUsesInput(), 'P',
+									Items.FLINT, 'S', "stickWood" });
+
 				} else {
 					String input = "plate" + sword.getMaterial().getDisplayName();
 					recipes.addRecipe(new ItemStack(item),
@@ -315,30 +318,12 @@ public class GTRecipeIterators {
 
 			}
 		}
+
 		for (Block block : Block.REGISTRY) {
-			if (block instanceof GTBlockOreStone) {
-				GTBlockOreStone ore = (GTBlockOreStone) block;
-				if (ore.getOreEntry().isSmeltable()) {
-					ItemStack output = ore.getOreEntry().getOutput();
-					if (output != null) {
-						GameRegistry.addSmelting(block, output, 0.1F);
-					}
-				}
-			}
-			if (block instanceof GTBlockOreSand) {
-				GTBlockOreSand sand = (GTBlockOreSand) block;
-				if (sand.getOreEntry().isSmeltable()) {
-					ItemStack output = sand.getOreEntry().getOutput();
-					if (output != null) {
-						GameRegistry.addSmelting(block, output, 0.1F);
-					}
-				}
-			}
 			if (block instanceof GTBlockTileStorage) {
 				GTBlockTileStorage tile = (GTBlockTileStorage) block;
 				GTMaterial material = tile.getMaterial();
 				String cabinet = "chest" + material.getDisplayName();
-				String casing = "casingMachine" + material.getDisplayName();
 				String plate = "plate" + material.getDisplayName();
 				String stick = "stick" + material.getDisplayName();
 				String wrench = "craftingToolWrench";

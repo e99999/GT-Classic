@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTMod;
-import gtclassic.GTOreGen;
+import gtclassic.GTOreRegistry;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import ic2.core.platform.lang.ILocaleBlock;
@@ -39,9 +39,9 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 	int level;
 	float hardness;
 	LocaleComp comp;
-	GTOreGen ore;
+	GTOreRegistry ore;
 
-	public GTBlockOreStone(GTOreGen ore, int id, int level, float hardness) {
+	public GTBlockOreStone(GTOreRegistry ore, int id, int level, float hardness) {
 		super(Material.ROCK);
 		this.ore = ore;
 		this.id = id;
@@ -55,6 +55,9 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 		setHardness(this.hardness);
 		setResistance(10.0F);
 		setHarvestLevel("pickaxe", this.level);
+		if (this.ore.equals(GTOreRegistry.VIBRANIUM)) {
+			setBlockUnbreakable();
+		}
 		setSoundType(SoundType.STONE);
 	}
 
@@ -106,7 +109,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 		return super.setUnlocalizedName(name);
 	}
 
-	public GTOreGen getOreEntry() {
+	public GTOreRegistry getOreEntry() {
 		return this.ore;
 	}
 

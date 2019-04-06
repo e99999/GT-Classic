@@ -12,6 +12,7 @@ import gtclassic.tile.GTTileLargeChest;
 import gtclassic.tile.GTTileSmallChest;
 import gtclassic.tile.GTTileWorkbench;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.block.machine.low.TileEntityMachineBuffer;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -65,12 +66,18 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
 		if (this.type == 0) {
 			return new GTTileSmallChest();
-		} else if (this.type == 1) {
+		}
+		if (this.type == 1) {
 			return new GTTileLargeChest();
-		} else if (this.type == 2) {
+		}
+		if (this.type == 2) {
 			return new GTTileBookshelf();
-		} else if (this.type == 3) {
+		}
+		if (this.type == 3) {
 			return new GTTileWorkbench();
+		}
+		if (this.type == 4) {
+			return new TileEntityMachineBuffer();
 		} else {
 			return new TileEntityBlock();
 		}

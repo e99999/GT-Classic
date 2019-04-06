@@ -39,13 +39,17 @@ public class GTWorldGen implements IWorldGenerator {
 			for (Block block : Block.REGISTRY) {
 				if (block instanceof GTBlockOreStone) {
 					GTBlockOreStone ore = (GTBlockOreStone) block;
-					runGenerator(ore.getDefaultState(), 16, 2, 8, 96,
-							BlockMatcher.forBlock(ore.getOreEntry().getType()), world, random, chunkX, chunkZ);
+					GTOreRegistry entry = ore.getOreEntry();
+					runGenerator(ore.getDefaultState(), entry.getSize(), entry.getChance(), entry.getMinY(),
+							entry.getMaxY(), BlockMatcher.forBlock(ore.getOreEntry().getType()), world, random, chunkX,
+							chunkZ);
 				}
 				if (block instanceof GTBlockOreSand) {
 					GTBlockOreSand sand = (GTBlockOreSand) block;
-					runGenerator(sand.getDefaultState(), 16, 2, 48, 72,
-							BlockMatcher.forBlock(sand.getOreEntry().getType()), world, random, chunkX, chunkZ);
+					GTOreRegistry entry = sand.getOreEntry();
+					runGenerator(sand.getDefaultState(), entry.getSize(), entry.getChance(), entry.getMinY(),
+							entry.getMaxY(), BlockMatcher.forBlock(sand.getOreEntry().getType()), world, random, chunkX,
+							chunkZ);
 				}
 			}
 			break;

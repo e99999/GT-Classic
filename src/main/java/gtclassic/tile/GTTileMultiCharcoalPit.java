@@ -35,15 +35,10 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 	public float getMaxProgress() {
 		return recipeOperation;
 	}
-	
+
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
-	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return !this.isInvalid();
 	}
 
 	@Override

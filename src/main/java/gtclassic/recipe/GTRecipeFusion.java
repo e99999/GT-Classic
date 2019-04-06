@@ -25,7 +25,7 @@ public class GTRecipeFusion {
 		 */
 		Fusion.addRecipe(new IRecipeInput[] { input("dustTungsten", 1), input(GT.getFluid(M.Lithium, 1)) },
 				euCost(32764, 16775168), GT.getIc2(Ic2Items.iridiumOre, 1));
-		
+
 		Fusion.addRecipe(new IRecipeInput[] { input("dustTungsten", 1), input(GT.getFluid(M.Beryllium, 1)) },
 				euCost(32764, 16775168), GT.getDust(M.Platinum, 1));
 

@@ -3,7 +3,7 @@ package gtclassic.block;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.GTOreGen;
+import gtclassic.GTOreRegistry;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -26,14 +26,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockOreSand extends BlockFalling implements ITexturedBlock, ILocaleBlock {
 
-	GTOreGen ore;
+	GTOreRegistry ore;
 	String name;
 	int id;
 	int level;
 	float hardness;
 	LocaleComp comp;
 
-	public GTBlockOreSand(GTOreGen ore, int id, int level, float hardness) {
+	public GTBlockOreSand(GTOreRegistry ore, int id, int level, float hardness) {
 		super(Material.SAND);
 		this.ore = ore;
 		this.id = id;
@@ -97,7 +97,7 @@ public class GTBlockOreSand extends BlockFalling implements ITexturedBlock, ILoc
 		return super.setUnlocalizedName(name);
 	}
 
-	public GTOreGen getOreEntry() {
+	public GTOreRegistry getOreEntry() {
 		return this.ore;
 	}
 

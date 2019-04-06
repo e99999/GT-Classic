@@ -49,7 +49,7 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
 		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
-				|| material.equals(material.Uranium)) {
+				|| material.equals(material.Uranium) || material.equals(material.Vibranium)) {
 			return true;
 		}
 		return super.hasEffect(stack);
