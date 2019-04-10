@@ -105,7 +105,7 @@ public class GTRecipeCentrifuge {
 		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.stickyResin, 4), 0, euCost(6500),
 				new OutputItem(GT.getIc2(Ic2Items.rubber, 14), 0),
 				new OutputItem(GT.getIc2(Ic2Items.compressedPlantBall, 1), 1),
-				new OutputItem(GT.getIc2(Ic2Items.plantBall, 1), 2), new OutputItem(GT.getDust(M.Plastic, 1), 3));
+				new OutputItem(GT.getIc2(Ic2Items.plantBall, 1), 2));
 
 		GTTileIndustrialCentrifuge.addRecipe("dustBrass", 1, 0, euCost(7500),
 				new OutputItem(GT.getSmallDust(M.Copper, 3), 0), new OutputItem(GT.getSmallDust(M.Zinc, 1), 1));
@@ -134,17 +134,6 @@ public class GTRecipeCentrifuge {
 				new OutputItem(GT.get(Blocks.SAND, 12), 0), new OutputItem(GT.getFluid(M.Helium3, 1), 1),
 				new OutputItem(GT.getFluid(M.Helium, 1), 2), new OutputItem(GT.getSmallDust(M.Tungstate, 1), 3));
 
-		// GTTileIndustrialCentrifuge.addRecipe("dustRedGarnet", 16, 0, euCost(15000),
-		// new OutputItem(GT.getDust(M.Pyrope, 3), 0), new
-		// OutputItem(GT.getDust(M.Almandine, 5), 1),
-		// new OutputItem(GT.getDust(M.Spessartine, 8), 2));
-
-		// GTTileIndustrialCentrifuge.addRecipe("dustYellowGarnet", 16, 0,
-		// euCost(15000),
-		// new OutputItem(GT.getDust(M.Andradite, 5), 0), new
-		// OutputItem(GT.getDust(M.Grossular, 8), 1),
-		// new OutputItem(GT.getDust(M.Uvarovite, 3), 2));
-
 		GTTileIndustrialCentrifuge.addRecipe("dustDarkAshes", 2, 0, euCost(1250),
 				new OutputItem(GT.getDust(M.Ashes, 1), 0), new OutputItem(GT.getDust(M.Carbon, 1), 1));
 
@@ -162,6 +151,15 @@ public class GTRecipeCentrifuge {
 		GTTileIndustrialCentrifuge.addRecipe("dustBasalt", 16, 0, euCost(10000),
 				new OutputItem(GT.getDust(M.DarkAshes, 4), 0), new OutputItem(GT.getDust(M.Olivine, 1), 1),
 				new OutputItem(GT.getDust(M.Calcite, 3), 2), new OutputItem(GT.getDust(M.Flint, 8), 3));
+
+		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.woodGasCell, 5), 4, euCost(35000),
+				new OutputItem(GT.getSmallDust(M.Plastic, 1), 0), new OutputItem(GT.getFluid(M.Hydrogen, 3), 1),
+				new OutputItem(GT.getFluid(M.Methane, 1), 2), new OutputItem(GT.getIc2(Ic2Items.emptyCell, 5), 3));
+
+		GTTileIndustrialCentrifuge.addRecipe("oreBasalt", 12, 0, euCost(15000),
+				new OutputItem(GT.getDust(M.Basalt, 11), 0),
+				// add red and yellow garnets to get different garnet types
+				new OutputItem(GT.getDust(M.Zirconium, 1), 1));
 	}
 
 	public static void recipesCentrifuge2() {

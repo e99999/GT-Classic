@@ -43,7 +43,7 @@ public class GTTileMultiArcFurnace extends GTTileBaseMultiBlockMachine {
 	public static final int slotOutput2 = 5;
 
 	public static final IBlockState casingHeat = GTBlocks.heatCasingBlock.getDefaultState();
-	public static final IBlockState casingMachine = GTMaterialGen.getBlock(GTMaterial.Invar, GTMaterialFlag.CASING)
+	public static final IBlockState casingMachine = GTMaterialGen.getBlock(GTMaterial.Ultimet, GTMaterialFlag.CASING)
 			.getDefaultState();
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("arcfurnace");
@@ -95,7 +95,9 @@ public class GTTileMultiArcFurnace extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public int[][] getRecipeMutations() {
-		return new int[][] { { slotInput0, slotInput1, slotInput2 }, { slotInput0, slotInput2, slotInput1 }, };
+		return new int[][] { { slotInput0, slotInput1, slotInput2 }, { slotInput0, slotInput2, slotInput1 },
+				{ slotInput2, slotInput1, slotInput0 }, { slotInput1, slotInput2, slotInput0 },
+				{ slotInput1, slotInput0, slotInput2 }, { slotInput2, slotInput0, slotInput1 } };
 	}
 
 	@Override

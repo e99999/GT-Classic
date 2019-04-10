@@ -52,6 +52,17 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	}
 
 	@Override
+	public boolean hasContainerItem(ItemStack itemStack) {
+		return true;
+	}
+
+	@Override
+	public ItemStack getContainerItem(ItemStack itemStack) {
+		ItemStack copy = itemStack.copy();
+		return copy.attemptDamageItem(1, itemRand, null) ? ItemStack.EMPTY : copy;
+	}
+
+	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
 	}

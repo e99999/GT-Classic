@@ -3,6 +3,7 @@ package gtclassic;
 import gtclassic.block.GTBlockOreSand;
 import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockTileStorage;
+import gtclassic.item.GTItemGrinder;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tool.GTToolFile;
@@ -29,6 +30,9 @@ public class GTOreDict {
 			}
 			if (item instanceof GTToolWrench) {
 				registerWrench(item);
+			}
+			if (item instanceof GTItemGrinder) {
+				registerGrinder(item);
 			}
 		}
 
@@ -96,6 +100,10 @@ public class GTOreDict {
 
 	public static void registerWrench(Item tool) {
 		OreDictionary.registerOre("craftingToolWrench", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+	}
+
+	public static void registerGrinder(Item tool) {
+		OreDictionary.registerOre("craftingToolGrinder", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 }

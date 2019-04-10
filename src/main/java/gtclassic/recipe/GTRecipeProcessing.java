@@ -14,6 +14,7 @@ import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.block.generator.tile.TileEntityLiquidFuelGenerator;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
@@ -25,6 +26,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GTRecipeProcessing {
@@ -86,6 +88,15 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustGraphite", 1, GT.getIngot(M.Graphite, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustSmallGraphite", 4, GT.getIngot(M.Graphite, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustZirconium", 32, GT.getIc2(Ic2Items.industrialDiamond, 1), 0.1F);
+		
+		/*
+		 * Some random fuel things
+		 */
+		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("sodium"), 3800, 8);
+		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("lithium"), 3800, 8);
+		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("hydrogen"), 950, 16);
+		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("methane"), 3000, 16);
+		
 
 		/*
 		 * Bloomery Recipes

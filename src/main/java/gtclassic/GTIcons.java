@@ -43,6 +43,7 @@ public class GTIcons {
 		addCustomTexture("machine_bloomery", 0, 9, location("bloomery_front"));
 		addCustomTexture("machine_charcoalpit", 0, 7, location("charcoalpit_top"));
 		addCustomTexture("tile_digitalchest", 0, 1, location("digitalchest_top"));
+		addCustomTexture("machine_industrialprocessor_mv", 0, 9, location("processor_front"));
 		addCustomTexture("machine_fusioncomputer_luv", 0, 7, location("fusion_top"));
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 7, location("centrifuge_top"));
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 8, location("centrifuge_back"));

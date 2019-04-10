@@ -12,7 +12,6 @@ import gtclassic.tile.GTTileLargeChest;
 import gtclassic.tile.GTTileSmallChest;
 import gtclassic.tile.GTTileWorkbench;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.block.machine.low.TileEntityMachineBuffer;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -75,9 +74,6 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 		}
 		if (this.type == 3) {
 			return new GTTileWorkbench();
-		}
-		if (this.type == 4) {
-			return new TileEntityMachineBuffer();
 		} else {
 			return new TileEntityBlock();
 		}
@@ -96,9 +92,6 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 		}
 		if (this.type == 3) {
 			return Ic2Icons.getTextures("tile_workbench");
-		}
-		if (this.type == 4) {
-			return Ic2Icons.getTextures("tile_hatch");
 		} else {
 			return Ic2Icons.getTextures("builder");
 		}

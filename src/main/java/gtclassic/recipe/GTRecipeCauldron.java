@@ -28,7 +28,8 @@ public class GTRecipeCauldron {
 		CINNABAR(M.Cinnabar, M.Redstone), SHELDONITE(M.Sheldonite, M.Platinum, M.Platinum),
 		GALENA(M.Galena, M.Lead, M.Silver), TETRAHEDRITE(M.Tetrahedrite, M.Copper, M.Zinc),
 		MALACHITE(M.Malachite, M.Copper, M.Calcite), CASSITERITE(M.Cassiterite, M.Tin, M.Tantalum),
-		PYROLUSITE(M.Pyrolusite, M.Manganese), DARKASHES(M.DarkAshes, M.Ashes, M.Ashes);
+		PYROLUSITE(M.Pyrolusite, M.Manganese, M.Manganese, M.Manganese), GARNIERITE(M.Garnierite, M.Nickel, M.Nickel),
+		DARKASHES(M.DarkAshes, M.Ashes, M.Ashes);
 
 		GTMaterial input;
 		GTMaterial[] outputs;
@@ -36,8 +37,8 @@ public class GTRecipeCauldron {
 		/**
 		 * Creates recipes for cauldron washing and JEI
 		 * 
-		 * @param input   material from GT to be dust input
-		 * @param outputs an array of materials for small dust output
+		 * @param input   GTMaterial material from GT to be dust input
+		 * @param outputs GTMaterial an array for small dust output
 		 */
 		GTRecipeCauldronEnum(GTMaterial input, GTMaterial... outputs) {
 			this.input = input;
@@ -86,7 +87,7 @@ public class GTRecipeCauldron {
 	 * @param input
 	 * @param output
 	 */
-	static void addFakeCauldronRecipe(List<IRecipeInput> input, MachineOutput output) {
+	public static void addFakeCauldronRecipe(List<IRecipeInput> input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
 	}
 

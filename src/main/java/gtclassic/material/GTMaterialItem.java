@@ -118,4 +118,12 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 		}
 		return EnumActionResult.SUCCESS;
 	}
+
+	public GTMaterial getMaterial() {
+		return this.material;
+	}
+
+	public GTMaterialFlag getFlag() {
+		return this.flag;
+	}
 }

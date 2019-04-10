@@ -84,7 +84,7 @@ public class GTRecipeElectrolyzer {
 				GT.getFluid(M.Mercury, 1), GT.getDust(M.Sulfur, 1), GT.get(Items.REDSTONE, 1));
 
 		Electrolyzer.addRecipe(new IRecipeInput[] { input("dustSphalerite", 3) }, euCost(100, 15000),
-				GT.getDust(M.Zinc, 1), GT.getDust(M.Germanium, 1), GT.getDust(M.Zinc, 1));
+				GT.getDust(M.Zinc, 1), GT.getDust(M.Germanium, 1), GT.getDust(M.Sulfur, 1));
 
 		Electrolyzer.addRecipe(new IRecipeInput[] { input("dustRuby", 6), tubes(3) }, euCost(50, 25000),
 				GT.getDust(M.Alumina, 2), GT.getDust(M.Chrome, 1), GT.getFluid(M.Oxygen, 3));
@@ -134,6 +134,15 @@ public class GTRecipeElectrolyzer {
 
 		Electrolyzer.addRecipe(new IRecipeInput[] { input(GT.getFluid(M.Methane, 5)) }, euCost(50, 7500),
 				GT.getFluid(M.Hydrogen, 4), GT.getDust(M.Carbon, 1));
+
+		Electrolyzer.addRecipe(new IRecipeInput[] { input("dustGarnierite", 2) }, euCost(28, 16000),
+				GT.getDust(M.Nickel, 1), GT.getSmallDust(M.Nickel, 2), GT.getSmallDust(M.Cobalt, 2));
+
+		Electrolyzer.addRecipe(new IRecipeInput[] { input("dustPyrolusite", 3), tubes(1) }, euCost(28, 16000),
+				GT.getDust(M.Manganese, 2), GT.getFluid(M.Oxygen, 1));
+
+		Electrolyzer.addRecipe(new IRecipeInput[] { input("dustMolybdenite", 3), tubes(2) }, euCost(28, 16000),
+				GT.getDust(M.Molybdenum, 2), GT.getDust(M.Sulfur, 2));
 
 		// Aluminium recipes
 

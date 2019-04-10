@@ -12,6 +12,7 @@ import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockSand;
 import gtclassic.block.GTBlockStone;
 import gtclassic.block.GTBlockTileBasic;
+import gtclassic.block.GTBlockTileBuffer;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.color.GTColorBlockInterface;
@@ -40,6 +41,7 @@ import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiBloomery;
 import gtclassic.tile.GTTileMultiCharcoalPit;
 import gtclassic.tile.GTTileMultiFusionComputer;
+import gtclassic.tile.GTTileMultiIndustrialProcessor;
 import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
@@ -82,6 +84,7 @@ public class GTBlocks {
 	public static final GTBlockCasing graphiteCoilBlock = registerBlock(new GTBlockCasing("GraphiteCoil", 14));
 	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("NichromeCoil", 15));
 
+	//public static final GTBlockTileBuffer buffer = registerBlock(new GTBlockTileBuffer());
 	public static final GTBlockTileBasic bloomery = registerBlock(new GTBlockTileBasic("machine_bloomery", 5));
 	public static final GTBlockTileBasic charcoalPit = registerBlock(new GTBlockTileBasic("machine_charcoalpit", 4));
 	public static final GTBlockTileBasic blastFurnace = registerBlock(
@@ -92,6 +95,8 @@ public class GTBlocks {
 			new GTBlockTileBasic("machine_industrialcentrifuge_lv"));
 	public static final GTBlockTileBasic electricSmelter = registerBlock(
 			new GTBlockTileBasic("machine_electricsmelter_lv"));
+	public static final GTBlockTileBasic industrialProcessor = registerBlock(
+			new GTBlockTileBasic("machine_industrialprocessor_mv", 3));
 	public static final GTBlockTileBasic industrialElectrolyzer = registerBlock(
 			new GTBlockTileBasic("machine_industrialelectrolyzer_mv", 1));
 	public static final GTBlockTileBasic arcFurnace = registerBlock(new GTBlockTileBasic("machine_arcfurnace_hv"));
@@ -183,12 +188,12 @@ public class GTBlocks {
 
 	public static final String[] textureTileBasic = { "machine_bloomery", "machine_charcoalpit",
 			"machine_blastfurnace_lv", "machine_arcfurnace_hv", "machine_chargeomat_ev", "machine_computercube_ev",
-			"machine_industrialcentrifuge_lv", "machine_industrialelectrolyzer_mv", "machine_electricsmelter_lv",
-			"machine_matterfabricator_ev", "machine_matterreplicator_ev", "machine_playerdetector_lv",
-			"machine_fusioncomputer_luv", "machine_lightningrod_iv", "machine_quantumenergystorage_ev",
-			"machine_basicenergystorage_ev", "machine_digitaltransformer_luv", "cable_energium_luv",
-			"cable_lapotron_zpm", "tile_digitalchest", "tile_smallchest", "tile_largechest", "tile_bookshelf",
-			"tile_workbench", "tile_hatch" };
+			"machine_industrialcentrifuge_lv", "machine_industrialelectrolyzer_mv", "machine_industrialprocessor_mv",
+			"machine_electricsmelter_lv", "machine_matterfabricator_ev", "machine_matterreplicator_ev",
+			"machine_playerdetector_lv", "machine_fusioncomputer_luv", "machine_lightningrod_iv",
+			"machine_quantumenergystorage_ev", "machine_basicenergystorage_ev", "machine_digitaltransformer_luv",
+			"cable_energium_luv", "cable_lapotron_zpm", "tile_digitalchest", "tile_smallchest", "tile_largechest",
+			"tile_bookshelf", "tile_workbench", "tile_buffer" };
 
 	public static final String[] textureTileCustom = { "block_resinbottle", "block_resinchunk", "block_resinboard",
 			"block_mortar", "block_ducttape", "block_echophone", "coolant_helium_small", "coolant_helium_med",
@@ -245,12 +250,12 @@ public class GTBlocks {
 
 	public static void registerStorageBlocks() {
 		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)) {
+			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)
+					&& !mat.equals(mat.Zinc)) {
 				createBlock(new GTBlockTileStorage(mat, 0));
 				createBlock(new GTBlockTileStorage(mat, 1));
 				createBlock(new GTBlockTileStorage(mat, 2));
 				createBlock(new GTBlockTileStorage(mat, 3));
-				createBlock(new GTBlockTileStorage(mat, 4));
 			}
 		}
 	}
@@ -270,6 +275,8 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityCharcoalPit"));
 		GameRegistry.registerTileEntity(GTTileIndustrialCentrifuge.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
+		GameRegistry.registerTileEntity(GTTileMultiIndustrialProcessor.class,
+				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialProcessor"));
 		GameRegistry.registerTileEntity(GTTileIndustrialElectrolyzer.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialElectrolyzer"));
 		GameRegistry.registerTileEntity(GTTileElectricSmelter.class,

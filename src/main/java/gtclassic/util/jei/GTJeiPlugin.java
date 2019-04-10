@@ -16,6 +16,7 @@ import gtclassic.tile.GTTileIndustrialElectrolyzer;
 import gtclassic.tile.GTTileMultiArcFurnace;
 import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiFusionComputer;
+import gtclassic.tile.GTTileMultiIndustrialProcessor;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -69,6 +70,13 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeClickArea(GTGuiMachine.GTIndustrialElectrolyzerGui.class, 72, 34, 30, 16,
 					"gt.electrolyzer");
 
+			// Processor
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
+					"gt.processor");
+			registry.addRecipes(GTTileMultiIndustrialProcessor.RECIPE_LIST.getRecipeList(), "gt.processor");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialProcessor), "gt.processor");
+			registry.addRecipeClickArea(GTGuiMachine.GTIndustrialProcessorGui.class, 50, 29, 20, 10, "gt.processor");
+
 			// Fusion
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "fusion");
 			registry.addRecipes(GTTileMultiFusionComputer.RECIPE_LIST.getRecipeList(), "fusion");
@@ -119,6 +127,9 @@ public class GTJeiPlugin implements IModPlugin {
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
 				"gt.electrolyzer", GTBlocks.industrialElectrolyzer));
+
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
+				"gt.processor", GTBlocks.industrialProcessor));
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "fusion",
 				GTBlocks.fusionComputer));

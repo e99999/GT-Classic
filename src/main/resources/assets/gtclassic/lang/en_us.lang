@@ -24,6 +24,7 @@ tile.gtclassic.iron_casing.name=Iron Machine Casing
 tile.gtclassic.refinediron_casing.name=Refined Iron Machine Casing
 tile.gtclassic.stainlesssteel_casing.name=Stainless Steel Machine Casing
 tile.gtclassic.bismuth_casing.name=Bismuth Machine Casing
+tile.gtclassic.ultimet_casing.name=Ultimet Machine Casing
 
 #blocks
 tile.gtclassic.germanium_block.name=Block of Germanium
@@ -51,123 +52,101 @@ tile.gtclassic.manganese_block.name=Block of Manganese
 tile.gtclassic.stainlesssteel_block.name=Block of Stainless Steel
 tile.gtclassic.bismuth_block.name=Block of Bismuth
 tile.gtclassic.vibranium_block.name=Block of Vibranium
+tile.gtclassic.ultimet_block.name=Block of Ultimet
 
 #storage blocks
 tile.gtclassic.tungsten_storage_0.name=Tungsten Cabinet
 tile.gtclassic.tungsten_storage_1.name=Large Tungsten Cabinet
 tile.gtclassic.tungsten_storage_2.name=Tungsten Bookshelf
 tile.gtclassic.tungsten_storage_3.name=Tungsten Workbench
-tile.gtclassic.tungsten_storage_4.name=Tungsten Machine Buffer
 tile.gtclassic.invar_storage_0.name=Invar Cabinet
 tile.gtclassic.invar_storage_1.name=Large Invar Cabinet
 tile.gtclassic.invar_storage_2.name=Invar Bookshelf
 tile.gtclassic.invar_storage_3.name=Invar Workbench
-tile.gtclassic.invar_storage_4.name=Invar Machine Buffer
-tile.gtclassic.zinc_storage_0.name=Zinc Cabinet
-tile.gtclassic.zinc_storage_1.name=Large Zinc Cabinet
-tile.gtclassic.zinc_storage_2.name=Zinc Bookshelf
-tile.gtclassic.zinc_storage_3.name=Zinc Workbench
-tile.gtclassic.zinc_storage_4.name=Zinc Invar
 tile.gtclassic.bronze_storage_0.name=Bronze Cabinet
 tile.gtclassic.bronze_storage_1.name=Large Bronze Cabinet
 tile.gtclassic.bronze_storage_2.name=Bronze Bookshelf
 tile.gtclassic.bronze_storage_3.name=Bronze Workbench
-tile.gtclassic.bronze_storage_4.name=Bronze Machine Buffer
 tile.gtclassic.silver_storage_0.name=Silver Cabinet
 tile.gtclassic.silver_storage_1.name=Large Silver Cabinet
 tile.gtclassic.silver_storage_2.name=Silver Bookshelf
 tile.gtclassic.silver_storage_3.name=Silver Workbench
-tile.gtclassic.silver_storage_4.name=Silver Machine Buffer
 tile.gtclassic.steel_storage_0.name=Steel Cabinet
 tile.gtclassic.steel_storage_1.name=Large Steel Cabinet
 tile.gtclassic.steel_storage_2.name=Steel Bookshelf
 tile.gtclassic.steel_storage_3.name=Steel Workbench
-tile.gtclassic.steel_storage_4.name=Steel Machine Buffer
 tile.gtclassic.gold_storage_0.name=Gold Cabinet
 tile.gtclassic.gold_storage_1.name=Large Gold Cabinet
 tile.gtclassic.gold_storage_2.name=Gold Bookshelf
 tile.gtclassic.gold_storage_3.name=Gold Workbench
-tile.gtclassic.gold_storage_4.name=Gold Machine Buffer
 tile.gtclassic.electrum_storage_0.name=Electrum Cabinet
 tile.gtclassic.electrum_storage_1.name=Large Electrum Cabinet
 tile.gtclassic.electrum_storage_2.name=Electrum Bookshelf
 tile.gtclassic.electrum_storage_3.name=Electrum Workbench
-tile.gtclassic.electrum_storage_4.name=Electrum Machine Buffer
 tile.gtclassic.lead_storage_0.name=Lead Cabinet
 tile.gtclassic.lead_storage_1.name=Large Lead Cabinet
 tile.gtclassic.lead_storage_2.name=Lead Bookshelf
 tile.gtclassic.lead_storage_3.name=Lead Workbench
-tile.gtclassic.lead_storage_4.name=Lead Machine Buffer
 tile.gtclassic.aluminium_storage_0.name=Aluminium Cabinet
 tile.gtclassic.aluminium_storage_1.name=Large Aluminium Cabinet
 tile.gtclassic.aluminium_storage_2.name=Aluminium Bookshelf
 tile.gtclassic.aluminium_storage_3.name=Aluminium Workbench
-tile.gtclassic.aluminium_storage_4.name=Aluminium Machine Buffer
 tile.gtclassic.platinum_storage_0.name=Platinum Cabinet
 tile.gtclassic.platinum_storage_1.name=Large Platinum Cabinet
 tile.gtclassic.platinum_storage_2.name=Platinum Bookshelf
 tile.gtclassic.platinum_storage_3.name=Platinum Workbench
-tile.gtclassic.platinum_storage_4.name=Platinum Machine Buffer
 tile.gtclassic.chrome_storage_0.name=Chrome Cabinet
 tile.gtclassic.chrome_storage_1.name=Large Chrome Cabinet
 tile.gtclassic.chrome_storage_2.name=Chrome Bookshelf
 tile.gtclassic.chrome_storage_3.name=Chrome Workbench
-tile.gtclassic.chrome_storage_4.name=Chrome Machine Buffer
 tile.gtclassic.brass_storage_0.name=Brass Cabinet
 tile.gtclassic.brass_storage_1.name=Large Brass Cabinet
 tile.gtclassic.brass_storage_2.name=Brass Bookshelf
 tile.gtclassic.brass_storage_3.name=Brass Workbench
-tile.gtclassic.brass_storage_4.name=Brass Machine Buffer
 tile.gtclassic.tungstensteel_storage_0.name=Tungstensteel Cabinet
 tile.gtclassic.tungstensteel_storage_1.name=Large Tungstensteel Cabinet
 tile.gtclassic.tungstensteel_storage_2.name=Tungstensteel Bookshelf
 tile.gtclassic.tungstensteel_storage_3.name=Tungstensteel Workbench
-tile.gtclassic.tungstensteel_storage_4.name=Tungstensteel Machine Buffer
 tile.gtclassic.titanium_storage_0.name=Titanium Cabinet
 tile.gtclassic.titanium_storage_1.name=Large Titanium Cabinet
 tile.gtclassic.titanium_storage_2.name=Titanium Bookshelf
 tile.gtclassic.titanium_storage_3.name=Titanium Workbench
-tile.gtclassic.titanium_storage_4.name=Titanium Machine Buffer
 tile.gtclassic.iridium_storage_0.name=Iridium Cabinet
 tile.gtclassic.iridium_storage_1.name=Large Iridium Cabinet
 tile.gtclassic.iridium_storage_2.name=Iridium Bookshelf
 tile.gtclassic.iridium_storage_3.name=Iridium Workbench
-tile.gtclassic.iridium_storage_4.name=Iridium Machine Buffer
 tile.gtclassic.nickel_storage_0.name=Nickel Cabinet
 tile.gtclassic.nickel_storage_1.name=Large Nickel Cabinet
 tile.gtclassic.nickel_storage_2.name=Nickel Bookshelf
 tile.gtclassic.nickel_storage_3.name=Nickel Workbench
-tile.gtclassic.nickel_storage_4.name=Nickel Machine Buffer
 tile.gtclassic.osmium_storage_0.name=Osmium Cabinet
 tile.gtclassic.osmium_storage_1.name=Large Osmium Cabinet
 tile.gtclassic.osmium_storage_2.name=Osmium Bookshelf
 tile.gtclassic.osmium_storage_3.name=Osmium Workbench
-tile.gtclassic.osmium_storage_4.name=Osmium Machine Buffer
 tile.gtclassic.iron_storage_0.name=Iron Cabinet
 tile.gtclassic.iron_storage_1.name=Large Iron Cabinet
 tile.gtclassic.iron_storage_2.name=Iron Bookshelf
 tile.gtclassic.iron_storage_3.name=Iron Workbench
-tile.gtclassic.iron_storage_4.name=Iron Machine Buffer
 tile.gtclassic.refinediron_storage_0.name=Refined Iron Cabinet
 tile.gtclassic.refinediron_storage_1.name=Large Refined Iron Cabinet
 tile.gtclassic.refinediron_storage_2.name=Refined Iron Bookshelf
 tile.gtclassic.refinediron_storage_3.name=Refined Iron Workbench
-tile.gtclassic.refinediron_storage_4.name=Refined Iron Machine Buffer
 tile.gtclassic.germanium_storage_0.name=Germanium Cabinet
 tile.gtclassic.germanium_storage_1.name=Large Germanium Cabinet
 tile.gtclassic.germanium_storage_2.name=Germanium Bookshelf
 tile.gtclassic.germanium_storage_3.name=Germanium Workbench
-tile.gtclassic.germanium_storage_4.name=Germanium Machine Buffer
 tile.gtclassic.stainlesssteel_storage_0.name=Stainless Steel Cabinet
 tile.gtclassic.stainlesssteel_storage_1.name=Large Stainless Steel Cabinet
 tile.gtclassic.stainlesssteel_storage_2.name=Stainless Steel Bookshelf
 tile.gtclassic.stainlesssteel_storage_3.name=Stainless Steel Workbench
-tile.gtclassic.stainlesssteel_storage_4.name=Stainless Steel Machine Buffer
 tile.gtclassic.bismuth_storage_0.name=Bismuth Cabinet
 tile.gtclassic.bismuth_storage_1.name=Large Bismuth Cabinet
 tile.gtclassic.bismuth_storage_2.name=Bismuth Bookshelf
 tile.gtclassic.bismuth_storage_3.name=Bismuth Workbench
-tile.gtclassic.bismuth_storage_4.name=Bismuth Machine Buffer
+tile.gtclassic.ultimet_storage_0.name=Ultimet Cabinet
+tile.gtclassic.ultimet_storage_1.name=Large Ultimet Cabinet
+tile.gtclassic.ultimet_storage_2.name=Ultimet Bookshelf
+tile.gtclassic.ultimet_storage_3.name=Ultimet Workbench
 
 #ore
 tile.gtclassic.galena_ore.name=Galena Ore
@@ -234,6 +213,7 @@ tile.gtclassic.machine_blastfurnace_lv.name=Blast Furnace Controller (LV)
 tile.gtclassic.machine_chargeomat_ev.name=Charge-O-Mat (EV)
 tile.gtclassic.machine_computercube_ev.name=Computer Cube (EV)
 tile.gtclassic.machine_industrialcentrifuge_lv.name=Industrial Centrifuge (LV)
+tile.gtclassic.machine_industrialprocessor_mv.name=Industrial Processor Controller(MV)
 tile.gtclassic.machine_industrialelectrolyzer_mv.name=Industrial Electrolyzer (MV)
 tile.gtclassic.machine_electricsmelter_lv.name=Electric Smelter (LV)
 tile.gtclassic.machine_arcfurnace_hv.name=Arc Furnace Controller (HV)
@@ -382,6 +362,9 @@ item.gtclassic.molybdenum_dustsmall.name=Small Molybdenum Dust
 item.gtclassic.pyrolusite_dustsmall.name=Small Pyrolusite Dust
 item.gtclassic.salt_dustsmall.name=Small Salt Dust
 item.gtclassic.molybdenite_dustsmall.name=Small Molybdenite Dust
+item.gtclassic.cobalt_dustsmall.name=Small Cobalt Dust
+item.gtclassic.ultimet_dustsmall.name=Small Ultimet Dust
+item.gtclassic.iridium_dustsmall.name=Small Iridium Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -468,7 +451,9 @@ item.gtclassic.tetrahedrite_dust.name=Tetrahedrite Dust
 item.gtclassic.alumina_dust.name=Alumina Dust
 item.gtclassic.redmud_dust.name=Red Mud Dust
 item.gtclassic.stone_dust.name=Stone Dust
-
+item.gtclassic.cobalt_dust.name=Cobalt Dust
+item.gtclassic.ultimet_dust.name=Ultimet Dust
+item.gtclassic.iridium_dust.name=Iridium Dust
 item.gtclassic.vibranium_dust.name=Vibranium Dust
 item.gtclassic.molybdenum_dust.name=Molybdenum Dust
 item.gtclassic.pyrolusite_dust.name=Pyrolusite Dust
@@ -511,6 +496,9 @@ item.gtclassic.stainlesssteel_ingot.name=Stainless Steel Ingot
 item.gtclassic.bismuth_ingot.name=Bismuth Ingot
 item.gtclassic.bismuthbronze_ingot.name=Bismuth Bronze Ingot
 item.gtclassic.silicon_ingot.name=Silicon Ingot
+item.gtclassic.cobalt_ingot.name=Cobalt Ingot
+item.gtclassic.ultimet_ingot.name=Ultimet Ingot
+item.gtclassic.molybdenum_ingot.name=Molybdenum Ingot
 
 #nuggets
 item.gtclassic.tungsten_nugget.name=Tungsten Nugget
@@ -545,6 +533,9 @@ item.gtclassic.stainlesssteel_nugget.name=Stainless Steel Nugget
 item.gtclassic.bismuth_nugget.name=Bismuth Nugget
 item.gtclassic.bismuthbronze_nugget.name=Bismuth Bronze Nugget
 item.gtclassic.silicon_nugget.name=Silicon Nugget
+item.gtclassic.cobalt_nugget.name=Cobalt Nugget
+item.gtclassic.ultimet_nugget.name=Ultimet Nugget
+item.gtclassic.molybdenum_nugget.name=Molybdenum Nugget
 
 #plates
 item.gtclassic.tungsten_plate.name=Tungsten Plate
@@ -581,6 +572,9 @@ item.gtclassic.stainlesssteel_plate.name=Stainless Steel Plate
 item.gtclassic.bismuth_plate.name=Bismuth Plate
 item.gtclassic.bismuthbronze_plate.name=Bismuth Bronze Plate
 item.gtclassic.silicon_plate.name=Silicon Plate
+item.gtclassic.cobalt_plate.name=Cobalt Plate
+item.gtclassic.molybdenum_plate.name=Molybdenum Plate
+item.gtclassic.ultimet_plate.name=Ultimet Plate
 
 #gear
 item.gtclassic.tungsten_gear.name=Tungsten Gear
@@ -615,6 +609,7 @@ item.gtclassic.tantalum_gear.name=Tantalum Gear
 item.gtclassic.iridium_gear.name=Iridium Gear
 item.gtclassic.stainlesssteel_gear.name=Stainless Gear
 item.gtclassic.bismuth_gear.name=Bismuth Gear
+item.gtclassic.ultimet_gear.name=Ultimet Gear
 
 #sticks
 item.gtclassic.tungsten_stick.name=Tungsten Rod
@@ -646,6 +641,9 @@ item.gtclassic.germanium_stick.name=Germanium Rod
 item.gtclassic.tantalum_stick.name=Tantalum Rod
 item.gtclassic.stainlesssteel_stick.name=Stainless Steel Rod
 item.gtclassic.bismuth_stick.name=Bismuth Rod
+item.gtclassic.cobalt_stick.name=Cobalt Rod
+item.gtclassic.molybdenum_stick.name=Molybdenum Rod
+item.gtclassic.ultimet_stick.name=Ultimet Rod
 
 #material tools
 #files
@@ -672,6 +670,8 @@ item.gtclassic.nichrome_file.name=Nichrome File
 item.gtclassic.osmium_file.name=Osmium File
 item.gtclassic.tantalum_file.name=Tantalum File
 item.gtclassic.bismuthbronze_file.name=Bismuth Bronze File
+item.gtclassic.cobalt_file.name=Cobalt File
+item.gtclassic.ultimet_file.name=Ultimet File
 #hammers
 item.gtclassic.bronze_hammer.name=Bronze Hammer
 item.gtclassic.iron_hammer.name=Iron Hammer
@@ -696,6 +696,8 @@ item.gtclassic.nichrome_hammer.name=Nichrome Hammer
 item.gtclassic.osmium_hammer.name=Osmium Hammer
 item.gtclassic.tantalum_hammer.name=Tantalum Hammer
 item.gtclassic.bismuthbronze_hammer.name=Bismuth Bronze Hammer
+item.gtclassic.cobalt_hammer.name=Cobalt Hammer
+item.gtclassic.ultimet_hammer.name=Ultimet Hammer
 #wrenches
 item.gtclassic.bronze_wrench.name=Bronze Wrench
 item.gtclassic.iron_wrench.name=Iron Wrench
@@ -720,6 +722,8 @@ item.gtclassic.nichrome_wrench.name=Nichrome Wrench
 item.gtclassic.osmium_wrench.name=Osmium Wrench
 item.gtclassic.tantalum_wrench.name=Tantalum Wrench
 item.gtclassic.bismuthbronze_wrench.name=Bismuth Bronze Wrench
+item.gtclassic.cobalt_wrench.name=Cobalt Wrench
+item.gtclassic.ultimet_wrench.name=Ultimet Wrench
 #swords
 item.gtclassic.flint_sword.name=Flint Sword
 item.gtclassic.bronze_sword.name=Bronze Sword
@@ -745,6 +749,8 @@ item.gtclassic.nichrome_sword.name=Nichrome Sword
 item.gtclassic.osmium_sword.name=Osmium Sword
 item.gtclassic.tantalum_sword.name=Tantalum Sword
 item.gtclassic.bismuthbronze_sword.name=Bismuth Bronze Sword
+item.gtclassic.cobalt_sword.name=Cobalt Sword
+item.gtclassic.ultimet_sword.name=Ultimet Sword
 #shovels
 item.gtclassic.flint_shovel.name=Flint Shovel
 item.gtclassic.bronze_shovel.name=Bronze Shovel
@@ -770,6 +776,8 @@ item.gtclassic.nichrome_shovel.name=Nichrome Shovel
 item.gtclassic.osmium_shovel.name=Osmium Shovel
 item.gtclassic.tantalum_shovel.name=Tantalum Shovel
 item.gtclassic.bismuthbronze_shovel.name=Bismuth Bronze Shovel
+item.gtclassic.cobalt_shovel.name=Cobalt Shovel
+item.gtclassic.ultimet_shovel.name=Ultimet Shovel
 #axes
 item.gtclassic.flint_axe.name=Flint Axe
 item.gtclassic.bronze_axe.name=Bronze Axe
@@ -795,6 +803,8 @@ item.gtclassic.nichrome_axe.name=Nichrome Axe
 item.gtclassic.osmium_axe.name=Osmium Axe
 item.gtclassic.tantalum_axe.name=Tantalum Axe
 item.gtclassic.bismuthbronze_axe.name=Bismuth Bronze Axe
+item.gtclassic.cobalt_axe.name=Cobalt Axe
+item.gtclassic.ultimet_axe.name=Ultimet Axe
 #pickaxes
 item.gtclassic.flint_pickaxe.name=Flint Pickaxe
 item.gtclassic.bronze_pickaxe.name=Bronze Pickaxe
@@ -820,6 +830,8 @@ item.gtclassic.nichrome_pickaxe.name=Nichrome Pickaxe
 item.gtclassic.osmium_pickaxe.name=Osmium Pickaxe
 item.gtclassic.tantalum_pickaxe.name=Tantalum Pickaxe
 item.gtclassic.bismuthbronze_pickaxe.name=Bismuth Bronze Pickaxe
+item.gtclassic.cobalt_pickaxe.name=Cobalt Pickaxe
+item.gtclassic.ultimet_pickaxe.name=Ultimet Pickaxe
 #drills
 item.gtclassic.bronze_miningdrill.name=Bronze Drill
 item.gtclassic.iron_miningdrill.name=Iron Drill
@@ -843,6 +855,8 @@ item.gtclassic.nickel_miningdrill.name=Nickel Drill
 item.gtclassic.nichrome_miningdrill.name=Nichrome Drill
 item.gtclassic.osmium_miningdrill.name=Osmium Drill
 item.gtclassic.tantalum_miningdrill.name=Tantalum Drill
+item.gtclassic.cobalt_miningdrill.name=Cobalt Drill
+item.gtclassic.ultimet_miningdrill.name=Ultimet Drill
 #chainsaws
 item.gtclassic.bronze_chainsaw.name=Bronze Chainsaw
 item.gtclassic.iron_chainsaw.name=Iron Chainsaw
@@ -866,6 +880,8 @@ item.gtclassic.nickel_chainsaw.name=Nickel Chainsaw
 item.gtclassic.nichrome_chainsaw.name=Nichrome Chainsaw
 item.gtclassic.osmium_chainsaw.name=Osmium Chainsaw
 item.gtclassic.tantalum_chainsaw.name=Tantalum Chainsaw
+item.gtclassic.cobalt_chainsaw.name=Cobalt Chainsaw
+item.gtclassic.ultimet_chainsaw.name=Ultimet Chainsaw
 
 #Bear's special knife
 item.gtclassic.iron_knife.name=Bear989's Magical "Special" Testing Knife
@@ -888,6 +904,10 @@ item.gtclassic.mold_stick.name=Rod Mold
 item.gtclassic.mold_cable.name=Cable Mold
 item.gtclassic.mold_tube.name=Tube Mold
 item.gtclassic.mold_gear.name=Gear Mold
+
+item.gtclassic.steel_grinder.name=Steel Grinder
+item.gtclassic.titanium_grinder.name=Titanium Grinder
+item.gtclassic.tungstensteel_grinder.name=Tungstensteel Grinder
 
 #tools
 item.gtclassic.destructo_pack.name=Destructopack
@@ -948,7 +968,7 @@ tooltip.gtclassic.tesla_staff=O V E R C H A R G E D
 tooltip.gtclassic.machine_bloomery0=Turns Iron into Refined Iron
 tooltip.gtclassic.machine_bloomery1=Use a Flint & Steel to start processing
 tooltip.gtclassic.machine_bloomery2=Structure Requirements:
-tooltip.gtclassic.machine_bloomery3=1 Bloomery Controller,
+tooltip.gtclassic.machine_bloomery3=1 Controller,
 tooltip.gtclassic.machine_bloomery4=1 Iron Trapdoor,
 tooltip.gtclassic.machine_bloomery5=30 Brick Blocks
 
@@ -956,15 +976,20 @@ tooltip.gtclassic.machine_charcoalpit0=Makes charcoal out of any logs
 tooltip.gtclassic.machine_charcoalpit1=Use a Flint & Steel to start processing
 tooltip.gtclassic.machine_charcoalpit2=Structure Requirements:
 tooltip.gtclassic.machine_charcoalpit3=3x3x3 block of logs surrounded by dirt,
-tooltip.gtclassic.machine_charcoalpit4=controller centered on top
+tooltip.gtclassic.machine_charcoalpit4=Controller centered on top
 
 tooltip.gtclassic.machine_blastfurnace_lv0=Smelts at temps too hot for a normal furnace
 tooltip.gtclassic.machine_blastfurnace_lv1=Structure Requirements:
-tooltip.gtclassic.machine_blastfurnace_lv2=1 Blast Furnace Controller,
-tooltip.gtclassic.machine_blastfurnace_lv3=40 GregTech Refined Iron Casings
+tooltip.gtclassic.machine_blastfurnace_lv2=1 Controller,
+tooltip.gtclassic.machine_blastfurnace_lv3=40 GregTech Refined Iron Machine Casings
 
 tooltip.gtclassic.machine_playerdetector_lv0=Detects player activity in a radius
 tooltip.gtclassic.machine_playerdetector_lv1=0eu = 8 blocks, 1eu = 32 blocks
+
+tooltip.gtclassic.machine_industrialprocessor_mv0=Modular hub for processing all the things!
+tooltip.gtclassic.machine_industrialprocessor_mv1=Structure Requirements:
+tooltip.gtclassic.machine_industrialprocessor_mv2=1-4 Controllers centered on each face,
+tooltip.gtclassic.machine_industrialprocessor_mv3=25 Steel Machine Casings
 
 tooltip.gtclassic.machine_industrialelectrolyzer_mv0=*Slaps roof of Electrolyzer*
 tooltip.gtclassic.machine_industrialelectrolyzer_mv1=This bad boy can process so much stuff!

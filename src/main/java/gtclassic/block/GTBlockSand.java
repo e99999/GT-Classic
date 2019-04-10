@@ -60,12 +60,9 @@ public class GTBlockSand extends BlockFalling implements ITexturedBlock, ILocale
 	@Override
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
-
-		// blooms
 		if (this == GTBlocks.charcoalPile) {
 			drops.add(new ItemStack(Items.COAL, 2, 1));
 			drops.add(GTMaterialGen.getDust(GTMaterial.Ashes, 1));
-			drops.add(GTMaterialGen.getSmallDust(GTMaterial.Charcoal, 1));
 		} else {
 			drops.add(GTMaterialGen.get(this));
 		}

@@ -19,6 +19,7 @@ import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiBloomery;
 import gtclassic.tile.GTTileMultiCharcoalPit;
 import gtclassic.tile.GTTileMultiFusionComputer;
+import gtclassic.tile.GTTileMultiIndustrialProcessor;
 import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
@@ -117,6 +118,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.industrialCentrifuge) {
 			return new GTTileIndustrialCentrifuge();
+		}
+		if (this == GTBlocks.industrialProcessor) {
+			return new GTTileMultiIndustrialProcessor();
 		}
 		if (this == GTBlocks.industrialElectrolyzer) {
 			return new GTTileIndustrialElectrolyzer();

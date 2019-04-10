@@ -16,6 +16,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -51,7 +52,7 @@ public class GTBlockOreSand extends BlockFalling implements ITexturedBlock, ILoc
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		// TODO add tooltips
+		tooltip.add(I18n.format("Spawns Between Y Level " + ore.getMinY() + " - " + ore.getMaxY()));
 	}
 
 	@Override

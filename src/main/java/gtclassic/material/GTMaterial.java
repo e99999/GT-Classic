@@ -25,6 +25,7 @@ public class GTMaterial {
 	static GTMaterialFlag[] DUST_ALL = { SMALLDUST, DUST };
 	static GTMaterialFlag[] GEM_ALL = { SMALLDUST, DUST, GEM, BLOCK };
 	static GTMaterialFlag[] METAL_ALL = { SMALLDUST, DUST, NUGGET, INGOT, PLATE, STICK, GEAR, BLOCK, CASING };
+	static GTMaterialFlag[] METAL_BASE = { SMALLDUST, DUST, NUGGET, INGOT, PLATE, STICK };
 	static GTMaterialFlag[] METAL_IC2 = { SMALLDUST, NUGGET, PLATE, STICK, GEAR, CASING };
 	static GTMaterialFlag[] METAL_MC = { SMALLDUST, PLATE, STICK, GEAR, CASING };
 
@@ -64,8 +65,9 @@ public class GTMaterial {
 	public static GTMaterial Cinnabar = new GTMaterial("Cinnabar", 3.0F, 0, 2, new Color(150, 0, 0), false, DUST_ALL);
 	public static GTMaterial Clay = new GTMaterial("Clay", 1.0F, 0, 1, new Color(200, 200, 220), false, SMALLDUST);
 	public static GTMaterial Coal = new GTMaterial("Coal", 3.0F, 0, 1, new Color(70, 70, 70), false, SMALLDUST);
+	public static GTMaterial Cobalt = new GTMaterial("Cobalt", 8.0F, 512, 4, new Color(80, 80, 250), true, METAL_BASE);
 	public static GTMaterial Constantan = new GTMaterial("Constantan", 8.0F, 128, 2, new Color(196, 116, 77), true,
-			SMALLDUST, DUST, NUGGET, INGOT, PLATE, STICK);
+			METAL_BASE);
 	public static GTMaterial Copper = new GTMaterial("Copper", 1.0F, 0, 1, new Color(180, 113, 61), true, METAL_IC2);
 	public static GTMaterial Cryolite = new GTMaterial("Cryolite", 3.0F, 0, 1, Color.white, false, FLUID, SMALLDUST,
 			DUST);
@@ -104,8 +106,8 @@ public class GTMaterial {
 	public static GTMaterial Hydrochloricacid = new GTMaterial("Hydrochloricacid", 1.0F, 0, 1, new Color(127, 255, 142),
 			false, FLUID);
 	public static GTMaterial Hydrogen = new GTMaterial("Hydrogen", 1.0F, 0, 1, Color.blue, false, FLUID);
-	public static GTMaterial Iridium = new GTMaterial("Iridium", 6.0F, 5120, 4, new Color(255, 255, 255), false, NUGGET,
-			INGOT, GEAR, STICK, CASING, BLOCK);
+	public static GTMaterial Iridium = new GTMaterial("Iridium", 6.0F, 5120, 4, new Color(255, 255, 255), false,
+			SMALLDUST, DUST, NUGGET, INGOT, GEAR, STICK, CASING, BLOCK);
 	public static GTMaterial Iron = new GTMaterial("Iron", 6.0F, 256, 2, new Color(184, 184, 184), true, SMALLDUST,
 			PLATE, STICK, CASING);
 	public static GTMaterial Invar = new GTMaterial("Invar", 6.0F, 256, 2, new Color(180, 180, 120), true, METAL_ALL);
@@ -128,7 +130,7 @@ public class GTMaterial {
 	public static GTMaterial Molybdenite = new GTMaterial("Molybdenite", 5.0F, 0, 3, new Color(35, 20, 15), false,
 			DUST_ALL);
 	public static GTMaterial Molybdenum = new GTMaterial("Molybdenum", 1.0F, 0, 1, new Color(180, 180, 220), false,
-			DUST_ALL);
+			METAL_BASE);
 	public static GTMaterial Netherrack = new GTMaterial("Netherrack", 1.0F, 0, 1, new Color(200, 0, 0), false,
 			SMALLDUST);
 	public static GTMaterial Nichrome = new GTMaterial("Nichrome", 10.0F, 256, 3, new Color(88, 133, 188), false,
@@ -210,6 +212,8 @@ public class GTMaterial {
 			METAL_ALL);
 	public static GTMaterial TungstenSteel = new GTMaterial("Tungstensteel", 10.0F, 5120, 4, new Color(100, 100, 160),
 			false, METAL_ALL);
+	public static GTMaterial Ultimet = new GTMaterial("Ultimet", 9.0F, 2048, 4, new Color(180, 180, 230), false,
+			METAL_ALL);
 	public static GTMaterial Uranium = new GTMaterial("Uranium", 6.0F, 512, 3, new Color(50, 240, 50), false, DUST_ALL);
 	public static GTMaterial Uvarovite = new GTMaterial("Uvarovite", 1.0F, 0, 1, new Color(180, 255, 180), false,
 			DUST_ALL);

@@ -20,6 +20,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -63,7 +64,7 @@ public class GTBlockOreStone extends Block implements ITexturedBlock, ILocaleBlo
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		//
+		tooltip.add(I18n.format("Spawns Between Y Level " + ore.getMinY() + " - " + ore.getMaxY()));
 	}
 
 	@Override
