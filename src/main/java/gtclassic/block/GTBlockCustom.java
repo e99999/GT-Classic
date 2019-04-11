@@ -16,6 +16,7 @@ import ic2.core.platform.textures.obj.IBlockTextureModifier;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -185,6 +186,11 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 			drops.add(GTMaterialGen.get(this));
 			return drops;
 		}
+	}
+
+	@Override
+	public EnumPushReaction getMobilityFlag(IBlockState state) {
+		return EnumPushReaction.DESTROY;
 	}
 
 }

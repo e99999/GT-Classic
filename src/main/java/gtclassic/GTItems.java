@@ -29,6 +29,7 @@ public class GTItems {
 
 	public static final GTItemMagnifyingGlass magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 
+	public static final GTItemComponent woodPlate = createItem(new GTItemComponent("wood_plate", 10, 0, false));
 	public static final GTItemComponent resinPCB = createItem(new GTItemComponent("resin_pcb", 11, 0, false));
 	public static final GTItemComponent plasticPCB = createItem(new GTItemComponent("plastic_pcb", 12, 0, false));
 	public static final GTItemComponent germaniumSubstrate = createItem(

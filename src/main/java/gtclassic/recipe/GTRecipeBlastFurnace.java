@@ -26,33 +26,40 @@ public class GTRecipeBlastFurnace {
 
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("ingotIron", 1) }, euCost(12, 2000),
 				GT.getIc2(Ic2Items.refinedIronIngot, 1));
-
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustIron", 1) }, euCost(12, 2000),
 				GT.getIc2(Ic2Items.refinedIronIngot, 1));
 
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("ingotIron", 1), input("dustCoal", 2) }, euCost(18, 12000),
-				GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
-
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1), input("dustCoal", 2) },
-				euCost(18, 12000), GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
-
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("oreIron", 1), input("dustCalcite", 1) }, euCost(12, 8000),
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("oreIron", 1), input("dustCalcite", 1) }, euCost(12, 4000),
 				GT.getIc2(Ic2Items.refinedIronIngot, 3), GT.getSmallDust(M.Slag, 2));
 
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustPyrite", 1), input("dustCalcite", 1) }, euCost(12, 8000),
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustPyrite", 1), input("dustCalcite", 1) }, euCost(12, 4000),
 				GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 1));
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("orePyrite", 1), input("dustCalcite", 1) }, euCost(12, 8000),
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("orePyrite", 1), input("dustCalcite", 1) }, euCost(12, 4000),
 				GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 2));
 
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustMagnetite", 1), input("dustCalcite", 1) },
-				euCost(12, 8000), GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 1));
+				euCost(12, 4000), GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 1));
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("oreMagnetite", 1), input("dustCalcite", 1) },
-				euCost(12, 8000), GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 2));
+				euCost(12, 4000), GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 2));
 
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustLimonite", 1), input("dustCalcite", 1) },
-				euCost(12, 8000), GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 1));
+				euCost(12, 4000), GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 1));
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("oreLimonite", 1), input("dustCalcite", 1) },
-				euCost(12, 8000), GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 2));
+				euCost(12, 4000), GT.getIc2(Ic2Items.refinedIronIngot, 2), GT.getSmallDust(M.Slag, 2));
+
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("ingotIron", 1), input("dustCoal", 2) }, euCost(18, 8000),
+				GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustIron", 1), input("dustCoal", 2) }, euCost(18, 8000),
+				GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1), input("dustCoal", 2) },
+				euCost(18, 8000), GT.getIngot(M.Steel, 1), GT.getDust(M.DarkAshes, 2));
+
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("ingotIron", 1), input("dustCarbon", 1) }, euCost(18, 8000),
+				GT.getIngot(M.Steel, 1));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustIron", 1), input("dustCarbon", 1) }, euCost(18, 8000),
+				GT.getIngot(M.Steel, 1));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1), input("dustCarbon", 1) },
+				euCost(18, 8000), GT.getIngot(M.Steel, 1));
 
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustTantalum", 1) }, euCost(20, 50000),
 				GT.getIngot(M.Tantalum, 1));

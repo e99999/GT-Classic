@@ -75,6 +75,8 @@ public class GTMaterial {
 			DUST_ALL);
 	public static GTMaterial Diamond = new GTMaterial("Diamond", 8.0F, 1280, 3, new Color(51, 235, 203), false,
 			DUST_ALL);
+	public static GTMaterial DirtyResin = new GTMaterial("DirtyResin", 1.0F, 0, 1, new Color(170, 124, 49), false,
+			DUST_ALL);
 	public static GTMaterial Deuterium = new GTMaterial("Deuterium", 1.0F, 0, 1, Color.yellow, false, FLUID);
 	public static GTMaterial Electrum = new GTMaterial("Electrum", 12.0F, 64, 2, new Color(255, 255, 100), true,
 			METAL_ALL);
@@ -163,6 +165,7 @@ public class GTMaterial {
 	public static GTMaterial Redstone = new GTMaterial("Redstone", 1.0F, 0, 1, new Color(200, 0, 0), false, SMALLDUST);
 	public static GTMaterial RefinedIron = new GTMaterial("RefinedIron", 6.0F, 384, 2, new Color(220, 235, 235), true,
 			STICK, PLATE, CASING);
+	public static GTMaterial Resin = new GTMaterial("Resin", 1.0F, 0, 1, new Color(233, 194, 70), false, DUST_ALL);
 	public static GTMaterial Ruby = new GTMaterial("Ruby", 7.0F, 256, 2, new Color(255, 100, 100), false, GEM_ALL);
 	public static GTMaterial Rutile = new GTMaterial("Rutile", 1.0F, 0, 1, new Color(212, 13, 92), false, DUST_ALL);
 	public static GTMaterial Salt = new GTMaterial("Salt", 4.0F, 0, 1, new Color(160, 190, 200), false, DUST_ALL);

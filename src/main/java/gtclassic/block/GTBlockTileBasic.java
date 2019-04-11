@@ -12,6 +12,7 @@ import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
 import gtclassic.tile.GTTileElectricSmelter;
+import gtclassic.tile.GTTileHeatingElement;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.tile.GTTileIndustrialElectrolyzer;
 import gtclassic.tile.GTTileMultiArcFurnace;
@@ -34,12 +35,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
@@ -106,6 +110,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.computerCube) {
 			return new GTTileComputerCube();
+		}
+		if (this.equals(GTBlocks.heatingElement)) {
+			return new GTTileHeatingElement();
 		}
 		if (this == GTBlocks.bloomery) {
 			return new GTTileMultiBloomery();
@@ -215,6 +222,19 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	@Override
 	public List<IBlockState> getValidStates() {
 		return getBlockState().getValidStates();
+	}
+
+	@Override
+	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileHeatingElement && ((GTTileHeatingElement) tile).isActive) {
+			if (!entityIn.isImmuneToFire() && entityIn instanceof EntityLivingBase
+					&& !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entityIn)) {
+				entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
+			}
+		}
+
+		super.onEntityWalk(worldIn, pos, entityIn);
 	}
 
 	@Override

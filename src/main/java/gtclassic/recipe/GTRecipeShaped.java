@@ -149,6 +149,9 @@ public class GTRecipeShaped {
 		/*
 		 * Recipes for tiles and machines
 		 */
+		
+		recipes.addRecipe(GT.get(GTBlocks.heatingElement), new Object[] { "XHX", "XPX", "XXX", 'X', "plateCopper", 'P',
+				"plateRefinedIron", 'H', hammer, 'F', Items.FLINT });
 
 		recipes.addRecipe(GT.get(GTBlocks.bloomery),
 				new Object[] { "XXX", "XFX", "XXX", 'X', "plateBronze", 'F', Blocks.FURNACE });
@@ -167,7 +170,7 @@ public class GTRecipeShaped {
 						Ic2Items.doubleInsulatedGoldCable, 'C', "casingMachineStainlessSteel" });
 
 		recipes.addRecipe(GT.get(GTBlocks.industrialProcessor, 1), new Object[] { "PCP", "GMG", "PCP", 'P',
-				"plateSteel", 'C', "circuitAdvanced", 'G', "gearSteel", 'M', Ic2Items.rotaryMacerator });
+				"plateSteel", 'C', "circuitAdvanced", 'G', "gearSteel", 'M', Ic2Items.advMachine });
 
 		// recipes.addRecipe(GT.get(GTBlocks.fusionComputer, 1),
 		// new Object[] { "EPE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S',

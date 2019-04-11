@@ -4,15 +4,16 @@ import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.block.machine.low.TileEntityCompressor;
+import ic2.core.block.machine.low.TileEntityMacerator;
+import ic2.core.block.machine.low.TileEntitySawMill;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
-import net.minecraft.init.Items;
 
 public class GTRecipeCircuitry {
 
@@ -30,9 +31,14 @@ public class GTRecipeCircuitry {
 		 * For now they allow testing and progression to happen.
 		 */
 
-		recipes.addShapelessRecipe(GT.get(GTBlocks.resinBottle),
-				new Object[] { Items.GLASS_BOTTLE, GT.getIc2(Ic2Items.stickyResin, 1), GTValues.water });
+		TileEntitySawMill.addRecipe(GT.get(GTBlocks.resinBoard), GT.get(GTItems.resinPCB), 0.0F);
+		TileEntityCompressor.addRecipe("dustWood", 1, GT.get(GTItems.woodPlate));
+		TileEntityMacerator.addRecipe(GT.getIc2(Ic2Items.stickyResin, 1), GT.getDust(M.DirtyResin, 2));
+		TileEntityMacerator.addRecipe("plankWood", 1, GT.getDust(M.Wood, 2));
+		TileEntityMacerator.addRecipe("logWood", 1, GT.getDust(M.Wood, 8));
 
+		recipes.addShapelessRecipe(GT.getDust(M.DirtyResin, 1),
+				new Object[] { GTItems.ironKnife, GT.getIc2(Ic2Items.stickyResin, 1) });
 		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB), new Object[] { GTItems.ironKnife, GTBlocks.resinBoard });
 
 		recipes.addShapelessRecipe(GT.get(GTItems.germaniumSubstrate, 4),

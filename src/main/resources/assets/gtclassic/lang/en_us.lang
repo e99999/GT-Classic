@@ -185,6 +185,7 @@ tile.gtclassic.magnetite_sand.name=Black Sand
 tile.gtclassic.basalt_sand.name=Basalt Mineral Sand
 
 #blocks
+tile.gtclassic.resin_block.name=Uncut Sticky Resin Board
 tile.gtclassic.bloom_block.name=Refined Iron Bloom
 tile.gtclassic.slag_sand.name=Slag Sand
 tile.gtclassic.slagcrete_sand.name=Reinforced Concrete
@@ -207,6 +208,7 @@ tile.gtclassic.graphitecoil_casing.name=Graphite Coil
 tile.gtclassic.nichromecoil_casing.name=Nichrome Coil
 
 #tiles
+tile.gtclassic.machine_heatingelement.name=Heating Element
 tile.gtclassic.machine_bloomery.name=Bloomery Controller
 tile.gtclassic.machine_charcoalpit.name=Charcoal Pit Controller
 tile.gtclassic.machine_blastfurnace_lv.name=Blast Furnace Controller (LV)
@@ -229,9 +231,6 @@ tile.gtclassic.machine_digitaltransformer_luv.name=Digital Transformer (ZPM to L
 tile.gtclassic.tile_digitalchest.name=Digital Chest
 tile.gtclassic.cable_energium_luv.name=Energium Superconductor Cable (LuV)
 tile.gtclassic.cable_lapotron_zpm.name=Lapotronic Superconductor Cable (ZPM)
-tile.gtclassic.block_resinbottle.name=Liquid Sticky Resin
-tile.gtclassic.block_resinchunk.name=Drop of Liquid Sticky Resin
-tile.gtclassic.block_resinboard.name=Uncut Sticky Resin Board
 tile.gtclassic.block_mortar.name=Mortar
 tile.gtclassic.block_echophone.name=Echophone
 tile.gtclassic.block_ducttape.name=Braintech Aerospace Advanced Reinforced Duct Tape FAL-84
@@ -304,7 +303,7 @@ item.gtclassic.pyrite_dustsmall.name=Small Pyrite Dust
 item.gtclassic.platinum_dustsmall.name=Small Platinum Dust
 item.gtclassic.tin_dustsmall.name=Small Tin Dust
 item.gtclassic.endstone_dustsmall.name=Small Endstone Dust
-item.gtclassic.wood_dustsmall.name=Small Wood Dust
+item.gtclassic.wood_dustsmall.name=Small Sawdust
 item.gtclassic.obsidian_dustsmall.name=Small Obsidian Dust
 item.gtclassic.chrome_dustsmall.name=Small Chrome Dust
 item.gtclassic.brass_dustsmall.name=Small Brass Dust
@@ -365,6 +364,8 @@ item.gtclassic.molybdenite_dustsmall.name=Small Molybdenite Dust
 item.gtclassic.cobalt_dustsmall.name=Small Cobalt Dust
 item.gtclassic.ultimet_dustsmall.name=Small Ultimet Dust
 item.gtclassic.iridium_dustsmall.name=Small Iridium Dust
+item.gtclassic.resin_dustsmall.name=Small Resin Dust
+item.gtclassic.dirtyresin_dustsmall.name=Small Dirty Resin Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -402,7 +403,7 @@ item.gtclassic.graphite_dust.name=Graphite Dust
 item.gtclassic.pyrite_dust.name=Pyrite Dust
 item.gtclassic.platinum_dust.name=Platinum Dust
 item.gtclassic.endstone_dust.name=Endstone Dust
-item.gtclassic.wood_dust.name=Wood Dust
+item.gtclassic.wood_dust.name=Sawdust
 item.gtclassic.chrome_dust.name=Chrome Dust
 item.gtclassic.brass_dust.name=Brass Dust
 item.gtclassic.plutonium_dust.name=Plutonium Dust
@@ -459,6 +460,8 @@ item.gtclassic.molybdenum_dust.name=Molybdenum Dust
 item.gtclassic.pyrolusite_dust.name=Pyrolusite Dust
 item.gtclassic.salt_dust.name=Salt Dust
 item.gtclassic.molybdenite_dust.name=Molybdenite Dust
+item.gtclassic.resin_dust.name=Resin Dust
+item.gtclassic.dirtyresin_dust.name=Dirty Resin Dust
 
 #gems
 item.gtclassic.sapphire_gem.name=Sapphire
@@ -889,6 +892,7 @@ item.gtclassic.iron_knife.name=Bear989's Magical "Special" Testing Knife
 #components
 item.gtclassic.test_tube.name=Glass Tube
 item.gtclassic.magnifying_glass.name=Magnifying Glass
+item.gtclassic.wood_plate.name=Wood Board
 item.gtclassic.resin_pcb.name=Resin PCB
 item.gtclassic.plastic_pcb.name=Plastic PCB
 item.gtclassic.germanium_substrate.name=Germanium Substrate
@@ -944,6 +948,7 @@ fluid.silicon=Silicon
 fluid.hydrochloricacid=Hydrochloric Acid
 
 #block tooltips
+tooltip.gtclassic.machine_heatingelement0=Melts things when a heat source is below
 tooltip.gtclassic.machine_chargeomat_ev0=Charges lots of things
 tooltip.gtclassic.machine_computercube_ev0=Does computerThings();
 tooltip.gtclassic.machine_industrialcentrifuge_lv0=Separates contents by spinning them at high speeds

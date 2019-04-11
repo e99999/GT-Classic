@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBloomery;
 import gtclassic.gui.GTGuiMachine.GTBloomeryGui;
@@ -28,14 +27,12 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
@@ -47,14 +44,6 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	IBlockState fire = Blocks.FIRE.getDefaultState();
 
 	AxisAlignedBB recipeBB = null;
-
-	ItemStack ironore = new ItemStack(Blocks.IRON_ORE);
-	ItemStack coalblock = new ItemStack(Blocks.COAL_BLOCK);
-	ItemStack charcoalblock = GTMaterialGen.getIc2(Ic2Items.charcoalBlock, 1);
-	ItemStack iron = new ItemStack(Items.IRON_INGOT, 3);
-	ItemStack coal = new ItemStack(Items.COAL, 9);
-	ItemStack charcoal = new ItemStack(Items.COAL, 9, 1);
-	IBlockState bloom = GTBlocks.bloomBlock.getDefaultState();
 
 	public static final BloomeryRecipeList RECIPE_LIST = new BloomeryRecipeList();
 

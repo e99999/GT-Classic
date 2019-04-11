@@ -160,6 +160,9 @@ public class GTRecipeCentrifuge {
 				new OutputItem(GT.getDust(M.Basalt, 11), 0),
 				// add red and yellow garnets to get different garnet types
 				new OutputItem(GT.getDust(M.Zirconium, 1), 1));
+
+		GTTileIndustrialCentrifuge.addRecipe("dustDirtyResin", 4, 0, euCost(8000),
+				new OutputItem(GT.getDust(M.Resin, 3), 0), new OutputItem(GT.getDust(M.Wood, 1), 1));
 	}
 
 	public static void recipesCentrifuge2() {

@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.tile.GTTileResinBoard;
-import gtclassic.tile.GTTileResinChunk;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IBlockTextureModifier;
@@ -15,7 +12,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -49,9 +45,7 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (this.equals(GTBlocks.resinChunk) || this.equals(GTBlocks.resinBoard)) {
-			tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
-		}
+
 	}
 
 	public float getHeight() {
@@ -94,12 +88,6 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
-		if (this == GTBlocks.resinChunk) {
-			return new GTTileResinChunk();
-		}
-		if (this == GTBlocks.resinBoard) {
-			return new GTTileResinBoard();
-		}
 		return new TileEntityBlock();
 	}
 

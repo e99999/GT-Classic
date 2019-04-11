@@ -5,6 +5,7 @@ import java.util.List;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -51,12 +52,14 @@ public class GTBlockMortar extends GTBlockTileCustom {
 		addDrops(w, p, e, h, new ItemStack(Items.COAL, 1, 1), GT.getSmallDust(M.Charcoal, 4));
 		addDrops(w, p, e, h, GT.get(Items.CLAY_BALL), GT.getSmallDust(M.Clay, 1));
 		addDrops(w, p, e, h, GT.get(Blocks.CLAY), GT.getSmallDust(M.Clay, 4));
+		addDrops(w, p, e, h, GT.getIc2(Ic2Items.stickyResin, 1), GT.getSmallDust(M.DirtyResin, 6));
 
 		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.hasFlag(GTMaterialFlag.SMALLDUST)) {
 
 				// Ores to dust
 				addDrops(w, p, e, h, "ore" + mat.getDisplayName(), GT.getSmallDust(mat, 6));
+				addDrops(w, p, e, h, "crushedPurified" + mat.getDisplayName(), GT.getSmallDust(mat, 5));
 
 				// Ingots to small dusts
 				if (mat.getSmeltable()) {
