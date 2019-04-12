@@ -149,7 +149,7 @@ public class GTRecipeShaped {
 		/*
 		 * Recipes for tiles and machines
 		 */
-		
+
 		recipes.addRecipe(GT.get(GTBlocks.heatingElement), new Object[] { "XHX", "XPX", "XXX", 'X', "plateCopper", 'P',
 				"plateRefinedIron", 'H', hammer, 'F', Items.FLINT });
 
@@ -164,6 +164,9 @@ public class GTRecipeShaped {
 
 		recipes.addRecipe(GT.get(GTBlocks.blastFurnace, 1), new Object[] { "PCP", "PFP", "PCP", 'P', "plateRefinedIron",
 				'B', Ic2Items.battery.copy(), 'F', Ic2Items.ironFurnace.copy(), 'C', GTBlocks.copperCoilBlock });
+
+		recipes.addRecipe(GT.get(GTBlocks.blastFurnace, 1), new Object[] { "PCP", "PFP", "PCP", 'P', "plateRefinedIron",
+				'B', Ic2Items.battery.copy(), 'F', GTBlocks.bloomery, 'C', GTBlocks.copperCoilBlock });
 
 		recipes.addRecipe(GT.get(GTBlocks.industrialElectrolyzer, 1),
 				new Object[] { "WEW", "RCR", 'W', Ic2Items.goldCable.copy(), 'E', Ic2Items.electrolyzer.copy(), 'R',

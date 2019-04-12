@@ -27,6 +27,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -129,6 +130,11 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
+	}
+
+	@Override
+	public ResourceLocation getStartSoundFile() {
+		return Ic2Sounds.electricFurnaceLoop;
 	}
 
 	public static void addRecipe(String input1, int amount1, ItemStack input2, ItemStack output) {

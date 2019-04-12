@@ -66,4 +66,9 @@ public class GTTileHeatingElement extends TileEntityMachine implements ITickable
 		world.setBlockState(pos.asBlockPos(), GTBlocks.resinBoard.getDefaultState());
 	}
 
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return true;
+	}
+
 }

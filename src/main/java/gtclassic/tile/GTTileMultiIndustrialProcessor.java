@@ -53,7 +53,7 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 			"textures/gui/industrialprocessor.png");
 
 	public GTTileMultiIndustrialProcessor() {
-		super(7, 0, 128);
+		super(7, 0, 96, 128);
 		maxEnergy = 10000;
 	}
 
@@ -141,13 +141,13 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 
 	public static void addMagnetRecipe(String input, int amount, ItemStack... outputs) {
 		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
-				new RecipeInputItemStack(new ItemStack(GTItems.electroMagnet)) }, euCost(64, 32000), outputs);
+				new RecipeInputItemStack(new ItemStack(GTItems.electroMagnet)) }, euCost(32000), outputs);
 	}
 
 	private static void addBucketRecipe(String input, int amount, ItemStack... outputs) {
 		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
 				new RecipeInputItemStack(new ItemStack(Items.WATER_BUCKET)),
-				new RecipeInputOreDict("craftingToolGrinder", 1) }, euCost(128, 32000), outputs);
+				new RecipeInputOreDict("craftingToolGrinder", 1) }, euCost(32000), outputs);
 	}
 
 	private static void addCellRecipe(String input, int amount, ItemStack... outputs) {
@@ -161,7 +161,7 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 
 		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
 				new RecipeInputItemStack(GTMaterialGen.getIc2(Ic2Items.waterCell, 1)),
-				new RecipeInputOreDict("craftingToolGrinder", 1) }, euCost(128, 32000), arr);
+				new RecipeInputOreDict("craftingToolGrinder", 1) }, euCost(32000), arr);
 	}
 
 	private static void addTubeRecipe(String input, int amount, ItemStack... outputs) {
@@ -175,7 +175,7 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 
 		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
 				new RecipeInputItemStack(GTMaterialGen.getModFluid("water", 1)),
-				new RecipeInputOreDict("craftingToolGrinder", 1) }, euCost(128, 32000), arr);
+				new RecipeInputOreDict("craftingToolGrinder", 1) }, euCost(32000), arr);
 	}
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
@@ -207,14 +207,8 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 		return new RecipeInputOreDict(name, amount);
 	}
 
-	public static IRecipeModifier[] euCost(int eu, int amount) {
-		int i = eu - 8;
-		if (i == 0) {
-			i = 1;
-		} // i have machines default to 8, this ensures your input is what you think it is
-		return new IRecipeModifier[] { ModifierType.RECIPE_ENERGY.create(i),
-				ModifierType.RECIPE_LENGTH.create((amount / i) - 100)// same for this 100
-		};
+	public static IRecipeModifier[] euCost(int total) {
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 96) - 100) };
 	}
 
 	@Override

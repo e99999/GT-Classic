@@ -51,7 +51,7 @@ public class GTTileMultiArcFurnace extends GTTileBaseMultiBlockMachine {
 			"textures/gui/arcfurnace.png");
 
 	public GTTileMultiArcFurnace() {
-		super(6, 0, 512);
+		super(6, 0, 256, 512);
 		maxEnergy = 10000;
 	}
 

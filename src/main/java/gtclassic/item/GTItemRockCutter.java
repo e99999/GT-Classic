@@ -68,13 +68,13 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
-		return 1.0F;
+		return 1.5F;
 	}
 
 	@Override
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {
 		if (canMine(stack)) {
-			return 1.0F;
+			return 1.5F;
 		} else {
 			return 0.0F;
 		}

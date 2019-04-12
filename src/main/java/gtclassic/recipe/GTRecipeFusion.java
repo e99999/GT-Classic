@@ -24,11 +24,10 @@ public class GTRecipeFusion {
 		 * Just a few test fusion recipes
 		 */
 		Fusion.addRecipe(new IRecipeInput[] { input("dustTungsten", 1), input(GT.getFluid(M.Lithium, 1)) },
-				euCost(32764, 16775168), GT.getIc2(Ic2Items.iridiumOre, 1));
+				euCost(16775168), GT.getIc2(Ic2Items.iridiumOre, 1));
 
 		Fusion.addRecipe(new IRecipeInput[] { input("dustTungsten", 1), input(GT.getFluid(M.Beryllium, 1)) },
-				euCost(32764, 16775168), GT.getDust(M.Platinum, 1));
-
+				euCost(16775168), GT.getDust(M.Platinum, 1));
 	}
 
 	public static IRecipeInput input(ItemStack stack) {
@@ -43,14 +42,8 @@ public class GTRecipeFusion {
 		return new RecipeInputItemStack(GT.get(GTItems.testTube, amount));
 	}
 
-	public static IRecipeModifier[] euCost(int eu, int amount) {
-		int i = eu - 8;
-		if (i == 0) {
-			i = 1;
-		} // i have machines default to 8, this ensures your input is what you think it is
-		return new IRecipeModifier[] { ModifierType.RECIPE_ENERGY.create(i),
-				ModifierType.RECIPE_LENGTH.create((amount / i) - 100)// same for this 100
-		};
+	public static IRecipeModifier[] euCost(int total) {
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 8196) - 100) };
 	}
 
 }

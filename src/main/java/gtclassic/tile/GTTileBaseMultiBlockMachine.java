@@ -5,11 +5,8 @@ public abstract class GTTileBaseMultiBlockMachine extends GTTileBaseMultiInputMa
 	public boolean lastState;
 	public boolean firstCheck = true;
 
-	public GTTileBaseMultiBlockMachine(int slots, int upgrades, int maxinput) {
-		super(slots, upgrades, 8, 100, maxinput);
-		// this is where the default time and length are set, to be set via recipe
-		// modifer
-		// after refactoring this will be moved to base multi input machine
+	public GTTileBaseMultiBlockMachine(int slots, int upgrades, int defaultinput, int maxinput) {
+		super(slots, upgrades, defaultinput, 100, maxinput);
 	}
 
 	@Override

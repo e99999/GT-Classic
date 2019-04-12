@@ -12,7 +12,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
-public class GTRecipeCentrifuge {
+public class GTRecipeIndustrialCentrifuge {
 
 	static GTMaterialGen GT;
 	static GTMaterial M;
@@ -24,7 +24,7 @@ public class GTRecipeCentrifuge {
 		 * Back to normal recipes
 		 */
 		GTTileIndustrialCentrifuge.addRecipe("logRubber", 16, 4, euCost(25000),
-				new OutputItem(GT.getDust(M.Carbon, 8), 0), new OutputItem(GT.getIc2(Ic2Items.stickyResin, 8), 1),
+				new OutputItem(GT.getDust(M.Wood, 8), 0), new OutputItem(GT.getIc2(Ic2Items.stickyResin, 8), 1),
 				new OutputItem(GT.getIc2(Ic2Items.plantBall, 6), 2), new OutputItem(GT.getFluid(M.Methane, 4), 3));
 
 		GTTileIndustrialCentrifuge.addRecipe(GT.getFluid(M.Hydrogen, 4), 0, euCost(6000),

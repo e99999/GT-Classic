@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import gtclassic.util.recipe.GTMultiInputRecipeList.MultiRecipe;
+import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.MachineOutput;
@@ -14,6 +15,8 @@ import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.energy.EnergyNet;
 import ic2.api.network.INetworkTileEntityEventListener;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.IC2;
+import ic2.core.audio.AudioSource;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.util.info.EnergyUsageInfo;
@@ -25,6 +28,7 @@ import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IOutputMachine;
 import net.minecraft.client.gui.GuiScreen;
@@ -32,6 +36,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -71,6 +76,8 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	public MultiRecipe lastRecipe;
 	public final boolean supportsUpgrades;
 	public final int upgradeSlots;
+
+	public AudioSource audioSource;
 
 	LinkedList<IStackOutput> outputs = new LinkedList<IStackOutput>();
 
@@ -482,8 +489,49 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		return !isInvalid();
 	}
 
-	@Override
+	public void onUnloaded() {
+		if (this.isRendering() && this.audioSource != null) {
+			IC2.audioManager.removeSources(this);
+			this.audioSource.remove();
+			this.audioSource = null;
+		}
+
+		super.onUnloaded();
+	}
+
+	public ResourceLocation getStartSoundFile() {
+		return Ic2Sounds.electricFurnaceLoop;
+	}
+
+	public ResourceLocation getInterruptSoundFile() {
+		return Ic2Sounds.interruptingSound;
+	}
+
 	public void onNetworkEvent(int event) {
+		if (this.audioSource != null && this.audioSource.isRemoved()) {
+			this.audioSource = null;
+		}
+
+		if (this.audioSource == null && this.getStartSoundFile() != null) {
+			this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getStartSoundFile(), true,
+					false, IC2.audioManager.defaultVolume * this.soundLevel);
+		}
+
+		if (event == 0) {
+			if (this.audioSource != null) {
+				this.audioSource.play();
+			}
+		} else if (event == 1) {
+			if (this.audioSource != null) {
+				this.audioSource.stop();
+				if (this.getInterruptSoundFile() != null) {
+					IC2.audioManager.playOnce(this, PositionSpec.Center, this.getInterruptSoundFile(), false,
+							IC2.audioManager.defaultVolume * this.soundLevel);
+				}
+			}
+		} else if (event == 2 && this.audioSource != null) {
+			this.audioSource.stop();
+		}
 
 	}
 

@@ -68,6 +68,8 @@ public class GTRecipeCircuitry {
 		recipes.overrideRecipe("shaped_Energy Crystal", GT.getIc2(Ic2Items.energyCrystal, 1), "F ", " C", 'F',
 				"craftingToolFile", 'C', GTBlocks.tinyEnergium);
 
+		TileEntitySawMill.addRecipe(GT.get(GTBlocks.tinyEnergium), GT.getIc2(Ic2Items.energyCrystal, 1), 0.1F);
+
 		IRecipeInput lowCrystal = new RecipeInputCombined(1,
 				new IRecipeInput[] { new RecipeInputOreDict("gemDiamond"), new RecipeInputOreDict("gemRuby") });
 
@@ -82,6 +84,8 @@ public class GTRecipeCircuitry {
 
 		recipes.overrideRecipe("shaped_Lapotron Crystal", GT.getIc2(Ic2Items.lapotronCrystal, 1), "F ", " C", 'F',
 				"craftingToolFile", 'C', GTBlocks.tinyLapotron);
+
+		TileEntitySawMill.addRecipe(GT.get(GTBlocks.tinyLapotron), GT.getIc2(Ic2Items.lapotronCrystal, 1), 0.1F);
 
 		recipes.addRecipe(GT.get(GTBlocks.tinyLapotron),
 				new Object[] { "LCL", "LDL", "LCL", 'D', highCrystal, 'C', "circuitBasic", 'L', lapis });

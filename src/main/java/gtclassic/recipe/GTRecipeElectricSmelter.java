@@ -11,7 +11,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class GTRecipeSmelter {
+public class GTRecipeElectricSmelter {
 
 	static GTMaterialGen GT;
 	static GTMaterial M;
@@ -30,6 +30,8 @@ public class GTRecipeSmelter {
 
 		GTTileElectricSmelter.addRecipe("sand", 5, GT.get(GTItems.moldTube), GT.get(GTItems.testTube, 32));
 		GTTileElectricSmelter.addRecipe("blockGlass", 5, GT.get(GTItems.moldTube), GT.get(GTItems.testTube, 32));
+
+		GTTileElectricSmelter.addRecipe("dustResin", 1, GT.get(GTItems.woodPlate), GT.get(GTBlocks.resinBoard, 1));
 
 		GTTileElectricSmelter.addRecipe("dustPlastic", 9, GT.get(GTItems.moldBlock),
 				GT.get(GTBlocks.plastic1CasingBlock, 1));

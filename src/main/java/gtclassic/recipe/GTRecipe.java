@@ -13,13 +13,13 @@ public class GTRecipe {
 	public static void init() {
 		GTOreRegistry.oreDirectSmelting();
 		GTRecipeBlastFurnace.recipesBlastFurnace();
-		GTRecipeSmelter.recipesElectricSmelter1();
-		GTRecipeSmelter.recipesElectricSmelter2();
+		GTRecipeElectricSmelter.recipesElectricSmelter1();
+		GTRecipeElectricSmelter.recipesElectricSmelter2();
 		GTRecipeCauldron.recipesCauldron();
 		GTRecipeCircuitry.recipesCircutry();
-		GTRecipeCentrifuge.recipesCentrifuge1();
-		GTRecipeCentrifuge.recipesCentrifuge2();
-		GTRecipeElectrolyzer.recipesElectrolyzer();
+		GTRecipeIndustrialCentrifuge.recipesCentrifuge1();
+		GTRecipeIndustrialCentrifuge.recipesCentrifuge2();
+		GTRecipeIndustrialElectrolyzer.recipesElectrolyzer();
 		GTRecipeFusion.recipesFusion();
 		GTRecipeIndustrialProcessor.recipeIndustrialProcessor1();
 		GTRecipeIndustrialProcessor.recipeIndustrialProcessor2();

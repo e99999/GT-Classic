@@ -24,6 +24,7 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -47,7 +48,7 @@ public class GTTileIndustrialElectrolyzer extends GTTileBaseMultiInputMachine {
 	public static final int slotFuel = 7;
 
 	public GTTileIndustrialElectrolyzer() {
-		super(8, 0, 8, 100, 128);
+		super(8, 0, 64, 100, 128);
 		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
 	}
@@ -132,6 +133,11 @@ public class GTTileIndustrialElectrolyzer extends GTTileBaseMultiInputMachine {
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
+	}
+
+	@Override
+	public ResourceLocation getStartSoundFile() {
+		return Ic2Sounds.magnetizerOp;
 	}
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {

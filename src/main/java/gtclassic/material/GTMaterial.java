@@ -111,7 +111,7 @@ public class GTMaterial {
 	public static GTMaterial Iridium = new GTMaterial("Iridium", 6.0F, 5120, 4, new Color(255, 255, 255), false,
 			SMALLDUST, DUST, NUGGET, INGOT, GEAR, STICK, CASING, BLOCK);
 	public static GTMaterial Iron = new GTMaterial("Iron", 6.0F, 256, 2, new Color(184, 184, 184), true, SMALLDUST,
-			PLATE, STICK, CASING);
+			PLATE, STICK, GEAR, CASING);
 	public static GTMaterial Invar = new GTMaterial("Invar", 6.0F, 256, 2, new Color(180, 180, 120), true, METAL_ALL);
 	public static GTMaterial Lazurite = new GTMaterial("Lazurite", 1.0F, 0, 1, new Color(100, 120, 255), false,
 			DUST_ALL);

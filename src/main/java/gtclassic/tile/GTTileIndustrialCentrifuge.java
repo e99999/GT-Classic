@@ -30,6 +30,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -153,6 +154,16 @@ public class GTTileIndustrialCentrifuge extends TileEntityBasicElectricMachine {
 	@Override
 	public ResourceLocation getGuiTexture() {
 		return GUI_LOCATION;
+	}
+
+	@Override
+	public ResourceLocation getStartSoundFile() {
+		return Ic2Sounds.extractorOp;
+	}
+
+	@Override
+	public ResourceLocation getInterruptSoundFile() {
+		return Ic2Sounds.interruptingSound;
 	}
 
 	public static int getRequiredCells(MachineOutput output) {

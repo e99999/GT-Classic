@@ -25,6 +25,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,7 +50,7 @@ public class GTTileMultiBlastFurnace extends GTTileBaseMultiBlockMachine {
 			"textures/gui/blastfurnace.png");
 
 	public GTTileMultiBlastFurnace() {
-		super(6, 0, 32);
+		super(6, 0, 20, 32);
 		maxEnergy = 100;
 	}
 
@@ -126,6 +127,11 @@ public class GTTileMultiBlastFurnace extends GTTileBaseMultiBlockMachine {
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
+	}
+
+	@Override
+	public ResourceLocation getStartSoundFile() {
+		return Ic2Sounds.generatorLoop;
 	}
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
