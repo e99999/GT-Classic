@@ -89,6 +89,10 @@ public class GTMaterial {
 			DUST_ALL);
 	public static GTMaterial Flint = new GTMaterial("Flint", 2.5F, 64, 1, new Color(0, 32, 64), false, DUST_ALL);
 	public static GTMaterial Galena = new GTMaterial("Galena", 3.0F, 0, 1, new Color(100, 60, 100), false, DUST_ALL);
+	public static GTMaterial GarnetRed = new GTMaterial("RedGarnet", 7.0F, 128, 2, new Color(200, 80, 80), false,
+			DUST_ALL);
+	public static GTMaterial GarnetYellow = new GTMaterial("YellowGarnet", 7.0F, 128, 2, new Color(200, 200, 80), false,
+			DUST_ALL);
 	public static GTMaterial Garnierite = new GTMaterial("Garnierite", 3.0F, 0, 1, new Color(50, 200, 70), false,
 			DUST_ALL);
 	public static GTMaterial Germanium = new GTMaterial("Germanium", 8.0F, 64, 1, new Color(250, 250, 250), true,

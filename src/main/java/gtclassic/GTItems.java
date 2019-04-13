@@ -39,15 +39,15 @@ public class GTItems {
 	public static final GTItemComponent basicCapacitor = createItem(
 			new GTItemComponent("basic_capacitor", 15, 0, false));
 
-	public static final GTItemComponent moldBlank = createItem(new GTItemComponent("mold_blank", 0, 1, false));
-	public static final GTItemComponent moldBlock = createItem(new GTItemComponent("mold_block", 1, 1, true));
-	public static final GTItemComponent moldIngot = createItem(new GTItemComponent("mold_ingot", 2, 1, true));
-	public static final GTItemComponent moldNugget = createItem(new GTItemComponent("mold_nugget", 3, 1, true));
-	public static final GTItemComponent moldPlate = createItem(new GTItemComponent("mold_plate", 4, 1, true));
-	public static final GTItemComponent moldStick = createItem(new GTItemComponent("mold_stick", 5, 1, true));
-	public static final GTItemComponent moldCable = createItem(new GTItemComponent("mold_cable", 6, 1, true));
-	public static final GTItemComponent moldTube = createItem(new GTItemComponent("mold_tube", 7, 1, true));
-	public static final GTItemComponent moldGear = createItem(new GTItemComponent("mold_gear", 8, 1, true));
+	public static final GTItemComponent moldBlank = createItem(new GTItemComponent("mold_blank", 0, 2, false));
+	public static final GTItemComponent moldBlock = createItem(new GTItemComponent("mold_block", 1, 2, true));
+	public static final GTItemComponent moldIngot = createItem(new GTItemComponent("mold_ingot", 2, 2, true));
+	public static final GTItemComponent moldNugget = createItem(new GTItemComponent("mold_nugget", 3, 2, true));
+	public static final GTItemComponent moldPlate = createItem(new GTItemComponent("mold_plate", 4, 2, true));
+	public static final GTItemComponent moldStick = createItem(new GTItemComponent("mold_stick", 5, 2, true));
+	public static final GTItemComponent moldCable = createItem(new GTItemComponent("mold_cable", 6, 2, true));
+	public static final GTItemComponent moldTube = createItem(new GTItemComponent("mold_tube", 7, 2, true));
+	public static final GTItemComponent moldGear = createItem(new GTItemComponent("mold_gear", 8, 2, true));
 
 	public static final GTItemGrinder grinderSteel = createItem(new GTItemGrinder(GTMaterial.Steel));
 	public static final GTItemGrinder grinderTitanium = createItem(new GTItemGrinder(GTMaterial.Titanium));

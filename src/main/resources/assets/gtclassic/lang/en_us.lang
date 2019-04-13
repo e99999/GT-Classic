@@ -366,6 +366,8 @@ item.gtclassic.ultimet_dustsmall.name=Small Ultimet Dust
 item.gtclassic.iridium_dustsmall.name=Small Iridium Dust
 item.gtclassic.resin_dustsmall.name=Small Resin Dust
 item.gtclassic.dirtyresin_dustsmall.name=Small Dirty Resin Dust
+item.gtclassic.redgarnet_dustsmall.name=Small Red Garnet Dust
+item.gtclassic.yellowgarnet_dustsmall.name=Small Yellow Garnet Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -462,6 +464,8 @@ item.gtclassic.salt_dust.name=Salt Dust
 item.gtclassic.molybdenite_dust.name=Molybdenite Dust
 item.gtclassic.resin_dust.name=Resin Dust
 item.gtclassic.dirtyresin_dust.name=Dirty Resin Dust
+item.gtclassic.redgarnet_dust.name=Red Garnet Dust
+item.gtclassic.yellowgarnet_dust.name=Yellow Garnet Dust
 
 #gems
 item.gtclassic.sapphire_gem.name=Sapphire

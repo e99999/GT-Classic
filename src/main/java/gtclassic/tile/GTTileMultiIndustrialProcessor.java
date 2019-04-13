@@ -31,6 +31,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2States;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -220,13 +221,13 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 		int3 dir = new int3(getPos(), getFacing());
 
 		// layer 0
-		if (!(isMachineCasing(dir.down(1)) && isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1))
-				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.right(1)) && isMachineCasing(dir.forward(1))
-				&& isMachineCasing(dir.right(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.forward(2))
+		if (!(isMFEorCasing(dir.down(1)) && isMachineCasing(dir.left(1)) && isMFEorCasing(dir.back(1))
+				&& isMachineCasing(dir.back(1)) && isMFEorCasing(dir.right(1)) && isMachineCasing(dir.forward(1))
+				&& isMFEorCasing(dir.right(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.forward(2))
 				// layer 1 which has the ability for more controllers or casings
-				&& isMachineCasing(dir.up(1)) && isModularBlock(dir.left(1)) && isMachineCasing(dir.left(1))
-				&& isModularBlock(dir.back(1)) && isMachineCasing(dir.back(1)) && isModularBlock(dir.right(1))
-				&& isMachineCasing(dir.right(1)) && isModularBlock(dir.forward(1)) && isAir(dir.left(1))
+				&& isMachineCasing(dir.up(1)) && isControllerOrCasing(dir.left(1)) && isMachineCasing(dir.left(1))
+				&& isControllerOrCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isControllerOrCasing(dir.right(1))
+				&& isMachineCasing(dir.right(1)) && isControllerOrCasing(dir.forward(1)) && isAir(dir.left(1))
 				// layer 2 all casings
 				&& isMachineCasing(dir.up(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(1))
 				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.right(1))
@@ -248,9 +249,17 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING)
 				.getDefaultState();
 	}
+	
+	public boolean isMFE(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == Ic2States.mfe;
+	}
 
-	public boolean isModularBlock(int3 pos) {
+	public boolean isControllerOrCasing(int3 pos) {
 		return isControllerTile(pos) || isMachineCasing(pos);
+	}
+	
+	public boolean isMFEorCasing(int3 pos) {
+		return isMFE(pos) || isMachineCasing(pos); 
 	}
 
 	public boolean isAir(int3 pos) {

@@ -33,8 +33,8 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 		setRegistryName("portable_scanner");
 		setUnlocalizedName(GTMod.MODID + ".portable_scanner");
 		setCreativeTab(GTMod.creativeTabGT);
-		this.maxCharge = 10000;
-		this.transferLimit = 100;
+		this.maxCharge = 100000;
+		this.transferLimit = 128;
 		this.tier = 1;
 	}
 

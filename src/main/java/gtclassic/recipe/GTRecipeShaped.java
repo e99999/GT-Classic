@@ -59,6 +59,11 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTItems.teslaStaff, 1), new Object[] { " SL", " PS", "P  ", 'L',
 				GTBlocks.smallLapotron, 'S', GTBlocks.superCasingBlock, 'P', "stickIridium" });
 
+		recipes.addRecipe(GT.get(GTItems.portableScanner, 1),
+				new Object[] { "PEP", "CFC", "PBP", 'P', "plateAluminium", 'E', GT.getIc2(Ic2Items.euReader, 1), 'F',
+						GT.getIc2(Ic2Items.cropAnalyzer, 1), 'C', "circuitAdvanced", 'B',
+						GT.get(GTBlocks.smallLithium) });
+
 		/*
 		 * recipes.addRecipe(GT.get(GTItems.heatStorageSingle, 1), new Object[] { " I ",
 		 * "IHI", " I ", 'I', "ingotTin", 'H', GTItems.helium });
