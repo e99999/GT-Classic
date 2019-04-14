@@ -38,6 +38,7 @@ public class GTRecipeElectricSmelter {
 
 		GTTileElectricSmelter.addRecipe("dustSilicon", 1, GT.get(GTItems.testTube), GT.getFluid(M.Silicon, 1));
 		GTTileElectricSmelter.addRecipe("dustCryolite", 1, GT.get(GTItems.testTube), GT.getFluid(M.Cryolite, 1));
+		GTTileElectricSmelter.addRecipe("dustCinnabar", 4, GT.get(GTItems.testTube), GT.getFluid(M.Mercury, 1));
 
 	}
 

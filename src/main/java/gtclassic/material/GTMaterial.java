@@ -224,7 +224,7 @@ public class GTMaterial {
 	public static GTMaterial Uranium = new GTMaterial("Uranium", 6.0F, 512, 3, new Color(50, 240, 50), false, DUST_ALL);
 	public static GTMaterial Uvarovite = new GTMaterial("Uvarovite", 1.0F, 0, 1, new Color(180, 255, 180), false,
 			DUST_ALL);
-	public static GTMaterial Vibranium = new GTMaterial("Vibranium", 1000.0F, 512, 8, new Color(255, 0, 255), false,
+	public static GTMaterial Vibranium = new GTMaterial("Vibranium", 1000.0F, 512, 4, new Color(255, 0, 255), false,
 			GEM_ALL);
 	public static GTMaterial Wood = new GTMaterial("Wood", 1.0F, 0, 1, new Color(137, 103, 39), false, DUST_ALL);
 	public static GTMaterial Zinc = new GTMaterial("Zinc", 1.0F, 0, 1, new Color(250, 240, 240), true, METAL_ALL);

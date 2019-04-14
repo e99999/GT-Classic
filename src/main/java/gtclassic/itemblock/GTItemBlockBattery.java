@@ -101,8 +101,7 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
 			EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (player.isSneaking()) {
-			super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-			return EnumActionResult.PASS;
+			return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 		} else {
 			 player.setActiveHand(hand);
 			return EnumActionResult.SUCCESS;

@@ -43,7 +43,7 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTItems.rockCutter, 1),
 				new Object[] { "DI ", "DI ", "DCB",
 						new EnchantmentModifier(GT.get(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(),
-						'D', "gemDiamond", 'I', "plateSteel", 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
+						'D', "gemDiamond", 'I', GT.getIc2(Ic2Items.carbonPlate,1), 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
 
 		recipes.addRecipe(GT.get(GTItems.testTube, 32), new Object[] { "G G", "G G", " G ", 'G', "blockGlass" });
 

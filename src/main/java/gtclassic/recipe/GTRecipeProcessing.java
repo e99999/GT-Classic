@@ -53,9 +53,6 @@ public class GTRecipeProcessing {
 		 */
 		maceratorUtil("oreBauxite", 1, GT.getDust(M.Bauxite, 4));
 		maceratorUtil("oreIridium", 1, GT.getIc2(Ic2Items.iridiumOre, 2));
-		maceratorUtil("orePyrite", 1, GT.getDust(M.Pyrite, 5));
-		maceratorUtil("oreCinnabar", 1, GT.getDust(M.Cinnabar, 5));
-		maceratorUtil("oreSphalerite", 1, GT.getDust(M.Sphalerite, 5));
 		maceratorUtil("oreSodalite", 1, GT.getDust(M.Sodalite, 12));
 
 		GameRegistry.addSmelting(GTBlocks.slagSand, GT.get(GTBlocks.slagGlass), 0.1F);
@@ -63,6 +60,7 @@ public class GTRecipeProcessing {
 		TileEntityExtractor.addRecipe("oreRuby", 1, GT.getGem(M.Ruby, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, GT.getGem(M.Sapphire, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreOlivine", 1, GT.getGem(M.Olivine, 3), 0.1F);
+		TileEntityExtractor.addRecipe("oreVibranium", 1, GT.getGem(M.Vibranium, 3), 0.1F);
 
 		/*
 		 * Maceration recipes not covered by Ic2c automatically or that need to be

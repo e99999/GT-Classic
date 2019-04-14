@@ -39,7 +39,8 @@ public class GTBasicMachineRecipeList extends BasicMachineRecipeList {
 			ItemWithMeta meta = new ItemWithMeta(stack);
 			RecipeEntry entry = recipeMap.get(meta);
 			if (entry != null) {
-				GTMod.logger.info("Found Overlap with recipe: " + entry.getInput() + " Its not getting Added");
+
+				GTMod.logger.info("Recipe Overlap: " + entry.getInput() + " Recipe ID: " + id);
 				return;
 			}
 			addMap.put(meta, toAdd);

@@ -25,6 +25,7 @@ public class GTItemGrinder extends Item implements IStaticTexturedItem, GTColorI
 		setRegistryName(this.material.getName() + "_grinder");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_grinder");
 		this.setMaxDamage((this.material.getDurability() * 10));
+		this.setMaxStackSize(1);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

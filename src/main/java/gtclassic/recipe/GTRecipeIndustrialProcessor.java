@@ -26,24 +26,22 @@ public class GTRecipeIndustrialProcessor {
 			Processor.addGrinderRecipe("oreChromite", 1, GT.getDust(M.Chromite, 2), GT.getSmallDust(M.Chrome, 1),
 					GT.getSmallDust(M.Iron, 1));
 
-			Processor.addGrinderRecipe("oreCryolite", 1, GT.getDust(M.Cryolite, 4));
-
 			Processor.addGrinderRecipe("oreGalena", 1, GT.getDust(M.Galena, 2), GT.getSmallDust(M.Silver, 2));
 
-			Processor.addGrinderRecipe("oreGarnierite", 1, GT.getDust(M.Nickel, 3), GT.getSmallDust(M.Platinum, 1),
+			Processor.addGrinderRecipe("oreGarnierite", 1, GT.getDust(M.Garnierite, 3), GT.getSmallDust(M.Platinum, 1),
 					GT.getSmallDust(M.Copper, 1));
 
-			Processor.addGrinderRecipe("oreLimonite", 1, GT.getDust(M.Limonite, 5), GT.getSmallDust(M.Iron, 2));
+			Processor.addGrinderRecipe("oreLimonite", 1, GT.getDust(M.Limonite, 2), GT.getSmallDust(M.Iron, 2));
 
 			Processor.addGrinderRecipe("oreMalachite", 1, GT.getDust(M.Malachite, 2), GT.getDust(M.Calcite, 1),
 					GT.getSmallDust(M.Copper, 2));
 
-			Processor.addGrinderRecipe("orePyrite", 1, GT.getDust(M.Pyrite, 5), GT.getSmallDust(M.Iron, 2));
+			Processor.addGrinderRecipe("orePyrite", 1, GT.getDust(M.Pyrite, 2), GT.getSmallDust(M.Iron, 2));
 
 			Processor.addGrinderRecipe("oreSheldonite", 1, GT.getDust(M.Sheldonite, 2), GT.getDust(M.Nickel, 1),
 					GT.getSmallDust(M.Platinum, 1));
 
-			Processor.addGrinderRecipe("oreSphalerite", 1, GT.getDust(M.Sphalerite, 5), GT.getDust(M.Zinc, 1),
+			Processor.addGrinderRecipe("oreSphalerite", 1, GT.getDust(M.Sphalerite, 2), GT.getDust(M.Zinc, 1),
 					GT.getSmallDust(M.GarnetYellow, 1));
 
 			Processor.addGrinderRecipe("oreTantalite", 1, GT.getDust(M.Tantalite, 2), GT.getSmallDust(M.Niobium, 2),
@@ -101,6 +99,8 @@ public class GTRecipeIndustrialProcessor {
 		Processor.addGrinderRecipe("oreSalt", 1, GT.getDust(M.Salt, 4));
 
 		Processor.addGrinderRecipe("oreCalcite", 1, GT.getDust(M.Calcite, 4));
+		
+		Processor.addGrinderRecipe("oreCryolite", 1, GT.getDust(M.Cryolite, 4));
 
 		Processor.addGrinderRecipe("oreGraphite", 1, GT.getDust(M.Graphite, 2), GT.getSmallDust(M.Carbon, 1),
 				GT.getSmallDust(M.Diamond, 1));

@@ -1,83 +1,62 @@
 package gtclassic.util;
 
-import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
-import net.minecraft.item.Item;
+import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
-import net.minecraft.world.storage.loot.functions.LootFunction;
-import net.minecraft.world.storage.loot.functions.SetMetadata;
+import net.minecraft.world.storage.loot.functions.SetCount;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class GTLootHandler {
 
+	static GTMaterialGen GT;
+	static GTMaterial M;
+
 	@SubscribeEvent
 	public void onLootTableLoad(LootTableLoadEvent event) {
 
-		LootFunction[] funcs = new LootFunction[] { new SetMetadata(new LootCondition[0], new RandomValueRange(0, 3)) };
+		// Sets the amount of the item to generate between 1-3
+		SetCount[] amount = { new SetCount(new LootCondition[0], new RandomValueRange(1, 3)) };
 
-		// TODO make a config option to disable this stuff
+		// ItemStack array of items to add to the loot table
+		ItemStack[] lootitems = { GT.getGem(M.Ruby, 1), GT.getGem(M.Sapphire, 1), GT.getGem(M.Olivine, 1), GT.getIngot(M.Germanium, 1),
+				GT.getIngot(M.Invar, 1), GT.getIngot(M.Cobalt, 1), GT.getIngot(M.Zinc, 1), GT.getIngot(M.Steel, 1),
+				GT.getIngot(M.BismuthBronze, 1), GT.getIngot(M.Electrum, 1), GT.getIngot(M.Constantan, 1),
+				GT.getIngot(M.Lead, 1), GT.getIngot(M.Brass, 1), GT.getIngot(M.Nickel, 1), GT.getIngot(M.Bismuth, 1)};
 
-		String stringRuby = GTMod.MODID + ":ruby_gem";
-		String stringSapphire = GTMod.MODID + ":sapphire_gem";
+		// ResourceLocation array of valid loot tables to iterate
+		ResourceLocation[] loottable = { LootTableList.CHESTS_ABANDONED_MINESHAFT, LootTableList.CHESTS_DESERT_PYRAMID,
+				LootTableList.CHESTS_END_CITY_TREASURE, LootTableList.CHESTS_IGLOO_CHEST,
+				LootTableList.CHESTS_JUNGLE_TEMPLE, LootTableList.CHESTS_NETHER_BRIDGE,
+				LootTableList.CHESTS_SIMPLE_DUNGEON, LootTableList.CHESTS_STRONGHOLD_CORRIDOR,
+				LootTableList.CHESTS_STRONGHOLD_CROSSING, LootTableList.CHESTS_STRONGHOLD_LIBRARY,
+				LootTableList.CHESTS_VILLAGE_BLACKSMITH, LootTableList.CHESTS_WOODLAND_MANSION };
 
-		Item itemRuby = GTMaterialGen.getItem(GTMaterial.Ruby, GTMaterialFlag.GEM);
-		Item itemSapphire = GTMaterialGen.getItem(GTMaterial.Sapphire, GTMaterialFlag.GEM);
-
-		if (event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)) {
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
+		/*
+		 * Iterates both the stack array and resource location array to create a 2d
+		 * table
+		 */
+		for (ItemStack item : lootitems) {
+			for (ResourceLocation table : loottable) {
+				if (event.getName().equals(table)) {
+					event.getTable().getPool("main").addEntry(new LootEntryItem(item.getItem(), 20, 0, amount,
+							new LootCondition[0], getStackResourceName(item)));
+				}
+			}
 		}
+	}
 
-		else if (event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE)) {
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-		}
-
-		else if (event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR)) {
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-		}
-
-		else if (event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING)) {
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-		}
-
-		else if (event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-		}
-
-		else if (event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)) {
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-		}
-
-		else if (event.getName().equals(LootTableList.CHESTS_VILLAGE_BLACKSMITH)) {
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemRuby, 20, 0, funcs, new LootCondition[0], stringRuby));
-			event.getTable().getPool("main")
-					.addEntry(new LootEntryItem(itemSapphire, 20, 0, funcs, new LootCondition[0], stringSapphire));
-		}
-
+	/*
+	 * Utility method needed for getting the correct resource location
+	 */
+	public static String getStackResourceName(ItemStack item) {
+		return item.getItem().getRegistryName().toString();
 	}
 
 }

@@ -67,7 +67,7 @@ public class GTJeiPlugin implements IModPlugin {
 					"gt.electrolyzer");
 			registry.addRecipes(GTTileIndustrialElectrolyzer.RECIPE_LIST.getRecipeList(), "gt.electrolyzer");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialElectrolyzer), "gt.electrolyzer");
-			registry.addRecipeClickArea(GTGuiMachine.GTIndustrialElectrolyzerGui.class, 72, 34, 30, 16,
+			registry.addRecipeClickArea(GTGuiMachine.GTIndustrialElectrolyzerGui.class, 72, 34, 30, 10,
 					"gt.electrolyzer");
 
 			// Processor

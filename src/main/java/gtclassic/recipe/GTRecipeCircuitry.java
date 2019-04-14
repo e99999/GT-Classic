@@ -51,14 +51,17 @@ public class GTRecipeCircuitry {
 				new Object[] { "dustRedstone", "plateManganese", "stickTantalum", "dustTantalum" });
 
 		// Gating basic circuits
+		
+		IRecipeInput pcb = new RecipeInputCombined(1, new IRecipeInput[] {
+				new RecipeInputItemStack(GT.get(GTItems.resinPCB)), new RecipeInputItemStack(GT.get(GTItems.plasticPCB)) });
 
 		recipes.overrideRecipe("shaped_Electronic Circuit", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "TSC", "WWW",
 				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', Ic2Items.copperCable.copy(), 'S',
-				"pcbBasic");
+				pcb);
 
 		recipes.overrideRecipe("shaped_Electronic Circuit_1", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "CST",
 				"WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', Ic2Items.copperCable.copy(), 'S',
-				"pcbBasic");
+				pcb);
 
 		recipes.overrideRecipe("shaped_RE-Battery", GT.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT", 'T',
 				"ingotTin", 'R', "dustRedstone", 'C', Ic2Items.copperCable.copy());

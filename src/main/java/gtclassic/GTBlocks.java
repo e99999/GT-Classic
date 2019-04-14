@@ -59,13 +59,11 @@ public class GTBlocks {
 
 	static final List<Block> toRegister = new ArrayList<Block>();
 
-	public static final GTBlockCustom resinBoard = registerBlock(new GTBlockCustom("Resin", 0, 12, 1));
 	public static final GTBlockStone bloomBlock = registerBlock(new GTBlockStone("Bloom", 16, 1.0F, 0));
 	public static final GTBlockSand slagSand = registerBlock(new GTBlockSand("Slag", 17));
 	public static final GTBlockSand slagcreteSand = registerBlock(new GTBlockSand("Slagcrete", 18));
 	public static final GTBlockGlass slagGlass = registerBlock(new GTBlockGlass("Slag", 19));
 	public static final GTBlockSand charcoalPile = registerBlock(new GTBlockSand("Charcoal", 20));
-	public static final GTBlockCustom mudBlock = registerBlock(new GTBlockCustom("Mud", 21, 16, 2));
 
 	public static final GTBlockCasing superCasingBlock = registerBlock(new GTBlockCasing("Superconductor", 0));
 	public static final GTBlockCasing fusionCasingBlock = registerBlock(new GTBlockCasing("Fusion", 1));
@@ -118,6 +116,9 @@ public class GTBlocks {
 			new GTBlockTileBasic("machine_digitaltransformer_luv"));
 	public static final GTBlockTileBasic energiumCable = registerBlock(new GTBlockTileBasic("cable_energium_luv", 1));
 	public static final GTBlockTileBasic lapotronCable = registerBlock(new GTBlockTileBasic("cable_lapotron_zpm"));
+	
+	public static final GTBlockCustom resinBoard = registerBlock(new GTBlockCustom("Resin", 0, 12, 1));
+	public static final GTBlockCustom mudBlock = registerBlock(new GTBlockCustom("Mud", 21, 16, 2));
 
 	public static final GTBlockMortar mortar = registerBlock(new GTBlockMortar());
 	public static final GTBlockTileCustom Echophone = registerBlock(

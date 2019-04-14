@@ -57,8 +57,7 @@ public class GTItemBlockDuctTape extends GTItemBlockRare {
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 
 		if (player.isSneaking()) {
-			super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-			return EnumActionResult.PASS;
+			return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 		} else if (tileEntity instanceof IInsulationModifieableConductor) {
 			IInsulationModifieableConductor wire = (IInsulationModifieableConductor) tileEntity;
 			if (wire.tryAddInsulation()) {
