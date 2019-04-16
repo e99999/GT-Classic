@@ -24,20 +24,19 @@ import net.minecraftforge.client.model.pipeline.VertexTransformer;
 import net.minecraftforge.common.model.TRSRTransformation;
 
 public class GTModelBaker {
+	private static final FaceBakery bakery = new FaceBakery();
 	private Map<EnumFacing, List<BakedQuad>> quadCache;
-	private FaceBakery bakery;
 	private TextureAtlasSprite sprite;
 	private List<Model> models;
 
-	public static GTModelBaker getBaker(FaceBakery bakery, TextureAtlasSprite sprite) {
-		return new GTModelBaker(bakery, sprite);
+	public static GTModelBaker getBaker(TextureAtlasSprite sprite) {
+		return new GTModelBaker(sprite);
 	}
 
-	private GTModelBaker(FaceBakery bakery, TextureAtlasSprite sprite) {
+	private GTModelBaker(TextureAtlasSprite sprite) {
 		quadCache = new LinkedHashMap<>();
 		quadCache.put(EnumFacing.NORTH, new ArrayList<>());
 
-		this.bakery = bakery;
 		this.sprite = sprite;
 		models = new ArrayList<>();
 	}
@@ -49,6 +48,11 @@ public class GTModelBaker {
 	public void addModel(int textureOffsetX, int textureOffsetY, float shapeX, float shapeY, float shapeZ, int sizeX,
 			int sizeY, int sizeZ) {
 		addModel(new Model(textureOffsetX, textureOffsetY, shapeX, shapeY, shapeZ, sizeX, sizeY, sizeZ));
+	}
+	
+	public void addModel(int textureOffsetX, int textureOffsetY, float shapeX, float shapeY, float shapeZ, int sizeX,
+			int sizeY, int sizeZ, boolean rotateTopAndBottomTexture) {
+		addModel(new Model(textureOffsetX, textureOffsetY, shapeX, shapeY, shapeZ, sizeX, sizeY, sizeZ, rotateTopAndBottomTexture));
 	}
 
 	public void bake() {
@@ -126,11 +130,18 @@ public class GTModelBaker {
 		final Vector3f shapeStart = new Vector3f();
 		final Vector3f shapeEnd = new Vector3f();
 		final Vector3f shapeSize = new Vector3f();
+		final boolean rotateTopAndBottomTexture;
 
 		public Model(int textureOffsetX, int textureOffsetY, float shapeX, float shapeY, float shapeZ, int sizeX,
 				int sizeY, int sizeZ) {
+			this(textureOffsetX, textureOffsetY, shapeX, shapeY, shapeZ, sizeX, sizeY, sizeZ, false);
+		}
+		
+		public Model(int textureOffsetX, int textureOffsetY, float shapeX, float shapeY, float shapeZ, int sizeX,
+				int sizeY, int sizeZ, boolean rotateTopAndBottomTexture) {
 			this.textureOffsetX = textureOffsetX / 4.0f;
 			this.textureOffsetY = textureOffsetY / 4.0f;
+			this.rotateTopAndBottomTexture = rotateTopAndBottomTexture;
 
 			shapeStart.set(shapeX, shapeY, shapeZ);
 			shapeSize.set(sizeX / 4.0f, sizeY / 4.0f, sizeZ / 4.0f);
@@ -152,8 +163,8 @@ public class GTModelBaker {
 			areas[EnumFacing.NORTH.getIndex()] = new BlockFaceUV(front, 0);
 			areas[EnumFacing.WEST.getIndex()] = new BlockFaceUV(right, 0);
 			areas[EnumFacing.SOUTH.getIndex()] = new BlockFaceUV(back, 0);
-			areas[EnumFacing.UP.getIndex()] = new BlockFaceUV(top, 180);
-			areas[EnumFacing.DOWN.getIndex()] = new BlockFaceUV(bottom, 180);
+			areas[EnumFacing.UP.getIndex()] = new BlockFaceUV(top, rotateTopAndBottomTexture ? 180 : 0);
+			areas[EnumFacing.DOWN.getIndex()] = new BlockFaceUV(bottom, rotateTopAndBottomTexture ? 180 : 0);
 			return areas;
 		}
 

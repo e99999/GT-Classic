@@ -6,6 +6,7 @@ import java.util.List;
 import gtclassic.util.GTValues;
 import ic2.api.tile.IWrenchable;
 import ic2.core.platform.lang.ILocaleBlock;
+import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.platform.textures.obj.ICustomModeledBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class GTFacingBlock extends Block implements ICustomModeledBlock, ILocaleBlock, IWrenchable {
+	BaseModel model;
 
 	public GTFacingBlock(Material materialIn) {
 		super(materialIn);
@@ -100,5 +102,19 @@ public abstract class GTFacingBlock extends Block implements ICustomModeledBlock
 	@Override
 	public boolean wrenchCanRemove(World world, BlockPos pos, EntityPlayer player) {
 		return true;
+	}
+
+	@Override
+	public BaseModel getModelFromState(IBlockState state) {
+		if (model == null) {
+			model = getNewModelInstance();
+		}
+		return model;
+	}
+
+	public abstract BaseModel getNewModelInstance();
+
+	public void onTextureReload() {
+		model = null;
 	}
 }

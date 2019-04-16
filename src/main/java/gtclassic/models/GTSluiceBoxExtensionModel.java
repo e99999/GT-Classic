@@ -23,21 +23,22 @@ public class GTSluiceBoxExtensionModel extends BaseModel {
 
 	public GTSluiceBoxExtensionModel() {
 		super(Ic2Models.getBlockTransforms());
+		setParticalTexture(Ic2Icons.getTextures(GTMod.MODID + "_sluicebox_particle")[0]);
 	}
 
 	@Override
 	public void init() {
-		baker = GTModelBaker.getBaker(getBakery(), Ic2Icons.getTextures(GTMod.MODID + "_sluicebox")[0]);
+		baker = GTModelBaker.getBaker(Ic2Icons.getTextures(GTMod.MODID + "_sluicebox")[0]);
 
 		// bottom main part
-		baker.addModel(1, 41, 1, 0, 1, 14, 1, 15);
+		baker.addModel(1, 41, 1, 0, 1, 14, 1, 15, true);
 		// bottom sides
-		baker.addModel(0, 18, 0, 0, 0, 1, 6, 16);
-		baker.addModel(0, 18, 15, 0, 0, 1, 6, 16);
+		baker.addModel(0, 18, 0, 0, 0, 1, 6, 16, true);
+		baker.addModel(0, 18, 15, 0, 0, 1, 6, 16, true);
 		// stripes
-		baker.addModel(0, 59, 1, 1, 6, 14, 1, 1);
-		baker.addModel(0, 59, 1, 1, 10, 14, 1, 1);
-		baker.addModel(0, 59, 1, 1, 14, 14, 1, 1);
+		baker.addModel(0, 59, 1, 1, 6, 14, 1, 1, true);
+		baker.addModel(0, 59, 1, 1, 10, 14, 1, 1, true);
+		baker.addModel(0, 59, 1, 1, 14, 14, 1, 1, true);
 
 		baker.bake();
 	}

@@ -27,7 +27,7 @@ public class GTSluiceBox extends GTFacingBlock {
 	}
 
 	@Override
-	public BaseModel getModelFromState(IBlockState state) {
+	public BaseModel getNewModelInstance() {
 		return new GTSluiceBoxModel();
 	}
 
