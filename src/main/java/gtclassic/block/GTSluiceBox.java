@@ -21,6 +21,7 @@ public class GTSluiceBox extends GTFacingBlock {
 
 	public GTSluiceBox() {
 		super(Material.IRON);
+		setRegistryName(GTValues.sluiceBox.getUnlocalized().replaceAll("tile.gtclassic.", ""));
 		setUnlocalizedName(GTValues.sluiceBox.getUnlocalized());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
