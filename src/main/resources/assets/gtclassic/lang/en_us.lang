@@ -427,6 +427,8 @@ tile.gtclassic.battery_lapotron_small.name=Small Lapotron Crystal
 tile.gtclassic.battery_lapotron_med.name=Medium Lapotron Crystal
 tile.gtclassic.battery_lapotron_large.name=Large Lapotron Crystal
 tile.gtclassic.battery_lapotron_huge.name=Huge Lapotron Crystal
+tile.gtclassic.sluicebox.name=Sluice Box
+tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
 
 #small dusts
 item.gtclassic.saltpeter_dustsmall.name=Small Saltpeter Dust

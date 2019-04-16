@@ -4,8 +4,10 @@ import java.awt.Color;
 
 import gtclassic.material.GTMaterial;
 import ic2.core.IC2;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -15,6 +17,7 @@ public class GTValues {
 	 * This is place to hold global values temporarily, it will all be refactored
 	 * into better places in time
 	 */
+	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 
 	// boolean that renders anything labeled as WIP uncraftable
 	public static boolean debugMode = false;
@@ -27,6 +30,8 @@ public class GTValues {
 
 	// lang
 	public static LocaleComp centrifugeEU = new LocaleJEIInfoComp("jei.centrifugeu.name");
+	public static LocaleComp sluiceBox = new LocaleBlockComp("tile.gtclassic.sluicebox");
+	public static LocaleComp sluiceBoxExtension = new LocaleBlockComp("tile.gtclassic.sluiceboxextension");
 
 	// recipe stuff
 	public static FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
