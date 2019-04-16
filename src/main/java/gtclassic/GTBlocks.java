@@ -12,6 +12,8 @@ import gtclassic.block.GTBlockStone;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.GTBlockTileStorage;
+import gtclassic.block.GTSluiceBox;
+import gtclassic.block.GTSluiceBoxExtension;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.fluid.GTFluidBlockSlurry;
@@ -178,6 +180,9 @@ public class GTBlocks {
 			new GTBlockBattery("battery_lapotron_huge", 14, 14, true, Integer.MAX_VALUE, 32768, 7));
 
 	public static final GTFluidBlockSlurry slurryBlock = registerBlock(new GTFluidBlockSlurry());
+
+	public static final GTSluiceBox sluiceBox = registerBlock(new GTSluiceBox());
+	public static final GTSluiceBoxExtension sluiceBoxExtension = registerBlock(new GTSluiceBoxExtension());
 
 	// public static final GTBlockTestLayer testBlock = registerBlock(new
 	// GTBlockTestLayer());
