@@ -31,6 +31,8 @@ public class GTIcons {
 
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_sluicebox",
 				GTMod.MODID + ":textures/sprites/machine_sluicebox.png", new Sprites.SpriteInfo(1, 1)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_sluicebox_particle",
+				GTMod.MODID + ":textures/particles/machine_sluicebox.png", new Sprites.SpriteInfo(1, 1)));
 
 		collectBasicTileSprites();
 		collectCustomTileSprites();
@@ -44,6 +46,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_casings", 0, 0, 16, 4));
 
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox", 0, 0, 1, 1));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox_particle", 0, 0, 1, 1));
 
 		addCustomTexture("machine_bloomery", 0, 9, location("bloomery_front"));
 		addCustomTexture("machine_charcoalpit", 0, 7, location("charcoalpit_top"));
