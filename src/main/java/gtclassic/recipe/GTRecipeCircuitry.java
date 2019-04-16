@@ -14,6 +14,7 @@ import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.init.Items;
 
 public class GTRecipeCircuitry {
 
@@ -36,28 +37,40 @@ public class GTRecipeCircuitry {
 		TileEntityMacerator.addRecipe(GT.getIc2(Ic2Items.stickyResin, 1), GT.getDust(M.DirtyResin, 2));
 		TileEntityMacerator.addRecipe("plankWood", 1, GT.getDust(M.Wood, 2));
 		TileEntityMacerator.addRecipe("logWood", 1, GT.getDust(M.Wood, 8));
+		
+		String knife = "craftingToolKnife";
 
 		recipes.addShapelessRecipe(GT.getDust(M.DirtyResin, 1),
-				new Object[] { GTItems.ironKnife, GT.getIc2(Ic2Items.stickyResin, 1) });
-		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB), new Object[] { GTItems.ironKnife, GTBlocks.resinBoard });
+				new Object[] { "craftingToolKnife", GT.getIc2(Ic2Items.stickyResin, 1) });
+		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB),
+				new Object[] { knife, GTBlocks.resinBoard });
 
-		recipes.addShapelessRecipe(GT.get(GTItems.germaniumSubstrate, 4),
-				new Object[] { GTItems.ironKnife, "plateGermanium" });
+		recipes.addShapelessRecipe(GT.get(GTItems.smallPlateGermanium, 4),
+				new Object[] { knife, "plateGermanium" });
+
+		recipes.addShapelessRecipe(GT.get(GTItems.foilTantalum, 2),
+				new Object[] { knife, "craftingToolForgeHammer", "plateTantalum" });
+		
+		recipes.addShapelessRecipe(GT.get(GTItems.wireTin, 4),
+				new Object[] { knife, "craftingToolForgeHammer", "stickTin" });
+		
+		recipes.addShapelessRecipe(GT.get(GTItems.wireLead, 4),
+				new Object[] { knife, "craftingToolForgeHammer", "stickLead" });
 
 		recipes.addRecipe(GT.get(GTItems.basicTransistor, 1),
-				new Object[] { "WPW", 'W', GT.getIc2(Ic2Items.tinCable, 1), 'P', GTItems.germaniumSubstrate });
+				new Object[] { "WPW", 'W', GTItems.wireTin, 'P', GTItems.smallPlateGermanium });
 
-		recipes.addShapelessRecipe(GT.get(GTItems.basicCapacitor),
-				new Object[] { "dustRedstone", "plateManganese", "stickTantalum", "dustTantalum" });
+		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
+				new Object[] { "FPF", "L L", 'F', GTItems.foilTantalum, 'P', Items.PAPER, 'L', GTItems.wireTin });
 
 		// Gating basic circuits
-		
-		IRecipeInput pcb = new RecipeInputCombined(1, new IRecipeInput[] {
-				new RecipeInputItemStack(GT.get(GTItems.resinPCB)), new RecipeInputItemStack(GT.get(GTItems.plasticPCB)) });
+
+		IRecipeInput pcb = new RecipeInputCombined(1,
+				new IRecipeInput[] { new RecipeInputItemStack(GT.get(GTItems.resinPCB)),
+						new RecipeInputItemStack(GT.get(GTItems.plasticPCB)) });
 
 		recipes.overrideRecipe("shaped_Electronic Circuit", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "TSC", "WWW",
-				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', Ic2Items.copperCable.copy(), 'S',
-				pcb);
+				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', Ic2Items.copperCable.copy(), 'S', pcb);
 
 		recipes.overrideRecipe("shaped_Electronic Circuit_1", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "CST",
 				"WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', Ic2Items.copperCable.copy(), 'S',

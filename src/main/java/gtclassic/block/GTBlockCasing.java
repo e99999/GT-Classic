@@ -78,7 +78,6 @@ public class GTBlockCasing extends Block implements ITexturedBlock, ILocaleBlock
 		return this.blockState.getValidStates();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());

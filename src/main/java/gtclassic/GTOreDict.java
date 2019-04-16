@@ -1,13 +1,14 @@
 package gtclassic;
 
-import gtclassic.block.GTBlockOreSand;
-import gtclassic.block.GTBlockOreStone;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.item.GTItemGrinder;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.ore.GTOreFalling;
+import gtclassic.ore.GTOreStone;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
+import gtclassic.tool.GTToolMulti;
 import gtclassic.tool.GTToolWrench;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.block.Block;
@@ -31,6 +32,9 @@ public class GTOreDict {
 			if (item instanceof GTToolWrench) {
 				registerWrench(item);
 			}
+			if (item instanceof GTToolMulti) {
+				registerKnife(item);
+			}
 			if (item instanceof GTItemGrinder) {
 				registerGrinder(item);
 			}
@@ -45,13 +49,13 @@ public class GTOreDict {
 				}
 			}
 			// Register ores... with ore dict
-			if (block instanceof GTBlockOreStone) {
-				GTBlockOreStone ore = (GTBlockOreStone) block;
+			if (block instanceof GTOreStone) {
+				GTOreStone ore = (GTOreStone) block;
 				String name = "ore" + ore.getOreEntry().getMaterial().getDisplayName();
 				OreDictionary.registerOre(name, new ItemStack(block));
 			}
-			if (block instanceof GTBlockOreSand) {
-				GTBlockOreSand sand = (GTBlockOreSand) block;
+			if (block instanceof GTOreFalling) {
+				GTOreFalling sand = (GTOreFalling) block;
 				String name = "ore" + sand.getOreEntry().getMaterial().getDisplayName();
 				OreDictionary.registerOre(name, new ItemStack(block));
 			}
@@ -85,6 +89,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("dustAsh", (GTMaterialGen.getDust(GTMaterial.Ashes, 1)));
 		OreDictionary.registerOre("dustEnderEye", (GTMaterialGen.getDust(GTMaterial.EnderEye, 1)));
 		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getIngot(GTMaterial.Silicon, 1)));
+		OreDictionary.registerOre("dyeBlue", (GTMaterialGen.getDust(GTMaterial.Lazurite, 1)));
 
 	}
 
@@ -98,6 +103,10 @@ public class GTOreDict {
 
 	public static void registerWrench(Item tool) {
 		OreDictionary.registerOre("craftingToolWrench", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
+	}
+	
+	public static void registerKnife(Item tool) {
+		OreDictionary.registerOre("craftingToolKnife", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
 
 	public static void registerGrinder(Item tool) {

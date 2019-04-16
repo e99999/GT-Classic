@@ -103,74 +103,80 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 		if (player.isSneaking()) {
 			return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 		} else {
-			 player.setActiveHand(hand);
+			player.setActiveHand(hand);
 			return EnumActionResult.SUCCESS;
 		}
 	}
 
 	@Override
 	public void onUsingTick(ItemStack itemStackIn, EntityLivingBase entity, int count) {
-	      if (entity instanceof EntityPlayer) {
-	         EntityPlayer player = (EntityPlayer)entity;
-	         EnumHand playerHand = player.getActiveHand();
-	         boolean charged = false;
-	         int i;
-	         ItemStack stack;
-	         IElectricItem item;
-	         double transfer;
-	         if (playerHand == EnumHand.OFF_HAND) {
-	            for(i = 0; i < 9; ++i) {
-	               stack = player.inventory.getStackInSlot(i);
-	               if (stack.getItem() instanceof IElectricItem) {
-	                  item = (IElectricItem)stack.getItem();
-	                  transfer = ElectricItem.manager.discharge(itemStackIn, (double)(2 * this.transferLimit), item.getTier(itemStackIn), true, false, true);
-	                  transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
-	                  ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false, false);
-	                  if (transfer == 0.0D) {
-	                     break;
-	                  }
+		if (entity instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) entity;
+			EnumHand playerHand = player.getActiveHand();
+			boolean charged = false;
+			int i;
+			ItemStack stack;
+			IElectricItem item;
+			double transfer;
+			if (playerHand == EnumHand.OFF_HAND) {
+				for (i = 0; i < 9; ++i) {
+					stack = player.inventory.getStackInSlot(i);
+					if (stack.getItem() instanceof IElectricItem) {
+						item = (IElectricItem) stack.getItem();
+						transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2 * this.transferLimit),
+								item.getTier(itemStackIn), true, false, true);
+						transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
+						ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false,
+								false);
+						if (transfer == 0.0D) {
+							break;
+						}
 
-	                  charged = true;
-	               }
-	            }
-	         } else {
-	            for(i = 0; i < 9; ++i) {
-	               if (i != player.inventory.currentItem) {
-	                  stack = player.inventory.getStackInSlot(i);
-	                  if (stack.getItem() instanceof IElectricItem) {
-	                     item = (IElectricItem)stack.getItem();
-	                     transfer = ElectricItem.manager.discharge(itemStackIn, (double)(2 * this.transferLimit), item.getTier(itemStackIn), true, false, true);
-	                     transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
-	                     ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false, false);
-	                     if (transfer == 0.0D) {
-	                        break;
-	                     }
+						charged = true;
+					}
+				}
+			} else {
+				for (i = 0; i < 9; ++i) {
+					if (i != player.inventory.currentItem) {
+						stack = player.inventory.getStackInSlot(i);
+						if (stack.getItem() instanceof IElectricItem) {
+							item = (IElectricItem) stack.getItem();
+							transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2 * this.transferLimit),
+									item.getTier(itemStackIn), true, false, true);
+							transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
+							ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true,
+									false, false);
+							if (transfer == 0.0D) {
+								break;
+							}
 
-	                     charged = true;
-	                  }
-	               }
-	            }
+							charged = true;
+						}
+					}
+				}
 
-	            if (!charged) {
-	               stack = player.getHeldItem(EnumHand.OFF_HAND);
-	               if (stack.getItem() instanceof IElectricItem) {
-	                  item = (IElectricItem)stack.getItem();
-	                  transfer = ElectricItem.manager.discharge(itemStackIn, (double)(2 * this.transferLimit), item.getTier(itemStackIn), true, false, true);
-	                  transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
-	                  ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false, false);
-	                  if (transfer > 0.0D) {
-	                     charged = true;
-	                  }
-	               }
-	            }
-	         }
+				if (!charged) {
+					stack = player.getHeldItem(EnumHand.OFF_HAND);
+					if (stack.getItem() instanceof IElectricItem) {
+						item = (IElectricItem) stack.getItem();
+						transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2 * this.transferLimit),
+								item.getTier(itemStackIn), true, false, true);
+						transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
+						ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false,
+								false);
+						if (transfer > 0.0D) {
+							charged = true;
+						}
+					}
+				}
+			}
 
-	         if (!charged) {
-	            player.resetActiveHand();
-	         }
+			if (!charged) {
+				player.resetActiveHand();
+			}
 
-	         IC2.platform.updatePlayerUsingItem(player, itemStackIn);
-	      }
-	   }
+			IC2.platform.updatePlayerUsingItem(player, itemStackIn);
+		}
+	}
 
 }

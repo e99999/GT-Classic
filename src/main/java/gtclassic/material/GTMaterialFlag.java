@@ -2,9 +2,22 @@ package gtclassic.material;
 
 public enum GTMaterialFlag {
 
-	SMALLDUST("_dustsmall", 1, false), DUST("_dust", 0, false), GEM("_gem", 2, false), INGOT("_ingot", 3, false),
-	NUGGET("_nugget", 4, false), PLATE("_plate", 5, false), STICK("_stick", 6, false), GEAR("_gear", 7, false),
-	FLUID("", 13, true), PLASMA("plasma", 13, true), PARTICLE("_particle", 15, false), BLOCK("_block", 62, false),
+	SMALLDUST("_dustsmall", 1, false), 
+	DUST("_dust", 0, false), 
+	GEM("_gem", 2, false), 
+	INGOT("_ingot", 3, false),
+	NUGGET("_nugget", 4, false), 
+	PLATE("_plate", 5, false), 
+	SMALLPLATE("_smallplate", 6, false),
+	STICK("_stick", 7, false), 
+	GEAR("_gear", 8, false),
+	FOIL("_foil", 9, false),
+	WIRE("_wire", 10, false),
+	BOULE("_boule", 11, false),
+	FLUID("", 13, true), 
+	PLASMA("plasma", 13, true), 
+	PARTICLE("_particle", 15, false), 
+	BLOCK("_block", 62, false),
 	CASING("_casing", 61, false);
 
 	private int mask;

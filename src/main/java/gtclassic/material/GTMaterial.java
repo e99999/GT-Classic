@@ -40,21 +40,21 @@ public class GTMaterial {
 	public static GTMaterial Andradite = new GTMaterial("Andradite", 1.0F, 0, 1, new Color(150, 120, 0), false,
 			DUST_ALL);
 	public static GTMaterial Ashes = new GTMaterial("Ashes", 1.0F, 0, 1, new Color(192, 192, 192), false, DUST_ALL);
-	public static GTMaterial Basalt = new GTMaterial("Basalt", 0.5F, 0, 0, new Color(30, 20, 20), false, DUST_ALL);//
+	public static GTMaterial Basalt = new GTMaterial("Basalt", 5.0F, 0, 2, new Color(30, 20, 20), false, DUST_ALL);//
 	public static GTMaterial Bauxite = new GTMaterial("Bauxite", 3.0F, 0, 1, new Color(200, 100, 0), false, DUST_ALL);
 	public static GTMaterial Beryllium = new GTMaterial("Beryllium", 1.0F, 0, 1, new Color(30, 80, 50), false, FLUID);
 	public static GTMaterial Bismuth = new GTMaterial("Bismuth", 6.0F, 96, 2, new Color(100, 160, 160), true,
 			METAL_ALL);
 	public static GTMaterial BismuthBronze = new GTMaterial("BismuthBronze", 6.0F, 128, 2, new Color(225, 150, 0), true,
 			SMALLDUST, DUST, NUGGET, INGOT, PLATE);
-	public static GTMaterial Bismuthtine = new GTMaterial("Bismuthtine", 0.5F, 0, 0, new Color(75, 135, 135), false,
+	public static GTMaterial Bismuthtine = new GTMaterial("Bismuthtine", 3.0F, 0, 1, new Color(75, 135, 135), false,
 			DUST_ALL);
 	public static GTMaterial Brass = new GTMaterial("Brass", 7.0F, 96, 1, new Color(255, 180, 0), true, METAL_ALL);
 	public static GTMaterial Bronze = new GTMaterial("Bronze", 6.0F, 192, 2, new Color(230, 83, 34), true, METAL_IC2);
 	public static GTMaterial Calcite = new GTMaterial("Calcite", 3.0F, 0, 1, new Color(250, 230, 220), false, DUST_ALL);
 	public static GTMaterial Calcium = new GTMaterial("Calcium", 1.0F, 0, 1, new Color(155, 96, 80), false, FLUID);
 	public static GTMaterial Carbon = new GTMaterial("Carbon", 1.0F, 0, 1, Color.black, false, DUST_ALL);
-	public static GTMaterial Cassiterite = new GTMaterial("Cassiterite", 0.5F, 0, 0, new Color(220, 220, 220), false,
+	public static GTMaterial Cassiterite = new GTMaterial("Cassiterite", 3.0F, 0, 1, new Color(220, 220, 220), false,
 			DUST_ALL);
 	public static GTMaterial Charcoal = new GTMaterial("Charcoal", 1.0F, 0, 1, new Color(100, 70, 70), false,
 			SMALLDUST);
@@ -127,7 +127,7 @@ public class GTMaterial {
 			INGOT, NUGGET, PLATE);
 	public static GTMaterial Magnesium = new GTMaterial("Magnesium", 1.0F, 0, 1, new Color(255, 200, 200), false,
 			DUST_ALL);
-	public static GTMaterial Magnetite = new GTMaterial("Magnetite", 0.5F, 0, 0, new Color(0, 0, 0), true, DUST_ALL);
+	public static GTMaterial Magnetite = new GTMaterial("Magnetite", 3.0F, 0, 1, new Color(0, 0, 0), true, DUST_ALL);
 	public static GTMaterial Manganese = new GTMaterial("Manganese", 1.0F, 0, 1, new Color(250, 235, 250), true,
 			SMALLDUST, DUST, NUGGET, INGOT, PLATE, BLOCK);
 	public static GTMaterial Marble = new GTMaterial("Marble", 1.0F, 0, 1, new Color(200, 200, 200), false, DUST_ALL);//

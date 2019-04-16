@@ -56,10 +56,12 @@ public class GTBlockGlass extends BlockGlass implements ITexturedBlock, ILocaleB
 	}
 
 	@Override
+	@Deprecated
 	public boolean isFullCube(IBlockState state) {
 		return this.mat != Material.GLASS;
 	}
 
+	@Override
 	@Deprecated
 	public boolean isNormalCube(IBlockState state) {
 		return this.mat != Material.GLASS;
@@ -97,7 +99,6 @@ public class GTBlockGlass extends BlockGlass implements ITexturedBlock, ILocaleB
 		return FULL_BLOCK_AABB;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());

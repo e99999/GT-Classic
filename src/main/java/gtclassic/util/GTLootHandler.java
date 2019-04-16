@@ -2,7 +2,6 @@ package gtclassic.util;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntryItem;
@@ -25,10 +24,11 @@ public class GTLootHandler {
 		SetCount[] amount = { new SetCount(new LootCondition[0], new RandomValueRange(1, 3)) };
 
 		// ItemStack array of items to add to the loot table
-		ItemStack[] lootitems = { GT.getGem(M.Ruby, 1), GT.getGem(M.Sapphire, 1), GT.getGem(M.Olivine, 1), GT.getIngot(M.Germanium, 1),
-				GT.getIngot(M.Invar, 1), GT.getIngot(M.Cobalt, 1), GT.getIngot(M.Zinc, 1), GT.getIngot(M.Steel, 1),
-				GT.getIngot(M.BismuthBronze, 1), GT.getIngot(M.Electrum, 1), GT.getIngot(M.Constantan, 1),
-				GT.getIngot(M.Lead, 1), GT.getIngot(M.Brass, 1), GT.getIngot(M.Nickel, 1), GT.getIngot(M.Bismuth, 1)};
+		ItemStack[] lootitems = { GT.getGem(M.Ruby, 1), GT.getGem(M.Sapphire, 1), GT.getGem(M.Olivine, 1),
+				GT.getIngot(M.Germanium, 1), GT.getIngot(M.Invar, 1), GT.getIngot(M.Cobalt, 1), GT.getIngot(M.Zinc, 1),
+				GT.getIngot(M.Steel, 1), GT.getIngot(M.BismuthBronze, 1), GT.getIngot(M.Electrum, 1),
+				GT.getIngot(M.Constantan, 1), GT.getIngot(M.Lead, 1), GT.getIngot(M.Brass, 1), GT.getIngot(M.Nickel, 1),
+				GT.getIngot(M.Bismuth, 1) };
 
 		// ResourceLocation array of valid loot tables to iterate
 		ResourceLocation[] loottable = { LootTableList.CHESTS_ABANDONED_MINESHAFT, LootTableList.CHESTS_DESERT_PYRAMID,

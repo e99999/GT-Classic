@@ -95,11 +95,11 @@ public class GTRecipeIndustrialProcessor {
 		Processor.addGrinderRecipe("oreQuartz", 1, GT.get(Items.QUARTZ, 3), GT.getIc2(Ic2Items.netherrackDust, 1));
 
 		Processor.addGrinderRecipe("oreSaltpeter", 1, GT.getDust(M.Saltpeter, 4));
-		
+
 		Processor.addGrinderRecipe("oreSalt", 1, GT.getDust(M.Salt, 4));
 
 		Processor.addGrinderRecipe("oreCalcite", 1, GT.getDust(M.Calcite, 4));
-		
+
 		Processor.addGrinderRecipe("oreCryolite", 1, GT.getDust(M.Cryolite, 4));
 
 		Processor.addGrinderRecipe("oreGraphite", 1, GT.getDust(M.Graphite, 2), GT.getSmallDust(M.Carbon, 1),

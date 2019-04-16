@@ -19,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -28,23 +29,31 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
+public class GTToolMulti extends ItemSword implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
+	ToolMaterial tmaterial;
 	GTMaterial material;
 
-	public GTToolKnife(GTMaterial material) {
-		super(ToolMaterial.IRON);
-		this.material = material;
-		this.setMaxDamage((this.material.getDurability()) + 64);
-		setRegistryName(this.material.getName() + "_knife");
-		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_knife");
+	public GTToolMulti(ToolMaterial tmaterial) {
+		super(tmaterial);
+		this.tmaterial = tmaterial;
+		this.material = GTToolMaterial.getGTMaterial(tmaterial);
+		setRegistryName(this.material.getName() + "_multi_tool");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_multi_tool");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		return true;
+		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
+				|| material.equals(material.Uranium)) {
+			return true;
+		}
+		if (material.equals(material.Flint)) {
+			return false;
+		}
+		return super.hasEffect(stack);
 	}
 
 	@Override
@@ -66,7 +75,7 @@ public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTCol
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures("gtclassic_items")[21];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[21];
 	}
 
 	@Override

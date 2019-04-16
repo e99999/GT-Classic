@@ -15,9 +15,11 @@ import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.material.GTMaterialItem;
 import gtclassic.tool.GTToolGen;
-import gtclassic.tool.GTToolKnife;
+import gtclassic.tool.GTToolMulti;
 import ic2.core.IC2;
 import net.minecraft.item.Item;
 
@@ -25,15 +27,17 @@ public class GTItems {
 
 	static List<Item> toRegister = new ArrayList<Item>();
 
-	public static final GTToolKnife ironKnife = createItem(new GTToolKnife(GTMaterial.Iron));
-
 	public static final GTItemMagnifyingGlass magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 
 	public static final GTItemComponent woodPlate = createItem(new GTItemComponent("wood_plate", 10, 0, false));
 	public static final GTItemComponent resinPCB = createItem(new GTItemComponent("resin_pcb", 11, 0, false));
 	public static final GTItemComponent plasticPCB = createItem(new GTItemComponent("plastic_pcb", 12, 0, false));
-	public static final GTItemComponent germaniumSubstrate = createItem(
-			new GTItemComponent("germanium_substrate", 13, 0, false));
+	
+	public static final GTMaterialItem foilTantalum = createItem(new GTMaterialItem(GTMaterial.Tantalum, GTMaterialFlag.FOIL));
+	public static final GTMaterialItem smallPlateGermanium = createItem(new GTMaterialItem(GTMaterial.Germanium, GTMaterialFlag.SMALLPLATE));
+	public static final GTMaterialItem wireTin = createItem(new GTMaterialItem(GTMaterial.Tin, GTMaterialFlag.WIRE));
+	public static final GTMaterialItem wireLead = createItem(new GTMaterialItem(GTMaterial.Lead, GTMaterialFlag.WIRE));
+	
 	public static final GTItemComponent basicTransistor = createItem(
 			new GTItemComponent("basic_transistor", 14, 0, false));
 	public static final GTItemComponent basicCapacitor = createItem(

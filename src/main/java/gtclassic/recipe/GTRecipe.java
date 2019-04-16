@@ -1,6 +1,6 @@
 package gtclassic.recipe;
 
-import gtclassic.GTOreRegistry;
+import gtclassic.ore.GTOreRegistry;
 
 public class GTRecipe {
 

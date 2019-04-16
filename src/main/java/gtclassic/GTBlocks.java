@@ -5,11 +5,9 @@ import java.util.List;
 
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCustom;
+import gtclassic.block.GTBlockFalling;
 import gtclassic.block.GTBlockGlass;
 import gtclassic.block.GTBlockMortar;
-import gtclassic.block.GTBlockOreSand;
-import gtclassic.block.GTBlockOreStone;
-import gtclassic.block.GTBlockSand;
 import gtclassic.block.GTBlockStone;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
@@ -24,6 +22,10 @@ import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.ore.GTOreFalling;
+import gtclassic.ore.GTOreFlag;
+import gtclassic.ore.GTOreRegistry;
+import gtclassic.ore.GTOreStone;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBookshelf;
@@ -51,7 +53,6 @@ import gtclassic.tile.GTTileWorkbench;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -60,10 +61,10 @@ public class GTBlocks {
 	static final List<Block> toRegister = new ArrayList<Block>();
 
 	public static final GTBlockStone bloomBlock = registerBlock(new GTBlockStone("Bloom", 16, 1.0F, 0));
-	public static final GTBlockSand slagSand = registerBlock(new GTBlockSand("Slag", 17));
-	public static final GTBlockSand slagcreteSand = registerBlock(new GTBlockSand("Slagcrete", 18));
+	public static final GTBlockFalling slagSand = registerBlock(new GTBlockFalling("Slag", 17));
+	public static final GTBlockFalling slagcreteSand = registerBlock(new GTBlockFalling("Slagcrete", 18));
 	public static final GTBlockGlass slagGlass = registerBlock(new GTBlockGlass("Slag", 19));
-	public static final GTBlockSand charcoalPile = registerBlock(new GTBlockSand("Charcoal", 20));
+	public static final GTBlockFalling charcoalPile = registerBlock(new GTBlockFalling("Charcoal", 20));
 
 	public static final GTBlockCasing superCasingBlock = registerBlock(new GTBlockCasing("Superconductor", 0));
 	public static final GTBlockCasing fusionCasingBlock = registerBlock(new GTBlockCasing("Fusion", 1));
@@ -116,7 +117,7 @@ public class GTBlocks {
 			new GTBlockTileBasic("machine_digitaltransformer_luv"));
 	public static final GTBlockTileBasic energiumCable = registerBlock(new GTBlockTileBasic("cable_energium_luv", 1));
 	public static final GTBlockTileBasic lapotronCable = registerBlock(new GTBlockTileBasic("cable_lapotron_zpm"));
-	
+
 	public static final GTBlockCustom resinBoard = registerBlock(new GTBlockCustom("Resin", 0, 12, 1));
 	public static final GTBlockCustom mudBlock = registerBlock(new GTBlockCustom("Mud", 21, 16, 2));
 
@@ -232,14 +233,22 @@ public class GTBlocks {
 
 	public static void registerOreBlocks() {
 		for (GTOreRegistry ore : GTOreRegistry.values()) {
-			if (ore.getType().equals(Blocks.STONE)) {
-				createBlock(new GTBlockOreStone(ore, ore.getId(), ore.getMaterial().getLevel(),
-						ore.getMaterial().getSpeed()));
-			}
-			if (ore.getType().equals(Blocks.SAND) || ore.getType().equals(Blocks.GRAVEL)) {
-				createBlock(new GTBlockOreSand(ore, ore.getId(), ore.getMaterial().getLevel(),
-						ore.getMaterial().getSpeed()));
-			}
+			createBlock(new GTOreStone(ore, GTOreFlag.STONE));
+		}
+		for (GTOreRegistry ore : GTOreRegistry.values()) {
+			createBlock(new GTOreStone(ore, GTOreFlag.NETHER));
+		}
+		for (GTOreRegistry ore : GTOreRegistry.values()) {
+			createBlock(new GTOreStone(ore, GTOreFlag.END));
+		}
+		for (GTOreRegistry ore : GTOreRegistry.values()) {
+			createBlock(new GTOreFalling(ore, GTOreFlag.SAND));
+		}
+		for (GTOreRegistry ore : GTOreRegistry.values()) {
+			createBlock(new GTOreFalling(ore, GTOreFlag.GRAVEL));
+		}
+		for (GTOreRegistry ore : GTOreRegistry.values()) {
+			createBlock(new GTOreStone(ore, GTOreFlag.BEDROCK));
 		}
 	}
 

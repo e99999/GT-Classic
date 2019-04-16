@@ -33,7 +33,7 @@ public class GTIcons {
 		collectCustomTileSprites();
 
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_builder", 0, 0, 1, 12));
-		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_ores", 0, 0, 16, 3));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_ores", 0, 0, 16, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 5));
 

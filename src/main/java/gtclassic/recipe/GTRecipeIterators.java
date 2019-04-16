@@ -11,6 +11,7 @@ import gtclassic.tool.GTToolChainsaw;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
 import gtclassic.tool.GTToolMiningDrill;
+import gtclassic.tool.GTToolMulti;
 import gtclassic.tool.GTToolPickaxe;
 import gtclassic.tool.GTToolShovel;
 import gtclassic.tool.GTToolSword;
@@ -240,6 +241,16 @@ public class GTRecipeIterators {
 					recipes.addRecipe(new ItemStack(item), new Object[] { "I I", "III", " I ", 'I', input });
 				}
 			}
+			
+			if (item instanceof GTToolMulti) {
+				GTToolMulti multi = (GTToolMulti) item;
+				String mat = multi.getMaterial().getDisplayName();
+				String plate = "plate" + mat;
+				String stick = "stick" + mat;
+				String gear = "gear" + mat;
+				recipes.addRecipe(GT.get(item, 1), new Object[] { "PNG", "SBS", "PSF", 'P', plate, 'S', stick, 'B', "dyeBlue", 'G', gear, 'F', "craftingToolFile", 'N', "plateGold" });
+			}
+			
 			if (item instanceof GTToolSword) {
 				GTToolSword sword = (GTToolSword) item;
 				if (sword.getMaterial().equals(GTMaterial.Flint)) {

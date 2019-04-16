@@ -88,16 +88,19 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 		// TODO add tooltips
 	}
 
+	@Override
 	@Deprecated
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
 
+	@Override
 	@Deprecated
 	public boolean isNormalCube(IBlockState state) {
 		return false;
 	}
 
+	@Override
 	@Deprecated
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -131,7 +134,6 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 		return this.blockState.getValidStates();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());
@@ -177,6 +179,7 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
 		if (this == GTBlocks.mudBlock) {
@@ -189,6 +192,7 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 	}
 
 	@Override
+	@Deprecated
 	public EnumPushReaction getMobilityFlag(IBlockState state) {
 		return EnumPushReaction.DESTROY;
 	}

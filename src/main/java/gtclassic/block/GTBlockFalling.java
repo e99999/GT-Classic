@@ -33,13 +33,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockSand extends BlockFalling implements ITexturedBlock, ILocaleBlock {
+public class GTBlockFalling extends BlockFalling implements ITexturedBlock, ILocaleBlock {
 
 	String name;
 	int id;
 	LocaleComp comp;
 
-	public GTBlockSand(String name, int id) {
+	public GTBlockFalling(String name, int id) {
 		super(Material.SAND);
 		this.name = name;
 		this.id = id;
@@ -58,6 +58,7 @@ public class GTBlockSand extends BlockFalling implements ITexturedBlock, ILocale
 	}
 
 	@Override
+	@Deprecated
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
 		if (this == GTBlocks.charcoalPile) {
@@ -92,8 +93,8 @@ public class GTBlockSand extends BlockFalling implements ITexturedBlock, ILocale
 		return this.blockState.getValidStates();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
+	@Deprecated
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());
 	}
@@ -138,6 +139,7 @@ public class GTBlockSand extends BlockFalling implements ITexturedBlock, ILocale
 	}
 
 	@Override
+	@Deprecated
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		if (!this.tryTouchWater(worldIn, pos, state)) {
 			super.neighborChanged(state, worldIn, pos, blockIn, fromPos);

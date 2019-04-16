@@ -226,8 +226,9 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 				&& isMFEorCasing(dir.right(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.forward(2))
 				// layer 1 which has the ability for more controllers or casings
 				&& isMachineCasing(dir.up(1)) && isControllerOrCasing(dir.left(1)) && isMachineCasing(dir.left(1))
-				&& isControllerOrCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isControllerOrCasing(dir.right(1))
-				&& isMachineCasing(dir.right(1)) && isControllerOrCasing(dir.forward(1)) && isAir(dir.left(1))
+				&& isControllerOrCasing(dir.back(1)) && isMachineCasing(dir.back(1))
+				&& isControllerOrCasing(dir.right(1)) && isMachineCasing(dir.right(1))
+				&& isControllerOrCasing(dir.forward(1)) && isAir(dir.left(1))
 				// layer 2 all casings
 				&& isMachineCasing(dir.up(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(1))
 				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.right(1))
@@ -249,7 +250,7 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING)
 				.getDefaultState();
 	}
-	
+
 	public boolean isMFE(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == Ic2States.mfe;
 	}
@@ -257,9 +258,9 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 	public boolean isControllerOrCasing(int3 pos) {
 		return isControllerTile(pos) || isMachineCasing(pos);
 	}
-	
+
 	public boolean isMFEorCasing(int3 pos) {
-		return isMFE(pos) || isMachineCasing(pos); 
+		return isMFE(pos) || isMachineCasing(pos);
 	}
 
 	public boolean isAir(int3 pos) {

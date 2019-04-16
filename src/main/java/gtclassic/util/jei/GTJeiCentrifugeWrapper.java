@@ -16,7 +16,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 
-@SuppressWarnings("deprecation")
 public class GTJeiCentrifugeWrapper extends BlankRecipeWrapper {
 	RecipeEntry entry;
 
