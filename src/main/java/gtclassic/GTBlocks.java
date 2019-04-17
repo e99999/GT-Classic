@@ -35,6 +35,7 @@ import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
 import gtclassic.tile.GTTileElectricSmelter;
+import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTileHeatingElement;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import gtclassic.tile.GTTileIndustrialElectrolyzer;
@@ -322,5 +323,7 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductorLow"));
 		GameRegistry.registerTileEntity(GTTileSuperConductorHigh.class,
 				new ResourceLocation(GTMod.MODID, "tileEntitySuperConductorHigh"));
+
+		GameRegistry.registerTileEntity(GTTileFacing.class, new ResourceLocation(GTMod.MODID, "tileEntityFacing"));
 	}
 }

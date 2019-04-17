@@ -7,7 +7,6 @@ import javax.vecmath.Matrix4f;
 import org.apache.commons.lang3.tuple.Pair;
 
 import gtclassic.GTMod;
-import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.Ic2Models;
 import ic2.core.platform.textures.models.BaseModel;
@@ -20,10 +19,12 @@ import net.minecraftforge.client.model.PerspectiveMapWrapper;
 
 public class GTSluiceBoxExtensionModel extends BaseModel {
 	GTModelBaker baker;
+	EnumFacing rotation;
 
-	public GTSluiceBoxExtensionModel() {
+	public GTSluiceBoxExtensionModel(EnumFacing rotation) {
 		super(Ic2Models.getBlockTransforms());
 		setParticalTexture(Ic2Icons.getTextures(GTMod.MODID + "_sluicebox_particle")[0]);
+		this.rotation = rotation;
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class GTSluiceBoxExtensionModel extends BaseModel {
 
 	@Override
 	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-		return baker.getQuads(state == null ? EnumFacing.NORTH : state.getValue(GTValues.FACING));
+		return baker.getQuads(state == null ? EnumFacing.NORTH : rotation);
 	}
 
 	@Override
