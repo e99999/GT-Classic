@@ -26,7 +26,7 @@ public class GTBlockSluiceBoxExt extends GTBlockFacing {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTSluiceBoxExtensionModel();
+		return new GTSluiceBoxExtensionModel(getRotation(state));
 	}
 
 	@Override

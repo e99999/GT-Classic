@@ -1,6 +1,7 @@
 package gtclassic.block;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.tile.GTTileFacing;
@@ -26,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class GTBlockFacing extends BlockCommonContainer
 		implements IBlockStateLoader, ICustomModeledBlock, IFacingBlock {
-	public static PropertyDirection allFacings = PropertyDirection.create("facing");
+	public static PropertyDirection allFacings = PropertyDirection.create("facing", Arrays.asList(EnumFacing.VALUES));
 
 	public GTBlockFacing(Material materialIn) {
 		super(materialIn);
