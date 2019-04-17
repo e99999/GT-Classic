@@ -57,9 +57,6 @@ public class GTIcons {
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 8, location("centrifuge_back"));
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 9, location("centrifuge_front"));
 		addCustomTexture(GTMod.MODID + "_materials", 15, 0, location("particle"));
-
-		GTBlocks.sluiceBox.onTextureReload();
-		GTBlocks.sluiceBoxExtension.onTextureReload();
 	}
 
 	private static ResourceLocation location(String name) {
