@@ -49,10 +49,11 @@ public class GTModelBaker {
 			int sizeY, int sizeZ) {
 		addModel(new Model(textureOffsetX, textureOffsetY, shapeX, shapeY, shapeZ, sizeX, sizeY, sizeZ));
 	}
-	
+
 	public void addModel(int textureOffsetX, int textureOffsetY, float shapeX, float shapeY, float shapeZ, int sizeX,
 			int sizeY, int sizeZ, boolean rotateTopAndBottomTexture) {
-		addModel(new Model(textureOffsetX, textureOffsetY, shapeX, shapeY, shapeZ, sizeX, sizeY, sizeZ, rotateTopAndBottomTexture));
+		addModel(new Model(textureOffsetX, textureOffsetY, shapeX, shapeY, shapeZ, sizeX, sizeY, sizeZ,
+				rotateTopAndBottomTexture));
 	}
 
 	public void bake() {
@@ -136,7 +137,7 @@ public class GTModelBaker {
 				int sizeY, int sizeZ) {
 			this(textureOffsetX, textureOffsetY, shapeX, shapeY, shapeZ, sizeX, sizeY, sizeZ, false);
 		}
-		
+
 		public Model(int textureOffsetX, int textureOffsetY, float shapeX, float shapeY, float shapeZ, int sizeX,
 				int sizeY, int sizeZ, boolean rotateTopAndBottomTexture) {
 			this.textureOffsetX = textureOffsetX / 4.0f;

@@ -10,8 +10,8 @@ import gtclassic.tool.GTToolAxe;
 import gtclassic.tool.GTToolChainsaw;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
+import gtclassic.tool.GTToolKnife;
 import gtclassic.tool.GTToolMiningDrill;
-import gtclassic.tool.GTToolMulti;
 import gtclassic.tool.GTToolPickaxe;
 import gtclassic.tool.GTToolShovel;
 import gtclassic.tool.GTToolSword;
@@ -206,7 +206,7 @@ public class GTRecipeIterators {
 			if (item instanceof GTToolFile) {
 				GTToolFile file = (GTToolFile) item;
 				if (file.getMaterial().equals(GTMaterial.Diamond) || file.getMaterial().hasFlag(GTMaterialFlag.GEM)) {
-					String input = "gem" + file.getMaterial().getDisplayName();
+					String input = "plate" + file.getMaterial().getDisplayName();
 					recipes.addRecipe(new ItemStack(item),
 							new Object[] { "P ", "P ", "SF", 'P', input, 'S', "stickWood", 'F', "craftingToolFile" });
 
@@ -241,16 +241,19 @@ public class GTRecipeIterators {
 					recipes.addRecipe(new ItemStack(item), new Object[] { "I I", "III", " I ", 'I', input });
 				}
 			}
-			
-			if (item instanceof GTToolMulti) {
-				GTToolMulti multi = (GTToolMulti) item;
-				String mat = multi.getMaterial().getDisplayName();
-				String plate = "plate" + mat;
-				String stick = "stick" + mat;
-				String gear = "gear" + mat;
-				recipes.addRecipe(GT.get(item, 1), new Object[] { "PNG", "SBS", "PSF", 'P', plate, 'S', stick, 'B', "dyeBlue", 'G', gear, 'F', "craftingToolFile", 'N', "plateGold" });
+
+			if (item instanceof GTToolKnife) {
+				GTToolKnife knife = (GTToolKnife) item;
+				if (knife.getMaterial().equals(GTMaterial.Diamond) || knife.getMaterial().hasFlag(GTMaterialFlag.GEM)) {
+					String input = "gem" + knife.getMaterial().getDisplayName();
+					recipes.addRecipe(GT.get(item, 1), new Object[] { "PPS", 'P', input, 'S', "stickWood" });
+				} else {
+					String mat = knife.getMaterial().getDisplayName();
+					String input = "plate" + mat;
+					recipes.addRecipe(GT.get(item, 1), new Object[] { "PPS", 'P', input, 'S', "stickWood" });
+				}
 			}
-			
+
 			if (item instanceof GTToolSword) {
 				GTToolSword sword = (GTToolSword) item;
 				if (sword.getMaterial().equals(GTMaterial.Flint)) {
@@ -369,5 +372,4 @@ public class GTRecipeIterators {
 		String nugget = "nugget" + material.getDisplayName();
 		recipes.addRecipe(stack, new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
 	}
-
 }

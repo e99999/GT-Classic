@@ -23,10 +23,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class GTFacingBlock extends Block implements ICustomModeledBlock, ILocaleBlock, IWrenchable {
+public abstract class GTBlockFacing extends Block implements ICustomModeledBlock, ILocaleBlock, IWrenchable {
 	BaseModel model;
 
-	public GTFacingBlock(Material materialIn) {
+	public GTBlockFacing(Material materialIn) {
 		super(materialIn);
 
 		this.setDefaultState(this.blockState.getBaseState().withProperty(GTValues.FACING, EnumFacing.NORTH));
@@ -105,6 +105,7 @@ public abstract class GTFacingBlock extends Block implements ICustomModeledBlock
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BaseModel getModelFromState(IBlockState state) {
 		if (model == null) {
 			model = getNewModelInstance();
@@ -112,6 +113,7 @@ public abstract class GTFacingBlock extends Block implements ICustomModeledBlock
 		return model;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public abstract BaseModel getNewModelInstance();
 
 	public void onTextureReload() {

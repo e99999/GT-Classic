@@ -7,6 +7,7 @@ import gtclassic.itemblock.GTItemBlockBattery;
 import ic2.api.item.ElectricItem;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.util.obj.IItemContainer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -62,7 +63,8 @@ public class GTTileBlockCustom extends TileEntityBlock implements IItemContainer
 	@Override
 	public List<ItemStack> getDrops() {
 		ArrayList<ItemStack> drops = new ArrayList<>();
-		drops.add(this.drop.copy());
+		Item item = drop.getItem();
+		drops.add(new ItemStack(item, 1).copy());
 		return drops;
 	}
 

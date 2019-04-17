@@ -19,7 +19,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -29,20 +28,20 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTToolMulti extends ItemSword implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
+public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	ToolMaterial tmaterial;
 	GTMaterial material;
 
-	public GTToolMulti(ToolMaterial tmaterial) {
+	public GTToolKnife(ToolMaterial tmaterial) {
 		super(tmaterial);
 		this.tmaterial = tmaterial;
 		this.material = GTToolMaterial.getGTMaterial(tmaterial);
-		setRegistryName(this.material.getName() + "_multi_tool");
-		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_multi_tool");
+		setRegistryName(this.material.getName() + "_knife");
+		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_knife");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
@@ -81,9 +80,9 @@ public class GTToolMulti extends ItemSword implements IStaticTexturedItem, GTCol
 	@Override
 	public Color getColor(ItemStack stack, int index) {
 		if (index == 0) {
-			return Color.white;
+			return GTMaterial.Wood.getColor();
 		} else {
-			return this.material.getColor();
+			return GTToolMaterial.getGTMaterial(tmaterial).getColor();
 		}
 	}
 
@@ -119,5 +118,4 @@ public class GTToolMulti extends ItemSword implements IStaticTexturedItem, GTCol
 		}
 		return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 	}
-
 }

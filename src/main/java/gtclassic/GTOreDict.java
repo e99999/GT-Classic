@@ -8,7 +8,7 @@ import gtclassic.ore.GTOreFalling;
 import gtclassic.ore.GTOreStone;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
-import gtclassic.tool.GTToolMulti;
+import gtclassic.tool.GTToolKnife;
 import gtclassic.tool.GTToolWrench;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.block.Block;
@@ -32,7 +32,7 @@ public class GTOreDict {
 			if (item instanceof GTToolWrench) {
 				registerWrench(item);
 			}
-			if (item instanceof GTToolMulti) {
+			if (item instanceof GTToolKnife) {
 				registerKnife(item);
 			}
 			if (item instanceof GTItemGrinder) {
@@ -104,7 +104,7 @@ public class GTOreDict {
 	public static void registerWrench(Item tool) {
 		OreDictionary.registerOre("craftingToolWrench", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
-	
+
 	public static void registerKnife(Item tool) {
 		OreDictionary.registerOre("craftingToolKnife", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}

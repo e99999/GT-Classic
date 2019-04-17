@@ -8,12 +8,12 @@ import gtclassic.block.GTBlockCustom;
 import gtclassic.block.GTBlockFalling;
 import gtclassic.block.GTBlockGlass;
 import gtclassic.block.GTBlockMortar;
+import gtclassic.block.GTBlockSluice;
+import gtclassic.block.GTBlockSluiceBoxExt;
 import gtclassic.block.GTBlockStone;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.block.GTBlockTileCustom;
 import gtclassic.block.GTBlockTileStorage;
-import gtclassic.block.GTSluiceBox;
-import gtclassic.block.GTSluiceBoxExtension;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.fluid.GTFluidBlockSlurry;
@@ -85,6 +85,8 @@ public class GTBlocks {
 
 	// public static final GTBlockTileBuffer buffer = registerBlock(new
 	// GTBlockTileBuffer());
+	public static final GTBlockSluice sluiceBox = registerBlock(new GTBlockSluice());
+	public static final GTBlockSluiceBoxExt sluiceBoxExtension = registerBlock(new GTBlockSluiceBoxExt());
 	public static final GTBlockTileBasic heatingElement = registerBlock(new GTBlockTileBasic("machine_heatingelement"));
 	public static final GTBlockTileBasic bloomery = registerBlock(new GTBlockTileBasic("machine_bloomery", 5));
 	public static final GTBlockTileBasic charcoalPit = registerBlock(new GTBlockTileBasic("machine_charcoalpit", 4));
@@ -180,9 +182,6 @@ public class GTBlocks {
 			new GTBlockBattery("battery_lapotron_huge", 14, 14, true, Integer.MAX_VALUE, 32768, 7));
 
 	public static final GTFluidBlockSlurry slurryBlock = registerBlock(new GTFluidBlockSlurry());
-
-	public static final GTSluiceBox sluiceBox = registerBlock(new GTSluiceBox());
-	public static final GTSluiceBoxExtension sluiceBoxExtension = registerBlock(new GTSluiceBoxExtension());
 
 	// public static final GTBlockTestLayer testBlock = registerBlock(new
 	// GTBlockTestLayer());

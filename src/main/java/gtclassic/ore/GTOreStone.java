@@ -160,7 +160,7 @@ public class GTOreStone extends Block implements ITexturedBlock, ILocaleBlock {
 		}
 		return xp;
 	}
-	
+
 	@Override
 	@Deprecated
 	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {

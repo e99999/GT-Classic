@@ -58,7 +58,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 
 	@Override
 	public int getHarvestLevel(ItemStack stack, String toolClass, EntityPlayer player, IBlockState blockState) {
-		return 3;
+		return 4;
 	}
 
 	@Override
@@ -68,13 +68,13 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
-		return 1.5F;
+		return 2.0F;
 	}
 
 	@Override
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {
 		if (canMine(stack)) {
-			return 1.5F;
+			return getMiningSpeed(stack);
 		} else {
 			return 0.0F;
 		}

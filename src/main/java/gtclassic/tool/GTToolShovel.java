@@ -93,5 +93,4 @@ public class GTToolShovel extends ItemSpade
 	public GTMaterial getMaterial() {
 		return GTToolMaterial.getGTMaterial(tmaterial);
 	}
-
 }

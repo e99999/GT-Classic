@@ -14,19 +14,26 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTSluiceBoxExtension extends GTFacingBlock {
+public class GTBlockSluiceBoxExt extends GTBlockFacing {
 
-	public GTSluiceBoxExtension() {
-		super(Material.IRON);
+	static final AxisAlignedBB SLUICE_EXT = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.4D, 1.0D);
+
+	public GTBlockSluiceBoxExt() {
+		super(Material.WOOD);
 		setRegistryName(GTValues.sluiceBoxExtension.getUnlocalized().replaceAll("tile.gtclassic.", ""));
 		setUnlocalizedName(GTValues.sluiceBoxExtension.getUnlocalized());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BaseModel getNewModelInstance() {
 		return new GTSluiceBoxExtensionModel();
 	}
@@ -40,6 +47,12 @@ public class GTSluiceBoxExtension extends GTFacingBlock {
 	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te,
 			EntityPlayer player, int fortune) {
 		return Arrays.asList(new ItemStack(GTBlocks.sluiceBoxExtension));
+	}
+
+	@Override
+	@Deprecated
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return SLUICE_EXT;
 	}
 
 }

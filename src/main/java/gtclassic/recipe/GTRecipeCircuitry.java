@@ -37,23 +37,21 @@ public class GTRecipeCircuitry {
 		TileEntityMacerator.addRecipe(GT.getIc2(Ic2Items.stickyResin, 1), GT.getDust(M.DirtyResin, 2));
 		TileEntityMacerator.addRecipe("plankWood", 1, GT.getDust(M.Wood, 2));
 		TileEntityMacerator.addRecipe("logWood", 1, GT.getDust(M.Wood, 8));
-		
+
 		String knife = "craftingToolKnife";
 
 		recipes.addShapelessRecipe(GT.getDust(M.DirtyResin, 1),
 				new Object[] { "craftingToolKnife", GT.getIc2(Ic2Items.stickyResin, 1) });
-		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB),
-				new Object[] { knife, GTBlocks.resinBoard });
+		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB), new Object[] { knife, GTBlocks.resinBoard });
 
-		recipes.addShapelessRecipe(GT.get(GTItems.smallPlateGermanium, 4),
-				new Object[] { knife, "plateGermanium" });
+		recipes.addShapelessRecipe(GT.get(GTItems.smallPlateGermanium, 4), new Object[] { knife, "plateGermanium" });
 
-		recipes.addShapelessRecipe(GT.get(GTItems.foilTantalum, 2),
+		recipes.addShapelessRecipe(GT.get(GTItems.foilTantalum, 4),
 				new Object[] { knife, "craftingToolForgeHammer", "plateTantalum" });
-		
+
 		recipes.addShapelessRecipe(GT.get(GTItems.wireTin, 4),
 				new Object[] { knife, "craftingToolForgeHammer", "stickTin" });
-		
+
 		recipes.addShapelessRecipe(GT.get(GTItems.wireLead, 4),
 				new Object[] { knife, "craftingToolForgeHammer", "stickLead" });
 

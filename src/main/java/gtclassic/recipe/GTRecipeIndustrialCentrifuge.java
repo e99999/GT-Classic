@@ -152,8 +152,8 @@ public class GTRecipeIndustrialCentrifuge {
 				new OutputItem(GT.getDust(M.DarkAshes, 4), 0), new OutputItem(GT.getDust(M.Olivine, 1), 1),
 				new OutputItem(GT.getDust(M.Calcite, 3), 2), new OutputItem(GT.getDust(M.Flint, 8), 3));
 
-		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.woodGasCell, 5), 4, euCost(35000),
-				new OutputItem(GT.getSmallDust(M.Plastic, 1), 0), new OutputItem(GT.getFluid(M.Hydrogen, 3), 1),
+		GTTileIndustrialCentrifuge.addRecipe(GT.getIc2(Ic2Items.woodGasCell, 5), 4, euCost(15000),
+				new OutputItem(GT.getDust(M.Plastic, 1), 0), new OutputItem(GT.getFluid(M.Hydrogen, 3), 1),
 				new OutputItem(GT.getFluid(M.Methane, 1), 2), new OutputItem(GT.getIc2(Ic2Items.emptyCell, 5), 3));
 
 		GTTileIndustrialCentrifuge.addRecipe("oreBasalt", 12, 0, euCost(15000),

@@ -105,23 +105,23 @@ public class GTRecipeIndustrialProcessor {
 		Processor.addGrinderRecipe("oreGraphite", 1, GT.getDust(M.Graphite, 2), GT.getSmallDust(M.Carbon, 1),
 				GT.getSmallDust(M.Diamond, 1));
 
-		Processor.addGrinderRecipe("oreRuby", 1, GT.getGem(M.Ruby, 1), GT.getSmallDust(M.Ruby, 6),
+		Processor.addGrinderRecipe("oreRuby", 1, GT.getGem(M.Ruby, 2), GT.getSmallDust(M.Ruby, 6),
 				GT.getSmallDust(M.GarnetRed, 2));
 
-		Processor.addGrinderRecipe("oreSapphire", 1, GT.getGem(M.Sapphire, 1), GT.getSmallDust(M.Sapphire, 6),
+		Processor.addGrinderRecipe("oreSapphire", 1, GT.getGem(M.Sapphire, 2), GT.getSmallDust(M.Sapphire, 6),
 				GT.getSmallDust(M.SapphireGreen, 2));
 
-		Processor.addGrinderRecipe("oreCoal", 1, GT.get(Items.COAL, 1), GT.getIc2(Ic2Items.coalDust, 1),
+		Processor.addGrinderRecipe("oreCoal", 1, GT.get(Items.COAL, 2), GT.getIc2(Ic2Items.coalDust, 1),
 				GT.getSmallDust(M.Thorium, 1));
 
 		Processor.addGrinderRecipe("oreLapis", 1, new ItemStack(Items.DYE, 12, 4), GT.getDust(M.Lazurite, 3));
 
-		Processor.addGrinderRecipe("oreRedstone", 1, GT.get(Items.REDSTONE, 10), GT.getSmallDust(M.Glowstone, 2));
+		Processor.addGrinderRecipe("oreRedstone", 1, GT.get(Items.REDSTONE, 16), GT.getSmallDust(M.Glowstone, 2));
 
-		Processor.addGrinderRecipe("oreDiamond", 1, GT.get(Items.DIAMOND, 1), GT.getSmallDust(M.Diamond, 6),
+		Processor.addGrinderRecipe("oreDiamond", 1, GT.get(Items.DIAMOND, 2), GT.getSmallDust(M.Diamond, 6),
 				GT.getIc2(Ic2Items.hydratedCoalDust, 1));
 
-		Processor.addGrinderRecipe("oreEmerald", 1, GT.get(Items.EMERALD, 1), GT.getSmallDust(M.Emerald, 6),
+		Processor.addGrinderRecipe("oreEmerald", 1, GT.get(Items.EMERALD, 2), GT.getSmallDust(M.Emerald, 6),
 				GT.getSmallDust(M.Olivine, 2));
 
 		Processor.addGrinderRecipe("oreCinnabar", 1, GT.getDust(M.Cinnabar, 5), GT.getSmallDust(M.Redstone, 2),

@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import gtclassic.material.GTMaterialFlag;
 import ic2.core.IC2;
 import net.minecraft.item.Item.ToolMaterial;
 
@@ -44,10 +43,10 @@ public class GTToolGen {
 				IC2.getInstance().createItem(new GTToolWrench(tmat));
 			}
 		}
-		
+
 		for (ToolMaterial tmat : GTToolMaterial.toolMaterial) {
-			if (canBeVanillaTool(tmat) && GTToolMaterial.getGTMaterial(tmat).hasFlag(GTMaterialFlag.GEAR)) {
-				IC2.getInstance().createItem(new GTToolMulti(tmat));
+			if (!tmat.equals(GTToolMaterial.Flint)) {
+				IC2.getInstance().createItem(new GTToolKnife(tmat));
 			}
 		}
 
