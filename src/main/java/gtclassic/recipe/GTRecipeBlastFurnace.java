@@ -68,6 +68,11 @@ public class GTRecipeBlastFurnace {
 				GT.getIngot(M.Tantalum, 1));
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallTantalum", 1) }, euCost(50000),
 				GT.getIngot(M.Tantalum, 1));
+		
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustNiobium", 1) }, euCost(50000),
+				GT.getIngot(M.Niobium, 1));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallNiobium", 1) }, euCost(50000),
+				GT.getIngot(M.Niobium, 1));
 
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustChromite", 1) }, euCost(80000),
 				GT.getNugget(M.Chrome, 6), GT.getSmallDust(M.Slag, 1));

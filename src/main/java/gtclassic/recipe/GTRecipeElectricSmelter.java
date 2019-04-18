@@ -35,6 +35,7 @@ public class GTRecipeElectricSmelter {
 		GTTileElectricSmelter.addRecipe("blockGlass", 5, GT.get(GTItems.moldTube), GT.get(GTItems.testTube, 32));
 
 		GTTileElectricSmelter.addRecipe("dustResin", 1, GT.get(GTItems.woodPlate), GT.get(GTBlocks.resinBoard, 1));
+		GTTileElectricSmelter.addRecipe("dustResin", 1, "dustSulfur", 1 ,GT.getIc2(Ic2Items.rubber, 1));
 
 		GTTileElectricSmelter.addRecipe("dustPlastic", 1, GT.get(GTItems.moldPlate), GT.getPlate(M.Plastic, 1));
 		GTTileElectricSmelter.addRecipe("dustPlastic", 9, GT.get(GTItems.moldBlock),

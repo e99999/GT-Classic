@@ -22,6 +22,7 @@ import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
+import ic2.core.util.helpers.ToolHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
@@ -196,6 +197,17 @@ public class GTToolMiningDrill extends ItemElectricTool
 	@Override
 	public boolean canMine(ItemStack d) {
 		return ElectricItem.manager.canUse(d, this.getEnergyCost(d));
+	}
+
+	@Override
+	public float getDestroySpeed(ItemStack stack, IBlockState state) {
+		if (!ElectricItem.manager.canUse(stack, (double) this.getEnergyCost(stack))) {
+			return 1.0F;
+		} else if (ToolHelper.isToolEffective(state, stack)) {
+			return this.getMiningSpeed(stack);
+		} else {
+			return 0.0F;
+		}
 	}
 
 	@Override

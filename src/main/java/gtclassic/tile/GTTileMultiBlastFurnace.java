@@ -1,6 +1,8 @@
 package gtclassic.tile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -50,8 +52,8 @@ public class GTTileMultiBlastFurnace extends GTTileBaseMultiBlockMachine {
 			"textures/gui/blastfurnace.png");
 
 	public GTTileMultiBlastFurnace() {
-		super(6, 0, 20, 32);
-		maxEnergy = 100;
+		super(6, 2, 20, 32);
+		maxEnergy = 1000;
 	}
 
 	@Override
@@ -73,8 +75,7 @@ public class GTTileMultiBlastFurnace extends GTTileBaseMultiBlockMachine {
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		// TODO Auto-generated method stub
-		return null;
+		return new LinkedHashSet(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
