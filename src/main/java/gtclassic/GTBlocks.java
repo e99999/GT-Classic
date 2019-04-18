@@ -262,8 +262,23 @@ public class GTBlocks {
 			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)
 					&& !mat.equals(mat.Zinc)) {
 				createBlock(new GTBlockTileStorage(mat, 0));
+			}
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
+			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)
+					&& !mat.equals(mat.Zinc)) {
 				createBlock(new GTBlockTileStorage(mat, 1));
+			}
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
+			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)
+					&& !mat.equals(mat.Zinc)) {
 				createBlock(new GTBlockTileStorage(mat, 2));
+			}
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
+			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)
+					&& !mat.equals(mat.Zinc)) {
 				createBlock(new GTBlockTileStorage(mat, 3));
 			}
 		}

@@ -142,7 +142,8 @@ public class GTMaterial {
 	public static GTMaterial Nichrome = new GTMaterial("Nichrome", 10.0F, 256, 3, new Color(88, 133, 188), false,
 			SMALLDUST, DUST, NUGGET, INGOT, PLATE, STICK);
 	public static GTMaterial Nickel = new GTMaterial("Nickel", 6.0F, 64, 2, new Color(200, 200, 250), true, METAL_ALL);
-	public static GTMaterial Niobium = new GTMaterial("Niobium", 1.0F, 0, 1, new Color(200, 200, 200), false, DUST_ALL);
+	public static GTMaterial Niobium = new GTMaterial("Niobium", 1.0F, 0, 1, new Color(200, 200, 200), false, SMALLDUST,
+			DUST, INGOT, PLATE, NUGGET);
 	public static GTMaterial Nitrogen = new GTMaterial("Nitrogen", 1.0F, 0, 1, new Color(0, 190, 190), false, FLUID,
 			PLASMA);
 	public static GTMaterial Obsidian = new GTMaterial("Obsidian", 1.0F, 0, 1, new Color(80, 50, 100), false,
@@ -154,7 +155,7 @@ public class GTMaterial {
 	public static GTMaterial Oxygen = new GTMaterial("Oxygen", 1.0F, 0, 1, new Color(100, 160, 220), false, FLUID);
 	public static GTMaterial Phosphor = new GTMaterial("Phosphor", 1.0F, 0, 1, new Color(255, 255, 0), false, DUST_ALL);
 	public static GTMaterial Plastic = new GTMaterial("Plastic", 1.0F, 0, 1, new Color(235, 235, 235), false, DUST,
-			SMALLDUST);
+			SMALLDUST, PLATE);
 	public static GTMaterial Platinum = new GTMaterial("Platinum", 12.0F, 64, 2, new Color(255, 255, 200), true,
 			METAL_ALL);
 	public static GTMaterial Plutonium = new GTMaterial("Plutonium", 6.0F, 512, 3, new Color(240, 50, 50), false,
@@ -164,6 +165,8 @@ public class GTMaterial {
 	public static GTMaterial Pyrolusite = new GTMaterial("Pyrolusite", 5.0F, 0, 2, new Color(70, 70, 90), false,
 			DUST_ALL);
 	public static GTMaterial Pyrope = new GTMaterial("Pyrope", 1.0F, 0, 1, new Color(120, 50, 100), false, DUST_ALL);
+	public static GTMaterial RedAlloy = new GTMaterial("RedAlloy", 1.0F, 0, 1, new Color(200, 0, 0), true, SMALLDUST,
+			DUST, INGOT, NUGGET, STICK);
 	public static GTMaterial RedMud = new GTMaterial("RedMud", 1.0F, 0, 1, new Color(145, 47, 2), false, DUST_ALL);
 	public static GTMaterial RedRock = new GTMaterial("RedRock", 1.0F, 0, 1, new Color(255, 80, 50), false, DUST_ALL);
 	public static GTMaterial Redstone = new GTMaterial("Redstone", 1.0F, 0, 1, new Color(200, 0, 0), false, SMALLDUST);

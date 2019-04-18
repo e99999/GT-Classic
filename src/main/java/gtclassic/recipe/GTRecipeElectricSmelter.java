@@ -21,6 +21,9 @@ public class GTRecipeElectricSmelter {
 		/*
 		 * Alloy Smelter Recipes
 		 */
+		GTTileElectricSmelter.addRecipe("dustRedstone", 4, "ingotCopper", 1, GT.getIngot(M.RedAlloy, 1));
+		GTTileElectricSmelter.addRecipe("dustRedstone", 4, "dustCopper", 1, GT.getIngot(M.RedAlloy, 1));
+
 		alloyUtil("Tin", 1, "Copper", 3, GT.getIc2(Ic2Items.bronzeIngot, 4));
 		alloyUtil("Zinc", 1, "Copper", 3, GT.getIngot(M.Brass, 4));
 		alloyUtil("Bismuth", 1, "Brass", 3, GT.getIngot(M.BismuthBronze, 4));
@@ -33,6 +36,7 @@ public class GTRecipeElectricSmelter {
 
 		GTTileElectricSmelter.addRecipe("dustResin", 1, GT.get(GTItems.woodPlate), GT.get(GTBlocks.resinBoard, 1));
 
+		GTTileElectricSmelter.addRecipe("dustPlastic", 1, GT.get(GTItems.moldPlate), GT.getPlate(M.Plastic, 1));
 		GTTileElectricSmelter.addRecipe("dustPlastic", 9, GT.get(GTItems.moldBlock),
 				GT.get(GTBlocks.plastic1CasingBlock, 1));
 

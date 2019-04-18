@@ -313,7 +313,6 @@ tile.gtclassic.bismuthtine_gravel_ore.name=Bismuthtine Gravel
 tile.gtclassic.cassiterite_gravel_ore.name=Cassiterite Gravel
 tile.gtclassic.magnetite_gravel_ore.name=Magnetite Gravel
 tile.gtclassic.basalt_gravel_ore.name=Basaltic Minerals Gravel
-
 #bedrock
 tile.gtclassic.galena_bedrock_ore.name=Galena Bedrock Ore
 tile.gtclassic.iridium_bedrock_ore.name=Iridium Bedrock Ore
@@ -347,13 +346,6 @@ tile.gtclassic.bismuthtine_bedrock_ore.name=Bismuthtine Bedrock Ore
 tile.gtclassic.cassiterite_bedrock_ore.name=Cassiterite Bedrock Ore
 tile.gtclassic.magnetite_bedrock_ore.name=Magnetite Bedrock Ore
 tile.gtclassic.basalt_bedrock_ore.name=Basaltic Minerals Bedrock Ore
-
-
-#sands
-tile.gtclassic.cassiterite_sand.name=Cassiterite Sand
-tile.gtclassic.bismuthtine_sand.name=Bismuthtine Sand
-tile.gtclassic.magnetite_sand.name=Black Sand
-tile.gtclassic.basalt_sand.name=Basalt Mineral Sand
 
 #blocks
 tile.gtclassic.resin_block.name=Uncut Sticky Resin Board
@@ -541,6 +533,7 @@ item.gtclassic.resin_dustsmall.name=Small Resin Dust
 item.gtclassic.dirtyresin_dustsmall.name=Small Dirty Resin Dust
 item.gtclassic.redgarnet_dustsmall.name=Small Red Garnet Dust
 item.gtclassic.yellowgarnet_dustsmall.name=Small Yellow Garnet Dust
+item.gtclassic.redalloy_dustsmall.name=Small Red Alloy Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -639,6 +632,7 @@ item.gtclassic.resin_dust.name=Resin Dust
 item.gtclassic.dirtyresin_dust.name=Dirty Resin Dust
 item.gtclassic.redgarnet_dust.name=Red Garnet Dust
 item.gtclassic.yellowgarnet_dust.name=Yellow Garnet Dust
+item.gtclassic.redalloy_dust.name=Red Alloy Dust
 
 #gems
 item.gtclassic.sapphire_gem.name=Sapphire
@@ -679,6 +673,8 @@ item.gtclassic.silicon_ingot.name=Silicon Ingot
 item.gtclassic.cobalt_ingot.name=Cobalt Ingot
 item.gtclassic.ultimet_ingot.name=Ultimet Ingot
 item.gtclassic.molybdenum_ingot.name=Molybdenum Ingot
+item.gtclassic.niobium_ingot.name=Niobium Ingot
+item.gtclassic.redalloy_ingot.name=Red Alloy Ingot
 
 #nuggets
 item.gtclassic.tungsten_nugget.name=Tungsten Nugget
@@ -716,6 +712,8 @@ item.gtclassic.silicon_nugget.name=Silicon Nugget
 item.gtclassic.cobalt_nugget.name=Cobalt Nugget
 item.gtclassic.ultimet_nugget.name=Ultimet Nugget
 item.gtclassic.molybdenum_nugget.name=Molybdenum Nugget
+item.gtclassic.niobium_nugget.name=Niobium Nugget
+item.gtclassic.redalloy_nugget.name=Red Alloy Nugget
 
 #plates
 item.gtclassic.tungsten_plate.name=Tungsten Plate
@@ -755,6 +753,8 @@ item.gtclassic.silicon_plate.name=Silicon Plate
 item.gtclassic.cobalt_plate.name=Cobalt Plate
 item.gtclassic.molybdenum_plate.name=Molybdenum Plate
 item.gtclassic.ultimet_plate.name=Ultimet Plate
+item.gtclassic.niobium_plate.name=Niobium Plate
+item.gtclassic.plastic_plate.name=Plastic Plate
 
 #gear
 item.gtclassic.tungsten_gear.name=Tungsten Gear
@@ -824,6 +824,7 @@ item.gtclassic.bismuth_stick.name=Bismuth Rod
 item.gtclassic.cobalt_stick.name=Cobalt Rod
 item.gtclassic.molybdenum_stick.name=Molybdenum Rod
 item.gtclassic.ultimet_stick.name=Ultimet Rod
+item.gtclassic.redalloy_stick.name=Red Alloy Rod
 
 #material tools
 #files
@@ -852,6 +853,7 @@ item.gtclassic.tantalum_file.name=Tantalum File
 item.gtclassic.bismuthbronze_file.name=Bismuth Bronze File
 item.gtclassic.cobalt_file.name=Cobalt File
 item.gtclassic.ultimet_file.name=Ultimet File
+item.gtclassic.stainlesssteel_file.name=Stainless Steel File
 #hammers
 item.gtclassic.bronze_hammer.name=Bronze Hammer
 item.gtclassic.iron_hammer.name=Iron Hammer
@@ -878,6 +880,7 @@ item.gtclassic.tantalum_hammer.name=Tantalum Hammer
 item.gtclassic.bismuthbronze_hammer.name=Bismuth Bronze Hammer
 item.gtclassic.cobalt_hammer.name=Cobalt Hammer
 item.gtclassic.ultimet_hammer.name=Ultimet Hammer
+item.gtclassic.stainlesssteel_hammer.name=Stainless Steel Hammer
 #wrenches
 item.gtclassic.bronze_wrench.name=Bronze Wrench
 item.gtclassic.iron_wrench.name=Iron Wrench
@@ -904,6 +907,7 @@ item.gtclassic.tantalum_wrench.name=Tantalum Wrench
 item.gtclassic.bismuthbronze_wrench.name=Bismuth Bronze Wrench
 item.gtclassic.cobalt_wrench.name=Cobalt Wrench
 item.gtclassic.ultimet_wrench.name=Ultimet Wrench
+item.gtclassic.stainlesssteel_wrench.name=Stainless Steel Wrench
 #knives
 item.gtclassic.bronze_knife.name=Bronze Knife
 item.gtclassic.iron_knife.name=Iron Knife
@@ -930,6 +934,7 @@ item.gtclassic.tantalum_knife.name=Tantalum Knife
 item.gtclassic.bismuthbronze_knife.name=Bismuth Bronze Knife
 item.gtclassic.cobalt_knife.name=Cobalt Knife
 item.gtclassic.ultimet_knife.name=Ultimet Knife
+item.gtclassic.stainlesssteel_knife.name=Stainless Steel Knife
 #swords
 item.gtclassic.flint_sword.name=Flint Sword
 item.gtclassic.bronze_sword.name=Bronze Sword
@@ -957,6 +962,7 @@ item.gtclassic.tantalum_sword.name=Tantalum Sword
 item.gtclassic.bismuthbronze_sword.name=Bismuth Bronze Sword
 item.gtclassic.cobalt_sword.name=Cobalt Sword
 item.gtclassic.ultimet_sword.name=Ultimet Sword
+item.gtclassic.stainlesssteel_sword.name=Stainless Steel sword
 #shovels
 item.gtclassic.flint_shovel.name=Flint Shovel
 item.gtclassic.bronze_shovel.name=Bronze Shovel
@@ -984,6 +990,7 @@ item.gtclassic.tantalum_shovel.name=Tantalum Shovel
 item.gtclassic.bismuthbronze_shovel.name=Bismuth Bronze Shovel
 item.gtclassic.cobalt_shovel.name=Cobalt Shovel
 item.gtclassic.ultimet_shovel.name=Ultimet Shovel
+item.gtclassic.stainlesssteel_shovel.name=Stainless Steel Shovel
 #axes
 item.gtclassic.flint_axe.name=Flint Axe
 item.gtclassic.bronze_axe.name=Bronze Axe
@@ -1011,6 +1018,7 @@ item.gtclassic.tantalum_axe.name=Tantalum Axe
 item.gtclassic.bismuthbronze_axe.name=Bismuth Bronze Axe
 item.gtclassic.cobalt_axe.name=Cobalt Axe
 item.gtclassic.ultimet_axe.name=Ultimet Axe
+item.gtclassic.stainlesssteel_axe.name=Stainless Steel Axe
 #pickaxes
 item.gtclassic.flint_pickaxe.name=Flint Pickaxe
 item.gtclassic.bronze_pickaxe.name=Bronze Pickaxe
@@ -1038,6 +1046,7 @@ item.gtclassic.tantalum_pickaxe.name=Tantalum Pickaxe
 item.gtclassic.bismuthbronze_pickaxe.name=Bismuth Bronze Pickaxe
 item.gtclassic.cobalt_pickaxe.name=Cobalt Pickaxe
 item.gtclassic.ultimet_pickaxe.name=Ultimet Pickaxe
+item.gtclassic.stainlesssteel_pickaxe.name=Stainless Steel Pickaxe
 #drills
 item.gtclassic.bronze_miningdrill.name=Bronze Drill
 item.gtclassic.iron_miningdrill.name=Iron Drill
@@ -1063,6 +1072,7 @@ item.gtclassic.osmium_miningdrill.name=Osmium Drill
 item.gtclassic.tantalum_miningdrill.name=Tantalum Drill
 item.gtclassic.cobalt_miningdrill.name=Cobalt Drill
 item.gtclassic.ultimet_miningdrill.name=Ultimet Drill
+item.gtclassic.stainlesssteel_miningdrill.name=Stainless Steel Drill
 #chainsaws
 item.gtclassic.bronze_chainsaw.name=Bronze Chainsaw
 item.gtclassic.iron_chainsaw.name=Iron Chainsaw
@@ -1088,18 +1098,21 @@ item.gtclassic.osmium_chainsaw.name=Osmium Chainsaw
 item.gtclassic.tantalum_chainsaw.name=Tantalum Chainsaw
 item.gtclassic.cobalt_chainsaw.name=Cobalt Chainsaw
 item.gtclassic.ultimet_chainsaw.name=Ultimet Chainsaw
-
+item.gtclassic.stainlesssteel_chainsaw.name=Stainless Steel Chainsaw
 
 #components
 item.gtclassic.test_tube.name=Glass Tube
+item.gtclassic.plastic_fletching.name=Plastic Fetching
 item.gtclassic.magnifying_glass.name=Magnifying Glass
 item.gtclassic.wood_plate.name=Wood Board
 item.gtclassic.resin_pcb.name=Resin PCB
 item.gtclassic.plastic_pcb.name=Plastic PCB
 item.gtclassic.tantalum_foil.name=Tantalum Foil
+item.gtclassic.niobium_foil.name=Niobium Foil
 item.gtclassic.germanium_smallplate.name=Small Germanium Plate
 item.gtclassic.tin_finewire.name=Tin Fine Wire
 item.gtclassic.lead_finewire.name=Lead Fine Wire
+item.gtclassic.redalloy_finewire.name=Red Alloy Fine Wire
 item.gtclassic.basic_transistor.name=Basic Transistor
 item.gtclassic.basic_capacitor.name=Basic Capacitor
 

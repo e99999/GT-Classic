@@ -22,6 +22,9 @@ public class GTRecipeShapeless {
 
 		recipes.addShapelessRecipe(GT.get(GTItems.magnifyingGlass), new Object[] { "paneGlass", "stickIron" });
 
+		recipes.addShapelessRecipe(GT.get(GTItems.plasticFletching, 4),
+				new Object[] { "craftingToolKnife", "platePlastic" });
+
 		recipes.addShapelessRecipe(GT.get(GTBlocks.plastic4CasingBlock, 4), new Object[] { GTBlocks.plastic1CasingBlock,
 				GTBlocks.plastic1CasingBlock, GTBlocks.plastic1CasingBlock, GTBlocks.plastic1CasingBlock });
 
@@ -35,6 +38,9 @@ public class GTRecipeShapeless {
 				GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64) });
 
 		// Dust Recipes
+		recipes.addShapelessRecipe(GT.getDust(M.RedAlloy, 1),
+				new Object[] { "dustCopper", "dustRedstone", "dustRedstone", "dustRedstone", "dustRedstone" });
+
 		recipes.addShapelessRecipe(GT.getDust(M.Invar, 3), new Object[] { "dustIron", "dustIron", "dustNickel" });
 
 		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.bronzeDust, 1),

@@ -142,7 +142,13 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 
 	public static void addMagnetRecipe(String input, int amount, ItemStack... outputs) {
 		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
-				new RecipeInputItemStack(new ItemStack(GTItems.electroMagnet)) }, euCost(32000), outputs);
+				new RecipeInputItemStack(new ItemStack(GTItems.electroMagnet)) }, euCost(48000), outputs);
+	}
+
+	public static void addMagnetGrinderRecipe(String input, int amount, ItemStack... outputs) {
+		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
+				new RecipeInputItemStack(new ItemStack(GTItems.electroMagnet)),
+				new RecipeInputOreDict("craftingToolGrinder", 1) }, euCost(48000), outputs);
 	}
 
 	private static void addBucketRecipe(String input, int amount, ItemStack... outputs) {

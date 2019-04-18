@@ -5,6 +5,7 @@ import gtclassic.item.GTItemGrinder;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.ore.GTOreFalling;
+import gtclassic.ore.GTOreFlag;
 import gtclassic.ore.GTOreStone;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
@@ -52,7 +53,9 @@ public class GTOreDict {
 			if (block instanceof GTOreStone) {
 				GTOreStone ore = (GTOreStone) block;
 				String name = "ore" + ore.getOreEntry().getMaterial().getDisplayName();
-				OreDictionary.registerOre(name, new ItemStack(block));
+				if (!ore.getOreFlag().equals(GTOreFlag.BEDROCK)) {
+					OreDictionary.registerOre(name, new ItemStack(block));
+				}
 			}
 			if (block instanceof GTOreFalling) {
 				GTOreFalling sand = (GTOreFalling) block;

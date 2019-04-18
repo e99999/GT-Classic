@@ -28,7 +28,7 @@ public class GTRecipeIndustrialProcessor {
 
 			Processor.addGrinderRecipe("oreGalena", 1, GT.getDust(M.Galena, 2), GT.getSmallDust(M.Silver, 2));
 
-			Processor.addGrinderRecipe("oreGarnierite", 1, GT.getDust(M.Garnierite, 3), GT.getSmallDust(M.Platinum, 1),
+			Processor.addGrinderRecipe("oreGarnierite", 1, GT.getDust(M.Garnierite, 2), GT.getSmallDust(M.Platinum, 1),
 					GT.getSmallDust(M.Copper, 1));
 
 			Processor.addGrinderRecipe("oreLimonite", 1, GT.getDust(M.Limonite, 2), GT.getSmallDust(M.Iron, 2));
@@ -38,7 +38,7 @@ public class GTRecipeIndustrialProcessor {
 
 			Processor.addGrinderRecipe("orePyrite", 1, GT.getDust(M.Pyrite, 2), GT.getSmallDust(M.Iron, 2));
 
-			Processor.addGrinderRecipe("oreSheldonite", 1, GT.getDust(M.Sheldonite, 2), GT.getDust(M.Nickel, 1),
+			Processor.addGrinderRecipe("oreSheldonite", 1, GT.getDust(M.Sheldonite, 2), GT.getSmallDust(M.Nickel, 1),
 					GT.getSmallDust(M.Platinum, 1));
 
 			Processor.addGrinderRecipe("oreSphalerite", 1, GT.getDust(M.Sphalerite, 2), GT.getDust(M.Zinc, 1),
@@ -86,7 +86,7 @@ public class GTRecipeIndustrialProcessor {
 		 * These recipes will be added regardless of Ic2 extras
 		 */
 
-		Processor.addGrinderRecipe("netherrack", 1, GT.getIc2(Ic2Items.netherrackDust, 4),
+		Processor.addGrinderRecipe("netherrack", 16, GT.getIc2(Ic2Items.netherrackDust, 16),
 				GT.get(Items.GOLD_NUGGET, 1));
 
 		Processor.addGrinderRecipe("obsidian", 1, GT.getIc2(Ic2Items.obsidianDust, 2), GT.getSmallDust(M.Iron, 1),
@@ -127,16 +127,22 @@ public class GTRecipeIndustrialProcessor {
 		Processor.addGrinderRecipe("oreCinnabar", 1, GT.getDust(M.Cinnabar, 5), GT.getSmallDust(M.Redstone, 2),
 				GT.getSmallDust(M.Glowstone, 1));
 
-		Processor.addGrinderRecipe("oreOlivine", 1, GT.getGem(M.Olivine, 1), GT.getSmallDust(M.Olivine, 6),
+		Processor.addGrinderRecipe("oreOlivine", 1, GT.getGem(M.Olivine, 2), GT.getSmallDust(M.Olivine, 6),
 				GT.getSmallDust(M.Emerald, 2));
 
 		Processor.addGrinderRecipe("oreSodalite", 1, GT.getDust(M.Lazurite, 12), GT.getDust(M.Alumina, 3));
 	}
 
 	public static void recipeIndustrialProcessor2() {
-		Processor.addMagnetRecipe("gravel", 24, GT.get(Items.IRON_NUGGET, 1), GT.getNugget(M.Nickel, 1),
+		Processor.addMagnetRecipe("gravel", 12, GT.get(Items.IRON_NUGGET, 2), GT.getNugget(M.Nickel, 1),
 				GT.getNugget(M.Cobalt, 1));
-		Processor.addMagnetRecipe("dustSlag", 12, GT.get(Items.IRON_NUGGET, 1), GT.getNugget(M.Nickel, 1));
+		Processor.addMagnetRecipe("dustSlag", 4, GT.get(Items.IRON_NUGGET, 2), GT.getNugget(M.Nickel, 1));
+		Processor.addMagnetGrinderRecipe("oreCopper", 1, GT.getIc2(Ic2Items.copperDust, 2), GT.getNugget(M.Nickel, 2),
+				GT.getNugget(M.Cobalt, 2));
+		Processor.addMagnetGrinderRecipe("oreTin", 1, GT.getIc2(Ic2Items.tinDust, 2), GT.getIc2(Ic2Items.ironDust, 1),
+				GT.get(Items.IRON_NUGGET, 3));
+		Processor.addMagnetGrinderRecipe("oreIron", 1, GT.getIc2(Ic2Items.ironDust, 2), GT.getNugget(M.Nickel, 4),
+				GT.get(Items.IRON_NUGGET, 4));
 	}
 
 }

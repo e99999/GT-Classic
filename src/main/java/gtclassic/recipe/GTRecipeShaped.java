@@ -39,7 +39,7 @@ public class GTRecipeShaped {
 				'B', Ic2Items.battery, 'I', plateAnyIron, 'W', Ic2Items.copperCable });
 
 		recipes.addRecipe(GT.get(GTItems.rockCutter, 1),
-				new Object[] { "DI ", "DI ", "DCB",
+				new Object[] { "D C", "DIB", "DII",
 						new EnchantmentModifier(GT.get(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(),
 						'D', "gemDiamond", 'I', GT.getIc2(Ic2Items.carbonPlate, 1), 'C', "circuitBasic", 'B',
 						Ic2Items.battery.copy() });
@@ -144,6 +144,9 @@ public class GTRecipeShaped {
 
 		recipes.addRecipe(GT.get(Blocks.HOPPER), new Object[] { "I I", "ICI", " I ", 'W', "plankWood", 'C',
 				"cobblestone", 'I', ingotMetal, 'C', "chestWood" });
+
+		recipes.addRecipe(GT.get(Items.ARROW, 4),
+				new Object[] { "T", "S", "F", 'T', Items.FLINT, 'S', "stickWood", 'F', GTItems.plasticFletching });
 
 		recipes.addRecipe(GT.get(GTBlocks.slagcreteSand),
 				new Object[] { "XXX", "XSX", "XXX", 'X', "gravel", 'S', GTBlocks.slagSand });
