@@ -127,8 +127,6 @@ public class GTBlocks {
 	public static final GTBlockCustom mudBlock = registerBlock(new GTBlockCustom("Mud", 21, 16, 2));
 
 	public static final GTBlockMortar mortar = registerBlock(new GTBlockMortar());
-	public static final GTBlockTileCustom Echophone = registerBlock(
-			new GTBlockTileCustom("block_echophone", 8, 14, false));
 
 	public static final GTBlockDuctTape DuctTape = registerBlock(new GTBlockDuctTape("block_ducttape", 10, 4, false));
 
@@ -194,15 +192,14 @@ public class GTBlocks {
 			"machine_matterreplicator_ev", "machine_playerdetector_lv", "machine_fusioncomputer_luv",
 			"machine_lightningrod_iv", "machine_quantumenergystorage_ev", "machine_basicenergystorage_ev",
 			"machine_digitaltransformer_luv", "cable_energium_luv", "cable_lapotron_zpm", "tile_digitalchest",
-			"tile_smallchest", "tile_largechest", "tile_bookshelf", "tile_workbench", "tile_buffer" };
+			"tile_smallchest", "tile_largechest", "tile_bookshelf", "tile_workbench" };
 
-	public static final String[] textureTileCustom = { "block_mortar", "block_ducttape", "block_echophone",
-			"coolant_helium_small", "coolant_helium_med", "coolant_helium_large", "rod_thorium_small",
-			"rod_thorium_med", "rod_thorium_large", "rod_plutonium_small", "rod_plutonium_med", "rod_plutonium_large",
-			"battery_lithium_small", "battery_lithium_med", "battery_lithium_large", "battery_lapotron_tiny",
-			"battery_lapotron_small", "battery_lapotron_med", "battery_lapotron_large", "battery_lapotron_huge",
-			"battery_energium_tiny", "battery_energium_small", "battery_energium_med", "battery_energium_large",
-			"battery_energium_huge", };
+	public static final String[] textureTileCustom = { "block_mortar", "block_ducttape", "coolant_helium_small",
+			"coolant_helium_med", "coolant_helium_large", "rod_thorium_small", "rod_thorium_med", "rod_thorium_large",
+			"rod_plutonium_small", "rod_plutonium_med", "rod_plutonium_large", "battery_lithium_small",
+			"battery_lithium_med", "battery_lithium_large", "battery_lapotron_tiny", "battery_lapotron_small",
+			"battery_lapotron_med", "battery_lapotron_large", "battery_lapotron_huge", "battery_energium_tiny",
+			"battery_energium_small", "battery_energium_med", "battery_energium_large", "battery_energium_huge", };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -262,23 +259,8 @@ public class GTBlocks {
 			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)
 					&& !mat.equals(mat.Zinc)) {
 				createBlock(new GTBlockTileStorage(mat, 0));
-			}
-		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)
-					&& !mat.equals(mat.Zinc)) {
 				createBlock(new GTBlockTileStorage(mat, 1));
-			}
-		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)
-					&& !mat.equals(mat.Zinc)) {
 				createBlock(new GTBlockTileStorage(mat, 2));
-			}
-		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.CASING) && !mat.equals(mat.Copper) && !mat.equals(mat.Tin)
-					&& !mat.equals(mat.Zinc)) {
 				createBlock(new GTBlockTileStorage(mat, 3));
 			}
 		}

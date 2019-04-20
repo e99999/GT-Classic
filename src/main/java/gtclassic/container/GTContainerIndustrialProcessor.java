@@ -1,6 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.tile.GTTileMultiIndustrialProcessor;
+import gtclassic.util.GTSlotUpgrade;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
@@ -26,6 +27,11 @@ public class GTContainerIndustrialProcessor extends ContainerTileComponent<GTTil
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 114, 25)); // output
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 6, 132, 25)); // output
 		this.addPlayerInventory(player);
+		
+		for (int i = 0; i < 2; ++i) {
+			this.addSlotToContainer(new GTSlotUpgrade(tile, 7 + i, 80 + (i * 18), 64));
+		}
+		
 		this.addComponent(new MachineProgressComp(tile, GTContainerIndustrialProcessor.machineProgressBox,
 				GTContainerIndustrialProcessor.machineProgressPos));
 	}

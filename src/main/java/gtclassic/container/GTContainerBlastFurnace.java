@@ -1,6 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.tile.GTTileMultiBlastFurnace;
+import gtclassic.util.GTSlotUpgrade;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -30,7 +31,7 @@ public class GTContainerBlastFurnace extends ContainerTileComponent<GTTileMultiB
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 122, 25)); // output
 		
 		for (int i = 0; i < 2; ++i) {
-			this.addSlotToContainer(new SlotUpgrade(tile, 6 + i, 80 + (i * 18), 64));
+			this.addSlotToContainer(new GTSlotUpgrade(tile, 6 + i, 80 + (i * 18), 64));
 		}
 		
 		this.addPlayerInventory(player);

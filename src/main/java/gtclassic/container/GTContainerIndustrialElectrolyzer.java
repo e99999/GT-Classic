@@ -2,6 +2,7 @@ package gtclassic.container;
 
 import gtclassic.gui.GTGuiCompVerticalProgress;
 import gtclassic.tile.GTTileIndustrialElectrolyzer;
+import gtclassic.util.GTSlotUpgrade;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotCustom;
@@ -33,7 +34,7 @@ public class GTContainerIndustrialElectrolyzer extends ContainerTileComponent<GT
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 7, 8, 62));
 		
 		for (int i = 0; i < 2; ++i) {
-			this.addSlotToContainer(new SlotUpgrade(tile, 8 + i, 152, 26 + i * 18));
+			this.addSlotToContainer(new GTSlotUpgrade(tile, 8 + i, 152, 26 + i * 18));
 		}
 		
 		this.addPlayerInventory(player);
