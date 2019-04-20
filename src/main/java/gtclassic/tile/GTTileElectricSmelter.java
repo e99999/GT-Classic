@@ -1,6 +1,8 @@
 package gtclassic.tile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -47,7 +49,7 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 	public static final int slotFuel = 3;
 
 	public GTTileElectricSmelter() {
-		super(4, 0, 16, 200, 32);
+		super(4, 2, 16, 200, 32);
 		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
 	}
@@ -77,8 +79,7 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		// TODO Auto-generated method stub
-		return null;
+		return new LinkedHashSet(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override

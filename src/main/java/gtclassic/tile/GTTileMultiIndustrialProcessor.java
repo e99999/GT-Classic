@@ -1,6 +1,8 @@
 package gtclassic.tile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -54,7 +56,7 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 			"textures/gui/industrialprocessor.png");
 
 	public GTTileMultiIndustrialProcessor() {
-		super(7, 0, 96, 128);
+		super(7, 2, 96, 128);
 		maxEnergy = 10000;
 	}
 
@@ -78,8 +80,7 @@ public class GTTileMultiIndustrialProcessor extends GTTileBaseMultiBlockMachine 
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		// TODO Auto-generated method stub
-		return null;
+		return new LinkedHashSet(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
