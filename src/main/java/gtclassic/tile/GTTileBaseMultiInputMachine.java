@@ -376,13 +376,16 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	}
 
 	public boolean checkRecipe(MultiRecipe entry, int[] mutation) {
+		int matches = 0;
 		int[] inputs = getInputSlots();
 		for (int i = 0; i < inputs.length; i++) {
-			if (!entry.matches(inputs[i], inventory.get(mutation[i]))) {
-				return false;
+			for (int j = 0; j < entry.getInputSize(); j++) {
+				if (entry.matches(j, inventory.get(mutation[i]))) {
+					matches++;
+				}
 			}
 		}
-		return true;
+		return matches >= entry.getInputSize();
 	}
 
 	public abstract int[] getInputSlots();
