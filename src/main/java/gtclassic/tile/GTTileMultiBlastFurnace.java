@@ -106,22 +106,6 @@ public class GTTileMultiBlastFurnace extends GTTileBaseMultiBlockMachine {
 		return new int[] { slotInput0, slotInput1, slotInput2 };
 	}
 
-	/**
-	 * This is no longer needed for the edited multi recipe input checking.
-	 * The code just picks the first int[] from the int[][], so you only need one element.
-	 * Example below commented out. You can do this for any machine using MultiRecipe
-	 * **/
-	@Override
-	public int[][] getRecipeMutations() {
-		return new int[][] { { slotInput0, slotInput1, slotInput2 }, { slotInput0, slotInput2, slotInput1 },
-				{ slotInput2, slotInput1, slotInput0 }, { slotInput1, slotInput2, slotInput0 },
-				{ slotInput1, slotInput0, slotInput2 }, { slotInput2, slotInput0, slotInput1 } };
-	}
-//	@Override
-//	public int[][] getRecipeMutations() {
-//		return new int[][] { {slotInput0, slotInput1, slotInput2} };
-//	}
-
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
 		IFilter[] filter = { new MachineFilter(this) };
