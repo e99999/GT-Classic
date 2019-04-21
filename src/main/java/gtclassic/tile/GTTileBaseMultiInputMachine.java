@@ -1,9 +1,5 @@
 package gtclassic.tile;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.function.Predicate;
-
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import gtclassic.util.recipe.GTMultiInputRecipeList.MultiRecipe;
 import ic2.api.classic.audio.PositionSpec;
@@ -41,6 +37,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
@@ -152,18 +152,23 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
 		}
 		int[] inputs = getInputSlots();
+		int recipeInputs = recipe.getInputSize();
+		int consumedInputs = 0;
 		for (int i = 0; i < inputs.length; i++) {
 			for (int j = 0; j < recipe.getInputSize(); j++) {
 				IRecipeInput input = recipe.getInput(j);
 				if (input == null) continue;
-			ItemStack stack = inventory.get(currentMutation[i]);
+				ItemStack stack = inventory.get(currentMutation[i]);
 				if (!input.matches(stack)) continue;
-			if (stack.getItem().hasContainerItem(stack)) {
-				inventory.set(currentMutation[i], stack.getItem().getContainerItem(stack));
-			} else {
-				stack.shrink(input.getAmount());
+				if (stack.getItem().hasContainerItem(stack)) {
+					inventory.set(currentMutation[i], stack.getItem().getContainerItem(stack));
+					consumedInputs++;
+				} else {
+					stack.shrink(input.getAmount());
+					consumedInputs++;
+				}
 			}
-		}
+			if (consumedInputs == recipeInputs) break;
 		}
 		addToInventory();
 		if (supportsUpgrades) {
@@ -200,20 +205,21 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 			}
 		}
 		if (lastRecipe == null) {
-			lastRecipe = getRecipeList().getRecipe(new Predicate<MultiRecipe>() {
-				@Override
-				public boolean test(MultiRecipe t) {
-					for (int[] mutation : getRecipeMutations()) {
-						if (checkRecipe(t, mutation)) {
-							currentMutation = mutation;
-							return true;
-						}
-					}
-					return false;
+			ArrayList<MultiRecipe> validRecipes = new ArrayList<>();
+
+			getRecipeList().getRecipeList().forEach(r -> {
+				if (checkRecipe(r, getRecipeMutations()[0])) {
+					validRecipes.add(r);
 				}
 			});
-			if (lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
-				return null;
+			if (validRecipes.size() == 0) return null;
+			else if (validRecipes.size() == 1) return lastRecipe = validRecipes.get(0);
+			else {
+				int indexOfMostInputs = -1, lastBiggest = 0;
+				for (int i = 0; i < validRecipes.size(); i++) {
+					if (validRecipes.get(i).getInputSize() > lastBiggest) indexOfMostInputs = i;
+				}
+				lastRecipe = validRecipes.get(indexOfMostInputs);
 			}
 			applyRecipeEffect(lastRecipe.getOutputs());
 		}
