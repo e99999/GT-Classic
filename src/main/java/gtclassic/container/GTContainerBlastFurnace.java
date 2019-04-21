@@ -7,7 +7,6 @@ import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotOutput;
-import ic2.core.inventory.slots.SlotUpgrade;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,16 +28,16 @@ public class GTContainerBlastFurnace extends ContainerTileComponent<GTTileMultiB
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 86, 25)); // output
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 104, 25)); // output
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 122, 25)); // output
-		
+
 		for (int i = 0; i < 2; ++i) {
 			this.addSlotToContainer(new GTSlotUpgrade(tile, 6 + i, 80 + (i * 18), 64));
 		}
-		
+
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerBlastFurnace.machineProgressBox,
 				GTContainerBlastFurnace.machineProgressPos));
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiLoaded(GuiIC2 gui) {

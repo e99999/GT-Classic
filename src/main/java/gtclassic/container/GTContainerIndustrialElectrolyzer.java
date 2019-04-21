@@ -8,7 +8,6 @@ import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotOutput;
-import ic2.core.inventory.slots.SlotUpgrade;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,11 +31,11 @@ public class GTContainerIndustrialElectrolyzer extends ContainerTileComponent<GT
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 90, 16));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 6, 110, 16));
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 7, 8, 62));
-		
+
 		for (int i = 0; i < 2; ++i) {
 			this.addSlotToContainer(new GTSlotUpgrade(tile, 8 + i, 152, 26 + i * 18));
 		}
-		
+
 		this.addPlayerInventory(player);
 		this.addComponent(new GTGuiCompVerticalProgress(tile, GTContainerIndustrialElectrolyzer.machineProgressBox,
 				GTContainerIndustrialElectrolyzer.machineProgressPos));

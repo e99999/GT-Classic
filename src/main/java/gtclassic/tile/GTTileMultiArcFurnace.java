@@ -31,6 +31,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class GTTileMultiArcFurnace extends GTTileBaseMultiBlockMachine {
@@ -60,11 +61,23 @@ public class GTTileMultiArcFurnace extends GTTileBaseMultiBlockMachine {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput0, slotInput1, slotInput2);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput0, slotOutput1, slotOutput2);
-		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0);
+		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0, slotInput1, slotInput2);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1, slotInput2);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput0, slotOutput1, slotOutput2);
 		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1, slotInput2);
 		handler.registerSlotType(SlotType.Output, slotOutput0, slotOutput1, slotOutput2);
+	}
+
+	@Override
+	public TileEntity getImportTile() {
+		int3 dir = new int3(getPos(), getFacing());
+		return world.getTileEntity(dir.up(3).asBlockPos());
+	}
+
+	@Override
+	public TileEntity getExportTile() {
+		int3 dir = new int3(getPos(), getFacing());
+		return world.getTileEntity(dir.back(4).asBlockPos());
 	}
 
 	@Override

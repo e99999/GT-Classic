@@ -61,7 +61,7 @@ public class GTTileIndustrialElectrolyzer extends GTTileBaseMultiInputMachine {
 		handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput0, slotInput1, slotInput2);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput0, slotOutput1, slotOutput2, slotOutput3);
-		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0);
+		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0, slotInput1, slotInput2);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1, slotInput2);
 		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput0, slotOutput1, slotOutput2,

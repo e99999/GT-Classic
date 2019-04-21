@@ -9,6 +9,7 @@ import java.util.Set;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerElectricSmelter;
 import gtclassic.gui.GTGuiMachine.GTElectricSmelterGui;
+import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
@@ -35,6 +36,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
@@ -60,7 +62,7 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 		handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput0, slotInput1);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput);
-		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0);
+		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0, slotInput1);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
 		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput);
@@ -107,6 +109,12 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 		IFilter[] filter = { new MachineFilter(this) };
 		// return filter;
 		return null;
+	}
+
+	@Override
+	public TileEntity getImportTile() {
+		int3 dir = new int3(getPos(), getFacing());
+		return world.getTileEntity(dir.left(1).asBlockPos());
 	}
 
 	@Override
