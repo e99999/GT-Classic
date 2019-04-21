@@ -100,13 +100,6 @@ public class GTTileIndustrialElectrolyzer extends GTTileBaseMultiInputMachine {
 	}
 
 	@Override
-	public int[][] getRecipeMutations() {
-		return new int[][] { { slotInput0, slotInput1, slotInput2 }, { slotInput0, slotInput2, slotInput1 },
-				{ slotInput2, slotInput1, slotInput0 }, { slotInput1, slotInput2, slotInput0 },
-				{ slotInput1, slotInput0, slotInput2 }, { slotInput2, slotInput0, slotInput1 } };
-	}
-
-	@Override
 	public IFilter[] getInputFilters(int[] slots) {
 		// TODO Auto-generated method stub
 		return null;

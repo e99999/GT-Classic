@@ -101,11 +101,6 @@ public class GTTileMultiFusionComputer extends GTTileBaseMultiBlockMachine {
 	}
 
 	@Override
-	public int[][] getRecipeMutations() {
-		return new int[][] { { slotInput0, slotInput1 }, { slotInput1, slotInput0 } };
-	}
-
-	@Override
 	public IFilter[] getInputFilters(int[] slots) {
 		IFilter[] filter = { new MachineFilter(this) };
 		return null;

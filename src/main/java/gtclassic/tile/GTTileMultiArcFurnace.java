@@ -107,13 +107,6 @@ public class GTTileMultiArcFurnace extends GTTileBaseMultiBlockMachine {
 	}
 
 	@Override
-	public int[][] getRecipeMutations() {
-		return new int[][] { { slotInput0, slotInput1, slotInput2 }, { slotInput0, slotInput2, slotInput1 },
-				{ slotInput2, slotInput1, slotInput0 }, { slotInput1, slotInput2, slotInput0 },
-				{ slotInput1, slotInput0, slotInput2 }, { slotInput2, slotInput0, slotInput1 } };
-	}
-
-	@Override
 	public IFilter[] getInputFilters(int[] slots) {
 		IFilter[] filter = { new MachineFilter(this) };
 		return null;

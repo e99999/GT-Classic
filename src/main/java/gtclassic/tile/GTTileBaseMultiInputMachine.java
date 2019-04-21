@@ -1,8 +1,8 @@
 package gtclassic.tile;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.function.Predicate;
 
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -82,7 +82,6 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	public boolean redstoneSensitive;
 	public boolean defaultSensitive;
 
-	public int[] currentMutation = getRecipeMutations()[0];
 	public MultiRecipe lastRecipe;
 	public final boolean supportsUpgrades;
 	public final int upgradeSlots;
@@ -164,20 +163,27 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
 		}
 		int[] inputs = getInputSlots();
-		for (int i = 0; i < inputs.length; i++) {
-			for (int j = 0; j < recipe.getInputSize(); j++) {
-				IRecipeInput input = recipe.getInput(j);
+		int recipeInputs = recipe.getInputSize();
+		int consumedInputs = 0;
+
+
+		for (int i = 0; i < recipe.getInputSize(); i++) {
+			for (int j = 0; j < inputs.length; j++) {
+				IRecipeInput input = recipe.getInput(i);
 				if (input == null)
 					continue;
-				ItemStack stack = inventory.get(currentMutation[i]);
+				ItemStack stack = inventory.get(j);
 				if (!input.matches(stack))
 					continue;
 				if (stack.getItem().hasContainerItem(stack)) {
-					inventory.set(currentMutation[i], stack.getItem().getContainerItem(stack));
+					inventory.set(j, stack.getItem().getContainerItem(stack));
+					consumedInputs++;
 				} else {
 					stack.shrink(input.getAmount());
+					consumedInputs++;
 				}
 			}
+			if (consumedInputs == recipeInputs) break;
 		}
 		addToInventory();
 		if (supportsUpgrades) {
@@ -208,26 +214,38 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 			return null;
 		}
 		if (lastRecipe != null) {
-			if (!checkRecipe(lastRecipe, currentMutation)) {
+			if (!checkRecipe(lastRecipe)) {
 				lastRecipe = null;
 				applyRecipeEffect(null);
 			}
 		}
 		if (lastRecipe == null) {
-			lastRecipe = getRecipeList().getRecipe(new Predicate<MultiRecipe>() {
-				@Override
-				public boolean test(MultiRecipe t) {
-					for (int[] mutation : getRecipeMutations()) {
-						if (checkRecipe(t, mutation)) {
-							currentMutation = mutation;
-							return true;
-						}
-					}
-					return false;
+			ArrayList<MultiRecipe> validRecipes = new ArrayList<>();
+
+			getRecipeList().getRecipeList().forEach(r -> {
+				if (checkRecipe(r)) {
+					validRecipes.add(r);
 				}
 			});
-			if (lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
-				return null;
+			if (validRecipes.size() == 0) return null;
+			else if (validRecipes.size() == 1) {
+				checkAmounts(validRecipes.get(0));
+				if (checkAmounts(validRecipes.get(0))) {
+					lastRecipe = validRecipes.get(0);
+				} else {
+					return null;
+				}
+			}
+			else {
+				int indexOfMostInputs = -1, lastBiggest = 0;
+				for (int i = 0; i < validRecipes.size(); i++) {
+					if (validRecipes.get(i).getInputSize() > lastBiggest) indexOfMostInputs = i;
+				}
+				if (checkAmounts(validRecipes.get(indexOfMostInputs))) {
+				lastRecipe = validRecipes.get(indexOfMostInputs);
+				} else {
+					return null;
+				}
 			}
 			applyRecipeEffect(lastRecipe.getOutputs());
 		}
@@ -390,22 +408,33 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		getNetwork().updateTileGuiField(this, "energy");
 	}
 
-	public boolean checkRecipe(MultiRecipe entry, int[] mutation) {
+	public boolean checkRecipe(MultiRecipe entry) {
 		int matches = 0;
 		int[] inputs = getInputSlots();
-		for (int i = 0; i < inputs.length; i++) {
-			for (int j = 0; j < entry.getInputSize(); j++) {
-				if (entry.matches(j, inventory.get(mutation[i]))) {
+		for (int i = 0; i < entry.getInputSize(); i++) {
+			for (int j = 0; j < inputs.length; j++) {
+				if (entry.matchesIgnoringSize(i, inventory.get(j))) {
 					matches++;
+					break;
 				}
 			}
 		}
 		return matches >= entry.getInputSize();
 	}
 
-	public abstract int[] getInputSlots();
+	public boolean checkAmounts(MultiRecipe entry) {
+		int[] inputs = getInputSlots();
+		for (int i = 0; i < entry.getInputSize(); i++) {
+			for (int j = 0; j < inputs.length; j++) {
+				if (entry.matchesIgnoringSize(i, inventory.get(j)) && inventory.get(j).getCount() < entry.getInput(i).getAmount()) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
-	public abstract int[][] getRecipeMutations();
+	public abstract int[] getInputSlots();
 
 	public abstract IFilter[] getInputFilters(int[] slots);
 
