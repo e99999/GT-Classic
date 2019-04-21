@@ -153,16 +153,17 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		}
 		int[] inputs = getInputSlots();
 		for (int i = 0; i < inputs.length; i++) {
-			IRecipeInput input = recipe.getInput(inputs[i]);
-			if (input == null) {
-				continue;
-			}
+			for (int j = 0; j < recipe.getInputSize(); j++) {
+				IRecipeInput input = recipe.getInput(j);
+				if (input == null) continue;
 			ItemStack stack = inventory.get(currentMutation[i]);
+				if (!input.matches(stack)) continue;
 			if (stack.getItem().hasContainerItem(stack)) {
 				inventory.set(currentMutation[i], stack.getItem().getContainerItem(stack));
 			} else {
 				stack.shrink(input.getAmount());
 			}
+		}
 		}
 		addToInventory();
 		if (supportsUpgrades) {
@@ -376,13 +377,16 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	}
 
 	public boolean checkRecipe(MultiRecipe entry, int[] mutation) {
+		int matches = 0;
 		int[] inputs = getInputSlots();
 		for (int i = 0; i < inputs.length; i++) {
-			if (!entry.matches(inputs[i], inventory.get(mutation[i]))) {
-				return false;
+			for (int j = 0; j < entry.getInputSize(); j++) {
+				if (entry.matches(j, inventory.get(mutation[i]))) {
+					matches++;
+				}
 			}
 		}
-		return true;
+		return matches >= entry.getInputSize();
 	}
 
 	public abstract int[] getInputSlots();
