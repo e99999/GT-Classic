@@ -83,6 +83,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	public boolean defaultSensitive;
 
 	public MultiRecipe lastRecipe;
+	public boolean shouldCheckRecipe;
 	public final boolean supportsUpgrades;
 	public final int upgradeSlots;
 
@@ -102,6 +103,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		defaultEnergyStorage = energyPerTick * maxProgress;
 		defaultSensitive = false;
 		progressPerTick = 1F;
+		shouldCheckRecipe = true;
 		addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
 		addGuiFields("recipeOperation", "recipeEnergy", "progress");
 		addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
@@ -113,9 +115,12 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		handleRedstone();
 		updateNeighbors();
 		boolean noRoom = addToInventory();
-		MultiRecipe recipe = getRecipe();
+		if (shouldCheckRecipe) {
+			lastRecipe = getRecipe();
+			shouldCheckRecipe = false;
+		}
 		boolean canWork = canWork() && !noRoom;
-		boolean operate = (canWork && recipe != null);
+		boolean operate = (canWork && lastRecipe != null);
 		if (operate) {
 			handleChargeSlot(maxEnergy);
 		}
@@ -127,7 +132,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 			progress += progressPerTick;
 			useEnergy(recipeEnergy);
 			if (progress >= recipeOperation) {
-				process(recipe);
+				process(lastRecipe);
 				progress = 0;
 				notifyNeighbors();
 			}
@@ -140,7 +145,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 					getNetwork().initiateTileEntityEvent(this, 2, false);
 				}
 			}
-			if (recipe == null && progress != 0) {
+			if (lastRecipe == null && progress != 0) {
 				progress = 0;
 				getNetwork().updateTileGuiField(this, "progress");
 			}
@@ -176,7 +181,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 				if (!input.matches(stack))
 					continue;
 				if (stack.getItem().hasContainerItem(stack)) {
-					inventory.set(j, stack.getItem().getContainerItem(stack));
+					setStackInSlot(j, stack.getItem().getContainerItem(stack));
 					consumedInputs++;
 					break;
 				} else {
@@ -215,12 +220,12 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		if (lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
 			return null;
 		}
-			ArrayList<MultiRecipe> validRecipes = new ArrayList<>();
-			getRecipeList().getRecipeList().forEach(r -> {
-				if (checkRecipe(r)) {
-					validRecipes.add(r);
-				}
-			});
+		ArrayList<MultiRecipe> validRecipes = new ArrayList<>();
+		getRecipeList().getRecipeList().forEach(r -> {
+			if (checkRecipe(r)) {
+				validRecipes.add(r);
+			}
+		});
 		lastRecipe = validateSizes(validRecipes);
 		if (lastRecipe == null) {
 			return null;
@@ -275,6 +280,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	@Override
 	public void setStackInSlot(int slot, ItemStack stack) {
 		super.setStackInSlot(slot, stack);
+		shouldCheckRecipe = true;
 		if (isSimulating() && lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE && isRecipeSlot(slot)) {
 			lastRecipe = null;
 		}
