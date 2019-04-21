@@ -157,9 +157,11 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		for (int i = 0; i < inputs.length; i++) {
 			for (int j = 0; j < recipe.getInputSize(); j++) {
 				IRecipeInput input = recipe.getInput(j);
-				if (input == null) continue;
+				if (input == null)
+					continue;
 				ItemStack stack = inventory.get(currentMutation[i]);
-				if (!input.matches(stack)) continue;
+				if (!input.matches(stack))
+					continue;
 				if (stack.getItem().hasContainerItem(stack)) {
 					inventory.set(currentMutation[i], stack.getItem().getContainerItem(stack));
 					consumedInputs++;
