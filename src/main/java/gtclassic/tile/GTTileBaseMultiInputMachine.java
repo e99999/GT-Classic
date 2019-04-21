@@ -1,5 +1,9 @@
 package gtclassic.tile;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import gtclassic.util.recipe.GTMultiInputRecipeList.MultiRecipe;
 import ic2.api.classic.audio.PositionSpec;
@@ -37,10 +41,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 
 public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
