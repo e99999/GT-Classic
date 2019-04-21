@@ -178,9 +178,11 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 				if (stack.getItem().hasContainerItem(stack)) {
 					inventory.set(j, stack.getItem().getContainerItem(stack));
 					consumedInputs++;
+					break;
 				} else {
 					stack.shrink(input.getAmount());
 					consumedInputs++;
+					break;
 				}
 			}
 			if (consumedInputs == recipeInputs) break;
@@ -213,45 +215,18 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		if (lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
 			return null;
 		}
-		if (lastRecipe != null) {
-			if (!checkRecipe(lastRecipe)) {
-				lastRecipe = null;
-				applyRecipeEffect(null);
-			}
-		}
-		if (lastRecipe == null) {
 			ArrayList<MultiRecipe> validRecipes = new ArrayList<>();
-
 			getRecipeList().getRecipeList().forEach(r -> {
 				if (checkRecipe(r)) {
 					validRecipes.add(r);
 				}
 			});
-			if (validRecipes.size() == 0) return null;
-			else if (validRecipes.size() == 1) {
-				checkAmounts(validRecipes.get(0));
-				if (checkAmounts(validRecipes.get(0))) {
-					lastRecipe = validRecipes.get(0);
-				} else {
-					return null;
-				}
-			}
-			else {
-				int indexOfMostInputs = -1, lastBiggest = 0;
-				for (int i = 0; i < validRecipes.size(); i++) {
-					if (validRecipes.get(i).getInputSize() > lastBiggest) indexOfMostInputs = i;
-				}
-				if (checkAmounts(validRecipes.get(indexOfMostInputs))) {
-				lastRecipe = validRecipes.get(indexOfMostInputs);
-				} else {
-					return null;
-				}
-			}
-			applyRecipeEffect(lastRecipe.getOutputs());
-		}
+		lastRecipe = validateSizes(validRecipes);
 		if (lastRecipe == null) {
 			return null;
 		}
+		applyRecipeEffect(lastRecipe.getOutputs());
+
 		int empty = 0;
 		int[] outputSlots = getOutputSlots();
 		for (int slot : outputSlots) {
@@ -273,6 +248,28 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 			}
 		}
 		return null;
+	}
+
+	public MultiRecipe validateSizes(List<MultiRecipe> validRecipes) {
+		if (validRecipes.size() == 0) return null;
+		else if (validRecipes.size() == 1) {
+			if (checkAmounts(validRecipes.get(0))) {
+				return validRecipes.get(0);
+			} else {
+				return null;
+			}
+		}
+		else {
+			int indexOfMostInputs = -1, lastBiggest = 0;
+			for (int i = 0; i < validRecipes.size(); i++) {
+				if (validRecipes.get(i).getInputSize() > lastBiggest) indexOfMostInputs = i;
+			}
+			if (checkAmounts(validRecipes.get(indexOfMostInputs))) {
+				return validRecipes.get(indexOfMostInputs);
+			} else {
+				return null;
+			}
+		}
 	}
 
 	@Override
