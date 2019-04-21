@@ -391,7 +391,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			}
 		}
 	}
-	
+
 	@SuppressWarnings("incomplete-switch")
 	public void particleSmelter(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		TileEntity tile = worldIn.getTileEntity(pos);
@@ -431,10 +431,10 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 			if (((GTTileMultiBlastFurnace) tile).isActive) {
 				EnumFacing enumfacing = getFacing(worldIn, pos);
 				double d0 = (double) pos.getX() + 0.5D;
-				double d1 = (double) (pos.getY()+0.3D) + rand.nextDouble() * 8.0D / 16.0D;
+				double d1 = (double) (pos.getY() + 0.3D) + rand.nextDouble() * 8.0D / 16.0D;
 				double d2 = (double) pos.getZ() + 0.5D;
 				double d4 = rand.nextDouble() * 0.6D - 0.3D;
-				
+
 				if (rand.nextDouble() < 0.1D) {
 					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D,
 							SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0F, 1.0F, false);

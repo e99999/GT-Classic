@@ -24,11 +24,11 @@ public class GTContainerElectricSmelter extends ContainerTileComponent<GTTileEle
 		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, null)); // second slot
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 3, 80, 63)); // battery
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 107, 25)); // output
-		
+
 		for (int i = 0; i < 2; ++i) {
 			this.addSlotToContainer(new GTSlotUpgrade(tile, 4 + i, 152, 26 + i * 18));
 		}
-		
+
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerElectricSmelter.machineProgressBox,
 				GTContainerElectricSmelter.machineProgressPos));

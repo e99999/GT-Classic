@@ -140,7 +140,8 @@ public class GTMultiInputRecipeList {
 		}
 
 		public boolean matches(int slot, ItemStack stack) {
-			if (inputs.size() <= slot || stack.isEmpty()) return false;
+			if (inputs.size() <= slot || stack.isEmpty())
+				return false;
 			IRecipeInput input = inputs.get(slot);
 			return input.matches(stack) && input.getAmount() <= stack.getCount();
 		}
