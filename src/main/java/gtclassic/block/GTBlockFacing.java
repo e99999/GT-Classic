@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class GTBlockFacing extends BlockCommonContainer
 		implements IBlockStateLoader, ICustomModeledBlock, IFacingBlock {
-	public static PropertyDirection allFacings = PropertyDirection.create("facing", Arrays.asList(EnumFacing.VALUES));
+	public static PropertyDirection FACINGS = PropertyDirection.create("facing", Arrays.asList(EnumFacing.VALUES));
 
 	public GTBlockFacing(Material materialIn) {
 		super(materialIn);
@@ -51,12 +51,12 @@ public abstract class GTBlockFacing extends BlockCommonContainer
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainerIC2(this, allFacings);
+		return new BlockStateContainerIC2(this, FACINGS);
 	}
 
 	@Override
 	public EnumFacing getRotation(IBlockState state) {
-		return state.getValue(allFacings);
+		return state.getValue(FACINGS);
 	}
 
 	@Override
@@ -66,21 +66,21 @@ public abstract class GTBlockFacing extends BlockCommonContainer
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(allFacings).getIndex();
+		return state.getValue(FACINGS).getIndex();
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(allFacings, EnumFacing.getFront(meta & 7));
+		return getDefaultState().withProperty(FACINGS, EnumFacing.getFront(meta & 7));
 	}
 
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		TileEntityBlock block = (TileEntityBlock) worldIn.getTileEntity(pos);
 		if (block != null) {
-			return state.withProperty(allFacings, block.getFacing());
+			return state.withProperty(FACINGS, block.getFacing());
 		}
-		return state.withProperty(allFacings, EnumFacing.NORTH);
+		return state.withProperty(FACINGS, EnumFacing.NORTH);
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public abstract class GTBlockFacing extends BlockCommonContainer
 
 	@Override
 	public IBlockState getDefaultBlockState() {
-		return getDefaultState().withProperty(allFacings, EnumFacing.NORTH);
+		return getDefaultState().withProperty(FACINGS, EnumFacing.NORTH);
 	}
 
 	@Override
@@ -100,17 +100,19 @@ public abstract class GTBlockFacing extends BlockCommonContainer
 		return getValidModelStates();
 	}
 
+	public abstract EnumFacing[] getAllowedRotations();
+
 	@Override
 	public List<IBlockState> getValidModelStates() {
 		List<IBlockState> states = new ArrayList<>();
 		for (EnumFacing facing : EnumFacing.VALUES) {
-			states.add(getDefaultState().withProperty(allFacings, facing));
+			states.add(getDefaultState().withProperty(FACINGS, facing));
 		}
 		return states;
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new GTTileFacing();
+		return new GTTileFacing(getAllowedRotations());
 	}
 }

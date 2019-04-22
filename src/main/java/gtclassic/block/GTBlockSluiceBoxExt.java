@@ -6,6 +6,7 @@ import gtclassic.util.GTValues;
 import ic2.core.platform.textures.models.BaseModel;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -26,7 +27,12 @@ public class GTBlockSluiceBoxExt extends GTBlockFacing {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTSluiceBoxExtensionModel(getRotation(state));
+		return GTSluiceBoxExtensionModel.getModel();
+	}
+
+	@Override
+	public EnumFacing[] getAllowedRotations() {
+		return EnumFacing.HORIZONTALS;
 	}
 
 	@Override
@@ -34,5 +40,4 @@ public class GTBlockSluiceBoxExt extends GTBlockFacing {
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return SLUICE_EXT;
 	}
-
 }

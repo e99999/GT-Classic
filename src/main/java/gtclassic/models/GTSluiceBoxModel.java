@@ -7,7 +7,9 @@ import javax.vecmath.Matrix4f;
 import org.apache.commons.lang3.tuple.Pair;
 
 import gtclassic.GTMod;
+import gtclassic.block.GTBlockFacing;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.Ic2Icons.SpriteReloadEvent;
 import ic2.core.platform.textures.Ic2Models;
 import ic2.core.platform.textures.models.BaseModel;
 import net.minecraft.block.state.IBlockState;
@@ -16,15 +18,31 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.PerspectiveMapWrapper;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
+@EventBusSubscriber(Side.CLIENT)
 public class GTSluiceBoxModel extends BaseModel {
-	GTModelBaker baker;
-	EnumFacing rotation;
+	private static GTSluiceBoxModel instance = null;
 
-	public GTSluiceBoxModel(EnumFacing rotation) {
+	public static GTSluiceBoxModel getModel() {
+		if (instance == null) {
+			instance = new GTSluiceBoxModel();
+		}
+		return instance;
+	}
+
+	@SubscribeEvent
+	public static void resetModel(SpriteReloadEvent event) {
+		instance = null;
+	}
+
+	private GTModelBaker baker;
+
+	private GTSluiceBoxModel() {
 		super(Ic2Models.getBlockTransforms());
 		setParticalTexture(Ic2Icons.getTextures(GTMod.MODID + "_sluicebox_particle")[0]);
-		this.rotation = rotation;
 	}
 
 	@Override
@@ -53,7 +71,7 @@ public class GTSluiceBoxModel extends BaseModel {
 
 	@Override
 	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-		return baker.getQuads(state == null ? EnumFacing.NORTH : rotation);
+		return baker.getQuads(state == null ? EnumFacing.NORTH : state.getValue(GTBlockFacing.FACINGS));
 	}
 
 	@Override
