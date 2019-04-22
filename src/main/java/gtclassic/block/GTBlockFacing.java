@@ -100,6 +100,8 @@ public abstract class GTBlockFacing extends BlockCommonContainer
 		return getValidModelStates();
 	}
 
+	public abstract EnumFacing[] getAllowedRotations();
+
 	@Override
 	public List<IBlockState> getValidModelStates() {
 		List<IBlockState> states = new ArrayList<>();
@@ -111,6 +113,6 @@ public abstract class GTBlockFacing extends BlockCommonContainer
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new GTTileFacing();
+		return new GTTileFacing(getAllowedRotations());
 	}
 }
