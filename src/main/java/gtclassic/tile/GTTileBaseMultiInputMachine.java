@@ -284,6 +284,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		if (isSimulating() && lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE && isRecipeSlot(slot)) {
 			lastRecipe = null;
 		}
+		markDirty();
 	}
 
 	public void applyRecipeEffect(MachineOutput output) {
