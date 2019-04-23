@@ -39,8 +39,8 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemFlintAndSteel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -241,23 +241,24 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-		if (this == GTBlocks.bloomery && playerIn.getHeldItemMainhand().getItem().equals(Items.FLINT_AND_STEEL)) {
+		if (this == GTBlocks.bloomery && playerIn.getHeldItemMainhand().getItem() instanceof ItemFlintAndSteel) {
 			TileEntity te = worldIn.getTileEntity(pos);
 			if (te instanceof GTTileMultiBloomery && ((GTTileMultiBloomery) te).isActive) {
 				return false;
 			}
 			if (te instanceof GTTileMultiBloomery && !((GTTileMultiBloomery) te).isActive) {
-				playerIn.getHeldItem(hand).damageItem(1, playerIn);
+				playerIn.getHeldItem(hand).onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 				return ((GTTileMultiBloomery) te).canWork();
 			}
 		}
-		if (this == GTBlocks.charcoalPit && playerIn.getHeldItemMainhand().getItem().equals(Items.FLINT_AND_STEEL)) {
+
+		if (this == GTBlocks.charcoalPit && playerIn.getHeldItemMainhand().getItem() instanceof ItemFlintAndSteel) {
 			TileEntity te = worldIn.getTileEntity(pos);
 			if (te instanceof GTTileMultiCharcoalPit && ((GTTileMultiCharcoalPit) te).isActive) {
 				return false;
 			}
 			if (te instanceof GTTileMultiCharcoalPit && !((GTTileMultiCharcoalPit) te).isActive) {
-				playerIn.getHeldItem(hand).damageItem(1, playerIn);
+				playerIn.getHeldItem(hand).onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 				return ((GTTileMultiCharcoalPit) te).canWork();
 			}
 		}

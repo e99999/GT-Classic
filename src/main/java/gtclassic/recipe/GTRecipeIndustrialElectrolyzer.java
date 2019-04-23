@@ -152,6 +152,12 @@ public class GTRecipeIndustrialElectrolyzer {
 		Electrolyzer.addRecipe(new IRecipeInput[] { input("dustLimonite", 3), tubes(2) }, euCost(12000),
 				GT.getIc2(Ic2Items.ironDust, 1), GT.getFluid(M.Hydrogen, 1), GT.getFluid(M.Oxygen, 1));
 
+		Electrolyzer.addRecipe(new IRecipeInput[] { input("dustMagnetite", 2), tubes(1) }, euCost(8000),
+				GT.getIc2(Ic2Items.ironDust, 1), GT.getFluid(M.Oxygen, 1));
+
+		Electrolyzer.addRecipe(new IRecipeInput[] { input("dustCassiterite", 2), tubes(1) }, euCost(6000),
+				GT.getIc2(Ic2Items.tinDust, 1), GT.getSmallDust(M.Tantalum, 1), GT.getFluid(M.Oxygen, 1));
+
 		Electrolyzer.addRecipe(new IRecipeInput[] { input("dustMalachite", 10), tubes(7) }, euCost(12000),
 				GT.getIc2(Ic2Items.copperDust, 2), GT.getDust(M.Calcite, 1), GT.getModFluid("water", 3),
 				GT.getFluid(M.Oxygen, 4));

@@ -443,7 +443,7 @@ item.gtclassic.redstone_dustsmall.name=Small Redstone Dust
 item.gtclassic.steel_dustsmall.name=Small Steel Dust
 item.gtclassic.endereye_dustsmall.name=Small Endereye Dust
 item.gtclassic.lazurite_dustsmall.name=Small Lazurite Dust
-item.gtclassic.phosphor_dustsmall.name=Small Phosphor Dust
+item.gtclassic.phosphorus_dustsmall.name=Small Phosphorus Dust
 item.gtclassic.manganese_dustsmall.name=Small Manganese Dust
 item.gtclassic.clay_dustsmall.name=Small Clay Dust
 item.gtclassic.andradite_dustsmall.name=Small Andradite Dust
@@ -534,6 +534,7 @@ item.gtclassic.dirtyresin_dustsmall.name=Small Dirty Resin Dust
 item.gtclassic.redgarnet_dustsmall.name=Small Red Garnet Dust
 item.gtclassic.yellowgarnet_dustsmall.name=Small Yellow Garnet Dust
 item.gtclassic.redalloy_dustsmall.name=Small Red Alloy Dust
+item.gtclassic.antimony_dustsmall.name=Small Antimony Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -551,7 +552,7 @@ item.gtclassic.sodalite_dust.name=Sodalite Dust
 item.gtclassic.steel_dust.name=Steel Dust
 item.gtclassic.endereye_dust.name=Endereye Dust
 item.gtclassic.lazurite_dust.name=Lazurite Dust
-item.gtclassic.phosphor_dust.name=Phosphor Dust
+item.gtclassic.phosphorus_dust.name=Phosphorus Dust
 item.gtclassic.manganese_dust.name=Manganese Dust
 item.gtclassic.andradite_dust.name=Andradite Dust
 item.gtclassic.darkashes_dust.name=Dark Ash
@@ -633,6 +634,7 @@ item.gtclassic.dirtyresin_dust.name=Dirty Resin Dust
 item.gtclassic.redgarnet_dust.name=Red Garnet Dust
 item.gtclassic.yellowgarnet_dust.name=Yellow Garnet Dust
 item.gtclassic.redalloy_dust.name=Red Alloy Dust
+item.gtclassic.antimony_dust.name=Antimony Dust
 
 #gems
 item.gtclassic.sapphire_gem.name=Sapphire
@@ -1102,6 +1104,7 @@ item.gtclassic.stainlesssteel_chainsaw.name=Stainless Steel Chainsaw
 
 #components
 item.gtclassic.test_tube.name=Glass Tube
+item.gtclassic.match.name=Match
 item.gtclassic.plastic_fletching.name=Plastic Fetching
 item.gtclassic.magnifying_glass.name=Magnifying Glass
 item.gtclassic.wood_plate.name=Wood Board

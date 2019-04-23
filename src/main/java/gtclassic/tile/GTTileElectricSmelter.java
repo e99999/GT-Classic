@@ -101,9 +101,7 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
-		IFilter[] filter = { new MachineFilter(this) };
-		// return filter;
-		return null;
+		return new IFilter[] { new MachineFilter(this) };
 	}
 
 	@Override

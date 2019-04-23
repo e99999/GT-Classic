@@ -38,6 +38,9 @@ public class GTRecipeIndustrialProcessor {
 
 			Processor.addGrinderRecipe("orePyrite", 1, GT.getDust(M.Pyrite, 2), GT.getSmallDust(M.Iron, 2));
 
+			Processor.addGrinderRecipe("oreMagnetite", 1, GT.getDust(M.Magnetite, 2), GT.getSmallDust(M.Iron, 1),
+					GT.getSmallDust(M.Gold, 1));
+
 			Processor.addGrinderRecipe("oreSheldonite", 1, GT.getDust(M.Sheldonite, 2), GT.getSmallDust(M.Nickel, 1),
 					GT.getSmallDust(M.Platinum, 1));
 
@@ -48,7 +51,7 @@ public class GTRecipeIndustrialProcessor {
 					GT.getSmallDust(M.Tantalum, 1));
 
 			Processor.addGrinderRecipe("oreTetrahedrite", 1, GT.getDust(M.Tetrahedrite, 2),
-					GT.getSmallDust(M.Copper, 2), GT.getSmallDust(M.Zinc, 1));
+					GT.getSmallDust(M.Copper, 2), GT.getSmallDust(M.Antimony, 1));
 
 			Processor.addGrinderRecipe("oreTungstate", 1, GT.getDust(M.Tungstate, 2), GT.getSmallDust(M.Iron, 3),
 					GT.getSmallDust(M.Manganese, 3));
@@ -61,6 +64,12 @@ public class GTRecipeIndustrialProcessor {
 
 			Processor.addGrinderRecipe("oreIridium", 1, GT.getIc2(Ic2Items.iridiumOre, 2),
 					GT.getSmallDust(M.Platinum, 2));
+
+			Processor.addGrinderRecipe("oreCassiterite", 1, GT.getDust(M.Cassiterite, 2),
+					GT.getIc2(Ic2Items.tinDust, 1), GT.getSmallDust(M.Tantalum, 1));
+
+			Processor.addGrinderRecipe("oreBismuthtine", 1, GT.getDust(M.Bismuthtine, 2), GT.getSmallDust(M.Bismuth, 2),
+					GT.getSmallDust(M.Antimony, 1));
 
 			// and some vanilla ic2 ores
 
@@ -98,7 +107,7 @@ public class GTRecipeIndustrialProcessor {
 
 		Processor.addGrinderRecipe("oreSalt", 1, GT.getDust(M.Salt, 4));
 
-		Processor.addGrinderRecipe("oreCalcite", 1, GT.getDust(M.Calcite, 4));
+		Processor.addGrinderRecipe("oreCalcite", 1, GT.getDust(M.Calcite, 3), GT.getDust(M.Phosphorus, 1));
 
 		Processor.addGrinderRecipe("oreCryolite", 1, GT.getDust(M.Cryolite, 4));
 

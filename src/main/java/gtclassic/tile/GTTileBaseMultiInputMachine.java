@@ -3,6 +3,7 @@ package gtclassic.tile;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -115,7 +116,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		handleRedstone();
 		updateNeighbors();
 		boolean noRoom = addToInventory();
-		if (shouldCheckRecipe) {
+		if (shouldCheckRecipe || lastRecipe == null) {
 			lastRecipe = getRecipe();
 			shouldCheckRecipe = false;
 		}
@@ -171,7 +172,6 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		int recipeInputs = recipe.getInputSize();
 		int consumedInputs = 0;
 
-
 		for (int i = 0; i < recipe.getInputSize(); i++) {
 			for (int j = 0; j < inputs.length; j++) {
 				IRecipeInput input = recipe.getInput(i);
@@ -190,7 +190,8 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 					break;
 				}
 			}
-			if (consumedInputs == recipeInputs) break;
+			if (consumedInputs == recipeInputs)
+				break;
 		}
 		addToInventory();
 		if (supportsUpgrades) {
@@ -256,18 +257,19 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	}
 
 	public MultiRecipe validateSizes(List<MultiRecipe> validRecipes) {
-		if (validRecipes.size() == 0) return null;
+		if (validRecipes.size() == 0)
+			return null;
 		else if (validRecipes.size() == 1) {
 			if (checkAmounts(validRecipes.get(0))) {
 				return validRecipes.get(0);
 			} else {
 				return null;
 			}
-		}
-		else {
+		} else {
 			int indexOfMostInputs = -1, lastBiggest = 0;
 			for (int i = 0; i < validRecipes.size(); i++) {
-				if (validRecipes.get(i).getInputSize() > lastBiggest) indexOfMostInputs = i;
+				if (validRecipes.get(i).getInputSize() > lastBiggest)
+					indexOfMostInputs = i;
 			}
 			if (checkAmounts(validRecipes.get(indexOfMostInputs))) {
 				return validRecipes.get(indexOfMostInputs);
@@ -430,7 +432,8 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		int[] inputs = getInputSlots();
 		for (int i = 0; i < entry.getInputSize(); i++) {
 			for (int j = 0; j < inputs.length; j++) {
-				if (entry.matchesIgnoringSize(i, inventory.get(j)) && inventory.get(j).getCount() < entry.getInput(i).getAmount()) {
+				if (entry.matchesIgnoringSize(i, inventory.get(j))
+						&& inventory.get(j).getCount() < entry.getInput(i).getAmount()) {
 					return false;
 				}
 			}

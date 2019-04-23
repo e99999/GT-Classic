@@ -39,6 +39,8 @@ public class GTMaterial {
 			!GTConfig.harderAluminium, METAL_ALL);
 	public static GTMaterial Andradite = new GTMaterial("Andradite", 1.0F, 0, 1, new Color(150, 120, 0), false,
 			DUST_ALL);
+	public static GTMaterial Antimony = new GTMaterial("Antimony", 1.0F, 0, 1, new Color(220, 220, 240), false,
+			DUST_ALL);
 	public static GTMaterial Ashes = new GTMaterial("Ashes", 1.0F, 0, 1, new Color(192, 192, 192), false, DUST_ALL);
 	public static GTMaterial Basalt = new GTMaterial("Basalt", 5.0F, 0, 2, new Color(30, 20, 20), false, DUST_ALL);//
 	public static GTMaterial Bauxite = new GTMaterial("Bauxite", 3.0F, 0, 1, new Color(200, 100, 0), false, DUST_ALL);
@@ -153,7 +155,8 @@ public class GTMaterial {
 	public static GTMaterial Osmium = new GTMaterial("Osmium", 16.0F, 1280, 4, new Color(50, 50, 255), false,
 			METAL_ALL);
 	public static GTMaterial Oxygen = new GTMaterial("Oxygen", 1.0F, 0, 1, new Color(100, 160, 220), false, FLUID);
-	public static GTMaterial Phosphor = new GTMaterial("Phosphor", 1.0F, 0, 1, new Color(255, 255, 0), false, DUST_ALL);
+	public static GTMaterial Phosphorus = new GTMaterial("Phosphorus", 1.0F, 0, 1, new Color(190, 0, 0), false,
+			DUST_ALL);
 	public static GTMaterial Plastic = new GTMaterial("Plastic", 1.0F, 0, 1, new Color(235, 235, 235), false, DUST,
 			SMALLDUST, PLATE);
 	public static GTMaterial Platinum = new GTMaterial("Platinum", 12.0F, 64, 2, new Color(255, 255, 200), true,

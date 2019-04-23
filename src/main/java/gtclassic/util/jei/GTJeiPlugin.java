@@ -7,7 +7,6 @@ import gtclassic.GTItems;
 import gtclassic.container.GTContainerWorkbench;
 import gtclassic.gui.GTGuiMachine;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
-import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import gtclassic.recipe.GTRecipeCauldron;
 import gtclassic.recipe.GTRecipeProcessing;
 import gtclassic.tile.GTTileElectricSmelter;
@@ -20,15 +19,12 @@ import gtclassic.tile.GTTileMultiIndustrialProcessor;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
-import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
-import mezz.jei.api.recipe.IRecipeWrapper;
-import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.init.Blocks;
@@ -47,20 +43,14 @@ public class GTJeiPlugin implements IModPlugin {
 	public void register(@Nonnull IModRegistry registry) {
 
 		if (SubModul.load) {
-			// registry.addRecipeCatalyst(new ItemStack(GTBlocks.workBenchLV), new String[]
-			// { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 
-			// Centrifuge - to be refactored
-			registry.handleRecipes(RecipeEntry.class, new IRecipeWrapperFactory<RecipeEntry>() {
-				@Override
-				public IRecipeWrapper getRecipeWrapper(RecipeEntry var1) {
-					return new GTJeiCentrifugeWrapper(var1);
-				}
-			}, "centrifuge");
-			registry.addRecipes(GTTileIndustrialCentrifuge.RECIPE_LIST.getRecipeMap(), "centrifuge");
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), new String[] { "centrifuge" });
-			registry.addRecipeClickArea(GTIndustrialCentrifugeGui.class, 62, 29, 10, 10, "centrifuge");
+			// Centrifuge
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
+					"gt.centrifuge");
+			registry.addRecipes(GTTileIndustrialCentrifuge.RECIPE_LIST.getRecipeList(), "gt.centrifuge");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialCentrifuge), "gt.centrifuge");
+			registry.addRecipeClickArea(GTGuiMachine.GTIndustrialCentrifugeGui.class, 62, 29, 10, 10, "gt.centrifuge");
 
 			// Electrolyzer
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
@@ -123,7 +113,8 @@ public class GTJeiPlugin implements IModPlugin {
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
-		registry.addRecipeCategories(new GTJeiCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
+				"gt.centrifuge", GTBlocks.industrialCentrifuge));
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
 				"gt.electrolyzer", GTBlocks.industrialElectrolyzer));

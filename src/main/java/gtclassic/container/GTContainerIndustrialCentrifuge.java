@@ -24,11 +24,11 @@ public class GTContainerIndustrialCentrifuge extends ContainerTileComponent<GTTi
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 26, 26, null));
 		this.addSlotToContainer(new SlotCustom(tile, 1, 44, 26, new BasicItemFilter(GTItems.testTube)));
-		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 2, 80, 62)); // battery
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 74, 26));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 92, 26));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 110, 26));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 6, 128, 26));
+		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 74, 26));
+		this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 92, 26));
+		this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 110, 26));
+		this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 128, 26));
+		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 6, 80, 62));
 
 		for (int i = 0; i < 4; ++i) {
 			this.addSlotToContainer(new SlotUpgrade(tile, 7 + i, 152, 8 + i * 18));

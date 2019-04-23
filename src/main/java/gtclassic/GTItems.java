@@ -11,6 +11,7 @@ import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemFluidTube;
 import gtclassic.item.GTItemGrinder;
 import gtclassic.item.GTItemMagnifyingGlass;
+import gtclassic.item.GTItemMatch;
 import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
@@ -28,6 +29,7 @@ public class GTItems {
 
 	public static final GTItemMagnifyingGlass magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 
+	public static final GTItemMatch match = createItem(new GTItemMatch());
 	public static final GTItemComponent plasticFletching = createItem(
 			new GTItemComponent("plastic_fletching", 15, 2, false));
 	public static final GTItemComponent woodPlate = createItem(new GTItemComponent("wood_plate", 10, 0, false));

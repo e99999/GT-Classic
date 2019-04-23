@@ -26,10 +26,11 @@ public class GTRecipeCauldron {
 
 		TANTALITE(M.Tantalite, M.Niobium, M.Tantalum), SPHALERITE(M.Sphalerite, M.Zinc, M.Germanium),
 		CINNABAR(M.Cinnabar, M.Redstone), SHELDONITE(M.Sheldonite, M.Platinum, M.Platinum),
-		GALENA(M.Galena, M.Lead, M.Silver), TETRAHEDRITE(M.Tetrahedrite, M.Copper, M.Zinc),
+		GALENA(M.Galena, M.Lead, M.Silver), TETRAHEDRITE(M.Tetrahedrite, M.Copper, M.Antimony),
 		MALACHITE(M.Malachite, M.Copper, M.Calcite), CASSITERITE(M.Cassiterite, M.Tin, M.Tantalum),
 		PYROLUSITE(M.Pyrolusite, M.Manganese, M.Manganese, M.Manganese), GARNIERITE(M.Garnierite, M.Nickel, M.Nickel),
-		DIRTYRESIN(M.DirtyResin, M.Resin, M.Resin, M.Resin, M.Wood), DARKASHES(M.DarkAshes, M.Ashes, M.Ashes);
+		BISMUTHTINE(M.Bismuthtine, M.Bismuth, M.Antimony), DIRTYRESIN(M.DirtyResin, M.Resin, M.Resin, M.Resin, M.Wood),
+		DARKASHES(M.DarkAshes, M.Ashes, M.Ashes);
 
 		GTMaterial input;
 		GTMaterial[] outputs;

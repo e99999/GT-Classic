@@ -22,6 +22,9 @@ public class GTRecipeShapeless {
 
 		recipes.addShapelessRecipe(GT.get(GTItems.magnifyingGlass), new Object[] { "paneGlass", "stickIron" });
 
+		recipes.addShapelessRecipe(GT.get(GTItems.match, 8),
+				new Object[] { "dustPhosphorus", "craftingToolKnife", "stickWood" });
+
 		recipes.addShapelessRecipe(GT.get(GTItems.plasticFletching, 4),
 				new Object[] { "craftingToolKnife", "platePlastic" });
 
