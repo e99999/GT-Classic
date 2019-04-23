@@ -49,6 +49,7 @@ import gtclassic.tile.GTTileMultiIndustrialProcessor;
 import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
+import gtclassic.tile.GTTileSluice;
 import gtclassic.tile.GTTileSmallChest;
 import gtclassic.tile.GTTileSuperConductorHigh;
 import gtclassic.tile.GTTileSuperConductorLow;
@@ -271,6 +272,9 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileBlockCustom.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityCustomBlock"));
 
+
+		GameRegistry.registerTileEntity(GTTileSluice.class,
+				new ResourceLocation(GTMod.MODID, "tileEntitySluice"));
 		GameRegistry.registerTileEntity(GTTileHeatingElement.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityHeatingElement"));
 		GameRegistry.registerTileEntity(GTTileMultiBloomery.class,
