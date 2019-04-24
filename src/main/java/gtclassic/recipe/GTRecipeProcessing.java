@@ -9,6 +9,7 @@ import gtclassic.GTBlocks;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileMultiBloomery;
+import gtclassic.tile.GTTileRoaster;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -85,6 +86,12 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustGraphite", 1, GT.getIngot(M.Graphite, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustSmallGraphite", 4, GT.getIngot(M.Graphite, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustZirconium", 32, GT.getIc2(Ic2Items.industrialDiamond, 1), 0.1F);
+
+		/*
+		 * Roasting Recipes
+		 */
+
+		GTTileRoaster.addRecipe("dustSulfur", 1, 2, GT.getFluid(M.SulfurDioxide, 3));
 
 		/*
 		 * Some random fuel things

@@ -1,7 +1,6 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
-import gtclassic.gui.GTGuiCompVerticalProgress;
 import gtclassic.tile.GTTileSluice;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -22,13 +21,13 @@ public class GTContainerSluice extends ContainerTileComponent<GTTileSluice> {
 	public GTContainerSluice(InventoryPlayer player, GTTileSluice tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 36, 35, null));
-		
+
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 3; ++j) {
-				this.addSlotToContainer(new SlotOutput(player.player, tile, (j + i * 3)+1, 94+ j * 18, 17 + i * 18));
+				this.addSlotToContainer(new SlotOutput(player.player, tile, (j + i * 3) + 1, 94 + j * 18, 17 + i * 18));
 			}
 		}
-		
+
 		this.addPlayerInventory(player, 0, 0);
 		this.addComponent(new MachineProgressComp(tile, GTContainerSluice.machineProgressBoxRight,
 				GTContainerSluice.machineProgressPosRight));

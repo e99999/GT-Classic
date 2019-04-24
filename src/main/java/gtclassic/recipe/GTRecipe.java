@@ -21,8 +21,7 @@ public class GTRecipe {
 		GTRecipeIndustrialCentrifuge.recipesCentrifuge2();
 		GTRecipeIndustrialElectrolyzer.recipesElectrolyzer();
 		GTRecipeFusion.recipesFusion();
-		GTRecipeIndustrialProcessor.recipeIndustrialProcessor1();
-		GTRecipeIndustrialProcessor.recipeIndustrialProcessor2();
+		GTRecipeShredder.recipeShredder();
 		GTRecipeIterators.recipeIterators1();
 		GTRecipeIterators.recipeIterators2();
 		GTRecipeIterators.recipeIterators3();

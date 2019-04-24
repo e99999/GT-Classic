@@ -1,7 +1,6 @@
 package gtclassic;
 
 import gtclassic.block.GTBlockTileStorage;
-import gtclassic.item.GTItemGrinder;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.ore.GTOreFalling;
@@ -35,9 +34,6 @@ public class GTOreDict {
 			}
 			if (item instanceof GTToolKnife) {
 				registerKnife(item);
-			}
-			if (item instanceof GTItemGrinder) {
-				registerGrinder(item);
 			}
 		}
 
@@ -111,9 +107,4 @@ public class GTOreDict {
 	public static void registerKnife(Item tool) {
 		OreDictionary.registerOre("craftingToolKnife", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
 	}
-
-	public static void registerGrinder(Item tool) {
-		OreDictionary.registerOre("craftingToolGrinder", new ItemStack(tool, 1, OreDictionary.WILDCARD_VALUE));
-	}
-
 }

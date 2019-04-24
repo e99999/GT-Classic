@@ -92,14 +92,6 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTItems.moldTube, 1), new Object[] { "  ", "FP", "  ", 'F', file, 'P', mold });
 		recipes.addRecipe(GT.get(GTItems.moldGear, 1), new Object[] { "F ", " P", "  ", 'F', file, 'P', mold });
 
-		// grinders
-		recipes.addRecipe(GT.get(GTItems.grinderSteel, 1),
-				new Object[] { "PPP", "PGP", "PPP", 'P', "plateSteel", 'G', "gearSteel" });
-		recipes.addRecipe(GT.get(GTItems.grinderTitanium, 1),
-				new Object[] { "MPM", "PGP", "MPM", 'P', "plateSteel", 'M', "plateTitanium", 'G', "gearSteel" });
-		recipes.addRecipe(GT.get(GTItems.grinderTungstensteel, 1),
-				new Object[] { "MPM", "PGP", "MPM", 'P', "plateSteel", 'M', "plateTungstensteel", 'G', "gearSteel" });
-
 	}
 
 	public static void recipeShaped2() {
@@ -179,8 +171,10 @@ public class GTRecipeShaped {
 				new Object[] { "WEW", "RCR", 'W', Ic2Items.goldCable.copy(), 'E', Ic2Items.electrolyzer.copy(), 'R',
 						Ic2Items.doubleInsulatedGoldCable, 'C', "casingMachineStainlessSteel" });
 
-		recipes.addRecipe(GT.get(GTBlocks.industrialProcessor, 1), new Object[] { "PCP", "GMG", "PCP", 'P',
-				"plateSteel", 'C', "circuitAdvanced", 'G', "gearSteel", 'M', Ic2Items.advMachine });
+		// recipes.addRecipe(GT.get(GTBlocks.shredder, 1), new Object[] { "PCP", "GMG",
+		// "PCP", 'P',
+		// "plateSteel", 'C', "circuitAdvanced", 'G', "gearSteel", 'M',
+		// Ic2Items.advMachine });
 
 		// recipes.addRecipe(GT.get(GTBlocks.fusionComputer, 1),
 		// new Object[] { "EPE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S',

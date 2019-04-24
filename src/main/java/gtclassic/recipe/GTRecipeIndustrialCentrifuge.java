@@ -61,8 +61,8 @@ public class GTRecipeIndustrialCentrifuge {
 		Centrifuge.addRecipe(GT.get(Items.BLAZE_POWDER, 8), 0, euCost(15000), GT.getIc2(Ic2Items.coalDust, 2),
 				GT.get(Items.GUNPOWDER, 1));
 
-		Centrifuge.addRecipe("dustGlowstone", 16, 1, euCost(25000), GT.get(Items.REDSTONE, 7),
-				GT.getIc2(Ic2Items.goldDust, 7), GT.getFluid(M.Helium, 1), GT.getDust(M.Phosphorus, 1));
+		Centrifuge.addRecipe("dustGlowstone", 16, 1, euCost(25000), GT.get(Items.REDSTONE, 8),
+				GT.getIc2(Ic2Items.goldDust, 8), GT.getFluid(M.Helium, 1));
 
 		Centrifuge.addRecipe(GT.get(Items.GOLDEN_APPLE, 1), 1, euCost(50000), GT.getFluid(M.Methane, 1),
 				GT.get(Items.GOLD_INGOT, 8));

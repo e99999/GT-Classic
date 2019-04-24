@@ -9,7 +9,6 @@ import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
 import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemFluidTube;
-import gtclassic.item.GTItemGrinder;
 import gtclassic.item.GTItemMagnifyingGlass;
 import gtclassic.item.GTItemMatch;
 import gtclassic.item.GTItemRockCutter;
@@ -61,10 +60,6 @@ public class GTItems {
 	public static final GTItemComponent moldCable = createItem(new GTItemComponent("mold_cable", 6, 2, true));
 	public static final GTItemComponent moldTube = createItem(new GTItemComponent("mold_tube", 7, 2, true));
 	public static final GTItemComponent moldGear = createItem(new GTItemComponent("mold_gear", 8, 2, true));
-
-	public static final GTItemGrinder grinderSteel = createItem(new GTItemGrinder(GTMaterial.Steel));
-	public static final GTItemGrinder grinderTitanium = createItem(new GTItemGrinder(GTMaterial.Titanium));
-	public static final GTItemGrinder grinderTungstensteel = createItem(new GTItemGrinder(GTMaterial.TungstenSteel));
 
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
 	public static final GTItemCraftingTablet craftingTablet = createItem(new GTItemCraftingTablet());

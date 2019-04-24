@@ -378,7 +378,8 @@ tile.gtclassic.machine_blastfurnace_lv.name=Blast Furnace Controller (LV)
 tile.gtclassic.machine_chargeomat_ev.name=Charge-O-Mat (EV)
 tile.gtclassic.machine_computercube_ev.name=Computer Cube (EV)
 tile.gtclassic.machine_industrialcentrifuge_lv.name=Industrial Centrifuge (LV)
-tile.gtclassic.machine_industrialprocessor_mv.name=Industrial Processor Controller(MV)
+tile.gtclassic.machine_roaster_lv.name=Roasting Oven (LV)
+tile.gtclassic.machine_shredder_mv.name=Shredder (MV)
 tile.gtclassic.machine_industrialelectrolyzer_mv.name=Industrial Electrolyzer (MV)
 tile.gtclassic.machine_electricsmelter_lv.name=Electric Smelter (LV)
 tile.gtclassic.machine_arcfurnace_hv.name=Arc Furnace Controller (HV)
@@ -1128,11 +1129,6 @@ item.gtclassic.mold_stick.name=Rod Mold
 item.gtclassic.mold_cable.name=Cable Mold
 item.gtclassic.mold_tube.name=Tube Mold
 item.gtclassic.mold_gear.name=Gear Mold
-
-item.gtclassic.steel_grinder.name=Steel Grinder
-item.gtclassic.titanium_grinder.name=Titanium Grinder
-item.gtclassic.tungstensteel_grinder.name=Tungstensteel Grinder
-
 #tools
 item.gtclassic.destructo_pack.name=Destructopack
 item.gtclassic.crafting_tablet.name=Crafting Tablet
@@ -1210,11 +1206,6 @@ tooltip.gtclassic.machine_blastfurnace_lv3=40 GregTech Refined Iron Machine Casi
 
 tooltip.gtclassic.machine_playerdetector_lv0=Detects player activity in a radius
 tooltip.gtclassic.machine_playerdetector_lv1=0eu = 8 blocks, 1eu = 32 blocks
-
-tooltip.gtclassic.machine_industrialprocessor_mv0=Modular hub for processing all the things!
-tooltip.gtclassic.machine_industrialprocessor_mv1=Structure Requirements:
-tooltip.gtclassic.machine_industrialprocessor_mv2=1-4 Controllers centered on each face,
-tooltip.gtclassic.machine_industrialprocessor_mv3=25 Steel Machine Casings
 
 tooltip.gtclassic.machine_industrialelectrolyzer_mv0=*Slaps roof of Electrolyzer*
 tooltip.gtclassic.machine_industrialelectrolyzer_mv1=This bad boy can process so much stuff!

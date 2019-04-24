@@ -16,8 +16,14 @@ public class GTGuiMachine {
 		}
 	}
 
-	public static class GTIndustrialProcessorGui extends MachineGui {
-		public GTIndustrialProcessorGui(ContainerComponent container) {
+	public static class GTRoasterGui extends MachineGui {
+		public GTRoasterGui(ContainerComponent container) {
+			super(container);
+		}
+	}
+
+	public static class GTShredderGui extends MachineGui {
+		public GTShredderGui(ContainerComponent container) {
 			super(container);
 		}
 	}
@@ -51,7 +57,7 @@ public class GTGuiMachine {
 			super(container);
 		}
 	}
-	
+
 	public static class GTSluiceGui extends MachineGui {
 		public GTSluiceGui(ContainerComponent container) {
 			super(container);

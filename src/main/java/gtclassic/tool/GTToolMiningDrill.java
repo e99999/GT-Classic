@@ -203,7 +203,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {
 		if (!ElectricItem.manager.canUse(stack, (double) this.getEnergyCost(stack))) {
 			return 1.0F;
-		} else if (ToolHelper.isToolEffective(state, stack)) {
+		} else if (state.getBlock().getHarvestLevel(state) <= this.material.getLevel()) {
 			return this.getMiningSpeed(stack);
 		} else {
 			return 0.0F;

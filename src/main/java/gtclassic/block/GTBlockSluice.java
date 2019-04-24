@@ -2,7 +2,6 @@ package gtclassic.block;
 
 import gtclassic.GTMod;
 import gtclassic.models.GTSluiceBoxModel;
-import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTileSluice;
 import gtclassic.util.GTValues;
 import ic2.core.platform.textures.models.BaseModel;
@@ -44,11 +43,10 @@ public class GTBlockSluice extends GTBlockFacing {
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return SLUICE_FULL;
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new GTTileSluice(getAllowedRotations());
 	}
-	
-	
+
 }

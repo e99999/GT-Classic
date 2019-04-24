@@ -15,7 +15,7 @@ import gtclassic.tile.GTTileIndustrialElectrolyzer;
 import gtclassic.tile.GTTileMultiArcFurnace;
 import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiFusionComputer;
-import gtclassic.tile.GTTileMultiIndustrialProcessor;
+import gtclassic.tile.GTTileShredder;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -60,12 +60,12 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeClickArea(GTGuiMachine.GTIndustrialElectrolyzerGui.class, 72, 34, 30, 10,
 					"gt.electrolyzer");
 
-			// Processor
+			// Shredder
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
-					"gt.processor");
-			registry.addRecipes(GTTileMultiIndustrialProcessor.RECIPE_LIST.getRecipeList(), "gt.processor");
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.industrialProcessor), "gt.processor");
-			registry.addRecipeClickArea(GTGuiMachine.GTIndustrialProcessorGui.class, 50, 29, 20, 10, "gt.processor");
+					"gt.shredder");
+			registry.addRecipes(GTTileShredder.RECIPE_LIST.getRecipeList(), "gt.shredder");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.shredder), "gt.shredder");
+			registry.addRecipeClickArea(GTGuiMachine.GTShredderGui.class, 60, 29, 20, 10, "gt.shredder");
 
 			// Fusion
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "fusion");
@@ -120,7 +120,7 @@ public class GTJeiPlugin implements IModPlugin {
 				"gt.electrolyzer", GTBlocks.industrialElectrolyzer));
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(),
-				"gt.processor", GTBlocks.industrialProcessor));
+				"gt.shredder", GTBlocks.shredder));
 
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "fusion",
 				GTBlocks.fusionComputer));

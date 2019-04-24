@@ -45,10 +45,11 @@ import gtclassic.tile.GTTileMultiBlastFurnace;
 import gtclassic.tile.GTTileMultiBloomery;
 import gtclassic.tile.GTTileMultiCharcoalPit;
 import gtclassic.tile.GTTileMultiFusionComputer;
-import gtclassic.tile.GTTileMultiIndustrialProcessor;
 import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
+import gtclassic.tile.GTTileRoaster;
+import gtclassic.tile.GTTileShredder;
 import gtclassic.tile.GTTileSluice;
 import gtclassic.tile.GTTileSmallChest;
 import gtclassic.tile.GTTileSuperConductorHigh;
@@ -100,8 +101,8 @@ public class GTBlocks {
 			new GTBlockTileBasic("machine_industrialcentrifuge_lv"));
 	public static final GTBlockTileBasic electricSmelter = registerBlock(
 			new GTBlockTileBasic("machine_electricsmelter_lv"));
-	public static final GTBlockTileBasic industrialProcessor = registerBlock(
-			new GTBlockTileBasic("machine_industrialprocessor_mv", 3));
+	public static final GTBlockTileBasic roaster = registerBlock(new GTBlockTileBasic("machine_roaster_lv"));
+	public static final GTBlockTileBasic shredder = registerBlock(new GTBlockTileBasic("machine_shredder_mv"));
 	public static final GTBlockTileBasic industrialElectrolyzer = registerBlock(
 			new GTBlockTileBasic("machine_industrialelectrolyzer_mv", 1));
 	public static final GTBlockTileBasic arcFurnace = registerBlock(new GTBlockTileBasic("machine_arcfurnace_hv"));
@@ -187,13 +188,14 @@ public class GTBlocks {
 	// GTBlockTestLayer());
 
 	public static final String[] textureTileBasic = { "machine_heatingelement", "machine_bloomery",
-			"machine_charcoalpit", "machine_blastfurnace_lv", "machine_arcfurnace_hv", "machine_chargeomat_ev",
-			"machine_computercube_ev", "machine_industrialcentrifuge_lv", "machine_industrialelectrolyzer_mv",
-			"machine_industrialprocessor_mv", "machine_electricsmelter_lv", "machine_matterfabricator_ev",
-			"machine_matterreplicator_ev", "machine_playerdetector_lv", "machine_fusioncomputer_luv",
-			"machine_lightningrod_iv", "machine_quantumenergystorage_ev", "machine_basicenergystorage_ev",
-			"machine_digitaltransformer_luv", "cable_energium_luv", "cable_lapotron_zpm", "tile_digitalchest",
-			"tile_smallchest", "tile_largechest", "tile_bookshelf", "tile_workbench" };
+			"machine_charcoalpit", "machine_blastfurnace_lv", "machine_arcfurnace_hv", "machine_roaster_lv",
+			"machine_chargeomat_ev", "machine_computercube_ev", "machine_industrialcentrifuge_lv",
+			"machine_industrialelectrolyzer_mv", "machine_shredder_mv", "machine_electricsmelter_lv",
+			"machine_matterfabricator_ev", "machine_matterreplicator_ev", "machine_playerdetector_lv",
+			"machine_fusioncomputer_luv", "machine_lightningrod_iv", "machine_quantumenergystorage_ev",
+			"machine_basicenergystorage_ev", "machine_digitaltransformer_luv", "cable_energium_luv",
+			"cable_lapotron_zpm", "tile_digitalchest", "tile_smallchest", "tile_largechest", "tile_bookshelf",
+			"tile_workbench" };
 
 	public static final String[] textureTileCustom = { "block_mortar", "block_ducttape", "coolant_helium_small",
 			"coolant_helium_med", "coolant_helium_large", "rod_thorium_small", "rod_thorium_med", "rod_thorium_large",
@@ -272,9 +274,7 @@ public class GTBlocks {
 		GameRegistry.registerTileEntity(GTTileBlockCustom.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityCustomBlock"));
 
-
-		GameRegistry.registerTileEntity(GTTileSluice.class,
-				new ResourceLocation(GTMod.MODID, "tileEntitySluice"));
+		GameRegistry.registerTileEntity(GTTileSluice.class, new ResourceLocation(GTMod.MODID, "tileEntitySluice"));
 		GameRegistry.registerTileEntity(GTTileHeatingElement.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityHeatingElement"));
 		GameRegistry.registerTileEntity(GTTileMultiBloomery.class,
@@ -283,8 +283,8 @@ public class GTBlocks {
 				new ResourceLocation(GTMod.MODID, "tileEntityCharcoalPit"));
 		GameRegistry.registerTileEntity(GTTileIndustrialCentrifuge.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialCentrifuge"));
-		GameRegistry.registerTileEntity(GTTileMultiIndustrialProcessor.class,
-				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialProcessor"));
+		GameRegistry.registerTileEntity(GTTileRoaster.class, new ResourceLocation(GTMod.MODID, "tileEntityRoaster"));
+		GameRegistry.registerTileEntity(GTTileShredder.class, new ResourceLocation(GTMod.MODID, "tileEntityShredder"));
 		GameRegistry.registerTileEntity(GTTileIndustrialElectrolyzer.class,
 				new ResourceLocation(GTMod.MODID, "tileEntityIndustrialElectrolyzer"));
 		GameRegistry.registerTileEntity(GTTileElectricSmelter.class,

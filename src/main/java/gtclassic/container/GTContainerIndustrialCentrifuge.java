@@ -1,9 +1,7 @@
 package gtclassic.container;
 
-import gtclassic.GTItems;
 import gtclassic.tile.GTTileIndustrialCentrifuge;
 import ic2.core.inventory.container.ContainerTileComponent;
-import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDischarge;
