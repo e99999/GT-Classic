@@ -40,10 +40,6 @@ public class GTRecipeCircuitry {
 
 		String knife = "craftingToolKnife";
 
-		IRecipeInput finewire = new RecipeInputCombined(1,
-				new IRecipeInput[] { new RecipeInputItemStack(GT.get(GTItems.wireLead)),
-						new RecipeInputItemStack(GT.get(GTItems.wireTin)) });
-
 		recipes.addShapelessRecipe(GT.getDust(M.DirtyResin, 1),
 				new Object[] { "craftingToolKnife", GT.getIc2(Ic2Items.stickyResin, 1) });
 		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB), new Object[] { knife, GTBlocks.resinBoard });
@@ -56,32 +52,23 @@ public class GTRecipeCircuitry {
 		recipes.addShapelessRecipe(GT.get(GTItems.foilNiobium, 4),
 				new Object[] { knife, "craftingToolForgeHammer", "plateNiobium" });
 
-		recipes.addShapelessRecipe(GT.get(GTItems.wireTin, 4),
-				new Object[] { knife, "craftingToolForgeHammer", "stickTin" });
-
-		recipes.addShapelessRecipe(GT.get(GTItems.wireLead, 4),
-				new Object[] { knife, "craftingToolForgeHammer", "stickLead" });
-
-		recipes.addShapelessRecipe(GT.get(GTItems.wireRedAlloy, 4),
-				new Object[] { knife, "craftingToolForgeHammer", "stickRedAlloy" });
-
 		recipes.addRecipe(GT.get(GTItems.basicTransistor, 1),
-				new Object[] { "WPW", 'W', finewire, 'P', GTItems.smallPlateGermanium });
+				new Object[] { "WPW", 'W', "fineWireAny", 'P', GTItems.smallPlateGermanium });
 
 		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', GTItems.foilTantalum, 'P', Items.PAPER, 'L', finewire });
+				new Object[] { "FPF", "L L", 'F', GTItems.foilTantalum, 'P', Items.PAPER, 'L', "fineWireAny" });
 
 		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', GTItems.foilNiobium, 'P', Items.PAPER, 'L', finewire });
+				new Object[] { "FPF", "L L", 'F', GTItems.foilNiobium, 'P', Items.PAPER, 'L', "fineWireAny" });
 
 		// Gating basic circuits
 
 		recipes.overrideRecipe("shaped_Electronic Circuit", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "TSC", "WWW",
-				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', GTItems.wireRedAlloy, 'S',
+				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "fineWireRedAlloy", 'S',
 				GTItems.resinPCB);
 
 		recipes.overrideRecipe("shaped_Electronic Circuit_1", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "CST",
-				"WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', GTItems.wireRedAlloy, 'S',
+				"WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "fineWireRedAlloy", 'S',
 				GTItems.resinPCB);
 
 		recipes.overrideRecipe("shaped_RE-Battery", GT.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT", 'T',

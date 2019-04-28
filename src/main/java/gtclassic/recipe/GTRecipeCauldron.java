@@ -61,24 +61,39 @@ public class GTRecipeCauldron {
 	 */
 	public static void recipesCauldron() {
 		for (GTRecipeCauldron.GTRecipeCauldronEnum recipes : GTRecipeCauldron.GTRecipeCauldronEnum.values()) {
-			addFakeCauldronRecipe(recipes.getInput(), recipes.getOutputs());
+			addFakeWashingRecipe(recipes.getInput(), recipes.getOutputs());
 		}
 	}
 
 	/**
 	 * Overloaded logic for converting the raw material data into a recipe for JEI
-	 * to view
+	 * to view, this will give you a dust to small dust display
 	 * 
 	 * @param input
 	 * @param outputs
 	 */
-	public static void addFakeCauldronRecipe(GTMaterial input, GTMaterial... outputs) {
+	public static void addFakeWashingRecipe(GTMaterial input, GTMaterial... outputs) {
 		List<IRecipeInput> inputlist = new ArrayList<>();
 		List<ItemStack> outputlist = new ArrayList<>();
 		inputlist.add((IRecipeInput) (new RecipeInputItemStack(GTMaterialGen.getDust(input, 1))));
 		for (GTMaterial mat : outputs) {
 			outputlist.add(GTMaterialGen.getSmallDust(mat, 1));
 		}
+		addFakeCauldronRecipe(inputlist, new MachineOutput(null, outputlist));
+	}
+
+	/**
+	 * Overloaded logic for converting the raw material data into a recipe for JEI
+	 * to view, this will give you a quenching display
+	 * 
+	 * @param input
+	 * @param outputs
+	 */
+	public static void addFakeQuenchingRecipe(GTMaterial mat) {
+		List<IRecipeInput> inputlist = new ArrayList<>();
+		List<ItemStack> outputlist = new ArrayList<>();
+		inputlist.add((IRecipeInput) (new RecipeInputItemStack(GTMaterialGen.getHotIngot(mat, 1))));
+		outputlist.add(GTMaterialGen.getIngot(mat, 1));
 		addFakeCauldronRecipe(inputlist, new MachineOutput(null, outputlist));
 	}
 

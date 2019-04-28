@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
+import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2States;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -27,6 +29,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
@@ -108,10 +111,10 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing,
 			float hitX, float hitY, float hitZ) {
 		IBlockState state = world.getBlockState(pos);
-		if (state == Ic2States.machine) {
+		if (!GTConfig.harderPlates && IC2.getRefinedIron().equals("ingotRefinedIron") && state == Ic2States.machine) {
 			world.setBlockState(pos,
 					GTMaterialGen.getBlock(GTMaterial.RefinedIron, GTMaterialFlag.CASING).getDefaultState());
-			player.dropItem(GTMaterialGen.getSmallDust(GTMaterial.Iron, 2), false);
+			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getSmallDust(GTMaterial.Iron, 2));
 			player.setHeldItem(hand, this.getContainerItem(player.getHeldItem(hand)));
 			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			return EnumActionResult.SUCCESS;

@@ -6,7 +6,8 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
-import gtclassic.recipe.GTRecipeCauldron;
+import ic2.core.IC2;
+import ic2.core.item.armor.standart.ItemHazmatArmor;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -15,38 +16,49 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
+public class GTMaterialItemHot extends Item implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
 	private GTMaterial material;
 	private GTMaterialFlag flag;
 
-	public GTMaterialItem(GTMaterial material, GTMaterialFlag flag) {
+	public GTMaterialItemHot(GTMaterial material, GTMaterialFlag flag) {
 		this.material = material;
 		this.flag = flag;
 		setRegistryName(this.material.getName() + this.flag.getSuffix());
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + this.flag.getSuffix());
 		setCreativeTab(GTMod.creativeTabGT);
+		if (!this.flag.equals(GTMaterialFlag.HOTINGOT)) {
+			GTMod.logger.info("Incorrect Hot Item created for: " + this.material.getDisplayName());
+		}
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format("Contains: " + material.getFormula()));
 		tooltip.add(I18n.format("Melting: " + material.getTemp() + "K"));
+		tooltip.add(TextFormatting.RED + I18n.format("Hot stuff coming through!"));
+		tooltip.add(TextFormatting.YELLOW + I18n.format("Can be handled safely wearing a full Hazmat Suit"));
+		tooltip.add(TextFormatting.YELLOW + I18n.format("Can be quenched in a cauldron or bath"));
 	}
 
 	@Override
@@ -95,37 +107,47 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	}
 
 	/**
-	 * Called when a Block is right-clicked with this Item
+	 * Creates the behavior harming the player if unprotected
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer e, World w, BlockPos p, EnumHand h, EnumFacing facing, float hitX,
-			float hitY, float hitZ) {
-
-		for (GTRecipeCauldron.GTRecipeCauldronEnum recipes : GTRecipeCauldron.GTRecipeCauldronEnum.values()) {
-			washDust(e, w, p, h, recipes.getInput(), recipes.getOutputs());
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+		if (entityIn instanceof EntityLivingBase) {
+			EntityLivingBase player = (EntityLivingBase) entityIn;
+			if (!ItemHazmatArmor.isFullHazmatSuit(player) || !player.isImmuneToFire()) {
+				entityIn.attackEntityFrom(DamageSource.LAVA, 4.0F);
+			}
 		}
-		return EnumActionResult.PASS;
 	}
 
 	/**
-	 * Creates the behavior of washing dust if the input material matches
+	 * Creates the behavior of quenching in a cauldron
 	 */
-	public EnumActionResult washDust(EntityPlayer player, World world, BlockPos pos, EnumHand hand, GTMaterial input,
-			GTMaterial... outputs) {
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing,
+			float hitX, float hitY, float hitZ) {
 		IBlockState state = world.getBlockState(pos);
 		PropertyInteger level = PropertyInteger.create("level", 0, 3);
-		if (this.material == input && this.flag == GTMaterialFlag.DUST) {
-			if (state.getBlock() == Blocks.CAULDRON && state.getValue(level).intValue() > 0) {
-				player.getHeldItem(hand).shrink(1);
-				Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(level).intValue() - 1);
-				for (GTMaterial mat : outputs) {
-					ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getSmallDust(mat, 1));
-				}
-				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
+		if (state.getBlock() == Blocks.CAULDRON && state.getValue(level).intValue() != 3) {
+			if (!IC2.platform.isSimulating()) {
+				IC2.platform.messagePlayer(player, "Not enough water to quench!");
 			}
+			return EnumActionResult.FAIL;
 		}
-		return EnumActionResult.SUCCESS;
+
+		if (state.getBlock() == Blocks.CAULDRON && state.getValue(level).intValue() == 3) {
+			player.getHeldItem(hand).shrink(1);
+			Blocks.CAULDRON.setWaterLevel(world, pos, state, 0);
+			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIngot(this.material, 1));
+			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F,
+					1.0F);
+			double d0 = (double) pos.getX() + world.rand.nextDouble();
+			double d1 = (double) pos.getY() + world.rand.nextDouble() * 0.5D + 0.5D;
+			double d2 = (double) pos.getZ() + world.rand.nextDouble();
+			world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, d0, d1 + 1.0, d2, 0.0D, 0.0D, 0.0D);
+			return EnumActionResult.SUCCESS;
+
+		}
+		return EnumActionResult.PASS;
 	}
 
 	public GTMaterial getMaterial() {

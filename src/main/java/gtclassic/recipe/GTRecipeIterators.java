@@ -5,10 +5,15 @@ import gtclassic.block.GTBlockTileStorage;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tile.GTTileMultiBlastFurnace;
 import ic2.api.classic.recipe.ClassicRecipes;
+import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
+import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
+import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
@@ -60,8 +65,34 @@ public class GTRecipeIterators {
 					// Ingot crafting recipe
 					recipes.addRecipe(GT.getIngot(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
 
-					if (mat.hasFlag(GTMaterialFlag.DUST) && mat.getSmeltable()) {
-						GameRegistry.addSmelting(GT.getDust(mat, 1), (GT.getIngot(mat, 1)), 0.1F);
+					if (mat.hasFlag(GTMaterialFlag.DUST)) {
+						int k = mat.getTemp();
+						if (k < 2000) {
+							// If the materials temp is below 1900k it can be smelting in a furnace
+							GameRegistry.addSmelting(GT.getDust(mat, 1), (GT.getIngot(mat, 1)), 0.1F);
+						}
+						if (k >= 2000 && k < 2700) {
+							// if above 1900k it must be in a blast furnace but not hot ingot
+							GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
+									euCostBF(k * 12), GT.getIngot(mat, 1));
+							GTTileMultiBlastFurnace.addRecipe(
+									new IRecipeInput[] { new RecipeInputOreDict(smalldust, 1) }, euCostBF(k * 12),
+									GT.getIngot(mat, 1));
+						}
+						if (k >= 2700 && k < 3000) {
+							// if above 2700 a hot ingot is created, this wont null because 2700 is when hot
+							// ingots auto generate from any ingot
+							GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
+									euCostBF(k * 24), GT.getHotIngot(mat, 1));
+							GTTileMultiBlastFurnace.addRecipe(
+									new IRecipeInput[] { new RecipeInputOreDict(smalldust, 4) }, euCostBF(k * 24),
+									GT.getHotIngot(mat, 1));
+							GTRecipeCauldron.addFakeQuenchingRecipe(mat);
+						}
+						if (k >= 3000) {
+							// anything hotter will be a hot ingot in an arc furnace
+							GTRecipeCauldron.addFakeQuenchingRecipe(mat);
+						}
 					}
 
 				}
@@ -123,6 +154,11 @@ public class GTRecipeIterators {
 					}
 				}
 
+				if (mat.hasFlag(GTMaterialFlag.WIRE)) {
+					recipes.addShapelessRecipe(GT.getWire(mat, 4),
+							new Object[] { "craftingToolKnife", "craftingToolForgeHammer", stick });
+				}
+
 				if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
 
 					if (mat.hasFlag(GTMaterialFlag.INGOT)) {
@@ -143,6 +179,7 @@ public class GTRecipeIterators {
 					recipes.addRecipe(GT.getCasing(mat, 1),
 							new Object[] { "SXX", "XWX", "XXS", 'X', plate, 'S', stick, 'W', "craftingToolWrench" });
 				}
+
 			}
 		}
 	}
@@ -223,11 +260,15 @@ public class GTRecipeIterators {
 	public static void dustUtil(ItemStack stack, GTMaterial material) {
 		String smalldust = "dustSmall" + material.getDisplayName();
 		recipes.addShapelessRecipe(stack, new Object[] { smalldust, smalldust, smalldust, smalldust });
-		TileEntityCompressor.addRecipe(smalldust, 4, GT.getDust(material, 1), 0.0F);
+		TileEntityCompressor.addRecipe(smalldust, 4, GT.getIc2(stack, 1), 0.0F);
 	}
 
 	public static void ingotUtil(ItemStack stack, GTMaterial material) {
 		String nugget = "nugget" + material.getDisplayName();
 		recipes.addRecipe(stack, new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
+	}
+
+	public static IRecipeModifier[] euCostBF(int total) {
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 20) - 100) };
 	}
 }

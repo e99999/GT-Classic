@@ -62,7 +62,7 @@ public class GTRecipeIndustrialCentrifuge {
 				GT.get(Items.GUNPOWDER, 1));
 
 		Centrifuge.addRecipe("dustGlowstone", 16, 1, euCost(25000), GT.get(Items.REDSTONE, 8),
-				GT.getIc2(Ic2Items.goldDust, 8), GT.getFluid(M.Helium, 1));
+				GT.getIc2(Ic2Items.goldDust, 8));
 
 		Centrifuge.addRecipe(GT.get(Items.GOLDEN_APPLE, 1), 1, euCost(50000), GT.getFluid(M.Methane, 1),
 				GT.get(Items.GOLD_INGOT, 8));
@@ -80,6 +80,9 @@ public class GTRecipeIndustrialCentrifuge {
 				GT.getIc2(Ic2Items.copperIngot, 4), GT.getSmallDust(M.Tungstate, 1));
 
 		Centrifuge.addRecipe(GT.getIc2(Ic2Items.lavaCell, 16), 0, euCost(75000), GT.getIc2(Ic2Items.emptyCell, 16),
+				GT.getIngot(M.Electrum, 1), GT.getIc2(Ic2Items.copperIngot, 4), GT.getSmallDust(M.Tungstate, 1));
+
+		Centrifuge.addRecipe(GT.getModFluid("lava", 16), 0, euCost(75000), GT.get(GTItems.testTube, 16),
 				GT.getIngot(M.Electrum, 1), GT.getIc2(Ic2Items.copperIngot, 4), GT.getSmallDust(M.Tungstate, 1));
 
 		Centrifuge.addRecipe(GT.get(Blocks.MAGMA, 16), 0, euCost(75000), GT.getIngot(M.Electrum, 1),
@@ -103,8 +106,8 @@ public class GTRecipeIndustrialCentrifuge {
 
 		Centrifuge.addRecipe("dustBronze", 2, 0, euCost(7500), GT.getSmallDust(M.Copper, 6), GT.getSmallDust(M.Tin, 2));
 
-		Centrifuge.addRecipe("dustSheldonite", 2, 0, euCost(15000), GT.getNugget(M.Iridium, 1),
-				GT.getSmallDust(M.Platinum, 2));
+		Centrifuge.addRecipe("dustSheldonite", 4, 0, euCost(32000), GT.getSmallDust(M.Iridium, 1),
+				GT.getDust(M.Platinum, 2));
 
 		Centrifuge.addRecipe("dustElectrum", 2, 0, euCost(5000), GT.getSmallDust(M.Gold, 2),
 				GT.getSmallDust(M.Silver, 2));
@@ -133,9 +136,6 @@ public class GTRecipeIndustrialCentrifuge {
 		Centrifuge.addRecipe("dustBasalt", 16, 0, euCost(10000), GT.getDust(M.DarkAshes, 4), GT.getDust(M.Olivine, 1),
 				GT.getDust(M.Calcite, 3), GT.getDust(M.Flint, 8));
 
-		Centrifuge.addRecipe(GT.getIc2(Ic2Items.woodGasCell, 5), 4, euCost(15000), GT.getDust(M.Plastic, 1),
-				GT.getFluid(M.Hydrogen, 3), GT.getFluid(M.Methane, 1), GT.getIc2(Ic2Items.emptyCell, 5));
-
 		Centrifuge.addRecipe("oreBasalt", 12, 0, euCost(15000), GT.getDust(M.Basalt, 9), GT.getDust(M.GarnetRed, 1),
 				GT.getDust(M.GarnetYellow, 1), GT.getDust(M.Zirconium, 1));
 
@@ -147,11 +147,11 @@ public class GTRecipeIndustrialCentrifuge {
 
 		Centrifuge.addRecipe("dustDirtyResin", 4, 0, euCost(8000), GT.getDust(M.Resin, 3), GT.getDust(M.Wood, 1));
 
-		// Centrifuge.addCustomRecipe(GT.get(Blocks.SOUL_SAND, 16),
-		// GT.getIc2(Ic2Items.fuelCan, 1), euCost(16000),
-		// GT.get(Blocks.SAND, 10), GT.getIc2(Ic2Items.fullFuelCan, 1),
-		// GT.getDust(M.Saltpeter, 4), GT.getIc2(Ic2Items.coalDust, 1));
+		Centrifuge.addRecipe(GT.get(Blocks.SOUL_SAND, 16), 4, euCost(16000), GT.get(Blocks.SAND, 12),
+				GT.getFluid(M.OilCrude, 4));
 
+		Centrifuge.addRecipe(GT.getFluid(M.OilCrude, 12), 0, euCost(64000), GT.getFluid(M.Oil, 10),
+				GT.getFluid(M.Helium, 1), GT.getDust(M.Plastic, 1), GT.get(glassTube));
 	}
 
 	public static void recipesCentrifuge2() {

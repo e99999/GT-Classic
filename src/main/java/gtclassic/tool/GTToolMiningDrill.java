@@ -22,7 +22,6 @@ import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
-import ic2.core.util.helpers.ToolHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
@@ -41,6 +40,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTToolMiningDrill extends ItemElectricTool
 		implements IMiningDrill, IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
@@ -133,15 +133,16 @@ public class GTToolMiningDrill extends ItemElectricTool
 		}
 		IC2.audioManager.playOnce(entityLiving, Ic2Sounds.drillHard);
 		if (entityLiving instanceof EntityPlayer && this.getDamage(stack) == this.getMaxDamage()) {
+			EntityPlayer player = (EntityPlayer) entityLiving;
 			if (this.tier == 1) {
-				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.get(GTBlocks.smallLithium), false);
-				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), false);
-				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.getPlate(GTMaterial.Steel, 5), false);
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.smallLithium));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Steel, 5));
 			}
 			if (this.tier == 2) {
-				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.get(GTBlocks.medLithium), false);
-				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), false);
-				((EntityPlayer) entityLiving).dropItem(GTMaterialGen.getPlate(GTMaterial.Titanium, 5), false);
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.medLithium));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Titanium, 5));
 			}
 			// TODO add tier 3 when parts are available
 		}

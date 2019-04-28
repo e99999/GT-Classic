@@ -1,8 +1,9 @@
 package gtclassic.block;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import javax.annotation.Nullable;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
@@ -22,15 +23,17 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock {
 
@@ -56,19 +59,18 @@ public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock 
 	}
 
 	@Override
-	@Deprecated
-	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
-		ArrayList<ItemStack> drops = new ArrayList<>();
-
-		// blooms
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state,
+			@Nullable TileEntity te, ItemStack stack) {
+		super.harvestBlock(worldIn, player, pos, state, te, stack);
 		if (this == GTBlocks.bloomBlock) {
-			drops.add(GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
-			drops.add(GTMaterialGen.getDust(GTMaterial.Slag, 1));
-		} else {
-			drops.add(GTMaterialGen.get(this));
+			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
+			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getDust(GTMaterial.Slag, 1));
 		}
+	}
 
-		return drops;
+	@Override
+	public int quantityDropped(Random random) {
+		return (this == GTBlocks.bloomBlock) ? 0 : 1;
 	}
 
 	@Override

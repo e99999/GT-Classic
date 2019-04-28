@@ -5,7 +5,6 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.util.GTValues;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -22,6 +21,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -38,6 +40,7 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 		setUnlocalizedName(GTMod.MODID + "." + "fluid_slurry");
 		setCreativeTab(GTMod.creativeTabGT);
 		this.setTickRandomly(true);
+		this.setTickRate(10);
 	}
 
 	public LocaleComp getName() {
@@ -57,18 +60,15 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		/*
-		 * in the future this will be more complex based on enviorment and sky access
-		 */
-		if (worldIn.getBlockState(pos.down(1)) == Blocks.HARDENED_CLAY.getDefaultState()) {
-			if (rand.nextInt(32) == 0) {
-				worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
-				if (GTValues.debugMode) {
-					GTMod.logger.info("Slurry block dried at: " + pos.toString());
-				}
 
-				worldIn.setBlockState(pos, GTBlocks.mudBlock.getDefaultState());
+		if (state.getValue(LEVEL) == 0) {
+			IBlockState down = worldIn.getBlockState(pos.down(1));
+			if (isDryingBlock(down) && isCorrectEnviornment(worldIn, pos)) {
+				if (rand.nextInt(7) == 0) {
+					worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,
+							1.0F, 1.0F);
+					worldIn.setBlockState(pos, GTBlocks.mudBlock.getDefaultState());
+				}
 			}
 		}
 		super.updateTick(worldIn, pos, state, rand);
@@ -76,6 +76,30 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 
 	public List<IBlockState> getValidModelStates() {
 		return this.getBlockState().getValidStates();
+	}
+
+	public boolean isDryingBlock(IBlockState state) {
+		return (state == Blocks.HARDENED_CLAY.getDefaultState() || state == Blocks.CONCRETE.getDefaultState());
+	}
+
+	public boolean isCorrectEnviornment(World worldIn, BlockPos pos) {
+		if (worldIn.provider.hasSkyLight()) {
+			if (!worldIn.canBlockSeeSky(pos)) {
+				return false;
+			} else {
+				Biome biome = worldIn.getBiome(pos);
+				if (BiomeDictionary.hasType(biome, Type.COLD)) {
+					return false;
+				}
+				if (BiomeDictionary.hasType(biome, Type.HOT) && !biome.canRain()) {
+					return true;
+				} else {
+					return !worldIn.isRaining() && !worldIn.isThundering();
+				}
+			}
+		} else {
+			return false;
+		}
 	}
 
 	@Override

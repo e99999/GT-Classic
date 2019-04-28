@@ -3,10 +3,10 @@ package gtclassic.material;
 public enum GTMaterialFlag {
 
 	SMALLDUST("_dustsmall", 1, false), DUST("_dust", 0, false), GEM("_gem", 2, false), INGOT("_ingot", 3, false),
-	NUGGET("_nugget", 4, false), PLATE("_plate", 5, false), SMALLPLATE("_smallplate", 6, false),
-	STICK("_stick", 7, false), GEAR("_gear", 8, false), FOIL("_foil", 9, false), WIRE("_finewire", 10, false),
-	BOULE("_boule", 11, false), FLUID("", 13, true), PLASMA("plasma", 13, true), PARTICLE("_particle", 15, false),
-	BLOCK("_block", 62, false), CASING("_casing", 61, false);
+	HOTINGOT("_hotingot", 3, true), NUGGET("_nugget", 5, false), PLATE("_plate", 6, false),
+	SMALLPLATE("_smallplate", 7, false), STICK("_stick", 8, false), GEAR("_gear", 9, false), FOIL("_foil", 10, false),
+	WIRE("_finewire", 11, false), BOULE("_boule", 12, false), FLUID("", 13, true), PLASMA("plasma", 13, true),
+	PARTICLE("_particle", 15, false), BLOCK("_block", 62, false), CASING("_casing", 61, false);
 
 	private int mask;
 	private String suffix;

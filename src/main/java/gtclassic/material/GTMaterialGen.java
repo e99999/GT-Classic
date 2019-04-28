@@ -44,6 +44,9 @@ public class GTMaterialGen {
 			materialItemUtil(mat, GTMaterialFlag.INGOT);
 		}
 		for (GTMaterial mat : GTMaterial.values()) {
+			materialItemHotUtil(mat, GTMaterialFlag.HOTINGOT);
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.NUGGET);
 		}
 		for (GTMaterial mat : GTMaterial.values()) {
@@ -55,12 +58,21 @@ public class GTMaterialGen {
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.STICK);
 		}
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialItemUtil(mat, GTMaterialFlag.WIRE);
+		}
 
 	}
 
 	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {
 		if (mat.hasFlag(flag)) {
 			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItem(mat, flag));
+		}
+	}
+
+	public static void materialItemHotUtil(GTMaterial mat, GTMaterialFlag flag) {
+		if (mat.hasFlag(GTMaterialFlag.INGOT) && mat.getTemp() > 2700) {
+			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItemHot(mat, flag));
 		}
 	}
 
@@ -125,6 +137,10 @@ public class GTMaterialGen {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.INGOT.getSuffix()), count, 0);
 	}
 
+	public static ItemStack getHotIngot(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.HOTINGOT.getSuffix()), count, 0);
+	}
+
 	public static ItemStack getNugget(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.NUGGET.getSuffix()), count, 0);
 	}
@@ -135,6 +151,10 @@ public class GTMaterialGen {
 
 	public static ItemStack getStick(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.STICK.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getWire(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.WIRE.getSuffix()), count, 0);
 	}
 
 	public static ItemStack getGear(GTMaterial mat, int count) {

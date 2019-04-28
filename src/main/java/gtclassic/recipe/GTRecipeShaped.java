@@ -118,8 +118,8 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.graphiteCoilBlock),
 				new Object[] { "XXX", "XXX", "XXX", 'X', "stickGraphite" });
 
-		recipes.addRecipe(GT.get(GTBlocks.nichromeCoilBlock),
-				new Object[] { "XXX", "XXX", "XXX", 'X', "stickNichrome" });
+		recipes.addRecipe(GT.get(GTBlocks.niobiumTitaniumCoilBlock),
+				new Object[] { "XXX", "XXX", "XXX", 'X', "stickNiobiumTitanium" });
 
 		recipes.addRecipe(GT.get(Blocks.TORCH, 3), new Object[] { "R", "I", 'I', "stickWood", 'R', "dustSulfur" });
 		recipes.addRecipe(GT.get(Blocks.TORCH, 4), new Object[] { "R", "I", 'I', "stickWood", 'R', "dustCoal" });

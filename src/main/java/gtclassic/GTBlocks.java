@@ -79,15 +79,17 @@ public class GTBlocks {
 	public static final GTBlockCasing plastic4CasingBlock = registerBlock(new GTBlockCasing("Plastic4", 4));
 	public static final GTBlockCasing plastic16CasingBlock = registerBlock(new GTBlockCasing("Plastic16", 5));
 
-	public static final GTBlockCasing heatCasingBlock = registerBlock(new GTBlockCasing("Heat", 6));
+	public static final GTBlockCasing pressureBlock = registerBlock(new GTBlockCasing("Pressure", 6));
+	public static final GTBlockCasing chemicalBlock = registerBlock(new GTBlockCasing("Chemical", 7));
+	public static final GTBlockCasing lightningCasingBlock = registerBlock(new GTBlockCasing("Lightning", 8));
+	public static final GTBlockCasing heatCasingBlock = registerBlock(new GTBlockCasing("Heat", 9));
 
 	public static final GTBlockCasing copperCoilBlock = registerBlock(new GTBlockCasing("CopperCoil", 12));
 	public static final GTBlockCasing constantanCoilBlock = registerBlock(new GTBlockCasing("ConstantanCoil", 13));
 	public static final GTBlockCasing graphiteCoilBlock = registerBlock(new GTBlockCasing("GraphiteCoil", 14));
-	public static final GTBlockCasing nichromeCoilBlock = registerBlock(new GTBlockCasing("NichromeCoil", 15));
+	public static final GTBlockCasing niobiumTitaniumCoilBlock = registerBlock(
+			new GTBlockCasing("NiobiumTitaniumCoil", 15));
 
-	// public static final GTBlockTileBuffer buffer = registerBlock(new
-	// GTBlockTileBuffer());
 	public static final GTBlockSluice sluiceBox = registerBlock(new GTBlockSluice());
 	public static final GTBlockSluiceBoxExt sluiceBoxExtension = registerBlock(new GTBlockSluiceBoxExt());
 	public static final GTBlockTileBasic heatingElement = registerBlock(new GTBlockTileBasic("machine_heatingelement"));
@@ -105,6 +107,8 @@ public class GTBlocks {
 	public static final GTBlockTileBasic shredder = registerBlock(new GTBlockTileBasic("machine_shredder_mv"));
 	public static final GTBlockTileBasic industrialElectrolyzer = registerBlock(
 			new GTBlockTileBasic("machine_industrialelectrolyzer_mv", 1));
+	public static final GTBlockTileBasic chemicalReactor = registerBlock(
+			new GTBlockTileBasic("machine_chemicalreactor_mv"));
 	public static final GTBlockTileBasic arcFurnace = registerBlock(new GTBlockTileBasic("machine_arcfurnace_hv"));
 	public static final GTBlockTileBasic matterFabricator = registerBlock(
 			new GTBlockTileBasic("machine_matterfabricator_ev"));
@@ -188,8 +192,8 @@ public class GTBlocks {
 	// GTBlockTestLayer());
 
 	public static final String[] textureTileBasic = { "machine_heatingelement", "machine_bloomery",
-			"machine_charcoalpit", "machine_blastfurnace_lv", "machine_arcfurnace_hv", "machine_roaster_lv",
-			"machine_chargeomat_ev", "machine_computercube_ev", "machine_industrialcentrifuge_lv",
+			"machine_charcoalpit", "machine_blastfurnace_lv", "machine_chemicalreactor_mv", "machine_arcfurnace_hv",
+			"machine_roaster_lv", "machine_chargeomat_ev", "machine_computercube_ev", "machine_industrialcentrifuge_lv",
 			"machine_industrialelectrolyzer_mv", "machine_shredder_mv", "machine_electricsmelter_lv",
 			"machine_matterfabricator_ev", "machine_matterreplicator_ev", "machine_playerdetector_lv",
 			"machine_fusioncomputer_luv", "machine_lightningrod_iv", "machine_quantumenergystorage_ev",

@@ -1,6 +1,5 @@
 package gtclassic.recipe;
 
-import gtclassic.GTConfig;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
@@ -55,16 +54,6 @@ public class GTRecipeBlastFurnace {
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1), input("dustCarbon", 1) },
 				euCost(MED_TIME), GT.getIngot(M.Steel, 1));
 
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustTantalum", 1) }, euCost(50000),
-				GT.getIngot(M.Tantalum, 1));
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallTantalum", 1) }, euCost(50000),
-				GT.getIngot(M.Tantalum, 1));
-
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustNiobium", 1) }, euCost(50000),
-				GT.getIngot(M.Niobium, 1));
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallNiobium", 1) }, euCost(50000),
-				GT.getIngot(M.Niobium, 1));
-
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustChromite", 1) }, euCost(80000),
 				GT.getNugget(M.Chrome, 6), GT.getSmallDust(M.Slag, 1));
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallChromite", 4) }, euCost(80000),
@@ -72,34 +61,19 @@ public class GTRecipeBlastFurnace {
 		BlastFurnace.addRecipe(new IRecipeInput[] { input("oreChromite", 1) }, euCost(80000), GT.getNugget(M.Chrome, 6),
 				GT.getSmallDust(M.Slag, 2));
 
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustMolybdenite", 1) }, euCost(80000),
-				GT.getNugget(M.Molybdenum, 3), GT.getSmallDust(M.Slag, 1));
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallMolybdenite", 4) }, euCost(80000),
-				GT.getNugget(M.Molybdenum, 3), GT.getSmallDust(M.Slag, 1));
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("oreMolybdenite", 1) }, euCost(80000),
-				GT.getNugget(M.Molybdenum, 3), GT.getSmallDust(M.Slag, 2));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustMolybdenite", 3) }, euCost(80000),
+				GT.getHotIngot(M.Molybdenum, 1), GT.getSmallDust(M.Slag, 3));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallMolybdenite", 12) }, euCost(80000),
+				GT.getHotIngot(M.Molybdenum, 1), GT.getSmallDust(M.Slag, 3));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("oreMolybdenite", 3) }, euCost(80000),
+				GT.getHotIngot(M.Molybdenum, 1), GT.getSmallDust(M.Slag, 6));
 
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustStainlessSteel", 1) }, euCost(80000),
-				GT.getIngot(M.StainlessSteel, 1));
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallStainlessSteel", 4) }, euCost(80000),
-				GT.getIngot(M.StainlessSteel, 1));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input(GT.getIc2(Ic2Items.iridiumOre, 1)), }, euCost(90000),
+				GT.getHotIngot(M.Iridium, 1));
 
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustNichrome", 1) }, euCost(50000),
-				GT.getIngot(M.Nichrome, 1));
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallNichrome", 4) }, euCost(50000),
-				GT.getIngot(M.Nichrome, 1));
+		BlastFurnace.addRecipe(new IRecipeInput[] { input("oreIridium", 1), }, euCost(90000),
+				GT.getHotIngot(M.Iridium, 1));
 
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustUltimet", 1) }, euCost(80000),
-				GT.getIngot(M.Ultimet, 1));
-		BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallUltimet", 4) }, euCost(80000),
-				GT.getIngot(M.Ultimet, 1));
-
-		if (GTConfig.harderAluminium) {
-			BlastFurnace.addRecipe(new IRecipeInput[] { input("dustAluminium", 1) }, euCost(80000),
-					GT.getIngot(M.Aluminium, 1));
-			BlastFurnace.addRecipe(new IRecipeInput[] { input("dustSmallAluminium", 4) }, euCost(80000),
-					GT.getIngot(M.Aluminium, 1));
-		}
 	}
 
 	public static IRecipeInput input(ItemStack stack) {

@@ -679,6 +679,15 @@ item.gtclassic.molybdenum_ingot.name=Molybdenum Ingot
 item.gtclassic.niobium_ingot.name=Niobium Ingot
 item.gtclassic.redalloy_ingot.name=Red Alloy Ingot
 
+#hot ingots
+item.gtclassic.tungsten_hotingot.name=Hot Tungsten Ingot
+item.gtclassic.molybdenum_hotingot.name=Hot Molybdenum Ingot
+item.gtclassic.niobium_hotingot.name=Hot Niobium Ingot
+item.gtclassic.tungstensteel_hotingot.name=Hot Tungstensteel Ingot
+item.gtclassic.iridium_hotingot.name=Hot Iridium Ingot
+item.gtclassic.osmium_hotingot.name=Hot Osmium Ingot
+item.gtclassic.tantalum_hotingot.name=Hot Tantalum Ingot
+
 #nuggets
 item.gtclassic.tungsten_nugget.name=Tungsten Nugget
 item.gtclassic.thorium_nugget.name=Thorium Nugget
@@ -1139,7 +1148,7 @@ item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
 
 #fluids
-fluid.slurry=Slurry
+fluid.slurry=Bauxite Slurry
 fluid.hydrogen=Hydrogen
 fluid.tritium=Tritium
 fluid.helium3=Helium-3
@@ -1162,6 +1171,8 @@ fluid.cryolite=Cryolite
 fluid.sulfurdioxide=Sulfur Dioxide
 fluid.silicon=Silicon
 fluid.hydrochloricacid=Hydrochloric Acid
+fluid.crudeoil=Crude Oil
+fluid.oil=Oil
 
 #block tooltips
 tooltip.gtclassic.machine_heatingelement0=Melts things when a heat source is below

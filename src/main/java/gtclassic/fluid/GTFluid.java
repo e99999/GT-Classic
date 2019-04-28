@@ -25,6 +25,7 @@ public class GTFluid extends Fluid {
 				new ResourceLocation(GTMod.MODID, "fluids/" + mat.getDisplayName().toLowerCase() + flag.getSuffix()),
 				new ResourceLocation(GTMod.MODID, "fluids/" + mat.getDisplayName().toLowerCase() + flag.getSuffix()));
 		this.mat = mat;
+		this.temperature = mat.getTemp();
 	}
 
 	public GTFluid(String name, Color color) {

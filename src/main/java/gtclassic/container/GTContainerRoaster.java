@@ -30,7 +30,7 @@ public class GTContainerRoaster extends ContainerTileComponent<GTTileRoaster> {
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 5, 80, 63));
 
 		for (int i = 0; i < 2; ++i) {
-			this.addSlotToContainer(new GTSlotUpgrade(tile, 4 + i, 152, 26 + i * 18));
+			this.addSlotToContainer(new GTSlotUpgrade(tile, 6 + i, 152, 26 + i * 18));
 		}
 
 		this.addPlayerInventory(player);

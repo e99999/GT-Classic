@@ -46,6 +46,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTToolChainsaw extends ItemElectricTool
 		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
@@ -212,14 +213,14 @@ public class GTToolChainsaw extends ItemElectricTool
 		}
 		if (this.getDamage(saw) == this.getMaxDamage()) {
 			if (this.tier == 1) {
-				player.dropItem(GTMaterialGen.get(GTBlocks.smallLithium), false);
-				player.dropItem(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), false);
-				player.dropItem(GTMaterialGen.getPlate(GTMaterial.Steel, 5), false);
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.smallLithium));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Steel, 5));
 			}
 			if (this.tier == 2) {
-				player.dropItem(GTMaterialGen.get(GTBlocks.medLithium), false);
-				player.dropItem(GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), false);
-				player.dropItem(GTMaterialGen.getPlate(GTMaterial.Titanium, 5), false);
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.medLithium));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Titanium, 5));
 			}
 			// TODO add tier 3 when parts are available
 		}

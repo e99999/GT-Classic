@@ -135,7 +135,7 @@ public class GTTileSluice extends GTTileFacing
 
 			for (int i = 0; i < inv.getSlotCount(); ++i) {
 				ItemStack result = inv.getStackInSlot(i);
-				if (result != null) {
+				if (!result.isEmpty()) {
 					list.add(result);
 				}
 			}

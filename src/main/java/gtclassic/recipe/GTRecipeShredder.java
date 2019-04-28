@@ -26,32 +26,34 @@ public class GTRecipeShredder {
 			Shredder.addGrinderRecipe("oreChromite", 1, GT.getDust(M.Chromite, 2), GT.getSmallDust(M.Chrome, 1),
 					GT.getSmallDust(M.Iron, 1));
 
-			Shredder.addGrinderRecipe("oreGalena", 1, GT.getDust(M.Galena, 2), GT.getSmallDust(M.Silver, 2));
+			Shredder.addGrinderRecipe("oreGalena", 1, GT.getDust(M.Galena, 2), GT.getSmallDust(M.Silver, 2),
+					GT.getSmallDust(M.Sulfur, 2));
 
 			Shredder.addGrinderRecipe("oreGarnierite", 1, GT.getDust(M.Garnierite, 2), GT.getSmallDust(M.Platinum, 1),
-					GT.getSmallDust(M.Copper, 1));
+					GT.getSmallDust(M.Nickel, 1));
 
 			Shredder.addGrinderRecipe("oreLimonite", 1, GT.getDust(M.Limonite, 2), GT.getSmallDust(M.Iron, 2));
 
 			Shredder.addGrinderRecipe("oreMalachite", 1, GT.getDust(M.Malachite, 2), GT.getDust(M.Calcite, 1),
 					GT.getSmallDust(M.Copper, 2));
 
-			Shredder.addGrinderRecipe("orePyrite", 1, GT.getDust(M.Pyrite, 2), GT.getSmallDust(M.Iron, 2));
+			Shredder.addGrinderRecipe("orePyrite", 1, GT.getDust(M.Pyrite, 2), GT.getSmallDust(M.Iron, 2),
+					GT.getSmallDust(M.Sulfur, 2));
 
 			Shredder.addGrinderRecipe("oreMagnetite", 1, GT.getDust(M.Magnetite, 2), GT.getSmallDust(M.Iron, 1),
 					GT.getSmallDust(M.Gold, 1));
 
 			Shredder.addGrinderRecipe("oreSheldonite", 1, GT.getDust(M.Sheldonite, 2), GT.getSmallDust(M.Nickel, 1),
-					GT.getSmallDust(M.Platinum, 1));
+					GT.getSmallDust(M.Platinum, 1), GT.getSmallDust(M.Sulfur, 2));
 
 			Shredder.addGrinderRecipe("oreSphalerite", 1, GT.getDust(M.Sphalerite, 2), GT.getDust(M.Zinc, 1),
-					GT.getSmallDust(M.GarnetYellow, 1));
+					GT.getSmallDust(M.GarnetYellow, 1), GT.getSmallDust(M.Sulfur, 2));
 
 			Shredder.addGrinderRecipe("oreTantalite", 1, GT.getDust(M.Tantalite, 2), GT.getSmallDust(M.Niobium, 2),
 					GT.getSmallDust(M.Tantalum, 1));
 
 			Shredder.addGrinderRecipe("oreTetrahedrite", 1, GT.getDust(M.Tetrahedrite, 2), GT.getSmallDust(M.Copper, 2),
-					GT.getSmallDust(M.Antimony, 1));
+					GT.getSmallDust(M.Antimony, 1), GT.getSmallDust(M.Sulfur, 2));
 
 			Shredder.addGrinderRecipe("oreTungstate", 1, GT.getDust(M.Tungstate, 2), GT.getSmallDust(M.Iron, 3),
 					GT.getSmallDust(M.Manganese, 3));
@@ -59,7 +61,7 @@ public class GTRecipeShredder {
 			Shredder.addGrinderRecipe("orePyrolusite", 1, GT.getDust(M.Pyrolusite, 2), GT.getSmallDust(M.Manganese, 2));
 
 			Shredder.addGrinderRecipe("oreMolybdenite", 1, GT.getDust(M.Molybdenite, 2),
-					GT.getSmallDust(M.Molybdenum, 2));
+					GT.getSmallDust(M.Molybdenum, 2), GT.getSmallDust(M.Sulfur, 2));
 
 			Shredder.addGrinderRecipe("oreIridium", 1, GT.getIc2(Ic2Items.iridiumOre, 2),
 					GT.getSmallDust(M.Platinum, 2));
@@ -110,6 +112,8 @@ public class GTRecipeShredder {
 
 		Shredder.addGrinderRecipe("oreCryolite", 1, GT.getDust(M.Cryolite, 4));
 
+		Shredder.addGrinderRecipe("oreSulfur", 1, GT.getDust(M.Sulfur, 4));
+
 		Shredder.addGrinderRecipe("oreGraphite", 1, GT.getDust(M.Graphite, 2), GT.getSmallDust(M.Carbon, 1),
 				GT.getSmallDust(M.Diamond, 1));
 
@@ -132,7 +136,7 @@ public class GTRecipeShredder {
 		Shredder.addGrinderRecipe("oreEmerald", 1, GT.get(Items.EMERALD, 2), GT.getSmallDust(M.Emerald, 6),
 				GT.getSmallDust(M.Olivine, 2));
 
-		Shredder.addGrinderRecipe("oreCinnabar", 1, GT.getDust(M.Cinnabar, 5), GT.getSmallDust(M.Redstone, 2),
+		Shredder.addGrinderRecipe("oreCinnabar", 1, GT.getDust(M.Cinnabar, 2), GT.getSmallDust(M.Redstone, 2),
 				GT.getSmallDust(M.Glowstone, 1));
 
 		Shredder.addGrinderRecipe("oreOlivine", 1, GT.getGem(M.Olivine, 2), GT.getSmallDust(M.Olivine, 6),

@@ -7,6 +7,8 @@ import gtclassic.GTItems;
 import gtclassic.container.GTContainerWorkbench;
 import gtclassic.gui.GTGuiMachine;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
+import gtclassic.ore.GTOreFlag;
+import gtclassic.ore.GTOreStone;
 import gtclassic.recipe.GTRecipeCauldron;
 import gtclassic.recipe.GTRecipeProcessing;
 import gtclassic.tile.GTTileElectricSmelter;
@@ -24,9 +26,11 @@ import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -41,7 +45,6 @@ public class GTJeiPlugin implements IModPlugin {
 
 	@Override
 	public void register(@Nonnull IModRegistry registry) {
-
 		if (SubModul.load) {
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 
@@ -108,6 +111,15 @@ public class GTJeiPlugin implements IModPlugin {
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
 			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class,
 					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);
+
+			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
+			for (Block block : Block.REGISTRY) {
+				if (block instanceof GTOreStone) {
+					if (((GTOreStone) block).getOreFlag().equals(GTOreFlag.BEDROCK)) {
+						blacklist.addIngredientToBlacklist(new ItemStack(block));
+					}
+				}
+			}
 		}
 	}
 

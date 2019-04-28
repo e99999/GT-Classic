@@ -27,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
@@ -111,7 +112,7 @@ public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTCol
 		IBlockState state = world.getBlockState(pos);
 		if (state == GTBlocks.resinBoard.getDefaultState()) {
 			world.setBlockToAir(pos);
-			player.dropItem(GTMaterialGen.get(GTItems.resinPCB, 1), false);
+			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTItems.resinPCB, 1));
 			player.setHeldItem(hand, this.getContainerItem(player.getHeldItem(hand)));
 			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			return EnumActionResult.SUCCESS;

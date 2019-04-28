@@ -41,10 +41,6 @@ public class GTItems {
 			new GTMaterialItem(GTMaterial.Niobium, GTMaterialFlag.FOIL));
 	public static final GTMaterialItem smallPlateGermanium = createItem(
 			new GTMaterialItem(GTMaterial.Germanium, GTMaterialFlag.SMALLPLATE));
-	public static final GTMaterialItem wireTin = createItem(new GTMaterialItem(GTMaterial.Tin, GTMaterialFlag.WIRE));
-	public static final GTMaterialItem wireLead = createItem(new GTMaterialItem(GTMaterial.Lead, GTMaterialFlag.WIRE));
-	public static final GTMaterialItem wireRedAlloy = createItem(
-			new GTMaterialItem(GTMaterial.RedAlloy, GTMaterialFlag.WIRE));
 
 	public static final GTItemComponent basicTransistor = createItem(
 			new GTItemComponent("basic_transistor", 14, 0, false));

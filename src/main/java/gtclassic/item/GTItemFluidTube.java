@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import gtclassic.GTItems;
@@ -21,20 +22,30 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.stats.StatList;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTItemFluidTube extends Item
 		implements IAdvancedTexturedItem, ITexturedItem, ILayeredItemModel, GTColorItemInterface {
@@ -144,6 +155,63 @@ public class GTItemFluidTube extends Item
 			return gtFluid.getGTMaterial().getColor();
 		}
 		return Color.white;
+	}
+
+	@Override
+	@Nonnull
+	public ActionResult<ItemStack> onItemRightClick(@Nonnull World world, @Nonnull EntityPlayer player,
+			@Nonnull EnumHand hand) {
+		ItemStack itemstack = player.getHeldItem(hand);
+		FluidStack fluidStack = FluidUtil.getFluidContained(itemstack);
+		// empty bucket shouldn't exist, do nothing since it should be handled by the
+		// bucket event
+		if (fluidStack == null) {
+			return ActionResult.newResult(EnumActionResult.PASS, itemstack);
+		}
+
+		// clicked on a block?
+		RayTraceResult mop = this.rayTrace(world, player, false);
+
+		ActionResult<ItemStack> ret = ForgeEventFactory.onBucketUse(player, world, itemstack, mop);
+		if (ret != null)
+			return ret;
+
+		if (mop == null || mop.typeOfHit != RayTraceResult.Type.BLOCK) {
+			return ActionResult.newResult(EnumActionResult.PASS, itemstack);
+		}
+
+		BlockPos clickPos = mop.getBlockPos();
+		// can we place liquid there?
+		if (world.isBlockModifiable(player, clickPos)) {
+			// the block adjacent to the side we clicked on
+			BlockPos targetPos = clickPos.offset(mop.sideHit);
+
+			// can the player place there?
+			if (player.canPlayerEdit(targetPos, mop.sideHit, itemstack)) {
+				// try placing liquid
+				FluidActionResult result = FluidUtil.tryPlaceFluid(player, world, targetPos, itemstack, fluidStack);
+				if (result.isSuccess() && !player.capabilities.isCreativeMode) {
+					// success!
+					player.addStat(StatList.getObjectUseStats(this));
+
+					itemstack.shrink(1);
+					ItemStack drained = result.getResult();
+					ItemStack emptyStack = !drained.isEmpty() ? drained.copy() : new ItemStack(this);
+
+					// check whether we replace the item or add the empty one to the inventory
+					if (itemstack.isEmpty()) {
+						return ActionResult.newResult(EnumActionResult.SUCCESS, emptyStack);
+					} else {
+						// add empty bucket to player inventory
+						ItemHandlerHelper.giveItemToPlayer(player, emptyStack);
+						return ActionResult.newResult(EnumActionResult.SUCCESS, itemstack);
+					}
+				}
+			}
+		}
+
+		// couldn't place liquid there2
+		return ActionResult.newResult(EnumActionResult.FAIL, itemstack);
 	}
 
 }

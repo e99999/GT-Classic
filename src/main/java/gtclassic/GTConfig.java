@@ -13,7 +13,6 @@ public class GTConfig {
 	// general
 	public static boolean compatSecretProject = false;
 	public static boolean compatSuperTech = false;
-	public static boolean harderAluminium = false;
 	public static boolean harderPlates = false;
 	public static boolean harderRods = false;
 
@@ -56,8 +55,6 @@ public class GTConfig {
 				"Enables Secret Project Compat");
 		compatSuperTech = cfg.getBoolean("compatSuperTech", CATEGORY_GENERAL, compatSecretProject,
 				"Enables Super Tech Compat");
-		harderAluminium = cfg.getBoolean("harderAluminium", CATEGORY_GENERAL, harderAluminium,
-				"Aluminium must be smelted in a blast furnace");
 		harderPlates = cfg.getBoolean("harderPlates", CATEGORY_GENERAL, harderPlates,
 				"Plates take 2 ingots when crafted via hammer");
 		harderRods = cfg.getBoolean("harderRods", CATEGORY_GENERAL, harderRods,
