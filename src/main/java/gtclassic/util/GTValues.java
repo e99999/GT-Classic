@@ -84,7 +84,7 @@ public class GTValues {
 			return GTMaterial.Aluminium.getColor();
 		}
 		if (tier == 3) {
-			return GTMaterial.Platinum.getColor();
+			return GTMaterial.StainlessSteel.getColor();
 		}
 		if (tier == 4) {
 			return GTMaterial.Titanium.getColor();

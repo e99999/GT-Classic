@@ -84,6 +84,13 @@ public class GTToolGen {
 
 		}
 
+		for (ToolMaterial tmat : GTToolMaterial.toolMaterial) {
+			if (canBePowerTool(tmat)) {
+				IC2.getInstance().createItem(new GTToolElectricWrench(tmat));
+			}
+
+		}
+
 	}
 
 	public static boolean canBePowerTool(ToolMaterial tmat) {

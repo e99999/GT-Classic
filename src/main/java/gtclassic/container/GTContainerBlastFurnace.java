@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.tile.GTTileMultiBlastFurnace;
+import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.util.GTSlotUpgrade;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
@@ -17,25 +17,30 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerBlastFurnace extends ContainerTileComponent<GTTileMultiBlastFurnace> {
 
-	public static Box2D machineProgressBox = new Box2D(58, 28, 20, 11); // the progress bar and size
-	public static Vec2i machineProgressPos = new Vec2i(176, 0); // where the overlay is
+	public static final Box2D machineProgressBox = new Box2D(78, 24, 20, 18);
+	public static final Vec2i machineProgressPos = new Vec2i(176, 0);
 
 	public GTContainerBlastFurnace(InventoryPlayer player, GTTileMultiBlastFurnace tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 34, 16, null));// main slot
-		this.addSlotToContainer(new SlotCustom(tile, 1, 34, 34, null)); // second slot
-		this.addSlotToContainer(new SlotCustom(tile, 2, 34, 52, null)); // second slot
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 86, 25)); // output
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 104, 25)); // output
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 122, 25)); // output
+
+		for (int y = 0; y < 2; ++y) {
+			for (int x = 0; x < 2; ++x) {
+				this.addSlotToContainer(new SlotCustom(tile, x + y * 2, 35 + x * 18, 17 + y * 18, null));
+			}
+		}
+
+		for (int y = 0; y < 2; ++y) {
+			for (int x = 0; x < 2; ++x) {
+				this.addSlotToContainer(new SlotOutput(player.player, tile, 4 + x + y * 2, 107 + x * 18, 17 + y * 18));
+			}
+		}
 
 		for (int i = 0; i < 2; ++i) {
-			this.addSlotToContainer(new GTSlotUpgrade(tile, 6 + i, 80 + (i * 18), 64));
+			this.addSlotToContainer(new GTSlotUpgrade(tile, 8 + i, 80 + (i * 18), 62));
 		}
 
 		this.addPlayerInventory(player);
-		this.addComponent(new MachineProgressComp(tile, GTContainerBlastFurnace.machineProgressBox,
-				GTContainerBlastFurnace.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
 	}
 
 	@Override

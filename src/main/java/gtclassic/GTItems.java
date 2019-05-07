@@ -24,16 +24,11 @@ import net.minecraft.item.Item;
 
 public class GTItems {
 
-	static List<Item> toRegister = new ArrayList<Item>();
+	private GTItems() {
+		throw new IllegalStateException("Utility class");
+	}
 
-	public static final GTItemMagnifyingGlass magnifyingGlass = createItem(new GTItemMagnifyingGlass());
-
-	public static final GTItemMatch match = createItem(new GTItemMatch());
-	public static final GTItemComponent plasticFletching = createItem(
-			new GTItemComponent("plastic_fletching", 15, 2, false));
-	public static final GTItemComponent woodPlate = createItem(new GTItemComponent("wood_plate", 10, 0, false));
-	public static final GTItemComponent resinPCB = createItem(new GTItemComponent("resin_pcb", 11, 0, false));
-	public static final GTItemComponent plasticPCB = createItem(new GTItemComponent("plastic_pcb", 12, 0, false));
+	static List<Item> toRegister = new ArrayList<>();
 
 	public static final GTMaterialItem foilTantalum = createItem(
 			new GTMaterialItem(GTMaterial.Tantalum, GTMaterialFlag.FOIL));
@@ -42,21 +37,31 @@ public class GTItems {
 	public static final GTMaterialItem smallPlateGermanium = createItem(
 			new GTMaterialItem(GTMaterial.Germanium, GTMaterialFlag.SMALLPLATE));
 
-	public static final GTItemComponent basicTransistor = createItem(
-			new GTItemComponent("basic_transistor", 14, 0, false));
-	public static final GTItemComponent basicCapacitor = createItem(
-			new GTItemComponent("basic_capacitor", 15, 0, false));
+	// @formatter:off
+	public static final GTItemComponent
+	plasticFletching = createItem(new GTItemComponent("plastic_fletching", 15, 2, false)),
+	woodPlate = createItem(new GTItemComponent("wood_plate", 10, 0, false)),
+	resinPCB = createItem(new GTItemComponent("resin_pcb", 11, 0, false)),
+	plasticPCB = createItem(new GTItemComponent("plastic_pcb", 12, 0, false)),
+	basicTransistor = createItem(new GTItemComponent("basic_transistor", 14, 0, false)),
+	basicCapacitor = createItem(new GTItemComponent("basic_capacitor", 15, 0, false)),
+	motorLV = createItem(new GTItemComponent("motor_lv", 0, 3, false)),
+	motorMV = createItem(new GTItemComponent("motor_mv", 1, 3, false)),
+	motorHV = createItem(new GTItemComponent("motor_hv", 2, 3, false)),
+	partRobotArm = createItem(new GTItemComponent("part_robotarm", 3, 3, false)),
+	moldBlank = createItem(new GTItemComponent("mold_blank", 0, 2, false)),
+	moldBlock = createItem(new GTItemComponent("mold_block", 1, 2, true)),
+	moldIngot = createItem(new GTItemComponent("mold_ingot", 2, 2, true)),
+	moldNugget = createItem(new GTItemComponent("mold_nugget", 3, 2, true)),
+	moldPlate = createItem(new GTItemComponent("mold_plate", 4, 2, true)),
+	moldStick = createItem(new GTItemComponent("mold_stick", 5, 2, true)),
+	moldCable = createItem(new GTItemComponent("mold_cable", 6, 2, true)),
+	moldTube = createItem(new GTItemComponent("mold_tube", 7, 2, true)),
+	moldGear = createItem(new GTItemComponent("mold_gear", 8, 2, true));
+	// @formatter:on
 
-	public static final GTItemComponent moldBlank = createItem(new GTItemComponent("mold_blank", 0, 2, false));
-	public static final GTItemComponent moldBlock = createItem(new GTItemComponent("mold_block", 1, 2, true));
-	public static final GTItemComponent moldIngot = createItem(new GTItemComponent("mold_ingot", 2, 2, true));
-	public static final GTItemComponent moldNugget = createItem(new GTItemComponent("mold_nugget", 3, 2, true));
-	public static final GTItemComponent moldPlate = createItem(new GTItemComponent("mold_plate", 4, 2, true));
-	public static final GTItemComponent moldStick = createItem(new GTItemComponent("mold_stick", 5, 2, true));
-	public static final GTItemComponent moldCable = createItem(new GTItemComponent("mold_cable", 6, 2, true));
-	public static final GTItemComponent moldTube = createItem(new GTItemComponent("mold_tube", 7, 2, true));
-	public static final GTItemComponent moldGear = createItem(new GTItemComponent("mold_gear", 8, 2, true));
-
+	public static final GTItemMatch match = createItem(new GTItemMatch());
+	public static final GTItemMagnifyingGlass magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
 	public static final GTItemCraftingTablet craftingTablet = createItem(new GTItemCraftingTablet());
 	public static final GTItemElectromagnet electroMagnet = createItem(new GTItemElectromagnet());
@@ -64,9 +69,7 @@ public class GTItems {
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
-
-	public static final GTItemFluidTube testTube = createItem(new GTItemFluidTube()); // This is my testing fluid
-																						// container
+	public static final GTItemFluidTube testTube = createItem(new GTItemFluidTube());
 
 	public static <T extends Item> T createItem(T item) {
 		toRegister.add(item);

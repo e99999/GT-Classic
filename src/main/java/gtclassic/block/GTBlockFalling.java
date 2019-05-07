@@ -61,7 +61,7 @@ public class GTBlockFalling extends BlockFalling implements ITexturedBlock, ILoc
 	@Deprecated
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
-		if (this == GTBlocks.charcoalPile) {
+		if (this == GTBlocks.sandCharcoalAsh) {
 			drops.add(new ItemStack(Items.COAL, 2, 1));
 			drops.add(GTMaterialGen.getDust(GTMaterial.Ashes, 1));
 		} else {
@@ -117,7 +117,7 @@ public class GTBlockFalling extends BlockFalling implements ITexturedBlock, ILoc
 	protected boolean tryTouchWater(World worldIn, BlockPos pos, IBlockState state) {
 		boolean flag = false;
 
-		if (this != GTBlocks.slagcreteSand) {
+		if (this != GTBlocks.sandSlagrete) {
 			return false;
 		}
 		for (EnumFacing enumfacing : EnumFacing.values()) {
@@ -161,7 +161,7 @@ public class GTBlockFalling extends BlockFalling implements ITexturedBlock, ILoc
 	public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World) world).rand : new Random();
 		int xp = 0;
-		if (this == GTBlocks.charcoalPile) {
+		if (this == GTBlocks.sandCharcoalAsh) {
 			xp = MathHelper.getInt(rand, 1, 3);
 		}
 		return xp;

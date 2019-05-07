@@ -1,6 +1,15 @@
 package gtclassic.recipe;
 
 import gtclassic.ore.GTOreRegistry;
+import gtclassic.tile.GTTileCentrifuge;
+import gtclassic.tile.GTTileElectrolyzer;
+import gtclassic.tile.GTTileRoaster;
+import gtclassic.tile.GTTileShredder;
+import gtclassic.tile.GTTileSmelter;
+import gtclassic.tile.multi.GTTileMultiBlastFurnace;
+import gtclassic.tile.multi.GTTileMultiBloomery;
+import gtclassic.tile.multi.GTTileMultiChemicalReactor;
+import gtclassic.tile.multi.GTTileMultiFusion;
 
 public class GTRecipe {
 
@@ -12,16 +21,8 @@ public class GTRecipe {
 
 	public static void init() {
 		GTOreRegistry.oreDirectSmelting();
-		GTRecipeBlastFurnace.recipesBlastFurnace();
-		GTRecipeElectricSmelter.recipesElectricSmelter1();
-		GTRecipeElectricSmelter.recipesElectricSmelter2();
 		GTRecipeCauldron.recipesCauldron();
 		GTRecipeCircuitry.recipesCircutry();
-		GTRecipeIndustrialCentrifuge.recipesCentrifuge1();
-		GTRecipeIndustrialCentrifuge.recipesCentrifuge2();
-		GTRecipeIndustrialElectrolyzer.recipesElectrolyzer();
-		GTRecipeFusion.recipesFusion();
-		GTRecipeShredder.recipeShredder();
 		GTRecipeIterators.recipeIterators1();
 		GTRecipeIterators.recipeIterators2();
 		GTRecipeIterators.recipeIterators3();
@@ -32,6 +33,17 @@ public class GTRecipe {
 		GTRecipeShaped.recipeShaped2();
 		GTRecipeShaped.recipeShaped3();
 		GTRecipeShapeless.recipeShapeless1();
+
+		// below is more how things will go
+		GTTileCentrifuge.init();
+		GTTileElectrolyzer.init();
+		GTTileShredder.init();
+		GTTileSmelter.init();
+		GTTileRoaster.init();
+		GTTileMultiBlastFurnace.init();
+		GTTileMultiBloomery.init();
+		GTTileMultiChemicalReactor.init();
+		GTTileMultiFusion.init();
 	}
 
 }

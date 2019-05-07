@@ -6,9 +6,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import gtclassic.GTMod;
-import gtclassic.container.GTContainerElectricSmelter;
+import gtclassic.container.GTContainerSmelter;
 import gtclassic.gui.GTGuiMachine.GTElectricSmelterGui;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
@@ -33,15 +37,16 @@ import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
+public class GTTileSmelter extends GTTileBase {
 
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("electricsmelter");
+	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.smelter");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
 			"textures/gui/electricsmelter.png");
 
@@ -50,7 +55,7 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 	public static final int slotOutput = 2;
 	public static final int slotFuel = 3;
 
-	public GTTileElectricSmelter() {
+	public GTTileSmelter() {
 		super(4, 2, 16, 200, 32);
 		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
@@ -86,7 +91,7 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerElectricSmelter(player.inventory, this);
+		return new GTContainerSmelter(player.inventory, this);
 	}
 
 	@Override
@@ -137,6 +142,130 @@ public class GTTileElectricSmelter extends GTTileBaseMultiInputMachine {
 	@Override
 	public ResourceLocation getStartSoundFile() {
 		return Ic2Sounds.electricFurnaceLoop;
+	}
+
+	/**
+	 * Recipes not handled by the iterator class
+	 */
+	// @formatter:off
+	public static void init() {
+		//Alloy recipes
+		addAlloyRecipe("Tin", 1, "Copper", 3, 
+				GTMaterialGen.getIc2(Ic2Items.bronzeIngot, 4));
+		
+		addAlloyRecipe("Zinc", 1, "Copper", 3, 
+				GTMaterialGen.getIngot(GTMaterial.Brass, 4));
+		
+		addAlloyRecipe("Bismuth", 1, "Brass", 3, 
+				GTMaterialGen.getIngot(GTMaterial.BismuthBronze, 4));
+		
+		addAlloyRecipe("Iron", 2, "Nickel", 1, 
+				GTMaterialGen.getIngot(GTMaterial.Invar, 3));
+		
+		addAlloyRecipe("Gold", 1, "Silver", 1, 
+				GTMaterialGen.getIngot(GTMaterial.Electrum, 2));
+		
+		addAlloyRecipe("Copper", 1, "Nickel", 1, 
+				GTMaterialGen.getIngot(GTMaterial.Constantan, 2));
+		
+		addRecipe("dustRedstone", 4, "ingotCopper", 1,
+				GTMaterialGen.getIngot(GTMaterial.RedAlloy, 1));
+		
+		addRecipe("dustRedstone", 4, "dustCopper", 1,
+				GTMaterialGen.getIngot(GTMaterial.RedAlloy, 1));
+
+		//Smelting oriented recipes
+		addRecipe("sand", 5, GTMaterialGen.get(GTItems.moldTube),
+				GTMaterialGen.get(GTItems.testTube, 32));
+		
+		addRecipe("blockGlass", 5, GTMaterialGen.get(GTItems.moldTube),
+				GTMaterialGen.get(GTItems.testTube, 32));
+
+		addRecipe("dustResin", 1, GTMaterialGen.get(GTItems.woodPlate),
+				GTMaterialGen.get(GTBlocks.driedResin, 1));
+		
+		addRecipe("dustResin", 1, "dustSulfur", 1, 
+				GTMaterialGen.getIc2(Ic2Items.rubber, 1));
+
+		addRecipe("dustPlastic", 1, GTMaterialGen.get(GTItems.moldPlate),
+				GTMaterialGen.getPlate(GTMaterial.Plastic, 1));
+		
+		addRecipe("dustPlastic", 9, GTMaterialGen.get(GTItems.moldBlock),
+				GTMaterialGen.get(GTBlocks.casingPlastic1x, 1));
+
+		addRecipe("dustSilicon", 1, GTMaterialGen.get(GTItems.testTube),
+				GTMaterialGen.getFluid(GTMaterial.Silicon, 1));
+		
+		addRecipe("dustCryolite", 1, GTMaterialGen.get(GTItems.testTube),
+				GTMaterialGen.getFluid(GTMaterial.Cryolite, 1));
+		
+		addRecipe("dustCinnabar", 4, GTMaterialGen.get(GTItems.testTube),
+				GTMaterialGen.getFluid(GTMaterial.Mercury, 1));
+
+		addRecipe("ingotRefinedIron", 1, GTMaterialGen.get(GTItems.moldPlate),
+				GTMaterialGen.getPlate(GTMaterial.RefinedIron, 1));
+		
+		addRecipe("ingotRefinedIron", 1, GTMaterialGen.get(GTItems.moldStick),
+				GTMaterialGen.getStick(GTMaterial.RefinedIron, 2));
+
+		//Molding recipes not covered by iteration
+		addMoldingRecipe("Iron", 9, GTMaterialGen.get(GTItems.moldBlock), 
+				GTMaterialGen.get(Blocks.IRON_BLOCK, 1));
+		
+		addMoldingRecipe("Gold", 9, GTMaterialGen.get(GTItems.moldBlock), 
+				GTMaterialGen.get(Blocks.GOLD_BLOCK, 1));
+		
+		addMoldingRecipe("Bronze", 9, GTMaterialGen.get(GTItems.moldBlock), 
+				GTMaterialGen.getIc2(Ic2Items.bronzeBlock, 1));
+		
+		addMoldingRecipe("Silver", 9, GTMaterialGen.get(GTItems.moldBlock), 
+				GTMaterialGen.getIc2(Ic2Items.silverBlock, 1));
+		
+		addMoldingRecipe("Copper", 9, GTMaterialGen.get(GTItems.moldBlock), 
+				GTMaterialGen.getIc2(Ic2Items.copperBlock, 1));
+		
+		addMoldingRecipe("Tin", 9, GTMaterialGen.get(GTItems.moldBlock), 
+				GTMaterialGen.getIc2(Ic2Items.tinBlock, 1));
+
+		addMoldingRecipe("Iron", 1, GTMaterialGen.get(GTItems.moldNugget), 
+				GTMaterialGen.get(Items.IRON_NUGGET, 9));
+		
+		addMoldingRecipe("Gold", 1, GTMaterialGen.get(GTItems.moldNugget), 
+				GTMaterialGen.get(Items.GOLD_NUGGET, 9));
+
+		addMoldingRecipe("Tin", 1, GTMaterialGen.get(GTItems.moldCable),
+				GTMaterialGen.getIc2(Ic2Items.tinCable, 3));
+		
+		addMoldingRecipe("Copper", 1, GTMaterialGen.get(GTItems.moldCable),
+				GTMaterialGen.getIc2(Ic2Items.copperCable, 2));
+		
+		addMoldingRecipe("Bronze", 1, GTMaterialGen.get(GTItems.moldCable),
+				GTMaterialGen.getIc2(Ic2Items.bronzeCable, 2));
+		
+		addMoldingRecipe("Gold", 1, GTMaterialGen.get(GTItems.moldCable),
+				GTMaterialGen.getIc2(Ic2Items.goldCable, 4));
+		
+		addRecipe("ingotRefinedIron", 1, GTMaterialGen.get(GTItems.moldCable),
+				GTMaterialGen.getIc2(Ic2Items.ironCable, 4));
+	}
+	// @formatter:on
+
+	/**
+	 * Simple utility to generate recipe variants for the Alloy Smelter
+	 */
+	public static void addAlloyRecipe(String input1, int amount1, String input2, int amount2, ItemStack output) {
+		addRecipe("ingot" + input1, amount1, "ingot" + input2, amount2, output);
+		addRecipe("dust" + input1, amount1, "dust" + input2, amount2, output);
+		addRecipe("dust" + input1, amount1, "ingot" + input2, amount2, output);
+		addRecipe("ingot" + input1, amount1, "dust" + input2, amount2, output);
+	}
+
+	/**
+	 * Simple utility to generate mold recipe variants for the Alloy Smelter
+	 */
+	public static void addMoldingRecipe(String input1, int amount1, ItemStack input2, ItemStack output) {
+		addRecipe("ingot" + input1, amount1, input2, output);
+		addRecipe("dust" + input1, amount1, input2, output);
 	}
 
 	public static void addRecipe(String input1, int amount1, ItemStack input2, ItemStack output) {

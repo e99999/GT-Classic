@@ -166,4 +166,8 @@ public class GTMultiInputRecipeList {
 	public Collection<MultiRecipe> getRecipeList() {
 		return new ArrayList<MultiRecipe>(recipes);
 	}
+
+	public String getCategory() {
+		return this.category;
+	}
 }

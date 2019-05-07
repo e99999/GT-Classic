@@ -18,6 +18,10 @@ public class GTMaterialDict {
 				OreDictionary.registerOre("block" + mat.getDisplayName(), GTMaterialGen.getMaterialBlock(mat, 1));
 			}
 
+			if (mat.hasFlag(GTMaterialFlag.COIL)) {
+				OreDictionary.registerOre("coil" + mat.getDisplayName(), GTMaterialGen.getCoil(mat, 1));
+			}
+
 			// Small dusts
 			if (mat.hasFlag(GTMaterialFlag.SMALLDUST)) {
 				OreDictionary.registerOre("dustSmall" + mat.getDisplayName(), GTMaterialGen.getSmallDust(mat, 1));

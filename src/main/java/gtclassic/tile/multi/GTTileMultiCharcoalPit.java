@@ -1,4 +1,4 @@
-package gtclassic.tile;
+package gtclassic.tile.multi;
 
 import gtclassic.GTBlocks;
 import gtclassic.util.int3;
@@ -199,7 +199,7 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 	}
 
 	public void setCharcoal(int3 pos) {
-		world.setBlockState(pos.asBlockPos(), GTBlocks.charcoalPile.getDefaultState());
+		world.setBlockState(pos.asBlockPos(), GTBlocks.sandCharcoalAsh.getDefaultState());
 	}
 
 	public void setFire(int3 pos) {

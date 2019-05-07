@@ -213,12 +213,12 @@ public class GTToolChainsaw extends ItemElectricTool
 		}
 		if (this.getDamage(saw) == this.getMaxDamage()) {
 			if (this.tier == 1) {
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.smallLithium));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.batteryLithiumSmall));
 				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1));
 				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Steel, 5));
 			}
 			if (this.tier == 2) {
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.medLithium));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.batteryLithiumMed));
 				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1));
 				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Titanium, 5));
 			}

@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.tile.GTTileElectricSmelter;
+import gtclassic.tile.GTTileSmelter;
 import gtclassic.util.GTSlotUpgrade;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -13,12 +13,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GTContainerElectricSmelter extends ContainerTileComponent<GTTileElectricSmelter> {
+public class GTContainerSmelter extends ContainerTileComponent<GTTileSmelter> {
 
 	public static Box2D machineProgressBox = new Box2D(78, 24, 20, 18); // the progress bar and size
 	public static Vec2i machineProgressPos = new Vec2i(176, 0); // where the overlay is
 
-	public GTContainerElectricSmelter(InventoryPlayer player, GTTileElectricSmelter tile) {
+	public GTContainerSmelter(InventoryPlayer player, GTTileSmelter tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 35, 25, null));// main slot
 		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, null)); // second slot
@@ -30,8 +30,8 @@ public class GTContainerElectricSmelter extends ContainerTileComponent<GTTileEle
 		}
 
 		this.addPlayerInventory(player);
-		this.addComponent(new MachineProgressComp(tile, GTContainerElectricSmelter.machineProgressBox,
-				GTContainerElectricSmelter.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, GTContainerSmelter.machineProgressBox,
+				GTContainerSmelter.machineProgressPos));
 	}
 
 	@Override

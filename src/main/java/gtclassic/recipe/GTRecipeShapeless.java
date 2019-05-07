@@ -28,16 +28,15 @@ public class GTRecipeShapeless {
 		recipes.addShapelessRecipe(GT.get(GTItems.plasticFletching, 4),
 				new Object[] { "craftingToolKnife", "platePlastic" });
 
-		recipes.addShapelessRecipe(GT.get(GTBlocks.plastic4CasingBlock, 4), new Object[] { GTBlocks.plastic1CasingBlock,
-				GTBlocks.plastic1CasingBlock, GTBlocks.plastic1CasingBlock, GTBlocks.plastic1CasingBlock });
+		recipes.addShapelessRecipe(GT.get(GTBlocks.casingPlastic4x, 4), new Object[] { GTBlocks.casingPlastic1x,
+				GTBlocks.casingPlastic1x, GTBlocks.casingPlastic1x, GTBlocks.casingPlastic1x });
 
-		recipes.addShapelessRecipe(GT.get(GTBlocks.plastic16CasingBlock, 4),
-				new Object[] { GTBlocks.plastic4CasingBlock, GTBlocks.plastic4CasingBlock, GTBlocks.plastic4CasingBlock,
-						GTBlocks.plastic4CasingBlock });
+		recipes.addShapelessRecipe(GT.get(GTBlocks.casingPlastic16x, 4), new Object[] { GTBlocks.casingPlastic4x,
+				GTBlocks.casingPlastic4x, GTBlocks.casingPlastic4x, GTBlocks.casingPlastic4x });
 
 		// Duct Tape
 
-		recipes.addShapelessRecipe(GT.get(GTBlocks.DuctTape, 1), new Object[] { GT.getIc2(Ic2Items.rubber, 64),
+		recipes.addShapelessRecipe(GT.get(GTBlocks.tape, 1), new Object[] { GT.getIc2(Ic2Items.rubber, 64),
 				GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64) });
 
 		// Dust Recipes
@@ -103,7 +102,7 @@ public class GTRecipeShapeless {
 		recipes.addShapelessRecipe(GT.getCasing(M.RefinedIron, 1),
 				new Object[] { "craftingToolFile", Ic2Items.machine.copy() });
 
-		recipes.addShapelessRecipe(GT.get(GTBlocks.slagSand),
+		recipes.addShapelessRecipe(GT.get(GTBlocks.sandSlag),
 				new Object[] { "sand", "dustSlag", "dustSlag", "dustSlag" });
 
 		// random stuff
@@ -119,7 +118,7 @@ public class GTRecipeShapeless {
 				new Object[] { "dustClay", GTValues.water, "dustAsh", "dustCoal" });
 
 		String g = "gravel";
-		ItemStack s = GT.get(GTBlocks.slagSand);
+		ItemStack s = GT.get(GTBlocks.sandSlag);
 		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 0),
 				new Object[] { "dyeWhite", s, s, s, s, g, g, g, g });
 		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 1),

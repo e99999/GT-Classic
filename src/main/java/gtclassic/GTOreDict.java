@@ -6,6 +6,7 @@ import gtclassic.material.GTMaterialGen;
 import gtclassic.ore.GTOreFalling;
 import gtclassic.ore.GTOreFlag;
 import gtclassic.ore.GTOreStone;
+import gtclassic.tool.GTToolElectricWrench;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
 import gtclassic.tool.GTToolKnife;
@@ -30,6 +31,9 @@ public class GTOreDict {
 				registerHammer(item);
 			}
 			if (item instanceof GTToolWrench) {
+				registerWrench(item);
+			}
+			if (item instanceof GTToolElectricWrench) {
 				registerWrench(item);
 			}
 			if (item instanceof GTToolKnife) {

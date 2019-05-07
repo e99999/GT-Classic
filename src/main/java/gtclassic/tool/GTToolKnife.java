@@ -110,7 +110,7 @@ public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTCol
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing,
 			float hitX, float hitY, float hitZ) {
 		IBlockState state = world.getBlockState(pos);
-		if (state == GTBlocks.resinBoard.getDefaultState()) {
+		if (state == GTBlocks.driedResin.getDefaultState()) {
 			world.setBlockToAir(pos);
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTItems.resinPCB, 1));
 			player.setHeldItem(hand, this.getContainerItem(player.getHeldItem(hand)));

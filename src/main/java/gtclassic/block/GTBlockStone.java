@@ -62,7 +62,7 @@ public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock 
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state,
 			@Nullable TileEntity te, ItemStack stack) {
 		super.harvestBlock(worldIn, player, pos, state, te, stack);
-		if (this == GTBlocks.bloomBlock) {
+		if (this == GTBlocks.bloomIron) {
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getDust(GTMaterial.Slag, 1));
 		}
@@ -70,7 +70,7 @@ public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock 
 
 	@Override
 	public int quantityDropped(Random random) {
-		return (this == GTBlocks.bloomBlock) ? 0 : 1;
+		return (this == GTBlocks.bloomIron) ? 0 : 1;
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock 
 	public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World) world).rand : new Random();
 		int xp = 0;
-		if (this == GTBlocks.bloomBlock) {
+		if (this == GTBlocks.bloomIron) {
 			xp = MathHelper.getInt(rand, 1, 5);
 		}
 		return xp;

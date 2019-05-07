@@ -42,7 +42,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileRoaster extends GTTileBaseMultiInputMachine {
+public class GTTileRoaster extends GTTileBase {
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.roaster");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/roaster.png");
@@ -52,13 +52,14 @@ public class GTTileRoaster extends GTTileBaseMultiInputMachine {
 	public static final int slotOutput0 = 2;
 	public static final int slotOutput1 = 3;
 	public static final int slotOutput2 = 4;
-	public static final int slotFuel = 5;
+	public static final int slotOutput3 = 5;
+	public static final int slotFuel = 6;
 
-	public static final int[] slotOutputs = { slotOutput0, slotOutput1, slotOutput2 };
+	public static final int[] slotOutputs = { slotOutput0, slotOutput1, slotOutput2, slotOutput3 };
 	public static final int[] slotInputs = { slotInput0, slotInput1 };
 
 	public GTTileRoaster() {
-		super(6, 2, 16, 200, 32);
+		super(7, 2, 16, 200, 32);
 		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
 	}
@@ -146,6 +147,45 @@ public class GTTileRoaster extends GTTileBaseMultiInputMachine {
 		return Ic2Sounds.electricFurnaceLoop;
 	}
 
+	// @formatter:off
+	public static void init() {
+		
+		addRecipe("dustSulfur", 1, 
+				2, 
+				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 3));
+		
+		addRecipe("dustTetrahedrite", 2, 
+				1, 
+				GTMaterialGen.getIc2(Ic2Items.copperDust, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Antimony, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Iron, 1),
+				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+		
+		addRecipe("dustSphalerite", 2, 
+				1, 
+				GTMaterialGen.getDust(GTMaterial.Zinc, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Germanium, 2),
+				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+		
+		addRecipe("dustGalena", 2, 
+				1, 
+				GTMaterialGen.getDust(GTMaterial.Lead, 1),
+				GTMaterialGen.getIc2(Ic2Items.silverDust, 1),
+				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+		
+		addRecipe("dustSheldonite", 2, 
+				1, 
+				GTMaterialGen.getDust(GTMaterial.Platinum, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Nickel, 1),
+				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+		
+		addRecipe("dustMolybdenite", 2, 
+				1, 
+				GTMaterialGen.getDust(GTMaterial.Molybdenum, 1),
+				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+	}
+	// @formatter:on
+
 	public static void addRecipe(String input, int amount, int oxygenCount, ItemStack... outputs) {
 		if (oxygenCount > 0) {
 			addRecipe(
@@ -153,7 +193,7 @@ public class GTTileRoaster extends GTTileBaseMultiInputMachine {
 							new RecipeInputItemStack(GTMaterialGen.getFluid(GTMaterial.Oxygen, oxygenCount)) },
 					euCost(8000), outputs);
 		} else {
-			addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount) }, euCost(8000), outputs);
+			addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount) }, euCost(6000), outputs);
 		}
 	}
 

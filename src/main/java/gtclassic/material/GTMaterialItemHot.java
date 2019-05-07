@@ -54,7 +54,6 @@ public class GTMaterialItemHot extends Item implements IStaticTexturedItem, GTCo
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("Contains: " + material.getFormula()));
 		tooltip.add(I18n.format("Melting: " + material.getTemp() + "K"));
 		tooltip.add(TextFormatting.RED + I18n.format("Hot stuff coming through!"));
 		tooltip.add(TextFormatting.YELLOW + I18n.format("Can be handled safely wearing a full Hazmat Suit"));
@@ -114,7 +113,7 @@ public class GTMaterialItemHot extends Item implements IStaticTexturedItem, GTCo
 		if (entityIn instanceof EntityLivingBase) {
 			EntityLivingBase player = (EntityLivingBase) entityIn;
 			if (!ItemHazmatArmor.isFullHazmatSuit(player) || !player.isImmuneToFire()) {
-				entityIn.attackEntityFrom(DamageSource.LAVA, 4.0F);
+				entityIn.attackEntityFrom(DamageSource.IN_FIRE, 4.0F);
 			}
 		}
 	}

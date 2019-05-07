@@ -1,14 +1,15 @@
-package gtclassic.tile;
+package gtclassic.tile.multi;
 
+import gtclassic.tile.GTTileBase;
 import gtclassic.util.int3;
 import net.minecraft.tileentity.TileEntity;
 
-public abstract class GTTileBaseMultiBlockMachine extends GTTileBaseMultiInputMachine {
+public abstract class GTTileMultiBase extends GTTileBase {
 
 	public boolean lastState;
 	public boolean firstCheck = true;
 
-	public GTTileBaseMultiBlockMachine(int slots, int upgrades, int defaultinput, int maxinput) {
+	public GTTileMultiBase(int slots, int upgrades, int defaultinput, int maxinput) {
 		super(slots, upgrades, defaultinput, 100, maxinput);
 	}
 
@@ -43,5 +44,4 @@ public abstract class GTTileBaseMultiBlockMachine extends GTTileBaseMultiInputMa
 		int3 dir = new int3(getPos(), getFacing());
 		return world.getTileEntity(dir.right(2).asBlockPos());
 	}
-
 }

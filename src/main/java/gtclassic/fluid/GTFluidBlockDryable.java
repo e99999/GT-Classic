@@ -3,8 +3,8 @@ package gtclassic.fluid;
 import java.util.List;
 import java.util.Random;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.material.GTMaterial;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -29,16 +29,20 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBlock, ICustomModeledBlock {
+public class GTFluidBlockDryable extends BlockFluidClassic implements ILocaleBlock, ICustomModeledBlock {
 
 	LocaleComp comp;
+	Block result;
+	GTMaterial mat;
 
-	public GTFluidBlockSlurry() {
-		super(FluidRegistry.getFluid("slurry"), Material.WATER);
-		this.comp = Ic2Lang.nullKey;
-		setRegistryName("fluid_slurry");
-		setUnlocalizedName(GTMod.MODID + "." + "fluid_slurry");
+	public GTFluidBlockDryable(GTMaterial mat, Block result) {
+		super(FluidRegistry.getFluid(mat.getDisplayName().toLowerCase()), Material.WATER);
+		setRegistryName(mat.getDisplayName().toLowerCase() + "_fluidblock");
+		setUnlocalizedName(GTMod.MODID + "." + mat.getDisplayName().toLowerCase() + "_fluidblock");
 		setCreativeTab(GTMod.creativeTabGT);
+		this.mat = mat;
+		this.comp = Ic2Lang.nullKey;
+		this.result = result;
 		this.setTickRandomly(true);
 		this.setTickRate(10);
 	}
@@ -67,7 +71,7 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 				if (rand.nextInt(7) == 0) {
 					worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,
 							1.0F, 1.0F);
-					worldIn.setBlockState(pos, GTBlocks.mudBlock.getDefaultState());
+					worldIn.setBlockState(pos, result.getDefaultState());
 				}
 			}
 		}
@@ -105,7 +109,7 @@ public class GTFluidBlockSlurry extends BlockFluidClassic implements ILocaleBloc
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTFluidModel(FluidRegistry.getFluid("slurry"));
+		return new GTFluidModel(FluidRegistry.getFluid(mat.getDisplayName().toLowerCase()));
 	}
 
 	@Override

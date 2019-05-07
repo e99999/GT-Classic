@@ -39,10 +39,10 @@ public class GTRecipeMod {
 				"ingotSilver", 'H', GT.getFluid(M.Mercury, 1), 'C', Ic2Items.insulatedCopperCable.copy() });
 
 		recipes.addRecipe(Ic2Items.mfe.copy(), new Object[] { "XYX", "YCY", "XYX", 'C', Ic2Items.machine.copy(), 'Y',
-				GTBlocks.smallLithium, 'X', Ic2Items.doubleInsulatedGoldCable.copy() });
+				GTBlocks.batteryLithiumSmall, 'X', Ic2Items.doubleInsulatedGoldCable.copy() });
 
 		recipes.addRecipe(Ic2Items.mfe.copy(), new Object[] { "XYX", "YCY", "XYX", 'C', Ic2Items.machine.copy(), 'Y',
-				GTBlocks.smallLithium, 'X', GT.getIc2(Ic2Items.doubleInsulatedBronzeCable, 4) });
+				GTBlocks.batteryLithiumSmall, 'X', GT.getIc2(Ic2Items.doubleInsulatedBronzeCable, 4) });
 
 		recipes.addRecipe(GT.getIc2(Ic2Items.mixedMetalIngot, 3),
 				new Object[] { "III", "BBB", "TTT", 'I', "plateSteel", 'B', "plateBronze", 'T', "plateAluminium" });

@@ -1,4 +1,4 @@
-package gtclassic.tile;
+package gtclassic.tile.multi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBloomery;
 import gtclassic.gui.GTGuiMachine.GTBloomeryGui;
@@ -15,7 +16,9 @@ import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
 import gtclassic.util.int3;
+import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -25,14 +28,19 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.recipe.entry.RecipeInputCombined;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
@@ -46,6 +54,13 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	AxisAlignedBB recipeBB = null;
 
 	public static final BloomeryRecipeList RECIPE_LIST = new BloomeryRecipeList();
+	public static final GTMultiInputRecipeList JEI_RECIPE_LIST = new GTMultiInputRecipeList("gt.bloomery");
+
+	public static final IRecipeInput fuel = new RecipeInputCombined(1,
+			new IRecipeInput[] { new RecipeInputOreDict("blockCoal"), new RecipeInputOreDict("blockCharcoal"),
+					new RecipeInputItemStack(new ItemStack(Items.COAL, 9)),
+					new RecipeInputItemStack(new ItemStack(Items.COAL, 9, 1)),
+					new RecipeInputOreDict("dustCharcoal", 9), new RecipeInputOreDict("dustCoal", 9), });
 
 	BloomeryRecipe activeRecipe = null;
 	@NetworkField(index = 7)
@@ -291,6 +306,61 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 
 	public IBlockState getActiveRecipe() {
 		return activeRecipe.state;
+	}
+
+	public static void init() {
+		addRecipe("ingotIron", 3, GTBlocks.bloomIron);
+		addRecipe("dustIron", 3, GTBlocks.bloomIron);
+		addRecipe("oreIron", 1, "dustCalcite", 1, GTBlocks.bloomIron);
+		addRecipe("dustPyrite", 2, "dustCalcite", 2, GTBlocks.bloomIron);
+		addRecipe("dustMagnetite", 2, "dustCalcite", 2, GTBlocks.bloomIron);
+		addRecipe("dustLimonite", 2, "dustCalcite", 2, GTBlocks.bloomIron);
+	}
+
+	/*
+	 * real recipes methods into the bloomery
+	 */
+
+	public static void addRecipe(String input, int amount, Block output) {
+		RECIPE_LIST.addRecipe(input, output.getDefaultState(), 4, 400, new RecipeInputOreDict(input, amount), fuel);
+		addFakeBloomRecipe(input, amount, GTMaterialGen.get(output));
+	}
+
+	public static void addRecipe(String input1, int amount1, String input2, int amount2, Block output) {
+		RECIPE_LIST.addRecipe(input1, output.getDefaultState(), 4, 400, new RecipeInputOreDict(input1, amount1),
+				new RecipeInputOreDict(input2, amount2), fuel);
+		addFakeBloomRecipe(input1, amount1, input2, amount2, GTMaterialGen.get(output));
+	}
+
+	/*
+	 * fake recipes for the bloomery to show in JEI
+	 */
+	private static void addFakeBloomRecipe(String input1, int amount1, String input2, int amount2, ItemStack output) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		List<ItemStack> outputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input2, amount2)));
+		inputs.add(fuel);
+		outputs.add(output);
+		outputs.add(GTMaterialGen.getDust(GTMaterial.DarkAshes, 4));
+		addFakeBloomRecipe(inputs, new MachineOutput(null, outputs));
+	}
+
+	private static void addFakeBloomRecipe(String input1, int amount1, ItemStack output) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		List<ItemStack> outputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
+		inputs.add(fuel);
+		outputs.add(output);
+		outputs.add(GTMaterialGen.getDust(GTMaterial.DarkAshes, 4));
+		addFakeBloomRecipe(inputs, new MachineOutput(null, outputs));
+	}
+
+	/*
+	 * fake recipes for the bloomery to show in JEI
+	 */
+	private static void addFakeBloomRecipe(List<IRecipeInput> input, MachineOutput output) {
+		JEI_RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
 	}
 
 	public static class BloomeryRecipeList {

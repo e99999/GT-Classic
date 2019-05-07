@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.tile.GTTileMultiFusionComputer;
+import gtclassic.tile.multi.GTTileMultiFusion;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
@@ -11,12 +11,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class GTContainerFusionComputer extends ContainerTileComponent<GTTileMultiFusionComputer> {
+public class GTContainerFusionComputer extends ContainerTileComponent<GTTileMultiFusion> {
 
 	public static Box2D machineProgressBox = new Box2D(69, 35, 25, 17);
 	public static Vec2i machineProgressPos = new Vec2i(176, 0);
 
-	public GTContainerFusionComputer(InventoryPlayer player, GTTileMultiFusionComputer tile) {
+	public GTContainerFusionComputer(InventoryPlayer player, GTTileMultiFusion tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 46, 26, null));
 		this.addSlotToContainer(new SlotCustom(tile, 1, 46, 44, null));

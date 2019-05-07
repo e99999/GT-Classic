@@ -1,4 +1,4 @@
-package gtclassic.tile;
+package gtclassic.tile.multi;
 
 import gtclassic.GTBlocks;
 import gtclassic.material.GTMaterial;
@@ -122,11 +122,12 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 	}
 
 	public boolean isCoil(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTBlocks.niobiumTitaniumCoilBlock.getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen
+				.getBlock(GTMaterial.NiobiumTitanium, GTMaterialFlag.COIL).getDefaultState();
 	}
 
 	public boolean checkPos(BlockPos pos) {
-		return world.getBlockState(pos) == GTBlocks.lightningCasingBlock.getDefaultState();
+		return world.getBlockState(pos) == GTBlocks.casingLightning.getDefaultState();
 	}
 
 	public void updateActive() {

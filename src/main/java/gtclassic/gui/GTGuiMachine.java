@@ -40,6 +40,12 @@ public class GTGuiMachine {
 		}
 	}
 
+	public static class GTChemicalReactorGui extends MachineGui {
+		public GTChemicalReactorGui(ContainerComponent container) {
+			super(container);
+		}
+	}
+
 	public static class GTArcFurnaceGui extends MachineGui {
 		public GTArcFurnaceGui(ContainerComponent container) {
 			super(container);

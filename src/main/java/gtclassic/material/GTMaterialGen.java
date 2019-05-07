@@ -21,11 +21,16 @@ public class GTMaterialGen {
 
 		// Add material entries and flags to correct maps
 		for (GTMaterial mat : GTMaterial.values()) {
+			materialBlockUtil(mat, GTMaterialFlag.BLOCK);
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
 			materialBlockUtil(mat, GTMaterialFlag.CASING);
 		}
-
 		for (GTMaterial mat : GTMaterial.values()) {
-			materialBlockUtil(mat, GTMaterialFlag.BLOCK);
+			materialBlockUtil(mat, GTMaterialFlag.WALL);
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialBlockUtil(mat, GTMaterialFlag.COIL);
 		}
 
 		for (GTMaterial mat : GTMaterial.values()) {
@@ -109,12 +114,20 @@ public class GTMaterialGen {
 
 	// Instances per flag, most of the mod will references these
 
+	public static ItemStack getMaterialBlock(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.BLOCK.getSuffix()), count, 0);
+	}
+
 	public static ItemStack getCasing(GTMaterial mat, int count) {
 		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.CASING.getSuffix()), count, 0);
 	}
 
-	public static ItemStack getMaterialBlock(GTMaterial mat, int count) {
-		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.BLOCK.getSuffix()), count, 0);
+	public static ItemStack getWall(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.WALL.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getCoil(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.COIL.getSuffix()), count, 0);
 	}
 
 	public static ItemStack getParticle(GTMaterial mat, int count) {
@@ -169,6 +182,11 @@ public class GTMaterialGen {
 		handler.fill(fluid, true);
 		stack.setCount(count);
 		return stack;
+	}
+
+	public static FluidStack getFluidTest(GTMaterial mat) {
+		String name = mat.getDisplayName().toLowerCase();
+		return FluidRegistry.getFluidStack(name, 1000);
 	}
 
 	public static ItemStack getModFluid(String name, int count) {

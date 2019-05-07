@@ -1,6 +1,6 @@
 package gtclassic.container;
 
-import gtclassic.tile.GTTileMultiArcFurnace;
+import gtclassic.tile.multi.GTTileMultiArcFurnace;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;

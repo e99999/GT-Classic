@@ -2,7 +2,7 @@ package gtclassic.container;
 
 import gtclassic.GTMod;
 import gtclassic.gui.GTGuiCompVerticalProgress;
-import gtclassic.tile.GTTileMultiBloomery;
+import gtclassic.tile.multi.GTTileMultiBloomery;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.util.math.Box2D;

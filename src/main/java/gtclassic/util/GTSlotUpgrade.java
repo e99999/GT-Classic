@@ -1,6 +1,6 @@
 package gtclassic.util;
 
-import gtclassic.tile.GTTileBaseMultiInputMachine;
+import gtclassic.tile.GTTileBase;
 import ic2.api.classic.tile.IMachine;
 import ic2.core.IC2;
 import ic2.core.inventory.slots.SlotUpgrade;
@@ -14,8 +14,8 @@ public class GTSlotUpgrade extends SlotUpgrade {
 	@Override
 	public void onSlotChanged() {
 		if (IC2.platform.isSimulating()) {
-			if (getMachine() instanceof GTTileBaseMultiInputMachine) {
-				((GTTileBaseMultiInputMachine) getMachine()).setOverclockRates();
+			if (getMachine() instanceof GTTileBase) {
+				((GTTileBase) getMachine()).setOverclockRates();
 			}
 		}
 	}

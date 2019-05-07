@@ -13,8 +13,6 @@ import net.minecraft.item.ItemStack;
 
 public class GTRecipeCauldron {
 
-	static GTMaterial M;
-
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("washing");
 
 	/*
@@ -24,13 +22,21 @@ public class GTRecipeCauldron {
 
 	public enum GTRecipeCauldronEnum {
 
-		TANTALITE(M.Tantalite, M.Niobium, M.Tantalum), SPHALERITE(M.Sphalerite, M.Zinc, M.Germanium),
-		CINNABAR(M.Cinnabar, M.Redstone), SHELDONITE(M.Sheldonite, M.Platinum, M.Platinum),
-		GALENA(M.Galena, M.Lead, M.Silver), TETRAHEDRITE(M.Tetrahedrite, M.Copper, M.Antimony),
-		MALACHITE(M.Malachite, M.Copper, M.Calcite), CASSITERITE(M.Cassiterite, M.Tin, M.Tantalum),
-		PYROLUSITE(M.Pyrolusite, M.Manganese, M.Manganese, M.Manganese), GARNIERITE(M.Garnierite, M.Nickel, M.Nickel),
-		BISMUTHTINE(M.Bismuthtine, M.Bismuth, M.Antimony), DIRTYRESIN(M.DirtyResin, M.Resin, M.Resin, M.Resin, M.Wood),
-		DARKASHES(M.DarkAshes, M.Ashes, M.Ashes);
+		// @formatter:off
+		TANTALITE(GTMaterial.Tantalite, GTMaterial.Niobium, GTMaterial.Tantalum), 
+		SPHALERITE(GTMaterial.Sphalerite, GTMaterial.Zinc, GTMaterial.Germanium),
+		CINNABAR(GTMaterial.Cinnabar, GTMaterial.Redstone), 
+		SHELDONITE(GTMaterial.Sheldonite, GTMaterial.Platinum, GTMaterial.Platinum),
+		GALENA(GTMaterial.Galena, GTMaterial.Lead, GTMaterial.Silver), 
+		TETRAHEDRITE(GTMaterial.Tetrahedrite, GTMaterial.Copper, GTMaterial.Antimony),
+		MALACHITE(GTMaterial.Malachite, GTMaterial.Copper, GTMaterial.Calcite), 
+		CASSITERITE(GTMaterial.Cassiterite, GTMaterial.Tin,GTMaterial.Tin, GTMaterial.Tantalum),
+		PYROLUSITE(GTMaterial.Pyrolusite, GTMaterial.Manganese, GTMaterial.Manganese), 
+		GARNIERITE(GTMaterial.Garnierite, GTMaterial.Nickel, GTMaterial.Nickel),
+		BISMUTHTINE(GTMaterial.Bismuthtine, GTMaterial.Bismuth, GTMaterial.Antimony), 
+		DIRTYRESIN(GTMaterial.DirtyResin, GTMaterial.Resin, GTMaterial.Resin, GTMaterial.Resin, GTMaterial.Wood),
+		DARKASHES(GTMaterial.DarkAshes, GTMaterial.Ashes, GTMaterial.Ashes);
+		// @formatter:on
 
 		GTMaterial input;
 		GTMaterial[] outputs;

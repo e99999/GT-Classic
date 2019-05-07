@@ -6,6 +6,7 @@ import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tool.GTToolAxe;
 import gtclassic.tool.GTToolChainsaw;
+import gtclassic.tool.GTToolElectricWrench;
 import gtclassic.tool.GTToolFile;
 import gtclassic.tool.GTToolHammer;
 import gtclassic.tool.GTToolKnife;
@@ -40,6 +41,7 @@ public class GTRecipeIteratorsTools {
 			createPickaxeRecipe(item);
 			createDrillRecipe(item);
 			createChainsawRecipe(item);
+			createElectricWrenchRecipe(item);
 		}
 	}
 
@@ -176,8 +178,8 @@ public class GTRecipeIteratorsTools {
 			GTToolMiningDrill drill = (GTToolMiningDrill) item;
 			if (drill.getTier(new ItemStack(item)) == 1) {
 				String plate = "plate" + drill.getMaterial().getDisplayName();
-				recipes.addRecipe(new ItemStack(item), new Object[] { "TTT", "PCP", "PBP", 'T', plate, 'P',
-						"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.smallLithium });
+				recipes.addRecipe(new ItemStack(item), new Object[] { "CTT", "PPT", "PPB", 'T', plate, 'P',
+						"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.batteryLithiumSmall });
 			}
 		}
 	}
@@ -188,9 +190,20 @@ public class GTRecipeIteratorsTools {
 			if (chainsaw.getTier(new ItemStack(item)) == 1) {
 				String plate = "plate" + chainsaw.getMaterial().getDisplayName();
 				recipes.addRecipe(new ItemStack(item), new Object[] { "PPT", "BCT", "PPT", 'T', plate, 'P',
-						"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.smallLithium });
+						"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.batteryLithiumSmall });
 			}
 
+		}
+	}
+
+	public static void createElectricWrenchRecipe(Item item) {
+		if (item instanceof GTToolElectricWrench) {
+			GTToolElectricWrench wrench = (GTToolElectricWrench) item;
+			if (wrench.getTier(new ItemStack(item)) == 1) {
+				String ingot = "ingot" + wrench.getMaterial().getDisplayName();
+				recipes.addRecipe(new ItemStack(item), new Object[] { "TTT", "PCP", "PBP", 'T', ingot, 'P',
+						"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.batteryLithiumSmall });
+			}
 		}
 	}
 

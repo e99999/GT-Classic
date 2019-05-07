@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import gtclassic.GTItems;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTUtils;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -19,6 +21,7 @@ import ic2.api.classic.tile.IStackOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.energy.EnergyNet;
 import ic2.api.network.INetworkTileEntityEventListener;
+import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
 import ic2.core.audio.AudioSource;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
@@ -36,6 +39,8 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IOutputMachine;
@@ -51,7 +56,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
+public abstract class GTTileBase extends TileEntityElecMachine
 		implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
 	@NetworkField(index = 7)
 	public float progress = 0;
@@ -92,9 +97,9 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 
 	public AudioSource audioSource;
 
-	LinkedList<IStackOutput> outputs = new LinkedList<IStackOutput>();
+	LinkedList<IStackOutput> outputs = new LinkedList<>();
 
-	public GTTileBaseMultiInputMachine(int slots, int upgrades, int energyPerTick, int maxProgress, int maxinput) {
+	public GTTileBase(int slots, int upgrades, int energyPerTick, int maxProgress, int maxinput) {
 		super(slots + upgrades, maxinput);
 		supportsUpgrades = upgrades > 0;
 		upgradeSlots = upgrades;
@@ -218,7 +223,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 				iter.remove();
 			}
 		}
-		return outputs.size() > 0;
+		return !outputs.isEmpty();
 	}
 
 	public List<ItemStack> getInputs() {
@@ -252,7 +257,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 			});
 
 			// Return the recipe with the most input stacks
-			if (validRecipes.size() == 0) {
+			if (validRecipes.isEmpty()) {
 				return null;
 			} else if (validRecipes.size() == 1) {
 				lastRecipe = validRecipes.get(0);
@@ -547,6 +552,7 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 		return !isInvalid();
 	}
 
+	@Override
 	public void onUnloaded() {
 		if (this.isRendering() && this.audioSource != null) {
 			IC2.audioManager.removeSources(this);
@@ -607,6 +613,26 @@ public abstract class GTTileBaseMultiInputMachine extends TileEntityElecMachine
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return false;
+	}
+
+	public static void init() {
+		// TODO Auto-generated method stub
+	}
+
+	/*
+	 * the 2 methods below are utilities for making recipes in all tiles extended
+	 * off this class
+	 */
+	public static IRecipeInput input(ItemStack stack) {
+		return new RecipeInputItemStack(stack);
+	}
+
+	public static IRecipeInput input(String name, int amount) {
+		return new RecipeInputOreDict(name, amount);
+	}
+
+	public static IRecipeInput tubes(int amount) {
+		return new RecipeInputItemStack(GTMaterialGen.get(GTItems.testTube, amount));
 	}
 
 	/*

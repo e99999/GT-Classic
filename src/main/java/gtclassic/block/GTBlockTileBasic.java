@@ -6,27 +6,29 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileBasicEnergyStorage;
+import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
-import gtclassic.tile.GTTileElectricSmelter;
+import gtclassic.tile.GTTileElectrolyzer;
 import gtclassic.tile.GTTileHeatingElement;
-import gtclassic.tile.GTTileIndustrialCentrifuge;
-import gtclassic.tile.GTTileIndustrialElectrolyzer;
-import gtclassic.tile.GTTileMultiArcFurnace;
-import gtclassic.tile.GTTileMultiBlastFurnace;
-import gtclassic.tile.GTTileMultiBloomery;
-import gtclassic.tile.GTTileMultiCharcoalPit;
-import gtclassic.tile.GTTileMultiFusionComputer;
-import gtclassic.tile.GTTileMultiLightningRod;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileRoaster;
 import gtclassic.tile.GTTileShredder;
+import gtclassic.tile.GTTileSmelter;
 import gtclassic.tile.GTTileSuperConductorHigh;
 import gtclassic.tile.GTTileSuperConductorLow;
+import gtclassic.tile.multi.GTTileMultiArcFurnace;
+import gtclassic.tile.multi.GTTileMultiBlastFurnace;
+import gtclassic.tile.multi.GTTileMultiBloomery;
+import gtclassic.tile.multi.GTTileMultiCharcoalPit;
+import gtclassic.tile.multi.GTTileMultiChemicalReactor;
+import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -40,8 +42,9 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemFlintAndSteel;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -109,64 +112,67 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		if (this == GTBlocks.computerCube) {
+		if (this == GTBlocks.tileComputer) {
 			return new GTTileComputerCube();
 		}
-		if (this.equals(GTBlocks.heatingElement)) {
+		if (this.equals(GTBlocks.tileHeating)) {
 			return new GTTileHeatingElement();
 		}
-		if (this == GTBlocks.bloomery) {
+		if (this == GTBlocks.tileBloomery) {
 			return new GTTileMultiBloomery();
 		}
-		if (this == GTBlocks.charcoalPit) {
+		if (this == GTBlocks.tileCharcoalPit) {
 			return new GTTileMultiCharcoalPit();
 		}
-		if (this == GTBlocks.blastFurnace) {
+		if (this == GTBlocks.tileBlastFurnace) {
 			return new GTTileMultiBlastFurnace();
 		}
-		if (this == GTBlocks.industrialCentrifuge) {
-			return new GTTileIndustrialCentrifuge();
+		if (this == GTBlocks.tileCentrifuge) {
+			return new GTTileCentrifuge();
 		}
-		if (this == GTBlocks.roaster) {
+		if (this == GTBlocks.tileRoaster) {
 			return new GTTileRoaster();
 		}
-		if (this == GTBlocks.shredder) {
+		if (this == GTBlocks.tileShredder) {
 			return new GTTileShredder();
 		}
-		if (this == GTBlocks.industrialElectrolyzer) {
-			return new GTTileIndustrialElectrolyzer();
+		if (this == GTBlocks.tileElectrolyzer) {
+			return new GTTileElectrolyzer();
 		}
-		if (this == GTBlocks.electricSmelter) {
-			return new GTTileElectricSmelter();
+		if (this == GTBlocks.tileSmelter) {
+			return new GTTileSmelter();
 		}
-		if (this == GTBlocks.playerDetector) {
+		if (this == GTBlocks.tilePlayerDetector) {
 			return new GTTilePlayerDetector();
 		}
-		if (this == GTBlocks.arcFurnace) {
+		if (this == GTBlocks.tileChemicalReactor) {
+			return new GTTileMultiChemicalReactor();
+		}
+		if (this == GTBlocks.tileArcFurnace) {
 			return new GTTileMultiArcFurnace();
 		}
-		if (this == GTBlocks.lightningRod) {
+		if (this == GTBlocks.tileLightningRod) {
 			return new GTTileMultiLightningRod();
 		}
-		if (this == GTBlocks.fusionComputer) {
-			return new GTTileMultiFusionComputer();
+		if (this == GTBlocks.tileFusion) {
+			return new GTTileMultiFusion();
 		}
-		if (this == GTBlocks.basicEnergyStorage) {
+		if (this == GTBlocks.tileBasicEnergy) {
 			return new GTTileBasicEnergyStorage();
 		}
-		if (this == GTBlocks.quantumEnergyStorage) {
+		if (this == GTBlocks.tileQuantumEnergy) {
 			return new GTTileQuantumEnergyStorage();
 		}
-		if (this == GTBlocks.digitalChest) {
+		if (this == GTBlocks.tileDigitalChest) {
 			return new GTTileDigitalChest();
 		}
-		if (this == GTBlocks.digitalTransformerIV) {
+		if (this == GTBlocks.tileDigitalTransformer) {
 			return new GTTileDigitalTransformer();
 		}
-		if (this == GTBlocks.energiumCable) {
+		if (this == GTBlocks.tileCableEnergium) {
 			return new GTTileSuperConductorLow();
 		}
-		if (this == GTBlocks.lapotronCable) {
+		if (this == GTBlocks.tileCableLapotron) {
 			return new GTTileSuperConductorHigh();
 		} else {
 			return new TileEntityBlock();
@@ -245,25 +251,30 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
-		if (this == GTBlocks.bloomery && playerIn.getHeldItemMainhand().getItem() instanceof ItemFlintAndSteel) {
-			TileEntity te = worldIn.getTileEntity(pos);
-			if (te instanceof GTTileMultiBloomery && ((GTTileMultiBloomery) te).isActive) {
-				return false;
+		Item item = playerIn.getHeldItemMainhand().getItem();
+		TileEntity tile = worldIn.getTileEntity(pos);
+		Item flint = Items.FLINT_AND_STEEL;
+		Item match = GTItems.match;
+
+		if (tile instanceof GTTileMultiBloomery && !((GTTileMultiBloomery) tile).isActive) {
+			if (item.equals(flint)) {
+				playerIn.getHeldItem(hand).damageItem(1, playerIn);
+				return ((GTTileMultiBloomery) tile).canWork();
 			}
-			if (te instanceof GTTileMultiBloomery && !((GTTileMultiBloomery) te).isActive) {
-				playerIn.getHeldItem(hand).onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-				return ((GTTileMultiBloomery) te).canWork();
+			if (item.equals(match)) {
+				playerIn.getHeldItem(hand).shrink(1);
+				return ((GTTileMultiBloomery) tile).canWork();
 			}
 		}
 
-		if (this == GTBlocks.charcoalPit && playerIn.getHeldItemMainhand().getItem() instanceof ItemFlintAndSteel) {
-			TileEntity te = worldIn.getTileEntity(pos);
-			if (te instanceof GTTileMultiCharcoalPit && ((GTTileMultiCharcoalPit) te).isActive) {
-				return false;
+		if (tile instanceof GTTileMultiCharcoalPit && !((GTTileMultiCharcoalPit) tile).isActive) {
+			if (item.equals(flint)) {
+				playerIn.getHeldItem(hand).damageItem(1, playerIn);
+				return ((GTTileMultiCharcoalPit) tile).canWork();
 			}
-			if (te instanceof GTTileMultiCharcoalPit && !((GTTileMultiCharcoalPit) te).isActive) {
-				playerIn.getHeldItem(hand).onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-				return ((GTTileMultiCharcoalPit) te).canWork();
+			if (item.equals(match)) {
+				playerIn.getHeldItem(hand).shrink(1);
+				return ((GTTileMultiCharcoalPit) tile).canWork();
 			}
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
@@ -344,7 +355,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	}
 
 	public void particleQuantumEnergy(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if (this == GTBlocks.quantumEnergyStorage) {
+		if (this == GTBlocks.tileQuantumEnergy) {
 			for (int i = 0; i < 3; ++i) {
 				int j = rand.nextInt(2) * 2 - 1;
 				int k = rand.nextInt(2) * 2 - 1;
@@ -400,8 +411,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	@SuppressWarnings("incomplete-switch")
 	public void particleSmelter(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileElectricSmelter) {
-			if (((GTTileElectricSmelter) tile).isActive) {
+		if (tile instanceof GTTileSmelter) {
+			if (((GTTileSmelter) tile).isActive) {
 				EnumFacing enumfacing = getFacing(worldIn, pos);
 				double d0 = (double) pos.getX() + 0.5D;
 				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;

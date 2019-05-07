@@ -63,7 +63,7 @@ public class GTTileHeatingElement extends TileEntityMachine implements ITickable
 	}
 
 	public void placeResinBlock(int3 pos) {
-		world.setBlockState(pos.asBlockPos(), GTBlocks.resinBoard.getDefaultState());
+		world.setBlockState(pos.asBlockPos(), GTBlocks.driedResin.getDefaultState());
 	}
 
 	@Override

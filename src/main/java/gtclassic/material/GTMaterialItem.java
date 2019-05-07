@@ -45,7 +45,6 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("Contains: " + material.getFormula()));
 		tooltip.add(I18n.format("Melting: " + material.getTemp() + "K"));
 	}
 
