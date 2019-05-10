@@ -15,9 +15,11 @@ public class GTMaterial {
 	static GTMaterialFlag ingot = GTMaterialFlag.INGOT;
 	static GTMaterialFlag nugget = GTMaterialFlag.NUGGET;
 	static GTMaterialFlag plate = GTMaterialFlag.PLATE;
+	static GTMaterialFlag smallplate = GTMaterialFlag.SMALLPLATE;
 	static GTMaterialFlag stick = GTMaterialFlag.STICK;
 	static GTMaterialFlag wire = GTMaterialFlag.WIRE;
 	static GTMaterialFlag gear = GTMaterialFlag.GEAR;
+	static GTMaterialFlag foil = GTMaterialFlag.FOIL;
 	static GTMaterialFlag block = GTMaterialFlag.BLOCK;
 	static GTMaterialFlag casing = GTMaterialFlag.CASING;
 	static GTMaterialFlag wall = GTMaterialFlag.WALL;
@@ -39,7 +41,7 @@ public class GTMaterial {
 	public static final GTMaterial 
 	Almandine = new GTMaterial("Almandine", 255, 0, 0, 1759, 1.0F, 0, 1, dustAll),
 	Alumina = new GTMaterial("Alumina", 200, 232, 255, 2345, 1.0F, 0, 1, dustAll),
-	Aluminium = new GTMaterial("Aluminium", 128, 200, 240, 933, 10.0F, 128, 2, smalldust, dust, nugget, ingot, plate, stick, wire, gear, block, casing, wall),
+	Aluminium = new GTMaterial("Aluminium", 128, 200, 240, 933, 10.0F, 128, 2, smalldust, dust, nugget, ingot, plate, stick, wire, gear, block, casing, wall, foil),
 	Andradite = new GTMaterial("Andradite", 150, 120, 0, 1258, 1.0F, 0, 1, dustAll),
 	Antimony = new GTMaterial("Antimony", 220, 220, 240, 903, 1.0F, 0, 1, dustAll),
 	Ashes = new GTMaterial("Ashes",192, 192, 192, 1000, 1.0F, 0, 1, dustAll),
@@ -48,7 +50,7 @@ public class GTMaterial {
 	BauxiteTailings = new GTMaterial("BauxiteTailings", 172, 0, 0, 1000, 1.0F, 0, 1, slurryBase),
 	Beryllium = new GTMaterial("Beryllium",30, 80, 50, 1560, 1.0F, 0, 1, fluid),
 	Bismuth = new GTMaterial("Bismuth",100, 160, 160, 1837, 6.0F, 96, 2, metalFull),
-	BismuthBronze = new GTMaterial("BismuthBronze", 225, 150, 0, 1036, 6.0F, 128, 2, smalldust, dust, nugget, ingot, plate),
+	BismuthBronze = new GTMaterial("BismuthBronze", 100, 125, 125, 1036, 6.0F, 128, 2, smalldust, dust, nugget, ingot, plate),
 	Bismuthtine = new GTMaterial("Bismuthtine", 75, 135, 135, 737, 3.0F, 0, 1, dustAll),
 	Brass = new GTMaterial("Brass", 255, 180, 0, 1160, 7.0F, 96, 1, metalFull),
 	Brine = new GTMaterial("Brine", 0, 255, 221, 300, 1.0F, 0 , 1, fluid),
@@ -82,7 +84,7 @@ public class GTMaterial {
 	GarnetRed = new GTMaterial("RedGarnet", 200, 80, 80 ,1574, 7.0F, 128, 2,  dustAll),
 	GarnetYellow = new GTMaterial("YellowGarnet",200, 200, 80, 1574, 7.0F, 128, 2, dustAll),
 	Garnierite = new GTMaterial("Garnierite", 50, 200, 70, 891, 3.0F, 0, 1,  dustAll),
-	Germanium = new GTMaterial("Germanium", 250, 250, 250, 1211, 8.0F, 64, 1,  metalFull),
+	Germanium = new GTMaterial("Germanium", 250, 250, 250, 1211, 8.0F, 64, 1,   smalldust, dust, nugget, ingot, plate, smallplate, stick, gear, block, casing),
 	Glowstone = new GTMaterial("Glowstone", 255, 255, 0, 987, 1.0F, 0, 1,  smalldust),
 	Gold = new GTMaterial("Gold", 255, 255, 30, 1337, 12.0F, 64, 2, smalldust, plate, stick, wire, gear, casing),
 	Granite = new GTMaterial("Granite", 165, 89, 39, 1811, 1.0F, 0, 1, dustAll),
@@ -113,10 +115,10 @@ public class GTMaterial {
 	Molybdenite = new GTMaterial("Molybdenite", 35, 20, 15, 1224, 5.0F, 0, 3, dustAll),
 	Molybdenum = new GTMaterial("Molybdenum", 180, 180, 220, 2896, 1.0F, 0, 1,  metalBase),
 	Netherrack = new GTMaterial("Netherrack", 200, 0, 0, 1500, 1.0F, 0, 1,  smalldust),
-	Nichrome = new GTMaterial("Nichrome", 88, 133, 188, 1818, 10.0F, 256, 3,  smalldust, dust, nugget, ingot, plate, stick, coil),
+	Nichrome = new GTMaterial("Nichrome", 205, 206, 246, 1818, 10.0F, 256, 3,  smalldust, dust, nugget, ingot, plate, stick, coil),
 	Nickel = new GTMaterial("Nickel", 200, 200, 250, 1728, 6.0F, 64, 2, smalldust, dust, nugget, ingot, plate, stick, wire, gear, block, casing),
-	Niobium = new GTMaterial("Niobium", 200, 200, 200, 2750, 1.0F, 0, 1,  metalBase),
-	NiobiumTitanium = new GTMaterial("NiobiumTitanium", 40, 40, 50, 2345, 1.0F, 0, 1, smalldust, dust, nugget, ingot, plate, stick, wire, coil),
+	Niobium = new GTMaterial("Niobium", 200, 200, 200, 2750, 1.0F, 0, 1,  smalldust, dust, nugget, ingot, plate, stick, foil),
+	NiobiumTitanium = new GTMaterial("NiobiumTitanium", 29, 29, 41, 2345, 1.0F, 0, 1, smalldust, dust, nugget, ingot, plate, stick, wire, coil),
 	Nitrogen = new GTMaterial("Nitrogen", 0, 190, 190, 63, 1.0F, 0, 1, fluid, plasma),
 	Obsidian = new GTMaterial("Obsidian", 80, 50, 100, 1300, 1.0F, 0, 1, smalldust),
 	Oil = new GTMaterial("Oil", 0, 0, 0, 100, 1.0F, 0, 1,  fluid),
@@ -157,7 +159,7 @@ public class GTMaterial {
 	SulfurDioxide = new GTMaterial("SulfurDioxide", 200, 200, 0, 100, 1.0F, 0, 1, fluid),
 	SulfuricAcid = new GTMaterial("SulfuricAcid", 255, 106, 0, 200, 1.0F, 0, 1, fluid),
 	Tantalite = new GTMaterial("Tantalite", 145, 80, 40, 935, 5.0F, 0, 2, dustAll),
-	Tantalum = new GTMaterial("Tantalum", 96, 96, 96, 3290, 8.0F, 5120, 3,  dust, smalldust, nugget, ingot, stick, plate, block),
+	Tantalum = new GTMaterial("Tantalum", 96, 96, 96, 3290, 8.0F, 5120, 3,  dust, smalldust, nugget, ingot, stick, plate, block, foil),
 	Tetrahedrite = new GTMaterial("Tetrahedrite", 200, 32, 0, 993, 3.0F, 0, 1, dustAll),
 	Thorium = new GTMaterial("Thorium", 0, 30, 0, 2115, 6.0F, 512, 2, smalldust, dust, nugget, ingot),
 	Tin = new GTMaterial("Tin", 220, 220, 220, 505, 1.0F, 0, 1, smalldust, nugget, plate, stick, wire, gear, casing),

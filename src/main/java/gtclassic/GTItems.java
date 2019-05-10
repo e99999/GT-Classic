@@ -14,10 +14,7 @@ import gtclassic.item.GTItemMatch;
 import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
-import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.material.GTMaterialItem;
 import gtclassic.tool.GTToolGen;
 import ic2.core.IC2;
 import net.minecraft.item.Item;
@@ -29,13 +26,6 @@ public class GTItems {
 	}
 
 	static List<Item> toRegister = new ArrayList<>();
-
-	public static final GTMaterialItem foilTantalum = createItem(
-			new GTMaterialItem(GTMaterial.Tantalum, GTMaterialFlag.FOIL));
-	public static final GTMaterialItem foilNiobium = createItem(
-			new GTMaterialItem(GTMaterial.Niobium, GTMaterialFlag.FOIL));
-	public static final GTMaterialItem smallPlateGermanium = createItem(
-			new GTMaterialItem(GTMaterial.Germanium, GTMaterialFlag.SMALLPLATE));
 
 	// @formatter:off
 	public static final GTItemComponent

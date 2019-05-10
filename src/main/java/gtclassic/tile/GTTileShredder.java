@@ -38,7 +38,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 
-public class GTTileShredder extends GTTileBase {
+public class GTTileShredder extends GTTileBaseMachine {
 
 	public static final int slotInput = 0;
 	public static final int slotOutput0 = 1;

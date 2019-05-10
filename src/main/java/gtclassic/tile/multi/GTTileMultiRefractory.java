@@ -1,12 +1,14 @@
 package gtclassic.tile.multi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
 import gtclassic.GTMod;
-import gtclassic.container.GTContainerArcFurnace;
-import gtclassic.gui.GTGuiMachine.GTArcFurnaceGui;
+import gtclassic.container.GTContainerRefractory;
+import gtclassic.gui.GTGuiMachine.GTRefractoryGui;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
@@ -25,7 +27,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import net.minecraft.block.state.IBlockState;
+import ic2.core.platform.registry.Ic2States;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -33,31 +35,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileMultiArcFurnace extends GTTileMultiBase {
+public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 
-	public static final int slotInput0 = 0;
-	public static final int slotInput1 = 1;
-	public static final int slotInput2 = 2;
-	public static final int slotOutput0 = 3;
-	public static final int slotOutput1 = 4;
-	public static final int slotOutput2 = 5;
-
-	public static final int[] slotInputs = { slotInput0, slotInput1, slotInput2 };
-	public static final int[] slotOutputs = { slotOutput0, slotOutput1, slotOutput2 };
+	protected static final int[] slotInputs = { 0, 1, 2, 3 };
+	protected static final int[] slotOutputs = { 4, 5, 6, 7 };
 
 	IFilter filter = new MachineFilter(this);
 
-	public static final IBlockState casingHeat = GTMaterialGen.getBlock(GTMaterial.TungstenSteel, GTMaterialFlag.CASING)
-			.getDefaultState();
-	public static final IBlockState casingMachine = GTMaterialGen.getBlock(GTMaterial.Ultimet, GTMaterialFlag.CASING)
-			.getDefaultState();
-
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("arcfurnace");
+	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.refractory");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
-			"textures/gui/arcfurnace.png");
+			"textures/gui/refractory.png");
 
-	public GTTileMultiArcFurnace() {
-		super(6, 0, 256, 512);
+	public GTTileMultiRefractory() {
+		super(8, 2, 256, 512);
 		maxEnergy = 10000;
 	}
 
@@ -68,8 +58,7 @@ public class GTTileMultiArcFurnace extends GTTileMultiBase {
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInputs);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput0, slotOutput1, slotOutput2);
-
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
 	}
@@ -77,13 +66,13 @@ public class GTTileMultiArcFurnace extends GTTileMultiBase {
 	@Override
 	public TileEntity getImportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.up(3).asBlockPos());
+		return world.getTileEntity(dir.left(1).up(1).asBlockPos());
 	}
 
 	@Override
 	public TileEntity getExportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.back(4).asBlockPos());
+		return world.getTileEntity(dir.right(1).up(1).asBlockPos());
 	}
 
 	@Override
@@ -93,18 +82,17 @@ public class GTTileMultiArcFurnace extends GTTileMultiBase {
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		// TODO Auto-generated method stub
-		return null;
+		return new LinkedHashSet(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerArcFurnace(player.inventory, this);
+		return new GTContainerRefractory(player.inventory, this);
 	}
 
 	@Override
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
-		return GTArcFurnaceGui.class;
+		return GTRefractoryGui.class;
 	}
 
 	@Override
@@ -170,22 +158,24 @@ public class GTTileMultiArcFurnace extends GTTileMultiBase {
 
 		int3 dir = new int3(getPos(), getFacing());
 
-		// layer 0
-		if (!(isHeatCasing(dir.left(1)) && isHeatCasing(dir.back(1)) && isHeatCasing(dir.back(1))
-				&& isHeatCasing(dir.back(1)) && isHeatCasing(dir.right(1)) && isHeatCasing(dir.forward(1))
-				&& isHeatCasing(dir.forward(1)) && isHeatCasing(dir.right(1)) && isHeatCasing(dir.back(1))
-				&& isHeatCasing(dir.back(1)) && isHeatCasing(dir.forward(3))
+		// layer 2
+		if (!(isWall(dir.forward(1)) && isWall(dir.left(1)) && isWall(dir.back(1)) && isWall(dir.back(1))
+				&& isWall(dir.right(1)) && isWall(dir.right(1)) && isWall(dir.forward(1)) && isWall(dir.forward(1))
 				// layer 1
-				&& isMachineCasing(dir.up(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
-				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.left(1)) && isAir(dir.forward(1))
-				&& isAir(dir.forward(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(1))
-				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
-				// layer 2
-				&& isMachineCasing(dir.up(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
-				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.right(1)) && isMachineCasing(dir.back(1))
-				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.right(1))
-				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
-				&& isMachineCasing(dir.forward(1)))) {
+				&& isWall(dir.down(1).left(1)) && isWall(dir.left(1)) && isWall(dir.back(1)) && isWall(dir.back(1))
+				&& isWall(dir.right(1)) && isWall(dir.right(1)) && isWall(dir.forward(1)) && isWall(dir.left(1))
+				&& isWall(dir.forward(1).right(1))
+				// layer 0 stone layer
+				&& isStone(dir.down(1).left(1)) && isStone(dir.left(1)) && isStone(dir.back(1)) && isStone(dir.back(1))
+				&& isStone(dir.right(1)) && isStone(dir.right(1)) && isStone(dir.forward(1)) && isStone(dir.left(1))
+				&& isStone(dir.forward(1).right(1))
+				// edges
+				&& isWall(dir.forward(1)) && isWall(dir.left(1)) && isWall(dir.left(1)) && isWall(dir.left(1).back(1))
+				&& isWall(dir.back(1)) && isWall(dir.back(1)) && isWall(dir.right(1).back(1)) && isWall(dir.right(1))
+				&& isWall(dir.right(1)) && isWall(dir.right(1).forward(1)) && isWall(dir.forward(1))
+				&& isWall(dir.forward(1))
+
+		)) {
 			return false;
 		}
 
@@ -193,16 +183,13 @@ public class GTTileMultiArcFurnace extends GTTileMultiBase {
 
 	}
 
-	public boolean isHeatCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == casingHeat;
+	public boolean isWall(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.WALL)
+				.getDefaultState();
 	}
 
-	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == casingMachine;
-	}
-
-	public boolean isAir(int3 pos) {
-		return world.isAirBlock(pos.asBlockPos());
+	public boolean isStone(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == Ic2States.reinforcedStone;
 	}
 
 }

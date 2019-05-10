@@ -1,6 +1,7 @@
 package gtclassic.recipe;
 
 import gtclassic.ore.GTOreRegistry;
+import gtclassic.tile.GTTileBath;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileElectrolyzer;
 import gtclassic.tile.GTTileRoaster;
@@ -35,6 +36,7 @@ public class GTRecipe {
 		GTRecipeShapeless.recipeShapeless1();
 
 		// below is more how things will go
+		GTTileBath.init();
 		GTTileCentrifuge.init();
 		GTTileElectrolyzer.init();
 		GTTileShredder.init();

@@ -36,7 +36,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileMultiFusion extends GTTileMultiBase {
+public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;

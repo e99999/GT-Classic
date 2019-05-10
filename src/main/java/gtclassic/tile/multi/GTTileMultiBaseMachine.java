@@ -1,15 +1,15 @@
 package gtclassic.tile.multi;
 
-import gtclassic.tile.GTTileBase;
+import gtclassic.tile.GTTileBaseMachine;
 import gtclassic.util.int3;
 import net.minecraft.tileentity.TileEntity;
 
-public abstract class GTTileMultiBase extends GTTileBase {
+public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine {
 
 	public boolean lastState;
 	public boolean firstCheck = true;
 
-	public GTTileMultiBase(int slots, int upgrades, int defaultinput, int maxinput) {
+	public GTTileMultiBaseMachine(int slots, int upgrades, int defaultinput, int maxinput) {
 		super(slots, upgrades, defaultinput, 100, maxinput);
 	}
 

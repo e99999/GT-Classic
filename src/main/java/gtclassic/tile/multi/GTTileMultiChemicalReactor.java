@@ -39,7 +39,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileMultiChemicalReactor extends GTTileMultiBase {
+public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3, 4, 5 };
 	protected static final int[] slotOutputs = { 6, 7, 8, 9, 10, 11 };

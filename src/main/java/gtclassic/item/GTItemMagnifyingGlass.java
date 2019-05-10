@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.tile.multi.GTTileMultiBase;
+import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiCharcoalPit;
 import ic2.core.IC2;
@@ -78,8 +78,8 @@ public class GTItemMagnifyingGlass extends Item implements IStaticTexturedItem {
 						+ (Math.round((pit.getProgress() / pit.getMaxProgress()) * 100)) + "% finished");
 			}
 
-			if (tileEntity instanceof GTTileMultiBase) {
-				GTTileMultiBase multi = (GTTileMultiBase) tileEntity;
+			if (tileEntity instanceof GTTileMultiBaseMachine) {
+				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
 			}
 

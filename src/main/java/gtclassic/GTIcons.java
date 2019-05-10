@@ -48,6 +48,8 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox", 0, 0, 1, 1));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox_particle", 0, 0, 1, 1));
 
+		addCustomTexture("machine_bath", 0, 8, location("bath_back"));
+		addCustomTexture("machine_bath", 0, 9, location("bath_front"));
 		addCustomTexture("machine_bloomery", 0, 9, location("bloomery_front"));
 		addCustomTexture("machine_charcoalpit", 0, 7, location("charcoalpit_top"));
 		addCustomTexture("machine_blastfurnace_lv", 0, 9, location("blastfurnace_front"));

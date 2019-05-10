@@ -52,6 +52,11 @@ public class GTMaterialDict {
 				OreDictionary.registerOre("plate" + mat.getDisplayName(), GTMaterialGen.getPlate(mat, 1));
 			}
 
+			// Small Plates
+			if (mat.hasFlag(GTMaterialFlag.SMALLPLATE)) {
+				OreDictionary.registerOre("plateSmall" + mat.getDisplayName(), GTMaterialGen.getSmallPlate(mat, 1));
+			}
+
 			// Sticks
 			if (mat.hasFlag(GTMaterialFlag.STICK)) {
 				OreDictionary.registerOre("stick" + mat.getDisplayName(), GTMaterialGen.getStick(mat, 1));
@@ -65,6 +70,11 @@ public class GTMaterialDict {
 			// Gears
 			if (mat.hasFlag(GTMaterialFlag.GEAR)) {
 				OreDictionary.registerOre("gear" + mat.getDisplayName(), GTMaterialGen.getGear(mat, 1));
+			}
+
+			// Foil
+			if (mat.hasFlag(GTMaterialFlag.FOIL)) {
+				OreDictionary.registerOre("foil" + mat.getDisplayName(), GTMaterialGen.getFoil(mat, 1));
 			}
 
 		}

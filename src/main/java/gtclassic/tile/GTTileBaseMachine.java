@@ -56,7 +56,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class GTTileBase extends TileEntityElecMachine
+public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
 	@NetworkField(index = 7)
 	public float progress = 0;
@@ -99,7 +99,7 @@ public abstract class GTTileBase extends TileEntityElecMachine
 
 	LinkedList<IStackOutput> outputs = new LinkedList<>();
 
-	public GTTileBase(int slots, int upgrades, int energyPerTick, int maxProgress, int maxinput) {
+	public GTTileBaseMachine(int slots, int upgrades, int energyPerTick, int maxProgress, int maxinput) {
 		super(slots + upgrades, maxinput);
 		supportsUpgrades = upgrades > 0;
 		upgradeSlots = upgrades;

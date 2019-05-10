@@ -42,7 +42,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileRoaster extends GTTileBase {
+public class GTTileRoaster extends GTTileBaseMachine {
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.roaster");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/roaster.png");

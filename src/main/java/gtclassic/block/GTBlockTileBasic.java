@@ -9,6 +9,7 @@ import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileBasicEnergyStorage;
+import gtclassic.tile.GTTileBath;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
@@ -22,13 +23,13 @@ import gtclassic.tile.GTTileShredder;
 import gtclassic.tile.GTTileSmelter;
 import gtclassic.tile.GTTileSuperConductorHigh;
 import gtclassic.tile.GTTileSuperConductorLow;
-import gtclassic.tile.multi.GTTileMultiArcFurnace;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiCharcoalPit;
 import gtclassic.tile.multi.GTTileMultiChemicalReactor;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
+import gtclassic.tile.multi.GTTileMultiRefractory;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
@@ -133,6 +134,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (this == GTBlocks.tileRoaster) {
 			return new GTTileRoaster();
 		}
+		if (this == GTBlocks.tileBath) {
+			return new GTTileBath();
+		}
 		if (this == GTBlocks.tileShredder) {
 			return new GTTileShredder();
 		}
@@ -148,8 +152,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (this == GTBlocks.tileChemicalReactor) {
 			return new GTTileMultiChemicalReactor();
 		}
-		if (this == GTBlocks.tileArcFurnace) {
-			return new GTTileMultiArcFurnace();
+		if (this == GTBlocks.tileRefractory) {
+			return new GTTileMultiRefractory();
 		}
 		if (this == GTBlocks.tileLightningRod) {
 			return new GTTileMultiLightningRod();
@@ -289,6 +293,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		particleCharcoalPit(stateIn, worldIn, pos, rand);
 		particleSmelter(stateIn, worldIn, pos, rand);
 		particleBlastFurnace(stateIn, worldIn, pos, rand);
+		particleRefractory(stateIn, worldIn, pos, rand);
 	}
 
 	public void particleCharcoalPit(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
@@ -468,6 +473,25 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 					break;
 				case SOUTH:
 					worldIn.spawnParticle(EnumParticleTypes.LAVA, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
+				}
+			}
+		}
+	}
+
+	public void particleRefractory(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileMultiRefractory) {
+			if (((GTTileMultiRefractory) tile).isActive) {
+				if (rand.nextInt(16) == 0) {
+					worldIn.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F),
+							(double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS,
+							1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+				}
+				for (int i = 0; i < 3; ++i) {
+					double d0 = (double) pos.getX() + rand.nextDouble();
+					double d1 = (double) pos.getY() + rand.nextDouble() * 0.5D + 0.5D;
+					double d2 = (double) pos.getZ() + rand.nextDouble();
+					worldIn.spawnParticle(EnumParticleTypes.LAVA, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 				}
 			}
 		}

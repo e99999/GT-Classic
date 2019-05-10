@@ -67,6 +67,15 @@ public class GTMaterialGen {
 			materialItemUtil(mat, GTMaterialFlag.WIRE);
 		}
 
+		// stuff that has a small amount of items
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialItemUtil(mat, GTMaterialFlag.FOIL);
+		}
+
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialItemUtil(mat, GTMaterialFlag.SMALLPLATE);
+		}
+
 	}
 
 	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {
@@ -162,6 +171,10 @@ public class GTMaterialGen {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.PLATE.getSuffix()), count, 0);
 	}
 
+	public static ItemStack getSmallPlate(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.SMALLPLATE.getSuffix()), count, 0);
+	}
+
 	public static ItemStack getStick(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.STICK.getSuffix()), count, 0);
 	}
@@ -172,6 +185,10 @@ public class GTMaterialGen {
 
 	public static ItemStack getGear(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.GEAR.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getFoil(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.FOIL.getSuffix()), count, 0);
 	}
 
 	public static ItemStack getFluid(GTMaterial mat, int count) {

@@ -176,6 +176,9 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.tileRoaster, 1), new Object[] { "HPW", "PMP", "PCP", 'C', "coilConstantan",
 				'M', Blocks.FURNACE, 'P', "plateInvar", 'H', hammer, 'W', wrench });
 
+		recipes.addRecipe(GT.get(GTBlocks.tileBath), new Object[] { "XWX", "XFX", "XXX", 'X', "plateStainlessSteel",
+				'F', "casingMachineStainlessSteel", 'W', wrench });
+
 		recipes.addRecipe(GT.get(GTBlocks.tileChemicalReactor, 1),
 				new Object[] { "W H", "MCM", "PSP", 'W', wrench, 'H', hammer, 'C',
 						GTMaterialGen.getWall(GTMaterial.StainlessSteel, 1), 'M', GTItems.motorHV, 'S',

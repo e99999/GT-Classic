@@ -3,16 +3,17 @@ package gtclassic.util.jei;
 import gtclassic.GTBlocks;
 import gtclassic.gui.GTGuiMachine;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
+import gtclassic.tile.GTTileBath;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileElectrolyzer;
 import gtclassic.tile.GTTileRoaster;
 import gtclassic.tile.GTTileShredder;
 import gtclassic.tile.GTTileSmelter;
-import gtclassic.tile.multi.GTTileMultiArcFurnace;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiChemicalReactor;
 import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiRefractory;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import net.minecraft.block.Block;
 
@@ -25,10 +26,11 @@ public enum GTJeiRegistry {
 	FUSION(GTTileMultiFusion.RECIPE_LIST, GTBlocks.tileFusion, GTFusionComputerGui.class, 69, 34, 25, 17),
 	SMELTER(GTTileSmelter.RECIPE_LIST, GTBlocks.tileSmelter, GTGuiMachine.GTElectricSmelterGui.class, 78, 25, 20, 16),
 	BLASTFURNACE(GTTileMultiBlastFurnace.RECIPE_LIST, GTBlocks.tileBlastFurnace, GTGuiMachine.GTBlastFurnaceGui.class, 78, 24, 20, 18 ),
-	ARCFURNACE(GTTileMultiArcFurnace.RECIPE_LIST, GTBlocks.tileArcFurnace, GTGuiMachine.GTArcFurnaceGui.class, 58, 28, 20, 11),
+	REFRACTORY(GTTileMultiRefractory.RECIPE_LIST, GTBlocks.tileRefractory, GTGuiMachine.GTRefractoryGui.class, 78, 24, 20, 18 ),
 	CHEMICALREACTOR(GTTileMultiChemicalReactor.RECIPE_LIST, GTBlocks.tileChemicalReactor, GTGuiMachine.GTChemicalReactorGui.class, 78, 25, 20, 18),
 	BLOOMERY(GTTileMultiBloomery.JEI_RECIPE_LIST, GTBlocks.tileBloomery, GTGuiMachine.GTBloomeryGui.class, 79, 18, 20, 11),
-	ROASTER(GTTileRoaster.RECIPE_LIST, GTBlocks.tileRoaster, GTGuiMachine.GTRoasterGui.class, 78, 28, 20, 11);
+	ROASTER(GTTileRoaster.RECIPE_LIST, GTBlocks.tileRoaster, GTGuiMachine.GTRoasterGui.class, 78, 28, 20, 11),
+	BATH(GTTileBath.RECIPE_LIST, GTBlocks.tileBath, GTGuiMachine.GTBathGui.class, 78, 28, 20, 11);
 	// @formatter:on
 
 	private GTMultiInputRecipeList list;

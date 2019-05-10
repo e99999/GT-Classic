@@ -45,7 +45,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileCentrifuge extends GTTileBase {
+public class GTTileCentrifuge extends GTTileBaseMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;

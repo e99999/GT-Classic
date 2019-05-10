@@ -1,10 +1,10 @@
 package gtclassic.item;
 
 import gtclassic.GTMod;
-import gtclassic.tile.GTTileBase;
+import gtclassic.tile.GTTileBaseMachine;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileDigitalChest;
-import gtclassic.tile.multi.GTTileMultiBase;
+import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiCharcoalPit;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
@@ -177,16 +177,16 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 								+ " GrowthPoints=" + te7.getGrowthPoints());
 			}
 
-			if (tileEntity instanceof GTTileBase) {
-				GTTileBase multi = (GTTileBase) tileEntity;
+			if (tileEntity instanceof GTTileBaseMachine) {
+				GTTileBaseMachine multi = (GTTileBaseMachine) tileEntity;
 				IC2.platform.messagePlayer(player,
 						"Progress: " + (Math.round((multi.getProgress() / multi.getMaxProgress()) * 100)) + "%");
 				IC2.platform.messagePlayer(player, "Default Input: " + multi.defaultEnergyConsume + " EU");
 				IC2.platform.messagePlayer(player, "Max Input: " + multi.defaultMaxInput + " EU");
 			}
 
-			if (tileEntity instanceof GTTileMultiBase) {
-				GTTileMultiBase multi = (GTTileMultiBase) tileEntity;
+			if (tileEntity instanceof GTTileMultiBaseMachine) {
+				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
 			}
 

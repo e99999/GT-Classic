@@ -38,7 +38,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileElectrolyzer extends GTTileBase {
+public class GTTileElectrolyzer extends GTTileBaseMachine {
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.electrolyzer");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,

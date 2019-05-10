@@ -38,7 +38,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileMultiBlastFurnace extends GTTileMultiBase {
+public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3 };
 	protected static final int[] slotOutputs = { 4, 5, 6, 7 };

@@ -44,7 +44,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileSmelter extends GTTileBase {
+public class GTTileSmelter extends GTTileBaseMachine {
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.smelter");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,

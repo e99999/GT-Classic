@@ -44,22 +44,17 @@ public class GTRecipeCircuitry {
 				new Object[] { "craftingToolKnife", GT.getIc2(Ic2Items.stickyResin, 1) });
 		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB), new Object[] { knife, GTBlocks.driedResin });
 
-		recipes.addShapelessRecipe(GT.get(GTItems.smallPlateGermanium, 4), new Object[] { knife, "plateGermanium" });
-
-		recipes.addShapelessRecipe(GT.get(GTItems.foilTantalum, 4),
-				new Object[] { knife, "craftingToolForgeHammer", "plateTantalum" });
-
-		recipes.addShapelessRecipe(GT.get(GTItems.foilNiobium, 4),
-				new Object[] { knife, "craftingToolForgeHammer", "plateNiobium" });
-
 		recipes.addRecipe(GT.get(GTItems.basicTransistor, 1),
-				new Object[] { "WPW", 'W', "fineWireAny", 'P', GTItems.smallPlateGermanium });
+				new Object[] { "WPW", 'W', "fineWireAny", 'P', "plateSmallGermanium" });
 
 		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', GTItems.foilTantalum, 'P', Items.PAPER, 'L', "fineWireAny" });
+				new Object[] { "FPF", "L L", 'F', "foilTantalum", 'P', Items.PAPER, 'L', "fineWireAny" });
 
 		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', GTItems.foilNiobium, 'P', Items.PAPER, 'L', "fineWireAny" });
+				new Object[] { "FPF", "L L", 'F', "foilNiobium", 'P', Items.PAPER, 'L', "fineWireAny" });
+
+		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
+				new Object[] { "FPF", "L L", 'F', "foilAluminium", 'P', Items.PAPER, 'L', "fineWireAny" });
 
 		// Gating basic circuits
 
