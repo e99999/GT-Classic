@@ -40,62 +40,9 @@ public class GTRecipeShapeless {
 				GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64), GT.getIc2(Ic2Items.rubber, 64) });
 
 		// Dust Recipes
-		recipes.addShapelessRecipe(GT.getDust(M.RedAlloy, 1),
-				new Object[] { "dustCopper", "dustRedstone", "dustRedstone", "dustRedstone", "dustRedstone" });
-
-		recipes.addShapelessRecipe(GT.getDust(M.Invar, 3), new Object[] { "dustIron", "dustIron", "dustNickel" });
 
 		recipes.addShapelessRecipe(GT.getIc2(Ic2Items.bronzeDust, 1),
 				new Object[] { "dustSmallCopper", "dustSmallCopper", "dustSmallCopper", "dustSmallTin" });
-
-		recipes.addShapelessRecipe(GT.getDust(M.Brass, 4),
-				new Object[] { "dustCopper", "dustCopper", "dustCopper", "dustZinc" });
-		recipes.addShapelessRecipe(GT.getDust(M.Brass, 1),
-				new Object[] { "dustSmallCopper", "dustSmallCopper", "dustSmallCopper", "dustSmallZinc" });
-
-		recipes.addShapelessRecipe(GT.getDust(M.Electrum, 2), new Object[] { "dustGold", "dustSilver" });
-		recipes.addShapelessRecipe(GT.getDust(M.Electrum, 1),
-				new Object[] { "dustSmallGold", "dustSmallGold", "dustSmallSilver", "dustSmallSilver" });
-
-		recipes.addShapelessRecipe(GT.getDust(M.Constantan, 2), new Object[] { "dustCopper", "dustNickel" });
-		recipes.addShapelessRecipe(GT.getDust(M.Constantan, 1),
-				new Object[] { "dustSmallCopper", "dustSmallCopper", "dustSmallNickel", "dustSmallNickel" });
-
-		recipes.addShapelessRecipe(GT.getSmallDust(M.Nichrome, 15),
-				new Object[] { "dustNickel", "dustNickel", "dustNickel", "dustNickel", "dustChrome" });
-
-		recipes.addShapelessRecipe(GT.getDust(M.BismuthBronze, 4),
-				new Object[] { "dustBismuth", "dustBrass", "dustBrass", "dustBrass" });
-		recipes.addShapelessRecipe(GT.getDust(M.BismuthBronze, 1),
-				new Object[] { "dustSmallBismuth", "dustSmallBrass", "dustSmallBrass", "dustSmallBrass" });
-
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 9), new Object[] { "dustIron", "dustIron", "dustIron",
-				"dustIron", "dustIron", "dustIron", "dustNickel", "dustManganese", "dustChrome" });
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 9), new Object[] { "dustIron", "dustIron", "dustIron",
-				"dustIron", "dustIron", "dustIron", "dustNickel", "dustNiobium", "dustChrome" });
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 9), new Object[] { "dustIron", "dustIron", "dustIron",
-				"dustIron", "dustInvar", "dustInvar", "dustInvar", "dustManganese", "dustChrome" });
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 9), new Object[] { "dustIron", "dustIron", "dustIron",
-				"dustIron", "dustInvar", "dustInvar", "dustInvar", "dustNiobium", "dustChrome" });
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 1),
-				new Object[] { "dustSmallIron", "dustSmallIron", "dustSmallIron", "dustSmallIron", "dustSmallIron",
-						"dustSmallIron", "dustSmallNickel", "dustSmallManganese", "dustSmallChrome" });
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 1),
-				new Object[] { "dustSmallIron", "dustSmallIron", "dustSmallIron", "dustSmallIron", "dustSmallIron",
-						"dustSmallIron", "dustSmallNickel", "dustSmallNiobium", "dustSmallChrome" });
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 1),
-				new Object[] { "dustSmallIron", "dustSmallIron", "dustSmallIron", "dustSmallIron", "dustSmallInvar",
-						"dustSmallInvar", "dustSmallInvar", "dustSmallManganese", "dustSmallChrome" });
-		recipes.addShapelessRecipe(GT.getDust(M.StainlessSteel, 1),
-				new Object[] { "dustSmallIron", "dustSmallIron", "dustSmallIron", "dustSmallIron", "dustSmallInvar",
-						"dustSmallInvar", "dustSmallInvar", "dustSmallNiobium", "dustSmallChrome" });
-
-		recipes.addShapelessRecipe(GT.getDust(M.Ultimet, 9), new Object[] { "dustCobalt", "dustCobalt", "dustCobalt",
-				"dustCobalt", "dustCobalt", "dustChrome", "dustChrome", "dustNickel", "dustMolybdenum" });
-		recipes.addShapelessRecipe(GT.getDust(M.Ultimet, 1),
-				new Object[] { "dustSmallCobalt", "dustSmallCobalt", "dustSmallCobalt", "dustSmallCobalt",
-						"dustSmallCobalt", "dustSmallChrome", "dustSmallChrome", "dustSmallNickel",
-						"dustSmallMolybdenum" });
 
 		// In world process, recipe equivalents
 

@@ -16,6 +16,7 @@ import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
+import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -127,6 +128,19 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
+	}
+
+	// @formatter:off
+	public static void init() {
+		addRecipe(new IRecipeInput[] { 
+				input("dustCopper", 1), }, 
+				totalEu(250000),
+				GTMaterialGen.getHotIngot(GTMaterial.AnnealedCopper, 1));
+	}
+	// @formatter:on
+
+	public static IRecipeModifier[] totalEu(int total) {
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 256) - 100) };
 	}
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {

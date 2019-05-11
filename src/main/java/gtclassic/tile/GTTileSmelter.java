@@ -168,6 +168,9 @@ public class GTTileSmelter extends GTTileBaseMachine {
 		addAlloyRecipe("Copper", 1, "Nickel", 1, 
 				GTMaterialGen.getIngot(GTMaterial.Constantan, 2));
 		
+		addAlloyRecipe("Nickel", 4, "Chrome", 1, 
+				GTMaterialGen.getIngot(GTMaterial.Nichrome, 5));
+		
 		addRecipe("dustRedstone", 4, "ingotCopper", 1,
 				GTMaterialGen.getIngot(GTMaterial.RedAlloy, 1));
 		

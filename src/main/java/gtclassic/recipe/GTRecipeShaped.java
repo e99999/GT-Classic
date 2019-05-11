@@ -64,14 +64,14 @@ public class GTRecipeShaped {
 						GT.get(GTBlocks.batteryLithiumSmall) });
 
 		recipes.addRecipe(GT.get(GTItems.motorLV, 1), new Object[] { "CWS", "WRW", "PWC", 'S', "stickRefinedIron", 'P',
-				"plateRefinedIron", 'W', "fineWireLead", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable });
+				"plateRefinedIron", 'W', "fineWireRedAlloy", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable });
 
 		recipes.addRecipe(GT.get(GTItems.motorMV, 1), new Object[] { "CWS", "WRW", "PWC", 'S', "stickSteel", 'P',
-				"plateSteel", 'W', "fineWireAluminium", 'R', "dustRedstone", 'C', Ic2Items.insulatedGoldCable });
+				"plateSteel", 'W', "fineWireCopper", 'R', "dustRedstone", 'C', Ic2Items.insulatedGoldCable });
 
 		recipes.addRecipe(GT.get(GTItems.motorHV, 1),
 				new Object[] { "CWS", "WRW", "PWC", 'S', "stickStainlessSteel", 'P', "plateStainlessSteel", 'W',
-						"fineWirePlatinum", 'R', "dustRedstone", 'C', Ic2Items.insulatedIronCable });
+						"fineWireAnnealedCopper", 'R', "dustRedstone", 'C', Ic2Items.insulatedIronCable });
 
 		/*
 		 * recipes.addRecipe(GT.get(GTItems.heatStorageSingle, 1), new Object[] { " I ",

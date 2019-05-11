@@ -1,7 +1,7 @@
 package gtclassic.block;
 
 import gtclassic.GTMod;
-import gtclassic.models.GTSluiceBoxExtensionModel;
+import gtclassic.models.GTModelSluiceBoxExt;
 import gtclassic.util.GTValues;
 import ic2.core.platform.textures.models.BaseModel;
 import net.minecraft.block.material.Material;
@@ -27,7 +27,7 @@ public class GTBlockSluiceBoxExt extends GTBlockFacing {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BaseModel getModelFromState(IBlockState state) {
-		return GTSluiceBoxExtensionModel.getModel();
+		return GTModelSluiceBoxExt.getModel();
 	}
 
 	@Override

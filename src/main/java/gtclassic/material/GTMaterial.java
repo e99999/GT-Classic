@@ -39,6 +39,7 @@ public class GTMaterial {
 	/** Material Instances **/
 	// @formatter:off
 	public static final GTMaterial 
+	AnnealedCopper = new GTMaterial("AnnealedCopper", 255, 120, 20, 3014, 1.0F, 0, 1, smalldust, dust, ingot, nugget, stick, wire),
 	Almandine = new GTMaterial("Almandine", 255, 0, 0, 1759, 1.0F, 0, 1, dustAll),
 	Alumina = new GTMaterial("Alumina", 200, 232, 255, 2345, 1.0F, 0, 1, dustAll),
 	Aluminium = new GTMaterial("Aluminium", 128, 200, 240, 933, 10.0F, 128, 2, smalldust, dust, nugget, ingot, plate, stick, wire, gear, block, casing, wall, foil),

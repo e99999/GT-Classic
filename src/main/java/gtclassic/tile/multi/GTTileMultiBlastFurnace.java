@@ -238,6 +238,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 				totalEu(80000),
 				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 3));
+		
 		addRecipe(new IRecipeInput[] { 
 				input("dustSmallMolybdenite", 12) }, 
 				totalEu(80000),
@@ -259,6 +260,44 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 				input("oreIridium", 1), }, 
 				totalEu(90000),
 				GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
+		
+		//alloy recipes
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustIron", 4), 
+				input("dustInvar", 3), 
+				input("dustManganese", 1), 
+				input("dustChrome", 1), 
+				},
+				totalEu(MED_TIME), 
+				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustIron", 4), 
+				input("dustInvar", 3), 
+				input("dustNiobium", 1), 
+				input("dustChrome", 1), 
+				},
+				totalEu(MED_TIME), 
+				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustCobalt", 5), 
+				input("dustChrome", 2), 
+				input("dustNickel", 1), 
+				input("dustMolybdenum", 1), 
+				},
+				totalEu(MED_TIME), 
+				GTMaterialGen.getIngot(GTMaterial.Ultimet, 9));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustNiobium", 1), 
+				input("dustTitanium", 1), 
+				},
+				totalEu(MED_TIME), 
+				GTMaterialGen.getIngot(GTMaterial.NiobiumTitanium, 2));
+		
+		
 
 	}
 	// @formatter:on
@@ -266,7 +305,10 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	public static IRecipeModifier[] totalEu(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 20) - 100) };
 	}
-
+	
+	/**
+	 * Adds a recipe not only to the blast furnace but to the refractory as well
+	 */
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();

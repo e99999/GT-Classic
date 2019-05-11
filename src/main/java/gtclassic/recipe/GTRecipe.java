@@ -11,6 +11,7 @@ import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiChemicalReactor;
 import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiRefractory;
 
 public class GTRecipe {
 
@@ -46,6 +47,7 @@ public class GTRecipe {
 		GTTileMultiBloomery.init();
 		GTTileMultiChemicalReactor.init();
 		GTTileMultiFusion.init();
+		GTTileMultiRefractory.init();
 	}
 
 }

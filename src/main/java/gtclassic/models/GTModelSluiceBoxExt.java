@@ -23,12 +23,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @EventBusSubscriber(Side.CLIENT)
-public class GTSluiceBoxModel extends BaseModel {
-	private static GTSluiceBoxModel instance = null;
+public class GTModelSluiceBoxExt extends BaseModel {
+	private static GTModelSluiceBoxExt instance = null;
 
-	public static GTSluiceBoxModel getModel() {
+	public static GTModelSluiceBoxExt getModel() {
 		if (instance == null) {
-			instance = new GTSluiceBoxModel();
+			instance = new GTModelSluiceBoxExt();
 		}
 		return instance;
 	}
@@ -40,7 +40,7 @@ public class GTSluiceBoxModel extends BaseModel {
 
 	private GTModelBaker baker;
 
-	private GTSluiceBoxModel() {
+	private GTModelSluiceBoxExt() {
 		super(Ic2Models.getBlockTransforms());
 		setParticalTexture(Ic2Icons.getTextures(GTMod.MODID + "_sluicebox_particle")[0]);
 	}
@@ -50,21 +50,14 @@ public class GTSluiceBoxModel extends BaseModel {
 		baker = GTModelBaker.getBaker(Ic2Icons.getTextures(GTMod.MODID + "_sluicebox")[0]);
 
 		// bottom main part
-		baker.addModel(0, 40, 1, 0, 0, 14, 1, 16, true);
+		baker.addModel(1, 41, 1, 0, 1, 14, 1, 15, true);
 		// bottom sides
 		baker.addModel(0, 18, 0, 0, 0, 1, 6, 16, true);
 		baker.addModel(0, 18, 15, 0, 0, 1, 6, 16, true);
 		// stripes
-		baker.addModel(0, 59, 1, 1, 2, 14, 1, 1, true);
 		baker.addModel(0, 59, 1, 1, 6, 14, 1, 1, true);
-		// top main part
-		baker.addModel(0, 0, 0, 6, 4, 16, 1, 12, true);
-		// top long sides
-		baker.addModel(12, 11, 1, 7, 4, 14, 6, 1, true);
-		baker.addModel(12, 11, 1, 7, 15, 14, 6, 1, true);
-		// top short sides
-		baker.addModel(0, 0, 0, 7, 4, 1, 6, 12, true);
-		baker.addModel(7, 0, 15, 7, 4, 1, 6, 12, true);
+		baker.addModel(0, 59, 1, 1, 10, 14, 1, 1, true);
+		baker.addModel(0, 59, 1, 1, 14, 14, 1, 1, true);
 
 		baker.bake();
 	}

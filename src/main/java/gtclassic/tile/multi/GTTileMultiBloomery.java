@@ -315,11 +315,26 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 		addRecipe("dustPyrite", 2, "dustCalcite", 2, GTBlocks.bloomIron);
 		addRecipe("dustMagnetite", 2, "dustCalcite", 2, GTBlocks.bloomIron);
 		addRecipe("dustLimonite", 2, "dustCalcite", 2, GTBlocks.bloomIron);
+		addRecipe("ingotCopper", 1, "dustRedstone", 4, GTBlocks.bloomRedAlloy);
+		addRecipe("dustCopper", 1, "dustRedstone", 4, GTBlocks.bloomRedAlloy);
+		addAlloyRecipe("Copper", 3, "Tin", 1, GTBlocks.bloomBronze);
+		addAlloyRecipe("Iron", 2, "Nickel", 1, GTBlocks.bloomInvar);
+		addAlloyRecipe("Copper", 3, "Zinc", 1, GTBlocks.bloomBrass);
+		addAlloyRecipe("Gold", 1, "Silver", 1, GTBlocks.bloomElectrum);
+		addAlloyRecipe("Copper", 1, "Nickel", 1, GTBlocks.bloomConstantan);
+		addAlloyRecipe("Brass", 3, "Bismuth", 1, GTBlocks.bloomBismuthBronze);
 	}
 
 	/*
 	 * real recipes methods into the bloomery
 	 */
+	
+	public static void addAlloyRecipe(String input1, int amount1, String input2, int amount2, Block output) {
+		addRecipe("ingot" + input1, amount1, "ingot" + input2, amount2, output);
+		addRecipe("dust" + input1, amount1, "dust" + input2, amount2, output);
+		addRecipe("dust" + input1, amount1, "ingot" + input2, amount2, output);
+		addRecipe("ingot" + input1, amount1, "dust" + input2, amount2, output);
+	}
 
 	public static void addRecipe(String input, int amount, Block output) {
 		RECIPE_LIST.addRecipe(input, output.getDefaultState(), 4, 400, new RecipeInputOreDict(input, amount), fuel);

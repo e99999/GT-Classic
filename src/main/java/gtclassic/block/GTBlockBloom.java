@@ -1,5 +1,6 @@
 package gtclassic.block;
 
+import java.awt.Color;
 import java.util.List;
 import java.util.Random;
 
@@ -7,6 +8,7 @@ import javax.annotation.Nullable;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.color.GTColorBlockInterface;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import ic2.core.platform.lang.ILocaleBlock;
@@ -35,27 +37,48 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock {
+public class GTBlockBloom extends Block implements ITexturedBlock, ILocaleBlock, GTColorBlockInterface {
 
 	String name;
-	int id;
-	float hardness;
-	int level;
 	LocaleComp comp;
+	GTMaterial mat;
+	int count;
 
-	public GTBlockStone(String name, int id, float hardness, int level) {
+	public GTBlockBloom(GTMaterial mat, int count) {
 		super(Material.ROCK);
-		this.name = name;
-		this.id = id;
-		this.hardness = hardness;
-		this.level = level;
+		this.mat = mat;
+		this.count = count;
+		this.name = mat.getDisplayName();
 		this.comp = Ic2Lang.nullKey;
-		setRegistryName(this.name.toLowerCase() + "_block");
-		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_block");
+		setRegistryName(this.name.toLowerCase() + "_bloom");
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_bloom");
 		setCreativeTab(GTMod.creativeTabGT);
-		setHardness(this.hardness);
-		setHarvestLevel("pickaxe", this.level);
+		setHardness(1.0F);
+		setHarvestLevel("pickaxe", 0);
 		setSoundType(SoundType.STONE);
+	}
+
+	@Override
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state,
+			@Nullable TileEntity te, ItemStack stack) {
+		super.harvestBlock(worldIn, player, pos, state, te, stack);
+		if (this.mat.equals(GTMaterial.RefinedIron))	{
+			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, count));
+			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getDust(GTMaterial.Slag, 1));
+			return;
+		}
+		if (this.mat.equals(GTMaterial.Bronze))	{
+			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.bronzeIngot, count));
+			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getDust(GTMaterial.Slag, 1));
+			return;
+		}
+		ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIngot(mat, count));
+		ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getDust(GTMaterial.Slag, 1));
+	}
+
+	@Override
+	public int quantityDropped(Random random) {
+		return 0;
 	}
 
 	@Override
@@ -71,7 +94,7 @@ public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[this.id];
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[53];
 	}
 
 	@Override
@@ -104,5 +127,18 @@ public class GTBlockStone extends Block implements ITexturedBlock, ILocaleBlock 
 	public Block setUnlocalizedName(String name) {
 		this.comp = new LocaleBlockComp("tile." + name);
 		return super.setUnlocalizedName(name);
+	}
+
+	@Override
+	public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
+		Random rand = world instanceof World ? ((World) world).rand : new Random();
+		int xp = 0;
+		xp = MathHelper.getInt(rand, 1, 5);
+		return xp;
+	}
+
+	@Override
+	public Color getColor(Block block, int index) {
+		return this.mat.getColor();
 	}
 }

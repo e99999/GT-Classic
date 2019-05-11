@@ -3,6 +3,7 @@ package gtclassic;
 import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.block.GTBlockBloom;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCustom;
 import gtclassic.block.GTBlockFalling;
@@ -71,9 +72,19 @@ public class GTBlocks {
 
 	// @formatter:off
 	static final List<Block> toRegister = new ArrayList<>();
+	
+	public static final GTBlockBloom
+	bloomIron = registerBlock(new GTBlockBloom(GTMaterial.RefinedIron, 3)),
+	bloomBronze = registerBlock(new GTBlockBloom(GTMaterial.Bronze, 4)),
+	bloomRedAlloy = registerBlock(new GTBlockBloom(GTMaterial.RedAlloy, 1)),
+	bloomInvar = registerBlock(new GTBlockBloom(GTMaterial.Invar, 3)),
+	bloomBrass = registerBlock(new GTBlockBloom(GTMaterial.Brass, 4)),
+	bloomElectrum = registerBlock(new GTBlockBloom(GTMaterial.Electrum, 2)),
+	bloomConstantan = registerBlock(new GTBlockBloom(GTMaterial.Constantan, 2)),
+	bloomBismuthBronze = registerBlock(new GTBlockBloom(GTMaterial.BismuthBronze, 4));
 
 	public static final GTBlockStone 
-	bloomIron = registerBlock(new GTBlockStone("Bloom", 16, 1.0F, 0));
+	stoneMagnesia = registerBlock(new GTBlockStone("Magnesia", 16, 20.0F, 2));
 
 	public static final GTBlockFalling 
 	sandSlag = registerBlock(new GTBlockFalling("Slag", 17)),

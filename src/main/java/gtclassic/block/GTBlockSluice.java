@@ -1,7 +1,7 @@
 package gtclassic.block;
 
 import gtclassic.GTMod;
-import gtclassic.models.GTSluiceBoxModel;
+import gtclassic.models.GTModelSluiceBox;
 import gtclassic.tile.GTTileSluice;
 import gtclassic.util.GTValues;
 import ic2.core.platform.textures.models.BaseModel;
@@ -30,7 +30,7 @@ public class GTBlockSluice extends GTBlockFacing {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BaseModel getModelFromState(IBlockState state) {
-		return GTSluiceBoxModel.getModel();
+		return GTModelSluiceBox.getModel();
 	}
 
 	@Override
