@@ -87,6 +87,19 @@ public class GTMultiInputRecipeList {
 		}
 		return false;
 	}
+	
+	public MultiRecipe getPriorityRecipe(Predicate<MultiRecipe> checker)
+	{
+		MultiRecipe match = INVALID_RECIPE;
+		for(MultiRecipe recipe : recipes)
+		{
+			if(recipe.getInputSize() > match.getInputSize() && checker.test(recipe))
+			{
+				match = recipe;
+			}
+		}
+		return match;
+	}
 
 	public MultiRecipe getRecipe(Predicate<MultiRecipe> checker) {
 		for (MultiRecipe recipe : recipes) {
