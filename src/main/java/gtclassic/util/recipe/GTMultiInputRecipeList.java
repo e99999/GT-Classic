@@ -140,11 +140,17 @@ public class GTMultiInputRecipeList {
 		}
 
 		public boolean matches(int slot, ItemStack stack) {
-			if (inputs.size() <= slot) {
-				return stack.isEmpty();
-			}
+			if (inputs.size() <= slot || stack.isEmpty())
+				return false;
 			IRecipeInput input = inputs.get(slot);
-			return input == null ? stack.isEmpty() : (input.matches(stack) && input.getAmount() <= stack.getCount());
+			return input.matches(stack) && input.getAmount() <= stack.getCount();
+		}
+
+		public boolean matchesIgnoringSize(int slot, ItemStack stack) {
+			if (inputs.size() <= slot || stack.isEmpty())
+				return false;
+			IRecipeInput input = inputs.get(slot);
+			return input.matches(stack);
 		}
 
 		public List<IRecipeInput> getInputs() {
@@ -159,5 +165,9 @@ public class GTMultiInputRecipeList {
 
 	public Collection<MultiRecipe> getRecipeList() {
 		return new ArrayList<MultiRecipe>(recipes);
+	}
+
+	public String getCategory() {
+		return this.category;
 	}
 }

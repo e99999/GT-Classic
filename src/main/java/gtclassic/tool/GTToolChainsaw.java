@@ -9,10 +9,12 @@ import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -44,6 +46,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTToolChainsaw extends ItemElectricTool
 		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
@@ -51,16 +54,18 @@ public class GTToolChainsaw extends ItemElectricTool
 	public static final ItemStack ironAxe;
 	GTMaterial material;
 
-	public GTToolChainsaw(GTMaterial material) {
+	public GTToolChainsaw(ToolMaterial tmat) {
 		super(0.0F, 0.0F, ToolMaterial.IRON);
-		this.material = material;
+		this.material = GTToolMaterial.getGTMaterial(tmat);
 		this.tier = material.getLevel() - 1;
 		if (this.tier <= 0) {
 			this.tier = 1;
 		}
 		this.maxCharge = (int) (Math.pow(2, this.tier) * 50000);
 		this.transferLimit = (int) (Math.pow(2, this.tier) * 64);
+		this.operationEnergyCost = this.transferLimit;
 		this.efficiency = (this.material.getSpeed() * 2) * this.tier;
+		this.setMaxDamage(this.material.getDurability() * (this.tier * 100));
 		this.setHarvestLevel("axe", 2);
 		this.setRegistryName("chainsaw_" + this.material.getName());
 		this.setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_chainsaw");
@@ -72,6 +77,21 @@ public class GTToolChainsaw extends ItemElectricTool
 		tooltip.add(TextFormatting.GOLD + I18n.format("Material: " + this.material.getDisplayName()));
 		tooltip.add(TextFormatting.BLUE
 				+ I18n.format("Efficiency: " + String.valueOf((this.material.getSpeed() * 2) * this.tier)));
+		tooltip.add(TextFormatting.RED
+				+ I18n.format("Uses Remaining: " + String.valueOf(this.getMaxDamage() - this.getDamage(stack))));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
+				|| material.equals(material.Uranium)) {
+			return true;
+		}
+		if (material.equals(material.Flint)) {
+			return false;
+		}
+		return super.hasEffect(stack);
 	}
 
 	@Override
@@ -155,7 +175,6 @@ public class GTToolChainsaw extends ItemElectricTool
 						entityitem.setDefaultPickupDelay();
 						player.world.spawnEntity(entityitem);
 					}
-
 					ElectricItem.manager.use(itemstack, this.getEnergyCost(itemstack), player);
 					player.addStat(StatList.getBlockStats(block));
 					if (block == Blocks.WEB) {
@@ -192,6 +211,20 @@ public class GTToolChainsaw extends ItemElectricTool
 		if (blockState.getBlockHardness(world, pos) == -1.0F) {
 			return;
 		}
+		if (this.getDamage(saw) == this.getMaxDamage()) {
+			if (this.tier == 1) {
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.batteryLithiumSmall));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Steel, 5));
+			}
+			if (this.tier == 2) {
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.batteryLithiumMed));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Titanium, 5));
+			}
+			// TODO add tier 3 when parts are available
+		}
+		saw.damageItem(1, player);
 		ElectricItem.manager.use(saw, this.getEnergyCost(saw), player);
 		blockState.getBlock().harvestBlock(world, player, pos, blockState, world.getTileEntity(pos), saw);
 		world.setBlockToAir(pos);
@@ -279,49 +312,7 @@ public class GTToolChainsaw extends ItemElectricTool
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[34 + var1];
 	}
 
-	public String getRecipePrimary() {
-		return "plate" + this.material.getDisplayName();
-	}
-
-	public String getRecipeSecondary() {
-		if (this.tier == 1) {
-			return "plateSteel";
-		}
-		if (this.tier == 2) {
-			return "plateTitanium";
-		}
-		if (this.tier == 3) {
-			return "plateTungstensteel";
-		}
-		if (this.tier == 4) {
-			return "plateChrome";
-		}
-		if (this.tier == 5) {
-			return "plateIridium";
-		} else {
-			return "plateOsmium";
-		}
-	}
-
-	public String getRecipeCircuit() {
-		if (this.tier == 1) {
-			return "circuitBasic";
-		}
-		if (this.tier == 2) {
-			return "circuitAdvanced";
-		} else {
-			return "circuitElite";
-		}
-	}
-
-	public ItemStack getRecipeBattery() {
-		if (this.tier == 1) {
-			return new ItemStack(GTBlocks.smallLithium);
-		}
-		if (this.tier == 2) {
-			return new ItemStack(GTBlocks.medLithium);
-		} else {
-			return new ItemStack(GTBlocks.largeLithium);
-		}
+	public GTMaterial getMaterial() {
+		return this.material;
 	}
 }

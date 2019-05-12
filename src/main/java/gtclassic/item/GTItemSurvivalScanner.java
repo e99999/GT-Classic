@@ -33,15 +33,15 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 		setRegistryName("portable_scanner");
 		setUnlocalizedName(GTMod.MODID + ".portable_scanner");
 		setCreativeTab(GTMod.creativeTabGT);
-		this.maxCharge = 10000;
-		this.transferLimit = 100;
+		this.maxCharge = 100000;
+		this.transferLimit = 128;
 		this.tier = 1;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[39];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[7];
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 			return EnumActionResult.PASS;
 		} else {
 			ElectricItem.manager.use(player.getHeldItemMainhand(), energyCost, (EntityLivingBase) null);
-			return GTMod.scanBlock(player, world, pos, side, hitX, hitY, hitZ, hand);
+			return GTItemCreativeScanner.scanBlock(player, world, pos, side, hitX, hitY, hitZ, hand);
 		}
 	}
 

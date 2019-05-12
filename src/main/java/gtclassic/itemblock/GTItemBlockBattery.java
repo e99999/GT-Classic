@@ -1,7 +1,6 @@
 package gtclassic.itemblock;
 
 import gtclassic.GTMod;
-import gtclassic.block.GTBlockBattery;
 import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
@@ -33,7 +32,6 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 			tier = battery.tier;
 		}
 		this.setCreativeTab(GTMod.creativeTabGT);
-		this.setMaxStackSize(1);
 		this.setNoRepair();
 		this.setHasSubtypes(true);
 	}
@@ -72,12 +70,16 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 
 	@Override
 	public int getItemStackLimit(ItemStack stack) {
-		return 1;
+		return this.shouldBeStackable(stack) ? 16 : 1;
 	}
 
 	@Override
 	public boolean isDamaged(ItemStack stack) {
-		return true;
+		return !this.shouldBeStackable(stack);
+	}
+
+	private boolean shouldBeStackable(ItemStack stack) {
+		return ElectricItem.manager.getCharge(stack) == 0.0D;
 	}
 
 	@Override
@@ -99,9 +101,9 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
 			EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (player.isSneaking()) {
-			super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-			return EnumActionResult.PASS;
+			return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 		} else {
+			player.setActiveHand(hand);
 			return EnumActionResult.SUCCESS;
 		}
 	}
@@ -153,6 +155,20 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 					}
 				}
 
+				if (!charged) {
+					stack = player.getHeldItem(EnumHand.OFF_HAND);
+					if (stack.getItem() instanceof IElectricItem) {
+						item = (IElectricItem) stack.getItem();
+						transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2 * this.transferLimit),
+								item.getTier(itemStackIn), true, false, true);
+						transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
+						ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false,
+								false);
+						if (transfer > 0.0D) {
+							charged = true;
+						}
+					}
+				}
 			}
 
 			if (!charged) {

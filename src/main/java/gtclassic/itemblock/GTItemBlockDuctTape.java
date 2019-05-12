@@ -47,7 +47,7 @@ public class GTItemBlockDuctTape extends GTItemBlockRare {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".ducttape"));
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
 	}
 
 	@Override
@@ -57,8 +57,7 @@ public class GTItemBlockDuctTape extends GTItemBlockRare {
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 
 		if (player.isSneaking()) {
-			super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
-			return EnumActionResult.PASS;
+			return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 		} else if (tileEntity instanceof IInsulationModifieableConductor) {
 			IInsulationModifieableConductor wire = (IInsulationModifieableConductor) tileEntity;
 			if (wire.tryAddInsulation()) {

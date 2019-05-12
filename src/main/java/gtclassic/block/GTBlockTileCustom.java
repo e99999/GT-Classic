@@ -12,7 +12,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -39,6 +41,11 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 		setResistance(30.0F);
 		setSoundType(SoundType.CLOTH);
 		setLightLevel(getVariantLightLevel());
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+
 	}
 
 	public float getHeight() {
@@ -84,6 +91,7 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 		return new TileEntityBlock();
 	}
 
+	@Override
 	@Deprecated
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return getVariantBoundingBox();

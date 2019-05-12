@@ -13,8 +13,11 @@ public class GTConfig {
 	// general
 	public static boolean compatSecretProject = false;
 	public static boolean compatSuperTech = false;
+	public static boolean harderPlates = false;
+	public static boolean harderRods = false;
 
 	// generation
+	public static boolean genNetherTantalite = true;
 	public static boolean genNetherPyrite = true;
 	public static boolean genNetherCinnabar = true;
 	public static boolean genNetherSphalerite = true;
@@ -52,10 +55,16 @@ public class GTConfig {
 				"Enables Secret Project Compat");
 		compatSuperTech = cfg.getBoolean("compatSuperTech", CATEGORY_GENERAL, compatSecretProject,
 				"Enables Super Tech Compat");
+		harderPlates = cfg.getBoolean("harderPlates", CATEGORY_GENERAL, harderPlates,
+				"Plates take 2 ingots when crafted via hammer");
+		harderRods = cfg.getBoolean("harderRods", CATEGORY_GENERAL, harderRods,
+				"Ingots only make 1 rod/stick when crafted via file");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {
 		cfg.addCustomCategoryComment(CATEGORY_GENERATION, "Generation configuration");
+		genNetherTantalite = cfg.getBoolean("genNetherTantlite", CATEGORY_GENERATION, genNetherTantalite,
+				"Generate Nether Tantalite");
 		genNetherPyrite = cfg.getBoolean("genNetherPyrite", CATEGORY_GENERATION, genNetherPyrite,
 				"Generate Nether Pyrite Ore");
 		genNetherCinnabar = cfg.getBoolean("genNetherCinnabar", CATEGORY_GENERATION, genNetherCinnabar,

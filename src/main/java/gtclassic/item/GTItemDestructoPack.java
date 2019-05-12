@@ -30,12 +30,12 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 		this.maxStackSize = 1;
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setRegistryName("destructo_pack");
-		this.setUnlocalizedName(GTMod.MODID + ".destructoPack");
+		this.setUnlocalizedName(GTMod.MODID + ".destructo_pack");
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".trashcan"));
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[34];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[2];
 	}
 
 	@Override

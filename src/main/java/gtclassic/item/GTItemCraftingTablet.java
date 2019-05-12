@@ -30,7 +30,12 @@ public class GTItemCraftingTablet extends ItemIC2 implements IHandHeldInventory 
 		this.maxStackSize = 1;
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setRegistryName("crafting_tablet");
-		this.setUnlocalizedName(GTMod.MODID + ".craftingTablet");
+		this.setUnlocalizedName(GTMod.MODID + ".crafting_tablet");
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
 	}
 
 	@Override
@@ -43,14 +48,9 @@ public class GTItemCraftingTablet extends ItemIC2 implements IHandHeldInventory 
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".craftingtablet"));
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[35];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[3];
 	}
 
 	@Override

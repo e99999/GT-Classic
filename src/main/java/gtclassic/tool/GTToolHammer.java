@@ -7,28 +7,28 @@ import java.util.List;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
-import ic2.api.classic.recipe.ClassicRecipes;
-import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.ICustomItemCameraTransform;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
+public class GTToolHammer extends ItemPickaxe
+		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel, ICustomItemCameraTransform {
 
 	GTMaterial material;
-	public static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 
-	public GTToolHammer(GTMaterial material) {
+	public GTToolHammer(ToolMaterial tmat) {
 		super(ToolMaterial.IRON);
-		this.material = material;
-		this.efficiency = this.material.getSpeed();
+		this.material = GTToolMaterial.getGTMaterial(tmat);
+		this.efficiency = this.material.getSpeed() * (this.material.getLevel() / 2);
 		this.setHarvestLevel("pickaxe", this.material.getLevel());
-		this.setMaxDamage(this.material.getDurability() * 2);
+		this.setMaxDamage((this.material.getDurability() * 2) + 64);
 		setRegistryName(this.material.getName() + "_hammer");
 		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_hammer");
 		setCreativeTab(GTMod.creativeTabGT);
@@ -38,6 +38,19 @@ public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 	public ItemStack getContainerItem(ItemStack itemStack) {
 		ItemStack copy = itemStack.copy();
 		return copy.attemptDamageItem(1, itemRand, null) ? ItemStack.EMPTY : copy;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
+				|| material.equals(material.Uranium)) {
+			return true;
+		}
+		if (material.equals(material.Flint)) {
+			return false;
+		}
+		return super.hasEffect(stack);
 	}
 
 	@Override
@@ -81,8 +94,17 @@ public class GTToolHammer extends ItemPickaxe implements IStaticTexturedItem, GT
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[16 + var1];
 	}
 
-	public String getRecipePrimary() {
-		return "ingot" + this.material.getDisplayName();
+	public GTMaterial getMaterial() {
+		return this.material;
+	}
+
+	public ResourceLocation getCustomTransform(int meta) {
+		return new ResourceLocation("minecraft:models/item/handheld");
+	}
+
+	@Override
+	public boolean hasCustomTransform(int var1) {
+		return true;
 	}
 
 }

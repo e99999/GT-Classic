@@ -40,7 +40,7 @@ public class GTTileWorkbench extends TileEntityMachine implements IHasGui {
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 
-		for (int i = 0; i < 15; i++) {
+		for (int i = 9; i < 25; i++) {
 			handler.registerDefaultSlotAccess(AccessRule.Both, i);
 			handler.registerDefaultSlotsForSide(RotationList.ALL, i);
 			handler.registerSlotType(SlotType.Input, i);

@@ -1,8 +1,8 @@
 package gtclassic.recipe;
 
+import gtclassic.GTBlocks;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.registry.Ic2Items;
@@ -19,21 +19,30 @@ public class GTRecipeMod {
 		 */
 
 		recipes.addRecipe(Ic2Items.miningLaser.copy(),
-				new Object[] { "Rcc", "AAC", " AA", 'A', Ic2Items.advancedAlloy.copy(), 'C',
-						Ic2Items.advancedCircuit.copy(), 'c', GT.getChemical(M.Helium, 1), 'R', "dustRedstone" });
+				new Object[] { "Rcc", "AAC", " AA", 'A', Ic2Items.advancedAlloy.copy(), 'C', "circuitAdvanced", 'c',
+						GT.getFluid(M.Helium, 1), 'R', "dustRedstone" });
 
-		recipes.addRecipe(GT.getIc2(Ic2Items.solarPanel, 1),
+		recipes.addRecipe(GT.getIc2(Ic2Items.solarPanel, 2),
 				new Object[] { "YYY", "XPX", "CVC", 'C', Ic2Items.electricCircuit.copy(), 'V',
 						Ic2Items.generator.copy(), 'X', "plateSilicon", 'Y', "blockGlass", 'P', Ic2Items.carbonPlate });
 
-		recipes.addRecipe(Ic2Items.reactorReflectorThick.copy(), new Object[] { " P ", "PBP", " P ", 'P',
-				Ic2Items.reactorReflector, 'B', GT.getChemical(M.Berilium, 1) });
+		recipes.overrideRecipe("shaped_Iridium Plate", GT.getIc2(Ic2Items.iridiumPlate, 1), "IAI", "ADA", "IAI", 'I',
+				"ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
+
+		recipes.addRecipe(Ic2Items.reactorReflectorThick.copy(),
+				new Object[] { " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GT.getFluid(M.Beryllium, 1) });
 
 		recipes.addRecipe(GT.getIc2(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G', "blockGlass", 'I',
-				GTValues.ingotElectric, 'H', GT.getChemical(M.Helium, 1), 'C', Ic2Items.insulatedCopperCable.copy() });
+				"ingotSilver", 'H', GT.getFluid(M.Helium, 1), 'C', Ic2Items.insulatedCopperCable.copy() });
 
 		recipes.addRecipe(GT.getIc2(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G', "blockGlass", 'I',
-				GTValues.ingotElectric, 'H', GT.getChemical(M.Mercury, 1), 'C', Ic2Items.insulatedCopperCable.copy() });
+				"ingotSilver", 'H', GT.getFluid(M.Mercury, 1), 'C', Ic2Items.insulatedCopperCable.copy() });
+
+		recipes.addRecipe(Ic2Items.mfe.copy(), new Object[] { "XYX", "YCY", "XYX", 'C', Ic2Items.machine.copy(), 'Y',
+				GTBlocks.batteryLithiumSmall, 'X', Ic2Items.doubleInsulatedGoldCable.copy() });
+
+		recipes.addRecipe(Ic2Items.mfe.copy(), new Object[] { "XYX", "YCY", "XYX", 'C', Ic2Items.machine.copy(), 'Y',
+				GTBlocks.batteryLithiumSmall, 'X', GT.getIc2(Ic2Items.doubleInsulatedBronzeCable, 4) });
 
 		recipes.addRecipe(GT.getIc2(Ic2Items.mixedMetalIngot, 3),
 				new Object[] { "III", "BBB", "TTT", 'I', "plateSteel", 'B', "plateBronze", 'T', "plateAluminium" });

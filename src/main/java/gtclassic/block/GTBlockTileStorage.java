@@ -44,7 +44,7 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setBlockUnbreakable();
-		setResistance(this.material.getLevel() * 4.0F);
+		setResistance(this.material.getLevel() * 8.0F);
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);
 	}
@@ -56,7 +56,6 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("tooltip." + GTMod.MODID + ".storage"));
 		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".nomobs"));
 		tooltip.add(TextFormatting.ITALIC + I18n.format("Blast Resistance (" + this.blockResistance + ")"));
 
@@ -66,11 +65,14 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
 		if (this.type == 0) {
 			return new GTTileSmallChest();
-		} else if (this.type == 1) {
+		}
+		if (this.type == 1) {
 			return new GTTileLargeChest();
-		} else if (this.type == 2) {
+		}
+		if (this.type == 2) {
 			return new GTTileBookshelf();
-		} else if (this.type == 3) {
+		}
+		if (this.type == 3) {
 			return new GTTileWorkbench();
 		} else {
 			return new TileEntityBlock();
@@ -81,11 +83,14 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 	public TextureAtlasSprite[] getIconSheet(int arg0) {
 		if (this.type == 0) {
 			return Ic2Icons.getTextures("tile_smallchest");
-		} else if (this.type == 1) {
+		}
+		if (this.type == 1) {
 			return Ic2Icons.getTextures("tile_largechest");
-		} else if (this.type == 2) {
+		}
+		if (this.type == 2) {
 			return Ic2Icons.getTextures("tile_bookshelf");
-		} else if (this.type == 3) {
+		}
+		if (this.type == 3) {
 			return Ic2Icons.getTextures("tile_workbench");
 		} else {
 			return Ic2Icons.getTextures("builder");
@@ -133,25 +138,8 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 		return this.type;
 	}
 
-	public String getRecipePrimary() {
-		return "casingMachine" + this.material.getDisplayName();
-	}
-
-	public String getRecipeSecondary() {
-		if (this.type == 0) {
-			return "chest";
-		}
-		if (this.type == 1) {
-			return "chest";
-		}
-		if (this.type == 2) {
-			return "bookshelf";
-		}
-		if (this.type == 3) {
-			return "workbench";
-		} else {
-			return "plankWood";
-		}
+	public GTMaterial getMaterial() {
+		return this.material;
 	}
 
 }

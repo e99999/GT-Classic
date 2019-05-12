@@ -18,6 +18,10 @@ public class GTMaterialDict {
 				OreDictionary.registerOre("block" + mat.getDisplayName(), GTMaterialGen.getMaterialBlock(mat, 1));
 			}
 
+			if (mat.hasFlag(GTMaterialFlag.COIL)) {
+				OreDictionary.registerOre("coil" + mat.getDisplayName(), GTMaterialGen.getCoil(mat, 1));
+			}
+
 			// Small dusts
 			if (mat.hasFlag(GTMaterialFlag.SMALLDUST)) {
 				OreDictionary.registerOre("dustSmall" + mat.getDisplayName(), GTMaterialGen.getSmallDust(mat, 1));
@@ -48,10 +52,29 @@ public class GTMaterialDict {
 				OreDictionary.registerOre("plate" + mat.getDisplayName(), GTMaterialGen.getPlate(mat, 1));
 			}
 
+			// Small Plates
+			if (mat.hasFlag(GTMaterialFlag.SMALLPLATE)) {
+				OreDictionary.registerOre("plateSmall" + mat.getDisplayName(), GTMaterialGen.getSmallPlate(mat, 1));
+			}
+
 			// Sticks
 			if (mat.hasFlag(GTMaterialFlag.STICK)) {
 				OreDictionary.registerOre("stick" + mat.getDisplayName(), GTMaterialGen.getStick(mat, 1));
 				OreDictionary.registerOre("rod" + mat.getDisplayName(), GTMaterialGen.getStick(mat, 1));
+			}
+			if (mat.hasFlag(GTMaterialFlag.WIRE)) {
+				OreDictionary.registerOre("fineWire" + mat.getDisplayName(), GTMaterialGen.getWire(mat, 1));
+				OreDictionary.registerOre("fineWireAny", GTMaterialGen.getWire(mat, 1));
+			}
+
+			// Gears
+			if (mat.hasFlag(GTMaterialFlag.GEAR)) {
+				OreDictionary.registerOre("gear" + mat.getDisplayName(), GTMaterialGen.getGear(mat, 1));
+			}
+
+			// Foil
+			if (mat.hasFlag(GTMaterialFlag.FOIL)) {
+				OreDictionary.registerOre("foil" + mat.getDisplayName(), GTMaterialGen.getFoil(mat, 1));
 			}
 
 		}

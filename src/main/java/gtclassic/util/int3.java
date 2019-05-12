@@ -2,7 +2,6 @@ package gtclassic.util;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
 
 /**
  * Created By Muramasa - https://github.com/Muramasa- Allows easily stepping in
