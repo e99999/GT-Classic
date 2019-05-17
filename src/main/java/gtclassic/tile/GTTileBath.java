@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBath;
 import gtclassic.gui.GTGuiMachine.GTBathGui;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
@@ -116,9 +119,63 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 		return null;
 	}
 
+	// @formatter:off
 	public static void init() {
-		// TODO populate recipes
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustSalt", 1), 
+				input(GTMaterialGen.getWater(1))}, 
+				totalTicks(800), 
+				GTMaterialGen.getFluid(GTMaterial.Brine, 1));
+		
+		addRecipe( new IRecipeInput[] { 
+				input("dustTungstate", 7),
+				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 2)) },
+				totalTicks(1000), 
+				GTMaterialGen.getDust(GTMaterial.LithiumChloride, 1),
+				GTMaterialGen.getDust(GTMaterial.TungsticAcid, 7),
+				GTMaterialGen.get(GTItems.testTube, 2));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustDarkAshes", 12), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 4))}, 
+				totalTicks(1200), 
+				GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 4));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustCalcite", 4), 
+				input(GTMaterialGen.getFluid(GTMaterial.Brine, 2))}, 
+				totalTicks(400), 
+				GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 1),
+				GTMaterialGen.get(GTItems.testTube, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustBrine", 4), 
+				input(GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 1))}, 
+				totalTicks(800), 
+				GTMaterialGen.getFluid(GTMaterial.LithiumCarbonate, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustPyrolusite", 2), 
+				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1))}, 
+				totalTicks(800), 
+				GTMaterialGen.getFluid(GTMaterial.Chlorine, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustSalt", 4), 
+				input(GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 1))}, 
+				totalTicks(1200), 
+				GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustSaltpeter", 7), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 4))}, 
+				totalTicks(1200), 
+				GTMaterialGen.getFluid(GTMaterial.NitricAcid, 4));
+		
+		
 	}
+	// @formatter:on
 
 	public static IRecipeModifier[] totalTicks(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(total - 100) };
@@ -142,7 +199,7 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 0);
 	}
 
 }

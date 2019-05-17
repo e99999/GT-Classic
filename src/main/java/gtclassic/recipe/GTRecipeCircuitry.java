@@ -32,6 +32,14 @@ public class GTRecipeCircuitry {
 		 * For now they allow testing and progression to happen.
 		 */
 
+		recipes.addShapelessRecipe(GT.getDust(M.MagnesiaCarbon, 4),
+				new Object[] { "dustMagnesium", "dustCarbon", "dustSilicon", "dustClay" });
+
+		TileEntityCompressor.addRecipe("dustMagnesiaCarbon", 1, GT.get(GTItems.magnesiaBrick), 0);
+
+		recipes.addShapelessRecipe(GT.get(GTBlocks.stoneMagnesia, 1), new Object[] { GTItems.magnesiaBrick,
+				GTItems.magnesiaBrick, GTItems.magnesiaBrick, GTItems.magnesiaBrick });
+
 		TileEntitySawMill.addRecipe(GT.get(GTBlocks.driedResin), GT.get(GTItems.resinPCB), 0.0F);
 		TileEntityCompressor.addRecipe("dustWood", 1, GT.get(GTItems.woodPlate));
 		TileEntityMacerator.addRecipe(GT.getIc2(Ic2Items.stickyResin, 1), GT.getDust(M.DirtyResin, 2));

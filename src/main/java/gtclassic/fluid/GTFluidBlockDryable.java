@@ -1,10 +1,15 @@
 package gtclassic.fluid;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
+import gtclassic.util.recipe.GTMultiInputRecipeList;
+import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.api.recipe.IRecipeInput;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -12,10 +17,12 @@ import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.platform.textures.obj.ICustomModeledBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockColored;
+import net.minecraft.block.BlockHardenedClay;
+import net.minecraft.block.BlockStainedHardenedClay;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
@@ -34,6 +41,8 @@ public class GTFluidBlockDryable extends BlockFluidClassic implements ILocaleBlo
 	LocaleComp comp;
 	Block result;
 	GTMaterial mat;
+
+	public static final GTMultiInputRecipeList DRYING_RECIPE_LIST = new GTMultiInputRecipeList("gt.drying");
 
 	public GTFluidBlockDryable(GTMaterial mat, Block result) {
 		super(FluidRegistry.getFluid(mat.getDisplayName().toLowerCase()), Material.WATER);
@@ -83,7 +92,17 @@ public class GTFluidBlockDryable extends BlockFluidClassic implements ILocaleBlo
 	}
 
 	public boolean isDryingBlock(IBlockState state) {
-		return (state == Blocks.HARDENED_CLAY.getDefaultState() || state == Blocks.CONCRETE.getDefaultState());
+		return isHardClay(state) || isConcrete(state);
+	}
+
+	public boolean isHardClay(IBlockState state) {
+		Block block = state.getBlock();
+		return block instanceof BlockHardenedClay || block instanceof BlockStainedHardenedClay;
+	}
+
+	public boolean isConcrete(IBlockState state) {
+		Block block = state.getBlock();
+		return block instanceof BlockColored && block.getMaterial(state).equals(Material.ROCK);
 	}
 
 	public boolean isCorrectEnviornment(World worldIn, BlockPos pos) {
@@ -115,6 +134,29 @@ public class GTFluidBlockDryable extends BlockFluidClassic implements ILocaleBlo
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getDefaultState();
+	}
+
+	public GTMaterial getMaterial() {
+		return this.mat;
+	}
+
+	public Block getResult() {
+		return this.result;
+	}
+
+	/**
+	 * creates JEI integration of drying recipes
+	 */
+	public static void dryingUtil(ItemStack input, ItemStack output) {
+		List<IRecipeInput> inputs = new ArrayList<>();
+		List<ItemStack> outputs = new ArrayList<>();
+		inputs.add((IRecipeInput) (new RecipeInputItemStack(input)));
+		outputs.add(output);
+		dryingWrapper(inputs, new MachineOutput(null, outputs));
+	}
+
+	private static void dryingWrapper(List<IRecipeInput> input, MachineOutput output) {
+		DRYING_RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 0);
 	}
 
 }

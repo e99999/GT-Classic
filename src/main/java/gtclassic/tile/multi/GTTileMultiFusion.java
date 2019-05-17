@@ -180,7 +180,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 8196);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package gtclassic.util.jei;
+package gtclassic.util.jei.wrapper;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import mezz.jei.api.ingredients.IIngredients;

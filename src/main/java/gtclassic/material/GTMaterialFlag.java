@@ -21,7 +21,6 @@ public enum GTMaterialFlag {
 	PARTICLE("_particle", 15, false), 
 	BLOCK("_block", 48, false), 
 	CASING("_casing", 50, false),
-	WALL("_wall", 51, false), 
 	COIL("_coil", 52, false);
 	// @formatter:on
 

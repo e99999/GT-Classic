@@ -64,7 +64,7 @@ public class GTItemFluidTube extends Item
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(getFluidName(stack));
-		tooltip.add(getFluidTemp(stack));
+		tooltip.add("Melting: " + getFluidTemp(stack));
 	}
 
 	public String getFluidName(ItemStack stack) {
@@ -196,7 +196,7 @@ public class GTItemFluidTube extends Item
 
 					itemstack.shrink(1);
 					ItemStack drained = result.getResult();
-					ItemStack emptyStack = !drained.isEmpty() ? drained.copy() : new ItemStack(this);
+					ItemStack emptyStack = new ItemStack(GTItems.testTube);
 
 					// check whether we replace the item or add the empty one to the inventory
 					if (itemstack.isEmpty()) {

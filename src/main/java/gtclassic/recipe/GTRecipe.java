@@ -10,7 +10,9 @@ import gtclassic.tile.GTTileSmelter;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiChemicalReactor;
+import gtclassic.tile.multi.GTTileMultiCryogenicSeparator;
 import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiLeadChamber;
 import gtclassic.tile.multi.GTTileMultiRefractory;
 
 public class GTRecipe {
@@ -48,6 +50,8 @@ public class GTRecipe {
 		GTTileMultiChemicalReactor.init();
 		GTTileMultiFusion.init();
 		GTTileMultiRefractory.init();
+		GTTileMultiCryogenicSeparator.init();
+		GTTileMultiLeadChamber.init();
 	}
 
 }

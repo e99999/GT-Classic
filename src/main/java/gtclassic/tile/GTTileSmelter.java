@@ -178,6 +178,9 @@ public class GTTileSmelter extends GTTileBaseMachine {
 				GTMaterialGen.getIngot(GTMaterial.RedAlloy, 1));
 
 		//Smelting oriented recipes
+		addRecipe("sand", 1, GTMaterialGen.get(GTItems.moldBlock),
+				GTMaterialGen.get(Blocks.GLASS, 1));
+		
 		addRecipe("sand", 5, GTMaterialGen.get(GTItems.moldTube),
 				GTMaterialGen.get(GTItems.testTube, 32));
 		
@@ -189,9 +192,6 @@ public class GTTileSmelter extends GTTileBaseMachine {
 		
 		addRecipe("dustResin", 1, "dustSulfur", 1, 
 				GTMaterialGen.getIc2(Ic2Items.rubber, 1));
-
-		addRecipe("dustPlastic", 1, GTMaterialGen.get(GTItems.moldPlate),
-				GTMaterialGen.getPlate(GTMaterial.Plastic, 1));
 		
 		addRecipe("dustPlastic", 9, GTMaterialGen.get(GTItems.moldBlock),
 				GTMaterialGen.get(GTBlocks.casingPlastic1x, 1));
@@ -317,7 +317,7 @@ public class GTTileSmelter extends GTTileBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 16);
 	}
 
 }

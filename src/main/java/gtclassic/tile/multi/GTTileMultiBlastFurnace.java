@@ -26,6 +26,8 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.recipe.entry.RecipeInputCombined;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
@@ -112,7 +114,12 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	@Override
 	public boolean isRecipeSlot(int slot) {
-		return true;
+		for (int i : this.getInputSlots()) {
+			if (slot <= i) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -144,6 +151,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		
 		int LOW_TIME = 4000;
 		int MED_TIME = 8000;
+		int LONG_TIME = 16000;
 
 		addRecipe(new IRecipeInput[] { 
 				input("ingotIron", 1) }, 
@@ -217,82 +225,85 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 		addRecipe(new IRecipeInput[] { 
 				input("dustChromite", 1) }, 
-				totalEu(80000),
+				totalEu(LONG_TIME),
 				GTMaterialGen.getNugget(GTMaterial.Chrome, 6), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("dustSmallChromite", 4) }, 
-				totalEu(80000),
+				totalEu(LONG_TIME),
 				GTMaterialGen.getNugget(GTMaterial.Chrome, 6), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("oreChromite", 1) }, 
-				totalEu(80000), 
+				totalEu(LONG_TIME), 
 				GTMaterialGen.getNugget(GTMaterial.Chrome, 6),
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 
 		addRecipe(new IRecipeInput[] { 
 				input("dustMolybdenite", 3) }, 
-				totalEu(80000),
+				totalEu(LONG_TIME),
 				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 3));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("dustSmallMolybdenite", 12) }, 
-				totalEu(80000),
+				totalEu(LONG_TIME),
 				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 3));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("oreMolybdenite", 3) }, 
-				totalEu(80000),
+				totalEu(LONG_TIME),
 				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 6));
 
 		addRecipe(new IRecipeInput[] { 
 				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)), }, 
-				totalEu(90000),
+				totalEu(LONG_TIME),
 				GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
 
 		addRecipe(new IRecipeInput[] { 
 				input("oreIridium", 1), }, 
-				totalEu(90000),
+				totalEu(LONG_TIME),
 				GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
 		
 		//alloy recipes
 		
+		IRecipeInput anyIron = new RecipeInputCombined(4,new IRecipeInput[] { new RecipeInputOreDict("ingotIron", 4), new RecipeInputOreDict("ingotRefinedIron", 4),
+						new RecipeInputOreDict("ingotSteel", 4) });
+		
 		addRecipe(new IRecipeInput[] { 
-				input("dustIron", 4), 
-				input("dustInvar", 3), 
-				input("dustManganese", 1), 
-				input("dustChrome", 1), 
+				anyIron, 
+				input("ingotInvar", 3), 
+				input("ingotManganese", 1), 
+				input("ingotChrome", 1), 
 				},
 				totalEu(MED_TIME), 
 				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
 		
 		addRecipe(new IRecipeInput[] { 
-				input("dustIron", 4), 
-				input("dustInvar", 3), 
-				input("dustNiobium", 1), 
-				input("dustChrome", 1), 
+				anyIron, 
+				input("ingotInvar", 3), 
+				input("ingotNiobium", 1), 
+				input("ingotChrome", 1), 
 				},
 				totalEu(MED_TIME), 
 				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
 		
 		addRecipe(new IRecipeInput[] { 
-				input("dustCobalt", 5), 
-				input("dustChrome", 2), 
-				input("dustNickel", 1), 
-				input("dustMolybdenum", 1), 
+				input("ingotCobalt", 5), 
+				input("ingotChrome", 2), 
+				input("ingotNickel", 1), 
+				input("ingotMolybdenum", 1), 
 				},
 				totalEu(MED_TIME), 
 				GTMaterialGen.getIngot(GTMaterial.Ultimet, 9));
 		
 		addRecipe(new IRecipeInput[] { 
-				input("dustNiobium", 1), 
-				input("dustTitanium", 1), 
+				input("ingotNiobium", 1), 
+				input("ingotTitanium", 1), 
 				},
 				totalEu(MED_TIME), 
 				GTMaterialGen.getIngot(GTMaterial.NiobiumTitanium, 2));
@@ -305,7 +316,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	public static IRecipeModifier[] totalEu(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 20) - 100) };
 	}
-	
+
 	/**
 	 * Adds a recipe not only to the blast furnace but to the refractory as well
 	 */
@@ -327,7 +338,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 20);
 	}
 
 	@Override

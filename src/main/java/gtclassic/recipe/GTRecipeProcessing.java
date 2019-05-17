@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import gtclassic.GTBlocks;
+import gtclassic.fluid.GTFluidBlockDryable;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import ic2.api.classic.recipe.ClassicRecipes;
@@ -64,8 +65,6 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustUranium", 1, GT.getIc2(Ic2Items.uraniumIngot, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustEmerald", 1, GT.get(Items.EMERALD), 0.1F);
 		TileEntityCompressor.addRecipe("dustDiamond", 1, GT.get(Items.DIAMOND), 0.1F);
-		TileEntityCompressor.addRecipe("dustSmallGraphite", 4, GT.getIngot(M.Graphite, 1), 0.1F);
-		TileEntityCompressor.addRecipe("dustZirconium", 32, GT.getIc2(Ic2Items.industrialDiamond, 1), 0.1F);
 
 		/*
 		 * Some random fuel things
@@ -74,6 +73,17 @@ public class GTRecipeProcessing {
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("lithium"), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("hydrogen"), 950, 16);
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("methane"), 3000, 16);
+
+		/*
+		 * Dryable fluid JEI stuff
+		 */
+
+		GTFluidBlockDryable.dryingUtil(GTMaterialGen.getFluid(GTMaterial.BauxiteTailings, 1),
+				GTMaterialGen.getDust(GTMaterial.BauxiteTailings, 1));
+		GTFluidBlockDryable.dryingUtil(GTMaterialGen.getFluid(GTMaterial.Brine, 1),
+				GTMaterialGen.getDust(GTMaterial.Brine, 1));
+		GTFluidBlockDryable.dryingUtil(GTMaterialGen.getFluid(GTMaterial.LithiumCarbonate, 1),
+				GTMaterialGen.getDust(GTMaterial.Lithium, 1));
 
 	}
 

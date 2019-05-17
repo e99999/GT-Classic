@@ -26,9 +26,9 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 
 	public GTJeiMultiRecipeCategory(IGuiHelper helper, String name, Block block) {
 		this.name = name;
-		displayName = new ItemStack(block).getDisplayName();
+		displayName = new ItemStack(block).getDisplayName().replace(" Controller", "");
 		backgroundTexture = new ResourceLocation(GTMod.MODID, "textures/gui/default.png");
-		background = helper.createDrawable(backgroundTexture, 16, 16, 144, 40);
+		background = helper.createDrawable(backgroundTexture, 16, 16, 144, 90);
 		IDrawableStatic progressPic = helper.createDrawable(backgroundTexture, 176, 0, 20, 18);
 		progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
 	}

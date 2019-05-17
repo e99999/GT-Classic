@@ -46,6 +46,12 @@ public class GTGuiMachine {
 		}
 	}
 
+	public static class GTCryogenicSeparatorGui extends MachineGui {
+		public GTCryogenicSeparatorGui(ContainerComponent container) {
+			super(container);
+		}
+	}
+
 	public static class GTRefractoryGui extends MachineGui {
 		public GTRefractoryGui(ContainerComponent container) {
 			super(container);
@@ -72,6 +78,12 @@ public class GTGuiMachine {
 
 	public static class GTBathGui extends MachineGui {
 		public GTBathGui(ContainerComponent container) {
+			super(container);
+		}
+	}
+
+	public static class GTLeadChamberGui extends MachineGui {
+		public GTLeadChamberGui(ContainerComponent container) {
 			super(container);
 		}
 	}

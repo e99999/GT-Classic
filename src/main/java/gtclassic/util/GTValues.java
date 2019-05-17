@@ -52,28 +52,13 @@ public class GTValues {
 			return GTMaterial.Steel.getColor();
 		}
 		if (tier == 2) {
-			return GTMaterial.Titanium.getColor();
+			return GTMaterial.Aluminium.getColor();
 		}
 		if (tier == 3) {
-			return GTMaterial.TungstenSteel.getColor();
+			return GTMaterial.StainlessSteel.getColor();
 		}
-		if (tier == 4) {
-			return GTMaterial.Chrome.getColor();
-		}
-		if (tier == 5) {
-			return GTMaterial.Iridium.getColor();
-		}
-		if (tier == 6) {
-			return GTMaterial.Osmium.getColor();
-		}
-		if (tier == 7) {
-			return GTMaterial.Osmium.getColor();
-		}
-		if (tier == 8) {
-			return GTMaterial.Osmium.getColor();
-		} else {
-			return Color.white;
-		}
+		return Color.white;
+
 	}
 
 	public static Color getMachineColor(int tier) {
@@ -106,6 +91,9 @@ public class GTValues {
 	}
 
 	public static String getTierString(int tier) {
+		if (tier == 0) {
+			return "N/A";
+		}
 		if (tier == 1) {
 			return "LV";
 		}

@@ -10,7 +10,9 @@ import gtclassic.GTMod;
 import gtclassic.container.GTContainerShredder;
 import gtclassic.gui.GTGuiMachine.GTShredderGui;
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
@@ -38,7 +40,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 
-public class GTTileShredder extends GTTileBaseMachine {
+public class GTTileShredder extends GTTileMultiBaseMachine {
 
 	public static final int slotInput = 0;
 	public static final int slotOutput0 = 1;
@@ -55,7 +57,7 @@ public class GTTileShredder extends GTTileBaseMachine {
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/shredder.png");
 
 	public GTTileShredder() {
-		super(7, 2, 96, 100, 128);
+		super(7, 2, 96, 128);
 		maxEnergy = 10000;
 	}
 
@@ -72,9 +74,15 @@ public class GTTileShredder extends GTTileBaseMachine {
 	}
 
 	@Override
+	public TileEntity getImportTile() {
+		int3 dir = new int3(getPos(), getFacing());
+		return world.getTileEntity(dir.back(1).up(1).asBlockPos());
+	}
+
+	@Override
 	public TileEntity getExportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.down(1).asBlockPos());
+		return world.getTileEntity(dir.down(1).forward(1).asBlockPos());
 	}
 
 	@Override
@@ -109,7 +117,7 @@ public class GTTileShredder extends GTTileBaseMachine {
 
 	@Override
 	public boolean isRecipeSlot(int slot) {
-		return true;
+		return slot == 0;
 	}
 
 	@Override
@@ -366,10 +374,32 @@ public class GTTileShredder extends GTTileBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 96);
 	}
 
 	public static IRecipeModifier[] euCost(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 96) - 100) };
+	}
+
+	@Override
+	public boolean checkStructure() {
+		int3 dir = new int3(getPos(), getFacing());
+		// layer 0
+		if (!(isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
+				&& isMachineCasing(dir.right(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.right(1))
+				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.back(2)) &&
+				// bottom layer
+				isMachineCasing(dir.down(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
+				&& isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
+				&& isMachineCasing(dir.left(1)) && isMachineCasing(dir.forward(1))
+				&& isMachineCasing(dir.forward(1)))) {
+			return false;
+		}
+		return true;
+	}
+
+	public boolean isMachineCasing(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING)
+				.getDefaultState();
 	}
 }

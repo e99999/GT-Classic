@@ -27,9 +27,6 @@ public class GTMaterialGen {
 			materialBlockUtil(mat, GTMaterialFlag.CASING);
 		}
 		for (GTMaterial mat : GTMaterial.values()) {
-			materialBlockUtil(mat, GTMaterialFlag.WALL);
-		}
-		for (GTMaterial mat : GTMaterial.values()) {
 			materialBlockUtil(mat, GTMaterialFlag.COIL);
 		}
 
@@ -131,10 +128,6 @@ public class GTMaterialGen {
 		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.CASING.getSuffix()), count, 0);
 	}
 
-	public static ItemStack getWall(GTMaterial mat, int count) {
-		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.WALL.getSuffix()), count, 0);
-	}
-
 	public static ItemStack getCoil(GTMaterial mat, int count) {
 		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.COIL.getSuffix()), count, 0);
 	}
@@ -201,13 +194,26 @@ public class GTMaterialGen {
 		return stack;
 	}
 
-	public static FluidStack getFluidTest(GTMaterial mat) {
-		String name = mat.getDisplayName().toLowerCase();
-		return FluidRegistry.getFluidStack(name, 1000);
-	}
-
 	public static ItemStack getModFluid(String name, int count) {
 		FluidStack fluid = FluidRegistry.getFluidStack(name, 1000);
+		ItemStack stack = new ItemStack(GTItems.testTube);
+		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+		handler.fill(fluid, true);
+		stack.setCount(count);
+		return stack;
+	}
+
+	public static ItemStack getWater(int count) {
+		FluidStack fluid = FluidRegistry.getFluidStack("water", 1000);
+		ItemStack stack = new ItemStack(GTItems.testTube);
+		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+		handler.fill(fluid, true);
+		stack.setCount(count);
+		return stack;
+	}
+
+	public static ItemStack getLava(int count) {
+		FluidStack fluid = FluidRegistry.getFluidStack("lava", 1000);
 		ItemStack stack = new ItemStack(GTItems.testTube);
 		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
 		handler.fill(fluid, true);

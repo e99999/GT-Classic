@@ -1,8 +1,6 @@
 package gtclassic.tile;
 
-import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.energy.tile.IEnergyEmitter;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 
 public abstract class GTTileBaseMachinePassive extends GTTileBaseMachine {
@@ -49,14 +47,6 @@ public abstract class GTTileBaseMachinePassive extends GTTileBaseMachine {
 				getNetwork().updateTileGuiField(this, "progress");
 			}
 			setActive(false);
-		}
-		if (supportsUpgrades) {
-			for (int i = 0; i < upgradeSlots; i++) {
-				ItemStack item = inventory.get(i + inventory.size() - upgradeSlots);
-				if (item.getItem() instanceof IMachineUpgradeItem) {
-					((IMachineUpgradeItem) item.getItem()).onTick(item, this);
-				}
-			}
 		}
 		updateComparators();
 		tryExportItems();

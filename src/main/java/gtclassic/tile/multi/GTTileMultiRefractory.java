@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerRefractory;
 import gtclassic.gui.GTGuiMachine.GTRefractoryGui;
@@ -28,7 +29,6 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import ic2.core.platform.registry.Ic2States;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -133,7 +133,7 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	// @formatter:off
 	public static void init() {
 		addRecipe(new IRecipeInput[] { 
-				input("dustCopper", 1), }, 
+				input("ingotCopper", 1), }, 
 				totalEu(250000),
 				GTMaterialGen.getHotIngot(GTMaterial.AnnealedCopper, 1));
 	}
@@ -161,7 +161,7 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 256);
 	}
 
 	@Override
@@ -198,12 +198,12 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	}
 
 	public boolean isWall(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.WALL)
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING)
 				.getDefaultState();
 	}
 
 	public boolean isStone(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == Ic2States.reinforcedStone;
+		return world.getBlockState(pos.asBlockPos()) == GTBlocks.stoneMagnesia.getDefaultState();
 	}
 
 }

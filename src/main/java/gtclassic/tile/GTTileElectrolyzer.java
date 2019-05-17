@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerElectrolyzer;
 import gtclassic.gui.GTGuiMachine.GTIndustrialElectrolyzerGui;
@@ -62,7 +63,7 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 	protected static final int[] slotOutputs = { 4, 5, 6, 7, 8, 9 };
 
 	public GTTileElectrolyzer() {
-		super(11, 2, 64, 192, 512);
+		super(11, 2, 64, 100, 512);
 		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
 	}
@@ -177,14 +178,15 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 
 		addRecipe(new IRecipeInput[] { 
 				input("sand", 16), 
-				tubes(1) }, totalEu(25000),
+				tubes(1) }, 
+				totalEu(25000),
 				GTMaterialGen.getDust(GTMaterial.Silicon, 1), 
 				GTMaterialGen.getFluid(GTMaterial.Oxygen, 1));
 
 		addRecipe(new IRecipeInput[] { 
 				input("dustClay", 8), 
 				tubes(3) }, 
-				totalEu(10000),
+				totalEu(32000),
 				GTMaterialGen.getSmallDust(GTMaterial.Lithium, 1), 
 				GTMaterialGen.getDust(GTMaterial.Silicon, 2), 
 				GTMaterialGen.getDust(GTMaterial.Alumina, 2),
@@ -420,8 +422,8 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 				input("dustChromite", 7), 
 				tubes(3) }, 
 				totalEu(16000),
-				GTMaterialGen.getIc2(Ic2Items.ironDust, 2), 
-				GTMaterialGen.getDust(GTMaterial.Chrome, 2), 
+				GTMaterialGen.getIc2(Ic2Items.ironDust, 1), 
+				GTMaterialGen.getDust(GTMaterial.Chrome, 3), 
 				GTMaterialGen.getFluid(GTMaterial.Oxygen, 3));
 
 		addRecipe(new IRecipeInput[] { 
@@ -465,11 +467,41 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 				GTMaterialGen.getFluid(GTMaterial.Oxygen, 4));
 		
 		addRecipe(new IRecipeInput[] { 
+				input("dustBrine", 4), 
+				tubes(3) }, 
+				totalEu(32000),
+				GTMaterialGen.getFluid(GTMaterial.Potassium, 1), 
+				GTMaterialGen.getFluid(GTMaterial.Sodium, 2), 
+				GTMaterialGen.getDust(GTMaterial.LithiumChloride, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getFluid(GTMaterial.Brine, 4)),  }, 
+				totalEu(32000),
+				GTMaterialGen.getFluid(GTMaterial.Potassium, 1), 
+				GTMaterialGen.getFluid(GTMaterial.Sodium, 2), 
+				GTMaterialGen.getDust(GTMaterial.LithiumChloride, 1),
+				GTMaterialGen.get(GTItems.testTube, 1));
+		
+		addRecipe(new IRecipeInput[] { 
 				input("dustLithiumChloride", 2), 
 				tubes(1) }, 
 				totalEu(96000),
 				GTMaterialGen.getDust(GTMaterial.Lithium, 1), 
 				GTMaterialGen.getFluid(GTMaterial.Chlorine, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getFluid(GTMaterial.LithiumCarbonate, 4))}, 
+				totalEu(32000),
+				GTMaterialGen.getDust(GTMaterial.Lithium, 1), 
+				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 3),
+				GTMaterialGen.get(GTItems.testTube, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1)), 
+				tubes(1) }, 
+				totalEu(32000),
+				GTMaterialGen.getDust(GTMaterial.Carbon, 1), 
+				GTMaterialGen.getFluid(GTMaterial.Oxygen, 2));
 
 		// Aluminium recipes
 
@@ -478,6 +510,7 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 				input("dustAlumina", 10),
 				input(GTMaterialGen.getFluid(GTMaterial.Cryolite, 1)) }, 
 				totalEu(256000), 
+				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1),
 				GTMaterialGen.getDust(GTMaterial.Aluminium, 4));
 		
 		addRecipe(new IRecipeInput[] { 
@@ -485,12 +518,13 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 				input("dustAlumina", 10),
 				input(GTMaterialGen.getFluid(GTMaterial.Cryolite, 1)) }, 
 				totalEu(256000), 
+				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1),
 				GTMaterialGen.getDust(GTMaterial.Aluminium, 4));
 	}
 	// @formatter:on
 
 	public static IRecipeModifier[] totalEu(int total) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 192) - 100) };
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 64) - 100) };
 	}
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
@@ -511,7 +545,7 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 64);
 	}
 
 }

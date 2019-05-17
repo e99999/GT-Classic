@@ -2,12 +2,19 @@ package gtclassic.util.jei;
 
 import javax.annotation.Nonnull;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTItems;
+import gtclassic.block.GTBlockBloom;
 import gtclassic.container.GTContainerWorkbench;
+import gtclassic.fluid.GTFluidBlockDryable;
 import gtclassic.ore.GTOreFlag;
 import gtclassic.ore.GTOreStone;
 import gtclassic.recipe.GTRecipeCauldron;
+import gtclassic.util.jei.category.GTJeiBloomCategory;
+import gtclassic.util.jei.category.GTJeiDryingCategory;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
+import gtclassic.util.jei.wrapper.GTJeiBloomWrapper;
+import gtclassic.util.jei.wrapper.GTJeiDryingWrapper;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.jeiIntigration.SubModul;
@@ -36,17 +43,31 @@ public class GTJeiPlugin implements IModPlugin {
 	public void register(@Nonnull IModRegistry registry) {
 		if (SubModul.load) {
 
-			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
-
 			for (GTJeiRegistry entry : GTJeiRegistry.values()) {
 				wrapperUtil(registry, entry.getRecipeList(), entry.getCatalyst(), entry.getGuiClass(),
 						entry.getClickX(), entry.getClickY(), entry.getSizeX(), entry.getSizeY());
 			}
 
+			// Vanilla crafting
+			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
+
 			// Washing
-			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "washing");
-			registry.addRecipes(GTRecipeCauldron.RECIPE_LIST.getRecipeList(), "washing");
-			registry.addRecipeCatalyst(new ItemStack(Items.CAULDRON), "washing");
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
+					"gt.washing");
+			registry.addRecipes(GTRecipeCauldron.RECIPE_LIST.getRecipeList(), "gt.washing");
+			registry.addRecipeCatalyst(new ItemStack(Items.CAULDRON), "gt.washing");
+
+			// Bloom outputs
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiBloomWrapper::new, "gt.bloom");
+			registry.addRecipes(GTBlockBloom.RECIPE_LIST.getRecipeList(), "gt.bloom");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.bloomIron), "gt.bloom");
+
+			// Drying
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiDryingWrapper::new, "gt.drying");
+			registry.addRecipes(GTFluidBlockDryable.DRYING_RECIPE_LIST.getRecipeList(), "gt.drying");
+			registry.addRecipeCatalyst(new ItemStack(Blocks.HARDENED_CLAY), "gt.drying");
+			registry.addRecipeCatalyst(new ItemStack(Blocks.STAINED_HARDENED_CLAY), "gt.drying");
+			registry.addRecipeCatalyst(new ItemStack(Blocks.CONCRETE), "gt.drying");
 
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
 			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class,
@@ -72,7 +93,16 @@ public class GTJeiPlugin implements IModPlugin {
 
 		// washing
 		registry.addRecipeCategories(
-				new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "washing", Blocks.WATER));
+				new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "gt.washing", Blocks.WATER));
+
+		// blooms
+		registry.addRecipeCategories(
+				new GTJeiBloomCategory(registry.getJeiHelpers().getGuiHelper(), "gt.bloom", GTBlocks.bloomIron));
+
+		// drying
+		registry.addRecipeCategories(
+				new GTJeiDryingCategory(registry.getJeiHelpers().getGuiHelper(), "gt.drying", Blocks.HARDENED_CLAY));
+
 	}
 
 	public static void wrapperUtil(@Nonnull IModRegistry registry, GTMultiInputRecipeList list, Block catalyst,

@@ -2,6 +2,7 @@ package gtclassic.recipe;
 
 import gtclassic.GTConfig;
 import gtclassic.GTItems;
+import gtclassic.block.GTBlockBloom;
 import gtclassic.block.GTBlockTileStorage;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
@@ -11,8 +12,6 @@ import gtclassic.tile.GTTileSmelter;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiRefractory;
 import ic2.api.classic.recipe.ClassicRecipes;
-import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
-import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
@@ -50,7 +49,6 @@ public class GTRecipeIterators {
 			createBlockRecipe(mat);
 			createCasingRecipe(mat);
 			createCoilRecipe(mat);
-			createWallRecipe(mat);
 			createFoilRecipe(mat);
 
 			createSmelterRecipes(mat);
@@ -95,28 +93,28 @@ public class GTRecipeIterators {
 					if (k >= 2000 && k < 2700) {
 						// if above 1900k it must be in a blast furnace but not hot ingot
 						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								euCostBF(k * 4), GT.getIngot(mat, 1));
-						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 1) },
-								euCostBF(k * 4), GT.getIngot(mat, 1));
+								GTTileMultiBlastFurnace.totalEu(4000), GT.getIngot(mat, 1));
+						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 4) },
+								GTTileMultiBlastFurnace.totalEu(4000), GT.getIngot(mat, 1));
 						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								euCostBF(k * 4), GT.getIngot(mat, 1));
-						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 1) },
-								euCostBF(k * 4), GT.getIngot(mat, 1));
+								GTTileMultiRefractory.totalEu(4000), GT.getIngot(mat, 1));
+						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 4) },
+								GTTileMultiRefractory.totalEu(4000), GT.getIngot(mat, 1));
 					}
 					if (k >= 2700 && k < 3000) {
 						// if above 2700 a hot ingot is created, this wont null because 2700 is when hot
 						// ingots auto generate from any ingot
 						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								euCostBF(k * 16), GT.getHotIngot(mat, 1));
+								GTTileMultiBlastFurnace.totalEu(8000), GT.getHotIngot(mat, 1));
 						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 4) },
-								euCostBF(k * 16), GT.getHotIngot(mat, 1));
+								GTTileMultiBlastFurnace.totalEu(8000), GT.getHotIngot(mat, 1));
 						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								euCostBF(k * 16), GT.getHotIngot(mat, 1));
+								GTTileMultiBlastFurnace.totalEu(8000), GT.getHotIngot(mat, 1));
 						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 4) },
-								euCostBF(k * 16), GT.getHotIngot(mat, 1));
+								GTTileMultiRefractory.totalEu(8000), GT.getHotIngot(mat, 1));
 						GTTileBath.addRecipe(
 								new IRecipeInput[] { new RecipeInputItemStack(GTMaterialGen.getHotIngot(mat, 1)),
-										new RecipeInputItemStack(GTMaterialGen.getModFluid("water", 1)) },
+										new RecipeInputItemStack(GTMaterialGen.getWater(1)) },
 								GTTileBath.totalTicks(300), GTMaterialGen.getIngot(mat, 1),
 								GTMaterialGen.get(GTItems.testTube, 1));
 						GTRecipeCauldron.addFakeQuenchingRecipe(mat);
@@ -124,10 +122,10 @@ public class GTRecipeIterators {
 					if (k >= 3000) {
 						// anything hotter will be a hot ingot in an arc furnace
 						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								euCostBF(k * 24), GT.getHotIngot(mat, 1));
+								GTTileMultiRefractory.totalEu(16000), GT.getHotIngot(mat, 1));
 						GTTileBath.addRecipe(
 								new IRecipeInput[] { new RecipeInputItemStack(GTMaterialGen.getHotIngot(mat, 1)),
-										new RecipeInputItemStack(GTMaterialGen.getModFluid("water", 1)) },
+										new RecipeInputItemStack(GTMaterialGen.getWater(1)) },
 								GTTileBath.totalTicks(300), GTMaterialGen.getIngot(mat, 1),
 								GTMaterialGen.get(GTItems.testTube, 1));
 						GTRecipeCauldron.addFakeQuenchingRecipe(mat);
@@ -169,7 +167,7 @@ public class GTRecipeIterators {
 	public static void createPlateRecipe(GTMaterial mat) {
 		String ingot = "ingot" + mat.getDisplayName();
 		String plate = "plate" + mat.getDisplayName();
-		if (mat.hasFlag(GTMaterialFlag.PLATE) && (mat != M.Silicon)) {
+		if (mat.hasFlag(GTMaterialFlag.PLATE) && mat != M.Silicon && mat != M.Plastic) {
 			// Plate crafting recipe
 			if (GTConfig.harderPlates) {
 				recipes.addRecipe(GT.getPlate(mat, 1),
@@ -261,14 +259,6 @@ public class GTRecipeIterators {
 		String stick = "stick" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.COIL)) {
 			recipes.addRecipe(GT.getCoil(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', stick });
-		}
-	}
-
-	public static void createWallRecipe(GTMaterial mat) {
-		String plate = "plate" + mat.getDisplayName();
-		String casing = "casingMachine" + mat.getDisplayName();
-		if (mat.hasFlag(GTMaterialFlag.WALL)) {
-			recipes.addRecipe(GT.getWall(mat, 1), new Object[] { "XXX", "XCX", "XXX", 'X', plate, 'C', casing });
 		}
 	}
 
@@ -364,6 +354,7 @@ public class GTRecipeIterators {
 
 	public static void recipeIterators3() {
 		for (Block block : Block.REGISTRY) {
+			createBloomJEIRecipe(block);
 			if (block instanceof GTBlockTileStorage) {
 				GTBlockTileStorage tile = (GTBlockTileStorage) block;
 				GTMaterial material = tile.getMaterial();
@@ -392,6 +383,13 @@ public class GTRecipeIterators {
 		}
 	}
 
+	public static void createBloomJEIRecipe(Block block) {
+		if (block instanceof GTBlockBloom) {
+			GTBlockBloom bloom = (GTBlockBloom) block;
+			GTBlockBloom.bloomUtil(GTMaterialGen.get(block), bloom.getOutput());
+		}
+	}
+
 	public static void dustUtil(ItemStack stack, GTMaterial material) {
 		String smalldust = "dustSmall" + material.getDisplayName();
 		recipes.addShapelessRecipe(stack, new Object[] { smalldust, smalldust, smalldust, smalldust });
@@ -401,9 +399,5 @@ public class GTRecipeIterators {
 	public static void ingotUtil(ItemStack stack, GTMaterial material) {
 		String nugget = "nugget" + material.getDisplayName();
 		recipes.addRecipe(stack, new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
-	}
-
-	public static IRecipeModifier[] euCostBF(int total) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 20) - 100) };
 	}
 }

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.tile.GTTileSolarPanel;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IBlockTextureModifier;
@@ -88,6 +90,9 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
+		if (this == GTBlocks.solarPanel) {
+			return new GTTileSolarPanel();
+		}
 		return new TileEntityBlock();
 	}
 

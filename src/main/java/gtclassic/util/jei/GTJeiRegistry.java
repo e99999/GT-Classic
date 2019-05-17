@@ -12,6 +12,7 @@ import gtclassic.tile.GTTileSmelter;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiChemicalReactor;
+import gtclassic.tile.multi.GTTileMultiCryogenicSeparator;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.tile.multi.GTTileMultiRefractory;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -28,6 +29,7 @@ public enum GTJeiRegistry {
 	BLASTFURNACE(GTTileMultiBlastFurnace.RECIPE_LIST, GTBlocks.tileBlastFurnace, GTGuiMachine.GTBlastFurnaceGui.class, 78, 24, 20, 18 ),
 	REFRACTORY(GTTileMultiRefractory.RECIPE_LIST, GTBlocks.tileRefractory, GTGuiMachine.GTRefractoryGui.class, 78, 24, 20, 18 ),
 	CHEMICALREACTOR(GTTileMultiChemicalReactor.RECIPE_LIST, GTBlocks.tileChemicalReactor, GTGuiMachine.GTChemicalReactorGui.class, 78, 25, 20, 18),
+	CRYOGENICSEPARATOR(GTTileMultiCryogenicSeparator.RECIPE_LIST, GTBlocks.tileCryogenicSeparator, GTGuiMachine.GTCryogenicSeparatorGui.class, 78, 25, 20, 18),
 	BLOOMERY(GTTileMultiBloomery.JEI_RECIPE_LIST, GTBlocks.tileBloomery, GTGuiMachine.GTBloomeryGui.class, 79, 18, 20, 11),
 	ROASTER(GTTileRoaster.RECIPE_LIST, GTBlocks.tileRoaster, GTGuiMachine.GTRoasterGui.class, 78, 28, 20, 11),
 	BATH(GTTileBath.RECIPE_LIST, GTBlocks.tileBath, GTGuiMachine.GTBathGui.class, 78, 28, 20, 11);

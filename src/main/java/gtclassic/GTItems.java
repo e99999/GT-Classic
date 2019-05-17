@@ -31,6 +31,7 @@ public class GTItems {
 	public static final GTItemComponent
 	plasticFletching = createItem(new GTItemComponent("plastic_fletching", 15, 2, false)),
 	woodPlate = createItem(new GTItemComponent("wood_plate", 10, 0, false)),
+	magnesiaBrick = createItem(new GTItemComponent("magnesiacarbon_brick", 13, 2, false )),
 	resinPCB = createItem(new GTItemComponent("resin_pcb", 11, 0, false)),
 	plasticPCB = createItem(new GTItemComponent("plastic_pcb", 12, 0, false)),
 	basicTransistor = createItem(new GTItemComponent("basic_transistor", 14, 0, false)),

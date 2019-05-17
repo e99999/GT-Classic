@@ -183,6 +183,17 @@ public class GTTileRoaster extends GTTileBaseMachine {
 				1, 
 				GTMaterialGen.getDust(GTMaterial.Molybdenum, 1),
 				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+		
+		addRecipe("dustChromite", 3, 
+				1, 
+				GTMaterialGen.getDust(GTMaterial.Chrome, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Iron, 1),
+				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1));
+		
+		addRecipe("dustSaltpeter", 12, 
+				3, 
+				GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1),
+				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 3));
 	}
 	// @formatter:on
 
@@ -215,7 +226,7 @@ public class GTTileRoaster extends GTTileBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 16);
 	}
 
 	public static IRecipeModifier[] euCost(int amount) {
