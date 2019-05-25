@@ -7,8 +7,11 @@ import ic2.core.IC2;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.Loader;
 
 public class GTValues {
 
@@ -123,6 +126,13 @@ public class GTValues {
 		} else {
 			return "null";
 		}
+	}
+
+	public static boolean isBCShard(ItemStack stack) {
+		if (Loader.isModLoaded("buildcraftcore")) {
+			return stack.isItemEqual(new ItemStack(Item.getByNameOrId("buildcraftcore:fragile_fluid_shard")));
+		}
+		return false;
 	}
 
 }

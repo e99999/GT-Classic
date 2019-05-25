@@ -50,7 +50,9 @@ public class GTRecipeProcessing {
 		 * different
 		 */
 		TileEntityMacerator.addRecipe(GT.get(Items.FLINT, 1), GT.getDust(M.Flint, 1), 0.1F);
-		// TODO add granite recipe to granite dust
+		TileEntityMacerator.addRecipe("stoneGranite", 1, GT.getDust(GTMaterial.Granite, 1));
+		TileEntityMacerator.addRecipe("stoneMarble", 1, GT.getDust(GTMaterial.Marble, 1));
+		TileEntityMacerator.addRecipe("stoneBasalt", 1, GT.getDust(GTMaterial.Basalt, 1));
 		TileEntityMacerator.addRecipe(Ic2Items.uraniumDrop, 1, GT.getDust(M.Uranium, 1), 0.1F);
 		TileEntityMacerator.addRecipe("enderpearl", 1, GT.getDust(M.EnderPearl, 1), 0.2F);
 		TileEntityMacerator.addRecipe(GT.get(Items.ENDER_EYE, 1), GT.getDust(M.EnderEye, 1), 0.2F);

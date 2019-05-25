@@ -6,6 +6,7 @@ import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.block.GTBlockBloom;
 import gtclassic.container.GTContainerWorkbench;
+import gtclassic.container.GTItemContainerCraftingTablet;
 import gtclassic.fluid.GTFluidBlockDryable;
 import gtclassic.ore.GTOreFlag;
 import gtclassic.ore.GTOreStone;
@@ -71,7 +72,7 @@ public class GTJeiPlugin implements IModPlugin {
 
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
 			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class,
-					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);
+					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);//this is what fucks up shift clicking fixing
 
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			for (Block block : Block.REGISTRY) {

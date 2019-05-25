@@ -77,6 +77,7 @@ public class GTRecipeIterators {
 		String smalldust = "dustSmall" + mat.getDisplayName();
 		String dust = "dust" + mat.getDisplayName();
 		String nugget = "nugget" + mat.getDisplayName();
+		int k = mat.getTemp();
 
 		if (!mat.equals(GTMaterial.Plastic)) {
 
@@ -84,34 +85,17 @@ public class GTRecipeIterators {
 				// Ingot crafting recipe
 				recipes.addRecipe(GT.getIngot(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
 
-				if (mat.hasFlag(GTMaterialFlag.DUST)) {
-					int k = mat.getTemp();
+				if (mat.hasFlag(GTMaterialFlag.DUST) || mat.equals(GTMaterial.AnnealedCopper)) {
 					if (k < 2000) {
-						// If the materials temp is below 1900k it can be smelting in a furnace
 						GameRegistry.addSmelting(GT.getDust(mat, 1), (GT.getIngot(mat, 1)), 0.1F);
 					}
 					if (k >= 2000 && k < 2700) {
-						// if above 1900k it must be in a blast furnace but not hot ingot
-						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								GTTileMultiBlastFurnace.totalEu(4000), GT.getIngot(mat, 1));
-						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 4) },
-								GTTileMultiBlastFurnace.totalEu(4000), GT.getIngot(mat, 1));
-						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								GTTileMultiRefractory.totalEu(4000), GT.getIngot(mat, 1));
-						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 4) },
-								GTTileMultiRefractory.totalEu(4000), GT.getIngot(mat, 1));
+						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) }, 8000,
+								GT.getIngot(mat, 1));
 					}
 					if (k >= 2700 && k < 3000) {
-						// if above 2700 a hot ingot is created, this wont null because 2700 is when hot
-						// ingots auto generate from any ingot
-						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								GTTileMultiBlastFurnace.totalEu(8000), GT.getHotIngot(mat, 1));
-						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 4) },
-								GTTileMultiBlastFurnace.totalEu(8000), GT.getHotIngot(mat, 1));
-						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								GTTileMultiBlastFurnace.totalEu(8000), GT.getHotIngot(mat, 1));
-						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(smalldust, 4) },
-								GTTileMultiRefractory.totalEu(8000), GT.getHotIngot(mat, 1));
+						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) }, 16000,
+								GT.getHotIngot(mat, 1));
 						GTTileBath.addRecipe(
 								new IRecipeInput[] { new RecipeInputItemStack(GTMaterialGen.getHotIngot(mat, 1)),
 										new RecipeInputItemStack(GTMaterialGen.getWater(1)) },
@@ -120,9 +104,10 @@ public class GTRecipeIterators {
 						GTRecipeCauldron.addFakeQuenchingRecipe(mat);
 					}
 					if (k >= 3000) {
-						// anything hotter will be a hot ingot in an arc furnace
-						GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-								GTTileMultiRefractory.totalEu(16000), GT.getHotIngot(mat, 1));
+						if (!mat.equals(GTMaterial.AnnealedCopper)) {
+							GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
+									GTTileMultiRefractory.totalEu(32000), GT.getHotIngot(mat, 1));
+						}
 						GTTileBath.addRecipe(
 								new IRecipeInput[] { new RecipeInputItemStack(GTMaterialGen.getHotIngot(mat, 1)),
 										new RecipeInputItemStack(GTMaterialGen.getWater(1)) },
@@ -277,9 +262,12 @@ public class GTRecipeIterators {
 		if (GTMaterial.isLowHeat(mat) && !mat.equals(mat.RefinedIron) && !mat.hasFlag(GTMaterialFlag.GEM)) {
 
 			if (mat.hasFlag(GTMaterialFlag.PLATE)) {
-				GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldPlate), GTMaterialGen.getPlate(mat, 1));
-				GTTileSmelter.addRecipe(nugget, 9, GTMaterialGen.get(GTItems.moldPlate),
-						GTMaterialGen.getPlate(mat, 1));
+				if (!mat.equals(GTMaterial.Plastic)) {
+					GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldPlate),
+							GTMaterialGen.getPlate(mat, 1));
+					GTTileSmelter.addRecipe(nugget, 9, GTMaterialGen.get(GTItems.moldPlate),
+							GTMaterialGen.getPlate(mat, 1));
+				}
 				GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldPlate), GTMaterialGen.getPlate(mat, 1));
 			}
 			if (mat.hasFlag(GTMaterialFlag.GEAR)) {

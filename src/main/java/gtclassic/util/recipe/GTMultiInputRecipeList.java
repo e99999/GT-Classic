@@ -49,7 +49,7 @@ public class GTMultiInputRecipeList {
 		if (isListInvalid(output.getAllOutputs())) {
 			GTMod.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
 			for (int i = 0; i < inputs.size(); i++) {
-				GTMod.logger.info("Recipe[" + inputs.get(i) + "] as input " + category);
+				GTMod.logger.info("Recipe[" + id + ": " + inputs.get(i) + "] as input " + category);
 			}
 			return;
 		}

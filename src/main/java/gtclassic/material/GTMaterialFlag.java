@@ -17,7 +17,7 @@ public enum GTMaterialFlag {
 	WIRE("_finewire", 11, false), 
 	BOULE("_boule", 12, false), 
 	FLUID("", 13, true), 
-	PLASMA("plasma", 13, true),
+	GAS("", 13, true),
 	PARTICLE("_particle", 15, false), 
 	BLOCK("_block", 48, false), 
 	CASING("_casing", 50, false),

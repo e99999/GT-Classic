@@ -26,6 +26,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -137,17 +138,16 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 				GTMaterialGen.get(GTItems.testTube, 2));
 		
 		addRecipe(new IRecipeInput[] { 
-				input("dustDarkAshes", 12), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 4))}, 
+				input("dustAsh", 12), 
+				input(GTMaterialGen.getWater(4))}, 
 				totalTicks(1200), 
-				GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 4));
+				GTMaterialGen.getFluid(GTMaterial.SodiumHydroxide, 4));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("dustCalcite", 4), 
 				input(GTMaterialGen.getFluid(GTMaterial.Brine, 2))}, 
 				totalTicks(400), 
-				GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
+				GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 2));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("dustBrine", 4), 
@@ -158,7 +158,8 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 		addRecipe(new IRecipeInput[] { 
 				input("dustPyrolusite", 2), 
 				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1))}, 
-				totalTicks(800), 
+				totalTicks(800),
+				GTMaterialGen.getDust(GTMaterial.Manganese, 2),
 				GTMaterialGen.getFluid(GTMaterial.Chlorine, 1));
 		
 		addRecipe(new IRecipeInput[] { 
@@ -172,6 +173,106 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 4))}, 
 				totalTicks(1200), 
 				GTMaterialGen.getFluid(GTMaterial.NitricAcid, 4));
+		
+		//Green Vitriol
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreMagnetite", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getDust(GTMaterial.Magnetite, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreLimonite", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400),
+				GTMaterialGen.getDust(GTMaterial.Limonite, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("orePyrite", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getDust(GTMaterial.Pyrite, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreTungstate", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getDust(GTMaterial.Tungstate, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreChromite", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getDust(GTMaterial.Chromite, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreTin", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getIc2(Ic2Items.tinDust, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreIron", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getIc2(Ic2Items.ironDust, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+		
+		//Blue Vitriol
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreGold", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getIc2(Ic2Items.goldDust, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreTetrahedrite", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getDust(GTMaterial.Tetrahedrite, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreMalachite", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getDust(GTMaterial.Malachite, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreCopper", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getIc2(Ic2Items.copperDust, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
+		
+		//Cyan Vitriol
+		addRecipe(new IRecipeInput[] { 
+				input("oreSheldonite", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getDust(GTMaterial.Sheldonite, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
+		
+		//Red Vitriol
+		
+		addRecipe(new IRecipeInput[] { 
+				input("oreGarnierite", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
+				totalTicks(400), 
+				GTMaterialGen.getDust(GTMaterial.Garnierite, 2),
+				GTMaterialGen.getFluid(GTMaterial.VitriolRed, 3));
+		
+		//Mercury Bathing
 		
 		
 	}

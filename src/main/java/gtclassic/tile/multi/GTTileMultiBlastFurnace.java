@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBlastFurnace;
 import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
@@ -27,6 +28,7 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -149,164 +151,173 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	// @formatter:off
 	public static void init() {
 		
-		int LOW_TIME = 4000;
-		int MED_TIME = 8000;
-		int LONG_TIME = 16000;
+		int LOW_TIME = 8000;
+		int MED_TIME = 16000;
+		int LONG_TIME = 32000;
 
 		addRecipe(new IRecipeInput[] { 
-				input("ingotIron", 1) }, 
-				totalEu(LOW_TIME),
+				input("ingotIron", 1)}, 
+				(LOW_TIME),
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 1));
 		
 		addRecipe(new IRecipeInput[] { 
-				input("dustIron", 1) }, 
-				totalEu(LOW_TIME),
+				input("dustIron", 1)}, 
+				(LOW_TIME),
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 1));
 
 		addRecipe(new IRecipeInput[] { 
 				input("oreIron", 1), 
 				input("dustCalcite", 1) }, 
-				totalEu(LOW_TIME),
+				(LOW_TIME),
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 
 		addRecipe(new IRecipeInput[] { 
 				input("dustPyrite", 1), 
-				input("dustCalcite", 1) }, totalEu(LOW_TIME),
+				input("dustCalcite", 1) }, 
+				(LOW_TIME),
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("orePyrite", 1), 
-				input("dustCalcite", 1) }, totalEu(LOW_TIME),
+				input("dustCalcite", 1) }, 
+				(LOW_TIME),
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 
 		addRecipe(new IRecipeInput[] { 
 				input("dustMagnetite", 1), 
 				input("dustCalcite", 1) },
-				totalEu(LOW_TIME), 
+				(LOW_TIME), 
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("oreMagnetite", 1), 
 				input("dustCalcite", 1) },
-				totalEu(LOW_TIME), 
+				(LOW_TIME), 
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 
 		addRecipe(new IRecipeInput[] { 
 				input("dustLimonite", 1), 
 				input("dustCalcite", 1) },
-				totalEu(LOW_TIME), 
+				(LOW_TIME), 
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("oreLimonite", 1), 
 				input("dustCalcite", 1) },
-				totalEu(LOW_TIME), 
+				(LOW_TIME), 
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
+		
+		IRecipeInput validSteelIron = new RecipeInputCombined(4,new IRecipeInput[] { 
+				new RecipeInputOreDict("ingotIron", 1), 
+				new RecipeInputOreDict("dustIron", 1), 
+				new RecipeInputOreDict("ingotRefinedIron", 1)
+				});
 
 		addRecipe(new IRecipeInput[] { 
-				input("ingotRefinedIron", 1), 
+				validSteelIron, 
 				input("dustCoal", 2) },
-				totalEu(MED_TIME), 
+				(MED_TIME), 
 				GTMaterialGen.getIngot(GTMaterial.Steel, 1), 
 				GTMaterialGen.getDust(GTMaterial.DarkAshes, 2));
 		
 		addRecipe(new IRecipeInput[] { 
-				input("ingotRefinedIron", 1), 
-				input("dustCarbon", 1) },
-				totalEu(MED_TIME), 
+				validSteelIron, 
+				input("dustSmallCarbon", 1) },
+				(MED_TIME), 
 				GTMaterialGen.getIngot(GTMaterial.Steel, 1));
 
 		addRecipe(new IRecipeInput[] { 
 				input("dustChromite", 1) }, 
-				totalEu(LONG_TIME),
-				GTMaterialGen.getNugget(GTMaterial.Chrome, 6), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustSmallChromite", 4) }, 
-				totalEu(LONG_TIME),
+				(LONG_TIME),
 				GTMaterialGen.getNugget(GTMaterial.Chrome, 6), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("oreChromite", 1) }, 
-				totalEu(LONG_TIME), 
+				(LONG_TIME), 
 				GTMaterialGen.getNugget(GTMaterial.Chrome, 6),
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 
 		addRecipe(new IRecipeInput[] { 
 				input("dustMolybdenite", 3) }, 
-				totalEu(LONG_TIME),
-				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustSmallMolybdenite", 12) }, 
-				totalEu(LONG_TIME),
+				(LONG_TIME),
 				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 3));
 		
 		addRecipe(new IRecipeInput[] { 
 				input("oreMolybdenite", 3) }, 
-				totalEu(LONG_TIME),
+				(LONG_TIME),
 				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 6));
 
 		addRecipe(new IRecipeInput[] { 
 				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)), }, 
-				totalEu(LONG_TIME),
+				(LONG_TIME),
 				GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
 
 		addRecipe(new IRecipeInput[] { 
 				input("oreIridium", 1), }, 
-				totalEu(LONG_TIME),
+				(LONG_TIME),
 				GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
 		
 		//alloy recipes
 		
-		IRecipeInput anyIron = new RecipeInputCombined(4,new IRecipeInput[] { new RecipeInputOreDict("ingotIron", 4), new RecipeInputOreDict("ingotRefinedIron", 4),
-						new RecipeInputOreDict("ingotSteel", 4) });
+		IRecipeInput validStainlessIron = new RecipeInputCombined(4,new IRecipeInput[] { 
+				new RecipeInputOreDict("ingotIron", 4), 
+				new RecipeInputOreDict("dustIron", 4), 
+				new RecipeInputOreDict("ingotRefinedIron", 4),
+				new RecipeInputOreDict("dustSteel", 4), 
+				new RecipeInputOreDict("ingotSteel", 4)
+				});
 		
 		addRecipe(new IRecipeInput[] { 
-				anyIron, 
-				input("ingotInvar", 3), 
-				input("ingotManganese", 1), 
-				input("ingotChrome", 1), 
+				validStainlessIron, 
+				metal("Invar", 3), 
+				metal("Manganese", 1), 
+				metal("Chrome", 1), 
 				},
-				totalEu(MED_TIME), 
+				MED_TIME, 
 				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
 		
 		addRecipe(new IRecipeInput[] { 
-				anyIron, 
-				input("ingotInvar", 3), 
-				input("ingotNiobium", 1), 
-				input("ingotChrome", 1), 
+				validStainlessIron, 
+				metal("Invar", 3), 
+				metal("Niobium", 1), 
+				metal("Chrome", 1), 
 				},
-				totalEu(MED_TIME), 
+				MED_TIME, 
 				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
 		
 		addRecipe(new IRecipeInput[] { 
-				input("ingotCobalt", 5), 
-				input("ingotChrome", 2), 
-				input("ingotNickel", 1), 
-				input("ingotMolybdenum", 1), 
+				metal("Cobalt", 5), 
+				metal("Chrome", 2), 
+				metal("Nickel", 1), 
+				metal("Molybdenum", 1), 
 				},
-				totalEu(MED_TIME), 
+				MED_TIME, 
 				GTMaterialGen.getIngot(GTMaterial.Ultimet, 9));
 		
 		addRecipe(new IRecipeInput[] { 
-				input("ingotNiobium", 1), 
-				input("ingotTitanium", 1), 
+				metal("Niobium", 1), 
+				metal("Titanium", 1), 
 				},
-				totalEu(MED_TIME), 
+				MED_TIME, 
 				GTMaterialGen.getIngot(GTMaterial.NiobiumTitanium, 2));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("dustZirconium", 7),
+				metal("Niobium", 1),
+				metal("Tin", 1),
+				},
+				MED_TIME, 
+				GTMaterialGen.getIngot(GTMaterial.Zircaloy, 9));
 		
 		
 
@@ -320,12 +331,35 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	/**
 	 * Adds a recipe not only to the blast furnace but to the refractory as well
 	 */
-	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
+	public static void addRecipe(IRecipeInput[] inputs, int totalEu, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-
+		IRecipeModifier[] modifiers = totalEu(totalEu);
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
+		}
+		if (inlist.size() == 1) {
+			inlist.add(basicswitch);
+		}
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifiers) {
+			modifier.apply(mods);
+		}
+		for (ItemStack output : outputs) {
+			outlist.add(output);
+		}
+		addRecipe(inlist, new MachineOutput(mods, outlist));
+		GTTileMultiRefractory.addRecipe(inputs, totalEu, outputs);
+	}
+
+	private static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
+		List<IRecipeInput> inlist = new ArrayList<>();
+		List<ItemStack> outlist = new ArrayList<>();
+		for (IRecipeInput input : inputs) {
+			inlist.add(input);
+		}
+		if (inlist.size() == 1) {
+			inlist.add(basicswitch);
 		}
 		NBTTagCompound mods = new NBTTagCompound();
 		for (IRecipeModifier modifier : modifiers) {
@@ -346,51 +380,72 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		if (!world.isAreaLoaded(pos, 3)) {
 			return false;
 		}
-		// im not doing this layer by layer, instead ill loop up and over the structure
-		// vertically then finish the base layers last
+		// we doing it "big math" style not block by block
 		int3 dir = new int3(getPos(), getFacing());
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 4; i++) {// above tile
 			if (!(isMachineCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-		if (!isAir(dir.back(1))) {// peak
+		if (!isMachineCasing(dir.left(1))) {// left
 			return false;
 		}
-		for (int i = 0; i < 5; i++) {
-			if (!(isAir(dir.down(1)))) {
-				return false;
-			}
-		}
-		if (!isMachineCasing(dir.down(1))) {
-			return false;
-		}
-		if (!isMachineCasing(dir.back(1))) {
-			return false;
-		}
-		for (int i = 0; i < 6; i++) {
-			if (!(isMachineCasing(dir.up(1)))) {
-				return false;
-			}
-		}
-		if (!isAir(dir.forward(1))) {// peak again
-			return false;
-		}
-		if (!isMachineCasing(dir.left(1))) {
-			return false;
-		}
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 4; i++) {
 			if (!(isMachineCasing(dir.down(1)))) {
 				return false;
 			}
 		}
-		if (!(isMachineCasing(dir.right(2)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(2))
-				&& isMachineCasing(dir.back(2)) && isMachineCasing(dir.right(2)) && isMachineCasing(dir.up(1))
-				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(2))
-				&& isMachineCasing(dir.back(2)) && isMachineCasing(dir.up(1)) && isMachineCasing(dir.right(2))
-				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.left(2))
-				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.right(2)))) {
+		if (!isMachineCasing(dir.back(1))) {// back
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.up(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.right(1))) {// right
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.down(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.right(1))) {// right
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.up(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.back(1))) {// back
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.down(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.left(1))) {// left
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.up(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.left(1))) {// left
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.down(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.forward(2).right(2))) {// missing front right column
 			return false;
 		}
 		for (int i = 0; i < 4; i++) {
@@ -405,10 +460,6 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	public boolean isMachineCasing(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == casingMachine;
-	}
-
-	public boolean isAir(int3 pos) {
-		return world.isAirBlock(pos.asBlockPos());
 	}
 
 }

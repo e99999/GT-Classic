@@ -23,7 +23,7 @@ public enum GTJeiRegistry {
 	// @formatter:off
 	CENTRIFUGE(GTTileCentrifuge.RECIPE_LIST, GTBlocks.tileCentrifuge, GTGuiMachine.GTIndustrialCentrifugeGui.class, 78, 24, 20, 18),
 	ELECTROLYZER(GTTileElectrolyzer.RECIPE_LIST, GTBlocks.tileElectrolyzer, GTGuiMachine.GTIndustrialElectrolyzerGui.class, 78, 24, 20, 18),
-	SHREDDER(GTTileShredder.RECIPE_LIST, GTBlocks.tileShredder, GTGuiMachine.GTShredderGui.class, 60, 29, 20, 10),
+	SHREDDER(GTTileShredder.RECIPE_LIST, GTBlocks.tileShredder, GTGuiMachine.GTShredderGui.class, 78, 24, 20, 11),
 	FUSION(GTTileMultiFusion.RECIPE_LIST, GTBlocks.tileFusion, GTFusionComputerGui.class, 69, 34, 25, 17),
 	SMELTER(GTTileSmelter.RECIPE_LIST, GTBlocks.tileSmelter, GTGuiMachine.GTElectricSmelterGui.class, 78, 25, 20, 16),
 	BLASTFURNACE(GTTileMultiBlastFurnace.RECIPE_LIST, GTBlocks.tileBlastFurnace, GTGuiMachine.GTBlastFurnaceGui.class, 78, 24, 20, 18 ),

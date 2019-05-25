@@ -14,27 +14,27 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTContainerShredder extends ContainerTileComponent<GTTileShredder> {
 
-	public static Box2D machineProgressBox = new Box2D(60, 32, 20, 11); // the progress bar and size
-	public static Vec2i machineProgressPos = new Vec2i(176, 0); // where the overlay is
+	public static final Box2D machineProgressBox = new Box2D(78, 29, 20, 11);
+	public static final Vec2i machineProgressPos = new Vec2i(176, 0);
 
 	public GTContainerShredder(InventoryPlayer player, GTTileShredder tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 35, 29, null));
+		this.addSlotToContainer(new SlotCustom(tile, 0, 35, 25, null));
+		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, null));
 
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 1, 89, 20));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 107, 20));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 125, 20));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 89, 38));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 5, 107, 38));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 6, 125, 38));
+		for (int y = 0; y < 2; ++y) {
+			for (int x = 0; x < 3; ++x) {
+				this.addSlotToContainer(new SlotOutput(player.player, tile, 2 + x + y * 3, 107 + x * 18, 17 + y * 18));
+			}
+		}
 
 		this.addPlayerInventory(player);
 
 		for (int i = 0; i < 2; ++i) {
-			this.addSlotToContainer(new GTSlotUpgrade(tile, 7 + i, 80 + (i * 18), 64));
+			this.addSlotToContainer(new GTSlotUpgrade(tile, 8 + i, 80 + (i * 18), 62));
 		}
 
-		this.addComponent(new MachineProgressComp(tile, GTContainerShredder.machineProgressBox,
+		this.addComponent(new MachineProgressComp(tile, new Box2D(78, 28, 20, 11),
 				GTContainerShredder.machineProgressPos));
 	}
 

@@ -8,6 +8,7 @@ public abstract class GTTileBaseMachinePassive extends GTTileBaseMachine {
 	public GTTileBaseMachinePassive(int slots) {
 		super(slots, 0, 1, 100, 8);
 		this.addedToEnergyNet = false;
+		isPassive = true;
 	}
 
 	@Override

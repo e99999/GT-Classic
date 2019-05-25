@@ -155,6 +155,12 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 				input(GTMaterialGen.getFluid(GTMaterial.Beryllium, 1)) },
 				totalEu(16775168), 
 				GTMaterialGen.getDust(GTMaterial.Platinum, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)), 
+				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) },
+				totalEu(10000000), 
+				GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
 	// @formatter:on
 

@@ -371,6 +371,11 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 				GTMaterialGen.getDust(GTMaterial.Plastic, 1), 
 				GTMaterialGen.get(tube));
 		
+		addRecipe("dustPlatinumGroupSludge", 1, 0, totalEu(2500), 
+				GTMaterialGen.getSmallDust(GTMaterial.Iridium, 1), 
+				GTMaterialGen.getSmallDust(GTMaterial.Osmium, 1), 
+				GTMaterialGen.getSmallDust(GTMaterial.Platinum, 2));
+		
 		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 16), 1, totalEu(25000), 
 				GTMaterialGen.getFluid(GTMaterial.Methane, 1),
 				GTMaterialGen.get(Items.LEATHER, 6), 

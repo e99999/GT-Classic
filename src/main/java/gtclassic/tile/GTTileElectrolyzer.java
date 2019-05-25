@@ -63,7 +63,7 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 	protected static final int[] slotOutputs = { 4, 5, 6, 7, 8, 9 };
 
 	public GTTileElectrolyzer() {
-		super(11, 2, 64, 100, 512);
+		super(11, 2, 64, 100, 128);
 		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
 	}
@@ -331,13 +331,6 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 				GTMaterialGen.getDust(GTMaterial.Sulfur, 1));
 
 		addRecipe(new IRecipeInput[] { 
-				input("dustTantalite", 3) }, 
-				totalEu(120000),
-				GTMaterialGen.getDust(GTMaterial.Tantalum, 1), 
-				GTMaterialGen.getDust(GTMaterial.Niobium, 1), 
-				GTMaterialGen.getDust(GTMaterial.Manganese, 1));
-
-		addRecipe(new IRecipeInput[] { 
 				input("dustPyrope", 14), 
 				tubes(6) }, 
 				totalEu(90000),
@@ -502,6 +495,46 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 				totalEu(32000),
 				GTMaterialGen.getDust(GTMaterial.Carbon, 1), 
 				GTMaterialGen.getFluid(GTMaterial.Oxygen, 2));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 6)) }, 
+				totalEu(96000),
+				GTMaterialGen.getIc2(Ic2Items.ironDust, 1), 
+				GTMaterialGen.getDust(GTMaterial.Sulfur, 1),
+				GTMaterialGen.getFluid(GTMaterial.Oxygen, 4),
+				GTMaterialGen.get(GTItems.testTube, 2));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 6)) }, 
+				totalEu(96000),
+				GTMaterialGen.getIc2(Ic2Items.copperDust, 1), 
+				GTMaterialGen.getDust(GTMaterial.Sulfur, 1),
+				GTMaterialGen.getFluid(GTMaterial.Oxygen, 4),
+				GTMaterialGen.get(GTItems.testTube, 2));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getFluid(GTMaterial.VitriolCyan, 6)) }, 
+				totalEu(96000),
+				GTMaterialGen.getDust(GTMaterial.Nickel, 1), 
+				GTMaterialGen.getDust(GTMaterial.Sulfur, 1),
+				GTMaterialGen.getFluid(GTMaterial.Oxygen, 4),
+				GTMaterialGen.get(GTItems.testTube, 2));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getFluid(GTMaterial.VitriolRed, 6)) }, 
+				totalEu(96000),
+				GTMaterialGen.getDust(GTMaterial.Cobalt, 1), 
+				GTMaterialGen.getDust(GTMaterial.Sulfur, 1),
+				GTMaterialGen.getFluid(GTMaterial.Oxygen, 4),
+				GTMaterialGen.get(GTItems.testTube, 2));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getFluid(GTMaterial.Chloroplatinicacid, 9)) }, 
+				totalEu(256000),
+				GTMaterialGen.getDust(GTMaterial.Platinum, 1), 
+				GTMaterialGen.getFluid(GTMaterial.Chlorine, 6),
+				GTMaterialGen.getFluid(GTMaterial.Hydrogen, 2),
+				GTMaterialGen.get(GTItems.testTube, 1));
 
 		// Aluminium recipes
 

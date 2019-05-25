@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiCharcoalPit;
@@ -81,6 +82,16 @@ public class GTItemMagnifyingGlass extends Item implements IStaticTexturedItem {
 			if (tileEntity instanceof GTTileMultiBaseMachine) {
 				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
+			}
+
+			if (tileEntity instanceof GTTileDrum) {
+				GTTileDrum tank = (GTTileDrum) tileEntity;
+				if (!tank.isEmpty()) {
+					IC2.platform.messagePlayer(player, tank.getFluidAmount() + "mB of " + tank.getFluidName());
+				} else {
+					IC2.platform.messagePlayer(player, "Drum is empty");
+				}
+				IC2.platform.messagePlayer(player, "Auto Output: " + tank.getExport());
 			}
 
 			return EnumActionResult.SUCCESS;

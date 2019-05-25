@@ -6,6 +6,7 @@ import java.util.List;
 import gtclassic.block.GTBlockBloom;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCustom;
+import gtclassic.block.GTBlockDrum;
 import gtclassic.block.GTBlockFalling;
 import gtclassic.block.GTBlockGlass;
 import gtclassic.block.GTBlockMortar;
@@ -37,6 +38,7 @@ import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDigitalTransformer;
+import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.GTTileElectrolyzer;
 import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTileHeatingElement;
@@ -108,7 +110,7 @@ public class GTBlocks {
 
 	public static final GTBlockSluice tileSluice = registerBlock(new GTBlockSluice());
 	public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new GTBlockSluiceBoxExt());
-
+	
 	public static final GTBlockTileBasic 
 	tileHeating = registerBlock(new GTBlockTileBasic("machine_heatingelement")),
 	tileBloomery = registerBlock(new GTBlockTileBasic("machine_bloomery", 5)),
@@ -119,6 +121,7 @@ public class GTBlocks {
 	tileComputer = registerBlock(new GTBlockTileBasic("machine_computercube_ev")),
 	tileCentrifuge = registerBlock(new GTBlockTileBasic("machine_industrialcentrifuge_lv")),
 	tileSmelter = registerBlock(new GTBlockTileBasic("machine_electricsmelter_lv")),
+	tileFluidSmelter = registerBlock(new GTBlockTileBasic("machine_fluidsmelter_lv")),
 	tileRoaster = registerBlock(new GTBlockTileBasic("machine_roaster_lv")),
 	tileShredder = registerBlock(new GTBlockTileBasic("machine_shredder_mv")),
 	tileBath = registerBlock(new GTBlockTileBasic("machine_bath")),
@@ -139,6 +142,9 @@ public class GTBlocks {
 	tileDigitalTransformer = registerBlock(new GTBlockTileBasic("machine_digitaltransformer_luv")),
 	tileCableEnergium = registerBlock(new GTBlockTileBasic("cable_energium_luv", 1)),
 	tileCableLapotron = registerBlock(new GTBlockTileBasic("cable_lapotron_zpm"));
+	
+	public static final GTBlockDrum
+	drum = registerBlock(new GTBlockDrum(GTMaterial.StainlessSteel));
 
 	public static final GTBlockCustom 
 	driedResin = registerBlock(new GTBlockCustom("Resin", 0, 12, 1)),
@@ -187,11 +193,11 @@ public class GTBlocks {
 			"machine_chemicalreactor_hv", "machine_refractory_hv", "machine_roaster_lv", "machine_constructor_mv",
 			"machine_compiler_hv", "machine_cryogenicseparator_mv", "machine_chargeomat_ev", "machine_computercube_ev",
 			"machine_industrialcentrifuge_lv", "machine_industrialelectrolyzer_hv", "machine_shredder_mv",
-			"machine_electricsmelter_lv", "machine_matterfabricator_ev", "machine_matterreplicator_ev",
-			"machine_playerdetector_lv", "machine_fusioncomputer_luv", "machine_lightningrod_iv",
-			"machine_quantumenergystorage_ev", "machine_basicenergystorage_ev", "machine_digitaltransformer_luv",
-			"cable_energium_luv", "cable_lapotron_zpm", "tile_digitalchest", "tile_smallchest", "tile_largechest",
-			"tile_bookshelf", "tile_workbench" };
+			"machine_electricsmelter_lv", "machine_fluidsmelter_lv", "machine_matterfabricator_ev",
+			"machine_matterreplicator_ev", "machine_playerdetector_lv", "machine_fusioncomputer_luv",
+			"machine_lightningrod_iv", "machine_quantumenergystorage_ev", "machine_basicenergystorage_ev",
+			"machine_digitaltransformer_luv", "cable_energium_luv", "cable_lapotron_zpm", "tile_digitalchest",
+			"tile_smallchest", "tile_largechest", "tile_bookshelf", "tile_workbench", "tile_drum" };
 
 	protected static final String[] textureTileCustom = { "block_mortar", "block_ducttape", "solar_panel",
 			"coolant_helium_small", "coolant_helium_med", "coolant_helium_large", "rod_thorium_small",
@@ -299,6 +305,7 @@ public class GTBlocks {
 		registerUtil(GTTileWorkbench.class, "Workbench");
 		registerUtil(GTTileFacing.class, "Facing");
 		registerUtil(GTTileSolarPanel.class, "SolarPanel");
+		registerUtil(GTTileDrum.class, "Tank");
 	}
 
 	public static void registerUtil(Class tile, String name) {

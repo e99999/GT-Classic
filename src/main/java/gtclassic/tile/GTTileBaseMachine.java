@@ -37,6 +37,7 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
+import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -92,6 +93,9 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	public boolean shouldCheckRecipe;
 	public final boolean supportsUpgrades;
 	public final int upgradeSlots;
+	public boolean isPassive;
+	
+	public static RecipeInputItemStack basicswitch = new RecipeInputItemStack(GTMaterialGen.get(GTItems.machineSwitch));
 
 	public AudioSource audioSource;
 
@@ -110,6 +114,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		defaultSensitive = false;
 		progressPerTick = 1F;
 		shouldCheckRecipe = true;
+		isPassive = false;
 		addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
 		addGuiFields("recipeOperation", "recipeEnergy", "progress");
 		addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
@@ -170,24 +175,17 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	}
 
 	public void process(MultiRecipe recipe) {
-		boolean tempDisable = false;
 		for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
 			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
 		}
 		List<ItemStack> inputs = getInputs();
-		NBTTagCompound compound = recipe.getOutputs().getMetadata();
-		boolean keepContainers = compound == null ? true : compound.getBoolean("KeepContainers");
 		List<IRecipeInput> recipeKeys = new LinkedList<IRecipeInput>(recipe.getInputs());
 		for (Iterator<IRecipeInput> keyIter = recipeKeys.iterator(); keyIter.hasNext();) {
 			IRecipeInput key = keyIter.next();
 			for (Iterator<ItemStack> inputIter = inputs.iterator(); inputIter.hasNext();) {
 				ItemStack input = inputIter.next();
 				if (key.matches(input) && key.getAmount() <= input.getCount()) {
-					if (input.getItem().hasContainerItem(input) && tempDisable && keepContainers) {
-						outputs.add(new MultiSlotOutput(input.getItem().getContainerItem(input), getOutputSlots()));
-						input.setCount(0);
-						inputIter.remove();
-					} else if (!input.getItem().hasContainerItem(input)) {
+					if (!input.getItem().hasContainerItem(input)) {
 						input.shrink(key.getAmount());
 						if (input.isEmpty()) {
 							inputIter.remove();
@@ -622,6 +620,11 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	public static IRecipeInput tubes(int amount) {
 		return new RecipeInputItemStack(GTMaterialGen.get(GTItems.testTube, amount));
+	}
+
+	public static IRecipeInput metal(String type, int amount) {
+		return new RecipeInputCombined(amount, new IRecipeInput[] { new RecipeInputOreDict("ingot" + type, amount),
+				new RecipeInputOreDict("dust" + type, amount), });
 	}
 
 	/*

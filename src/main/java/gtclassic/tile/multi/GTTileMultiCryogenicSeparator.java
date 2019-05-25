@@ -68,13 +68,13 @@ public class GTTileMultiCryogenicSeparator extends GTTileMultiBaseMachine {
 	@Override
 	public TileEntity getImportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(1).up(1).asBlockPos());
+		return world.getTileEntity(dir.left(1).asBlockPos());
 	}
 
 	@Override
 	public TileEntity getExportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(1).up(1).asBlockPos());
+		return world.getTileEntity(dir.right(1).asBlockPos());
 	}
 
 	@Override
@@ -184,15 +184,11 @@ public class GTTileMultiCryogenicSeparator extends GTTileMultiBaseMachine {
 	public boolean checkStructure() {
 		int3 dir = new int3(getPos(), getFacing());
 		// layer 0
-		if (!(isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
-				&& isMachineCasing(dir.right(1)) && isMachineCasing(dir.right(1)) && isMachineCasing(dir.forward(2))
-				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.left(1))
-				// layer 1
-				&& isAir(dir.up(1)) && isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1).right(1))
-				&& isMachineCasing(dir.forward(1).right(1)) && isMachineCasing(dir.forward(1).left(1))
-				// layer 2
-				&& isMachineCasing(dir.back(1).up(1)) && isMachineCasing(dir.left(1))
-				&& isMachineCasing(dir.back(1).right(1)) && isMachineCasing(dir.forward(1).right(1))
+		if (!(isMachineCasing(dir.back(1)) && isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1).right(1))
+				&& isMachineCasing(dir.forward(1).right(1)) && isMachineCasing(dir.forward(1).left(1).up(1))
+				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1).right(1))
+				&& isMachineCasing(dir.forward(1).right(1)) && isMachineCasing(dir.forward(1).left(1).up(1))
+				&& isMachineCasing(dir.back(1)) && isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1).right(1))
 				&& isMachineCasing(dir.forward(1).left(1)))) {
 			return false;
 		}

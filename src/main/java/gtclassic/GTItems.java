@@ -9,6 +9,7 @@ import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
 import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemFluidTube;
+import gtclassic.item.GTItemMachineSwitch;
 import gtclassic.item.GTItemMagnifyingGlass;
 import gtclassic.item.GTItemMatch;
 import gtclassic.item.GTItemRockCutter;
@@ -40,6 +41,7 @@ public class GTItems {
 	motorMV = createItem(new GTItemComponent("motor_mv", 1, 3, false)),
 	motorHV = createItem(new GTItemComponent("motor_hv", 2, 3, false)),
 	partRobotArm = createItem(new GTItemComponent("part_robotarm", 3, 3, false)),
+	
 	moldBlank = createItem(new GTItemComponent("mold_blank", 0, 2, false)),
 	moldBlock = createItem(new GTItemComponent("mold_block", 1, 2, true)),
 	moldIngot = createItem(new GTItemComponent("mold_ingot", 2, 2, true)),
@@ -50,6 +52,8 @@ public class GTItems {
 	moldTube = createItem(new GTItemComponent("mold_tube", 7, 2, true)),
 	moldGear = createItem(new GTItemComponent("mold_gear", 8, 2, true));
 	// @formatter:on
+	
+	public static final GTItemMachineSwitch machineSwitch = createItem(new GTItemMachineSwitch());
 
 	public static final GTItemMatch match = createItem(new GTItemMatch());
 	public static final GTItemMagnifyingGlass magnifyingGlass = createItem(new GTItemMagnifyingGlass());

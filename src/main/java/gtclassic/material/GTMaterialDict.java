@@ -63,8 +63,8 @@ public class GTMaterialDict {
 				OreDictionary.registerOre("rod" + mat.getDisplayName(), GTMaterialGen.getStick(mat, 1));
 			}
 			if (mat.hasFlag(GTMaterialFlag.WIRE)) {
-				OreDictionary.registerOre("fineWire" + mat.getDisplayName(), GTMaterialGen.getWire(mat, 1));
-				OreDictionary.registerOre("fineWireAny", GTMaterialGen.getWire(mat, 1));
+				OreDictionary.registerOre("wireFine" + mat.getDisplayName(), GTMaterialGen.getWire(mat, 1));
+				OreDictionary.registerOre("wireFineAny", GTMaterialGen.getWire(mat, 1));
 			}
 
 			// Gears

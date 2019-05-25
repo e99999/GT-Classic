@@ -94,6 +94,9 @@ public class GTOreDict {
 		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getIngot(GTMaterial.Silicon, 1)));
 		OreDictionary.registerOre("dyeBlue", (GTMaterialGen.getDust(GTMaterial.Lazurite, 1)));
 		OreDictionary.registerOre("blockGlass", (GTMaterialGen.get(GTBlocks.glassSlag)));
+		OreDictionary.registerOre("itemSlag", (GTMaterialGen.getDust(GTMaterial.Slag, 1)));
+		OreDictionary.registerOre("plateWroughtIron", (GTMaterialGen.getPlate(GTMaterial.RefinedIron, 1)));
+		OreDictionary.registerOre("stickWroughtIron", (GTMaterialGen.getStick(GTMaterial.RefinedIron, 1)));
 
 	}
 

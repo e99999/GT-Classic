@@ -191,7 +191,7 @@ public class GTTileRoaster extends GTTileBaseMachine {
 				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1));
 		
 		addRecipe("dustSaltpeter", 12, 
-				3, 
+				4, 
 				GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1),
 				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 3));
 	}

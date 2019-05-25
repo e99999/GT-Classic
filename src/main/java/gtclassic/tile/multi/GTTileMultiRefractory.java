@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerRefractory;
 import gtclassic.gui.GTGuiMachine.GTRefractoryGui;
@@ -27,6 +28,7 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
@@ -67,13 +69,13 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	@Override
 	public TileEntity getImportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(1).up(1).asBlockPos());
+		return world.getTileEntity(dir.left(1).back(1).up(1).asBlockPos());
 	}
 
 	@Override
 	public TileEntity getExportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(1).up(1).asBlockPos());
+		return world.getTileEntity(dir.right(1).back(1).up(1).asBlockPos());
 	}
 
 	@Override
@@ -134,7 +136,7 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	public static void init() {
 		addRecipe(new IRecipeInput[] { 
 				input("ingotCopper", 1), }, 
-				totalEu(250000),
+				totalEu(64000),
 				GTMaterialGen.getHotIngot(GTMaterial.AnnealedCopper, 1));
 	}
 	// @formatter:on
@@ -143,12 +145,35 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 256) - 100) };
 	}
 
+	public static void addRecipe(IRecipeInput[] inputs, int totalEu, ItemStack... outputs) {
+		List<IRecipeInput> inlist = new ArrayList<>();
+		List<ItemStack> outlist = new ArrayList<>();
+		IRecipeModifier[] modifiers = totalEu(totalEu);
+		for (IRecipeInput input : inputs) {
+			inlist.add(input);
+		}
+		if (inlist.size() == 1) {
+			inlist.add(basicswitch);
+		}
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifiers) {
+			modifier.apply(mods);
+		}
+		for (ItemStack output : outputs) {
+			outlist.add(output);
+		}
+		addRecipe(inlist, new MachineOutput(mods, outlist));
+	}
+
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
 
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
+		}
+		if (inlist.size() == 1) {
+			inlist.add(basicswitch);
 		}
 		NBTTagCompound mods = new NBTTagCompound();
 		for (IRecipeModifier modifier : modifiers) {
@@ -173,21 +198,17 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 		int3 dir = new int3(getPos(), getFacing());
 
 		// layer 2
-		if (!(isWall(dir.forward(1)) && isWall(dir.left(1)) && isWall(dir.back(1)) && isWall(dir.back(1))
-				&& isWall(dir.right(1)) && isWall(dir.right(1)) && isWall(dir.forward(1)) && isWall(dir.forward(1))
-				// layer 1
-				&& isWall(dir.down(1).left(1)) && isWall(dir.left(1)) && isWall(dir.back(1)) && isWall(dir.back(1))
-				&& isWall(dir.right(1)) && isWall(dir.right(1)) && isWall(dir.forward(1)) && isWall(dir.left(1))
-				&& isWall(dir.forward(1).right(1))
+		if (!(isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
+				&& isMachineCasing(dir.right(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.right(1))
+				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.back(2)) &&
+				// bottom layer
+				isMachineCasing(dir.down(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
+				&& isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
+				&& isMachineCasing(dir.left(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
 				// layer 0 stone layer
-				&& isStone(dir.down(1).left(1)) && isStone(dir.left(1)) && isStone(dir.back(1)) && isStone(dir.back(1))
-				&& isStone(dir.right(1)) && isStone(dir.right(1)) && isStone(dir.forward(1)) && isStone(dir.left(1))
-				&& isStone(dir.forward(1).right(1))
-				// edges
-				&& isWall(dir.forward(1)) && isWall(dir.left(1)) && isWall(dir.left(1)) && isWall(dir.left(1).back(1))
-				&& isWall(dir.back(1)) && isWall(dir.back(1)) && isWall(dir.right(1).back(1)) && isWall(dir.right(1))
-				&& isWall(dir.right(1)) && isWall(dir.right(1).forward(1)) && isWall(dir.forward(1))
-				&& isWall(dir.forward(1))
+				&& isStone(dir.down(1)) && isStone(dir.back(1)) && isStone(dir.back(1)) && isStone(dir.right(1))
+				&& isStone(dir.forward(1)) && isStone(dir.forward(1)) && isStone(dir.right(1)) && isStone(dir.back(1))
+				&& isStone(dir.back(1))
 
 		)) {
 			return false;
@@ -197,7 +218,7 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 
 	}
 
-	public boolean isWall(int3 pos) {
+	public boolean isMachineCasing(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING)
 				.getDefaultState();
 	}

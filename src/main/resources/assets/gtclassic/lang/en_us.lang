@@ -388,6 +388,8 @@ tile.gtclassic.plastic4_casing.name=Plastic Casing x 4
 tile.gtclassic.plastic16_casing.name=Plastic Casing x 16
 
 #tiles
+tile.gtclassic.stainlesssteel_drum.name=Drum
+
 tile.gtclassic.machine_heatingelement.name=Heater
 tile.gtclassic.machine_bloomery.name=Bloomery Controller
 tile.gtclassic.machine_bath.name=Bath
@@ -398,7 +400,7 @@ tile.gtclassic.machine_computercube_ev.name=Computer Cube (EV)
 tile.gtclassic.machine_industrialcentrifuge_lv.name=Industrial Centrifuge (LV)
 tile.gtclassic.machine_roaster_lv.name=Roaster (LV)
 tile.gtclassic.machine_shredder_mv.name=Shredder Controller (MV)
-tile.gtclassic.machine_industrialelectrolyzer_hv.name=Industrial Electrolyzer (HV)
+tile.gtclassic.machine_industrialelectrolyzer_hv.name=Industrial Electrolyzer (MV)
 tile.gtclassic.machine_chemicalreactor_hv.name=Chemical Reactor Controller (HV)
 tile.gtclassic.machine_electricsmelter_lv.name=Alloy Smelter (LV)
 tile.gtclassic.machine_leadchamber_lv.name=Lead Chamber Controller (LV)
@@ -570,6 +572,7 @@ item.gtclassic.niobiumtitanium_dustsmall.name=Small Niobium Titanium Dust
 item.gtclassic.tungsticacid_dustsmall.name=Small Tungstic Acid Dust
 item.gtclassic.magnesiacarbon_dustsmall.name=Small Magnesia Carbon Dust
 item.gtclassic.brine_dustsmall.name=Small Evaporated Brine Dust
+item.gtclassic.platinumgroupsludge_dustsmall.name=Small Platinum Group Sludge Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -680,6 +683,7 @@ item.gtclassic.niobiumtitanium_dust.name=Niobium Titanium Dust
 item.gtclassic.tungsticacid_dust.name=Tungstic Acid Dust
 item.gtclassic.magnesiacarbon_dust.name=Magnesia Carbon Dust
 item.gtclassic.brine_dust.name=Evaporated Brine Dust
+item.gtclassic.platinumgroupsludge_dust.name=Platinum Group Sludge Dust
 
 #gems
 item.gtclassic.sapphire_gem.name=Sapphire
@@ -1247,6 +1251,7 @@ item.gtclassic.mold_gear.name=Gear Mold
 #tools
 item.gtclassic.destructo_pack.name=Destructopack
 item.gtclassic.crafting_tablet.name=Crafting Tablet
+item.gtclassic.machine_switch.name=Machine Switch
 item.gtclassic.electromagnet.name=Electromagnet
 item.gtclassic.tesla_staff.name=Tesla Staff
 item.gtclassic.rockcutter.name=Rock Cutter
@@ -1276,7 +1281,7 @@ fluid.cryolite=Cryolite
 fluid.sulfurdioxide=Sulfur Dioxide
 fluid.silicon=Silicon
 fluid.hydrochloricacid=Hydrochloric Acid
-fluid.crudeoil=Crude Oil
+fluid.crude_oil=Crude Oil
 fluid.oil=Oil
 fluid.sodiumcarbonate=Sodium Carbonate
 fluid.sodiumhydroxide=Sodium Hydroxide
@@ -1284,15 +1289,20 @@ fluid.brine=Brine
 fluid.bauxitetailings=Bauxite Tailings
 fluid.carbondioxide=Carbon Dioxide
 fluid.lithiumcarbonate=Lithium Carbonate
-fluid.greenvitriol=Green Vitriol
 fluid.nitricacid=Nitric Acid
+fluid.aquaregia=Aqua Regia
+fluid.chloroplatinicacid=Chloroplatinic Acid
+fluid.greenvitriol=Green Vitriol
+fluid.bluevitriol=Blue Vitriol
+fluid.redvitriol=Red Vitriol
+fluid.cyanvitriol=Cyan Vitriol
 
 #block tooltips
 tooltip.gtclassic.machine_heatingelement0=Melts things when a heat source is below
 tooltip.gtclassic.machine_chargeomat_ev0=Charges lots of things
 tooltip.gtclassic.machine_computercube_ev0=Does computerThings();
 tooltip.gtclassic.machine_industrialcentrifuge_lv0=Separates contents by spinning them at high speeds
-tooltip.gtclassic.machine_electricsmelter_lv0=Used to melt and shape materials
+tooltip.gtclassic.machine_electricsmelter_lv0=Used to melt and shape low heat materials
 
 tooltip.gtclassic.block_mortar=Macerates things into dust
 tooltip.gtclassic.block_ducttape=The solution to all your problems
@@ -1329,8 +1339,8 @@ tooltip.gtclassic.machine_blastfurnace_lv3=40 GregTech Refined Iron Machine Casi
 tooltip.gtclassic.machine_playerdetector_lv0=Detects player activity in a radius
 tooltip.gtclassic.machine_playerdetector_lv1=0eu = 8 blocks, 1eu = 32 blocks
 
-tooltip.gtclassic.machine_industrialelectrolyzer_mv0=*Slaps roof of Electrolyzer*
-tooltip.gtclassic.machine_industrialelectrolyzer_mv1=This bad boy can process so much stuff!
+tooltip.gtclassic.machine_industrialelectrolyzer_hv0=*Slaps roof of Electrolyzer*
+tooltip.gtclassic.machine_industrialelectrolyzer_hv1=This bad boy can process so much stuff!
 
 #generalized tooltips getting reused
 tooltip.gtclassic.beacon=Can be used as a beacon base

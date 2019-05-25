@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerShredder;
 import gtclassic.gui.GTGuiMachine.GTShredderGui;
@@ -16,8 +17,10 @@ import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
+import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
+import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -27,6 +30,7 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -42,34 +46,35 @@ import net.minecraftforge.fml.common.Loader;
 
 public class GTTileShredder extends GTTileMultiBaseMachine {
 
-	public static final int slotInput = 0;
-	public static final int slotOutput0 = 1;
-	public static final int slotOutput1 = 2;
-	public static final int slotOutput2 = 3;
-	public static final int slotOutput3 = 4;
-	public static final int slotOutput4 = 5;
-	public static final int slotOutput5 = 6;
+	public static final int slotInput0 = 0;
+	public static final int slotInput1 = 1;
+	public static final int slotOutput0 = 2;
+	public static final int slotOutput1 = 3;
+	public static final int slotOutput2 = 4;
+	public static final int slotOutput3 = 5;
+	public static final int slotOutput4 = 6;
+	public static final int slotOutput5 = 7;
 
-	public static final int[] slotOutputs = { slotOutput0, slotOutput1, slotOutput2, slotOutput3, slotOutput4,
-			slotOutput5 };
+	protected static final int[] slotInputs = { 0, 1 };
+	protected static final int[] slotOutputs = { 2, 3, 4, 5, 6, 7 };
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.shredder");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/shredder.png");
 
 	public GTTileShredder() {
-		super(7, 2, 96, 128);
+		super(8, 2, 96, 128);
 		maxEnergy = 10000;
 	}
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
+		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
-		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput);
+		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
-		handler.registerSlotType(SlotType.Input, slotInput);
+		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
 	}
 
@@ -107,7 +112,7 @@ public class GTTileShredder extends GTTileMultiBaseMachine {
 
 	@Override
 	public int[] getInputSlots() {
-		return new int[] { slotInput };
+		return slotInputs;
 	}
 
 	@Override
@@ -117,7 +122,12 @@ public class GTTileShredder extends GTTileMultiBaseMachine {
 
 	@Override
 	public boolean isRecipeSlot(int slot) {
-		return slot == 0;
+		for (int i : this.getInputSlots()) {
+			if (slot <= i) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -317,6 +327,7 @@ public class GTTileShredder extends GTTileMultiBaseMachine {
 		addRecipe("oreCoal", 1, 
 				GTMaterialGen.get(Items.COAL, 2), 
 				GTMaterialGen.getIc2(Ic2Items.coalDust, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Germanium, 1),
 				GTMaterialGen.getSmallDust(GTMaterial.Thorium, 1));
 
 		addRecipe("oreLapis", 1, 
@@ -351,6 +362,23 @@ public class GTTileShredder extends GTTileMultiBaseMachine {
 				GTMaterialGen.getDust(GTMaterial.Alumina, 3));
 	}
 	// @formatter:on
+
+	public static void collectMaceratorRecipe() {
+		// Grabs everything from the ic2 classic macerator list
+		// Separate method so it can be done last in post init
+		for (RecipeEntry entry : ClassicRecipes.macerator.getRecipeMap()) {
+			List<IRecipeInput> inlist = new ArrayList<>();
+			inlist.add(entry.getInput());
+			inlist.add(basicswitch);
+			List<ItemStack> output = entry.getOutput().getAllOutputs();
+			IRecipeModifier[] modifiers = euCost(4000);
+			NBTTagCompound mods = new NBTTagCompound();
+			for (IRecipeModifier modifier : modifiers) {
+				modifier.apply(mods);
+			}
+			addRecipe(inlist, new MachineOutput(mods, output));
+		}
+	}
 
 	public static void addRecipe(String input, int amount, ItemStack... outputs) {
 		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount) }, euCost(32000), outputs);

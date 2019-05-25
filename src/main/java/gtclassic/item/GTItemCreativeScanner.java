@@ -4,6 +4,7 @@ import gtclassic.GTMod;
 import gtclassic.tile.GTTileBaseMachine;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileDigitalChest;
+import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiCharcoalPit;
@@ -131,9 +132,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		} else {
 			IC2.platform.messagePlayer(player,
 					"-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ() + " -----");
-			IC2.platform.messagePlayer(player, "Name: " + state.getBlock().getLocalizedName());
-			IC2.platform.messagePlayer(player, "Block: " + state.getBlock().getUnlocalizedName());
-			IC2.platform.messagePlayer(player, "State: " + state);
+			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
+			IC2.platform.messagePlayer(player, "" + state.getBlock().getUnlocalizedName());
 			IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
 			IC2.platform.messagePlayer(player,
 					"Blast Resistance: " + state.getBlock().getExplosionResistance(null) * 5.0F);
@@ -178,11 +178,13 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 
 			if (tileEntity instanceof GTTileBaseMachine) {
-				GTTileBaseMachine multi = (GTTileBaseMachine) tileEntity;
+				GTTileBaseMachine machine = (GTTileBaseMachine) tileEntity;
 				IC2.platform.messagePlayer(player,
-						"Progress: " + (Math.round((multi.getProgress() / multi.getMaxProgress()) * 100)) + "%");
-				IC2.platform.messagePlayer(player, "Default Input: " + multi.defaultEnergyConsume + " EU");
-				IC2.platform.messagePlayer(player, "Max Input: " + multi.defaultMaxInput + " EU");
+						"Progress: " + (Math.round((machine.getProgress() / machine.getMaxProgress()) * 100)) + "%");
+				if (!machine.isPassive) {
+					IC2.platform.messagePlayer(player, "Default Input: " + machine.defaultEnergyConsume + " EU");
+					IC2.platform.messagePlayer(player, "Max Input: " + machine.defaultMaxInput + " EU");
+				}
 			}
 
 			if (tileEntity instanceof GTTileMultiBaseMachine) {
@@ -220,7 +222,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 
 			if (tileEntity instanceof GTTileDigitalChest) {
 				GTTileDigitalChest chest = (GTTileDigitalChest) tileEntity;
-				IC2.platform.messagePlayer(player, "Display Count: " + chest.getDisplayCount());
 				IC2.platform.messagePlayer(player, "Internal Count: " + chest.getQuantumCount());
 			}
 
@@ -244,6 +245,16 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			if (tileEntity instanceof GTTileBlockCustom) {
 				GTTileBlockCustom blockcustom = (GTTileBlockCustom) tileEntity;
 				IC2.platform.messagePlayer(player, "Stack Stored: " + blockcustom.getItem().getUnlocalizedName());
+			}
+
+			if (tileEntity instanceof GTTileDrum) {
+				GTTileDrum tank = (GTTileDrum) tileEntity;
+				if (!tank.isEmpty()) {
+					IC2.platform.messagePlayer(player, tank.getFluidAmount() + "mB of " + tank.getFluidName());
+				} else {
+					IC2.platform.messagePlayer(player, "Drum is empty");
+				}
+				IC2.platform.messagePlayer(player, "Auto Output: " + tank.getExport());
 			}
 
 			return EnumActionResult.SUCCESS;

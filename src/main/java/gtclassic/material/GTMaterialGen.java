@@ -72,7 +72,6 @@ public class GTMaterialGen {
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.SMALLPLATE);
 		}
-
 	}
 
 	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {

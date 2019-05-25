@@ -53,25 +53,25 @@ public class GTRecipeCircuitry {
 		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB), new Object[] { knife, GTBlocks.driedResin });
 
 		recipes.addRecipe(GT.get(GTItems.basicTransistor, 1),
-				new Object[] { "WPW", 'W', "fineWireAny", 'P', "plateSmallGermanium" });
+				new Object[] { "WPW", 'W', "wireFineAny", 'P', "plateSmallGermanium" });
 
 		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', "foilTantalum", 'P', Items.PAPER, 'L', "fineWireAny" });
+				new Object[] { "FPF", "L L", 'F', "foilTantalum", 'P', Items.PAPER, 'L', "wireFineAny" });
 
 		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', "foilNiobium", 'P', Items.PAPER, 'L', "fineWireAny" });
+				new Object[] { "FPF", "L L", 'F', "foilNiobium", 'P', Items.PAPER, 'L', "wireFineAny" });
 
 		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', "foilAluminium", 'P', Items.PAPER, 'L', "fineWireAny" });
+				new Object[] { "FPF", "L L", 'F', "foilAluminium", 'P', Items.PAPER, 'L', "wireFineAny" });
 
 		// Gating basic circuits
 
 		recipes.overrideRecipe("shaped_Electronic Circuit", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "TSC", "WWW",
-				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "fineWireRedAlloy", 'S',
+				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
 				GTItems.resinPCB);
 
 		recipes.overrideRecipe("shaped_Electronic Circuit_1", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "CST",
-				"WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "fineWireRedAlloy", 'S',
+				"WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
 				GTItems.resinPCB);
 
 		recipes.overrideRecipe("shaped_RE-Battery", GT.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT", 'T',
