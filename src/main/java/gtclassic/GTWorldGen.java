@@ -45,22 +45,22 @@ public class GTWorldGen implements IWorldGenerator {
 					GTOreRegistry entry = ore.getOreEntry();
 					GTOreFlag flag = ore.getOreFlag();
 
-					if (flag.equals(GTOreFlag.STONE)) {
+					if (flag.equals(GTOreFlag.STONE) && GTConfig.genOverworldOre) {
 						runGenerator(ore.getDefaultState(), entry.getSize(), entry.getChance(), entry.getMinY(),
 								entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX,
 								chunkZ);
 					}
 
-					if (flag.equals(GTOreFlag.NETHER)) {
+					if (flag.equals(GTOreFlag.NETHER) && GTConfig.genNetherOre) {
 						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), 0, 128,
 								BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
 
-					if (flag.equals(GTOreFlag.END)) {
+					if (flag.equals(GTOreFlag.END) && GTConfig.genEndOre) {
 						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), 8, 70,
 								BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
-					if (flag.equals(GTOreFlag.BEDROCK)) {
+					if (flag.equals(GTOreFlag.BEDROCK) && GTConfig.genBedrockOre) {
 						runRareGenerator(ore.getDefaultState(), 32, 1, 0, 5,
 								BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
@@ -73,12 +73,12 @@ public class GTWorldGen implements IWorldGenerator {
 					GTOreRegistry entry = ore.getOreEntry();
 					GTOreFlag flag = ore.getOreFlag();
 
-					if (flag.equals(GTOreFlag.SAND)) {
+					if (flag.equals(GTOreFlag.SAND) && GTConfig.genOverworldOre) {
 						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), entry.getMinY(),
 								entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX,
 								chunkZ);
 					}
-					if (flag.equals(GTOreFlag.GRAVEL)) {
+					if (flag.equals(GTOreFlag.GRAVEL) && GTConfig.genOverworldOre) {
 						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), entry.getMinY(),
 								entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX,
 								chunkZ);

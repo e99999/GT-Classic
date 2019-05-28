@@ -45,6 +45,7 @@ public class GTRecipeIterators {
 			createSmallPlateRecipe(mat);
 			createGearRecipe(mat);
 			createStickRecipe(mat);
+			createMagneticStickRecipe(mat);
 			createWireRecipe(mat);
 			createBlockRecipe(mat);
 			createCasingRecipe(mat);
@@ -178,9 +179,15 @@ public class GTRecipeIterators {
 
 	public static void createGearRecipe(GTMaterial mat) {
 		String plate = "plate" + mat.getDisplayName();
+		String stick = "stick" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.GEAR)) {
-			recipes.addRecipe(GT.getGear(mat, 1),
-					new Object[] { " X ", "XWX", " X ", 'X', plate, 'W', "craftingToolWrench" });
+			if (GTConfig.harderGears) {
+				recipes.addRecipe(GT.getGear(mat, 1),
+						new Object[] { "IXI", "XWX", "IXI", 'I', stick, 'X', plate, 'W', "craftingToolWrench" });
+			} else {
+				recipes.addRecipe(GT.getGear(mat, 1),
+						new Object[] { " X ", "XWX", " X ", 'X', plate, 'W', "craftingToolWrench" });
+			}
 		}
 	}
 
@@ -199,6 +206,15 @@ public class GTRecipeIterators {
 			if (mat.hasFlag(GTMaterialFlag.DUST)) {
 				TileEntityMacerator.addRecipe(stick, 1, GT.getSmallDust(mat, 2), 0.0F);
 			}
+		}
+	}
+
+	public static void createMagneticStickRecipe(GTMaterial mat) {
+		String stick = "stick" + mat.getDisplayName();
+		if (mat.hasFlag(GTMaterialFlag.MAGNETICSTICK)) {
+			// Magnetic Stick crafting recipe
+			recipes.addShapelessRecipe(GT.getMagneticStick(mat, 1),
+					new Object[] { stick, "dustRedstone", "dustRedstone", "dustRedstone", "dustRedstone" });
 		}
 	}
 
@@ -374,7 +390,8 @@ public class GTRecipeIterators {
 	public static void createBloomJEIRecipe(Block block) {
 		if (block instanceof GTBlockBloom) {
 			GTBlockBloom bloom = (GTBlockBloom) block;
-			GTBlockBloom.bloomUtil(GTMaterialGen.get(block), bloom.getOutput());
+			GTRecipeProcessing.addByproduct(GTMaterialGen.get(block), bloom.getOutput(),
+					GTMaterialGen.getDust(GTMaterial.Slag, 1));
 		}
 	}
 

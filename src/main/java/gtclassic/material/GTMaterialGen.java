@@ -61,6 +61,9 @@ public class GTMaterialGen {
 			materialItemUtil(mat, GTMaterialFlag.STICK);
 		}
 		for (GTMaterial mat : GTMaterial.values()) {
+			materialItemUtil(mat, GTMaterialFlag.MAGNETICSTICK);
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.WIRE);
 		}
 
@@ -169,6 +172,10 @@ public class GTMaterialGen {
 
 	public static ItemStack getStick(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.STICK.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getMagneticStick(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.MAGNETICSTICK.getSuffix()), count, 0);
 	}
 
 	public static ItemStack getWire(GTMaterial mat, int count) {

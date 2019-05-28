@@ -17,6 +17,7 @@ public class GTMaterial {
 	static GTMaterialFlag plate = GTMaterialFlag.PLATE;
 	static GTMaterialFlag smallplate = GTMaterialFlag.SMALLPLATE;
 	static GTMaterialFlag stick = GTMaterialFlag.STICK;
+	static GTMaterialFlag magnetic = GTMaterialFlag.MAGNETICSTICK;
 	static GTMaterialFlag wire = GTMaterialFlag.WIRE;
 	static GTMaterialFlag gear = GTMaterialFlag.GEAR;
 	static GTMaterialFlag foil = GTMaterialFlag.FOIL;
@@ -99,7 +100,7 @@ public class GTMaterial {
 	Hydrochloricacid = new GTMaterial("Hydrochloricacid", 127, 255, 142, 100, 1.0F, 0, 1, fluid),
 	Hydrogen = new GTMaterial("Hydrogen", 0, 38, 255, 14, 1.0F, 0, 1, gas),
 	Iridium = new GTMaterial("Iridium", 255, 255, 255, 2719, 6.0F, 5120, 4,  smalldust, dust, nugget, ingot, gear, stick, casing, block),
-	Iron = new GTMaterial("Iron", 184, 184, 184, 1811, 6.0F, 256, 2, smalldust, plate, stick, gear, casing),
+	Iron = new GTMaterial("Iron", 184, 184, 184, 1811, 6.0F, 256, 2, smalldust, plate, stick, gear, casing, magnetic),
 	Invar = new GTMaterial("Invar", 220, 220, 150, 1916, 6.0F, 256, 2,  metalFull),
 	Lazurite = new GTMaterial("Lazurite", 100, 120, 255, 1352, 1.0F, 0, 1, dustAll),
 	Lead = new GTMaterial("Lead", 140, 100, 140, 600, 8.0F, 64, 1, smalldust, dust, nugget, ingot, plate, stick, wire, gear, block, casing),
@@ -118,6 +119,7 @@ public class GTMaterial {
 	Mercury = new GTMaterial("Mercury", 250, 250, 250, 234, 1.0F, 0, 1, fluid),
 	Molybdenite = new GTMaterial("Molybdenite", 35, 20, 15, 1224, 5.0F, 0, 3, dustAll),
 	Molybdenum = new GTMaterial("Molybdenum", 180, 180, 220, 2896, 1.0F, 0, 1,  metalBase),
+	Neodymium = new GTMaterial("Neodymium", 100, 100, 100, 1297, 7.0F, 3347, 3, smalldust, dust, nugget, ingot, plate, stick, magnetic ),
 	Netherrack = new GTMaterial("Netherrack", 200, 0, 0, 1500, 1.0F, 0, 1,  smalldust),
 	Nichrome = new GTMaterial("Nichrome", 205, 206, 246, 1818, 10.0F, 256, 3,  smalldust, dust, nugget, ingot, plate, stick, coil),
 	Nickel = new GTMaterial("Nickel", 200, 200, 250, 1728, 6.0F, 64, 2, smalldust, dust, nugget, ingot, plate, stick, wire, gear, block, casing),
@@ -161,7 +163,7 @@ public class GTMaterial {
 	Spessartine = new GTMaterial("Spessartine", 255, 100, 100, 1715, 1.0F, 0, 1, dustAll),
 	Sphalerite = new GTMaterial("Sphalerite", 200, 140, 40, 540, 2.0F, 0, 1, dustAll),
 	StainlessSteel = new GTMaterial("StainlessSteel", 200, 200, 220, 2032, 7.0F, 480, 2, smalldust, dust, nugget, ingot, plate, stick, gear, block, casing),
-	Steel = new GTMaterial("Steel", 128, 128, 128, 2046, 6.0F, 512, 2, smalldust, dust, nugget, ingot, plate, stick, gear, block, casing),
+	Steel = new GTMaterial("Steel", 128, 128, 128, 2046, 6.0F, 512, 2, smalldust, dust, nugget, ingot, plate, stick, gear, block, casing, magnetic),
 	Stone = new GTMaterial("Stone", 196, 196, 196, 1100, 1.0F, 0, 1, dustAll),
 	Sulfur = new GTMaterial("Sulfur", 200, 200, 0, 100, 2.0F, 0, 1, smalldust, dust),
 	SulfurDioxide = new GTMaterial("SulfurDioxide", 200, 200, 0, 100, 1.0F, 0, 1, gas),

@@ -82,7 +82,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
-		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
 				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerInputFilter(filter, slotInputs);
@@ -375,6 +375,9 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 				GTMaterialGen.getSmallDust(GTMaterial.Iridium, 1), 
 				GTMaterialGen.getSmallDust(GTMaterial.Osmium, 1), 
 				GTMaterialGen.getSmallDust(GTMaterial.Platinum, 2));
+		
+		addRecipe("dustRareEarth", 1, 0, totalEu(32000), 
+				GTMaterialGen.getDust(GTMaterial.Neodymium, 1));
 		
 		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 16), 1, totalEu(25000), 
 				GTMaterialGen.getFluid(GTMaterial.Methane, 1),

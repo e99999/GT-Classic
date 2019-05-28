@@ -2,20 +2,20 @@ package gtclassic.util.jei;
 
 import javax.annotation.Nonnull;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTItems;
-import gtclassic.block.GTBlockBloom;
 import gtclassic.container.GTContainerWorkbench;
-import gtclassic.container.GTItemContainerCraftingTablet;
 import gtclassic.fluid.GTFluidBlockDryable;
 import gtclassic.ore.GTOreFlag;
 import gtclassic.ore.GTOreStone;
 import gtclassic.recipe.GTRecipeCauldron;
-import gtclassic.util.jei.category.GTJeiBloomCategory;
+import gtclassic.recipe.GTRecipeProcessing;
+import gtclassic.util.jei.category.GTJeiByproductsCategory;
 import gtclassic.util.jei.category.GTJeiDryingCategory;
+import gtclassic.util.jei.category.GTJeiInteractionCategory;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
-import gtclassic.util.jei.wrapper.GTJeiBloomWrapper;
+import gtclassic.util.jei.wrapper.GTJeiByproductsWrapper;
 import gtclassic.util.jei.wrapper.GTJeiDryingWrapper;
+import gtclassic.util.jei.wrapper.GTJeiInteractionWrapper;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.jeiIntigration.SubModul;
@@ -58,10 +58,17 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipes(GTRecipeCauldron.RECIPE_LIST.getRecipeList(), "gt.washing");
 			registry.addRecipeCatalyst(new ItemStack(Items.CAULDRON), "gt.washing");
 
-			// Bloom outputs
-			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiBloomWrapper::new, "gt.bloom");
-			registry.addRecipes(GTBlockBloom.RECIPE_LIST.getRecipeList(), "gt.bloom");
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.bloomIron), "gt.bloom");
+			// Byproducts
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiByproductsWrapper::new,
+					"gt.byproducts");
+			registry.addRecipes(GTRecipeProcessing.BYPRODUCT_LIST.getRecipeList(), "gt.byproducts");
+			registry.addRecipeCatalyst(new ItemStack(Blocks.IRON_ORE), "gt.byproducts");
+
+			// World Interaction
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiInteractionWrapper::new,
+					"gt.interaction");
+			registry.addRecipes(GTRecipeProcessing.INTERACTION_LIST.getRecipeList(), "gt.interaction");
+			registry.addRecipeCatalyst(new ItemStack(Blocks.GRASS), "gt.interaction");
 
 			// Drying
 			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiDryingWrapper::new, "gt.drying");
@@ -72,7 +79,7 @@ public class GTJeiPlugin implements IModPlugin {
 
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
 			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class,
-					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);//this is what fucks up shift clicking fixing
+					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);// this is what fucks up shift clicking fixing
 
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			for (Block block : Block.REGISTRY) {
@@ -96,9 +103,13 @@ public class GTJeiPlugin implements IModPlugin {
 		registry.addRecipeCategories(
 				new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "gt.washing", Blocks.WATER));
 
-		// blooms
+		// byproducts
 		registry.addRecipeCategories(
-				new GTJeiBloomCategory(registry.getJeiHelpers().getGuiHelper(), "gt.bloom", GTBlocks.bloomIron));
+				new GTJeiByproductsCategory(registry.getJeiHelpers().getGuiHelper(), "gt.byproducts", Blocks.IRON_ORE));
+
+		// world interaction
+		registry.addRecipeCategories(
+				new GTJeiInteractionCategory(registry.getJeiHelpers().getGuiHelper(), "gt.interaction", Blocks.GRASS));
 
 		// drying
 		registry.addRecipeCategories(

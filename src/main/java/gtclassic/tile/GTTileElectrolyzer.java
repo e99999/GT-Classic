@@ -77,7 +77,7 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput2, slotInput3);
-		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
 				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerInputFilter(filter, slotInputs);

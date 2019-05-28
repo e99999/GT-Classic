@@ -1,7 +1,6 @@
 package gtclassic.block;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -11,10 +10,6 @@ import gtclassic.GTMod;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
-import ic2.api.classic.recipe.machine.MachineOutput;
-import ic2.api.recipe.IRecipeInput;
-import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -30,7 +25,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -48,8 +42,6 @@ public class GTBlockBloom extends Block implements ITexturedBlock, ILocaleBlock,
 	LocaleComp comp;
 	GTMaterial mat;
 	int count;
-
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.bloom");
 
 	public GTBlockBloom(GTMaterial mat, int count) {
 		super(Material.ROCK);
@@ -147,20 +139,6 @@ public class GTBlockBloom extends Block implements ITexturedBlock, ILocaleBlock,
 	@Override
 	public Color getColor(Block block, int index) {
 		return this.mat.getColor();
-	}
-
-	public static void bloomUtil(ItemStack input, ItemStack output) {
-		List<IRecipeInput> inputs = new ArrayList<>();
-		List<ItemStack> outputs = new ArrayList<>();
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(input)));
-		inputs.add((IRecipeInput) (new RecipeInputItemStack(new ItemStack(Items.IRON_PICKAXE))));
-		outputs.add(output);
-		outputs.add(GTMaterialGen.getDust(GTMaterial.Slag, 1));
-		bloomWrapper(inputs, new MachineOutput(null, outputs));
-	}
-
-	private static void bloomWrapper(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 0);
 	}
 
 	public GTMaterial getMaterial() {

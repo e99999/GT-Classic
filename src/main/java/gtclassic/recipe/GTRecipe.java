@@ -33,6 +33,8 @@ public class GTRecipe {
 		GTRecipeIteratorsTools.recipeIteratorsTools();
 		GTRecipeMod.recipesIC2();
 		GTRecipeProcessing.recipesProcessing();
+		GTRecipeProcessing.recipesByproducts();
+		GTRecipeProcessing.recipesInteractions();
 		GTRecipeShaped.recipeShaped1();
 		GTRecipeShaped.recipeShaped2();
 		GTRecipeShaped.recipeShaped3();

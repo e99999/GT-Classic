@@ -37,7 +37,7 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IT
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
-		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.UP.getOppositeList());
+		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.UP.invert());
 		handler.registerDefaultSlotAccess(AccessRule.Import, 0);
 		handler.registerDefaultSlotAccess(AccessRule.Export, 1);
 		handler.registerDefaultSlotsForSide(RotationList.ALL, 0);

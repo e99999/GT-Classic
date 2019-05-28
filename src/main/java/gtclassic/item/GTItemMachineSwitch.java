@@ -28,7 +28,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemMachineSwitch extends Item implements IAdvancedTexturedItem, IStaticTexturedItem {
 
-	int mode;
 	public ModelResourceLocation[] model = new ModelResourceLocation[6];
 
 	public GTItemMachineSwitch() {
@@ -68,7 +67,8 @@ public class GTItemMachineSwitch extends Item implements IAdvancedTexturedItem, 
 		IC2.audioManager.playOnce(playerIn, Ic2Sounds.wrenchUse);
 		if (IC2.platform.isSimulating()) {
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(playerIn.getHeldItem(handIn));
-			int result = nbt.getInteger("mode") + getCycleDirection(playerIn);
+			int mode = nbt.getInteger("mode");
+			int result = mode + getCycleDirection(playerIn);
 			if (result > 5) {
 				result = 0;
 			}
@@ -76,11 +76,12 @@ public class GTItemMachineSwitch extends Item implements IAdvancedTexturedItem, 
 				result = 5;
 			}
 			nbt.setInteger("mode", result);
-			this.setDamage(playerIn.getHeldItem(handIn), nbt.getInteger("mode"));
+			this.setDamage(playerIn.getHeldItem(handIn), mode);
+			IC2.platform.messagePlayer(playerIn, "Mode: " + mode);
 		}
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
-		
+
 	public int getCycleDirection(EntityPlayer playerIn) {
 		return !playerIn.isSneaking() ? 1 : -1;
 	}

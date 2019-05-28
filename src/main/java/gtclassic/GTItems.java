@@ -50,9 +50,10 @@ public class GTItems {
 	moldStick = createItem(new GTItemComponent("mold_stick", 5, 2, true)),
 	moldCable = createItem(new GTItemComponent("mold_cable", 6, 2, true)),
 	moldTube = createItem(new GTItemComponent("mold_tube", 7, 2, true)),
-	moldGear = createItem(new GTItemComponent("mold_gear", 8, 2, true));
+	moldGear = createItem(new GTItemComponent("mold_gear", 8, 2, true)),
+	moldBottle = createItem(new GTItemComponent("mold_bottle", 9, 2, true));
 	// @formatter:on
-	
+
 	public static final GTItemMachineSwitch machineSwitch = createItem(new GTItemMachineSwitch());
 
 	public static final GTItemMatch match = createItem(new GTItemMatch());

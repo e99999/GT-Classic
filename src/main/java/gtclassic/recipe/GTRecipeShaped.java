@@ -34,12 +34,12 @@ public class GTRecipeShaped {
 
 		IRecipeInput plateAnyIron = new RecipeInputCombined(1, new IRecipeInput[] { new RecipeInputOreDict("plateIron"),
 				new RecipeInputOreDict("plateRefinedIron"), new RecipeInputOreDict("plateSteel") });
-		
+
 		IRecipeInput stickAnyIron = new RecipeInputCombined(1, new IRecipeInput[] { new RecipeInputOreDict("stickIron"),
 				new RecipeInputOreDict("stickRefinedIron"), new RecipeInputOreDict("stickSteel") });
 
 		recipes.addRecipe(GT.get(GTItems.electroMagnet, 1), new Object[] { "M M", "WMW", "IBI", 'M', Ic2Items.magnet,
-				'B', Ic2Items.battery, 'I', plateAnyIron, 'W', Ic2Items.copperCable });
+				'B', Ic2Items.battery, 'I', "stickMagneticIron", 'W', Ic2Items.copperCable });
 
 		recipes.addRecipe(GT.get(GTItems.rockCutter, 1),
 				new Object[] { "D C", "DIB", "DII",
@@ -54,9 +54,9 @@ public class GTRecipeShaped {
 
 		recipes.addRecipe(GT.get(GTItems.destructoPack, 1),
 				new Object[] { "BIB", "ICI", "BIB", 'B', GTValues.lava, 'C', "circuitBasic", 'I', plateAnyIron });
-		
-		recipes.addRecipe(GT.get(GTItems.machineSwitch, 1),
-				new Object[] { " H ", "PMP", " I ", 'I', stickAnyIron, 'M', Items.PAPER, 'P', plateAnyIron, 'H', hammer });
+
+		recipes.addRecipe(GT.get(GTItems.machineSwitch, 1), new Object[] { " H ", "PMP", " I ", 'I', stickAnyIron, 'M',
+				Items.PAPER, 'P', plateAnyIron, 'H', hammer });
 
 		recipes.addRecipe(GT.get(GTItems.craftingTablet, 1),
 				new Object[] { "BIB", "ICI", "BIB", 'B', "workbench", 'C', "circuitBasic", 'I', plateAnyIron });
@@ -69,15 +69,16 @@ public class GTRecipeShaped {
 						GT.getIc2(Ic2Items.cropAnalyzer, 1), 'C', "circuitAdvanced", 'B',
 						GT.get(GTBlocks.batteryLithiumSmall) });
 
-		recipes.addRecipe(GT.get(GTItems.motorLV, 1), new Object[] { "CWS", "WRW", "PWC", 'S', "stickRefinedIron", 'P',
-				"plateRefinedIron", 'W', "wireFineRedAlloy", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable });
+		recipes.addRecipe(GT.get(GTItems.motorLV, 1),
+				new Object[] { "CWS", "WRW", "PWC", 'S', "stickRefinedIron", 'P', "plateRefinedIron", 'W',
+						"wireFineRedAlloy", 'R', "stickMagneticIron", 'C', Ic2Items.insulatedCopperCable });
 
 		recipes.addRecipe(GT.get(GTItems.motorMV, 1), new Object[] { "CWS", "WRW", "PWC", 'S', "stickSteel", 'P',
-				"plateSteel", 'W', "wireFineCopper", 'R', "dustRedstone", 'C', Ic2Items.insulatedGoldCable });
+				"plateSteel", 'W', "wireFineCopper", 'R', "stickMagneticSteel", 'C', Ic2Items.insulatedGoldCable });
 
 		recipes.addRecipe(GT.get(GTItems.motorHV, 1),
 				new Object[] { "CWS", "WRW", "PWC", 'S', "stickStainlessSteel", 'P', "plateStainlessSteel", 'W',
-						"wireFineAnnealedCopper", 'R', "dustRedstone", 'C', Ic2Items.insulatedIronCable });
+						"wireFineAnnealedCopper", 'R', "stickMagneticNeodymium", 'C', Ic2Items.insulatedIronCable });
 
 		/*
 		 * recipes.addRecipe(GT.get(GTItems.heatStorageSingle, 1), new Object[] { " I ",
@@ -107,6 +108,8 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTItems.moldStick, 1), new Object[] { "  ", " P", "F ", 'F', file, 'P', mold });
 		recipes.addRecipe(GT.get(GTItems.moldTube, 1), new Object[] { "  ", "FP", "  ", 'F', file, 'P', mold });
 		recipes.addRecipe(GT.get(GTItems.moldGear, 1), new Object[] { "F ", " P", "  ", 'F', file, 'P', mold });
+		recipes.addRecipe(GT.get(GTItems.moldBottle, 1),
+				new Object[] { "  ", "FP", "  ", 'F', file, 'P', GTItems.moldTube });
 
 	}
 

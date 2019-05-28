@@ -66,21 +66,21 @@ public class GTRecipeCircuitry {
 
 		// Gating basic circuits
 
-		recipes.overrideRecipe("shaped_Electronic Circuit", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "TSC", "WWW",
-				'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
+		recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW",
+				"TSC", "WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
 				GTItems.resinPCB);
 
-		recipes.overrideRecipe("shaped_Electronic Circuit_1", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW", "CST",
-				"WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
+		recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW",
+				"CST", "WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
 				GTItems.resinPCB);
 
-		recipes.overrideRecipe("shaped_RE-Battery", GT.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT", 'T',
-				"ingotTin", 'R', "dustRedstone", 'C', Ic2Items.copperCable.copy());
+		recipes.overrideRecipe("shaped_item.itemBatRE_2077392104", GT.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT",
+				'T', "ingotTin", 'R', "dustRedstone", 'C', Ic2Items.copperCable.copy());
 
 		// stuff with lapotron and energium
 
-		recipes.overrideRecipe("shaped_Energy Crystal", GT.getIc2(Ic2Items.energyCrystal, 1), "F ", " C", 'F',
-				"craftingToolFile", 'C', GTBlocks.batteryEnergiumTiny);
+		recipes.overrideRecipe("shaped_item.itemBatCrystal_-1564046631", GT.getIc2(Ic2Items.energyCrystal, 1), "F ",
+				" C", 'F', "craftingToolFile", 'C', GTBlocks.batteryEnergiumTiny);
 
 		TileEntitySawMill.addRecipe(GT.get(GTBlocks.batteryEnergiumTiny), GT.getIc2(Ic2Items.energyCrystal, 1), 0.1F);
 
@@ -96,8 +96,8 @@ public class GTRecipeCircuitry {
 		IRecipeInput lapis = new RecipeInputCombined(1,
 				new IRecipeInput[] { new RecipeInputOreDict("gemLapis"), new RecipeInputOreDict("dustLazurite") });
 
-		recipes.overrideRecipe("shaped_Lapotron Crystal", GT.getIc2(Ic2Items.lapotronCrystal, 1), "F ", " C", 'F',
-				"craftingToolFile", 'C', GTBlocks.batteryLapotronTiny);
+		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GT.getIc2(Ic2Items.lapotronCrystal, 1),
+				"F ", " C", 'F', "craftingToolFile", 'C', GTBlocks.batteryLapotronTiny);
 
 		TileEntitySawMill.addRecipe(GT.get(GTBlocks.batteryLapotronTiny), GT.getIc2(Ic2Items.lapotronCrystal, 1), 0.1F);
 

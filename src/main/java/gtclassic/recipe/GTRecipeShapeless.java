@@ -1,12 +1,14 @@
 package gtclassic.recipe;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTConfig;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
+import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -46,8 +48,10 @@ public class GTRecipeShapeless {
 
 		// In world process, recipe equivalents
 
-		recipes.addShapelessRecipe(GT.getCasing(M.RefinedIron, 1),
-				new Object[] { "craftingToolFile", Ic2Items.machine.copy() });
+		if (!GTConfig.harderPlates && !GTConfig.harderRods && IC2.getRefinedIron().equals("ingotRefinedIron")) {
+			recipes.addShapelessRecipe(GT.getCasing(M.RefinedIron, 1),
+					new Object[] { "craftingToolFile", Ic2Items.machine.copy() });
+		}
 
 		recipes.addShapelessRecipe(GT.get(GTBlocks.sandSlag),
 				new Object[] { "sand", "dustSlag", "dustSlag", "dustSlag" });

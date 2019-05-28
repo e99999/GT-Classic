@@ -70,7 +70,7 @@ public class GTTileSmelter extends GTTileBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0, slotInput1);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
-		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutput);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
 				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
@@ -186,6 +186,12 @@ public class GTTileSmelter extends GTTileBaseMachine {
 		
 		addRecipe("blockGlass", 5, GTMaterialGen.get(GTItems.moldTube),
 				GTMaterialGen.get(GTItems.testTube, 32));
+		
+		addRecipe("sand", 1, GTMaterialGen.get(GTItems.moldBottle),
+				GTMaterialGen.get(Items.GLASS_BOTTLE, 1));
+		
+		addRecipe("blockGlass", 1, GTMaterialGen.get(GTItems.moldBottle),
+				GTMaterialGen.get(Items.GLASS_BOTTLE, 1));
 
 		addRecipe("dustResin", 1, GTMaterialGen.get(GTItems.woodPlate),
 				GTMaterialGen.get(GTBlocks.driedResin, 1));

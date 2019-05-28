@@ -135,7 +135,7 @@ public class GTBlocks {
 	tileReplicator = registerBlock(new GTBlockTileBasic("machine_matterreplicator_ev")),
 	tileDigitalChest = registerBlock(new GTBlockTileBasic("tile_digitalchest")),
 	tilePlayerDetector = registerBlock(new GTBlockTileBasic("machine_playerdetector_lv", 1)),
-	tileFusion = registerBlock(new GTBlockTileBasic("machine_fusioncomputer_luv")),
+	tileFusion = registerBlock(new GTBlockTileBasic("machine_fusioncomputer_ev")),
 	tileLightningRod = registerBlock(new GTBlockTileBasic("machine_lightningrod_iv")),
 	tileQuantumEnergy = registerBlock(new GTBlockTileBasic("machine_quantumenergystorage_ev")),
 	tileBasicEnergy = registerBlock(new GTBlockTileBasic("machine_basicenergystorage_ev")),
@@ -194,7 +194,7 @@ public class GTBlocks {
 			"machine_compiler_hv", "machine_cryogenicseparator_mv", "machine_chargeomat_ev", "machine_computercube_ev",
 			"machine_industrialcentrifuge_lv", "machine_industrialelectrolyzer_hv", "machine_shredder_mv",
 			"machine_electricsmelter_lv", "machine_fluidsmelter_lv", "machine_matterfabricator_ev",
-			"machine_matterreplicator_ev", "machine_playerdetector_lv", "machine_fusioncomputer_luv",
+			"machine_matterreplicator_ev", "machine_playerdetector_lv", "machine_fusioncomputer_ev",
 			"machine_lightningrod_iv", "machine_quantumenergystorage_ev", "machine_basicenergystorage_ev",
 			"machine_digitaltransformer_luv", "cable_energium_luv", "cable_lapotron_zpm", "tile_digitalchest",
 			"tile_smallchest", "tile_largechest", "tile_bookshelf", "tile_workbench", "tile_drum" };

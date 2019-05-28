@@ -9,6 +9,7 @@ import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionComputer;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -49,7 +50,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 			"textures/gui/fusioncomputer.png");
 
 	public GTTileMultiFusion() {
-		super(3, 0, 8196, 32768);
+		super(3, 0, 2048, 8196);
 		maxEnergy = 100000;
 	}
 
@@ -165,7 +166,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	// @formatter:on
 
 	public static IRecipeModifier[] totalEu(int total) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 8196) - 100) };
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 2048) - 100) };
 	}
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
@@ -186,30 +187,135 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 8196);
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 2048);
 	}
 
 	@Override
 	public boolean checkStructure() {
+		int3 dir = new int3(getPos(), getFacing());
 
-		if (!world.isAreaLoaded(pos, 3))
-			return false;
-
-		int3 working = new int3(getPos(), getFacing());
-		if (!(checkPos(working.forward(3)) && checkPos(working.right(1)) && checkPos(working.back(1))
-				&& checkPos(working.right(1)) && checkPos(working.back(1)) && checkPos(working.right(1))
-				&& checkPos(working.back(1)) && checkPos(working.back(1)) && checkPos(working.left(1))
-				&& checkPos(working.back(1)) && checkPos(working.left(1)) && checkPos(working.back(1))
-				&& checkPos(working.left(1)) && checkPos(working.left(1)) && checkPos(working.forward(1))
-				&& checkPos(working.left(1)) && checkPos(working.forward(1)) && checkPos(working.left(1))
-				&& checkPos(working.forward(1)) && checkPos(working.forward(1)) && checkPos(working.right(1))
-				&& checkPos(working.forward(1)) && checkPos(working.right(1)) && checkPos(working.forward(1)))) {
+		if (!(isMachineCasing(dir.left(1)) && isMachineCasing(dir.left(1)) && isMachineCasing(dir.right(3))
+				&& isMachineCasing(dir.right(1)) && isMachineCasing(dir.up(1)))) {
 			return false;
 		}
+
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.left(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.down(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.right(4))) {
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.up(1))) {
+			return false;
+		}
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.back(4).left(1))) {
+			return false;
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.left(1)))) {
+				return false;
+			}
+		}
+		if (!isMachineCasing(dir.down(1))) {
+			return false;
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.right(1)))) {
+				return false;
+			}
+		}
+
+		// inner iridium casings
+		for (int i = 0; i < 3; i++) {
+			if (!(isInnerCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isInnerCasing(dir.left(1)))) {
+				return false;
+			}
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isInnerCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		if (!isInnerCasing(dir.right(1))) {
+			return false;
+		}
+		if (!isInnerCasing(dir.forward(1))) {
+			return false;
+		}
+		if (!isInnerCasing(dir.up(1).back(1).right(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isInnerCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isInnerCasing(dir.left(1)))) {
+				return false;
+			}
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isInnerCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		if (!isInnerCasing(dir.right(1))) {
+			return false;
+		}
+		if (!isInnerCasing(dir.forward(1))) {
+			return false;
+		}
+
 		return true;
 	}
 
-	public boolean checkPos(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == coilState;
+	public boolean isMachineCasing(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen
+				.getBlock(GTMaterial.Titanium, GTMaterialFlag.CASING).getDefaultState();
+
+	}
+
+	public boolean isInnerCasing(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen
+				.getBlock(GTMaterial.Iridium, GTMaterialFlag.CASING).getDefaultState();
+
 	}
 }

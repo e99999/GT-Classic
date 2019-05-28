@@ -51,7 +51,7 @@ public class GTTileSluice extends GTTileFacing
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
-		handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), slotInput);
+		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInput);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotOutputs);
 		handler.registerSlotType(SlotType.Input, slotInput);
 		handler.registerSlotType(SlotType.Output, slotOutputs);

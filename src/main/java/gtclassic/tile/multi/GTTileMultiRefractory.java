@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTItems;
+import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerRefractory;
 import gtclassic.gui.GTGuiMachine.GTRefractoryGui;
@@ -28,7 +28,6 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
@@ -69,13 +68,13 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	@Override
 	public TileEntity getImportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(1).back(1).up(1).asBlockPos());
+		return world.getTileEntity(dir.back(1).up(1).asBlockPos());
 	}
 
 	@Override
 	public TileEntity getExportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(1).back(1).up(1).asBlockPos());
+		return world.getTileEntity(dir.down(2).forward(1).asBlockPos());
 	}
 
 	@Override
@@ -135,9 +134,15 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	// @formatter:off
 	public static void init() {
 		addRecipe(new IRecipeInput[] { 
-				input("ingotCopper", 1), }, 
+				metal("Copper", 1), }, 
 				totalEu(64000),
 				GTMaterialGen.getHotIngot(GTMaterial.AnnealedCopper, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				metal("Tungsten", 1), 
+				metal("Steel", 1)}, 
+				totalEu(64000),
+				GTMaterialGen.getHotIngot(GTMaterial.TungstenSteel, 2));
 	}
 	// @formatter:on
 
@@ -191,9 +196,210 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 
 	@Override
 	public boolean checkStructure() {
-		if (!world.isAreaLoaded(pos, 3)) {
+		return GTConfig.harderRefractory ? checkStructureNew() : checkStructureOld();
+	}
+
+	public boolean checkStructureNew() {
+		int3 dir = new int3(getPos(), getFacing());
+
+		if (!(isMachineCasing(dir.left(1)) && isMachineCasing(dir.left(1)) && isMachineCasing(dir.right(3))
+				&& isMachineCasing(dir.right(1)) && isMachineCasing(dir.down(1)))) {
 			return false;
 		}
+
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.left(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.down(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.right(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.up(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 3; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.up(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 3; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 4; i++) {
+			if (!(isMachineCasing(dir.left(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.down(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 3; i++) {
+			if (!(isMachineCasing(dir.right(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.down(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 3; i++) {
+			if (!(isMachineCasing(dir.left(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 3; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.up(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		if (!isMachineCasing(dir.up(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+
+		// inner 3x3 layers
+
+		if (!isStone(dir.right(1).down(2))) {
+			return false;
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isStone(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isStone(dir.right(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isStone(dir.forward(1)))) {
+				return false;
+			}
+		}
+
+		if (!isStone(dir.left(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isStone(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		if (!isCoil(dir.up(1).forward(1))) {
+			return false;
+		}
+
+		if (!isMachineCasing(dir.forward(1))) {
+			return false;
+		}
+
+		if (!isMachineCasing(dir.left(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.right(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+
+		if (!isCoil(dir.up(1).left(1).back(1))) {
+			return false;
+		}
+
+		if (!isMachineCasing(dir.forward(1))) {
+			return false;
+		}
+
+		if (!isMachineCasing(dir.left(1))) {
+			return false;
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.right(1)))) {
+				return false;
+			}
+		}
+
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+
+		return true;
+
+	}
+
+	public boolean checkStructureOld() {
 
 		int3 dir = new int3(getPos(), getFacing());
 
@@ -221,10 +427,18 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	public boolean isMachineCasing(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING)
 				.getDefaultState();
+
 	}
 
 	public boolean isStone(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == GTBlocks.stoneMagnesia.getDefaultState();
+
+	}
+
+	public boolean isCoil(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Graphite, GTMaterialFlag.COIL)
+				.getDefaultState();
+
 	}
 
 }

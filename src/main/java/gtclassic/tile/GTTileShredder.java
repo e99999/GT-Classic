@@ -6,7 +6,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerShredder;
 import gtclassic.gui.GTGuiMachine.GTShredderGui;
@@ -30,7 +29,6 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -341,7 +339,7 @@ public class GTTileShredder extends GTTileMultiBaseMachine {
 		addRecipe("oreDiamond", 1, 
 				GTMaterialGen.get(Items.DIAMOND, 2),
 				GTMaterialGen.getSmallDust(GTMaterial.Diamond, 6), 
-				GTMaterialGen.getIc2(Ic2Items.hydratedCoalDust, 1));
+				GTMaterialGen.getSmallDust(GTMaterial.Graphite, 2));
 
 		addRecipe("oreEmerald", 1, 
 				GTMaterialGen.get(Items.EMERALD, 2),
@@ -371,7 +369,7 @@ public class GTTileShredder extends GTTileMultiBaseMachine {
 			inlist.add(entry.getInput());
 			inlist.add(basicswitch);
 			List<ItemStack> output = entry.getOutput().getAllOutputs();
-			IRecipeModifier[] modifiers = euCost(4000);
+			IRecipeModifier[] modifiers = euCost(2000);
 			NBTTagCompound mods = new NBTTagCompound();
 			for (IRecipeModifier modifier : modifiers) {
 				modifier.apply(mods);
