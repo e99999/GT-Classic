@@ -148,20 +148,19 @@ public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 				GTMaterialGen.get(GTItems.testTube, 3));
 		
 		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 2)), 
-				input(GTMaterialGen.getDust(GTMaterial.Sulfur, 1)),
-				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 4))}, 
+				input(GTMaterialGen.getWater(1)), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1))}, 
 				totalEu(16000), 
-				GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3),
-				GTMaterialGen.get(GTItems.testTube, 3));
+				GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3));
 		
 		addRecipe(new IRecipeInput[] { 
 				input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 2)), 
 				input(GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1)),
-				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 3))}, 
+				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 2))}, 
 				totalEu(16000), 
 				GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3),
-				GTMaterialGen.get(GTItems.testTube, 3));
+				GTMaterialGen.get(GTItems.testTube, 2));
 		
 		addRecipe(new IRecipeInput[] { 
 				input(GTMaterialGen.getWater(1)), 

@@ -150,12 +150,30 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 	public static void init() {
 		
 		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getModFluid("water", 6)) }, 
+				input(GTMaterialGen.getIc2(Ic2Items.waterCell, 1)), 
+				basicswitch}, 
+				totalEu(20000),
+				GTMaterialGen.getIc2(Ic2Items.electrolyzedWaterCell, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getIc2(Ic2Items.deadMagnet, 1)), 
+				basicswitch}, 
+				totalEu(20000),
+				GTMaterialGen.getIc2(Ic2Items.magnet, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getWater(6)) }, 
 				totalEu(93000),
 				GTMaterialGen.getFluid(GTMaterial.Hydrogen, 4), 
 				GTMaterialGen.getFluid(GTMaterial.Oxygen, 2));
-
-		// TODO blah electrified water blah blah
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getIc2(Ic2Items.waterCell, 6)), 
+				tubes(6) },
+				totalEu(93000),
+				GTMaterialGen.getFluid(GTMaterial.Hydrogen, 4), 
+				GTMaterialGen.getFluid(GTMaterial.Oxygen, 2),
+				GTMaterialGen.getIc2(Ic2Items.emptyCell, 6));
 
 		addRecipe(new IRecipeInput[] { 
 				input(new ItemStack(Items.DYE, 1, 15)), 
@@ -456,7 +474,7 @@ public class GTTileElectrolyzer extends GTTileBaseMachine {
 				totalEu(12000),
 				GTMaterialGen.getIc2(Ic2Items.copperDust, 2), 
 				GTMaterialGen.getDust(GTMaterial.Calcite, 1), 
-				GTMaterialGen.getModFluid("water", 3),
+				GTMaterialGen.getFluid(GTMaterial.Hydrogen, 3),
 				GTMaterialGen.getFluid(GTMaterial.Oxygen, 4));
 		
 		addRecipe(new IRecipeInput[] { 

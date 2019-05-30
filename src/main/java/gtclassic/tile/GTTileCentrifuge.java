@@ -288,8 +288,8 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 				GTMaterialGen.getSmallDust(GTMaterial.Tin, 2));
 
 		addRecipe("dustSheldonite", 4, 0, totalEu(32000), 
-				GTMaterialGen.getSmallDust(GTMaterial.Iridium, 1),
-				GTMaterialGen.getDust(GTMaterial.Platinum, 2));
+				GTMaterialGen.getDust(GTMaterial.Platinum, 2),
+				GTMaterialGen.getDust(GTMaterial.Nickel, 1));
 
 		addRecipe("dustElectrum", 2, 0, totalEu(5000), 
 				GTMaterialGen.getSmallDust(GTMaterial.Gold, 2),
@@ -376,8 +376,9 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 				GTMaterialGen.getSmallDust(GTMaterial.Osmium, 1), 
 				GTMaterialGen.getSmallDust(GTMaterial.Platinum, 2));
 		
-		addRecipe("dustRareEarth", 1, 0, totalEu(32000), 
-				GTMaterialGen.getDust(GTMaterial.Neodymium, 1));
+		addRecipe("dustRareEarth", 2, 1, totalEu(32000), 
+				GTMaterialGen.getDust(GTMaterial.Neodymium, 1),
+				GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1));
 		
 		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 16), 1, totalEu(25000), 
 				GTMaterialGen.getFluid(GTMaterial.Methane, 1),

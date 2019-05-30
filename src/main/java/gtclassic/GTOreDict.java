@@ -98,6 +98,10 @@ public class GTOreDict {
 		OreDictionary.registerOre("itemSlag", (GTMaterialGen.getDust(GTMaterial.Slag, 1)));
 		OreDictionary.registerOre("plateWroughtIron", (GTMaterialGen.getPlate(GTMaterial.RefinedIron, 1)));
 		OreDictionary.registerOre("stickWroughtIron", (GTMaterialGen.getStick(GTMaterial.RefinedIron, 1)));
+		OreDictionary.registerOre("pcbAny", (GTMaterialGen.get(GTItems.resinPCB, 1)));
+		OreDictionary.registerOre("pcbBasic", (GTMaterialGen.get(GTItems.resinPCB, 1)));
+		OreDictionary.registerOre("pcbAny", (GTMaterialGen.get(GTItems.plasticPCB, 1)));
+		OreDictionary.registerOre("pcbAdvanced", (GTMaterialGen.get(GTItems.plasticPCB, 1)));
 
 	}
 

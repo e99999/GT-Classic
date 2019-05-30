@@ -8,6 +8,7 @@ import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 
 public class GTRecipeMod {
 
@@ -48,7 +49,7 @@ public class GTRecipeMod {
 				"ADA", "IAI", 'I', "ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
 
 		recipes.overrideRecipe("shaped_tile.blockStoneMacerator_-130868445", Ic2Items.stoneMacerator.copy(),
-				new Object[] { "XXX", "CYC", "YVY", 'Y', "cobblestone", 'X', "gemDiamond", 'C', Blocks.PISTON, 'V',
+				new Object[] { "FXF", "CYC", "YVY", 'Y', "cobblestone", 'X', "gemDiamond",'F', Items.FLINT, 'C', Blocks.PISTON, 'V',
 						Blocks.FURNACE });
 
 		recipes.overrideRecipe("shaped_tile.blockMacerator_127744036", Ic2Items.macerator.copy(),

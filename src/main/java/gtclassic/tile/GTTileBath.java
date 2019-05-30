@@ -322,7 +322,7 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
 				totalTicks(800), 
 				GTMaterialGen.getDust(GTMaterial.Magnetite, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Iron, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Gold, 1),
 				GTMaterialGen.get(GTItems.testTube, 1));
 		
 		addRecipe(new IRecipeInput[] { 
@@ -330,7 +330,7 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
 				totalTicks(800), 
 				GTMaterialGen.getDust(GTMaterial.Tungstate, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Iron, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Silver, 1),
 				GTMaterialGen.get(GTItems.testTube, 1));
 		
 		addRecipe(new IRecipeInput[] { 
@@ -346,7 +346,7 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
 				totalTicks(800), 
 				GTMaterialGen.getIc2(Ic2Items.copperDust, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Nickel, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Gold, 1),
 				GTMaterialGen.get(GTItems.testTube, 1));
 		
 		addRecipe(new IRecipeInput[] { 

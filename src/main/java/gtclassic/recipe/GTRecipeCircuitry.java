@@ -87,21 +87,21 @@ public class GTRecipeCircuitry {
 
 		recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW",
 				"TSC", "WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
-				GTItems.resinPCB);
+				"pcbAny");
 
 		recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW",
 				"CST", "WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
-				GTItems.resinPCB);
+				"pcbAny");
 		
 		//Temporary Adv Circuit Recipes
 		
 		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GT.getIc2(Ic2Items.advancedCircuit, 1), "WWW",
 				"TSC", "WWW", 'T',  GTItems.advancedTransistor, 'C', GTItems.advancedCapacitor, 'W', "wireFinePlatinum", 'S',
-				GTItems.plasticPCB);
+				"pcbAdvanced");
 
 		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GT.getIc2(Ic2Items.advancedCircuit, 1), "WWW",
 				"CST", "WWW", 'T', GTItems.advancedTransistor, 'C', GTItems.advancedCapacitor, 'W', "wireFinePlatinum", 'S',
-				GTItems.plasticPCB);
+				"pcbAdvanced");
 
 		recipes.overrideRecipe("shaped_item.itemBatRE_2077392104", GT.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT",
 				'T', "ingotTin", 'R', "dustRedstone", 'C', Ic2Items.copperCable.copy());

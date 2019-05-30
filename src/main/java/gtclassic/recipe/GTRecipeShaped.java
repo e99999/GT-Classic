@@ -182,7 +182,7 @@ public class GTRecipeShaped {
 				new Object[] { "T H", "WEW", "RCR", 'T', wrench, 'H', hammer, 'W', Ic2Items.goldCable, 'E',
 						"blockGlass", 'R', Ic2Items.doubleInsulatedGoldCable, 'C', GTBlocks.casingPlastic1x });
 
-		recipes.addRecipe(GT.get(GTBlocks.tileShredder, 1), new Object[] { "W H", "MSM", "DDD", 'W', wrench, 'H',
+		recipes.addRecipe(GT.get(GTBlocks.tileShredder, 1), new Object[] { "W H", "ASM", "DDD", 'W', wrench, 'H',
 				hammer, 'A', "circuitAdvanced", 'S', "casingMachineSteel", 'M', GTItems.motorMV, 'D', "gemDiamond" });
 
 		recipes.addRecipe(GT.get(GTBlocks.tileRoaster, 1), new Object[] { "HPW", "PMP", "PCP", 'C', "coilConstantan",
