@@ -11,6 +11,7 @@ import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
 import gtclassic.util.GTValues;
+import gtclassic.util.energy.MultiBlockHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -67,6 +68,7 @@ public class GTMod {
 		}
 		GTTileShredder.collectMaceratorRecipe();
 		proxy.postInit(e);
+		MultiBlockHelper.INSTANCE.init();
 	}
 
 	@Mod.EventHandler
