@@ -132,11 +132,6 @@ public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 	}
 
 	@Override
-	public boolean hasGui(EntityPlayer player) {
-		return true;
-	}
-
-	@Override
 	public ResourceLocation getStartSoundFile() {
 		return Ic2Sounds.compressorOp;
 	}

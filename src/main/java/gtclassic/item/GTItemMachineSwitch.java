@@ -68,22 +68,15 @@ public class GTItemMachineSwitch extends Item implements IAdvancedTexturedItem, 
 		if (IC2.platform.isSimulating()) {
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(playerIn.getHeldItem(handIn));
 			int mode = nbt.getInteger("mode");
-			int result = mode + getCycleDirection(playerIn);
+			int result = mode + 1;
 			if (result > 5) {
 				result = 0;
-			}
-			if (result < 0) {
-				result = 5;
 			}
 			nbt.setInteger("mode", result);
 			this.setDamage(playerIn.getHeldItem(handIn), mode);
 			IC2.platform.messagePlayer(playerIn, "Mode: " + mode);
 		}
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
-	}
-
-	public int getCycleDirection(EntityPlayer playerIn) {
-		return !playerIn.isSneaking() ? 1 : -1;
 	}
 
 	@Override

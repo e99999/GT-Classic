@@ -1,5 +1,6 @@
 package gtclassic.tile;
 
+import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.energy.tile.IEnergyEmitter;
 import net.minecraft.util.EnumFacing;
 
@@ -22,7 +23,7 @@ public abstract class GTTileBaseMachinePassive extends GTTileBaseMachine {
 			shouldCheckRecipe = false;
 		}
 		boolean canWork = canWork() && !noRoom;
-		boolean operate = (canWork && lastRecipe != null);
+		boolean operate = (canWork && lastRecipe != null && lastRecipe != GTMultiInputRecipeList.INVALID_RECIPE);
 		if (operate) {
 			if (!getActive()) {
 				getNetwork().initiateTileEntityEvent(this, 0, false);
@@ -66,11 +67,6 @@ public abstract class GTTileBaseMachinePassive extends GTTileBaseMachine {
 	@Override
 	public boolean provideEnergy() {
 		return false;
-	}
-
-	@Override
-	public boolean isRecipeSlot(int slot) {
-		return true;
 	}
 
 }

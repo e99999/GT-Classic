@@ -109,7 +109,12 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 
 	@Override
 	public boolean isRecipeSlot(int slot) {
-		return true;
+		for (int i : this.getInputSlots()) {
+			if (slot <= i) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -124,11 +129,6 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 
 	public ResourceLocation getGuiTexture() {
 		return GUI_LOCATION;
-	}
-
-	@Override
-	public boolean hasGui(EntityPlayer player) {
-		return true;
 	}
 
 	// @formatter:off

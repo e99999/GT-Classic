@@ -119,6 +119,16 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 	public ResourceLocation getStartSoundFile() {
 		return null;
 	}
+	
+	@Override
+	public boolean isRecipeSlot(int slot) {
+		for (int i : this.getInputSlots()) {
+			if (slot <= i) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	// @formatter:off
 	public static void init() {

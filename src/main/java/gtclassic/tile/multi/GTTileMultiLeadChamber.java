@@ -95,6 +95,16 @@ public class GTTileMultiLeadChamber extends GTTileMultiBasePassive {
 	public int[] getInputSlots() {
 		return slotInputs;
 	}
+	
+	@Override
+	public boolean isRecipeSlot(int slot) {
+		for (int i : this.getInputSlots()) {
+			if (slot <= i) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
@@ -113,11 +123,6 @@ public class GTTileMultiLeadChamber extends GTTileMultiBasePassive {
 
 	public ResourceLocation getGuiTexture() {
 		return GUI_LOCATION;
-	}
-
-	@Override
-	public boolean hasGui(EntityPlayer player) {
-		return true;
 	}
 
 	@Override

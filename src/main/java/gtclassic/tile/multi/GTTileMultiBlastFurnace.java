@@ -137,14 +137,11 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	}
 
 	@Override
-	public boolean hasGui(EntityPlayer player) {
-		return true;
-	}
-
-	@Override
 	public ResourceLocation getStartSoundFile() {
 		return Ic2Sounds.generatorLoop;
 	}
+	
+	
 
 	// @formatter:off
 	public static void init() {
@@ -212,7 +209,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
 				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 		
-		IRecipeInput validSteelIron = new RecipeInputCombined(4,new IRecipeInput[] { 
+		IRecipeInput validSteelIron = new RecipeInputCombined(1,new IRecipeInput[] { 
 				new RecipeInputOreDict("ingotIron", 1), 
 				new RecipeInputOreDict("dustIron", 1), 
 				new RecipeInputOreDict("ingotRefinedIron", 1)
