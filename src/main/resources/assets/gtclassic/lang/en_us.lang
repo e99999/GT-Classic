@@ -931,7 +931,10 @@ item.gtclassic.niobiumtitanium_finewire.name=Niobium Titanium Fine Wire
 item.gtclassic.tantalum_foil.name=Tantalum Foil
 item.gtclassic.niobium_foil.name=Niobium Foil
 item.gtclassic.aluminium_foil.name=Aluminium Foil
+item.gtclassic.copper_foil.name=Copper Foil
+item.gtclassic.silver_foil.name=Silver Foil
 item.gtclassic.germanium_smallplate.name=Small Germanium Plate
+item.gtclassic.silicon_smallplate.name=Small Silicon Plate
 
 #material tools
 #files
@@ -1244,6 +1247,8 @@ item.gtclassic.resin_pcb.name=Resin PCB
 item.gtclassic.plastic_pcb.name=Plastic PCB
 item.gtclassic.basic_transistor.name=Basic Transistor
 item.gtclassic.basic_capacitor.name=Basic Capacitor
+item.gtclassic.advanced_transistor.name=Advanced Transistor
+item.gtclassic.advanced_capacitor.name=Advanced Capacitor
 
 item.gtclassic.motor_lv.name=Electric Motor LV
 item.gtclassic.motor_mv.name=Electric Motor MV
@@ -1308,6 +1313,9 @@ fluid.greenvitriol=Green Vitriol
 fluid.bluevitriol=Blue Vitriol
 fluid.redvitriol=Red Vitriol
 fluid.cyanvitriol=Cyan Vitriol
+fluid.nitrocellulose=Nitrocellulose
+fluid.chlorinatedpolyvinyl=Chlorinated Polyvinyl
+fluid.acrylicacid=Acrylic Acid
 
 #block tooltips
 tooltip.gtclassic.machine_heatingelement0=Melts things when a heat source is below

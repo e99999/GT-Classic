@@ -356,7 +356,7 @@ public class GTTileShredder extends GTTileMultiBaseMachine {
 				GTMaterialGen.getSmallDust(GTMaterial.Emerald, 2));
 
 		addRecipe("oreSodalite", 1, 
-				GTMaterialGen.getDust(GTMaterial.Lazurite, 12),
+				GTMaterialGen.getDust(GTMaterial.Sodalite, 12),
 				GTMaterialGen.getDust(GTMaterial.Alumina, 3));
 	}
 	// @formatter:on

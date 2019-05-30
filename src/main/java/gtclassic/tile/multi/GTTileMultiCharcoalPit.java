@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 
@@ -39,6 +40,11 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
+	}
+	
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 
 	@Override

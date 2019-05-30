@@ -41,6 +41,7 @@ public class GTRecipeCircuitry {
 				GTItems.magnesiaBrick, GTItems.magnesiaBrick, GTItems.magnesiaBrick });
 
 		TileEntitySawMill.addRecipe(GT.get(GTBlocks.driedResin), GT.get(GTItems.resinPCB), 0.0F);
+		TileEntitySawMill.addRecipe(GTMaterialGen.getPlate(GTMaterial.Silicon, 1), GTMaterialGen.getSmallPlate(GTMaterial.Silicon, 4), 0.0F);
 		TileEntityCompressor.addRecipe("dustWood", 1, GT.get(GTItems.woodPlate));
 		TileEntityMacerator.addRecipe(GT.getIc2(Ic2Items.stickyResin, 1), GT.getDust(M.DirtyResin, 2));
 		TileEntityMacerator.addRecipe("plankWood", 1, GT.getDust(M.Wood, 2));
@@ -64,6 +65,24 @@ public class GTRecipeCircuitry {
 		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
 				new Object[] { "FPF", "L L", 'F', "foilAluminium", 'P', Items.PAPER, 'L', "wireFineAny" });
 
+		recipes.addRecipe(GT.get(GTItems.advancedTransistor, 1), new Object[] { " G ", "WPW", " G ", 'W', "wireFineAny",
+				'P', "plateSmallSilicon", 'G', "dustSmallGlowstone" });
+
+		recipes.addRecipe(GT.get(GTItems.advancedCapacitor, 1),
+				new Object[] { "LDL", "FPF", "LDL", 'F', "foilTantalum", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
+		
+		recipes.addRecipe(GT.get(GTItems.advancedCapacitor, 1),
+				new Object[] { "LDL", "FPF", "LDL", 'F', "foilNiobium", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
+		
+		recipes.addRecipe(GT.get(GTItems.advancedCapacitor, 1),
+				new Object[] { "LDL", "FPF", "LDL", 'F', "foilAluminium", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
+		
+		recipes.addRecipe(GT.get(GTItems.advancedCapacitor, 1),
+				new Object[] { "LDL", "FPF", "LDL", 'F', "foilSilver", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
+		
+		
+
+
 		// Gating basic circuits
 
 		recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW",
@@ -73,6 +92,16 @@ public class GTRecipeCircuitry {
 		recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW",
 				"CST", "WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
 				GTItems.resinPCB);
+		
+		//Temporary Adv Circuit Recipes
+		
+		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GT.getIc2(Ic2Items.advancedCircuit, 1), "WWW",
+				"TSC", "WWW", 'T',  GTItems.advancedTransistor, 'C', GTItems.advancedCapacitor, 'W', "wireFinePlatinum", 'S',
+				GTItems.plasticPCB);
+
+		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GT.getIc2(Ic2Items.advancedCircuit, 1), "WWW",
+				"CST", "WWW", 'T', GTItems.advancedTransistor, 'C', GTItems.advancedCapacitor, 'W', "wireFinePlatinum", 'S',
+				GTItems.plasticPCB);
 
 		recipes.overrideRecipe("shaped_item.itemBatRE_2077392104", GT.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT",
 				'T', "ingotTin", 'R', "dustRedstone", 'C', Ic2Items.copperCable.copy());

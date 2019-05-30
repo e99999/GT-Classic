@@ -379,6 +379,47 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 				GTMaterialGen.getSmallDust(GTMaterial.Silver, 1),
 				GTMaterialGen.get(GTItems.testTube, 1));
 		
+		//making plastic pcbs
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getIc2(Ic2Items.plantBall, 1)), 
+				input(GTMaterialGen.getFluid(GTMaterial.NitricAcid, 1))}, 
+				totalTicks(800), 
+				GTMaterialGen.getFluid(GTMaterial.Nitrocellulose, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("foilCopper", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.Nitrocellulose, 1))}, 
+				totalTicks(400), 
+				GTMaterialGen.get(GTItems.plasticPCB, 1),
+				GTMaterialGen.get(GTItems.testTube, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getDust(GTMaterial.Plastic, 1)), 
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 1))}, 
+				totalTicks(800), 
+				GTMaterialGen.getFluid(GTMaterial.Acrylicacid, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("foilCopper", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.Acrylicacid, 1))}, 
+				totalTicks(400), 
+				GTMaterialGen.get(GTItems.plasticPCB, 1),
+				GTMaterialGen.get(GTItems.testTube, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input(GTMaterialGen.getDust(GTMaterial.Plastic, 1)), 
+				input(GTMaterialGen.getFluid(GTMaterial.Chlorine, 1))}, 
+				totalTicks(1200), 
+				GTMaterialGen.getFluid(GTMaterial.Chlorinatedpolyvinyl, 1));
+		
+		addRecipe(new IRecipeInput[] { 
+				input("foilCopper", 1), 
+				input(GTMaterialGen.getFluid(GTMaterial.Chlorinatedpolyvinyl, 1))}, 
+				totalTicks(400), 
+				GTMaterialGen.get(GTItems.plasticPCB, 1),
+				GTMaterialGen.get(GTItems.testTube, 1));
+		
 		
 		
 	}

@@ -16,6 +16,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -81,6 +82,11 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IT
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
 		return new GTContainerDigitalChest(player.inventory, this);
+	}
+	
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 
 	@Override

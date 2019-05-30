@@ -39,6 +39,7 @@ public class GTMaterial {
 	/** Material Instances **/
 	// @formatter:off
 	public static final GTMaterial 
+	Acrylicacid = new GTMaterial("Acrylicacid", 255, 255, 255, 300, 3.0F, 0, 1, fluid),
 	AnnealedCopper = new GTMaterial("AnnealedCopper", 255, 120, 20, 3014, 1.0F, 0, 1, ingot, nugget, stick, wire),
 	Almandine = new GTMaterial("Almandine", 255, 0, 0, 1759, 1.0F, 0, 1, dustAll),
 	Alumina = new GTMaterial("Alumina", 200, 232, 255, 2345, 1.0F, 0, 1, dustAll),
@@ -64,6 +65,7 @@ public class GTMaterial {
 	Cassiterite = new GTMaterial("Cassiterite", 220, 220, 220, 757, 3.0F, 0, 1, dustAll),
 	Charcoal = new GTMaterial("Charcoal", 100, 70, 70, 3800, 1.0F, 0, 1,smalldust),
 	Chlorine = new GTMaterial("Chlorine", 50, 150, 150, 171, 1.0F, 0, 1, fluid),
+	Chlorinatedpolyvinyl = new GTMaterial("Chlorinatedpolyvinyl", 70, 170, 170, 233, 1.0F, 0, 1, fluid),
 	Chloroplatinicacid = new GTMaterial("Chloroplatinicacid",255, 0, 0, 14, 1.0F, 0, 1, fluid),
 	Chrome = new GTMaterial("Chrome", 255, 230, 230, 2180, 11.0F, 256, 3, metalFull),
 	Chromite = new GTMaterial("Chromite", 35, 20, 15, 912, 5.0F, 0, 3,  dustAll),
@@ -72,7 +74,7 @@ public class GTMaterial {
 	Coal = new GTMaterial("Coal", 70, 70, 70, 3800, 3.0F, 0, 1, smalldust),
 	Cobalt = new GTMaterial("Cobalt", 80, 80, 250, 1768, 8.0F, 512, 4, metalBase),
 	Constantan = new GTMaterial("Constantan", 196, 116, 77, 1542, 8.0F, 128, 2, smalldust, dust, nugget, ingot, plate, stick, coil),
-	Copper = new GTMaterial("Copper", 180, 113, 61, 1357, 1.0F, 0, 1, smalldust, nugget, plate, stick, wire, gear, casing, coil),
+	Copper = new GTMaterial("Copper", 180, 113, 61, 1357, 1.0F, 0, 1, smalldust, nugget, plate, stick, wire, gear, casing, coil, foil),
 	Cryolite = new GTMaterial("Cryolite", 255, 255, 255, 1285, 3.0F, 0, 1, fluid, smalldust, dust),
 	DarkAshes = new GTMaterial("DarkAshes", 50, 50, 50, 1000, 1.0F, 0, 1,  dustAll),
 	Diamond = new GTMaterial("Diamond", 51, 235, 203, 3800, 8.0F, 1280, 3,  dustAll),
@@ -126,6 +128,7 @@ public class GTMaterial {
 	Niobium = new GTMaterial("Niobium", 200, 200, 200, 2750, 1.0F, 0, 1,  smalldust, dust, nugget, ingot, plate, stick, foil),
 	NiobiumTitanium = new GTMaterial("NiobiumTitanium", 29, 29, 41, 2345, 1.0F, 0, 1, smalldust, dust, nugget, ingot, plate, stick, wire, coil),
 	NitricAcid = new GTMaterial("NitricAcid", 34, 185, 55, 255, 1.0F, 0, 1, fluid),
+	Nitrocellulose = new GTMaterial("Nitrocellulose", 160, 255, 120, 370, 3.0F, 0, 1, fluid),
 	Nitrogen = new GTMaterial("Nitrogen", 0, 190, 190, 63, 1.0F, 0, 1, gas),
 	Obsidian = new GTMaterial("Obsidian", 80, 50, 100, 1300, 1.0F, 0, 1, smalldust),
 	Oil = new GTMaterial("Oil", 0, 0, 0, 100, 1.0F, 0, 1,  fluid),
@@ -153,8 +156,8 @@ public class GTMaterial {
 	Sapphire = new GTMaterial("Sapphire", 100, 100, 200, 2345, 7.0F, 256, 2, gemAll),
 	SapphireGreen = new GTMaterial("GreenSapphire", 100, 200, 130, 2108, 7.0F, 256, 2, gemAll),
 	Sheldonite = new GTMaterial("Sheldonite", 215, 212, 137, 1677, 3.5F, 0, 3, dustAll),
-	Silicon = new GTMaterial("Silicon", 60, 60, 80, 1687, 1.0F, 0, 1, fluid, smalldust, dust, nugget, ingot, plate),
-	Silver = new GTMaterial("Silver", 215, 225, 230, 1234, 10.0F, 64, 2, smalldust, nugget, plate, stick, wire, gear, casing),
+	Silicon = new GTMaterial("Silicon", 60, 60, 80, 1687, 1.0F, 0, 1, fluid, smalldust, dust, nugget, ingot, plate, smallplate),
+	Silver = new GTMaterial("Silver", 215, 225, 230, 1234, 10.0F, 64, 2, smalldust, nugget, plate, stick, wire, gear, casing, foil),
 	Slag = new GTMaterial("Slag", 64, 48, 0, 1000, 1.0F, 0, 1, dustAll),
 	Sodalite = new GTMaterial("Sodalite", 20, 20, 255, 1331, 3.0F, 0, 2, dustAll),
 	Sodium = new GTMaterial("Sodium", 0, 38, 255, 370, 1.0F, 0, 1, fluid),

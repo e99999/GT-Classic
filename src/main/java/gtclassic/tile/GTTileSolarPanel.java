@@ -93,5 +93,10 @@ public class GTTileSolarPanel extends TileEntityMachine implements ITickable, IE
 	public double getWrenchDropRate() {
 		return 1.0D;
 	}
+	
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
+	}
 
 }
