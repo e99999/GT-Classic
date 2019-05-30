@@ -73,7 +73,7 @@ public class GTTileRoaster extends GTTileBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
-		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
 				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
@@ -183,6 +183,17 @@ public class GTTileRoaster extends GTTileBaseMachine {
 				1, 
 				GTMaterialGen.getDust(GTMaterial.Molybdenum, 1),
 				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+		
+		addRecipe("dustChromite", 3, 
+				1, 
+				GTMaterialGen.getDust(GTMaterial.Chrome, 1),
+				GTMaterialGen.getSmallDust(GTMaterial.Iron, 1),
+				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1));
+		
+		addRecipe("dustSaltpeter", 12, 
+				4, 
+				GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1),
+				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 3));
 	}
 	// @formatter:on
 
@@ -215,7 +226,7 @@ public class GTTileRoaster extends GTTileBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 16);
 	}
 
 	public static IRecipeModifier[] euCost(int amount) {

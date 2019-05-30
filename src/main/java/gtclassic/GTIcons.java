@@ -55,7 +55,7 @@ public class GTIcons {
 		addCustomTexture("machine_blastfurnace_lv", 0, 9, location("blastfurnace_front"));
 		addCustomTexture("machine_electricsmelter_lv", 0, 9, location("smelter_front"));
 		addCustomTexture("machine_shredder_mv", 0, 9, location("shredder_front"));
-		addCustomTexture("machine_fusioncomputer_luv", 0, 7, location("fusion_top"));
+		addCustomTexture("machine_fusioncomputer_ev", 0, 9, location("fusion_front"));
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 7, location("centrifuge_top"));
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 8, location("centrifuge_back"));
 		addCustomTexture("machine_industrialcentrifuge_lv", 0, 9, location("centrifuge_front"));

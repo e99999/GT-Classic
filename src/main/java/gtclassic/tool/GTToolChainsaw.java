@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
@@ -14,7 +15,6 @@ import gtclassic.util.GTValues;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
@@ -214,13 +214,13 @@ public class GTToolChainsaw extends ItemElectricTool
 		if (this.getDamage(saw) == this.getMaxDamage()) {
 			if (this.tier == 1) {
 				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.batteryLithiumSmall));
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTItems.motorLV), 1);
 				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Steel, 5));
 			}
 			if (this.tier == 2) {
 				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.batteryLithiumMed));
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1));
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Titanium, 5));
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTItems.motorMV), 1);
+				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Aluminium, 5));
 			}
 			// TODO add tier 3 when parts are available
 		}

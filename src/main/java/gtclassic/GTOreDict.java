@@ -75,6 +75,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("blockCharcoal", Ic2Items.charcoalBlock);
 		OreDictionary.registerOre("logRubber", Ic2Items.rubberWood);
 		OreDictionary.registerOre("ingotWroughtIron", Ic2Items.refinedIronIngot);
+		OreDictionary.registerOre("dustRareEarth", Ic2Items.rareEarthDust);
 
 		// Registering Aluminium for idiots
 		GTMaterial aluminium = GTMaterial.Aluminium;
@@ -93,6 +94,10 @@ public class GTOreDict {
 		OreDictionary.registerOre("dustEnderEye", (GTMaterialGen.getDust(GTMaterial.EnderEye, 1)));
 		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getIngot(GTMaterial.Silicon, 1)));
 		OreDictionary.registerOre("dyeBlue", (GTMaterialGen.getDust(GTMaterial.Lazurite, 1)));
+		OreDictionary.registerOre("blockGlass", (GTMaterialGen.get(GTBlocks.glassSlag)));
+		OreDictionary.registerOre("itemSlag", (GTMaterialGen.getDust(GTMaterial.Slag, 1)));
+		OreDictionary.registerOre("plateWroughtIron", (GTMaterialGen.getPlate(GTMaterial.RefinedIron, 1)));
+		OreDictionary.registerOre("stickWroughtIron", (GTMaterialGen.getStick(GTMaterial.RefinedIron, 1)));
 
 	}
 

@@ -114,8 +114,8 @@ public class GTMaterialItemHot extends Item implements IStaticTexturedItem, GTCo
 			EntityLivingBase player = (EntityLivingBase) entityIn;
 			if (player.isInWater()) {
 				player.replaceItemInInventory(itemSlot, GTMaterialGen.getIngot(this.material, stack.getCount()));
-				worldIn.playSound((EntityPlayer) null, player.getPosition(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
+				worldIn.playSound((EntityPlayer) null, player.getPosition(), SoundEvents.BLOCK_LAVA_EXTINGUISH,
+						SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			if (!ItemHazmatArmor.isFullHazmatSuit(player) || !player.isImmuneToFire()) {
 				entityIn.attackEntityFrom(DamageSource.IN_FIRE, 4.0F);

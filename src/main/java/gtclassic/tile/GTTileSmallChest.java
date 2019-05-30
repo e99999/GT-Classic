@@ -13,6 +13,7 @@ import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockCom
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -68,6 +69,11 @@ public class GTTileSmallChest extends TileEntityMachine implements IHasGui {
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
+	}
+	
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 
 }

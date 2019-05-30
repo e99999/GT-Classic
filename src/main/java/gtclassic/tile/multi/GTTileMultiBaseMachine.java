@@ -2,6 +2,7 @@ package gtclassic.tile.multi;
 
 import gtclassic.tile.GTTileBaseMachine;
 import gtclassic.util.int3;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 
 public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine {
@@ -31,6 +32,11 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine {
 			return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public boolean hasGui(EntityPlayer player) {
+		return checkStructure();
 	}
 
 	@Override

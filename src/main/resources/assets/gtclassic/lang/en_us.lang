@@ -1,31 +1,3 @@
-#material casings
-tile.gtclassic.germanium_casing.name=Germanium Machine Casing
-tile.gtclassic.invar_casing.name=Invar Machine Casing
-tile.gtclassic.zinc_casing.name=Zinc Machine Casing
-tile.gtclassic.bronze_casing.name=Bronze Machine Casing
-tile.gtclassic.silver_casing.name=Silver Machine Casing
-tile.gtclassic.steel_casing.name=Steel Machine Casing
-tile.gtclassic.gold_casing.name=Gold Machine Casing
-tile.gtclassic.copper_casing.name=Copper Machine Casing
-tile.gtclassic.electrum_casing.name=Electrum Machine Casing
-tile.gtclassic.lead_casing.name=Lead Machine Casing
-tile.gtclassic.aluminium_casing.name=Aluminium Machine Casing
-tile.gtclassic.platinum_casing.name=Platinum Machine Casing
-tile.gtclassic.tin_casing.name=Tin Machine Casing
-tile.gtclassic.chrome_casing.name=Chrome Machine Casing
-tile.gtclassic.brass_casing.name=Brass Machine Casing
-tile.gtclassic.tungsten_casing.name=Tungsten Machine Casing
-tile.gtclassic.tungstensteel_casing.name=Tungstensteel Machine Casing
-tile.gtclassic.titanium_casing.name=Titanium Machine Casing
-tile.gtclassic.iridium_casing.name=Iridium Machine Casing
-tile.gtclassic.nickel_casing.name=Nickel Machine Casing
-tile.gtclassic.osmium_casing.name=Osmium Machine Casing
-tile.gtclassic.iron_casing.name=Iron Machine Casing
-tile.gtclassic.refinediron_casing.name=Refined Iron Machine Casing
-tile.gtclassic.stainlesssteel_casing.name=Stainless Steel Machine Casing
-tile.gtclassic.bismuth_casing.name=Bismuth Machine Casing
-tile.gtclassic.ultimet_casing.name=Ultimet Machine Casing
-
 #blocks
 tile.gtclassic.germanium_block.name=Block of Germanium
 tile.gtclassic.tungsten_block.name=Block of Tungsten
@@ -53,6 +25,43 @@ tile.gtclassic.stainlesssteel_block.name=Block of Stainless Steel
 tile.gtclassic.bismuth_block.name=Block of Bismuth
 tile.gtclassic.vibranium_block.name=Block of Vibranium
 tile.gtclassic.ultimet_block.name=Block of Ultimet
+tile.gtclassic.zircaloy_block.name=Block of Zircaloy
+
+#material casings
+tile.gtclassic.germanium_casing.name=Germanium Machine Casing
+tile.gtclassic.invar_casing.name=Invar Machine Casing
+tile.gtclassic.zinc_casing.name=Zinc Machine Casing
+tile.gtclassic.bronze_casing.name=Bronze Machine Casing
+tile.gtclassic.silver_casing.name=Silver Machine Casing
+tile.gtclassic.steel_casing.name=Steel Machine Casing
+tile.gtclassic.gold_casing.name=Gold Machine Casing
+tile.gtclassic.copper_casing.name=Copper Machine Casing
+tile.gtclassic.electrum_casing.name=Electrum Machine Casing
+tile.gtclassic.lead_casing.name=Lead Machine Casing
+tile.gtclassic.aluminium_casing.name=Aluminium Machine Casing
+tile.gtclassic.platinum_casing.name=Platinum Machine Casing
+tile.gtclassic.tin_casing.name=Tin Machine Casing
+tile.gtclassic.chrome_casing.name=Chrome Machine Casing
+tile.gtclassic.brass_casing.name=Brass Machine Casing
+tile.gtclassic.tungsten_casing.name=Tungsten Machine Casing
+tile.gtclassic.tungstensteel_casing.name=Tungstensteel Machine Casing
+tile.gtclassic.titanium_casing.name=Titanium Machine Casing
+tile.gtclassic.iridium_casing.name=Iridium Machine Casing
+tile.gtclassic.nickel_casing.name=Nickel Machine Casing
+tile.gtclassic.osmium_casing.name=Osmium Machine Casing
+tile.gtclassic.iron_casing.name=Iron Machine Casing
+tile.gtclassic.refinediron_casing.name=Refined Iron Machine Casing
+tile.gtclassic.stainlesssteel_casing.name=Stainless Steel Machine Casing
+tile.gtclassic.bismuth_casing.name=Bismuth Machine Casing
+tile.gtclassic.ultimet_casing.name=Ultimet Machine Casing
+tile.gtclassic.zircaloy_casing.name=Zircaloy Machine Casing
+
+#material coils
+tile.gtclassic.copper_coil.name=Copper Coil
+tile.gtclassic.constantan_coil.name=Constantan Coil
+tile.gtclassic.graphite_coil.name=Graphite Coil
+tile.gtclassic.nichrome_coil.name=Nichrome Coil
+tile.gtclassic.niobiumtitanium_coil.name=Niobium Titanium Coil
 
 #storage blocks
 tile.gtclassic.tungsten_storage_0.name=Tungsten Cabinet
@@ -347,31 +356,41 @@ tile.gtclassic.cassiterite_bedrock_ore.name=Cassiterite Bedrock Ore
 tile.gtclassic.magnetite_bedrock_ore.name=Magnetite Bedrock Ore
 tile.gtclassic.basalt_bedrock_ore.name=Basaltic Minerals Bedrock Ore
 
+
+#blooms
+tile.gtclassic.refinediron_bloom.name=Refined Iron Bloom
+tile.gtclassic.bronze_bloom.name=Bronze Bloom
+tile.gtclassic.redalloy_bloom.name=Red Alloy Bloom
+tile.gtclassic.invar_bloom.name=Invar Bloom
+tile.gtclassic.brass_bloom.name=Brass Bloom
+tile.gtclassic.electrum_bloom.name=Electrum Bloom
+tile.gtclassic.constantan_bloom.name=Constantan Bloom
+tile.gtclassic.bismuthbronze_bloom.name=Bismuth Bronze Bloom
+
 #blocks
+tile.gtclassic.magnesia_block.name=Magnesia Carbon Block
 tile.gtclassic.resin_block.name=Uncut Sticky Resin Board
-tile.gtclassic.bloom_block.name=Refined Iron Bloom
 tile.gtclassic.slag_sand.name=Slag Sand
 tile.gtclassic.slagcrete_sand.name=Reinforced Concrete
 tile.gtclassic.slag_glass.name=Slag Glass
 tile.gtclassic.charcoal_sand.name=Charcoal Ash Pile
-tile.gtclassic.mud_block.name=Red Mud
+tile.gtclassic.tailings_block.name=Dried Bauxite Tailings
+tile.gtclassic.brine_block.name=Dried Brine
+tile.gtclassic.lithium_block.name=Dried Lithium
 
 #machine casings
 tile.gtclassic.superconductor_casing.name=Superconductor Casing
+tile.gtclassic.lightning_casing.name=Lightning Rod
 tile.gtclassic.fusion_casing.name=Fusion Casing
 tile.gtclassic.fission_casing.name=Fission Casing
 tile.gtclassic.plastic1_casing.name=Plastic Casing x 1
 tile.gtclassic.plastic4_casing.name=Plastic Casing x 4
 tile.gtclassic.plastic16_casing.name=Plastic Casing x 16
 
-tile.gtclassic.heat_casing.name=Heat Casing
-tile.gtclassic.coppercoil_casing.name=Copper Coil
-tile.gtclassic.constantancoil_casing.name=Constantan Coil
-tile.gtclassic.graphitecoil_casing.name=Graphite Coil
-tile.gtclassic.nichromecoil_casing.name=Nichrome Coil
-
 #tiles
-tile.gtclassic.machine_heatingelement.name=Heating Element
+tile.gtclassic.stainlesssteel_drum.name=Drum
+
+tile.gtclassic.machine_heatingelement.name=Heater
 tile.gtclassic.machine_bloomery.name=Bloomery Controller
 tile.gtclassic.machine_bath.name=Bath
 tile.gtclassic.machine_charcoalpit.name=Charcoal Pit Controller
@@ -380,16 +399,21 @@ tile.gtclassic.machine_chargeomat_ev.name=Charge-O-Mat (EV)
 tile.gtclassic.machine_computercube_ev.name=Computer Cube (EV)
 tile.gtclassic.machine_industrialcentrifuge_lv.name=Industrial Centrifuge (LV)
 tile.gtclassic.machine_roaster_lv.name=Roaster (LV)
-tile.gtclassic.machine_shredder_mv.name=Shredder (MV)
-tile.gtclassic.machine_industrialelectrolyzer_hv.name=Industrial Electrolyzer (HV)
+tile.gtclassic.machine_shredder_mv.name=Shredder Controller (MV)
+tile.gtclassic.machine_industrialelectrolyzer_hv.name=Industrial Electrolyzer (MV)
 tile.gtclassic.machine_chemicalreactor_hv.name=Chemical Reactor Controller (HV)
-tile.gtclassic.machine_electricsmelter_lv.name=Electric Smelter (LV)
+tile.gtclassic.machine_electricsmelter_lv.name=Alloy Smelter (LV)
+tile.gtclassic.machine_leadchamber_lv.name=Lead Chamber Controller (LV)
+tile.gtclassic.machine_fluidsmelter_lv.name=Fluid Smelter (LV)
+tile.gtclassic.machine_cryogenicseparator_mv.name=Cryogenic Separator Controller (MV)
+tile.gtclassic.machine_constructor_mv.name=Constructor (MV)
+tile.gtclassic.machine_compiler_hv.name=Compiler (HV)
 tile.gtclassic.machine_refractory_hv.name=Refractory Controller (HV)
 tile.gtclassic.machine_matterfabricator_ev.name=Matter Fabricator (EV)
 tile.gtclassic.machine_matterreplicator_ev.name=Matter Replicator (EV)
 tile.gtclassic.machine_playerdetector_lv.name=Player Detector (LV)
-tile.gtclassic.machine_fusioncomputer_luv.name=Fusion Controller (LuV)
-tile.gtclassic.machine_lightningrod_iv.name=Lightning Rod (IV)
+tile.gtclassic.machine_fusioncomputer_ev.name=Fusion Controller (EV)
+tile.gtclassic.machine_lightningrod_iv.name=Lightning Rod Controller (IV)
 tile.gtclassic.machine_quantumenergystorage_ev.name=Quantum Energy Storage Unit (EV)
 tile.gtclassic.machine_basicenergystorage_ev.name=Energy Storage Unit (EV)
 tile.gtclassic.machine_multienergystorage_mv.name=Energium Feild Controller (MV)
@@ -398,8 +422,8 @@ tile.gtclassic.tile_digitalchest.name=Digital Chest
 tile.gtclassic.cable_energium_luv.name=Energium Superconductor Cable (LuV)
 tile.gtclassic.cable_lapotron_zpm.name=Lapotronic Superconductor Cable (ZPM)
 tile.gtclassic.block_mortar.name=Mortar
-tile.gtclassic.block_echophone.name=Echophone
 tile.gtclassic.block_ducttape.name=Braintech Aerospace Advanced Reinforced Duct Tape FAL-84
+tile.gtclassic.solar_panel.name=Solar Panel (LV)
 tile.gtclassic.coolant_helium_small.name=60k Helium Coolant Cell
 tile.gtclassic.coolant_helium_med.name=180k Helium Coolant Cell
 tile.gtclassic.coolant_helium_large.name=360k Helium Coolant Cell
@@ -538,6 +562,18 @@ item.gtclassic.redgarnet_dustsmall.name=Small Red Garnet Dust
 item.gtclassic.yellowgarnet_dustsmall.name=Small Yellow Garnet Dust
 item.gtclassic.redalloy_dustsmall.name=Small Red Alloy Dust
 item.gtclassic.antimony_dustsmall.name=Small Antimony Dust
+item.gtclassic.zircaloy_dustsmall.name=Small Zircaloy Dust
+item.gtclassic.magnalium_dustsmall.name=Small Magnalium Dust
+item.gtclassic.bauxitetailings_dustsmall.name=Small Bauxite Tailings Dust
+item.gtclassic.lithium_dustsmall.name=Small Lithium Dust
+item.gtclassic.annealedcopper_dustsmall.name=Small Annealed Copper Dust
+item.gtclassic.lithiumchloride_dustsmall.name=Small Lithium Chloride Dust
+item.gtclassic.niobiumtitanium_dustsmall.name=Small Niobium Titanium Dust
+item.gtclassic.tungsticacid_dustsmall.name=Small Tungstic Acid Dust
+item.gtclassic.magnesiacarbon_dustsmall.name=Small Magnesia Carbon Dust
+item.gtclassic.brine_dustsmall.name=Small Evaporated Brine Dust
+item.gtclassic.platinumgroupsludge_dustsmall.name=Small Platinum Group Sludge Dust
+item.gtclassic.neodymium_dustsmall.name=Small Neodymium Dust
 
 #dust
 item.gtclassic.saltpeter_dust.name=Saltpeter Dust
@@ -638,6 +674,18 @@ item.gtclassic.redgarnet_dust.name=Red Garnet Dust
 item.gtclassic.yellowgarnet_dust.name=Yellow Garnet Dust
 item.gtclassic.redalloy_dust.name=Red Alloy Dust
 item.gtclassic.antimony_dust.name=Antimony Dust
+item.gtclassic.zircaloy_dust.name=Zircaloy Dust
+item.gtclassic.magnalium_dust.name=Magnalium Dust
+item.gtclassic.bauxitetailings_dust.name=Bauxite Tailings Dust
+item.gtclassic.lithium_dust.name=Lithium Dust
+item.gtclassic.annealedcopper_dust.name=Annealed Copper Dust
+item.gtclassic.lithiumchloride_dust.name=Lithium Chloride Dust
+item.gtclassic.niobiumtitanium_dust.name=Niobium Titanium Dust
+item.gtclassic.tungsticacid_dust.name=Tungstic Acid Dust
+item.gtclassic.magnesiacarbon_dust.name=Magnesia Carbon Dust
+item.gtclassic.brine_dust.name=Evaporated Brine Dust
+item.gtclassic.platinumgroupsludge_dust.name=Platinum Group Sludge Dust
+item.gtclassic.neodymium_dust.name=Neodymium Dust
 
 #gems
 item.gtclassic.sapphire_gem.name=Sapphire
@@ -680,6 +728,10 @@ item.gtclassic.ultimet_ingot.name=Ultimet Ingot
 item.gtclassic.molybdenum_ingot.name=Molybdenum Ingot
 item.gtclassic.niobium_ingot.name=Niobium Ingot
 item.gtclassic.redalloy_ingot.name=Red Alloy Ingot
+item.gtclassic.zircaloy_ingot.name=Zircaloy Ingot
+item.gtclassic.annealedcopper_ingot.name=Annealed Copper Ingot
+item.gtclassic.niobiumtitanium_ingot.name=Niobium Titanium Ingot
+item.gtclassic.neodymium_ingot.name=Neodymium Ingot
 
 #hot ingots
 item.gtclassic.tungsten_hotingot.name=Hot Tungsten Ingot
@@ -689,6 +741,7 @@ item.gtclassic.tungstensteel_hotingot.name=Hot Tungstensteel Ingot
 item.gtclassic.iridium_hotingot.name=Hot Iridium Ingot
 item.gtclassic.osmium_hotingot.name=Hot Osmium Ingot
 item.gtclassic.tantalum_hotingot.name=Hot Tantalum Ingot
+item.gtclassic.annealedcopper_hotingot.name=Hot Annealed Copper Ingot
 
 #nuggets
 item.gtclassic.tungsten_nugget.name=Tungsten Nugget
@@ -728,6 +781,10 @@ item.gtclassic.ultimet_nugget.name=Ultimet Nugget
 item.gtclassic.molybdenum_nugget.name=Molybdenum Nugget
 item.gtclassic.niobium_nugget.name=Niobium Nugget
 item.gtclassic.redalloy_nugget.name=Red Alloy Nugget
+item.gtclassic.zircaloy_nugget.name=Zircaloy Nugget
+item.gtclassic.annealedcopper_nugget.name=Annealed Copper Nugget
+item.gtclassic.niobiumtitanium_nugget.name=Niobium Titanium Nugget
+item.gtclassic.neodymium_nugget.name=Neodymium Nugget
 
 #plates
 item.gtclassic.tungsten_plate.name=Tungsten Plate
@@ -769,6 +826,9 @@ item.gtclassic.molybdenum_plate.name=Molybdenum Plate
 item.gtclassic.ultimet_plate.name=Ultimet Plate
 item.gtclassic.niobium_plate.name=Niobium Plate
 item.gtclassic.plastic_plate.name=Plastic Plate
+item.gtclassic.zircaloy_plate.name=Zircaloy Plate
+item.gtclassic.niobiumtitanium_plate.name=Niobium Titanium Plate
+item.gtclassic.neodymium_plate.name=Neodymium Plate
 
 #gear
 item.gtclassic.tungsten_gear.name=Tungsten Gear
@@ -804,6 +864,7 @@ item.gtclassic.iridium_gear.name=Iridium Gear
 item.gtclassic.stainlesssteel_gear.name=Stainless Gear
 item.gtclassic.bismuth_gear.name=Bismuth Gear
 item.gtclassic.ultimet_gear.name=Ultimet Gear
+item.gtclassic.zircaloy_gear.name=Zircaloy Gear
 
 #sticks
 item.gtclassic.tungsten_stick.name=Tungsten Rod
@@ -839,6 +900,41 @@ item.gtclassic.cobalt_stick.name=Cobalt Rod
 item.gtclassic.molybdenum_stick.name=Molybdenum Rod
 item.gtclassic.ultimet_stick.name=Ultimet Rod
 item.gtclassic.redalloy_stick.name=Red Alloy Rod
+item.gtclassic.zircaloy_stick.name=Zircaloy Rod
+item.gtclassic.magnalium_stick.name=Magnalium Rod
+item.gtclassic.annealedcopper_stick.name=Annealed Copper Rod
+item.gtclassic.niobium_stick.name=Niobium Rod
+item.gtclassic.niobiumtitanium_stick.name=Niobium Titanium Rod
+item.gtclassic.neodymium_stick.name=Neodymium Rod
+
+#magnetic sticks
+item.gtclassic.iron_magneticstick.name=Magnetic Iron Rod
+item.gtclassic.steel_magneticstick.name=Magnetic Steel Rod
+item.gtclassic.neodymium_magneticstick.name=Magnetic Neodymium Rod
+
+#wires
+item.gtclassic.tin_finewire.name=Tin Fine Wire
+item.gtclassic.lead_finewire.name=Lead Fine Wire
+item.gtclassic.redalloy_finewire.name=Red Alloy Fine Wire
+item.gtclassic.tungsten_finewire.name=Tungsten Fine Wire
+item.gtclassic.silver_finewire.name=Silver Fine Wire
+item.gtclassic.gold_finewire.name=Gold Fine Wire
+item.gtclassic.copper_finewire.name=Copper Fine Wire
+item.gtclassic.lead_finewire.name=Lead Fine Wire
+item.gtclassic.aluminium_finewire.name=Aluminium Fine Wire
+item.gtclassic.platinum_finewire.name=Platinum Fine Wire
+item.gtclassic.annealedcopper_finewire.name=Annealed Copper Fine Wire
+item.gtclassic.nickel_finewire.name=Nickel Fine Wire
+item.gtclassic.niobiumtitanium_finewire.name=Niobium Titanium Fine Wire
+
+#extra materials
+item.gtclassic.tantalum_foil.name=Tantalum Foil
+item.gtclassic.niobium_foil.name=Niobium Foil
+item.gtclassic.aluminium_foil.name=Aluminium Foil
+item.gtclassic.copper_foil.name=Copper Foil
+item.gtclassic.silver_foil.name=Silver Foil
+item.gtclassic.germanium_smallplate.name=Small Germanium Plate
+item.gtclassic.silicon_smallplate.name=Small Silicon Plate
 
 #material tools
 #files
@@ -1145,17 +1241,19 @@ item.gtclassic.test_tube.name=Glass Tube
 item.gtclassic.match.name=Match
 item.gtclassic.plastic_fletching.name=Plastic Fetching
 item.gtclassic.magnifying_glass.name=Magnifying Glass
+item.gtclassic.magnesiacarbon_brick.name=Magnesia Carbon Brick
 item.gtclassic.wood_plate.name=Wood Board
 item.gtclassic.resin_pcb.name=Resin PCB
 item.gtclassic.plastic_pcb.name=Plastic PCB
-item.gtclassic.tantalum_foil.name=Tantalum Foil
-item.gtclassic.niobium_foil.name=Niobium Foil
-item.gtclassic.germanium_smallplate.name=Small Germanium Plate
-item.gtclassic.tin_finewire.name=Tin Fine Wire
-item.gtclassic.lead_finewire.name=Lead Fine Wire
-item.gtclassic.redalloy_finewire.name=Red Alloy Fine Wire
 item.gtclassic.basic_transistor.name=Basic Transistor
 item.gtclassic.basic_capacitor.name=Basic Capacitor
+item.gtclassic.advanced_transistor.name=Advanced Transistor
+item.gtclassic.advanced_capacitor.name=Advanced Capacitor
+
+item.gtclassic.motor_lv.name=Electric Motor LV
+item.gtclassic.motor_mv.name=Electric Motor MV
+item.gtclassic.motor_hv.name=Electric Motor HV
+item.gtclassic.part_robotarm.name=Robotic Arm
 
 item.gtclassic.mold_blank.name=Blank Mold
 item.gtclassic.mold_block.name=Block Mold
@@ -1166,9 +1264,11 @@ item.gtclassic.mold_stick.name=Rod Mold
 item.gtclassic.mold_cable.name=Cable Mold
 item.gtclassic.mold_tube.name=Tube Mold
 item.gtclassic.mold_gear.name=Gear Mold
+item.gtclassic.mold_bottle.name=Bottle Mold
 #tools
 item.gtclassic.destructo_pack.name=Destructopack
 item.gtclassic.crafting_tablet.name=Crafting Tablet
+item.gtclassic.machine_switch.name=Machine Switch
 item.gtclassic.electromagnet.name=Electromagnet
 item.gtclassic.tesla_staff.name=Tesla Staff
 item.gtclassic.rockcutter.name=Rock Cutter
@@ -1176,7 +1276,6 @@ item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
 
 #fluids
-fluid.slurry=Bauxite Slurry
 fluid.hydrogen=Hydrogen
 fluid.tritium=Tritium
 fluid.helium3=Helium-3
@@ -1199,17 +1298,31 @@ fluid.cryolite=Cryolite
 fluid.sulfurdioxide=Sulfur Dioxide
 fluid.silicon=Silicon
 fluid.hydrochloricacid=Hydrochloric Acid
-fluid.crudeoil=Crude Oil
+fluid.crude_oil=Crude Oil
 fluid.oil=Oil
+fluid.sodiumcarbonate=Sodium Carbonate
+fluid.sodiumhydroxide=Sodium Hydroxide
+fluid.brine=Brine
+fluid.bauxitetailings=Bauxite Tailings
+fluid.carbondioxide=Carbon Dioxide
+fluid.lithiumcarbonate=Lithium Carbonate
+fluid.nitricacid=Nitric Acid
+fluid.aquaregia=Aqua Regia
+fluid.chloroplatinicacid=Chloroplatinic Acid
+fluid.greenvitriol=Green Vitriol
+fluid.bluevitriol=Blue Vitriol
+fluid.redvitriol=Red Vitriol
+fluid.cyanvitriol=Cyan Vitriol
+fluid.nitrocellulose=Nitrocellulose
+fluid.chlorinatedpolyvinyl=Chlorinated Polyvinyl
+fluid.acrylicacid=Acrylic Acid
 
 #block tooltips
 tooltip.gtclassic.machine_heatingelement0=Melts things when a heat source is below
 tooltip.gtclassic.machine_chargeomat_ev0=Charges lots of things
 tooltip.gtclassic.machine_computercube_ev0=Does computerThings();
 tooltip.gtclassic.machine_industrialcentrifuge_lv0=Separates contents by spinning them at high speeds
-tooltip.gtclassic.machine_electricsmelter_lv0=Used to melt and shape materials
-
-tooltip.gtclassic.bloom_block=Drops 3 Refined Iron and 1 Slag Dust
+tooltip.gtclassic.machine_electricsmelter_lv0=Used to melt and shape low heat materials
 
 tooltip.gtclassic.block_mortar=Macerates things into dust
 tooltip.gtclassic.block_ducttape=The solution to all your problems
@@ -1246,8 +1359,8 @@ tooltip.gtclassic.machine_blastfurnace_lv3=40 GregTech Refined Iron Machine Casi
 tooltip.gtclassic.machine_playerdetector_lv0=Detects player activity in a radius
 tooltip.gtclassic.machine_playerdetector_lv1=0eu = 8 blocks, 1eu = 32 blocks
 
-tooltip.gtclassic.machine_industrialelectrolyzer_mv0=*Slaps roof of Electrolyzer*
-tooltip.gtclassic.machine_industrialelectrolyzer_mv1=This bad boy can process so much stuff!
+tooltip.gtclassic.machine_industrialelectrolyzer_hv0=*Slaps roof of Electrolyzer*
+tooltip.gtclassic.machine_industrialelectrolyzer_hv1=This bad boy can process so much stuff!
 
 #generalized tooltips getting reused
 tooltip.gtclassic.beacon=Can be used as a beacon base

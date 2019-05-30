@@ -1,6 +1,7 @@
 package gtclassic.recipe;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
@@ -179,7 +180,14 @@ public class GTRecipeIteratorsTools {
 			if (drill.getTier(new ItemStack(item)) == 1) {
 				String plate = "plate" + drill.getMaterial().getDisplayName();
 				recipes.addRecipe(new ItemStack(item), new Object[] { "CTT", "PPT", "PPB", 'T', plate, 'P',
-						"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.batteryLithiumSmall });
+						"plateSteel", 'C', GTItems.motorLV, 'B', GTBlocks.batteryLithiumSmall });
+			}
+			if (drill.getTier(new ItemStack(item)) == 2) {
+				if (!drill.getMaterial().equals(GTMaterial.Diamond)) {
+					String plate = "plate" + drill.getMaterial().getDisplayName();
+					recipes.addRecipe(new ItemStack(item), new Object[] { "CTT", "PPT", "PPB", 'T', plate, 'P',
+							"plateAluminium", 'C', GTItems.motorMV, 'B', GTBlocks.batteryLithiumMed });
+				}
 			}
 		}
 	}
@@ -190,7 +198,7 @@ public class GTRecipeIteratorsTools {
 			if (chainsaw.getTier(new ItemStack(item)) == 1) {
 				String plate = "plate" + chainsaw.getMaterial().getDisplayName();
 				recipes.addRecipe(new ItemStack(item), new Object[] { "PPT", "BCT", "PPT", 'T', plate, 'P',
-						"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.batteryLithiumSmall });
+						"plateSteel", 'C', GTItems.motorLV, 'B', GTBlocks.batteryLithiumSmall });
 			}
 
 		}
@@ -202,7 +210,7 @@ public class GTRecipeIteratorsTools {
 			if (wrench.getTier(new ItemStack(item)) == 1) {
 				String ingot = "ingot" + wrench.getMaterial().getDisplayName();
 				recipes.addRecipe(new ItemStack(item), new Object[] { "TTT", "PCP", "PBP", 'T', ingot, 'P',
-						"plateSteel", 'C', "circuitBasic", 'B', GTBlocks.batteryLithiumSmall });
+						"plateSteel", 'C', GTItems.motorLV, 'B', GTBlocks.batteryLithiumSmall });
 			}
 		}
 	}

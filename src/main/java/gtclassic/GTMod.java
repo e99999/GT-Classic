@@ -6,6 +6,7 @@ import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
+import gtclassic.tile.GTTileShredder;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
@@ -64,6 +65,7 @@ public class GTMod {
 			logger.info(
 					"WARNING [Gregtech Classic is still in debug mode, this is very very bad if you are not a dev!]");
 		}
+		GTTileShredder.collectMaceratorRecipe();
 		proxy.postInit(e);
 	}
 

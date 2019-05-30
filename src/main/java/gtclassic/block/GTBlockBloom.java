@@ -6,7 +6,6 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.material.GTMaterial;
@@ -62,12 +61,12 @@ public class GTBlockBloom extends Block implements ITexturedBlock, ILocaleBlock,
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state,
 			@Nullable TileEntity te, ItemStack stack) {
 		super.harvestBlock(worldIn, player, pos, state, te, stack);
-		if (this.mat.equals(GTMaterial.RefinedIron))	{
+		if (this.mat.equals(GTMaterial.RefinedIron)) {
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, count));
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getDust(GTMaterial.Slag, 1));
 			return;
 		}
-		if (this.mat.equals(GTMaterial.Bronze))	{
+		if (this.mat.equals(GTMaterial.Bronze)) {
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIc2(Ic2Items.bronzeIngot, count));
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getDust(GTMaterial.Slag, 1));
 			return;
@@ -141,4 +140,21 @@ public class GTBlockBloom extends Block implements ITexturedBlock, ILocaleBlock,
 	public Color getColor(Block block, int index) {
 		return this.mat.getColor();
 	}
+
+	public GTMaterial getMaterial() {
+		return this.mat;
+	}
+
+	public ItemStack getOutput() {
+		if (this.mat.equals(GTMaterial.RefinedIron)) {
+			return GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, this.count);
+
+		}
+		if (this.mat.equals(GTMaterial.Bronze)) {
+			return GTMaterialGen.getIc2(Ic2Items.bronzeIngot, this.count);
+		}
+		return GTMaterialGen.getIngot(this.mat, this.count);
+
+	}
+
 }

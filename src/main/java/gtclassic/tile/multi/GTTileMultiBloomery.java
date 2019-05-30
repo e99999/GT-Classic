@@ -18,6 +18,8 @@ import gtclassic.util.GTValues;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
+import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.recipe.IRecipeInput;
@@ -43,6 +45,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 
@@ -115,6 +118,11 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 
 	@Override
 	public void onGuiClosed(EntityPlayer arg0) {
+	}
+	
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 
 	@Override
@@ -328,7 +336,7 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	/*
 	 * real recipes methods into the bloomery
 	 */
-	
+
 	public static void addAlloyRecipe(String input1, int amount1, String input2, int amount2, Block output) {
 		addRecipe("ingot" + input1, amount1, "ingot" + input2, amount2, output);
 		addRecipe("dust" + input1, amount1, "dust" + input2, amount2, output);
@@ -338,44 +346,57 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 
 	public static void addRecipe(String input, int amount, Block output) {
 		RECIPE_LIST.addRecipe(input, output.getDefaultState(), 4, 400, new RecipeInputOreDict(input, amount), fuel);
-		addFakeBloomRecipe(input, amount, GTMaterialGen.get(output));
+		addFakeBloomRecipe(input, amount, totalTime(), GTMaterialGen.get(output));
 	}
 
 	public static void addRecipe(String input1, int amount1, String input2, int amount2, Block output) {
-		RECIPE_LIST.addRecipe(input1, output.getDefaultState(), 4, 400, new RecipeInputOreDict(input1, amount1),
-				new RecipeInputOreDict(input2, amount2), fuel);
-		addFakeBloomRecipe(input1, amount1, input2, amount2, GTMaterialGen.get(output));
+		RECIPE_LIST.addRecipe(input1 + input2, output.getDefaultState(), 4, 400,
+				new RecipeInputOreDict(input1, amount1), new RecipeInputOreDict(input2, amount2), fuel);
+		addFakeBloomRecipe(input1, amount1, input2, amount2, totalTime(), GTMaterialGen.get(output));
 	}
 
 	/*
 	 * fake recipes for the bloomery to show in JEI
 	 */
-	private static void addFakeBloomRecipe(String input1, int amount1, String input2, int amount2, ItemStack output) {
+	private static void addFakeBloomRecipe(String input1, int amount1, String input2, int amount2,
+			IRecipeModifier[] modifers, ItemStack output) {
 		List<IRecipeInput> inputs = new ArrayList<>();
 		List<ItemStack> outputs = new ArrayList<>();
 		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
 		inputs.add((IRecipeInput) (new RecipeInputOreDict(input2, amount2)));
 		inputs.add(fuel);
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifers) {
+			modifier.apply(mods);
+		}
 		outputs.add(output);
 		outputs.add(GTMaterialGen.getDust(GTMaterial.DarkAshes, 4));
-		addFakeBloomRecipe(inputs, new MachineOutput(null, outputs));
+		addFakeBloomRecipe(inputs, new MachineOutput(mods, outputs));
 	}
 
-	private static void addFakeBloomRecipe(String input1, int amount1, ItemStack output) {
+	private static void addFakeBloomRecipe(String input1, int amount1, IRecipeModifier[] modifers, ItemStack output) {
 		List<IRecipeInput> inputs = new ArrayList<>();
 		List<ItemStack> outputs = new ArrayList<>();
 		inputs.add((IRecipeInput) (new RecipeInputOreDict(input1, amount1)));
 		inputs.add(fuel);
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifers) {
+			modifier.apply(mods);
+		}
 		outputs.add(output);
 		outputs.add(GTMaterialGen.getDust(GTMaterial.DarkAshes, 4));
-		addFakeBloomRecipe(inputs, new MachineOutput(null, outputs));
+		addFakeBloomRecipe(inputs, new MachineOutput(mods, outputs));
+	}
+
+	private static IRecipeModifier[] totalTime() {
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(300) };
 	}
 
 	/*
 	 * fake recipes for the bloomery to show in JEI
 	 */
 	private static void addFakeBloomRecipe(List<IRecipeInput> input, MachineOutput output) {
-		JEI_RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		JEI_RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 0);
 	}
 
 	public static class BloomeryRecipeList {

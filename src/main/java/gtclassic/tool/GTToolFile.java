@@ -111,7 +111,8 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing,
 			float hitX, float hitY, float hitZ) {
 		IBlockState state = world.getBlockState(pos);
-		if (!GTConfig.harderPlates && IC2.getRefinedIron().equals("ingotRefinedIron") && state == Ic2States.machine) {
+		if (!GTConfig.harderPlates && !GTConfig.harderRods && IC2.getRefinedIron().equals("ingotRefinedIron")
+				&& state == Ic2States.machine) {
 			world.setBlockState(pos,
 					GTMaterialGen.getBlock(GTMaterial.RefinedIron, GTMaterialFlag.CASING).getDefaultState());
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getSmallDust(GTMaterial.Iron, 2));

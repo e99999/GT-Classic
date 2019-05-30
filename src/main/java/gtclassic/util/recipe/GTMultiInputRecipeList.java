@@ -17,18 +17,25 @@ import net.minecraft.item.ItemStack;
 
 public class GTMultiInputRecipeList {
 	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(),
-			new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid");
+			new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid", 0);
 
 	protected List<MultiRecipe> recipes = new ArrayList<MultiRecipe>();
 	protected Map<String, MultiRecipe> recipeMap = new LinkedHashMap<String, MultiRecipe>();
 	protected Map<ItemWithMeta, List<IRecipeInput>> validInputs = new LinkedHashMap<ItemWithMeta, List<IRecipeInput>>();
 	String category;
+	int energy;
+
+	public GTMultiInputRecipeList(String category, int energy) {
+		this.category = category;
+		this.energy = energy;
+	}
 
 	public GTMultiInputRecipeList(String category) {
 		this.category = category;
+		this.energy = 0;
 	}
 
-	public void addRecipe(List<IRecipeInput> inputs, MachineOutput output, String id) {
+	public void addRecipe(List<IRecipeInput> inputs, MachineOutput output, String id, int eu) {
 		id = getRecipeID(recipeMap.keySet(), id, 0);
 		if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
 			return;
@@ -42,11 +49,11 @@ public class GTMultiInputRecipeList {
 		if (isListInvalid(output.getAllOutputs())) {
 			GTMod.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
 			for (int i = 0; i < inputs.size(); i++) {
-				GTMod.logger.info("Recipe[" + inputs.get(i) + "] as input " + category);
+				GTMod.logger.info("Recipe[" + id + ": " + inputs.get(i) + "] as input " + category);
 			}
 			return;
 		}
-		MultiRecipe recipe = new MultiRecipe(inputs, output, id);
+		MultiRecipe recipe = new MultiRecipe(inputs, output, id, eu);
 		recipes.add(recipe);
 		recipeMap.put(id, recipe);
 		for (int i = 0; i < inputs.size(); i++) {
@@ -87,14 +94,11 @@ public class GTMultiInputRecipeList {
 		}
 		return false;
 	}
-	
-	public MultiRecipe getPriorityRecipe(Predicate<MultiRecipe> checker)
-	{
+
+	public MultiRecipe getPriorityRecipe(Predicate<MultiRecipe> checker) {
 		MultiRecipe match = INVALID_RECIPE;
-		for(MultiRecipe recipe : recipes)
-		{
-			if(recipe.getInputSize() > match.getInputSize() && checker.test(recipe))
-			{
+		for (MultiRecipe recipe : recipes) {
+			if (recipe.getInputSize() > match.getInputSize() && checker.test(recipe)) {
 				match = recipe;
 			}
 		}
@@ -130,11 +134,13 @@ public class GTMultiInputRecipeList {
 		List<IRecipeInput> inputs;
 		MachineOutput outputs;
 		String id;
+		int eu;
 
-		public MultiRecipe(List<IRecipeInput> inputs, MachineOutput outputs, String id) {
+		public MultiRecipe(List<IRecipeInput> inputs, MachineOutput outputs, String id, int eu) {
 			this.inputs = inputs;
 			this.outputs = outputs;
 			this.id = id;
+			this.eu = eu;
 		}
 
 		public String getRecipeID() {
@@ -143,6 +149,10 @@ public class GTMultiInputRecipeList {
 
 		public int getInputSize() {
 			return inputs.size();
+		}
+
+		public int getMachineEu() {
+			return this.eu;
 		}
 
 		public IRecipeInput getInput(int slot) {

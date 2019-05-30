@@ -6,6 +6,7 @@ import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -26,6 +27,7 @@ public class GTBlockMortar extends GTBlockTileCustom {
 
 	public GTBlockMortar() {
 		super("block_mortar", 10, 4, false);
+		setSoundType(SoundType.STONE);
 	}
 
 	@Override

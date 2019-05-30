@@ -9,11 +9,13 @@ public class GTFluids {
 
 	public static void registerFluids() {
 		for (GTMaterial mat : GTMaterial.values()) {
-			if (mat.hasFlag(GTMaterialFlag.FLUID)) {
-				FluidRegistry.registerFluid(new GTFluid(mat, GTMaterialFlag.FLUID));
+			if (mat.hasFlag(GTMaterialFlag.GAS)) {
+				GTMod.logger.info("Registering GT Gas: " + mat.getDisplayName());
+				FluidRegistry.registerFluid(new GTFluid(mat, "gas"));
 			}
-			if (mat.hasFlag(GTMaterialFlag.PLASMA)) {
-				FluidRegistry.registerFluid(new GTFluid(mat, GTMaterialFlag.PLASMA));
+			if (mat.hasFlag(GTMaterialFlag.FLUID)) {
+				GTMod.logger.info("Registering GT Fluid: " + mat.getDisplayName());
+				FluidRegistry.registerFluid(new GTFluid(mat, "fluid"));
 			}
 		}
 

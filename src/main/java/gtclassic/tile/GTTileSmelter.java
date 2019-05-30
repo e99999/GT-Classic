@@ -70,7 +70,7 @@ public class GTTileSmelter extends GTTileBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0, slotInput1);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
-		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutput);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
 				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
@@ -178,20 +178,26 @@ public class GTTileSmelter extends GTTileBaseMachine {
 				GTMaterialGen.getIngot(GTMaterial.RedAlloy, 1));
 
 		//Smelting oriented recipes
+		addRecipe("sand", 1, GTMaterialGen.get(GTItems.moldBlock),
+				GTMaterialGen.get(Blocks.GLASS, 1));
+		
 		addRecipe("sand", 5, GTMaterialGen.get(GTItems.moldTube),
 				GTMaterialGen.get(GTItems.testTube, 32));
 		
 		addRecipe("blockGlass", 5, GTMaterialGen.get(GTItems.moldTube),
 				GTMaterialGen.get(GTItems.testTube, 32));
+		
+		addRecipe("sand", 1, GTMaterialGen.get(GTItems.moldBottle),
+				GTMaterialGen.get(Items.GLASS_BOTTLE, 1));
+		
+		addRecipe("blockGlass", 1, GTMaterialGen.get(GTItems.moldBottle),
+				GTMaterialGen.get(Items.GLASS_BOTTLE, 1));
 
 		addRecipe("dustResin", 1, GTMaterialGen.get(GTItems.woodPlate),
 				GTMaterialGen.get(GTBlocks.driedResin, 1));
 		
 		addRecipe("dustResin", 1, "dustSulfur", 1, 
 				GTMaterialGen.getIc2(Ic2Items.rubber, 1));
-
-		addRecipe("dustPlastic", 1, GTMaterialGen.get(GTItems.moldPlate),
-				GTMaterialGen.getPlate(GTMaterial.Plastic, 1));
 		
 		addRecipe("dustPlastic", 9, GTMaterialGen.get(GTItems.moldBlock),
 				GTMaterialGen.get(GTBlocks.casingPlastic1x, 1));
@@ -317,7 +323,7 @@ public class GTTileSmelter extends GTTileBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 16);
 	}
 
 }

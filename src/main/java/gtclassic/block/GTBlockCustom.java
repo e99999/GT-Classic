@@ -182,8 +182,12 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 	@Deprecated
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
-		if (this == GTBlocks.driedLithiumChloride) {
-			drops.add(GTMaterialGen.getDust(GTMaterial.LithiumChloride, 1));
+		if (this == GTBlocks.driedBrine) {
+			drops.add(GTMaterialGen.getDust(GTMaterial.Brine, 1));
+			return drops;
+		}
+		if (this == GTBlocks.driedLithium) {
+			drops.add(GTMaterialGen.getDust(GTMaterial.Lithium, 1));
 			return drops;
 		}
 		if (this == GTBlocks.driedTailings) {

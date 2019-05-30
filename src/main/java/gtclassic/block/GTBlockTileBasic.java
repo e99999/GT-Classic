@@ -27,7 +27,9 @@ import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiBloomery;
 import gtclassic.tile.multi.GTTileMultiCharcoalPit;
 import gtclassic.tile.multi.GTTileMultiChemicalReactor;
+import gtclassic.tile.multi.GTTileMultiCryogenicSeparator;
 import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiLeadChamber;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import gtclassic.tile.multi.GTTileMultiRefractory;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -113,6 +115,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
+		if (this == GTBlocks.tileLeadChamber) {
+			return new GTTileMultiLeadChamber();
+		}
 		if (this == GTBlocks.tileComputer) {
 			return new GTTileComputerCube();
 		}
@@ -145,6 +150,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tileSmelter) {
 			return new GTTileSmelter();
+		}
+		if (this == GTBlocks.tileCryogenicSeparator) {
+			return new GTTileMultiCryogenicSeparator();
 		}
 		if (this == GTBlocks.tilePlayerDetector) {
 			return new GTTilePlayerDetector();
@@ -294,6 +302,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		particleSmelter(stateIn, worldIn, pos, rand);
 		particleBlastFurnace(stateIn, worldIn, pos, rand);
 		particleRefractory(stateIn, worldIn, pos, rand);
+		particleCryo(stateIn, worldIn, pos, rand);
 	}
 
 	public void particleCharcoalPit(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
@@ -473,6 +482,34 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 					break;
 				case SOUTH:
 					worldIn.spawnParticle(EnumParticleTypes.LAVA, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings("incomplete-switch")
+	public void particleCryo(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileMultiCryogenicSeparator) {
+			if (((GTTileMultiCryogenicSeparator) tile).isActive) {
+				EnumFacing enumfacing = getFacing(worldIn, pos);
+				double d0 = (double) pos.getX() + 0.4D;
+				double d1 = (double) pos.getY() + rand.nextDouble() * 12.0D / 16.0D;
+				double d2 = (double) pos.getZ() + 0.5D;
+				double d4 = rand.nextDouble() * 0.6D - 0.3D;
+
+				switch (enumfacing) {
+				case WEST:
+					worldIn.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					break;
+				case EAST:
+					worldIn.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, d0 + 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+					break;
+				case NORTH:
+					worldIn.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, d0 + d4, d1, d2 - 0.52D, 0.0D, 0.0D, 0.0D);
+					break;
+				case SOUTH:
+					worldIn.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
 				}
 			}
 		}

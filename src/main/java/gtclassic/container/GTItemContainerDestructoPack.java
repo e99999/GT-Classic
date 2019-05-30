@@ -3,6 +3,7 @@ package gtclassic.container;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import ic2.core.inventory.container.ContainerItemComponent;
+import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.InvertedFilter;
 import ic2.core.inventory.slots.SlotCustom;
@@ -15,8 +16,9 @@ public class GTItemContainerDestructoPack extends ContainerItemComponent<GTItemI
 
 	public GTItemContainerDestructoPack(GTItemInventoryDestructoPack inv, int id, InventoryPlayer player) {
 		super(inv, id);
-		this.addSlotToContainer(
-				new SlotCustom(inv, 0, 80, 17, new InvertedFilter(new BasicItemFilter(GTItems.destructoPack))));
+		this.addSlotToContainer(new SlotCustom(inv, 0, 80, 17,
+				new InvertedFilter(new ArrayFilter(new BasicItemFilter(GTItems.destructoPack),
+						new BasicItemFilter(GTItems.debugScanner), new BasicItemFilter(GTItems.portableScanner)))));
 		this.addPlayerInventory(player, 0, 0);
 	}
 

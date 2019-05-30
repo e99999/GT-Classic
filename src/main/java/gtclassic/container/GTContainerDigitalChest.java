@@ -17,9 +17,9 @@ public class GTContainerDigitalChest extends ContainerTileComponent<GTTileDigita
 
 	public GTContainerDigitalChest(InventoryPlayer player, GTTileDigitalChest tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotBase(tile, 0, 80, 17));
-		this.addSlotToContainer(new SlotOutput(player.player, tile, 1, 80, 53));
-		this.addSlotToContainer(new SlotDisplay(tile, 2, 59, 42));
+		this.addSlotToContainer(new SlotBase(tile, 0, 26, 30));
+		this.addSlotToContainer(new SlotOutput(player.player, tile, 1, 134, 30));
+		this.addSlotToContainer(new SlotDisplay(tile, 2, 104, 41));
 		this.addComponent(new GTGuiCompQuantumChest(tile));
 		this.addPlayerInventory(player, 0, 0);
 	}

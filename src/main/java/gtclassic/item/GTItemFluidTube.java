@@ -20,6 +20,7 @@ import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.ITexturedItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,6 +35,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -64,7 +66,13 @@ public class GTItemFluidTube extends Item
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(getFluidName(stack));
-		tooltip.add(getFluidTemp(stack));
+		tooltip.add("Melting: " + getFluidTemp(stack));
+		if (isFluidGas(stack)) {
+			tooltip.add(TextFormatting.GREEN + I18n.format("Gaseous"));
+		}
+		if (isFluidPlaceable(stack)) {
+			tooltip.add(TextFormatting.YELLOW + I18n.format("Fluid can be placed in world"));
+		}
 	}
 
 	public String getFluidName(ItemStack stack) {
@@ -73,6 +81,16 @@ public class GTItemFluidTube extends Item
 			return fluid.amount + "mB of " + fluid.getLocalizedName();
 		}
 		return "Empty";
+	}
+
+	public Boolean isFluidPlaceable(ItemStack stack) {
+		FluidStack fluid = FluidUtil.getFluidContained(stack);
+		return fluid != null && fluid.getFluid().canBePlacedInWorld();
+	}
+
+	public Boolean isFluidGas(ItemStack stack) {
+		FluidStack fluid = FluidUtil.getFluidContained(stack);
+		return fluid != null && fluid.getFluid().isGaseous();
 	}
 
 	public String getFluidTemp(ItemStack stack) {
@@ -94,6 +112,9 @@ public class GTItemFluidTube extends Item
 			subItems.add(empty);
 			for (GTMaterial mat : GTMaterial.values()) {
 				if (mat.hasFlag(GTMaterialFlag.FLUID)) {
+					subItems.add(GTMaterialGen.getFluid(mat, 1));
+				}
+				if (mat.hasFlag(GTMaterialFlag.GAS)) {
 					subItems.add(GTMaterialGen.getFluid(mat, 1));
 				}
 			}
@@ -196,7 +217,7 @@ public class GTItemFluidTube extends Item
 
 					itemstack.shrink(1);
 					ItemStack drained = result.getResult();
-					ItemStack emptyStack = !drained.isEmpty() ? drained.copy() : new ItemStack(this);
+					ItemStack emptyStack = new ItemStack(GTItems.testTube);
 
 					// check whether we replace the item or add the empty one to the inventory
 					if (itemstack.isEmpty()) {

@@ -11,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -69,6 +70,11 @@ public class GTTileHeatingElement extends TileEntityMachine implements ITickable
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
+	}
+	
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 
 }

@@ -82,7 +82,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
-		handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
 				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerInputFilter(filter, slotInputs);
@@ -162,10 +162,6 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		
 		Item tube = GTItems.testTube;
 
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.airCell, 2), 2, totalEu(32000), 
-				GTMaterialGen.getFluid(GTMaterial.Oxygen, 1),
-				GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1), 
-				GTMaterialGen.getIc2(Ic2Items.emptyCell, 2));
 
 		addRecipe("logRubber", 16, 4, totalEu(25000), 
 				GTMaterialGen.getDust(GTMaterial.Wood, 8),
@@ -243,24 +239,24 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addRecipe(GTMaterialGen.get(Blocks.LAVA, 16), 0, totalEu(75000), 
 				GTMaterialGen.getIngot(GTMaterial.Electrum, 1),
 				GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), 
-				GTMaterialGen.getSmallDust(GTMaterial.Tungstate, 1));
+				GTMaterialGen.getDust(GTMaterial.Tungstate, 1));
 
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.lavaCell, 16), 0, totalEu(75000), 
 				GTMaterialGen.getIc2(Ic2Items.emptyCell, 16),
 				GTMaterialGen.getIngot(GTMaterial.Electrum, 1), 
 				GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), 
-				GTMaterialGen.getSmallDust(GTMaterial.Tungstate, 1));
+				GTMaterialGen.getDust(GTMaterial.Tungstate, 1));
 
 		addRecipe(GTMaterialGen.getModFluid("lava", 16), 0, totalEu(75000), 
 				GTMaterialGen.get(GTItems.testTube, 16),
 				GTMaterialGen.getIngot(GTMaterial.Electrum, 1), 
 				GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), 
-				GTMaterialGen.getSmallDust(GTMaterial.Tungstate, 1));
+				GTMaterialGen.getDust(GTMaterial.Tungstate, 1));
 
 		addRecipe(GTMaterialGen.get(Blocks.MAGMA, 16), 0, totalEu(75000), 
 				GTMaterialGen.getIngot(GTMaterial.Electrum, 1),
 				GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), 
-				GTMaterialGen.getSmallDust(GTMaterial.Tungstate, 1));
+				GTMaterialGen.getDust(GTMaterial.Tungstate, 1));
 
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorNearDepletedUraniumRod, 2), 0, totalEu(2500),
 				GTMaterialGen.getIc2(Ic2Items.emptyCell, 2), 
@@ -315,11 +311,11 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 				GTMaterialGen.getDust(GTMaterial.Pyrite, 5), 
 				GTMaterialGen.getDust(GTMaterial.Ruby, 1));
 
-		addRecipe("dustEndstone", 16, 2, totalEu(100000), 
+		addRecipe("dustEndstone", 16, 2, totalEu(250000), 
 				GTMaterialGen.get(Blocks.SAND, 12), 
 				GTMaterialGen.getFluid(GTMaterial.Helium3, 1),
 				GTMaterialGen.getFluid(GTMaterial.Helium, 1), 
-				GTMaterialGen.getSmallDust(GTMaterial.Tungstate, 1));
+				GTMaterialGen.getDust(GTMaterial.Tungstate, 1));
 
 		addRecipe("dustDarkAshes", 2, 0, totalEu(1250), 
 				GTMaterialGen.getDust(GTMaterial.Ashes, 1), 
@@ -365,15 +361,23 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 				GTMaterialGen.getDust(GTMaterial.Resin, 3), 
 				GTMaterialGen.getDust(GTMaterial.Wood, 1));
 
-		addRecipe(GTMaterialGen.get(Blocks.SOUL_SAND, 16), 4, totalEu(16000), 
+		addRecipe(GTMaterialGen.get(Blocks.SOUL_SAND, 16), 4, totalEu(6000), 
 				GTMaterialGen.get(Blocks.SAND, 12),
 				GTMaterialGen.getFluid(GTMaterial.OilCrude, 4));
 
-		addRecipe(GTMaterialGen.getFluid(GTMaterial.OilCrude, 12), 0, totalEu(64000), 
+		addRecipe(GTMaterialGen.getFluid(GTMaterial.OilCrude, 12), 0, totalEu(12000), 
 				GTMaterialGen.getFluid(GTMaterial.Oil, 10),
 				GTMaterialGen.getFluid(GTMaterial.Helium, 1), 
 				GTMaterialGen.getDust(GTMaterial.Plastic, 1), 
 				GTMaterialGen.get(tube));
+		
+		addRecipe("dustPlatinumGroupSludge", 1, 0, totalEu(2500), 
+				GTMaterialGen.getSmallDust(GTMaterial.Iridium, 1), 
+				GTMaterialGen.getSmallDust(GTMaterial.Osmium, 1), 
+				GTMaterialGen.getSmallDust(GTMaterial.Platinum, 2));
+		
+		addRecipe("dustRareEarth", 1, 0, totalEu(32000), 
+				GTMaterialGen.getDust(GTMaterial.Neodymium, 1));
 		
 		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 16), 1, totalEu(25000), 
 				GTMaterialGen.getFluid(GTMaterial.Methane, 1),
@@ -474,7 +478,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 12);
 	}
 
 }

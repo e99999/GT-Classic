@@ -11,17 +11,16 @@ public enum GTMaterialFlag {
 	NUGGET("_nugget", 5, false), 
 	PLATE("_plate", 6, false),
 	SMALLPLATE("_smallplate", 7, false), 
-	STICK("_stick", 8, false), 
-	GEAR("_gear", 9, false), 
-	FOIL("_foil", 10, false),
-	WIRE("_finewire", 11, false), 
-	BOULE("_boule", 12, false), 
+	STICK("_stick", 8, false),
+	MAGNETICSTICK("_magneticstick", 8, true), 
+	GEAR("_gear", 10, false), 
+	FOIL("_foil", 11, false),
+	WIRE("_finewire", 12, false), 
 	FLUID("", 13, true), 
-	PLASMA("plasma", 13, true),
+	GAS("", 13, true),
 	PARTICLE("_particle", 15, false), 
 	BLOCK("_block", 48, false), 
 	CASING("_casing", 50, false),
-	WALL("_wall", 51, false), 
 	COIL("_coil", 52, false);
 	// @formatter:on
 

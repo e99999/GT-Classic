@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public class GTRecipeCauldron {
 
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("washing");
+	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.washing");
 
 	/*
 	 * Yes I know you're thinking "an enum really!?" but until i decide how to
@@ -35,7 +35,8 @@ public class GTRecipeCauldron {
 		GARNIERITE(GTMaterial.Garnierite, GTMaterial.Nickel, GTMaterial.Nickel),
 		BISMUTHTINE(GTMaterial.Bismuthtine, GTMaterial.Bismuth, GTMaterial.Antimony), 
 		DIRTYRESIN(GTMaterial.DirtyResin, GTMaterial.Resin, GTMaterial.Resin, GTMaterial.Resin, GTMaterial.Wood),
-		DARKASHES(GTMaterial.DarkAshes, GTMaterial.Ashes, GTMaterial.Ashes);
+		DARKASHES(GTMaterial.DarkAshes, GTMaterial.Ashes, GTMaterial.Ashes),
+		SULFUR(GTMaterial.Sulfur, GTMaterial.Phosphorus, GTMaterial.Phosphorus );
 		// @formatter:on
 
 		GTMaterial input;
@@ -110,7 +111,7 @@ public class GTRecipeCauldron {
 	 * @param output
 	 */
 	public static void addFakeCauldronRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName());
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 0);
 	}
 
 }

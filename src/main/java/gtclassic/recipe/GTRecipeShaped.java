@@ -35,8 +35,11 @@ public class GTRecipeShaped {
 		IRecipeInput plateAnyIron = new RecipeInputCombined(1, new IRecipeInput[] { new RecipeInputOreDict("plateIron"),
 				new RecipeInputOreDict("plateRefinedIron"), new RecipeInputOreDict("plateSteel") });
 
+		IRecipeInput stickAnyIron = new RecipeInputCombined(1, new IRecipeInput[] { new RecipeInputOreDict("stickIron"),
+				new RecipeInputOreDict("stickRefinedIron"), new RecipeInputOreDict("stickSteel") });
+
 		recipes.addRecipe(GT.get(GTItems.electroMagnet, 1), new Object[] { "M M", "WMW", "IBI", 'M', Ic2Items.magnet,
-				'B', Ic2Items.battery, 'I', plateAnyIron, 'W', Ic2Items.copperCable });
+				'B', Ic2Items.battery, 'I', "stickMagneticIron", 'W', Ic2Items.copperCable });
 
 		recipes.addRecipe(GT.get(GTItems.rockCutter, 1),
 				new Object[] { "D C", "DIB", "DII",
@@ -52,6 +55,9 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTItems.destructoPack, 1),
 				new Object[] { "BIB", "ICI", "BIB", 'B', GTValues.lava, 'C', "circuitBasic", 'I', plateAnyIron });
 
+		recipes.addRecipe(GT.get(GTItems.machineSwitch, 1), new Object[] { " H ", "PMP", " I ", 'I', stickAnyIron, 'M',
+				Items.PAPER, 'P', plateAnyIron, 'H', hammer });
+
 		recipes.addRecipe(GT.get(GTItems.craftingTablet, 1),
 				new Object[] { "BIB", "ICI", "BIB", 'B', "workbench", 'C', "circuitBasic", 'I', plateAnyIron });
 
@@ -63,15 +69,16 @@ public class GTRecipeShaped {
 						GT.getIc2(Ic2Items.cropAnalyzer, 1), 'C', "circuitAdvanced", 'B',
 						GT.get(GTBlocks.batteryLithiumSmall) });
 
-		recipes.addRecipe(GT.get(GTItems.motorLV, 1), new Object[] { "CWS", "WRW", "PWC", 'S', "stickRefinedIron", 'P',
-				"plateRefinedIron", 'W', "fineWireRedAlloy", 'R', "dustRedstone", 'C', Ic2Items.insulatedCopperCable });
+		recipes.addRecipe(GT.get(GTItems.motorLV, 1),
+				new Object[] { "CWS", "WRW", "PWC", 'S', "stickRefinedIron", 'P', "plateRefinedIron", 'W',
+						"wireFineRedAlloy", 'R', "stickMagneticIron", 'C', Ic2Items.insulatedCopperCable });
 
 		recipes.addRecipe(GT.get(GTItems.motorMV, 1), new Object[] { "CWS", "WRW", "PWC", 'S', "stickSteel", 'P',
-				"plateSteel", 'W', "fineWireCopper", 'R', "dustRedstone", 'C', Ic2Items.insulatedGoldCable });
+				"plateSteel", 'W', "wireFineCopper", 'R', "stickMagneticSteel", 'C', Ic2Items.insulatedGoldCable });
 
 		recipes.addRecipe(GT.get(GTItems.motorHV, 1),
 				new Object[] { "CWS", "WRW", "PWC", 'S', "stickStainlessSteel", 'P', "plateStainlessSteel", 'W',
-						"fineWireAnnealedCopper", 'R', "dustRedstone", 'C', Ic2Items.insulatedIronCable });
+						"wireFineAnnealedCopper", 'R', "stickMagneticNeodymium", 'C', Ic2Items.insulatedIronCable });
 
 		/*
 		 * recipes.addRecipe(GT.get(GTItems.heatStorageSingle, 1), new Object[] { " I ",
@@ -101,6 +108,8 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTItems.moldStick, 1), new Object[] { "  ", " P", "F ", 'F', file, 'P', mold });
 		recipes.addRecipe(GT.get(GTItems.moldTube, 1), new Object[] { "  ", "FP", "  ", 'F', file, 'P', mold });
 		recipes.addRecipe(GT.get(GTItems.moldGear, 1), new Object[] { "F ", " P", "  ", 'F', file, 'P', mold });
+		recipes.addRecipe(GT.get(GTItems.moldBottle, 1),
+				new Object[] { "  ", "FP", "  ", 'F', file, 'P', GTItems.moldTube });
 
 	}
 
@@ -151,6 +160,9 @@ public class GTRecipeShaped {
 		recipes.addRecipe(GT.get(GTBlocks.mortar),
 				new Object[] { " X ", "CXC", "CCC", 'X', "ingotRefinedIron", 'C', Blocks.HARDENED_CLAY });
 
+		recipes.addRecipe(GT.get(GTBlocks.drum), new Object[] { " H ", "XIX", "XIX", 'X', "plateStainlessSteel", 'I',
+				"stickStainlessSteel", 'H', hammer, });
+
 		recipes.addRecipe(GT.get(GTBlocks.tileHeating), new Object[] { "XHX", "XBX", "XCX", 'X', "plateCopper", 'B',
 				Blocks.IRON_BARS, 'H', hammer, 'C', "coilCopper" });
 
@@ -167,22 +179,32 @@ public class GTRecipeShaped {
 				"plateRefinedIron", 'F', GTBlocks.tileBloomery, 'C', "coilCopper" });
 
 		recipes.addRecipe(GT.get(GTBlocks.tileElectrolyzer, 1),
-				new Object[] { "T H", "WEW", "RCR", 'T', wrench, 'H', hammer, 'W', "fineWirePlatinum", 'E',
-						"blockGlass", 'R', Ic2Items.glassFiberCable.copy(), 'C', "casingMachineStainlessSteel" });
+				new Object[] { "T H", "WEW", "RCR", 'T', wrench, 'H', hammer, 'W', Ic2Items.goldCable, 'E',
+						"blockGlass", 'R', Ic2Items.doubleInsulatedGoldCable, 'C', GTBlocks.casingPlastic1x });
 
 		recipes.addRecipe(GT.get(GTBlocks.tileShredder, 1), new Object[] { "W H", "MSM", "DDD", 'W', wrench, 'H',
 				hammer, 'A', "circuitAdvanced", 'S', "casingMachineSteel", 'M', GTItems.motorMV, 'D', "gemDiamond" });
 
 		recipes.addRecipe(GT.get(GTBlocks.tileRoaster, 1), new Object[] { "HPW", "PMP", "PCP", 'C', "coilConstantan",
-				'M', Blocks.FURNACE, 'P', "plateInvar", 'H', hammer, 'W', wrench });
+				'M', Ic2Items.electroFurnace.copy(), 'P', "plateInvar", 'H', hammer, 'W', wrench });
 
 		recipes.addRecipe(GT.get(GTBlocks.tileBath), new Object[] { "XWX", "XFX", "XXX", 'X', "plateStainlessSteel",
 				'F', "casingMachineStainlessSteel", 'W', wrench });
 
 		recipes.addRecipe(GT.get(GTBlocks.tileChemicalReactor, 1),
+				new Object[] { "W H", "KMC", "PSP", 'W', wrench, 'H', hammer, 'C',
+						GTMaterialGen.getCasing(GTMaterial.StainlessSteel, 1), 'M', GTItems.motorHV, 'S',
+						"stickStainlessSteel", 'P', "plateStainlessSteel", 'K', "circuitAdvanced" });
+
+		recipes.addRecipe(GT.get(GTBlocks.tileRefractory, 1),
 				new Object[] { "W H", "MCM", "PSP", 'W', wrench, 'H', hammer, 'C',
-						GTMaterialGen.getWall(GTMaterial.StainlessSteel, 1), 'M', GTItems.motorHV, 'S',
-						"stickStainlessSteel", 'P', "plateStainlessSteel" });
+						GTMaterialGen.getCasing(GTMaterial.Steel, 1), 'M', "circuitAdvanced", 'S', "coilGraphite", 'P',
+						Ic2Items.tribbleInsulatedIronCable });
+
+		recipes.addRecipe(GT.get(GTBlocks.tileCryogenicSeparator, 1),
+				new Object[] { "WMH", "SCS", "SPS", 'W', wrench, 'H', hammer, 'C',
+						GTMaterialGen.getCasing(GTMaterial.Aluminium, 1), 'M', "circuitAdvanced", 'S', "plateUltimet",
+						'P', "plateSilicon" });
 
 		// recipes.addRecipe(GT.get(GTBlocks.fusionComputer, 1),
 		// new Object[] { "EPE", "LCL", "ESE", 'E', GTItems.circuitSapphire, 'S',
@@ -193,7 +215,7 @@ public class GTRecipeShaped {
 				'S', GTBlocks.batteryLapotronSmall, 'A', "stickTungstensteel" });
 
 		recipes.addRecipe(GT.get(GTBlocks.casingLightning, 1), new Object[] { "EAE", "ASA", "EAE", 'E', "plateNiobium",
-				'S', "stickIridium", 'A', "fineWireNiobiumTitanium" });
+				'S', "stickIridium", 'A', "wireFineNiobiumTitanium" });
 
 		recipes.addRecipe(GT.get(GTBlocks.tileCentrifuge, 1),
 				new Object[] { "WCH", "MEM", "GCG", 'E', "casingMachineRefinedIron", 'M', GTItems.motorLV, 'G',
@@ -204,8 +226,8 @@ public class GTRecipeShaped {
 		// GTItems.circuitSapphire, 'G',
 		// "blockGlass", 'M', "casingMachineTitanium" });
 
-		recipes.addRecipe(GT.get(GTBlocks.tileSmelter), new Object[] { "PBP", "CFC", "PBP", 'P', "plateInvar", 'B',
-				"coilConstantan", 'C', "circuitBasic", 'F', Ic2Items.electroFurnace.copy() });
+		recipes.addRecipe(GT.get(GTBlocks.tileSmelter), new Object[] { "PBP", "FCF", "PBP", 'P', "plateRefinedIron",
+				'B', "coilConstantan", 'C', "plateInvar", 'F', Ic2Items.electroFurnace.copy() });
 
 		recipes.addRecipe(GT.get(GTBlocks.tilePlayerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
 				Blocks.OBSERVER, 'C', "circuitBasic", 'c', "casingMachineRefinedIron" });
