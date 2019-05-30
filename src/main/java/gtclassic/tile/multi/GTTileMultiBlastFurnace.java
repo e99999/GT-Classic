@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTMod;
@@ -39,6 +40,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 
 public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
@@ -368,6 +370,49 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 20);
+	}
+	
+	@Override
+	public Map<BlockPos, IBlockState> provideStructure()
+	{
+		Map<BlockPos, IBlockState> states = super.provideStructure();
+		int3 dir = new int3(getPos(), getFacing());
+		for (int i = 0; i < 4; i++) {// above tile
+			states.put(dir.up(1).asBlockPos(), casingMachine);
+		}
+		states.put(dir.left(1).asBlockPos(), casingMachine);
+		for (int i = 0; i < 4; i++) {
+			states.put(dir.down(1).asBlockPos(), casingMachine);
+		}
+		states.put(dir.back(1).asBlockPos(), casingMachine);
+		for (int i = 0; i < 4; i++) {
+			states.put(dir.up(1).asBlockPos(), casingMachine);
+		}
+		states.put(dir.right(1).asBlockPos(), casingMachine);
+		for (int i = 0; i < 4; i++) {
+			states.put(dir.down(1).asBlockPos(), casingMachine);
+		}
+		states.put(dir.right(1).asBlockPos(), casingMachine);
+		for (int i = 0; i < 4; i++) {
+			states.put(dir.up(1).asBlockPos(), casingMachine);
+		}
+		states.put(dir.back(1).asBlockPos(), casingMachine);
+		for (int i = 0; i < 4; i++) {
+			states.put(dir.down(1).asBlockPos(), casingMachine);
+		}
+		states.put(dir.left(1).asBlockPos(), casingMachine);
+		for (int i = 0; i < 4; i++) {
+			states.put(dir.up(1).asBlockPos(), casingMachine);
+		}
+		states.put(dir.left(1).asBlockPos(), casingMachine);
+		for (int i = 0; i < 4; i++) {
+			states.put(dir.down(1).asBlockPos(), casingMachine);
+		}
+		states.put(dir.forward(2).right(2).asBlockPos(), casingMachine);
+		for (int i = 0; i < 4; i++) {
+			states.put(dir.up(1).asBlockPos(), casingMachine);
+		}
+		return states;
 	}
 
 	@Override

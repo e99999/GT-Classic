@@ -160,7 +160,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 					getNetwork().initiateTileEntityEvent(this, 2, false);
 				}
 			}
-			if (lastRecipe == null && progress != 0) {
+			if (progress != 0) {
 				progress = 0;
 				getNetwork().updateTileGuiField(this, "progress");
 			}
@@ -195,8 +195,12 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 				{
 					if(input.getCount() >= count)
 					{
-						if(input.getItem().hasContainerItem(input) && shiftContainers)
+						if(input.getItem().hasContainerItem(input))
 						{
+							if(!shiftContainers)
+							{
+								continue;
+							}
 							ItemStack container = input.getItem().getContainerItem(input);
 							if(!container.isEmpty())
 							{
@@ -213,8 +217,12 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 						keyIter.remove();
 						break;
 					}
-					if(input.getItem().hasContainerItem(input) && shiftContainers)
+					if(input.getItem().hasContainerItem(input))
 					{
+						if(!shiftContainers)
+						{
+							continue;
+						}
 						ItemStack container = input.getItem().getContainerItem(input);
 						if(!container.isEmpty())
 						{
@@ -274,6 +282,10 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		List<ItemStack> inputs = getInputs();
 		if (lastRecipe != null) {
 			lastRecipe = checkRecipe(lastRecipe, StackUtil.copyList(inputs)) ? lastRecipe : null;
+			if(lastRecipe == null)
+			{
+				progress = 0;
+			}
 		}
 
 		// If previous is not valid, find a new one
