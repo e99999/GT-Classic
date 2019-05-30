@@ -58,6 +58,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
+	
+	public static final String MOVE_CONTAINER_TAG = "move_container";
+	
 	@NetworkField(index = 7)
 	public float progress = 0;
 
@@ -179,21 +182,49 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
 			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
 		}
+		NBTTagCompound nbt = recipe.getOutputs().getMetadata();
+		boolean shiftContainers = nbt == null ? false : nbt.getBoolean(MOVE_CONTAINER_TAG);
 		List<ItemStack> inputs = getInputs();
 		List<IRecipeInput> recipeKeys = new LinkedList<IRecipeInput>(recipe.getInputs());
 		for (Iterator<IRecipeInput> keyIter = recipeKeys.iterator(); keyIter.hasNext();) {
 			IRecipeInput key = keyIter.next();
+			int count = key.getAmount();
 			for (Iterator<ItemStack> inputIter = inputs.iterator(); inputIter.hasNext();) {
 				ItemStack input = inputIter.next();
-				if (key.matches(input) && key.getAmount() <= input.getCount()) {
-					if (!input.getItem().hasContainerItem(input)) {
-						input.shrink(key.getAmount());
-						if (input.isEmpty()) {
+				if (key.matches(input)) 
+				{
+					if(input.getCount() >= count)
+					{
+						if(input.getItem().hasContainerItem(input) && shiftContainers)
+						{
+							ItemStack container = input.getItem().getContainerItem(input);
+							if(!container.isEmpty())
+							{
+								container.setCount(count);
+								outputs.add(new MultiSlotOutput(container, getOutputSlots()));
+							}
+						}
+						input.shrink(count);
+						count = 0;
+						if(input.isEmpty())
+						{
 							inputIter.remove();
 						}
+						keyIter.remove();
+						break;
 					}
-					keyIter.remove();
-					break;
+					if(input.getItem().hasContainerItem(input) && shiftContainers)
+					{
+						ItemStack container = input.getItem().getContainerItem(input);
+						if(!container.isEmpty())
+						{
+							container.setCount(input.getCount());
+							outputs.add(new MultiSlotOutput(container, getOutputSlots()));
+						}
+					}
+					count -= input.getCount();
+					input.setCount(0);
+					inputIter.remove();
 				}
 			}
 		}
@@ -273,6 +304,10 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		}
 		for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
 			for (int outputSlot : outputSlots) {
+				if(inventory.get(outputSlot).isEmpty())
+				{
+					return lastRecipe;
+				}
 				if (StackUtil.isStackEqual(inventory.get(outputSlot), output, false, true)) {
 					if (inventory.get(outputSlot).getCount() + output.getCount() <= inventory.get(outputSlot)
 							.getMaxStackSize()) {
@@ -288,15 +323,23 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		List<IRecipeInput> recipeKeys = new LinkedList<IRecipeInput>(entry.getInputs());
 		for (Iterator<IRecipeInput> keyIter = recipeKeys.iterator(); keyIter.hasNext();) {
 			IRecipeInput key = keyIter.next();
+			int toFind = key.getAmount();
 			for (Iterator<ItemStack> inputIter = inputs.iterator(); inputIter.hasNext();) {
 				ItemStack input = inputIter.next();
-				if (key.matches(input) && key.getAmount() <= input.getCount()) {
-					input.shrink(key.getAmount());
-					if (input.isEmpty()) {
-						inputIter.remove();
+				if (key.matches(input)) {
+					if(input.getCount() >= toFind)
+					{
+						input.shrink(toFind);
+						keyIter.remove();
+						if(input.isEmpty())
+						{
+							inputIter.remove();
+						}
+						break;
 					}
-					keyIter.remove();
-					break;
+					toFind -= input.getCount();
+					input.setCount(0);
+					inputIter.remove();
 				}
 			}
 		}
@@ -367,6 +410,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			return;
 		}
 		lastRecipe = null;
+		shouldCheckRecipe = true;
 		int extraProcessSpeed = 0;
 		double processingSpeedMultiplier = 1.0D;
 		int extraProcessTime = 0;
