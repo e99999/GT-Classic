@@ -25,7 +25,7 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	public boolean lastState;
 	public boolean firstCheck = true;
 	List<IEnergyTile> lastPositions = null;
-	
+
 	public GTTileMultiBaseMachine(int slots, int upgrades, int defaultinput, int maxinput) {
 		super(slots, upgrades, defaultinput, 100, maxinput);
 	}
@@ -38,18 +38,15 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 				boolean lastCheck = lastState;
 				lastState = checkStructure();
 				firstCheck = false;
-				if(lastCheck != lastState)
-				{
-					if(addedToEnergyNet)
-					{
+				if (lastCheck != lastState) {
+					if (addedToEnergyNet) {
 						MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 					}
 					lastPositions = null;
 					MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 					addedToEnergyNet = true;
 					MultiBlockHelper.INSTANCE.removeCore(getWorld(), getPos());
-					if(lastState)
-					{
+					if (lastState) {
 						MultiBlockHelper.INSTANCE.addCore(getWorld(), getPos(), new ArrayList<BlockPos>(provideStructure().keySet()));
 					}
 				}
@@ -58,10 +55,9 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 		}
 		return superCall;
 	}
-	
-	//Needs to Inlcude current Offset
-	public Map<BlockPos, IBlockState> provideStructure()
-	{
+
+	// Needs to Inlcude current Offset
+	public Map<BlockPos, IBlockState> provideStructure() {
 		return new Object2ObjectLinkedOpenHashMap<BlockPos, IBlockState>();
 	}
 
@@ -71,7 +67,7 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 		}
 		return true;
 	}
-	
+
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return checkStructure();
@@ -90,18 +86,13 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	}
 
 	@Override
-	public List<IEnergyTile> getSubTiles()
-	{
-		if(lastPositions == null)
-		{
+	public List<IEnergyTile> getSubTiles() {
+		if (lastPositions == null) {
 			lastPositions = new ArrayList<IEnergyTile>();
 			lastPositions.add(this);
-			if(checkStructure())
-			{
-				for(Entry<BlockPos, IBlockState> entry : provideStructure().entrySet())
-				{
-					if(entry.getKey().equals(getPos()) || world.getBlockState(entry.getKey()) != entry.getValue())
-					{
+			if (checkStructure()) {
+				for (Entry<BlockPos, IBlockState> entry : provideStructure().entrySet()) {
+					if (entry.getKey().equals(getPos()) || world.getBlockState(entry.getKey()) != entry.getValue()) {
 						continue;
 					}
 					lastPositions.add(new EnergyConsumer(getWorld(), entry.getKey(), this));
@@ -110,10 +101,9 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 		}
 		return lastPositions;
 	}
-	
+
 	@Override
-	public void onUnloaded()
-	{
+	public void onUnloaded() {
 		MultiBlockHelper.INSTANCE.removeCore(getWorld(), getPos());
 		super.onUnloaded();
 	}

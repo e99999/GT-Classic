@@ -25,7 +25,11 @@ public class GTItemReactorRod extends ItemGrandualInt
 		implements IBootable, ISteamReactorComponent, IReactorPlannerComponent {
 
 	public enum GTItemRodTypes {
-		SINGLETHORIUM(48), DOUBLETHORIUM(49), QUADTHORIUM(50), SINGLEPLUTONIUM(51), DOUBLEPLUTONIUM(52),
+		SINGLETHORIUM(48),
+		DOUBLETHORIUM(49),
+		QUADTHORIUM(50),
+		SINGLEPLUTONIUM(51),
+		DOUBLEPLUTONIUM(52),
 		QUADPLUTONIUM(53);
 
 		private int id;
@@ -68,11 +72,6 @@ public class GTItemReactorRod extends ItemGrandualInt
 	public void processChamber(ItemStack var1, IReactor var2, int var3, int var4, boolean var5) {
 		// TODO Auto-generated method stub
 
-	}
-
-	private Object getUran(ItemStack stack) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

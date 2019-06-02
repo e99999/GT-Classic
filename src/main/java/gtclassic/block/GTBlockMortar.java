@@ -52,8 +52,7 @@ public class GTBlockMortar extends GTBlockTileCustom {
 		addDrops(w, p, e, h, new ItemStack(Items.COAL, 1, 1), GTMaterialGen.getSmallDust(GTMaterial.Charcoal, 4));
 		addDrops(w, p, e, h, GTMaterialGen.get(Items.CLAY_BALL), GTMaterialGen.getSmallDust(GTMaterial.Clay, 1));
 		addDrops(w, p, e, h, GTMaterialGen.get(Blocks.CLAY), GTMaterialGen.getSmallDust(GTMaterial.Clay, 4));
-		addDrops(w, p, e, h, GTMaterialGen.getIc2(Ic2Items.stickyResin, 1),
-				GTMaterialGen.getSmallDust(GTMaterial.DirtyResin, 6));
+		addDrops(w, p, e, h, GTMaterialGen.getIc2(Ic2Items.stickyResin, 1), GTMaterialGen.getSmallDust(GTMaterial.DirtyResin, 6));
 
 		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.hasFlag(GTMaterialFlag.SMALLDUST)) {

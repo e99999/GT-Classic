@@ -45,28 +45,24 @@ public class GTJeiPlugin implements IModPlugin {
 		if (SubModul.load) {
 
 			for (GTJeiRegistry entry : GTJeiRegistry.values()) {
-				wrapperUtil(registry, entry.getRecipeList(), entry.getCatalyst(), entry.getGuiClass(),
-						entry.getClickX(), entry.getClickY(), entry.getSizeX(), entry.getSizeY());
+				wrapperUtil(registry, entry.getRecipeList(), entry.getCatalyst(), entry.getGuiClass(), entry.getClickX(), entry.getClickY(), entry.getSizeX(), entry.getSizeY());
 			}
 
 			// Vanilla crafting
 			registry.addRecipeCatalyst(new ItemStack(GTItems.craftingTablet), new String[] { "minecraft.crafting" });
 
 			// Washing
-			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new,
-					"gt.washing");
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, "gt.washing");
 			registry.addRecipes(GTRecipeCauldron.RECIPE_LIST.getRecipeList(), "gt.washing");
 			registry.addRecipeCatalyst(new ItemStack(Items.CAULDRON), "gt.washing");
 
 			// Byproducts
-			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiByproductsWrapper::new,
-					"gt.byproducts");
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiByproductsWrapper::new, "gt.byproducts");
 			registry.addRecipes(GTRecipeProcessing.BYPRODUCT_LIST.getRecipeList(), "gt.byproducts");
 			registry.addRecipeCatalyst(new ItemStack(Blocks.IRON_ORE), "gt.byproducts");
 
 			// World Interaction
-			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiInteractionWrapper::new,
-					"gt.interaction");
+			registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiInteractionWrapper::new, "gt.interaction");
 			registry.addRecipes(GTRecipeProcessing.INTERACTION_LIST.getRecipeList(), "gt.interaction");
 			registry.addRecipeCatalyst(new ItemStack(Blocks.GRASS), "gt.interaction");
 
@@ -78,8 +74,14 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeCatalyst(new ItemStack(Blocks.CONCRETE), "gt.drying");
 
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
-			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class,
-					VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);// this is what fucks up shift clicking fixing
+			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);// this
+																																			// is
+																																			// what
+																																			// fucks
+																																			// up
+																																			// shift
+																																			// clicking
+																																			// fixing
 
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			for (Block block : Block.REGISTRY) {
@@ -100,23 +102,20 @@ public class GTJeiPlugin implements IModPlugin {
 		}
 
 		// washing
-		registry.addRecipeCategories(
-				new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "gt.washing", Blocks.WATER));
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), "gt.washing", Blocks.WATER));
 
 		// byproducts
-		registry.addRecipeCategories(
-				new GTJeiByproductsCategory(registry.getJeiHelpers().getGuiHelper(), "gt.byproducts", Blocks.IRON_ORE));
+		registry.addRecipeCategories(new GTJeiByproductsCategory(registry.getJeiHelpers().getGuiHelper(), "gt.byproducts", Blocks.IRON_ORE));
 
 		// world interaction
-		registry.addRecipeCategories(
-				new GTJeiInteractionCategory(registry.getJeiHelpers().getGuiHelper(), "gt.interaction", Blocks.GRASS));
+		registry.addRecipeCategories(new GTJeiInteractionCategory(registry.getJeiHelpers().getGuiHelper(), "gt.interaction", Blocks.GRASS));
 
 		// drying
-		registry.addRecipeCategories(
-				new GTJeiDryingCategory(registry.getJeiHelpers().getGuiHelper(), "gt.drying", Blocks.HARDENED_CLAY));
+		registry.addRecipeCategories(new GTJeiDryingCategory(registry.getJeiHelpers().getGuiHelper(), "gt.drying", Blocks.HARDENED_CLAY));
 
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void wrapperUtil(@Nonnull IModRegistry registry, GTMultiInputRecipeList list, Block catalyst,
 			Class gui, int clickX, int clickY, int sizeX, int sizeY) {
 		String recipeList = list.getCategory();
@@ -129,7 +128,6 @@ public class GTJeiPlugin implements IModPlugin {
 	}
 
 	public static void categoryUtil(IRecipeCategoryRegistration registry, GTMultiInputRecipeList list, Block catalyst) {
-		registry.addRecipeCategories(
-				new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), list.getCategory(), catalyst));
+		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), list.getCategory(), catalyst));
 	}
 }

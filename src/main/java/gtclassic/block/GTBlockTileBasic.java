@@ -310,9 +310,10 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (tile instanceof GTTileMultiCharcoalPit) {
 			if (((GTTileMultiCharcoalPit) tile).isActive) {
 				if (rand.nextInt(16) == 0) {
-					worldIn.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F),
-							(double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS,
-							1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+					worldIn.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY()
+							+ 0.5F), (double) ((float) pos.getZ()
+									+ 0.5F), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F
+											+ rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
 				}
 				for (int i = 0; i < 3; ++i) {
 					double d0 = (double) pos.getX() + rand.nextDouble();
@@ -393,12 +394,11 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				double d0 = (double) pos.getX() + 0.5D;
 				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
 				double d2 = (double) pos.getZ() + 0.5D;
-				double d3 = 0.52D;
 				double d4 = rand.nextDouble() * 0.6D - 0.3D;
 
 				if (rand.nextDouble() < 0.1D) {
-					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D,
-							SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ()
+							+ 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 				}
 
 				switch (enumfacing) {
@@ -466,8 +466,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				double d4 = rand.nextDouble() * 0.6D - 0.3D;
 
 				if (rand.nextDouble() < 0.1D) {
-					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D,
-							SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ()
+							+ 0.5D, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 				}
 
 				switch (enumfacing) {
@@ -520,9 +520,10 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (tile instanceof GTTileMultiRefractory) {
 			if (((GTTileMultiRefractory) tile).isActive) {
 				if (rand.nextInt(16) == 0) {
-					worldIn.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F),
-							(double) ((float) pos.getZ() + 0.5F), SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS,
-							1.0F + rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
+					worldIn.playSound((double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY()
+							+ 0.5F), (double) ((float) pos.getZ()
+									+ 0.5F), SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0F
+											+ rand.nextFloat(), rand.nextFloat() * 0.7F + 0.3F, false);
 				}
 				for (int i = 0; i < 3; ++i) {
 					double d0 = (double) pos.getX() + rand.nextDouble();

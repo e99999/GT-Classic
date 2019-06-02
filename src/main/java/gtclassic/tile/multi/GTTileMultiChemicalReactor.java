@@ -45,8 +45,7 @@ public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 	IFilter filter = new MachineFilter(this);
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.chemicalreactor");
-	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
-			"textures/gui/chemicalreactor.png");
+	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/chemicalreactor.png");
 
 	public GTTileMultiChemicalReactor() {
 		super(12, 2, 256, 512);
@@ -84,7 +83,7 @@ public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		return new LinkedHashSet(Arrays.asList(UpgradeType.values()));
+		return new LinkedHashSet<UpgradeType>(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
@@ -136,103 +135,50 @@ public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 		return Ic2Sounds.compressorOp;
 	}
 
-	// @formatter:off
 	public static void init() {
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustBauxite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SodiumHydroxide, 3)),
-				input(GTMaterialGen.getWater(1))}, 
-				totalEu(16000), 
-				GTMaterialGen.getFluid(GTMaterial.BauxiteTailings, 1),
-				GTMaterialGen.get(GTItems.testTube, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getWater(1)), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1)),
-				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1))}, 
-				totalEu(16000), 
-				GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 2)), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1)),
-				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 2))}, 
-				totalEu(16000), 
-				GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3),
-				GTMaterialGen.get(GTItems.testTube, 2));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getWater(1)), 
-				input(GTMaterialGen.getFluid(GTMaterial.Chlorine, 1))}, 
-				totalEu(8000), 
-				GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 2));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getWater(1)), 
-				input(GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1)),
-				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1))}, 
-				totalEu(8000), 
-				GTMaterialGen.getFluid(GTMaterial.NitricAcid, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getFluid(GTMaterial.NitricAcid, 2)),
-				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1))}, 
-				totalEu(8000), 
-				GTMaterialGen.getFluid(GTMaterial.Aquaregia, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getFluid(GTMaterial.Sodium, 1)),
-				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1)), 
-				input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1))}, 
-				totalEu(12000), 
-				GTMaterialGen.getFluid(GTMaterial.SodiumHydroxide, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getFluid(GTMaterial.Sodium, 2)),
-				input(GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1)), 
-				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 2))}, 
-				totalEu(12000), 
-				GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 4),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustBauxiteTailings", 12), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 8))}, 
-				totalEu(150000),
-				GTMaterialGen.getDust(GTMaterial.Titanium, 1),
-				GTMaterialGen.getDust(GTMaterial.Alumina, 8), 
-				GTMaterialGen.getDust(GTMaterial.Silicon, 2), 
-				GTMaterialGen.getFluid(GTMaterial.Hydrogen, 5),
-				GTMaterialGen.getFluid(GTMaterial.Oxygen, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustTungsticAcid", 4), 
-				input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 6))}, 
-				totalEu(96000), 
-				GTMaterialGen.getDust(GTMaterial.Tungsten, 1),
-				GTMaterialGen.getWater(4));
-		
 
-		addRecipe(new IRecipeInput[] { 
-				input("oreSheldonite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Aquaregia, 9))}, 
-				totalEu(24000),
-				GTMaterialGen.getSmallDust(GTMaterial.PlatinumGroupSludge, 1),
-				GTMaterialGen.getFluid(GTMaterial.Chloroplatinicacid, 4), 
-				GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1),
-				GTMaterialGen.getWater(3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreIridium", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Aquaregia, 9))}, 
-				totalEu(24000),
-				GTMaterialGen.getSmallDust(GTMaterial.PlatinumGroupSludge, 1),
-				GTMaterialGen.getFluid(GTMaterial.Chloroplatinicacid, 4), 
-				GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1),
-				GTMaterialGen.getWater(4));
+		addRecipe(new IRecipeInput[] { input("dustBauxite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SodiumHydroxide, 3)),
+				input(GTMaterialGen.getWater(1)) }, totalEu(16000), GTMaterialGen.getFluid(GTMaterial.BauxiteTailings, 1), GTMaterialGen.get(GTItems.testTube, 3));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getWater(1)),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1)) }, totalEu(16000), GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 2)),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 2)) }, totalEu(16000), GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3), GTMaterialGen.get(GTItems.testTube, 2));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getWater(1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Chlorine, 1)) }, totalEu(8000), GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 2));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getWater(1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1)) }, totalEu(8000), GTMaterialGen.getFluid(GTMaterial.NitricAcid, 3));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getFluid(GTMaterial.NitricAcid, 2)),
+				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1)) }, totalEu(8000), GTMaterialGen.getFluid(GTMaterial.Aquaregia, 3));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getFluid(GTMaterial.Sodium, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1)) }, totalEu(12000), GTMaterialGen.getFluid(GTMaterial.SodiumHydroxide, 3));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getFluid(GTMaterial.Sodium, 2)),
+				input(GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 2)) }, totalEu(12000), GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 4), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("dustBauxiteTailings", 12),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 8)) }, totalEu(150000), GTMaterialGen.getDust(GTMaterial.Titanium, 1), GTMaterialGen.getDust(GTMaterial.Alumina, 8), GTMaterialGen.getDust(GTMaterial.Silicon, 2), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 5), GTMaterialGen.getFluid(GTMaterial.Oxygen, 3));
+
+		addRecipe(new IRecipeInput[] { input("dustTungsticAcid", 4),
+				input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 6)) }, totalEu(96000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getWater(4));
+
+		addRecipe(new IRecipeInput[] { input("oreSheldonite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Aquaregia, 9)) }, totalEu(24000), GTMaterialGen.getSmallDust(GTMaterial.PlatinumGroupSludge, 1), GTMaterialGen.getFluid(GTMaterial.Chloroplatinicacid, 4), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1), GTMaterialGen.getWater(3));
+
+		addRecipe(new IRecipeInput[] { input("oreIridium", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Aquaregia, 9)) }, totalEu(24000), GTMaterialGen.getSmallDust(GTMaterial.PlatinumGroupSludge, 1), GTMaterialGen.getFluid(GTMaterial.Chloroplatinicacid, 4), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1), GTMaterialGen.getWater(4));
 	}
-	// @formatter:on
 
 	public static IRecipeModifier[] totalEu(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 256) - 100) };
@@ -277,8 +223,7 @@ public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 	}
 
 	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen
-				.getBlock(GTMaterial.StainlessSteel, GTMaterialFlag.CASING).getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.StainlessSteel, GTMaterialFlag.CASING).getDefaultState();
 	}
 
 }

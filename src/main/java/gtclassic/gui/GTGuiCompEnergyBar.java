@@ -46,8 +46,8 @@ public class GTGuiCompEnergyBar extends GuiComponent {
 				return;
 			}
 
-			gui.drawTexturedModalRect(x + box.getX(), y + box.getY(), this.texPos.getX(), this.texPos.getY(), lvl,
-					box.getHeight());
+			gui.drawTexturedModalRect(x + box.getX(), y
+					+ box.getY(), this.texPos.getX(), this.texPos.getY(), lvl, box.getHeight());
 		}
 
 	}
@@ -56,8 +56,8 @@ public class GTGuiCompEnergyBar extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY) && PlayerHandler.getClientPlayerHandler().hasEUReader()) {
-			tooltips.add(Ic2InfoLang.euStorage
-					.getLocalizedFormatted(new Object[] { this.storage.getStoredEU(), this.storage.getMaxEU() }));
+			tooltips.add(Ic2InfoLang.euStorage.getLocalizedFormatted(new Object[] { this.storage.getStoredEU(),
+					this.storage.getMaxEU() }));
 		}
 
 	}

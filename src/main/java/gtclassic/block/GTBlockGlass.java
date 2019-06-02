@@ -99,6 +99,7 @@ public class GTBlockGlass extends BlockGlass implements ITexturedBlock, ILocaleB
 		return FULL_BLOCK_AABB;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());

@@ -10,7 +10,6 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class GTItemContainerCraftingTablet extends ContainerItemComponent<GTItemInventoryCraftingTablet> {
@@ -21,13 +20,11 @@ public class GTItemContainerCraftingTablet extends ContainerItemComponent<GTItem
 	public InventoryCraftResult craftResult = new InventoryCraftResult();
 
 	private final World world;
-	private final BlockPos pos;
 	private final EntityPlayer player;
 
 	public GTItemContainerCraftingTablet(GTItemInventoryCraftingTablet inv, int id, InventoryPlayer player) {
 		super(inv, id);
 		this.world = player.player.getEntityWorld();
-		this.pos = player.player.getPosition();
 		this.player = player.player;
 		this.addSlotToContainer(new SlotCrafting(this.player, this.craftMatrix, this.craftResult, 0, 124, 35));
 

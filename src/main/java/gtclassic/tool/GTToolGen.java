@@ -20,11 +20,9 @@ public class GTToolGen {
 	private static Set<ToolMaterial> blacklistVanillaTools = new HashSet<ToolMaterial>();
 
 	public static void generateTools() {
-		blacklistPowerTools.addAll(Arrays.asList(GTToolMaterial.Flint, GTToolMaterial.Iron, GTToolMaterial.Bronze,
-				GTToolMaterial.Gold, GTToolMaterial.Brass, GTToolMaterial.RefinedIron, GTToolMaterial.BismuthBronze));
+		blacklistPowerTools.addAll(Arrays.asList(GTToolMaterial.Flint, GTToolMaterial.Iron, GTToolMaterial.Bronze, GTToolMaterial.Gold, GTToolMaterial.Brass, GTToolMaterial.RefinedIron, GTToolMaterial.BismuthBronze));
 
-		blacklistVanillaTools.addAll(
-				Arrays.asList(GTToolMaterial.Iron, GTToolMaterial.Bronze, GTToolMaterial.Gold, GTToolMaterial.Diamond));
+		blacklistVanillaTools.addAll(Arrays.asList(GTToolMaterial.Iron, GTToolMaterial.Bronze, GTToolMaterial.Gold, GTToolMaterial.Diamond));
 
 		for (ToolMaterial tmat : GTToolMaterial.toolMaterial) {
 			if (!tmat.equals(GTToolMaterial.Flint)) {

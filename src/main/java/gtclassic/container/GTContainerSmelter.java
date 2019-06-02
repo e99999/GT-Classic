@@ -30,8 +30,7 @@ public class GTContainerSmelter extends ContainerTileComponent<GTTileSmelter> {
 		}
 
 		this.addPlayerInventory(player);
-		this.addComponent(new MachineProgressComp(tile, GTContainerSmelter.machineProgressBox,
-				GTContainerSmelter.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, GTContainerSmelter.machineProgressBox, GTContainerSmelter.machineProgressPos));
 	}
 
 	@Override

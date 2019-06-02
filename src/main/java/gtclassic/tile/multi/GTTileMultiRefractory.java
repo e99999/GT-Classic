@@ -45,8 +45,7 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	IFilter filter = new MachineFilter(this);
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.refractory");
-	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
-			"textures/gui/refractory.png");
+	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/refractory.png");
 
 	public GTTileMultiRefractory() {
 		super(8, 2, 256, 512);
@@ -84,7 +83,7 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		return new LinkedHashSet(Arrays.asList(UpgradeType.values()));
+		return new LinkedHashSet<UpgradeType>(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
@@ -131,20 +130,13 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 		return GUI_LOCATION;
 	}
 
-	// @formatter:off
 	public static void init() {
-		addRecipe(new IRecipeInput[] { 
-				metal("Copper", 1), }, 
-				totalEu(64000),
-				GTMaterialGen.getHotIngot(GTMaterial.AnnealedCopper, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				metal("Tungsten", 1), 
-				metal("Steel", 1)}, 
-				totalEu(64000),
-				GTMaterialGen.getHotIngot(GTMaterial.TungstenSteel, 2));
+		addRecipe(new IRecipeInput[] {
+				metal("Copper", 1), }, totalEu(64000), GTMaterialGen.getHotIngot(GTMaterial.AnnealedCopper, 1));
+
+		addRecipe(new IRecipeInput[] { metal("Tungsten", 1),
+				metal("Steel", 1) }, totalEu(64000), GTMaterialGen.getHotIngot(GTMaterial.TungstenSteel, 2));
 	}
-	// @formatter:on
 
 	public static IRecipeModifier[] totalEu(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 256) - 100) };
@@ -425,8 +417,7 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	}
 
 	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING)
-				.getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Steel, GTMaterialFlag.CASING).getDefaultState();
 
 	}
 
@@ -436,8 +427,7 @@ public class GTTileMultiRefractory extends GTTileMultiBaseMachine {
 	}
 
 	public boolean isCoil(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Graphite, GTMaterialFlag.COIL)
-				.getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Graphite, GTMaterialFlag.COIL).getDefaultState();
 
 	}
 

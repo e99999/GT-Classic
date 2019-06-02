@@ -8,40 +8,39 @@ import net.minecraft.init.Items;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public enum GTOreRegistry {
-	// @formatter:off
-	BAUXITE(0, GTMaterial.Bauxite, 32, 2, 40, 100), 
+
+	BAUXITE(0, GTMaterial.Bauxite, 32, 2, 40, 100),
 	BISMUTHTINE(1, GTMaterial.Bismuthtine, 8, 8, 50, 80),
-	CALCITE(2, GTMaterial.Calcite, 8, 12, 20, 80), 
+	CALCITE(2, GTMaterial.Calcite, 8, 12, 20, 80),
 	CASSITERITE(3, GTMaterial.Cassiterite, 32, 2, 60, 120),
-	CHROMITE(4, GTMaterial.Chromite, 8, 4, 0, 16), 
+	CHROMITE(4, GTMaterial.Chromite, 8, 4, 0, 16),
 	CINNABAR(5, GTMaterial.Cinnabar, 8, 8, 0, 16),
-	CRYOLITE(6, GTMaterial.Cryolite, 8, 8, 50, 60), 
+	CRYOLITE(6, GTMaterial.Cryolite, 8, 8, 50, 60),
 	GALENA(7, GTMaterial.Galena, 16, 1, 30, 50),
-	GARNIERITE(8, GTMaterial.Garnierite, 16, 1, 20, 40), 
+	GARNIERITE(8, GTMaterial.Garnierite, 16, 1, 20, 40),
 	GRAPHITE(9, GTMaterial.Graphite, 8, 2, 5, 20),
-	IRIDIUM(10, GTMaterial.Iridium, 2, 1, 0, 128), 
+	IRIDIUM(10, GTMaterial.Iridium, 2, 1, 0, 128),
 	ANTHRACITE(11, GTMaterial.Coal, 32, 1, 0, 128),
-	LIMONITE(12, GTMaterial.Limonite, 8, 8, 40, 80), 
+	LIMONITE(12, GTMaterial.Limonite, 8, 8, 40, 80),
 	MAGNETITE(13, GTMaterial.Magnetite, 24, 1, 60, 120),
-	MALACHITE(14, GTMaterial.Malachite, 16, 2, 40, 80), 
+	MALACHITE(14, GTMaterial.Malachite, 16, 2, 40, 80),
 	OLIVINE(15, GTMaterial.Olivine, 8, 4, 0, 16),
-	PYRITE(16, GTMaterial.Pyrite, 16, 2, 20, 40), 
+	PYRITE(16, GTMaterial.Pyrite, 16, 2, 20, 40),
 	SHELDONITE(17, GTMaterial.Sheldonite, 8, 1, 50, 60),
-	RUBY(18, GTMaterial.Ruby, 8, 2, 0, 20), 
+	RUBY(18, GTMaterial.Ruby, 8, 2, 0, 20),
 	SALTPETER(19, GTMaterial.Saltpeter, 16, 1, 40, 80),
-	SAPPHIRE(20, GTMaterial.Sapphire, 8, 2, 0, 20), 
+	SAPPHIRE(20, GTMaterial.Sapphire, 8, 2, 0, 20),
 	SODALITE(21, GTMaterial.Sodalite, 12, 1, 10, 24),
-	SPHALERITE(22, GTMaterial.Sphalerite, 24, 1, 8, 24), 
+	SPHALERITE(22, GTMaterial.Sphalerite, 24, 1, 8, 24),
 	SULFUR(23, GTMaterial.Sulfur, 16, 1, 8, 24),
-	TANTALITE(24, GTMaterial.Tantalite, 8, 4, 0, 20), 
+	TANTALITE(24, GTMaterial.Tantalite, 8, 4, 0, 20),
 	TETRAHEDRITE(25, GTMaterial.Tetrahedrite, 32, 2, 60, 120),
-	TUNGSTATE(26, GTMaterial.Tungstate, 4, 4, 0, 16), 
+	TUNGSTATE(26, GTMaterial.Tungstate, 4, 4, 0, 16),
 	BASALT(27, GTMaterial.Basalt, 18, 2, 16, 50),
-	PYROLUSITE(28, GTMaterial.Pyrolusite, 16, 1, 24, 50), 
+	PYROLUSITE(28, GTMaterial.Pyrolusite, 16, 1, 24, 50),
 	SALT(29, GTMaterial.Salt, 32, 2, 40, 120),
-	MOLYBDENITE(30, GTMaterial.Molybdenite, 8, 2, 30, 50), 
+	MOLYBDENITE(30, GTMaterial.Molybdenite, 8, 2, 30, 50),
 	VIBRANIUM(31, GTMaterial.Vibranium, 2, 1, 0, 10);
-	// @formatter:on
 
 	private int id;
 	private GTMaterial mat;
@@ -86,7 +85,6 @@ public enum GTOreRegistry {
 
 	public static void oreDirectSmelting() {
 
-		// @formatter:off
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Bismuthtine, 1), GTMaterialGen.getNugget(GTMaterial.Bismuth, 3), 0.1F);
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Cassiterite, 1), GTMaterialGen.getNugget(GTMaterial.Tin, 3), 0.1F);
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Galena, 1), GTMaterialGen.getNugget(GTMaterial.Lead, 3), 0.1F);
@@ -97,7 +95,6 @@ public enum GTOreRegistry {
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Pyrite, 1), GTMaterialGen.get(Items.IRON_NUGGET, 3), 0.1F);
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Sphalerite, 1), GTMaterialGen.getNugget(GTMaterial.Zinc, 3), 0.1F);
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Tetrahedrite, 1), GTMaterialGen.getNugget(GTMaterial.Copper, 3), 0.1F);
-		// @formatter:on
 
 		for (Block block : Block.REGISTRY) {
 

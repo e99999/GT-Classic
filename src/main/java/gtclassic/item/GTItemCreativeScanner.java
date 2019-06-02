@@ -121,6 +121,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	/*
 	 * The logic for both the creative and survival scanners.
 	 */
+	@SuppressWarnings("deprecation")
 	public static EnumActionResult scanBlock(EntityPlayer player, World world, BlockPos pos, EnumFacing side,
 			float hitX, float hitY, float hitZ, EnumHand hand) {
 
@@ -130,13 +131,13 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		if (player.isSneaking() || !IC2.platform.isSimulating()) {
 			return EnumActionResult.PASS;
 		} else {
-			IC2.platform.messagePlayer(player,
-					"-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ() + " -----");
+			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()
+					+ " -----");
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getUnlocalizedName());
 			IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
-			IC2.platform.messagePlayer(player,
-					"Blast Resistance: " + state.getBlock().getExplosionResistance(null) * 5.0F);
+			IC2.platform.messagePlayer(player, "Blast Resistance: "
+					+ state.getBlock().getExplosionResistance(null) * 5.0F);
 			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 			if (tileEntity instanceof TileEntityBlock) {
 				TileEntityBlock te = (TileEntityBlock) tileEntity;
@@ -170,17 +171,16 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 			if (tileEntity instanceof TileEntityCrop) {
 				TileEntityCrop te7 = (TileEntityCrop) tileEntity;
-				IC2.platform.messagePlayer(player,
-						"Crop=" + te7.getCrop() + " Size=" + te7.getCurrentSize() + " Growth=" + te7.getStatGrowth()
-								+ " Gain=" + te7.getStatGain() + " Resistance=" + te7.getStatResistance()
-								+ " Nutrients=" + te7.getTerrainNutrients() + " Water=" + te7.getTerrainHumidity()
-								+ " GrowthPoints=" + te7.getGrowthPoints());
+				IC2.platform.messagePlayer(player, "Crop=" + te7.getCrop() + " Size=" + te7.getCurrentSize()
+						+ " Growth=" + te7.getStatGrowth() + " Gain=" + te7.getStatGain() + " Resistance="
+						+ te7.getStatResistance() + " Nutrients=" + te7.getTerrainNutrients() + " Water="
+						+ te7.getTerrainHumidity() + " GrowthPoints=" + te7.getGrowthPoints());
 			}
 
 			if (tileEntity instanceof GTTileBaseMachine) {
 				GTTileBaseMachine machine = (GTTileBaseMachine) tileEntity;
-				IC2.platform.messagePlayer(player,
-						"Progress: " + (Math.round((machine.getProgress() / machine.getMaxProgress()) * 100)) + "%");
+				IC2.platform.messagePlayer(player, "Progress: "
+						+ (Math.round((machine.getProgress() / machine.getMaxProgress()) * 100)) + "%");
 				if (!machine.isPassive) {
 					IC2.platform.messagePlayer(player, "Default Input: " + machine.defaultEnergyConsume + " EU");
 					IC2.platform.messagePlayer(player, "Max Input: " + machine.defaultMaxInput + " EU");
@@ -195,29 +195,29 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			if (tileEntity instanceof GTTileMultiLightningRod) {
 				GTTileMultiLightningRod rod = (GTTileMultiLightningRod) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + rod.checkStructure());
-				IC2.platform.messagePlayer(player,
-						"Casing Block Amount: " + (rod.casingheight - (rod.getPos().getY() + 1)));
+				IC2.platform.messagePlayer(player, "Casing Block Amount: "
+						+ (rod.casingheight - (rod.getPos().getY() + 1)));
 				IC2.platform.messagePlayer(player, "Casing Block Level: " + rod.casingheight);
 				IC2.platform.messagePlayer(player, "Weather Height: " + world.getPrecipitationHeight(pos).getY());
 				IC2.platform.messagePlayer(player, "Block Up Level: " + (rod.getPos().getY() + 1));
 				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.thunderingStrength) * 100) + "%");
-				IC2.platform.messagePlayer(player,
-						"1 out of " + rod.chance + " chance to strike based on fence height");
+				IC2.platform.messagePlayer(player, "1 out of " + rod.chance
+						+ " chance to strike based on fence height");
 			}
 
 			if (tileEntity instanceof GTTileMultiBloomery) {
 				GTTileMultiBloomery bloom = (GTTileMultiBloomery) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
-				IC2.platform.messagePlayer(player,
-						"Progress: " + (Math.round((bloom.getProgress() / bloom.getMaxProgress()) * 100)) + "%");
+				IC2.platform.messagePlayer(player, "Progress: "
+						+ (Math.round((bloom.getProgress() / bloom.getMaxProgress()) * 100)) + "%");
 				IC2.platform.messagePlayer(player, "Recipe State: " + bloom.getActiveRecipe());
 			}
 
 			if (tileEntity instanceof GTTileMultiCharcoalPit) {
 				GTTileMultiCharcoalPit pit = (GTTileMultiCharcoalPit) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + pit.checkStructure());
-				IC2.platform.messagePlayer(player,
-						"Progress: " + (Math.round((pit.getProgress() / pit.getMaxProgress()) * 100)) + "%");
+				IC2.platform.messagePlayer(player, "Progress: "
+						+ (Math.round((pit.getProgress() / pit.getMaxProgress()) * 100)) + "%");
 			}
 
 			if (tileEntity instanceof GTTileDigitalChest) {
@@ -235,11 +235,11 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			if (tileEntity instanceof TileEntityTransformer) {
 				TileEntityTransformer transformer = (TileEntityTransformer) tileEntity;
 				IC2.platform.messagePlayer(player, "Low: " + transformer.lowOutput + " EU");
-				IC2.platform.messagePlayer(player,
-						"Low Tier: " + EnergyNet.instance.getTierFromPower((double) transformer.lowOutput));
+				IC2.platform.messagePlayer(player, "Low Tier: "
+						+ EnergyNet.instance.getTierFromPower((double) transformer.lowOutput));
 				IC2.platform.messagePlayer(player, "High: " + transformer.highOutput + " EU");
-				IC2.platform.messagePlayer(player,
-						"High Tier: " + EnergyNet.instance.getTierFromPower((double) transformer.highOutput));
+				IC2.platform.messagePlayer(player, "High Tier: "
+						+ EnergyNet.instance.getTierFromPower((double) transformer.highOutput));
 			}
 
 			if (tileEntity instanceof GTTileBlockCustom) {

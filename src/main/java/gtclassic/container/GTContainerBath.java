@@ -33,8 +33,7 @@ public class GTContainerBath extends ContainerTileComponent<GTTileBath> {
 
 		this.addPlayerInventory(player);
 
-		this.addComponent(
-				new MachineProgressComp(tile, GTContainerBath.machineProgressBox, GTContainerBath.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, GTContainerBath.machineProgressBox, GTContainerBath.machineProgressPos));
 	}
 
 	@Override

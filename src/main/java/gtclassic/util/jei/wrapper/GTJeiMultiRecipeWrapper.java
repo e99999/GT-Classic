@@ -22,6 +22,7 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 		this.multiRecipe = multiRecipe;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		ArrayList<ItemStack> inputs = new ArrayList<>();
@@ -38,12 +39,11 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 		FontRenderer font = minecraft.fontRenderer;
 		font.drawString("Ticks: " + getEntryTicks(multiRecipe.getOutputs()), 0, 40, Color.black.getRGB());
 		font.drawString("Seconds: " + getEntryTicks(multiRecipe.getOutputs()) / 20.0F, 0, 50, Color.black.getRGB());
-		font.drawString(
-				"Tier: " + GTValues.getTierString(EnergyNet.instance.getTierFromPower(multiRecipe.getMachineEu())), 0,
-				60, Color.black.getRGB());
+		font.drawString("Tier: "
+				+ GTValues.getTierString(EnergyNet.instance.getTierFromPower(multiRecipe.getMachineEu())), 0, 60, Color.black.getRGB());
 		font.drawString("Usage: " + multiRecipe.getMachineEu() + " EU/t", 0, 70, Color.black.getRGB());
-		font.drawString("Cost: " + getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu() + " EU", 0, 80,
-				Color.black.getRGB());
+		font.drawString("Cost: " + getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu()
+				+ " EU", 0, 80, Color.black.getRGB());
 	}
 
 	public MultiRecipe getMultiRecipe() {

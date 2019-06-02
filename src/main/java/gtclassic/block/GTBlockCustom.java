@@ -79,8 +79,8 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 	}
 
 	public AxisAlignedBB getVariantBoundingBox() {
-		return new AxisAlignedBB(this.getOffsetBB(), 0.0D, this.getOffsetBB(), this.getOffsetBB() + this.getWidthBB(),
-				this.getHeightBB(), this.getOffsetBB() + this.getWidthBB());
+		return new AxisAlignedBB(this.getOffsetBB(), 0.0D, this.getOffsetBB(), this.getOffsetBB()
+				+ this.getWidthBB(), this.getHeightBB(), this.getOffsetBB() + this.getWidthBB());
 	}
 
 	@Override
@@ -134,6 +134,7 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 		return this.blockState.getValidStates();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());

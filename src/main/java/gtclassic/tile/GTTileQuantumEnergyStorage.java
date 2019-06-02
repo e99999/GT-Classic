@@ -39,7 +39,7 @@ public class GTTileQuantumEnergyStorage extends TileEntityElectricBlock {
 	public LocaleComp getBlockName() {
 		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
 	}
-	
+
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;

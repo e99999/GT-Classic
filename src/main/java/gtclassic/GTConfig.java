@@ -37,10 +37,9 @@ public class GTConfig {
 		}
 	}
 
-	// @formatter:off
 	private static void initGeneralConfig(Configuration cfg) {
 		cfg.addCustomCategoryComment(CATEGORY_GENERAL, "General configuration");
-		harderPlates = cfg.getBoolean("harderPlates", CATEGORY_GENERAL, harderPlates,"Hand crafting plates takes two ingots");
+		harderPlates = cfg.getBoolean("harderPlates", CATEGORY_GENERAL, harderPlates, "Hand crafting plates takes two ingots");
 		harderRods = cfg.getBoolean("harderRods", CATEGORY_GENERAL, harderRods, "Hand crafting of rods output reduced to 1 from 2");
 		harderGears = cfg.getBoolean("harderGears", CATEGORY_GENERAL, harderGears, "Hand crafting of gears takes 4 extra rods");
 		harderRefractory = cfg.getBoolean("harderRefractory", CATEGORY_GENERAL, harderRefractory, "Enables larger refratory structure coming in the next update");
@@ -53,6 +52,5 @@ public class GTConfig {
 		genEndOre = cfg.getBoolean("genEndOre", CATEGORY_GENERATION, genEndOre, "Generate ores in the End");
 		genBedrockOre = cfg.getBoolean("genBedrockOre", CATEGORY_GENERATION, genBedrockOre, "Generate ores in bedrock");
 	}
-	// @formatter:on
 
 }

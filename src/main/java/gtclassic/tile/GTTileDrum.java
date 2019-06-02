@@ -86,7 +86,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	}
 
 	public List<ItemStack> getDrops() {
-		List<ItemStack> list = new ArrayList();
+		List<ItemStack> list = new ArrayList<ItemStack>();
 		ItemStack stack = GTMaterialGen.get(this.drop);
 		if (this.tank.getFluid() != null) {
 			StackUtil.getOrCreateNbtData(stack).setTag("Fluid", this.tank.getFluid().writeToNBT(new NBTTagCompound()));
@@ -167,10 +167,10 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		}
 
 		if (!playerStack.isEmpty()) {
-			ItemStack stackEmpty = FluidUtil.tryEmptyContainer(playerStack, this.tank,
-					this.tank.getCapacity() - this.tank.getFluidAmount(), player, true).getResult();
-			ItemStack stackCopy = FluidUtil.tryEmptyContainer(playerStack, this.tank,
-					this.tank.getCapacity() - this.tank.getFluidAmount(), player, false).getResult();
+			ItemStack stackEmpty = FluidUtil.tryEmptyContainer(playerStack, this.tank, this.tank.getCapacity()
+					- this.tank.getFluidAmount(), player, true).getResult();
+			ItemStack stackCopy = FluidUtil.tryEmptyContainer(playerStack, this.tank, this.tank.getCapacity()
+					- this.tank.getFluidAmount(), player, false).getResult();
 			if (!stackCopy.isEmpty()) {
 				playerStack.shrink(1);
 				ItemHandlerHelper.giveItemToPlayer(player, stackEmpty);

@@ -120,7 +120,7 @@ public class GTTileSluice extends GTTileFacing
 
 	@Override
 	public List<ItemStack> getDrops() {
-		List<ItemStack> list = new ArrayList(this.inventory.size());
+		List<ItemStack> list = new ArrayList<ItemStack>(this.inventory.size());
 
 		for (int i = 0; i < this.inventory.size(); ++i) {
 			ItemStack stack = (ItemStack) this.inventory.get(i);

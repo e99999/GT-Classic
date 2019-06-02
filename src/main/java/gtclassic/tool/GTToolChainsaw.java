@@ -72,6 +72,7 @@ public class GTToolChainsaw extends ItemElectricTool
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(TextFormatting.GOLD + I18n.format("Material: " + this.material.getDisplayName()));
@@ -84,14 +85,7 @@ public class GTToolChainsaw extends ItemElectricTool
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
-				|| material.equals(material.Uranium)) {
-			return true;
-		}
-		if (material.equals(material.Flint)) {
-			return false;
-		}
-		return super.hasEffect(stack);
+		return GTMaterial.isRadioactive(material) ? true : super.hasEffect(stack);
 	}
 
 	@Override
@@ -122,13 +116,11 @@ public class GTToolChainsaw extends ItemElectricTool
 			BlockPos pos = new BlockPos(entity.posX, entity.posY, entity.posZ);
 			if (target.isShearable(stack, entity.world, pos)
 					&& ElectricItem.manager.canUse(stack, this.getEnergyCost(stack) * 2)) {
-				List<ItemStack> drops = target.onSheared(stack, entity.world, pos,
-						EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack));
+				List<ItemStack> drops = target.onSheared(stack, entity.world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack));
 
 				EntityItem ent;
-				for (Iterator<ItemStack> var8 = drops.iterator(); var8
-						.hasNext(); ent.motionZ += (entity.world.rand.nextFloat() - entity.world.rand.nextFloat())
-								* 0.1F) {
+				for (Iterator<ItemStack> var8 = drops.iterator(); var8.hasNext(); ent.motionZ += (entity.world.rand.nextFloat()
+						- entity.world.rand.nextFloat()) * 0.1F) {
 					ItemStack item = (ItemStack) var8.next();
 					ent = entity.entityDropItem(item, 1.0F);
 					ent.motionY += entity.world.rand.nextFloat() * 0.05F;
@@ -160,8 +152,7 @@ public class GTToolChainsaw extends ItemElectricTool
 				IShearable target = (IShearable) block;
 				if (target.isShearable(itemstack, player.world, pos)
 						&& ElectricItem.manager.canUse(itemstack, this.getEnergyCost(itemstack))) {
-					List<ItemStack> drops = target.onSheared(itemstack, player.world, pos,
-							EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
+					List<ItemStack> drops = target.onSheared(itemstack, player.world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
 					Iterator<ItemStack> var7 = drops.iterator();
 
 					while (var7.hasNext()) {
@@ -170,8 +161,8 @@ public class GTToolChainsaw extends ItemElectricTool
 						double d = player.world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
 						double d1 = player.world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
 						double d2 = player.world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-						EntityItem entityitem = new EntityItem(player.world, pos.getX() + d, pos.getY() + d1,
-								pos.getZ() + d2, stack);
+						EntityItem entityitem = new EntityItem(player.world, pos.getX() + d, pos.getY() + d1, pos.getZ()
+								+ d2, stack);
 						entityitem.setDefaultPickupDelay();
 						player.world.spawnEntity(entityitem);
 					}
@@ -200,6 +191,7 @@ public class GTToolChainsaw extends ItemElectricTool
 		return super.onBlockDestroyed(stack, worldIn, blockIn, pos, entityLiving);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void breakBlock(BlockPos pos, ItemStack saw, World world, BlockPos oldPos, EntityPlayer player) {
 		if (oldPos == pos) {
 			return;
@@ -253,8 +245,8 @@ public class GTToolChainsaw extends ItemElectricTool
 			return true;
 		} else {
 			if (ElectricItem.manager.use(stack, this.operationEnergyCost, attacker)) {
-				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker),
-						this.material.getSpeed() * 2);
+				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), this.material.getSpeed()
+						* 2);
 			} else {
 				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1.0F);
 			}

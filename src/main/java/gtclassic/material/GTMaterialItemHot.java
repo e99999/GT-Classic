@@ -68,11 +68,7 @@ public class GTMaterialItemHot extends Item implements IStaticTexturedItem, GTCo
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
-				|| material.equals(material.Uranium) || material.equals(material.Vibranium)) {
-			return true;
-		}
-		return super.hasEffect(stack);
+		return GTMaterial.isRadioactive(material) ? true : super.hasEffect(stack);
 	}
 
 	@Override
@@ -114,8 +110,7 @@ public class GTMaterialItemHot extends Item implements IStaticTexturedItem, GTCo
 			EntityLivingBase player = (EntityLivingBase) entityIn;
 			if (player.isInWater()) {
 				player.replaceItemInInventory(itemSlot, GTMaterialGen.getIngot(this.material, stack.getCount()));
-				worldIn.playSound((EntityPlayer) null, player.getPosition(), SoundEvents.BLOCK_LAVA_EXTINGUISH,
-						SoundCategory.BLOCKS, 1.0F, 1.0F);
+				worldIn.playSound((EntityPlayer) null, player.getPosition(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			if (!ItemHazmatArmor.isFullHazmatSuit(player) || !player.isImmuneToFire()) {
 				entityIn.attackEntityFrom(DamageSource.IN_FIRE, 4.0F);
@@ -142,8 +137,7 @@ public class GTMaterialItemHot extends Item implements IStaticTexturedItem, GTCo
 			player.getHeldItem(hand).shrink(1);
 			Blocks.CAULDRON.setWaterLevel(world, pos, state, 0);
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getIngot(this.material, 1));
-			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F,
-					1.0F);
+			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			double d0 = (double) pos.getX() + world.rand.nextDouble();
 			double d1 = (double) pos.getY() + world.rand.nextDouble() * 0.5D + 0.5D;
 			double d2 = (double) pos.getZ() + world.rand.nextDouble();

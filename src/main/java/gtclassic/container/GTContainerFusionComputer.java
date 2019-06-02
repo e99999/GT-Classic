@@ -23,8 +23,7 @@ public class GTContainerFusionComputer extends ContainerTileComponent<GTTileMult
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 106, 35));
 
 		this.addPlayerInventory(player);
-		this.addComponent(new MachineProgressComp(tile, GTContainerFusionComputer.machineProgressBox,
-				GTContainerFusionComputer.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, GTContainerFusionComputer.machineProgressBox, GTContainerFusionComputer.machineProgressPos));
 	}
 
 	@Override

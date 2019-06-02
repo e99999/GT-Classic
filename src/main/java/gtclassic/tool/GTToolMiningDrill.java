@@ -63,6 +63,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(TextFormatting.YELLOW + I18n.format("Level: " + this.getLevelString()));
@@ -75,14 +76,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
-				|| material.equals(material.Uranium)) {
-			return true;
-		}
-		if (material.equals(material.Flint)) {
-			return false;
-		}
-		return super.hasEffect(stack);
+		return GTMaterial.isRadioactive(material) ? true : super.hasEffect(stack);
 	}
 
 	@Override
@@ -125,6 +119,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 		return ImmutableSet.of("pickaxe", "shovel");
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos,
 			EntityLivingBase entityLiving) {

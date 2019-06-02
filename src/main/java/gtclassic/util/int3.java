@@ -131,8 +131,8 @@ public class int3 {
 	public int3 offset(int n, EnumFacing facing) {
 		if (n == 0 || facing == null)
 			return this;
-		return set(x + facing.getFrontOffsetX() * n, y + facing.getFrontOffsetY() * n,
-				z + facing.getFrontOffsetZ() * n);
+		return set(x + facing.getFrontOffsetX() * n, y + facing.getFrontOffsetY() * n, z
+				+ facing.getFrontOffsetZ() * n);
 	}
 
 	public BlockPos asBlockPos() {

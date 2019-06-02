@@ -13,7 +13,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -33,7 +32,8 @@ public class GTWorldGen implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
 
-		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
+		// Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128,
+		// chunkZ * 16 + 16));
 
 		switch (world.provider.getDimensionType()) {
 
@@ -46,23 +46,18 @@ public class GTWorldGen implements IWorldGenerator {
 					GTOreFlag flag = ore.getOreFlag();
 
 					if (flag.equals(GTOreFlag.STONE) && GTConfig.genOverworldOre) {
-						runGenerator(ore.getDefaultState(), entry.getSize(), entry.getChance(), entry.getMinY(),
-								entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX,
-								chunkZ);
+						runGenerator(ore.getDefaultState(), entry.getSize(), entry.getChance(), entry.getMinY(), entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
 
 					if (flag.equals(GTOreFlag.NETHER) && GTConfig.genNetherOre) {
-						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), 0, 128,
-								BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
+						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), 0, 128, BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
 
 					if (flag.equals(GTOreFlag.END) && GTConfig.genEndOre) {
-						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), 8, 70,
-								BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
+						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), 8, 70, BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
 					if (flag.equals(GTOreFlag.BEDROCK) && GTConfig.genBedrockOre) {
-						runRareGenerator(ore.getDefaultState(), 32, 1, 0, 5,
-								BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
+						runRareGenerator(ore.getDefaultState(), 32, 1, 0, 5, BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
 
 				}
@@ -74,14 +69,10 @@ public class GTWorldGen implements IWorldGenerator {
 					GTOreFlag flag = ore.getOreFlag();
 
 					if (flag.equals(GTOreFlag.SAND) && GTConfig.genOverworldOre) {
-						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), entry.getMinY(),
-								entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX,
-								chunkZ);
+						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), entry.getMinY(), entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
 					if (flag.equals(GTOreFlag.GRAVEL) && GTConfig.genOverworldOre) {
-						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), entry.getMinY(),
-								entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX,
-								chunkZ);
+						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), entry.getMinY(), entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
 				}
 			}

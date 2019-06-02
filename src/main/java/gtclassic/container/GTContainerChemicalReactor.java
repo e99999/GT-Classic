@@ -38,8 +38,7 @@ public class GTContainerChemicalReactor extends ContainerTileComponent<GTTileMul
 
 		this.addPlayerInventory(player);
 
-		this.addComponent(new MachineProgressComp(tile, GTContainerChemicalReactor.machineProgressBox,
-				GTContainerChemicalReactor.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, GTContainerChemicalReactor.machineProgressBox, GTContainerChemicalReactor.machineProgressPos));
 	}
 
 	@Override

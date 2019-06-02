@@ -29,8 +29,7 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 
 	@Override
 	public List<ActionRequest> getNeededRequests() {
-		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.GuiTick,
-				ActionRequest.FrontgroundDraw, ActionRequest.BackgroundDraw);
+		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.GuiTick, ActionRequest.FrontgroundDraw, ActionRequest.BackgroundDraw);
 	}
 
 	@Override
@@ -46,16 +45,16 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 
 		gui.drawString("" + eu, 12, 28, GTValues.white);
 		gui.drawString("/" + max, 12, 38, GTValues.white);
-		gui.drawString(Ic2GuiLang.energyStorageOutput.getLocalizedFormatted(new Object[] { this.block.output }), 12, 48,
-				GTValues.white);
+		gui.drawString(Ic2GuiLang.energyStorageOutput.getLocalizedFormatted(new Object[] {
+				this.block.output }), 12, 48, GTValues.white);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiInit(GuiIC2 gui) {
 		this.lastMode = this.block.redstoneMode;
-		gui.registerButton((new IconButton(0, gui.getXOffset() + 103, gui.getYOffset() + 6, 20, 20)).setItemStack(red)
-				.addText(this.block.getRedstoneMode()));
+		gui.registerButton((new IconButton(0, gui.getXOffset() + 103, gui.getYOffset()
+				+ 6, 20, 20)).setItemStack(red).addText(this.block.getRedstoneMode()));
 	}
 
 	@Override

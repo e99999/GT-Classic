@@ -93,8 +93,8 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 			double y = entityIn.posY + 1.5;
 			double z = entityIn.posZ;
 			int pulled = 0;
-			for (EntityItem item : worldIn.getEntitiesWithinAABB(EntityItem.class,
-					new AxisAlignedBB(x, y, z, x + 1, y + 1, z + 1).grow(range))) {
+			for (EntityItem item : worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(x, y, z, x + 1, y
+					+ 1, z + 1).grow(range))) {
 				if (!canPull(stack) || pulled > 200) {
 					break;
 				}
@@ -133,8 +133,8 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 		int damage = stack.getItemDamage();
 		ResourceLocation location = this.getRegistryName();
 		String name = stack.getUnlocalizedName();
-		this.model[damage] = new ModelResourceLocation(
-				location.getResourceDomain() + name.substring(name.indexOf(".") + 1) + damage, "inventory");
+		this.model[damage] = new ModelResourceLocation(location.getResourceDomain()
+				+ name.substring(name.indexOf(".") + 1) + damage, "inventory");
 		return this.model[damage];
 	}
 

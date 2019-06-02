@@ -17,7 +17,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements IStaticTexturedItem {
 	public enum GTItemHeatStorageTypes {
-		SINGLE(34), TRIPLE(35), SIX(36);
+		SINGLE(34),
+		TRIPLE(35),
+		SIX(36);
 
 		private int id;
 

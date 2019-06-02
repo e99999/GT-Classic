@@ -19,11 +19,6 @@ import net.minecraft.init.Items;
 public class GTRecipeCircuitry {
 
 	static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
-	static GTMaterialGen GT;
-	static GTMaterial M;
-
-	public static IRecipeInput basicCircuitPlate = new RecipeInputCombined(1,
-			new IRecipeInput[] { new RecipeInputOreDict("plateSilicon"), new RecipeInputOreDict("plateGermanium") });
 
 	public static void recipesCircutry() {
 
@@ -32,109 +27,95 @@ public class GTRecipeCircuitry {
 		 * For now they allow testing and progression to happen.
 		 */
 
-		recipes.addShapelessRecipe(GT.getDust(M.MagnesiaCarbon, 4),
-				new Object[] { "dustMagnesium", "dustCarbon", "dustSilicon", "dustClay" });
+		recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.MagnesiaCarbon, 4), new Object[] { "dustMagnesium",
+				"dustCarbon", "dustSilicon", "dustClay" });
 
-		TileEntityCompressor.addRecipe("dustMagnesiaCarbon", 1, GT.get(GTItems.magnesiaBrick), 0);
+		TileEntityCompressor.addRecipe("dustMagnesiaCarbon", 1, GTMaterialGen.get(GTItems.magnesiaBrick), 0);
 
-		recipes.addShapelessRecipe(GT.get(GTBlocks.stoneMagnesia, 1), new Object[] { GTItems.magnesiaBrick,
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.stoneMagnesia, 1), new Object[] { GTItems.magnesiaBrick,
 				GTItems.magnesiaBrick, GTItems.magnesiaBrick, GTItems.magnesiaBrick });
 
-		TileEntitySawMill.addRecipe(GT.get(GTBlocks.driedResin), GT.get(GTItems.resinPCB), 0.0F);
+		TileEntitySawMill.addRecipe(GTMaterialGen.get(GTBlocks.driedResin), GTMaterialGen.get(GTItems.resinPCB), 0.0F);
 		TileEntitySawMill.addRecipe(GTMaterialGen.getPlate(GTMaterial.Silicon, 1), GTMaterialGen.getSmallPlate(GTMaterial.Silicon, 4), 0.0F);
-		TileEntityCompressor.addRecipe("dustWood", 1, GT.get(GTItems.woodPlate));
-		TileEntityMacerator.addRecipe(GT.getIc2(Ic2Items.stickyResin, 1), GT.getDust(M.DirtyResin, 2));
-		TileEntityMacerator.addRecipe("plankWood", 1, GT.getDust(M.Wood, 2));
-		TileEntityMacerator.addRecipe("logWood", 1, GT.getDust(M.Wood, 8));
+		TileEntityCompressor.addRecipe("dustWood", 1, GTMaterialGen.get(GTItems.woodPlate));
+		TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.stickyResin, 1), GTMaterialGen.getDust(GTMaterial.DirtyResin, 2));
+		TileEntityMacerator.addRecipe("plankWood", 1, GTMaterialGen.getDust(GTMaterial.Wood, 2));
+		TileEntityMacerator.addRecipe("logWood", 1, GTMaterialGen.getDust(GTMaterial.Wood, 8));
 
 		String knife = "craftingToolKnife";
 
-		recipes.addShapelessRecipe(GT.getDust(M.DirtyResin, 1),
-				new Object[] { "craftingToolKnife", GT.getIc2(Ic2Items.stickyResin, 1) });
-		recipes.addShapelessRecipe(GT.get(GTItems.resinPCB), new Object[] { knife, GTBlocks.driedResin });
+		recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.DirtyResin, 1), new Object[] { "craftingToolKnife",
+				GTMaterialGen.getIc2(Ic2Items.stickyResin, 1) });
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.resinPCB), new Object[] { knife, GTBlocks.driedResin });
 
-		recipes.addRecipe(GT.get(GTItems.basicTransistor, 1),
-				new Object[] { "WPW", 'W', "wireFineAny", 'P', "plateSmallGermanium" });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.basicTransistor, 1), new Object[] { "WPW", 'W', "wireFineAny", 'P',
+				"plateSmallGermanium" });
 
-		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', "foilTantalum", 'P', Items.PAPER, 'L', "wireFineAny" });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.basicCapacitor, 1), new Object[] { "FPF", "L L", 'F',
+				"foilTantalum", 'P', Items.PAPER, 'L', "wireFineAny" });
 
-		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', "foilNiobium", 'P', Items.PAPER, 'L', "wireFineAny" });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.basicCapacitor, 1), new Object[] { "FPF", "L L", 'F', "foilNiobium",
+				'P', Items.PAPER, 'L', "wireFineAny" });
 
-		recipes.addRecipe(GT.get(GTItems.basicCapacitor, 1),
-				new Object[] { "FPF", "L L", 'F', "foilAluminium", 'P', Items.PAPER, 'L', "wireFineAny" });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.basicCapacitor, 1), new Object[] { "FPF", "L L", 'F',
+				"foilAluminium", 'P', Items.PAPER, 'L', "wireFineAny" });
 
-		recipes.addRecipe(GT.get(GTItems.advancedTransistor, 1), new Object[] { " G ", "WPW", " G ", 'W', "wireFineAny",
-				'P', "plateSmallSilicon", 'G', "dustSmallGlowstone" });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.advancedTransistor, 1), new Object[] { " G ", "WPW", " G ", 'W',
+				"wireFineAny", 'P', "plateSmallSilicon", 'G', "dustSmallGlowstone" });
 
-		recipes.addRecipe(GT.get(GTItems.advancedCapacitor, 1),
-				new Object[] { "LDL", "FPF", "LDL", 'F', "foilTantalum", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
-		
-		recipes.addRecipe(GT.get(GTItems.advancedCapacitor, 1),
-				new Object[] { "LDL", "FPF", "LDL", 'F', "foilNiobium", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
-		
-		recipes.addRecipe(GT.get(GTItems.advancedCapacitor, 1),
-				new Object[] { "LDL", "FPF", "LDL", 'F', "foilAluminium", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
-		
-		recipes.addRecipe(GT.get(GTItems.advancedCapacitor, 1),
-				new Object[] { "LDL", "FPF", "LDL", 'F', "foilSilver", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
-		
-		
+		recipes.addRecipe(GTMaterialGen.get(GTItems.advancedCapacitor, 1), new Object[] { "LDL", "FPF", "LDL", 'F',
+				"foilTantalum", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
 
+		recipes.addRecipe(GTMaterialGen.get(GTItems.advancedCapacitor, 1), new Object[] { "LDL", "FPF", "LDL", 'F',
+				"foilNiobium", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
+
+		recipes.addRecipe(GTMaterialGen.get(GTItems.advancedCapacitor, 1), new Object[] { "LDL", "FPF", "LDL", 'F',
+				"foilAluminium", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
+
+		recipes.addRecipe(GTMaterialGen.get(GTItems.advancedCapacitor, 1), new Object[] { "LDL", "FPF", "LDL", 'F',
+				"foilSilver", 'P', "plateSmallSilicon", 'L', "wireFineAny", 'D', "dustSmallLazurite" });
 
 		// Gating basic circuits
 
-		recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW",
-				"TSC", "WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
-				"pcbAny");
+		recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "WWW", "TSC", "WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S', "pcbAny");
 
-		recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GT.getIc2(Ic2Items.electricCircuit, 1), "WWW",
-				"CST", "WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S',
-				"pcbAny");
-		
-		//Temporary Adv Circuit Recipes
-		
-		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GT.getIc2(Ic2Items.advancedCircuit, 1), "WWW",
-				"TSC", "WWW", 'T',  GTItems.advancedTransistor, 'C', GTItems.advancedCapacitor, 'W', "wireFinePlatinum", 'S',
-				"pcbAdvanced");
+		recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "WWW", "CST", "WWW", 'T', GTItems.basicTransistor, 'C', GTItems.basicCapacitor, 'W', "wireFineRedAlloy", 'S', "pcbAny");
 
-		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GT.getIc2(Ic2Items.advancedCircuit, 1), "WWW",
-				"CST", "WWW", 'T', GTItems.advancedTransistor, 'C', GTItems.advancedCapacitor, 'W', "wireFinePlatinum", 'S',
-				"pcbAdvanced");
+		// Temporary Adv Circuit Recipes
 
-		recipes.overrideRecipe("shaped_item.itemBatRE_2077392104", GT.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT",
-				'T', "ingotTin", 'R', "dustRedstone", 'C', Ic2Items.copperCable.copy());
+		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "WWW", "TSC", "WWW", 'T', GTItems.advancedTransistor, 'C', GTItems.advancedCapacitor, 'W', "wireFinePlatinum", 'S', "pcbAdvanced");
+
+		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "WWW", "CST", "WWW", 'T', GTItems.advancedTransistor, 'C', GTItems.advancedCapacitor, 'W', "wireFinePlatinum", 'S', "pcbAdvanced");
+
+		recipes.overrideRecipe("shaped_item.itemBatRE_2077392104", GTMaterialGen.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT", 'T', "ingotTin", 'R', "dustRedstone", 'C', Ic2Items.copperCable.copy());
 
 		// stuff with lapotron and energium
 
-		recipes.overrideRecipe("shaped_item.itemBatCrystal_-1564046631", GT.getIc2(Ic2Items.energyCrystal, 1), "F ",
-				" C", 'F', "craftingToolFile", 'C', GTBlocks.batteryEnergiumTiny);
+		recipes.overrideRecipe("shaped_item.itemBatCrystal_-1564046631", GTMaterialGen.getIc2(Ic2Items.energyCrystal, 1), "F ", " C", 'F', "craftingToolFile", 'C', GTBlocks.batteryEnergiumTiny);
 
-		TileEntitySawMill.addRecipe(GT.get(GTBlocks.batteryEnergiumTiny), GT.getIc2(Ic2Items.energyCrystal, 1), 0.1F);
+		TileEntitySawMill.addRecipe(GTMaterialGen.get(GTBlocks.batteryEnergiumTiny), GTMaterialGen.getIc2(Ic2Items.energyCrystal, 1), 0.1F);
 
-		IRecipeInput lowCrystal = new RecipeInputCombined(1,
-				new IRecipeInput[] { new RecipeInputOreDict("gemDiamond"), new RecipeInputOreDict("gemRuby") });
+		IRecipeInput lowCrystal = new RecipeInputCombined(1, new IRecipeInput[] { new RecipeInputOreDict("gemDiamond"),
+				new RecipeInputOreDict("gemRuby") });
 
-		recipes.addRecipe(GT.get(GTBlocks.batteryEnergiumTiny),
-				new Object[] { "RRR", "RDR", "RRR", 'D', lowCrystal, 'R', "dustRedstone" });
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.batteryEnergiumTiny), new Object[] { "RRR", "RDR", "RRR", 'D',
+				lowCrystal, 'R', "dustRedstone" });
 
 		IRecipeInput highCrystal = new RecipeInputCombined(1, new IRecipeInput[] {
 				new RecipeInputOreDict("gemSapphire"), new RecipeInputItemStack(Ic2Items.energyCrystal.copy()) });
 
-		IRecipeInput lapis = new RecipeInputCombined(1,
-				new IRecipeInput[] { new RecipeInputOreDict("gemLapis"), new RecipeInputOreDict("dustLazurite") });
+		IRecipeInput lapis = new RecipeInputCombined(1, new IRecipeInput[] { new RecipeInputOreDict("gemLapis"),
+				new RecipeInputOreDict("dustLazurite") });
 
-		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GT.getIc2(Ic2Items.lapotronCrystal, 1),
-				"F ", " C", 'F', "craftingToolFile", 'C', GTBlocks.batteryLapotronTiny);
+		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GTMaterialGen.getIc2(Ic2Items.lapotronCrystal, 1), "F ", " C", 'F', "craftingToolFile", 'C', GTBlocks.batteryLapotronTiny);
 
-		TileEntitySawMill.addRecipe(GT.get(GTBlocks.batteryLapotronTiny), GT.getIc2(Ic2Items.lapotronCrystal, 1), 0.1F);
+		TileEntitySawMill.addRecipe(GTMaterialGen.get(GTBlocks.batteryLapotronTiny), GTMaterialGen.getIc2(Ic2Items.lapotronCrystal, 1), 0.1F);
 
-		recipes.addRecipe(GT.get(GTBlocks.batteryLapotronTiny),
-				new Object[] { "LCL", "LDL", "LCL", 'D', highCrystal, 'C', "circuitBasic", 'L', lapis });
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.batteryLapotronTiny), new Object[] { "LCL", "LDL", "LCL", 'D',
+				highCrystal, 'C', "circuitBasic", 'L', lapis });
 
-		recipes.addRecipe(GT.get(GTBlocks.batteryLapotronSmall, 1),
-				new Object[] { "LLL", "LPL", "LLL", 'L', GTBlocks.batteryLapotronTiny, 'P', "plateIridium" });
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.batteryLapotronSmall, 1), new Object[] { "LLL", "LPL", "LLL", 'L',
+				GTBlocks.batteryLapotronTiny, 'P', "plateIridium" });
 
 	}
 

@@ -47,12 +47,10 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	protected static final int[] slotInputs = { 0, 1, 2, 3 };
 	protected static final int[] slotOutputs = { 4, 5, 6, 7 };
 
-	public static final IBlockState casingMachine = GTMaterialGen
-			.getBlock(GTMaterial.RefinedIron, GTMaterialFlag.CASING).getDefaultState();
+	public static final IBlockState casingMachine = GTMaterialGen.getBlock(GTMaterial.RefinedIron, GTMaterialFlag.CASING).getDefaultState();
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.blastfurnace");
-	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
-			"textures/gui/blastfurnace.png");
+	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/blastfurnace.png");
 
 	public GTTileMultiBlastFurnace() {
 		super(8, 2, 20, 32);
@@ -90,7 +88,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		return new LinkedHashSet(Arrays.asList(UpgradeType.values()));
+		return new LinkedHashSet<UpgradeType>(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
@@ -110,8 +108,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
-		IFilter[] filter = { new MachineFilter(this) };
-		return null;
+		return new IFilter[] { new MachineFilter(this) };
 	}
 
 	@Override
@@ -142,184 +139,91 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	public ResourceLocation getStartSoundFile() {
 		return Ic2Sounds.generatorLoop;
 	}
-	
-	
 
-	// @formatter:off
 	public static void init() {
-		
+
 		int LOW_TIME = 8000;
 		int MED_TIME = 16000;
 		int LONG_TIME = 32000;
 
-		addRecipe(new IRecipeInput[] { 
-				input("ingotIron", 1)}, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustIron", 1)}, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 1));
+		addRecipe(new IRecipeInput[] {
+				input("ingotIron", 1) }, (LOW_TIME), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 1));
 
-		addRecipe(new IRecipeInput[] { 
-				input("oreIron", 1), 
-				input("dustCalcite", 1) }, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
+		addRecipe(new IRecipeInput[] {
+				input("dustIron", 1) }, (LOW_TIME), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 1));
 
-		addRecipe(new IRecipeInput[] { 
-				input("dustPyrite", 1), 
-				input("dustCalcite", 1) }, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("orePyrite", 1), 
-				input("dustCalcite", 1) }, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
+		addRecipe(new IRecipeInput[] { input("oreIron", 1),
+				input("dustCalcite", 1) }, (LOW_TIME), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3), GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 
-		addRecipe(new IRecipeInput[] { 
-				input("dustMagnetite", 1), 
-				input("dustCalcite", 1) },
-				(LOW_TIME), 
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreMagnetite", 1), 
-				input("dustCalcite", 1) },
-				(LOW_TIME), 
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
+		addRecipe(new IRecipeInput[] { input("dustPyrite", 1),
+				input("dustCalcite", 1) }, (LOW_TIME), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
 
-		addRecipe(new IRecipeInput[] { 
-				input("dustLimonite", 1), 
-				input("dustCalcite", 1) },
-				(LOW_TIME), 
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreLimonite", 1), 
-				input("dustCalcite", 1) },
-				(LOW_TIME), 
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
-		
-		IRecipeInput validSteelIron = new RecipeInputCombined(1,new IRecipeInput[] { 
-				new RecipeInputOreDict("ingotIron", 1), 
-				new RecipeInputOreDict("dustIron", 1), 
-				new RecipeInputOreDict("ingotRefinedIron", 1)
-				});
+		addRecipe(new IRecipeInput[] { input("orePyrite", 1),
+				input("dustCalcite", 1) }, (LOW_TIME), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 
-		addRecipe(new IRecipeInput[] { 
-				validSteelIron, 
-				input("dustCoal", 2) },
-				(MED_TIME), 
-				GTMaterialGen.getIngot(GTMaterial.Steel, 1), 
-				GTMaterialGen.getDust(GTMaterial.DarkAshes, 2));
-		
-		addRecipe(new IRecipeInput[] { 
-				validSteelIron, 
-				input("dustSmallCarbon", 1) },
-				(MED_TIME), 
-				GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+		addRecipe(new IRecipeInput[] { input("dustMagnetite", 1),
+				input("dustCalcite", 1) }, (LOW_TIME), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
 
-		addRecipe(new IRecipeInput[] { 
-				input("dustChromite", 1) }, 
-				(LONG_TIME),
-				GTMaterialGen.getNugget(GTMaterial.Chrome, 6), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreChromite", 1) }, 
-				(LONG_TIME), 
-				GTMaterialGen.getNugget(GTMaterial.Chrome, 6),
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
+		addRecipe(new IRecipeInput[] { input("oreMagnetite", 1),
+				input("dustCalcite", 1) }, (LOW_TIME), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 
-		addRecipe(new IRecipeInput[] { 
-				input("dustMolybdenite", 3) }, 
-				(LONG_TIME),
-				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreMolybdenite", 3) }, 
-				(LONG_TIME),
-				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 6));
+		addRecipe(new IRecipeInput[] { input("dustLimonite", 1),
+				input("dustCalcite", 1) }, (LOW_TIME), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
 
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)), }, 
-				(LONG_TIME),
-				GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
+		addRecipe(new IRecipeInput[] { input("oreLimonite", 1),
+				input("dustCalcite", 1) }, (LOW_TIME), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
 
-		addRecipe(new IRecipeInput[] { 
-				input("oreIridium", 1), }, 
-				(LONG_TIME),
-				GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
-		
-		//alloy recipes
-		
-		IRecipeInput validStainlessIron = new RecipeInputCombined(4,new IRecipeInput[] { 
-				new RecipeInputOreDict("ingotIron", 4), 
-				new RecipeInputOreDict("dustIron", 4), 
-				new RecipeInputOreDict("ingotRefinedIron", 4),
-				new RecipeInputOreDict("dustSteel", 4), 
-				new RecipeInputOreDict("ingotSteel", 4)
-				});
-		
-		addRecipe(new IRecipeInput[] { 
-				validStainlessIron, 
-				metal("Invar", 3), 
-				metal("Manganese", 1), 
-				metal("Chrome", 1), 
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
-		
-		addRecipe(new IRecipeInput[] { 
-				validStainlessIron, 
-				metal("Invar", 3), 
-				metal("Niobium", 1), 
-				metal("Chrome", 1), 
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
-		
-		addRecipe(new IRecipeInput[] { 
-				metal("Cobalt", 5), 
-				metal("Chrome", 2), 
-				metal("Nickel", 1), 
-				metal("Molybdenum", 1), 
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.Ultimet, 9));
-		
-		addRecipe(new IRecipeInput[] { 
-				metal("Niobium", 1), 
-				metal("Titanium", 1), 
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.NiobiumTitanium, 2));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustZirconium", 7),
-				metal("Niobium", 1),
-				metal("Tin", 1),
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.Zircaloy, 9));
-		
-		
+		IRecipeInput validSteelIron = new RecipeInputCombined(1, new IRecipeInput[] {
+				new RecipeInputOreDict("ingotIron", 1), new RecipeInputOreDict("dustIron", 1),
+				new RecipeInputOreDict("ingotRefinedIron", 1) });
+
+		addRecipe(new IRecipeInput[] { validSteelIron,
+				input("dustCoal", 2) }, (MED_TIME), GTMaterialGen.getIngot(GTMaterial.Steel, 1), GTMaterialGen.getDust(GTMaterial.DarkAshes, 2));
+
+		addRecipe(new IRecipeInput[] { validSteelIron,
+				input("dustSmallCarbon", 1) }, (MED_TIME), GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+
+		addRecipe(new IRecipeInput[] {
+				input("dustChromite", 1) }, (LONG_TIME), GTMaterialGen.getNugget(GTMaterial.Chrome, 6), GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
+
+		addRecipe(new IRecipeInput[] {
+				input("oreChromite", 1) }, (LONG_TIME), GTMaterialGen.getNugget(GTMaterial.Chrome, 6), GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
+
+		addRecipe(new IRecipeInput[] {
+				input("dustMolybdenite", 3) }, (LONG_TIME), GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), GTMaterialGen.getSmallDust(GTMaterial.Slag, 3));
+
+		addRecipe(new IRecipeInput[] {
+				input("oreMolybdenite", 3) }, (LONG_TIME), GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), GTMaterialGen.getSmallDust(GTMaterial.Slag, 6));
+
+		addRecipe(new IRecipeInput[] {
+				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)), }, (LONG_TIME), GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
+
+		addRecipe(new IRecipeInput[] {
+				input("oreIridium", 1), }, (LONG_TIME), GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
+
+		// alloy recipes
+
+		IRecipeInput validStainlessIron = new RecipeInputCombined(4, new IRecipeInput[] {
+				new RecipeInputOreDict("ingotIron", 4), new RecipeInputOreDict("dustIron", 4),
+				new RecipeInputOreDict("ingotRefinedIron", 4), new RecipeInputOreDict("dustSteel", 4),
+				new RecipeInputOreDict("ingotSteel", 4) });
+
+		addRecipe(new IRecipeInput[] { validStainlessIron, metal("Invar", 3), metal("Manganese", 1),
+				metal("Chrome", 1), }, MED_TIME, GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
+
+		addRecipe(new IRecipeInput[] { validStainlessIron, metal("Invar", 3), metal("Niobium", 1),
+				metal("Chrome", 1), }, MED_TIME, GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
+
+		addRecipe(new IRecipeInput[] { metal("Cobalt", 5), metal("Chrome", 2), metal("Nickel", 1),
+				metal("Molybdenum", 1), }, MED_TIME, GTMaterialGen.getIngot(GTMaterial.Ultimet, 9));
+
+		addRecipe(new IRecipeInput[] { metal("Niobium", 1),
+				metal("Titanium", 1), }, MED_TIME, GTMaterialGen.getIngot(GTMaterial.NiobiumTitanium, 2));
+
+		addRecipe(new IRecipeInput[] { input("dustZirconium", 7), metal("Niobium", 1),
+				metal("Tin", 1), }, MED_TIME, GTMaterialGen.getIngot(GTMaterial.Zircaloy, 9));
 
 	}
-	// @formatter:on
 
 	public static IRecipeModifier[] totalEu(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 20) - 100) };
@@ -349,32 +253,12 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		GTTileMultiRefractory.addRecipe(inputs, totalEu, outputs);
 	}
 
-	private static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
-		if (inlist.size() == 1) {
-			inlist.add(basicswitch);
-		}
-		NBTTagCompound mods = new NBTTagCompound();
-		for (IRecipeModifier modifier : modifiers) {
-			modifier.apply(mods);
-		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
-		addRecipe(inlist, new MachineOutput(mods, outlist));
-	}
-
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 20);
 	}
-	
+
 	@Override
-	public Map<BlockPos, IBlockState> provideStructure()
-	{
+	public Map<BlockPos, IBlockState> provideStructure() {
 		Map<BlockPos, IBlockState> states = super.provideStructure();
 		int3 dir = new int3(getPos(), getFacing());
 		for (int i = 0; i < 4; i++) {// above tile

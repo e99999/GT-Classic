@@ -16,6 +16,7 @@ public class GTJeiInteractionWrapper implements IRecipeWrapper {
 		this.multiRecipe = multiRecipe;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		ArrayList<ItemStack> inputs = new ArrayList<>();

@@ -22,8 +22,7 @@ public class GTGuiCompComputerCube extends GuiComponent {
 
 	@Override
 	public List<ActionRequest> getNeededRequests() {
-		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.GuiTick,
-				ActionRequest.FrontgroundDraw, ActionRequest.BackgroundDraw);
+		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.GuiTick, ActionRequest.FrontgroundDraw, ActionRequest.BackgroundDraw);
 	}
 
 	@Override

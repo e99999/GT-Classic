@@ -19,6 +19,7 @@ public class GTJeiDryingWrapper implements IRecipeWrapper {
 		this.multiRecipe = multiRecipe;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		ArrayList<ItemStack> inputs = new ArrayList<>();
@@ -33,9 +34,7 @@ public class GTJeiDryingWrapper implements IRecipeWrapper {
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		FontRenderer font = minecraft.fontRenderer;
-		font.drawSplitString(
-				"The solar evaporation process requires placing a fluid source block on vanilla concrete or terracotta blocks in a biome that is not cold",
-				0, 36, 144, Color.black.getRGB());
+		font.drawSplitString("The solar evaporation process requires placing a fluid source block on vanilla concrete or terracotta blocks in a biome that is not cold", 0, 36, 144, Color.black.getRGB());
 	}
 
 	public MultiRecipe getMultiRecipe() {

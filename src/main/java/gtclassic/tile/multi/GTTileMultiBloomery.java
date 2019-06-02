@@ -59,11 +59,11 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	public static final BloomeryRecipeList RECIPE_LIST = new BloomeryRecipeList();
 	public static final GTMultiInputRecipeList JEI_RECIPE_LIST = new GTMultiInputRecipeList("gt.bloomery");
 
-	public static final IRecipeInput fuel = new RecipeInputCombined(1,
-			new IRecipeInput[] { new RecipeInputOreDict("blockCoal"), new RecipeInputOreDict("blockCharcoal"),
-					new RecipeInputItemStack(new ItemStack(Items.COAL, 9)),
-					new RecipeInputItemStack(new ItemStack(Items.COAL, 9, 1)),
-					new RecipeInputOreDict("dustCharcoal", 9), new RecipeInputOreDict("dustCoal", 9), });
+	public static final IRecipeInput fuel = new RecipeInputCombined(1, new IRecipeInput[] {
+			new RecipeInputOreDict("blockCoal"), new RecipeInputOreDict("blockCharcoal"),
+			new RecipeInputItemStack(new ItemStack(Items.COAL, 9)),
+			new RecipeInputItemStack(new ItemStack(Items.COAL, 9, 1)), new RecipeInputOreDict("dustCharcoal", 9),
+			new RecipeInputOreDict("dustCoal", 9), });
 
 	BloomeryRecipe activeRecipe = null;
 	@NetworkField(index = 7)
@@ -119,7 +119,7 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	@Override
 	public void onGuiClosed(EntityPlayer arg0) {
 	}
-	
+
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
@@ -296,8 +296,8 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	}
 
 	public void setSteel(int3 pos) {
-		world.setBlockState(pos.asBlockPos(),
-				activeRecipe == null ? Blocks.AIR.getDefaultState() : activeRecipe.getState());
+		world.setBlockState(pos.asBlockPos(), activeRecipe == null ? Blocks.AIR.getDefaultState()
+				: activeRecipe.getState());
 	}
 
 	public void setAir(int3 pos) {
@@ -350,8 +350,8 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	}
 
 	public static void addRecipe(String input1, int amount1, String input2, int amount2, Block output) {
-		RECIPE_LIST.addRecipe(input1 + input2, output.getDefaultState(), 4, 400,
-				new RecipeInputOreDict(input1, amount1), new RecipeInputOreDict(input2, amount2), fuel);
+		RECIPE_LIST.addRecipe(input1
+				+ input2, output.getDefaultState(), 4, 400, new RecipeInputOreDict(input1, amount1), new RecipeInputOreDict(input2, amount2), fuel);
 		addFakeBloomRecipe(input1, amount1, input2, amount2, totalTime(), GTMaterialGen.get(output));
 	}
 

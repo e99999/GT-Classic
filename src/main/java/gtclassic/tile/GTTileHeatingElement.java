@@ -71,7 +71,7 @@ public class GTTileHeatingElement extends TileEntityMachine implements ITickable
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;

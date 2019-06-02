@@ -22,22 +22,20 @@ public class GTRecipeCauldron {
 
 	public enum GTRecipeCauldronEnum {
 
-		// @formatter:off
-		TANTALITE(GTMaterial.Tantalite, GTMaterial.Niobium, GTMaterial.Tantalum), 
+		TANTALITE(GTMaterial.Tantalite, GTMaterial.Niobium, GTMaterial.Tantalum),
 		SPHALERITE(GTMaterial.Sphalerite, GTMaterial.Zinc, GTMaterial.Germanium),
-		CINNABAR(GTMaterial.Cinnabar, GTMaterial.Redstone), 
+		CINNABAR(GTMaterial.Cinnabar, GTMaterial.Redstone),
 		SHELDONITE(GTMaterial.Sheldonite, GTMaterial.Platinum, GTMaterial.Platinum),
-		GALENA(GTMaterial.Galena, GTMaterial.Lead, GTMaterial.Silver), 
+		GALENA(GTMaterial.Galena, GTMaterial.Lead, GTMaterial.Silver),
 		TETRAHEDRITE(GTMaterial.Tetrahedrite, GTMaterial.Copper, GTMaterial.Antimony),
-		MALACHITE(GTMaterial.Malachite, GTMaterial.Copper, GTMaterial.Calcite), 
-		CASSITERITE(GTMaterial.Cassiterite, GTMaterial.Tin,GTMaterial.Tin, GTMaterial.Tantalum),
-		PYROLUSITE(GTMaterial.Pyrolusite, GTMaterial.Manganese, GTMaterial.Manganese), 
+		MALACHITE(GTMaterial.Malachite, GTMaterial.Copper, GTMaterial.Calcite),
+		CASSITERITE(GTMaterial.Cassiterite, GTMaterial.Tin, GTMaterial.Tin, GTMaterial.Tantalum),
+		PYROLUSITE(GTMaterial.Pyrolusite, GTMaterial.Manganese, GTMaterial.Manganese),
 		GARNIERITE(GTMaterial.Garnierite, GTMaterial.Nickel, GTMaterial.Nickel),
-		BISMUTHTINE(GTMaterial.Bismuthtine, GTMaterial.Bismuth, GTMaterial.Antimony), 
+		BISMUTHTINE(GTMaterial.Bismuthtine, GTMaterial.Bismuth, GTMaterial.Antimony),
 		DIRTYRESIN(GTMaterial.DirtyResin, GTMaterial.Resin, GTMaterial.Resin, GTMaterial.Resin, GTMaterial.Wood),
 		DARKASHES(GTMaterial.DarkAshes, GTMaterial.Ashes, GTMaterial.Ashes),
-		SULFUR(GTMaterial.Sulfur, GTMaterial.Phosphorus, GTMaterial.Phosphorus );
-		// @formatter:on
+		SULFUR(GTMaterial.Sulfur, GTMaterial.Phosphorus, GTMaterial.Phosphorus);
 
 		GTMaterial input;
 		GTMaterial[] outputs;

@@ -16,8 +16,7 @@ import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
 
 public class GTMultiInputRecipeList {
-	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(),
-			new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid", 0);
+	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(), new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid", 0);
 
 	protected List<MultiRecipe> recipes = new ArrayList<MultiRecipe>();
 	protected Map<String, MultiRecipe> recipeMap = new LinkedHashMap<String, MultiRecipe>();

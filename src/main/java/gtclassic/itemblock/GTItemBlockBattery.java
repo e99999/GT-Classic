@@ -123,11 +123,10 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 					stack = player.inventory.getStackInSlot(i);
 					if (stack.getItem() instanceof IElectricItem) {
 						item = (IElectricItem) stack.getItem();
-						transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2 * this.transferLimit),
-								item.getTier(itemStackIn), true, false, true);
+						transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2
+								* this.transferLimit), item.getTier(itemStackIn), true, false, true);
 						transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
-						ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false,
-								false);
+						ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false, false);
 						if (transfer == 0.0D) {
 							break;
 						}
@@ -141,11 +140,10 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 						stack = player.inventory.getStackInSlot(i);
 						if (stack.getItem() instanceof IElectricItem) {
 							item = (IElectricItem) stack.getItem();
-							transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2 * this.transferLimit),
-									item.getTier(itemStackIn), true, false, true);
+							transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2
+									* this.transferLimit), item.getTier(itemStackIn), true, false, true);
 							transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
-							ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true,
-									false, false);
+							ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false, false);
 							if (transfer == 0.0D) {
 								break;
 							}
@@ -159,11 +157,10 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 					stack = player.getHeldItem(EnumHand.OFF_HAND);
 					if (stack.getItem() instanceof IElectricItem) {
 						item = (IElectricItem) stack.getItem();
-						transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2 * this.transferLimit),
-								item.getTier(itemStackIn), true, false, true);
+						transfer = ElectricItem.manager.discharge(itemStackIn, (double) (2
+								* this.transferLimit), item.getTier(itemStackIn), true, false, true);
 						transfer = ElectricItem.manager.charge(stack, transfer, this.tier, true, false);
-						ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false,
-								false);
+						ElectricItem.manager.discharge(itemStackIn, transfer, item.getTier(itemStackIn), true, false, false);
 						if (transfer > 0.0D) {
 							charged = true;
 						}

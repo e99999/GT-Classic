@@ -54,8 +54,8 @@ public class GTToolElectricWrench extends ItemToolWrench implements IDamagelessE
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
-				|| material.equals(material.Uranium)) {
+		if (material.equals(GTMaterial.Plutonium) || material.equals(GTMaterial.Thorium)
+				|| material.equals(GTMaterial.Uranium)) {
 			return true;
 		}
 		return super.hasEffect(stack);
@@ -123,6 +123,8 @@ public class GTToolElectricWrench extends ItemToolWrench implements IDamagelessE
 		return false;
 	}
 
+	@Override
+	@SuppressWarnings("deprecation")
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
 			float hitY, float hitZ, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);

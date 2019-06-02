@@ -43,7 +43,7 @@ public class GTOreFalling extends BlockFalling implements ITexturedBlock, ILocal
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_ore");
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(0.5F);
-		setSoundType(SoundType.SAND);
+		setSoundType(this.flag == GTOreFlag.SAND ? SoundType.SAND : SoundType.GROUND);
 		setHarvestLevel("shovel", 0);
 	}
 
@@ -74,6 +74,7 @@ public class GTOreFalling extends BlockFalling implements ITexturedBlock, ILocal
 		return this.blockState.getValidStates();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());

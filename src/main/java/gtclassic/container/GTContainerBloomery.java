@@ -21,8 +21,7 @@ public class GTContainerBloomery extends ContainerTileComponent<GTTileMultiBloom
 		super(tile);
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 0, 80, 37));
 		this.addPlayerInventory(player, 0, 0);
-		this.addComponent(new GTGuiCompVerticalProgress(tile, GTContainerBloomery.machineProgressBoxRight,
-				GTContainerBloomery.machineProgressPosRight));
+		this.addComponent(new GTGuiCompVerticalProgress(tile, GTContainerBloomery.machineProgressBoxRight, GTContainerBloomery.machineProgressPosRight));
 	}
 
 	@Override

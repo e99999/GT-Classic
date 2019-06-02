@@ -4,7 +4,8 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class GTRecipeHelpers {
 	public static enum ModifierType {
-		RECIPE_LENGTH("RecipeTime", "RecipeTimeModifier"), RECIPE_ENERGY("RecipeEnergy", "RecipeEnergyModifier");
+		RECIPE_LENGTH("RecipeTime", "RecipeTimeModifier"),
+		RECIPE_ENERGY("RecipeEnergy", "RecipeEnergyModifier");
 
 		String intEffect;
 		String doubleEffect;

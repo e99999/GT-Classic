@@ -95,7 +95,7 @@ public class GTBlockDrum extends GTBlockMultiID implements GTColorBlockInterface
 	@Override
 	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te,
 			EntityPlayer player, int fortune) {
-		List<ItemStack> items = new ArrayList();
+		List<ItemStack> items = new ArrayList<ItemStack>();
 		if (te instanceof IItemContainer) {
 			items.addAll(((IItemContainer) te).getDrops());
 		}

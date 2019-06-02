@@ -33,8 +33,7 @@ public class GTContainerLeadChamber extends ContainerTileComponent<GTTileMultiLe
 
 		this.addPlayerInventory(player);
 
-		this.addComponent(new MachineProgressComp(tile, GTContainerLeadChamber.machineProgressBox,
-				GTContainerLeadChamber.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, GTContainerLeadChamber.machineProgressBox, GTContainerLeadChamber.machineProgressPos));
 	}
 
 	@Override

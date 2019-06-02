@@ -107,7 +107,7 @@ public class GTItemFluidTube extends Item
 	}
 
 	@Override
-	public void getSubItems(@Nullable final CreativeTabs tab, final NonNullList subItems) {
+	public void getSubItems(@Nullable final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
 		if (this.isInCreativeTab(tab)) {
 			subItems.add(empty);
 			for (GTMaterial mat : GTMaterial.values()) {
@@ -126,8 +126,8 @@ public class GTItemFluidTube extends Item
 		boolean hasFluid = FluidUtil.getFluidContained(stack) != null;
 		ResourceLocation location = this.getRegistryName();
 		String name = stack.getUnlocalizedName();
-		this.model[hasFluid ? 1 : 0] = new ModelResourceLocation(
-				location.getResourceDomain() + name.substring(name.indexOf(".") + 1) + (hasFluid ? 1 : 0), "inventory");
+		this.model[hasFluid ? 1 : 0] = new ModelResourceLocation(location.getResourceDomain()
+				+ name.substring(name.indexOf(".") + 1) + (hasFluid ? 1 : 0), "inventory");
 		return this.model[hasFluid ? 1 : 0];
 	}
 
@@ -216,7 +216,6 @@ public class GTItemFluidTube extends Item
 					player.addStat(StatList.getObjectUseStats(this));
 
 					itemstack.shrink(1);
-					ItemStack drained = result.getResult();
 					ItemStack emptyStack = new ItemStack(GTItems.testTube);
 
 					// check whether we replace the item or add the empty one to the inventory

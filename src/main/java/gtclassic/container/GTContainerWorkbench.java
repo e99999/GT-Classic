@@ -14,7 +14,6 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -24,7 +23,6 @@ public class GTContainerWorkbench extends ContainerTileComponent<GTTileWorkbench
 	private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 	private InventoryCraftResult craftResult = new InventoryCraftResult();
 	private final World world;
-	private final BlockPos pos;
 	private final EntityPlayer player;
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/workbench.png");
@@ -32,7 +30,6 @@ public class GTContainerWorkbench extends ContainerTileComponent<GTTileWorkbench
 	public GTContainerWorkbench(InventoryPlayer player, GTTileWorkbench tile) {
 		super(tile);
 		this.world = player.player.getEntityWorld();
-		this.pos = player.player.getPosition();
 		this.player = player.player;
 
 		this.addComponent(new GTGuiCompBasicString("Basic Workbench", 85, 6));

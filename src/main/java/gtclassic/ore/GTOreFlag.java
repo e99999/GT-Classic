@@ -5,11 +5,11 @@ import net.minecraft.init.Blocks;
 
 public enum GTOreFlag {
 
-	STONE(0, Blocks.STONE, ""), 
-	NETHER(32, Blocks.NETHERRACK, "_nether"), 
+	STONE(0, Blocks.STONE, ""),
+	NETHER(32, Blocks.NETHERRACK, "_nether"),
 	END(64, Blocks.END_STONE, "_end"),
-	SAND(96, Blocks.SAND, "_sand"), 
-	GRAVEL(128, Blocks.GRAVEL, "_gravel"), 
+	SAND(96, Blocks.SAND, "_sand"),
+	GRAVEL(128, Blocks.GRAVEL, "_gravel"),
 	BEDROCK(160, Blocks.BEDROCK, "_bedrock");
 
 	private int textureoffset;

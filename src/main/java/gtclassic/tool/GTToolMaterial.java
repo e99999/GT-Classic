@@ -19,33 +19,33 @@ public class GTToolMaterial {
 	static GTMaterial m;
 
 	// TODO add flint tools
-	public static final ToolMaterial Flint = createToolMaterial(m.Flint);
-	public static final ToolMaterial Bronze = createToolMaterial(m.Bronze);
-	public static final ToolMaterial BismuthBronze = createToolMaterial(m.BismuthBronze);
-	public static final ToolMaterial Gold = createToolMaterial(m.Gold);
-	public static final ToolMaterial Iron = createToolMaterial(m.Iron);
-	public static final ToolMaterial Diamond = createToolMaterial(m.Diamond);
-	public static final ToolMaterial Tungsten = createToolMaterial(m.Tungsten);
-	public static final ToolMaterial Invar = createToolMaterial(m.Invar);
-	public static final ToolMaterial Silver = createToolMaterial(m.Silver);
-	public static final ToolMaterial Steel = createToolMaterial(m.Steel);
-	public static final ToolMaterial Electrum = createToolMaterial(m.Electrum);
-	public static final ToolMaterial Constantan = createToolMaterial(m.Constantan);
-	public static final ToolMaterial Platinum = createToolMaterial(m.Platinum);
-	public static final ToolMaterial Iridium = createToolMaterial(m.Iridium);
-	public static final ToolMaterial Chrome = createToolMaterial(m.Chrome);
-	public static final ToolMaterial Brass = createToolMaterial(m.Brass);
-	public static final ToolMaterial Plutonium = createToolMaterial(m.Plutonium);
-	public static final ToolMaterial RefinedIron = createToolMaterial(m.RefinedIron);
-	public static final ToolMaterial Tungstensteel = createToolMaterial(m.TungstenSteel);
-	public static final ToolMaterial Titanium = createToolMaterial(m.Titanium);
-	public static final ToolMaterial Nickel = createToolMaterial(m.Nickel);
-	public static final ToolMaterial Nichrome = createToolMaterial(m.Nichrome);
-	public static final ToolMaterial Osmium = createToolMaterial(m.Osmium);
-	public static final ToolMaterial Tantalum = createToolMaterial(m.Tantalum);
-	public static final ToolMaterial Cobalt = createToolMaterial(m.Cobalt);
-	public static final ToolMaterial Ultimet = createToolMaterial(m.Ultimet);
-	public static final ToolMaterial StainlessSteel = createToolMaterial(m.StainlessSteel);
+	public static final ToolMaterial Flint = createToolMaterial(GTMaterial.Flint);
+	public static final ToolMaterial Bronze = createToolMaterial(GTMaterial.Bronze);
+	public static final ToolMaterial BismuthBronze = createToolMaterial(GTMaterial.BismuthBronze);
+	public static final ToolMaterial Gold = createToolMaterial(GTMaterial.Gold);
+	public static final ToolMaterial Iron = createToolMaterial(GTMaterial.Iron);
+	public static final ToolMaterial Diamond = createToolMaterial(GTMaterial.Diamond);
+	public static final ToolMaterial Tungsten = createToolMaterial(GTMaterial.Tungsten);
+	public static final ToolMaterial Invar = createToolMaterial(GTMaterial.Invar);
+	public static final ToolMaterial Silver = createToolMaterial(GTMaterial.Silver);
+	public static final ToolMaterial Steel = createToolMaterial(GTMaterial.Steel);
+	public static final ToolMaterial Electrum = createToolMaterial(GTMaterial.Electrum);
+	public static final ToolMaterial Constantan = createToolMaterial(GTMaterial.Constantan);
+	public static final ToolMaterial Platinum = createToolMaterial(GTMaterial.Platinum);
+	public static final ToolMaterial Iridium = createToolMaterial(GTMaterial.Iridium);
+	public static final ToolMaterial Chrome = createToolMaterial(GTMaterial.Chrome);
+	public static final ToolMaterial Brass = createToolMaterial(GTMaterial.Brass);
+	public static final ToolMaterial Plutonium = createToolMaterial(GTMaterial.Plutonium);
+	public static final ToolMaterial RefinedIron = createToolMaterial(GTMaterial.RefinedIron);
+	public static final ToolMaterial Tungstensteel = createToolMaterial(GTMaterial.TungstenSteel);
+	public static final ToolMaterial Titanium = createToolMaterial(GTMaterial.Titanium);
+	public static final ToolMaterial Nickel = createToolMaterial(GTMaterial.Nickel);
+	public static final ToolMaterial Nichrome = createToolMaterial(GTMaterial.Nichrome);
+	public static final ToolMaterial Osmium = createToolMaterial(GTMaterial.Osmium);
+	public static final ToolMaterial Tantalum = createToolMaterial(GTMaterial.Tantalum);
+	public static final ToolMaterial Cobalt = createToolMaterial(GTMaterial.Cobalt);
+	public static final ToolMaterial Ultimet = createToolMaterial(GTMaterial.Ultimet);
+	public static final ToolMaterial StainlessSteel = createToolMaterial(GTMaterial.StainlessSteel);
 
 	/*
 	 * This is the array that you can iterate to make new tools
@@ -57,19 +57,9 @@ public class GTToolMaterial {
 	/*
 	 * This is map to allow access to a GTMaterial equivalent of the Tool Material
 	 */
-	public static final ImmutableMap<ToolMaterial, GTMaterial> MAT_REG = ImmutableMap
-			.<ToolMaterial, GTMaterial>builder().put(Tungsten, GTMaterial.Tungsten).put(Invar, GTMaterial.Invar)
-			.put(Silver, GTMaterial.Silver).put(Steel, GTMaterial.Steel).put(Electrum, GTMaterial.Electrum)
-			.put(Constantan, GTMaterial.Constantan).put(Platinum, GTMaterial.Platinum).put(Iridium, GTMaterial.Iridium)
-			.put(Chrome, GTMaterial.Chrome).put(Brass, GTMaterial.Brass).put(Plutonium, GTMaterial.Plutonium)
-			.put(RefinedIron, GTMaterial.RefinedIron).put(Tungstensteel, GTMaterial.TungstenSteel)
-			.put(Titanium, GTMaterial.Titanium).put(Nickel, GTMaterial.Nickel).put(Nichrome, GTMaterial.Nichrome)
-			.put(Osmium, GTMaterial.Osmium).put(Tantalum, GTMaterial.Tantalum).put(Flint, GTMaterial.Flint)
-			.put(BismuthBronze, GTMaterial.BismuthBronze).put(Cobalt, GTMaterial.Cobalt)
-			.put(Ultimet, GTMaterial.Ultimet).put(StainlessSteel, GTMaterial.StainlessSteel)
+	public static final ImmutableMap<ToolMaterial, GTMaterial> MAT_REG = ImmutableMap.<ToolMaterial, GTMaterial>builder().put(Tungsten, GTMaterial.Tungsten).put(Invar, GTMaterial.Invar).put(Silver, GTMaterial.Silver).put(Steel, GTMaterial.Steel).put(Electrum, GTMaterial.Electrum).put(Constantan, GTMaterial.Constantan).put(Platinum, GTMaterial.Platinum).put(Iridium, GTMaterial.Iridium).put(Chrome, GTMaterial.Chrome).put(Brass, GTMaterial.Brass).put(Plutonium, GTMaterial.Plutonium).put(RefinedIron, GTMaterial.RefinedIron).put(Tungstensteel, GTMaterial.TungstenSteel).put(Titanium, GTMaterial.Titanium).put(Nickel, GTMaterial.Nickel).put(Nichrome, GTMaterial.Nichrome).put(Osmium, GTMaterial.Osmium).put(Tantalum, GTMaterial.Tantalum).put(Flint, GTMaterial.Flint).put(BismuthBronze, GTMaterial.BismuthBronze).put(Cobalt, GTMaterial.Cobalt).put(Ultimet, GTMaterial.Ultimet).put(StainlessSteel, GTMaterial.StainlessSteel)
 
-			.put(Bronze, GTMaterial.Bronze).put(Gold, GTMaterial.Gold).put(Iron, GTMaterial.Iron)
-			.put(Diamond, GTMaterial.Diamond).build();
+			.put(Bronze, GTMaterial.Bronze).put(Gold, GTMaterial.Gold).put(Iron, GTMaterial.Iron).put(Diamond, GTMaterial.Diamond).build();
 
 	public static GTMaterial getGTMaterial(ToolMaterial tmat) {
 		return MAT_REG.get(tmat);
@@ -107,8 +97,7 @@ public class GTToolMaterial {
 
 	public static ToolMaterial createToolMaterial(GTMaterial mat) {
 		// takes everything above and creates the tool material enum entry
-		return EnumHelper.addToolMaterial(n(mat), l(mat), d(mat), s(mat), a(mat), e(mat))
-				.setRepairItem(GTMaterialGen.getIngot(mat, 1));
+		return EnumHelper.addToolMaterial(n(mat), l(mat), d(mat), s(mat), a(mat), e(mat)).setRepairItem(GTMaterialGen.getIngot(mat, 1));
 	}
 
 }

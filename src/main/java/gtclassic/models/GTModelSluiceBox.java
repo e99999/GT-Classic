@@ -91,7 +91,6 @@ public class GTModelSluiceBox extends BaseModel {
 
 	@Override
 	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType cameraTransformType) {
-		return Pair.of(this,
-				PerspectiveMapWrapper.handlePerspective(this, getCamera(), cameraTransformType).getRight());
+		return Pair.of(this, PerspectiveMapWrapper.handlePerspective(this, getCamera(), cameraTransformType).getRight());
 	}
 }

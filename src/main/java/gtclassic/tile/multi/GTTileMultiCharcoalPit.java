@@ -41,7 +41,7 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
@@ -90,8 +90,7 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 				progress = 0;
 				getNetwork().updateTileGuiField(this, "progress");
 				this.setActive(false);
-				world.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
+				world.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 				int3 dir = new int3(getPos(), getFacing());
 				setFire(dir.down(1));
 			}

@@ -46,8 +46,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	public static final IBlockState coilState = GTBlocks.casingFusion.getDefaultState();
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.fusion");
-	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
-			"textures/gui/fusioncomputer.png");
+	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusioncomputer.png");
 
 	public GTTileMultiFusion() {
 		super(3, 0, 2048, 8196);
@@ -107,8 +106,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
-		IFilter[] filter = { new MachineFilter(this) };
-		return null;
+		return new IFilter[] { new MachineFilter(this) };
 	}
 
 	@Override
@@ -135,30 +133,19 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		return Ic2Sounds.compressorOp;
 	}
 
-	// @formatter:off
 	public static void init() {
 		/*
 		 * Just a few test fusion recipes
 		 */
-		addRecipe(new IRecipeInput[] { 
-				input("dustTungsten", 1), 
-				input("dustLithium", 1) }, 
-				totalEu(16775168),
-				GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1));
+		addRecipe(new IRecipeInput[] { input("dustTungsten", 1),
+				input("dustLithium", 1) }, totalEu(16775168), GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1));
 
-		addRecipe(new IRecipeInput[] { 
-				input("dustTungsten", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Beryllium, 1)) },
-				totalEu(16775168), 
-				GTMaterialGen.getDust(GTMaterial.Platinum, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)), 
-				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) },
-				totalEu(10000000), 
-				GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
+		addRecipe(new IRecipeInput[] { input("dustTungsten", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Beryllium, 1)) }, totalEu(16775168), GTMaterialGen.getDust(GTMaterial.Platinum, 1));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
+				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
-	// @formatter:on
 
 	public static IRecipeModifier[] totalEu(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 2048) - 100) };
@@ -303,14 +290,12 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen
-				.getBlock(GTMaterial.Titanium, GTMaterialFlag.CASING).getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Titanium, GTMaterialFlag.CASING).getDefaultState();
 
 	}
 
 	public boolean isInnerCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen
-				.getBlock(GTMaterial.Iridium, GTMaterialFlag.CASING).getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Iridium, GTMaterialFlag.CASING).getDefaultState();
 
 	}
 }

@@ -52,16 +52,14 @@ public class GTModelBaker {
 
 	public void addModel(int textureOffsetX, int textureOffsetY, float shapeX, float shapeY, float shapeZ, int sizeX,
 			int sizeY, int sizeZ, boolean rotateTopAndBottomTexture) {
-		addModel(new Model(textureOffsetX, textureOffsetY, shapeX, shapeY, shapeZ, sizeX, sizeY, sizeZ,
-				rotateTopAndBottomTexture));
+		addModel(new Model(textureOffsetX, textureOffsetY, shapeX, shapeY, shapeZ, sizeX, sizeY, sizeZ, rotateTopAndBottomTexture));
 	}
 
 	public void bake() {
 		for (Model model : models) {
 			BlockPartFace[] faces = model.buildFaces();
 			for (EnumFacing facing : EnumFacing.VALUES) {
-				quadCache.get(EnumFacing.NORTH).add(bakery.makeBakedQuad(model.shapeStart, model.shapeEnd,
-						faces[facing.getIndex()], sprite, facing, ModelRotation.X0_Y0, null, true, true));
+				quadCache.get(EnumFacing.NORTH).add(bakery.makeBakedQuad(model.shapeStart, model.shapeEnd, faces[facing.getIndex()], sprite, facing, ModelRotation.X0_Y0, null, true, true));
 			}
 		}
 	}

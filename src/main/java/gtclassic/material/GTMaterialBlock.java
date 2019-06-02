@@ -94,6 +94,7 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, GTColorBlo
 		return this.blockState.getValidStates();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());

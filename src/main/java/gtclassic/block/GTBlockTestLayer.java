@@ -54,6 +54,7 @@ public class GTBlockTestLayer extends Block implements ILayeredBlockModel, IText
 		return this.blockState.getValidStates();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());

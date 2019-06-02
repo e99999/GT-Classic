@@ -21,9 +21,8 @@ public class GTFluid extends Fluid {
 	GTMaterial mat = null;
 
 	public GTFluid(GTMaterial mat, String base, GTMaterialFlag flag) {
-		super(mat.getDisplayName().toLowerCase() + flag.getSuffix(),
-				new ResourceLocation(GTMod.MODID, "fluids/" + base),
-				new ResourceLocation(GTMod.MODID, "fluids/flowing"));
+		super(mat.getDisplayName().toLowerCase() + flag.getSuffix(), new ResourceLocation(GTMod.MODID, "fluids/"
+				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
 		this.mat = mat;
 		this.temperature = mat.getTemp();
 		this.mapColor = Color.white.hashCode();
@@ -31,8 +30,8 @@ public class GTFluid extends Fluid {
 	}
 
 	public GTFluid(GTMaterial mat, String base) {
-		super(mat.getDisplayName().toLowerCase(), new ResourceLocation(GTMod.MODID, "fluids/" + base),
-				new ResourceLocation(GTMod.MODID, "fluids/flowing"));
+		super(mat.getDisplayName().toLowerCase(), new ResourceLocation(GTMod.MODID, "fluids/"
+				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
 		this.mat = mat;
 		this.temperature = mat.getTemp();
 		this.mapColor = mat.getColor().hashCode();

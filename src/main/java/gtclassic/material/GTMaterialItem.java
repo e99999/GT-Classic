@@ -56,11 +56,7 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
-				|| material.equals(material.Uranium) || material.equals(material.Vibranium)) {
-			return true;
-		}
-		return super.hasEffect(stack);
+		return GTMaterial.isRadioactive(material) ? true : super.hasEffect(stack);
 	}
 
 	@Override
@@ -120,8 +116,7 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 				for (GTMaterial mat : outputs) {
 					ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getSmallDust(mat, 1));
 				}
-				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
-						1.0F);
+				world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 		}
 		return EnumActionResult.SUCCESS;

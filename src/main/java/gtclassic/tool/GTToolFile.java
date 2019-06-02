@@ -58,14 +58,7 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		if (material.equals(material.Plutonium) || material.equals(material.Thorium)
-				|| material.equals(material.Uranium)) {
-			return true;
-		}
-		if (material.equals(material.Flint)) {
-			return false;
-		}
-		return super.hasEffect(stack);
+		return GTMaterial.isRadioactive(material) ? true : super.hasEffect(stack);
 	}
 
 	@Override
@@ -113,8 +106,7 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 		IBlockState state = world.getBlockState(pos);
 		if (!GTConfig.harderPlates && !GTConfig.harderRods && IC2.getRefinedIron().equals("ingotRefinedIron")
 				&& state == Ic2States.machine) {
-			world.setBlockState(pos,
-					GTMaterialGen.getBlock(GTMaterial.RefinedIron, GTMaterialFlag.CASING).getDefaultState());
+			world.setBlockState(pos, GTMaterialGen.getBlock(GTMaterial.RefinedIron, GTMaterialFlag.CASING).getDefaultState());
 			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getSmallDust(GTMaterial.Iron, 2));
 			player.setHeldItem(hand, this.getContainerItem(player.getHeldItem(hand)));
 			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);

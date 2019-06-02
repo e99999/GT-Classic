@@ -12,27 +12,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTIcons {
 	@SideOnly(Side.CLIENT)
 	public static void loadSprites() {
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_ores", GTMod.MODID + ":textures/sprites/sprites_ores.png",
-				new Sprites.SpriteInfo(16, 16)));
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_blocks", GTMod.MODID + ":textures/sprites/sprites_blocks.png",
-				new Sprites.SpriteInfo(16, 16)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_ores", GTMod.MODID
+				+ ":textures/sprites/sprites_ores.png", new Sprites.SpriteInfo(16, 16)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_blocks", GTMod.MODID
+				+ ":textures/sprites/sprites_blocks.png", new Sprites.SpriteInfo(16, 16)));
 
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_items", GTMod.MODID + ":textures/sprites/sprites_items.png",
-				new Sprites.SpriteInfo(16, 16)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_items", GTMod.MODID
+				+ ":textures/sprites/sprites_items.png", new Sprites.SpriteInfo(16, 16)));
 
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_materials",
-				GTMod.MODID + ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 16)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_materials", GTMod.MODID
+				+ ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 16)));
 
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_casings",
-				GTMod.MODID + ":textures/sprites/sprites_casings.png", new Sprites.SpriteInfo(16, 16)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_casings", GTMod.MODID
+				+ ":textures/sprites/sprites_casings.png", new Sprites.SpriteInfo(16, 16)));
 
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_builder", GTMod.MODID + ":textures/sprites/builder.png",
-				new Sprites.SpriteInfo(1, 12)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_builder", GTMod.MODID
+				+ ":textures/sprites/builder.png", new Sprites.SpriteInfo(1, 12)));
 
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_sluicebox",
-				GTMod.MODID + ":textures/sprites/machine_sluicebox.png", new Sprites.SpriteInfo(1, 1)));
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_sluicebox_particle",
-				GTMod.MODID + ":textures/particles/machine_sluicebox.png", new Sprites.SpriteInfo(1, 1)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_sluicebox", GTMod.MODID
+				+ ":textures/sprites/machine_sluicebox.png", new Sprites.SpriteInfo(1, 1)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_sluicebox_particle", GTMod.MODID
+				+ ":textures/particles/machine_sluicebox.png", new Sprites.SpriteInfo(1, 1)));
 
 		collectBasicTileSprites();
 		collectCustomTileSprites();
@@ -69,16 +69,16 @@ public class GTIcons {
 
 	public static void collectBasicTileSprites() {
 		for (String string : GTBlocks.textureTileBasic) {
-			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string + ".png",
-					new Sprites.SpriteInfo(1, 12)));
+			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string
+					+ ".png", new Sprites.SpriteInfo(1, 12)));
 			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));
 		}
 	}
 
 	public static void collectCustomTileSprites() {
 		for (String string : GTBlocks.textureTileCustom) {
-			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string + ".png",
-					new Sprites.SpriteInfo(1, 12)));
+			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string
+					+ ".png", new Sprites.SpriteInfo(1, 12)));
 			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));
 		}
 	}

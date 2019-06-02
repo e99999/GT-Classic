@@ -64,8 +64,7 @@ public class GTItemMagnifyingGlass extends Item implements IStaticTexturedItem {
 			return EnumActionResult.PASS;
 		} else {
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
-			world.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.BLOCKS, 1.0F,
-					1.0F);
+			world.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 
 			if (tileEntity instanceof GTTileMultiBloomery) {
 				GTTileMultiBloomery bloom = (GTTileMultiBloomery) tileEntity;

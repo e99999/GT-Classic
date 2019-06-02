@@ -26,8 +26,8 @@ public enum GTJeiRegistry {
 	SHREDDER(GTTileShredder.RECIPE_LIST, GTBlocks.tileShredder, GTGuiMachine.GTShredderGui.class, 78, 24, 20, 11),
 	FUSION(GTTileMultiFusion.RECIPE_LIST, GTBlocks.tileFusion, GTFusionComputerGui.class, 69, 34, 25, 17),
 	SMELTER(GTTileSmelter.RECIPE_LIST, GTBlocks.tileSmelter, GTGuiMachine.GTElectricSmelterGui.class, 78, 25, 20, 16),
-	BLASTFURNACE(GTTileMultiBlastFurnace.RECIPE_LIST, GTBlocks.tileBlastFurnace, GTGuiMachine.GTBlastFurnaceGui.class, 78, 24, 20, 18 ),
-	REFRACTORY(GTTileMultiRefractory.RECIPE_LIST, GTBlocks.tileRefractory, GTGuiMachine.GTRefractoryGui.class, 78, 24, 20, 18 ),
+	BLASTFURNACE(GTTileMultiBlastFurnace.RECIPE_LIST, GTBlocks.tileBlastFurnace, GTGuiMachine.GTBlastFurnaceGui.class, 78, 24, 20, 18),
+	REFRACTORY(GTTileMultiRefractory.RECIPE_LIST, GTBlocks.tileRefractory, GTGuiMachine.GTRefractoryGui.class, 78, 24, 20, 18),
 	CHEMICALREACTOR(GTTileMultiChemicalReactor.RECIPE_LIST, GTBlocks.tileChemicalReactor, GTGuiMachine.GTChemicalReactorGui.class, 78, 25, 20, 18),
 	CRYOGENICSEPARATOR(GTTileMultiCryogenicSeparator.RECIPE_LIST, GTBlocks.tileCryogenicSeparator, GTGuiMachine.GTCryogenicSeparatorGui.class, 78, 25, 20, 18),
 	BLOOMERY(GTTileMultiBloomery.JEI_RECIPE_LIST, GTBlocks.tileBloomery, GTGuiMachine.GTBloomeryGui.class, 79, 18, 20, 11),
@@ -37,12 +37,14 @@ public enum GTJeiRegistry {
 
 	private GTMultiInputRecipeList list;
 	private Block catalyst;
+	@SuppressWarnings("rawtypes")
 	private Class gui;
 	private int clickX;
 	private int clickY;
 	private int sizeX;
 	private int sizeY;
 
+	@SuppressWarnings("rawtypes")
 	GTJeiRegistry(GTMultiInputRecipeList list, Block catalyst, Class gui, int clickX, int clickY, int sizeX,
 			int sizeY) {
 		this.list = list;
@@ -62,6 +64,7 @@ public enum GTJeiRegistry {
 		return this.catalyst;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Class getGuiClass() {
 		return this.gui;
 	}

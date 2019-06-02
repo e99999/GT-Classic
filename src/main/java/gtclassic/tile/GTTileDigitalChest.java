@@ -83,7 +83,7 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IT
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
 		return new GTContainerDigitalChest(player.inventory, this);
 	}
-	
+
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;

@@ -27,8 +27,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class GTRecipeIterators {
 
 	public static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
-	static GTMaterialGen GT;
-	static GTMaterial M;
 
 	public static void recipeIterators1() {
 		/*
@@ -62,20 +60,19 @@ public class GTRecipeIterators {
 		String dust = "dust" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.SMALLDUST)) {
 			// Regular dust to small dust,
-			recipes.addShapelessRecipe(GT.getSmallDust(mat, 4), new Object[] { dust });
+			recipes.addShapelessRecipe(GTMaterialGen.getSmallDust(mat, 4), new Object[] { dust });
 
 			if (mat.hasFlag(GTMaterialFlag.DUST)) {
 				// Small dust to regular dust
-				recipes.addShapelessRecipe(GT.getDust(mat, 1),
-						new Object[] { smalldust, smalldust, smalldust, smalldust });
-				TileEntityCompressor.addRecipe(smalldust, 4, GT.getDust(mat, 1), 0.0F);
+				recipes.addShapelessRecipe(GTMaterialGen.getDust(mat, 1), new Object[] { smalldust, smalldust,
+						smalldust, smalldust });
+				TileEntityCompressor.addRecipe(smalldust, 4, GTMaterialGen.getDust(mat, 1), 0.0F);
 			}
 
 		}
 	}
 
 	public static void createIngotRecipe(GTMaterial mat) {
-		String smalldust = "dustSmall" + mat.getDisplayName();
 		String dust = "dust" + mat.getDisplayName();
 		String nugget = "nugget" + mat.getDisplayName();
 		int k = mat.getTemp();
@@ -84,36 +81,32 @@ public class GTRecipeIterators {
 
 			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
 				// Ingot crafting recipe
-				recipes.addRecipe(GT.getIngot(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
+				recipes.addRecipe(GTMaterialGen.getIngot(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
 
 				if (mat.hasFlag(GTMaterialFlag.DUST) || mat.equals(GTMaterial.AnnealedCopper)) {
 					if (k < 2000) {
-						GameRegistry.addSmelting(GT.getDust(mat, 1), (GT.getIngot(mat, 1)), 0.1F);
+						GameRegistry.addSmelting(GTMaterialGen.getDust(mat, 1), (GTMaterialGen.getIngot(mat, 1)), 0.1F);
 					}
 					if (k >= 2000 && k < 2700) {
-						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) }, 8000,
-								GT.getIngot(mat, 1));
+						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
+								new RecipeInputOreDict(dust, 1) }, 8000, GTMaterialGen.getIngot(mat, 1));
 					}
 					if (k >= 2700 && k < 3000) {
-						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) }, 16000,
-								GT.getHotIngot(mat, 1));
-						GTTileBath.addRecipe(
-								new IRecipeInput[] { new RecipeInputItemStack(GTMaterialGen.getHotIngot(mat, 1)),
-										new RecipeInputItemStack(GTMaterialGen.getWater(1)) },
-								GTTileBath.totalTicks(300), GTMaterialGen.getIngot(mat, 1),
-								GTMaterialGen.get(GTItems.testTube, 1));
+						GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
+								new RecipeInputOreDict(dust, 1) }, 16000, GTMaterialGen.getHotIngot(mat, 1));
+						GTTileBath.addRecipe(new IRecipeInput[] {
+								new RecipeInputItemStack(GTMaterialGen.getHotIngot(mat, 1)),
+								new RecipeInputItemStack(GTMaterialGen.getWater(1)) }, GTTileBath.totalTicks(300), GTMaterialGen.getIngot(mat, 1), GTMaterialGen.get(GTItems.testTube, 1));
 						GTRecipeCauldron.addFakeQuenchingRecipe(mat);
 					}
 					if (k >= 3000) {
 						if (!mat.equals(GTMaterial.AnnealedCopper)) {
-							GTTileMultiRefractory.addRecipe(new IRecipeInput[] { new RecipeInputOreDict(dust, 1) },
-									GTTileMultiRefractory.totalEu(32000), GT.getHotIngot(mat, 1));
+							GTTileMultiRefractory.addRecipe(new IRecipeInput[] {
+									new RecipeInputOreDict(dust, 1) }, GTTileMultiRefractory.totalEu(32000), GTMaterialGen.getHotIngot(mat, 1));
 						}
-						GTTileBath.addRecipe(
-								new IRecipeInput[] { new RecipeInputItemStack(GTMaterialGen.getHotIngot(mat, 1)),
-										new RecipeInputItemStack(GTMaterialGen.getWater(1)) },
-								GTTileBath.totalTicks(300), GTMaterialGen.getIngot(mat, 1),
-								GTMaterialGen.get(GTItems.testTube, 1));
+						GTTileBath.addRecipe(new IRecipeInput[] {
+								new RecipeInputItemStack(GTMaterialGen.getHotIngot(mat, 1)),
+								new RecipeInputItemStack(GTMaterialGen.getWater(1)) }, GTTileBath.totalTicks(300), GTMaterialGen.getIngot(mat, 1), GTMaterialGen.get(GTItems.testTube, 1));
 						GTRecipeCauldron.addFakeQuenchingRecipe(mat);
 					}
 				}
@@ -128,17 +121,18 @@ public class GTRecipeIterators {
 		String block = "block" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.GEM)) {
 			// Dust to gem
-			TileEntityCompressor.addRecipe(dust, 1, GT.getGem(mat, 1), 0.0F);
+			TileEntityCompressor.addRecipe(dust, 1, GTMaterialGen.getGem(mat, 1), 0.0F);
 
 			// Inverse
-			TileEntityMacerator.addRecipe(gem, 1, GT.getDust(mat, 1), 0.0F);
+			TileEntityMacerator.addRecipe(gem, 1, GTMaterialGen.getDust(mat, 1), 0.0F);
 
 			if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
 				// Block and gem related logic
-				recipes.addShapelessRecipe(GT.getGem(mat, 9), new Object[] { block });
-				TileEntityCompressor.addRecipe(gem, 9, GT.getMaterialBlock(mat, 1), 0.0F);
-				TileEntityMacerator.addRecipe(block, 1, GT.getDust(mat, 9), 0.0F);
-				recipes.addRecipe(GT.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', gem });
+				recipes.addShapelessRecipe(GTMaterialGen.getGem(mat, 9), new Object[] { block });
+				TileEntityCompressor.addRecipe(gem, 9, GTMaterialGen.getMaterialBlock(mat, 1), 0.0F);
+				TileEntityMacerator.addRecipe(block, 1, GTMaterialGen.getDust(mat, 9), 0.0F);
+				recipes.addRecipe(GTMaterialGen.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X',
+						gem });
 			}
 		}
 	}
@@ -146,26 +140,26 @@ public class GTRecipeIterators {
 	public static void createNuggetRecipe(GTMaterial mat) {
 		String ingot = "ingot" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.NUGGET)) {
-			recipes.addShapelessRecipe(GT.getNugget(mat, 9), new Object[] { ingot });
+			recipes.addShapelessRecipe(GTMaterialGen.getNugget(mat, 9), new Object[] { ingot });
 		}
 	}
 
 	public static void createPlateRecipe(GTMaterial mat) {
 		String ingot = "ingot" + mat.getDisplayName();
 		String plate = "plate" + mat.getDisplayName();
-		if (mat.hasFlag(GTMaterialFlag.PLATE) && mat != M.Silicon && mat != M.Plastic) {
+		if (mat.hasFlag(GTMaterialFlag.PLATE) && mat != GTMaterial.Silicon && mat != GTMaterial.Plastic) {
 			// Plate crafting recipe
 			if (GTConfig.harderPlates) {
-				recipes.addRecipe(GT.getPlate(mat, 1),
-						new Object[] { "H", "X", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
+				recipes.addRecipe(GTMaterialGen.getPlate(mat, 1), new Object[] { "H", "X", "X", 'H',
+						"craftingToolForgeHammer", 'X', ingot });
 			} else {
-				recipes.addRecipe(GT.getPlate(mat, 1),
-						new Object[] { "H", "X", 'H', "craftingToolForgeHammer", 'X', ingot });
+				recipes.addRecipe(GTMaterialGen.getPlate(mat, 1), new Object[] { "H", "X", 'H',
+						"craftingToolForgeHammer", 'X', ingot });
 			}
 
 			// If a dust is present create a maceration recipe
 			if (mat.hasFlag(GTMaterialFlag.DUST)) {
-				TileEntityMacerator.addRecipe(plate, 1, GT.getDust(mat, 1), 0.0F);
+				TileEntityMacerator.addRecipe(plate, 1, GTMaterialGen.getDust(mat, 1), 0.0F);
 			}
 		}
 	}
@@ -173,7 +167,8 @@ public class GTRecipeIterators {
 	public static void createSmallPlateRecipe(GTMaterial mat) {
 		String plate = "plate" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.SMALLPLATE)) {
-			recipes.addShapelessRecipe(GT.getSmallPlate(mat, 4), new Object[] { "craftingToolKnife", plate });
+			recipes.addShapelessRecipe(GTMaterialGen.getSmallPlate(mat, 4), new Object[] { "craftingToolKnife",
+					plate });
 		}
 	}
 
@@ -182,11 +177,11 @@ public class GTRecipeIterators {
 		String stick = "stick" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.GEAR)) {
 			if (GTConfig.harderGears) {
-				recipes.addRecipe(GT.getGear(mat, 1),
-						new Object[] { "IXI", "XWX", "IXI", 'I', stick, 'X', plate, 'W', "craftingToolWrench" });
+				recipes.addRecipe(GTMaterialGen.getGear(mat, 1), new Object[] { "IXI", "XWX", "IXI", 'I', stick, 'X',
+						plate, 'W', "craftingToolWrench" });
 			} else {
-				recipes.addRecipe(GT.getGear(mat, 1),
-						new Object[] { " X ", "XWX", " X ", 'X', plate, 'W', "craftingToolWrench" });
+				recipes.addRecipe(GTMaterialGen.getGear(mat, 1), new Object[] { " X ", "XWX", " X ", 'X', plate, 'W',
+						"craftingToolWrench" });
 			}
 		}
 	}
@@ -197,14 +192,14 @@ public class GTRecipeIterators {
 		if (mat.hasFlag(GTMaterialFlag.STICK)) {
 			// Stick crafting recipe
 			if (GTConfig.harderRods) {
-				recipes.addShapelessRecipe(GT.getStick(mat, 1), new Object[] { "craftingToolFile", ingot });
+				recipes.addShapelessRecipe(GTMaterialGen.getStick(mat, 1), new Object[] { "craftingToolFile", ingot });
 			} else {
-				recipes.addShapelessRecipe(GT.getStick(mat, 2), new Object[] { "craftingToolFile", ingot });
+				recipes.addShapelessRecipe(GTMaterialGen.getStick(mat, 2), new Object[] { "craftingToolFile", ingot });
 			}
 
 			// If a dust is present create a maceration recipe
 			if (mat.hasFlag(GTMaterialFlag.DUST)) {
-				TileEntityMacerator.addRecipe(stick, 1, GT.getSmallDust(mat, 2), 0.0F);
+				TileEntityMacerator.addRecipe(stick, 1, GTMaterialGen.getSmallDust(mat, 2), 0.0F);
 			}
 		}
 	}
@@ -213,16 +208,16 @@ public class GTRecipeIterators {
 		String stick = "stick" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.MAGNETICSTICK)) {
 			// Magnetic Stick crafting recipe
-			recipes.addShapelessRecipe(GT.getMagneticStick(mat, 1),
-					new Object[] { stick, "dustRedstone", "dustRedstone", "dustRedstone", "dustRedstone" });
+			recipes.addShapelessRecipe(GTMaterialGen.getMagneticStick(mat, 1), new Object[] { stick, "dustRedstone",
+					"dustRedstone", "dustRedstone", "dustRedstone" });
 		}
 	}
 
 	public static void createWireRecipe(GTMaterial mat) {
 		String stick = "stick" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.WIRE)) {
-			recipes.addShapelessRecipe(GT.getWire(mat, 4),
-					new Object[] { "craftingToolKnife", "craftingToolForgeHammer", stick });
+			recipes.addShapelessRecipe(GTMaterialGen.getWire(mat, 4), new Object[] { "craftingToolKnife",
+					"craftingToolForgeHammer", stick });
 		}
 	}
 
@@ -233,12 +228,13 @@ public class GTRecipeIterators {
 
 			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
 				// Block crafting recipe
-				recipes.addRecipe(GT.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', ingot });
-				TileEntityCompressor.addRecipe(ingot, 9, GT.getMaterialBlock(mat, 1), 0.0F);
+				recipes.addRecipe(GTMaterialGen.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X',
+						ingot });
+				TileEntityCompressor.addRecipe(ingot, 9, GTMaterialGen.getMaterialBlock(mat, 1), 0.0F);
 
 				// Inverse
-				recipes.addShapelessRecipe(GT.getIngot(mat, 9), new Object[] { block });
-				TileEntityMacerator.addRecipe(block, 1, GT.getDust(mat, 9), 0.0F);
+				recipes.addShapelessRecipe(GTMaterialGen.getIngot(mat, 9), new Object[] { block });
+				TileEntityMacerator.addRecipe(block, 1, GTMaterialGen.getDust(mat, 9), 0.0F);
 			}
 
 		}
@@ -250,24 +246,24 @@ public class GTRecipeIterators {
 		String casing = "casingMachine" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.CASING)) {
 			// Casing crafting recipe
-			recipes.addRecipe(GT.getCasing(mat, 1),
-					new Object[] { "SXX", "XWX", "XXS", 'X', plate, 'S', stick, 'W', "craftingToolWrench" });
-			TileEntityMacerator.addRecipe(casing, 1, GT.getDust(mat, 7), 0.0F);
+			recipes.addRecipe(GTMaterialGen.getCasing(mat, 1), new Object[] { "SXX", "XWX", "XXS", 'X', plate, 'S',
+					stick, 'W', "craftingToolWrench" });
+			TileEntityMacerator.addRecipe(casing, 1, GTMaterialGen.getDust(mat, 7), 0.0F);
 		}
 	}
 
 	public static void createCoilRecipe(GTMaterial mat) {
 		String stick = "stick" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.COIL)) {
-			recipes.addRecipe(GT.getCoil(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', stick });
+			recipes.addRecipe(GTMaterialGen.getCoil(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', stick });
 		}
 	}
 
 	public static void createFoilRecipe(GTMaterial mat) {
 		String plate = "plate" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.FOIL)) {
-			recipes.addShapelessRecipe(GT.getFoil(mat, 4),
-					new Object[] { "craftingToolKnife", "craftingToolForgeHammer", plate });
+			recipes.addShapelessRecipe(GTMaterialGen.getFoil(mat, 4), new Object[] { "craftingToolKnife",
+					"craftingToolForgeHammer", plate });
 		}
 	}
 
@@ -275,14 +271,12 @@ public class GTRecipeIterators {
 		String dust = "dust" + mat.getDisplayName();
 		String ingot = "ingot" + mat.getDisplayName();
 		String nugget = "nugget" + mat.getDisplayName();
-		if (GTMaterial.isLowHeat(mat) && !mat.equals(mat.RefinedIron) && !mat.hasFlag(GTMaterialFlag.GEM)) {
+		if (GTMaterial.isLowHeat(mat) && !mat.equals(GTMaterial.RefinedIron) && !mat.hasFlag(GTMaterialFlag.GEM)) {
 
 			if (mat.hasFlag(GTMaterialFlag.PLATE)) {
 				if (!mat.equals(GTMaterial.Plastic)) {
-					GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldPlate),
-							GTMaterialGen.getPlate(mat, 1));
-					GTTileSmelter.addRecipe(nugget, 9, GTMaterialGen.get(GTItems.moldPlate),
-							GTMaterialGen.getPlate(mat, 1));
+					GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldPlate), GTMaterialGen.getPlate(mat, 1));
+					GTTileSmelter.addRecipe(nugget, 9, GTMaterialGen.get(GTItems.moldPlate), GTMaterialGen.getPlate(mat, 1));
 				}
 				GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldPlate), GTMaterialGen.getPlate(mat, 1));
 			}
@@ -294,29 +288,22 @@ public class GTRecipeIterators {
 
 			if (mat.hasFlag(GTMaterialFlag.STICK)) {
 				GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldStick), GTMaterialGen.getStick(mat, 2));
-				GTTileSmelter.addRecipe(nugget, 9, GTMaterialGen.get(GTItems.moldStick),
-						GTMaterialGen.getStick(mat, 2));
+				GTTileSmelter.addRecipe(nugget, 9, GTMaterialGen.get(GTItems.moldStick), GTMaterialGen.getStick(mat, 2));
 				GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldStick), GTMaterialGen.getStick(mat, 2));
 			}
 
 			if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
-				GTTileSmelter.addRecipe(ingot, 9, GTMaterialGen.get(GTItems.moldBlock),
-						GTMaterialGen.getMaterialBlock(mat, 1));
-				GTTileSmelter.addRecipe(dust, 9, GTMaterialGen.get(GTItems.moldBlock),
-						GTMaterialGen.getMaterialBlock(mat, 1));
+				GTTileSmelter.addRecipe(ingot, 9, GTMaterialGen.get(GTItems.moldBlock), GTMaterialGen.getMaterialBlock(mat, 1));
+				GTTileSmelter.addRecipe(dust, 9, GTMaterialGen.get(GTItems.moldBlock), GTMaterialGen.getMaterialBlock(mat, 1));
 			}
 
 			if (mat.hasFlag(GTMaterialFlag.NUGGET)) {
-				GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldNugget),
-						GTMaterialGen.getNugget(mat, 9));
-				GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldNugget),
-						GTMaterialGen.getNugget(mat, 9));
+				GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldNugget), GTMaterialGen.getNugget(mat, 9));
+				GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldNugget), GTMaterialGen.getNugget(mat, 9));
 				if (mat != GTMaterial.Bronze && mat != GTMaterial.Silver && mat != GTMaterial.Copper
 						&& mat != GTMaterial.Tin) {
-					GTTileSmelter.addRecipe(nugget, 9, GTMaterialGen.get(GTItems.moldIngot),
-							GTMaterialGen.getIngot(mat, 1));
-					GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldIngot),
-							GTMaterialGen.getIngot(mat, 1));
+					GTTileSmelter.addRecipe(nugget, 9, GTMaterialGen.get(GTItems.moldIngot), GTMaterialGen.getIngot(mat, 1));
+					GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldIngot), GTMaterialGen.getIngot(mat, 1));
 				}
 			}
 
@@ -334,25 +321,25 @@ public class GTRecipeIterators {
 		final ItemStack dustGunpowder = new ItemStack(Items.GUNPOWDER);
 		final ItemStack dustRedstone = new ItemStack(Items.REDSTONE);
 
-		dustUtil(dustGlowstone, M.Glowstone);
-		dustUtil(dustGunpowder, M.Gunpowder);
-		dustUtil(Ic2Items.tinDust, M.Tin);
-		dustUtil(Ic2Items.obsidianDust, M.Obsidian);
-		dustUtil(Ic2Items.bronzeDust, M.Bronze);
-		dustUtil(Ic2Items.coalDust, M.Coal);
-		dustUtil(Ic2Items.silverDust, M.Silver);
-		dustUtil(dustRedstone, M.Redstone);
-		dustUtil(Ic2Items.clayDust, M.Clay);
-		dustUtil(Ic2Items.goldDust, M.Gold);
-		dustUtil(Ic2Items.copperDust, M.Copper);
-		dustUtil(Ic2Items.netherrackDust, M.Netherrack);
-		dustUtil(Ic2Items.ironDust, M.Iron);
-		dustUtil(Ic2Items.charcoalDust, M.Charcoal);
+		dustUtil(dustGlowstone, GTMaterial.Glowstone);
+		dustUtil(dustGunpowder, GTMaterial.Gunpowder);
+		dustUtil(Ic2Items.tinDust, GTMaterial.Tin);
+		dustUtil(Ic2Items.obsidianDust, GTMaterial.Obsidian);
+		dustUtil(Ic2Items.bronzeDust, GTMaterial.Bronze);
+		dustUtil(Ic2Items.coalDust, GTMaterial.Coal);
+		dustUtil(Ic2Items.silverDust, GTMaterial.Silver);
+		dustUtil(dustRedstone, GTMaterial.Redstone);
+		dustUtil(Ic2Items.clayDust, GTMaterial.Clay);
+		dustUtil(Ic2Items.goldDust, GTMaterial.Gold);
+		dustUtil(Ic2Items.copperDust, GTMaterial.Copper);
+		dustUtil(Ic2Items.netherrackDust, GTMaterial.Netherrack);
+		dustUtil(Ic2Items.ironDust, GTMaterial.Iron);
+		dustUtil(Ic2Items.charcoalDust, GTMaterial.Charcoal);
 
-		ingotUtil(Ic2Items.copperIngot, M.Copper);
-		ingotUtil(Ic2Items.tinIngot, M.Tin);
-		ingotUtil(Ic2Items.bronzeIngot, M.Bronze);
-		ingotUtil(Ic2Items.silverIngot, M.Silver);
+		ingotUtil(Ic2Items.copperIngot, GTMaterial.Copper);
+		ingotUtil(Ic2Items.tinIngot, GTMaterial.Tin);
+		ingotUtil(Ic2Items.bronzeIngot, GTMaterial.Bronze);
+		ingotUtil(Ic2Items.silverIngot, GTMaterial.Silver);
 
 	}
 
@@ -368,16 +355,16 @@ public class GTRecipeIterators {
 				String wrench = "craftingToolWrench";
 				String hammer = "craftingToolForgeHammer";
 				if (tile.getType() == 0) { // cabinet
-					recipes.addRecipe(new ItemStack(block),
-							new Object[] { "HPW", "P P", "PPP", 'P', plate, 'S', stick, 'H', hammer, 'W', wrench });
+					recipes.addRecipe(new ItemStack(block), new Object[] { "HPW", "P P", "PPP", 'P', plate, 'S', stick,
+							'H', hammer, 'W', wrench });
 				}
 				if (tile.getType() == 1) {// large cabinet
-					recipes.addRecipe(new ItemStack(block),
-							new Object[] { "SPS", "CWC", "SPS", 'P', plate, 'S', stick, 'C', cabinet, 'W', wrench });
+					recipes.addRecipe(new ItemStack(block), new Object[] { "SPS", "CWC", "SPS", 'P', plate, 'S', stick,
+							'C', cabinet, 'W', wrench });
 				}
 				if (tile.getType() == 2) {// bookshelf
-					recipes.addRecipe(new ItemStack(block),
-							new Object[] { "PPP", "H W", "PPP", 'P', plate, 'S', stick, 'H', hammer, 'W', wrench });
+					recipes.addRecipe(new ItemStack(block), new Object[] { "PPP", "H W", "PPP", 'P', plate, 'S', stick,
+							'H', hammer, 'W', wrench });
 				}
 				if (tile.getType() == 3) {// workbench
 					recipes.addRecipe(new ItemStack(block), new Object[] { "PHP", "SWS", "PCP", 'P', plate, 'S', stick,
@@ -390,15 +377,14 @@ public class GTRecipeIterators {
 	public static void createBloomJEIRecipe(Block block) {
 		if (block instanceof GTBlockBloom) {
 			GTBlockBloom bloom = (GTBlockBloom) block;
-			GTRecipeProcessing.addByproduct(GTMaterialGen.get(block), bloom.getOutput(),
-					GTMaterialGen.getDust(GTMaterial.Slag, 1));
+			GTRecipeProcessing.addByproduct(GTMaterialGen.get(block), bloom.getOutput(), GTMaterialGen.getDust(GTMaterial.Slag, 1));
 		}
 	}
 
 	public static void dustUtil(ItemStack stack, GTMaterial material) {
 		String smalldust = "dustSmall" + material.getDisplayName();
 		recipes.addShapelessRecipe(stack, new Object[] { smalldust, smalldust, smalldust, smalldust });
-		TileEntityCompressor.addRecipe(smalldust, 4, GT.getIc2(stack, 1), 0.0F);
+		TileEntityCompressor.addRecipe(smalldust, 4, GTMaterialGen.getIc2(stack, 1), 0.0F);
 	}
 
 	public static void ingotUtil(ItemStack stack, GTMaterial material) {

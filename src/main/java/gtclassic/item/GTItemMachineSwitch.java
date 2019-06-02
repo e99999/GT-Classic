@@ -95,8 +95,8 @@ public class GTItemMachineSwitch extends Item implements IAdvancedTexturedItem, 
 		int damage = stack.getItemDamage();
 		ResourceLocation location = this.getRegistryName();
 		String name = stack.getUnlocalizedName();
-		this.model[damage] = new ModelResourceLocation(
-				location.getResourceDomain() + name.substring(name.indexOf(".") + 1) + damage, "inventory");
+		this.model[damage] = new ModelResourceLocation(location.getResourceDomain()
+				+ name.substring(name.indexOf(".") + 1) + damage, "inventory");
 		return this.model[damage];
 	}
 

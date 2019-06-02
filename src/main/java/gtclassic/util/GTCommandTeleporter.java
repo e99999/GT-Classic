@@ -46,8 +46,7 @@ public class GTCommandTeleporter extends Teleporter {
 			throw new IllegalArgumentException("Dimension: " + dimension + " doesn't exist!");
 		}
 
-		worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension,
-				new GTCommandTeleporter(worldServer, x, y, z));
+		worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension, new GTCommandTeleporter(worldServer, x, y, z));
 		player.setPositionAndUpdate(x, y, z);
 		if (oldDimension == 1) {
 			// For some reason teleporting out of the end does weird things.

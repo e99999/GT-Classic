@@ -33,8 +33,7 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 		if (world.getTotalWorldTime() % 256 == 0 && world.rand.nextInt(chance) == 0) {
 			if (world.isThundering() && (world.getPrecipitationHeight(pos).getY() <= (casingheight + 3))
 					&& checkStructure()) {
-				this.world.addWeatherEffect(new EntityLightningBolt(this.world, this.getPos().getX(), casingheight,
-						this.getPos().getZ(), false));
+				this.world.addWeatherEffect(new EntityLightningBolt(this.world, this.getPos().getX(), casingheight, this.getPos().getZ(), false));
 				if (this.storage < this.maxStorage) {
 					this.storage = Math.min(this.maxStorage, storage + 25000000);
 					getNetwork().updateTileGuiField(this, "storage");
@@ -117,13 +116,11 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 	}
 
 	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen
-				.getBlock(GTMaterial.Tungsten, GTMaterialFlag.CASING).getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Tungsten, GTMaterialFlag.CASING).getDefaultState();
 	}
 
 	public boolean isCoil(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen
-				.getBlock(GTMaterial.NiobiumTitanium, GTMaterialFlag.COIL).getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.NiobiumTitanium, GTMaterialFlag.COIL).getDefaultState();
 	}
 
 	public boolean checkPos(BlockPos pos) {

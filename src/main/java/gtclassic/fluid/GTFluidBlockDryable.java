@@ -78,8 +78,7 @@ public class GTFluidBlockDryable extends BlockFluidClassic implements ILocaleBlo
 			IBlockState down = worldIn.getBlockState(pos.down(1));
 			if (isDryingBlock(down) && isCorrectEnviornment(worldIn, pos)) {
 				if (rand.nextInt(7) == 0) {
-					worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS,
-							1.0F, 1.0F);
+					worldIn.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					worldIn.setBlockState(pos, result.getDefaultState());
 				}
 			}
@@ -100,6 +99,7 @@ public class GTFluidBlockDryable extends BlockFluidClassic implements ILocaleBlo
 		return block instanceof BlockHardenedClay || block instanceof BlockStainedHardenedClay;
 	}
 
+	@SuppressWarnings("deprecation")
 	public boolean isConcrete(IBlockState state) {
 		Block block = state.getBlock();
 		return block instanceof BlockColored && block.getMaterial(state).equals(Material.ROCK);

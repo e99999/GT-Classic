@@ -119,7 +119,7 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 	public ResourceLocation getStartSoundFile() {
 		return null;
 	}
-	
+
 	@Override
 	public boolean isRecipeSlot(int slot) {
 		for (int i : this.getInputSlots()) {
@@ -130,310 +130,141 @@ public class GTTileBath extends GTTileBaseMachinePassive {
 		return false;
 	}
 
-	// @formatter:off
 	public static void init() {
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustSalt", 1), 
-				input(GTMaterialGen.getWater(1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getFluid(GTMaterial.Brine, 1));
-		
-		addRecipe( new IRecipeInput[] { 
-				input("dustTungstate", 7),
-				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 2)) },
-				totalTicks(1000), 
-				GTMaterialGen.getDust(GTMaterial.LithiumChloride, 1),
-				GTMaterialGen.getDust(GTMaterial.TungsticAcid, 7),
-				GTMaterialGen.get(GTItems.testTube, 2));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustAsh", 12), 
-				input(GTMaterialGen.getWater(4))}, 
-				totalTicks(1200), 
-				GTMaterialGen.getFluid(GTMaterial.SodiumHydroxide, 4));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustCalcite", 4), 
-				input(GTMaterialGen.getFluid(GTMaterial.Brine, 2))}, 
-				totalTicks(400), 
-				GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 2));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustBrine", 4), 
-				input(GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getFluid(GTMaterial.LithiumCarbonate, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustPyrolusite", 2), 
-				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 2))}, 
-				totalTicks(800),
-				GTMaterialGen.getDust(GTMaterial.Manganese, 2),
-				GTMaterialGen.getFluid(GTMaterial.Chlorine, 1),
-				GTMaterialGen.get(GTItems.testTube));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustSalt", 4), 
-				input(GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 1))}, 
-				totalTicks(1200), 
-				GTMaterialGen.getSmallDust(GTMaterial.Iron, 1),
-				GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustSalt", 4), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 1))}, 
-				totalTicks(1200), 
-				GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustSaltpeter", 7), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 4))}, 
-				totalTicks(1200), 
-				GTMaterialGen.getFluid(GTMaterial.NitricAcid, 4));
-		
-		//Green Vitriol
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreMagnetite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getDust(GTMaterial.Magnetite, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreLimonite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400),
-				GTMaterialGen.getDust(GTMaterial.Limonite, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("orePyrite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getDust(GTMaterial.Pyrite, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreTungstate", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getDust(GTMaterial.Tungstate, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreChromite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getDust(GTMaterial.Chromite, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreTin", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getIc2(Ic2Items.tinDust, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreIron", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getIc2(Ic2Items.ironDust, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
-		
-		//Blue Vitriol
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreGold", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getIc2(Ic2Items.goldDust, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreTetrahedrite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getDust(GTMaterial.Tetrahedrite, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreMalachite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getDust(GTMaterial.Malachite, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreCopper", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getIc2(Ic2Items.copperDust, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
-		
-		//Cyan Vitriol
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreSheldonite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getDust(GTMaterial.Sheldonite, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolCyan, 3));
-		
-		//Red Vitriol
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreGarnierite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3))}, 
-				totalTicks(400), 
-				GTMaterialGen.getDust(GTMaterial.Garnierite, 2),
-				GTMaterialGen.getFluid(GTMaterial.VitriolRed, 3));
-		
-		//Mercury Bathing
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreIridium", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getDust(GTMaterial.Iridium, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Platinum, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreIron", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getIc2(Ic2Items.ironDust, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Nickel, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreSilver", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getIc2(Ic2Items.silverDust, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Lead, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreMagnetite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getDust(GTMaterial.Magnetite, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Gold, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreTungstate", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getDust(GTMaterial.Tungstate, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Silver, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreSphalerite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getDust(GTMaterial.Sphalerite, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Zinc, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreCopper", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getIc2(Ic2Items.copperDust, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Gold, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreGold", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getIc2(Ic2Items.goldDust, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Nickel, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreTetrahedrite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getDust(GTMaterial.Tetrahedrite, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Antimony, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreBismuthtine", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getDust(GTMaterial.Bismuthtine, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Antimony, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreSheldonite", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getDust(GTMaterial.Sheldonite, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Platinum, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreGalena", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getDust(GTMaterial.Galena, 2),
-				GTMaterialGen.getSmallDust(GTMaterial.Silver, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		//making plastic pcbs
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getIc2(Ic2Items.plantBall, 1)), 
-				input(GTMaterialGen.getFluid(GTMaterial.NitricAcid, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getFluid(GTMaterial.Nitrocellulose, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("foilCopper", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Nitrocellulose, 1))}, 
-				totalTicks(400), 
-				GTMaterialGen.get(GTItems.plasticPCB, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getDust(GTMaterial.Plastic, 1)), 
-				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 1))}, 
-				totalTicks(800), 
-				GTMaterialGen.getFluid(GTMaterial.Acrylicacid, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("foilCopper", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Acrylicacid, 1))}, 
-				totalTicks(400), 
-				GTMaterialGen.get(GTItems.plasticPCB, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getDust(GTMaterial.Plastic, 1)), 
-				input(GTMaterialGen.getFluid(GTMaterial.Chlorine, 1))}, 
-				totalTicks(1200), 
-				GTMaterialGen.getFluid(GTMaterial.Chlorinatedpolyvinyl, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("foilCopper", 1), 
-				input(GTMaterialGen.getFluid(GTMaterial.Chlorinatedpolyvinyl, 1))}, 
-				totalTicks(400), 
-				GTMaterialGen.get(GTItems.plasticPCB, 1),
-				GTMaterialGen.get(GTItems.testTube, 1));
-		
-		
-		
+
+		addRecipe(new IRecipeInput[] { input("dustSalt", 1),
+				input(GTMaterialGen.getWater(1)) }, totalTicks(800), GTMaterialGen.getFluid(GTMaterial.Brine, 1));
+
+		addRecipe(new IRecipeInput[] { input("dustTungstate", 7),
+				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 2)) }, totalTicks(1000), GTMaterialGen.getDust(GTMaterial.LithiumChloride, 1), GTMaterialGen.getDust(GTMaterial.TungsticAcid, 7), GTMaterialGen.get(GTItems.testTube, 2));
+
+		addRecipe(new IRecipeInput[] { input("dustAsh", 12),
+				input(GTMaterialGen.getWater(4)) }, totalTicks(1200), GTMaterialGen.getFluid(GTMaterial.SodiumHydroxide, 4));
+
+		addRecipe(new IRecipeInput[] { input("dustCalcite", 4),
+				input(GTMaterialGen.getFluid(GTMaterial.Brine, 2)) }, totalTicks(400), GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 2));
+
+		addRecipe(new IRecipeInput[] { input("dustBrine", 4),
+				input(GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 1)) }, totalTicks(800), GTMaterialGen.getFluid(GTMaterial.LithiumCarbonate, 1));
+
+		addRecipe(new IRecipeInput[] { input("dustPyrolusite", 2),
+				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 2)) }, totalTicks(800), GTMaterialGen.getDust(GTMaterial.Manganese, 2), GTMaterialGen.getFluid(GTMaterial.Chlorine, 1), GTMaterialGen.get(GTItems.testTube));
+
+		addRecipe(new IRecipeInput[] { input("dustSalt", 4),
+				input(GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 1)) }, totalTicks(1200), GTMaterialGen.getSmallDust(GTMaterial.Iron, 1), GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1));
+
+		addRecipe(new IRecipeInput[] { input("dustSalt", 4),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 1)) }, totalTicks(1200), GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1));
+
+		addRecipe(new IRecipeInput[] { input("dustSaltpeter", 7),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 4)) }, totalTicks(1200), GTMaterialGen.getFluid(GTMaterial.NitricAcid, 4));
+
+		// Green Vitriol
+
+		addRecipe(new IRecipeInput[] { input("oreMagnetite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getDust(GTMaterial.Magnetite, 2), GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+
+		addRecipe(new IRecipeInput[] { input("oreLimonite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getDust(GTMaterial.Limonite, 2), GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+
+		addRecipe(new IRecipeInput[] { input("orePyrite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getDust(GTMaterial.Pyrite, 2), GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+
+		addRecipe(new IRecipeInput[] { input("oreTungstate", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getDust(GTMaterial.Tungstate, 2), GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+
+		addRecipe(new IRecipeInput[] { input("oreChromite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getDust(GTMaterial.Chromite, 2), GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+
+		addRecipe(new IRecipeInput[] { input("oreTin", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getIc2(Ic2Items.tinDust, 2), GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+
+		addRecipe(new IRecipeInput[] { input("oreIron", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getFluid(GTMaterial.VitriolGreen, 3));
+
+		// Blue Vitriol
+
+		addRecipe(new IRecipeInput[] { input("oreGold", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getIc2(Ic2Items.goldDust, 2), GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
+
+		addRecipe(new IRecipeInput[] { input("oreTetrahedrite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getDust(GTMaterial.Tetrahedrite, 2), GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
+
+		addRecipe(new IRecipeInput[] { input("oreMalachite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getDust(GTMaterial.Malachite, 2), GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
+
+		addRecipe(new IRecipeInput[] { input("oreCopper", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getIc2(Ic2Items.copperDust, 2), GTMaterialGen.getFluid(GTMaterial.VitriolBlue, 3));
+
+		// Cyan Vitriol
+
+		addRecipe(new IRecipeInput[] { input("oreSheldonite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getDust(GTMaterial.Sheldonite, 2), GTMaterialGen.getFluid(GTMaterial.VitriolCyan, 3));
+
+		// Red Vitriol
+
+		addRecipe(new IRecipeInput[] { input("oreGarnierite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3)) }, totalTicks(400), GTMaterialGen.getDust(GTMaterial.Garnierite, 2), GTMaterialGen.getFluid(GTMaterial.VitriolRed, 3));
+
+		// Mercury Bathing
+
+		addRecipe(new IRecipeInput[] { input("oreIridium", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getDust(GTMaterial.Iridium, 2), GTMaterialGen.getSmallDust(GTMaterial.Platinum, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreIron", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getSmallDust(GTMaterial.Nickel, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreSilver", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getIc2(Ic2Items.silverDust, 2), GTMaterialGen.getSmallDust(GTMaterial.Lead, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreMagnetite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getDust(GTMaterial.Magnetite, 2), GTMaterialGen.getSmallDust(GTMaterial.Gold, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreTungstate", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getDust(GTMaterial.Tungstate, 2), GTMaterialGen.getSmallDust(GTMaterial.Silver, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreSphalerite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getDust(GTMaterial.Sphalerite, 2), GTMaterialGen.getSmallDust(GTMaterial.Zinc, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreCopper", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getIc2(Ic2Items.copperDust, 2), GTMaterialGen.getSmallDust(GTMaterial.Gold, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreGold", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getIc2(Ic2Items.goldDust, 2), GTMaterialGen.getSmallDust(GTMaterial.Nickel, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreTetrahedrite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getDust(GTMaterial.Tetrahedrite, 2), GTMaterialGen.getSmallDust(GTMaterial.Antimony, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreBismuthtine", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getDust(GTMaterial.Bismuthtine, 2), GTMaterialGen.getSmallDust(GTMaterial.Antimony, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreSheldonite", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getDust(GTMaterial.Sheldonite, 2), GTMaterialGen.getSmallDust(GTMaterial.Platinum, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input("oreGalena", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Mercury, 1)) }, totalTicks(800), GTMaterialGen.getDust(GTMaterial.Galena, 2), GTMaterialGen.getSmallDust(GTMaterial.Silver, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		// making plastic pcbs
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.plantBall, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.NitricAcid, 1)) }, totalTicks(800), GTMaterialGen.getFluid(GTMaterial.Nitrocellulose, 1));
+
+		addRecipe(new IRecipeInput[] { input("foilCopper", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Nitrocellulose, 1)) }, totalTicks(400), GTMaterialGen.get(GTItems.plasticPCB, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getDust(GTMaterial.Plastic, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 1)) }, totalTicks(800), GTMaterialGen.getFluid(GTMaterial.Acrylicacid, 1));
+
+		addRecipe(new IRecipeInput[] { input("foilCopper", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Acrylicacid, 1)) }, totalTicks(400), GTMaterialGen.get(GTItems.plasticPCB, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getDust(GTMaterial.Plastic, 1)),
+				input(GTMaterialGen.getFluid(GTMaterial.Chlorine, 1)) }, totalTicks(1200), GTMaterialGen.getFluid(GTMaterial.Chlorinatedpolyvinyl, 1));
+
+		addRecipe(new IRecipeInput[] { input("foilCopper", 1),
+				input(GTMaterialGen.getFluid(GTMaterial.Chlorinatedpolyvinyl, 1)) }, totalTicks(400), GTMaterialGen.get(GTItems.plasticPCB, 1), GTMaterialGen.get(GTItems.testTube, 1));
+
 	}
-	// @formatter:on
 
 	public static IRecipeModifier[] totalTicks(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(total - 100) };

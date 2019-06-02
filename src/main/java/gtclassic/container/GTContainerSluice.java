@@ -29,8 +29,7 @@ public class GTContainerSluice extends ContainerTileComponent<GTTileSluice> {
 		}
 
 		this.addPlayerInventory(player, 0, 0);
-		this.addComponent(new MachineProgressComp(tile, GTContainerSluice.machineProgressBoxRight,
-				GTContainerSluice.machineProgressPosRight));
+		this.addComponent(new MachineProgressComp(tile, GTContainerSluice.machineProgressBoxRight, GTContainerSluice.machineProgressPosRight));
 	}
 
 	@Override

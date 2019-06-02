@@ -74,8 +74,7 @@ public class GTTileRoaster extends GTTileBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
 		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
-		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE),
-				new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
+		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
 		handler.registerSlotType(SlotType.Fuel, slotFuel);
 		handler.registerSlotType(SlotType.Input, slotInputs);
@@ -89,7 +88,7 @@ public class GTTileRoaster extends GTTileBaseMachine {
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		return new LinkedHashSet(Arrays.asList(UpgradeType.values()));
+		return new LinkedHashSet<UpgradeType>(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
@@ -147,62 +146,29 @@ public class GTTileRoaster extends GTTileBaseMachine {
 		return Ic2Sounds.electricFurnaceLoop;
 	}
 
-	// @formatter:off
 	public static void init() {
-		
-		addRecipe("dustSulfur", 1, 
-				2, 
-				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 3));
-		
-		addRecipe("dustTetrahedrite", 2, 
-				1, 
-				GTMaterialGen.getIc2(Ic2Items.copperDust, 1),
-				GTMaterialGen.getSmallDust(GTMaterial.Antimony, 1),
-				GTMaterialGen.getSmallDust(GTMaterial.Iron, 1),
-				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-		
-		addRecipe("dustSphalerite", 2, 
-				1, 
-				GTMaterialGen.getDust(GTMaterial.Zinc, 1),
-				GTMaterialGen.getSmallDust(GTMaterial.Germanium, 2),
-				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-		
-		addRecipe("dustGalena", 2, 
-				1, 
-				GTMaterialGen.getDust(GTMaterial.Lead, 1),
-				GTMaterialGen.getIc2(Ic2Items.silverDust, 1),
-				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-		
-		addRecipe("dustSheldonite", 2, 
-				1, 
-				GTMaterialGen.getDust(GTMaterial.Platinum, 1),
-				GTMaterialGen.getSmallDust(GTMaterial.Nickel, 1),
-				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-		
-		addRecipe("dustMolybdenite", 2, 
-				1, 
-				GTMaterialGen.getDust(GTMaterial.Molybdenum, 1),
-				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-		
-		addRecipe("dustChromite", 3, 
-				1, 
-				GTMaterialGen.getDust(GTMaterial.Chrome, 1),
-				GTMaterialGen.getSmallDust(GTMaterial.Iron, 1),
-				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1));
-		
-		addRecipe("dustSaltpeter", 12, 
-				4, 
-				GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1),
-				GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 3));
+
+		addRecipe("dustSulfur", 1, 2, GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 3));
+
+		addRecipe("dustTetrahedrite", 2, 1, GTMaterialGen.getIc2(Ic2Items.copperDust, 1), GTMaterialGen.getSmallDust(GTMaterial.Antimony, 1), GTMaterialGen.getSmallDust(GTMaterial.Iron, 1), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+
+		addRecipe("dustSphalerite", 2, 1, GTMaterialGen.getDust(GTMaterial.Zinc, 1), GTMaterialGen.getSmallDust(GTMaterial.Germanium, 2), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+
+		addRecipe("dustGalena", 2, 1, GTMaterialGen.getDust(GTMaterial.Lead, 1), GTMaterialGen.getIc2(Ic2Items.silverDust, 1), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+
+		addRecipe("dustSheldonite", 2, 1, GTMaterialGen.getDust(GTMaterial.Platinum, 1), GTMaterialGen.getSmallDust(GTMaterial.Nickel, 1), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+
+		addRecipe("dustMolybdenite", 2, 1, GTMaterialGen.getDust(GTMaterial.Molybdenum, 1), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+
+		addRecipe("dustChromite", 3, 1, GTMaterialGen.getDust(GTMaterial.Chrome, 1), GTMaterialGen.getSmallDust(GTMaterial.Iron, 1), GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1));
+
+		addRecipe("dustSaltpeter", 12, 4, GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1), GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 3));
 	}
-	// @formatter:on
 
 	public static void addRecipe(String input, int amount, int oxygenCount, ItemStack... outputs) {
 		if (oxygenCount > 0) {
-			addRecipe(
-					new IRecipeInput[] { new RecipeInputOreDict(input, amount),
-							new RecipeInputItemStack(GTMaterialGen.getFluid(GTMaterial.Oxygen, oxygenCount)) },
-					euCost(8000), outputs);
+			addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
+					new RecipeInputItemStack(GTMaterialGen.getFluid(GTMaterial.Oxygen, oxygenCount)) }, euCost(8000), outputs);
 		} else {
 			addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount) }, euCost(6000), outputs);
 		}

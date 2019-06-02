@@ -34,8 +34,7 @@ public class GTContainerShredder extends ContainerTileComponent<GTTileShredder> 
 			this.addSlotToContainer(new GTSlotUpgrade(tile, 8 + i, 80 + (i * 18), 62));
 		}
 
-		this.addComponent(
-				new MachineProgressComp(tile, new Box2D(78, 28, 20, 11), GTContainerShredder.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, new Box2D(78, 28, 20, 11), GTContainerShredder.machineProgressPos));
 	}
 
 	@Override

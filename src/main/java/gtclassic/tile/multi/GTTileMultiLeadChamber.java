@@ -95,7 +95,7 @@ public class GTTileMultiLeadChamber extends GTTileMultiBasePassive {
 	public int[] getInputSlots() {
 		return slotInputs;
 	}
-	
+
 	@Override
 	public boolean isRecipeSlot(int slot) {
 		for (int i : this.getInputSlots()) {
@@ -130,20 +130,12 @@ public class GTTileMultiLeadChamber extends GTTileMultiBasePassive {
 		return null;
 	}
 
-	// @formatter:off
 	public static void init() {
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustGold", 1), 
-				input("dustCoal", 1)}, 
-				totalTicks(2000), 
-				GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-		
-		
-		
-		
+
+		addRecipe(new IRecipeInput[] { input("dustGold", 1),
+				input("dustCoal", 1) }, totalTicks(2000), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
+
 	}
-	// @formatter:on
 
 	public static IRecipeModifier[] totalTicks(int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(total - 100) };
@@ -188,8 +180,7 @@ public class GTTileMultiLeadChamber extends GTTileMultiBasePassive {
 	}
 
 	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Lead, GTMaterialFlag.CASING)
-				.getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Lead, GTMaterialFlag.CASING).getDefaultState();
 	}
 
 }

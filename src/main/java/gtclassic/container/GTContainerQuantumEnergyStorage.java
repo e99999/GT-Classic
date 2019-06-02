@@ -38,8 +38,7 @@ public class GTContainerQuantumEnergyStorage extends ContainerTileComponent<GTTi
 		}
 
 		this.addComponent(new GTGuiCompEnergyStorage(tile));
-		this.addComponent(new GTGuiCompEnergyBar(tile, GTContainerQuantumEnergyStorage.chargeProgressBox,
-				GTContainerQuantumEnergyStorage.chargeProgressPos));
+		this.addComponent(new GTGuiCompEnergyBar(tile, GTContainerQuantumEnergyStorage.chargeProgressBox, GTContainerQuantumEnergyStorage.chargeProgressPos));
 		this.addPlayerInventory(player);
 	}
 

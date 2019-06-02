@@ -63,8 +63,7 @@ public class GTMod {
 	public void postInit(FMLPostInitializationEvent e) {
 		logger.info("Hello from Gregtech Classic!");
 		if (GTValues.debugMode) {
-			logger.info(
-					"WARNING [Gregtech Classic is still in debug mode, this is very very bad if you are not a dev!]");
+			logger.info("WARNING [Gregtech Classic is still in debug mode, this is very very bad if you are not a dev!]");
 		}
 		GTTileShredder.collectMaceratorRecipe();
 		proxy.postInit(e);

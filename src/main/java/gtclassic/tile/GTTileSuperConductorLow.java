@@ -9,8 +9,7 @@ import net.minecraft.util.EnumFacing;
 public class GTTileSuperConductorLow extends TileEntityTransformer {
 
 	public GTTileSuperConductorLow() {
-		super((int) EnergyNet.instance.getPowerFromTier(6), (int) EnergyNet.instance.getPowerFromTier(6),
-				(int) EnergyNet.instance.getPowerFromTier(6));
+		super((int) EnergyNet.instance.getPowerFromTier(6), (int) EnergyNet.instance.getPowerFromTier(6), (int) EnergyNet.instance.getPowerFromTier(6));
 	}
 
 	@Override

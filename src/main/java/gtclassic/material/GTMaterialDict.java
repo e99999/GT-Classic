@@ -64,8 +64,8 @@ public class GTMaterialDict {
 			}
 
 			if (mat.hasFlag(GTMaterialFlag.MAGNETICSTICK)) {
-				OreDictionary.registerOre("stickMagnetic" + mat.getDisplayName(),
-						GTMaterialGen.getMagneticStick(mat, 1));
+				OreDictionary.registerOre("stickMagnetic"
+						+ mat.getDisplayName(), GTMaterialGen.getMagneticStick(mat, 1));
 				OreDictionary.registerOre("rodMagnetic" + mat.getDisplayName(), GTMaterialGen.getMagneticStick(mat, 1));
 			}
 
