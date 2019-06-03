@@ -1,6 +1,5 @@
 package gtclassic.recipe;
 
-import gtclassic.ore.GTOreRegistry;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.multi.GTTileMultiFusion;
 
@@ -12,9 +11,7 @@ public class GTRecipe {
 	 * recipes with be in this class
 	 */
 	public static void init() {
-		GTOreRegistry.oreDirectSmelting();
 		GTRecipeIterators.recipeIterators1();
-		GTRecipeIterators.recipeIterators2();
 		GTRecipeMod.recipesIC2();
 		GTRecipeProcessing.recipesProcessing();
 		// below is more how things will go

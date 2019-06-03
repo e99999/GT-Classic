@@ -168,5 +168,4 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	public List<IBlockState> getValidStates() {
 		return getBlockState().getValidStates();
 	}
-	
 }

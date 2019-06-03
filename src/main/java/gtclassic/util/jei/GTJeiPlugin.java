@@ -3,8 +3,6 @@ package gtclassic.util.jei;
 import javax.annotation.Nonnull;
 
 import gtclassic.container.GTContainerWorkbench;
-import gtclassic.ore.GTOreFlag;
-import gtclassic.ore.GTOreStone;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -13,7 +11,6 @@ import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
-import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
@@ -36,22 +33,7 @@ public class GTJeiPlugin implements IModPlugin {
 			}
 			// More Vanilla Crafting
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
-			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);// this
-																																			// is
-																																			// what
-																																			// fucks
-																																			// up
-																																			// shift
-																																			// clicking
-																																			// fixing
-			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-			for (Block block : Block.REGISTRY) {
-				if (block instanceof GTOreStone) {
-					if (((GTOreStone) block).getOreFlag().equals(GTOreFlag.BEDROCK)) {
-						blacklist.addIngredientToBlacklist(new ItemStack(block));
-					}
-				}
-			}
+			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);
 		}
 	}
 

@@ -8,7 +8,6 @@ import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionComputer;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
-import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -134,8 +133,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		 */
 		addRecipe(new IRecipeInput[] { input("dustTungsten", 1),
 				input("dustLithium", 1) }, totalEu(16775168), GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1));
-		addRecipe(new IRecipeInput[] { input("dustTungsten", 1),
-				input(GTMaterialGen.getFluid(GTMaterial.Beryllium, 1)) }, totalEu(16775168), GTMaterialGen.getDust(GTMaterial.Platinum, 1));
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
 				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
@@ -166,10 +163,8 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 
 	@Override
 	public boolean checkStructure() {
-
 		if (!world.isAreaLoaded(pos, 3))
 			return false;
-
 		int3 working = new int3(getPos(), getFacing());
 		if (!(checkPos(working.forward(3)) && checkPos(working.right(1)) && checkPos(working.back(1))
 				&& checkPos(working.right(1)) && checkPos(working.back(1)) && checkPos(working.right(1))

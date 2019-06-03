@@ -4,22 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.block.GTBlockCasing;
-import gtclassic.block.GTBlockDrum;
-import gtclassic.block.GTBlockSluice;
-import gtclassic.block.GTBlockSluiceBoxExt;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.itemblock.GTItemBlockRare;
-import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDigitalChest;
-import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
@@ -40,47 +35,28 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
-	
 	public static final GTBlockCasing casingSuperConductor = registerBlock(new GTBlockCasing("Superconductor", 0)),
-			casingFusion = registerBlock(new GTBlockCasing("Fusion", 1)),
-			casingFission = registerBlock(new GTBlockCasing("Fission", 2)),
-			casingPlastic1x = registerBlock(new GTBlockCasing("Plastic1", 3)),
-			casingPlastic4x = registerBlock(new GTBlockCasing("Plastic4", 4)),
-			casingPlastic16x = registerBlock(new GTBlockCasing("Plastic16", 5)),
-			casingLightning = registerBlock(new GTBlockCasing("Lightning", 8));
-	public static final GTBlockSluice tileSluice = registerBlock(new GTBlockSluice());
-	public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new GTBlockSluiceBoxExt());
+			casingFusion = registerBlock(new GTBlockCasing("Fusion", 1));
+	// public static final GTBlockSluice tileSluice = registerBlock(new
+	// GTBlockSluice());
+	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
+	// GTBlockSluiceBoxExt());
 	public static final GTBlockTileBasic 
-			tileChargeOmat = registerBlock(new GTBlockTileBasic("machine_chargeomat_ev")),
-			tileComputer = registerBlock(new GTBlockTileBasic("machine_computercube_ev")),
-			tileCentrifuge = registerBlock(new GTBlockTileBasic("machine_industrialcentrifuge_lv")),
-			tileFabricator = registerBlock(new GTBlockTileBasic("machine_matterfabricator_ev")),
-			tileReplicator = registerBlock(new GTBlockTileBasic("machine_matterreplicator_ev")),
-			tileDigitalChest = registerBlock(new GTBlockTileBasic("tile_digitalchest")),
-			tilePlayerDetector = registerBlock(new GTBlockTileBasic("machine_playerdetector_lv", 1)),
-			tileFusion = registerBlock(new GTBlockTileBasic("machine_fusioncomputer_ev")),
-			tileLightningRod = registerBlock(new GTBlockTileBasic("machine_lightningrod_iv")),
-			tileQuantumEnergy = registerBlock(new GTBlockTileBasic("machine_quantumenergystorage_ev")),
-			tileBasicEnergy = registerBlock(new GTBlockTileBasic("machine_basicenergystorage_ev"));
-	public static final GTBlockDrum drum = registerBlock(new GTBlockDrum(GTMaterial.StainlessSteel));
+			tileChargeOmat = registerBlock(new GTBlockTileBasic("chargeomat")),
+			tileComputer = registerBlock(new GTBlockTileBasic("computercube")),
+			tileCentrifuge = registerBlock(new GTBlockTileBasic("industrialcentrifuge")),
+			tileFabricator = registerBlock(new GTBlockTileBasic("matterfabricator")),
+			tileReplicator = registerBlock(new GTBlockTileBasic("matterreplicator")),
+			tileDigitalChest = registerBlock(new GTBlockTileBasic("digitalchest")),
+			tilePlayerDetector = registerBlock(new GTBlockTileBasic("playerdetector")),
+			tileFusion = registerBlock(new GTBlockTileBasic("fusioncomputer")),
+			tileLightningRod = registerBlock(new GTBlockTileBasic("lightningrod")),
+			tileQuantumEnergy = registerBlock(new GTBlockTileBasic("quantumenergystorage")),
+			tileBasicEnergy = registerBlock(new GTBlockTileBasic("basicenergystorage"));
 	
-	protected static final String[] textureTileBasic = { "machine_heatingelement", "machine_bloomery",
-			"machine_charcoalpit", "machine_blastfurnace_lv", "machine_leadchamber_lv", "machine_bath",
-			"machine_chemicalreactor_hv", "machine_refractory_hv", "machine_roaster_lv", "machine_constructor_mv",
-			"machine_compiler_hv", "machine_cryogenicseparator_mv", "machine_chargeomat_ev", "machine_computercube_ev",
-			"machine_industrialcentrifuge_lv", "machine_industrialelectrolyzer_hv", "machine_shredder_mv",
-			"machine_electricsmelter_lv", "machine_fluidsmelter_lv", "machine_matterfabricator_ev",
-			"machine_matterreplicator_ev", "machine_playerdetector_lv", "machine_fusioncomputer_ev",
-			"machine_lightningrod_iv", "machine_quantumenergystorage_ev", "machine_basicenergystorage_ev",
-			"machine_digitaltransformer_luv", "cable_energium_luv", "cable_lapotron_zpm", "tile_digitalchest",
-			"tile_smallchest", "tile_largechest", "tile_bookshelf", "tile_workbench", "tile_drum" };
-	protected static final String[] textureTileCustom = { "block_mortar", "block_ducttape", "solar_panel",
-			"coolant_helium_small", "coolant_helium_med", "coolant_helium_large", "rod_thorium_small",
-			"rod_thorium_med", "rod_thorium_large", "rod_plutonium_small", "rod_plutonium_med", "rod_plutonium_large",
-			"battery_lithium_small", "battery_lithium_med", "battery_lithium_large", "battery_lapotron_tiny",
-			"battery_lapotron_small", "battery_lapotron_med", "battery_lapotron_large", "battery_lapotron_huge",
-			"battery_energium_tiny", "battery_energium_small", "battery_energium_med", "battery_energium_large",
-			"battery_energium_huge", };
+	protected static final String[] textureTileBasic = { "chargeomat", "computercube", "industrialcentrifuge",
+			"matterfabricator", "matterreplicator", "digitalchest", "playerdetector", "fusioncomputer", "lightningrod",
+			"quantumenergystorage", "basicenergystorage" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -123,7 +99,6 @@ public class GTBlocks {
 		registerUtil(GTTileDigitalChest.class, "QuantumChest");
 		registerUtil(GTTileWorkbench.class, "Workbench");
 		registerUtil(GTTileFacing.class, "Facing");
-		registerUtil(GTTileDrum.class, "Tank");
 	}
 
 	// TODO fix the generic type

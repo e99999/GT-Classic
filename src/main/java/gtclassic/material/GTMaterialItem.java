@@ -43,12 +43,6 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack stack) {
-		return GTMaterial.isRadioactive(material) ? true : super.hasEffect(stack);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[flag.getTextureID()];
 	}

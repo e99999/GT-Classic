@@ -4,7 +4,6 @@ import gtclassic.GTMod;
 import gtclassic.tile.GTTileBaseMachine;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileDigitalChest;
-import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
@@ -219,15 +218,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			if (tileEntity instanceof GTTileBlockCustom) {
 				GTTileBlockCustom blockcustom = (GTTileBlockCustom) tileEntity;
 				IC2.platform.messagePlayer(player, "Stack Stored: " + blockcustom.getItem().getUnlocalizedName());
-			}
-			if (tileEntity instanceof GTTileDrum) {
-				GTTileDrum tank = (GTTileDrum) tileEntity;
-				if (!tank.isEmpty()) {
-					IC2.platform.messagePlayer(player, tank.getFluidAmount() + "mB of " + tank.getFluidName());
-				} else {
-					IC2.platform.messagePlayer(player, "Drum is empty");
-				}
-				IC2.platform.messagePlayer(player, "Auto Output: " + tank.getExport());
 			}
 			return EnumActionResult.SUCCESS;
 		}

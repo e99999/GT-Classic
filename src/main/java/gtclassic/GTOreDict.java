@@ -10,7 +10,6 @@ import net.minecraftforge.oredict.OreDictionary;
 public class GTOreDict {
 
 	public static void init() {
-		
 		// Just doing these to make iteration & unification easier in some cases
 		OreDictionary.registerOre("dustGunpowder", Items.GUNPOWDER);
 		OreDictionary.registerOre("bookshelf", Blocks.BOOKSHELF);
@@ -24,20 +23,13 @@ public class GTOreDict {
 		OreDictionary.registerOre("dustRareEarth", Ic2Items.rareEarthDust);
 		// Registering Aluminium for idiots
 		GTMaterial aluminium = GTMaterial.Aluminium;
-		OreDictionary.registerOre("casingMachineAluminum", (GTMaterialGen.getCasing(aluminium, 1)));
 		OreDictionary.registerOre("blockAluminum", (GTMaterialGen.getMaterialBlock(aluminium, 1)));
-		OreDictionary.registerOre("dustSmallAluminum", (GTMaterialGen.getSmallDust(aluminium, 1)));
 		OreDictionary.registerOre("dustAluminum", (GTMaterialGen.getDust(aluminium, 1)));
 		OreDictionary.registerOre("ingotAluminum", (GTMaterialGen.getIngot(aluminium, 1)));
 		OreDictionary.registerOre("nuggetAluminum", (GTMaterialGen.getNugget(aluminium, 1)));
-		OreDictionary.registerOre("plateAluminum", (GTMaterialGen.getPlate(aluminium, 1)));
-		OreDictionary.registerOre("stickAluminum", (GTMaterialGen.getStick(aluminium, 1)));
-		OreDictionary.registerOre("rodAluminum", (GTMaterialGen.getStick(aluminium, 1)));
 		// Stuff to fit with how other mods have done it
-		OreDictionary.registerOre("dustAsh", (GTMaterialGen.getDust(GTMaterial.Ashes, 1)));
 		OreDictionary.registerOre("dustEnderEye", (GTMaterialGen.getDust(GTMaterial.EnderEye, 1)));
 		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getIngot(GTMaterial.Silicon, 1)));
 		OreDictionary.registerOre("dyeBlue", (GTMaterialGen.getDust(GTMaterial.Lazurite, 1)));
-
 	}
 }

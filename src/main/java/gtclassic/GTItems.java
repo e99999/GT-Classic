@@ -8,8 +8,6 @@ import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
 import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemFluidTube;
-import gtclassic.item.GTItemMachineSwitch;
-import gtclassic.item.GTItemMatch;
 import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
@@ -31,7 +29,6 @@ public class GTItems {
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
-	
 	public static final GTItemFluidTube testTube = createItem(new GTItemFluidTube());
 
 	public static <T extends Item> T createItem(T item) {

@@ -1,14 +1,11 @@
 package gtclassic.tool;
 
-import java.awt.Color;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
-import gtclassic.util.GTValues;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
@@ -44,15 +41,14 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTToolChainsaw extends ItemElectricTool
-		implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
+public class GTToolChainsaw extends ItemElectricTool implements IStaticTexturedItem, ILayeredItemModel {
 
 	public static final ItemStack ironAxe;
 	GTMaterial material;
 
-	public GTToolChainsaw(ToolMaterial tmat) {
+	public GTToolChainsaw(GTMaterial mat) {
 		super(0.0F, 0.0F, ToolMaterial.IRON);
-		this.material = GTToolMaterial.getGTMaterial(tmat);
+		this.material = mat;
 		this.tier = material.getLevel() - 1;
 		if (this.tier <= 0) {
 			this.tier = 1;
@@ -75,12 +71,6 @@ public class GTToolChainsaw extends ItemElectricTool
 				+ I18n.format("Efficiency: " + String.valueOf((this.material.getSpeed() * 2) * this.tier)));
 		tooltip.add(TextFormatting.RED
 				+ I18n.format("Uses Remaining: " + String.valueOf(this.getMaxDamage() - this.getDamage(stack))));
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack stack) {
-		return GTMaterial.isRadioactive(material) ? true : super.hasEffect(stack);
 	}
 
 	@Override
@@ -245,15 +235,6 @@ public class GTToolChainsaw extends ItemElectricTool
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[34];
-	}
-
-	@Override
-	public Color getColor(ItemStack stack, int index) {
-		if (index == 0) {
-			return GTValues.getToolColor(this.tier);
-		} else {
-			return this.material.getColor();
-		}
 	}
 
 	@Override

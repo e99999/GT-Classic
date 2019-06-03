@@ -1,8 +1,5 @@
 package gtclassic.util;
 
-import java.awt.Color;
-
-import gtclassic.material.GTMaterial;
 import ic2.core.IC2;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
@@ -43,48 +40,6 @@ public class GTValues {
 			return "plateSteel";
 		} else {
 			return "plateRefinedIron";
-		}
-	}
-
-	public static Color getToolColor(int tier) {
-		if (tier == 1) {
-			return GTMaterial.Steel.getColor();
-		}
-		if (tier == 2) {
-			return GTMaterial.Aluminium.getColor();
-		}
-		if (tier == 3) {
-			return GTMaterial.StainlessSteel.getColor();
-		}
-		return Color.white;
-	}
-
-	public static Color getMachineColor(int tier) {
-		if (tier == 1) {
-			return GTMaterial.Steel.getColor();
-		}
-		if (tier == 2) {
-			return GTMaterial.Aluminium.getColor();
-		}
-		if (tier == 3) {
-			return GTMaterial.StainlessSteel.getColor();
-		}
-		if (tier == 4) {
-			return GTMaterial.Titanium.getColor();
-		}
-		if (tier == 5) {
-			return GTMaterial.Tungsten.getColor();
-		}
-		if (tier == 6) {
-			return GTMaterial.Chrome.getColor();
-		}
-		if (tier == 7) {
-			return GTMaterial.Iridium.getColor();
-		}
-		if (tier == 8) {
-			return GTMaterial.Osmium.getColor();
-		} else {
-			return Color.white;
 		}
 	}
 
