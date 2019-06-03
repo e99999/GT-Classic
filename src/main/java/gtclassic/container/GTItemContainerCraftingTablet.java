@@ -15,10 +15,8 @@ import net.minecraft.world.World;
 public class GTItemContainerCraftingTablet extends ContainerItemComponent<GTItemInventoryCraftingTablet> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/craftingtablet.png");
-
 	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 	public InventoryCraftResult craftResult = new InventoryCraftResult();
-
 	private final World world;
 	private final EntityPlayer player;
 
@@ -27,13 +25,11 @@ public class GTItemContainerCraftingTablet extends ContainerItemComponent<GTItem
 		this.world = player.player.getEntityWorld();
 		this.player = player.player;
 		this.addSlotToContainer(new SlotCrafting(this.player, this.craftMatrix, this.craftResult, 0, 124, 35));
-
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 3; ++j) {
 				this.addSlotToContainer(new Slot(this.craftMatrix, j + i * 3, 30 + j * 18, 17 + i * 18));
 			}
 		}
-
 		this.addPlayerInventory(player, 0, 0);
 	}
 
@@ -45,7 +41,6 @@ public class GTItemContainerCraftingTablet extends ContainerItemComponent<GTItem
 	@Override
 	public void onContainerClosed(EntityPlayer playerIn) {
 		super.onContainerClosed(playerIn);
-
 		if (!this.world.isRemote) {
 			this.clearContainer(playerIn, this.world, this.craftMatrix);
 		}

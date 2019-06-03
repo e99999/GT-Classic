@@ -28,7 +28,6 @@ public class GTCommandTeleporter extends Teleporter {
 	@Override
 	public void placeInPortal(@Nonnull Entity entity, float rotationYaw) {
 		this.worldServer.getBlockState(new BlockPos((int) this.x, (int) this.y, (int) this.z));
-
 		entity.setPosition(this.x, this.y, this.z);
 		entity.motionX = 0.0f;
 		entity.motionY = 0.0f;
@@ -41,11 +40,9 @@ public class GTCommandTeleporter extends Teleporter {
 		MinecraftServer server = player.getEntityWorld().getMinecraftServer();
 		WorldServer worldServer = server.getWorld(dimension);
 		player.addExperienceLevel(0);
-
 		if (worldServer == null || worldServer.getMinecraftServer() == null) { // Dimension doesn't exist
 			throw new IllegalArgumentException("Dimension: " + dimension + " doesn't exist!");
 		}
-
 		worldServer.getMinecraftServer().getPlayerList().transferPlayerToDimension(entityPlayerMP, dimension, new GTCommandTeleporter(worldServer, x, y, z));
 		player.setPositionAndUpdate(x, y, z);
 		if (oldDimension == 1) {
@@ -55,5 +52,4 @@ public class GTCommandTeleporter extends Teleporter {
 			worldServer.updateEntityWithOptionalForce(player, false);
 		}
 	}
-
 }

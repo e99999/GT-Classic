@@ -59,7 +59,6 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 	@Override
 	public void setRecipe(IRecipeLayout layout, GTJeiMultiRecipeWrapper wrapper, IIngredients ingredients) {
 		IGuiItemStackGroup itemGroup = layout.getItemStacks();
-
 		int index = 0;
 		int actualIndex = 0;
 		for (IRecipeInput list : wrapper.getMultiRecipe().getInputs()) {

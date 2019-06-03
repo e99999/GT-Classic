@@ -51,7 +51,6 @@ public class GTRecipeIteratorsTools {
 				String input = "plate" + file.getMaterial().getDisplayName();
 				recipes.addRecipe(new ItemStack(item), new Object[] { "P ", "P ", "SF", 'P', input, 'S', "stickWood",
 						'F', "craftingToolFile" });
-
 			} else {
 				String input = "plate" + file.getMaterial().getDisplayName();
 				recipes.addRecipe(new ItemStack(item), new Object[] { "P", "P", "S", 'P', input, 'S', "stickWood" });
@@ -112,7 +111,6 @@ public class GTRecipeIteratorsTools {
 				recipes.addRecipe(new ItemStack(item), new Object[] { "PPS", 'P',
 						new EnchantmentModifier(GTMaterialGen.get(item), Enchantments.FIRE_ASPECT).setUsesInput(), 'P',
 						Items.FLINT, 'S', "stickWood" });
-
 			} else {
 				String input = "plate" + sword.getMaterial().getDisplayName();
 				recipes.addRecipe(new ItemStack(item), new Object[] { "PF", "P ", "S ", 'P', input, 'S', "stickWood",
@@ -193,7 +191,6 @@ public class GTRecipeIteratorsTools {
 				recipes.addRecipe(new ItemStack(item), new Object[] { "PPT", "BCT", "PPT", 'T', plate, 'P',
 						"plateSteel", 'C', GTItems.motorLV, 'B', GTBlocks.batteryLithiumSmall });
 			}
-
 		}
 	}
 
@@ -207,5 +204,4 @@ public class GTRecipeIteratorsTools {
 			}
 		}
 	}
-
 }

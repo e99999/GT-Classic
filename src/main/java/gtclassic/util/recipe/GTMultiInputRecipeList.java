@@ -16,8 +16,8 @@ import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
 
 public class GTMultiInputRecipeList {
-	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(), new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid", 0);
 
+	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(), new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid", 0);
 	protected List<MultiRecipe> recipes = new ArrayList<MultiRecipe>();
 	protected Map<String, MultiRecipe> recipeMap = new LinkedHashMap<String, MultiRecipe>();
 	protected Map<ItemWithMeta, List<IRecipeInput>> validInputs = new LinkedHashMap<ItemWithMeta, List<IRecipeInput>>();
@@ -130,6 +130,7 @@ public class GTMultiInputRecipeList {
 	}
 
 	public static class MultiRecipe {
+
 		List<IRecipeInput> inputs;
 		MachineOutput outputs;
 		String id;
@@ -182,7 +183,6 @@ public class GTMultiInputRecipeList {
 		public MachineOutput getOutputs() {
 			return outputs;
 		}
-
 	}
 
 	public Collection<MultiRecipe> getRecipeList() {

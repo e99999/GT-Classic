@@ -59,30 +59,25 @@ public class GTItemMagnifyingGlass extends Item implements IStaticTexturedItem {
 			float hitY, float hitZ, EnumHand hand) {
 		TileEntity tileEntity = world.getTileEntity(pos);
 		IBlockState state = world.getBlockState(pos);
-
 		if (player.isSneaking() || !IC2.platform.isSimulating()) {
 			return EnumActionResult.PASS;
 		} else {
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
 			world.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
 			if (tileEntity instanceof GTTileMultiBloomery) {
 				GTTileMultiBloomery bloom = (GTTileMultiBloomery) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
 			}
-
 			if (tileEntity instanceof GTTileMultiCharcoalPit) {
 				GTTileMultiCharcoalPit pit = (GTTileMultiCharcoalPit) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + pit.checkStructure());
 				IC2.platform.messagePlayer(player, "Charcoal looks about "
 						+ (Math.round((pit.getProgress() / pit.getMaxProgress()) * 100)) + "% finished");
 			}
-
 			if (tileEntity instanceof GTTileMultiBaseMachine) {
 				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
 			}
-
 			if (tileEntity instanceof GTTileDrum) {
 				GTTileDrum tank = (GTTileDrum) tileEntity;
 				if (!tank.isEmpty()) {
@@ -92,7 +87,6 @@ public class GTItemMagnifyingGlass extends Item implements IStaticTexturedItem {
 				}
 				IC2.platform.messagePlayer(player, "Auto Output: " + tank.getExport());
 			}
-
 			return EnumActionResult.SUCCESS;
 		}
 	}

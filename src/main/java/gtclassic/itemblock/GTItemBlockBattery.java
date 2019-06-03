@@ -130,7 +130,6 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 						if (transfer == 0.0D) {
 							break;
 						}
-
 						charged = true;
 					}
 				}
@@ -147,12 +146,10 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 							if (transfer == 0.0D) {
 								break;
 							}
-
 							charged = true;
 						}
 					}
 				}
-
 				if (!charged) {
 					stack = player.getHeldItem(EnumHand.OFF_HAND);
 					if (stack.getItem() instanceof IElectricItem) {
@@ -167,13 +164,10 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 					}
 				}
 			}
-
 			if (!charged) {
 				player.resetActiveHand();
 			}
-
 			IC2.platform.updatePlayerUsingItem(player, itemStackIn);
 		}
 	}
-
 }

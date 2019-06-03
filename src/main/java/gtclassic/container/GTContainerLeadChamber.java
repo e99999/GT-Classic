@@ -18,21 +18,17 @@ public class GTContainerLeadChamber extends ContainerTileComponent<GTTileMultiLe
 
 	public GTContainerLeadChamber(InventoryPlayer player, GTTileMultiLeadChamber tile) {
 		super(tile);
-
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 3; ++x) {
 				this.addSlotToContainer(new SlotCustom(tile, x + y * 3, 17 + x * 18, 17 + y * 18, null));
 			}
 		}
-
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 3; ++x) {
 				this.addSlotToContainer(new SlotOutput(player.player, tile, 6 + x + y * 3, 107 + x * 18, 17 + y * 18));
 			}
 		}
-
 		this.addPlayerInventory(player);
-
 		this.addComponent(new MachineProgressComp(tile, GTContainerLeadChamber.machineProgressBox, GTContainerLeadChamber.machineProgressPos));
 	}
 
@@ -50,5 +46,4 @@ public class GTContainerLeadChamber extends ContainerTileComponent<GTTileMultiLe
 	public boolean canInteractWith(EntityPlayer playerIn) {
 		return this.getGuiHolder().canInteractWith(playerIn);
 	}
-
 }

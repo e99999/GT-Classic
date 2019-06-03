@@ -19,7 +19,6 @@ import gtclassic.util.recipe.GTMultiInputRecipeList;
 import net.minecraft.block.Block;
 
 public enum GTJeiRegistry {
-
 	// @formatter:off
 	CENTRIFUGE(GTTileCentrifuge.RECIPE_LIST, GTBlocks.tileCentrifuge, GTGuiMachine.GTIndustrialCentrifugeGui.class, 78, 24, 20, 18),
 	ELECTROLYZER(GTTileElectrolyzer.RECIPE_LIST, GTBlocks.tileElectrolyzer, GTGuiMachine.GTIndustrialElectrolyzerGui.class, 78, 24, 20, 18),
@@ -33,8 +32,8 @@ public enum GTJeiRegistry {
 	BLOOMERY(GTTileMultiBloomery.JEI_RECIPE_LIST, GTBlocks.tileBloomery, GTGuiMachine.GTBloomeryGui.class, 79, 18, 20, 11),
 	ROASTER(GTTileRoaster.RECIPE_LIST, GTBlocks.tileRoaster, GTGuiMachine.GTRoasterGui.class, 78, 28, 20, 11),
 	BATH(GTTileBath.RECIPE_LIST, GTBlocks.tileBath, GTGuiMachine.GTBathGui.class, 78, 28, 20, 11);
-	// @formatter:on
 
+	// @formatter:on
 	private GTMultiInputRecipeList list;
 	private Block catalyst;
 	@SuppressWarnings("rawtypes")
@@ -84,5 +83,4 @@ public enum GTJeiRegistry {
 	public int getSizeY() {
 		return this.sizeY;
 	}
-
 }

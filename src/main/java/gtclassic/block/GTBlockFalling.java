@@ -67,7 +67,6 @@ public class GTBlockFalling extends BlockFalling implements ITexturedBlock, ILoc
 		} else {
 			drops.add(GTMaterialGen.get(this));
 		}
-
 		return drops;
 	}
 
@@ -116,25 +115,21 @@ public class GTBlockFalling extends BlockFalling implements ITexturedBlock, ILoc
 
 	protected boolean tryTouchWater(World worldIn, BlockPos pos, IBlockState state) {
 		boolean flag = false;
-
 		if (this != GTBlocks.sandSlagrete) {
 			return false;
 		}
 		for (EnumFacing enumfacing : EnumFacing.values()) {
 			if (enumfacing != EnumFacing.DOWN) {
 				BlockPos blockpos = pos.offset(enumfacing);
-
 				if (worldIn.getBlockState(blockpos).getMaterial() == Material.WATER) {
 					flag = true;
 					break;
 				}
 			}
 		}
-
 		if (flag) {
 			worldIn.setBlockState(pos, Ic2States.reinforcedStone);
 		}
-
 		return flag;
 	}
 
@@ -166,5 +161,4 @@ public class GTBlockFalling extends BlockFalling implements ITexturedBlock, ILoc
 		}
 		return xp;
 	}
-
 }

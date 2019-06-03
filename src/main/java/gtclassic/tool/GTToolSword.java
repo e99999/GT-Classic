@@ -86,5 +86,4 @@ public class GTToolSword extends ItemSword
 	public GTMaterial getMaterial() {
 		return GTToolMaterial.getGTMaterial(tmaterial);
 	}
-
 }

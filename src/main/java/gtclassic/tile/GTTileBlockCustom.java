@@ -18,7 +18,6 @@ public class GTTileBlockCustom extends TileEntityBlock implements IItemContainer
 	 * integer and itemstack info from a GT ItemBlock instance whenever the block is
 	 * placed.
 	 */
-
 	private ItemStack drop = ItemStack.EMPTY;
 
 	public GTTileBlockCustom() {
@@ -57,7 +56,6 @@ public class GTTileBlockCustom extends TileEntityBlock implements IItemContainer
 		} else {
 			this.setActive(false);
 		}
-
 	}
 
 	@Override
@@ -67,5 +65,4 @@ public class GTTileBlockCustom extends TileEntityBlock implements IItemContainer
 		drops.add(new ItemStack(item, 1).copy());
 		return drops;
 	}
-
 }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionComputer;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
@@ -29,7 +28,6 @@ import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockCom
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -42,9 +40,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
 	public static final int slotOutput = 2;
-
-	public static final IBlockState coilState = GTBlocks.casingFusion.getDefaultState();
-
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.fusion");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusioncomputer.png");
 
@@ -139,10 +134,8 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		 */
 		addRecipe(new IRecipeInput[] { input("dustTungsten", 1),
 				input("dustLithium", 1) }, totalEu(16775168), GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1));
-
 		addRecipe(new IRecipeInput[] { input("dustTungsten", 1),
 				input(GTMaterialGen.getFluid(GTMaterial.Beryllium, 1)) }, totalEu(16775168), GTMaterialGen.getDust(GTMaterial.Platinum, 1));
-
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
 				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
@@ -154,7 +147,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
 		}
@@ -175,34 +167,28 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	@Override
 	public boolean checkStructure() {
 		int3 dir = new int3(getPos(), getFacing());
-
 		if (!(isMachineCasing(dir.left(1)) && isMachineCasing(dir.left(1)) && isMachineCasing(dir.right(3))
 				&& isMachineCasing(dir.right(1)) && isMachineCasing(dir.up(1)))) {
 			return false;
 		}
-
 		for (int i = 0; i < 4; i++) {
 			if (!(isMachineCasing(dir.left(1)))) {
 				return false;
 			}
 		}
-
 		for (int i = 0; i < 4; i++) {
 			if (!(isMachineCasing(dir.back(1)))) {
 				return false;
 			}
 		}
-
 		if (!isMachineCasing(dir.down(1))) {
 			return false;
 		}
-
 		for (int i = 0; i < 4; i++) {
 			if (!(isMachineCasing(dir.forward(1)))) {
 				return false;
 			}
 		}
-
 		if (!isMachineCasing(dir.right(4))) {
 			return false;
 		}
@@ -235,7 +221,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 				return false;
 			}
 		}
-
 		// inner iridium casings
 		for (int i = 0; i < 3; i++) {
 			if (!(isInnerCasing(dir.forward(1)))) {
@@ -252,7 +237,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 				return false;
 			}
 		}
-
 		if (!isInnerCasing(dir.right(1))) {
 			return false;
 		}
@@ -262,7 +246,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		if (!isInnerCasing(dir.up(1).back(1).right(1))) {
 			return false;
 		}
-
 		for (int i = 0; i < 2; i++) {
 			if (!(isInnerCasing(dir.forward(1)))) {
 				return false;
@@ -278,24 +261,20 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 				return false;
 			}
 		}
-
 		if (!isInnerCasing(dir.right(1))) {
 			return false;
 		}
 		if (!isInnerCasing(dir.forward(1))) {
 			return false;
 		}
-
 		return true;
 	}
 
 	public boolean isMachineCasing(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Titanium, GTMaterialFlag.CASING).getDefaultState();
-
 	}
 
 	public boolean isInnerCasing(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Iridium, GTMaterialFlag.CASING).getDefaultState();
-
 	}
 }

@@ -176,7 +176,6 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 			return new float[] { 0.0F, 16 - this.getWidth(), this.getWidth(), 16 };
 		}
 		return new float[] { 0.0F, 16 - this.getHeight(), this.getWidth(), 16 };
-
 	}
 
 	@Override
@@ -205,5 +204,4 @@ public class GTBlockCustom extends Block implements ITexturedBlock, ILocaleBlock
 	public EnumPushReaction getMobilityFlag(IBlockState state) {
 		return EnumPushReaction.DESTROY;
 	}
-
 }

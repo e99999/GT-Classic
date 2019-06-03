@@ -31,11 +31,9 @@ public class GTTileSluice extends GTTileFacing
 	@NetworkField(index = 8)
 	float recipeOperation = 200.0F;
 	boolean processing = false;
-
 	protected InventoryHandler handler = new InventoryHandler(this);
 	public NonNullList<ItemStack> inventory;
 	public int slotCount;
-
 	public int[] slotOutputs = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	public int slotInput = 0;
 
@@ -121,18 +119,15 @@ public class GTTileSluice extends GTTileFacing
 	@Override
 	public List<ItemStack> getDrops() {
 		List<ItemStack> list = new ArrayList<ItemStack>(this.inventory.size());
-
 		for (int i = 0; i < this.inventory.size(); ++i) {
 			ItemStack stack = (ItemStack) this.inventory.get(i);
 			if (!stack.isEmpty()) {
 				list.add(stack);
 			}
 		}
-
 		InventoryHandler ihandler = this.getHandler();
 		if (ihandler != null) {
 			IHasInventory inv = ihandler.getUpgradeSlots();
-
 			for (int i = 0; i < inv.getSlotCount(); ++i) {
 				ItemStack result = inv.getStackInSlot(i);
 				if (!result.isEmpty()) {
@@ -140,8 +135,6 @@ public class GTTileSluice extends GTTileFacing
 				}
 			}
 		}
-
 		return list;
 	}
-
 }

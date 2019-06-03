@@ -49,5 +49,4 @@ public class GTBlockDuctTape extends GTBlockTileCustom implements GTItemBlockInt
 	public int quantityDropped(IBlockState state, int fortune, Random random) {
 		return 0;
 	}
-
 }

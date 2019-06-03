@@ -205,5 +205,4 @@ public class GTToolElectricWrench extends ItemToolWrench implements IDamagelessE
 	public GTMaterial getMaterial() {
 		return this.material;
 	}
-
 }

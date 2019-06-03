@@ -10,6 +10,5 @@ public class GTColorBlock implements IBlockColor {
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
 		return ((GTColorBlockInterface) state.getBlock()).getColor(state.getBlock(), tintIndex).getRGB();
-
 	}
 }

@@ -12,17 +12,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerLargeChest extends ContainerTileComponent<GTTileLargeChest> {
+
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/largechest.png");
 
 	public GTContainerLargeChest(InventoryPlayer player, GTTileLargeChest tile) {
 		super(tile);
-
 		for (int y = 0; y < 6; ++y) {
 			for (int x = 0; x < 9; ++x) {
 				this.addSlotToContainer(new SlotBase(tile, x + y * 9, 8 + x * 18, 18 + y * 18));
 			}
 		}
-
 		this.addPlayerInventory(player, 0, 56);
 	}
 
@@ -46,5 +45,4 @@ public class GTContainerLargeChest extends ContainerTileComponent<GTTileLargeChe
 	public int guiInventorySize() {
 		return 54;
 	}
-
 }

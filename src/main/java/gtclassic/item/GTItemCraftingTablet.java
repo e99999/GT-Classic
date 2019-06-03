@@ -43,7 +43,6 @@ public class GTItemCraftingTablet extends ItemIC2 implements IHandHeldInventory 
 		if (IC2.platform.isSimulating()) {
 			IC2.platform.launchGui(playerIn, this.getInventory(playerIn, handIn, playerIn.getHeldItem(handIn)), handIn);
 		}
-
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
 
@@ -85,5 +84,4 @@ public class GTItemCraftingTablet extends ItemIC2 implements IHandHeldInventory 
 		}
 		StackUtil.getOrCreateNbtData(stack).setInteger("GuiID", id);
 	}
-
 }

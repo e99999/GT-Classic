@@ -44,5 +44,4 @@ public abstract class GTTileMultiBasePassive extends GTTileBaseMachinePassive {
 		int3 dir = new int3(getPos(), getFacing());
 		return world.getTileEntity(dir.right(2).asBlockPos());
 	}
-
 }

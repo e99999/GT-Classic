@@ -12,8 +12,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GTContainerBloomery extends ContainerTileComponent<GTTileMultiBloomery> {
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/bloomery.png");
 
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/bloomery.png");
 	public static Box2D machineProgressBoxRight = new Box2D(79, 15, 18, 18);
 	public static Vec2i machineProgressPosRight = new Vec2i(176, 0);
 
@@ -38,5 +38,4 @@ public class GTContainerBloomery extends ContainerTileComponent<GTTileMultiBloom
 	public int guiInventorySize() {
 		return 1;
 	}
-
 }

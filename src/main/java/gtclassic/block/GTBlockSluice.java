@@ -48,5 +48,4 @@ public class GTBlockSluice extends GTBlockFacing {
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new GTTileSluice(getAllowedRotations());
 	}
-
 }

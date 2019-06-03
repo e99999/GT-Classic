@@ -58,7 +58,6 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".nomobs"));
 		tooltip.add(TextFormatting.ITALIC + I18n.format("Blast Resistance (" + this.blockResistance + ")"));
-
 	}
 
 	@Override
@@ -141,5 +140,4 @@ public class GTBlockTileStorage extends GTBlockMultiID implements GTColorBlockIn
 	public GTMaterial getMaterial() {
 		return this.material;
 	}
-
 }

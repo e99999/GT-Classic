@@ -68,5 +68,4 @@ public abstract class GTTileBaseMachinePassive extends GTTileBaseMachine {
 	public boolean provideEnergy() {
 		return false;
 	}
-
 }

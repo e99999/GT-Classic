@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements IStaticTexturedItem {
+
 	public enum GTItemHeatStorageTypes {
 		SINGLE(34),
 		TRIPLE(35),
@@ -58,7 +59,6 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	 * GTItems.heatStorageTriple) { return 30000; } if (this ==
 	 * GTItems.heatStorageSix) { return 60000; } else { return 0; } }
 	 */
-
 	@Override
 	public List<ReactorComponentStat> getExtraStats(ItemStack stack) {
 		return null;
@@ -117,5 +117,4 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	public int getTextureEntry(int arg0) {
 		return 0;
 	}
-
 }

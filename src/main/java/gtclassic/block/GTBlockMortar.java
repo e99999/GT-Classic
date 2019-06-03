@@ -41,7 +41,6 @@ public class GTBlockMortar extends GTBlockTileCustom {
 	@Override
 	public boolean onBlockActivated(World w, BlockPos p, IBlockState state, EntityPlayer e, EnumHand h,
 			EnumFacing facing, float hitX, float hitY, float hitZ) {
-
 		// Special cases
 		addDrops(w, p, e, h, "ingotRefinedIron", GTMaterialGen.getSmallDust(GTMaterial.Iron, 4));
 		addDrops(w, p, e, h, "ingotWroughtIron", GTMaterialGen.getSmallDust(GTMaterial.Iron, 4));
@@ -53,22 +52,17 @@ public class GTBlockMortar extends GTBlockTileCustom {
 		addDrops(w, p, e, h, GTMaterialGen.get(Items.CLAY_BALL), GTMaterialGen.getSmallDust(GTMaterial.Clay, 1));
 		addDrops(w, p, e, h, GTMaterialGen.get(Blocks.CLAY), GTMaterialGen.getSmallDust(GTMaterial.Clay, 4));
 		addDrops(w, p, e, h, GTMaterialGen.getIc2(Ic2Items.stickyResin, 1), GTMaterialGen.getSmallDust(GTMaterial.DirtyResin, 6));
-
 		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.hasFlag(GTMaterialFlag.SMALLDUST)) {
-
 				// Ores to dust
 				addDrops(w, p, e, h, "ore" + mat.getDisplayName(), GTMaterialGen.getSmallDust(mat, 6));
 				addDrops(w, p, e, h, "crushedPurified" + mat.getDisplayName(), GTMaterialGen.getSmallDust(mat, 5));
-
 				// Ingots to small dusts
 				if (GTMaterial.isLowHeat(mat)) {
 					addDrops(w, p, e, h, "ingot" + mat.getDisplayName(), GTMaterialGen.getSmallDust(mat, 4));
 				}
-
 			}
 		}
-
 		return true;
 	}
 
@@ -78,13 +72,11 @@ public class GTBlockMortar extends GTBlockTileCustom {
 		} else {
 			return "null";
 		}
-
 	}
 
 	public boolean addDrops(World worldIn, BlockPos pos, EntityPlayer playerIn, EnumHand hand, String input,
 			ItemStack... outputs) {
 		ItemStack handstack = playerIn.getHeldItemMainhand();
-
 		if (getOreName(handstack).equals(input)) {
 			playerIn.getHeldItem(hand).shrink(1);
 			for (ItemStack stack : outputs) {
@@ -100,7 +92,6 @@ public class GTBlockMortar extends GTBlockTileCustom {
 	public boolean addDrops(World worldIn, BlockPos pos, EntityPlayer playerIn, EnumHand hand, ItemStack input,
 			ItemStack... outputs) {
 		ItemStack handstack = playerIn.getHeldItemMainhand();
-
 		if (ItemStack.areItemsEqual(handstack, input)) {
 			playerIn.getHeldItem(hand).shrink(1);
 			for (ItemStack stack : outputs) {
@@ -110,5 +101,4 @@ public class GTBlockMortar extends GTBlockTileCustom {
 		}
 		return true;
 	}
-
 }

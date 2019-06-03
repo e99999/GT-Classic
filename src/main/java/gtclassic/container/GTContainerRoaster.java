@@ -23,22 +23,17 @@ public class GTContainerRoaster extends ContainerTileComponent<GTTileRoaster> {
 
 	public GTContainerRoaster(InventoryPlayer player, GTTileRoaster tile) {
 		super(tile);
-
 		this.addSlotToContainer(new SlotCustom(tile, 0, 35, 25, null));
 		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, null));
-
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 2; ++x) {
 				this.addSlotToContainer(new SlotOutput(player.player, tile, 2 + x + y * 2, 107 + x * 18, 17 + y * 18));
 			}
 		}
-
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 6, 8, 62));
-
 		for (int i = 0; i < 2; ++i) {
 			this.addSlotToContainer(new GTSlotUpgrade(tile, 7 + i, 80 + (i * 18), 62));
 		}
-
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
 	}
@@ -63,5 +58,4 @@ public class GTContainerRoaster extends ContainerTileComponent<GTTileRoaster> {
 	public boolean canInteractWith(EntityPlayer playerIn) {
 		return this.getGuiHolder().canInteractWith(playerIn);
 	}
-
 }

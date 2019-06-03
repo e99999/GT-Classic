@@ -68,5 +68,4 @@ public class GTToolWrench extends ItemToolWrench implements GTColorItemInterface
 	public boolean isWrench(ItemStack var1) {
 		return true;
 	}
-
 }

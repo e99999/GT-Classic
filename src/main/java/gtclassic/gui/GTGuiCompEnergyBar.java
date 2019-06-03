@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTGuiCompEnergyBar extends GuiComponent {
+
 	IEUStorage storage;
 	Vec2i texPos;
 
@@ -38,18 +39,15 @@ public class GTGuiCompEnergyBar extends GuiComponent {
 			if (per > 1.0F) {
 				per = 1.0F;
 			}
-
 			Box2D box = this.getPosition();
 			int maxX = box.getLenght();
 			int lvl = (int) (per * (float) maxX);
 			if (lvl <= 0) {
 				return;
 			}
-
 			gui.drawTexturedModalRect(x + box.getX(), y
 					+ box.getY(), this.texPos.getX(), this.texPos.getY(), lvl, box.getHeight());
 		}
-
 	}
 
 	@Override
@@ -59,6 +57,5 @@ public class GTGuiCompEnergyBar extends GuiComponent {
 			tooltips.add(Ic2InfoLang.euStorage.getLocalizedFormatted(new Object[] { this.storage.getStoredEU(),
 					this.storage.getMaxEU() }));
 		}
-
 	}
 }

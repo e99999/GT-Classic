@@ -19,57 +19,40 @@ public class GTRecipeShapeless {
 	static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 
 	public static void recipeShapeless1() {
-
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.magnifyingGlass), new Object[] { "paneGlass",
 				"stickIron" });
-
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.match, 8), new Object[] { "dustPhosphorus",
 				"craftingToolKnife", "stickWood" });
-
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.plasticFletching, 4), new Object[] { "craftingToolKnife",
 				"platePlastic" });
-
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.casingPlastic4x, 4), new Object[] {
 				GTBlocks.casingPlastic1x, GTBlocks.casingPlastic1x, GTBlocks.casingPlastic1x,
 				GTBlocks.casingPlastic1x });
-
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.casingPlastic16x, 4), new Object[] {
 				GTBlocks.casingPlastic4x, GTBlocks.casingPlastic4x, GTBlocks.casingPlastic4x,
 				GTBlocks.casingPlastic4x });
-
 		// Duct Tape
-
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tape, 1), new Object[] {
 				GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64),
 				GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64) });
-
 		// Dust Recipes
-
 		recipes.addShapelessRecipe(GTMaterialGen.getIc2(Ic2Items.bronzeDust, 1), new Object[] { "dustSmallCopper",
 				"dustSmallCopper", "dustSmallCopper", "dustSmallTin" });
-
 		// In world process, recipe equivalents
-
 		if (!GTConfig.harderPlates && !GTConfig.harderRods && IC2.getRefinedIron().equals("ingotRefinedIron")) {
 			recipes.addShapelessRecipe(GTMaterialGen.getCasing(GTMaterial.RefinedIron, 1), new Object[] {
 					"craftingToolFile", Ic2Items.machine.copy() });
 		}
-
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.sandSlag), new Object[] { "sand", "dustSlag", "dustSlag",
 				"dustSlag" });
-
 		// random stuff
 		recipes.addShapelessRecipe(GTMaterialGen.get(Items.IRON_INGOT), new Object[] { "ingotRefinedIron", "dustAsh" });
-
 		recipes.addShapelessRecipe(GTMaterialGen.getIc2(Ic2Items.fertilizer, 1), new Object[] { "dustSulfur", "dustAsh",
 				"dustCalcite" });
-
 		recipes.addShapelessRecipe(GTMaterialGen.getIc2(Ic2Items.fertilizer, 2), new Object[] { "dustSulfur",
 				"dustDarkAshes", "dustCalcite" });
-
 		recipes.addShapelessRecipe(GTMaterialGen.getIc2(Ic2Items.constructionFoam, 3), new Object[] { "dustClay",
 				GTValues.water, "dustAsh", "dustCoal" });
-
 		String g = "gravel";
 		ItemStack s = GTMaterialGen.get(GTBlocks.sandSlag);
 		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 0), new Object[] { "dyeWhite", s, s, s, s,
@@ -104,7 +87,5 @@ public class GTRecipeShapeless {
 				g, g, g, g });
 		recipes.addShapelessRecipe(new ItemStack(Blocks.CONCRETE_POWDER, 16, 15), new Object[] { "dyeBlack", s, s, s, s,
 				g, g, g, g });
-
 	}
-
 }

@@ -1,7 +1,6 @@
 package gtclassic.material;
 
 public enum GTMaterialFlag {
-
 	SMALLDUST("_dustsmall", 1, false),
 	DUST("_dust", 0, false),
 	GEM("_gem", 2, false),
@@ -40,12 +39,10 @@ public enum GTMaterialFlag {
 
 	public String getSuffix() {
 		return suffix;
-
 	}
 
 	public int getTextureID() {
 		return id;
-
 	}
 
 	public boolean isLayered() {

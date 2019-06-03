@@ -49,7 +49,6 @@ public class GTItemMatch extends ItemFlintAndSteel implements IStaticTexturedIte
 			EnumFacing facing, float hitX, float hitY, float hitZ) {
 		pos = pos.offset(facing);
 		ItemStack itemstack = player.getHeldItem(hand);
-
 		if (!player.canPlayerEdit(pos, facing, itemstack)) {
 			return EnumActionResult.FAIL;
 		} else {
@@ -58,14 +57,11 @@ public class GTItemMatch extends ItemFlintAndSteel implements IStaticTexturedIte
 						* 0.4F + 0.8F);
 				worldIn.setBlockState(pos, Blocks.FIRE.getDefaultState(), 11);
 			}
-
 			if (player instanceof EntityPlayerMP) {
 				CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) player, pos, itemstack);
 			}
-
 			itemstack.shrink(1);
 			return EnumActionResult.SUCCESS;
 		}
 	}
-
 }

@@ -189,24 +189,19 @@ public class GTItemFluidTube extends Item
 		if (fluidStack == null) {
 			return ActionResult.newResult(EnumActionResult.PASS, itemstack);
 		}
-
 		// clicked on a block?
 		RayTraceResult mop = this.rayTrace(world, player, false);
-
 		ActionResult<ItemStack> ret = ForgeEventFactory.onBucketUse(player, world, itemstack, mop);
 		if (ret != null)
 			return ret;
-
 		if (mop == null || mop.typeOfHit != RayTraceResult.Type.BLOCK) {
 			return ActionResult.newResult(EnumActionResult.PASS, itemstack);
 		}
-
 		BlockPos clickPos = mop.getBlockPos();
 		// can we place liquid there?
 		if (world.isBlockModifiable(player, clickPos)) {
 			// the block adjacent to the side we clicked on
 			BlockPos targetPos = clickPos.offset(mop.sideHit);
-
 			// can the player place there?
 			if (player.canPlayerEdit(targetPos, mop.sideHit, itemstack)) {
 				// try placing liquid
@@ -214,10 +209,8 @@ public class GTItemFluidTube extends Item
 				if (result.isSuccess() && !player.capabilities.isCreativeMode) {
 					// success!
 					player.addStat(StatList.getObjectUseStats(this));
-
 					itemstack.shrink(1);
 					ItemStack emptyStack = new ItemStack(GTItems.testTube);
-
 					// check whether we replace the item or add the empty one to the inventory
 					if (itemstack.isEmpty()) {
 						return ActionResult.newResult(EnumActionResult.SUCCESS, emptyStack);
@@ -229,9 +222,7 @@ public class GTItemFluidTube extends Item
 				}
 			}
 		}
-
 		// couldn't place liquid there2
 		return ActionResult.newResult(EnumActionResult.FAIL, itemstack);
 	}
-
 }

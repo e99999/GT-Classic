@@ -47,7 +47,6 @@ public class GTTileLargeChest extends TileEntityMachine implements IHasGui {
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-
 		for (int i = 0; i < 54; i++) {
 			handler.registerDefaultSlotAccess(AccessRule.Both, i);
 			handler.registerDefaultSlotsForSide(RotationList.ALL, i);
@@ -75,5 +74,4 @@ public class GTTileLargeChest extends TileEntityMachine implements IHasGui {
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
-
 }

@@ -47,7 +47,6 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-
 	}
 
 	public float getHeight() {
@@ -108,7 +107,6 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 			return new float[] { 0.0F, 16 - this.getWidth(), this.getWidth(), 16 };
 		}
 		return new float[] { 0.0F, 16 - this.getHeight(), this.getWidth(), 16 };
-
 	}
 
 	@Override
@@ -185,5 +183,4 @@ public class GTBlockTileCustom extends GTBlockMultiID implements IBlockTextureMo
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-
 }

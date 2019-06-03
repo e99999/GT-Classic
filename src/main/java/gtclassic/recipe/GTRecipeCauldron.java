@@ -19,9 +19,7 @@ public class GTRecipeCauldron {
 	 * Yes I know you're thinking "an enum really!?" but until i decide how to
 	 * handle these random list I need - some of them will be enums.
 	 */
-
 	public enum GTRecipeCauldronEnum {
-
 		TANTALITE(GTMaterial.Tantalite, GTMaterial.Niobium, GTMaterial.Tantalum),
 		SPHALERITE(GTMaterial.Sphalerite, GTMaterial.Zinc, GTMaterial.Germanium),
 		CINNABAR(GTMaterial.Cinnabar, GTMaterial.Redstone),
@@ -58,7 +56,6 @@ public class GTRecipeCauldron {
 		public GTMaterial[] getOutputs() {
 			return this.outputs;
 		}
-
 	}
 
 	/**
@@ -111,5 +108,4 @@ public class GTRecipeCauldron {
 	public static void addFakeCauldronRecipe(List<IRecipeInput> input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 0);
 	}
-
 }

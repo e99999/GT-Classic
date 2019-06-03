@@ -102,5 +102,4 @@ public class GTOreFalling extends BlockFalling implements ITexturedBlock, ILocal
 	public GTOreFlag getOreFlag() {
 		return this.flag;
 	}
-
 }

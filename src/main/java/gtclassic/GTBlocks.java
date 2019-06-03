@@ -76,7 +76,6 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
-
 	public static final GTBlockBloom bloomIron = registerBlock(new GTBlockBloom(GTMaterial.RefinedIron, 3)),
 			bloomBronze = registerBlock(new GTBlockBloom(GTMaterial.Bronze, 4)),
 			bloomRedAlloy = registerBlock(new GTBlockBloom(GTMaterial.RedAlloy, 1)),
@@ -85,15 +84,11 @@ public class GTBlocks {
 			bloomElectrum = registerBlock(new GTBlockBloom(GTMaterial.Electrum, 2)),
 			bloomConstantan = registerBlock(new GTBlockBloom(GTMaterial.Constantan, 2)),
 			bloomBismuthBronze = registerBlock(new GTBlockBloom(GTMaterial.BismuthBronze, 4));
-
 	public static final GTBlockStone stoneMagnesia = registerBlock(new GTBlockStone("Magnesia", 16, 20.0F, 2));
-
 	public static final GTBlockFalling sandSlag = registerBlock(new GTBlockFalling("Slag", 17)),
 			sandSlagrete = registerBlock(new GTBlockFalling("Slagcrete", 18)),
 			sandCharcoalAsh = registerBlock(new GTBlockFalling("Charcoal", 20));
-
 	public static final GTBlockGlass glassSlag = registerBlock(new GTBlockGlass("Slag", 19));
-
 	public static final GTBlockCasing casingSuperConductor = registerBlock(new GTBlockCasing("Superconductor", 0)),
 			casingFusion = registerBlock(new GTBlockCasing("Fusion", 1)),
 			casingFission = registerBlock(new GTBlockCasing("Fission", 2)),
@@ -101,10 +96,8 @@ public class GTBlocks {
 			casingPlastic4x = registerBlock(new GTBlockCasing("Plastic4", 4)),
 			casingPlastic16x = registerBlock(new GTBlockCasing("Plastic16", 5)),
 			casingLightning = registerBlock(new GTBlockCasing("Lightning", 8));
-
 	public static final GTBlockSluice tileSluice = registerBlock(new GTBlockSluice());
 	public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new GTBlockSluiceBoxExt());
-
 	public static final GTBlockTileBasic tileHeating = registerBlock(new GTBlockTileBasic("machine_heatingelement")),
 			tileBloomery = registerBlock(new GTBlockTileBasic("machine_bloomery", 5)),
 			tileCharcoalPit = registerBlock(new GTBlockTileBasic("machine_charcoalpit", 4)),
@@ -135,17 +128,13 @@ public class GTBlocks {
 			tileDigitalTransformer = registerBlock(new GTBlockTileBasic("machine_digitaltransformer_luv")),
 			tileCableEnergium = registerBlock(new GTBlockTileBasic("cable_energium_luv", 1)),
 			tileCableLapotron = registerBlock(new GTBlockTileBasic("cable_lapotron_zpm"));
-
 	public static final GTBlockDrum drum = registerBlock(new GTBlockDrum(GTMaterial.StainlessSteel));
-
 	public static final GTBlockCustom driedResin = registerBlock(new GTBlockCustom("Resin", 0, 12, 1)),
 			driedTailings = registerBlock(new GTBlockCustom("Tailings", 21, 16, 2)),
 			driedBrine = registerBlock(new GTBlockCustom("Brine", 22, 16, 2)),
 			driedLithium = registerBlock(new GTBlockCustom("Lithium", 23, 16, 2));
-
 	public static final GTBlockMortar mortar = registerBlock(new GTBlockMortar());
 	public static final GTBlockDuctTape tape = registerBlock(new GTBlockDuctTape("block_ducttape", 10, 4, false));
-
 	public static final GTBlockTileCustom solarPanel = registerBlock(new GTBlockTileCustom("solar_panel", 16, 2, false)),
 			coolantHeliumSmall = registerBlock(new GTBlockTileCustom("coolant_helium_small", 5, 13, false)),
 			coolantHeliumMed = registerBlock(new GTBlockTileCustom("coolant_helium_med", 13, 5, false)),
@@ -156,7 +145,6 @@ public class GTBlocks {
 			rodPlutoniumSmall = registerBlock(new GTBlockTileCustom("rod_plutonium_small", 3, 10, true)),
 			rodPlutoniumMed = registerBlock(new GTBlockTileCustom("rod_plutonium_med", 4, 10, true)),
 			rodPlutoniumLarge = registerBlock(new GTBlockTileCustom("rod_plutonium_large", 5, 10, true));
-
 	public static final GTBlockBattery batteryLithiumSmall = registerBlock(new GTBlockBattery("battery_lithium_small", 6, 11, false, 100000, 128, 1)),
 			batteryLithiumMed = registerBlock(new GTBlockBattery("battery_lithium_med", 8, 11, false, 200000, 256, 2)),
 			batteryLithiumLarge = registerBlock(new GTBlockBattery("battery_lithium_large", 10, 11, false, 400000, 512, 3)),
@@ -170,11 +158,9 @@ public class GTBlocks {
 			batteryLapotronMed = registerBlock(new GTBlockBattery("battery_lapotron_med", 10, 10, true, 100000000, 8192, 5)),
 			batteryLapotronLarge = registerBlock(new GTBlockBattery("battery_lapotron_large", 12, 12, true, 1000000000, 16384, 6)),
 			batteryLapotronHuge = registerBlock(new GTBlockBattery("battery_lapotron_huge", 14, 14, true, Integer.MAX_VALUE, 32768, 7));
-
 	public static final GTFluidBlockDryable fluidTailings = registerBlock(new GTFluidBlockDryable(GTMaterial.BauxiteTailings, GTBlocks.driedTailings)),
 			fluidBrine = registerBlock(new GTFluidBlockDryable(GTMaterial.Brine, GTBlocks.driedBrine)),
 			fluidLithium = registerBlock(new GTFluidBlockDryable(GTMaterial.LithiumCarbonate, GTBlocks.driedLithium));
-
 	protected static final String[] textureTileBasic = { "machine_heatingelement", "machine_bloomery",
 			"machine_charcoalpit", "machine_blastfurnace_lv", "machine_leadchamber_lv", "machine_bath",
 			"machine_chemicalreactor_hv", "machine_refractory_hv", "machine_roaster_lv", "machine_constructor_mv",
@@ -185,7 +171,6 @@ public class GTBlocks {
 			"machine_lightningrod_iv", "machine_quantumenergystorage_ev", "machine_basicenergystorage_ev",
 			"machine_digitaltransformer_luv", "cable_energium_luv", "cable_lapotron_zpm", "tile_digitalchest",
 			"tile_smallchest", "tile_largechest", "tile_bookshelf", "tile_workbench", "tile_drum" };
-
 	protected static final String[] textureTileCustom = { "block_mortar", "block_ducttape", "solar_panel",
 			"coolant_helium_small", "coolant_helium_med", "coolant_helium_large", "rod_thorium_small",
 			"rod_thorium_med", "rod_thorium_large", "rod_plutonium_small", "rod_plutonium_med", "rod_plutonium_large",
@@ -198,10 +183,8 @@ public class GTBlocks {
 		for (Block block : GTMaterialGen.blockMap.values()) {
 			createBlock(block);
 		}
-
 		registerStorageBlocks();
 		registerOreBlocks();
-
 		for (Block block : toRegister) {
 			createBlock(block);
 		}

@@ -15,7 +15,6 @@ public class GTLootHandler {
 
 	@SubscribeEvent
 	public void onLootTableLoad(LootTableLoadEvent event) {
-
 		// ItemStack array of items to add to the loot table
 		ItemStack[] lootitems = { GTMaterialGen.getGem(GTMaterial.Ruby, 1),
 				GTMaterialGen.getGem(GTMaterial.Sapphire, 1), GTMaterialGen.getGem(GTMaterial.Olivine, 1),
@@ -26,7 +25,6 @@ public class GTLootHandler {
 				GTMaterialGen.getIngot(GTMaterial.Lead, 1), GTMaterialGen.getIngot(GTMaterial.Brass, 1),
 				GTMaterialGen.getIngot(GTMaterial.Nickel, 1), GTMaterialGen.getIngot(GTMaterial.Bismuth, 1),
 				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 1), GTMaterialGen.getIngot(GTMaterial.RedAlloy, 1) };
-
 		// ResourceLocation array of valid loot tables to iterate
 		ResourceLocation[] loottable = { LootTableList.CHESTS_ABANDONED_MINESHAFT, LootTableList.CHESTS_DESERT_PYRAMID,
 				LootTableList.CHESTS_END_CITY_TREASURE, LootTableList.CHESTS_IGLOO_CHEST,
@@ -34,7 +32,6 @@ public class GTLootHandler {
 				LootTableList.CHESTS_SIMPLE_DUNGEON, LootTableList.CHESTS_STRONGHOLD_CORRIDOR,
 				LootTableList.CHESTS_STRONGHOLD_CROSSING, LootTableList.CHESTS_STRONGHOLD_LIBRARY,
 				LootTableList.CHESTS_VILLAGE_BLACKSMITH, LootTableList.CHESTS_WOODLAND_MANSION };
-
 		/*
 		 * Iterates both the stack array and resource location array to create a 2d
 		 * table
@@ -54,5 +51,4 @@ public class GTLootHandler {
 	public static String getStackResourceName(ItemStack item) {
 		return item.getItem().getRegistryName().toString();
 	}
-
 }

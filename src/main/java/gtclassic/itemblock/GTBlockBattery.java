@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class GTBlockBattery extends GTBlockTileCustom implements GTItemBlockInterface {
+
 	public int max;
 	public int trans;
 	public int tier;

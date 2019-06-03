@@ -109,5 +109,4 @@ public class GTBlockGlass extends BlockGlass implements ITexturedBlock, ILocaleB
 	public List<IBlockState> getValidStates() {
 		return this.blockState.getValidStates();
 	}
-
 }

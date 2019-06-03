@@ -12,6 +12,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GTItemContainerDestructoPack extends ContainerItemComponent<GTItemInventoryDestructoPack> {
+
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/destructopack.png");
 
 	public GTItemContainerDestructoPack(GTItemInventoryDestructoPack inv, int id, InventoryPlayer player) {

@@ -10,44 +10,35 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTIcons {
+
 	@SideOnly(Side.CLIENT)
 	public static void loadSprites() {
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_ores", GTMod.MODID
 				+ ":textures/sprites/sprites_ores.png", new Sprites.SpriteInfo(16, 16)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_blocks", GTMod.MODID
 				+ ":textures/sprites/sprites_blocks.png", new Sprites.SpriteInfo(16, 16)));
-
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_items", GTMod.MODID
 				+ ":textures/sprites/sprites_items.png", new Sprites.SpriteInfo(16, 16)));
-
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_materials", GTMod.MODID
 				+ ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 16)));
-
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_casings", GTMod.MODID
 				+ ":textures/sprites/sprites_casings.png", new Sprites.SpriteInfo(16, 16)));
-
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_builder", GTMod.MODID
 				+ ":textures/sprites/builder.png", new Sprites.SpriteInfo(1, 12)));
-
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_sluicebox", GTMod.MODID
 				+ ":textures/sprites/machine_sluicebox.png", new Sprites.SpriteInfo(1, 1)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_sluicebox_particle", GTMod.MODID
 				+ ":textures/particles/machine_sluicebox.png", new Sprites.SpriteInfo(1, 1)));
-
 		collectBasicTileSprites();
 		collectCustomTileSprites();
-
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_builder", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_ores", 0, 0, 16, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 5));
-
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 4));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_casings", 0, 0, 16, 4));
-
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox", 0, 0, 1, 1));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox_particle", 0, 0, 1, 1));
-
 		addCustomTexture("machine_bath", 0, 8, location("bath_back"));
 		addCustomTexture("machine_bath", 0, 9, location("bath_front"));
 		addCustomTexture("machine_bloomery", 0, 9, location("bloomery_front"));

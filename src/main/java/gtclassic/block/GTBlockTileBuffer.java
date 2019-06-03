@@ -91,20 +91,15 @@ public class GTBlockTileBuffer extends GTBlockMultiID implements GTColorBlockInt
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-
 		Item activeItem = playerIn.getHeldItemMainhand().getItem();
 		ItemStack activeStack = playerIn.getHeldItemMainhand();
-
 		if (activeItem instanceof GTMaterialItem && activeStack.getCount() >= 6) {
-
 			if (((GTMaterialItem) activeItem).getFlag() == GTMaterialFlag.PLATE) {
 				playerIn.getHeldItem(hand).shrink(6);
 				this.material = ((GTMaterialItem) activeItem).getMaterial();
 				return true;
 			}
-
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
-
 }

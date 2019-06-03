@@ -49,7 +49,6 @@ public class GTJeiInteractionCategory implements IRecipeCategory<GTJeiInteractio
 	@Override
 	public void setRecipe(IRecipeLayout layout, GTJeiInteractionWrapper wrapper, IIngredients ingredients) {
 		IGuiItemStackGroup itemGroup = layout.getItemStacks();
-
 		int index = 0;
 		int actualIndex = 0;
 		for (IRecipeInput list : wrapper.getMultiRecipe().getInputs()) {

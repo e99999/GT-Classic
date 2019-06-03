@@ -132,7 +132,6 @@ public class GTMaterialItemHot extends Item implements IStaticTexturedItem, GTCo
 			}
 			return EnumActionResult.FAIL;
 		}
-
 		if (state.getBlock() == Blocks.CAULDRON && state.getValue(level).intValue() == 3) {
 			player.getHeldItem(hand).shrink(1);
 			Blocks.CAULDRON.setWaterLevel(world, pos, state, 0);
@@ -143,7 +142,6 @@ public class GTMaterialItemHot extends Item implements IStaticTexturedItem, GTCo
 			double d2 = (double) pos.getZ() + world.rand.nextDouble();
 			world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, d0, d1 + 1.0, d2, 0.0D, 0.0D, 0.0D);
 			return EnumActionResult.SUCCESS;
-
 		}
 		return EnumActionResult.PASS;
 	}

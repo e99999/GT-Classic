@@ -46,7 +46,6 @@ public class GTTileRoaster extends GTTileBaseMachine {
 
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.roaster");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/roaster.png");
-
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
 	public static final int slotOutput0 = 2;
@@ -54,7 +53,6 @@ public class GTTileRoaster extends GTTileBaseMachine {
 	public static final int slotOutput2 = 4;
 	public static final int slotOutput3 = 5;
 	public static final int slotFuel = 6;
-
 	public static final int[] slotOutputs = { slotOutput0, slotOutput1, slotOutput2, slotOutput3 };
 	public static final int[] slotInputs = { slotInput0, slotInput1 };
 
@@ -147,21 +145,13 @@ public class GTTileRoaster extends GTTileBaseMachine {
 	}
 
 	public static void init() {
-
 		addRecipe("dustSulfur", 1, 2, GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 3));
-
 		addRecipe("dustTetrahedrite", 2, 1, GTMaterialGen.getIc2(Ic2Items.copperDust, 1), GTMaterialGen.getSmallDust(GTMaterial.Antimony, 1), GTMaterialGen.getSmallDust(GTMaterial.Iron, 1), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-
 		addRecipe("dustSphalerite", 2, 1, GTMaterialGen.getDust(GTMaterial.Zinc, 1), GTMaterialGen.getSmallDust(GTMaterial.Germanium, 2), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-
 		addRecipe("dustGalena", 2, 1, GTMaterialGen.getDust(GTMaterial.Lead, 1), GTMaterialGen.getIc2(Ic2Items.silverDust, 1), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-
 		addRecipe("dustSheldonite", 2, 1, GTMaterialGen.getDust(GTMaterial.Platinum, 1), GTMaterialGen.getSmallDust(GTMaterial.Nickel, 1), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-
 		addRecipe("dustMolybdenite", 2, 1, GTMaterialGen.getDust(GTMaterial.Molybdenum, 1), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-
 		addRecipe("dustChromite", 3, 1, GTMaterialGen.getDust(GTMaterial.Chrome, 1), GTMaterialGen.getSmallDust(GTMaterial.Iron, 1), GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1));
-
 		addRecipe("dustSaltpeter", 12, 4, GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1), GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 3));
 	}
 
@@ -177,7 +167,6 @@ public class GTTileRoaster extends GTTileBaseMachine {
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
 		}
@@ -198,5 +187,4 @@ public class GTTileRoaster extends GTTileBaseMachine {
 	public static IRecipeModifier[] euCost(int amount) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((amount / 16) - 200) };
 	}
-
 }

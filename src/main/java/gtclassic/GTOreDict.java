@@ -22,7 +22,6 @@ import net.minecraftforge.oredict.OreDictionary;
 public class GTOreDict {
 
 	public static void init() {
-
 		for (Item item : Item.REGISTRY) {
 			if (item instanceof GTToolFile) {
 				registerFile(item);
@@ -40,7 +39,6 @@ public class GTOreDict {
 				registerKnife(item);
 			}
 		}
-
 		for (Block block : Block.REGISTRY) {
 			if (block instanceof GTBlockTileStorage) {
 				GTBlockTileStorage tile = (GTBlockTileStorage) block;
@@ -63,11 +61,9 @@ public class GTOreDict {
 				OreDictionary.registerOre(name, new ItemStack(block));
 			}
 		}
-
 		// Just doing these to make iteration & unification easier in some cases
 		OreDictionary.registerOre("dustGunpowder", Items.GUNPOWDER);
 		OreDictionary.registerOre("bookshelf", Blocks.BOOKSHELF);
-
 		// Register some missing Ic2c stuff cause Speiger is a bad doge
 		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
 		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
@@ -76,7 +72,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("logRubber", Ic2Items.rubberWood);
 		OreDictionary.registerOre("ingotWroughtIron", Ic2Items.refinedIronIngot);
 		OreDictionary.registerOre("dustRareEarth", Ic2Items.rareEarthDust);
-
 		// Registering Aluminium for idiots
 		GTMaterial aluminium = GTMaterial.Aluminium;
 		OreDictionary.registerOre("casingMachineAluminum", (GTMaterialGen.getCasing(aluminium, 1)));
@@ -88,7 +83,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("plateAluminum", (GTMaterialGen.getPlate(aluminium, 1)));
 		OreDictionary.registerOre("stickAluminum", (GTMaterialGen.getStick(aluminium, 1)));
 		OreDictionary.registerOre("rodAluminum", (GTMaterialGen.getStick(aluminium, 1)));
-
 		// Stuff to fit with how other mods have done it
 		OreDictionary.registerOre("dustAsh", (GTMaterialGen.getDust(GTMaterial.Ashes, 1)));
 		OreDictionary.registerOre("dustEnderEye", (GTMaterialGen.getDust(GTMaterial.EnderEye, 1)));
@@ -102,7 +96,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("pcbBasic", (GTMaterialGen.get(GTItems.resinPCB, 1)));
 		OreDictionary.registerOre("pcbAny", (GTMaterialGen.get(GTItems.plasticPCB, 1)));
 		OreDictionary.registerOre("pcbAdvanced", (GTMaterialGen.get(GTItems.plasticPCB, 1)));
-
 	}
 
 	public static void registerFile(Item tool) {

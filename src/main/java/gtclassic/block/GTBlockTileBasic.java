@@ -189,7 +189,6 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		} else {
 			return new TileEntityBlock();
 		}
-
 	}
 
 	@Override
@@ -255,19 +254,16 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, 1.0F);
 			}
 		}
-
 		super.onEntityWalk(worldIn, pos, entityIn);
 	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-
 		Item item = playerIn.getHeldItemMainhand().getItem();
 		TileEntity tile = worldIn.getTileEntity(pos);
 		Item flint = Items.FLINT_AND_STEEL;
 		Item match = GTItems.match;
-
 		if (tile instanceof GTTileMultiBloomery && !((GTTileMultiBloomery) tile).isActive) {
 			if (item.equals(flint)) {
 				playerIn.getHeldItem(hand).damageItem(1, playerIn);
@@ -278,7 +274,6 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				return ((GTTileMultiBloomery) tile).canWork();
 			}
 		}
-
 		if (tile instanceof GTTileMultiCharcoalPit && !((GTTileMultiCharcoalPit) tile).isActive) {
 			if (item.equals(flint)) {
 				playerIn.getHeldItem(hand).damageItem(1, playerIn);
@@ -334,31 +329,24 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 					double d1 = (double) ((float) pos.getX() + random.nextFloat());
 					double d2 = (double) ((float) pos.getY() + random.nextFloat());
 					double d3 = (double) ((float) pos.getZ() + random.nextFloat());
-
 					if (i == 0 && !worldIn.getBlockState(pos.up()).isOpaqueCube()) {
 						d2 = (double) pos.getY() + 0.0625D + 1.0D;
 					}
-
 					if (i == 1 && !worldIn.getBlockState(pos.down()).isOpaqueCube()) {
 						d2 = (double) pos.getY() - 0.0625D;
 					}
-
 					if (i == 2 && !worldIn.getBlockState(pos.south()).isOpaqueCube()) {
 						d3 = (double) pos.getZ() + 0.0625D + 1.0D;
 					}
-
 					if (i == 3 && !worldIn.getBlockState(pos.north()).isOpaqueCube()) {
 						d3 = (double) pos.getZ() - 0.0625D;
 					}
-
 					if (i == 4 && !worldIn.getBlockState(pos.east()).isOpaqueCube()) {
 						d1 = (double) pos.getX() + 0.0625D + 1.0D;
 					}
-
 					if (i == 5 && !worldIn.getBlockState(pos.west()).isOpaqueCube()) {
 						d1 = (double) pos.getX() - 0.0625D;
 					}
-
 					if (d1 < (double) pos.getX() || d1 > (double) (pos.getX() + 1) || d2 < 0.0D
 							|| d2 > (double) (pos.getY() + 1) || d3 < (double) pos.getZ()
 							|| d3 > (double) (pos.getZ() + 1)) {
@@ -395,12 +383,10 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
 				double d2 = (double) pos.getZ() + 0.5D;
 				double d4 = rand.nextDouble() * 0.6D - 0.3D;
-
 				if (rand.nextDouble() < 0.1D) {
 					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ()
 							+ 0.5D, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 				}
-
 				switch (enumfacing) {
 				case WEST:
 					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
@@ -432,7 +418,6 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				double d1 = (double) pos.getY() + rand.nextDouble() * 6.0D / 16.0D;
 				double d2 = (double) pos.getZ() + 0.5D;
 				double d4 = rand.nextDouble() * 0.6D - 0.3D;
-
 				switch (enumfacing) {
 				case WEST:
 					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
@@ -464,12 +449,10 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				double d1 = (double) (pos.getY() + 0.3D) + rand.nextDouble() * 8.0D / 16.0D;
 				double d2 = (double) pos.getZ() + 0.5D;
 				double d4 = rand.nextDouble() * 0.6D - 0.3D;
-
 				if (rand.nextDouble() < 0.1D) {
 					worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ()
 							+ 0.5D, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 				}
-
 				switch (enumfacing) {
 				case WEST:
 					worldIn.spawnParticle(EnumParticleTypes.LAVA, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
@@ -497,7 +480,6 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 				double d1 = (double) pos.getY() + rand.nextDouble() * 12.0D / 16.0D;
 				double d2 = (double) pos.getZ() + 0.5D;
 				double d4 = rand.nextDouble() * 0.6D - 0.3D;
-
 				switch (enumfacing) {
 				case WEST:
 					worldIn.spawnParticle(EnumParticleTypes.SNOW_SHOVEL, d0 - 0.52D, d1, d2 + d4, 0.0D, 0.0D, 0.0D);

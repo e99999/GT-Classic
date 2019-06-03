@@ -9,13 +9,11 @@ public class GTConfig {
 
 	private static final String CATEGORY_GENERAL = "general";
 	private static final String CATEGORY_GENERATION = "generation";
-
 	// general
 	public static boolean harderPlates = false;
 	public static boolean harderRods = false;
 	public static boolean harderGears = false;
 	public static boolean harderRefractory = true;
-
 	// generation
 	public static boolean genOverworldOre = true;
 	public static boolean genNetherOre = true;
@@ -52,5 +50,4 @@ public class GTConfig {
 		genEndOre = cfg.getBoolean("genEndOre", CATEGORY_GENERATION, genEndOre, "Generate ores in the End");
 		genBedrockOre = cfg.getBoolean("genBedrockOre", CATEGORY_GENERATION, genBedrockOre, "Generate ores in bedrock");
 	}
-
 }

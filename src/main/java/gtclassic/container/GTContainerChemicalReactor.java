@@ -19,25 +19,20 @@ public class GTContainerChemicalReactor extends ContainerTileComponent<GTTileMul
 
 	public GTContainerChemicalReactor(InventoryPlayer player, GTTileMultiChemicalReactor tile) {
 		super(tile);
-
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 3; ++x) {
 				this.addSlotToContainer(new SlotCustom(tile, x + y * 3, 17 + x * 18, 17 + y * 18, null));
 			}
 		}
-
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 3; ++x) {
 				this.addSlotToContainer(new SlotOutput(player.player, tile, 6 + x + y * 3, 107 + x * 18, 17 + y * 18));
 			}
 		}
-
 		for (int i = 0; i < 2; ++i) {
 			this.addSlotToContainer(new GTSlotUpgrade(tile, 12 + i, 80 + (i * 18), 64));
 		}
-
 		this.addPlayerInventory(player);
-
 		this.addComponent(new MachineProgressComp(tile, GTContainerChemicalReactor.machineProgressBox, GTContainerChemicalReactor.machineProgressPos));
 	}
 
@@ -55,5 +50,4 @@ public class GTContainerChemicalReactor extends ContainerTileComponent<GTTileMul
 	public boolean canInteractWith(EntityPlayer playerIn) {
 		return this.getGuiHolder().canInteractWith(playerIn);
 	}
-
 }

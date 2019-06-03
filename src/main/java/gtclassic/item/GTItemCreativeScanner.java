@@ -124,10 +124,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	@SuppressWarnings("deprecation")
 	public static EnumActionResult scanBlock(EntityPlayer player, World world, BlockPos pos, EnumFacing side,
 			float hitX, float hitY, float hitZ, EnumHand hand) {
-
 		TileEntity tileEntity = world.getTileEntity(pos);
 		IBlockState state = world.getBlockState(pos);
-
 		if (player.isSneaking() || !IC2.platform.isSimulating()) {
 			return EnumActionResult.PASS;
 		} else {
@@ -176,7 +174,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 						+ te7.getStatResistance() + " Nutrients=" + te7.getTerrainNutrients() + " Water="
 						+ te7.getTerrainHumidity() + " GrowthPoints=" + te7.getGrowthPoints());
 			}
-
 			if (tileEntity instanceof GTTileBaseMachine) {
 				GTTileBaseMachine machine = (GTTileBaseMachine) tileEntity;
 				IC2.platform.messagePlayer(player, "Progress: "
@@ -186,12 +183,10 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 					IC2.platform.messagePlayer(player, "Max Input: " + machine.defaultMaxInput + " EU");
 				}
 			}
-
 			if (tileEntity instanceof GTTileMultiBaseMachine) {
 				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
 			}
-
 			if (tileEntity instanceof GTTileMultiLightningRod) {
 				GTTileMultiLightningRod rod = (GTTileMultiLightningRod) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + rod.checkStructure());
@@ -204,7 +199,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "1 out of " + rod.chance
 						+ " chance to strike based on fence height");
 			}
-
 			if (tileEntity instanceof GTTileMultiBloomery) {
 				GTTileMultiBloomery bloom = (GTTileMultiBloomery) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
@@ -212,26 +206,22 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 						+ (Math.round((bloom.getProgress() / bloom.getMaxProgress()) * 100)) + "%");
 				IC2.platform.messagePlayer(player, "Recipe State: " + bloom.getActiveRecipe());
 			}
-
 			if (tileEntity instanceof GTTileMultiCharcoalPit) {
 				GTTileMultiCharcoalPit pit = (GTTileMultiCharcoalPit) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + pit.checkStructure());
 				IC2.platform.messagePlayer(player, "Progress: "
 						+ (Math.round((pit.getProgress() / pit.getMaxProgress()) * 100)) + "%");
 			}
-
 			if (tileEntity instanceof GTTileDigitalChest) {
 				GTTileDigitalChest chest = (GTTileDigitalChest) tileEntity;
 				IC2.platform.messagePlayer(player, "Internal Count: " + chest.getQuantumCount());
 			}
-
 			if (tileEntity instanceof TileEntityElectricBlock) {
 				TileEntityElectricBlock eu = (TileEntityElectricBlock) tileEntity;
 				IC2.platform.messagePlayer(player, "Tier: " + eu.getTier());
 				IC2.platform.messagePlayer(player, "Capacity: " + eu.getMaxEU() + " EU");
 				IC2.platform.messagePlayer(player, "Output: " + eu.getOutput() + " EU");
 			}
-
 			if (tileEntity instanceof TileEntityTransformer) {
 				TileEntityTransformer transformer = (TileEntityTransformer) tileEntity;
 				IC2.platform.messagePlayer(player, "Low: " + transformer.lowOutput + " EU");
@@ -241,12 +231,10 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "High Tier: "
 						+ EnergyNet.instance.getTierFromPower((double) transformer.highOutput));
 			}
-
 			if (tileEntity instanceof GTTileBlockCustom) {
 				GTTileBlockCustom blockcustom = (GTTileBlockCustom) tileEntity;
 				IC2.platform.messagePlayer(player, "Stack Stored: " + blockcustom.getItem().getUnlocalizedName());
 			}
-
 			if (tileEntity instanceof GTTileDrum) {
 				GTTileDrum tank = (GTTileDrum) tileEntity;
 				if (!tank.isEmpty()) {
@@ -256,11 +244,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				}
 				IC2.platform.messagePlayer(player, "Auto Output: " + tank.getExport());
 			}
-
 			return EnumActionResult.SUCCESS;
-
 		}
-
 	}
-
 }

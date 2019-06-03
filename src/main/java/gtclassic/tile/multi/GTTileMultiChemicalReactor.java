@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTItems;
@@ -30,22 +31,23 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Sounds;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 
 public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3, 4, 5 };
 	protected static final int[] slotOutputs = { 6, 7, 8, 9, 10, 11 };
-
 	IFilter filter = new MachineFilter(this);
-
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.chemicalreactor");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/chemicalreactor.png");
+	public static final IBlockState casingMachine = GTMaterialGen.getBlock(GTMaterial.StainlessSteel, GTMaterialFlag.CASING).getDefaultState();
 
 	public GTTileMultiChemicalReactor() {
 		super(12, 2, 256, 512);
@@ -136,46 +138,34 @@ public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 	}
 
 	public static void init() {
-
 		addRecipe(new IRecipeInput[] { input("dustBauxite", 1),
 				input(GTMaterialGen.getFluid(GTMaterial.SodiumHydroxide, 3)),
 				input(GTMaterialGen.getWater(1)) }, totalEu(16000), GTMaterialGen.getFluid(GTMaterial.BauxiteTailings, 1), GTMaterialGen.get(GTItems.testTube, 3));
-
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getWater(1)),
 				input(GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1)),
 				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1)) }, totalEu(16000), GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3));
-
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 2)),
 				input(GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1)),
 				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 2)) }, totalEu(16000), GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 3), GTMaterialGen.get(GTItems.testTube, 2));
-
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getWater(1)),
 				input(GTMaterialGen.getFluid(GTMaterial.Chlorine, 1)) }, totalEu(8000), GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 2));
-
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getWater(1)),
 				input(GTMaterialGen.getFluid(GTMaterial.Nitrogen, 1)),
 				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1)) }, totalEu(8000), GTMaterialGen.getFluid(GTMaterial.NitricAcid, 3));
-
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getFluid(GTMaterial.NitricAcid, 2)),
 				input(GTMaterialGen.getFluid(GTMaterial.Hydrochloricacid, 1)) }, totalEu(8000), GTMaterialGen.getFluid(GTMaterial.Aquaregia, 3));
-
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getFluid(GTMaterial.Sodium, 1)),
 				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1)),
 				input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1)) }, totalEu(12000), GTMaterialGen.getFluid(GTMaterial.SodiumHydroxide, 3));
-
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getFluid(GTMaterial.Sodium, 2)),
 				input(GTMaterialGen.getFluid(GTMaterial.CarbonDioxide, 1)),
 				input(GTMaterialGen.getFluid(GTMaterial.Oxygen, 2)) }, totalEu(12000), GTMaterialGen.getFluid(GTMaterial.SodiumCarbonate, 4), GTMaterialGen.get(GTItems.testTube, 1));
-
 		addRecipe(new IRecipeInput[] { input("dustBauxiteTailings", 12),
 				input(GTMaterialGen.getFluid(GTMaterial.SulfuricAcid, 8)) }, totalEu(150000), GTMaterialGen.getDust(GTMaterial.Titanium, 1), GTMaterialGen.getDust(GTMaterial.Alumina, 8), GTMaterialGen.getDust(GTMaterial.Silicon, 2), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 5), GTMaterialGen.getFluid(GTMaterial.Oxygen, 3));
-
 		addRecipe(new IRecipeInput[] { input("dustTungsticAcid", 4),
 				input(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 6)) }, totalEu(96000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getWater(4));
-
 		addRecipe(new IRecipeInput[] { input("oreSheldonite", 1),
 				input(GTMaterialGen.getFluid(GTMaterial.Aquaregia, 9)) }, totalEu(24000), GTMaterialGen.getSmallDust(GTMaterial.PlatinumGroupSludge, 1), GTMaterialGen.getFluid(GTMaterial.Chloroplatinicacid, 4), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1), GTMaterialGen.getWater(3));
-
 		addRecipe(new IRecipeInput[] { input("oreIridium", 1),
 				input(GTMaterialGen.getFluid(GTMaterial.Aquaregia, 9)) }, totalEu(24000), GTMaterialGen.getSmallDust(GTMaterial.PlatinumGroupSludge, 1), GTMaterialGen.getFluid(GTMaterial.Chloroplatinicacid, 4), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1), GTMaterialGen.getWater(4));
 	}
@@ -187,7 +177,6 @@ public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
 		}
@@ -204,26 +193,102 @@ public class GTTileMultiChemicalReactor extends GTTileMultiBaseMachine {
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 256);
 	}
+	
+	@Override
+	public Map<BlockPos, IBlockState> provideStructure() {
+		Map<BlockPos, IBlockState> states = super.provideStructure();
+		int3 dir = new int3(getPos(), getFacing());
+		
+		for (int i = 0; i < 2; i++) {
+			states.put(dir.back(1).asBlockPos(), casingMachine);
+		}
+		
+		states.put(dir.left(1).asBlockPos(), casingMachine);
+		
+		for (int i = 0; i < 2; i++) {
+			states.put(dir.forward(1).asBlockPos(), casingMachine);
+		}
+		
+		states.put(dir.right(2).asBlockPos(), casingMachine);
+		
+		for (int i = 0; i < 2; i++) {
+			states.put(dir.back(1).asBlockPos(), casingMachine);
+		}
+		
+		states.put(dir.down(1).asBlockPos(), casingMachine);
+		
+		for (int i = 0; i < 2; i++) {
+			states.put(dir.forward(1).asBlockPos(), casingMachine);
+		}
+		
+		states.put(dir.left(1).asBlockPos(), casingMachine);
+		
+		for (int i = 0; i < 2; i++) {
+			states.put(dir.back(1).asBlockPos(), casingMachine);
+		}
+		
+		states.put(dir.left(1).asBlockPos(), casingMachine);
+		
+		for (int i = 0; i < 2; i++) {
+			states.put(dir.forward(1).asBlockPos(), casingMachine);
+		}
+		
+		return states;
+	}
 
 	@Override
 	public boolean checkStructure() {
 		int3 dir = new int3(getPos(), getFacing());
-		// layer 0
-		if (!(isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
-				&& isMachineCasing(dir.right(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.right(1))
-				&& isMachineCasing(dir.forward(1)) && isMachineCasing(dir.back(2)) &&
-				// bottom layer
-				isMachineCasing(dir.down(1)) && isMachineCasing(dir.forward(1)) && isMachineCasing(dir.forward(1))
-				&& isMachineCasing(dir.left(1)) && isMachineCasing(dir.back(1)) && isMachineCasing(dir.back(1))
-				&& isMachineCasing(dir.left(1)) && isMachineCasing(dir.forward(1))
-				&& isMachineCasing(dir.forward(1)))) {
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+		if (!(isMachineCasing(dir.left(1)))) {
 			return false;
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+		if (!(isMachineCasing(dir.right(2)))) {
+			return false;
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+		//lower level
+		if (!(isMachineCasing(dir.down(1)))) {
+			return false;
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
+		}
+		if (!(isMachineCasing(dir.left(1)))) {
+			return false;
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.back(1)))) {
+				return false;
+			}
+		}
+		if (!(isMachineCasing(dir.left(1)))) {
+			return false;
+		}
+		for (int i = 0; i < 2; i++) {
+			if (!(isMachineCasing(dir.forward(1)))) {
+				return false;
+			}
 		}
 		return true;
 	}
 
 	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.StainlessSteel, GTMaterialFlag.CASING).getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == casingMachine;
 	}
-
 }

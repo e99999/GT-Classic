@@ -37,9 +37,7 @@ public class GTTileMultiLeadChamber extends GTTileMultiBasePassive {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3, 4, 5 };
 	protected static final int[] slotOutputs = { 6, 7, 8, 9, 10, 11 };
-
 	IFilter filter = new MachineFilter(this);
-
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.leadchamber");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/bath.png");
 
@@ -131,10 +129,8 @@ public class GTTileMultiLeadChamber extends GTTileMultiBasePassive {
 	}
 
 	public static void init() {
-
 		addRecipe(new IRecipeInput[] { input("dustGold", 1),
 				input("dustCoal", 1) }, totalTicks(2000), GTMaterialGen.getFluid(GTMaterial.SulfurDioxide, 1));
-
 	}
 
 	public static IRecipeModifier[] totalTicks(int total) {
@@ -144,7 +140,6 @@ public class GTTileMultiLeadChamber extends GTTileMultiBasePassive {
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
 		}
@@ -182,5 +177,4 @@ public class GTTileMultiLeadChamber extends GTTileMultiBasePassive {
 	public boolean isMachineCasing(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Lead, GTMaterialFlag.CASING).getDefaultState();
 	}
-
 }

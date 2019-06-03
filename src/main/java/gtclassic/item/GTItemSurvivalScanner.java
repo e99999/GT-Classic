@@ -73,5 +73,4 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 	public int getTextureEntry(int var1) {
 		return 0;
 	}
-
 }

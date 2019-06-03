@@ -54,7 +54,6 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 		if (IC2.platform.isSimulating()) {
 			IC2.platform.launchGui(playerIn, this.getInventory(playerIn, handIn, playerIn.getHeldItem(handIn)), handIn);
 		}
-
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
 
@@ -85,5 +84,4 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 	public int getTextureEntry(int var1) {
 		return 0;
 	}
-
 }

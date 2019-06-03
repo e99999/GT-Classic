@@ -117,7 +117,6 @@ public class GTToolChainsaw extends ItemElectricTool
 			if (target.isShearable(stack, entity.world, pos)
 					&& ElectricItem.manager.canUse(stack, this.getEnergyCost(stack) * 2)) {
 				List<ItemStack> drops = target.onSheared(stack, entity.world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack));
-
 				EntityItem ent;
 				for (Iterator<ItemStack> var8 = drops.iterator(); var8.hasNext(); ent.motionZ += (entity.world.rand.nextFloat()
 						- entity.world.rand.nextFloat()) * 0.1F) {
@@ -126,10 +125,8 @@ public class GTToolChainsaw extends ItemElectricTool
 					ent.motionY += entity.world.rand.nextFloat() * 0.05F;
 					ent.motionX += (entity.world.rand.nextFloat() - entity.world.rand.nextFloat()) * 0.1F;
 				}
-
 				ElectricItem.manager.use(stack, this.getEnergyCost(stack) * 2, playerIn);
 			}
-
 			return true;
 		}
 	}
@@ -154,7 +151,6 @@ public class GTToolChainsaw extends ItemElectricTool
 						&& ElectricItem.manager.canUse(itemstack, this.getEnergyCost(itemstack))) {
 					List<ItemStack> drops = target.onSheared(itemstack, player.world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, itemstack));
 					Iterator<ItemStack> var7 = drops.iterator();
-
 					while (var7.hasNext()) {
 						ItemStack stack = (ItemStack) var7.next();
 						float f = 0.7F;
@@ -175,7 +171,6 @@ public class GTToolChainsaw extends ItemElectricTool
 					}
 				}
 			}
-
 			return false;
 		} else {
 			return false;
@@ -250,17 +245,14 @@ public class GTToolChainsaw extends ItemElectricTool
 			} else {
 				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1.0F);
 			}
-
 			if (target.getHealth() <= 0.0F) {
 				if (target instanceof EntityCreeper) {
 					IC2.achievements.issueStat((EntityPlayer) attacker, "killCreeperChainsaw");
 				}
-
 				if (attacker instanceof EntityPlayer) {
 					IC2.achievements.issueStat((EntityPlayer) attacker, "chainsawKills");
 				}
 			}
-
 			return false;
 		}
 	}

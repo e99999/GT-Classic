@@ -38,5 +38,4 @@ public class GTContainerDigitalChest extends ContainerTileComponent<GTTileDigita
 	public int guiInventorySize() {
 		return 3;
 	}
-
 }

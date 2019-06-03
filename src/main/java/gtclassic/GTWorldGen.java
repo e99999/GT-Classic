@@ -27,47 +27,35 @@ public class GTWorldGen implements IWorldGenerator {
 	 * (World) The random object. (Random) The chunk�s x position. (int) The
 	 * chunk�s z position. (int)
 	 */
-
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
-
 		// Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128,
 		// chunkZ * 16 + 16));
-
 		switch (world.provider.getDimensionType()) {
-
 		default:
 			for (Block block : Block.REGISTRY) {
 				if (block instanceof GTOreStone) {
-
 					GTOreStone ore = (GTOreStone) block;
 					GTOreRegistry entry = ore.getOreEntry();
 					GTOreFlag flag = ore.getOreFlag();
-
 					if (flag.equals(GTOreFlag.STONE) && GTConfig.genOverworldOre) {
 						runGenerator(ore.getDefaultState(), entry.getSize(), entry.getChance(), entry.getMinY(), entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
-
 					if (flag.equals(GTOreFlag.NETHER) && GTConfig.genNetherOre) {
 						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), 0, 128, BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
-
 					if (flag.equals(GTOreFlag.END) && GTConfig.genEndOre) {
 						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), 8, 70, BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
 					if (flag.equals(GTOreFlag.BEDROCK) && GTConfig.genBedrockOre) {
 						runRareGenerator(ore.getDefaultState(), 32, 1, 0, 5, BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
-
 				}
-
 				if (block instanceof GTOreFalling) {
-
 					GTOreFalling ore = (GTOreFalling) block;
 					GTOreRegistry entry = ore.getOreEntry();
 					GTOreFlag flag = ore.getOreFlag();
-
 					if (flag.equals(GTOreFlag.SAND) && GTConfig.genOverworldOre) {
 						runGenerator(ore.getDefaultState(), clip16(entry.getSize()), entry.getChance(), entry.getMinY(), entry.getMaxY(), BlockMatcher.forBlock(flag.getTargetBlock()), world, random, chunkX, chunkZ);
 					}
@@ -84,14 +72,12 @@ public class GTWorldGen implements IWorldGenerator {
 			Predicate<IBlockState> blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
 			throw new IllegalArgumentException("Illegal Height Arguments for OreGenerator");
-
 		WorldGenMinable generator = new WorldGenMinable(blockToGen, blockAmount, blockToReplace);
 		int heightdiff = maxHeight - minHeight + 1;
 		for (int i = 0; i < chancesToSpawn; i++) {
 			int x = chunkX * 16 + rand.nextInt(16);
 			int y = minHeight + rand.nextInt(heightdiff);
 			int z = chunkZ * 16 + rand.nextInt(16);
-
 			generator.generate(world, rand, new BlockPos(x, y, z));
 			// GTMod.logger.info("GregtTech generated " +
 			// blockToGen.getBlock().getLocalizedName() + "at X:"+ x + " Y:"+y+" Z:"+z);
@@ -100,7 +86,6 @@ public class GTWorldGen implements IWorldGenerator {
 
 	private void runRareGenerator(IBlockState blockToGen, int blockAmount, int chancesToSpawn, int minHeight,
 			int maxHeight, Predicate<IBlockState> blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
-
 		WorldGenMinable generator = new WorldGenMinable(blockToGen, blockAmount, blockToReplace);
 		int heightdiff = maxHeight - minHeight + 1;
 		for (int i = 0; i < chancesToSpawn; i++) {
@@ -109,7 +94,6 @@ public class GTWorldGen implements IWorldGenerator {
 				int x = chunkX * 16 + rand.nextInt(16);
 				int y = minHeight + rand.nextInt(heightdiff);
 				int z = chunkZ * 16 + rand.nextInt(16);
-
 				generator.generate(world, rand, new BlockPos(x, y, z));
 			}
 		}
@@ -118,5 +102,4 @@ public class GTWorldGen implements IWorldGenerator {
 	public static int clip16(int i) {
 		return Math.min(i, 16);
 	}
-
 }

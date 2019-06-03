@@ -13,6 +13,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 public class GTFluid extends Fluid {
+
 	int mapColor;
 	protected static float overlayAlpha = 0.2F;
 	protected static SoundEvent emptySound = SoundEvents.ITEM_BUCKET_EMPTY;
@@ -99,5 +100,4 @@ public class GTFluid extends Fluid {
 			return false;
 		return block.getDefaultState().getMaterial() == getMaterial();
 	}
-
 }

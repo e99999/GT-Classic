@@ -25,7 +25,6 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 		this.production = 8096;
 		this.casingheight = 0;
 		this.chance = 262;
-
 	}
 
 	@Override

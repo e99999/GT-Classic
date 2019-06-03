@@ -33,7 +33,6 @@ public class GTRecipeIterators {
 		 * The statements below iterate through the material registry to create recipes
 		 * for the correct corresponding items and blocks.
 		 */
-
 		for (GTMaterial mat : GTMaterial.values()) {
 			createDustRecipe(mat);
 			createIngotRecipe(mat);
@@ -49,10 +48,8 @@ public class GTRecipeIterators {
 			createCasingRecipe(mat);
 			createCoilRecipe(mat);
 			createFoilRecipe(mat);
-
 			createSmelterRecipes(mat);
 		}
-
 	}
 
 	public static void createDustRecipe(GTMaterial mat) {
@@ -61,14 +58,12 @@ public class GTRecipeIterators {
 		if (mat.hasFlag(GTMaterialFlag.SMALLDUST)) {
 			// Regular dust to small dust,
 			recipes.addShapelessRecipe(GTMaterialGen.getSmallDust(mat, 4), new Object[] { dust });
-
 			if (mat.hasFlag(GTMaterialFlag.DUST)) {
 				// Small dust to regular dust
 				recipes.addShapelessRecipe(GTMaterialGen.getDust(mat, 1), new Object[] { smalldust, smalldust,
 						smalldust, smalldust });
 				TileEntityCompressor.addRecipe(smalldust, 4, GTMaterialGen.getDust(mat, 1), 0.0F);
 			}
-
 		}
 	}
 
@@ -76,13 +71,10 @@ public class GTRecipeIterators {
 		String dust = "dust" + mat.getDisplayName();
 		String nugget = "nugget" + mat.getDisplayName();
 		int k = mat.getTemp();
-
 		if (!mat.equals(GTMaterial.Plastic)) {
-
 			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
 				// Ingot crafting recipe
 				recipes.addRecipe(GTMaterialGen.getIngot(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
-
 				if (mat.hasFlag(GTMaterialFlag.DUST) || mat.equals(GTMaterial.AnnealedCopper)) {
 					if (k < 2000) {
 						GameRegistry.addSmelting(GTMaterialGen.getDust(mat, 1), (GTMaterialGen.getIngot(mat, 1)), 0.1F);
@@ -110,7 +102,6 @@ public class GTRecipeIterators {
 						GTRecipeCauldron.addFakeQuenchingRecipe(mat);
 					}
 				}
-
 			}
 		}
 	}
@@ -122,10 +113,8 @@ public class GTRecipeIterators {
 		if (mat.hasFlag(GTMaterialFlag.GEM)) {
 			// Dust to gem
 			TileEntityCompressor.addRecipe(dust, 1, GTMaterialGen.getGem(mat, 1), 0.0F);
-
 			// Inverse
 			TileEntityMacerator.addRecipe(gem, 1, GTMaterialGen.getDust(mat, 1), 0.0F);
-
 			if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
 				// Block and gem related logic
 				recipes.addShapelessRecipe(GTMaterialGen.getGem(mat, 9), new Object[] { block });
@@ -156,7 +145,6 @@ public class GTRecipeIterators {
 				recipes.addRecipe(GTMaterialGen.getPlate(mat, 1), new Object[] { "H", "X", 'H',
 						"craftingToolForgeHammer", 'X', ingot });
 			}
-
 			// If a dust is present create a maceration recipe
 			if (mat.hasFlag(GTMaterialFlag.DUST)) {
 				TileEntityMacerator.addRecipe(plate, 1, GTMaterialGen.getDust(mat, 1), 0.0F);
@@ -196,7 +184,6 @@ public class GTRecipeIterators {
 			} else {
 				recipes.addShapelessRecipe(GTMaterialGen.getStick(mat, 2), new Object[] { "craftingToolFile", ingot });
 			}
-
 			// If a dust is present create a maceration recipe
 			if (mat.hasFlag(GTMaterialFlag.DUST)) {
 				TileEntityMacerator.addRecipe(stick, 1, GTMaterialGen.getSmallDust(mat, 2), 0.0F);
@@ -225,18 +212,15 @@ public class GTRecipeIterators {
 		String ingot = "ingot" + mat.getDisplayName();
 		String block = "block" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
-
 			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
 				// Block crafting recipe
 				recipes.addRecipe(GTMaterialGen.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X',
 						ingot });
 				TileEntityCompressor.addRecipe(ingot, 9, GTMaterialGen.getMaterialBlock(mat, 1), 0.0F);
-
 				// Inverse
 				recipes.addShapelessRecipe(GTMaterialGen.getIngot(mat, 9), new Object[] { block });
 				TileEntityMacerator.addRecipe(block, 1, GTMaterialGen.getDust(mat, 9), 0.0F);
 			}
-
 		}
 	}
 
@@ -272,7 +256,6 @@ public class GTRecipeIterators {
 		String ingot = "ingot" + mat.getDisplayName();
 		String nugget = "nugget" + mat.getDisplayName();
 		if (GTMaterial.isLowHeat(mat) && !mat.equals(GTMaterial.RefinedIron) && !mat.hasFlag(GTMaterialFlag.GEM)) {
-
 			if (mat.hasFlag(GTMaterialFlag.PLATE)) {
 				if (!mat.equals(GTMaterial.Plastic)) {
 					GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldPlate), GTMaterialGen.getPlate(mat, 1));
@@ -285,18 +268,15 @@ public class GTRecipeIterators {
 				GTTileSmelter.addRecipe(nugget, 36, GTMaterialGen.get(GTItems.moldGear), GTMaterialGen.getGear(mat, 1));
 				GTTileSmelter.addRecipe(dust, 4, GTMaterialGen.get(GTItems.moldGear), GTMaterialGen.getGear(mat, 1));
 			}
-
 			if (mat.hasFlag(GTMaterialFlag.STICK)) {
 				GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldStick), GTMaterialGen.getStick(mat, 2));
 				GTTileSmelter.addRecipe(nugget, 9, GTMaterialGen.get(GTItems.moldStick), GTMaterialGen.getStick(mat, 2));
 				GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldStick), GTMaterialGen.getStick(mat, 2));
 			}
-
 			if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
 				GTTileSmelter.addRecipe(ingot, 9, GTMaterialGen.get(GTItems.moldBlock), GTMaterialGen.getMaterialBlock(mat, 1));
 				GTTileSmelter.addRecipe(dust, 9, GTMaterialGen.get(GTItems.moldBlock), GTMaterialGen.getMaterialBlock(mat, 1));
 			}
-
 			if (mat.hasFlag(GTMaterialFlag.NUGGET)) {
 				GTTileSmelter.addRecipe(ingot, 1, GTMaterialGen.get(GTItems.moldNugget), GTMaterialGen.getNugget(mat, 9));
 				GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldNugget), GTMaterialGen.getNugget(mat, 9));
@@ -306,9 +286,7 @@ public class GTRecipeIterators {
 					GTTileSmelter.addRecipe(dust, 1, GTMaterialGen.get(GTItems.moldIngot), GTMaterialGen.getIngot(mat, 1));
 				}
 			}
-
 		}
-
 	}
 
 	public static void recipeIterators2() {
@@ -316,11 +294,9 @@ public class GTRecipeIterators {
 		 * This is where I will store recipes that are part of the material registry but
 		 * are tied to other mods/vanilla so they cannot be created through iteration.
 		 */
-
 		final ItemStack dustGlowstone = new ItemStack(Items.GLOWSTONE_DUST);
 		final ItemStack dustGunpowder = new ItemStack(Items.GUNPOWDER);
 		final ItemStack dustRedstone = new ItemStack(Items.REDSTONE);
-
 		dustUtil(dustGlowstone, GTMaterial.Glowstone);
 		dustUtil(dustGunpowder, GTMaterial.Gunpowder);
 		dustUtil(Ic2Items.tinDust, GTMaterial.Tin);
@@ -335,12 +311,10 @@ public class GTRecipeIterators {
 		dustUtil(Ic2Items.netherrackDust, GTMaterial.Netherrack);
 		dustUtil(Ic2Items.ironDust, GTMaterial.Iron);
 		dustUtil(Ic2Items.charcoalDust, GTMaterial.Charcoal);
-
 		ingotUtil(Ic2Items.copperIngot, GTMaterial.Copper);
 		ingotUtil(Ic2Items.tinIngot, GTMaterial.Tin);
 		ingotUtil(Ic2Items.bronzeIngot, GTMaterial.Bronze);
 		ingotUtil(Ic2Items.silverIngot, GTMaterial.Silver);
-
 	}
 
 	public static void recipeIterators3() {

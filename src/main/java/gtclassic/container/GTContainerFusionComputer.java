@@ -21,7 +21,6 @@ public class GTContainerFusionComputer extends ContainerTileComponent<GTTileMult
 		this.addSlotToContainer(new SlotCustom(tile, 0, 46, 26, null));
 		this.addSlotToContainer(new SlotCustom(tile, 1, 46, 44, null));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 106, 35));
-
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerFusionComputer.machineProgressBox, GTContainerFusionComputer.machineProgressPos));
 	}
@@ -40,5 +39,4 @@ public class GTContainerFusionComputer extends ContainerTileComponent<GTTileMult
 	public boolean canInteractWith(EntityPlayer playerIn) {
 		return this.getGuiHolder().canInteractWith(playerIn);
 	}
-
 }

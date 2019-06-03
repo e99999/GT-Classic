@@ -22,21 +22,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTContainerQuantumEnergyStorage extends ContainerTileComponent<GTTileQuantumEnergyStorage> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/energystorage.png");
-
 	public static Box2D chargeProgressBox = new Box2D(8, 73, 116, 5); // where the background to cover is, and the size
 																		// xy
 	public static Vec2i chargeProgressPos = new Vec2i(0, 251); // where the overlay is located
 
 	public GTContainerQuantumEnergyStorage(InventoryPlayer player, GTTileQuantumEnergyStorage tile) {
-
 		super(tile);
 		this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50));
 		this.addSlotToContainer(new SlotCharge(tile, tile.tier, 0, 128, 14));
-
 		for (int i = 0; i < 4; ++i) {
 			this.addSlotToContainer(new SlotArmor(player, 3 - i, VALID_EQUIPMENT_SLOTS[i], 152, 5 + i * 18));
 		}
-
 		this.addComponent(new GTGuiCompEnergyStorage(tile));
 		this.addComponent(new GTGuiCompEnergyBar(tile, GTContainerQuantumEnergyStorage.chargeProgressBox, GTContainerQuantumEnergyStorage.chargeProgressPos));
 		this.addPlayerInventory(player);

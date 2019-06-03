@@ -31,7 +31,6 @@ public class GTTileSuperConductorLow extends TileEntityTransformer {
 	public void handleRedstone() {
 		// removing this from the base class
 	}
-
 	// @Override
 	// public NetworkField.BitLevel getOverride(int fieldID, String fieldName) {
 	// return BitLevel.Bit32;
@@ -41,7 +40,6 @@ public class GTTileSuperConductorLow extends TileEntityTransformer {
 	// public boolean hasOverride(int fieldID, String fieldName) {
 	// return fieldID == 3;
 	// }
-
 	@Override
 	public void update() {
 		this.setActive(this.getStoredEU() > 0);

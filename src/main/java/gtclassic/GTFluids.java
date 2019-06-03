@@ -18,7 +18,5 @@ public class GTFluids {
 				FluidRegistry.registerFluid(new GTFluid(mat, "fluid"));
 			}
 		}
-
 	}
-
 }

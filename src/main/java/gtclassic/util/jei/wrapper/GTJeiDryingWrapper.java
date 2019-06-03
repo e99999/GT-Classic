@@ -26,7 +26,6 @@ public class GTJeiDryingWrapper implements IRecipeWrapper {
 		for (IRecipeInput input : multiRecipe.getInputs()) {
 			inputs.addAll(input.getInputs());
 		}
-
 		ingredients.setInputs(ItemStack.class, inputs);
 		ingredients.setOutputs(ItemStack.class, multiRecipe.getOutputs().getAllOutputs());
 	}

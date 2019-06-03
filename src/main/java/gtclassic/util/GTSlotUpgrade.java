@@ -19,5 +19,4 @@ public class GTSlotUpgrade extends SlotUpgrade {
 			}
 		}
 	}
-
 }

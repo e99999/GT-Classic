@@ -15,9 +15,7 @@ public class GTToolMaterial {
 	 * vanilla and other mods using the tool classes and more control over tool
 	 * values. So quit bitchin.
 	 */
-
 	static GTMaterial m;
-
 	// TODO add flint tools
 	public static final ToolMaterial Flint = createToolMaterial(GTMaterial.Flint);
 	public static final ToolMaterial Bronze = createToolMaterial(GTMaterial.Bronze);
@@ -46,20 +44,16 @@ public class GTToolMaterial {
 	public static final ToolMaterial Cobalt = createToolMaterial(GTMaterial.Cobalt);
 	public static final ToolMaterial Ultimet = createToolMaterial(GTMaterial.Ultimet);
 	public static final ToolMaterial StainlessSteel = createToolMaterial(GTMaterial.StainlessSteel);
-
 	/*
 	 * This is the array that you can iterate to make new tools
 	 */
 	public static final ToolMaterial[] toolMaterial = { Flint, Bronze, Iron, Gold, Diamond, Tungsten, Invar, Silver,
 			Steel, Electrum, Constantan, Platinum, Iridium, Chrome, Brass, Plutonium, RefinedIron, Tungstensteel,
 			Titanium, Nickel, Nichrome, Osmium, Tantalum, BismuthBronze, Cobalt, Ultimet, StainlessSteel };
-
 	/*
 	 * This is map to allow access to a GTMaterial equivalent of the Tool Material
 	 */
-	public static final ImmutableMap<ToolMaterial, GTMaterial> MAT_REG = ImmutableMap.<ToolMaterial, GTMaterial>builder().put(Tungsten, GTMaterial.Tungsten).put(Invar, GTMaterial.Invar).put(Silver, GTMaterial.Silver).put(Steel, GTMaterial.Steel).put(Electrum, GTMaterial.Electrum).put(Constantan, GTMaterial.Constantan).put(Platinum, GTMaterial.Platinum).put(Iridium, GTMaterial.Iridium).put(Chrome, GTMaterial.Chrome).put(Brass, GTMaterial.Brass).put(Plutonium, GTMaterial.Plutonium).put(RefinedIron, GTMaterial.RefinedIron).put(Tungstensteel, GTMaterial.TungstenSteel).put(Titanium, GTMaterial.Titanium).put(Nickel, GTMaterial.Nickel).put(Nichrome, GTMaterial.Nichrome).put(Osmium, GTMaterial.Osmium).put(Tantalum, GTMaterial.Tantalum).put(Flint, GTMaterial.Flint).put(BismuthBronze, GTMaterial.BismuthBronze).put(Cobalt, GTMaterial.Cobalt).put(Ultimet, GTMaterial.Ultimet).put(StainlessSteel, GTMaterial.StainlessSteel)
-
-			.put(Bronze, GTMaterial.Bronze).put(Gold, GTMaterial.Gold).put(Iron, GTMaterial.Iron).put(Diamond, GTMaterial.Diamond).build();
+	public static final ImmutableMap<ToolMaterial, GTMaterial> MAT_REG = ImmutableMap.<ToolMaterial, GTMaterial>builder().put(Tungsten, GTMaterial.Tungsten).put(Invar, GTMaterial.Invar).put(Silver, GTMaterial.Silver).put(Steel, GTMaterial.Steel).put(Electrum, GTMaterial.Electrum).put(Constantan, GTMaterial.Constantan).put(Platinum, GTMaterial.Platinum).put(Iridium, GTMaterial.Iridium).put(Chrome, GTMaterial.Chrome).put(Brass, GTMaterial.Brass).put(Plutonium, GTMaterial.Plutonium).put(RefinedIron, GTMaterial.RefinedIron).put(Tungstensteel, GTMaterial.TungstenSteel).put(Titanium, GTMaterial.Titanium).put(Nickel, GTMaterial.Nickel).put(Nichrome, GTMaterial.Nichrome).put(Osmium, GTMaterial.Osmium).put(Tantalum, GTMaterial.Tantalum).put(Flint, GTMaterial.Flint).put(BismuthBronze, GTMaterial.BismuthBronze).put(Cobalt, GTMaterial.Cobalt).put(Ultimet, GTMaterial.Ultimet).put(StainlessSteel, GTMaterial.StainlessSteel).put(Bronze, GTMaterial.Bronze).put(Gold, GTMaterial.Gold).put(Iron, GTMaterial.Iron).put(Diamond, GTMaterial.Diamond).build();
 
 	public static GTMaterial getGTMaterial(ToolMaterial tmat) {
 		return MAT_REG.get(tmat);
@@ -99,5 +93,4 @@ public class GTToolMaterial {
 		// takes everything above and creates the tool material enum entry
 		return EnumHelper.addToolMaterial(n(mat), l(mat), d(mat), s(mat), a(mat), e(mat)).setRepairItem(GTMaterialGen.getIngot(mat, 1));
 	}
-
 }

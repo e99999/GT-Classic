@@ -18,7 +18,6 @@ public class GTMaterialGen {
 	public static LinkedHashMap<String, Block> blockMap = new LinkedHashMap<>();
 
 	public static void init() {
-
 		// Add material entries and flags to correct maps
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialBlockUtil(mat, GTMaterialFlag.BLOCK);
@@ -29,7 +28,6 @@ public class GTMaterialGen {
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialBlockUtil(mat, GTMaterialFlag.COIL);
 		}
-
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.PARTICLE);
 		}
@@ -66,12 +64,10 @@ public class GTMaterialGen {
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.WIRE);
 		}
-
 		// stuff that has a small amount of items
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.FOIL);
 		}
-
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.SMALLPLATE);
 		}
@@ -121,7 +117,6 @@ public class GTMaterialGen {
 	}
 
 	// Instances per flag, most of the mod will references these
-
 	public static ItemStack getMaterialBlock(GTMaterial mat, int count) {
 		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.BLOCK.getSuffix()), count, 0);
 	}
@@ -248,5 +243,4 @@ public class GTMaterialGen {
 	public static ItemStack get(Block block, int count) {
 		return new ItemStack(block, count);
 	}
-
 }

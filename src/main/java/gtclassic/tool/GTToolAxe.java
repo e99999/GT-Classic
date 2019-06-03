@@ -111,7 +111,6 @@ public class GTToolAxe extends ItemAxe
 		if (oldPos == pos) {
 			return;
 		}
-
 		IBlockState blockState = world.getBlockState(pos);
 		if (blockState.getBlockHardness(world, pos) == -1.0F) {
 			return;

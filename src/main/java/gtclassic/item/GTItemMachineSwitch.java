@@ -105,5 +105,4 @@ public class GTItemMachineSwitch extends Item implements IAdvancedTexturedItem, 
 		int damage = stack.getItemDamage();
 		return this.model[damage];
 	}
-
 }

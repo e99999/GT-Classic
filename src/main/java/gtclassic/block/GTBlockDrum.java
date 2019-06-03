@@ -142,5 +142,4 @@ public class GTBlockDrum extends GTBlockMultiID implements GTColorBlockInterface
 	public GTMaterial getMaterial() {
 		return this.material;
 	}
-
 }

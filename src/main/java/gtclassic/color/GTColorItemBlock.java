@@ -24,5 +24,4 @@ public class GTColorItemBlock extends GTItemBlockRare implements GTColorItemInte
 			return null;
 		}
 	}
-
 }

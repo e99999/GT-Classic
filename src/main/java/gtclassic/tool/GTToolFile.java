@@ -114,5 +114,4 @@ public class GTToolFile extends Item implements IStaticTexturedItem, GTColorItem
 		}
 		return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 	}
-
 }

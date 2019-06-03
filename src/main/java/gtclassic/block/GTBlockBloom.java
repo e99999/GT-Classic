@@ -148,13 +148,10 @@ public class GTBlockBloom extends Block implements ITexturedBlock, ILocaleBlock,
 	public ItemStack getOutput() {
 		if (this.mat.equals(GTMaterial.RefinedIron)) {
 			return GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, this.count);
-
 		}
 		if (this.mat.equals(GTMaterial.Bronze)) {
 			return GTMaterialGen.getIc2(Ic2Items.bronzeIngot, this.count);
 		}
 		return GTMaterialGen.getIngot(this.mat, this.count);
-
 	}
-
 }

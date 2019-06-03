@@ -53,9 +53,7 @@ public class GTItemBlockDuctTape extends GTItemBlockRare {
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand,
 			EnumFacing facing, float hitX, float hitY, float hitZ) {
-
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
-
 		if (player.isSneaking()) {
 			return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 		} else if (tileEntity instanceof IInsulationModifieableConductor) {
@@ -71,5 +69,4 @@ public class GTItemBlockDuctTape extends GTItemBlockRare {
 			return EnumActionResult.FAIL;
 		}
 	}
-
 }

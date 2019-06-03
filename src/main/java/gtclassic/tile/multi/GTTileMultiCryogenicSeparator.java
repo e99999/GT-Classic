@@ -41,9 +41,7 @@ public class GTTileMultiCryogenicSeparator extends GTTileMultiBaseMachine {
 
 	protected static final int[] slotInputs = { 0, 1 };
 	protected static final int[] slotOutputs = { 2, 3, 4, 5, 6, 7 };
-
 	IFilter filter = new MachineFilter(this);
-
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.cryogenicseparator");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/cryogenicseparator.png");
 
@@ -83,7 +81,7 @@ public class GTTileMultiCryogenicSeparator extends GTTileMultiBaseMachine {
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		return new LinkedHashSet<UpgradeType>(Arrays.asList(UpgradeType.values()));
+		return new LinkedHashSet<>(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
@@ -147,7 +145,6 @@ public class GTTileMultiCryogenicSeparator extends GTTileMultiBaseMachine {
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
 		}
@@ -183,9 +180,4 @@ public class GTTileMultiCryogenicSeparator extends GTTileMultiBaseMachine {
 	public boolean isMachineCasing(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Aluminium, GTMaterialFlag.CASING).getDefaultState();
 	}
-
-	public boolean isAir(int3 pos) {
-		return world.isAirBlock(pos.asBlockPos());
-	}
-
 }

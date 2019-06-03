@@ -27,7 +27,6 @@ public class GTItems {
 	}
 
 	static List<Item> toRegister = new ArrayList<>();
-
 	public static final GTItemComponent plasticFletching = createItem(new GTItemComponent("plastic_fletching", 15, 2, false)),
 			woodPlate = createItem(new GTItemComponent("wood_plate", 10, 0, false)),
 			magnesiaBrick = createItem(new GTItemComponent("magnesiacarbon_brick", 13, 2, false)),
@@ -41,7 +40,6 @@ public class GTItems {
 			motorMV = createItem(new GTItemComponent("motor_mv", 1, 3, false)),
 			motorHV = createItem(new GTItemComponent("motor_hv", 2, 3, false)),
 			partRobotArm = createItem(new GTItemComponent("part_robotarm", 3, 3, false)),
-
 			moldBlank = createItem(new GTItemComponent("mold_blank", 0, 2, false)),
 			moldBlock = createItem(new GTItemComponent("mold_block", 1, 2, true)),
 			moldIngot = createItem(new GTItemComponent("mold_ingot", 2, 2, true)),
@@ -52,9 +50,7 @@ public class GTItems {
 			moldTube = createItem(new GTItemComponent("mold_tube", 7, 2, true)),
 			moldGear = createItem(new GTItemComponent("mold_gear", 8, 2, true)),
 			moldBottle = createItem(new GTItemComponent("mold_bottle", 9, 2, true));
-
 	public static final GTItemMachineSwitch machineSwitch = createItem(new GTItemMachineSwitch());
-
 	public static final GTItemMatch match = createItem(new GTItemMatch());
 	public static final GTItemMagnifyingGlass magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
@@ -75,9 +71,7 @@ public class GTItems {
 		for (Item item : GTMaterialGen.itemMap.values()) {
 			IC2.getInstance().createItem(item);
 		}
-
 		GTToolGen.generateTools();
-
 		for (Item item : toRegister) {
 			IC2.getInstance().createItem(item);
 		}

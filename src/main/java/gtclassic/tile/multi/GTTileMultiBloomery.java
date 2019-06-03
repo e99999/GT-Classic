@@ -53,18 +53,14 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 
 	IBlockState brick = Blocks.BRICK_BLOCK.getDefaultState();
 	IBlockState fire = Blocks.FIRE.getDefaultState();
-
 	AxisAlignedBB recipeBB = null;
-
 	public static final BloomeryRecipeList RECIPE_LIST = new BloomeryRecipeList();
 	public static final GTMultiInputRecipeList JEI_RECIPE_LIST = new GTMultiInputRecipeList("gt.bloomery");
-
 	public static final IRecipeInput fuel = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("blockCoal"), new RecipeInputOreDict("blockCharcoal"),
 			new RecipeInputItemStack(new ItemStack(Items.COAL, 9)),
 			new RecipeInputItemStack(new ItemStack(Items.COAL, 9, 1)), new RecipeInputOreDict("dustCharcoal", 9),
 			new RecipeInputOreDict("dustCoal", 9), });
-
 	BloomeryRecipe activeRecipe = null;
 	@NetworkField(index = 7)
 	float progress = 0;
@@ -259,7 +255,6 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 				&& isBrick(dir.up(1)) && isBrick(dir.up(1)) && isBrick(dir.left(2)) && isBrick(dir.down(1))
 				&& isBrick(dir.down(1)) && isBrick(dir.forward(1)) && isBrick(dir.right(1)) && isBrick(dir.up(1))
 				&& isBrick(dir.up(1)) && isBrick(dir.back(2)) && isBrick(dir.down(1)))) {
-
 			return false;
 		}
 		return true;
@@ -336,7 +331,6 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	/*
 	 * real recipes methods into the bloomery
 	 */
-
 	public static void addAlloyRecipe(String input1, int amount1, String input2, int amount2, Block output) {
 		addRecipe("ingot" + input1, amount1, "ingot" + input2, amount2, output);
 		addRecipe("dust" + input1, amount1, "dust" + input2, amount2, output);
@@ -400,6 +394,7 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	}
 
 	public static class BloomeryRecipeList {
+
 		List<BloomeryRecipe> recipes = new ArrayList<BloomeryRecipe>();
 		Map<String, BloomeryRecipe> recipeMap = new HashMap<String, BloomeryRecipe>();
 
@@ -486,6 +481,7 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 	}
 
 	public static class BloomeryRecipe {
+
 		List<IRecipeInput> items = new ArrayList<IRecipeInput>();
 		int ashOutput;
 		int recipeTime;
@@ -520,5 +516,4 @@ public class GTTileMultiBloomery extends TileEntityMachine implements ITickable,
 			return state;
 		}
 	}
-
 }

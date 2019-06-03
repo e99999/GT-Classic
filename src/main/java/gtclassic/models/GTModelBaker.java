@@ -24,6 +24,7 @@ import net.minecraftforge.client.model.pipeline.VertexTransformer;
 import net.minecraftforge.common.model.TRSRTransformation;
 
 public class GTModelBaker {
+
 	private static final FaceBakery bakery = new FaceBakery();
 	private Map<EnumFacing, List<BakedQuad>> quadCache;
 	private TextureAtlasSprite sprite;
@@ -36,7 +37,6 @@ public class GTModelBaker {
 	private GTModelBaker(TextureAtlasSprite sprite) {
 		quadCache = new LinkedHashMap<>();
 		quadCache.put(EnumFacing.NORTH, new ArrayList<>());
-
 		this.sprite = sprite;
 		models = new ArrayList<>();
 	}
@@ -73,10 +73,10 @@ public class GTModelBaker {
 
 	public static List<BakedQuad> transform(List<BakedQuad> quads, final EnumFacing rotation) {
 		List<BakedQuad> result = new ArrayList<>();
-
 		for (BakedQuad quad : quads) {
 			UnpackedBakedQuad.Builder builder = new UnpackedBakedQuad.Builder(DefaultVertexFormats.ITEM);
 			final IVertexConsumer consumer = new VertexTransformer(builder) {
+
 				@Override
 				public void put(int element, float... data) {
 					VertexFormatElement formatElement = DefaultVertexFormats.ITEM.getElement(element);
@@ -116,7 +116,6 @@ public class GTModelBaker {
 					}
 				}
 			};
-
 			quad.pipe(consumer);
 			result.add(builder.build());
 		}
@@ -124,6 +123,7 @@ public class GTModelBaker {
 	}
 
 	public static class Model {
+
 		final float textureOffsetX;
 		final float textureOffsetY;
 		final Vector3f shapeStart = new Vector3f();
@@ -141,7 +141,6 @@ public class GTModelBaker {
 			this.textureOffsetX = textureOffsetX / 4.0f;
 			this.textureOffsetY = textureOffsetY / 4.0f;
 			this.rotateTopAndBottomTexture = rotateTopAndBottomTexture;
-
 			shapeStart.set(shapeX, shapeY, shapeZ);
 			shapeSize.set(sizeX / 4.0f, sizeY / 4.0f, sizeZ / 4.0f);
 			shapeEnd.set(shapeX + sizeX, shapeY + sizeY, shapeZ + sizeZ);
@@ -157,7 +156,6 @@ public class GTModelBaker {
 			float[] top = new float[] { textureOffsetX + shapeSize.getZ(), textureOffsetY,
 					textureOffsetX + shapeSize.getZ() + shapeSize.getX(), textureOffsetY + shapeSize.getZ() };
 			float[] bottom = new float[] { top[2], top[1], top[2] + shapeSize.getX(), top[3] };
-
 			areas[EnumFacing.EAST.getIndex()] = new BlockFaceUV(left, 0);
 			areas[EnumFacing.NORTH.getIndex()] = new BlockFaceUV(front, 0);
 			areas[EnumFacing.WEST.getIndex()] = new BlockFaceUV(right, 0);
@@ -170,7 +168,6 @@ public class GTModelBaker {
 		BlockPartFace[] buildFaces() {
 			BlockPartFace[] faces = new BlockPartFace[6];
 			BlockFaceUV[] areas = getTextureAreas();
-
 			for (EnumFacing facing : EnumFacing.VALUES) {
 				faces[facing.getIndex()] = new BlockPartFace(null, -1, "", areas[facing.getIndex()]);
 			}

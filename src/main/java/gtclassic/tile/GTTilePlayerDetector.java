@@ -42,7 +42,6 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 			this.setActive(checkArea());
 			world.notifyNeighborsOfStateChange(pos, blockType, true);
 		}
-
 	}
 
 	public void checkEnergy() {
@@ -110,5 +109,4 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	public int getRedstoneStrenght(EnumFacing var1) {
 		return this.isActive ? 15 : 0;
 	}
-
 }

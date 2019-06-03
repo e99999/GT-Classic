@@ -59,7 +59,6 @@ public class GTTileSolarPanel extends TileEntityMachine implements ITickable, IE
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.enet = true;
 		}
-
 	}
 
 	@Override
@@ -68,7 +67,6 @@ public class GTTileSolarPanel extends TileEntityMachine implements ITickable, IE
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			this.enet = false;
 		}
-
 		super.onUnloaded();
 	}
 
@@ -77,11 +75,9 @@ public class GTTileSolarPanel extends TileEntityMachine implements ITickable, IE
 		if (this.ticker++ % 128 == 0) {
 			this.setActive(TileEntitySolarPanel.isSunVisible(this.world, this.getPos().up()));
 		}
-
 		if (this.getActive()) {
 			this.storage = 8;
 		}
-
 	}
 
 	@Override
@@ -98,5 +94,4 @@ public class GTTileSolarPanel extends TileEntityMachine implements ITickable, IE
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
-
 }

@@ -95,7 +95,6 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer e, World w, BlockPos p, EnumHand h, EnumFacing facing, float hitX,
 			float hitY, float hitZ) {
-
 		for (GTRecipeCauldron.GTRecipeCauldronEnum recipes : GTRecipeCauldron.GTRecipeCauldronEnum.values()) {
 			washDust(e, w, p, h, recipes.getInput(), recipes.getOutputs());
 		}

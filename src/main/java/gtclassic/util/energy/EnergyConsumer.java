@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class EnergyConsumer implements IEnergySink, ILocatable {
+
 	World world;
 	BlockPos pos;
 	IEnergySink accept;
@@ -47,5 +48,4 @@ public class EnergyConsumer implements IEnergySink, ILocatable {
 	public World getWorldObj() {
 		return world;
 	}
-
 }

@@ -26,5 +26,4 @@ public class GTTileDigitalTransformer extends TileEntityTransformer implements I
 	public boolean hasOverride(int fieldID, String fieldName) {
 		return fieldID == 3;
 	}
-
 }

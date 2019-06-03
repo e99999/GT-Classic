@@ -32,29 +32,23 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class GTRecipeProcessing {
 
 	static IMachineRecipeList smelting = ClassicRecipes.furnace;
-
 	public static final GTMultiInputRecipeList BYPRODUCT_LIST = new GTMultiInputRecipeList("gt.byproducts");
 	public static final GTMultiInputRecipeList INTERACTION_LIST = new GTMultiInputRecipeList("gt.interaction");
 
 	public static void recipesProcessing() {
-
 		removeSmelting(GTMaterialGen.getIc2(Ic2Items.rubber, 1));
 		removeSmelting(GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 1));
-
 		/*
 		 * Recipes specific to GT Classic blocks
 		 */
 		maceratorUtil("oreBauxite", 1, GTMaterialGen.getDust(GTMaterial.Bauxite, 4));
 		maceratorUtil("oreIridium", 1, GTMaterialGen.getIc2(Ic2Items.iridiumOre, 2));
 		maceratorUtil("oreSodalite", 1, GTMaterialGen.getDust(GTMaterial.Sodalite, 12));
-
 		GameRegistry.addSmelting(GTBlocks.sandSlag, GTMaterialGen.get(GTBlocks.glassSlag), 0.1F);
-
 		TileEntityExtractor.addRecipe("oreRuby", 1, GTMaterialGen.getGem(GTMaterial.Ruby, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, GTMaterialGen.getGem(GTMaterial.Sapphire, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreOlivine", 1, GTMaterialGen.getGem(GTMaterial.Olivine, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreVibranium", 1, GTMaterialGen.getGem(GTMaterial.Vibranium, 3), 0.1F);
-
 		/*
 		 * Maceration recipes not covered by Ic2c automatically or that need to be
 		 * different
@@ -69,7 +63,6 @@ public class GTRecipeProcessing {
 		TileEntityMacerator.addRecipe("gemDiamond", 1, GTMaterialGen.getDust(GTMaterial.Diamond, 1), 0.1F);
 		TileEntityMacerator.addRecipe("gemEmerald", 1, GTMaterialGen.getDust(GTMaterial.Emerald, 1), 0.1F);
 		TileEntityMacerator.addRecipe("plateRefinedIron", 1, GTMaterialGen.getIc2(Ic2Items.ironDust, 1));
-
 		/*
 		 * Compressor recipes
 		 */
@@ -77,7 +70,6 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustUranium", 1, GTMaterialGen.getIc2(Ic2Items.uraniumIngot, 1), 0.1F);
 		TileEntityCompressor.addRecipe("dustEmerald", 1, GTMaterialGen.get(Items.EMERALD), 0.1F);
 		TileEntityCompressor.addRecipe("dustDiamond", 1, GTMaterialGen.get(Items.DIAMOND), 0.1F);
-
 		/*
 		 * Some random fuel things
 		 */
@@ -85,15 +77,12 @@ public class GTRecipeProcessing {
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("lithium"), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("hydrogen"), 950, 16);
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("methane"), 3000, 16);
-
 		/*
 		 * Dryable fluid JEI stuff
 		 */
-
 		GTFluidBlockDryable.dryingUtil(GTMaterialGen.getFluid(GTMaterial.BauxiteTailings, 1), GTMaterialGen.getDust(GTMaterial.BauxiteTailings, 1));
 		GTFluidBlockDryable.dryingUtil(GTMaterialGen.getFluid(GTMaterial.Brine, 1), GTMaterialGen.getDust(GTMaterial.Brine, 1));
 		GTFluidBlockDryable.dryingUtil(GTMaterialGen.getFluid(GTMaterial.LithiumCarbonate, 1), GTMaterialGen.getDust(GTMaterial.Lithium, 1));
-
 	}
 
 	public static void recipesByproducts() {
@@ -105,13 +94,11 @@ public class GTRecipeProcessing {
 		addByproduct("oreDiamond", GTMaterialGen.get(Items.DIAMOND), GTMaterialGen.getDust(GTMaterial.Diamond, 1), GTMaterialGen.getDust(GTMaterial.Graphite, 1));
 		addByproduct("oreRedstone", GTMaterialGen.get(Items.REDSTONE, 1), GTMaterialGen.get(Items.GLOWSTONE_DUST, 1));
 		addByproduct("oreEmerald", GTMaterialGen.get(Items.EMERALD), GTMaterialGen.getDust(GTMaterial.Emerald, 1), GTMaterialGen.getDust(GTMaterial.Olivine, 1));
-
 		// byproducts for ic2c ore
 		addByproduct("oreCopper", GTMaterialGen.getIc2(Ic2Items.copperDust, 1), GTMaterialGen.getIc2(Ic2Items.goldDust, 1), GTMaterialGen.getDust(GTMaterial.Nickel, 1));
 		addByproduct("oreTin", GTMaterialGen.getIc2(Ic2Items.tinDust, 1), GTMaterialGen.getIc2(Ic2Items.ironDust, 1), GTMaterialGen.getDust(GTMaterial.Zinc, 1));
 		addByproduct("oreUranium", GTMaterialGen.getDust(GTMaterial.Uranium, 1), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
 		addByproduct("oreSilver", GTMaterialGen.getIc2(Ic2Items.silverDust, 1), GTMaterialGen.getDust(GTMaterial.Lead, 1));
-
 		// byproducts for gt ores
 		addByproduct("oreBauxite", GTMaterialGen.getDust(GTMaterial.Aluminium, 1), GTMaterialGen.getDust(GTMaterial.Titanium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 1));
 		addByproduct("oreBismuthtine", GTMaterialGen.getDust(GTMaterial.Bismuth, 1), GTMaterialGen.getDust(GTMaterial.Antimony, 1));
@@ -147,13 +134,10 @@ public class GTRecipeProcessing {
 	}
 
 	public static void recipesInteractions() {
-
 		addInteraction(new IRecipeInput[] { input("dustResin", 1),
 				input(GTMaterialGen.get(GTBlocks.tileHeating, 1)) }, GTMaterialGen.get(GTBlocks.driedResin, 1));
-
 		addInteraction(new IRecipeInput[] { input("craftingToolKnife", 1),
 				input(GTMaterialGen.get(GTBlocks.driedResin, 1)) }, GTMaterialGen.get(GTItems.resinPCB, 1));
-
 		if (!GTConfig.harderPlates && !GTConfig.harderRods && IC2.getRefinedIron().equals("ingotRefinedIron")) {
 			addInteraction(new IRecipeInput[] { input("craftingToolFile", 1),
 					input(GTMaterialGen.getIc2(Ic2Items.machine, 1)) }, GTMaterialGen.getCasing(GTMaterial.RefinedIron, 1), GTMaterialGen.getSmallDust(GTMaterial.Iron, 2));
@@ -184,7 +168,6 @@ public class GTRecipeProcessing {
 	private static void addByproduct(IRecipeInput[] inputs, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
 		}
@@ -202,7 +185,6 @@ public class GTRecipeProcessing {
 	public static void addInteraction(IRecipeInput[] inputs, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
 		}
@@ -252,5 +234,4 @@ public class GTRecipeProcessing {
 	public static IRecipeInput input(String name, int amount) {
 		return new RecipeInputOreDict(name, amount);
 	}
-
 }

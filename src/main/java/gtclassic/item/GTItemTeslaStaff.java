@@ -68,9 +68,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 			} else {
 				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1.0F);
 			}
-
 			return false;
 		}
 	}
-
 }

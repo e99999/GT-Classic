@@ -80,7 +80,6 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 			getNetwork().updateTileGuiField(this, "progress");
 			this.setActive(false);
 		}
-
 	}
 
 	public void clockedCheckStructure() {
@@ -99,7 +98,6 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 
 	public void recipeLastTick() {
 		int3 dir = new int3(getPos(), getFacing());
-
 		setCharcoal(dir.down(1));
 		setCharcoal(dir.back(1));
 		setCharcoal(dir.left(1));
@@ -111,7 +109,6 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 		setCharcoal(dir.back(1));
 		setCharcoal(dir.left(1));
 		setCharcoal(dir.forward(1));
-
 		setCharcoal(dir.down(1));
 		setCharcoal(dir.back(1));
 		setCharcoal(dir.left(1));
@@ -123,7 +120,6 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 		setCharcoal(dir.back(1));
 		setCharcoal(dir.left(1));
 		setCharcoal(dir.forward(1));
-
 		setCharcoal(dir.down(1));
 		setCharcoal(dir.back(1));
 		setCharcoal(dir.left(1));
@@ -135,9 +131,7 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 		setCharcoal(dir.back(1));
 		setCharcoal(dir.left(1));
 		setCharcoal(dir.forward(1));
-
 		world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_SAND_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-
 	}
 
 	public boolean canWork() {
@@ -161,11 +155,9 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 				&& isLog(dir.up(1)) && isLog(dir.up(1)) && isLog(dir.left(1)) && isLog(dir.down(1))
 				&& isLog(dir.down(1)) && isLog(dir.forward(1)) && isLog(dir.up(1)) && isLog(dir.up(1))
 				&& isLog(dir.right(1)) && isLog(dir.down(1)) && isLog(dir.down(1)) && isLog(dir.right(1))
-				&& isLog(dir.up(1)) && isLog(dir.up(1))
-
-				&& isLog(dir.forward(1)) && isLog(dir.down(1)) && isLog(dir.down(1)) && isLog(dir.left(1))
-				&& isLog(dir.up(1)) && isLog(dir.up(1)) && isLog(dir.left(1)) && isLog(dir.down(1))
-				&& isLog(dir.down(1))
+				&& isLog(dir.up(1)) && isLog(dir.up(1)) && isLog(dir.forward(1)) && isLog(dir.down(1))
+				&& isLog(dir.down(1)) && isLog(dir.left(1)) && isLog(dir.up(1)) && isLog(dir.up(1))
+				&& isLog(dir.left(1)) && isLog(dir.down(1)) && isLog(dir.down(1))
 				// bottom dirt layer
 				&& isDirt(dir.down(1)) && isDirt(dir.back(1)) && isDirt(dir.back(1)) && isDirt(dir.right(1))
 				&& isDirt(dir.forward(1)) && isDirt(dir.forward(1)) && isDirt(dir.right(1)) && isDirt(dir.back(1))
@@ -185,9 +177,7 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 				// finally the beautiful exterior west wall of dirt
 				&& isDirt(dir.left(4)) && isDirt(dir.forward(1)) && isDirt(dir.forward(1)) && isDirt(dir.down(1))
 				&& isDirt(dir.back(1)) && isDirt(dir.back(1)) && isDirt(dir.down(1)) && isDirt(dir.forward(1))
-				&& isDirt(dir.forward(1))
-
-		)) {
+				&& isDirt(dir.forward(1)))) {
 			return false;
 		}
 		return true;
@@ -195,7 +185,6 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 
 	public boolean isLog(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()).getBlock().isWood(world, pos.asBlockPos());
-
 	}
 
 	public boolean isDirt(int3 pos) {
@@ -210,5 +199,4 @@ public class GTTileMultiCharcoalPit extends TileEntityMachine implements ITickab
 	public void setFire(int3 pos) {
 		world.setBlockState(pos.asBlockPos(), Blocks.FIRE.getDefaultState());
 	}
-
 }

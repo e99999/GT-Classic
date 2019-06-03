@@ -99,5 +99,4 @@ public class GTToolHammer extends ItemPickaxe
 	public boolean hasCustomTransform(int var1) {
 		return true;
 	}
-
 }

@@ -33,7 +33,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedTexturedItem {
 
 	public ModelResourceLocation[] model = new ModelResourceLocation[2];
-
 	public static final String active = "ImActive";
 	int range = 7;
 	double speed = 0.04D;
@@ -74,16 +73,13 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(playerIn.getHeldItem(handIn));
 			boolean result = !nbt.getBoolean(active);
 			nbt.setBoolean(active, result);
-
 		}
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected) {
-
 		NBTTagCompound nbt = StackUtil.getNbtData((stack));
-
 		if (worldIn.getTotalWorldTime() % 2 == 0) {
 			if (!(entityIn instanceof EntityPlayer) || !nbt.getBoolean(active)) {
 				this.setDamage(stack, 0);
@@ -148,5 +144,4 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	public int getTextureEntry(int var1) {
 		return 0;
 	}
-
 }

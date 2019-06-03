@@ -37,7 +37,5 @@ public class GTGuiCompComputerCube extends GuiComponent {
 		int hours = (int) ((time / 1000 + 7) % 24);
 		int minutes = (int) (60 * (time % 1000) / 1000);
 		return String.format("%02d:%02d", hours, minutes);
-
 	}
-
 }

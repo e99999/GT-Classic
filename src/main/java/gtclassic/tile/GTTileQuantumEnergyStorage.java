@@ -44,5 +44,4 @@ public class GTTileQuantumEnergyStorage extends TileEntityElectricBlock {
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
-
 }

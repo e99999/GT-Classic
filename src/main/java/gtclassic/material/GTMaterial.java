@@ -24,7 +24,6 @@ public class GTMaterial {
 	static GTMaterialFlag block = GTMaterialFlag.BLOCK;
 	static GTMaterialFlag casing = GTMaterialFlag.CASING;
 	static GTMaterialFlag coil = GTMaterialFlag.COIL;
-
 	static GTMaterialFlag[] dustAll = { smalldust, dust };
 	static GTMaterialFlag[] gemAll = { smalldust, dust, gem, block };
 	static GTMaterialFlag[] metalFull = { smalldust, dust, nugget, ingot, plate, stick, gear, block, casing };
@@ -32,12 +31,9 @@ public class GTMaterial {
 	static GTMaterialFlag[] metalIc2 = { smalldust, nugget, plate, stick, gear, casing };
 	static GTMaterialFlag[] metalMC = { smalldust, plate, stick, gear, casing };
 	static GTMaterialFlag[] slurryBase = { smalldust, dust, fluid };
-
 	/** Master Material Map **/
 	private static HashMap<String, GTMaterial> generatedMap = new HashMap<>();
-
 	/** Material Instances **/
-
 	public static final GTMaterial Acrylicacid = new GTMaterial("Acrylicacid", 255, 255, 255, 300, 3.0F, 0, 1, fluid),
 			AnnealedCopper = new GTMaterial("AnnealedCopper", 255, 120, 20, 3014, 1.0F, 0, 1, ingot, nugget, stick, wire),
 			Almandine = new GTMaterial("Almandine", 255, 0, 0, 1759, 1.0F, 0, 1, dustAll),
@@ -193,7 +189,6 @@ public class GTMaterial {
 			Zinc = new GTMaterial("Zinc", 250, 240, 240, 692, 1.0F, 0, 1, metalFull),
 			Zircaloy = new GTMaterial("Zircaloy", 190, 190, 175, 2032, 9.0F, 512, 2, smalldust, dust, nugget, ingot, plate, stick, gear, block, casing),
 			Zirconium = new GTMaterial("Zirconium", 180, 210, 210, 2128, 1.0F, 0, 1, dustAll);
-
 	/** Instance Members **/
 	private String name, displayName;
 	private int mask;
@@ -216,7 +211,6 @@ public class GTMaterial {
 	 * @param level       - Harvest Level for material tools
 	 * @param flags       - Types of items and blocks to generate from material
 	 */
-
 	public GTMaterial(String displayName, int r, int g, int b, int temp, float speed, int durability, int level,
 			GTMaterialFlag... flags) {
 		this.displayName = displayName;
@@ -237,7 +231,6 @@ public class GTMaterial {
 	}
 
 	/** Getters/Setters **/
-
 	public String getDisplayName() {
 		return displayName;
 	}
@@ -286,5 +279,4 @@ public class GTMaterial {
 	public static boolean isRadioactive(GTMaterial mat) {
 		return mat.equals(Thorium) || mat.equals(Plutonium) || mat.equals(Uranium) || mat.equals(Vibranium);
 	}
-
 }

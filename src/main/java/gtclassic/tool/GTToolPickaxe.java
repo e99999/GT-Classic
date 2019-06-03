@@ -88,5 +88,4 @@ public class GTToolPickaxe extends ItemPickaxe
 	public GTMaterial getMaterial() {
 		return GTToolMaterial.getGTMaterial(tmaterial);
 	}
-
 }

@@ -71,7 +71,6 @@ public class GTItemReactorRod extends ItemGrandualInt
 	@Override
 	public void processChamber(ItemStack var1, IReactor var2, int var3, int var4, boolean var5) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -163,13 +162,11 @@ public class GTItemReactorRod extends ItemGrandualInt
 	@Override
 	public void processTick(ISteamReactor var1, ItemStack var2, int var3, int var4, boolean var5, boolean var6) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void onLoad() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -181,5 +178,4 @@ public class GTItemReactorRod extends ItemGrandualInt
 	public ReactorComponentType getType(ItemStack stack) {
 		return ReactorComponentType.FuelRod;
 	}
-
 }

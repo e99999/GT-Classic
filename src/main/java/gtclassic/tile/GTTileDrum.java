@@ -141,13 +141,11 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 
 	@Override
 	public void onLeftClick(EntityPlayer var1, Side var2) {
-
 	}
 
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
 		ItemStack playerStack = player.getHeldItem(hand);
-
 		if (playerStack.getItem() instanceof GTToolHammer) {
 			this.allowExport = !allowExport;
 			this.getNetwork().updateTileGuiField(this, "export");
@@ -157,7 +155,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 			}
 			return true;
 		}
-
 		if (isConsumable(playerStack) || GTValues.isBCShard(playerStack)) {
 			if (!IC2.platform.isSimulating()) {
 				IC2.platform.messagePlayer(player, "Consumable containers are temporarily disabled");
@@ -165,7 +162,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 			}
 			return false;
 		}
-
 		if (!playerStack.isEmpty()) {
 			ItemStack stackEmpty = FluidUtil.tryEmptyContainer(playerStack, this.tank, this.tank.getCapacity()
 					- this.tank.getFluidAmount(), player, true).getResult();
@@ -176,7 +172,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 				ItemHandlerHelper.giveItemToPlayer(player, stackEmpty);
 				return true;
 			}
-
 			ItemStack stackFilled = FluidUtil.tryFillContainer(playerStack, this.tank, 1000, player, true).getResult();
 			if (!stackFilled.isEmpty()) {
 				playerStack.shrink(1);
@@ -203,5 +198,4 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	public boolean isConsumable(ItemStack stack) {
 		return stack.getItem().initCapabilities(stack, null) instanceof FluidHandlerItemStackSimple.Consumable;
 	}
-
 }

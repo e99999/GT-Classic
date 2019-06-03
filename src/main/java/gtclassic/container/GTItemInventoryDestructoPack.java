@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class GTItemInventoryDestructoPack extends IC2ItemInventory {
+
 	public GTItemInventoryDestructoPack(EntityPlayer player, IHandHeldInventory inv, ItemStack item) {
 		super(player, inv, item);
 	}

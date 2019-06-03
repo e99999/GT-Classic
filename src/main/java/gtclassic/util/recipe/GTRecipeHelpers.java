@@ -3,6 +3,7 @@ package gtclassic.util.recipe;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class GTRecipeHelpers {
+
 	public static enum ModifierType {
 		RECIPE_LENGTH("RecipeTime", "RecipeTimeModifier"),
 		RECIPE_ENERGY("RecipeEnergy", "RecipeEnergyModifier");
@@ -25,10 +26,12 @@ public class GTRecipeHelpers {
 	}
 
 	public static interface IRecipeModifier {
+
 		public void apply(NBTTagCompound compound);
 	}
 
 	public static class RecipeModifierInt implements IRecipeModifier {
+
 		ModifierType type;
 		int amount;
 
@@ -43,6 +46,7 @@ public class GTRecipeHelpers {
 	}
 
 	public static class RecipeModifierDouble implements IRecipeModifier {
+
 		ModifierType type;
 		double amount;
 

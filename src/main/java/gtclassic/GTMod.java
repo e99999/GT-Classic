@@ -23,7 +23,6 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = GTMod.MODID, name = GTMod.MODNAME, version = GTMod.MODVERSION, dependencies = GTMod.DEPENDS, useMetadata = true)
-
 public class GTMod {
 
 	public static final String MODID = "gtclassic";
@@ -33,7 +32,6 @@ public class GTMod {
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
 	@SidedProxy(clientSide = MODID + ".proxy.GTProxyClient", serverSide = MODID + ".proxy.GTProxyServer")
 	public static GTProxyCommon proxy;
-
 	@Mod.Instance
 	public static GTMod instance;
 	public static Logger logger;
@@ -74,5 +72,4 @@ public class GTMod {
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GTCommandTeleport());
 	}
-
 }

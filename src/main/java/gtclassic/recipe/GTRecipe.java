@@ -22,7 +22,6 @@ public class GTRecipe {
 	 * reconfigure them with clarity. After the progression is finalized, all
 	 * recipes with be in this class
 	 */
-
 	public static void init() {
 		GTOreRegistry.oreDirectSmelting();
 		GTRecipeCauldron.recipesCauldron();
@@ -39,7 +38,6 @@ public class GTRecipe {
 		GTRecipeShaped.recipeShaped2();
 		GTRecipeShaped.recipeShaped3();
 		GTRecipeShapeless.recipeShapeless1();
-
 		// below is more how things will go
 		GTTileBath.init();
 		GTTileCentrifuge.init();
@@ -55,5 +53,4 @@ public class GTRecipe {
 		GTTileMultiCryogenicSeparator.init();
 		GTTileMultiLeadChamber.init();
 	}
-
 }

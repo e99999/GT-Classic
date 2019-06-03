@@ -6,6 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class GTBookshelfFilter implements IFilter {
+
 	GTTileBookshelf bookshelf;
 
 	public GTBookshelfFilter(GTTileBookshelf tile) {
@@ -15,5 +16,4 @@ public class GTBookshelfFilter implements IFilter {
 	public boolean matches(ItemStack stack) {
 		return stack.getItem() == Items.BOOK || stack.hasEffect();
 	}
-
 }

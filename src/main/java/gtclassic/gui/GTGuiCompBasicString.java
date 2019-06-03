@@ -33,5 +33,4 @@ public class GTGuiCompBasicString extends GuiComponent {
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
 		gui.drawString(this.title, this.posX, this.posY, GTValues.grey);
 	}
-
 }

@@ -14,6 +14,7 @@ import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
 
 public class GTBasicMachineRecipeList extends BasicMachineRecipeList {
+
 	String registryID;
 
 	public GTBasicMachineRecipeList(String id) {
@@ -38,7 +39,6 @@ public class GTBasicMachineRecipeList extends BasicMachineRecipeList {
 			ItemWithMeta meta = new ItemWithMeta(stack);
 			RecipeEntry entry = recipeMap.get(meta);
 			if (entry != null) {
-
 				GTMod.logger.info("Recipe Overlap: " + entry.getInput() + " Recipe ID: " + id);
 				return;
 			}

@@ -16,8 +16,8 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class MultiBlockHelper {
-	public static final MultiBlockHelper INSTANCE = new MultiBlockHelper();
 
+	public static final MultiBlockHelper INSTANCE = new MultiBlockHelper();
 	Int2ObjectMap<WorldStructureEntry> serverMap = new Int2ObjectOpenHashMap<WorldStructureEntry>();
 	Int2ObjectMap<WorldStructureEntry> clientMap = new Int2ObjectOpenHashMap<WorldStructureEntry>();
 
@@ -74,6 +74,7 @@ public class MultiBlockHelper {
 	}
 
 	public static class WorldStructureEntry {
+
 		int dimID;
 		Map<BlockPos, BlockPos> structureToCore = new Object2ObjectOpenHashMap<BlockPos, BlockPos>();
 		Map<BlockPos, List<BlockPos>> coreToStructure = new Object2ObjectOpenHashMap<BlockPos, List<BlockPos>>();
@@ -103,6 +104,5 @@ public class MultiBlockHelper {
 		public BlockPos getCore(BlockPos pos) {
 			return structureToCore.get(pos);
 		}
-
 	}
 }

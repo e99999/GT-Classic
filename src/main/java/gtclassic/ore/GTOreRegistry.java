@@ -8,7 +8,6 @@ import net.minecraft.init.Items;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public enum GTOreRegistry {
-
 	BAUXITE(0, GTMaterial.Bauxite, 32, 2, 40, 100),
 	BISMUTHTINE(1, GTMaterial.Bismuthtine, 8, 8, 50, 80),
 	CALCITE(2, GTMaterial.Calcite, 8, 12, 20, 80),
@@ -56,7 +55,6 @@ public enum GTOreRegistry {
 		this.chance = chance;
 		this.min = min;
 		this.max = max;
-
 	}
 
 	public int getId() {
@@ -84,7 +82,6 @@ public enum GTOreRegistry {
 	}
 
 	public static void oreDirectSmelting() {
-
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Bismuthtine, 1), GTMaterialGen.getNugget(GTMaterial.Bismuth, 3), 0.1F);
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Cassiterite, 1), GTMaterialGen.getNugget(GTMaterial.Tin, 3), 0.1F);
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Galena, 1), GTMaterialGen.getNugget(GTMaterial.Lead, 3), 0.1F);
@@ -95,59 +92,43 @@ public enum GTOreRegistry {
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Pyrite, 1), GTMaterialGen.get(Items.IRON_NUGGET, 3), 0.1F);
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Sphalerite, 1), GTMaterialGen.getNugget(GTMaterial.Zinc, 3), 0.1F);
 		GameRegistry.addSmelting(GTMaterialGen.getDust(GTMaterial.Tetrahedrite, 1), GTMaterialGen.getNugget(GTMaterial.Copper, 3), 0.1F);
-
 		for (Block block : Block.REGISTRY) {
-
 			if (block instanceof GTOreStone) {
 				GTOreStone ore = (GTOreStone) block;
-
 				if (ore.getOreEntry().equals(GALENA)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.getNugget(GTMaterial.Lead, 6), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(GARNIERITE)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.getNugget(GTMaterial.Nickel, 6), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(IRIDIUM)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(LIMONITE) || ore.getOreEntry().equals(PYRITE)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.get(Items.IRON_NUGGET, 3), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(MALACHITE)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.getNugget(GTMaterial.Copper, 1), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(OLIVINE)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.getGem(GTMaterial.Olivine, 1), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(RUBY)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.getGem(GTMaterial.Ruby, 1), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(SAPPHIRE)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.getGem(GTMaterial.Sapphire, 1), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(SPHALERITE)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.getNugget(GTMaterial.Zinc, 3), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(CASSITERITE)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.getNugget(GTMaterial.Tin, 6), 0.1F);
 				}
-
 				if (ore.getOreEntry().equals(MAGNETITE)) {
 					GameRegistry.addSmelting(block, GTMaterialGen.get(Items.IRON_NUGGET, 3), 0.1F);
 				}
 			}
-
 		}
-
 	}
-
 }

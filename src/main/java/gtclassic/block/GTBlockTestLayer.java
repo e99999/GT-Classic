@@ -96,5 +96,4 @@ public class GTBlockTestLayer extends Block implements ILayeredBlockModel, IText
 		// 0-2
 		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[16 + layer];
 	}
-
 }

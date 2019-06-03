@@ -26,7 +26,6 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IT
 	int slotInput = 0;
 	int slotOutput = 1;
 	int slotDisplay = 2;
-
 	int maxSize = Integer.MAX_VALUE;
 	int digitalCount;
 
@@ -116,7 +115,6 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IT
 	/**
 	 * Now that the tile stuff is out of the way we can handle the real logic
 	 */
-
 	@Override
 	public void update() {
 		// if the digital storage is null, and the input slot has a stack, and that
@@ -131,7 +129,6 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IT
 			inventory.get(slotInput).shrink(count);
 			updateGUI();
 		}
-
 		// now the inverse for outputting to the output slot
 		if (!isSlotEmpty(slotDisplay) && canOutputStack(getStackInSlot(slotDisplay)) && this.digitalCount > 0) {
 			// set the output slot to be the display item + max possible size
@@ -198,5 +195,4 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IT
 				&& (StackUtil.isStackEqual(getStackInSlot(slotOutput), stack, false, false)
 						|| inventory.get(slotOutput).isEmpty());
 	}
-
 }

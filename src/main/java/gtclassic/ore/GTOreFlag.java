@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
 public enum GTOreFlag {
-
 	STONE(0, Blocks.STONE, ""),
 	NETHER(32, Blocks.NETHERRACK, "_nether"),
 	END(64, Blocks.END_STONE, "_end"),
@@ -33,5 +32,4 @@ public enum GTOreFlag {
 	public String getSuffix() {
 		return this.suffix;
 	}
-
 }

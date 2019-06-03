@@ -42,7 +42,6 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 		if (eu > max) {
 			eu = max;
 		}
-
 		gui.drawString("" + eu, 12, 28, GTValues.white);
 		gui.drawString("/" + max, 12, 38, GTValues.white);
 		gui.drawString(Ic2GuiLang.energyStorageOutput.getLocalizedFormatted(new Object[] {
@@ -64,7 +63,6 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 			this.lastMode = this.block.redstoneMode;
 			gui.getCastedButton(0, IconButton.class).clearText().addText(this.block.getRedstoneMode());
 		}
-
 	}
 
 	@Override
@@ -76,5 +74,4 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 	static {
 		red = new ItemStack(Items.REDSTONE);
 	}
-
 }

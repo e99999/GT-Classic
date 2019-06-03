@@ -22,23 +22,19 @@ public class GTContainerBlastFurnace extends ContainerTileComponent<GTTileMultiB
 
 	public GTContainerBlastFurnace(InventoryPlayer player, GTTileMultiBlastFurnace tile) {
 		super(tile);
-
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 2; ++x) {
 				this.addSlotToContainer(new SlotCustom(tile, x + y * 2, 35 + x * 18, 17 + y * 18, null));
 			}
 		}
-
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 2; ++x) {
 				this.addSlotToContainer(new SlotOutput(player.player, tile, 4 + x + y * 2, 107 + x * 18, 17 + y * 18));
 			}
 		}
-
 		for (int i = 0; i < 2; ++i) {
 			this.addSlotToContainer(new GTSlotUpgrade(tile, 8 + i, 80 + (i * 18), 62));
 		}
-
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
 	}
@@ -63,5 +59,4 @@ public class GTContainerBlastFurnace extends ContainerTileComponent<GTTileMultiB
 	public boolean canInteractWith(EntityPlayer playerIn) {
 		return this.getGuiHolder().canInteractWith(playerIn);
 	}
-
 }

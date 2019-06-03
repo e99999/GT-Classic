@@ -41,7 +41,6 @@ public class GTFluidBlockDryable extends BlockFluidClassic implements ILocaleBlo
 	LocaleComp comp;
 	Block result;
 	GTMaterial mat;
-
 	public static final GTMultiInputRecipeList DRYING_RECIPE_LIST = new GTMultiInputRecipeList("gt.drying");
 
 	public GTFluidBlockDryable(GTMaterial mat, Block result) {
@@ -73,7 +72,6 @@ public class GTFluidBlockDryable extends BlockFluidClassic implements ILocaleBlo
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-
 		if (state.getValue(LEVEL) == 0) {
 			IBlockState down = worldIn.getBlockState(pos.down(1));
 			if (isDryingBlock(down) && isCorrectEnviornment(worldIn, pos)) {
@@ -158,5 +156,4 @@ public class GTFluidBlockDryable extends BlockFluidClassic implements ILocaleBlo
 	private static void dryingWrapper(List<IRecipeInput> input, MachineOutput output) {
 		DRYING_RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 0);
 	}
-
 }
