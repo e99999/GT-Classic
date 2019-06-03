@@ -4,30 +4,17 @@ import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTBlocks;
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialGen;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
 
@@ -97,19 +84,5 @@ public class GTToolKnife extends ItemSword implements IStaticTexturedItem, GTCol
 
 	public GTMaterial getMaterial() {
 		return this.material;
-	}
-
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing,
-			float hitX, float hitY, float hitZ) {
-		IBlockState state = world.getBlockState(pos);
-		if (state == GTBlocks.driedResin.getDefaultState()) {
-			world.setBlockToAir(pos);
-			ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTItems.resinPCB, 1));
-			player.setHeldItem(hand, this.getContainerItem(player.getHeldItem(hand)));
-			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			return EnumActionResult.SUCCESS;
-		}
-		return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
 	}
 }

@@ -91,7 +91,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	public final boolean supportsUpgrades;
 	public final int upgradeSlots;
 	public boolean isPassive;
-	public static RecipeInputItemStack basicswitch = new RecipeInputItemStack(GTMaterialGen.get(GTItems.machineSwitch));
 	public AudioSource audioSource;
 	LinkedList<IStackOutput> outputs = new LinkedList<>();
 

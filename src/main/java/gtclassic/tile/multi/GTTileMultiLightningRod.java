@@ -1,12 +1,8 @@
 package gtclassic.tile.multi;
 
-import gtclassic.GTBlocks;
-import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
-import gtclassic.material.GTMaterialGen;
-import gtclassic.util.int3;
 import ic2.core.block.base.tile.TileEntityGeneratorBase;
 import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.math.Box2D;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
@@ -96,34 +92,11 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 				break;
 			}
 		}
-		return heighest > (pos.getY() + 7) && checkTungstenCasings();
-	}
-
-	public boolean checkTungstenCasings() {
-		int3 dir = new int3(getPos(), getFacing());
-		if (!(isMachineCasing(dir.forward(1)) && isCoil(dir.up(1)) && isMachineCasing(dir.up(1))
-				&& isMachineCasing(dir.left(1)) && isCoil(dir.down(1)) && isMachineCasing(dir.down(1))
-				&& isMachineCasing(dir.back(1)) && isCoil(dir.up(1)) && isMachineCasing(dir.up(1))
-				&& isMachineCasing(dir.back(1)) && isCoil(dir.down(1)) && isMachineCasing(dir.down(1))
-				&& isMachineCasing(dir.right(1)) && isCoil(dir.up(1)) && isMachineCasing(dir.up(1))
-				&& isMachineCasing(dir.right(1)) && isCoil(dir.down(1)) && isMachineCasing(dir.down(1))
-				&& isMachineCasing(dir.forward(1)) && isCoil(dir.up(1)) && isMachineCasing(dir.up(1))
-				&& isMachineCasing(dir.forward(1)) && isCoil(dir.down(1)) && isMachineCasing(dir.down(1)))) {
-			return false;
-		}
-		return true;
-	}
-
-	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.Tungsten, GTMaterialFlag.CASING).getDefaultState();
-	}
-
-	public boolean isCoil(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTMaterialGen.getBlock(GTMaterial.NiobiumTitanium, GTMaterialFlag.COIL).getDefaultState();
+		return heighest > (pos.getY() + 7);
 	}
 
 	public boolean checkPos(BlockPos pos) {
-		return world.getBlockState(pos) == GTBlocks.casingLightning.getDefaultState();
+		return world.getBlockState(pos) == Ic2States.ironFence;
 	}
 
 	public void updateActive() {

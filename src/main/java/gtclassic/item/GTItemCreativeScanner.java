@@ -6,8 +6,6 @@ import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
-import gtclassic.tile.multi.GTTileMultiBloomery;
-import gtclassic.tile.multi.GTTileMultiCharcoalPit;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.energy.EnergyNet;
@@ -198,19 +196,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.thunderingStrength) * 100) + "%");
 				IC2.platform.messagePlayer(player, "1 out of " + rod.chance
 						+ " chance to strike based on fence height");
-			}
-			if (tileEntity instanceof GTTileMultiBloomery) {
-				GTTileMultiBloomery bloom = (GTTileMultiBloomery) tileEntity;
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + bloom.checkStructure());
-				IC2.platform.messagePlayer(player, "Progress: "
-						+ (Math.round((bloom.getProgress() / bloom.getMaxProgress()) * 100)) + "%");
-				IC2.platform.messagePlayer(player, "Recipe State: " + bloom.getActiveRecipe());
-			}
-			if (tileEntity instanceof GTTileMultiCharcoalPit) {
-				GTTileMultiCharcoalPit pit = (GTTileMultiCharcoalPit) tileEntity;
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + pit.checkStructure());
-				IC2.platform.messagePlayer(player, "Progress: "
-						+ (Math.round((pit.getProgress() / pit.getMaxProgress()) * 100)) + "%");
 			}
 			if (tileEntity instanceof GTTileDigitalChest) {
 				GTTileDigitalChest chest = (GTTileDigitalChest) tileEntity;

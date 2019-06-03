@@ -7,12 +7,9 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
-import gtclassic.GTBlocks;
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
 import ic2.api.classic.item.IMiningDrill;
 import ic2.api.item.ElectricItem;
@@ -40,7 +37,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTToolMiningDrill extends ItemElectricTool
 		implements IMiningDrill, IStaticTexturedItem, GTColorItemInterface, ILayeredItemModel {
@@ -54,7 +50,6 @@ public class GTToolMiningDrill extends ItemElectricTool
 		if (this.tier <= 0) {
 			this.tier = 1;
 		}
-		this.setMaxDamage(this.material.getDurability() * (this.tier * 100));
 		this.maxCharge = (int) (Math.pow(2, this.tier) * 50000);
 		this.transferLimit = (int) (Math.pow(2, this.tier) * 64);
 		this.setRegistryName("drill_" + this.material.getName());
@@ -119,7 +114,6 @@ public class GTToolMiningDrill extends ItemElectricTool
 		return ImmutableSet.of("pickaxe", "shovel");
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState blockIn, BlockPos pos,
 			EntityLivingBase entityLiving) {
@@ -127,21 +121,6 @@ public class GTToolMiningDrill extends ItemElectricTool
 			IC2.achievements.issueStat((EntityPlayer) entityLiving, "blocksDrilled");
 		}
 		IC2.audioManager.playOnce(entityLiving, Ic2Sounds.drillHard);
-		if (entityLiving instanceof EntityPlayer && this.getDamage(stack) == this.getMaxDamage()) {
-			EntityPlayer player = (EntityPlayer) entityLiving;
-			if (this.tier == 1) {
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.batteryLithiumSmall));
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTItems.motorLV), 1);
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Steel, 5));
-			}
-			if (this.tier == 2) {
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTBlocks.batteryLithiumMed));
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.get(GTItems.motorMV), 1);
-				ItemHandlerHelper.giveItemToPlayer(player, GTMaterialGen.getPlate(GTMaterial.Aluminium, 5));
-			}
-			// TODO add tier 3 when parts are available
-		}
-		stack.damageItem(1, entityLiving);
 		return super.onBlockDestroyed(stack, worldIn, blockIn, pos, entityLiving);
 	}
 
