@@ -15,9 +15,9 @@ import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
-import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTilePlayerDetector;
+import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileSluice;
 import gtclassic.tile.GTTileWorkbench;
@@ -40,27 +40,29 @@ public class GTBlocks {
 	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre("Ruby", 82, 4.0F, 2));
 	public static final GTBlockOre oreSapphire = registerBlock(new GTBlockOre("Sapphire", 83, 4.0F, 2));
 	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre("Bauxite", 84, 3.0F, 1));
-	public static final GTBlockCasing blockFusion = registerBlock(new GTBlockCasing("fusion", 1));
-	public static final GTBlockCasing blockLESU = registerBlock(new GTBlockCasing("lesu", 5));
-	public static final GTBlockCasing blockHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29));
+	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 2));
+	public static final GTBlockCasing casingLESU = registerBlock(new GTBlockCasing("lesu", 5));
+	public static final GTBlockCasing casingReinforced = registerBlock(new GTBlockCasing("reinforced", 1));
+	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29));
 	// public static final GTBlockSluice tileSluice = registerBlock(new
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
 	// GTBlockSluiceBoxExt());
-	public static final GTBlockTileBasic tileChargeOmat = registerBlock(new GTBlockTileBasic("chargeomat")),
+	public static final GTBlockTileBasic tileBlastFurnace = registerBlock(new GTBlockTileBasic("blastfurnace")),
+			tileChargeOmat = registerBlock(new GTBlockTileBasic("chargeomat")),
 			tileComputer = registerBlock(new GTBlockTileBasic("computercube")),
 			tileCentrifuge = registerBlock(new GTBlockTileBasic("industrialcentrifuge")),
 			tileFabricator = registerBlock(new GTBlockTileBasic("matterfabricator")),
-			tileReplicator = registerBlock(new GTBlockTileBasic("matterreplicator")),
-			tileDigitalChest = registerBlock(new GTBlockTileBasic("digitalchest")),
+			tileAssembler = registerBlock(new GTBlockTileBasic("matterreplicator")),
+			tileQuantumChest = registerBlock(new GTBlockTileBasic("quantumchest")),
 			tilePlayerDetector = registerBlock(new GTBlockTileBasic("playerdetector")),
-			tileFusion = registerBlock(new GTBlockTileBasic("fusioncomputer")),
+			tileFusionComputer = registerBlock(new GTBlockTileBasic("fusioncomputer")),
 			tileLightningRod = registerBlock(new GTBlockTileBasic("lightningrod")),
 			tileQuantumEnergy = registerBlock(new GTBlockTileBasic("quantumenergystorage")),
 			tileBasicEnergy = registerBlock(new GTBlockTileBasic("basicenergystorage"));
-	protected static final String[] textureTileBasic = { "chargeomat", "computercube", "industrialcentrifuge",
-			"matterfabricator", "matterreplicator", "digitalchest", "playerdetector", "fusioncomputer", "lightningrod",
-			"quantumenergystorage", "basicenergystorage" };
+	protected static final String[] textureTileBasic = { "blastfurnace", "chargeomat", "computercube",
+			"industrialcentrifuge", "matterfabricator", "matterreplicator", "quantumchest", "playerdetector",
+			"fusioncomputer", "lightningrod", "quantumenergystorage", "basicenergystorage" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -100,7 +102,7 @@ public class GTBlocks {
 		registerUtil(GTTileQuantumEnergyStorage.class, "QuantumEnergy");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");
 		registerUtil(GTTileMultiFusion.class, "FusionComputer");
-		registerUtil(GTTileDigitalChest.class, "QuantumChest");
+		registerUtil(GTTileQuantumChest.class, "QuantumChest");
 		registerUtil(GTTileWorkbench.class, "Workbench");
 		registerUtil(GTTileFacing.class, "Facing");
 	}

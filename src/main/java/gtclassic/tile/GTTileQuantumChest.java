@@ -1,6 +1,6 @@
 package gtclassic.tile;
 
-import gtclassic.container.GTContainerDigitalChest;
+import gtclassic.container.GTContainerQuantumChest;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -21,7 +21,7 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, ITickable {
+public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable {
 
 	int slotInput = 0;
 	int slotOutput = 1;
@@ -29,7 +29,7 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IT
 	int maxSize = Integer.MAX_VALUE;
 	int digitalCount;
 
-	public GTTileDigitalChest() {
+	public GTTileQuantumChest() {
 		super(3);
 		this.digitalCount = 0;
 		this.addGuiFields(new String[] { "digitalCount" });
@@ -80,7 +80,7 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IT
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerDigitalChest(player.inventory, this);
+		return new GTContainerQuantumChest(player.inventory, this);
 	}
 
 	@Override

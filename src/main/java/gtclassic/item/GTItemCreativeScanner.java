@@ -3,7 +3,7 @@ package gtclassic.item;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileBaseMachine;
 import gtclassic.tile.GTTileBlockCustom;
-import gtclassic.tile.GTTileDigitalChest;
+import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
@@ -196,8 +196,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "1 out of " + rod.chance
 						+ " chance to strike based on fence height");
 			}
-			if (tileEntity instanceof GTTileDigitalChest) {
-				GTTileDigitalChest chest = (GTTileDigitalChest) tileEntity;
+			if (tileEntity instanceof GTTileQuantumChest) {
+				GTTileQuantumChest chest = (GTTileQuantumChest) tileEntity;
 				IC2.platform.messagePlayer(player, "Internal Count: " + chest.getQuantumCount());
 			}
 			if (tileEntity instanceof TileEntityElectricBlock) {

@@ -68,7 +68,7 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
-		return checkStructure();
+		return true;
 	}
 
 	@Override

@@ -42,7 +42,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusioncomputer.png");
 
 	public GTTileMultiFusion() {
-		super(3, 0, 2048, 8196);
+		super(3, 0, 8196, 32784);
 		maxEnergy = 100000;
 	}
 
@@ -125,7 +125,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	public static IRecipeModifier[] totalEu(int total) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 2048) - 100) };
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 8196) - 100) };
 	}
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
@@ -145,7 +145,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 2048);
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 8196);
 	}
 
 	@Override
@@ -167,6 +167,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	public boolean checkPos(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTBlocks.blockFusion.getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTBlocks.casingFusion.getDefaultState();
 	}
 }

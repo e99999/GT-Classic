@@ -11,7 +11,7 @@ import net.minecraft.block.Block;
 public enum GTJeiRegistry {
 	// @formatter:off
 	CENTRIFUGE(GTTileCentrifuge.RECIPE_LIST, GTBlocks.tileCentrifuge, GTGuiMachine.GTIndustrialCentrifugeGui.class, 78, 24, 20, 18),
-	FUSION(GTTileMultiFusion.RECIPE_LIST, GTBlocks.tileFusion, GTFusionComputerGui.class, 69, 34, 25, 17);
+	FUSION(GTTileMultiFusion.RECIPE_LIST, GTBlocks.tileFusionComputer, GTFusionComputerGui.class, 69, 34, 25, 17);
 
 	// @formatter:on
 	private GTMultiInputRecipeList list;

@@ -9,8 +9,8 @@ import gtclassic.GTMod;
 import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
-import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTilePlayerDetector;
+import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
@@ -99,7 +99,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (this == GTBlocks.tileLightningRod) {
 			return new GTTileMultiLightningRod();
 		}
-		if (this == GTBlocks.tileFusion) {
+		if (this == GTBlocks.tileFusionComputer) {
 			return new GTTileMultiFusion();
 		}
 		if (this == GTBlocks.tileBasicEnergy) {
@@ -108,8 +108,8 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (this == GTBlocks.tileQuantumEnergy) {
 			return new GTTileQuantumEnergyStorage();
 		}
-		if (this == GTBlocks.tileDigitalChest) {
-			return new GTTileDigitalChest();
+		if (this == GTBlocks.tileQuantumChest) {
+			return new GTTileQuantumChest();
 		} else {
 			return new TileEntityBlock();
 		}
