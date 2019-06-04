@@ -54,7 +54,7 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("Spawns in your mom"));
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
 	}
 
 	@Override

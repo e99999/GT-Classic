@@ -4,6 +4,7 @@ import gtclassic.GTBlocks;
 import gtclassic.gui.GTGuiMachine;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.tile.GTTileCentrifuge;
+import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import net.minecraft.block.Block;
@@ -11,6 +12,7 @@ import net.minecraft.block.Block;
 public enum GTJeiRegistry {
 	// @formatter:off
 	CENTRIFUGE(GTTileCentrifuge.RECIPE_LIST, GTBlocks.tileCentrifuge, GTGuiMachine.GTIndustrialCentrifugeGui.class, 78, 24, 20, 18),
+	BLASTFURNACE(GTTileMultiBlastFurnace.RECIPE_LIST, GTBlocks.tileBlastFurnace, GTGuiMachine.GTBlastFurnaceGui.class, 78, 24, 20, 18),
 	FUSION(GTTileMultiFusion.RECIPE_LIST, GTBlocks.tileFusionComputer, GTFusionComputerGui.class, 69, 34, 25, 17);
 
 	// @formatter:on

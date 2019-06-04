@@ -12,6 +12,7 @@ import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
+import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -92,6 +93,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tileCentrifuge) {
 			return new GTTileCentrifuge();
+		}
+		if (this == GTBlocks.tileBlastFurnace) {
+			return new GTTileMultiBlastFurnace();
 		}
 		if (this == GTBlocks.tilePlayerDetector) {
 			return new GTTilePlayerDetector();

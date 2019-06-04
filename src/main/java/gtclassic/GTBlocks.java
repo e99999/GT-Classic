@@ -21,6 +21,7 @@ import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileSluice;
 import gtclassic.tile.GTTileWorkbench;
+import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.core.IC2;
@@ -48,16 +49,16 @@ public class GTBlocks {
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
 	// GTBlockSluiceBoxExt());
-	public static final GTBlockTileBasic tileBlastFurnace = registerBlock(new GTBlockTileBasic("blastfurnace")),
+	public static final GTBlockTileBasic tileBlastFurnace = registerBlock(new GTBlockTileBasic("blastfurnace", 3)),
 			tileChargeOmat = registerBlock(new GTBlockTileBasic("chargeomat")),
 			tileComputer = registerBlock(new GTBlockTileBasic("computercube")),
 			tileCentrifuge = registerBlock(new GTBlockTileBasic("industrialcentrifuge")),
 			tileFabricator = registerBlock(new GTBlockTileBasic("matterfabricator")),
 			tileAssembler = registerBlock(new GTBlockTileBasic("matterreplicator")),
 			tileQuantumChest = registerBlock(new GTBlockTileBasic("quantumchest")),
-			tilePlayerDetector = registerBlock(new GTBlockTileBasic("playerdetector")),
-			tileFusionComputer = registerBlock(new GTBlockTileBasic("fusioncomputer")),
-			tileLightningRod = registerBlock(new GTBlockTileBasic("lightningrod")),
+			tilePlayerDetector = registerBlock(new GTBlockTileBasic("playerdetector", 1)),
+			tileFusionComputer = registerBlock(new GTBlockTileBasic("fusioncomputer", 3)),
+			tileLightningRod = registerBlock(new GTBlockTileBasic("lightningrod", 2)),
 			tileQuantumEnergy = registerBlock(new GTBlockTileBasic("quantumenergystorage")),
 			tileBasicEnergy = registerBlock(new GTBlockTileBasic("basicenergystorage"));
 	protected static final String[] textureTileBasic = { "blastfurnace", "chargeomat", "computercube",
@@ -98,6 +99,7 @@ public class GTBlocks {
 		registerUtil(GTTileCentrifuge.class, "IndustrialCentrifuge");
 		registerUtil(GTTilePlayerDetector.class, "PlayerDetector");
 		registerUtil(GTTileComputerCube.class, "ComputerCube");
+		registerUtil(GTTileMultiBlastFurnace.class, "BlastFurnace");
 		registerUtil(GTTileBasicEnergyStorage.class, "BasicEnergy");
 		registerUtil(GTTileQuantumEnergyStorage.class, "QuantumEnergy");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");

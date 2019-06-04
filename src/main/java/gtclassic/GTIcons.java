@@ -36,6 +36,8 @@ public class GTIcons {
 		addCustomTexture("industrialcentrifuge", 0, 7, location("centrifuge_top"));
 		addCustomTexture("industrialcentrifuge", 0, 8, location("centrifuge_back"));
 		addCustomTexture("industrialcentrifuge", 0, 9, location("centrifuge_front"));
+		addCustomTexture("industrialcentrifuge", 0, 10, location("centrifuge_left"));
+		addCustomTexture("industrialcentrifuge", 0, 11, location("centrifuge_right"));
 	}
 
 	private static ResourceLocation location(String name) {

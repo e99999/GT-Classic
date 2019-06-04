@@ -65,7 +65,7 @@ public class GTItemReactorRod extends ItemGrandualInt
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTMod.MODID + ".wip"));
+		tooltip.add(TextFormatting.RED + I18n.format("Work in progress, no refunds!"));
 	}
 
 	@Override

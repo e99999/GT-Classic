@@ -17,7 +17,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentDamage;
@@ -35,7 +34,6 @@ import net.minecraft.stats.StatList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
@@ -49,28 +47,21 @@ public class GTToolChainsaw extends ItemElectricTool implements IStaticTexturedI
 	public GTToolChainsaw(GTMaterial mat) {
 		super(0.0F, 0.0F, ToolMaterial.IRON);
 		this.material = mat;
-		this.tier = material.getLevel() - 1;
-		if (this.tier <= 0) {
-			this.tier = 1;
-		}
+		this.tier = 4;
 		this.maxCharge = (int) (Math.pow(2, this.tier) * 50000);
 		this.transferLimit = (int) (Math.pow(2, this.tier) * 64);
 		this.operationEnergyCost = this.transferLimit;
-		this.efficiency = (this.material.getSpeed() * 2) * this.tier;
+		this.efficiency = 60.0F;
 		this.setHarvestLevel("axe", 2);
 		this.setRegistryName("chainsaw_" + this.material.getName());
 		this.setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + "_chainsaw");
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
-	@SuppressWarnings("deprecation")
+	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.GOLD + I18n.format("Material: " + this.material.getDisplayName()));
-		tooltip.add(TextFormatting.BLUE
-				+ I18n.format("Efficiency: " + String.valueOf((this.material.getSpeed() * 2) * this.tier)));
-		tooltip.add(TextFormatting.RED
-				+ I18n.format("Uses Remaining: " + String.valueOf(this.getMaxDamage() - this.getDamage(stack))));
+
 	}
 
 	@Override
@@ -210,7 +201,7 @@ public class GTToolChainsaw extends ItemElectricTool implements IStaticTexturedI
 			return true;
 		} else {
 			if (ElectricItem.manager.use(stack, this.operationEnergyCost, attacker)) {
-				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), this.material.getSpeed()
+				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 20.0F
 						* 2);
 			} else {
 				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1.0F);

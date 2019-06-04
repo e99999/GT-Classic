@@ -15,6 +15,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
@@ -34,6 +35,11 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 		this.setRegistryName("tesla_staff");
 		this.setUnlocalizedName(GTMod.MODID + ".tesla_staff");
 		this.setCreativeTab(GTMod.creativeTabGT);
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack thisItem) {
+		return EnumRarity.RARE;
 	}
 
 	@Override

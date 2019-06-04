@@ -18,7 +18,6 @@ import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -28,7 +27,6 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
@@ -43,7 +41,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 	public GTToolMiningDrill(GTMaterial mat) {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);
 		this.material = mat;
-		this.tier = material.getLevel() - 1;
+		this.tier = 4;
 		if (this.tier <= 0) {
 			this.tier = 1;
 		}
@@ -55,14 +53,9 @@ public class GTToolMiningDrill extends ItemElectricTool
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.YELLOW + I18n.format("Level: " + this.getLevelString()));
-		tooltip.add(TextFormatting.GOLD + I18n.format("Material: " + this.material.getDisplayName()));
-		tooltip.add(TextFormatting.BLUE + I18n.format("Speed: " + String.valueOf(this.getMiningSpeed(stack))));
-		tooltip.add(TextFormatting.RED
-				+ I18n.format("Uses Remaining: " + String.valueOf(this.getMaxDamage() - this.getDamage(stack))));
+
 	}
 
 	@Override
@@ -76,7 +69,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 
 	@Override
 	public int getHarvestLevel(ItemStack stack, String toolClass, EntityPlayer player, IBlockState blockState) {
-		return this.material.getLevel();
+		return 4;
 	}
 
 	public String getLevelString() {
@@ -97,7 +90,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
-		return (this.material.getSpeed() * (this.tier * 3));
+		return 60.0F;
 	}
 
 	@Override
@@ -169,7 +162,7 @@ public class GTToolMiningDrill extends ItemElectricTool
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {
 		if (!ElectricItem.manager.canUse(stack, (double) this.getEnergyCost(stack))) {
 			return 1.0F;
-		} else if (state.getBlock().getHarvestLevel(state) <= this.material.getLevel()) {
+		} else if (state.getBlock().getHarvestLevel(state) <= 4) {
 			return this.getMiningSpeed(stack);
 		} else {
 			return 0.0F;

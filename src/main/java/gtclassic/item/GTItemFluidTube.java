@@ -66,12 +66,14 @@ public class GTItemFluidTube extends Item
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(getFluidName(stack));
-		tooltip.add("Melting: " + getFluidTemp(stack));
 		if (isFluidGas(stack)) {
 			tooltip.add(TextFormatting.GREEN + I18n.format("Gaseous"));
 		}
 		if (isFluidPlaceable(stack)) {
 			tooltip.add(TextFormatting.YELLOW + I18n.format("Fluid can be placed in world"));
+		}
+		if (isFluidBurnable(stack)) {
+			tooltip.add(TextFormatting.RED + I18n.format("Can be burned as liquid fuel"));
 		}
 	}
 
@@ -93,12 +95,14 @@ public class GTItemFluidTube extends Item
 		return fluid != null && fluid.getFluid().isGaseous();
 	}
 
-	public String getFluidTemp(ItemStack stack) {
+	public Boolean isFluidBurnable(ItemStack stack) {
 		FluidStack fluid = FluidUtil.getFluidContained(stack);
 		if (fluid != null) {
-			return "" + fluid.getFluid().getTemperature() + "K";
+			return fluid.getFluid().getName().equalsIgnoreCase("hydrogen")
+					|| fluid.getFluid().getName().equalsIgnoreCase("methane")
+					|| fluid.getFluid().getName().equalsIgnoreCase("sodium");
 		}
-		return "";
+		return false;
 	}
 
 	@Override

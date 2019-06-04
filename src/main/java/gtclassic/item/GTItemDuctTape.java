@@ -11,7 +11,9 @@ import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -31,6 +33,11 @@ public class GTItemDuctTape extends Item implements IStaticTexturedItem {
 		this.setMaxDamage(255);
 		this.setHasSubtypes(false);
 		this.setNoRepair();
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack thisItem) {
+		return EnumRarity.UNCOMMON;
 	}
 
 	@Override

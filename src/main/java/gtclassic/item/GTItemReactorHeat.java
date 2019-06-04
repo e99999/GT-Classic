@@ -10,9 +10,13 @@ import ic2.core.item.reactor.ItemReactorHeatStorageBase;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTPrimitive;
 import net.minecraft.nbt.NBTTagInt;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -46,6 +50,11 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	@Override
 	public List<Integer> getValidVariants() {
 		return Arrays.asList(0);
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(TextFormatting.RED + I18n.format("Work in progress, no refunds!"));
 	}
 
 	@Override
