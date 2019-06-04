@@ -7,7 +7,12 @@ import gtclassic.item.GTItemComponent;
 import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
 import gtclassic.item.GTItemElectromagnet;
+import gtclassic.item.GTItemEnergyOrb;
+import gtclassic.item.GTItemEnergyPack;
 import gtclassic.item.GTItemFluidTube;
+import gtclassic.item.GTItemLithiumBattery;
+import gtclassic.item.GTItemReactorHeat;
+import gtclassic.item.GTItemReactorHeat.GTItemHeatStorageTypes;
 import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
@@ -22,6 +27,9 @@ public class GTItems {
 	}
 
 	static List<Item> toRegister = new ArrayList<>();
+	public static final GTItemReactorHeat heatStorageSingle = createItem(new GTItemReactorHeat(GTItemHeatStorageTypes.SINGLE));
+	public static final GTItemReactorHeat heatStorageTriple = createItem(new GTItemReactorHeat(GTItemHeatStorageTypes.TRIPLE));
+	public static final GTItemReactorHeat heatStorageSix = createItem(new GTItemReactorHeat(GTItemHeatStorageTypes.SIX));
 	public static final GTItemComponent circuitEnergy = createItem(new GTItemComponent("energy_circuit", 6, 0));
 	public static final GTItemComponent circuitData = createItem(new GTItemComponent("data_circuit", 7, 0));
 	public static final GTItemComponent chipData = createItem(new GTItemComponent("data_chip", 9, 0));
@@ -29,6 +37,10 @@ public class GTItems {
 	public static final GTItemComponent orbData = createItem(new GTItemComponent("data_orb", 11, 0));
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
 	public static final GTItemElectromagnet electroMagnet = createItem(new GTItemElectromagnet());
+	public static final GTItemLithiumBattery lithiumBattery = createItem(new GTItemLithiumBattery());
+	public static final GTItemEnergyOrb energyOrb = createItem(new GTItemEnergyOrb());
+	public static final GTItemEnergyPack lithiumBatpack = createItem(new GTItemEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
+	public static final GTItemEnergyPack lapotronPack = createItem(new GTItemEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
 	public static final GTItemTeslaStaff teslaStaff = createItem(new GTItemTeslaStaff());
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());

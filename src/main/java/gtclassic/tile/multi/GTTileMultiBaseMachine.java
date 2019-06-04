@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import gtclassic.tile.GTTileBaseMachine;
-import gtclassic.util.int3;
 import gtclassic.util.energy.EnergyConsumer;
 import gtclassic.util.energy.MultiBlockHelper;
 import ic2.api.energy.event.EnergyTileLoadEvent;
@@ -16,7 +15,6 @@ import ic2.api.energy.tile.IMetaDelegate;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -71,18 +69,6 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return checkStructure();
-	}
-
-	@Override
-	public TileEntity getImportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(2).asBlockPos());
-	}
-
-	@Override
-	public TileEntity getExportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(2).asBlockPos());
 	}
 
 	@Override

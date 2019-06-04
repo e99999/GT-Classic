@@ -115,7 +115,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	@Override
 	public void update() {
-		tryImportItems();
 		handleRedstone();
 		updateNeighbors();
 		boolean noRoom = addToInventory();
@@ -164,7 +163,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			}
 		}
 		updateComparators();
-		tryExportItems();
 	}
 
 	public void process(MultiRecipe recipe) {

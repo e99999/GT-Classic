@@ -3,7 +3,7 @@ package gtclassic;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.block.GTBlock;
+import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.color.GTColorBlockInterface;
@@ -40,9 +40,9 @@ public class GTBlocks {
 	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre("Ruby", 82, 4.0F, 2));
 	public static final GTBlockOre oreSapphire = registerBlock(new GTBlockOre("Sapphire", 83, 4.0F, 2));
 	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre("Bauxite", 84, 3.0F, 1));
-	public static final GTBlock blockFusion = registerBlock(new GTBlock("fusion", 1));
-	public static final GTBlock blockLESU = registerBlock(new GTBlock("lesu", 5));
-	public static final GTBlock blockHighlyAdvanced = registerBlock(new GTBlock("highlyadvanced", 29));
+	public static final GTBlockCasing blockFusion = registerBlock(new GTBlockCasing("fusion", 1));
+	public static final GTBlockCasing blockLESU = registerBlock(new GTBlockCasing("lesu", 5));
+	public static final GTBlockCasing blockHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29));
 	// public static final GTBlockSluice tileSluice = registerBlock(new
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new

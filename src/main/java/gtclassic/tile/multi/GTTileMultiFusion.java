@@ -31,7 +31,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class GTTileMultiFusion extends GTTileMultiBaseMachine {
@@ -57,18 +56,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput);
 		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1);
 		handler.registerSlotType(SlotType.Output, slotOutput);
-	}
-
-	@Override
-	public TileEntity getImportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(1).asBlockPos());
-	}
-
-	@Override
-	public TileEntity getExportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(1).asBlockPos());
 	}
 
 	@Override

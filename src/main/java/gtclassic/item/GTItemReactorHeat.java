@@ -3,6 +3,7 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import ic2.api.reactor.IReactor;
 import ic2.core.item.reactor.ItemReactorHeatStorageBase;
@@ -18,9 +19,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements IStaticTexturedItem {
 
 	public enum GTItemHeatStorageTypes {
-		SINGLE(34),
-		TRIPLE(35),
-		SIX(36);
+		SINGLE(2),
+		TRIPLE(3),
+		SIX(4);
 
 		private int id;
 
@@ -53,12 +54,21 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
 	}
 
-	/*
-	 * @Override public int getMaxCustomDamage(ItemStack stack) { if (this ==
-	 * GTItems.heatStorageSingle) { return 10000; } if (this ==
-	 * GTItems.heatStorageTriple) { return 30000; } if (this ==
-	 * GTItems.heatStorageSix) { return 60000; } else { return 0; } }
-	 */
+	@Override
+	public int getMaxCustomDamage(ItemStack stack) {
+		if (this == GTItems.heatStorageSingle) {
+			return 10000;
+		}
+		if (this == GTItems.heatStorageTriple) {
+			return 30000;
+		}
+		if (this == GTItems.heatStorageSix) {
+			return 60000;
+		} else {
+			return 0;
+		}
+	}
+
 	@Override
 	public List<ReactorComponentStat> getExtraStats(ItemStack stack) {
 		return null;
