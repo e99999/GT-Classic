@@ -31,9 +31,6 @@ public class GTMaterialGen {
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.INGOT);
 		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			materialItemUtil(mat, GTMaterialFlag.NUGGET);
-		}
 	}
 
 	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {
@@ -88,10 +85,6 @@ public class GTMaterialGen {
 
 	public static ItemStack getIngot(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.INGOT.getSuffix()), count, 0);
-	}
-
-	public static ItemStack getNugget(GTMaterial mat, int count) {
-		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.NUGGET.getSuffix()), count, 0);
 	}
 
 	public static ItemStack getFluid(GTMaterial mat, int count) {

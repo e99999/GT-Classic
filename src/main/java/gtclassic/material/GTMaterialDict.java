@@ -22,10 +22,6 @@ public class GTMaterialDict {
 			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
 				OreDictionary.registerOre("ingot" + mat.getDisplayName(), GTMaterialGen.getIngot(mat, 1));
 			}
-			// Nuggets
-			if (mat.hasFlag(GTMaterialFlag.NUGGET)) {
-				OreDictionary.registerOre("nugget" + mat.getDisplayName(), GTMaterialGen.getNugget(mat, 1));
-			}
 		}
 	}
 }

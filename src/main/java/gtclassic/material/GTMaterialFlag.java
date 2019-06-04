@@ -4,7 +4,6 @@ public enum GTMaterialFlag {
 	DUST("_dust", 0, false),
 	GEM("_gem", 2, false),
 	INGOT("_ingot", 3, false),
-	NUGGET("_nugget", 5, false),
 	FLUID("", 13, true),
 	GAS("", 13, true),
 	BLOCK("_block", 48, false);
@@ -27,6 +26,10 @@ public enum GTMaterialFlag {
 
 	public String getSuffix() {
 		return suffix;
+	}
+
+	public String getPrefix() {
+		return suffix.replace("_", "");
 	}
 
 	public int getTextureID() {

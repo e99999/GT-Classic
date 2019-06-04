@@ -41,7 +41,7 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, GTColorBlo
 		this.flag = flag;
 		this.comp = Ic2Lang.nullKey;
 		setRegistryName(this.material.getName() + this.flag.getSuffix());
-		setUnlocalizedName(GTMod.MODID + "." + this.material.getName() + this.flag.getSuffix());
+		setUnlocalizedName(GTMod.MODID + "." + this.flag.getPrefix() + this.material.getDisplayName());
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
 		setResistance(15.0F);

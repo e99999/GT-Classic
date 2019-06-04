@@ -3,7 +3,8 @@ package gtclassic;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.block.GTBlockCasing;
+import gtclassic.block.GTBlock;
+import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockTileBasic;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
@@ -35,14 +36,18 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
-	public static final GTBlockCasing casingSuperConductor = registerBlock(new GTBlockCasing("Superconductor", 0)),
-			casingFusion = registerBlock(new GTBlockCasing("Fusion", 1));
+	public static final GTBlockOre oreIridium = registerBlock(new GTBlockOre("Iridium", 81, 20.0F, 3));
+	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre("Ruby", 82, 4.0F, 2));
+	public static final GTBlockOre oreSapphire = registerBlock(new GTBlockOre("Sapphire", 83, 4.0F, 2));
+	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre("Bauxite", 84, 3.0F, 1));
+	public static final GTBlock blockFusion = registerBlock(new GTBlock("fusion", 1));
+	public static final GTBlock blockLESU = registerBlock(new GTBlock("lesu", 5));
+	public static final GTBlock blockHighlyAdvanced = registerBlock(new GTBlock("highlyadvanced", 29));
 	// public static final GTBlockSluice tileSluice = registerBlock(new
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
 	// GTBlockSluiceBoxExt());
-	public static final GTBlockTileBasic 
-			tileChargeOmat = registerBlock(new GTBlockTileBasic("chargeomat")),
+	public static final GTBlockTileBasic tileChargeOmat = registerBlock(new GTBlockTileBasic("chargeomat")),
 			tileComputer = registerBlock(new GTBlockTileBasic("computercube")),
 			tileCentrifuge = registerBlock(new GTBlockTileBasic("industrialcentrifuge")),
 			tileFabricator = registerBlock(new GTBlockTileBasic("matterfabricator")),
@@ -53,7 +58,6 @@ public class GTBlocks {
 			tileLightningRod = registerBlock(new GTBlockTileBasic("lightningrod")),
 			tileQuantumEnergy = registerBlock(new GTBlockTileBasic("quantumenergystorage")),
 			tileBasicEnergy = registerBlock(new GTBlockTileBasic("basicenergystorage"));
-	
 	protected static final String[] textureTileBasic = { "chargeomat", "computercube", "industrialcentrifuge",
 			"matterfabricator", "matterreplicator", "digitalchest", "playerdetector", "fusioncomputer", "lightningrod",
 			"quantumenergystorage", "basicenergystorage" };

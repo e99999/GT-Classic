@@ -180,6 +180,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	public boolean checkPos(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTBlocks.casingFusion.getDefaultState();
+		return world.getBlockState(pos.asBlockPos()) == GTBlocks.blockFusion.getDefaultState();
 	}
 }

@@ -19,8 +19,6 @@ public class GTIcons {
 				+ ":textures/sprites/sprites_items.png", new Sprites.SpriteInfo(16, 16)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_materials", GTMod.MODID
 				+ ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 16)));
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_casings", GTMod.MODID
-				+ ":textures/sprites/sprites_casings.png", new Sprites.SpriteInfo(16, 16)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_builder", GTMod.MODID
 				+ ":textures/sprites/builder.png", new Sprites.SpriteInfo(1, 12)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_sluicebox", GTMod.MODID
@@ -32,14 +30,12 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 5));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 4));
-		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_casings", 0, 0, 16, 4));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox", 0, 0, 1, 1));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox_particle", 0, 0, 1, 1));
-		addCustomTexture("fusioncomputer", 0, 9, location("fusion_front"));
+		addCustomTexture("fusioncomputer", 0, 7, location("fusion_top"));
 		addCustomTexture("industrialcentrifuge", 0, 7, location("centrifuge_top"));
 		addCustomTexture("industrialcentrifuge", 0, 8, location("centrifuge_back"));
 		addCustomTexture("industrialcentrifuge", 0, 9, location("centrifuge_front"));
-		addCustomTexture("digitalchest", 0, 1, location("digitalchest_top"));
 	}
 
 	private static ResourceLocation location(String name) {

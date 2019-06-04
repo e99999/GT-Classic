@@ -7,7 +7,6 @@ import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GTRecipeIterators {
@@ -22,17 +21,12 @@ public class GTRecipeIterators {
 		for (GTMaterial mat : GTMaterial.values()) {
 			createIngotRecipe(mat);
 			createGemRecipe(mat);
-			createNuggetRecipe(mat);
 			createBlockRecipe(mat);
 		}
 	}
 
-
 	public static void createIngotRecipe(GTMaterial mat) {
-		String nugget = "nugget" + mat.getDisplayName();
 		if (mat.hasFlag(GTMaterialFlag.INGOT)) {
-			// Ingot crafting recipe
-			recipes.addRecipe(GTMaterialGen.getIngot(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X', nugget });
 			if (mat.hasFlag(GTMaterialFlag.DUST)) {
 				GameRegistry.addSmelting(GTMaterialGen.getDust(mat, 1), (GTMaterialGen.getIngot(mat, 1)), 0.1F);
 			}
@@ -56,13 +50,6 @@ public class GTRecipeIterators {
 				recipes.addRecipe(GTMaterialGen.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X',
 						gem });
 			}
-		}
-	}
-
-	public static void createNuggetRecipe(GTMaterial mat) {
-		String ingot = "ingot" + mat.getDisplayName();
-		if (mat.hasFlag(GTMaterialFlag.NUGGET)) {
-			recipes.addShapelessRecipe(GTMaterialGen.getNugget(mat, 9), new Object[] { ingot });
 		}
 	}
 

@@ -22,7 +22,11 @@ public class GTItems {
 	}
 
 	static List<Item> toRegister = new ArrayList<>();
-	public static final GTItemComponent plasticFletching = createItem(new GTItemComponent("plastic_fletching", 15, 2, false));
+	public static final GTItemComponent circuitEnergy = createItem(new GTItemComponent("energy_circuit", 6, 0));
+	public static final GTItemComponent circuitData = createItem(new GTItemComponent("data_circuit", 7, 0));
+	public static final GTItemComponent chipData = createItem(new GTItemComponent("data_chip", 9, 0));
+	public static final GTItemComponent superConductor = createItem(new GTItemComponent("super_conductor", 10, 0));
+	public static final GTItemComponent orbData = createItem(new GTItemComponent("data_orb", 11, 0));
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
 	public static final GTItemElectromagnet electroMagnet = createItem(new GTItemElectromagnet());
 	public static final GTItemTeslaStaff teslaStaff = createItem(new GTItemTeslaStaff());

@@ -5,14 +5,10 @@ import java.util.Map;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
-import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
-import ic2.core.item.recipe.entry.RecipeInputItemStack;
-import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -21,8 +17,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 public class GTRecipeProcessing {
 
 	static IMachineRecipeList smelting = ClassicRecipes.furnace;
-	public static final GTMultiInputRecipeList BYPRODUCT_LIST = new GTMultiInputRecipeList("gt.byproducts");
-	public static final GTMultiInputRecipeList INTERACTION_LIST = new GTMultiInputRecipeList("gt.interaction");
 
 	public static void recipesProcessing() {
 		/*
@@ -33,7 +27,6 @@ public class GTRecipeProcessing {
 		TileEntityExtractor.addRecipe("oreRuby", 1, GTMaterialGen.getGem(GTMaterial.Ruby, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, GTMaterialGen.getGem(GTMaterial.Sapphire, 3), 0.1F);
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("sodium"), 3800, 8);
-		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("lithium"), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("hydrogen"), 950, 16);
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("methane"), 3000, 16);
 	}
@@ -60,17 +53,5 @@ public class GTRecipeProcessing {
 				iterator.remove();
 			}
 		}
-	}
-
-	/*
-	 * the 2 methods below are utilities for making recipes in all tiles extended
-	 * off this class
-	 */
-	public static IRecipeInput input(ItemStack stack) {
-		return new RecipeInputItemStack(stack);
-	}
-
-	public static IRecipeInput input(String name, int amount) {
-		return new RecipeInputOreDict(name, amount);
 	}
 }

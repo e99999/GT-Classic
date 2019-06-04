@@ -17,7 +17,6 @@ public class GTRecipeMod {
 		recipes.addRecipe(Ic2Items.miningLaser.copy(), new Object[] { "Rcc", "AAC", " AA", 'A',
 				Ic2Items.advancedAlloy.copy(), 'C', "circuitAdvanced", 'c',
 				GTMaterialGen.getFluid(GTMaterial.Helium, 1), 'R', "dustRedstone" });
-		recipes.overrideRecipe("shaped_item.itemPartIridium_-1226385265", GTMaterialGen.getIc2(Ic2Items.iridiumPlate, 1), "IAI", "ADA", "IAI", 'I', "ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
 		recipes.addRecipe(Ic2Items.reactorReflectorThick.copy(), new Object[] { " P ", "PBP", " P ", 'P',
 				Ic2Items.reactorReflector, 'B', GTMaterialGen.getFluid(GTMaterial.Beryllium, 1) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G',

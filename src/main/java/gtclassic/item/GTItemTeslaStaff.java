@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexturedItem {
 
 	public GTItemTeslaStaff() {
-		super(0.0F, 2.0F, ToolMaterial.IRON);
+		super(0.0F, 2.0F, ToolMaterial.DIAMOND);
 		this.attackDamage = 1.0F;
 		this.maxCharge = 10000000;
 		this.transferLimit = 2048;
@@ -44,7 +44,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[4];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[15];
 	}
 
 	@Override

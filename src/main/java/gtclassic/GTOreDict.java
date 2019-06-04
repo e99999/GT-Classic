@@ -26,7 +26,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("blockAluminum", (GTMaterialGen.getMaterialBlock(aluminium, 1)));
 		OreDictionary.registerOre("dustAluminum", (GTMaterialGen.getDust(aluminium, 1)));
 		OreDictionary.registerOre("ingotAluminum", (GTMaterialGen.getIngot(aluminium, 1)));
-		OreDictionary.registerOre("nuggetAluminum", (GTMaterialGen.getNugget(aluminium, 1)));
 		// Stuff to fit with how other mods have done it
 		OreDictionary.registerOre("dustEnderEye", (GTMaterialGen.getDust(GTMaterial.EnderEye, 1)));
 		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getIngot(GTMaterial.Silicon, 1)));

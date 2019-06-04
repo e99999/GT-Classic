@@ -11,10 +11,9 @@ public class GTMaterial {
 	static GTMaterialFlag dust = GTMaterialFlag.DUST;
 	static GTMaterialFlag gem = GTMaterialFlag.GEM;
 	static GTMaterialFlag ingot = GTMaterialFlag.INGOT;
-	static GTMaterialFlag nugget = GTMaterialFlag.NUGGET;
 	static GTMaterialFlag block = GTMaterialFlag.BLOCK;
 	static GTMaterialFlag[] gemAll = { dust, gem, block };
-	static GTMaterialFlag[] metalAll = { dust, ingot, nugget, block };
+	static GTMaterialFlag[] metalAll = { dust, ingot, block };
 	/** Master Material Map **/
 	private static HashMap<String, GTMaterial> generatedMap = new HashMap<>();
 	/** Material Instances **/
@@ -45,7 +44,7 @@ public class GTMaterial {
 			Ruby = new GTMaterial("Ruby", 255, 100, 100, 2317, 7.0F, 256, 2, gemAll),
 			Sapphire = new GTMaterial("Sapphire", 100, 100, 200, 2345, 7.0F, 256, 2, gemAll),
 			SapphireGreen = new GTMaterial("GreenSapphire", 100, 200, 130, 2108, 7.0F, 256, 2, gemAll),
-			Silicon = new GTMaterial("Silicon", 60, 60, 80, 1687, 1.0F, 0, 1, fluid, dust, nugget, ingot),
+			Silicon = new GTMaterial("Silicon", 60, 60, 80, 1687, 1.0F, 0, 1, dust, ingot),
 			Sodalite = new GTMaterial("Sodalite", 20, 20, 255, 1331, 3.0F, 0, 2, dust),
 			Sodium = new GTMaterial("Sodium", 0, 38, 255, 370, 1.0F, 0, 1, fluid),
 			Titanium = new GTMaterial("Titanium", 170, 143, 222, 1941, 8.0F, 2560, 3, metalAll),

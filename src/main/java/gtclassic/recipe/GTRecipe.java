@@ -17,5 +17,13 @@ public class GTRecipe {
 		// below is more how things will go
 		GTTileCentrifuge.init();
 		GTTileMultiFusion.init();
+		shapeless();
+		shaped();
+	}
+
+	public static void shapeless() {
+	}
+
+	public static void shaped() {
 	}
 }

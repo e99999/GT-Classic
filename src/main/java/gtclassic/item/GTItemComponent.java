@@ -8,7 +8,6 @@ import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -17,26 +16,14 @@ public class GTItemComponent extends Item implements IStaticTexturedItem {
 	String name;
 	int x;
 	int y;
-	boolean containeritem;
 
-	public GTItemComponent(String name, int x, int y, boolean containeritem) {
+	public GTItemComponent(String name, int x, int y) {
 		this.name = name;
 		this.x = x;
 		this.y = y;
-		this.containeritem = containeritem;
 		setRegistryName(this.name.toLowerCase());
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
-	}
-
-	@Override
-	public boolean hasContainerItem(ItemStack itemStack) {
-		return this.containeritem;
-	}
-
-	@Override
-	public ItemStack getContainerItem(ItemStack itemStack) {
-		return itemStack.copy();
 	}
 
 	@Override

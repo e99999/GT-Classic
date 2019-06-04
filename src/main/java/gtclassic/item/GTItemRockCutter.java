@@ -34,7 +34,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 		this.tier = 1;
 		this.attackDamage = 1.0F;
 		this.maxCharge = 10000;
-		this.transferLimit = 100;
+		this.transferLimit = 32;
 		this.setRegistryName("rockcutter");
 		this.setUnlocalizedName(GTMod.MODID + "." + "rockcutter");
 		this.setCreativeTab(GTMod.creativeTabGT);
@@ -63,7 +63,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 
 	@Override
 	public int getEnergyCost(ItemStack stack) {
-		return (this.transferLimit * 10);
+		return 500;
 	}
 
 	@Override
@@ -128,6 +128,6 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[9];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[14];
 	}
 }

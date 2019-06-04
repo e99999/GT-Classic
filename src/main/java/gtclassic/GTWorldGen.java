@@ -5,6 +5,8 @@ import java.util.Random;
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockMatcher;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -26,9 +28,11 @@ public class GTWorldGen implements IWorldGenerator {
 			IChunkProvider chunkProvider) {
 		// Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128,
 		// chunkZ * 16 + 16));
-		switch (world.provider.getDimensionType()) {
-		default:
-			break;
+		if (GTConfig.genOverworldOre) {
+			runGenerator(GTBlocks.oreIridium.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.oreRuby.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.oreSapphire.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.oreBauxite.getDefaultState(), 16, 4, 0, 112, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 	}
 
