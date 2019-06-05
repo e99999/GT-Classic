@@ -34,7 +34,7 @@ public class GTItemDuctTape extends Item implements IStaticTexturedItem {
 		this.setHasSubtypes(false);
 		this.setNoRepair();
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack thisItem) {
 		return EnumRarity.UNCOMMON;

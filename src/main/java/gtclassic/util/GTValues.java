@@ -30,17 +30,15 @@ public class GTValues {
 	// recipe stuff
 	public static FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
 	public static FluidStack lava = new FluidStack(FluidRegistry.LAVA, 1000);
+	// mod ids
+	public static final String BUILDCRAFT = "buildcraftcore";
+	public static final String HARVESTCRAFT = "harvestcraft";
+	public static final String DRACONIC = "draconicevolution";
+	public static final String THERMAL = "thermalfoundation";
+	public static final String IMMERSIVE_ENGINEERING = "immersiveengineering";
 
 	public static String getIC2Ingot() {
 		return IC2.getRefinedIron();
-	}
-
-	public static String getIC2Plate() {
-		if (IC2.getRefinedIron().equals("ingotSteel")) {
-			return "plateSteel";
-		} else {
-			return "plateRefinedIron";
-		}
 	}
 
 	public static String getTierString(int tier) {

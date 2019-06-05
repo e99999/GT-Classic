@@ -18,7 +18,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -47,7 +47,7 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, GTColorBlo
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format("Mobs cannot spawn on this block"));
@@ -75,8 +75,7 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, GTColorBlo
 	}
 
 	@Override
-	@Deprecated
-	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
 		return false;
 	}
 

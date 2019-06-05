@@ -6,12 +6,12 @@ import java.util.List;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
+import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTilePlayerDetector;
+import gtclassic.tile.GTTileQESU;
 import gtclassic.tile.GTTileQuantumChest;
-import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
@@ -24,7 +24,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -63,7 +63,6 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		setBlockUnbreakable();
 		setResistance(20.0F);
 		setSoundType(SoundType.METAL);
-		setHarvestLevel("pickaxe", 2);
 	}
 
 	@Override
@@ -74,8 +73,7 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 	}
 
 	@Override
-	@Deprecated
-	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
 		return false;
 	}
 
@@ -106,11 +104,11 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		if (this == GTBlocks.tileFusionComputer) {
 			return new GTTileMultiFusion();
 		}
-		if (this == GTBlocks.tileBasicEnergy) {
-			return new GTTileBasicEnergyStorage();
+		if (this == GTBlocks.tileQESU) {
+			return new GTTileQESU();
 		}
-		if (this == GTBlocks.tileQuantumEnergy) {
-			return new GTTileQuantumEnergyStorage();
+		if (this == GTBlocks.tileIDSU) {
+			return new GTTileIDSU();
 		}
 		if (this == GTBlocks.tileQuantumChest) {
 			return new GTTileQuantumChest();

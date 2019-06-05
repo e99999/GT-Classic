@@ -16,7 +16,7 @@ public class GTOreDict {
 		// Register some missing Ic2c stuff cause Speiger is a bad doge
 		OreDictionary.registerOre("dustNetherrack", Ic2Items.netherrackDust);
 		OreDictionary.registerOre("dustObsidian", Ic2Items.obsidianDust);
-		OreDictionary.registerOre("plateIridium", Ic2Items.iridiumPlate);
+		OreDictionary.registerOre("plateIridiumAlloy", Ic2Items.iridiumPlate);
 		OreDictionary.registerOre("blockCharcoal", Ic2Items.charcoalBlock);
 		OreDictionary.registerOre("logRubber", Ic2Items.rubberWood);
 		OreDictionary.registerOre("ingotWroughtIron", Ic2Items.refinedIronIngot);

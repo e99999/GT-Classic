@@ -1,4 +1,5 @@
 #blocks
+tile.gtclassic.blockSteel.name=Block of Steel
 tile.gtclassic.blockTitanium.name=Block of Titanium
 tile.gtclassic.blockIridium.name=Block of Iridium
 tile.gtclassic.blockTungsten.name=Block of Tungsten
@@ -30,12 +31,13 @@ tile.gtclassic.quantumchest.name=Quantum Chest
 tile.gtclassic.playerdetector.name=Player Detector
 tile.gtclassic.fusioncomputer.name=Fusion Computer
 tile.gtclassic.lightningrod.name=Lightning Rod
-tile.gtclassic.quantumenergystorage.name=QESU
-tile.gtclassic.basicenergystorage.name=MESU
+tile.gtclassic.idsu.name=IDSU
+tile.gtclassic.qesu.name=QESU
 tile.gtclassic.sluicebox.name=Sluice Box
 tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
 
 #dust
+item.gtclassic.dustSteel.name=Steel Dust
 item.gtclassic.dustEnderEye.name=Eye of Ender Dust
 item.gtclassic.dustTitanium.name=Titanium Dust
 item.gtclassic.dustLazurite.name=Lazurite Dust
@@ -63,6 +65,7 @@ item.gtclassic.gemSapphire.name=Sapphire
 item.gtclassic.gemRuby.name=Ruby
 
 #ingots
+item.gtclassic.ingotSteel.name=Steel Ingot
 item.gtclassic.ingotTitanium.name=Titanium Ingot
 item.gtclassic.ingotIridium.name=Iridium Ingot
 item.gtclassic.ingotTungsten.name=Tungsten Ingot
@@ -147,8 +150,8 @@ tooltip.gtclassic.fusioncomputer3=Controller centered in the ring
 tooltip.gtclassic.lightningrod0=Psssst its free energy!
 tooltip.gtclassic.lightningrod1=Structure:
 tooltip.gtclassic.lightningrod2=Controller, with 8-255 iron fence rods on top,
-tooltip.gtclassic.quantumenergystorage0=Move energy wirelessly between two points
-tooltip.gtclassic.basicenergystorage0=Store MASSIVE amounts of energy
+tooltip.gtclassic.idsu0=Not a tesseract...
+tooltip.gtclassic.qesu0=Stores EXTREME amounts of energy
 
 jei.centrifugeu.name=%s EU
 

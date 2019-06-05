@@ -2,6 +2,7 @@ package gtclassic.recipe;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
+import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileCentrifuge;
@@ -19,6 +20,8 @@ import ic2.core.item.recipe.upgrades.EnchantmentModifier;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
 
 public class GTRecipe {
 
@@ -56,6 +59,7 @@ public class GTRecipe {
 		items();
 		blocks();
 		ic2();
+		mods();
 	}
 
 	public static void shapeless() {
@@ -93,32 +97,32 @@ public class GTRecipe {
 				"circuitAdvanced", 'A', "ingotAluminium", 'L', GTItems.lithiumBattery });
 		/** Energy Control Circuit **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.circuitEnergy, 4), new Object[] { "CLC", "LPL", "CLC", 'L',
-				Ic2Items.lapotronCrystal.copy(), 'C', "circuitAdvanced", 'P', "plateIridium" });
+				Ic2Items.lapotronCrystal.copy(), 'C', "circuitAdvanced", 'P', "plateIridiumAlloy" });
 		/** Data Control Circuit **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.circuitData, 4), new Object[] { "CDC", "DPD", "CDC", 'D',
-				"circuitData", 'C', "circuitAdvanced", 'P', "plateIridium" });
+				"circuitData", 'C', "circuitAdvanced", 'P', "plateIridiumAlloy" });
 		/** Data Chip **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.chipData, 4), new Object[] { "EEE", "ECE", "EEE", 'E', "gemEmerald",
 				'C', "circuitAdvanced" });
 		/** Lapotronic Energy Orb **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.orbEnergy, 1), new Object[] { "LLL", "LPL", "LLL", 'L',
-				Ic2Items.lapotronCrystal.copy(), 'P', "plateIridium" });
+				Ic2Items.lapotronCrystal.copy(), 'P', "plateIridiumAlloy" });
 		/** Data Orb **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.orbData, 4), new Object[] { "SSS", "SCS", "SSS", 'S',
 				"circuitElite", 'C', "circuitData" });
 		/** Super Conductor **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.superConductor, 4), new Object[] { "CCC", "PWP", "EEE", 'C',
 				Ic2Items.reactorCoolantCellSix.copy(), 'E', "circuitMaster", 'W', "ingotTungsten", 'P',
-				"plateIridium" });
+				"plateIridiumAlloy" });
 		recipes.addRecipe(GTMaterialGen.get(GTItems.superConductor, 4), new Object[] { "CCC", "PWP", "EEE", 'C',
-				GTItems.heatStorageTriple, 'E', "circuitMaster", 'W', "ingotTungsten", 'P', "plateIridium" });
+				GTItems.heatStorageTriple, 'E', "circuitMaster", 'W', "ingotTungsten", 'P', "plateIridiumAlloy" });
 		/** Lapotron Batpack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.lapotronPack, 1), new Object[] { "ELE", "SBS", "EPE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'L', GTItems.orbEnergy, 'B', Ic2Items.lapPack.copy(), 'P',
-				"plateIridium" });
+				"circuitMaster", 'S', GTItems.superConductor, 'L', GTItems.orbEnergy, 'B', GTItems.lithiumBatpack, 'P',
+				"plateIridiumAlloy" });
 		/** Tesla Staff **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), new Object[] { "LS ", "SP ", "  P", 'L',
-				GTItems.orbEnergy, 'S', GTItems.superConductor, 'P', "plateIridium" });
+				GTItems.orbEnergy, 'S', GTItems.superConductor, 'P', "plateIridiumAlloy" });
 		/** Survival Scanner **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.portableScanner, 1), new Object[] { "PEP", "CFC", "PBP", 'P',
 				"ingotAluminium", 'E', GTMaterialGen.getIc2(Ic2Items.euReader, 1), 'F',
@@ -162,7 +166,7 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileComputer, 1), new Object[] { "RGD", "GMG", "DGR", 'D',
 				GTItems.orbData, 'R', "circuitMaster", 'G', "blockGlass", 'M', Ic2Items.advMachine.copy() });
 		/** Energy Storage **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBasicEnergy), new Object[] { "OOO", "OCO", "OOO", 'O',
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQESU), new Object[] { "OOO", "OCO", "OOO", 'O',
 				GTItems.orbEnergy, 'C', GTBlocks.tileComputer });
 		/** Quantum Chest **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
@@ -181,8 +185,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileChargeOmat, 1), new Object[] { "RCR", "AEA", "RMR", 'E',
 					GTItems.orbEnergy, 'R', "circuitMaster", 'A', "chestWood", 'C', GTBlocks.tileComputer, 'M',
 					Ic2Items.advMachine.copy() });
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumEnergy, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
-					"plateIridium", 'H', GTBlocks.tileBasicEnergy, 'E', Blocks.ENDER_CHEST });
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
+					"plateIridiumAlloy", 'H', GTBlocks.tileQESU, 'E', Blocks.ENDER_CHEST });
 		}
 	}
 
@@ -214,15 +218,11 @@ public class GTRecipe {
 				ingotRefinedIron, 'B', "ingotBronze", 'T', "ingotAluminum" });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.mixedMetalIngot, 6), new Object[] { "III", "BBB", "TTT", 'I',
 				"ingotTitanium", 'B', "ingotBronze", 'T', ingotElectric });
-		recipes.addRecipe(Ic2Items.electricCircuit.copy(), new Object[] { "CCC", "RIR", "CCC", 'I', ingotElectric, 'R',
-				"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy() });
-		recipes.addRecipe(Ic2Items.electricCircuit.copy(), new Object[] { "CRC", "CIC", "CRC", 'I', ingotElectric, 'R',
-				"dustRedstone", 'C', Ic2Items.insulatedCopperCable.copy() });
 		/** Iridium Plate **/
 		recipes.overrideRecipe("shaped_item.itemPartIridium_1100834802", GTMaterialGen.getIc2(Ic2Items.iridiumPlate, 1), "IAI", "ADA", "IAI", 'I', "ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
 		/** Circutry Stuff **/
-		recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RIR", "CCC", 'C', Ic2Items.copperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
-		recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CIC", "CRC", 'C', Ic2Items.copperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
+		recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RIR", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
+		recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CIC", "CRC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
 		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RGR", "LCL", "RGR", 'R', "dustRedstone", 'G', advComponent, 'C', "circuitBasic", 'L', lapis);
 		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RLR", "GCG", "RLR", 'R', "dustRedstone", 'G', advComponent, 'C', "circuitBasic", 'L', lapis);
 		/** RE Battery **/
@@ -233,5 +233,76 @@ public class GTRecipe {
 		/** Lapotron Stuff **/
 		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GTMaterialGen.getIc2(Ic2Items.lapotronCrystal, 1), new Object[] {
 				"LCL", "LDL", "LCL", 'D', highCrystal, 'C', "circuitBasic", 'L', lapis });
+	}
+
+	public static void mods() {
+		/** Draconic Evolution **/
+		if (Loader.isModLoaded(GTValues.DRACONIC)) {
+			GTMod.logger.info("Gregifying draconium ingots...");
+			GTRecipeProcessing.removeSmelting(GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
+					input("dustDraconium", 1) }, 256000, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
+					input("oreDraconium", 1) }, 256000, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
+		}
+		/** Thermal Mods **/
+		if (Loader.isModLoaded(GTValues.THERMAL)) {
+			GTMod.logger.info("OwO notices Thermal Foundation's iridum ingot...yoink");
+			GTRecipeProcessing.removeSmelting(GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 135, 1));
+			GTMod.logger.info("Adding Thermal alloys to the blast furnace");
+			// Electrum
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Silver", 1),
+					metal("Gold", 1) }, 4000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 161, 2));
+			// Invar
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Iron", 2),
+					metal("Nickel", 1) }, 4000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 162, 3));
+			// Constantan
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
+					metal("Nickel", 1) }, 4000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 164, 2));
+			// Signalum
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 3), metal("Silver", 1),
+					input("dustRedstone", 9) }, 16000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 165, 4));
+			// Lumium
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Silver", 4),
+					input("dustGlowstone", 4) }, 32000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 166, 4));
+			// Enderium
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 3), metal("Platinum", 1),
+					input("dustEnderPearl", 4) }, 32000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 167, 4));
+		}
+		/** Immersive Engineering **/
+		if (Loader.isModLoaded(GTValues.IMMERSIVE_ENGINEERING)) {
+			GTMod.logger.info("Oh look its IE....");
+			// Making the graphite stuff a little harder
+			GTTileCentrifuge.addRecipe("dustCoke", 8, 0, GTTileCentrifuge.totalEu(7500), GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "material", 18, 1));
+			GTRecipeProcessing.removeSmelting(GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "material", 19, 1));
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
+					input("dustHOPGraphite", 1) }, 12000, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "material", 19, 1));
+			// Adds alloys if thermal is not present
+			if (!Loader.isModLoaded(GTValues.THERMAL)) {
+				// Electrum
+				GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Silver", 1),
+						metal("Gold", 1) }, 4000, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "metal", 7, 2));
+				// Constantan
+				GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
+						metal("Nickel", 1) }, 4000, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "metal", 6, 2));
+			}
+		}
+	}
+
+	public static IRecipeInput input(ItemStack stack) {
+		return new RecipeInputItemStack(stack);
+	}
+
+	public static IRecipeInput input(String name, int amount) {
+		return new RecipeInputOreDict(name, amount);
+	}
+
+	public static IRecipeInput tubes(int amount) {
+		return new RecipeInputItemStack(GTMaterialGen.get(GTItems.testTube, amount));
+	}
+
+	public static IRecipeInput metal(String type, int amount) {
+		return new RecipeInputCombined(amount, new IRecipeInput[] { new RecipeInputOreDict("ingot" + type, amount),
+				new RecipeInputOreDict("dust" + type, amount), });
 	}
 }

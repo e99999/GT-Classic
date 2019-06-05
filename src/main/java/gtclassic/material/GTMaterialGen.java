@@ -11,6 +11,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GTMaterialGen {
 
@@ -128,6 +129,26 @@ public class GTMaterialGen {
 		ItemStack ret = itemStack.copy();
 		ret.setCount(count);
 		return ret;
+	}
+
+	public static ItemStack getModItem(String modname, String itemid) {
+		String pair = modname + ":" + itemid;
+		return new ItemStack(Item.getByNameOrId(pair));
+	}
+
+	public static ItemStack getModItem(String modname, String itemid, int amount) {
+		String pair = modname + ":" + itemid;
+		return new ItemStack(Item.getByNameOrId(pair), amount);
+	}
+
+	public static ItemStack getModMetaItem(String modname, String itemid, int meta, int size) {
+		String pair = modname + ":" + itemid;
+		return GameRegistry.makeItemStack(pair, meta, size, null);
+	}
+
+	public static ItemStack getModBlock(String modname, String blockid) {
+		String pair = modname + ":" + blockid;
+		return new ItemStack(Block.getBlockFromName(pair));
 	}
 
 	public static ItemStack get(Item item) {

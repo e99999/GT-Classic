@@ -9,7 +9,6 @@ import gtclassic.recipe.GTRecipe;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
-import gtclassic.util.GTValues;
 import gtclassic.util.energy.MultiBlockHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -39,6 +38,7 @@ public class GTMod {
 	public synchronized void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
 		proxy.preInit(event);
+		logger.info("Hello from Gregtech Classic!");
 		GTFluids.registerFluids();
 		GTBlocks.registerTiles();
 		GTMaterialGen.init();
@@ -58,10 +58,6 @@ public class GTMod {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
-		logger.info("Hello from Gregtech Classic!");
-		if (GTValues.debugMode) {
-			logger.info("WARNING [Gregtech Classic is still in debug mode, this is very very bad if you are not a dev!]");
-		}
 		proxy.postInit(e);
 		MultiBlockHelper.INSTANCE.init();
 	}

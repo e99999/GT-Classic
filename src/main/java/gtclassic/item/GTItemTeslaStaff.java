@@ -36,7 +36,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 		this.setUnlocalizedName(GTMod.MODID + ".tesla_staff");
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
-	
+
 	@Override
 	public EnumRarity getRarity(ItemStack thisItem) {
 		return EnumRarity.RARE;

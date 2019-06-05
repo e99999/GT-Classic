@@ -36,7 +36,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
@@ -67,25 +66,13 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	}
 
 	@Override
-	public TileEntity getImportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(1).forward(1).asBlockPos());
-	}
-
-	@Override
-	public TileEntity getExportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(1).forward(1).asBlockPos());
-	}
-
-	@Override
 	public LocaleComp getBlockName() {
 		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
 	}
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		return new LinkedHashSet<UpgradeType>(Arrays.asList(UpgradeType.values()));
+		return new LinkedHashSet<>(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
@@ -143,17 +130,21 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
 		addRecipe(new IRecipeInput[] { input("dustPyrite", 1),
 				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2));
+		/** Steel **/
+		addRecipe(new IRecipeInput[] { input("dustSteel", 1) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+		addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1),
+				input("dustCoal", 2) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+		addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1),
+				input("dustCarbon", 1) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
 		/** Titanium **/
 		addRecipe(new IRecipeInput[] {
 				input("dustTitanium", 1) }, 128000, GTMaterialGen.getIngot(GTMaterial.Titanium, 1));
 		/** Chrome **/
-		addRecipe(new IRecipeInput[] {
-				input("dustChrome", 1) }, 102400, GTMaterialGen.getIngot(GTMaterial.Chrome, 1));
+		addRecipe(new IRecipeInput[] { input("dustChrome", 1) }, 102400, GTMaterialGen.getIngot(GTMaterial.Chrome, 1));
 		/** Iridium **/
 		addRecipe(new IRecipeInput[] {
 				input("dustIridium", 1) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
-		addRecipe(new IRecipeInput[] {
-				input("oreIridium", 1) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
+		addRecipe(new IRecipeInput[] { input("oreIridium", 1) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
 		addRecipe(new IRecipeInput[] {
 				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
 		/** Tungsten **/

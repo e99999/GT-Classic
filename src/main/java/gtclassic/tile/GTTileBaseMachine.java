@@ -620,7 +620,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	public static void init() {
 		// TODO Auto-generated method stub
-	} 
+	}
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {

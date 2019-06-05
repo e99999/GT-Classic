@@ -51,7 +51,7 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	public List<Integer> getValidVariants() {
 		return Arrays.asList(0);
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(TextFormatting.RED + I18n.format("Work in progress, no refunds!"));

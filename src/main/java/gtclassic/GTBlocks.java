@@ -11,14 +11,14 @@ import gtclassic.color.GTColorItemBlock;
 import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tile.GTTileBasicEnergyStorage;
 import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileFacing;
+import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTilePlayerDetector;
+import gtclassic.tile.GTTileQESU;
 import gtclassic.tile.GTTileQuantumChest;
-import gtclassic.tile.GTTileQuantumEnergyStorage;
 import gtclassic.tile.GTTileSluice;
 import gtclassic.tile.GTTileWorkbench;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
@@ -49,7 +49,8 @@ public class GTBlocks {
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
 	// GTBlockSluiceBoxExt());
-	public static final GTBlockTileBasic tileBlastFurnace = registerBlock(new GTBlockTileBasic("blastfurnace", 3)),
+	public static final GTBlockTileBasic 
+			tileBlastFurnace = registerBlock(new GTBlockTileBasic("gtblastfurnace", 3)),
 			tileChargeOmat = registerBlock(new GTBlockTileBasic("chargeomat")),
 			tileComputer = registerBlock(new GTBlockTileBasic("computercube")),
 			tileCentrifuge = registerBlock(new GTBlockTileBasic("industrialcentrifuge")),
@@ -59,11 +60,12 @@ public class GTBlocks {
 			tilePlayerDetector = registerBlock(new GTBlockTileBasic("playerdetector", 1)),
 			tileFusionComputer = registerBlock(new GTBlockTileBasic("fusioncomputer", 3)),
 			tileLightningRod = registerBlock(new GTBlockTileBasic("lightningrod", 2)),
-			tileQuantumEnergy = registerBlock(new GTBlockTileBasic("quantumenergystorage")),
-			tileBasicEnergy = registerBlock(new GTBlockTileBasic("basicenergystorage"));
-	protected static final String[] textureTileBasic = { "blastfurnace", "chargeomat", "computercube",
+			tileIDSU = registerBlock(new GTBlockTileBasic("idsu")),
+			tileQESU = registerBlock(new GTBlockTileBasic("qesu"));
+	
+	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "matterreplicator", "quantumchest", "playerdetector",
-			"fusioncomputer", "lightningrod", "quantumenergystorage", "basicenergystorage" };
+			"fusioncomputer", "lightningrod", "idsu", "qesu" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -100,8 +102,8 @@ public class GTBlocks {
 		registerUtil(GTTilePlayerDetector.class, "PlayerDetector");
 		registerUtil(GTTileComputerCube.class, "ComputerCube");
 		registerUtil(GTTileMultiBlastFurnace.class, "BlastFurnace");
-		registerUtil(GTTileBasicEnergyStorage.class, "BasicEnergy");
-		registerUtil(GTTileQuantumEnergyStorage.class, "QuantumEnergy");
+		registerUtil(GTTileQESU.class, "BasicEnergy");
+		registerUtil(GTTileIDSU.class, "QuantumEnergy");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");
 		registerUtil(GTTileMultiFusion.class, "FusionComputer");
 		registerUtil(GTTileQuantumChest.class, "QuantumChest");
@@ -109,7 +111,6 @@ public class GTBlocks {
 		registerUtil(GTTileFacing.class, "Facing");
 	}
 
-	// TODO fix the generic type
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static void registerUtil(Class tile, String name) {
 		GameRegistry.registerTileEntity(tile, new ResourceLocation(GTMod.MODID, "tileEntity" + name));

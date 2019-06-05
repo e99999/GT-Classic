@@ -18,20 +18,18 @@ public class GTMaterial {
 	private static HashMap<String, GTMaterial> generatedMap = new HashMap<>();
 	/** Material Instances **/
 	public static final GTMaterial Aluminium = new GTMaterial("Aluminium", 128, 200, 240, metalAll),
-			Bauxite = new GTMaterial("Bauxite", 200, 100, 0,dust),
+			Bauxite = new GTMaterial("Bauxite", 200, 100, 0, dust),
 			Beryllium = new GTMaterial("Beryllium", 30, 80, 50, fluid),
 			Calcite = new GTMaterial("Calcite", 250, 230, 220, dust),
-			Calcium = new GTMaterial("Calcium", 155, 96, 80, fluid),
-			Carbon = new GTMaterial("Carbon", 0, 0, 0, dust),
+			Calcium = new GTMaterial("Calcium", 155, 96, 80, fluid), Carbon = new GTMaterial("Carbon", 0, 0, 0, dust),
 			Chlorine = new GTMaterial("Chlorine", 50, 150, 150, fluid),
-			Chrome = new GTMaterial("Chrome", 255, 230, 230, false,  metalAll),
+			Chrome = new GTMaterial("Chrome", 255, 230, 230, false, metalAll),
 			Deuterium = new GTMaterial("Deuterium", 255, 255, 0, gas),
 			Emerald = new GTMaterial("Emerald", 80, 255, 80, dust),
 			EnderEye = new GTMaterial("EnderEye", 160, 250, 230, dust),
-			EnderPearl = new GTMaterial("Enderpearl", 108, 220, 200, dust),
-			Flint = new GTMaterial("Flint", 0, 32, 64, dust),
-			Helium = new GTMaterial("Helium", 255, 255, 0,  gas),
-			Helium3 = new GTMaterial("Helium3", 255, 255, 0,  gas),
+			EnderPearl = new GTMaterial("EnderPearl", 108, 220, 200, dust),
+			Flint = new GTMaterial("Flint", 0, 32, 64, dust), Helium = new GTMaterial("Helium", 255, 255, 0, gas),
+			Helium3 = new GTMaterial("Helium3", 255, 255, 0, gas),
 			Hydrogen = new GTMaterial("Hydrogen", 0, 38, 255, gas),
 			Iridium = new GTMaterial("Iridium", 255, 255, 255, false, metalAll),
 			Lazurite = new GTMaterial("Lazurite", 100, 120, 255, dust),
@@ -41,18 +39,17 @@ public class GTMaterial {
 			Nitrogen = new GTMaterial("Nitrogen", 0, 190, 190, gas),
 			Oxygen = new GTMaterial("Oxygen", 100, 160, 220, gas),
 			Potassium = new GTMaterial("Potassium", 250, 250, 250, fluid),
-			Pyrite = new GTMaterial("Pyrite", 150, 120, 40, dust),
-			Ruby = new GTMaterial("Ruby", 255, 100, 100, gemAll),
+			Pyrite = new GTMaterial("Pyrite", 150, 120, 40, dust), Ruby = new GTMaterial("Ruby", 255, 100, 100, gemAll),
 			Sapphire = new GTMaterial("Sapphire", 100, 100, 200, gemAll),
 			SapphireGreen = new GTMaterial("GreenSapphire", 100, 200, 130, dust),
 			Silicon = new GTMaterial("Silicon", 60, 60, 80, dust, ingot),
 			Sodalite = new GTMaterial("Sodalite", 20, 20, 255, dust),
 			Sodium = new GTMaterial("Sodium", 0, 38, 255, fluid),
+			Steel = new GTMaterial("Steel", 128, 128, 128, false, metalAll),
 			Titanium = new GTMaterial("Titanium", 170, 143, 222, false, metalAll),
 			Tritium = new GTMaterial("Tritium", 255, 0, 0, gas),
 			Tungsten = new GTMaterial("Tungsten", 50, 50, 50, false, metalAll),
 			Uranium = new GTMaterial("Uranium", 50, 240, 50, dust);
-	
 	/** Instance Members **/
 	private String name, displayName;
 	private int mask;
@@ -79,7 +76,7 @@ public class GTMaterial {
 		}
 		generatedMap.put(name, this);
 	}
-	
+
 	public GTMaterial(String displayName, int r, int g, int b, boolean smeltable, GTMaterialFlag... flags) {
 		this.displayName = displayName;
 		this.name = displayName.toLowerCase().replaceAll("-", "_").replaceAll(" ", "_");

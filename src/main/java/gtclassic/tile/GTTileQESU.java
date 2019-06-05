@@ -1,22 +1,21 @@
 package gtclassic.tile;
 
-import gtclassic.container.GTContainerQuantumEnergyStorage;
+import gtclassic.container.GTContainerQESU;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumFacing;
 
-public class GTTileQuantumEnergyStorage extends TileEntityElectricBlock {
+public class GTTileQESU extends TileEntityElectricBlock {
 
-	public GTTileQuantumEnergyStorage() {
-		super(4, 2048, 400000000);
+	public GTTileQESU() {
+		super(4, 2048, 100000000);
 	}
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerQuantumEnergyStorage(player.inventory, this);
+		return new GTContainerQESU(player.inventory, this);
 	}
 
 	@Override
@@ -38,10 +37,5 @@ public class GTTileQuantumEnergyStorage extends TileEntityElectricBlock {
 	@Override
 	public LocaleComp getBlockName() {
 		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
-	}
-
-	@Override
-	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 }
