@@ -28,11 +28,19 @@ public class GTWorldGen implements IWorldGenerator {
 			IChunkProvider chunkProvider) {
 		// Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128,
 		// chunkZ * 16 + 16));
-		if (GTConfig.genOverworldOre) {
+		if (GTConfig.genEndIridium) {
 			runGenerator(GTBlocks.oreEnd.getDefaultState(), 4, 4, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+		}
+		if (GTConfig.genOverworldIridium) {
 			runGenerator(GTBlocks.oreIridium.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		}
+		if (GTConfig.genOverworldRuby) {
 			runGenerator(GTBlocks.oreRuby.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		}
+		if (GTConfig.genOverworldSapphire) {
 			runGenerator(GTBlocks.oreSapphire.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		}
+		if (GTConfig.genOverworldBauxite) {
 			runGenerator(GTBlocks.oreBauxite.getDefaultState(), 16, 4, 50, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 	}
@@ -48,8 +56,8 @@ public class GTWorldGen implements IWorldGenerator {
 			int y = minHeight + rand.nextInt(heightdiff);
 			int z = chunkZ * 16 + rand.nextInt(16);
 			generator.generate(world, rand, new BlockPos(x, y, z));
-			// GTMod.logger.info("GregtTech generated " +
-			// blockToGen.getBlock().getLocalizedName() + "at X:"+ x + " Y:"+y+" Z:"+z);
+			GTMod.debugLogger("GregTech ore generated: " + blockToGen.getBlock().getLocalizedName() + "at X:" + x
+					+ " Y:" + y + " Z:" + z);
 		}
 	}
 

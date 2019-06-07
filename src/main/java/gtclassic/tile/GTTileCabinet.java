@@ -11,6 +11,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
@@ -41,13 +42,11 @@ public class GTTileCabinet extends TileEntityMachine implements IHasGui {
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
+		int[] array = MathUtil.fromTo(0, 54);
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		for (int i = 0; i < 54; i++) {
-			handler.registerDefaultSlotAccess(AccessRule.Both, i);
-			handler.registerDefaultSlotsForSide(RotationList.ALL, i);
-			handler.registerSlotType(SlotType.Input, i);
-			handler.registerSlotType(SlotType.Output, i);
-		}
+		handler.registerDefaultSlotAccess(AccessRule.Both, array);
+		handler.registerDefaultSlotsForSide(RotationList.ALL, array);
+		handler.registerSlotType(SlotType.Storage, array);
 	}
 
 	@Override

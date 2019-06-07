@@ -39,6 +39,7 @@ public class GTRecipeForestry {
 		for (ICentrifugeRecipe entry : copy) {
 			ItemStack input = entry.getInput();
 			int size = entry.getAllProducts().size();
+			// TODO add the chance stuff in
 			if (size > 0) {
 				ItemStack[] outputs = entry.getAllProducts().keySet().toArray(new ItemStack[size]);
 				GTTileCentrifuge.addRecipe(input, 0, totalTime(100), outputs);

@@ -17,8 +17,6 @@ public class GTValues {
 	 * This is place to hold global values temporarily, it will all be refactored
 	 * into better places in time
 	 */
-	// boolean that renders anything labeled as WIP uncraftable
-	public static boolean debugMode = false;
 	// lang
 	public static LocaleComp centrifugeEU = new LocaleJEIInfoComp("jei.centrifugeu.name");
 	public static LocaleComp sluiceBox = new LocaleBlockComp("tile.gtclassic.sluicebox");

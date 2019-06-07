@@ -31,6 +31,6 @@ public class GTGuiCompBasicString extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString(this.title, this.posX, this.posY, Color.gray.hashCode());
+		gui.drawString(this.title, this.posX, this.posY, Color.darkGray.hashCode());
 	}
 }

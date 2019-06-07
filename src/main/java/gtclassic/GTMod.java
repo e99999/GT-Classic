@@ -33,6 +33,9 @@ public class GTMod {
 	@Mod.Instance
 	public static GTMod instance;
 	public static Logger logger;
+	// public static boolean dev = !new
+	// File(GTMod.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
+	public static boolean debugMode = GTConfig.debugMode;
 
 	@Mod.EventHandler
 	public synchronized void preInit(FMLPreInitializationEvent event) {
@@ -66,5 +69,11 @@ public class GTMod {
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GTCommandTeleport());
+	}
+
+	public static void debugLogger(String message) {
+		if (debugMode) {
+			logger.info(message);
+		}
 	}
 }

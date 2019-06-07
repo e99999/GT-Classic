@@ -24,7 +24,7 @@ public class GTContainerTranslocator extends ContainerTileComponent<GTTileTransl
 		}
 		this.addPlayerInventory(player);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiLoaded(GuiIC2 gui) {

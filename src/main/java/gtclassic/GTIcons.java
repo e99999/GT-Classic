@@ -38,6 +38,7 @@ public class GTIcons {
 		addCustomTexture("industrialcentrifuge", 0, 9, location("centrifuge_front"));
 		addCustomTexture("industrialcentrifuge", 0, 10, location("centrifuge_left"));
 		addCustomTexture("industrialcentrifuge", 0, 11, location("centrifuge_right"));
+		GTMod.debugLogger("All GregTech textures generated without error");
 	}
 
 	private static ResourceLocation location(String name) {
@@ -46,7 +47,7 @@ public class GTIcons {
 
 	public static void collectBasicTileSprites() {
 		for (String string : GTBlocks.textureTileBasic) {
-			GTMod.logger.info("Trying to get sprite data for: " + string);
+			GTMod.debugLogger("Attempting to get sprite data for: " + string);
 			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string
 					+ ".png", new Sprites.SpriteInfo(1, 12)));
 			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));

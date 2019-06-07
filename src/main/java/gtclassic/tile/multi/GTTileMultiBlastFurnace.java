@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBlastFurnace;
 import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
@@ -35,10 +36,12 @@ import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
@@ -149,18 +152,17 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	public static void postInit() {
 		// Remove smelting from mods who dont respect my authority
-		for (Item item : Item.REGISTRY) {
-			if (GTValues.getOreName(GTMaterialGen.get(item)).equals("ingotIridium")) {
-				GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
-			}
-			if (GTValues.getOreName(GTMaterialGen.get(item)).equals("ingotTungsten")) {
-				GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
-			}
-			if (GTValues.getOreName(GTMaterialGen.get(item)).equals("ingotTitanium")) {
-				GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
-			}
-			if (GTValues.getOreName(GTMaterialGen.get(item)).equals("ingotChrome")) {
-				GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
+		if (GTConfig.ingotsRequireBlastFurnace) {
+			for (Item item : Item.REGISTRY) {
+				NonNullList<ItemStack> items = NonNullList.create();
+				item.getSubItems(CreativeTabs.SEARCH, items);
+				for (ItemStack stack : items) {
+					String oreNames = GTValues.getOreName(stack);
+					if (oreNames.contains("ingotIrdium") || oreNames.contains("ingotTungsten")
+							|| oreNames.contains("ingotChrome") || oreNames.contains("ingotTitanium")) {
+						GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
+					}
+				}
 			}
 		}
 		/** Titanium **/

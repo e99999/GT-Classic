@@ -44,7 +44,7 @@ public class GTRecipeMods {
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 3), metal("Silver", 1),
 					input("dustRedstone", 9) }, 16000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 165, 4));
 			// Lumium
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Silver", 4),
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Tin", 3), metal("Silver", 1),
 					input("dustGlowstone", 4) }, 32000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 166, 4));
 			// Enderium
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 3), metal("Platinum", 1),

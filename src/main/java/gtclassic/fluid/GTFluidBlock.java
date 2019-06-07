@@ -28,7 +28,6 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 		super(FluidRegistry.getFluid(mat.getDisplayName().toLowerCase()), Material.WATER);
 		setRegistryName(mat.getDisplayName().toLowerCase() + "_fluidblock");
 		setUnlocalizedName(GTMod.MODID + "." + mat.getDisplayName().toLowerCase() + "_fluidblock");
-		setCreativeTab(GTMod.creativeTabGT);
 		this.mat = mat;
 		this.comp = Ic2Lang.nullKey;
 	}

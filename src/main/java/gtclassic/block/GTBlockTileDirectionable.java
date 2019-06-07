@@ -71,7 +71,7 @@ public class GTBlockTileDirectionable extends GTBlockMultiID {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		if (this == GTBlocks.tileTranslocator)	{
+		if (this == GTBlocks.tileTranslocator) {
 			return new GTTileTranslocator();
 		}
 		return new TileEntityBlock();
@@ -108,30 +108,29 @@ public class GTBlockTileDirectionable extends GTBlockMultiID {
 	public List<IBlockState> getValidStates() {
 		return getBlockState().getValidStates();
 	}
-	
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-	      if (!IC2.platform.isRendering()) {
-	         TileEntity tile = worldIn.getTileEntity(pos);
-	         if (tile instanceof TileEntityBlock) {
-	            TileEntityBlock block = (TileEntityBlock)tile;
-	            if (placer == null) {
-	               block.setFacing(EnumFacing.NORTH);
-	            } else {
-	               int pitch = Math.round(placer.rotationPitch);
-	               if (pitch >= 65) {
-	                  block.setFacing(EnumFacing.UP);
-	               } else if (pitch <= -65) {
-	                  block.setFacing(EnumFacing.DOWN);
-	               } else {
-	                  block.setFacing(EnumFacing.fromAngle((double)placer.rotationYaw).getOpposite());
-	               }
-	            }
 
-	            if (stack.hasDisplayName()) {
-	               block.setCustomName(stack.getDisplayName());
-	            }
-
-	         }
-	      }
-	   }
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
+		if (!IC2.platform.isRendering()) {
+			TileEntity tile = worldIn.getTileEntity(pos);
+			if (tile instanceof TileEntityBlock) {
+				TileEntityBlock block = (TileEntityBlock) tile;
+				if (placer == null) {
+					block.setFacing(EnumFacing.NORTH);
+				} else {
+					int pitch = Math.round(placer.rotationPitch);
+					if (pitch >= 65) {
+						block.setFacing(EnumFacing.UP);
+					} else if (pitch <= -65) {
+						block.setFacing(EnumFacing.DOWN);
+					} else {
+						block.setFacing(EnumFacing.fromAngle((double) placer.rotationYaw).getOpposite());
+					}
+				}
+				if (stack.hasDisplayName()) {
+					block.setCustomName(stack.getDisplayName());
+				}
+			}
+		}
+	}
 }

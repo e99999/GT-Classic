@@ -8,10 +8,8 @@ import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.player.PlayerHandler;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -29,31 +27,33 @@ public class GTItemBlockRare extends ItemBlockRare {
 		PlayerHandler handler = PlayerHandler.getClientPlayerHandler();
 		if (handler.hasEUReader()) {
 			if (compare(stack, GTBlocks.tileCentrifuge) || compare(stack, GTBlocks.tilePlayerDetector)) {
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32 })));
+				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32 })));
 			}
 			if (compare(stack, GTBlocks.tileBlastFurnace)) {
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 128 })));
+				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 128 })));
 			}
-			if (compare(stack, GTBlocks.tileChargeOmat) || compare(stack, GTBlocks.tileFabricator) || compare(stack, GTBlocks.tileAssembler)) {
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
+			if (compare(stack, GTBlocks.tileChargeOmat) || compare(stack, GTBlocks.tileFabricator)
+					|| compare(stack, GTBlocks.tileAssembler)) {
+				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
 			}
 			if (compare(stack, GTBlocks.tileFusionComputer)) {
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32784 })));
+				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32784 })));
 			}
 			if (compare(stack, GTBlocks.tileLightningRod)) {
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] { 25000000 }) + " each strike"));
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 8196 })));
+				tooltip.add((Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] { 25000000 })
+						+ " each strike"));
+				tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 8196 })));
 			}
 			if (compare(stack, GTBlocks.tileQESU)) {
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 100000000 })));
+				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
+				tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 100000000 })));
 			}
 			if (compare(stack, GTBlocks.tileIDSU)) {
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 400000000 })));
+				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
+				tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 400000000 })));
 			}
 			if (compare(stack, GTBlocks.tileTranslocator)) {
-				tooltip.add(TextFormatting.YELLOW + I18n.format(Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32 })));
+				tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32 })));
 			}
 		}
 	}

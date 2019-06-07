@@ -1,5 +1,6 @@
 package gtclassic.util;
 
+import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import net.minecraft.item.ItemStack;
@@ -32,6 +33,7 @@ public class GTLootHandler {
 		for (ItemStack item : lootitems) {
 			for (ResourceLocation table : loottable) {
 				if (event.getName().equals(table)) {
+					GTMod.debugLogger("Added GregTech stack to loot table: " + item.getUnlocalizedName());
 					event.getTable().getPool("main").addEntry(new LootEntryItem(item.getItem(), 16, 0, new LootFunction[] {}, new LootCondition[0], getStackResourceName(item)));
 				}
 			}
