@@ -6,12 +6,14 @@ import java.util.List;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.tile.GTTileCabinet;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQESU;
 import gtclassic.tile.GTTileQuantumChest;
+import gtclassic.tile.GTTileWorktable;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
@@ -34,13 +36,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockTileBasic extends GTBlockMultiID {
+public class GTBlockTile extends GTBlockMultiID {
 
 	String name;
 	String texture;
 	int size = 0;
 
-	public GTBlockTileBasic(String name) {
+	public GTBlockTile(String name) {
 		super(Material.IRON);
 		this.name = name;
 		this.size = 1;
@@ -50,10 +52,9 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		setBlockUnbreakable();
 		setResistance(20.0F);
 		setSoundType(SoundType.METAL);
-		setHarvestLevel("pickaxe", 2);
 	}
 
-	public GTBlockTileBasic(String name, int additionalInfo) {
+	public GTBlockTile(String name, int additionalInfo) {
 		super(Material.IRON);
 		this.name = name;
 		this.size = additionalInfo + 1;
@@ -112,6 +113,12 @@ public class GTBlockTileBasic extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tileQuantumChest) {
 			return new GTTileQuantumChest();
+		}
+		if (this == GTBlocks.tileWorktable) {
+			return new GTTileWorktable();
+		}
+		if (this == GTBlocks.tileCabinet) {
+			return new GTTileCabinet();
 		} else {
 			return new TileEntityBlock();
 		}

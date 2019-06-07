@@ -3,6 +3,7 @@ package gtclassic;
 import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.fluid.GTFluidTube;
 import gtclassic.item.GTItemComponent;
 import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
@@ -10,7 +11,6 @@ import gtclassic.item.GTItemDuctTape;
 import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemEnergyOrb;
 import gtclassic.item.GTItemEnergyPack;
-import gtclassic.item.GTItemFluidTube;
 import gtclassic.item.GTItemLithiumBattery;
 import gtclassic.item.GTItemReactorHeat;
 import gtclassic.item.GTItemReactorHeat.GTItemHeatStorageTypes;
@@ -55,7 +55,7 @@ public class GTItems {
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
-	public static final GTItemFluidTube testTube = createItem(new GTItemFluidTube());
+	public static final GTFluidTube testTube = createItem(new GTFluidTube());
 
 	public static <T extends Item> T createItem(T item) {
 		toRegister.add(item);

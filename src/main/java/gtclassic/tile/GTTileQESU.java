@@ -10,7 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 public class GTTileQESU extends TileEntityElectricBlock {
 
 	public GTTileQESU() {
-		super(4, 2048, 100000000);
+		super(4, 8196, 100000000);
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package gtclassic.tile;
 
-import gtclassic.container.GTContainerWorkbench;
+import gtclassic.container.GTContainerWorktable;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -15,9 +15,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileWorkbench extends TileEntityMachine implements IHasGui {
+public class GTTileWorktable extends TileEntityMachine implements IHasGui {
 
-	public GTTileWorkbench() {
+	public GTTileWorktable() {
 		super(26);
 	}
 
@@ -34,7 +34,7 @@ public class GTTileWorkbench extends TileEntityMachine implements IHasGui {
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerWorkbench(player.inventory, this);
+		return new GTContainerWorktable(player.inventory, this);
 	}
 
 	@Override

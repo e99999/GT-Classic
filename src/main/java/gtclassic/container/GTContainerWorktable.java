@@ -2,7 +2,7 @@ package gtclassic.container;
 
 import gtclassic.GTMod;
 import gtclassic.gui.GTGuiCompBasicString;
-import gtclassic.tile.GTTileWorkbench;
+import gtclassic.tile.GTTileWorktable;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
@@ -18,19 +18,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerWorkbench extends ContainerTileComponent<GTTileWorkbench> {
+public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable> {
 
 	private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 	private InventoryCraftResult craftResult = new InventoryCraftResult();
 	private final World world;
 	private final EntityPlayer player;
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/workbench.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/worktable.png");
 
-	public GTContainerWorkbench(InventoryPlayer player, GTTileWorkbench tile) {
+	public GTContainerWorktable(InventoryPlayer player, GTTileWorktable tile) {
 		super(tile);
 		this.world = player.player.getEntityWorld();
 		this.player = player.player;
-		this.addComponent(new GTGuiCompBasicString("Basic Workbench", 85, 6));
+		this.addComponent(new GTGuiCompBasicString("Basic Worktable", 85, 6));
 		this.addSlotToContainer(new SlotCrafting(this.player, craftMatrix, craftResult, 0, 148, 35));
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 3; ++j) {

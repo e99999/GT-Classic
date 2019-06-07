@@ -2,9 +2,11 @@ package gtclassic;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTValues;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GTOreDict {
@@ -31,6 +33,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getIngot(GTMaterial.Silicon, 1)));
 		OreDictionary.registerOre("dyeBlue", (GTMaterialGen.getDust(GTMaterial.Lazurite, 1)));
 		// My Ores
+		OreDictionary.registerOre("oreIridium", (GTMaterialGen.get(GTBlocks.oreEnd, 1)));
 		OreDictionary.registerOre("oreIridium", (GTMaterialGen.get(GTBlocks.oreIridium, 1)));
 		OreDictionary.registerOre("oreRuby", (GTMaterialGen.get(GTBlocks.oreRuby, 1)));
 		OreDictionary.registerOre("oreSapphire", (GTMaterialGen.get(GTBlocks.oreSapphire, 1)));
@@ -39,5 +42,22 @@ public class GTOreDict {
 		OreDictionary.registerOre("circuitMaster", (GTMaterialGen.get(GTItems.circuitEnergy, 1)));
 		OreDictionary.registerOre("circuitElite", (GTMaterialGen.get(GTItems.circuitData, 1)));
 		OreDictionary.registerOre("circuitData", (GTMaterialGen.get(GTItems.chipData, 1)));
+		/** Pams Harvestcraft **/
+		if (!Loader.isModLoaded(GTValues.HARVESTCRAFT)) {
+			OreDictionary.registerOre("listAllmeatraw", GTMaterialGen.get(Items.PORKCHOP));
+			OreDictionary.registerOre("listAllmeatcooked", GTMaterialGen.get(Items.COOKED_PORKCHOP));
+			OreDictionary.registerOre("listAllmeatraw", GTMaterialGen.get(Items.BEEF));
+			OreDictionary.registerOre("listAllmeatcooked", GTMaterialGen.get(Items.COOKED_BEEF));
+			OreDictionary.registerOre("listAllfishraw", GTMaterialGen.get(Items.FISH));
+			OreDictionary.registerOre("listAllfishcooked", GTMaterialGen.get(Items.COOKED_FISH));
+			OreDictionary.registerOre("listAllmeatraw", GTMaterialGen.get(Items.CHICKEN));
+			OreDictionary.registerOre("listAllmeatcooked", GTMaterialGen.get(Items.COOKED_CHICKEN));
+			OreDictionary.registerOre("listAllmeatraw", GTMaterialGen.get(Items.MUTTON));
+			OreDictionary.registerOre("listAllmeatcooked", GTMaterialGen.get(Items.COOKED_MUTTON));
+			OreDictionary.registerOre("listAllfruit", GTMaterialGen.get(Items.APPLE));
+			OreDictionary.registerOre("listAllveggie", GTMaterialGen.get(Blocks.PUMPKIN));
+			OreDictionary.registerOre("listAllveggie", GTMaterialGen.get(Items.CARROT));
+			OreDictionary.registerOre("listAllveggie", GTMaterialGen.get(Items.POTATO));
+		}
 	}
 }

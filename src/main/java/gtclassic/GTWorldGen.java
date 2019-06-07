@@ -29,6 +29,7 @@ public class GTWorldGen implements IWorldGenerator {
 		// Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128,
 		// chunkZ * 16 + 16));
 		if (GTConfig.genOverworldOre) {
+			runGenerator(GTBlocks.oreEnd.getDefaultState(), 4, 4, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.oreIridium.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.oreRuby.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 			runGenerator(GTBlocks.oreSapphire.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);

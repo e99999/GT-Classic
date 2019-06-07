@@ -11,7 +11,7 @@ import net.minecraft.util.EnumFacing;
 public class GTTileIDSU extends TileEntityElectricBlock {
 
 	public GTTileIDSU() {
-		super(4, 2048, 400000000);
+		super(4, 8196, 400000000);
 	}
 
 	@Override

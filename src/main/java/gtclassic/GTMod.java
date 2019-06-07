@@ -25,7 +25,7 @@ public class GTMod {
 
 	public static final String MODID = "gtclassic";
 	public static final String MODNAME = "GregTech Classic";
-	public static final String MODVERSION = "@VERSION@";
+	public static final String MODVERSION = "0.0.2";
 	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
 	@SidedProxy(clientSide = MODID + ".proxy.GTProxyClient", serverSide = MODID + ".proxy.GTProxyServer")
@@ -60,6 +60,7 @@ public class GTMod {
 	public void postInit(FMLPostInitializationEvent e) {
 		proxy.postInit(e);
 		MultiBlockHelper.INSTANCE.init();
+		GTRecipe.postInit();
 	}
 
 	@Mod.EventHandler

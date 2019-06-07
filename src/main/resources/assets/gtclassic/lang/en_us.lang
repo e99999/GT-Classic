@@ -1,4 +1,5 @@
 #blocks
+tile.gtclassic.blockElectrum.name=Block of Electrum
 tile.gtclassic.blockSteel.name=Block of Steel
 tile.gtclassic.blockTitanium.name=Block of Titanium
 tile.gtclassic.blockIridium.name=Block of Iridium
@@ -9,6 +10,7 @@ tile.gtclassic.blockRuby.name=Block of Ruby
 tile.gtclassic.blockAluminium.name=Block of Aluminium
 
 #ore
+tile.gtclassic.oreEnd.name=Iridium Ore
 tile.gtclassic.oreIridium.name=Iridium Ore
 tile.gtclassic.oreRuby.name=Ruby Ore
 tile.gtclassic.oreSapphire.name=Sapphire Ore
@@ -21,7 +23,7 @@ tile.gtclassic.reinforced.name=Reinforced Machine Block
 tile.gtclassic.highlyadvanced.name=Highly Advanced Machine Block
 
 #tiles
-tile.gtclassic.blastfurnace.name=Blast Furnace
+tile.gtclassic.gtblastfurnace.name=Blast Furnace
 tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
@@ -33,10 +35,13 @@ tile.gtclassic.fusioncomputer.name=Fusion Computer
 tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.idsu.name=IDSU
 tile.gtclassic.qesu.name=QESU
+tile.gtclassic.worktable.name=Basic Worktable
+tile.gtclassic.cabinet.name=Cabinet
 tile.gtclassic.sluicebox.name=Sluice Box
 tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
 
 #dust
+item.gtclassic.dustElectrum.name=Electrum Dust
 item.gtclassic.dustSteel.name=Steel Dust
 item.gtclassic.dustEnderEye.name=Eye of Ender Dust
 item.gtclassic.dustTitanium.name=Titanium Dust
@@ -65,6 +70,7 @@ item.gtclassic.gemSapphire.name=Sapphire
 item.gtclassic.gemRuby.name=Ruby
 
 #ingots
+item.gtclassic.ingotElectrum.name=Electrum Ingot
 item.gtclassic.ingotSteel.name=Steel Ingot
 item.gtclassic.ingotTitanium.name=Titanium Ingot
 item.gtclassic.ingotIridium.name=Iridium Ingot
@@ -118,8 +124,10 @@ fluid.mercury=Mercury
 fluid.calcium=Calcium
 fluid.nitrogen=Nitrogen
 fluid.chlorine=Chlorine
+fluid.oil=Oil
 
 #ore tooltips
+tooltip.gtclassic.oreEnd=Spawns in the end, 4 x more often than the overworld
 tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome
 tooltip.gtclassic.oreRuby=Spawns between Y level 0 - 48 in any biome
 tooltip.gtclassic.oreSapphire=Spawns between Y level 0 - 48 in any biome
@@ -131,10 +139,10 @@ tooltip.gtclassic.electromagnet=Become a walking vacuum!
 tooltip.gtclassic.tesla_staff=O V E R C H A R G E D
 
 #machine tooltips
-tooltip.gtclassic.blastfurnace0=You'll have a blast!
-tooltip.gtclassic.blastfurnace1=Structure:
-tooltip.gtclassic.blastfurnace2=3x5x3 solid of (35) Reinforced Machine Blocks,
-tooltip.gtclassic.blastfurnace3=Controller centered at the bottom
+tooltip.gtclassic.gtblastfurnace0=You'll have a blast!
+tooltip.gtclassic.gtblastfurnace1=Structure:
+tooltip.gtclassic.gtblastfurnace2=3x5x3 solid of (35) Reinforced Machine Blocks,
+tooltip.gtclassic.gtblastfurnace3=Controller centered at the bottom
 tooltip.gtclassic.chargeomat0=Charges all the things
 tooltip.gtclassic.computercube0=Now with more dedotated WAM!
 tooltip.gtclassic.quantumchest0=2 Milliards, uhh I mean billion, items to store here!
@@ -152,6 +160,8 @@ tooltip.gtclassic.lightningrod1=Structure:
 tooltip.gtclassic.lightningrod2=Controller, with 8-255 iron fence rods on top,
 tooltip.gtclassic.idsu0=Not a tesseract...
 tooltip.gtclassic.qesu0=Stores EXTREME amounts of energy
+tooltip.gtclassic.worktable0=Not Yet...
+tooltip.gtclassic.cabinet0=PrEmIuM dOuBlE cHeSt
 
 jei.centrifugeu.name=%s EU
 

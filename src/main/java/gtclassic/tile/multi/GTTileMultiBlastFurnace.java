@@ -13,6 +13,8 @@ import gtclassic.container.GTContainerBlastFurnace;
 import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.recipe.GTRecipeProcessing;
+import gtclassic.util.GTValues;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
@@ -34,6 +36,7 @@ import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -130,12 +133,36 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
 		addRecipe(new IRecipeInput[] { input("dustPyrite", 1),
 				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2));
+		/** Bronze **/
+		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 3),
+				metal("Tin", 1) }, 4000, GTMaterialGen.getIc2(Ic2Items.bronzeIngot, 4));
+		/** Electrum **/
+		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Silver", 1),
+				metal("Gold", 1) }, 4000, GTMaterialGen.getIngot(GTMaterial.Electrum, 2));
 		/** Steel **/
 		addRecipe(new IRecipeInput[] { input("dustSteel", 1) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
 		addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1),
 				input("dustCoal", 2) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
 		addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1),
 				input("dustCarbon", 1) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+	}
+
+	public static void postInit() {
+		// Remove smelting from mods who dont respect my authority
+		for (Item item : Item.REGISTRY) {
+			if (GTValues.getOreName(GTMaterialGen.get(item)).equals("ingotIridium")) {
+				GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
+			}
+			if (GTValues.getOreName(GTMaterialGen.get(item)).equals("ingotTungsten")) {
+				GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
+			}
+			if (GTValues.getOreName(GTMaterialGen.get(item)).equals("ingotTitanium")) {
+				GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
+			}
+			if (GTValues.getOreName(GTMaterialGen.get(item)).equals("ingotChrome")) {
+				GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
+			}
+		}
 		/** Titanium **/
 		addRecipe(new IRecipeInput[] {
 				input("dustTitanium", 1) }, 128000, GTMaterialGen.getIngot(GTMaterial.Titanium, 1));

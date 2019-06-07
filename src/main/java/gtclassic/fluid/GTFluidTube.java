@@ -1,4 +1,4 @@
-package gtclassic.item;
+package gtclassic.fluid;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -10,7 +10,6 @@ import javax.annotation.Nullable;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
-import gtclassic.fluid.GTFluid;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
@@ -49,14 +48,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-public class GTItemFluidTube extends Item
+public class GTFluidTube extends Item
 		implements IAdvancedTexturedItem, ITexturedItem, ILayeredItemModel, GTColorItemInterface {
 
 	private final int size = Fluid.BUCKET_VOLUME;
 	private final ItemStack empty = new ItemStack(this);
 	public ModelResourceLocation[] model = new ModelResourceLocation[2];
 
-	public GTItemFluidTube() {
+	public GTFluidTube() {
 		setMaxStackSize(64);
 		setRegistryName("test_tube");
 		setUnlocalizedName(GTMod.MODID + "." + "test_tube");
@@ -173,6 +172,15 @@ public class GTItemFluidTube extends Item
 			}
 			if (fluid.getFluid() == FluidRegistry.LAVA) {
 				return Color.red;
+			}
+			if (fluid.getFluid().getName().contains("bio")) {
+				return Color.green;
+			}
+			if (fluid.getFluid().getName().contains("oil")) {
+				return Color.black;
+			}
+			if (fluid.getFluid().getName().contains("fuel")) {
+				return Color.yellow;
 			}
 		}
 		if (fluid != null && index == 1 && fluid.getFluid() instanceof GTFluid) {

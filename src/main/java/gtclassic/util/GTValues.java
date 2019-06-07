@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class GTValues {
 
@@ -32,6 +33,7 @@ public class GTValues {
 	public static FluidStack lava = new FluidStack(FluidRegistry.LAVA, 1000);
 	// mod ids
 	public static final String BUILDCRAFT = "buildcraftcore";
+	public static final String FORESTRY = "forestry";
 	public static final String HARVESTCRAFT = "harvestcraft";
 	public static final String DRACONIC = "draconicevolution";
 	public static final String THERMAL = "thermalfoundation";
@@ -81,5 +83,13 @@ public class GTValues {
 			return stack.isItemEqual(new ItemStack(Item.getByNameOrId("buildcraftcore:fragile_fluid_shard")));
 		}
 		return false;
+	}
+
+	public static String getOreName(ItemStack stack) {
+		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
+			return OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[0]);
+		} else {
+			return "null";
+		}
 	}
 }

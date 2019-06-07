@@ -2,7 +2,7 @@ package gtclassic.util.jei;
 
 import javax.annotation.Nonnull;
 
-import gtclassic.container.GTContainerWorkbench;
+import gtclassic.container.GTContainerWorktable;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
@@ -33,7 +33,7 @@ public class GTJeiPlugin implements IModPlugin {
 			}
 			// More Vanilla Crafting
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
-			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorkbench.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);
+			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorktable.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);
 		}
 	}
 
