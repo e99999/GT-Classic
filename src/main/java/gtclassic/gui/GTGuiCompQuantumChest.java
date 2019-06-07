@@ -28,8 +28,8 @@ public class GTGuiCompQuantumChest extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString("Items:", 12, 20, Color.white.hashCode());
+		gui.drawString("Items:", 12, 20, Color.cyan.hashCode());
 		int stored = this.block.getQuantumCount();
-		gui.drawString("" + stored, 12, 30, Color.white.hashCode());
+		gui.drawString("" + stored, 12, 30, Color.cyan.hashCode());
 	}
 }

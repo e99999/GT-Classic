@@ -19,11 +19,6 @@ public class GTValues {
 	 */
 	// boolean that renders anything labeled as WIP uncraftable
 	public static boolean debugMode = false;
-	// colors
-	public static int white = 16777215;
-	public static int grey = 4210752;
-	public static int red = 15599112;
-	public static int green = 9567352;
 	// lang
 	public static LocaleComp centrifugeEU = new LocaleJEIInfoComp("jei.centrifugeu.name");
 	public static LocaleComp sluiceBox = new LocaleBlockComp("tile.gtclassic.sluicebox");

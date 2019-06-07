@@ -1,6 +1,7 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerIDSU;
+import ic2.api.energy.EnergyNet;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
@@ -11,7 +12,7 @@ import net.minecraft.util.EnumFacing;
 public class GTTileIDSU extends TileEntityElectricBlock {
 
 	public GTTileIDSU() {
-		super(4, 8196, 400000000);
+		super(4, (int) EnergyNet.instance.getPowerFromTier(4), 400000000);
 	}
 
 	@Override
@@ -27,12 +28,6 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 	@Override
 	public double getWrenchDropRate() {
 		return 0.70D;
-	}
-
-	@Override
-	public void update() {
-		this.setActive(this.getStoredEU() > 0);
-		super.update();
 	}
 
 	@Override

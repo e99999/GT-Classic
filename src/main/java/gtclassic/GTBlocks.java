@@ -6,6 +6,7 @@ import java.util.List;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockTile;
+import gtclassic.block.GTBlockTileDirectionable;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.itemblock.GTItemBlockInterface;
@@ -21,6 +22,7 @@ import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQESU;
 import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileSluice;
+import gtclassic.tile.GTTileTranslocator;
 import gtclassic.tile.GTTileWorktable;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
@@ -64,9 +66,10 @@ public class GTBlocks {
 			tileIDSU = registerBlock(new GTBlockTile("idsu")), tileQESU = registerBlock(new GTBlockTile("qesu")),
 			tileWorktable = registerBlock(new GTBlockTile("worktable")),
 			tileCabinet = registerBlock(new GTBlockTile("cabinet"));
+	public static final GTBlockTileDirectionable tileTranslocator = registerBlock(new GTBlockTileDirectionable("translocator"));
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "matterreplicator", "quantumchest", "playerdetector",
-			"fusioncomputer", "lightningrod", "idsu", "qesu", "cabinet", "worktable" };
+			"fusioncomputer", "lightningrod", "idsu", "qesu", "cabinet", "worktable", "translocator" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -111,6 +114,7 @@ public class GTBlocks {
 		registerUtil(GTTileWorktable.class, "Worktable");
 		registerUtil(GTTileFacing.class, "Facing");
 		registerUtil(GTTileCabinet.class, "Cabinet");
+		registerUtil(GTTileTranslocator.class, "Translocator");
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

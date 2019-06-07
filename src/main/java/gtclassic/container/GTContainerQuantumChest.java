@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTContainerQuantumChest extends ContainerTileComponent<GTTileQuantumChest> {
 
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/digitalchest.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/quantumchest.png");
 
 	public GTContainerQuantumChest(InventoryPlayer player, GTTileQuantumChest tile) {
 		super(tile);

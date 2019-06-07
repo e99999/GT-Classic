@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public class GTRecipeForestry {
 
+	@SuppressWarnings("unchecked")
 	public static void notTheBees() {
 		Field recipes = null;
 		try {
@@ -37,7 +38,6 @@ public class GTRecipeForestry {
 		}
 		for (ICentrifugeRecipe entry : copy) {
 			ItemStack input = entry.getInput();
-			int time = entry.getProcessingTime();
 			int size = entry.getAllProducts().size();
 			if (size > 0) {
 				ItemStack[] outputs = entry.getAllProducts().keySet().toArray(new ItemStack[size]);
