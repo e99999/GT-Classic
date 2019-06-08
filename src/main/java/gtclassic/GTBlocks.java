@@ -66,7 +66,7 @@ public class GTBlocks {
 			tileIDSU = registerBlock(new GTBlockTile("idsu")), tileQESU = registerBlock(new GTBlockTile("qesu")),
 			tileWorktable = registerBlock(new GTBlockTile("worktable")),
 			tileCabinet = registerBlock(new GTBlockTile("cabinet"));
-	public static final GTBlockTileDirectionable tileTranslocator = registerBlock(new GTBlockTileDirectionable("translocator"));
+	public static final GTBlockTileDirectionable tileTranslocator = registerBlock(new GTBlockTileDirectionable("translocator", 2));
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "matterreplicator", "quantumchest", "playerdetector",
 			"fusioncomputer", "lightningrod", "idsu", "qesu", "cabinet", "worktable", "translocator" };

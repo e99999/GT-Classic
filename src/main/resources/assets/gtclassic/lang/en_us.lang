@@ -37,6 +37,7 @@ tile.gtclassic.idsu.name=IDSU
 tile.gtclassic.qesu.name=QESU
 tile.gtclassic.worktable.name=Basic Worktable
 tile.gtclassic.cabinet.name=Cabinet
+tile.gtclassic.translocator.name=Electric Translocator
 tile.gtclassic.sluicebox.name=Sluice Box
 tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
 
@@ -150,7 +151,7 @@ tooltip.gtclassic.matterfabricator0=Butt Stallion for UU, inside a machine!
 tooltip.gtclassic.matterreplicator0=Sick of hand crafting with UU? Look no further.
 tooltip.gtclassic.industrialcentrifuge0=Round and round it goes!
 tooltip.gtclassic.playerdetector0=Detects player activity in a radius
-tooltip.gtclassic.playerdetector1=0eu = 8 blocks, 1eu = 32 blocks
+tooltip.gtclassic.playerdetector1=8 to 32 blocks depending on power
 tooltip.gtclassic.fusioncomputer0=FUUUUUUUU-SION, HAH!
 tooltip.gtclassic.fusioncomputer1=Structure:
 tooltip.gtclassic.fusioncomputer2=5x1x5 "circular" ring of (24) Fusion Coils,
@@ -162,7 +163,9 @@ tooltip.gtclassic.idsu0=Not a tesseract...
 tooltip.gtclassic.qesu0=Stores EXTREME amounts of energy
 tooltip.gtclassic.worktable0=Not Yet...
 tooltip.gtclassic.cabinet0=PrEmIuM dOuBlE cHeSt
-
+tooltip.gtclassic.translocator0=Pulls items in from the back,
+tooltip.gtclassic.translocator1=Pushes them out of the front,
+tooltip.gtclassic.translocator2=Also conducts power
 jei.centrifugeu.name=%s EU
 
 itemGroup.gtclassic=GT-Classic

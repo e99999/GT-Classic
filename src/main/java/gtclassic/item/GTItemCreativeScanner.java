@@ -2,8 +2,8 @@ package gtclassic.item;
 
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileBaseMachine;
-import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileQuantumChest;
+import gtclassic.tile.GTTileTranslocator;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
@@ -215,9 +215,9 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "High Tier: "
 						+ EnergyNet.instance.getTierFromPower((double) transformer.highOutput));
 			}
-			if (tileEntity instanceof GTTileBlockCustom) {
-				GTTileBlockCustom blockcustom = (GTTileBlockCustom) tileEntity;
-				IC2.platform.messagePlayer(player, "Stack Stored: " + blockcustom.getItem().getUnlocalizedName());
+			if (tileEntity instanceof GTTileTranslocator) {
+				GTTileTranslocator trans = (GTTileTranslocator) tileEntity;
+				IC2.platform.messagePlayer(player, "Stored: " + trans.energy + " EU");
 			}
 			return EnumActionResult.SUCCESS;
 		}

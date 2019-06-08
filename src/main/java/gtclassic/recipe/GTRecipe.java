@@ -48,6 +48,9 @@ public class GTRecipe {
 			new RecipeInputOreDict("ingotElectrum") });
 	static IRecipeInput ingotConductor = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotElectrum") });
+	static IRecipeInput anyPiston = new RecipeInputCombined(1, new IRecipeInput[] {
+			new RecipeInputItemStack(GTMaterialGen.get(Blocks.STICKY_PISTON)),
+			new RecipeInputItemStack(GTMaterialGen.get(Blocks.PISTON)) });
 
 	/*
 	 * For now this set of recipes is heavily broken apart which allows me to
@@ -73,6 +76,8 @@ public class GTRecipe {
 	}
 
 	public static void shapeless() {
+		/** Duct Tape **/
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.ductTape), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64));
 	}
 
 	public static void items() {
@@ -89,9 +94,6 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.rockCutter, 1), new Object[] { "DI ", "DI ", "DCB",
 				new EnchantmentModifier(GTMaterialGen.get(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(),
 				'D', "gemDiamond", 'I', ingotRefinedIron, 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
-		/** Duct Tape **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.ductTape), new Object[] { "XX ", "XX ", "   ", 'X',
-				GTMaterialGen.getIc2(Ic2Items.rubber, 64) });
 		/** Helium Reactor Coolant **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageSingle, 1), new Object[] { " I ", "IHI", " I ", 'I',
 				"ingotTin", 'H', GTMaterialGen.getFluid(GTMaterial.Helium, 1) });
@@ -192,6 +194,8 @@ public class GTRecipe {
 		/** Cabinet **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCabinet), new Object[] { "III", "CIC", "III", 'I',
 				ingotMachine, 'C', "chestWood" });
+		/** Translocator **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', anyPiston);
 		/** Stuff that is not ready yet **/
 		if (GTMod.debugMode) {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
