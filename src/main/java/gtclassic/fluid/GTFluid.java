@@ -25,7 +25,7 @@ public class GTFluid extends Fluid {
 		super(mat.getDisplayName().toLowerCase() + flag.getSuffix(), new ResourceLocation(GTMod.MODID, "fluids/"
 				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
 		this.mat = mat;
-		this.temperature = mat.getTemp();
+		this.temperature = 300;
 		this.mapColor = Color.white.hashCode();
 		this.setGaseous(flag.equals(GTMaterialFlag.GAS));
 	}
@@ -34,7 +34,7 @@ public class GTFluid extends Fluid {
 		super(mat.getDisplayName().toLowerCase(), new ResourceLocation(GTMod.MODID, "fluids/"
 				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
 		this.mat = mat;
-		this.temperature = mat.getTemp();
+		this.temperature = 300;
 		this.mapColor = mat.getColor().hashCode();
 		this.setGaseous(this.mat.hasFlag(GTMaterialFlag.GAS));
 	}

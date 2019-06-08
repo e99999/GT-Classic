@@ -25,12 +25,12 @@ public class GTItemReactorRod extends ItemGrandualInt
 		implements IBootable, ISteamReactorComponent, IReactorPlannerComponent {
 
 	public enum GTItemRodTypes {
-		SINGLETHORIUM(48),
-		DOUBLETHORIUM(49),
-		QUADTHORIUM(50),
-		SINGLEPLUTONIUM(51),
-		DOUBLEPLUTONIUM(52),
-		QUADPLUTONIUM(53);
+		SINGLETHORIUM(16),
+		DOUBLETHORIUM(17),
+		QUADTHORIUM(18),
+		SINGLEPLUTONIUM(19),
+		DOUBLEPLUTONIUM(20),
+		QUADPLUTONIUM(21);
 
 		private int id;
 
@@ -65,7 +65,7 @@ public class GTItemReactorRod extends ItemGrandualInt
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTMod.MODID + ".wip"));
+		tooltip.add(TextFormatting.RED + I18n.format("Work in progress, no refunds!"));
 	}
 
 	@Override

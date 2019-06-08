@@ -1,10 +1,10 @@
 package gtclassic.gui;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.tile.GTTileComputerCube;
-import gtclassic.util.GTValues;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.registry.Ic2GuiComp;
@@ -28,8 +28,8 @@ public class GTGuiCompComputerCube extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawCenteredString("[" + getTime(gui) + "]", 89, 9, GTValues.grey);
-		gui.drawCenteredString("G.L.A.D.-OS", 91, 59, GTValues.white);
+		gui.drawCenteredString("[" + getTime(gui) + "]", 89, 9, Color.lightGray.hashCode());
+		gui.drawCenteredString("G.L.A.D.-OS", 91, 59, Color.cyan.hashCode());
 	}
 
 	public String getTime(GuiIC2 gui) {

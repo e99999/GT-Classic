@@ -1,9 +1,9 @@
 package gtclassic.gui;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.util.GTValues;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.registry.Ic2GuiComp;
@@ -31,6 +31,6 @@ public class GTGuiCompBasicString extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString(this.title, this.posX, this.posY, GTValues.grey);
+		gui.drawString(this.title, this.posX, this.posY, Color.darkGray.hashCode());
 	}
 }
