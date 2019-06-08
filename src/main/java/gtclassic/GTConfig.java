@@ -11,7 +11,7 @@ public class GTConfig {
 	private static final String CATEGORY_GENERATION = "generation";
 	private static final String CATEGORY_MODCOMPAT = "modcompatability";
 	// config
-	public static boolean debugMode = true;
+	public static boolean debugMode = false;
 	// generation
 	public static boolean genEndIridium = true;
 	public static boolean genOverworldIridium = true;

@@ -142,7 +142,7 @@ tooltip.gtclassic.tesla_staff=O V E R C H A R G E D
 #machine tooltips
 tooltip.gtclassic.gtblastfurnace0=You'll have a blast!
 tooltip.gtclassic.gtblastfurnace1=Structure:
-tooltip.gtclassic.gtblastfurnace2=3x5x3 solid of (35) Reinforced Machine Blocks,
+tooltip.gtclassic.gtblastfurnace2=3x4x3 solid of (35) Reinforced Machine Blocks,
 tooltip.gtclassic.gtblastfurnace3=Controller centered at the bottom
 tooltip.gtclassic.chargeomat0=Charges all the things
 tooltip.gtclassic.computercube0=Now with more dedotated WAM!

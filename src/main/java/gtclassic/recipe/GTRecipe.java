@@ -51,6 +51,8 @@ public class GTRecipe {
 	static IRecipeInput anyPiston = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputItemStack(GTMaterialGen.get(Blocks.STICKY_PISTON)),
 			new RecipeInputItemStack(GTMaterialGen.get(Blocks.PISTON)) });
+	static IRecipeInput ingotHigh = new RecipeInputCombined(1, new IRecipeInput[] {
+			new RecipeInputOreDict("ingotTungsten"), new RecipeInputOreDict("ingotTitanium") });
 
 	/*
 	 * For now this set of recipes is heavily broken apart which allows me to
@@ -211,6 +213,26 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
 					"plateIridiumAlloy", 'H', GTBlocks.tileQESU, 'E', Blocks.ENDER_CHEST });
 		}
+		/** More recipes for vanilla rails **/
+		// TODO check for railcraft for these
+		// golden
+		recipes.addRecipe(GTMaterialGen.get(Blocks.GOLDEN_RAIL, 6), new Object[] { "I I", "ISI", "IRI", 'I',
+				"ingotElectrum", 'S', "stickWood", 'R', "dustRedstone" });
+		// detector
+		recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 8), new Object[] { "I I", "ISI", "IRI", 'I',
+				ingotRefinedIron, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', "dustRedstone" });
+		recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 12), new Object[] { "I I", "ISI", "IRI", 'I',
+				ingotHigh, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', "dustRedstone" });
+		// regular
+		recipes.addRecipe(GTMaterialGen.get(Blocks.RAIL, 20), new Object[] { "I I", "ISI", "I I", 'I', ingotRefinedIron,
+				'S', "stickWood" });
+		recipes.addRecipe(GTMaterialGen.get(Blocks.RAIL, 32), new Object[] { "I I", "ISI", "I I", 'I', ingotHigh, 'S',
+				"stickWood" });
+		// activator
+		recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 8), new Object[] { "IRI", "ISI", "IRI", 'I',
+				ingotRefinedIron, 'S', Blocks.REDSTONE_TORCH, 'R', "stickWood" });
+		recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 16), new Object[] { "IRI", "ISI", "IRI", 'I',
+				ingotHigh, 'S', Blocks.REDSTONE_TORCH, 'R', "stickWood" });
 	}
 
 	public static void ic2() {
