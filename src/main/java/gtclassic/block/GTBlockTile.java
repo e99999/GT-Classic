@@ -12,7 +12,6 @@ import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQESU;
-import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileWorktable;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
@@ -110,9 +109,6 @@ public class GTBlockTile extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tileIDSU) {
 			return new GTTileIDSU();
-		}
-		if (this == GTBlocks.tileQuantumChest) {
-			return new GTTileQuantumChest();
 		}
 		if (this == GTBlocks.tileWorktable) {
 			return new GTTileWorktable();

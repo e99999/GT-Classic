@@ -5,6 +5,7 @@ import java.util.List;
 
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockOre;
+import gtclassic.block.GTBlockQuantumChest;
 import gtclassic.block.GTBlockTile;
 import gtclassic.block.GTBlockTileDirectionable;
 import gtclassic.color.GTColorBlockInterface;
@@ -55,13 +56,13 @@ public class GTBlocks {
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
 	// GTBlockSluiceBoxExt());
+	public static final GTBlockQuantumChest tileQuantumChest = registerBlock (new GTBlockQuantumChest());
 	public static final GTBlockTile tileBlastFurnace = registerBlock(new GTBlockTile("gtblastfurnace", 3)),
 			tileChargeOmat = registerBlock(new GTBlockTile("chargeomat")),
 			tileComputer = registerBlock(new GTBlockTile("computercube")),
 			tileCentrifuge = registerBlock(new GTBlockTile("industrialcentrifuge")),
 			tileFabricator = registerBlock(new GTBlockTile("matterfabricator")),
 			tileUUAssembler = registerBlock(new GTBlockTile("uuassembler")),
-			tileQuantumChest = registerBlock(new GTBlockTile("quantumchest")),
 			tilePlayerDetector = registerBlock(new GTBlockTile("playerdetector", 1)),
 			tileFusionComputer = registerBlock(new GTBlockTile("fusioncomputer", 3)),
 			tileLightningRod = registerBlock(new GTBlockTile("lightningrod", 2)),
