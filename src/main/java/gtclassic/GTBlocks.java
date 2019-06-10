@@ -13,6 +13,8 @@ import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileBlockCustom;
+import gtclassic.tile.GTTileBufferLarge;
+import gtclassic.tile.GTTileBufferSmall;
 import gtclassic.tile.GTTileCabinet;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileComputerCube;
@@ -58,7 +60,7 @@ public class GTBlocks {
 			tileComputer = registerBlock(new GTBlockTile("computercube")),
 			tileCentrifuge = registerBlock(new GTBlockTile("industrialcentrifuge")),
 			tileFabricator = registerBlock(new GTBlockTile("matterfabricator")),
-			tileAssembler = registerBlock(new GTBlockTile("matterreplicator")),
+			tileUUAssembler = registerBlock(new GTBlockTile("uuassembler")),
 			tileQuantumChest = registerBlock(new GTBlockTile("quantumchest")),
 			tilePlayerDetector = registerBlock(new GTBlockTile("playerdetector", 1)),
 			tileFusionComputer = registerBlock(new GTBlockTile("fusioncomputer", 3)),
@@ -66,10 +68,13 @@ public class GTBlocks {
 			tileIDSU = registerBlock(new GTBlockTile("idsu")), tileQESU = registerBlock(new GTBlockTile("qesu")),
 			tileWorktable = registerBlock(new GTBlockTile("worktable")),
 			tileCabinet = registerBlock(new GTBlockTile("cabinet"));
-	public static final GTBlockTileDirectionable tileTranslocator = registerBlock(new GTBlockTileDirectionable("translocator", 2));
+	public static final GTBlockTileDirectionable tileTranslocator = registerBlock(new GTBlockTileDirectionable("translocator", 3)),
+			tileBufferLarge = registerBlock(new GTBlockTileDirectionable("bufferlarge", 2)),
+			tileBufferSmall = registerBlock(new GTBlockTileDirectionable("buffersmall", 2));
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
-			"industrialcentrifuge", "matterfabricator", "matterreplicator", "quantumchest", "playerdetector",
-			"fusioncomputer", "lightningrod", "idsu", "qesu", "cabinet", "worktable", "translocator" };
+			"industrialcentrifuge", "matterfabricator", "uuassembler", "quantumchest", "playerdetector",
+			"fusioncomputer", "lightningrod", "idsu", "qesu", "cabinet", "worktable", "translocator", "bufferlarge",
+			"buffersmall" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -115,6 +120,8 @@ public class GTBlocks {
 		registerUtil(GTTileFacing.class, "Facing");
 		registerUtil(GTTileCabinet.class, "Cabinet");
 		registerUtil(GTTileTranslocator.class, "Translocator");
+		registerUtil(GTTileBufferSmall.class, "BufferSmall");
+		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

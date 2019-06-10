@@ -1,8 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
-import gtclassic.gui.GTGuiCompBuffer;
-import gtclassic.tile.GTTileTranslocator;
+import gtclassic.tile.GTTileBufferLarge;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
@@ -12,18 +11,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerTranslocator extends ContainerTileComponent<GTTileTranslocator> {
+public class GTContainerBufferLarge extends ContainerTileComponent<GTTileBufferLarge> {
 
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/translocator.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/bufferlarge.png");
 
-	public GTContainerTranslocator(InventoryPlayer player, GTTileTranslocator tile) {
+	public GTContainerBufferLarge(InventoryPlayer player, GTTileBufferLarge tile) {
 		super(tile);
 		for (int y = 0; y < 3; ++y) {
-			for (int x = 0; x < 3; ++x) {
-				this.addSlotToContainer(new SlotBase(tile, x + y * 3, 62 + x * 18, 5 + y * 18));
+			for (int x = 0; x < 9; ++x) {
+				this.addSlotToContainer(new SlotBase(tile, x + y * 9, 8 + x * 18, 5 + y * 18));
 			}
 		}
-		this.addComponent(new GTGuiCompBuffer(tile));
 		this.addPlayerInventory(player);
 	}
 
@@ -46,6 +44,6 @@ public class GTContainerTranslocator extends ContainerTileComponent<GTTileTransl
 
 	@Override
 	public int guiInventorySize() {
-		return 9;
+		return 27;
 	}
 }

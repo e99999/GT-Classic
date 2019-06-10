@@ -196,11 +196,12 @@ public class GTRecipe {
 		/** Cabinet **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCabinet), new Object[] { "III", "CIC", "III", 'I',
 				ingotMachine, 'C', "chestWood" });
-		/** Translocator **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', anyPiston);
 		/** Stuff that is not ready yet **/
 		if (GTMod.debugMode) {
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
+			/** Translocator **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', anyPiston);
+			/** UU Assembler **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
 					"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q',
 					GTBlocks.tileQuantumChest, 'E', Ic2Items.industrialWorktable, 'D', GTItems.orbData, 'B',
 					"batteryAdvanced" });

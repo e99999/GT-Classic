@@ -33,7 +33,7 @@ public class GTItemBlockRare extends ItemBlockRare {
 				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 128 })));
 			}
 			if (compare(stack, GTBlocks.tileChargeOmat) || compare(stack, GTBlocks.tileFabricator)
-					|| compare(stack, GTBlocks.tileAssembler)) {
+					|| compare(stack, GTBlocks.tileUUAssembler)) {
 				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
 			}
 			if (compare(stack, GTBlocks.tileFusionComputer)) {

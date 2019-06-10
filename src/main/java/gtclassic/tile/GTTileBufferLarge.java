@@ -1,6 +1,6 @@
 package gtclassic.tile;
 
-import gtclassic.container.GTContainerTranslocator;
+import gtclassic.container.GTContainerBufferLarge;
 import gtclassic.util.int3;
 import ic2.core.RotationList;
 import ic2.core.inventory.base.IHasGui;
@@ -23,10 +23,10 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui, ITickable {
+public class GTTileBufferLarge extends GTTileBaseBuffer implements IHasGui, ITickable {
 
-	public GTTileTranslocator() {
-		super(9);
+	public GTTileBufferLarge() {
+		super(27);
 	}
 
 	@Override
@@ -42,12 +42,12 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui, ITi
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerTranslocator(player.inventory, this);
+		return new GTContainerBufferLarge(player.inventory, this);
 	}
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
-		int[] array = MathUtil.fromTo(0, 8);
+		int[] array = MathUtil.fromTo(0, 27);
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Both, array);
 		handler.registerDefaultSlotsForSide(RotationList.ALL, array);
@@ -72,40 +72,13 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui, ITi
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % 20 == 0) {
-			tryImportItems();
 			tryExportItems();
 		}
-	}
-
-	public TileEntity getImportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.back(1).asBlockPos());
 	}
 
 	public TileEntity getExportTile() {
 		int3 dir = new int3(getPos(), getFacing());
 		return world.getTileEntity(dir.forward(1).asBlockPos());
-	}
-
-	@SuppressWarnings("static-access")
-	public void tryImportItems() {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(getImportTile(), true);
-		if (slave == null) {
-			return;
-		}
-		IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-		int limit = 64;
-		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = slave.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, false);
-			if (stack.isEmpty()) {
-				break;
-			}
-			ItemStack added = controller.addItem(stack, getFacing().SOUTH, true);
-			if (added.getCount() <= 0) {
-				break;
-			}
-			slave.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, true);
-		}
 	}
 
 	@SuppressWarnings("static-access")

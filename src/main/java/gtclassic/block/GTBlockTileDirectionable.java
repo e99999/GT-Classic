@@ -6,6 +6,8 @@ import java.util.List;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
+import gtclassic.tile.GTTileBufferLarge;
+import gtclassic.tile.GTTileBufferSmall;
 import gtclassic.tile.GTTileTranslocator;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -73,6 +75,12 @@ public class GTBlockTileDirectionable extends GTBlockMultiID {
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.tileTranslocator) {
 			return new GTTileTranslocator();
+		}
+		if (this == GTBlocks.tileBufferLarge) {
+			return new GTTileBufferLarge();
+		}
+		if (this == GTBlocks.tileBufferSmall) {
+			return new GTTileBufferSmall();
 		}
 		return new TileEntityBlock();
 	}

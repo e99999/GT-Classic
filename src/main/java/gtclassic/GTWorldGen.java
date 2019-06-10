@@ -56,7 +56,7 @@ public class GTWorldGen implements IWorldGenerator {
 			int y = minHeight + rand.nextInt(heightdiff);
 			int z = chunkZ * 16 + rand.nextInt(16);
 			generator.generate(world, rand, new BlockPos(x, y, z));
-			GTMod.debugLogger("GregTech ore generated: " + blockToGen.getBlock().getLocalizedName() + "at X:" + x
+			GTMod.debugLogger("GregTech ore generated: " + blockToGen.getBlock().getLocalizedName() + " at X:" + x
 					+ " Y:" + y + " Z:" + z);
 		}
 	}
