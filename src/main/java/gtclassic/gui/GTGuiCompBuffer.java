@@ -6,7 +6,7 @@ import java.util.List;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileBaseBuffer;
 import ic2.core.inventory.gui.GuiIC2;
-import ic2.core.inventory.gui.buttons.IconButton;
+import ic2.core.inventory.gui.buttons.ToggleButton;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.platform.registry.Ic2Items;
@@ -17,8 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTGuiCompBuffer extends GuiComponent {
 
-	public static final ItemStack cable = GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 1);;
-	boolean lastMode;
+	public static final ItemStack cable = GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 1);
 	GTTileBaseBuffer tile;
 
 	public GTGuiCompBuffer(GTTileBaseBuffer tile) {
@@ -28,24 +27,19 @@ public class GTGuiCompBuffer extends GuiComponent {
 
 	@Override
 	public List<ActionRequest> getNeededRequests() {
-		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.GuiTick, ActionRequest.FrontgroundDraw, ActionRequest.BackgroundDraw);
+		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.GuiTick);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiInit(GuiIC2 gui) {
-		this.lastMode = this.tile.conduct;
-		gui.registerButton((new IconButton(0, gui.getXOffset() + 7, gui.getYOffset()
-				+ 60, 20, 20)).setItemStack(cable).addText("Enable/Disable Power Output"));
+		gui.registerButton(new ToggleButton(0, gui.getXOffset() + 7, gui.getYOffset() + 60, 20, 20).setIcon(cable).setTextVisiblity(false, false));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiTick(GuiIC2 gui) {
-		if (this.lastMode != this.tile.conduct) {
-			this.lastMode = this.tile.conduct;
-			gui.getCastedButton(0, IconButton.class).clearText().addText("Outputs Power: " + this.tile.conduct);
-		}
+		gui.getCastedButton(0, ToggleButton.class).setState(this.tile.conduct);
 	}
 
 	@Override

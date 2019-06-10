@@ -25,24 +25,26 @@ public class GTTileBaseBuffer extends TileEntityMachine
 	@NetworkField(index = 3)
 	public int energy;
 	public boolean addedToEnet;
+	@NetworkField(index = 4)
 	public boolean conduct = true;
 
 	public GTTileBaseBuffer(int slots) {
 		super(slots);
-		setWorld(world);
-		this.addGuiFields(new String[] { "energy" });
+		this.addGuiFields(new String[] { "energy" , "conduct"});
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.energy = nbt.getInteger("energy");
+		this.conduct = nbt.getBoolean("conduct");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("energy", this.energy);
+		nbt.setBoolean("conduct", this.conduct);
 		return nbt;
 	}
 
@@ -154,6 +156,7 @@ public class GTTileBaseBuffer extends TileEntityMachine
 			onUnloaded();
 			this.conduct = !this.conduct;
 			onLoaded();
+			this.getNetwork().updateTileGuiField(this, "conduct");
 		}
 	}
 }

@@ -1,6 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
+import gtclassic.gui.GTGuiCompBuffer;
 import gtclassic.tile.GTTileBufferSmall;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
@@ -18,6 +19,7 @@ public class GTContainerBufferSmall extends ContainerTileComponent<GTTileBufferS
 	public GTContainerBufferSmall(InventoryPlayer player, GTTileBufferSmall tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotBase(tile, 0, 80, 23));
+		this.addComponent(new GTGuiCompBuffer(tile));
 		this.addPlayerInventory(player);
 	}
 
