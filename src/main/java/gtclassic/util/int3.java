@@ -13,7 +13,7 @@ import net.minecraft.world.World;
  * directions given a EnumFacing
  */
 public class int3 {
-	
+
 	MutableBlockPos pos = new MutableBlockPos();
 	EnumFacing facing = EnumFacing.NORTH; // Used for moving in a direction
 
@@ -105,16 +105,15 @@ public class int3 {
 	public int3 offset(int n, EnumFacing facing) {
 		if (n == 0 || facing == null)
 			return this;
-		return set(getX() + facing.getFrontOffsetX() * n, getY() + facing.getFrontOffsetY() * n,
-				getZ() + facing.getFrontOffsetZ() * n);
+		return set(getX() + facing.getFrontOffsetX() * n, getY() + facing.getFrontOffsetY() * n, getZ()
+				+ facing.getFrontOffsetZ() * n);
 	}
 
 	public BlockPos asBlockPos() {
 		return pos.toImmutable();
 	}
-	
-	public BlockPos asReadPos()
-	{
+
+	public BlockPos asReadPos() {
 		return pos;
 	}
 
@@ -122,69 +121,56 @@ public class int3 {
 	public String toString() {
 		return "(" + getX() + ", " + getY() + ", " + getZ() + ")";
 	}
-	
-	public int getX()
-	{
+
+	public int getX() {
 		return pos.getX();
 	}
-	
-	public int getY()
-	{
+
+	public int getY() {
 		return pos.getY();
 	}
-	
-	public int getZ()
-	{
+
+	public int getZ() {
 		return pos.getZ();
 	}
-	
-	public boolean isLoaded(World world)
-	{
+
+	public boolean isLoaded(World world) {
 		return world.isBlockLoaded(pos);
 	}
-	
-	public boolean isLoaded(World world, int radius)
-	{
+
+	public boolean isLoaded(World world, int radius) {
 		return world.isAreaLoaded(pos, radius, false);
 	}
-	
-	public IBlockState getBlock(World world)
-	{
+
+	public IBlockState getBlock(World world) {
 		return world.getBlockState(pos);
 	}
-	
-	public TileEntity getTileEntity(World world)
-	{
+
+	public TileEntity getTileEntity(World world) {
 		return world.getTileEntity(pos);
 	}
-	
-	public boolean setBlock(World world, IBlockState state)
-	{
+
+	public boolean setBlock(World world, IBlockState state) {
 		return world.setBlockState(pos.toImmutable(), state);
 	}
-	
-	public boolean setBlock(World world, IBlockState state, int flags)
-	{
+
+	public boolean setBlock(World world, IBlockState state, int flags) {
 		return world.setBlockState(pos.toImmutable(), state, flags);
 	}
-	
-	public boolean removeBlock(World world)
-	{
-		return world.setBlockToAir(pos);
+
+	public boolean removeBlock(World world) {
+		return world.setBlockToAir(pos.toImmutable());
 	}
-	
-	public boolean isBlockState(World world, IBlockState state)
-	{
+
+	public boolean isBlockState(World world, IBlockState state) {
 		return world.getBlockState(pos) == state;
 	}
-	
-	public boolean isBlock(World world, Block block)
-	{
+
+	public boolean isBlock(World world, Block block) {
 		return world.getBlockState(pos).getBlock() == block;
 	}
-	
-	public boolean isBlock(World world, IBlockState state)
-	{
+
+	public boolean isBlock(World world, IBlockState state) {
 		return world.getBlockState(pos).getBlock() == state.getBlock();
 	}
 }

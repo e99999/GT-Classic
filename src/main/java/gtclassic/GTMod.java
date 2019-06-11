@@ -69,7 +69,7 @@ public class GTMod {
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		if (debugMode) {
-		event.registerServerCommand(new GTCommandTeleport());
+			event.registerServerCommand(new GTCommandTeleport());
 		}
 	}
 

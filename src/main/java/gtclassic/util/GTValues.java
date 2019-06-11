@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GTValues {
-
 	/*
 	 * This is place to hold global values temporarily, it will all be refactored
 	 * into better places in time
