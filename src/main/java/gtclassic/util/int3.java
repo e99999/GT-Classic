@@ -1,8 +1,12 @@
 package gtclassic.util;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
+import net.minecraft.world.World;
 
 /**
  * Created By Muramasa - https://github.com/Muramasa- Allows easily stepping in
@@ -132,5 +136,55 @@ public class int3 {
 	public int getZ()
 	{
 		return pos.getZ();
+	}
+	
+	public boolean isLoaded(World world)
+	{
+		return world.isBlockLoaded(pos);
+	}
+	
+	public boolean isLoaded(World world, int radius)
+	{
+		return world.isAreaLoaded(pos, radius, false);
+	}
+	
+	public IBlockState getBlock(World world)
+	{
+		return world.getBlockState(pos);
+	}
+	
+	public TileEntity getTileEntity(World world)
+	{
+		return world.getTileEntity(pos);
+	}
+	
+	public boolean setBlock(World world, IBlockState state)
+	{
+		return world.setBlockState(pos.toImmutable(), state);
+	}
+	
+	public boolean setBlock(World world, IBlockState state, int flags)
+	{
+		return world.setBlockState(pos.toImmutable(), state, flags);
+	}
+	
+	public boolean removeBlock(World world)
+	{
+		return world.setBlockToAir(pos);
+	}
+	
+	public boolean isBlockState(World world, IBlockState state)
+	{
+		return world.getBlockState(pos) == state;
+	}
+	
+	public boolean isBlock(World world, Block block)
+	{
+		return world.getBlockState(pos).getBlock() == block;
+	}
+	
+	public boolean isBlock(World world, IBlockState state)
+	{
+		return world.getBlockState(pos).getBlock() == state.getBlock();
 	}
 }
