@@ -25,7 +25,7 @@ public class GTMod {
 
 	public static final String MODID = "gtclassic";
 	public static final String MODNAME = "GregTech Classic";
-	public static final String MODVERSION = "0.0.4";
+	public static final String MODVERSION = "0.0.5";
 	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
 	@SidedProxy(clientSide = MODID + ".proxy.GTProxyClient", serverSide = MODID + ".proxy.GTProxyServer")

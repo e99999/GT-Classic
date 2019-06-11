@@ -52,7 +52,7 @@ public class GTBlockQuantumChest extends GTBlockTile {
 			NBTTagCompound nbt;
 			nbt = StackUtil.getNbtData(stack);
 			if (nbt.hasKey(display) && nbt.hasKey(count)) {
-				tooltip.add(TextFormatting.GREEN + I18n.format((nbt.getInteger(count) - 64) + " of "
+				tooltip.add(TextFormatting.AQUA + I18n.format((nbt.getInteger(count) - 64) + " of "
 						+ StackUtil.copyWithSize(new ItemStack(nbt.getCompoundTag(display)), 1).getDisplayName()));
 			}
 		}
@@ -76,18 +76,17 @@ public class GTBlockQuantumChest extends GTBlockTile {
 		if (tile instanceof GTTileQuantumChest) {
 			GTTileQuantumChest chest = (GTTileQuantumChest) tile;
 			ItemStack playerStack = playerIn.getHeldItemMainhand();
-			boolean isChestEmpty = chest.isSlotEmpty(slotInput) && chest.isSlotEmpty(slotDisplay);
-			boolean isPlayerStackValid = chest.isSlotEmpty(slotInput)
-					&& StackUtil.isStackEqual(chest.getStackInSlot(slotDisplay), playerStack, false, false);
-			boolean validInput = isChestEmpty || isPlayerStackValid;
 			if (facing != EnumFacing.UP && !(playerStack.getItem() instanceof ItemToolWrench)) {
-				if (!playerIn.isSneaking() && !playerStack.isEmpty() && validInput) {
+				boolean isChestEmpty = chest.isSlotEmpty(slotInput) && chest.isSlotEmpty(slotDisplay);
+				boolean isPlayerStackValid = chest.isSlotEmpty(slotInput) && StackUtil.isStackEqual(chest.getStackInSlot(slotDisplay), playerStack, false, false);
+				boolean validInput = isChestEmpty || isPlayerStackValid;
+				if (!playerIn.isSneaking() && validInput && !playerStack.isEmpty()) {
 					chest.setStackInSlot(slotInput, playerStack.copy());
 					playerStack.shrink(playerStack.getCount());
 					chest.updateGUI();
 					return true;
 				}
-				if (playerIn.isSneaking() && !chest.isSlotEmpty(slotOutput) && playerStack.isEmpty()) {
+				if (playerIn.isSneaking() && !chest.isSlotEmpty(slotOutput)) {
 					ItemHandlerHelper.giveItemToPlayer(playerIn, chest.getStackInSlot(slotOutput));
 					chest.setStackInSlot(slotOutput, ItemStack.EMPTY);
 					return true;

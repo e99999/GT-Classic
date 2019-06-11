@@ -15,7 +15,7 @@ public class GTMaterialDict {
 				OreDictionary.registerOre("dust" + mat.getDisplayName(), GTMaterialGen.getDust(mat, 1));
 			}
 			// Gems
-			if (mat.hasFlag(GTMaterialFlag.GEM)) {
+			if (GTMaterial.isGem(mat)) {
 				OreDictionary.registerOre("gem" + mat.getDisplayName(), GTMaterialGen.getGem(mat, 1));
 			}
 			// Ingots

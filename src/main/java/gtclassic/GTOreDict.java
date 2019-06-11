@@ -6,6 +6,7 @@ import gtclassic.util.GTValues;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -42,6 +43,8 @@ public class GTOreDict {
 		OreDictionary.registerOre("circuitMaster", (GTMaterialGen.get(GTItems.circuitEnergy, 1)));
 		OreDictionary.registerOre("circuitElite", (GTMaterialGen.get(GTItems.circuitData, 1)));
 		OreDictionary.registerOre("circuitData", (GTMaterialGen.get(GTItems.chipData, 1)));
+		OreDictionary.registerOre("circuitUltimate", (GTMaterialGen.get(GTItems.orbData, 1)));
+		OreDictionary.registerOre("circuitUltimate", new ItemStack(GTItems.orbEnergy, 1, OreDictionary.WILDCARD_VALUE));
 		/** Pams Harvestcraft **/
 		if (!Loader.isModLoaded(GTValues.HARVESTCRAFT)) {
 			OreDictionary.registerOre("listAllmeatraw", GTMaterialGen.get(Items.PORKCHOP));

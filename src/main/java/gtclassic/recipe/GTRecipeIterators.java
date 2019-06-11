@@ -35,7 +35,7 @@ public class GTRecipeIterators {
 		String dust = "dust" + mat.getDisplayName();
 		String gem = "gem" + mat.getDisplayName();
 		String block = "block" + mat.getDisplayName();
-		if (mat.hasFlag(GTMaterialFlag.GEM)) {
+		if (GTMaterial.isGem(mat)) {
 			// Dust to gem
 			TileEntityCompressor.addRecipe(dust, 1, GTMaterialGen.getGem(mat, 1), 0.0F);
 			// Inverse

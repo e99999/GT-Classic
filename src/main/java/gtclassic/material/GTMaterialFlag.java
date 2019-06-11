@@ -2,11 +2,12 @@ package gtclassic.material;
 
 public enum GTMaterialFlag {
 	DUST("_dust", 0, false),
-	GEM("_gem", 2, false),
-	INGOT("_ingot", 3, false),
+	INGOT("_ingot", 1, false),
+	RUBY("_gem", 2, false),
+	SAPPHIRE("_gem", 3, false),
 	FLUID("", 13, true),
 	GAS("", 13, true),
-	BLOCK("_block", 48, false);
+	BLOCK("_block", 16, false);
 
 	private int mask;
 	private String suffix;

@@ -27,7 +27,13 @@ public class GTMaterialGen {
 			materialItemUtil(mat, GTMaterialFlag.DUST);
 		}
 		for (GTMaterial mat : GTMaterial.values()) {
-			materialItemUtil(mat, GTMaterialFlag.GEM);
+			materialItemUtil(mat, GTMaterialFlag.RUBY);
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
+			//to make sure no same gem and override eachother
+			if (!mat.hasFlag(GTMaterialFlag.RUBY)) {
+			materialItemUtil(mat, GTMaterialFlag.SAPPHIRE);
+			}
 		}
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.INGOT);
@@ -83,7 +89,7 @@ public class GTMaterialGen {
 	}
 
 	public static ItemStack getGem(GTMaterial mat, int count) {
-		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.GEM.getSuffix()), count, 0);
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.RUBY.getSuffix()), count, 0);
 	}
 
 	public static ItemStack getIngot(GTMaterial mat, int count) {
