@@ -30,7 +30,7 @@ public class GTTileBaseBuffer extends TileEntityMachine
 
 	public GTTileBaseBuffer(int slots) {
 		super(slots);
-		this.addGuiFields(new String[] { "energy" , "conduct"});
+		this.addGuiFields(new String[] { "energy", "conduct" });
 	}
 
 	@Override

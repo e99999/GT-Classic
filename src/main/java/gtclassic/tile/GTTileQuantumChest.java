@@ -1,6 +1,11 @@
 package gtclassic.tile;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerQuantumChest;
+import gtclassic.material.GTMaterialGen;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -12,6 +17,7 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.IItemContainer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -21,18 +27,19 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable {
+public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable, IItemContainer {
 
 	int slotInput = 0;
 	int slotOutput = 1;
 	int slotDisplay = 2;
 	int maxSize = Integer.MAX_VALUE;
 	int digitalCount;
+	ItemStack display;
 
 	public GTTileQuantumChest() {
 		super(3);
 		this.digitalCount = 0;
-		this.addGuiFields(new String[] { "digitalCount" });
+		this.addGuiFields(new String[] { "digitalCount", "display" });
 	}
 
 	@Override
@@ -52,6 +59,8 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 
 	public void updateGUI() {
 		this.getNetwork().updateTileGuiField(this, "digitalCount");
+		this.display = StackUtil.copyWithSize(this.getStackInSlot(slotDisplay), 1);
+		this.getNetwork().updateTileGuiField(this, "display");
 	}
 
 	@Override
@@ -63,13 +72,29 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.digitalCount = nbt.getInteger("digitalCount");
+		this.display = new ItemStack(nbt.getCompoundTag("display"));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("digitalCount", this.digitalCount);
+		nbt.setTag("display", display.writeToNBT(new NBTTagCompound()));
 		return nbt;
+	}
+
+	@Override
+	public List<ItemStack> getDrops() {
+		List<ItemStack> list = new ArrayList<ItemStack>();
+		ItemStack stack = GTMaterialGen.get(GTBlocks.tileQuantumChest);
+		if (this.display != null && this.digitalCount > 0) {
+			StackUtil.getOrCreateNbtData(stack).setTag("display", display.writeToNBT(new NBTTagCompound()));
+			StackUtil.getOrCreateNbtData(stack).setInteger("digitalCount", this.digitalCount);
+		}
+		list.add(stack);
+		list.add(this.getStackInSlot(slotInput));
+		list.add(this.getStackInSlot(slotOutput));
+		return list;
 	}
 
 	@Override
@@ -194,5 +219,9 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		return inventory.get(slotOutput).getCount() < 64
 				&& (StackUtil.isStackEqual(getStackInSlot(slotOutput), stack, false, false)
 						|| inventory.get(slotOutput).isEmpty());
+	}
+
+	public void setDigtialCount(int count) {
+		this.digitalCount = count;
 	}
 }

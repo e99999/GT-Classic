@@ -83,6 +83,7 @@ public class GTRecipe {
 		/** Small Buffer **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileBufferSmall, 8), GTMaterialGen.get(GTBlocks.tileBufferLarge, 1));
 	}
+
 	public static void items() {
 		/** Test Tube **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.testTube, 32), new Object[] { "G G", "G G", " G ", 'G',
@@ -293,8 +294,9 @@ public class GTRecipe {
 		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GTMaterialGen.getIc2(Ic2Items.lapotronCrystal, 1), new Object[] {
 				"LCL", "LDL", "LCL", 'D', highCrystal, 'C', "circuitBasic", 'L', anyLapis });
 		/** Solar Panel **/
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] { "XYX", "YXY", "CVC", 'C',
-				"circuitBasic", 'V', Ic2Items.machine, 'X', "itemSilicon", 'Y', "blockGlass" });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] { "XYX", "YPY", "CVC", 'C',
+				"circuitBasic", 'V', Ic2Items.machine, 'X', "itemSilicon", 'Y', "blockGlass", 'P',
+				Ic2Items.carbonPlate });
 		/** Adding ruby to glass fiber cable **/
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotConductor, 'V', lowCrystal);

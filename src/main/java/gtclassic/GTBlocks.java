@@ -56,7 +56,6 @@ public class GTBlocks {
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
 	// GTBlockSluiceBoxExt());
-	public static final GTBlockQuantumChest tileQuantumChest = registerBlock (new GTBlockQuantumChest());
 	public static final GTBlockTile tileBlastFurnace = registerBlock(new GTBlockTile("gtblastfurnace", 3)),
 			tileChargeOmat = registerBlock(new GTBlockTile("chargeomat")),
 			tileComputer = registerBlock(new GTBlockTile("computercube")),
@@ -69,6 +68,7 @@ public class GTBlocks {
 			tileIDSU = registerBlock(new GTBlockTile("idsu")), tileQESU = registerBlock(new GTBlockTile("qesu")),
 			tileWorktable = registerBlock(new GTBlockTile("worktable")),
 			tileCabinet = registerBlock(new GTBlockTile("cabinet"));
+	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());
 	public static final GTBlockTileDirectionable tileTranslocator = registerBlock(new GTBlockTileDirectionable("translocator", 3)),
 			tileBufferLarge = registerBlock(new GTBlockTileDirectionable("bufferlarge", 2)),
 			tileBufferSmall = registerBlock(new GTBlockTileDirectionable("buffersmall", 2));

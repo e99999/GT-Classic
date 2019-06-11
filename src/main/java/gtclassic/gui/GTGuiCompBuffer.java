@@ -33,7 +33,8 @@ public class GTGuiCompBuffer extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiInit(GuiIC2 gui) {
-		gui.registerButton(new ToggleButton(0, gui.getXOffset() + 7, gui.getYOffset() + 60, 20, 20).setIcon(cable).setTextVisiblity(false, false));
+		gui.registerButton(new ToggleButton(0, gui.getXOffset() + 7, gui.getYOffset()
+				+ 60, 20, 20).setIcon(cable).setTextVisiblity(false, false));
 	}
 
 	@Override
