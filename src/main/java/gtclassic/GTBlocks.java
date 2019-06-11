@@ -13,7 +13,6 @@ import gtclassic.color.GTColorItemBlock;
 import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tile.GTTileBlockCustom;
 import gtclassic.tile.GTTileBufferLarge;
 import gtclassic.tile.GTTileBufferSmall;
 import gtclassic.tile.GTTileCabinet;
@@ -106,7 +105,6 @@ public class GTBlocks {
 	}
 
 	public static void registerTiles() {
-		registerUtil(GTTileBlockCustom.class, "CustomBlock");
 		registerUtil(GTTileSluice.class, "Sluice");
 		registerUtil(GTTileCentrifuge.class, "IndustrialCentrifuge");
 		registerUtil(GTTilePlayerDetector.class, "PlayerDetector");

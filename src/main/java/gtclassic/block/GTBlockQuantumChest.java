@@ -78,7 +78,8 @@ public class GTBlockQuantumChest extends GTBlockTile {
 			ItemStack playerStack = playerIn.getHeldItemMainhand();
 			if (facing != EnumFacing.UP && !(playerStack.getItem() instanceof ItemToolWrench)) {
 				boolean isChestEmpty = chest.isSlotEmpty(slotInput) && chest.isSlotEmpty(slotDisplay);
-				boolean isPlayerStackValid = chest.isSlotEmpty(slotInput) && StackUtil.isStackEqual(chest.getStackInSlot(slotDisplay), playerStack, false, false);
+				boolean isPlayerStackValid = chest.isSlotEmpty(slotInput)
+						&& StackUtil.isStackEqual(chest.getStackInSlot(slotDisplay), playerStack, false, false);
 				boolean validInput = isChestEmpty || isPlayerStackValid;
 				if (!playerIn.isSneaking() && validInput && !playerStack.isEmpty()) {
 					chest.setStackInSlot(slotInput, playerStack.copy());

@@ -30,9 +30,9 @@ public class GTMaterialGen {
 			materialItemUtil(mat, GTMaterialFlag.RUBY);
 		}
 		for (GTMaterial mat : GTMaterial.values()) {
-			//to make sure no same gem and override eachother
+			// to make sure no same gem and override eachother
 			if (!mat.hasFlag(GTMaterialFlag.RUBY)) {
-			materialItemUtil(mat, GTMaterialFlag.SAPPHIRE);
+				materialItemUtil(mat, GTMaterialFlag.SAPPHIRE);
 			}
 		}
 		for (GTMaterial mat : GTMaterial.values()) {

@@ -147,8 +147,6 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 
 	@Override
 	public boolean checkStructure() {
-		if (!world.isAreaLoaded(pos, 3))
-			return false;
 		int3 working = new int3(getPos(), getFacing());
 		if (!(checkPos(working.forward(3)) && checkPos(working.right(1)) && checkPos(working.back(1))
 				&& checkPos(working.right(1)) && checkPos(working.back(1)) && checkPos(working.right(1))

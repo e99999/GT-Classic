@@ -2,7 +2,7 @@ package gtclassic.block;
 
 import gtclassic.GTMod;
 import gtclassic.models.GTModelSluiceBoxExt;
-import gtclassic.util.GTValues;
+import gtclassic.util.GTLang;
 import ic2.core.platform.textures.models.BaseModel;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,8 +19,8 @@ public class GTBlockSluiceBoxExt extends GTBlockFacing {
 
 	public GTBlockSluiceBoxExt() {
 		super(Material.WOOD);
-		setRegistryName(GTValues.sluiceBoxExtension.getUnlocalized().replaceAll("tile.gtclassic.", ""));
-		setUnlocalizedName(GTValues.sluiceBoxExtension);
+		setRegistryName(GTLang.sluiceBoxExtension.getUnlocalized().replaceAll("tile.gtclassic.", ""));
+		setUnlocalizedName(GTLang.sluiceBoxExtension);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
