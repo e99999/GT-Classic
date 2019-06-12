@@ -3,7 +3,6 @@ package gtclassic.util.recipe;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import ic2.api.recipe.IRecipeInput;
-import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;

@@ -1,6 +1,7 @@
 package gtclassic.tile.multi;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -133,17 +134,21 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 
 	public static void init() {
 		
-		for (GTFusionRecipeObject input1 : GTFusionRecipeObject.fusionObjects) {
-			for (GTFusionRecipeObject input2 : GTFusionRecipeObject.fusionObjects) {
-				for (GTFusionRecipeObject sum : GTFusionRecipeObject.fusionObjects) {
-					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2) {
-						float ratio = (sum.getNumber()/100.0F)*20000000.0F;
-						addRecipe(new IRecipeInput[] { input1.getInput(),
-								input2.getInput() }, totalEu(Math.round(ratio)), sum.getOutput());
-					}
-				}
-			}
+		Set<Integer> usedInputs = new HashSet<>();
+		for (GTFusionRecipeObject sum : GTFusionRecipeObject.fusionObjects) {
+		    for (GTFusionRecipeObject input1 : GTFusionRecipeObject.fusionObjects) {
+		        for (GTFusionRecipeObject input2 : GTFusionRecipeObject.fusionObjects) {
+		            int hash = input1.hashCode() + input2.hashCode();
+		            if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2 && !usedInputs.contains(hash)) {
+		                float ratio = (sum.getNumber()/100.0F)*20000000.0F;
+		                addRecipe(new IRecipeInput[] { input1.getInput(),
+		                        input2.getInput() }, totalEu(Math.round(ratio)), sum.getOutput());
+		                usedInputs.add(hash);
+		            }
+		        }
+		    }
 		}
+	
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
 				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
