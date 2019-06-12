@@ -31,7 +31,7 @@ public class GTContainerFusionComputer extends ContainerTileComponent<GTTileMult
 		this.addComponent(new GTGuiCompFusion(tile));
 		this.addComponent(new GTGuiCompBasicString("Fusion Computer", 88, 5));
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiLoaded(GuiIC2 gui) {

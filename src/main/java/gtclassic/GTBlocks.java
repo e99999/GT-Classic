@@ -62,7 +62,7 @@ public class GTBlocks {
 			tileFabricator = registerBlock(new GTBlockTile("matterfabricator")),
 			tileUUAssembler = registerBlock(new GTBlockTile("uuassembler")),
 			tilePlayerDetector = registerBlock(new GTBlockTile("playerdetector", 1)),
-			tileFusionComputer = registerBlock(new GTBlockTile("fusioncomputer", 3)),
+			tileFusionComputer = registerBlock(new GTBlockTile("fusioncomputer", 4)),
 			tileLightningRod = registerBlock(new GTBlockTile("lightningrod", 2)),
 			tileIDSU = registerBlock(new GTBlockTile("idsu")), tileQESU = registerBlock(new GTBlockTile("qesu")),
 			tileWorktable = registerBlock(new GTBlockTile("worktable")),

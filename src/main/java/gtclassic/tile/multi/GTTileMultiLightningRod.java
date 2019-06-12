@@ -6,6 +6,7 @@ import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.math.Box2D;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
@@ -105,5 +106,10 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 		} else {
 			this.setActive(false);
 		}
+	}
+
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return facing != getFacing() && facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 }

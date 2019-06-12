@@ -65,6 +65,6 @@ public class GTTileWorktable extends TileEntityMachine implements IHasGui {
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
+		return facing != getFacing() && facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 }

@@ -9,6 +9,7 @@ import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.block.personal.base.misc.IPersonalInventory;
 import ic2.core.platform.player.TeamManager;
 import ic2.core.util.obj.IRedstoneProvider;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -108,5 +109,10 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	@Override
 	public int getRedstoneStrenght(EnumFacing var1) {
 		return this.isActive ? 15 : 0;
+	}
+
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return facing != getFacing() && facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 }

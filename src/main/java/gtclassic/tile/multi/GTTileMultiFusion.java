@@ -3,6 +3,7 @@ package gtclassic.tile.multi;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
@@ -17,6 +18,7 @@ import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.inventory.container.ContainerIC2;
@@ -29,11 +31,14 @@ import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockCom
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 
 public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 
@@ -43,6 +48,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.fusion");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusioncomputer.png");
 	public String status;
+	IBlockState coilState = GTBlocks.casingFusion.getDefaultState();
 
 	public GTTileMultiFusion() {
 		super(3, 0, 8196, 32784);
@@ -132,23 +138,29 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		return Ic2Sounds.compressorOp;
 	}
 
+	@Override
+	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing side) {
+		return false;
+	}
+
 	public static void init() {
-		
+		/** This iterates the element objects to create all Fusion recipes **/
 		Set<Integer> usedInputs = new HashSet<>();
 		for (GTFusionRecipeObject sum : GTFusionRecipeObject.fusionObjects) {
-		    for (GTFusionRecipeObject input1 : GTFusionRecipeObject.fusionObjects) {
-		        for (GTFusionRecipeObject input2 : GTFusionRecipeObject.fusionObjects) {
-		            int hash = input1.hashCode() + input2.hashCode();
-		            if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2 && !usedInputs.contains(hash)) {
-		                float ratio = (sum.getNumber()/100.0F)*20000000.0F;
-		                addRecipe(new IRecipeInput[] { input1.getInput(),
-		                        input2.getInput() }, totalEu(Math.round(ratio)), sum.getOutput());
-		                usedInputs.add(hash);
-		            }
-		        }
-		    }
+			for (GTFusionRecipeObject input1 : GTFusionRecipeObject.fusionObjects) {
+				for (GTFusionRecipeObject input2 : GTFusionRecipeObject.fusionObjects) {
+					int hash = input1.hashCode() + input2.hashCode();
+					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2
+							&& !usedInputs.contains(hash)) {
+						float ratio = (sum.getNumber() / 100.0F) * 20000000.0F;
+						addRecipe(new IRecipeInput[] { input1.getInput(),
+								input2.getInput() }, totalEu(Math.round(ratio)), sum.getOutput());
+						usedInputs.add(hash);
+					}
+				}
+			}
 		}
-	
+		/** Just regular recipes added manually **/
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
 				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
@@ -178,16 +190,57 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	@Override
+	public Map<BlockPos, IBlockState> provideStructure() {
+		Map<BlockPos, IBlockState> states = super.provideStructure();
+		int3 dir = new int3(getPos(), getFacing());
+		// first line
+		states.put(dir.forward(3).asBlockPos(), coilState);
+		states.put(dir.right(1).asBlockPos(), coilState);
+		states.put(dir.back(1).asBlockPos(), coilState);
+		states.put(dir.right(1).asBlockPos(), coilState);
+		// second line
+		states.put(dir.back(1).asBlockPos(), coilState);
+		states.put(dir.right(1).asBlockPos(), coilState);
+		states.put(dir.back(1).asBlockPos(), coilState);
+		states.put(dir.back(1).asBlockPos(), coilState);
+		// third line
+		states.put(dir.left(1).asBlockPos(), coilState);
+		states.put(dir.back(1).asBlockPos(), coilState);
+		states.put(dir.left(1).asBlockPos(), coilState);
+		states.put(dir.back(1).asBlockPos(), coilState);
+		// fourth line
+		states.put(dir.left(1).asBlockPos(), coilState);
+		states.put(dir.left(1).asBlockPos(), coilState);
+		states.put(dir.forward(1).asBlockPos(), coilState);
+		states.put(dir.left(1).asBlockPos(), coilState);
+		// fifth
+		states.put(dir.forward(1).asBlockPos(), coilState);
+		states.put(dir.left(1).asBlockPos(), coilState);
+		states.put(dir.forward(1).asBlockPos(), coilState);
+		states.put(dir.forward(1).asBlockPos(), coilState);
+		// sixth
+		states.put(dir.right(1).asBlockPos(), coilState);
+		states.put(dir.forward(1).asBlockPos(), coilState);
+		states.put(dir.right(1).asBlockPos(), coilState);
+		states.put(dir.forward(1).asBlockPos(), coilState);
+		return states;
+	}
+
+	@Override
 	public boolean checkStructure() {
-		int3 working = new int3(getPos(), getFacing());
-		if (!(checkPos(working.forward(3)) && checkPos(working.right(1)) && checkPos(working.back(1))
-				&& checkPos(working.right(1)) && checkPos(working.back(1)) && checkPos(working.right(1))
-				&& checkPos(working.back(1)) && checkPos(working.back(1)) && checkPos(working.left(1))
-				&& checkPos(working.back(1)) && checkPos(working.left(1)) && checkPos(working.back(1))
-				&& checkPos(working.left(1)) && checkPos(working.left(1)) && checkPos(working.forward(1))
-				&& checkPos(working.left(1)) && checkPos(working.forward(1)) && checkPos(working.left(1))
-				&& checkPos(working.forward(1)) && checkPos(working.forward(1)) && checkPos(working.right(1))
-				&& checkPos(working.forward(1)) && checkPos(working.right(1)) && checkPos(working.forward(1)))) {
+		int3 dir = new int3(getPos(), getFacing());
+		// first line
+		if (!(isCoil(dir.forward(3)) && isCoil(dir.right(1)) && isCoil(dir.back(1)) && isCoil(dir.right(1))
+		// second line
+				&& isCoil(dir.back(1)) && isCoil(dir.right(1)) && isCoil(dir.back(1)) && isCoil(dir.back(1))
+				// third line
+				&& isCoil(dir.left(1)) && isCoil(dir.back(1)) && isCoil(dir.left(1)) && isCoil(dir.back(1))
+				// fourth
+				&& isCoil(dir.left(1)) && isCoil(dir.left(1)) && isCoil(dir.forward(1)) && isCoil(dir.left(1))
+				// fifth
+				&& isCoil(dir.forward(1)) && isCoil(dir.left(1)) && isCoil(dir.forward(1)) && isCoil(dir.forward(1))
+				// sixth
+				&& isCoil(dir.right(1)) && isCoil(dir.forward(1)) && isCoil(dir.right(1)) && isCoil(dir.forward(1)))) {
 			this.status = "No";
 			this.getNetwork().updateTileGuiField(this, "status");
 			return false;
@@ -197,7 +250,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		return true;
 	}
 
-	public boolean checkPos(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == GTBlocks.casingFusion.getDefaultState();
+	public boolean isCoil(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == coilState;
 	}
 }

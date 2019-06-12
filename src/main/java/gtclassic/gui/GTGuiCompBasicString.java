@@ -24,7 +24,7 @@ public class GTGuiCompBasicString extends GuiComponent {
 		this.title = title;
 		this.color = Color.darkGray;
 	}
-	
+
 	public GTGuiCompBasicString(String title, Integer posX, Integer posY, Color color) {
 		super(Ic2GuiComp.nullBox);
 		this.posX = posX;

@@ -7,7 +7,6 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumFacing;
 
 public class GTTileIDSU extends TileEntityElectricBlock {
 
@@ -33,10 +32,5 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 	@Override
 	public LocaleComp getBlockName() {
 		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
-	}
-
-	@Override
-	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
 	}
 }
