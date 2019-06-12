@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerCentrifuge extends ContainerTileComponent<GTTileCentrifuge> {
 
-	public static final Box2D machineProgressBox = new Box2D(78, 24, 20, 18);
+	public static final Box2D machineProgressBox = new Box2D(78, 23, 20, 18);
 	public static final Vec2i machineProgressPos = new Vec2i(176, 0);
 
 	public GTContainerCentrifuge(InventoryPlayer player, GTTileCentrifuge tile) {

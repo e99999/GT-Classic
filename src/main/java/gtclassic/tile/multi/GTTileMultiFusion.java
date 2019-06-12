@@ -10,6 +10,7 @@ import gtclassic.container.GTContainerFusionComputer;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
+import gtclassic.util.recipe.GTFusionRecipeObject;
 import gtclassic.util.recipe.GTMultiInputRecipeList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
@@ -40,10 +41,13 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	public static final int slotOutput = 2;
 	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.fusion");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusioncomputer.png");
+	public String status;
 
 	public GTTileMultiFusion() {
 		super(3, 0, 8196, 32784);
-		maxEnergy = 100000;
+		maxEnergy = 100000000;
+		this.status = "No";
+		this.addGuiFields(new String[] { "status" });
 	}
 
 	@Override
@@ -67,6 +71,19 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	public Set<UpgradeType> getSupportedTypes() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		this.status = nbt.getString("status");
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setString("status", this.status);
+		return nbt;
 	}
 
 	@Override
@@ -115,8 +132,18 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	public static void init() {
-		addRecipe(new IRecipeInput[] { input("dustTungsten", 1),
-				input("dustLithium", 1) }, totalEu(16000000), GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1));
+		
+		for (GTFusionRecipeObject input1 : GTFusionRecipeObject.fusionObjects) {
+			for (GTFusionRecipeObject input2 : GTFusionRecipeObject.fusionObjects) {
+				for (GTFusionRecipeObject sum : GTFusionRecipeObject.fusionObjects) {
+					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2) {
+						float ratio = (sum.getNumber()/100.0F)*20000000.0F;
+						addRecipe(new IRecipeInput[] { input1.getInput(),
+								input2.getInput() }, totalEu(Math.round(ratio)), sum.getOutput());
+					}
+				}
+			}
+		}
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
 				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
@@ -156,8 +183,12 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 				&& checkPos(working.left(1)) && checkPos(working.forward(1)) && checkPos(working.left(1))
 				&& checkPos(working.forward(1)) && checkPos(working.forward(1)) && checkPos(working.right(1))
 				&& checkPos(working.forward(1)) && checkPos(working.right(1)) && checkPos(working.forward(1)))) {
+			this.status = "No";
+			this.getNetwork().updateTileGuiField(this, "status");
 			return false;
 		}
+		this.status = "Yes";
+		this.getNetwork().updateTileGuiField(this, "status");
 		return true;
 	}
 

@@ -15,12 +15,22 @@ public class GTGuiCompBasicString extends GuiComponent {
 	private int posX;
 	private int posY;
 	private String title;
+	private Color color;
 
 	public GTGuiCompBasicString(String title, Integer posX, Integer posY) {
 		super(Ic2GuiComp.nullBox);
 		this.posX = posX;
 		this.posY = posY;
 		this.title = title;
+		this.color = Color.darkGray;
+	}
+	
+	public GTGuiCompBasicString(String title, Integer posX, Integer posY, Color color) {
+		super(Ic2GuiComp.nullBox);
+		this.posX = posX;
+		this.posY = posY;
+		this.title = title;
+		this.color = color;
 	}
 
 	@Override
@@ -31,6 +41,6 @@ public class GTGuiCompBasicString extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString(this.title, this.posX, this.posY, Color.darkGray.hashCode());
+		gui.drawString(this.title, this.posX, this.posY, this.color.hashCode());
 	}
 }
