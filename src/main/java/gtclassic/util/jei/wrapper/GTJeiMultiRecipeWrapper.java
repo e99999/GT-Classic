@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import gtclassic.util.GTValues;
-import gtclassic.util.recipe.GTMultiInputRecipeList.MultiRecipe;
+import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.energy.EnergyNet;
 import ic2.api.recipe.IRecipeInput;

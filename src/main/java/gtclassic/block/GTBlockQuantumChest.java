@@ -24,7 +24,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-public class GTBlockQuantumChest extends GTBlockTile {
+public class GTBlockQuantumChest extends GTBlockMachine {
 
 	int slotInput = 0;
 	int slotOutput = 1;

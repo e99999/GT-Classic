@@ -63,6 +63,17 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[flag.getTextureID() + index];
 	}
 
+	@Override
+	public int getItemBurnTime(ItemStack itemstack) {
+		if (this.material.equals(GTMaterial.Lithium) &&  this.flag.equals(GTMaterialFlag.DUST)){
+			return 2000;
+		}
+		if (this.material.equals(GTMaterial.Carbon) && this.flag.equals(GTMaterialFlag.DUST)){
+			return 1000;
+		}
+		return 0;
+	}
+
 	public GTMaterial getMaterial() {
 		return this.material;
 	}

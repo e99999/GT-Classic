@@ -6,7 +6,7 @@ import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
 import net.minecraft.block.Block;
 
 public enum GTJeiRegistry {
@@ -14,7 +14,7 @@ public enum GTJeiRegistry {
 	BLASTFURNACE(GTTileMultiBlastFurnace.RECIPE_LIST, GTBlocks.tileBlastFurnace, GTGuiMachine.GTBlastFurnaceGui.class, 78, 24, 20, 18),
 	FUSION(GTTileMultiFusion.RECIPE_LIST, GTBlocks.tileFusionComputer, GTFusionComputerGui.class, 110, 34, 25, 17);
 
-	private GTMultiInputRecipeList list;
+	private GTRecipeMultiInputList list;
 	private Block catalyst;
 	@SuppressWarnings("rawtypes")
 	private Class gui;
@@ -24,7 +24,7 @@ public enum GTJeiRegistry {
 	private int sizeY;
 
 	@SuppressWarnings("rawtypes")
-	GTJeiRegistry(GTMultiInputRecipeList list, Block catalyst, Class gui, int clickX, int clickY, int sizeX,
+	GTJeiRegistry(GTRecipeMultiInputList list, Block catalyst, Class gui, int clickX, int clickY, int sizeX,
 			int sizeY) {
 		this.list = list;
 		this.catalyst = catalyst;
@@ -35,7 +35,7 @@ public enum GTJeiRegistry {
 		this.sizeY = sizeY;
 	}
 
-	public GTMultiInputRecipeList getRecipeList() {
+	public GTRecipeMultiInputList getRecipeList() {
 		return this.list;
 	}
 

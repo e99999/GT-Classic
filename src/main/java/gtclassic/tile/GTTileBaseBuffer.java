@@ -147,7 +147,7 @@ public class GTTileBaseBuffer extends TileEntityMachine
 
 	@Override
 	public void removeInsulation() {
-		// TODO Auto-generated method stub
+		// Empty, for interface implementation only
 	}
 
 	@Override

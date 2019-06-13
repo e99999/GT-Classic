@@ -6,11 +6,16 @@ import java.util.List;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.tile.GTTileBufferLarge;
-import gtclassic.tile.GTTileBufferSmall;
-import gtclassic.tile.GTTileTranslocator;
-import ic2.core.IC2;
+import gtclassic.tile.GTTileCabinet;
+import gtclassic.tile.GTTileCentrifuge;
+import gtclassic.tile.GTTileComputerCube;
+import gtclassic.tile.GTTilePlayerDetector;
+import gtclassic.tile.GTTileWorktable;
+import gtclassic.tile.multi.GTTileMultiBlastFurnace;
+import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -19,7 +24,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -29,13 +33,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockTileDirectionable extends GTBlockMultiID {
+public class GTBlockMachine extends GTBlockMultiID {
 
 	String name;
 	String texture;
 	int size = 0;
 
-	public GTBlockTileDirectionable(String name) {
+	public GTBlockMachine(String name) {
 		super(Material.IRON);
 		this.name = name;
 		this.size = 1;
@@ -47,7 +51,7 @@ public class GTBlockTileDirectionable extends GTBlockMultiID {
 		setSoundType(SoundType.METAL);
 	}
 
-	public GTBlockTileDirectionable(String name, int additionalInfo) {
+	public GTBlockMachine(String name, int additionalInfo) {
 		super(Material.IRON);
 		this.name = name;
 		this.size = additionalInfo + 1;
@@ -72,17 +76,40 @@ public class GTBlockTileDirectionable extends GTBlockMultiID {
 	}
 
 	@Override
+	@Deprecated
+	public boolean canProvidePower(IBlockState state) {
+		int meta = this.getMetaFromState(state);
+		return meta >= 0 && meta <= 2 ? true : super.canProvidePower(state);
+	}
+
+	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		if (this == GTBlocks.tileTranslocator) {
-			return new GTTileTranslocator();
+		if (this == GTBlocks.tileComputer) {
+			return new GTTileComputerCube();
 		}
-		if (this == GTBlocks.tileBufferLarge) {
-			return new GTTileBufferLarge();
+		if (this == GTBlocks.tileCentrifuge) {
+			return new GTTileCentrifuge();
 		}
-		if (this == GTBlocks.tileBufferSmall) {
-			return new GTTileBufferSmall();
+		if (this == GTBlocks.tileBlastFurnace) {
+			return new GTTileMultiBlastFurnace();
 		}
-		return new TileEntityBlock();
+		if (this == GTBlocks.tilePlayerDetector) {
+			return new GTTilePlayerDetector();
+		}
+		if (this == GTBlocks.tileLightningRod) {
+			return new GTTileMultiLightningRod();
+		}
+		if (this == GTBlocks.tileFusionComputer) {
+			return new GTTileMultiFusion();
+		}
+		if (this == GTBlocks.tileWorktable) {
+			return new GTTileWorktable();
+		}
+		if (this == GTBlocks.tileCabinet) {
+			return new GTTileCabinet();
+		} else {
+			return new TileEntityBlock();
+		}
 	}
 
 	@Override
@@ -94,6 +121,28 @@ public class GTBlockTileDirectionable extends GTBlockMultiID {
 	@Override
 	public int getMaxSheetSize(int meta) {
 		return 1;
+	}
+
+	@Override
+	@Deprecated
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof TileEntityElectricBlock) {
+			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
+		} else {
+			return super.getStrongPower(blockState, blockAccess, pos, side);
+		}
+	}
+
+	@Override
+	@Deprecated
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof TileEntityElectricBlock) {
+			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
+		} else {
+			return super.getWeakPower(blockState, blockAccess, pos, side);
+		}
 	}
 
 	@Override
@@ -115,30 +164,5 @@ public class GTBlockTileDirectionable extends GTBlockMultiID {
 	@Override
 	public List<IBlockState> getValidStates() {
 		return getBlockState().getValidStates();
-	}
-
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
-			ItemStack stack) {
-		if (!IC2.platform.isRendering()) {
-			TileEntity tile = worldIn.getTileEntity(pos);
-			if (tile instanceof TileEntityBlock) {
-				TileEntityBlock block = (TileEntityBlock) tile;
-				if (placer == null) {
-					block.setFacing(EnumFacing.NORTH);
-				} else {
-					int pitch = Math.round(placer.rotationPitch);
-					if (pitch >= 65) {
-						block.setFacing(EnumFacing.UP);
-					} else if (pitch <= -65) {
-						block.setFacing(EnumFacing.DOWN);
-					} else {
-						block.setFacing(EnumFacing.fromAngle((double) placer.rotationYaw).getOpposite());
-					}
-				}
-				if (stack.hasDisplayName()) {
-					block.setCustomName(stack.getDisplayName());
-				}
-			}
-		}
 	}
 }

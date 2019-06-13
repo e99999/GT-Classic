@@ -13,11 +13,11 @@ import ic2.core.block.machine.recipes.managers.RecipeManager;
 import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
 
-public class GTBasicMachineRecipeList extends BasicMachineRecipeList {
+public class GTRecipeBasicMachineList extends BasicMachineRecipeList {
 
 	String registryID;
 
-	public GTBasicMachineRecipeList(String id) {
+	public GTRecipeBasicMachineList(String id) {
 		super(id);
 		registryID = id;
 	}

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.block.GTBlockCasing;
+import gtclassic.block.GTBlockMachine;
+import gtclassic.block.GTBlockMachineDirectionable;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockQuantumChest;
-import gtclassic.block.GTBlockTile;
-import gtclassic.block.GTBlockTileDirectionable;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.itemblock.GTItemBlockInterface;
@@ -55,22 +55,24 @@ public class GTBlocks {
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
 	// GTBlockSluiceBoxExt());
-	public static final GTBlockTile tileBlastFurnace = registerBlock(new GTBlockTile("gtblastfurnace", 3)),
-			tileChargeOmat = registerBlock(new GTBlockTile("chargeomat")),
-			tileComputer = registerBlock(new GTBlockTile("computercube")),
-			tileCentrifuge = registerBlock(new GTBlockTile("industrialcentrifuge")),
-			tileFabricator = registerBlock(new GTBlockTile("matterfabricator")),
-			tileUUAssembler = registerBlock(new GTBlockTile("uuassembler")),
-			tilePlayerDetector = registerBlock(new GTBlockTile("playerdetector", 1)),
-			tileFusionComputer = registerBlock(new GTBlockTile("fusioncomputer", 4)),
-			tileLightningRod = registerBlock(new GTBlockTile("lightningrod", 2)),
-			tileIDSU = registerBlock(new GTBlockTile("idsu")), tileQESU = registerBlock(new GTBlockTile("qesu")),
-			tileWorktable = registerBlock(new GTBlockTile("worktable")),
-			tileCabinet = registerBlock(new GTBlockTile("cabinet"));
+	public static final GTBlockMachine tileBlastFurnace = registerBlock(new GTBlockMachine("gtblastfurnace", 3));
+	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat"));
+	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube"));
+	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge"));
+	public static final GTBlockMachine tileFabricator = registerBlock(new GTBlockMachine("matterfabricator"));
+	public static final GTBlockMachine tileUUAssembler = registerBlock(new GTBlockMachine("uuassembler"));
+	public static final GTBlockMachine tilePlayerDetector = registerBlock(new GTBlockMachine("playerdetector", 1));
+	public static final GTBlockMachine tileFusionComputer = registerBlock(new GTBlockMachine("fusioncomputer", 4));
+	public static final GTBlockMachine tileLightningRod = registerBlock(new GTBlockMachine("lightningrod", 2));
+	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu"));
+	public static final GTBlockMachineDirectionable tileQESU = registerBlock(new GTBlockMachineDirectionable("qesu"));
+	public static final GTBlockMachine tileWorktable = registerBlock(new GTBlockMachine("worktable"));
+	public static final GTBlockMachine tileCabinet = registerBlock(new GTBlockMachine("cabinet"));
 	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());
-	public static final GTBlockTileDirectionable tileTranslocator = registerBlock(new GTBlockTileDirectionable("translocator", 3)),
-			tileBufferLarge = registerBlock(new GTBlockTileDirectionable("bufferlarge", 2)),
-			tileBufferSmall = registerBlock(new GTBlockTileDirectionable("buffersmall", 2));
+	public static final GTBlockMachineDirectionable tileTranslocator = registerBlock(new GTBlockMachineDirectionable("translocator", 3));
+	public static final GTBlockMachineDirectionable tileBufferLarge = registerBlock(new GTBlockMachineDirectionable("bufferlarge", 2));
+	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", 2));
+	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uuassembler", "quantumchest", "playerdetector",
 			"fusioncomputer", "lightningrod", "idsu", "qesu", "cabinet", "worktable", "translocator", "bufferlarge",

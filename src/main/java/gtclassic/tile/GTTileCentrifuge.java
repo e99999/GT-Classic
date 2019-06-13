@@ -13,7 +13,7 @@ import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
@@ -47,20 +47,13 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTTileCentrifuge extends GTTileBaseMachine {
 
-	public static final int slotInput0 = 0;
-	public static final int slotInput1 = 1;
-	public static final int slotOutput0 = 2;
-	public static final int slotOutput1 = 3;
-	public static final int slotOutput2 = 4;
-	public static final int slotOutput3 = 5;
-	public static final int slotOutput4 = 6;
-	public static final int slotOutput5 = 7;
+
 	public static final int slotFuel = 8;
 	protected static final int[] slotInputs = { 0, 1 };
 	protected static final int[] slotOutputs = { 2, 3, 4, 5, 6, 7 };
-	IFilter filter = new MachineFilter(this);
+	public IFilter filter = new MachineFilter(this);
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/industrialcentrifuge.png");
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.centrifuge");
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.centrifuge");
 	private static final int defaultEu = 16;
 
 	public GTTileCentrifuge() {
@@ -76,8 +69,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
-		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotFuel);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerInputFilter(filter, slotInputs);
@@ -134,7 +126,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 	}
 
 	@Override
-	public GTMultiInputRecipeList getRecipeList() {
+	public GTRecipeMultiInputList getRecipeList() {
 		return RECIPE_LIST;
 	}
 
@@ -184,7 +176,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addRecipe(GTMaterialGen.get(Items.BLAZE_POWDER, 8), 0, totalEu(15000), GTMaterialGen.getIc2(Ic2Items.coalDust, 2), GTMaterialGen.get(Items.GUNPOWDER, 1));
 		addRecipe("sand", 32, 1, totalEu(50000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getFluid(GTMaterial.Oxygen, 1));
 		addRecipe("dustFlint", 8, 1, totalEu(5000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getFluid(GTMaterial.Oxygen, 1));
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.clayDust, 4), 0, totalEu(50000), GTMaterialGen.getDust(GTMaterial.Lithium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 1));
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.clayDust, 4), 0, totalEu(5000), GTMaterialGen.getDust(GTMaterial.Lithium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 1));
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.stickyResin, 8), 0, totalEu(12500), GTMaterialGen.getIc2(Ic2Items.rubber, 28), GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 2), GTMaterialGen.getIc2(Ic2Items.plantBall, 2));
 		addRecipe("dustGlowstone", 16, 1, totalEu(25000), GTMaterialGen.get(Items.REDSTONE, 8), GTMaterialGen.getIc2(Ic2Items.goldDust, 8), GTMaterialGen.getFluid(GTMaterial.Helium, 1));
 		addRecipe("dustRedstone", 10, 3, totalEu(35000), GTMaterialGen.getFluid(GTMaterial.Mercury, 3), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getDust(GTMaterial.Pyrite, 5), GTMaterialGen.getDust(GTMaterial.Ruby, 1));
@@ -194,7 +186,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.lavaCell, 64), 0, totalEu(250000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 64), GTMaterialGen.getIngot(GTMaterial.Electrum, 4), GTMaterialGen.get(Items.IRON_INGOT, 16), GTMaterialGen.getDust(GTMaterial.Tungsten, 4));
 		addRecipe("endstone", 64, 8, totalEu(100000), GTMaterialGen.get(Blocks.SAND, 48), GTMaterialGen.getFluid(GTMaterial.Helium3, 4), GTMaterialGen.getFluid(GTMaterial.Helium, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1));
 		/** New Recipes I added **/
-		addRecipe("stoneGranite", 4, 0, totalEu(16000), GTMaterialGen.getDust(GTMaterial.Calcite, 2), GTMaterialGen.getDust(GTMaterial.Flint, 1), GTMaterialGen.getIc2(Ic2Items.clayDust, 1));
+		addRecipe("stoneGranite", 4, 0, totalEu(24000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Flint, 1), GTMaterialGen.getIc2(Ic2Items.clayDust, 1));
 		addRecipe(GTMaterialGen.get(Items.QUARTZ, 1), 2, totalEu(8000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getFluid(GTMaterial.Oxygen, 2));
 		addRecipe(GTMaterialGen.get(Blocks.MAGMA, 64), 64, totalEu(3000), GTMaterialGen.getLava(64));
 		addRecipe("dustElectrum", 2, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.silverDust, 1), GTMaterialGen.getIc2(Ic2Items.goldDust, 1));
@@ -286,6 +278,6 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), defaultEu);
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), defaultEu);
 	}
 }

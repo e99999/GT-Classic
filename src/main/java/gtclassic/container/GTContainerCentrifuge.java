@@ -23,8 +23,8 @@ public class GTContainerCentrifuge extends ContainerTileComponent<GTTileCentrifu
 
 	public GTContainerCentrifuge(InventoryPlayer player, GTTileCentrifuge tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 35, 25, null));
-		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, null));
+		this.addSlotToContainer(new SlotCustom(tile, 0, 35, 25, tile.filter));
+		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, tile.filter));
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 3; ++x) {
 				this.addSlotToContainer(new SlotOutput(player.player, tile, 2 + x + y * 3, 107 + x * 18, 17 + y * 18));

@@ -39,10 +39,11 @@ public class GTRecipeForestry {
 		for (ICentrifugeRecipe entry : copy) {
 			ItemStack input = entry.getInput();
 			int size = entry.getAllProducts().size();
-			// TODO add the chance stuff in
+			// TODO add the chance stuff in, total time is set to high to account for high
+			// recipe output atm
 			if (size > 0) {
 				ItemStack[] outputs = entry.getAllProducts().keySet().toArray(new ItemStack[size]);
-				GTTileCentrifuge.addRecipe(input, 0, totalTime(100), outputs);
+				GTTileCentrifuge.addRecipe(input, 0, totalTime(1000), outputs);
 			}
 		}
 	}

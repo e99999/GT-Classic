@@ -132,9 +132,9 @@ fluid.oil=Oil
 #ore tooltips
 tooltip.gtclassic.oreEnd=Spawns in the end, 4 x more often than the overworld
 tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome
-tooltip.gtclassic.oreRuby=Spawns between Y level 0 - 48 in any biome
-tooltip.gtclassic.oreSapphire=Spawns between Y level 0 - 48 in any biome
-tooltip.gtclassic.oreBauxite=Spawns between Y level 50 - 120 in any biome
+tooltip.gtclassic.oreRuby=Spawns between Y level 0 - 48 in HOT biomes
+tooltip.gtclassic.oreSapphire=Spawns between Y level 0 - 48 in OCEAN biomes
+tooltip.gtclassic.oreBauxite=Spawns between Y level 50 - 120 in FOREST/PLAINS biomes
 
 #item tooltips
 tooltip.gtclassic.destructo_pack=Mobile trash can

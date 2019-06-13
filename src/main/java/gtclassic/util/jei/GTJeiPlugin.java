@@ -6,7 +6,7 @@ import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerWorktable;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
@@ -47,10 +47,10 @@ public class GTJeiPlugin implements IModPlugin {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void wrapperUtil(@Nonnull IModRegistry registry, GTMultiInputRecipeList list, Block catalyst,
+	public static void wrapperUtil(@Nonnull IModRegistry registry, GTRecipeMultiInputList list, Block catalyst,
 			Class gui, int clickX, int clickY, int sizeX, int sizeY) {
 		String recipeList = list.getCategory();
-		registry.handleRecipes(GTMultiInputRecipeList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, recipeList);
+		registry.handleRecipes(GTRecipeMultiInputList.MultiRecipe.class, GTJeiMultiRecipeWrapper::new, recipeList);
 		registry.addRecipes(list.getRecipeList(), recipeList);
 		registry.addRecipeCatalyst(new ItemStack(catalyst), recipeList);
 		if (gui != null) {
@@ -58,7 +58,7 @@ public class GTJeiPlugin implements IModPlugin {
 		}
 	}
 
-	public static void categoryUtil(IRecipeCategoryRegistration registry, GTMultiInputRecipeList list, Block catalyst) {
+	public static void categoryUtil(IRecipeCategoryRegistration registry, GTRecipeMultiInputList list, Block catalyst) {
 		registry.addRecipeCategories(new GTJeiMultiRecipeCategory(registry.getJeiHelpers().getGuiHelper(), list.getCategory(), catalyst));
 	}
 }

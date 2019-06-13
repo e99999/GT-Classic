@@ -9,9 +9,12 @@ import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class GTWorldGen implements IWorldGenerator {
@@ -26,21 +29,21 @@ public class GTWorldGen implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
-		// Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128,
-		// chunkZ * 16 + 16));
+		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
 		if (GTConfig.genEndIridium) {
 			runGenerator(GTBlocks.oreEnd.getDefaultState(), 4, 4, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.genOverworldIridium) {
 			runGenerator(GTBlocks.oreIridium.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
-		if (GTConfig.genOverworldRuby) {
+		if (GTConfig.genOverworldRuby && BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
 			runGenerator(GTBlocks.oreRuby.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
-		if (GTConfig.genOverworldSapphire) {
+		if (GTConfig.genOverworldSapphire && BiomeDictionary.hasType(biomegenbase, Type.OCEAN)) {
 			runGenerator(GTBlocks.oreSapphire.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
-		if (GTConfig.genOverworldBauxite) {
+		if (GTConfig.genOverworldBauxite && BiomeDictionary.hasType(biomegenbase, Type.FOREST)
+				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS))) {
 			runGenerator(GTBlocks.oreBauxite.getDefaultState(), 16, 4, 50, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 	}

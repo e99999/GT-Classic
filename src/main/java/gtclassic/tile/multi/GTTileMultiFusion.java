@@ -12,8 +12,8 @@ import gtclassic.container.GTContainerFusionComputer;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
-import gtclassic.util.recipe.GTFusionRecipeObject;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
+import gtclassic.util.recipe.GTRecipeElementObject;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
@@ -45,7 +45,8 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
 	public static final int slotOutput = 2;
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.fusion");
+	public IFilter filter = new MachineFilter(this);
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.fusion");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusioncomputer.png");
 	public String status;
 	IBlockState coilState = GTBlocks.casingFusion.getDefaultState();
@@ -65,6 +66,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInput0, slotInput1);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutput);
+		handler.registerInputFilter(filter, slotInput0, slotInput1);
 		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1);
 		handler.registerSlotType(SlotType.Output, slotOutput);
 	}
@@ -105,18 +107,17 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 
 	@Override
 	public int[] getInputSlots() {
-		int[] input = { slotInput0, slotInput1 };
-		return input;
+		return new int[] { slotInput0, slotInput1 };
 	}
 
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
-		return new IFilter[] { new MachineFilter(this) };
+		return new IFilter[] { filter };
 	}
 
 	@Override
 	public boolean isRecipeSlot(int slot) {
-		return true;
+		return slot <= slotInput1;
 	}
 
 	@Override
@@ -125,7 +126,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	@Override
-	public GTMultiInputRecipeList getRecipeList() {
+	public GTRecipeMultiInputList getRecipeList() {
 		return RECIPE_LIST;
 	}
 
@@ -146,9 +147,9 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	public static void init() {
 		/** This iterates the element objects to create all Fusion recipes **/
 		Set<Integer> usedInputs = new HashSet<>();
-		for (GTFusionRecipeObject sum : GTFusionRecipeObject.fusionObjects) {
-			for (GTFusionRecipeObject input1 : GTFusionRecipeObject.fusionObjects) {
-				for (GTFusionRecipeObject input2 : GTFusionRecipeObject.fusionObjects) {
+		for (GTRecipeElementObject sum : GTRecipeElementObject.fusionObjects) {
+			for (GTRecipeElementObject input1 : GTRecipeElementObject.fusionObjects) {
+				for (GTRecipeElementObject input2 : GTRecipeElementObject.fusionObjects) {
 					int hash = input1.hashCode() + input2.hashCode();
 					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2
 							&& !usedInputs.contains(hash)) {
@@ -186,7 +187,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 8196);
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 8196);
 	}
 
 	@Override

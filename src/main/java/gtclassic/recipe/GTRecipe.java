@@ -134,11 +134,11 @@ public class GTRecipe {
 				GTItems.heatStorageTriple, 'E', "circuitMaster", 'W', "ingotTungsten", 'P', "plateIridiumAlloy" });
 		/** Lapotron Batpack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.lapotronPack, 1), new Object[] { "ELE", "SBS", "EPE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'L', GTItems.orbEnergy, 'B', GTItems.lithiumBatpack, 'P',
+				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'B', GTItems.lithiumBatpack, 'P',
 				"plateIridiumAlloy" });
 		/** Tesla Staff **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), new Object[] { "LS ", "SP ", "  P", 'L',
-				GTItems.orbEnergy, 'S', GTItems.superConductor, 'P', "plateIridiumAlloy" });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), new Object[] { " SL", " PS", "P  ", 'L',
+				"batteryUltimate", 'S', GTItems.superConductor, 'P', "plateIridiumAlloy" });
 		/** Survival Scanner **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.portableScanner, 1), new Object[] { "PEP", "CFC", "PBP", 'P',
 				"ingotAluminium", 'E', GTMaterialGen.getIc2(Ic2Items.euReader, 1), 'F',
@@ -180,21 +180,21 @@ public class GTRecipe {
 				"circuitMaster", 'S', GTItems.superConductor, 'A', GTBlocks.casingHighlyAdvanced });
 		/** Fusion Computer **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFusionComputer, 1), new Object[] { "ESE", "LCL", "ESE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'L', GTItems.orbEnergy, 'C', GTBlocks.tileComputer });
+				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C', GTBlocks.tileComputer });
 		/** Player Detector **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
 				Blocks.OBSERVER, 'C', "circuitBasic", 'c', Ic2Items.advMachine });
 		/** Computer Cube **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileComputer, 1), new Object[] { "RGD", "GMG", "DGR", 'D',
-				GTItems.orbData, 'R', "circuitMaster", 'G', "blockGlass", 'M', Ic2Items.advMachine.copy() });
+				"circuitUltimate", 'R', "circuitMaster", 'G', "blockGlass", 'M', Ic2Items.advMachine.copy() });
 		/** Energy Storage **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQESU), new Object[] { "OOO", "OCO", "OOO", 'O',
-				GTItems.orbEnergy, 'C', GTBlocks.tileComputer });
+				"batteryUltimate", 'C', GTBlocks.tileComputer });
 		/** Quantum Chest **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-				GTItems.orbData, 'I', "ingotChrome", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+				"circuitUltimate", 'I', "ingotChrome", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-				GTItems.orbData, 'I', "ingotTitanium", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+				"circuitUltimate", 'I', "ingotTitanium", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
 		/** Cabinet **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCabinet), new Object[] { "III", "CIC", "III", 'I',
 				ingotMachine, 'C', "chestWood" });
@@ -208,13 +208,13 @@ public class GTRecipe {
 			/** UU Assembler **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
 					"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q',
-					GTBlocks.tileQuantumChest, 'E', Ic2Items.industrialWorktable, 'D', GTItems.orbData, 'B',
+					GTBlocks.tileQuantumChest, 'E', Ic2Items.industrialWorktable, 'D', "circuitUltimate", 'B',
 					"batteryAdvanced" });
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] { "ETE", "HLH", "ETE", 'E',
 					"circuitMaster", 'T', Ic2Items.teleporter, 'H', GTBlocks.casingHighlyAdvanced, 'L',
-					GTItems.orbEnergy });
+					"batteryUltimate" });
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileChargeOmat, 1), new Object[] { "RCR", "AEA", "RMR", 'E',
-					GTItems.orbEnergy, 'R', "circuitMaster", 'A', "chestWood", 'C', GTBlocks.tileComputer, 'M',
+					"batteryUltimate", 'R', "circuitMaster", 'A', "chestWood", 'C', GTBlocks.tileComputer, 'M',
 					Ic2Items.advMachine.copy() });
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
 					"plateIridiumAlloy", 'H', GTBlocks.tileQESU, 'E', Blocks.ENDER_CHEST });
@@ -294,11 +294,14 @@ public class GTRecipe {
 		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GTMaterialGen.getIc2(Ic2Items.lapotronCrystal, 1), new Object[] {
 				"LCL", "LDL", "LCL", 'D', highCrystal, 'C', "circuitBasic", 'L', anyLapis });
 		/** Solar Panel **/
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] { "XYX", "YPY", "CVC", 'C',
-				"circuitBasic", 'V', Ic2Items.machine, 'X', "itemSilicon", 'Y', "blockGlass", 'P',
-				Ic2Items.carbonPlate });
+		recipes.overrideRecipe("shaped_tile.blockSolarGenerator_1093731471", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] { "XYX", "YXY", "CVC", 'V',
+				Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C', Ic2Items.carbonPlate });
+		recipes.overrideRecipe("shaped_tile.blockSolarGenerator_261816397", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] { "YYY", "XXX", "CVC", 'V',
+				Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C', Ic2Items.carbonPlate });
 		/** Adding ruby to glass fiber cable **/
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotConductor, 'V', lowCrystal);
+		/** Gating plasamifer behind fusion **/
+		recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.getIc2(Ic2Items.plasmafier, 1), "XFX", "FYF", "XFX", 'F', GTBlocks.tileFusionComputer, 'X', Ic2Items.iridiumStone.copy(), 'Y', Ic2Items.reinforcedGlass.copy(), 'C', Ic2Items.inductionFurnace.copy());
 	}
 }

@@ -24,7 +24,7 @@ public class GTContainerBlastFurnace extends ContainerTileComponent<GTTileMultiB
 		super(tile);
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 2; ++x) {
-				this.addSlotToContainer(new SlotCustom(tile, x + y * 2, 35 + x * 18, 17 + y * 18, null));
+				this.addSlotToContainer(new SlotCustom(tile, x + y * 2, 35 + x * 18, 17 + y * 18, tile.filter));
 			}
 		}
 		for (int y = 0; y < 2; ++y) {

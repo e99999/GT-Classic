@@ -17,7 +17,7 @@ import gtclassic.material.GTMaterialGen;
 import gtclassic.recipe.GTRecipeProcessing;
 import gtclassic.util.GTValues;
 import gtclassic.util.int3;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
@@ -49,8 +49,9 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3 };
 	protected static final int[] slotOutputs = { 4, 5, 6, 7 };
-	public static final IBlockState casingMachine = GTBlocks.casingReinforced.getDefaultState();
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.blastfurnace");
+	public IFilter filter = new MachineFilter(this);
+	public static final IBlockState casingState = GTBlocks.casingReinforced.getDefaultState();
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.blastfurnace");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/blastfurnace.png");
 	private static final int defaultEu = 120;
 
@@ -67,6 +68,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
+		handler.registerInputFilter(filter, slotInputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
 	}
@@ -98,7 +100,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
-		return new IFilter[] { new MachineFilter(this) };
+		return new IFilter[] { filter };
 	}
 
 	@Override
@@ -117,7 +119,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	}
 
 	@Override
-	public GTMultiInputRecipeList getRecipeList() {
+	public GTRecipeMultiInputList getRecipeList() {
 		return RECIPE_LIST;
 	}
 
@@ -203,7 +205,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), defaultEu);
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), defaultEu);
 	}
 
 	@Override
@@ -211,39 +213,39 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		Map<BlockPos, IBlockState> states = super.provideStructure();
 		int3 dir = new int3(getPos(), getFacing());
 		for (int i = 0; i < 3; i++) {// above tile
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
-		states.put(dir.left(1).asBlockPos(), casingMachine);
+		states.put(dir.left(1).asBlockPos(), casingState);
 		for (int i = 0; i < 3; i++) {
-			states.put(dir.down(1).asBlockPos(), casingMachine);
+			states.put(dir.down(1).asBlockPos(), casingState);
 		}
-		states.put(dir.back(1).asBlockPos(), casingMachine);
+		states.put(dir.back(1).asBlockPos(), casingState);
 		for (int i = 0; i < 3; i++) {
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
-		states.put(dir.right(1).asBlockPos(), casingMachine);
+		states.put(dir.right(1).asBlockPos(), casingState);
 		for (int i = 0; i < 3; i++) {
-			states.put(dir.down(1).asBlockPos(), casingMachine);
+			states.put(dir.down(1).asBlockPos(), casingState);
 		}
-		states.put(dir.right(1).asBlockPos(), casingMachine);
+		states.put(dir.right(1).asBlockPos(), casingState);
 		for (int i = 0; i < 3; i++) {
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
-		states.put(dir.back(1).asBlockPos(), casingMachine);
+		states.put(dir.back(1).asBlockPos(), casingState);
 		for (int i = 0; i < 3; i++) {
-			states.put(dir.down(1).asBlockPos(), casingMachine);
+			states.put(dir.down(1).asBlockPos(), casingState);
 		}
-		states.put(dir.left(1).asBlockPos(), casingMachine);
+		states.put(dir.left(1).asBlockPos(), casingState);
 		for (int i = 0; i < 3; i++) {
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
-		states.put(dir.left(1).asBlockPos(), casingMachine);
+		states.put(dir.left(1).asBlockPos(), casingState);
 		for (int i = 0; i < 3; i++) {
-			states.put(dir.down(1).asBlockPos(), casingMachine);
+			states.put(dir.down(1).asBlockPos(), casingState);
 		}
-		states.put(dir.forward(2).right(2).asBlockPos(), casingMachine);
+		states.put(dir.forward(2).right(2).asBlockPos(), casingState);
 		for (int i = 0; i < 3; i++) {
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
 		return states;
 	}
@@ -256,78 +258,78 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		// we doing it "big math" style not block by block
 		int3 dir = new int3(getPos(), getFacing());
 		for (int i = 0; i < 3; i++) {// above tile
-			if (!(isMachineCasing(dir.up(1)))) {
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.left(1))) {// left
+		if (!isCasing(dir.left(1))) {// left
 			return false;
 		}
 		for (int i = 0; i < 3; i++) {
-			if (!(isMachineCasing(dir.down(1)))) {
+			if (!(isCasing(dir.down(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.back(1))) {// back
+		if (!isCasing(dir.back(1))) {// back
 			return false;
 		}
 		for (int i = 0; i < 3; i++) {
-			if (!(isMachineCasing(dir.up(1)))) {
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.right(1))) {// right
+		if (!isCasing(dir.right(1))) {// right
 			return false;
 		}
 		for (int i = 0; i < 3; i++) {
-			if (!(isMachineCasing(dir.down(1)))) {
+			if (!(isCasing(dir.down(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.right(1))) {// right
+		if (!isCasing(dir.right(1))) {// right
 			return false;
 		}
 		for (int i = 0; i < 3; i++) {
-			if (!(isMachineCasing(dir.up(1)))) {
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.back(1))) {// back
+		if (!isCasing(dir.back(1))) {// back
 			return false;
 		}
 		for (int i = 0; i < 3; i++) {
-			if (!(isMachineCasing(dir.down(1)))) {
+			if (!(isCasing(dir.down(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.left(1))) {// left
+		if (!isCasing(dir.left(1))) {// left
 			return false;
 		}
 		for (int i = 0; i < 3; i++) {
-			if (!(isMachineCasing(dir.up(1)))) {
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.left(1))) {// left
+		if (!isCasing(dir.left(1))) {// left
 			return false;
 		}
 		for (int i = 0; i < 3; i++) {
-			if (!(isMachineCasing(dir.down(1)))) {
+			if (!(isCasing(dir.down(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.forward(2).right(2))) {// missing front right column
+		if (!isCasing(dir.forward(2).right(2))) {// missing front right column
 			return false;
 		}
 		for (int i = 0; i < 3; i++) {
-			if (!(isMachineCasing(dir.up(1)))) {
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == casingMachine;
+	public boolean isCasing(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == casingState;
 	}
 }

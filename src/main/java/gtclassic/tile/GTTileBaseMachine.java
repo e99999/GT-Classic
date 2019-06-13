@@ -9,8 +9,8 @@ import java.util.function.Predicate;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
-import gtclassic.util.recipe.GTMultiInputRecipeList.MultiRecipe;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
+import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
@@ -123,7 +123,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			shouldCheckRecipe = false;
 		}
 		boolean canWork = canWork() && !noRoom;
-		boolean operate = (canWork && lastRecipe != null && lastRecipe != GTMultiInputRecipeList.INVALID_RECIPE);
+		boolean operate = (canWork && lastRecipe != null && lastRecipe != GTRecipeMultiInputList.INVALID_RECIPE);
 		if (operate) {
 			handleChargeSlot(maxEnergy);
 		}
@@ -251,7 +251,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	}
 
 	public MultiRecipe getRecipe() {
-		if (lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
+		if (lastRecipe == GTRecipeMultiInputList.INVALID_RECIPE) {
 			return null;
 		}
 		// Check if previous recipe is valid
@@ -332,7 +332,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	public void setStackInSlot(int slot, ItemStack stack) {
 		super.setStackInSlot(slot, stack);
 		shouldCheckRecipe = true;
-		if (isSimulating() && isRecipeSlot(slot) && lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
+		if (isSimulating() && isRecipeSlot(slot) && lastRecipe == GTRecipeMultiInputList.INVALID_RECIPE) {
 			lastRecipe = null;
 		}
 	}
@@ -446,7 +446,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		if (energyConsume < 1) {
 			energyConsume = 1;
 		}
-		if (lastRecipe == null || lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
+		if (lastRecipe == null || lastRecipe == GTRecipeMultiInputList.INVALID_RECIPE) {
 			applyRecipeEffect(null);
 		} else {
 			applyRecipeEffect(lastRecipe.getOutputs());
@@ -466,7 +466,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	public abstract int[] getOutputSlots();
 
-	public abstract GTMultiInputRecipeList getRecipeList();
+	public abstract GTRecipeMultiInputList getRecipeList();
 
 	public boolean canWork() {
 		if (!redstoneSensitive) {
