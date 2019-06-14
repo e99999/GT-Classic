@@ -98,6 +98,9 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.rockCutter, 1), new Object[] { "DI ", "DI ", "DCB",
 				new EnchantmentModifier(GTMaterialGen.get(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(),
 				'D', "gemDiamond", 'I', ingotRefinedIron, 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
+		/** Jack Hammer **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.jackHammer, 1), new Object[] { "IBI", " C ", " D ", 'I',
+				ingotRefinedIron,'C', "circuitBasic", 'B', Ic2Items.battery.copy(), 'D', "gemDiamond" });
 		/** Helium Reactor Coolant **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageSingle, 1), new Object[] { " I ", "IHI", " I ", 'I',
 				"ingotTin", 'H', GTMaterialGen.getFluid(GTMaterial.Helium, 1) });
@@ -188,7 +191,7 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileComputer, 1), new Object[] { "RGD", "GMG", "DGR", 'D',
 				"circuitUltimate", 'R', "circuitMaster", 'G', "blockGlass", 'M', Ic2Items.advMachine.copy() });
 		/** Energy Storage **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQESU), new Object[] { "OOO", "OCO", "OOO", 'O',
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileHCSU), new Object[] { "OOO", "OCO", "OOO", 'O',
 				"batteryUltimate", 'C', GTBlocks.tileComputer });
 		/** Quantum Chest **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
@@ -217,7 +220,7 @@ public class GTRecipe {
 					"batteryUltimate", 'R', "circuitMaster", 'A', "chestWood", 'C', GTBlocks.tileComputer, 'M',
 					Ic2Items.advMachine.copy() });
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
-					"plateIridiumAlloy", 'H', GTBlocks.tileQESU, 'E', Blocks.ENDER_CHEST });
+					"plateIridiumAlloy", 'H', GTBlocks.tileHCSU, 'E', Blocks.ENDER_CHEST });
 		}
 		/** More recipes for vanilla rails **/
 		// TODO check for railcraft for these
@@ -294,10 +297,12 @@ public class GTRecipe {
 		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GTMaterialGen.getIc2(Ic2Items.lapotronCrystal, 1), new Object[] {
 				"LCL", "LDL", "LCL", 'D', highCrystal, 'C', "circuitBasic", 'L', anyLapis });
 		/** Solar Panel **/
-		recipes.overrideRecipe("shaped_tile.blockSolarGenerator_1093731471", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] { "XYX", "YXY", "CVC", 'V',
-				Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C', Ic2Items.carbonPlate });
-		recipes.overrideRecipe("shaped_tile.blockSolarGenerator_261816397", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] { "YYY", "XXX", "CVC", 'V',
-				Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C', Ic2Items.carbonPlate });
+		recipes.overrideRecipe("shaped_tile.blockSolarGenerator_1093731471", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] {
+				"XYX", "YXY", "CVC", 'V', Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C',
+				Ic2Items.carbonPlate });
+		recipes.overrideRecipe("shaped_tile.blockSolarGenerator_261816397", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] {
+				"YYY", "XXX", "CVC", 'V', Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C',
+				Ic2Items.carbonPlate });
 		/** Adding ruby to glass fiber cable **/
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotConductor, 'V', lowCrystal);

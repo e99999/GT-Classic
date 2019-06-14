@@ -47,7 +47,6 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTTileCentrifuge extends GTTileBaseMachine {
 
-
 	public static final int slotFuel = 8;
 	protected static final int[] slotInputs = { 0, 1 };
 	protected static final int[] slotOutputs = { 2, 3, 4, 5, 6, 7 };

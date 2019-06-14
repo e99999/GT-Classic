@@ -11,6 +11,7 @@ import gtclassic.item.GTItemDuctTape;
 import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemEnergyOrb;
 import gtclassic.item.GTItemEnergyPack;
+import gtclassic.item.GTItemJackHammer;
 import gtclassic.item.GTItemLithiumBattery;
 import gtclassic.item.GTItemReactorHeat;
 import gtclassic.item.GTItemReactorHeat.GTItemHeatStorageTypes;
@@ -53,6 +54,7 @@ public class GTItems {
 	public static final GTItemEnergyPack lapotronPack = createItem(new GTItemEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
 	public static final GTItemTeslaStaff teslaStaff = createItem(new GTItemTeslaStaff());
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
+	public static final GTItemJackHammer jackHammer = createItem(new GTItemJackHammer());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
 	public static final GTFluidTube testTube = createItem(new GTFluidTube());

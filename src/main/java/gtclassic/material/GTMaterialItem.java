@@ -65,10 +65,10 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, GTColor
 
 	@Override
 	public int getItemBurnTime(ItemStack itemstack) {
-		if (this.material.equals(GTMaterial.Lithium) &&  this.flag.equals(GTMaterialFlag.DUST)){
+		if (this.material.equals(GTMaterial.Lithium) && this.flag.equals(GTMaterialFlag.DUST)) {
 			return 2000;
 		}
-		if (this.material.equals(GTMaterial.Carbon) && this.flag.equals(GTMaterialFlag.DUST)){
+		if (this.material.equals(GTMaterial.Carbon) && this.flag.equals(GTMaterialFlag.DUST)) {
 			return 1000;
 		}
 		return 0;

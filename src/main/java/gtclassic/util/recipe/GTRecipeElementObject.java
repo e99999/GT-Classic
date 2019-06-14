@@ -39,7 +39,6 @@ public class GTRecipeElementObject {
 	public static final GTRecipeElementObject titanium = new GTRecipeElementObject(22, input("dustTitanium", 1), GTMaterialGen.getDust(GTMaterial.Titanium, 1));
 	public static final GTRecipeElementObject tungsten = new GTRecipeElementObject(74, input("dustTungsten", 1), GTMaterialGen.getDust(GTMaterial.Tungsten, 1));
 	public static final GTRecipeElementObject uranium = new GTRecipeElementObject(92, input("dustUranium", 1), GTMaterialGen.getDust(GTMaterial.Uranium, 1));
-	
 	public static final GTRecipeElementObject[] fusionObjects = { iron, gold, copper, tin, silver, aluminium, beryllium,
 			calcium, carbon, chlorine, chrome, helium, hydrogen, iridium, lithium, mercury, nitrogen, oxygen, potassium,
 			silicon, sodium, titanium, tungsten, uranium };
