@@ -3,8 +3,8 @@ package gtclassic.container;
 import static ic2.core.block.wiring.container.ContainerElectricBlock.VALID_EQUIPMENT_SLOTS;
 
 import gtclassic.GTMod;
-import gtclassic.gui.GTGuiCompEnergyBar;
 import gtclassic.gui.GTGuiCompEnergyStorage;
+import gtclassic.gui.GTGuiCompEnergyStorageBar;
 import gtclassic.tile.GTTileAFSU;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
@@ -34,7 +34,7 @@ public class GTContainerAFSU extends ContainerTileComponent<GTTileAFSU> {
 			this.addSlotToContainer(new SlotArmor(player, 3 - i, VALID_EQUIPMENT_SLOTS[i], 152, 5 + i * 18));
 		}
 		this.addComponent(new GTGuiCompEnergyStorage(tile));
-		this.addComponent(new GTGuiCompEnergyBar(tile, GTContainerAFSU.chargeProgressBox, GTContainerAFSU.chargeProgressPos));
+		this.addComponent(new GTGuiCompEnergyStorageBar(tile, GTContainerAFSU.chargeProgressBox, GTContainerAFSU.chargeProgressPos));
 		this.addPlayerInventory(player);
 	}
 

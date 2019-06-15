@@ -139,95 +139,90 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 	public TextureAtlasSprite getTexture(int i) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_items")[30];
 	}
-	
+
 	@Override
-    public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, EntityPlayer player) {
-        World worldIn = player.world;
-        if (!player.isSneaking()) {
-            for (BlockPos additionalPos : getTargetBlocks(worldIn, pos, player)) {
-                breakBlock(additionalPos, worldIn, player, stack);
-            }
-        }
-        return false;
-    }
+	public boolean onBlockStartBreak(ItemStack stack, BlockPos pos, EntityPlayer player) {
+		World worldIn = player.world;
+		if (!player.isSneaking()) {
+			for (BlockPos additionalPos : getTargetBlocks(worldIn, pos, player)) {
+				breakBlock(additionalPos, worldIn, player, stack);
+			}
+		}
+		return false;
+	}
 
-    public Set<BlockPos> getTargetBlocks(World worldIn, BlockPos pos, @Nullable EntityPlayer playerIn) {
-        Set<BlockPos> targetBlocks = new HashSet<BlockPos>();
-        if (playerIn == null) {
-            return new HashSet<BlockPos>();
-        }
-        RayTraceResult raytrace = rayTrace(worldIn, playerIn, false);
-        if(raytrace == null || raytrace.sideHit == null){
-            return Collections.emptySet();
-        }
-        EnumFacing enumfacing = raytrace.sideHit;
-        if (enumfacing == EnumFacing.SOUTH || enumfacing == EnumFacing.NORTH) {
-            for (int i = -1; i < 2; i++) {
-                for (int j = -1; j < 2; j++) {
-                    BlockPos newPos = pos.add(i, j, 0);
-                    if (shouldBreak(playerIn, worldIn, pos, newPos)) {
-                        targetBlocks.add(newPos);
-                    }
-                }
-            }
-        } else if (enumfacing == EnumFacing.EAST || enumfacing == EnumFacing.WEST) {
-            for (int i = -1; i < 2; i++) {
-                for (int j = -1; j < 2; j++) {
-                    BlockPos newPos = pos.add(0, j, i);
-                    if (shouldBreak(playerIn, worldIn, pos, newPos)) {
-                        targetBlocks.add(newPos);
-                    }
-                }
-            }
-        } else if (enumfacing == EnumFacing.DOWN || enumfacing == EnumFacing.UP) {
-            for (int i = -1; i < 2; i++) {
-                for (int j = -1; j < 2; j++) {
-                    BlockPos newPos = pos.add(j, 0, i);
-                    if (shouldBreak(playerIn, worldIn, pos, newPos)) {
-                        targetBlocks.add(newPos);
-                    }
-                }
-            }
-        }
-        return targetBlocks;
-    }
-    
-    public void breakBlock(BlockPos pos, World world, EntityPlayer player, ItemStack drill) {
-        IBlockState blockState = world.getBlockState(pos);
+	public Set<BlockPos> getTargetBlocks(World worldIn, BlockPos pos, @Nullable EntityPlayer playerIn) {
+		Set<BlockPos> targetBlocks = new HashSet<BlockPos>();
+		if (playerIn == null) {
+			return new HashSet<BlockPos>();
+		}
+		RayTraceResult raytrace = rayTrace(worldIn, playerIn, false);
+		if (raytrace == null || raytrace.sideHit == null) {
+			return Collections.emptySet();
+		}
+		EnumFacing enumfacing = raytrace.sideHit;
+		if (enumfacing == EnumFacing.SOUTH || enumfacing == EnumFacing.NORTH) {
+			for (int i = -1; i < 2; i++) {
+				for (int j = -1; j < 2; j++) {
+					BlockPos newPos = pos.add(i, j, 0);
+					if (shouldBreak(playerIn, worldIn, pos, newPos)) {
+						targetBlocks.add(newPos);
+					}
+				}
+			}
+		} else if (enumfacing == EnumFacing.EAST || enumfacing == EnumFacing.WEST) {
+			for (int i = -1; i < 2; i++) {
+				for (int j = -1; j < 2; j++) {
+					BlockPos newPos = pos.add(0, j, i);
+					if (shouldBreak(playerIn, worldIn, pos, newPos)) {
+						targetBlocks.add(newPos);
+					}
+				}
+			}
+		} else if (enumfacing == EnumFacing.DOWN || enumfacing == EnumFacing.UP) {
+			for (int i = -1; i < 2; i++) {
+				for (int j = -1; j < 2; j++) {
+					BlockPos newPos = pos.add(j, 0, i);
+					if (shouldBreak(playerIn, worldIn, pos, newPos)) {
+						targetBlocks.add(newPos);
+					}
+				}
+			}
+		}
+		return targetBlocks;
+	}
 
-        if (!ItemElectricToolDrill.rocks.contains(blockState) || !ElectricItem.manager.canUse(drill, this.getEnergyCost(drill))) {
-            return;
-        }
+	public void breakBlock(BlockPos pos, World world, EntityPlayer player, ItemStack drill) {
+		IBlockState blockState = world.getBlockState(pos);
+		if (!ItemElectricToolDrill.rocks.contains(blockState)
+				|| !ElectricItem.manager.canUse(drill, this.getEnergyCost(drill))) {
+			return;
+		}
+		ElectricItem.manager.use(drill, this.getEnergyCost(drill), player);
+		blockState.getBlock().harvestBlock(world, player, pos, blockState, world.getTileEntity(pos), drill);
+		world.setBlockToAir(pos);
+		world.removeTileEntity(pos);
+	}
 
-        ElectricItem.manager.use(drill, this.getEnergyCost(drill), player);
-        blockState.getBlock().harvestBlock(world, player, pos, blockState, world.getTileEntity(pos), drill);
-        world.setBlockToAir(pos);
-        world.removeTileEntity(pos);
-    }
-
-    private boolean shouldBreak(EntityPlayer playerIn, World worldIn, BlockPos originalPos, BlockPos pos) {
-        if (originalPos.equals(pos)) {
-            return false;
-        }
-        IBlockState blockState = worldIn.getBlockState(pos);
-        if (blockState.getMaterial() == Material.AIR) {
-            return false;
-        }
-        if (blockState.getMaterial().isLiquid()) {
-            return false;
-        }
-        float blockHardness = blockState.getPlayerRelativeBlockHardness(playerIn, worldIn, pos);
-        if (blockHardness == -1.0F) {
-            return false;
-        }
-        float originalHardness = worldIn.getBlockState(originalPos).getPlayerRelativeBlockHardness(playerIn, worldIn, originalPos);
-        if ((originalHardness / blockHardness) > 10.0F) {
-            return false;
-        }
-
-        return true;
-    }
-
-	
-	
+	private boolean shouldBreak(EntityPlayer playerIn, World worldIn, BlockPos originalPos, BlockPos pos) {
+		if (originalPos.equals(pos)) {
+			return false;
+		}
+		IBlockState blockState = worldIn.getBlockState(pos);
+		if (blockState.getMaterial() == Material.AIR) {
+			return false;
+		}
+		if (blockState.getMaterial().isLiquid()) {
+			return false;
+		}
+		float blockHardness = blockState.getPlayerRelativeBlockHardness(playerIn, worldIn, pos);
+		if (blockHardness == -1.0F) {
+			return false;
+		}
+		float originalHardness = worldIn.getBlockState(originalPos).getPlayerRelativeBlockHardness(playerIn, worldIn, originalPos);
+		if ((originalHardness / blockHardness) > 10.0F) {
+			return false;
+		}
+		return true;
+	}
 }

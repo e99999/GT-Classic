@@ -6,6 +6,7 @@ import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileCentrifuge;
+import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.util.GTValues;
@@ -64,6 +65,7 @@ public class GTRecipe {
 		GTRecipeProcessing.recipesProcessing();
 		// below is more how things will go
 		GTTileCentrifuge.init();
+		GTTileMatterFabricator.init();
 		GTTileMultiBlastFurnace.init();
 		GTTileMultiFusion.init();
 		shapeless();
@@ -100,7 +102,7 @@ public class GTRecipe {
 				'D', "gemDiamond", 'I', ingotRefinedIron, 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
 		/** Jack Hammer **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.jackHammer, 1), new Object[] { "IBI", " C ", " D ", 'I',
-				ingotRefinedIron,'C', "circuitBasic", 'B', Ic2Items.battery.copy(), 'D', "gemDiamond" });
+				ingotRefinedIron, 'C', "circuitBasic", 'B', Ic2Items.battery.copy(), 'D', "gemDiamond" });
 		/** Helium Reactor Coolant **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageSingle, 1), new Object[] { " I ", "IHI", " I ", 'I',
 				"ingotTin", 'H', GTMaterialGen.getFluid(GTMaterial.Helium, 1) });

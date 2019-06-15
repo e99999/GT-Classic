@@ -13,12 +13,12 @@ import ic2.core.util.math.Vec2i;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTGuiCompEnergyBar extends GuiComponent {
+public class GTGuiCompEnergyStorageBar extends GuiComponent {
 
 	IEUStorage storage;
 	Vec2i texPos;
 
-	public GTGuiCompEnergyBar(IEUStorage tile, Box2D box, Vec2i pos) {
+	public GTGuiCompEnergyStorageBar(IEUStorage tile, Box2D box, Vec2i pos) {
 		super(box);
 		this.storage = tile;
 		this.texPos = pos;
