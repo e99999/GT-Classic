@@ -84,7 +84,7 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 				if (!playerIn.isSneaking() && validInput && !playerStack.isEmpty()) {
 					chest.setStackInSlot(slotInput, playerStack.copy());
 					playerStack.shrink(playerStack.getCount());
-					chest.updateGUI();
+					chest.updateGui();
 					return true;
 				}
 				if (playerIn.isSneaking() && !chest.isSlotEmpty(slotOutput)) {

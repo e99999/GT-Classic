@@ -57,7 +57,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		return (slot == 2) ? 1 : 64;
 	}
 
-	public void updateGUI() {
+	public void updateGui() {
 		this.getNetwork().updateTileGuiField(this, "digitalCount");
 		this.display = StackUtil.copyWithSize(this.getStackInSlot(slotDisplay), 1);
 		this.getNetwork().updateTileGuiField(this, "display");
@@ -152,7 +152,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 			this.digitalCount = this.digitalCount + count;
 			// remove the input slot stack completely
 			inventory.get(slotInput).shrink(count);
-			updateGUI();
+			updateGui();
 		}
 		// now the inverse for outputting to the output slot
 		if (!isSlotEmpty(slotDisplay) && canOutputStack(getStackInSlot(slotDisplay)) && this.digitalCount > 0) {
@@ -164,7 +164,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 			if (this.digitalCount == 0) {
 				inventory.get(slotDisplay).shrink(1);
 			}
-			updateGUI();
+			updateGui();
 		}
 	}
 

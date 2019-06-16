@@ -8,9 +8,9 @@ import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockCom
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class GTTileHCSU extends TileEntityElectricBlock {
+public class GTTileAESU extends TileEntityElectricBlock {
 
-	public GTTileHCSU() {
+	public GTTileAESU() {
 		super(4, (int) EnergyNet.instance.getPowerFromTier(4), 100000000);
 	}
 

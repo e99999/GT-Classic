@@ -2,8 +2,8 @@ package gtclassic.tile;
 
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerMatterFabricator;
+import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.util.recipe.GTRecipeElementObject;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -11,11 +11,9 @@ import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.util.info.ProgressInfo;
-import ic2.core.block.machine.high.TileEntityMassFabricator;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.CommonFilters;
-import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
@@ -76,7 +74,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 
 	@Override
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer var1) {
-		return GuiComponentContainer.class;
+		return GTMatterFabricatorGui.class;
 	}
 
 	@Override
@@ -104,46 +102,45 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	}
 
 	public static void init() {
-		// instead of recipes i will iterate my element list as valid scrap
-		for (GTRecipeElementObject element : GTRecipeElementObject.fusionObjects) {
-			String id = "Element" + element.getNumber() + "Amplifier";
-			int amplifier = element.getNumber() * 1000;
-			if (amplifier < 5000) {
-				amplifier = 5000;
-			}
-			TileEntityMassFabricator.addAmplifier(element.getOutput(), amplifier, id);
-			GTMod.debugLogger("Added " + element.getOutput().getDisplayName() + " as UU amplifier");
-		}
 	}
 
 	@Override
 	public void update() {
-		this.setActive(activeCheck());
+		this.setActive(hasPower());
 		// Below i try to iterate the input slots to check for valid amplifier
-		for (RecipeEntry var : ClassicRecipes.massfabAmplifier.getRecipeMap()) {
-			for (int i = 0; i < 8; ++i) {
-				ItemStack stackEntry = var.getInput().getInputs().get(0);
-				if (stackEntry != null && StackUtil.isStackEqual(this.inventory.get(i), stackEntry)) {
-					int uuValue = var.getOutput().getMetadata().getInteger("amplification");
-					if (this.energy - uuValue >= 0) {
-						this.energy = this.energy - uuValue;
-						this.inventory.get(i).shrink(1);
-						this.progress = this.progress + uuValue;
+		ItemStack output = this.inventory.get(8);
+		if (output.getCount() < output.getMaxStackSize() && hasPower()) {
+			for (RecipeEntry var : ClassicRecipes.massfabAmplifier.getRecipeMap()) {
+				// For loop for the input slots
+				for (int i = 0; i < 8; ++i) {
+					// Comparing the input slot with UU matter recipe list entries
+					// TODO might have to iterate this to get all inputs for ore dicts and stuff
+					ItemStack entryStack = var.getInput().getInputs().get(0).copy();
+					ItemStack machineStack = this.inventory.get(i).copy();
+					if (entryStack != null && StackUtil.isStackEqual(machineStack, entryStack)) {
+						int uuValue = var.getOutput().getMetadata().getInteger("amplification");
+						// Checking if the machine has power to perform the operation
+						if (this.energy - uuValue >= 0) {
+							this.energy = this.energy - uuValue;
+							this.inventory.get(i).shrink(1);
+							this.progress = this.progress + uuValue;
+							updateGui();
+							checkProgress();
+						}
+						return;
 					}
 				}
 			}
 		}
-		progressCheck();
-		this.getNetwork().updateTileGuiField(this, "progress");
-		this.getNetwork().updateTileGuiField(this, "energy");
 	}
 
-	public void progressCheck() {
+	public void checkProgress() {
+		// If the progress is full, produce 1 UU-Matter
 		ItemStack output = this.inventory.get(8);
 		if (progress >= getMaxProgress()) {
 			if (output.isEmpty()) {
 				this.inventory.set(8, GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
-			} else if (!output.isEmpty() && output.getCount() < output.getMaxStackSize()) {
+			} else if (!output.isEmpty()) {
 				int amount = output.getCount() + 1;
 				inventory.set(8, GTMaterialGen.getIc2(Ic2Items.uuMatter, amount));
 			}
@@ -151,7 +148,12 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		}
 	}
 
-	public boolean activeCheck() {
+	public void updateGui() {
+		this.getNetwork().updateTileGuiField(this, "progress");
+		this.getNetwork().updateTileGuiField(this, "energy");
+	}
+
+	public boolean hasPower() {
 		return energy > 0;
 	}
 

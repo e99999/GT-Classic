@@ -63,6 +63,7 @@ public class GTRecipe {
 	public static void init() {
 		GTRecipeIterators.recipeIterators1();
 		GTRecipeProcessing.recipesProcessing();
+		GTRecipeScrap.init();
 		// below is more how things will go
 		GTTileCentrifuge.init();
 		GTTileMatterFabricator.init();
@@ -193,7 +194,7 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileComputer, 1), new Object[] { "RGD", "GMG", "DGR", 'D',
 				"circuitUltimate", 'R', "circuitMaster", 'G', "blockGlass", 'M', Ic2Items.advMachine.copy() });
 		/** Energy Storage **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileHCSU), new Object[] { "OOO", "OCO", "OOO", 'O',
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAESU), new Object[] { "OOO", "OCO", "OOO", 'O',
 				"batteryUltimate", 'C', GTBlocks.tileComputer });
 		/** Quantum Chest **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
@@ -222,7 +223,7 @@ public class GTRecipe {
 					"batteryUltimate", 'R', "circuitMaster", 'A', "chestWood", 'C', GTBlocks.tileComputer, 'M',
 					Ic2Items.advMachine.copy() });
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
-					"plateIridiumAlloy", 'H', GTBlocks.tileHCSU, 'E', Blocks.ENDER_CHEST });
+					"plateIridiumAlloy", 'H', GTBlocks.tileAESU, 'E', Blocks.ENDER_CHEST });
 		}
 		/** More recipes for vanilla rails **/
 		// TODO check for railcraft for these

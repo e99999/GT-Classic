@@ -1,10 +1,9 @@
 package gtclassic.block;
 
 import gtclassic.GTBlocks;
-import gtclassic.tile.GTTileAFSU;
+import gtclassic.tile.GTTileAESU;
 import gtclassic.tile.GTTileBufferLarge;
 import gtclassic.tile.GTTileBufferSmall;
-import gtclassic.tile.GTTileHCSU;
 import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTileTranslocator;
 import ic2.core.IC2;
@@ -29,14 +28,11 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		if (this == GTBlocks.tileHCSU) {
-			return new GTTileHCSU();
+		if (this == GTBlocks.tileAESU) {
+			return new GTTileAESU();
 		}
 		if (this == GTBlocks.tileIDSU) {
 			return new GTTileIDSU();
-		}
-		if (this == GTBlocks.tileAFSU) {
-			return new GTTileAFSU();
 		}
 		if (this == GTBlocks.tileTranslocator) {
 			return new GTTileTranslocator();

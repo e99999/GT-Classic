@@ -44,17 +44,13 @@ public class GTItemBlockRare extends ItemBlockRare {
 						+ " each strike"));
 				tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 8196 })));
 			}
-			if (compare(stack, GTBlocks.tileHCSU)) {
+			if (compare(stack, GTBlocks.tileAESU)) {
 				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
 				tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 100000000 })));
 			}
 			if (compare(stack, GTBlocks.tileIDSU)) {
 				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
 				tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 400000000 })));
-			}
-			if (compare(stack, GTBlocks.tileAFSU)) {
-				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 8192 })));
-				tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 1000000000 })));
 			}
 			if (compare(stack, GTBlocks.tileTranslocator) || compare(stack, GTBlocks.tileBufferSmall)
 					|| compare(stack, GTBlocks.tileBufferLarge)) {
