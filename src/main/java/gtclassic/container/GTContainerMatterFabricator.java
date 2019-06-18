@@ -27,11 +27,11 @@ public class GTContainerMatterFabricator extends ContainerTileComponent<GTTileMa
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 4; ++x) {
 				this.addSlotToContainer(new SlotCustom(tile, x + y * 4, 8 + x * 18, 14
-						+ y * 18, CommonFilters.MassFab));
+						+ y * 18, CommonFilters.Anything));
 			}
 		}
 		this.addComponent(new GTGuiCompBasicString("Matter Fabricator", 48, 4));
-		this.addComponent(new GTGuiCompProgressText(tile, 130, 41));
+		this.addComponent(new GTGuiCompProgressText(tile, 122, 41));
 		this.addComponent(new GTGuiCompEnergyStorageBar(tile, new Box2D(8, 60, 160, 5), new Vec2i(0, 251)));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 8, 128, 14));
 		this.addPlayerInventory(player);

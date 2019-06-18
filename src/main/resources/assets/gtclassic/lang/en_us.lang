@@ -130,7 +130,7 @@ fluid.chlorine=Chlorine
 fluid.oil=Oil
 
 #ore tooltips
-tooltip.gtclassic.oreEnd=Spawns in the end, 4 x more often than the overworld
+tooltip.gtclassic.oreEnd=Spawns in the end, twice as likely than in the overworld
 tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome
 tooltip.gtclassic.oreRuby=Spawns between Y level 0 - 48 in HOT biomes
 tooltip.gtclassic.oreSapphire=Spawns between Y level 0 - 48 in OCEAN biomes

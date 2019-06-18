@@ -77,12 +77,12 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
-		return 20.0F;
+		return 8.0F;
 	}
 
 	@Override
 	public float getDestroySpeed(ItemStack stack, IBlockState state) {
-		if (canMine(stack) && ItemElectricToolDrill.rocks.contains(state)) {
+		if (canMine(stack) && isValidState(state)) {
 			return getMiningSpeed(stack);
 		} else {
 			return 0.0F;
@@ -194,8 +194,7 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 
 	public void breakBlock(BlockPos pos, World world, EntityPlayer player, ItemStack drill) {
 		IBlockState blockState = world.getBlockState(pos);
-		if (!ItemElectricToolDrill.rocks.contains(blockState)
-				|| !ElectricItem.manager.canUse(drill, this.getEnergyCost(drill))) {
+		if (!isValidState(blockState) || !ElectricItem.manager.canUse(drill, this.getEnergyCost(drill))) {
 			return;
 		}
 		ElectricItem.manager.use(drill, this.getEnergyCost(drill), player);
@@ -224,5 +223,9 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 			return false;
 		}
 		return true;
+	}
+
+	private boolean isValidState(IBlockState blockstate) {
+		return ItemElectricToolDrill.rocks.contains(blockstate) || blockstate.getMaterial().equals(Material.GROUND) || blockstate.getMaterial().equals(Material.GRASS);
 	}
 }

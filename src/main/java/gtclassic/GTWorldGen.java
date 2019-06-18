@@ -34,7 +34,7 @@ public class GTWorldGen implements IWorldGenerator {
 			runGenerator(GTBlocks.oreEnd.getDefaultState(), 4, 4, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.genOverworldIridium) {
-			runGenerator(GTBlocks.oreIridium.getDefaultState(), 2, 1, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.oreIridium.getDefaultState(), 2, 2, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.genOverworldRuby && BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
 			runGenerator(GTBlocks.oreRuby.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);

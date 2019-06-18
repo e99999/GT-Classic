@@ -1,6 +1,7 @@
 package gtclassic.gui;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,9 +34,10 @@ public class GTGuiCompProgressText extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
 		float progress = this.tile.getProgress() / this.tile.getMaxProgress() * 100;
+		DecimalFormat df = new DecimalFormat("###.##");
 		if (progress > this.tile.getMaxProgress()) {
 			progress = this.tile.getMaxProgress();
 		}
-		gui.drawString(Math.round(progress) + "%", this.x, this.y, Color.cyan.hashCode());
+		gui.drawString(df.format(progress) + "%", this.x, this.y, Color.cyan.hashCode());
 	}
 }

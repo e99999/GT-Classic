@@ -63,7 +63,7 @@ public class GTRecipe {
 	public static void init() {
 		GTRecipeIterators.recipeIterators1();
 		GTRecipeProcessing.recipesProcessing();
-		GTRecipeScrap.init();
+		GTRecipeUUAmplifier.init();
 		// below is more how things will go
 		GTTileCentrifuge.init();
 		GTTileMatterFabricator.init();
@@ -185,8 +185,9 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
 				"circuitMaster", 'S', GTItems.superConductor, 'A', GTBlocks.casingHighlyAdvanced });
 		/** Fusion Computer **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFusionComputer, 1), new Object[] { "ESE", "LCL", "ESE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C', GTBlocks.tileComputer });
+		recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionComputer, 1), new Object[] {
+				"ESE", "LCL", "ESE", 'E', "circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C',
+				GTBlocks.tileComputer });
 		/** Player Detector **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
 				Blocks.OBSERVER, 'C', "circuitBasic", 'c', Ic2Items.advMachine });
@@ -207,8 +208,12 @@ public class GTRecipe {
 		/** Large Chest Buffer **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', "chestWood");
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), "SSS", "SCS", "SSS", 'S', GTBlocks.tileBufferSmall, 'C', Ic2Items.upgradeBase.copy());
+		/** Matter Fabricator **/
+		recipes.overrideRecipe("shaped_tile.blockMatter_1416524227", GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] {
+				"ETE", "HLH", "ETE", 'E', "circuitMaster", 'T', Ic2Items.teleporter, 'H', GTBlocks.casingHighlyAdvanced,
+				'L', "batteryUltimate" });
+		/** Stuff that is not ready yet **/
 		if (GTMod.debugMode) {
-			/** Stuff that is not ready yet **/
 			/** Translocator **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', anyPiston);
 			/** UU Assembler **/
@@ -216,9 +221,6 @@ public class GTRecipe {
 					"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q',
 					GTBlocks.tileQuantumChest, 'E', Ic2Items.industrialWorktable, 'D', "circuitUltimate", 'B',
 					"batteryAdvanced" });
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] { "ETE", "HLH", "ETE", 'E',
-					"circuitMaster", 'T', Ic2Items.teleporter, 'H', GTBlocks.casingHighlyAdvanced, 'L',
-					"batteryUltimate" });
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileChargeOmat, 1), new Object[] { "RCR", "AEA", "RMR", 'E',
 					"batteryUltimate", 'R', "circuitMaster", 'A', "chestWood", 'C', GTBlocks.tileComputer, 'M',
 					Ic2Items.advMachine.copy() });
@@ -309,7 +311,5 @@ public class GTRecipe {
 		/** Adding ruby to glass fiber cable **/
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotConductor, 'V', lowCrystal);
-		/** Gating plasamifer behind fusion **/
-		recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.getIc2(Ic2Items.plasmafier, 1), "XFX", "FYF", "XFX", 'F', GTBlocks.tileFusionComputer, 'X', Ic2Items.iridiumStone.copy(), 'Y', Ic2Items.reinforcedGlass.copy(), 'C', Ic2Items.inductionFurnace.copy());
 	}
 }

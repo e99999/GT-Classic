@@ -4,9 +4,9 @@ import gtclassic.GTMod;
 import gtclassic.container.GTContainerMatterFabricator;
 import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.recipe.GTRecipeUUAmplifier;
+import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.network.adv.NetworkField;
-import ic2.api.classic.recipe.ClassicRecipes;
-import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
@@ -36,7 +36,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/matterfabricator.png");
 
 	public GTTileMatterFabricator() {
-		super(9, 32768);
+		super(9, 131072);
 		maxEnergy = 10000000;
 		addGuiFields("progress");
 		addInfos(new ProgressInfo(this));
@@ -49,7 +49,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
 		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, slotInputs);
-		handler.registerInputFilter(CommonFilters.MassFab, slotInputs);
+		handler.registerInputFilter(CommonFilters.Anything, slotInputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
 	}
@@ -110,15 +110,15 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		// Below i try to iterate the input slots to check for valid amplifier
 		ItemStack output = this.inventory.get(8);
 		if (output.getCount() < output.getMaxStackSize() && hasPower()) {
-			for (RecipeEntry var : ClassicRecipes.massfabAmplifier.getRecipeMap()) {
+			for (MultiRecipe map : GTRecipeUUAmplifier.RECIPE_LIST.getRecipeList()) {
 				// For loop for the input slots
 				for (int i = 0; i < 8; ++i) {
 					// Comparing the input slot with UU matter recipe list entries
 					// TODO might have to iterate this to get all inputs for ore dicts and stuff
-					ItemStack entryStack = var.getInput().getInputs().get(0).copy();
+					ItemStack entryStack = map.getInput(0).getInputs().get(0).copy();
 					ItemStack machineStack = this.inventory.get(i).copy();
-					if (entryStack != null && StackUtil.isStackEqual(machineStack, entryStack)) {
-						int uuValue = var.getOutput().getMetadata().getInteger("amplification");
+					if (entryStack != null && StackUtil.isStackEqual(machineStack, entryStack, false, false)) {
+						int uuValue = map.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
 						// Checking if the machine has power to perform the operation
 						if (this.energy - uuValue >= 0) {
 							this.energy = this.energy - uuValue;
@@ -135,7 +135,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	}
 
 	public void checkProgress() {
-		// If the progress is full, produce 1 UU-Matter
+		// If the progress is full, produce a UU-Matter
 		ItemStack output = this.inventory.get(8);
 		if (progress >= getMaxProgress()) {
 			if (output.isEmpty()) {
@@ -154,7 +154,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	}
 
 	public boolean hasPower() {
-		return energy > 0;
+		return energy >= 5000;
 	}
 
 	@Override

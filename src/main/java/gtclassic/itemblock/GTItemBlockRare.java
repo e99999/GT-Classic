@@ -32,8 +32,7 @@ public class GTItemBlockRare extends ItemBlockRare {
 			if (compare(stack, GTBlocks.tileBlastFurnace)) {
 				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 128 })));
 			}
-			if (compare(stack, GTBlocks.tileChargeOmat) || compare(stack, GTBlocks.tileFabricator)
-					|| compare(stack, GTBlocks.tileUUAssembler)) {
+			if (compare(stack, GTBlocks.tileChargeOmat) || compare(stack, GTBlocks.tileUUAssembler)) {
 				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
 			}
 			if (compare(stack, GTBlocks.tileFusionComputer)) {
@@ -51,6 +50,9 @@ public class GTItemBlockRare extends ItemBlockRare {
 			if (compare(stack, GTBlocks.tileIDSU)) {
 				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
 				tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 400000000 })));
+			}
+			if (compare(stack, GTBlocks.tileFabricator)) {
+				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 131072 })));
 			}
 			if (compare(stack, GTBlocks.tileTranslocator) || compare(stack, GTBlocks.tileBufferSmall)
 					|| compare(stack, GTBlocks.tileBufferLarge)) {

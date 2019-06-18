@@ -4,9 +4,14 @@ import javax.annotation.Nonnull;
 
 import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerWorktable;
+import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
+import gtclassic.recipe.GTRecipeUUAmplifier;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
+import gtclassic.util.jei.category.GTJeiUUAmplifierCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
+import gtclassic.util.jei.wrapper.GTJeiUUAmplifierWrapper;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
+import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
@@ -36,6 +41,11 @@ public class GTJeiPlugin implements IModPlugin {
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
 			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorktable.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 52);
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileWorktable), new String[] { "minecraft.crafting" });
+			// Amplifier
+			registry.handleRecipes(MultiRecipe.class, GTJeiUUAmplifierWrapper::new, "gt.uuamplifier");
+			registry.addRecipes(GTRecipeUUAmplifier.RECIPE_LIST.getRecipeList(), "gt.uuamplifier");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileFabricator), "gt.uuamplifier");
+			registry.addRecipeClickArea(GTMatterFabricatorGui.class, 105, 34, 62, 22, "gt.uuamplifier");
 		}
 	}
 
@@ -44,6 +54,8 @@ public class GTJeiPlugin implements IModPlugin {
 		for (GTJeiRegistry entry : GTJeiRegistry.values()) {
 			categoryUtil(registry, entry.getRecipeList(), entry.getCatalyst());
 		}
+		// world interaction
+		registry.addRecipeCategories(new GTJeiUUAmplifierCategory(registry.getJeiHelpers().getGuiHelper(), "gt.uuamplifier", GTBlocks.tileFabricator));
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
