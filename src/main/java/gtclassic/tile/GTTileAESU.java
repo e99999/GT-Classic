@@ -1,6 +1,6 @@
 package gtclassic.tile;
 
-import gtclassic.container.GTContainerHCSU;
+import gtclassic.container.GTContainerAESU;
 import ic2.api.energy.EnergyNet;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
@@ -16,7 +16,7 @@ public class GTTileAESU extends TileEntityElectricBlock {
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerHCSU(player.inventory, this);
+		return new GTContainerAESU(player.inventory, this);
 	}
 
 	@Override

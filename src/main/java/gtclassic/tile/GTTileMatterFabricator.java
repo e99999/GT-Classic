@@ -109,7 +109,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		this.setActive(hasPower());
 		// Below i try to iterate the input slots to check for valid amplifier
 		ItemStack output = this.inventory.get(8);
-		if (output.getCount() < output.getMaxStackSize() && hasPower()) {
+		if (!redstoneEnabled() && hasPower() && output.getCount() < output.getMaxStackSize()) {
 			for (MultiRecipe map : GTRecipeUUAmplifier.RECIPE_LIST.getRecipeList()) {
 				// For loop for the input slots
 				for (int i = 0; i < 8; ++i) {
@@ -132,6 +132,10 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 				}
 			}
 		}
+	}
+	
+	public boolean redstoneEnabled() {
+		return this.world.isBlockPowered(this.getPos());
 	}
 
 	public void checkProgress() {

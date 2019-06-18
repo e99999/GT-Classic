@@ -13,8 +13,10 @@ import com.google.common.collect.ImmutableSet;
 import gtclassic.GTMod;
 import ic2.api.classic.item.IMiningDrill;
 import ic2.api.item.ElectricItem;
+import ic2.core.IC2;
 import ic2.core.item.base.ItemElectricTool;
 import ic2.core.item.tool.electric.ItemElectricToolDrill;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.material.Material;
@@ -147,6 +149,7 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 			for (BlockPos additionalPos : getTargetBlocks(worldIn, pos, player)) {
 				breakBlock(additionalPos, worldIn, player, stack);
 			}
+			IC2.audioManager.playOnce(player, Ic2Sounds.drillHard);
 		}
 		return false;
 	}
@@ -226,6 +229,6 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 	}
 
 	private boolean isValidState(IBlockState blockstate) {
-		return ItemElectricToolDrill.rocks.contains(blockstate) || blockstate.getMaterial().equals(Material.GROUND) || blockstate.getMaterial().equals(Material.GRASS);
+		return ItemElectricToolDrill.rocks.contains(blockstate);
 	}
 }
