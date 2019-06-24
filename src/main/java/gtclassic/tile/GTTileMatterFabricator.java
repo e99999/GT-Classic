@@ -109,25 +109,34 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		this.setActive(hasPower());
 		// Below i try to iterate the input slots to check for valid amplifier
 		ItemStack output = this.inventory.get(8);
-		if (!redstoneEnabled() && hasPower() && output.getCount() < output.getMaxStackSize()) {
-			for (MultiRecipe map : GTRecipeUUAmplifier.RECIPE_LIST.getRecipeList()) {
-				// For loop for the input slots
-				for (int i = 0; i < 8; ++i) {
-					// Comparing the input slot with UU matter recipe list entries
-					// TODO might have to iterate this to get all inputs for ore dicts and stuff
-					ItemStack entryStack = map.getInput(0).getInputs().get(0).copy();
-					ItemStack machineStack = this.inventory.get(i).copy();
-					if (entryStack != null && StackUtil.isStackEqual(machineStack, entryStack, false, false)) {
+		//Redstone check last because its the most CPU intensive.
+		if (hasPower() && output.getCount() < output.getMaxStackSize() && !redstoneEnabled()) {
+			//Checking ItemStacks first because it reduces iteration.
+			for (int i = 0; i < 8; ++i) {
+				ItemStack stack = inventory.get(i);
+				if(stack.isEmpty())
+				{
+					//If stack is null then we do not need to check the recipe list for it.
+					continue;
+				}
+				for (MultiRecipe map : GTRecipeUUAmplifier.RECIPE_LIST.getRecipeList()) {
+					IRecipeInput input = map.getInput(0);
+					//Doing a input Check this way because it allows the RecipeInput to define what it compares with.
+					//Not the inhouse ItemStack compare.
+					if(input.matches(stack) && stack.getCount() >= input.getAmount())
+					{
 						int uuValue = map.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
-						// Checking if the machine has power to perform the operation
-						if (this.energy - uuValue >= 0) {
-							this.energy = this.energy - uuValue;
-							this.inventory.get(i).shrink(1);
-							this.progress = this.progress + uuValue;
-							updateGui();
-							checkProgress();
+						if(energy - uuValue < 0)
+						{
+							//Using break because it found the matching item but it does not have enough energy for i t.
+							//No need to further compare.
+							break;
 						}
-						return;
+						stack.shrink(input.getAmount()); //Allowing multi item usage
+						energy -= uuValue;
+						progress += uuValue;
+						updateGui();
+						checkProgress();
 					}
 				}
 			}
@@ -144,11 +153,11 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		if (progress >= getMaxProgress()) {
 			if (output.isEmpty()) {
 				this.inventory.set(8, GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
-			} else if (!output.isEmpty()) {
-				int amount = output.getCount() + 1;
-				inventory.set(8, GTMaterialGen.getIc2(Ic2Items.uuMatter, amount));
+			} else if(StackUtil.isStackEqual(output, Ic2Items.uuMatter)) {
+				output.grow(1);//Do not copy the stack just grow it. Thats why the functions exist. Also prevents cheating.
 			}
-			progress = 0;
+			//Not wasting extra EU when overcharging.
+			progress -= getMaxProgress();
 		}
 	}
 
@@ -181,6 +190,6 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing != EnumFacing.UP && facing != EnumFacing.DOWN;
+		return facing != getFacing() && facing.getAxis().isHorizontal();
 	}
 }
