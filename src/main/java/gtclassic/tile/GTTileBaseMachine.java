@@ -624,7 +624,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing != EnumFacing.UP && facing != EnumFacing.DOWN;
+		return facing != getFacing() && facing.getAxis().isHorizontal();
 	}
 
 	/*

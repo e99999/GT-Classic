@@ -9,12 +9,12 @@ public class GTMaterial {
 	static GTMaterialFlag fluid = GTMaterialFlag.FLUID;
 	static GTMaterialFlag gas = GTMaterialFlag.GAS;
 	static GTMaterialFlag dust = GTMaterialFlag.DUST;
-	static GTMaterialFlag ruby = GTMaterialFlag.RUBY;
-	static GTMaterialFlag sapphire = GTMaterialFlag.SAPPHIRE;
+	static GTMaterialFlag gemRuby = GTMaterialFlag.RUBY;
+	static GTMaterialFlag gemSapphire = GTMaterialFlag.SAPPHIRE;
 	static GTMaterialFlag ingot = GTMaterialFlag.INGOT;
 	static GTMaterialFlag block = GTMaterialFlag.BLOCK;
-	static GTMaterialFlag[] rubyAll = { dust, ruby, block };
-	static GTMaterialFlag[] sapphireAll = { dust, sapphire, block };
+	static GTMaterialFlag[] rubyAll = { dust, gemRuby, block };
+	static GTMaterialFlag[] sapphireAll = { dust, gemSapphire, block };
 	static GTMaterialFlag[] metalAll = { dust, ingot, block };
 	/** Master Material Map **/
 	private static HashMap<String, GTMaterial> generatedMap = new HashMap<>();

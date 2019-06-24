@@ -8,6 +8,7 @@ import gtclassic.recipe.GTRecipeUUAmplifier;
 import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.tile.machine.IProgressMachine;
+import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.util.info.ProgressInfo;
@@ -33,6 +34,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	protected static final int[] slotOutputs = { 8 };
 	@NetworkField(index = 7)
 	float progress = 0;
+	
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/matterfabricator.png");
 
 	public GTTileMatterFabricator() {
@@ -109,40 +111,40 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		this.setActive(hasPower());
 		// Below i try to iterate the input slots to check for valid amplifier
 		ItemStack output = this.inventory.get(8);
-		//Redstone check last because its the most CPU intensive.
+		// Redstone check last because its the most CPU intensive.
 		if (hasPower() && output.getCount() < output.getMaxStackSize() && !redstoneEnabled()) {
-			//Checking ItemStacks first because it reduces iteration.
+			// Checking ItemStacks first because it reduces iteration.
 			for (int i = 0; i < 8; ++i) {
 				ItemStack stack = inventory.get(i);
-				if(stack.isEmpty())
-				{
-					//If stack is null then we do not need to check the recipe list for it.
+				if (stack.isEmpty()) {
+					// If stack is null then we do not need to check the recipe list for it.
 					continue;
 				}
 				for (MultiRecipe map : GTRecipeUUAmplifier.RECIPE_LIST.getRecipeList()) {
 					IRecipeInput input = map.getInput(0);
-					//Doing a input Check this way because it allows the RecipeInput to define what it compares with.
-					//Not the inhouse ItemStack compare.
-					if(input.matches(stack) && stack.getCount() >= input.getAmount())
-					{
+					// Doing a input Check this way because it allows the RecipeInput to define what
+					// it compares with.
+					// Not the inhouse ItemStack compare.
+					if (input.matches(stack) && stack.getCount() >= input.getAmount()) {
 						int uuValue = map.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
-						if(energy - uuValue < 0)
-						{
-							//Using break because it found the matching item but it does not have enough energy for i t.
-							//No need to further compare.
+						if (energy - uuValue < 0) {
+							// Using break because it found the matching item but it does not have enough
+							// energy for i t.
+							// No need to further compare.
 							break;
 						}
-						stack.shrink(input.getAmount()); //Allowing multi item usage
+						stack.shrink(input.getAmount()); // Allowing multi item usage
 						energy -= uuValue;
 						progress += uuValue;
 						updateGui();
 						checkProgress();
+						return;
 					}
 				}
 			}
 		}
 	}
-	
+
 	public boolean redstoneEnabled() {
 		return this.world.isBlockPowered(this.getPos());
 	}
@@ -153,10 +155,11 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		if (progress >= getMaxProgress()) {
 			if (output.isEmpty()) {
 				this.inventory.set(8, GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
-			} else if(StackUtil.isStackEqual(output, Ic2Items.uuMatter)) {
-				output.grow(1);//Do not copy the stack just grow it. Thats why the functions exist. Also prevents cheating.
+			} else if (StackUtil.isStackEqual(output, Ic2Items.uuMatter)) {
+				output.grow(1);// Do not copy the stack just grow it. Thats why the functions exist. Also
+								// prevents cheating.
 			}
-			//Not wasting extra EU when overcharging.
+			// Not wasting extra EU when overcharging.
 			progress -= getMaxProgress();
 		}
 	}
