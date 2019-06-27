@@ -90,7 +90,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	public boolean shouldCheckRecipe;
 	public final boolean supportsUpgrades;
 	public final int upgradeSlots;
-	public boolean isPassive;
 	public AudioSource audioSource;
 	LinkedList<IStackOutput> outputs = new LinkedList<>();
 
@@ -107,7 +106,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		defaultSensitive = false;
 		progressPerTick = 1F;
 		shouldCheckRecipe = true;
-		isPassive = false;
 		addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
 		addGuiFields("recipeOperation", "recipeEnergy", "progress");
 		addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));

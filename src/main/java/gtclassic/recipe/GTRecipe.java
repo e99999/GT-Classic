@@ -21,6 +21,7 @@ import ic2.core.item.recipe.upgrades.EnchantmentModifier;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.Items;
 
 public class GTRecipe {
 
@@ -311,5 +312,42 @@ public class GTRecipe {
 		/** Adding ruby to glass fiber cable **/
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotConductor, 'V', lowCrystal);
+		/** Overclocker helium coolant recipes **/
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { "CCC", "WEW", 'C',
+				GTMaterialGen.get(GTItems.heatStorageSingle), 'W', Ic2Items.insulatedCopperCable.copy(), 'E',
+				Ic2Items.electricCircuit.copy() });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 6), new Object[] { "CCC", "WEW", 'C',
+				GTMaterialGen.get(GTItems.heatStorageTriple), 'W',
+				GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 3), 'E',
+				GTMaterialGen.getIc2(Ic2Items.electricCircuit, 3) });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 12), new Object[] { "CCC", "WEW", 'C',
+				GTMaterialGen.get(GTItems.heatStorageSix), 'W', GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 6),
+				'E', GTMaterialGen.getIc2(Ic2Items.electricCircuit, 6) });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { " X ", "XYX", " X ", 'Y',
+				Ic2Items.upgradeBase.copy(), 'X', GTMaterialGen.get(GTItems.heatStorageSingle) });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { "XXX", "XYX", "XXX", 'Y',
+				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 2), 'X', GTMaterialGen.get(GTItems.heatStorageSingle) });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 8), new Object[] { " X ", "XYX", " X ", 'Y',
+				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 4), 'X', GTMaterialGen.get(GTItems.heatStorageTriple) });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 16), new Object[] { "XXX", "XYX", "XXX",
+				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 8), 'X',
+				GTMaterialGen.get(GTItems.heatStorageTriple) });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 16), new Object[] { " X ", "XYX", " X ",
+				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 8), 'X', GTMaterialGen.get(GTItems.heatStorageSix) });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 32), new Object[] { "XXX", "XYX", "XXX",
+				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 16), 'X', GTMaterialGen.get(GTItems.heatStorageSix) });
+		/** UU-Matter Recipes **/
+		recipes.overrideRecipe("shaped_item.emerald_981588030", GTMaterialGen.get(Items.EMERALD), new Object[] { "UUU",
+				"UUU", " U ", 'U', GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+		recipes.addRecipe(GTMaterialGen.getGem(GTMaterial.Ruby, 1), new Object[] { " UU", "UUU", "UU ", 'U',
+				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+		recipes.addRecipe(GTMaterialGen.getGem(GTMaterial.Sapphire, 1), new Object[] { "UU ", "UUU", " UU", 'U',
+				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.oreBauxite, 6), new Object[] { "U U", " UU", "U U", 'U',
+				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+		recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Titanium, 2), new Object[] { "UUU", " U ", " U ", 'U',
+				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+		recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Aluminium, 16), new Object[] { " U ", " U ", "UUU", 'U',
+				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
 	}
 }

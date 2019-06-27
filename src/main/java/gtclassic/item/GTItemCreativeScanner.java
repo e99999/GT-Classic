@@ -121,11 +121,11 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	@SuppressWarnings("deprecation")
 	public static EnumActionResult scanBlock(EntityPlayer player, World world, BlockPos pos, EnumFacing side,
 			float hitX, float hitY, float hitZ, EnumHand hand) {
-		TileEntity tileEntity = world.getTileEntity(pos);
-		IBlockState state = world.getBlockState(pos);
 		if (player.isSneaking() || !IC2.platform.isSimulating()) {
 			return EnumActionResult.PASS;
 		} else {
+			TileEntity tileEntity = world.getTileEntity(pos);
+			IBlockState state = world.getBlockState(pos);
 			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()
 					+ " -----");
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
@@ -166,19 +166,21 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 			if (tileEntity instanceof TileEntityCrop) {
 				TileEntityCrop te7 = (TileEntityCrop) tileEntity;
-				IC2.platform.messagePlayer(player, "Crop=" + te7.getCrop() + " Size=" + te7.getCurrentSize()
-						+ " Growth=" + te7.getStatGrowth() + " Gain=" + te7.getStatGain() + " Resistance="
-						+ te7.getStatResistance() + " Nutrients=" + te7.getTerrainNutrients() + " Water="
-						+ te7.getTerrainHumidity() + " GrowthPoints=" + te7.getGrowthPoints());
+				IC2.platform.messagePlayer(player, "Crop: " + te7.getCrop());
+				IC2.platform.messagePlayer(player, "Size: " + te7.getCurrentSize());
+				IC2.platform.messagePlayer(player, "Growth: " + te7.getStatGrowth());
+				IC2.platform.messagePlayer(player, "Gain: " + te7.getStatGain());
+				IC2.platform.messagePlayer(player, "Resistance: " + te7.getStatResistance());
+				IC2.platform.messagePlayer(player, "Nutrients: " + te7.getTerrainNutrients());
+				IC2.platform.messagePlayer(player, "Water: " + te7.getTerrainHumidity());
+				IC2.platform.messagePlayer(player, "Growth Points: " + te7.getGrowthPoints());
 			}
 			if (tileEntity instanceof GTTileBaseMachine) {
 				GTTileBaseMachine machine = (GTTileBaseMachine) tileEntity;
 				IC2.platform.messagePlayer(player, "Progress: "
 						+ (Math.round((machine.getProgress() / machine.getMaxProgress()) * 100)) + "%");
-				if (!machine.isPassive) {
-					IC2.platform.messagePlayer(player, "Default Input: " + machine.defaultEnergyConsume + " EU");
-					IC2.platform.messagePlayer(player, "Max Input: " + machine.defaultMaxInput + " EU");
-				}
+				IC2.platform.messagePlayer(player, "Default Input: " + machine.defaultEnergyConsume + " EU");
+				IC2.platform.messagePlayer(player, "Max Input: " + machine.defaultMaxInput + " EU");
 			}
 			if (tileEntity instanceof GTTileMultiBaseMachine) {
 				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;

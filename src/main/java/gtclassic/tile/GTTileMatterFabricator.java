@@ -34,7 +34,6 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	protected static final int[] slotOutputs = { 8 };
 	@NetworkField(index = 7)
 	float progress = 0;
-	
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/matterfabricator.png");
 
 	public GTTileMatterFabricator() {
