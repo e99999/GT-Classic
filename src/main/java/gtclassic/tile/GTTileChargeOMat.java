@@ -7,18 +7,21 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
+import ic2.api.item.ElectricItem;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 
-public class GTTileChargeOMat extends TileEntityMachine
-		implements IHasGui, IEnergySink, IEUStorage {
+public class GTTileChargeOMat extends TileEntityMachine implements IHasGui, IEnergySink, IEUStorage, ITickable {
 
 	public int tier = 4;
 	@NetworkField(index = 3)
@@ -103,7 +106,7 @@ public class GTTileChargeOMat extends TileEntityMachine
 
 	@Override
 	public boolean acceptsEnergyFrom(IEnergyEmitter var1, EnumFacing side) {
-		//Dont do the invert shit or else youll fuck connections
+		// Dont do the invert shit or else youll fuck connections
 		return true;
 	}
 
@@ -129,6 +132,7 @@ public class GTTileChargeOMat extends TileEntityMachine
 
 	@Override
 	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
+		//Only place invert is actuall called for energy input
 		if (amount <= (double) this.maxInput && amount > 0.0D && !this.isInverted()) {
 			this.energy = (int) ((double) this.energy + amount);
 			int left = 0;
@@ -145,5 +149,41 @@ public class GTTileChargeOMat extends TileEntityMachine
 
 	public boolean isInverted() {
 		return this.world.isBlockPowered(this.getPos());
+	}
+
+	@Override
+	public void update() {
+		// TODO the is empty check or else speiger will blow his top
+		if (this.energy > 0 && !this.isInverted()) {
+			tryCharge();
+		}
+		if (this.energy < this.maxEnergy && this.isInverted()) {
+			tryDischarge();
+		}
+	}
+
+	public void tryCharge() {
+		int newState;
+		for (int i = 0; i < 9; ++i) {
+			if (!((ItemStack) this.inventory.get(i)).isEmpty()) {
+				newState = (int) ElectricItem.manager.charge((ItemStack) this.inventory.get(i), (double) this.energy, this.tier, false, false);
+				this.energy -= newState;
+				if (newState > 0) {
+					this.getNetwork().updateTileGuiField(this, "energy");
+				}
+				if (ElectricItem.manager.getCharge(this.inventory.get(i)) == ElectricItem.manager.getMaxCharge(this.inventory.get(i))) {
+					// if the charge is full move the item to an output slot
+					for (int j = 9; j < 18; ++j) {
+						if (this.inventory.get(j).isEmpty()) {
+							this.inventory.set(j, StackUtil.copyWithSize(this.inventory.get(i), 1));
+							this.inventory.get(i).shrink(1);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	public void tryDischarge() {
 	}
 }
