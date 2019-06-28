@@ -35,7 +35,8 @@ public class GTMod {
 	public static Logger logger;
 	// public static boolean dev = !new
 	// File(GTMod.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
-	public static boolean debugMode = GTConfig.debugMode;
+	private static boolean quickDebug = false;
+	public static boolean debugMode = GTConfig.debugMode || quickDebug;
 
 	@Mod.EventHandler
 	public synchronized void preInit(FMLPreInitializationEvent event) {

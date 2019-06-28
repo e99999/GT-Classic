@@ -1,27 +1,39 @@
 package gtclassic.tile;
 
+import java.util.List;
+
 import gtclassic.container.GTContainerChargeOMat;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
+import ic2.api.energy.tile.IEnergySource;
 import ic2.api.item.ElectricItem;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
+import ic2.core.inventory.management.AccessRule;
+import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.inventory.management.SlotType;
+import ic2.core.util.math.MathUtil;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.MinecraftForge;
 
-public class GTTileChargeOMat extends TileEntityMachine implements IHasGui, IEnergySink, IEUStorage, ITickable {
+public class GTTileChargeOMat extends TileEntityMachine
+		implements IHasGui, IEnergySink, IEUStorage, ITickable, IEnergyEmitter, IEnergySource {
 
 	public int tier = 4;
 	@NetworkField(index = 3)
@@ -32,10 +44,23 @@ public class GTTileChargeOMat extends TileEntityMachine implements IHasGui, IEne
 	public int maxInput = 2048;
 	public int output = 2048;
 	public boolean addedToEnergyNet;
+	protected static final int[] slotInputs = MathUtil.fromTo(0, 8);
+	protected static final int[] slotOutputs = MathUtil.fromTo(9, 18);
 
 	public GTTileChargeOMat() {
 		super(18);
 		this.addGuiFields(new String[] { "energy" });
+	}
+
+	@Override
+	protected void addSlots(InventoryHandler handler) {
+		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
+		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, slotInputs);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
+		handler.registerSlotType(SlotType.Input, slotInputs);
+		handler.registerSlotType(SlotType.Output, slotOutputs);
 	}
 
 	@Override
@@ -94,6 +119,11 @@ public class GTTileChargeOMat extends TileEntityMachine implements IHasGui, IEne
 		// Needed but unused
 	}
 
+	//@Override
+	//public int getMaxStackSize(int slot) {
+	//	return 1;
+	//}
+
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != getFacing() && facing.getAxis().isHorizontal();
@@ -132,7 +162,7 @@ public class GTTileChargeOMat extends TileEntityMachine implements IHasGui, IEne
 
 	@Override
 	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
-		//Only place invert is actuall called for energy input
+		// Only place invert is actually called for energy input
 		if (amount <= (double) this.maxInput && amount > 0.0D && !this.isInverted()) {
 			this.energy = (int) ((double) this.energy + amount);
 			int left = 0;
@@ -147,15 +177,37 @@ public class GTTileChargeOMat extends TileEntityMachine implements IHasGui, IEne
 		}
 	}
 
+	@Override
+	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing var2) {
+		return true;
+	}
+
+	@Override
+	public double getOfferedEnergy() {
+		// Only place invert is called for output
+		return this.isInverted() ? (double) this.output : 0.0D;
+	}
+
+	@Override
+	public void drawEnergy(double amount) {
+		this.energy = (int) ((double) this.energy - amount);
+		this.getNetwork().updateTileGuiField(this, "energy");
+	}
+
+	@Override
+	public int getSourceTier() {
+		return this.tier;
+	}
+
 	public boolean isInverted() {
 		return this.world.isBlockPowered(this.getPos());
 	}
 
 	@Override
 	public void update() {
-		// TODO the is empty check or else speiger will blow his top
 		if (this.energy > 0 && !this.isInverted()) {
 			tryCharge();
+			tryWirelessCharge();
 		}
 		if (this.energy < this.maxEnergy && this.isInverted()) {
 			tryDischarge();
@@ -163,16 +215,16 @@ public class GTTileChargeOMat extends TileEntityMachine implements IHasGui, IEne
 	}
 
 	public void tryCharge() {
-		int newState;
+		// Here I iterate the input slots to try to charge items
 		for (int i = 0; i < 9; ++i) {
 			if (!((ItemStack) this.inventory.get(i)).isEmpty()) {
-				newState = (int) ElectricItem.manager.charge((ItemStack) this.inventory.get(i), (double) this.energy, this.tier, false, false);
-				this.energy -= newState;
-				if (newState > 0) {
+				int removed = (int) ElectricItem.manager.charge((ItemStack) this.inventory.get(i), (double) this.energy, this.tier, false, false);
+				this.energy -= removed;
+				if (removed > 0) {
 					this.getNetwork().updateTileGuiField(this, "energy");
 				}
+				// If the Item is fully charged attempt to move it to the first open slot
 				if (ElectricItem.manager.getCharge(this.inventory.get(i)) == ElectricItem.manager.getMaxCharge(this.inventory.get(i))) {
-					// if the charge is full move the item to an output slot
 					for (int j = 9; j < 18; ++j) {
 						if (this.inventory.get(j).isEmpty()) {
 							this.inventory.set(j, StackUtil.copyWithSize(this.inventory.get(i), 1));
@@ -180,10 +232,53 @@ public class GTTileChargeOMat extends TileEntityMachine implements IHasGui, IEne
 						}
 					}
 				}
+				// MABYEDO limit charge to one item at a time?
+			}
+		}
+	}
+
+	public void tryWirelessCharge() {
+		// I opted to make this slower rather than 100 lines long, its not the main
+		// feature of the tile
+		if (world.getTotalWorldTime() % 20 == 0) {
+			if (world.playerEntities.isEmpty()) {
+				return;
+			}
+			if (!getEntitiesInRange().isEmpty()) {
+				for (EntityLivingBase entity : getEntitiesInRange()) {
+					for (ItemStack armor : entity.getArmorInventoryList()) {
+						this.drawEnergy(ElectricItem.manager.charge((ItemStack) armor, (double) this.energy, this.tier, false, false));
+					}
+				}
 			}
 		}
 	}
 
 	public void tryDischarge() {
+		// Try to discharge
+		for (int i = 0; i < 9; ++i) {
+			if (!((ItemStack) this.inventory.get(i)).isEmpty()) {
+				int added = (int) ElectricItem.manager.discharge(this.inventory.get(i), (double) (this.maxEnergy
+						- this.energy), this.tier, false, true, false);
+				this.energy += added;
+				if (added > 0) {
+					this.getNetwork().updateTileGuiField(this, "energy");
+				}
+				// If the Item is fully discharged attempt to move it to the first open slot
+				if (ElectricItem.manager.getCharge(this.inventory.get(i)) == 0.0D) {
+					for (int j = 9; j < 18; ++j) {
+						if (this.inventory.get(j).isEmpty()) {
+							this.inventory.set(j, StackUtil.copyWithSize(this.inventory.get(i), 1));
+							this.inventory.get(i).shrink(1);
+						}
+					}
+				}
+				// MABYEDO limit discharge to one item at a time?
+			}
+		}
+	}
+
+	public List<EntityLivingBase> getEntitiesInRange() {
+		return this.world.getEntitiesWithinAABB(EntityLivingBase.class, (new AxisAlignedBB(this.getPos())).grow(5.0D));
 	}
 }
