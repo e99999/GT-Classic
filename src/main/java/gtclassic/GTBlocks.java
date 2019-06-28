@@ -18,6 +18,7 @@ import gtclassic.tile.GTTileBufferLarge;
 import gtclassic.tile.GTTileBufferSmall;
 import gtclassic.tile.GTTileCabinet;
 import gtclassic.tile.GTTileCentrifuge;
+import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTileIDSU;
@@ -113,6 +114,7 @@ public class GTBlocks {
 		registerUtil(GTTilePlayerDetector.class, "PlayerDetector");
 		registerUtil(GTTileComputerCube.class, "ComputerCube");
 		registerUtil(GTTileMultiBlastFurnace.class, "BlastFurnace");
+		registerUtil(GTTileChargeOMat.class, "ChargeOMat");
 		registerUtil(GTTileIDSU.class, "IDSU");
 		registerUtil(GTTileAESU.class, "AESU");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");

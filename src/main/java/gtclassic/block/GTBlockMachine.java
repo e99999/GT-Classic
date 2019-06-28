@@ -8,6 +8,7 @@ import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileCabinet;
 import gtclassic.tile.GTTileCentrifuge;
+import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.GTTilePlayerDetector;
@@ -96,6 +97,9 @@ public class GTBlockMachine extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tilePlayerDetector) {
 			return new GTTilePlayerDetector();
+		}
+		if (this == GTBlocks.tileChargeOmat) {
+			return new GTTileChargeOMat();
 		}
 		if (this == GTBlocks.tileLightningRod) {
 			return new GTTileMultiLightningRod();

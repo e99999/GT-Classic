@@ -136,8 +136,8 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		/** Iron Processing **/
 		addRecipe(new IRecipeInput[] { input("oreIron", 1),
 				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
-		addRecipe(new IRecipeInput[] { input("dustPyrite", 1),
-				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2));
+		addRecipe(new IRecipeInput[] { input("dustPyrite", 2),
+				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
 		/** Bronze **/
 		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 3),
 				metal("Tin", 1) }, 4000, GTMaterialGen.getIc2(Ic2Items.bronzeIngot, 4));
@@ -152,7 +152,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 				input("dustCarbon", 1) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
 	}
 
-	public static void postInit() {
+	public static void removals() {
 		// Remove smelting from mods who dont respect my authority
 		if (GTConfig.ingotsRequireBlastFurnace) {
 			for (Item item : Item.REGISTRY) {
@@ -167,6 +167,9 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 				}
 			}
 		}
+	}
+
+	public static void postInit() {
 		/** Titanium **/
 		addRecipe(new IRecipeInput[] {
 				input("dustTitanium", 1) }, 128000, GTMaterialGen.getIngot(GTMaterial.Titanium, 1));

@@ -77,6 +77,7 @@ public class GTRecipe {
 	}
 
 	public static void postInit() {
+		GTTileMultiBlastFurnace.removals();
 		GTTileMultiBlastFurnace.postInit();
 		GTRecipeMods.postInit();
 	}
