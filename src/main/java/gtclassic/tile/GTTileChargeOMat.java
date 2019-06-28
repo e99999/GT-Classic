@@ -118,11 +118,10 @@ public class GTTileChargeOMat extends TileEntityMachine
 	public void onGuiClosed(EntityPlayer var1) {
 		// Needed but unused
 	}
-
-	//@Override
-	//public int getMaxStackSize(int slot) {
-	//	return 1;
-	//}
+	// @Override
+	// public int getMaxStackSize(int slot) {
+	// return 1;
+	// }
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
@@ -185,6 +184,9 @@ public class GTTileChargeOMat extends TileEntityMachine
 	@Override
 	public double getOfferedEnergy() {
 		// Only place invert is called for output
+		if (this.energy < this.output) {
+			return 0.0D;
+		}
 		return this.isInverted() ? (double) this.output : 0.0D;
 	}
 
@@ -205,23 +207,35 @@ public class GTTileChargeOMat extends TileEntityMachine
 
 	@Override
 	public void update() {
-		if (this.energy > 0 && !this.isInverted()) {
+		if (!this.isInverted()) {
 			tryCharge();
 			tryWirelessCharge();
-		}
-		if (this.energy < this.maxEnergy && this.isInverted()) {
+		} else if (this.isInverted()) {
 			tryDischarge();
 		}
+		if (this.energy > this.maxEnergy) {
+			this.energy = this.maxEnergy;
+		}
+	}
+
+	public boolean hasEnergy() {
+		return this.energy > 0;
+	}
+
+	public boolean canFill() {
+		return this.energy < this.maxEnergy;
 	}
 
 	public void tryCharge() {
 		// Here I iterate the input slots to try to charge items
 		for (int i = 0; i < 9; ++i) {
-			if (!((ItemStack) this.inventory.get(i)).isEmpty()) {
-				int removed = (int) ElectricItem.manager.charge((ItemStack) this.inventory.get(i), (double) this.energy, this.tier, false, false);
-				this.energy -= removed;
-				if (removed > 0) {
-					this.getNetwork().updateTileGuiField(this, "energy");
+			if (!this.inventory.get(i).isEmpty()) {
+				if (hasEnergy()) {
+					int removed = (int) ElectricItem.manager.charge((ItemStack) this.inventory.get(i), (double) this.energy, this.tier, false, false);
+					this.energy -= removed;
+					if (removed > 0) {
+						this.getNetwork().updateTileGuiField(this, "energy");
+					}
 				}
 				// If the Item is fully charged attempt to move it to the first open slot
 				if (ElectricItem.manager.getCharge(this.inventory.get(i)) == ElectricItem.manager.getMaxCharge(this.inventory.get(i))) {
@@ -240,8 +254,11 @@ public class GTTileChargeOMat extends TileEntityMachine
 	public void tryWirelessCharge() {
 		// I opted to make this slower rather than 100 lines long, its not the main
 		// feature of the tile
-		if (world.getTotalWorldTime() % 20 == 0) {
+		if (world.getTotalWorldTime() % 20 == 0 && this.hasEnergy()) {
 			if (world.playerEntities.isEmpty()) {
+				return;
+			}
+			if (!world.isAreaLoaded(pos, 3)) {
 				return;
 			}
 			if (!getEntitiesInRange().isEmpty()) {
@@ -257,12 +274,14 @@ public class GTTileChargeOMat extends TileEntityMachine
 	public void tryDischarge() {
 		// Try to discharge
 		for (int i = 0; i < 9; ++i) {
-			if (!((ItemStack) this.inventory.get(i)).isEmpty()) {
-				int added = (int) ElectricItem.manager.discharge(this.inventory.get(i), (double) (this.maxEnergy
-						- this.energy), this.tier, false, true, false);
-				this.energy += added;
-				if (added > 0) {
-					this.getNetwork().updateTileGuiField(this, "energy");
+			if (!this.inventory.get(i).isEmpty()) {
+				if (this.canFill()) {
+					int added = (int) ElectricItem.manager.discharge(this.inventory.get(i), (double) (this.maxEnergy
+							- this.energy), this.tier, false, true, false);
+					this.energy += added;
+					if (added > 0) {
+						this.getNetwork().updateTileGuiField(this, "energy");
+					}
 				}
 				// If the Item is fully discharged attempt to move it to the first open slot
 				if (ElectricItem.manager.getCharge(this.inventory.get(i)) == 0.0D) {
