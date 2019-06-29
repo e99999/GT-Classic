@@ -175,8 +175,8 @@ public class GTRecipe {
 				Ic2Items.teslaCoil.copy(), 'B', Ic2Items.advMachine.copy(), 'R',
 				Ic2Items.reactorReflectorIridium.copy() });
 		/** LESU Casing **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLESU), new Object[] { "BBB", "BCB", "BBB", 'B', "blockLapis",
-				'C', "circuitBasic" });
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLapotron), new Object[] { "BBB", "BCB", "BBB", 'B',
+				"blockLapis", 'C', "circuitBasic" });
 		/** Industrial Centrifuge **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 				Ic2Items.extractor, 'R', ingotRefinedIron, 'A', Ic2Items.advMachine, 'C', "circuitAdvanced" });

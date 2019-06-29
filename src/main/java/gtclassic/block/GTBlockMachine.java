@@ -3,6 +3,7 @@ package gtclassic.block;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
@@ -18,6 +19,7 @@ import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
+import ic2.core.block.personal.base.misc.IOwnerBlock;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -26,6 +28,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -129,6 +132,17 @@ public class GTBlockMachine extends GTBlockMultiID {
 	@Override
 	public int getMaxSheetSize(int meta) {
 		return 1;
+	}
+
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof IOwnerBlock && placer != null) {
+			UUID owner = placer.getUniqueID();
+			((IOwnerBlock) tile).setOwner(owner);
+		}
 	}
 
 	@Override

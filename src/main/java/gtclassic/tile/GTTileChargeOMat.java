@@ -35,12 +35,10 @@ import net.minecraftforge.common.MinecraftForge;
 public class GTTileChargeOMat extends TileEntityMachine
 		implements IHasGui, IEnergySink, IEUStorage, ITickable, IEnergyEmitter, IEnergySource {
 
-	public int tier = 4;
 	@NetworkField(index = 3)
 	public int energy;
-	@NetworkField(index = 4, override = true)
+	public int tier = 4;
 	public int maxEnergy = 10000000;
-	@NetworkField(index = 5)
 	public int maxInput = 2048;
 	public int output = 2048;
 	public boolean addedToEnergyNet;

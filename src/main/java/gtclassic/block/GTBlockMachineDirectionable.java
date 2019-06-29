@@ -1,5 +1,7 @@
 package gtclassic.block;
 
+import java.util.UUID;
+
 import gtclassic.GTBlocks;
 import gtclassic.tile.GTTileAESU;
 import gtclassic.tile.GTTileBufferLarge;
@@ -8,6 +10,7 @@ import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTileTranslocator;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.block.personal.base.misc.IOwnerBlock;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -69,6 +72,11 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 					block.setCustomName(stack.getDisplayName());
 				}
 			}
+		}
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof IOwnerBlock && placer != null) {
+			UUID owner = placer.getUniqueID();
+			((IOwnerBlock) tile).setOwner(owner);
 		}
 	}
 }

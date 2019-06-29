@@ -50,7 +50,7 @@ public class GTBlocks {
 	public static final GTBlockOre oreSapphire = registerBlock(new GTBlockOre("Sapphire", 83, 4.0F, 2));
 	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre("Bauxite", 84, 3.0F, 1));
 	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 2));
-	public static final GTBlockCasing casingLESU = registerBlock(new GTBlockCasing("lesu", 5));
+	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5));
 	public static final GTBlockCasing casingReinforced = registerBlock(new GTBlockCasing("reinforced", 1));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29));
 	// public static final GTBlockSluice tileSluice = registerBlock(new
@@ -66,6 +66,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tilePlayerDetector = registerBlock(new GTBlockMachine("playerdetector", 1));
 	public static final GTBlockMachine tileFusionComputer = registerBlock(new GTBlockMachine("fusioncomputer", 4));
 	public static final GTBlockMachine tileLightningRod = registerBlock(new GTBlockMachine("lightningrod", 2));
+	public static final GTBlockMachineDirectionable tileLESU = registerBlock(new GTBlockMachineDirectionable("lesu"));
 	public static final GTBlockMachineDirectionable tileAESU = registerBlock(new GTBlockMachineDirectionable("aesu"));
 	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu"));
 	public static final GTBlockMachine tileWorktable = registerBlock(new GTBlockMachine("worktable"));
@@ -77,8 +78,8 @@ public class GTBlocks {
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uuassembler", "quantumchest", "playerdetector",
-			"fusioncomputer", "lightningrod", "idsu", "aesu", "cabinet", "worktable", "translocator", "bufferlarge",
-			"buffersmall" };
+			"fusioncomputer", "lightningrod", "idsu", "aesu", "lesu", "cabinet", "worktable", "translocator",
+			"bufferlarge", "buffersmall" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {

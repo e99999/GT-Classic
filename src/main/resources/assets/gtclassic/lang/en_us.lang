@@ -18,7 +18,7 @@ tile.gtclassic.oreBauxite.name=Bauxite Ore
 
 #blocks
 tile.gtclassic.fusion.name=Fusion Coil
-tile.gtclassic.lesu.name=Lapotron Block
+tile.gtclassic.lapotron.name=Lapotron Block
 tile.gtclassic.reinforced.name=Reinforced Machine Block
 tile.gtclassic.highlyadvanced.name=Highly Advanced Machine Block
 
@@ -35,6 +35,7 @@ tile.gtclassic.fusioncomputer.name=Fusion Computer
 tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.aesu.name=AESU
 tile.gtclassic.idsu.name=IDSU
+tile.gtclassic.lesu.name=LESU
 tile.gtclassic.worktable.name=Basic Worktable
 tile.gtclassic.cabinet.name=Cabinet
 tile.gtclassic.translocator.name=Electric Translocator
