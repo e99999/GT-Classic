@@ -2,16 +2,11 @@ buildscript {
     repositories {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath "com.wynprice.cursemaven:CurseMaven:1.1.0"
     }
 }
-apply plugin: "com.wynprice.cursemaven"
 apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
@@ -41,43 +36,28 @@ minecraft {
     replaceIn "GTClassic.java"
 }
 
-repositories{
-    maven { // JEI
-        name 'DVS1 Maven FS'
-        url 'http://dvs1.progwml6.com/files/maven/'
-    }
-    maven { // The One Probe
-        name 'tterrag'
-        url 'http://maven.tterrag.com/'
-    }
-    maven {
-        name = "CurseForge"
-        url = "https://minecraft.curseforge.com/api/maven/"
-    }
-    maven { // Tesla
-        name 'MMD'
-        url 'https://maven.mcmoddev.com/'
-    }
-    maven {
-        name = "jared"
-        url = "http://maven.blamejared.com"
-    }
-    maven {
-        name = "buildcraft"
-        url = "http://www.mod-buildcraft.com/maven/"
-    }
-    maven {
-        name = "ic2"
-        url = "http://maven.ic2.player.to/"
-    }
-}
-
 dependencies {
-    deobfProvided "net.sengir.forestry:forestry_${mc_version}:${forestry_version}"
-    deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    compile curse.resolve("baubles", "2518667")
-    compile curse.resolve("ic2-classic", "2721286")
+    // you may put jars on which you depend on in ./libs
+    // or you may define them like so..
+    //compile "some.group:artifact:version:classifier"
+    //compile "some.group:artifact:version"
+      
+    // real examples
+    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
+    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+
+    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
+    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+
+    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
+    // except that these dependencies get remapped to your current MCP mappings
+    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+
+    // for more info...
+    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
+    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
 }
 
 processResources {
