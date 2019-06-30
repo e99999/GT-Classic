@@ -27,6 +27,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -229,6 +230,6 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 	}
 
 	private boolean isValidState(IBlockState blockstate) {
-		return ItemElectricToolDrill.rocks.contains(blockstate);
+		return ItemElectricToolDrill.rocks.contains(blockstate) || blockstate.equals(Blocks.END_STONE.getDefaultState()) || blockstate.equals(Blocks.NETHERRACK.getDefaultState());
 	}
 }

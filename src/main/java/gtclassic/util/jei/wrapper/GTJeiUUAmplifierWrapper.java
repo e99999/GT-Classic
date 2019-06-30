@@ -37,7 +37,7 @@ public class GTJeiUUAmplifierWrapper implements IRecipeWrapper {
 		FontRenderer font = minecraft.fontRenderer;
 		int value = getEntryTicks(multiRecipe.getOutputs());
 		DecimalFormat df = new DecimalFormat("###.##");
-		font.drawString("Progress: " + df.format(100.0 / (7000000.0 / value)) + "%", 0, 40, Color.black.getRGB());
+		font.drawString("Progress: " + df.format(100.0 / (1000000.0 / value)) + "%", 0, 40, Color.black.getRGB());
 		font.drawString("Multiplier: " + value / 5000.0 + "X", 0, 50, Color.black.getRGB());
 		font.drawString("Cost: " + value + " EU", 0, 60, Color.black.getRGB());
 	}

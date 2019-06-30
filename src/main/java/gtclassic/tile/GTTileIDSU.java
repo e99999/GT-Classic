@@ -6,15 +6,13 @@ import gtclassic.container.GTContainerIDSU;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.EnergyNet;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
-import ic2.core.block.personal.base.misc.IPersonalBlock;
-import ic2.core.block.personal.base.misc.IPersonalInventory;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class GTTileIDSU extends TileEntityElectricBlock implements IPersonalBlock {
+public class GTTileIDSU extends TileEntityElectricBlock {
 
 	@NetworkField(index = 7)
 	private UUID owner;
@@ -61,23 +59,12 @@ public class GTTileIDSU extends TileEntityElectricBlock implements IPersonalBloc
 	public LocaleComp getBlockName() {
 		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
 	}
-
-	@Override
-	public boolean canAccess(UUID var1) {
-		return true;
-	}
-
-	@Override
+	
 	public void setOwner(UUID user) {
 		if (this.owner == null && user != null) {
 			this.owner = user;
 		}
 		this.getNetwork().updateTileGuiField(this, "owner");
-	}
-
-	@Override
-	public IPersonalInventory getInventory(UUID var1) {
-		return null;
 	}
 
 	public UUID getOwner() {

@@ -33,6 +33,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox", 0, 0, 1, 1));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_sluicebox_particle", 0, 0, 1, 1));
 		addCustomTexture("fusioncomputer", 0, 7, location("fusion_top"));
+		addCustomTexture("gtblastfurnace", 0, 9, location("bf_front"));
 		addCustomTexture("industrialcentrifuge", 0, 7, location("centrifuge_top"));
 		addCustomTexture("industrialcentrifuge", 0, 8, location("centrifuge_back"));
 		addCustomTexture("industrialcentrifuge", 0, 9, location("centrifuge_front"));

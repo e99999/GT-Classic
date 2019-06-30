@@ -105,7 +105,7 @@ public class GTRecipe {
 				'D', "gemDiamond", 'I', ingotRefinedIron, 'C', "circuitBasic", 'B', Ic2Items.battery.copy() });
 		/** Jack Hammer **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.jackHammer, 1), new Object[] { "IBI", " C ", " D ", 'I',
-				ingotRefinedIron, 'C', "circuitBasic", 'B', Ic2Items.battery.copy(), 'D', "gemDiamond" });
+				"ingotTungsten", 'C', "circuitBasic", 'B', Ic2Items.battery.copy(), 'D', "gemDiamond" });
 		/** Helium Reactor Coolant **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageSingle, 1), new Object[] { " I ", "IHI", " I ", 'I',
 				"ingotTin", 'H', GTMaterialGen.getFluid(GTMaterial.Helium, 1) });

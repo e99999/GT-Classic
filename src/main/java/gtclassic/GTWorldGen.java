@@ -31,16 +31,16 @@ public class GTWorldGen implements IWorldGenerator {
 			IChunkProvider chunkProvider) {
 		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
 		if (GTConfig.genEndIridium) {
-			runGenerator(GTBlocks.oreEnd.getDefaultState(), 4, 4, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.oreEnd.getDefaultState(), 3, 4, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.genOverworldIridium) {
-			runGenerator(GTBlocks.oreIridium.getDefaultState(), 2, 2, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.oreIridium.getDefaultState(), 3, 2, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.genOverworldRuby && BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
-			runGenerator(GTBlocks.oreRuby.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.oreRuby.getDefaultState(), 5, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.genOverworldSapphire && BiomeDictionary.hasType(biomegenbase, Type.OCEAN)) {
-			runGenerator(GTBlocks.oreSapphire.getDefaultState(), 4, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.oreSapphire.getDefaultState(), 5, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.genOverworldBauxite && BiomeDictionary.hasType(biomegenbase, Type.FOREST)
 				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS))) {

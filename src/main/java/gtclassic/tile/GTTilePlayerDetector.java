@@ -109,6 +109,11 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing.getAxis().isHorizontal();
+		return canAccess(player.getUniqueID()) && facing != getFacing() && facing.getAxis().isHorizontal();
+	}
+	
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return canAccess(player.getUniqueID());
 	}
 }

@@ -206,9 +206,11 @@ public class GTTileChargeOMat extends TileEntityMachine
 	@Override
 	public void update() {
 		if (!this.isInverted()) {
+			this.setActive(false);
 			tryCharge();
 			tryWirelessCharge();
 		} else if (this.isInverted()) {
+			this.setActive(true);
 			tryDischarge();
 		}
 		if (this.energy > this.maxEnergy) {

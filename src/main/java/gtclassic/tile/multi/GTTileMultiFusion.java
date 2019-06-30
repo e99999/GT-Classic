@@ -153,7 +153,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 					int hash = input1.hashCode() + input2.hashCode();
 					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2
 							&& !usedInputs.contains(hash)) {
-						float ratio = (sum.getNumber() / 100.0F) * 20000000.0F;
+						float ratio = (sum.getNumber() / 100.0F) * 7000000.0F;
 						addRecipe(new IRecipeInput[] { input1.getInput(),
 								input2.getInput() }, totalEu(Math.round(ratio)), sum.getOutput());
 						usedInputs.add(hash);

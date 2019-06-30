@@ -24,6 +24,7 @@ public class GTValues {
 	public static final String DRACONIC = "draconicevolution";
 	public static final String THERMAL = "thermalfoundation";
 	public static final String IMMERSIVE_ENGINEERING = "immersiveengineering";
+	public static final String IC2_EXTRAS = "ic2c_extras";
 
 	public static String getIC2Ingot() {
 		return IC2.getRefinedIron();

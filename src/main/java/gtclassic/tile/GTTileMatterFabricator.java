@@ -94,7 +94,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 
 	@Override
 	public float getMaxProgress() {
-		return 7000000;
+		return 1000000;
 	}
 
 	@Override

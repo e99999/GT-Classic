@@ -5,16 +5,21 @@ import java.util.Map;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.Loader;
+
+import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
 public class GTRecipeProcessing {
 
@@ -22,7 +27,13 @@ public class GTRecipeProcessing {
 
 	public static void recipesProcessing() {
 		maceratorUtil("oreBauxite", 1, GTMaterialGen.getDust(GTMaterial.Bauxite, 4));
-		maceratorUtil("oreIridium", 1, GTMaterialGen.getIc2(Ic2Items.iridiumOre, 2));
+		maceratorUtil("oreIridium", 1, GTMaterialGen.getDust(GTMaterial.Iridium, 2));
+		if (!Loader.isModLoaded(GTValues.IC2_EXTRAS)) {
+			macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
+			TileEntityMacerator.addRecipe("oreUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 2));
+		}
+		TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.uraniumDrop, 1), GTMaterialGen.getDust(GTMaterial.Uranium, 1));
+		TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1), GTMaterialGen.getDust(GTMaterial.Iridium, 1));
 		TileEntityMacerator.addRecipe("stoneMarble", 1, GTMaterialGen.getDust(GTMaterial.Calcite, 1));
 		TileEntityMacerator.addRecipe("stoneLimestone", 1, GTMaterialGen.getDust(GTMaterial.Calcite, 1));
 		TileEntityMacerator.addRecipe(GTMaterialGen.get(Items.FLINT, 1), GTMaterialGen.getDust(GTMaterial.Flint, 1));
