@@ -20,8 +20,12 @@ import gtclassic.item.GTItemReactorRod.GTItemRodTypes;
 import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
+import gtclassic.item.baubles.GTItemBaublesEnergyOrb;
+import gtclassic.item.baubles.GTItemBaublesEnergyPack;
+import gtclassic.item.baubles.GTItemBaublesLithiumBattery;
 import gtclassic.material.GTMaterialGen;
 import ic2.core.IC2;
+import ic2.core.util.obj.plugins.IBaublesPlugin;
 import net.minecraft.item.Item;
 
 public class GTItems {
@@ -48,16 +52,47 @@ public class GTItems {
 	public static final GTItemDuctTape ductTape = createItem(new GTItemDuctTape());
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
 	public static final GTItemElectromagnet electroMagnet = createItem(new GTItemElectromagnet());
-	public static final GTItemLithiumBattery lithiumBattery = createItem(new GTItemLithiumBattery());
-	public static final GTItemEnergyOrb orbEnergy = createItem(new GTItemEnergyOrb());
-	public static final GTItemEnergyPack lithiumBatpack = createItem(new GTItemEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
-	public static final GTItemEnergyPack lapotronPack = createItem(new GTItemEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
+	private static GTItemLithiumBattery lithiumBattery;
+	private static GTItemEnergyOrb orbEnergy;
+	private static GTItemEnergyPack lithiumBatpack;
+	private static GTItemEnergyPack lapotronPack;
 	public static final GTItemTeslaStaff teslaStaff = createItem(new GTItemTeslaStaff());
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
 	public static final GTItemJackHammer jackHammer = createItem(new GTItemJackHammer());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
 	public static final GTFluidTube testTube = createItem(new GTFluidTube());
+
+	public static GTItemLithiumBattery getLithiumBattery() {
+		return lithiumBattery;
+	}
+
+	public static GTItemEnergyOrb getOrbEnergy() {
+		return orbEnergy;
+	}
+
+	public static GTItemEnergyPack getLithiumBatpack() {
+		return lithiumBatpack;
+	}
+
+	public static GTItemEnergyPack getLapotronPack() {
+		return lapotronPack;
+	}
+
+	public static void initBaubleItems(){
+		IBaublesPlugin plugin = IC2.loader.getPlugin("baubles", IBaublesPlugin.class);
+		if (plugin != null){
+			lithiumBattery = createItem(new GTItemBaublesLithiumBattery());
+			lithiumBatpack = createItem(new GTItemBaublesEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
+			orbEnergy = createItem(new GTItemBaublesEnergyOrb());
+			lapotronPack = createItem(new GTItemBaublesEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
+		}else {
+			lithiumBattery = createItem(new GTItemLithiumBattery());
+			lithiumBatpack = createItem(new GTItemEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
+			orbEnergy = createItem(new GTItemEnergyOrb());
+			lapotronPack = createItem(new GTItemEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
+		}
+	}
 
 	public static <T extends Item> T createItem(T item) {
 		toRegister.add(item);

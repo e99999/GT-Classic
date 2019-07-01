@@ -114,11 +114,11 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageSix, 1), new Object[] { "IHI", "IPI", "IHI", 'I',
 				"ingotTin", 'H', GTItems.heatStorageTriple, 'P', Ic2Items.denseCopperPlate });
 		/** Lithium Battery **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.lithiumBattery, 1), new Object[] { " G ", "ALA", "ALA", 'G',
+		recipes.addRecipe(GTMaterialGen.get(GTItems.getLithiumBattery(), 1), new Object[] { " G ", "ALA", "ALA", 'G',
 				Ic2Items.goldCable.copy(), 'A', "ingotAluminium", 'L', "dustLithium" });
 		/** Lithium BatPack **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.lithiumBatpack, 1), new Object[] { "LCL", "LAL", "L L", 'C',
-				"circuitAdvanced", 'A', "ingotAluminium", 'L', GTItems.lithiumBattery });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.getLithiumBatpack(), 1), new Object[] { "LCL", "LAL", "L L", 'C',
+				"circuitAdvanced", 'A', "ingotAluminium", 'L', GTItems.getLithiumBattery() });
 		/** Energy Control Circuit **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.circuitEnergy, 4), new Object[] { "CLC", "LPL", "CLC", 'L',
 				Ic2Items.lapotronCrystal.copy(), 'C', "circuitAdvanced", 'P', "plateIridiumAlloy" });
@@ -129,7 +129,7 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.chipData, 4), new Object[] { "EEE", "ECE", "EEE", 'E', "gemEmerald",
 				'C', "circuitAdvanced" });
 		/** Lapotronic Energy Orb **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.orbEnergy, 1), new Object[] { "LLL", "LPL", "LLL", 'L',
+		recipes.addRecipe(GTMaterialGen.get(GTItems.getOrbEnergy(), 1), new Object[] { "LLL", "LPL", "LLL", 'L',
 				Ic2Items.lapotronCrystal.copy(), 'P', "plateIridiumAlloy" });
 		/** Data Orb **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.orbData, 4), new Object[] { "SSS", "SCS", "SSS", 'S',
@@ -141,8 +141,8 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.superConductor, 4), new Object[] { "CCC", "PWP", "EEE", 'C',
 				GTItems.heatStorageTriple, 'E', "circuitMaster", 'W', "ingotTungsten", 'P', "plateIridiumAlloy" });
 		/** Lapotron Batpack **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.lapotronPack, 1), new Object[] { "ELE", "SBS", "EPE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'B', GTItems.lithiumBatpack, 'P',
+		recipes.addRecipe(GTMaterialGen.get(GTItems.getLapotronPack(), 1), new Object[] { "ELE", "SBS", "EPE", 'E',
+				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'B', GTItems.getLithiumBatpack(), 'P',
 				"plateIridiumAlloy" });
 		/** Tesla Staff **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), new Object[] { " SL", " PS", "P  ", 'L',
@@ -151,7 +151,7 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.portableScanner, 1), new Object[] { "PEP", "CFC", "PBP", 'P',
 				"ingotAluminium", 'E', GTMaterialGen.getIc2(Ic2Items.euReader, 1), 'F',
 				GTMaterialGen.getIc2(Ic2Items.cropAnalyzer, 1), 'C', "circuitAdvanced", 'B',
-				GTMaterialGen.get(GTItems.lithiumBattery) });
+				GTMaterialGen.get(GTItems.getLithiumBattery()) });
 	}
 
 	public static void blocks() {
@@ -271,9 +271,9 @@ public class GTRecipe {
 				Ic2Items.insulatedCopperCable.copy() });
 		/** MFE with Lithium Batteries **/
 		recipes.addRecipe(Ic2Items.mfe.copy(), new Object[] { "XYX", "YCY", "XYX", 'C', Ic2Items.machine.copy(), 'Y',
-				GTItems.lithiumBattery, 'X', Ic2Items.doubleInsulatedGoldCable.copy() });
+				GTItems.getLithiumBattery(), 'X', Ic2Items.doubleInsulatedGoldCable.copy() });
 		recipes.addRecipe(Ic2Items.mfe.copy(), new Object[] { "XYX", "YCY", "XYX", 'C', Ic2Items.machine.copy(), 'Y',
-				GTItems.lithiumBattery, 'X', GTMaterialGen.getIc2(Ic2Items.doubleInsulatedBronzeCable, 4) });
+				GTItems.getLithiumBattery(), 'X', GTMaterialGen.getIc2(Ic2Items.doubleInsulatedBronzeCable, 4) });
 		/** Alt Reactor Vent **/
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorVent, 1), new Object[] { "IBI", "B B", "IBI", 'I',
 				"ingotAluminium", 'B', Blocks.IRON_BARS });
