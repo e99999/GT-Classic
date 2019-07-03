@@ -1,5 +1,7 @@
 package gtclassic.recipe;
 
+import static ic2.api.classic.recipe.ClassicRecipes.macerator;
+
 import java.util.Iterator;
 import java.util.Map;
 
@@ -18,8 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
-
-import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
 public class GTRecipeProcessing {
 

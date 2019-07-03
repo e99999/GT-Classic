@@ -47,7 +47,8 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.UP.invert());
 		handler.registerDefaultSlotAccess(AccessRule.Import, 0);
 		handler.registerDefaultSlotAccess(AccessRule.Export, 1);
-		handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
+		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, 0);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, 1);
 		handler.registerSlotType(SlotType.Input, 0);
 		handler.registerSlotType(SlotType.Output, 1);
 	}

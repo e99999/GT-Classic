@@ -10,8 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class GTTileAESU extends TileEntityElectricBlock {
-	
-	
 
 	public GTTileAESU() {
 		super(4, (int) EnergyNet.instance.getPowerFromTier(4), 100000000);
@@ -79,7 +77,7 @@ public class GTTileAESU extends TileEntityElectricBlock {
 			}
 		}
 	}
-	
+
 	public void updateGui() {
 		this.getNetwork().updateTileGuiField(this, "output");
 	}

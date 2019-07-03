@@ -38,7 +38,8 @@ public class GTLootHandler {
 				}
 			}
 		}
-		if (event.getName().equals(LootTableList.CHESTS_END_CITY_TREASURE) || event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
+		if (event.getName().equals(LootTableList.CHESTS_END_CITY_TREASURE)
+				|| event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
 			ItemStack dustIridium = GTMaterialGen.getDust(GTMaterial.Iridium, 1);
 			event.getTable().getPool("main").addEntry(new LootEntryItem(dustIridium.getItem(), 16, 0, new LootFunction[] {}, new LootCondition[0], getStackResourceName(dustIridium)));
 		}

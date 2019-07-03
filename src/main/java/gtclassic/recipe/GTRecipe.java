@@ -87,6 +87,8 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.ductTape), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64));
 		/** Small Buffer **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileBufferSmall, 8), GTMaterialGen.get(GTBlocks.tileBufferLarge, 1));
+		/** Broken NBT Tubes to Regular **/
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.testTube, 1), GTMaterialGen.get(GTItems.testTube, 1));
 	}
 
 	public static void items() {
@@ -142,8 +144,8 @@ public class GTRecipe {
 				GTItems.heatStorageTriple, 'E', "circuitMaster", 'W', "ingotTungsten", 'P', "plateIridiumAlloy" });
 		/** Lapotron Batpack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.getLapotronPack(), 1), new Object[] { "ELE", "SBS", "EPE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'B', GTItems.getLithiumBatpack(), 'P',
-				"plateIridiumAlloy" });
+				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'B', GTItems.getLithiumBatpack(),
+				'P', "plateIridiumAlloy" });
 		/** Tesla Staff **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), new Object[] { " SL", " PS", "P  ", 'L',
 				"batteryUltimate", 'S', GTItems.superConductor, 'P', "plateIridiumAlloy" });
@@ -162,7 +164,7 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), new Object[] { "I I", "ICI", " I ", 'I', ingotAny, 'C',
 				"chestWood" });
 		/** Reinforced Machine Casing **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingReinforced, 4), new Object[] { "III", "CMC", "III", 'I',
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingReinforced, 5), new Object[] { "III", "CMC", "III", 'I',
 				ingotRefinedIron, 'C', "circuitAdvanced", 'M', Ic2Items.advMachine.copy() });
 		/** Highly Advanced Machine Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingHighlyAdvanced), new Object[] { "CTC", "TBT", "CTC", 'T',

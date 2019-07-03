@@ -230,6 +230,7 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 	}
 
 	private boolean isValidState(IBlockState blockstate) {
-		return ItemElectricToolDrill.rocks.contains(blockstate) || blockstate.equals(Blocks.END_STONE.getDefaultState()) || blockstate.equals(Blocks.NETHERRACK.getDefaultState());
+		return ItemElectricToolDrill.rocks.contains(blockstate) || blockstate.equals(Blocks.END_STONE.getDefaultState())
+				|| blockstate.equals(Blocks.NETHERRACK.getDefaultState());
 	}
 }

@@ -56,7 +56,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 	private static final int defaultEu = 16;
 
 	public GTTileCentrifuge() {
-		super(9, 2, defaultEu, 100, 32);
+		super(9, 4, defaultEu, 100, 32);
 		setFuelSlot(slotFuel);
 		maxEnergy = 10000;
 	}
@@ -67,9 +67,8 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
-		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInputs);
-		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, slotInputs);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerInputFilter(filter, slotInputs);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);

@@ -59,7 +59,7 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 	public LocaleComp getBlockName() {
 		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
 	}
-	
+
 	public void setOwner(UUID user) {
 		if (this.owner == null && user != null) {
 			this.owner = user;

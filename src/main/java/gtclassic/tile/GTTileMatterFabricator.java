@@ -48,8 +48,8 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
 		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, slotInputs);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
 		handler.registerInputFilter(CommonFilters.Anything, slotInputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
@@ -107,7 +107,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 
 	@Override
 	public void update() {
-		this.setActive(hasPower());
+		this.setActive(hasPower() && !redstoneEnabled());
 		// Below i try to iterate the input slots to check for valid amplifier
 		ItemStack output = this.inventory.get(8);
 		// Redstone check last because its the most CPU intensive.

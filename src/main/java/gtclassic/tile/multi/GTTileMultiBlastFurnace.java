@@ -65,8 +65,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
-		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInputs);
+		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
 		handler.registerInputFilter(filter, slotInputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
@@ -136,8 +135,8 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		/** Iron Processing **/
 		addRecipe(new IRecipeInput[] { input("oreIron", 1),
 				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
-		addRecipe(new IRecipeInput[] { input("dustPyrite", 2),
-				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
+		addRecipe(new IRecipeInput[] { input("dustPyrite", 3),
+				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2));
 		/** Bronze **/
 		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 3),
 				metal("Tin", 1) }, 4000, GTMaterialGen.getIc2(Ic2Items.bronzeIngot, 4));

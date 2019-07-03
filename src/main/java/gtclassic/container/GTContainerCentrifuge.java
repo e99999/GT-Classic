@@ -31,7 +31,7 @@ public class GTContainerCentrifuge extends ContainerTileComponent<GTTileCentrifu
 			}
 		}
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 8, 8, 62));
-		for (int i = 0; i < 2; ++i) {
+		for (int i = 0; i < 4; ++i) {
 			this.addSlotToContainer(new GTSlotUpgrade(tile, 9 + i, 80 + (i * 18), 62));
 		}
 		this.addPlayerInventory(player);

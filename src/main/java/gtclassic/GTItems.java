@@ -79,14 +79,14 @@ public class GTItems {
 		return lapotronPack;
 	}
 
-	public static void initBaubleItems(){
+	public static void initBaubleItems() {
 		IBaublesPlugin plugin = IC2.loader.getPlugin("baubles", IBaublesPlugin.class);
-		if (plugin != null){
+		if (plugin != null) {
 			lithiumBattery = createItem(new GTItemBaublesLithiumBattery());
 			lithiumBatpack = createItem(new GTItemBaublesEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
 			orbEnergy = createItem(new GTItemBaublesEnergyOrb());
 			lapotronPack = createItem(new GTItemBaublesEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
-		}else {
+		} else {
 			lithiumBattery = createItem(new GTItemLithiumBattery());
 			lithiumBatpack = createItem(new GTItemEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
 			orbEnergy = createItem(new GTItemEnergyOrb());
