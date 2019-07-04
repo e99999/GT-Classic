@@ -9,6 +9,7 @@ import crafttweaker.api.minecraft.CraftTweakerMC;
 import gtclassic.GTItems;
 import gtclassic.tile.GTTileCentrifuge;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -21,18 +22,22 @@ import java.util.Locale;
 @ZenRegister
 public class GTCentrifugeSupport {
     @ZenMethod
-    public static void addRecipe(IIngredient input1, IIngredient input2, @Optional(valueLong = 5000L) int totalEu, IItemStack... output) {
+    public static void addRecipe(IIngredient input1, IIngredient input2, IItemStack[] output, @Optional(valueLong = 5000L) int totalEu) {
         GTCraftTweakerActions.apply(new IndustrialCentrifugeRecipeAction(GTCraftTweakerActions.of(input1), GTCraftTweakerActions.of(input2), totalEu, CraftTweakerMC.getItemStacks(output)));
     }
 
     @ZenMethod
-    public static void addRecipe(IIngredient input1, @Optional(valueLong = 5000L)int totalEu, IItemStack... output) {
+    public static void addRecipe(IIngredient input1, IItemStack[] output, @Optional(valueLong = 5000L)int totalEu) {
         GTCraftTweakerActions.apply(new IndustrialCentrifugeRecipeAction(GTCraftTweakerActions.of(input1), totalEu, CraftTweakerMC.getItemStacks(output)));
     }
 
     @ZenMethod
-    public static void addCellRecipe(IIngredient input1, @Optional(valueLong = 1L)int cells, @Optional(valueLong = 5000L)int totalEu, IItemStack... output) {
-        GTCraftTweakerActions.apply(new IndustrialCentrifugeRecipeAction(GTCraftTweakerActions.of(input1), GTCraftTweakerActions.of(CraftTweakerMC.getIItemStack(new ItemStack(GTItems.testTube, cells))), totalEu, CraftTweakerMC.getItemStacks(output)));
+    public static void addCellRecipe(IIngredient input1, int cells,  IItemStack[] output, @Optional(valueLong = 5000L)int totalEu) {
+        if (cells > 0){
+            GTCraftTweakerActions.apply(new IndustrialCentrifugeRecipeAction(GTCraftTweakerActions.of(input1), new RecipeInputItemStack(new ItemStack(GTItems.testTube, cells)), totalEu, CraftTweakerMC.getItemStacks(output)));
+        }else {
+            CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > " + "Cell count must be greater then 0!!");
+        }
     }
 
     private static final class IndustrialCentrifugeRecipeAction implements IAction {

@@ -20,7 +20,7 @@ import java.util.Locale;
 @ZenRegister
 public class GTBlastFurnaceSupport {
     @ZenMethod
-    public static void addRecipe(IItemStack[] output, @Optional(valueLong = 1000L)int totalEu, IIngredient[] input1) {
+    public static void addRecipe(IItemStack[] output, IIngredient[] input1, @Optional(valueLong = 1000L)int totalEu) {
         GTCraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerActions.of(input1), totalEu, CraftTweakerMC.getItemStacks(output)));
     }
 
