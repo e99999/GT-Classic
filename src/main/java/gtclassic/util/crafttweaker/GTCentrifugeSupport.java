@@ -22,17 +22,17 @@ import java.util.Locale;
 @ZenRegister
 public class GTCentrifugeSupport {
     @ZenMethod
-    public static void addRecipe(IIngredient input1, IIngredient input2, IItemStack[] output, @Optional(valueLong = 5000L) int totalEu) {
+    public static void addRecipe(IItemStack[] output, IIngredient input1, IIngredient input2, @Optional(valueLong = 3200L)int totalEu) {
         GTCraftTweakerActions.apply(new IndustrialCentrifugeRecipeAction(GTCraftTweakerActions.of(input1), GTCraftTweakerActions.of(input2), totalEu, CraftTweakerMC.getItemStacks(output)));
     }
 
     @ZenMethod
-    public static void addRecipe(IIngredient input1, IItemStack[] output, @Optional(valueLong = 5000L)int totalEu) {
+    public static void addRecipe(IItemStack[] output, IIngredient input1, @Optional(valueLong = 3200L)int totalEu) {
         GTCraftTweakerActions.apply(new IndustrialCentrifugeRecipeAction(GTCraftTweakerActions.of(input1), totalEu, CraftTweakerMC.getItemStacks(output)));
     }
 
     @ZenMethod
-    public static void addCellRecipe(IIngredient input1, int cells,  IItemStack[] output, @Optional(valueLong = 5000L)int totalEu) {
+    public static void addCellRecipe(IItemStack[] output, IIngredient input1, int cells, @Optional(valueLong = 3200L)int totalEu) {
         if (cells > 0){
             GTCraftTweakerActions.apply(new IndustrialCentrifugeRecipeAction(GTCraftTweakerActions.of(input1), new RecipeInputItemStack(new ItemStack(GTItems.testTube, cells)), totalEu, CraftTweakerMC.getItemStacks(output)));
         }else {
@@ -62,10 +62,14 @@ public class GTCentrifugeSupport {
 
         @Override
         public void apply() {
-            if (input2 != null){
-                GTTileCentrifuge.addRecipe(new IRecipeInput[]{input1, input2}, GTTileCentrifuge.totalEu(totalEu), output);
+            if (totalEu > 0){
+                if (input2 != null){
+                    GTTileCentrifuge.addRecipe(new IRecipeInput[]{input1, input2}, GTTileCentrifuge.totalEu(totalEu), output);
+                }else {
+                    GTTileCentrifuge.addRecipe(new IRecipeInput[]{input1}, GTTileCentrifuge.totalEu(totalEu), output);
+                }
             }else {
-                GTTileCentrifuge.addRecipe(new IRecipeInput[]{input1}, GTTileCentrifuge.totalEu(totalEu), output);
+                CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > " + "Eu amount must be greater then 0!!");
             }
 
         }

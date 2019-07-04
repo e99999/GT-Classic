@@ -20,7 +20,7 @@ import java.util.Locale;
 @ZenRegister
 public class GTBlastFurnaceSupport {
     @ZenMethod
-    public static void addRecipe(IItemStack[] output, IIngredient[] input1, @Optional(valueLong = 1000L)int totalEu) {
+    public static void addRecipe(IItemStack[] output, IIngredient[] input1, @Optional(valueLong = 12000L)int totalEu) {
         GTCraftTweakerActions.apply(new BlastFurnaceRecipeAction(GTCraftTweakerActions.of(input1), totalEu, CraftTweakerMC.getItemStacks(output)));
     }
 
@@ -39,6 +39,8 @@ public class GTBlastFurnaceSupport {
         public void apply() {
             if (input.length > 4){
                 CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > " + "Recipe can only have a max of four inputs!");
+            }else if (totalEu <= 0){
+                CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > " + "Eu amount must be greater then 0!!");
             }else {
                 GTTileMultiBlastFurnace.addRecipe(input, totalEu, output);
             }

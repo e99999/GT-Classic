@@ -1,5 +1,6 @@
 package gtclassic.util.crafttweaker;
 
+import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
@@ -37,7 +38,11 @@ public class GTFusionSupport {
 
         @Override
         public void apply() {
-            GTTileMultiFusion.addRecipe(new IRecipeInput[]{input1, input2}, GTTileMultiFusion.totalEu(totalEu), output);
+            if (totalEu > 0){
+                GTTileMultiFusion.addRecipe(new IRecipeInput[]{input1, input2}, GTTileMultiFusion.totalEu(totalEu), output);
+            }else {
+                CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > " + "Eu amount must be greater then 0!!");
+            }
         }
 
         @Override
