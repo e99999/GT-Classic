@@ -70,6 +70,31 @@ public class GTRecipeMultiInputList {
 		}
 	}
 
+	public void removeRecipe(String id) {
+		id = getRecipeID(recipeMap.keySet(), id, 0);
+		if (recipeMap.containsKey(id)) {
+
+			return;
+		}
+		MultiRecipe recipe = getFromID(id);
+		recipes.remove(recipe);
+		recipeMap.remove(id);
+		List<IRecipeInput> inputs = recipe.getInputs();
+		for (int i = 0; i < inputs.size(); i++) {
+			if (inputs.get(i) != null) {
+				for (ItemStack stack : inputs.get(i).getInputs()) {
+					ItemWithMeta meta = new ItemWithMeta(stack);
+					List<IRecipeInput> list = validInputs.get(meta);
+					if (list == null) {
+						list = new ArrayList<IRecipeInput>();
+						validInputs.remove(meta, list);
+					}
+					list.add(inputs.get(i));
+				}
+			}
+		}
+	}
+
 	public static String getRecipeID(Set<String> ids, String base, int index) {
 		String newString = base;
 		if (index > 0) {
