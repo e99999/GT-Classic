@@ -189,6 +189,10 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 8196);
 	}
 
+	public static void removeRecipe(String id){
+		RECIPE_LIST.removeRecipe(id);
+	}
+
 	@Override
 	public Map<BlockPos, IBlockState> provideStructure() {
 		Map<BlockPos, IBlockState> states = super.provideStructure();
