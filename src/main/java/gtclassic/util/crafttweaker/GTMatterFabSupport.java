@@ -3,13 +3,10 @@ package gtclassic.util.crafttweaker;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
-import crafttweaker.api.item.IItemStack;
-import crafttweaker.api.minecraft.CraftTweakerMC;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.recipe.GTRecipeUUAmplifier;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.platform.registry.Ic2Items;
-import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
