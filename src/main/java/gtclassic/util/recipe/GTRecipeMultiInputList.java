@@ -20,6 +20,7 @@ public class GTRecipeMultiInputList {
 	public static final MultiRecipe INVALID_RECIPE = new MultiRecipe(new ArrayList<IRecipeInput>(), new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid", 0);
 	protected List<MultiRecipe> recipes = new ArrayList<MultiRecipe>();
 	protected Map<String, MultiRecipe> recipeMap = new LinkedHashMap<String, MultiRecipe>();
+	protected Map<String, List<IRecipeInput>> massChangeRemoveMap = new LinkedHashMap<String, List<IRecipeInput>>();
 	protected Map<ItemWithMeta, List<IRecipeInput>> validInputs = new LinkedHashMap<ItemWithMeta, List<IRecipeInput>>();
 	String category;
 	int energy;
@@ -70,6 +71,12 @@ public class GTRecipeMultiInputList {
 		}
 	}
 
+	boolean massChanging = false;
+	public void startMassChange()
+	{
+		massChanging = true;
+	}
+
 	public void removeRecipe(String id) {;
 		if (!recipeMap.containsKey(id)) {
 			GTMod.logger.info("Recipe[" + id + "] doesn't exist for machine " + category);
@@ -78,20 +85,40 @@ public class GTRecipeMultiInputList {
 		MultiRecipe recipe = getFromID(id);
 		recipes.remove(recipe);
 		recipeMap.remove(id);
-		List<IRecipeInput> inputs = recipe.getInputs();
-		for (int i = 0; i < inputs.size(); i++) {
-			if (inputs.get(i) != null) {
-				for (ItemStack stack : inputs.get(i).getInputs()) {
-					ItemWithMeta meta = new ItemWithMeta(stack);
-					List<IRecipeInput> list = validInputs.get(meta);
-					if (list == null) {
-						list = new ArrayList<IRecipeInput>();
-						validInputs.remove(meta, list);
+		if(!massChanging)
+		{
+			rebuildValidInputs();
+		}
+	}
+
+	public void rebuildValidInputs(){
+		validInputs.clear();
+		for (MultiRecipe recipe : recipes){
+			List<IRecipeInput> inputs = recipe.getInputs();
+			for (int i = 0; i < inputs.size(); i++) {
+				if (inputs.get(i) != null) {
+					for (ItemStack stack : inputs.get(i).getInputs()) {
+						ItemWithMeta meta = new ItemWithMeta(stack);
+						List<IRecipeInput> list = validInputs.get(meta);
+						if (list == null) {
+							list = new ArrayList<IRecipeInput>();
+							validInputs.put(meta, list);
+						}
+						list.add(inputs.get(i));
 					}
-					list.add(inputs.get(i));
 				}
 			}
 		}
+	}
+
+	public void finishMassChange()
+	{
+		if(!massChanging)
+		{
+			return;
+		}
+		massChanging = false;
+		rebuildValidInputs();
 	}
 
 	public static String getRecipeID(Set<String> ids, String base, int index) {
