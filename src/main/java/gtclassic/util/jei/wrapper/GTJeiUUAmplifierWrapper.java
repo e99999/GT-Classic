@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import gtclassic.GTConfig;
 import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
@@ -40,6 +41,9 @@ public class GTJeiUUAmplifierWrapper implements IRecipeWrapper {
 		font.drawString("Progress: " + df.format(100.0 / (1000000.0 / value)) + "%", 0, 40, Color.black.getRGB());
 		font.drawString("Multiplier: " + value / 5000.0 + "X", 0, 50, Color.black.getRGB());
 		font.drawString("Cost: " + value + " EU", 0, 60, Color.black.getRGB());
+		if (GTConfig.debugMode){
+			font.drawString("Recipe Id: " + multiRecipe.getRecipeID(), 0, 70, Color.black.getRGB());
+		}
 	}
 
 	public MultiRecipe getMultiRecipe() {
