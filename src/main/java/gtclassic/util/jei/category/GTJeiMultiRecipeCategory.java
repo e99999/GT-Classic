@@ -1,5 +1,6 @@
 package gtclassic.util.jei.category;
 
+import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import ic2.api.recipe.IRecipeInput;
@@ -26,9 +27,13 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 		this.name = name;
 		displayName = new ItemStack(block).getDisplayName().replace(" Controller", "");
 		backgroundTexture = new ResourceLocation(GTMod.MODID, "textures/gui/default.png");
-		background = helper.createDrawable(backgroundTexture, 16, 16, 144, 90);
+		background = helper.createDrawable(backgroundTexture, 16, 16, 144, getHeight());
 		IDrawableStatic progressPic = helper.createDrawable(backgroundTexture, 176, 0, 20, 18);
 		progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
+	}
+
+	private int getHeight(){
+		return GTConfig.debugMode ? 100 : 90;
 	}
 
 	@Override
