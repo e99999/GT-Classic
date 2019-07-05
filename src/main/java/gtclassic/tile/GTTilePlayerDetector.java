@@ -1,7 +1,9 @@
 package gtclassic.tile;
 
+import java.util.List;
 import java.util.UUID;
 
+import gtclassic.util.int3;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
@@ -21,6 +23,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	AxisAlignedBB areaBB = null;
 	@NetworkField(index = 7)
 	private UUID owner;
+	int mode = 0;
 
 	public GTTilePlayerDetector() {
 		super(0, 32);
@@ -59,7 +62,42 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		if (!world.isAreaLoaded(pos, 3)) {
 			return false;
 		}
-		return world.isAnyPlayerWithinRangeAt(this.pos.getX(), this.pos.getY(), this.pos.getZ(), range);
+		if (this.mode == 0) {// any player check
+			return world.isAnyPlayerWithinRangeAt(this.pos.getX(), this.pos.getY(), this.pos.getZ(), range);
+		}
+		if (this.mode == 1) { // owner check
+			return ownerCheck();
+		}
+		if (this.mode == 2) {// enemy check
+			return !ownerCheck();
+		}
+		return false;
+	}
+
+	public void advanceMode() {
+		++this.mode;
+		if (this.mode >= 3) {
+			this.mode = 0;
+		}
+	}
+
+	public String getMode() {
+		if (mode == 0) {
+			return "Any Players";
+		}
+		if (mode == 1) {
+			return "Owner";
+		}
+		if (mode == 2) {
+			return "Not Owner";
+		}
+		return "Error";
+	}
+
+	public boolean ownerCheck() {
+		AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).asBlockPos()).grow(this.range);
+		List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class, area);
+		return (players.contains(world.getPlayerEntityByUUID(this.owner)));
 	}
 
 	public void setOwner(UUID user) {
@@ -91,6 +129,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		if (nbt.hasUniqueId("Owner")) {
 			this.owner = nbt.getUniqueId("Owner");
 		}
+		this.mode = nbt.getInteger("mode");
 	}
 
 	@Override
@@ -99,6 +138,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		if (this.owner != null) {
 			nbt.setUniqueId("Owner", this.owner);
 		}
+		nbt.setInteger("mode", this.mode);
 		return nbt;
 	}
 

@@ -12,35 +12,30 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.storage.WorldSavedData;
 
-public class IDSUStorage extends WorldSavedData
-{
+public class IDSUStorage extends WorldSavedData {
+
 	Map<UUID, EnergyWrapper> wrappers = new Object2ObjectOpenHashMap<UUID, EnergyWrapper>();
-	
-	public IDSUStorage(String name)
-	{
+
+	public IDSUStorage(String name) {
 		super(name);
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt)
-	{
+	public void readFromNBT(NBTTagCompound nbt) {
 		wrappers.clear();
 		NBTTagList list = nbt.getTagList("data", 10);
-		for(int i = 0;i<list.tagCount();i++)
-		{
+		for (int i = 0; i < list.tagCount(); i++) {
 			NBTTagCompound compound = list.getCompoundTagAt(i);
 			EnergyWrapper wrapper = new EnergyWrapper(this);
 			wrapper.setEnergy(compound.getInteger("Energy"));
 			wrappers.put(compound.getUniqueId("owner"), wrapper);
 		}
 	}
-	
+
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-	{
+	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		NBTTagList list = new NBTTagList();
-		for(Entry<UUID, EnergyWrapper> entry : wrappers.entrySet())
-		{
+		for (Entry<UUID, EnergyWrapper> entry : wrappers.entrySet()) {
 			NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setUniqueId("owner", entry.getKey());
 			nbt.setInteger("Energy", entry.getValue().getStoredEnergy());
@@ -49,93 +44,77 @@ public class IDSUStorage extends WorldSavedData
 		compound.setTag("data", list);
 		return compound;
 	}
-	
-	public EnergyWrapper getWrapper(UUID owner)
-	{
+
+	public EnergyWrapper getWrapper(UUID owner) {
 		EnergyWrapper wrapper = wrappers.get(owner);
-		if(wrapper == null)
-		{
+		if (wrapper == null) {
 			wrapper = new EnergyWrapper(this);
 			wrappers.put(owner, wrapper);
 		}
 		return wrapper;
 	}
-	
-	public static EnergyWrapper createDummy()
-	{
+
+	public static EnergyWrapper createDummy() {
 		return new DummyWrapper();
 	}
-	
-	public static class EnergyWrapper implements INetworkFieldData
-	{
+
+	public static class EnergyWrapper implements INetworkFieldData {
+
 		IDSUStorage wrapper;
 		int energy = 0;
-		
-		public EnergyWrapper(IDSUStorage wrapper)
-		{
+
+		public EnergyWrapper(IDSUStorage wrapper) {
 			this.wrapper = wrapper;
 		}
-		
-		public int getStoredEnergy()
-		{
+
+		public int getStoredEnergy() {
 			return energy;
 		}
-		
-		public void addEnergy(int amount)
-		{
-			energy+=amount;
-			if(wrapper != null)
-			{
+
+		public void addEnergy(int amount) {
+			energy += amount;
+			if (wrapper != null) {
 				wrapper.markDirty();
 			}
 		}
-		
-		public void setEnergy(int amount)
-		{
+
+		public void setEnergy(int amount) {
 			energy = amount;
-			if(wrapper != null)
-			{
+			if (wrapper != null) {
 				wrapper.markDirty();
 			}
 		}
-		
-		public void removeEnergy(int amount)
-		{
-			energy-=amount;
-			if(wrapper != null)
-			{
+
+		public void removeEnergy(int amount) {
+			energy -= amount;
+			if (wrapper != null) {
 				wrapper.markDirty();
 			}
 		}
-		
-		public boolean isDummy()
-		{
+
+		public boolean isDummy() {
 			return false;
 		}
 
 		@Override
-		public void read(IInputBuffer buffer)
-		{
+		public void read(IInputBuffer buffer) {
 			energy = buffer.readInt();
 		}
 
 		@Override
-		public void write(IOutputBuffer buffer)
-		{
+		public void write(IOutputBuffer buffer) {
 			buffer.writeInt(energy);
 		}
 	}
-	
-	public static class DummyWrapper extends EnergyWrapper
-	{
-		public DummyWrapper()
-		{
+
+	public static class DummyWrapper extends EnergyWrapper {
+
+		public DummyWrapper() {
 			super(null);
 		}
-		
+
 		@Override
-		public boolean isDummy()
-		{
+		public boolean isDummy() {
 			return true;
 		}
 	}

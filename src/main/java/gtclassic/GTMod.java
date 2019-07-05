@@ -37,7 +37,7 @@ public class GTMod {
 	public static Logger logger;
 	// public static boolean dev = !new
 	// File(GTMod.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
-	private static boolean quickDebug = true;
+	private static boolean quickDebug = false;
 	public static boolean debugMode = GTConfig.debugMode || quickDebug;
 
 	@Mod.EventHandler

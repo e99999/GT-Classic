@@ -34,8 +34,8 @@ public class GTRecipeUUAmplifier {
 				value = 5000;
 			}
 			if (element.getNumber() != 77) {
-			addAmplifierToJei(new IRecipeInput[] {
-					element.getInput() }, value(value), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
+				addAmplifierToJei(new IRecipeInput[] {
+						element.getInput() }, value(value), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
 			}
 		}
 	}

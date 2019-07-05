@@ -17,6 +17,7 @@ import gtclassic.tile.GTTileWorktable;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusion;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
+import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.block.personal.base.misc.IOwnerBlock;
@@ -29,9 +30,11 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -143,6 +146,21 @@ public class GTBlockMachine extends GTBlockMultiID {
 			UUID owner = placer.getUniqueID();
 			((IOwnerBlock) tile).setOwner(owner);
 		}
+	}
+
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack hStack = playerIn.getHeldItemMainhand();
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (hStack.isEmpty() && tile instanceof GTTilePlayerDetector
+				&& ((GTTilePlayerDetector) tile).canAccess(playerIn.getUniqueID())) {
+			((GTTilePlayerDetector) tile).advanceMode();
+			if (IC2.platform.isSimulating()) {
+				IC2.platform.messagePlayer(playerIn, "Mode: " + ((GTTilePlayerDetector) tile).getMode());
+			}
+		}
+		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 
 	@Override

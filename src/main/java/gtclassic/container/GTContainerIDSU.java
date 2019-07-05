@@ -28,8 +28,8 @@ public class GTContainerIDSU extends ContainerTileComponent<GTTileIDSU> {
 
 	public GTContainerIDSU(InventoryPlayer player, GTTileIDSU tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotDischarge(tile, 0, 1, 128, 50));
-		this.addSlotToContainer(new SlotCharge(tile, 0, 0, 128, 14));
+		this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50));
+		this.addSlotToContainer(new SlotCharge(tile, tile.tier, 0, 128, 14));
 		for (int i = 0; i < 4; ++i) {
 			this.addSlotToContainer(new SlotArmor(player, 3 - i, VALID_EQUIPMENT_SLOTS[i], 152, 5 + i * 18));
 		}
