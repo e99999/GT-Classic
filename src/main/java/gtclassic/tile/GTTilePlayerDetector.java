@@ -80,10 +80,8 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		}
 	}
 
-	public String getMode()
-	{
-	    switch(mode)
-		{
+	public String getMode() {
+		switch (mode) {
 		case 0:
 			return "Any Players";
 		case 1:
