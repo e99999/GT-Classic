@@ -42,6 +42,9 @@ public class GTMod {
 	public synchronized void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
 		proxy.preInit(event);
+		if (quickDebug){
+			GTConfig.debugMode = true;
+		}
 		logger.info("Hello from Gregtech Classic!");
 		GTFluids.registerFluids();
 		GTBlocks.registerTiles();

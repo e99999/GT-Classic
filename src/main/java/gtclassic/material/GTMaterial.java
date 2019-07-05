@@ -95,6 +95,10 @@ public class GTMaterial {
 		generatedMap.put(name, this);
 	}
 
+	public void removeMapEntries(String name){
+		generatedMap.remove(name);
+	}
+
 	public boolean hasFlag(GTMaterialFlag flag) {
 		return (mask & flag.getMask()) != 0;
 	}
