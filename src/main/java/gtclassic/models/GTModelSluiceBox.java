@@ -24,6 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 @EventBusSubscriber(Side.CLIENT)
 public class GTModelSluiceBox extends BaseModel {
+
 	private static GTModelSluiceBox instance = null;
 
 	public static GTModelSluiceBox getModel() {
@@ -48,7 +49,6 @@ public class GTModelSluiceBox extends BaseModel {
 	@Override
 	public void init() {
 		baker = GTModelBaker.getBaker(Ic2Icons.getTextures(GTMod.MODID + "_sluicebox")[0]);
-
 		// bottom main part
 		baker.addModel(0, 40, 1, 0, 0, 14, 1, 16, true);
 		// bottom sides
@@ -65,7 +65,6 @@ public class GTModelSluiceBox extends BaseModel {
 		// top short sides
 		baker.addModel(0, 0, 0, 7, 4, 1, 6, 12, true);
 		baker.addModel(7, 0, 15, 7, 4, 1, 6, 12, true);
-
 		baker.bake();
 	}
 
@@ -91,7 +90,6 @@ public class GTModelSluiceBox extends BaseModel {
 
 	@Override
 	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType cameraTransformType) {
-		return Pair.of(this,
-				PerspectiveMapWrapper.handlePerspective(this, getCamera(), cameraTransformType).getRight());
+		return Pair.of(this, PerspectiveMapWrapper.handlePerspective(this, getCamera(), cameraTransformType).getRight());
 	}
 }

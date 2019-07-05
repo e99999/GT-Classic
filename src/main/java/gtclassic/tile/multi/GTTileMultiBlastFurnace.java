@@ -7,14 +7,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import gtclassic.GTBlocks;
+import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBlastFurnace;
 import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
 import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.recipe.GTRecipeProcessing;
+import gtclassic.util.GTValues;
 import gtclassic.util.int3;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
@@ -27,18 +30,18 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.item.recipe.entry.RecipeInputCombined;
-import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
@@ -46,16 +49,14 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3 };
 	protected static final int[] slotOutputs = { 4, 5, 6, 7 };
-
-	public static final IBlockState casingMachine = GTMaterialGen
-			.getBlock(GTMaterial.RefinedIron, GTMaterialFlag.CASING).getDefaultState();
-
-	public static final GTMultiInputRecipeList RECIPE_LIST = new GTMultiInputRecipeList("gt.blastfurnace");
-	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID,
-			"textures/gui/blastfurnace.png");
+	public IFilter filter = new MachineFilter(this);
+	public static final IBlockState casingState = GTBlocks.casingReinforced.getDefaultState();
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.blastfurnace");
+	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/blastfurnace.png");
+	private static final int defaultEu = 120;
 
 	public GTTileMultiBlastFurnace() {
-		super(8, 2, 20, 32);
+		super(8, 2, defaultEu, 128);
 		maxEnergy = 1000;
 	}
 
@@ -64,23 +65,11 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
-		handler.registerDefaultSlotsForSide(RotationList.UP, slotInputs);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInputs);
+		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
+		handler.registerInputFilter(filter, slotInputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
-	}
-
-	@Override
-	public TileEntity getImportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(1).forward(1).asBlockPos());
-	}
-
-	@Override
-	public TileEntity getExportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(1).forward(1).asBlockPos());
 	}
 
 	@Override
@@ -90,7 +79,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	@Override
 	public Set<UpgradeType> getSupportedTypes() {
-		return new LinkedHashSet(Arrays.asList(UpgradeType.values()));
+		return new LinkedHashSet<>(Arrays.asList(UpgradeType.values()));
 	}
 
 	@Override
@@ -110,8 +99,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	@Override
 	public IFilter[] getInputFilters(int[] slots) {
-		IFilter[] filter = { new MachineFilter(this) };
-		return null;
+		return new IFilter[] { filter };
 	}
 
 	@Override
@@ -130,7 +118,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	}
 
 	@Override
-	public GTMultiInputRecipeList getRecipeList() {
+	public GTRecipeMultiInputList getRecipeList() {
 		return RECIPE_LIST;
 	}
 
@@ -142,221 +130,71 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	public ResourceLocation getStartSoundFile() {
 		return Ic2Sounds.generatorLoop;
 	}
-	
-	
 
-	// @formatter:off
 	public static void init() {
-		
-		int LOW_TIME = 8000;
-		int MED_TIME = 16000;
-		int LONG_TIME = 32000;
-
-		addRecipe(new IRecipeInput[] { 
-				input("ingotIron", 1)}, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustIron", 1)}, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 1));
-
-		addRecipe(new IRecipeInput[] { 
-				input("oreIron", 1), 
-				input("dustCalcite", 1) }, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
-
-		addRecipe(new IRecipeInput[] { 
-				input("dustPyrite", 1), 
-				input("dustCalcite", 1) }, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("orePyrite", 1), 
-				input("dustCalcite", 1) }, 
-				(LOW_TIME),
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
-
-		addRecipe(new IRecipeInput[] { 
-				input("dustMagnetite", 1), 
-				input("dustCalcite", 1) },
-				(LOW_TIME), 
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreMagnetite", 1), 
-				input("dustCalcite", 1) },
-				(LOW_TIME), 
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
-
-		addRecipe(new IRecipeInput[] { 
-				input("dustLimonite", 1), 
-				input("dustCalcite", 1) },
-				(LOW_TIME), 
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreLimonite", 1), 
-				input("dustCalcite", 1) },
-				(LOW_TIME), 
-				GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
-		
-		IRecipeInput validSteelIron = new RecipeInputCombined(1,new IRecipeInput[] { 
-				new RecipeInputOreDict("ingotIron", 1), 
-				new RecipeInputOreDict("dustIron", 1), 
-				new RecipeInputOreDict("ingotRefinedIron", 1)
-				});
-
-		addRecipe(new IRecipeInput[] { 
-				validSteelIron, 
-				input("dustCoal", 2) },
-				(MED_TIME), 
-				GTMaterialGen.getIngot(GTMaterial.Steel, 1), 
-				GTMaterialGen.getDust(GTMaterial.DarkAshes, 2));
-		
-		addRecipe(new IRecipeInput[] { 
-				validSteelIron, 
-				input("dustSmallCarbon", 1) },
-				(MED_TIME), 
-				GTMaterialGen.getIngot(GTMaterial.Steel, 1));
-
-		addRecipe(new IRecipeInput[] { 
-				input("dustChromite", 1) }, 
-				(LONG_TIME),
-				GTMaterialGen.getNugget(GTMaterial.Chrome, 6), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 1));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreChromite", 1) }, 
-				(LONG_TIME), 
-				GTMaterialGen.getNugget(GTMaterial.Chrome, 6),
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 2));
-
-		addRecipe(new IRecipeInput[] { 
-				input("dustMolybdenite", 3) }, 
-				(LONG_TIME),
-				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 3));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("oreMolybdenite", 3) }, 
-				(LONG_TIME),
-				GTMaterialGen.getHotIngot(GTMaterial.Molybdenum, 1), 
-				GTMaterialGen.getSmallDust(GTMaterial.Slag, 6));
-
-		addRecipe(new IRecipeInput[] { 
-				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)), }, 
-				(LONG_TIME),
-				GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
-
-		addRecipe(new IRecipeInput[] { 
-				input("oreIridium", 1), }, 
-				(LONG_TIME),
-				GTMaterialGen.getHotIngot(GTMaterial.Iridium, 1));
-		
-		//alloy recipes
-		
-		IRecipeInput validStainlessIron = new RecipeInputCombined(4,new IRecipeInput[] { 
-				new RecipeInputOreDict("ingotIron", 4), 
-				new RecipeInputOreDict("dustIron", 4), 
-				new RecipeInputOreDict("ingotRefinedIron", 4),
-				new RecipeInputOreDict("dustSteel", 4), 
-				new RecipeInputOreDict("ingotSteel", 4)
-				});
-		
-		addRecipe(new IRecipeInput[] { 
-				validStainlessIron, 
-				metal("Invar", 3), 
-				metal("Manganese", 1), 
-				metal("Chrome", 1), 
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
-		
-		addRecipe(new IRecipeInput[] { 
-				validStainlessIron, 
-				metal("Invar", 3), 
-				metal("Niobium", 1), 
-				metal("Chrome", 1), 
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.StainlessSteel, 9));
-		
-		addRecipe(new IRecipeInput[] { 
-				metal("Cobalt", 5), 
-				metal("Chrome", 2), 
-				metal("Nickel", 1), 
-				metal("Molybdenum", 1), 
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.Ultimet, 9));
-		
-		addRecipe(new IRecipeInput[] { 
-				metal("Niobium", 1), 
-				metal("Titanium", 1), 
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.NiobiumTitanium, 2));
-		
-		addRecipe(new IRecipeInput[] { 
-				input("dustZirconium", 7),
-				metal("Niobium", 1),
-				metal("Tin", 1),
-				},
-				MED_TIME, 
-				GTMaterialGen.getIngot(GTMaterial.Zircaloy, 9));
-		
-		
-
+		/** Iron Processing **/
+		addRecipe(new IRecipeInput[] { input("oreIron", 1),
+				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 3));
+		addRecipe(new IRecipeInput[] { input("dustPyrite", 3),
+				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2));
+		/** Bronze **/
+		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 3),
+				metal("Tin", 1) }, 4000, GTMaterialGen.getIc2(Ic2Items.bronzeIngot, 4));
+		/** Electrum **/
+		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Silver", 1),
+				metal("Gold", 1) }, 4000, GTMaterialGen.getIngot(GTMaterial.Electrum, 2));
+		/** Steel **/
+		addRecipe(new IRecipeInput[] { input("dustSteel", 1) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+		addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1),
+				input("dustCoal", 2) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+		addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1),
+				input("dustCarbon", 1) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
 	}
-	// @formatter:on
+
+	public static void removals() {
+		// Remove smelting from mods who dont respect my authority
+		if (GTConfig.ingotsRequireBlastFurnace) {
+			for (Item item : Item.REGISTRY) {
+				NonNullList<ItemStack> items = NonNullList.create();
+				item.getSubItems(CreativeTabs.SEARCH, items);
+				for (ItemStack stack : items) {
+					String oreNames = GTValues.getOreName(stack);
+					if (oreNames.contains("ingotIrdium") || oreNames.contains("ingotTungsten")
+							|| oreNames.contains("ingotChrome") || oreNames.contains("ingotTitanium")) {
+						GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
+					}
+				}
+			}
+		}
+	}
+
+	public static void postInit() {
+		/** Titanium **/
+		addRecipe(new IRecipeInput[] {
+				input("dustTitanium", 1) }, 128000, GTMaterialGen.getIngot(GTMaterial.Titanium, 1));
+		/** Chrome **/
+		addRecipe(new IRecipeInput[] { input("dustChrome", 1) }, 102400, GTMaterialGen.getIngot(GTMaterial.Chrome, 1));
+		/** Iridium **/
+		addRecipe(new IRecipeInput[] {
+				input("dustIridium", 1) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
+		addRecipe(new IRecipeInput[] { input("oreIridium", 1) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
+		addRecipe(new IRecipeInput[] {
+				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
+		/** Tungsten **/
+		addRecipe(new IRecipeInput[] {
+				input("dustTungsten", 1) }, 256000, GTMaterialGen.getIngot(GTMaterial.Tungsten, 1));
+	}
 
 	public static IRecipeModifier[] totalEu(int total) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 20) - 100) };
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / defaultEu) - 100) };
 	}
 
-	/**
-	 * Adds a recipe not only to the blast furnace but to the refractory as well
-	 */
 	public static void addRecipe(IRecipeInput[] inputs, int totalEu, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
 		IRecipeModifier[] modifiers = totalEu(totalEu);
 		for (IRecipeInput input : inputs) {
 			inlist.add(input);
-		}
-		if (inlist.size() == 1) {
-			inlist.add(basicswitch);
-		}
-		NBTTagCompound mods = new NBTTagCompound();
-		for (IRecipeModifier modifier : modifiers) {
-			modifier.apply(mods);
-		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
-		addRecipe(inlist, new MachineOutput(mods, outlist));
-		GTTileMultiRefractory.addRecipe(inputs, totalEu, outputs);
-	}
-
-	private static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
-		if (inlist.size() == 1) {
-			inlist.add(basicswitch);
 		}
 		NBTTagCompound mods = new NBTTagCompound();
 		for (IRecipeModifier modifier : modifiers) {
@@ -369,48 +207,47 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getDisplayName(), 20);
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), defaultEu);
 	}
-	
+
 	@Override
-	public Map<BlockPos, IBlockState> provideStructure()
-	{
+	public Map<BlockPos, IBlockState> provideStructure() {
 		Map<BlockPos, IBlockState> states = super.provideStructure();
 		int3 dir = new int3(getPos(), getFacing());
-		for (int i = 0; i < 4; i++) {// above tile
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+		for (int i = 0; i < 3; i++) {// above tile
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
-		states.put(dir.left(1).asBlockPos(), casingMachine);
-		for (int i = 0; i < 4; i++) {
-			states.put(dir.down(1).asBlockPos(), casingMachine);
+		states.put(dir.left(1).asBlockPos(), casingState);
+		for (int i = 0; i < 3; i++) {
+			states.put(dir.down(1).asBlockPos(), casingState);
 		}
-		states.put(dir.back(1).asBlockPos(), casingMachine);
-		for (int i = 0; i < 4; i++) {
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+		states.put(dir.back(1).asBlockPos(), casingState);
+		for (int i = 0; i < 3; i++) {
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
-		states.put(dir.right(1).asBlockPos(), casingMachine);
-		for (int i = 0; i < 4; i++) {
-			states.put(dir.down(1).asBlockPos(), casingMachine);
+		states.put(dir.right(1).asBlockPos(), casingState);
+		for (int i = 0; i < 3; i++) {
+			states.put(dir.down(1).asBlockPos(), casingState);
 		}
-		states.put(dir.right(1).asBlockPos(), casingMachine);
-		for (int i = 0; i < 4; i++) {
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+		states.put(dir.right(1).asBlockPos(), casingState);
+		for (int i = 0; i < 3; i++) {
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
-		states.put(dir.back(1).asBlockPos(), casingMachine);
-		for (int i = 0; i < 4; i++) {
-			states.put(dir.down(1).asBlockPos(), casingMachine);
+		states.put(dir.back(1).asBlockPos(), casingState);
+		for (int i = 0; i < 3; i++) {
+			states.put(dir.down(1).asBlockPos(), casingState);
 		}
-		states.put(dir.left(1).asBlockPos(), casingMachine);
-		for (int i = 0; i < 4; i++) {
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+		states.put(dir.left(1).asBlockPos(), casingState);
+		for (int i = 0; i < 3; i++) {
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
-		states.put(dir.left(1).asBlockPos(), casingMachine);
-		for (int i = 0; i < 4; i++) {
-			states.put(dir.down(1).asBlockPos(), casingMachine);
+		states.put(dir.left(1).asBlockPos(), casingState);
+		for (int i = 0; i < 3; i++) {
+			states.put(dir.down(1).asBlockPos(), casingState);
 		}
-		states.put(dir.forward(2).right(2).asBlockPos(), casingMachine);
-		for (int i = 0; i < 4; i++) {
-			states.put(dir.up(1).asBlockPos(), casingMachine);
+		states.put(dir.forward(2).right(2).asBlockPos(), casingState);
+		for (int i = 0; i < 3; i++) {
+			states.put(dir.up(1).asBlockPos(), casingState);
 		}
 		return states;
 	}
@@ -422,84 +259,79 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		}
 		// we doing it "big math" style not block by block
 		int3 dir = new int3(getPos(), getFacing());
-
-		for (int i = 0; i < 4; i++) {// above tile
-			if (!(isMachineCasing(dir.up(1)))) {
+		for (int i = 0; i < 3; i++) {// above tile
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.left(1))) {// left
+		if (!isCasing(dir.left(1))) {// left
 			return false;
 		}
-		for (int i = 0; i < 4; i++) {
-			if (!(isMachineCasing(dir.down(1)))) {
+		for (int i = 0; i < 3; i++) {
+			if (!(isCasing(dir.down(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.back(1))) {// back
+		if (!isCasing(dir.back(1))) {// back
 			return false;
 		}
-		for (int i = 0; i < 4; i++) {
-			if (!(isMachineCasing(dir.up(1)))) {
+		for (int i = 0; i < 3; i++) {
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.right(1))) {// right
+		if (!isCasing(dir.right(1))) {// right
 			return false;
 		}
-		for (int i = 0; i < 4; i++) {
-			if (!(isMachineCasing(dir.down(1)))) {
+		for (int i = 0; i < 3; i++) {
+			if (!(isCasing(dir.down(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.right(1))) {// right
+		if (!isCasing(dir.right(1))) {// right
 			return false;
 		}
-		for (int i = 0; i < 4; i++) {
-			if (!(isMachineCasing(dir.up(1)))) {
+		for (int i = 0; i < 3; i++) {
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-
-		if (!isMachineCasing(dir.back(1))) {// back
+		if (!isCasing(dir.back(1))) {// back
 			return false;
 		}
-		for (int i = 0; i < 4; i++) {
-			if (!(isMachineCasing(dir.down(1)))) {
+		for (int i = 0; i < 3; i++) {
+			if (!(isCasing(dir.down(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.left(1))) {// left
+		if (!isCasing(dir.left(1))) {// left
 			return false;
 		}
-		for (int i = 0; i < 4; i++) {
-			if (!(isMachineCasing(dir.up(1)))) {
+		for (int i = 0; i < 3; i++) {
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.left(1))) {// left
+		if (!isCasing(dir.left(1))) {// left
 			return false;
 		}
-		for (int i = 0; i < 4; i++) {
-			if (!(isMachineCasing(dir.down(1)))) {
+		for (int i = 0; i < 3; i++) {
+			if (!(isCasing(dir.down(1)))) {
 				return false;
 			}
 		}
-		if (!isMachineCasing(dir.forward(2).right(2))) {// missing front right column
+		if (!isCasing(dir.forward(2).right(2))) {// missing front right column
 			return false;
 		}
-		for (int i = 0; i < 4; i++) {
-			if (!(isMachineCasing(dir.up(1)))) {
+		for (int i = 0; i < 3; i++) {
+			if (!(isCasing(dir.up(1)))) {
 				return false;
 			}
 		}
-
 		return true;
-
 	}
 
-	public boolean isMachineCasing(int3 pos) {
-		return world.getBlockState(pos.asBlockPos()) == casingMachine;
+	public boolean isCasing(int3 pos) {
+		return world.getBlockState(pos.asBlockPos()) == casingState;
 	}
-
 }

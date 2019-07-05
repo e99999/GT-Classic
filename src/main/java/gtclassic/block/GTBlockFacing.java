@@ -27,6 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class GTBlockFacing extends BlockCommonContainer
 		implements IBlockStateLoader, ICustomModeledBlock, IFacingBlock {
+
 	public static PropertyDirection FACINGS = PropertyDirection.create("facing", Arrays.asList(EnumFacing.VALUES));
 
 	public GTBlockFacing(Material materialIn) {

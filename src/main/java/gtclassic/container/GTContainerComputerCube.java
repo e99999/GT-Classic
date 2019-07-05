@@ -9,6 +9,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GTContainerComputerCube extends ContainerTileComponent<GTTileComputerCube> {
+
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/computercube0.png");
 
 	public GTContainerComputerCube(InventoryPlayer player, GTTileComputerCube tile) {
@@ -31,5 +32,4 @@ public class GTContainerComputerCube extends ContainerTileComponent<GTTileComput
 	public int guiInventorySize() {
 		return 0;
 	}
-
 }

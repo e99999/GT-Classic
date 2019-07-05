@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTCreativeTab extends CreativeTabs {
+
 	public GTCreativeTab(String label) {
 		super(label);
 		setBackgroundImageName("item_search.png");
@@ -22,5 +23,4 @@ public class GTCreativeTab extends CreativeTabs {
 	public boolean hasSearchBar() {
 		return true;
 	}
-
 }

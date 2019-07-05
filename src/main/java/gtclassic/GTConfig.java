@@ -7,20 +7,19 @@ import net.minecraftforge.common.config.Configuration;
 
 public class GTConfig {
 
-	private static final String CATEGORY_GENERAL = "general";
+	private static final String CATEGORY_CONFIG = "config";
 	private static final String CATEGORY_GENERATION = "generation";
-
-	// general
-	public static boolean harderPlates = false;
-	public static boolean harderRods = false;
-	public static boolean harderGears = false;
-	public static boolean harderRefractory = true;
-
+	private static final String CATEGORY_MODCOMPAT = "modcompatability";
+	// config
+	public static boolean debugMode = false;
 	// generation
-	public static boolean genOverworldOre = true;
-	public static boolean genNetherOre = true;
-	public static boolean genEndOre = true;
-	public static boolean genBedrockOre = true;
+	public static boolean genEndIridium = true;
+	public static boolean genOverworldIridium = true;
+	public static boolean genOverworldRuby = true;
+	public static boolean genOverworldSapphire = true;
+	public static boolean genOverworldBauxite = true;
+	// mod compat options
+	public static boolean ingotsRequireBlastFurnace = true;
 
 	public static void readConfig() {
 		Configuration cfg = GTProxyCommon.config;
@@ -28,6 +27,7 @@ public class GTConfig {
 			cfg.load();
 			initGeneralConfig(cfg);
 			initGenerationConfig(cfg);
+			initCompatConfig(cfg);
 		} catch (Exception e1) {
 			GTMod.logger.log(Level.ERROR, "Problem loading config file!", e1);
 		} finally {
@@ -37,22 +37,22 @@ public class GTConfig {
 		}
 	}
 
-	// @formatter:off
 	private static void initGeneralConfig(Configuration cfg) {
-		cfg.addCustomCategoryComment(CATEGORY_GENERAL, "General configuration");
-		harderPlates = cfg.getBoolean("harderPlates", CATEGORY_GENERAL, harderPlates,"Hand crafting plates takes two ingots");
-		harderRods = cfg.getBoolean("harderRods", CATEGORY_GENERAL, harderRods, "Hand crafting of rods output reduced to 1 from 2");
-		harderGears = cfg.getBoolean("harderGears", CATEGORY_GENERAL, harderGears, "Hand crafting of gears takes 4 extra rods");
-		harderRefractory = cfg.getBoolean("harderRefractory", CATEGORY_GENERAL, harderRefractory, "Enables larger refratory structure coming in the next update");
+		cfg.addCustomCategoryComment(CATEGORY_CONFIG, "Configuration");
+		debugMode = cfg.getBoolean("debugMode", CATEGORY_CONFIG, debugMode, "Enables debug logger for additional information");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {
 		cfg.addCustomCategoryComment(CATEGORY_GENERATION, "Generation configuration");
-		genOverworldOre = cfg.getBoolean("genOverworldOre", CATEGORY_GENERATION, genOverworldOre, "Generate stone, sand, and gravel ores in the Overworld");
-		genNetherOre = cfg.getBoolean("genNetherOre", CATEGORY_GENERATION, genNetherOre, "Generate ores in the Nether");
-		genEndOre = cfg.getBoolean("genEndOre", CATEGORY_GENERATION, genEndOre, "Generate ores in the End");
-		genBedrockOre = cfg.getBoolean("genBedrockOre", CATEGORY_GENERATION, genBedrockOre, "Generate ores in bedrock");
+		genEndIridium = cfg.getBoolean("genEndIridium", CATEGORY_GENERATION, genEndIridium, "Generate Iridium ore in the end");
+		genOverworldIridium = cfg.getBoolean("genOverworldIridium", CATEGORY_GENERATION, genOverworldIridium, "Generate Iridium ore in the overworld");
+		genOverworldRuby = cfg.getBoolean("genOverworldRuby", CATEGORY_GENERATION, genOverworldRuby, "Generate Ruby ore in the overworld");
+		genOverworldSapphire = cfg.getBoolean("genOverworldSapphire", CATEGORY_GENERATION, genOverworldSapphire, "Generate Sapphire ore in the overworld");
+		genOverworldBauxite = cfg.getBoolean("genOverworldBauxite", CATEGORY_GENERATION, genOverworldBauxite, "Generate Bauxite ore in the overworld");
 	}
-	// @formatter:on
 
+	private static void initCompatConfig(Configuration cfg) {
+		cfg.addCustomCategoryComment(CATEGORY_MODCOMPAT, "Mod compatability options");
+		ingotsRequireBlastFurnace = cfg.getBoolean("ingotsRequireBlastFurnace", CATEGORY_MODCOMPAT, ingotsRequireBlastFurnace, "Tries to remove vanilla smelting of end game metals from all loaded mods");
+	}
 }

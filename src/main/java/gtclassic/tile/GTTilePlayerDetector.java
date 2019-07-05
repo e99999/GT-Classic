@@ -7,8 +7,8 @@ import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.block.personal.base.misc.IPersonalInventory;
-import ic2.core.platform.player.TeamManager;
 import ic2.core.util.obj.IRedstoneProvider;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -19,15 +19,14 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 
 	double range = 8.0D;
 	AxisAlignedBB areaBB = null;
-	private UUID owner;
 	@NetworkField(index = 7)
-	private boolean allowTeam = false;
+	private UUID owner;
 
 	public GTTilePlayerDetector() {
 		super(0, 32);
 		maxEnergy = 1000;
 		setWorld(world);
-		this.addNetworkFields(new String[] { "owner", "allowTeam" });
+		this.addNetworkFields(new String[] { "owner" });
 	}
 
 	@Override
@@ -42,7 +41,6 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 			this.setActive(checkArea());
 			world.notifyNeighborsOfStateChange(pos, blockType, true);
 		}
-
 	}
 
 	public void checkEnergy() {
@@ -79,7 +77,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		} else if (IC2.platform.isOp(user)) {
 			return true;
 		} else {
-			return this.allowTeam ? TeamManager.instance.isSameTeam(this.owner, user) : false;
+			return false;
 		}
 	}
 
@@ -90,7 +88,6 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.allowTeam = nbt.getBoolean("AllowTeam");
 		if (nbt.hasUniqueId("Owner")) {
 			this.owner = nbt.getUniqueId("Owner");
 		}
@@ -99,7 +96,6 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setBoolean("AllowTeam", this.allowTeam);
 		if (this.owner != null) {
 			nbt.setUniqueId("Owner", this.owner);
 		}
@@ -111,4 +107,13 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		return this.isActive ? 15 : 0;
 	}
 
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return canAccess(player.getUniqueID()) && facing != getFacing() && facing.getAxis().isHorizontal();
+	}
+
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return canAccess(player.getUniqueID());
+	}
 }

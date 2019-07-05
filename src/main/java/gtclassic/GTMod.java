@@ -6,11 +6,9 @@ import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
-import gtclassic.tile.GTTileShredder;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
-import gtclassic.util.GTValues;
 import gtclassic.util.energy.MultiBlockHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,29 +21,33 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = GTMod.MODID, name = GTMod.MODNAME, version = GTMod.MODVERSION, dependencies = GTMod.DEPENDS, useMetadata = true)
-
 public class GTMod {
 
 	public static final String MODID = "gtclassic";
 	public static final String MODNAME = "GregTech Classic";
-	public static final String MODVERSION = "@VERSION@";
+	public static final String MODVERSION = "0.0.8";
 	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
 	@SidedProxy(clientSide = MODID + ".proxy.GTProxyClient", serverSide = MODID + ".proxy.GTProxyServer")
 	public static GTProxyCommon proxy;
-
 	@Mod.Instance
 	public static GTMod instance;
 	public static Logger logger;
+	// public static boolean dev = !new
+	// File(GTMod.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
+	private static boolean quickDebug = false;
+	public static boolean debugMode = GTConfig.debugMode || quickDebug;
 
 	@Mod.EventHandler
 	public synchronized void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
 		proxy.preInit(event);
+		logger.info("Hello from Gregtech Classic!");
 		GTFluids.registerFluids();
 		GTBlocks.registerTiles();
 		GTMaterialGen.init();
 		GTBlocks.registerBlocks();
+		GTItems.initBaubleItems();
 		GTItems.registerItems();
 		GTMaterialDict.init();
 		GTOreDict.init();
@@ -61,19 +63,26 @@ public class GTMod {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
-		logger.info("Hello from Gregtech Classic!");
-		if (GTValues.debugMode) {
-			logger.info(
-					"WARNING [Gregtech Classic is still in debug mode, this is very very bad if you are not a dev!]");
-		}
-		GTTileShredder.collectMaceratorRecipe();
 		proxy.postInit(e);
 		MultiBlockHelper.INSTANCE.init();
+		GTRecipe.postInit();
 	}
 
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
-		event.registerServerCommand(new GTCommandTeleport());
+		if (debugMode) {
+			event.registerServerCommand(new GTCommandTeleport());
+		}
 	}
 
+	/**
+	 * A logger that will only work if debug mode is enabled
+	 * 
+	 * @param message
+	 */
+	public static void debugLogger(String message) {
+		if (debugMode) {
+			logger.info(message);
+		}
+	}
 }

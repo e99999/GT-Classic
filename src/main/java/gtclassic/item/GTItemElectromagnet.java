@@ -33,7 +33,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedTexturedItem {
 
 	public ModelResourceLocation[] model = new ModelResourceLocation[2];
-
 	public static final String active = "ImActive";
 	int range = 7;
 	double speed = 0.04D;
@@ -52,17 +51,6 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	}
 
 	@Override
-	public boolean hasContainerItem(ItemStack itemStack) {
-		return true;
-	}
-
-	@Override
-	public ItemStack getContainerItem(ItemStack itemStack) {
-		ItemStack copy = itemStack.copy();
-		return copy.attemptDamageItem(1, itemRand, null) ? ItemStack.EMPTY : copy;
-	}
-
-	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
 	}
@@ -74,16 +62,13 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(playerIn.getHeldItem(handIn));
 			boolean result = !nbt.getBoolean(active);
 			nbt.setBoolean(active, result);
-
 		}
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
 
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected) {
-
 		NBTTagCompound nbt = StackUtil.getNbtData((stack));
-
 		if (worldIn.getTotalWorldTime() % 2 == 0) {
 			if (!(entityIn instanceof EntityPlayer) || !nbt.getBoolean(active)) {
 				this.setDamage(stack, 0);
@@ -93,8 +78,8 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 			double y = entityIn.posY + 1.5;
 			double z = entityIn.posZ;
 			int pulled = 0;
-			for (EntityItem item : worldIn.getEntitiesWithinAABB(EntityItem.class,
-					new AxisAlignedBB(x, y, z, x + 1, y + 1, z + 1).grow(range))) {
+			for (EntityItem item : worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(x, y, z, x + 1, y
+					+ 1, z + 1).grow(range))) {
 				if (!canPull(stack) || pulled > 200) {
 					break;
 				}
@@ -120,7 +105,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[5 + meta];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[27 + meta];
 	}
 
 	@Override
@@ -133,8 +118,8 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 		int damage = stack.getItemDamage();
 		ResourceLocation location = this.getRegistryName();
 		String name = stack.getUnlocalizedName();
-		this.model[damage] = new ModelResourceLocation(
-				location.getResourceDomain() + name.substring(name.indexOf(".") + 1) + damage, "inventory");
+		this.model[damage] = new ModelResourceLocation(location.getResourceDomain()
+				+ name.substring(name.indexOf(".") + 1) + damage, "inventory");
 		return this.model[damage];
 	}
 
@@ -148,5 +133,4 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	public int getTextureEntry(int var1) {
 		return 0;
 	}
-
 }

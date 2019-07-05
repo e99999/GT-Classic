@@ -10,15 +10,13 @@ public class GTFluids {
 	public static void registerFluids() {
 		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.hasFlag(GTMaterialFlag.GAS)) {
-				GTMod.logger.info("Registering GT Gas: " + mat.getDisplayName());
+				GTMod.debugLogger("Generating GregTech gas: " + mat.getDisplayName());
 				FluidRegistry.registerFluid(new GTFluid(mat, "gas"));
 			}
 			if (mat.hasFlag(GTMaterialFlag.FLUID)) {
-				GTMod.logger.info("Registering GT Fluid: " + mat.getDisplayName());
+				GTMod.debugLogger("Generating GregTech fluid: " + mat.getDisplayName());
 				FluidRegistry.registerFluid(new GTFluid(mat, "fluid"));
 			}
 		}
-
 	}
-
 }

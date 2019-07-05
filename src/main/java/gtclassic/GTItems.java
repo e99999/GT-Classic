@@ -3,21 +3,29 @@ package gtclassic;
 import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.fluid.GTFluidTube;
 import gtclassic.item.GTItemComponent;
-import gtclassic.item.GTItemCraftingTablet;
 import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
+import gtclassic.item.GTItemDuctTape;
 import gtclassic.item.GTItemElectromagnet;
-import gtclassic.item.GTItemFluidTube;
-import gtclassic.item.GTItemMachineSwitch;
-import gtclassic.item.GTItemMagnifyingGlass;
-import gtclassic.item.GTItemMatch;
+import gtclassic.item.GTItemEnergyOrb;
+import gtclassic.item.GTItemEnergyPack;
+import gtclassic.item.GTItemJackHammer;
+import gtclassic.item.GTItemLithiumBattery;
+import gtclassic.item.GTItemReactorHeat;
+import gtclassic.item.GTItemReactorHeat.GTItemHeatStorageTypes;
+import gtclassic.item.GTItemReactorRod;
+import gtclassic.item.GTItemReactorRod.GTItemRodTypes;
 import gtclassic.item.GTItemRockCutter;
 import gtclassic.item.GTItemSurvivalScanner;
 import gtclassic.item.GTItemTeslaStaff;
+import gtclassic.item.baubles.GTItemBaublesEnergyOrb;
+import gtclassic.item.baubles.GTItemBaublesEnergyPack;
+import gtclassic.item.baubles.GTItemBaublesLithiumBattery;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tool.GTToolGen;
 import ic2.core.IC2;
+import ic2.core.util.obj.plugins.IBaublesPlugin;
 import net.minecraft.item.Item;
 
 public class GTItems {
@@ -27,47 +35,64 @@ public class GTItems {
 	}
 
 	static List<Item> toRegister = new ArrayList<>();
-
-	// @formatter:off
-	public static final GTItemComponent
-	plasticFletching = createItem(new GTItemComponent("plastic_fletching", 15, 2, false)),
-	woodPlate = createItem(new GTItemComponent("wood_plate", 10, 0, false)),
-	magnesiaBrick = createItem(new GTItemComponent("magnesiacarbon_brick", 13, 2, false )),
-	resinPCB = createItem(new GTItemComponent("resin_pcb", 11, 0, false)),
-	plasticPCB = createItem(new GTItemComponent("plastic_pcb", 12, 0, false)),
-	basicTransistor = createItem(new GTItemComponent("basic_transistor", 13, 0, false)),
-	basicCapacitor = createItem(new GTItemComponent("basic_capacitor", 15, 0, false)),
-	advancedTransistor = createItem(new GTItemComponent("advanced_transistor", 0, 1, false)),
-	advancedCapacitor = createItem(new GTItemComponent("advanced_capacitor", 1, 1, false)),
-	motorLV = createItem(new GTItemComponent("motor_lv", 0, 3, false)),
-	motorMV = createItem(new GTItemComponent("motor_mv", 1, 3, false)),
-	motorHV = createItem(new GTItemComponent("motor_hv", 2, 3, false)),
-	partRobotArm = createItem(new GTItemComponent("part_robotarm", 3, 3, false)),
-	
-	moldBlank = createItem(new GTItemComponent("mold_blank", 0, 2, false)),
-	moldBlock = createItem(new GTItemComponent("mold_block", 1, 2, true)),
-	moldIngot = createItem(new GTItemComponent("mold_ingot", 2, 2, true)),
-	moldNugget = createItem(new GTItemComponent("mold_nugget", 3, 2, true)),
-	moldPlate = createItem(new GTItemComponent("mold_plate", 4, 2, true)),
-	moldStick = createItem(new GTItemComponent("mold_stick", 5, 2, true)),
-	moldCable = createItem(new GTItemComponent("mold_cable", 6, 2, true)),
-	moldTube = createItem(new GTItemComponent("mold_tube", 7, 2, true)),
-	moldGear = createItem(new GTItemComponent("mold_gear", 8, 2, true)),
-	moldBottle = createItem(new GTItemComponent("mold_bottle", 9, 2, true));
-	// @formatter:on
-
-	public static final GTItemMachineSwitch machineSwitch = createItem(new GTItemMachineSwitch());
-
-	public static final GTItemMatch match = createItem(new GTItemMatch());
-	public static final GTItemMagnifyingGlass magnifyingGlass = createItem(new GTItemMagnifyingGlass());
+	public static final GTItemReactorHeat heatStorageSingle = createItem(new GTItemReactorHeat(GTItemHeatStorageTypes.SINGLE));
+	public static final GTItemReactorHeat heatStorageTriple = createItem(new GTItemReactorHeat(GTItemHeatStorageTypes.TRIPLE));
+	public static final GTItemReactorHeat heatStorageSix = createItem(new GTItemReactorHeat(GTItemHeatStorageTypes.SIX));
+	public static final GTItemReactorRod rodThorium1 = createItem(new GTItemReactorRod(GTItemRodTypes.SINGLETHORIUM));
+	public static final GTItemReactorRod rodThorium2 = createItem(new GTItemReactorRod(GTItemRodTypes.DOUBLETHORIUM));
+	public static final GTItemReactorRod rodThorium4 = createItem(new GTItemReactorRod(GTItemRodTypes.QUADTHORIUM));
+	public static final GTItemReactorRod rodPlutonium1 = createItem(new GTItemReactorRod(GTItemRodTypes.SINGLEPLUTONIUM));
+	public static final GTItemReactorRod rodPlutonium2 = createItem(new GTItemReactorRod(GTItemRodTypes.DOUBLEPLUTONIUM));
+	public static final GTItemReactorRod rodPlutonium4 = createItem(new GTItemReactorRod(GTItemRodTypes.QUADPLUTONIUM));
+	public static final GTItemComponent circuitEnergy = createItem(new GTItemComponent("energy_circuit", 6, 0));
+	public static final GTItemComponent circuitData = createItem(new GTItemComponent("data_circuit", 7, 0));
+	public static final GTItemComponent chipData = createItem(new GTItemComponent("data_chip", 9, 0));
+	public static final GTItemComponent superConductor = createItem(new GTItemComponent("super_conductor", 10, 0));
+	public static final GTItemComponent orbData = createItem(new GTItemComponent("data_orb", 11, 0));
+	public static final GTItemDuctTape ductTape = createItem(new GTItemDuctTape());
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
-	public static final GTItemCraftingTablet craftingTablet = createItem(new GTItemCraftingTablet());
 	public static final GTItemElectromagnet electroMagnet = createItem(new GTItemElectromagnet());
+	private static GTItemLithiumBattery lithiumBattery;
+	private static GTItemEnergyOrb orbEnergy;
+	private static GTItemEnergyPack lithiumBatpack;
+	private static GTItemEnergyPack lapotronPack;
 	public static final GTItemTeslaStaff teslaStaff = createItem(new GTItemTeslaStaff());
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
+	public static final GTItemJackHammer jackHammer = createItem(new GTItemJackHammer());
 	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
 	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
-	public static final GTItemFluidTube testTube = createItem(new GTItemFluidTube());
+	public static final GTFluidTube testTube = createItem(new GTFluidTube());
+
+	public static GTItemLithiumBattery getLithiumBattery() {
+		return lithiumBattery;
+	}
+
+	public static GTItemEnergyOrb getOrbEnergy() {
+		return orbEnergy;
+	}
+
+	public static GTItemEnergyPack getLithiumBatpack() {
+		return lithiumBatpack;
+	}
+
+	public static GTItemEnergyPack getLapotronPack() {
+		return lapotronPack;
+	}
+
+	public static void initBaubleItems() {
+		IBaublesPlugin plugin = IC2.loader.getPlugin("baubles", IBaublesPlugin.class);
+		if (plugin != null) {
+			lithiumBattery = createItem(new GTItemBaublesLithiumBattery());
+			lithiumBatpack = createItem(new GTItemBaublesEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
+			orbEnergy = createItem(new GTItemBaublesEnergyOrb());
+			lapotronPack = createItem(new GTItemBaublesEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
+		} else {
+			lithiumBattery = createItem(new GTItemLithiumBattery());
+			lithiumBatpack = createItem(new GTItemEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
+			orbEnergy = createItem(new GTItemEnergyOrb());
+			lapotronPack = createItem(new GTItemEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
+		}
+	}
 
 	public static <T extends Item> T createItem(T item) {
 		toRegister.add(item);
@@ -78,9 +103,6 @@ public class GTItems {
 		for (Item item : GTMaterialGen.itemMap.values()) {
 			IC2.getInstance().createItem(item);
 		}
-
-		GTToolGen.generateTools();
-
 		for (Item item : toRegister) {
 			IC2.getInstance().createItem(item);
 		}

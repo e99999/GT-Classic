@@ -10,7 +10,6 @@ import ic2.api.classic.reactor.ISteamReactorComponent;
 import ic2.api.reactor.IReactor;
 import ic2.core.item.base.ItemGrandualInt;
 import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.util.obj.IBootable;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -21,12 +20,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemReactorRod extends ItemGrandualInt
-		implements IBootable, ISteamReactorComponent, IReactorPlannerComponent {
+public class GTItemReactorRod extends ItemGrandualInt implements ISteamReactorComponent, IReactorPlannerComponent {
 
 	public enum GTItemRodTypes {
-		SINGLETHORIUM(48), DOUBLETHORIUM(49), QUADTHORIUM(50), SINGLEPLUTONIUM(51), DOUBLEPLUTONIUM(52),
-		QUADPLUTONIUM(53);
+		SINGLETHORIUM(16),
+		DOUBLETHORIUM(17),
+		QUADTHORIUM(18),
+		SINGLEPLUTONIUM(19),
+		DOUBLEPLUTONIUM(20),
+		QUADPLUTONIUM(21);
 
 		private int id;
 
@@ -61,18 +63,12 @@ public class GTItemReactorRod extends ItemGrandualInt
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.RED + I18n.format("tooltip." + GTMod.MODID + ".wip"));
+		tooltip.add(TextFormatting.RED + I18n.format("Work in progress, no refunds!"));
 	}
 
 	@Override
 	public void processChamber(ItemStack var1, IReactor var2, int var3, int var4, boolean var5) {
 		// TODO Auto-generated method stub
-
-	}
-
-	private Object getUran(ItemStack stack) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -164,13 +160,6 @@ public class GTItemReactorRod extends ItemGrandualInt
 	@Override
 	public void processTick(ISteamReactor var1, ItemStack var2, int var3, int var4, boolean var5, boolean var6) {
 		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onLoad() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -182,5 +171,4 @@ public class GTItemReactorRod extends ItemGrandualInt
 	public ReactorComponentType getType(ItemStack stack) {
 		return ReactorComponentType.FuelRod;
 	}
-
 }

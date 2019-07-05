@@ -15,6 +15,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
@@ -25,7 +26,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexturedItem {
 
 	public GTItemTeslaStaff() {
-		super(0.0F, 2.0F, ToolMaterial.IRON);
+		super(0.0F, 2.0F, ToolMaterial.DIAMOND);
 		this.attackDamage = 1.0F;
 		this.maxCharge = 10000000;
 		this.transferLimit = 2048;
@@ -37,6 +38,11 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 	}
 
 	@Override
+	public EnumRarity getRarity(ItemStack thisItem) {
+		return EnumRarity.RARE;
+	}
+
+	@Override
 	public List<Integer> getValidVariants() {
 		return Arrays.asList(0);
 	}
@@ -44,7 +50,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[4];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[15];
 	}
 
 	@Override
@@ -64,14 +70,11 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 		} else {
 			if (ElectricItem.manager.use(stack, this.operationEnergyCost, attacker)) {
 				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1000.0F);
-				attacker.world.addWeatherEffect(new EntityLightningBolt(attacker.world, target.lastTickPosX,
-						target.lastTickPosY, target.lastTickPosZ, false));
+				attacker.world.addWeatherEffect(new EntityLightningBolt(attacker.world, target.lastTickPosX, target.lastTickPosY, target.lastTickPosZ, false));
 			} else {
 				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1.0F);
 			}
-
 			return false;
 		}
 	}
-
 }

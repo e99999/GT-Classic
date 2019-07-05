@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 
 public class GTTileFacing extends TileEntityBlock {
+
 	private Set<EnumFacing> validRotations;
 
 	// yes this actually works in java to have method overloading with no arguments

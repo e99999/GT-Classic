@@ -13,7 +13,6 @@ public class GTColorItemBlock extends GTItemBlockRare implements GTColorItemInte
 	public GTColorItemBlock(Block block) {
 		super(block);
 		this.block = block;
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -24,5 +23,4 @@ public class GTColorItemBlock extends GTItemBlockRare implements GTColorItemInte
 			return null;
 		}
 	}
-
 }

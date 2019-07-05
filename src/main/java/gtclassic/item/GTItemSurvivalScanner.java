@@ -41,7 +41,7 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[7];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[29];
 	}
 
 	@Override
@@ -73,5 +73,4 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 	public int getTextureEntry(int var1) {
 		return 0;
 	}
-
 }

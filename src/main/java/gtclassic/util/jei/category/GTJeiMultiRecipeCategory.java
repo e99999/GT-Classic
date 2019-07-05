@@ -18,8 +18,6 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecipeWrapper> {
 
-	private static int xStart = 26, yStart = 26;
-
 	protected String name, displayName;
 	protected ResourceLocation backgroundTexture;
 	private IDrawable background, progress;
@@ -61,7 +59,6 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 	@Override
 	public void setRecipe(IRecipeLayout layout, GTJeiMultiRecipeWrapper wrapper, IIngredients ingredients) {
 		IGuiItemStackGroup itemGroup = layout.getItemStacks();
-
 		int index = 0;
 		int actualIndex = 0;
 		for (IRecipeInput list : wrapper.getMultiRecipe().getInputs()) {

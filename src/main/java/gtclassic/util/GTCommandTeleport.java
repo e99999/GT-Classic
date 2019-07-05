@@ -58,7 +58,6 @@ public class GTCommandTeleport extends CommandBase {
 			sender.sendMessage(new TextComponentString(TextFormatting.RED + "Error parsing dimension!"));
 			return;
 		}
-
 		if (sender instanceof EntityPlayer) {
 			GTCommandTeleporter.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
 		}

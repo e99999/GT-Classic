@@ -3,7 +3,7 @@ package gtclassic.block;
 import gtclassic.GTMod;
 import gtclassic.models.GTModelSluiceBox;
 import gtclassic.tile.GTTileSluice;
-import gtclassic.util.GTValues;
+import gtclassic.util.GTLang;
 import ic2.core.platform.textures.models.BaseModel;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,8 +22,8 @@ public class GTBlockSluice extends GTBlockFacing {
 
 	public GTBlockSluice() {
 		super(Material.WOOD);
-		setRegistryName(GTValues.sluiceBox.getUnlocalized().replaceAll("tile.gtclassic.", ""));
-		setUnlocalizedName(GTValues.sluiceBox);
+		setRegistryName(GTLang.sluiceBox.getUnlocalized().replaceAll("tile.gtclassic.", ""));
+		setUnlocalizedName(GTLang.sluiceBox);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
@@ -48,5 +48,4 @@ public class GTBlockSluice extends GTBlockFacing {
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new GTTileSluice(getAllowedRotations());
 	}
-
 }

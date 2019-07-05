@@ -35,7 +35,6 @@ public class GTTileComputerCube extends TileEntityMachine implements IHasGui {
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
 		return new GTContainerComputerCube(player.inventory, this);
-
 	}
 
 	@Override
@@ -56,10 +55,9 @@ public class GTTileComputerCube extends TileEntityMachine implements IHasGui {
 	public boolean hasGui(EntityPlayer player) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
+		return facing != getFacing() && facing.getAxis().isHorizontal();
 	}
-
 }

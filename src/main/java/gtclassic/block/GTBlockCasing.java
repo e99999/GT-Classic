@@ -16,11 +16,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -36,13 +37,18 @@ public class GTBlockCasing extends Block implements ITexturedBlock, ILocaleBlock
 		this.name = name;
 		this.id = id;
 		this.comp = Ic2Lang.nullKey;
-		setRegistryName(this.name.toLowerCase() + "_casing");
-		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase() + "_casing");
+		setRegistryName(this.name.toLowerCase());
+		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(3.0F);
 		setResistance(30.0F);
 		setSoundType(SoundType.METAL);
 		setHarvestLevel("pickaxe", 2);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format("Mobs cannot spawn on this block"));
 	}
 
 	@Override
@@ -53,18 +59,12 @@ public class GTBlockCasing extends Block implements ITexturedBlock, ILocaleBlock
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_casings")[this.id];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[this.id];
 	}
 
 	@Override
-	@Deprecated
-	public boolean canEntitySpawn(IBlockState state, Entity entityIn) {
+	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
 		return false;
-	}
-
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.ITALIC + I18n.format("tooltip." + GTMod.MODID + ".nomobs"));
 	}
 
 	@Override
@@ -78,6 +78,7 @@ public class GTBlockCasing extends Block implements ITexturedBlock, ILocaleBlock
 		return this.blockState.getValidStates();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());

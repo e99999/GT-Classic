@@ -9,8 +9,8 @@ import java.util.function.Predicate;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.int3;
-import gtclassic.util.recipe.GTMultiInputRecipeList;
-import gtclassic.util.recipe.GTMultiInputRecipeList.MultiRecipe;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
+import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
@@ -58,51 +58,39 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
-	
+
 	public static final String MOVE_CONTAINER_TAG = "move_container";
-	
 	@NetworkField(index = 7)
 	public float progress = 0;
-
 	// Import and Export Booleans
 	public boolean allowImport = true;
 	public boolean allowExport = true;
-
 	// Defaults
 	public int defaultEnergyConsume;
 	public int defaultOperationLength;
 	public int defaultMaxInput;
 	public int defaultEnergyStorage;
-
 	// Currents WithUpgrades
 	public int energyConsume;
 	public int operationLength;
 	public float progressPerTick;
 	@NetworkField(index = 8)
 	public float soundLevel = 1F;
-
 	// Current Usage & Time
 	@NetworkField(index = 9)
 	public int recipeOperation;
 	@NetworkField(index = 10)
 	public int recipeEnergy;
-
 	@NetworkField(index = 11)
 	public boolean redstoneInverted;
 	@NetworkField(index = 12)
 	public boolean redstoneSensitive;
 	public boolean defaultSensitive;
-
 	public MultiRecipe lastRecipe;
 	public boolean shouldCheckRecipe;
 	public final boolean supportsUpgrades;
 	public final int upgradeSlots;
-	public boolean isPassive;
-
-	public static RecipeInputItemStack basicswitch = new RecipeInputItemStack(GTMaterialGen.get(GTItems.machineSwitch));
-
 	public AudioSource audioSource;
-
 	LinkedList<IStackOutput> outputs = new LinkedList<>();
 
 	public GTTileBaseMachine(int slots, int upgrades, int energyPerTick, int maxProgress, int maxinput) {
@@ -118,7 +106,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		defaultSensitive = false;
 		progressPerTick = 1F;
 		shouldCheckRecipe = true;
-		isPassive = false;
 		addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
 		addGuiFields("recipeOperation", "recipeEnergy", "progress");
 		addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
@@ -126,7 +113,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	@Override
 	public void update() {
-		tryImportItems();
 		handleRedstone();
 		updateNeighbors();
 		boolean noRoom = addToInventory();
@@ -135,7 +121,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			shouldCheckRecipe = false;
 		}
 		boolean canWork = canWork() && !noRoom;
-		boolean operate = (canWork && lastRecipe != null && lastRecipe != GTMultiInputRecipeList.INVALID_RECIPE);
+		boolean operate = (canWork && lastRecipe != null && lastRecipe != GTRecipeMultiInputList.INVALID_RECIPE);
 		if (operate) {
 			handleChargeSlot(maxEnergy);
 		}
@@ -175,7 +161,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			}
 		}
 		updateComparators();
-		tryExportItems();
 	}
 
 	public void process(MultiRecipe recipe) {
@@ -191,41 +176,32 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			int count = key.getAmount();
 			for (Iterator<ItemStack> inputIter = inputs.iterator(); inputIter.hasNext();) {
 				ItemStack input = inputIter.next();
-				if (key.matches(input)) 
-				{
-					if(input.getCount() >= count)
-					{
-						if(input.getItem().hasContainerItem(input))
-						{
-							if(!shiftContainers)
-							{
+				if (key.matches(input)) {
+					if (input.getCount() >= count) {
+						if (input.getItem().hasContainerItem(input)) {
+							if (!shiftContainers) {
 								continue;
 							}
 							ItemStack container = input.getItem().getContainerItem(input);
-							if(!container.isEmpty())
-							{
+							if (!container.isEmpty()) {
 								container.setCount(count);
 								outputs.add(new MultiSlotOutput(container, getOutputSlots()));
 							}
 						}
 						input.shrink(count);
 						count = 0;
-						if(input.isEmpty())
-						{
+						if (input.isEmpty()) {
 							inputIter.remove();
 						}
 						keyIter.remove();
 						break;
 					}
-					if(input.getItem().hasContainerItem(input))
-					{
-						if(!shiftContainers)
-						{
+					if (input.getItem().hasContainerItem(input)) {
+						if (!shiftContainers) {
 							continue;
 						}
 						ItemStack container = input.getItem().getContainerItem(input);
-						if(!container.isEmpty())
-						{
+						if (!container.isEmpty()) {
 							container.setCount(input.getCount());
 							outputs.add(new MultiSlotOutput(container, getOutputSlots()));
 						}
@@ -236,7 +212,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 				}
 			}
 		}
-
 		addToInventory();
 		if (supportsUpgrades) {
 			for (int i = 0; i < upgradeSlots; i++) {
@@ -274,36 +249,32 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	}
 
 	public MultiRecipe getRecipe() {
-		if (lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
+		if (lastRecipe == GTRecipeMultiInputList.INVALID_RECIPE) {
 			return null;
 		}
-
 		// Check if previous recipe is valid
 		List<ItemStack> inputs = getInputs();
 		if (lastRecipe != null) {
 			lastRecipe = checkRecipe(lastRecipe, StackUtil.copyList(inputs)) ? lastRecipe : null;
-			if(lastRecipe == null)
-			{
+			if (lastRecipe == null) {
 				progress = 0;
 			}
 		}
-
 		// If previous is not valid, find a new one
 		if (lastRecipe == null) {
 			lastRecipe = getRecipeList().getPriorityRecipe(new Predicate<MultiRecipe>() {
+
 				@Override
 				public boolean test(MultiRecipe t) {
 					return checkRecipe(t, StackUtil.copyList(inputs));
 				}
 			});
 		}
-
 		// If no recipe is found, return
 		if (lastRecipe == null) {
 			return null;
 		}
 		applyRecipeEffect(lastRecipe.getOutputs());
-
 		int empty = 0;
 		int[] outputSlots = getOutputSlots();
 		for (int slot : outputSlots) {
@@ -316,13 +287,12 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		}
 		for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
 			for (int outputSlot : outputSlots) {
-				if(inventory.get(outputSlot).isEmpty())
-				{
+				if (inventory.get(outputSlot).isEmpty()) {
 					return lastRecipe;
 				}
 				if (StackUtil.isStackEqual(inventory.get(outputSlot), output, false, true)) {
-					if (inventory.get(outputSlot).getCount() + output.getCount() <= inventory.get(outputSlot)
-							.getMaxStackSize()) {
+					if (inventory.get(outputSlot).getCount()
+							+ output.getCount() <= inventory.get(outputSlot).getMaxStackSize()) {
 						return lastRecipe;
 					}
 				}
@@ -339,12 +309,10 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			for (Iterator<ItemStack> inputIter = inputs.iterator(); inputIter.hasNext();) {
 				ItemStack input = inputIter.next();
 				if (key.matches(input)) {
-					if(input.getCount() >= toFind)
-					{
+					if (input.getCount() >= toFind) {
 						input.shrink(toFind);
 						keyIter.remove();
-						if(input.isEmpty())
-						{
+						if (input.isEmpty()) {
 							inputIter.remove();
 						}
 						break;
@@ -362,7 +330,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	public void setStackInSlot(int slot, ItemStack stack) {
 		super.setStackInSlot(slot, stack);
 		shouldCheckRecipe = true;
-		if (isSimulating() && isRecipeSlot(slot) && lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
+		if (isSimulating() && isRecipeSlot(slot) && lastRecipe == GTRecipeMultiInputList.INVALID_RECIPE) {
 			lastRecipe = null;
 		}
 	}
@@ -387,8 +355,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		}
 		NBTTagCompound nbt = output.getMetadata();
 		double energyMod = nbt.hasKey("RecipeEnergyModifier") ? nbt.getDouble("RecipeEnergyModifier") : 1F;
-		int newEnergy = TileEntityBasicElectricMachine.applyModifier(energyConsume, nbt.getInteger("RecipeEnergy"),
-				energyMod);
+		int newEnergy = TileEntityBasicElectricMachine.applyModifier(energyConsume, nbt.getInteger("RecipeEnergy"), energyMod);
 		if (newEnergy != recipeEnergy) {
 			recipeEnergy = newEnergy;
 			if (recipeEnergy < 1) {
@@ -397,8 +364,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			getNetwork().updateTileGuiField(this, "recipeEnergy");
 		}
 		double progMod = nbt.hasKey("RecipeTimeModifier") ? nbt.getDouble("RecipeTimeModifier") : 1F;
-		int newProgress = TileEntityBasicElectricMachine.applyModifier(operationLength, nbt.getInteger("RecipeTime"),
-				progMod);
+		int newProgress = TileEntityBasicElectricMachine.applyModifier(operationLength, nbt.getInteger("RecipeTime"), progMod);
 		if (newProgress != recipeOperation) {
 			recipeOperation = newProgress;
 			if (recipeOperation < 1) {
@@ -456,14 +422,10 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			}
 		}
 		redstoneInverted = redstonePowered;
-		progressPerTick = TileEntityBasicElectricMachine.applyFloatModifier(1, extraProcessSpeed,
-				processingSpeedMultiplier);
-		energyConsume = TileEntityBasicElectricMachine.applyModifier(defaultEnergyConsume, extraEnergyDemand,
-				energyDemandMultiplier);
-		operationLength = TileEntityBasicElectricMachine.applyModifier(defaultOperationLength, extraProcessTime,
-				processTimeMultiplier);
-		setMaxEnergy(TileEntityBasicElectricMachine.applyModifier(defaultEnergyStorage, extraEnergyStorage,
-				energyStorageMultiplier));
+		progressPerTick = TileEntityBasicElectricMachine.applyFloatModifier(1, extraProcessSpeed, processingSpeedMultiplier);
+		energyConsume = TileEntityBasicElectricMachine.applyModifier(defaultEnergyConsume, extraEnergyDemand, energyDemandMultiplier);
+		operationLength = TileEntityBasicElectricMachine.applyModifier(defaultOperationLength, extraProcessTime, processTimeMultiplier);
+		setMaxEnergy(TileEntityBasicElectricMachine.applyModifier(defaultEnergyStorage, extraEnergyStorage, energyStorageMultiplier));
 		tier = baseTier + extraTier;
 		if (tier > 13) {
 			tier = 13;
@@ -482,7 +444,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		if (energyConsume < 1) {
 			energyConsume = 1;
 		}
-		if (lastRecipe == null || lastRecipe == GTMultiInputRecipeList.INVALID_RECIPE) {
+		if (lastRecipe == null || lastRecipe == GTRecipeMultiInputList.INVALID_RECIPE) {
 			applyRecipeEffect(null);
 		} else {
 			applyRecipeEffect(lastRecipe.getOutputs());
@@ -502,7 +464,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	public abstract int[] getOutputSlots();
 
-	public abstract GTMultiInputRecipeList getRecipeList();
+	public abstract GTRecipeMultiInputList getRecipeList();
 
 	public boolean canWork() {
 		if (!redstoneSensitive) {
@@ -603,7 +565,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			this.audioSource.remove();
 			this.audioSource = null;
 		}
-
 		super.onUnloaded();
 	}
 
@@ -619,12 +580,10 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		if (this.audioSource != null && this.audioSource.isRemoved()) {
 			this.audioSource = null;
 		}
-
 		if (this.audioSource == null && this.getStartSoundFile() != null) {
-			this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getStartSoundFile(), true,
-					false, IC2.audioManager.defaultVolume * this.soundLevel);
+			this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getStartSoundFile(), true, false, IC2.audioManager.defaultVolume
+					* this.soundLevel);
 		}
-
 		if (event == 0) {
 			if (this.audioSource != null) {
 				this.audioSource.play();
@@ -633,14 +592,13 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			if (this.audioSource != null) {
 				this.audioSource.stop();
 				if (this.getInterruptSoundFile() != null) {
-					IC2.audioManager.playOnce(this, PositionSpec.Center, this.getInterruptSoundFile(), false,
-							IC2.audioManager.defaultVolume * this.soundLevel);
+					IC2.audioManager.playOnce(this, PositionSpec.Center, this.getInterruptSoundFile(), false, IC2.audioManager.defaultVolume
+							* this.soundLevel);
 				}
 			}
 		} else if (event == 2 && this.audioSource != null) {
 			this.audioSource.stop();
 		}
-
 	}
 
 	@Override
@@ -651,7 +609,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	@Override
 	public void onGuiClosed(EntityPlayer player) {
-
 	}
 
 	@Override
@@ -665,7 +622,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != EnumFacing.UP && facing != EnumFacing.DOWN;
+		return facing != getFacing() && facing.getAxis().isHorizontal();
 	}
 
 	/*
@@ -692,7 +649,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	/*
 	 * Below I am experimenting with moving item into the multi block tile
 	 */
-
 	public TileEntity getImportTile() {
 		int3 dir = new int3(getPos(), getFacing());
 		return world.getTileEntity(dir.up(1).asBlockPos());
@@ -703,8 +659,8 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		return world.getTileEntity(dir.right(1).asBlockPos());
 	}
 
+	@SuppressWarnings("static-access")
 	public void tryImportItems() {
-
 		if (this.allowImport) {
 			if (world.getTotalWorldTime() % 20 == 0 && canWork()) {
 				IItemTransporter slave = TransporterManager.manager.getTransporter(getImportTile(), true);
@@ -712,29 +668,25 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 					return;
 				}
 				IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-
 				IFilter filter = new MachineFilter(this);
 				int limit = 64;
-
 				for (int i = 0; i < limit; ++i) {
 					ItemStack stack = slave.removeItem(filter, getFacing().getOpposite(), 1, false);
 					if (stack.isEmpty()) {
 						break;
 					}
-
 					ItemStack added = controller.addItem(stack, getFacing().UP, true);
 					if (added.getCount() <= 0) {
 						break;
 					}
-
 					slave.removeItem(filter, getFacing().getOpposite(), 1, true);
 				}
 			}
 		}
 	}
 
+	@SuppressWarnings("static-access")
 	public void tryExportItems() {
-
 		if (this.allowExport) {
 			if (world.getTotalWorldTime() % 20 == 0) {
 				IItemTransporter slave = TransporterManager.manager.getTransporter(getExportTile(), true);
@@ -742,24 +694,19 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 					return;
 				}
 				IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-
 				int limit = 64;
-
 				for (int i = 0; i < limit; ++i) {
 					ItemStack stack = controller.removeItem(CommonFilters.Anything, getFacing().EAST, 1, false);
 					if (stack.isEmpty()) {
 						break;
 					}
-
 					ItemStack added = slave.addItem(stack, getFacing().UP, true);
 					if (added.getCount() <= 0) {
 						break;
 					}
-
 					controller.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, true);
 				}
 			}
 		}
 	}
-
 }

@@ -45,8 +45,9 @@ public class GTGuiCompVerticalProgress extends GuiComponent {
 			if (lvl <= 0) {
 				return;
 			}
-			gui.drawTexturedModalRect(x + box.getX(), y + box.getY() + (box.getHeight() - lvl), this.texPos.getX(),
-					this.texPos.getY() + (box.getHeight() - lvl), maxX, lvl);
+			gui.drawTexturedModalRect(x + box.getX(), y + box.getY()
+					+ (box.getHeight() - lvl), this.texPos.getX(), this.texPos.getY()
+							+ (box.getHeight() - lvl), maxX, lvl);
 		}
 	}
 

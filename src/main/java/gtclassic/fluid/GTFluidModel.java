@@ -17,6 +17,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 
 public class GTFluidModel extends BaseModel {
+
 	IBakedModel model;
 	Fluid fluid;
 

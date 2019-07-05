@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import gtclassic.tile.GTTileBaseMachine;
-import gtclassic.util.int3;
 import gtclassic.util.energy.EnergyConsumer;
 import gtclassic.util.energy.MultiBlockHelper;
 import ic2.api.energy.event.EnergyTileLoadEvent;
@@ -16,7 +15,6 @@ import ic2.api.energy.tile.IMetaDelegate;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -25,7 +23,7 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	public boolean lastState;
 	public boolean firstCheck = true;
 	List<IEnergyTile> lastPositions = null;
-	
+
 	public GTTileMultiBaseMachine(int slots, int upgrades, int defaultinput, int maxinput) {
 		super(slots, upgrades, defaultinput, 100, maxinput);
 	}
@@ -38,18 +36,15 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 				boolean lastCheck = lastState;
 				lastState = checkStructure();
 				firstCheck = false;
-				if(lastCheck != lastState)
-				{
-					if(addedToEnergyNet)
-					{
+				if (lastCheck != lastState) {
+					if (addedToEnergyNet) {
 						MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 					}
 					lastPositions = null;
 					MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 					addedToEnergyNet = true;
 					MultiBlockHelper.INSTANCE.removeCore(getWorld(), getPos());
-					if(lastState)
-					{
+					if (lastState) {
 						MultiBlockHelper.INSTANCE.addCore(getWorld(), getPos(), new ArrayList<BlockPos>(provideStructure().keySet()));
 					}
 				}
@@ -58,10 +53,9 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 		}
 		return superCall;
 	}
-	
-	//Needs to Inlcude current Offset
-	public Map<BlockPos, IBlockState> provideStructure()
-	{
+
+	// Needs to Inlcude current Offset
+	public Map<BlockPos, IBlockState> provideStructure() {
 		return new Object2ObjectLinkedOpenHashMap<BlockPos, IBlockState>();
 	}
 
@@ -71,37 +65,20 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 		}
 		return true;
 	}
-	
+
 	@Override
 	public boolean hasGui(EntityPlayer player) {
-		return checkStructure();
+		return true;
 	}
 
 	@Override
-	public TileEntity getImportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(2).asBlockPos());
-	}
-
-	@Override
-	public TileEntity getExportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(2).asBlockPos());
-	}
-
-	@Override
-	public List<IEnergyTile> getSubTiles()
-	{
-		if(lastPositions == null)
-		{
+	public List<IEnergyTile> getSubTiles() {
+		if (lastPositions == null) {
 			lastPositions = new ArrayList<IEnergyTile>();
 			lastPositions.add(this);
-			if(checkStructure())
-			{
-				for(Entry<BlockPos, IBlockState> entry : provideStructure().entrySet())
-				{
-					if(entry.getKey().equals(getPos()) || world.getBlockState(entry.getKey()) != entry.getValue())
-					{
+			if (checkStructure()) {
+				for (Entry<BlockPos, IBlockState> entry : provideStructure().entrySet()) {
+					if (entry.getKey().equals(getPos()) || world.getBlockState(entry.getKey()) != entry.getValue()) {
 						continue;
 					}
 					lastPositions.add(new EnergyConsumer(getWorld(), entry.getKey(), this));
@@ -110,10 +87,9 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 		}
 		return lastPositions;
 	}
-	
+
 	@Override
-	public void onUnloaded()
-	{
+	public void onUnloaded() {
 		MultiBlockHelper.INSTANCE.removeCore(getWorld(), getPos());
 		super.onUnloaded();
 	}

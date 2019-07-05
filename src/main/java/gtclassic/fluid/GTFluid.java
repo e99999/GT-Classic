@@ -13,6 +13,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 public class GTFluid extends Fluid {
+
 	int mapColor;
 	protected static float overlayAlpha = 0.2F;
 	protected static SoundEvent emptySound = SoundEvents.ITEM_BUCKET_EMPTY;
@@ -21,20 +22,19 @@ public class GTFluid extends Fluid {
 	GTMaterial mat = null;
 
 	public GTFluid(GTMaterial mat, String base, GTMaterialFlag flag) {
-		super(mat.getDisplayName().toLowerCase() + flag.getSuffix(),
-				new ResourceLocation(GTMod.MODID, "fluids/" + base),
-				new ResourceLocation(GTMod.MODID, "fluids/flowing"));
+		super(mat.getDisplayName().toLowerCase() + flag.getSuffix(), new ResourceLocation(GTMod.MODID, "fluids/"
+				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
 		this.mat = mat;
-		this.temperature = mat.getTemp();
+		this.temperature = 300;
 		this.mapColor = Color.white.hashCode();
 		this.setGaseous(flag.equals(GTMaterialFlag.GAS));
 	}
 
 	public GTFluid(GTMaterial mat, String base) {
-		super(mat.getDisplayName().toLowerCase(), new ResourceLocation(GTMod.MODID, "fluids/" + base),
-				new ResourceLocation(GTMod.MODID, "fluids/flowing"));
+		super(mat.getDisplayName().toLowerCase(), new ResourceLocation(GTMod.MODID, "fluids/"
+				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
 		this.mat = mat;
-		this.temperature = mat.getTemp();
+		this.temperature = 300;
 		this.mapColor = mat.getColor().hashCode();
 		this.setGaseous(this.mat.hasFlag(GTMaterialFlag.GAS));
 	}
@@ -100,5 +100,4 @@ public class GTFluid extends Fluid {
 			return false;
 		return block.getDefaultState().getMaterial() == getMaterial();
 	}
-
 }

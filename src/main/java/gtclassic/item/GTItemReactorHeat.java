@@ -3,21 +3,29 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
+import gtclassic.GTItems;
 import gtclassic.GTMod;
 import ic2.api.reactor.IReactor;
 import ic2.core.item.reactor.ItemReactorHeatStorageBase;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTPrimitive;
 import net.minecraft.nbt.NBTTagInt;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements IStaticTexturedItem {
+
 	public enum GTItemHeatStorageTypes {
-		SINGLE(34), TRIPLE(35), SIX(36);
+		SINGLE(2),
+		TRIPLE(3),
+		SIX(4);
 
 		private int id;
 
@@ -45,17 +53,30 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	}
 
 	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(TextFormatting.RED + I18n.format("Work in progress, no refunds!"));
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
 	}
 
-	/*
-	 * @Override public int getMaxCustomDamage(ItemStack stack) { if (this ==
-	 * GTItems.heatStorageSingle) { return 10000; } if (this ==
-	 * GTItems.heatStorageTriple) { return 30000; } if (this ==
-	 * GTItems.heatStorageSix) { return 60000; } else { return 0; } }
-	 */
+	@Override
+	public int getMaxCustomDamage(ItemStack stack) {
+		if (this == GTItems.heatStorageSingle) {
+			return 60000;
+		}
+		if (this == GTItems.heatStorageTriple) {
+			return 180000;
+		}
+		if (this == GTItems.heatStorageSix) {
+			return 360000;
+		} else {
+			return 0;
+		}
+	}
 
 	@Override
 	public List<ReactorComponentStat> getExtraStats(ItemStack stack) {
@@ -115,5 +136,4 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	public int getTextureEntry(int arg0) {
 		return 0;
 	}
-
 }
