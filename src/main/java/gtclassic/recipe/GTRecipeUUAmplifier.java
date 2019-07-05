@@ -66,4 +66,8 @@ public class GTRecipeUUAmplifier {
 	static void addAmplifierToJei(List<IRecipeInput> input, MachineOutput output) {
 		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 1);
 	}
+
+	public static void removeRecipe(String id){
+		RECIPE_LIST.removeRecipe(id);
+	}
 }
