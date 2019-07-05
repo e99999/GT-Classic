@@ -1,5 +1,7 @@
 package gtclassic.material;
 
+import gtclassic.GTMod;
+
 public class GTMaterialFlag {
 
 	public static GTMaterialFlag
@@ -15,14 +17,28 @@ public class GTMaterialFlag {
 	private static int LAST_INTERNAL_ID;
 	private int mask;
 	private String suffix;
+	private String texture;
 	private int id;
 	private boolean layered;
 
 	public GTMaterialFlag(String suffix, int id, boolean layered) {
 		this.mask = 1 << LAST_INTERNAL_ID++;
 		this.suffix = suffix;
+		this.texture = GTMod.MODID + "_materials";
 		this.id = id;
 		this.layered = layered;
+	}
+
+	public GTMaterialFlag(String suffix, String texture, int id, boolean layered) {
+		this.mask = 1 << LAST_INTERNAL_ID++;
+		this.suffix = suffix;
+		this.texture = texture;
+		this.id = id;
+		this.layered = layered;
+	}
+
+	public String getTexture() {
+		return texture;
 	}
 
 	public int getMask() {
