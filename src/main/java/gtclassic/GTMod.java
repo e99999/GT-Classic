@@ -9,7 +9,9 @@ import gtclassic.recipe.GTRecipe;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
+import gtclassic.util.energy.IDSUStorage;
 import gtclassic.util.energy.MultiBlockHelper;
+import ic2.core.IC2;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -35,7 +37,7 @@ public class GTMod {
 	public static Logger logger;
 	// public static boolean dev = !new
 	// File(GTMod.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
-	private static boolean quickDebug = false;
+	private static boolean quickDebug = true;
 	public static boolean debugMode = GTConfig.debugMode || quickDebug;
 
 	@Mod.EventHandler
@@ -58,6 +60,7 @@ public class GTMod {
 		GTRecipe.init();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
+		IC2.saveManager.registerGlobal("IDSU_Storage", IDSUStorage.class, false);
 		proxy.init(e);
 	}
 
