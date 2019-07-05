@@ -72,12 +72,13 @@ public class GTRecipeMultiInputList {
 	}
 
 	boolean massChanging = false;
-	public void startMassChange()
-	{
+
+	public void startMassChange() {
 		massChanging = true;
 	}
 
-	public void removeRecipe(String id) {;
+	public void removeRecipe(String id) {
+		;
 		if (!recipeMap.containsKey(id)) {
 			GTMod.logger.info("Recipe[" + id + "] doesn't exist for machine " + category);
 			return;
@@ -85,15 +86,14 @@ public class GTRecipeMultiInputList {
 		MultiRecipe recipe = getFromID(id);
 		recipes.remove(recipe);
 		recipeMap.remove(id);
-		if(!massChanging)
-		{
+		if (!massChanging) {
 			rebuildValidInputs();
 		}
 	}
 
-	public void rebuildValidInputs(){
+	public void rebuildValidInputs() {
 		validInputs.clear();
-		for (MultiRecipe recipe : recipes){
+		for (MultiRecipe recipe : recipes) {
 			List<IRecipeInput> inputs = recipe.getInputs();
 			for (int i = 0; i < inputs.size(); i++) {
 				if (inputs.get(i) != null) {
@@ -111,10 +111,8 @@ public class GTRecipeMultiInputList {
 		}
 	}
 
-	public void finishMassChange()
-	{
-		if(!massChanging)
-		{
+	public void finishMassChange() {
+		if (!massChanging) {
 			return;
 		}
 		massChanging = false;

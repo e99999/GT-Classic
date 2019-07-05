@@ -32,7 +32,7 @@ public class GTJeiUUAmplifierCategory implements IRecipeCategory<GTJeiUUAmplifie
 		progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
 	}
 
-	private int getHeight(){
+	private int getHeight() {
 		return GTConfig.debugMode ? 80 : 70;
 	}
 
