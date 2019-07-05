@@ -95,6 +95,18 @@ public class GTMaterial {
 		generatedMap.put(name, this);
 	}
 
+	public GTMaterial(String displayName, Color color, boolean smeltable, GTMaterialFlag... flags) {
+		this.displayName = displayName;
+		this.name = displayName.toLowerCase().replaceAll("-", "_").replaceAll(" ", "_");
+		this.color = color;
+		this.smeltable = smeltable;
+		for (GTMaterialFlag flag : flags) {
+			mask |= flag.getMask();
+		}
+		generatedMap.put(name, this);
+	}
+
+
 	public boolean hasFlag(GTMaterialFlag flag) {
 		return (mask & flag.getMask()) != 0;
 	}
