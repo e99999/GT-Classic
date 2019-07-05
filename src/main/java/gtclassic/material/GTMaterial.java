@@ -95,7 +95,7 @@ public class GTMaterial {
 		generatedMap.put(name, this);
 	}
 
-	public void removeMapEntries(String name){
+	public static void removeMapEntries(String name){
 		generatedMap.remove(name);
 	}
 
