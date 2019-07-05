@@ -155,10 +155,13 @@ public class GTBlockMachine extends GTBlockMultiID {
 		TileEntity tile = worldIn.getTileEntity(pos);
 		if (hStack.isEmpty() && tile instanceof GTTilePlayerDetector
 				&& ((GTTilePlayerDetector) tile).canAccess(playerIn.getUniqueID())) {
-			((GTTilePlayerDetector) tile).advanceMode();
-			if (IC2.platform.isSimulating()) {
+			if (playerIn.isSneaking()) {
+				((GTTilePlayerDetector) tile).advanceMode();
+			}
+			if (((TileEntityBlock) tile).isSimulating()) {
 				IC2.platform.messagePlayer(playerIn, "Mode: " + ((GTTilePlayerDetector) tile).getMode());
 			}
+			return true;
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}

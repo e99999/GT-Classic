@@ -28,7 +28,6 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	public GTTilePlayerDetector() {
 		super(0, 32);
 		maxEnergy = 1000;
-		setWorld(world);
 		this.addNetworkFields(new String[] { "owner" });
 	}
 
@@ -81,17 +80,19 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		}
 	}
 
-	public String getMode() {
-		if (mode == 0) {
+	public String getMode()
+	{
+	    switch(mode)
+		{
+		case 0:
 			return "Any Players";
-		}
-		if (mode == 1) {
+		case 1:
 			return "Owner";
-		}
-		if (mode == 2) {
+		case 2:
 			return "Not Owner";
+		default:
+			return "Error";
 		}
-		return "Error";
 	}
 
 	public boolean ownerCheck() {
