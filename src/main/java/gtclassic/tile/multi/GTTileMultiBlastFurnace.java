@@ -65,8 +65,8 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
-		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, slotInputs);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInputs);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
 		handler.registerInputFilter(filter, slotInputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);

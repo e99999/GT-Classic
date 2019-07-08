@@ -56,7 +56,7 @@ public class GTTileChargeOMat extends TileEntityMachine
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
 		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, slotInputs);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
 	}

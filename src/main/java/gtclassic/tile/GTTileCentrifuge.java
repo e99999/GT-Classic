@@ -67,8 +67,9 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
-		handler.registerDefaultSlotsForSide(RotationList.VERTICAL, slotInputs);
-		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.UP, 0);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, 1);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
 		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
 		handler.registerInputFilter(filter, slotInputs);
 		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
@@ -161,7 +162,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addRecipe("dustEnderPearl", 16, 16, totalEu(65000), GTMaterialGen.getFluid(GTMaterial.Chlorine, 6), GTMaterialGen.getFluid(GTMaterial.Nitrogen, 5), GTMaterialGen.getFluid(GTMaterial.Beryllium, 1), GTMaterialGen.getFluid(GTMaterial.Potassium, 4));
 		addRecipe("dustEnderEye", 16, 0, totalEu(35000), GTMaterialGen.getDust(GTMaterial.EnderPearl, 8), GTMaterialGen.get(Items.BLAZE_POWDER, 8));
 		addRecipe("dustLazurite", 28, 5, totalEu(295000), GTMaterialGen.getFluid(GTMaterial.Sodium, 8), GTMaterialGen.getDust(GTMaterial.Aluminium, 6), GTMaterialGen.getDust(GTMaterial.Silicon, 6), GTMaterialGen.getFluid(GTMaterial.Calcium, 8));
-		addRecipe("dustPyrite", 2, 0, totalEu(15000), GTMaterialGen.getIc2(Ic2Items.ironDust, 1));
+		addRecipe("dustPyrite", 2, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.ironDust, 1));
 		addRecipe("dustCalcite", 10, 5, totalEu(50000), GTMaterialGen.getFluid(GTMaterial.Calcium, 2), GTMaterialGen.getDust(GTMaterial.Carbon, 2), GTMaterialGen.getFluid(GTMaterial.Oxygen, 3));
 		addRecipe("dustSodalite", 11, 5, totalEu(115000), GTMaterialGen.getFluid(GTMaterial.Chlorine, 1), GTMaterialGen.getFluid(GTMaterial.Sodium, 4), GTMaterialGen.getDust(GTMaterial.Aluminium, 3), GTMaterialGen.getDust(GTMaterial.Silicon, 3));
 		addRecipe("dustBauxite", 24, 16, totalEu(250000), GTMaterialGen.getFluid(GTMaterial.Oxygen, 6), GTMaterialGen.getDust(GTMaterial.Aluminium, 16), GTMaterialGen.getDust(GTMaterial.Titanium, 1), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 10));

@@ -87,8 +87,6 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.ductTape), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64));
 		/** Small Buffer **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileBufferSmall, 8), GTMaterialGen.get(GTBlocks.tileBufferLarge, 1));
-		/** Broken NBT Tubes to Regular **/
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.testTube, 1), GTMaterialGen.get(GTItems.testTube, 1));
 	}
 
 	public static void items() {

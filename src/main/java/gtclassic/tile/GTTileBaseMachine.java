@@ -164,7 +164,8 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	}
 
 	public void process(MultiRecipe recipe) {
-		for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
+		MachineOutput output = recipe.getOutputs().copy();
+		for (ItemStack stack : output.getRecipeOutput(getWorld().rand, getTileData())) {
 			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
 		}
 		NBTTagCompound nbt = recipe.getOutputs().getMetadata();
