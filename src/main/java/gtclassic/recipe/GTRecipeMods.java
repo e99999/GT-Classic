@@ -27,28 +27,28 @@ public class GTRecipeMods {
 			GTMod.logger.info("Adding Draconium to Gregtech Blast Furnace...");
 			GTRecipeProcessing.removeSmelting(GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
-					input("dustDraconium", 1) }, 256000, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
+					input("dustDraconium", 1) }, GTTileMultiBlastFurnace.COST_HIGH, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
-					input("oreDraconium", 1) }, 256000, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
+					input("oreDraconium", 1) }, GTTileMultiBlastFurnace.COST_HIGH, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
 		}
 		/** Thermal Mods **/
 		if (Loader.isModLoaded(GTValues.THERMAL)) {
 			GTMod.logger.info("Adding Thermal alloys to the blast furnace");
 			// Invar
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Iron", 2),
-					metal("Nickel", 1) }, 4000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 162, 3));
+					metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 162, 3));
 			// Constantan
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
-					metal("Nickel", 1) }, 4000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 164, 2));
+					metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 164, 2));
 			// Signalum
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 3), metal("Silver", 1),
-					input("dustRedstone", 9) }, 16000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 165, 4));
+					input("dustRedstone", 9) }, GTTileMultiBlastFurnace.COST_SMALL, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 165, 4));
 			// Lumium
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Tin", 3), metal("Silver", 1),
-					input("dustGlowstone", 4) }, 32000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 166, 4));
+					input("dustGlowstone", 4) }, GTTileMultiBlastFurnace.COST_MED, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 166, 4));
 			// Enderium
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 3), metal("Platinum", 1),
-					input("dustEnderPearl", 4) }, 32000, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 167, 4));
+					input("dustEnderPearl", 4) }, GTTileMultiBlastFurnace.COST_MED, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 167, 4));
 		}
 		/** Immersive Engineering **/
 		if (Loader.isModLoaded(GTValues.IMMERSIVE_ENGINEERING)) {
@@ -58,7 +58,7 @@ public class GTRecipeMods {
 			if (!Loader.isModLoaded(GTValues.THERMAL)) {
 				// Constantan
 				GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
-						metal("Nickel", 1) }, 4000, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "metal", 6, 2));
+						metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "metal", 6, 2));
 			}
 		}
 	}

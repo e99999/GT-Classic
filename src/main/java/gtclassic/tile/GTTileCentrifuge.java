@@ -116,7 +116,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 
 	@Override
 	public boolean isRecipeSlot(int slot) {
-		return slot != slotFuel;
+		return slot <= 1;
 	}
 
 	@Override

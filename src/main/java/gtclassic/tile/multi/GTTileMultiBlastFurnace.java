@@ -54,6 +54,10 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.blastfurnace");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/blastfurnace.png");
 	private static final int defaultEu = 120;
+	public static final int COST_TINY = 4000;
+	public static final int COST_SMALL = 16000;
+	public static final int COST_MED = 32000;
+	public static final int COST_HIGH = 64000;
 
 	public GTTileMultiBlastFurnace() {
 		super(8, 2, defaultEu, 128);
@@ -104,12 +108,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	@Override
 	public boolean isRecipeSlot(int slot) {
-		for (int i : this.getInputSlots()) {
-			if (slot <= i) {
-				return true;
-			}
-		}
-		return false;
+		return slot <= 3;
 	}
 
 	@Override
@@ -139,16 +138,16 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 				input("dustCalcite", 1) }, 12800, GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 2));
 		/** Bronze **/
 		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 3),
-				metal("Tin", 1) }, 4000, GTMaterialGen.getIc2(Ic2Items.bronzeIngot, 4));
+				metal("Tin", 1) }, COST_TINY, GTMaterialGen.getIc2(Ic2Items.bronzeIngot, 4));
 		/** Electrum **/
 		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Silver", 1),
-				metal("Gold", 1) }, 4000, GTMaterialGen.getIngot(GTMaterial.Electrum, 2));
+				metal("Gold", 1) }, COST_TINY, GTMaterialGen.getIngot(GTMaterial.Electrum, 2));
 		/** Steel **/
-		addRecipe(new IRecipeInput[] { input("dustSteel", 1) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+		addRecipe(new IRecipeInput[] { input("dustSteel", 1) }, COST_MED, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
 		addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1),
-				input("dustCoal", 2) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+				input("dustCoal", 2) }, COST_MED, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
 		addRecipe(new IRecipeInput[] { input("ingotRefinedIron", 1),
-				input("dustCarbon", 1) }, 64000, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
+				input("dustCarbon", 1) }, COST_MED, GTMaterialGen.getIngot(GTMaterial.Steel, 1));
 	}
 
 	public static void removals() {
@@ -171,18 +170,18 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	public static void postInit() {
 		/** Titanium **/
 		addRecipe(new IRecipeInput[] {
-				input("dustTitanium", 1) }, 128000, GTMaterialGen.getIngot(GTMaterial.Titanium, 1));
+				input("dustTitanium", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Titanium, 1));
 		/** Chrome **/
-		addRecipe(new IRecipeInput[] { input("dustChrome", 1) }, 102400, GTMaterialGen.getIngot(GTMaterial.Chrome, 1));
+		addRecipe(new IRecipeInput[] { input("dustChrome", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Chrome, 1));
 		/** Iridium **/
 		addRecipe(new IRecipeInput[] {
-				input("dustIridium", 1) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
-		addRecipe(new IRecipeInput[] { input("oreIridium", 1) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
+				input("dustIridium", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
+		addRecipe(new IRecipeInput[] { input("oreIridium", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
 		addRecipe(new IRecipeInput[] {
-				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)) }, 256000, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
+				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
 		/** Tungsten **/
 		addRecipe(new IRecipeInput[] {
-				input("dustTungsten", 1) }, 256000, GTMaterialGen.getIngot(GTMaterial.Tungsten, 1));
+				input("dustTungsten", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Tungsten, 1));
 	}
 
 	public static IRecipeModifier[] totalEu(int total) {
