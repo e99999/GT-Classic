@@ -40,7 +40,7 @@ public class GTRecipeIterators {
 			TileEntityCompressor.addRecipe(dust, 1, GTMaterialGen.getGem(mat, 1), 0.0F);
 			// Inverse
 			TileEntityMacerator.addRecipe(gem, 1, GTMaterialGen.getDust(mat, 1), 0.0F);
-			if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
+			if (mat.hasFlag(GTMaterialFlag.BLOCKGEM)) {
 				// Block and gem related logic
 				recipes.addShapelessRecipe(GTMaterialGen.getGem(mat, 9), new Object[] { block });
 				TileEntityCompressor.addRecipe(gem, 9, GTMaterialGen.getMaterialBlock(mat, 1), 0.0F);
@@ -54,7 +54,7 @@ public class GTRecipeIterators {
 	public static void createBlockRecipe(GTMaterial mat) {
 		String ingot = "ingot" + mat.getDisplayName();
 		String block = "block" + mat.getDisplayName();
-		if (mat.hasFlag(GTMaterialFlag.BLOCK)) {
+		if (mat.hasFlag(GTMaterialFlag.BLOCKMETAL)) {
 			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
 				// Block crafting recipe
 				recipes.addRecipe(GTMaterialGen.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X',

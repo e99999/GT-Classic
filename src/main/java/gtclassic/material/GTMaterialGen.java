@@ -21,7 +21,10 @@ public class GTMaterialGen {
 	public static void init() {
 		// Add material entries and flags to correct maps
 		for (GTMaterial mat : GTMaterial.values()) {
-			materialBlockUtil(mat, GTMaterialFlag.BLOCK);
+			materialBlockUtil(mat, GTMaterialFlag.BLOCKMETAL);
+		}
+		for (GTMaterial mat : GTMaterial.values()) {
+			materialBlockUtil(mat, GTMaterialFlag.BLOCKGEM);
 		}
 		for (GTMaterial mat : GTMaterial.values()) {
 			materialItemUtil(mat, GTMaterialFlag.DUST);
@@ -81,7 +84,7 @@ public class GTMaterialGen {
 
 	// Instances per flag, most of the mod will references these
 	public static ItemStack getMaterialBlock(GTMaterial mat, int count) {
-		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.BLOCK.getSuffix()), count, 0);
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.BLOCKMETAL.getSuffix()), count, 0);
 	}
 
 	public static ItemStack getDust(GTMaterial mat, int count) {
