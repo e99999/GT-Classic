@@ -31,28 +31,17 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		this.world = player.player.getEntityWorld();
 		this.player = player.player;
 		this.addComponent(new GTGuiCompBasicString("Basic Worktable", 85, 6));
-		this.addSlotToContainer(new SlotCrafting(this.player, craftMatrix, craftResult, 0, 148, 35));
-		for (int i = 0; i < 3; ++i) {
-			for (int j = 0; j < 3; ++j) {
-				this.addSlotToContainer(new Slot(craftMatrix, (j + i * 3), 82 + j * 18, 17 + i * 18));
+		this.addSlotToContainer(new SlotCrafting(this.player, craftMatrix, craftResult, 0, 148, 35));//slot 0
+		for (int k = 0; k < 4; ++k) {
+			for (int l = 0; l < 4; ++l) {
+				this.addSlotToContainer(new SlotBase(tile, (k + l * 4) + 1, 8 + l * 18, 8 + k * 18));
 			}
 		}
-		this.addSlotToContainer(new SlotBase(tile, 10, 8, 8));
-		this.addSlotToContainer(new SlotBase(tile, 11, 26, 8));
-		this.addSlotToContainer(new SlotBase(tile, 12, 44, 8));
-		this.addSlotToContainer(new SlotBase(tile, 13, 62, 8));
-		this.addSlotToContainer(new SlotBase(tile, 14, 8, 26));
-		this.addSlotToContainer(new SlotBase(tile, 15, 26, 26));
-		this.addSlotToContainer(new SlotBase(tile, 16, 44, 26));
-		this.addSlotToContainer(new SlotBase(tile, 17, 62, 26));
-		this.addSlotToContainer(new SlotBase(tile, 18, 8, 44));
-		this.addSlotToContainer(new SlotBase(tile, 19, 26, 44));
-		this.addSlotToContainer(new SlotBase(tile, 20, 44, 44));
-		this.addSlotToContainer(new SlotBase(tile, 21, 62, 44));
-		this.addSlotToContainer(new SlotBase(tile, 22, 8, 62));
-		this.addSlotToContainer(new SlotBase(tile, 23, 26, 62));
-		this.addSlotToContainer(new SlotBase(tile, 24, 44, 62));
-		this.addSlotToContainer(new SlotBase(tile, 25, 62, 62));
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 3; ++j) {
+				this.addSlotToContainer(new Slot(craftMatrix, 0 + (j + i * 3), 82 + j * 18, 17 + i * 18));
+			}
+		}
 		this.addPlayerInventory(player, 0, 0);
 	}
 
