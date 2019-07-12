@@ -67,7 +67,7 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, GTColorBlo
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-			return Ic2Icons.getTextures(GTMod.MODID + "_materials")[flag.getTextureID()];
+				return Ic2Icons.getTextures(flag.getTexture())[flag.getTextureID()];
 	}
 
 	@Override
