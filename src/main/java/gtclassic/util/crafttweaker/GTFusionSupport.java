@@ -14,23 +14,23 @@ import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.gtclassic.FusionComputer")
+@ZenClass("mods.gtclassic.FusionReactor")
 @ZenRegister
 public class GTFusionSupport {
 
 	@ZenMethod
 	public static void addRecipe(IItemStack output, IIngredient input1, IIngredient input2, int totalEu) {
-		GTCraftTweakerActions.apply(new FusionComputerRecipeAction(GTCraftTweakerActions.of(input1), GTCraftTweakerActions.of(input2), totalEu, CraftTweakerMC.getItemStack(output)));
+		GTCraftTweakerActions.apply(new FusionReactorRecipeAction(GTCraftTweakerActions.of(input1), GTCraftTweakerActions.of(input2), totalEu, CraftTweakerMC.getItemStack(output)));
 	}
 
-	private static final class FusionComputerRecipeAction implements IAction {
+	private static final class FusionReactorRecipeAction implements IAction {
 
 		private final IRecipeInput input1;
 		private final IRecipeInput input2;
 		private final int totalEu;
 		private final ItemStack output;
 
-		FusionComputerRecipeAction(IRecipeInput input1, IRecipeInput input2, int totalEu, ItemStack output) {
+		FusionReactorRecipeAction(IRecipeInput input1, IRecipeInput input2, int totalEu, ItemStack output) {
 			this.input1 = input1;
 			this.input2 = input2;
 			this.totalEu = totalEu;
