@@ -2,7 +2,7 @@ package gtclassic.container;
 
 import gtclassic.gui.GTGuiCompBasicString;
 import gtclassic.gui.GTGuiCompFusion;
-import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -16,20 +16,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerFusionComputer extends ContainerTileComponent<GTTileMultiFusion> {
+public class GTContainerFusionReactor extends ContainerTileComponent<GTTileMultiFusionReactor> {
 
 	public static Box2D machineProgressBox = new Box2D(110, 34, 25, 17);
 	public static Vec2i machineProgressPos = new Vec2i(176, 14);
 
-	public GTContainerFusionComputer(InventoryPlayer player, GTTileMultiFusion tile) {
+	public GTContainerFusionReactor(InventoryPlayer player, GTTileMultiFusionReactor tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotCustom(tile, 0, 88, 17, tile.filter));
 		this.addSlotToContainer(new SlotCustom(tile, 1, 88, 53, tile.filter));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 148, 35));
 		this.addPlayerInventory(player);
-		this.addComponent(new MachineProgressComp(tile, GTContainerFusionComputer.machineProgressBox, GTContainerFusionComputer.machineProgressPos));
+		this.addComponent(new MachineProgressComp(tile, GTContainerFusionReactor.machineProgressBox, GTContainerFusionReactor.machineProgressPos));
 		this.addComponent(new GTGuiCompFusion(tile));
-		this.addComponent(new GTGuiCompBasicString("Fusion Computer", 88, 5));
+		this.addComponent(new GTGuiCompBasicString("Fusion Reactor", 88, 5));
 	}
 
 	@Override

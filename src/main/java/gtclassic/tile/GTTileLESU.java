@@ -3,11 +3,11 @@ package gtclassic.tile;
 import java.util.List;
 
 import gtclassic.container.GTContainerLESU;
-import gtclassic.util.LESUFilter;
+import gtclassic.util.GTLang;
+import gtclassic.util.GTLapotronBlockFilter;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.helpers.AabbUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,9 +17,10 @@ import net.minecraft.util.math.BlockPos;
 public class GTTileLESU extends TileEntityElectricBlock {
 
 	private int blockCount;
+	public boolean enabled = true;
 	public List<BlockPos> lapotronBlockPos;
 	public static final int BASE_ENERGY = 10000000;
-	public static AabbUtil.IBlockFilter filter = new LESUFilter();
+	public static AabbUtil.IBlockFilter filter = new GTLapotronBlockFilter();
 
 	public GTTileLESU() {
 		super(3, 512, BASE_ENERGY);
@@ -49,7 +50,7 @@ public class GTTileLESU extends TileEntityElectricBlock {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+		return GTLang.LESU;
 	}
 
 	public int getProcessRate() {
@@ -68,14 +69,16 @@ public class GTTileLESU extends TileEntityElectricBlock {
 	}
 
 	private void checkArea() {
-		if (world.getTotalWorldTime() % 256 == 0) {
+		if (world.getTotalWorldTime() % 256 == 0 && enabled) {
+			if (!world.isAreaLoaded(pos, 3))
+				return;
 			this.lapotronBlockPos = getLapotronBlocks();
 			this.blockCount = this.lapotronBlockPos.size();
 			if (this.blockCount > 256) {
 				this.blockCount = 256;
 			}
-			this.getNetwork().updateTileGuiField(this, "blockCount");
 			this.maxEnergy = BASE_ENERGY + (this.blockCount * 750000);
+			this.getNetwork().updateTileGuiField(this, "blockCount");
 			this.getNetwork().updateTileGuiField(this, "maxEnergy");
 			setActive(this.blockCount > 0);
 		}

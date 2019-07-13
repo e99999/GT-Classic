@@ -1,10 +1,10 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerAESU;
+import gtclassic.util.GTLang;
 import ic2.api.energy.EnergyNet;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -47,7 +47,7 @@ public class GTTileAESU extends TileEntityElectricBlock {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+		return GTLang.AESU;
 	}
 
 	@Override

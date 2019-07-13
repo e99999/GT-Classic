@@ -6,7 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class LESUFilter implements AabbUtil.IBlockFilter {
+public class GTLapotronBlockFilter implements AabbUtil.IBlockFilter {
 
 	@Override
 	public boolean isValidBlock(IBlockState state) {

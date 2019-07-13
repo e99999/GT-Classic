@@ -8,7 +8,7 @@ import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
-import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
@@ -69,7 +69,7 @@ public class GTRecipe {
 		GTTileCentrifuge.init();
 		GTTileMatterFabricator.init();
 		GTTileMultiBlastFurnace.init();
-		GTTileMultiFusion.init();
+		GTTileMultiFusionReactor.init();
 		shapeless();
 		items();
 		blocks();
@@ -186,7 +186,7 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
 				"circuitMaster", 'S', GTItems.superConductor, 'A', GTBlocks.casingHighlyAdvanced });
 		/** Fusion Computer **/
-		recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionComputer, 1), new Object[] {
+		recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] {
 				"ESE", "LCL", "ESE", 'E', "circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C',
 				GTBlocks.tileComputer });
 		/** Player Detector **/

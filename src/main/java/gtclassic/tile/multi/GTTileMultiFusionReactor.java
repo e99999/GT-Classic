@@ -8,9 +8,10 @@ import java.util.Set;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
-import gtclassic.container.GTContainerFusionComputer;
+import gtclassic.container.GTContainerFusionReactor;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTLang;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTRecipeElementObject;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
@@ -27,7 +28,6 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -40,18 +40,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
-public class GTTileMultiFusion extends GTTileMultiBaseMachine {
+public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
 	public static final int slotOutput = 2;
 	public IFilter filter = new MachineFilter(this);
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.fusion");
-	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusioncomputer.png");
+	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusionreactor.png");
 	public String status;
 	IBlockState coilState = GTBlocks.casingFusion.getDefaultState();
 
-	public GTTileMultiFusion() {
+	public GTTileMultiFusionReactor() {
 		super(3, 0, 8196, 32784);
 		maxEnergy = 100000000;
 		this.status = "No";
@@ -73,7 +73,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+		return GTLang.FUSION_REACTOR;
 	}
 
 	@Override
@@ -97,7 +97,7 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerFusionComputer(player.inventory, this);
+		return new GTContainerFusionReactor(player.inventory, this);
 	}
 
 	@Override

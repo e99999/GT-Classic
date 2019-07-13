@@ -15,6 +15,7 @@ import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.recipe.GTRecipeProcessing;
+import gtclassic.util.GTLang;
 import gtclassic.util.GTValues;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
@@ -30,7 +31,6 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -78,7 +78,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+		return GTLang.BLAST_FURNACE;
 	}
 
 	@Override

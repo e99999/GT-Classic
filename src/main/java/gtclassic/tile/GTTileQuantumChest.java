@@ -6,6 +6,7 @@ import java.util.List;
 import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerQuantumChest;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTLang;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -14,7 +15,6 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IItemContainer;
@@ -66,7 +66,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 
 	@Override
 	public LocaleComp getBlockName() {
-		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+		return GTLang.QUANTUM_CHEST;
 	}
 
 	@Override

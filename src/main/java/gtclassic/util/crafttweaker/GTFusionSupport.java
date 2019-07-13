@@ -8,7 +8,7 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import ic2.api.recipe.IRecipeInput;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -40,8 +40,8 @@ public class GTFusionSupport {
 		@Override
 		public void apply() {
 			if (totalEu > 0) {
-				GTTileMultiFusion.addRecipe(new IRecipeInput[] { input1,
-						input2 }, GTTileMultiFusion.totalEu(totalEu), output);
+				GTTileMultiFusionReactor.addRecipe(new IRecipeInput[] { input1,
+						input2 }, GTTileMultiFusionReactor.totalEu(totalEu), output);
 			} else {
 				CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > "
 						+ "Eu amount must be greater then 0!!");
@@ -50,7 +50,7 @@ public class GTFusionSupport {
 
 		@Override
 		public String describe() {
-			return String.format(Locale.ENGLISH, "Add Recipe[%s, %s -> %s] to %s", this.input1, this.input2, this.output, GTTileMultiFusion.RECIPE_LIST);
+			return String.format(Locale.ENGLISH, "Add Recipe[%s, %s -> %s] to %s", this.input1, this.input2, this.output, GTTileMultiFusionReactor.RECIPE_LIST);
 		}
 	}
 }

@@ -3,6 +3,7 @@ package gtclassic.tile;
 import java.util.UUID;
 
 import gtclassic.container.GTContainerIDSU;
+import gtclassic.util.GTLang;
 import gtclassic.util.energy.IDSUStorage;
 import gtclassic.util.energy.IDSUStorage.EnergyWrapper;
 import ic2.api.classic.network.adv.NetworkField;
@@ -11,7 +12,6 @@ import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.entity.player.EntityPlayer;
@@ -143,7 +143,7 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+		return GTLang.IDSU;
 	}
 
 	public void setOwner(UUID user) {

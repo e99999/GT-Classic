@@ -30,7 +30,7 @@ import gtclassic.tile.GTTileSluice;
 import gtclassic.tile.GTTileTranslocator;
 import gtclassic.tile.GTTileWorktable;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
-import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
@@ -65,7 +65,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileFabricator = registerBlock(new GTBlockMachine("matterfabricator"));
 	public static final GTBlockMachine tileUUAssembler = registerBlock(new GTBlockMachine("uuassembler"));
 	public static final GTBlockMachine tilePlayerDetector = registerBlock(new GTBlockMachine("playerdetector", 1));
-	public static final GTBlockMachine tileFusionComputer = registerBlock(new GTBlockMachine("fusioncomputer", 4));
+	public static final GTBlockMachine tileFusionReactor = registerBlock(new GTBlockMachine("fusionreactor", 4));
 	public static final GTBlockMachine tileLightningRod = registerBlock(new GTBlockMachine("lightningrod", 2));
 	public static final GTBlockMachineDirectionable tileLESU = registerBlock(new GTBlockMachineDirectionable("lesu"));
 	public static final GTBlockMachineDirectionable tileAESU = registerBlock(new GTBlockMachineDirectionable("aesu"));
@@ -79,7 +79,7 @@ public class GTBlocks {
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uuassembler", "quantumchest", "playerdetector",
-			"fusioncomputer", "lightningrod", "idsu", "aesu", "lesu", "cabinet", "worktable", "translocator",
+			"fusionreactor", "lightningrod", "idsu", "aesu", "lesu", "cabinet", "worktable", "translocator",
 			"bufferlarge", "buffersmall" };
 
 	public static void registerBlocks() {
@@ -121,7 +121,7 @@ public class GTBlocks {
 		registerUtil(GTTileIDSU.class, "IDSU");
 		registerUtil(GTTileAESU.class, "AESU");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");
-		registerUtil(GTTileMultiFusion.class, "FusionComputer");
+		registerUtil(GTTileMultiFusionReactor.class, "FusionComputer");
 		registerUtil(GTTileQuantumChest.class, "QuantumChest");
 		registerUtil(GTTileMatterFabricator.class, "MatterFabricator");
 		registerUtil(GTTileWorktable.class, "Worktable");

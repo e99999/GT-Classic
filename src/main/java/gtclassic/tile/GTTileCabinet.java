@@ -1,6 +1,7 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerCabinet;
+import gtclassic.util.GTLang;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -9,7 +10,6 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
@@ -26,7 +26,7 @@ public class GTTileCabinet extends TileEntityMachine implements IHasGui {
 
 	@Override
 	public LocaleComp getBlockName() {
-		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+		return GTLang.CABINET;
 	}
 
 	@Override

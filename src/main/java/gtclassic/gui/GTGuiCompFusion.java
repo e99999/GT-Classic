@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.registry.Ic2GuiComp;
@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTGuiCompFusion extends GuiComponent {
 
-	GTTileMultiFusion block;
+	GTTileMultiFusionReactor block;
 
-	public GTGuiCompFusion(GTTileMultiFusion tile) {
+	public GTGuiCompFusion(GTTileMultiFusionReactor tile) {
 		super(Ic2GuiComp.nullBox);
 		this.block = tile;
 	}

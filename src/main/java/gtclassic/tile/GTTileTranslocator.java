@@ -1,6 +1,7 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerTranslocator;
+import gtclassic.util.GTLang;
 import gtclassic.util.int3;
 import ic2.core.RotationList;
 import ic2.core.inventory.base.IHasGui;
@@ -12,7 +13,6 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
@@ -31,7 +31,7 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui, ITi
 
 	@Override
 	public LocaleComp getBlockName() {
-		return new LocaleBlockComp(this.getBlockType().getUnlocalizedName());
+		return GTLang.TRANSLOCATOR;
 	}
 
 	@Override

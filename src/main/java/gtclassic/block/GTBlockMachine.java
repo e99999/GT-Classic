@@ -15,7 +15,7 @@ import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileWorktable;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
-import gtclassic.tile.multi.GTTileMultiFusion;
+import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -113,8 +113,8 @@ public class GTBlockMachine extends GTBlockMultiID {
 		if (this == GTBlocks.tileFabricator) {
 			return new GTTileMatterFabricator();
 		}
-		if (this == GTBlocks.tileFusionComputer) {
-			return new GTTileMultiFusion();
+		if (this == GTBlocks.tileFusionReactor) {
+			return new GTTileMultiFusionReactor();
 		}
 		if (this == GTBlocks.tileWorktable) {
 			return new GTTileWorktable();
