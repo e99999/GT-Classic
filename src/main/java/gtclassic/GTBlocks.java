@@ -22,6 +22,7 @@ import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTileIDSU;
+import gtclassic.tile.GTTileLESU;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumChest;
@@ -117,6 +118,7 @@ public class GTBlocks {
 		registerUtil(GTTileComputerCube.class, "ComputerCube");
 		registerUtil(GTTileMultiBlastFurnace.class, "BlastFurnace");
 		registerUtil(GTTileChargeOMat.class, "ChargeOMat");
+		registerUtil(GTTileLESU.class, "LESU");
 		registerUtil(GTTileIDSU.class, "IDSU");
 		registerUtil(GTTileAESU.class, "AESU");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");

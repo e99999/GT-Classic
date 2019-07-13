@@ -7,6 +7,7 @@ import gtclassic.tile.GTTileAESU;
 import gtclassic.tile.GTTileBufferLarge;
 import gtclassic.tile.GTTileBufferSmall;
 import gtclassic.tile.GTTileIDSU;
+import gtclassic.tile.GTTileLESU;
 import gtclassic.tile.GTTileTranslocator;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -30,6 +31,9 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
+		if (this == GTBlocks.tileLESU) {
+			return new GTTileLESU();
+		}
 		if (this == GTBlocks.tileAESU) {
 			return new GTTileAESU();
 		}
