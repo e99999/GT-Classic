@@ -172,11 +172,13 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		addRecipe(new IRecipeInput[] {
 				input("dustTitanium", 1) }, COST_MED, GTMaterialGen.getIngot(GTMaterial.Titanium, 1));
 		/** Chrome **/
-		addRecipe(new IRecipeInput[] { input("dustChrome", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Chrome, 1));
+		addRecipe(new IRecipeInput[] {
+				input("dustChrome", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Chrome, 1));
 		/** Iridium **/
 		addRecipe(new IRecipeInput[] {
 				input("dustIridium", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
-		addRecipe(new IRecipeInput[] { input("oreIridium", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
+		addRecipe(new IRecipeInput[] {
+				input("oreIridium", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
 		addRecipe(new IRecipeInput[] {
 				input(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1)) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Iridium, 1));
 		/** Tungsten **/

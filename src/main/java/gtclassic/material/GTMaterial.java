@@ -122,7 +122,8 @@ public class GTMaterial {
 	}
 
 	public static boolean isGem(GTMaterial mat) {
-		return mat.hasFlag(GTMaterialFlag.RUBY) || mat.hasFlag(GTMaterialFlag.SAPPHIRE) || mat.hasFlag(GTMaterialFlag.BLOCKGEM);
+		return mat.hasFlag(GTMaterialFlag.RUBY) || mat.hasFlag(GTMaterialFlag.SAPPHIRE)
+				|| mat.hasFlag(GTMaterialFlag.BLOCKGEM);
 	}
 
 	/** Map Get **/

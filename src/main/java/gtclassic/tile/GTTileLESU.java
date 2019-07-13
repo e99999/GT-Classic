@@ -1,23 +1,28 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerLESU;
+import gtclassic.util.LESUFilter;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.util.helpers.AabbUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class GTTileLESU extends TileEntityElectricBlock {
-	
+
 	private int blockCount;
+	public static final int BASE_ENERGY = 10000000;
+	public static AabbUtil.IBlockFilter filter = new LESUFilter();
 
 	public GTTileLESU() {
-		super(3, 512, 10000000);
+		super(3, 512, BASE_ENERGY);
 		this.blockCount = 0;
 		this.addGuiFields(new String[] { "blockcount" });
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
@@ -58,13 +63,18 @@ public class GTTileLESU extends TileEntityElectricBlock {
 
 	private void checkArea() {
 		if (world.getTotalWorldTime() % 256 == 0) {
-			//count blocks
+			this.blockCount = countBlocks();
+			this.getNetwork().updateTileGuiField(this, "blockcount");
+			this.maxEnergy = BASE_ENERGY + (this.blockCount * 750000);
 			setActive(this.blockCount > 0);
 		}
 	}
-	
-	
-	public int getBlockCount() {
-		return this.blockCount;
+
+	public int getCount() {
+		return blockCount;
+	}
+
+	public int countBlocks() {
+		return AabbUtil.getBlockCount(world, this.pos, 256, filter, false, false, RotationList.ALL);
 	}
 }
