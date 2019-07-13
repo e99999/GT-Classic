@@ -1,7 +1,5 @@
 package gtclassic.fluid;
 
-import java.awt.Color;
-
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
@@ -21,15 +19,29 @@ public class GTFluid extends Fluid {
 	protected static Material material = Material.WATER;
 	GTMaterial mat = null;
 
+	/**
+	 * Constructor for a GTFluid with added suffix control.
+	 * 
+	 * @param mat  - GTMaterial to create, grabs the color and fluid type
+	 * @param base - String for background, can be "fluid" or "gas"
+	 * @param flag - GTMaterialFlag to get a custom suffix, used for plasma etc..
+	 */
 	public GTFluid(GTMaterial mat, String base, GTMaterialFlag flag) {
 		super(mat.getDisplayName().toLowerCase() + flag.getSuffix(), new ResourceLocation(GTMod.MODID, "fluids/"
 				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
 		this.mat = mat;
 		this.temperature = 300;
-		this.mapColor = Color.white.hashCode();
+		this.mapColor = mat.getColor().hashCode();
 		this.setGaseous(flag.equals(GTMaterialFlag.GAS));
 	}
 
+	/**
+	 * Constructor for a GTFluid.
+	 * 
+	 * @param mat  - GTMaterial to create, grabs the color and fluid type
+	 * @param base - String for background, "fluid" for flowing texture and "gas"
+	 *             for gas texture
+	 */
 	public GTFluid(GTMaterial mat, String base) {
 		super(mat.getDisplayName().toLowerCase(), new ResourceLocation(GTMod.MODID, "fluids/"
 				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));

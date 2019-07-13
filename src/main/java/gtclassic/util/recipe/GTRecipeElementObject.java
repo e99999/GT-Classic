@@ -43,12 +43,25 @@ public class GTRecipeElementObject {
 			calcium, carbon, chlorine, chrome, helium, hydrogen, iridium, lithium, mercury, nitrogen, oxygen, potassium,
 			silicon, sodium, titanium, tungsten, uranium };
 
+	/**
+	 * Element object constructor used for ore dict input and ItemStack output.
+	 * 
+	 * @param number - int atomic number on the periodic table
+	 * @param input  - IRecipeinput for oredict whatever you want as the input
+	 * @param output - ItemStack output for fusion recipes
+	 */
 	public GTRecipeElementObject(int number, IRecipeInput input, ItemStack output) {
 		this.number = number;
 		this.input = input;
 		this.output = output;
 	}
 
+	/**
+	 * Element object constructor where the input and output are the same stack.
+	 * 
+	 * @param number- int atomic number on the periodic table
+	 * @param stack- ItemStack input and fusion output stack
+	 */
 	public GTRecipeElementObject(int number, ItemStack stack) {
 		this.number = number;
 		this.input = input(stack);

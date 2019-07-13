@@ -6,6 +6,7 @@ import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
+import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
@@ -61,6 +62,7 @@ public class GTMod {
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
 		IC2.saveManager.registerGlobal("IDSU_Storage", IDSUStorage.class, false);
+		GTTileMultiBlastFurnace.removals();
 		proxy.init(e);
 	}
 
@@ -68,6 +70,7 @@ public class GTMod {
 	public void postInit(FMLPostInitializationEvent e) {
 		proxy.postInit(e);
 		MultiBlockHelper.INSTANCE.init();
+		GTTileMultiBlastFurnace.removals();
 		GTRecipe.postInit();
 	}
 

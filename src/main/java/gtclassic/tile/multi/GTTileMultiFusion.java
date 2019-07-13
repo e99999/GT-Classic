@@ -63,7 +63,8 @@ public class GTTileMultiFusion extends GTTileMultiBaseMachine {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInput0, slotInput1);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput);
-		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInput0, slotInput1);
+		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInput0);
+		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, slotInput1);
 		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutput);
 		handler.registerInputFilter(filter, slotInput0, slotInput1);
 		handler.registerSlotType(SlotType.Input, slotInput0, slotInput1);

@@ -75,6 +75,13 @@ public class GTFluidTube extends Item
 		}
 	}
 
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		FluidStack fluid = FluidUtil.getFluidContained(stack);
+		return (fluid != null) && (fluid.getFluid().getName().contains("plasma"));
+	}
+
 	public String getFluidName(ItemStack stack) {
 		FluidStack fluid = FluidUtil.getFluidContained(stack);
 		if (fluid != null) {
@@ -112,6 +119,8 @@ public class GTFluidTube extends Item
 	public void getSubItems(@Nullable final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
 		if (this.isInCreativeTab(tab)) {
 			subItems.add(empty);
+			subItems.add(GTMaterialGen.getWater(1));
+			subItems.add(GTMaterialGen.getLava(1));
 			for (GTMaterial mat : GTMaterial.values()) {
 				if (mat.hasFlag(GTMaterialFlag.FLUID)) {
 					subItems.add(GTMaterialGen.getFluid(mat, 1));
