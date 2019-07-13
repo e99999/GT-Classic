@@ -10,6 +10,7 @@ import ic2.api.energy.tile.IEnergySink;
 import ic2.api.network.INetworkClientTileEntityEventListener;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.energy.EnergyNetLocal;
+import ic2.core.util.obj.IRedstoneProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,7 +18,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
 
 public class GTTileBaseBuffer extends TileEntityMachine
-		implements IEnergyConductor, IEnergySink, INetworkClientTileEntityEventListener {
+		implements IEnergyConductor, IEnergySink, INetworkClientTileEntityEventListener, IRedstoneProvider {
 
 	public int tier = 1;
 	public int output = 32;
@@ -27,10 +28,13 @@ public class GTTileBaseBuffer extends TileEntityMachine
 	public boolean addedToEnet;
 	@NetworkField(index = 4)
 	public boolean conduct = true;
+	public boolean outputRedstone = false;
+	public boolean invertRedstone = false;
+	public int redstoneStrength = 0;
 
 	public GTTileBaseBuffer(int slots) {
 		super(slots);
-		this.addGuiFields(new String[] { "energy", "conduct" });
+		this.addGuiFields(new String[] { "energy", "conduct", "outputRedstone", "invertRedstone" });
 	}
 
 	@Override
@@ -38,6 +42,8 @@ public class GTTileBaseBuffer extends TileEntityMachine
 		super.readFromNBT(nbt);
 		this.energy = nbt.getInteger("energy");
 		this.conduct = nbt.getBoolean("conduct");
+		this.outputRedstone = nbt.getBoolean("outputRedstone");
+		this.invertRedstone = nbt.getBoolean("invertRedstone");
 	}
 
 	@Override
@@ -45,6 +51,8 @@ public class GTTileBaseBuffer extends TileEntityMachine
 		super.writeToNBT(nbt);
 		nbt.setInteger("energy", this.energy);
 		nbt.setBoolean("conduct", this.conduct);
+		nbt.setBoolean("outputRedstone", this.outputRedstone);
+		nbt.setBoolean("invertRedstone", this.invertRedstone);
 		return nbt;
 	}
 
@@ -158,5 +166,22 @@ public class GTTileBaseBuffer extends TileEntityMachine
 			onLoaded();
 			this.getNetwork().updateTileGuiField(this, "conduct");
 		}
+		if (event == 1) {
+			this.outputRedstone = !this.outputRedstone;
+			this.getNetwork().updateTileGuiField(this, "outputRedstone");
+		}
+		if (event == 2) {
+			this.invertRedstone = !this.invertRedstone;
+			this.getNetwork().updateTileGuiField(this, "invertRedstone");
+		}
+	}
+
+	@Override
+	public int getRedstoneStrenght(EnumFacing paramEnumFacing) {
+		return this.redstoneStrength;
+	}
+
+	public boolean isInventoryFull() {
+		return false;
 	}
 }

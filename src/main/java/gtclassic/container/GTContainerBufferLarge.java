@@ -23,7 +23,7 @@ public class GTContainerBufferLarge extends ContainerTileComponent<GTTileBufferL
 				this.addSlotToContainer(new SlotBase(tile, x + y * 9, 8 + x * 18, 5 + y * 18));
 			}
 		}
-		this.addComponent(new GTGuiCompBuffer(tile));
+		this.addComponent(new GTGuiCompBuffer(tile, player));
 		this.addPlayerInventory(player);
 	}
 

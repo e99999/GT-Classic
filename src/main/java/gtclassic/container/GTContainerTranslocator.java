@@ -23,7 +23,7 @@ public class GTContainerTranslocator extends ContainerTileComponent<GTTileTransl
 				this.addSlotToContainer(new SlotBase(tile, x + y * 3, 62 + x * 18, 5 + y * 18));
 			}
 		}
-		this.addComponent(new GTGuiCompBuffer(tile));
+		this.addComponent(new GTGuiCompBuffer(tile, player));
 		this.addPlayerInventory(player);
 	}
 
