@@ -1,5 +1,7 @@
 package gtclassic.tile;
 
+import java.util.List;
+
 import gtclassic.container.GTContainerLESU;
 import gtclassic.util.LESUFilter;
 import ic2.core.RotationList;
@@ -10,29 +12,33 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.helpers.AabbUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 
 public class GTTileLESU extends TileEntityElectricBlock {
 
 	private int blockCount;
+	public List<BlockPos> lapotronBlockPos;
 	public static final int BASE_ENERGY = 10000000;
 	public static AabbUtil.IBlockFilter filter = new LESUFilter();
 
 	public GTTileLESU() {
 		super(3, 512, BASE_ENERGY);
 		this.blockCount = 0;
-		this.addGuiFields(new String[] { "blockcount" });
+		this.addGuiFields(new String[] { "blockCount", "maxEnergy" });
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.blockCount = nbt.getInteger("blockcount");
+		this.blockCount = nbt.getInteger("blockCount");
+		this.maxEnergy = nbt.getInteger("maxEnergy");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("blockcount", this.blockCount);
+		nbt.setInteger("blockCount", this.blockCount);
+		nbt.setInteger("maxEnergy", this.maxEnergy);
 		return nbt;
 	}
 
@@ -63,9 +69,14 @@ public class GTTileLESU extends TileEntityElectricBlock {
 
 	private void checkArea() {
 		if (world.getTotalWorldTime() % 256 == 0) {
-			this.blockCount = countBlocks();
-			this.getNetwork().updateTileGuiField(this, "blockcount");
+			this.lapotronBlockPos = getLapotronBlocks();
+			this.blockCount = this.lapotronBlockPos.size();
+			if (this.blockCount > 256) {
+				this.blockCount = 256;
+			}
+			this.getNetwork().updateTileGuiField(this, "blockCount");
 			this.maxEnergy = BASE_ENERGY + (this.blockCount * 750000);
+			this.getNetwork().updateTileGuiField(this, "maxEnergy");
 			setActive(this.blockCount > 0);
 		}
 	}
@@ -74,7 +85,7 @@ public class GTTileLESU extends TileEntityElectricBlock {
 		return blockCount;
 	}
 
-	public int countBlocks() {
-		return AabbUtil.getBlockCount(world, this.pos, 256, filter, false, false, RotationList.ALL);
+	public List<BlockPos> getLapotronBlocks() {
+		return AabbUtil.getTargets(world, this.pos, 256, filter, false, false, RotationList.ALL);
 	}
 }
