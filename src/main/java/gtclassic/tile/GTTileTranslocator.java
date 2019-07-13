@@ -19,11 +19,10 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui, ITickable {
+public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 
 	public GTTileTranslocator() {
 		super(9);

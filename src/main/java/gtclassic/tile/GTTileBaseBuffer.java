@@ -15,10 +15,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 
 public class GTTileBaseBuffer extends TileEntityMachine
-		implements IEnergyConductor, IEnergySink, INetworkClientTileEntityEventListener, IRedstoneProvider {
+		implements IEnergyConductor, IEnergySink, INetworkClientTileEntityEventListener, IRedstoneProvider, ITickable {
 
 	public int tier = 1;
 	public int output = 32;
@@ -178,10 +179,20 @@ public class GTTileBaseBuffer extends TileEntityMachine
 
 	@Override
 	public int getRedstoneStrenght(EnumFacing paramEnumFacing) {
-		return this.redstoneStrength;
+		return this.invertRedstone ? 15 - this.redstoneStrength : this.redstoneStrength;
 	}
 
 	public boolean isInventoryFull() {
 		return false;
+	}
+
+	@Override
+	public void update() {
+		if (this.outputRedstone && isInventoryFull()) {
+			this.redstoneStrength = 15;
+		} else {
+			this.redstoneStrength = 0;
+		}
+		world.notifyNeighborsOfStateChange(pos, blockType, true);
 	}
 }

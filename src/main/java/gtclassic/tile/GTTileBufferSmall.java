@@ -18,11 +18,10 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileBufferSmall extends GTTileBaseBuffer implements IHasGui, ITickable {
+public class GTTileBufferSmall extends GTTileBaseBuffer implements IHasGui {
 
 	public GTTileBufferSmall() {
 		super(1);
@@ -69,6 +68,7 @@ public class GTTileBufferSmall extends GTTileBaseBuffer implements IHasGui, ITic
 
 	@Override
 	public void update() {
+		super.update();
 		if (world.getTotalWorldTime() % 20 == 0) {
 			tryExportItems();
 		}
@@ -98,5 +98,10 @@ public class GTTileBufferSmall extends GTTileBaseBuffer implements IHasGui, ITic
 			}
 			controller.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, true);
 		}
+	}
+	
+	@Override
+	public boolean isInventoryFull() {
+		return this.inventory.get(0).getCount() == 64;
 	}
 }
