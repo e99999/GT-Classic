@@ -28,10 +28,10 @@ public class GTGuiCompAESU extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiInit(GuiIC2 gui) {
-		gui.registerButton((new GTGuiButton(4, bX(gui, 106), bY(gui, 4), 18, 18)));// +64
-		gui.registerButton((new GTGuiButton(3, bX(gui, 106), bY(gui, 22), 18, 18)));// +1
-		gui.registerButton((new GTGuiButton(2, bX(gui, 106), bY(gui, 40), 18, 18)));// -1
-		gui.registerButton((new GTGuiButton(1, bX(gui, 106), bY(gui, 58), 18, 18)));// -64
+		gui.registerButton((new GTGuiButton(4, bX(gui, 106), bY(gui, 2), 18, 18)));// +64
+		gui.registerButton((new GTGuiButton(3, bX(gui, 106), bY(gui, 20), 18, 18)));// +1
+		gui.registerButton((new GTGuiButton(2, bX(gui, 106), bY(gui, 38), 18, 18)));// -1
+		gui.registerButton((new GTGuiButton(1, bX(gui, 106), bY(gui, 56), 18, 18)));// -64
 	}
 
 	@Override

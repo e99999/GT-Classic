@@ -188,12 +188,14 @@ public class GTTileBaseBuffer extends TileEntityMachine
 
 	@Override
 	public void update() {
+		int oldStrength = this.redstoneStrength;
 		if (this.outputRedstone && isInventoryFull()) {
 			this.redstoneStrength = 15;
 		} else {
 			this.redstoneStrength = 0;
 		}
-		//TODO only update if strength changes
-		world.notifyNeighborsOfStateChange(pos, blockType, true);
+		if (this.redstoneStrength != oldStrength) {
+			world.notifyNeighborsOfStateChange(pos, blockType, true);
+		}
 	}
 }
