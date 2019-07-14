@@ -193,6 +193,7 @@ public class GTTileBaseBuffer extends TileEntityMachine
 		} else {
 			this.redstoneStrength = 0;
 		}
+		//TODO only update if strength changes
 		world.notifyNeighborsOfStateChange(pos, blockType, true);
 	}
 }

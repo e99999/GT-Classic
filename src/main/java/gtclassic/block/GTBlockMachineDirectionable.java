@@ -11,6 +11,7 @@ import gtclassic.tile.GTTileLESU;
 import gtclassic.tile.GTTileTranslocator;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -21,12 +22,12 @@ import net.minecraft.world.World;
 
 public class GTBlockMachineDirectionable extends GTBlockMachine {
 
-	public GTBlockMachineDirectionable(String name) {
-		super(name);
+	public GTBlockMachineDirectionable(String name, LocaleComp comp) {
+		super(name, comp);
 	}
 
-	public GTBlockMachineDirectionable(String name, int additionalInfo) {
-		super(name, additionalInfo);
+	public GTBlockMachineDirectionable(String name, LocaleComp comp, int additionalInfo) {
+		super(name, comp, additionalInfo);
 	}
 
 	@Override

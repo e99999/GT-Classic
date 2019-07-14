@@ -21,6 +21,7 @@ import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.block.personal.base.misc.IOwnerBlock;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -47,24 +48,24 @@ public class GTBlockMachine extends GTBlockMultiID {
 	String texture;
 	int size = 0;
 
-	public GTBlockMachine(String name) {
+	public GTBlockMachine(String name, LocaleComp comp) {
 		super(Material.IRON);
 		this.name = name;
 		this.size = 1;
 		setRegistryName(this.name.toLowerCase());
-		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
+		setUnlocalizedName(comp);
 		setCreativeTab(GTMod.creativeTabGT);
 		setBlockUnbreakable();
 		setResistance(20.0F);
 		setSoundType(SoundType.METAL);
 	}
 
-	public GTBlockMachine(String name, int additionalInfo) {
+	public GTBlockMachine(String name, LocaleComp comp, int additionalInfo) {
 		super(Material.IRON);
 		this.name = name;
 		this.size = additionalInfo + 1;
 		setRegistryName(this.name.toLowerCase());
-		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
+		setUnlocalizedName(comp);
 		setCreativeTab(GTMod.creativeTabGT);
 		setBlockUnbreakable();
 		setResistance(20.0F);

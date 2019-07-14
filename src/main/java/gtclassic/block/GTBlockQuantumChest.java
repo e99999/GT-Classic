@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.tile.GTTileQuantumChest;
+import gtclassic.util.GTLang;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.item.tool.ItemToolWrench;
 import ic2.core.util.misc.StackUtil;
@@ -33,7 +34,7 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 	String count = "digitalCount";
 
 	public GTBlockQuantumChest() {
-		super("quantumchest");
+		super("quantumchest", GTLang.QUANTUM_CHEST);
 	}
 
 	@Override

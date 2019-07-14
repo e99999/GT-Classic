@@ -10,7 +10,7 @@ import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.block.machine.recipes.managers.RecipeManager;
-import ic2.core.util.helpers.ItemWithMeta;
+import ic2.core.util.helpers.CompareableStack;
 import net.minecraft.item.ItemStack;
 
 public class GTRecipeBasicMachineList extends BasicMachineRecipeList {
@@ -31,12 +31,12 @@ public class GTRecipeBasicMachineList extends BasicMachineRecipeList {
 			return;
 		}
 		RecipeEntry toAdd = new RecipeEntry(input, output, id);
-		Map<ItemWithMeta, RecipeEntry> addMap = new LinkedHashMap<ItemWithMeta, RecipeEntry>();
+		Map<CompareableStack, RecipeEntry> addMap = new LinkedHashMap<CompareableStack, RecipeEntry>();
 		for (ItemStack stack : input.getInputs()) {
 			if (stack.isEmpty()) {
 				continue;
 			}
-			ItemWithMeta meta = new ItemWithMeta(stack);
+			CompareableStack meta = new CompareableStack(stack);
 			RecipeEntry entry = recipeMap.get(meta);
 			if (entry != null) {
 				GTMod.logger.info("Recipe Overlap: " + entry.getInput() + " Recipe ID: " + id);
