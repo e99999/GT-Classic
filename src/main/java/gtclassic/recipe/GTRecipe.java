@@ -31,7 +31,8 @@ public class GTRecipe {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotAluminium") });
 	static IRecipeInput ingotElectric = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("itemSilicon"),
-			new RecipeInputOreDict("ingotAluminium") });
+			new RecipeInputOreDict("ingotAluminium"), new RecipeInputOreDict("ingotSilver"),
+			new RecipeInputOreDict("ingotElectrum") });
 	static IRecipeInput ingotAny = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotSilver"),
 			new RecipeInputOreDict("ingotBronze"), new RecipeInputOreDict("ingotAluminium"),
@@ -48,7 +49,7 @@ public class GTRecipe {
 	static IRecipeInput anyConductor = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("dustRedstone"), new RecipeInputOreDict("ingotSilver"),
 			new RecipeInputOreDict("ingotElectrum") });
-	static IRecipeInput ingotConductor = new RecipeInputCombined(1, new IRecipeInput[] {
+	static IRecipeInput ingotSilver = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotElectrum") });
 	static IRecipeInput anyPiston = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputItemStack(GTMaterialGen.get(Blocks.STICKY_PISTON)),
@@ -294,8 +295,8 @@ public class GTRecipe {
 		/** Circutry Stuff **/
 		recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RIR", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
 		recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CIC", "CRC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CCC", "RIR", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', ingotConductor, 'I', ingotElectric);
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CRC", "CIC", "CRC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', ingotConductor, 'I', ingotElectric);
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CCC", "III", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CIC", "CIC", "CIC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
 		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RGR", "LCL", "RGR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
 		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RLR", "GCG", "RLR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
 		/** RE Battery **/
@@ -315,7 +316,7 @@ public class GTRecipe {
 				Ic2Items.carbonPlate });
 		/** Adding ruby to glass fiber cable **/
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
-		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotConductor, 'V', lowCrystal);
+		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotSilver, 'V', lowCrystal);
 		/** Overclocker helium coolant recipes **/
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { "CCC", "WEW", 'C',
 				GTMaterialGen.get(GTItems.heatStorageSingle), 'W', Ic2Items.insulatedCopperCable.copy(), 'E',

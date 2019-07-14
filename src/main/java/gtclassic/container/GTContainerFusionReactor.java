@@ -29,7 +29,7 @@ public class GTContainerFusionReactor extends ContainerTileComponent<GTTileMulti
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerFusionReactor.machineProgressBox, GTContainerFusionReactor.machineProgressPos));
 		this.addComponent(new GTGuiCompFusion(tile));
-		this.addComponent(new GTGuiCompBasicString("Fusion Reactor", 88, 5));
+		this.addComponent(new GTGuiCompBasicString("Fusion Reactor", 92, 5));
 	}
 
 	@Override

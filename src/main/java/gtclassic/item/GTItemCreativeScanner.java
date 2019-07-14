@@ -1,9 +1,10 @@
 package gtclassic.item;
 
 import gtclassic.GTMod;
+import gtclassic.tile.GTTileBaseBuffer;
 import gtclassic.tile.GTTileBaseMachine;
+import gtclassic.tile.GTTileLESU;
 import gtclassic.tile.GTTileQuantumChest;
-import gtclassic.tile.GTTileTranslocator;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
@@ -207,6 +208,9 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "Tier: " + eu.getTier());
 				IC2.platform.messagePlayer(player, "Capacity: " + eu.getMaxEU() + " EU");
 				IC2.platform.messagePlayer(player, "Output: " + eu.getOutput() + " EU");
+				if (eu instanceof GTTileLESU) {
+					IC2.platform.messagePlayer(player, "Lapotron Blocks: " + ((GTTileLESU) eu).getCount());
+				}
 			}
 			if (tileEntity instanceof TileEntityTransformer) {
 				TileEntityTransformer transformer = (TileEntityTransformer) tileEntity;
@@ -217,9 +221,17 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "High Tier: "
 						+ EnergyNet.instance.getTierFromPower((double) transformer.highOutput));
 			}
-			if (tileEntity instanceof GTTileTranslocator) {
-				GTTileTranslocator trans = (GTTileTranslocator) tileEntity;
-				IC2.platform.messagePlayer(player, "Stored: " + trans.energy + " EU");
+			if (tileEntity instanceof GTTileBaseBuffer) {
+				GTTileBaseBuffer buffer = (GTTileBaseBuffer) tileEntity;
+				IC2.platform.messagePlayer(player, "Outputs Power: " + buffer.conduct);
+				if (buffer.conduct) {
+				IC2.platform.messagePlayer(player, "Stored: " + buffer.energy + " EU");
+				}
+				IC2.platform.messagePlayer(player, "Outputs Redstone: " + buffer.outputRedstone);
+				if (buffer.outputRedstone) {
+					IC2.platform.messagePlayer(player, "Redstone Strength: " + buffer.redstoneStrength);	
+				}
+				IC2.platform.messagePlayer(player, "Inverted Redstone: " + buffer.invertRedstone);
 			}
 			return EnumActionResult.SUCCESS;
 		}
