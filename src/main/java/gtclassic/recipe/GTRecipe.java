@@ -221,6 +221,9 @@ public class GTRecipe {
 		/** IDSU **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), new Object[] { "PHP", "HEH", "PHP", 'P',
 				"plateIridiumAlloy", 'H', GTBlocks.tileAESU, 'E', Blocks.ENDER_CHEST });
+		/** LESU **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLESU, 1), new Object[] { " L ", "CBC", " H ", 'L',
+				Ic2Items.transformerLV, 'H', Ic2Items.transformerMV, 'C', "circuitAdvanced", 'B', GTBlocks.casingLapotron });
 		/** Stuff that is not ready yet **/
 		if (GTMod.debugMode) {
 			/** Translocator **/

@@ -54,7 +54,7 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 			}
 		}
 		if (this.block instanceof GTTileLESU) {
-			gui.drawString("Casings:" + ((GTTileLESU) this.block).getCount(), 12, 58, Color.cyan.hashCode());
+			gui.drawString("Blocks:" + ((GTTileLESU) this.block).getCount(), 12, 58, Color.cyan.hashCode());
 		}
 	}
 }

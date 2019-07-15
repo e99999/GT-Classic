@@ -51,6 +51,11 @@ public class GTItemBlockRare extends ItemBlockRare {
 				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
 				tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 400000000 })));
 			}
+			if (compare(stack, GTBlocks.tileLESU)) {
+				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 32 })));
+				tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 202000000 })));
+				tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 512 })));
+			}
 			if (compare(stack, GTBlocks.tileFabricator)) {
 				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 131072 })));
 			}

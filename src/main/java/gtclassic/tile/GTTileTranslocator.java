@@ -14,7 +14,6 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 
 	public GTTileTranslocator() {
-		super(9);
+		super(10);
 	}
 
 	@Override
@@ -46,11 +45,10 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
-		int[] array = MathUtil.fromTo(0, 8);
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerDefaultSlotAccess(AccessRule.Both, array);
-		handler.registerDefaultSlotsForSide(RotationList.ALL, array);
-		handler.registerSlotType(SlotType.Storage, array);
+		handler.registerDefaultSlotAccess(AccessRule.Both, 0);
+		handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
+		handler.registerSlotType(SlotType.Storage, 0);
 	}
 
 	@Override

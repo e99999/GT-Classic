@@ -209,6 +209,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "Capacity: " + eu.getMaxEU() + " EU");
 				IC2.platform.messagePlayer(player, "Output: " + eu.getOutput() + " EU");
 				if (eu instanceof GTTileLESU) {
+					IC2.platform.messagePlayer(player, "Max Input: 32 EU");
 					IC2.platform.messagePlayer(player, "Lapotron Blocks: " + ((GTTileLESU) eu).getCount());
 				}
 			}
