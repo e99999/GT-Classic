@@ -38,10 +38,12 @@ public class GTRecipeElementObject {
 	public static final GTRecipeElementObject sodium = new GTRecipeElementObject(11, GTMaterialGen.getFluid(GTMaterial.Sodium, 1));
 	public static final GTRecipeElementObject titanium = new GTRecipeElementObject(22, input("dustTitanium", 1), GTMaterialGen.getDust(GTMaterial.Titanium, 1));
 	public static final GTRecipeElementObject tungsten = new GTRecipeElementObject(74, input("dustTungsten", 1), GTMaterialGen.getDust(GTMaterial.Tungsten, 1));
+	public static final GTRecipeElementObject thorium = new GTRecipeElementObject(90, input("dustThorium", 1), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
 	public static final GTRecipeElementObject uranium = new GTRecipeElementObject(92, input("dustUranium", 1), GTMaterialGen.getDust(GTMaterial.Uranium, 1));
+	public static final GTRecipeElementObject plutonium = new GTRecipeElementObject(94, input("dustPlutonium", 1), GTMaterialGen.getDust(GTMaterial.Plutonium, 1));
 	public static final GTRecipeElementObject[] fusionObjects = { iron, gold, copper, tin, silver, aluminium, beryllium,
 			calcium, carbon, chlorine, chrome, helium, hydrogen, iridium, lithium, mercury, nitrogen, oxygen, potassium,
-			silicon, sodium, titanium, tungsten, uranium };
+			silicon, sodium, titanium, tungsten, thorium , uranium, plutonium };
 
 	/**
 	 * Element object constructor used for ore dict input and ItemStack output.
