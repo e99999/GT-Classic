@@ -77,14 +77,7 @@ public class GTMaterial {
 	 * @param flags       - Types of items and blocks to generate from material
 	 */
 	public GTMaterial(String displayName, int r, int g, int b, GTMaterialFlag... flags) {
-		this.displayName = displayName;
-		this.name = displayName.toLowerCase().replaceAll("-", "_").replaceAll(" ", "_");
-		this.color = new Color(r, g, b, 255);
-		this.smeltable = true;
-		for (GTMaterialFlag flag : flags) {
-			mask |= flag.getMask();
-		}
-		generatedMap.put(name, this);
+		this(displayName, r, g, b, true, flags);
 	}
 
 	public GTMaterial(String displayName, int r, int g, int b, boolean smeltable, GTMaterialFlag... flags) {

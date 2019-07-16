@@ -59,10 +59,7 @@ public class GTCentrifugeSupport {
 		}
 
 		IndustrialCentrifugeRecipeAction(IRecipeInput input1, int totalEu, ItemStack... output) {
-			this.input1 = input1;
-			this.input2 = null;
-			this.totalEu = totalEu;
-			this.output = output;
+			this(input1, null, totalEu, output);
 		}
 
 		@Override

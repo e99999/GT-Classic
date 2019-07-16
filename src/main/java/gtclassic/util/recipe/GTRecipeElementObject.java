@@ -65,9 +65,7 @@ public class GTRecipeElementObject {
 	 * @param stack- ItemStack input and fusion output stack
 	 */
 	public GTRecipeElementObject(int number, ItemStack stack) {
-		this.number = number;
-		this.input = input(stack);
-		this.output = stack;
+		this(number, input(stack), stack);
 	}
 
 	public int getNumber() {
