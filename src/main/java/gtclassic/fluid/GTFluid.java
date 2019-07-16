@@ -24,7 +24,7 @@ public class GTFluid extends Fluid {
 				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
 		this.mat = mat;
 		this.temperature = 300;
-		this.mapColor = mat.getColor().hashCode();
+		this.mapColor = mat.getColor().getRGB();
 		this.setGaseous(isGaseous);
 	}
 
