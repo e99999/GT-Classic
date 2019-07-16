@@ -46,7 +46,7 @@ public class GTBlockMachine extends GTBlockMultiID {
 
 	String name;
 	String texture;
-	int size = 0;
+	int size;
 
 	public GTBlockMachine(String name, LocaleComp comp) {
 		this(name, comp, 0);

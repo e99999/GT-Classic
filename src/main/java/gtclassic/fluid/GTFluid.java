@@ -17,7 +17,7 @@ public class GTFluid extends Fluid {
 	protected static SoundEvent emptySound = SoundEvents.ITEM_BUCKET_EMPTY;
 	protected static SoundEvent fillSound = SoundEvents.ITEM_BUCKET_FILL;
 	protected static Material material = Material.WATER;
-	GTMaterial mat = null;
+	GTMaterial mat;
 	
 	private GTFluid(GTMaterial mat, String base, String suffix, boolean isGaseous) {
 		super(mat.getDisplayName().toLowerCase() + suffix, new ResourceLocation(GTMod.MODID, "fluids/"
