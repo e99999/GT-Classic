@@ -39,7 +39,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		}
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 3; ++j) {
-				this.addSlotToContainer(new Slot(craftMatrix, 0 + (j + i * 3), 82 + j * 18, 17 + i * 18));
+				this.addSlotToContainer(new Slot(craftMatrix, j + i * 3, 82 + j * 18, 17 + i * 18));
 			}
 		}
 		this.addPlayerInventory(player, 0, 0);

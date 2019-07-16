@@ -44,7 +44,7 @@ public class GTRecipeUUAmplifier {
 	 * Stuff below for actual amp recipes and JEI iterators
 	 **/
 	public static IRecipeModifier[] value(int amount) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((amount / 1) - 100) };
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(amount - 100) };
 	}
 
 	public static void addAmplifierToJei(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
