@@ -111,10 +111,8 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 			return true;
 		} else if (this.owner.equals(user)) {
 			return true;
-		} else if (IC2.platform.isOp(user)) {
-			return true;
 		} else {
-			return false;
+			return IC2.platform.isOp(user);
 		}
 	}
 

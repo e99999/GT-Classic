@@ -223,10 +223,7 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 			return false;
 		}
 		float originalHardness = worldIn.getBlockState(originalPos).getPlayerRelativeBlockHardness(playerIn, worldIn, originalPos);
-		if ((originalHardness / blockHardness) > 10.0F) {
-			return false;
-		}
-		return true;
+		return !((originalHardness / blockHardness) > 10.0F);
 	}
 
 	private boolean isValidState(IBlockState blockstate) {

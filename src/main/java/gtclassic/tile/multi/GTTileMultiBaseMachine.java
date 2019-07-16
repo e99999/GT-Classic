@@ -60,10 +60,7 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	}
 
 	public boolean checkStructure() {
-		if (!world.isAreaLoaded(pos, 3)) {
-			return false;
-		}
-		return true;
+		return world.isAreaLoaded(pos, 3);
 	}
 
 	@Override
