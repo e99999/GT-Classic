@@ -1,6 +1,7 @@
 package gtclassic.recipe;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import gtclassic.material.GTMaterialGen;
@@ -50,16 +51,12 @@ public class GTRecipeUUAmplifier {
 	public static void addAmplifierToJei(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
+		Collections.addAll(inlist, inputs);
 		NBTTagCompound mods = new NBTTagCompound();
 		for (IRecipeModifier modifier : modifiers) {
 			modifier.apply(mods);
 		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
+		Collections.addAll(outlist, outputs);
 		addAmplifierToJei(inlist, new MachineOutput(mods, outlist));
 	}
 

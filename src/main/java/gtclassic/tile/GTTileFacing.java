@@ -1,5 +1,6 @@
 package gtclassic.tile;
 
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -22,9 +23,7 @@ public class GTTileFacing extends TileEntityBlock {
 		super();
 		setFacing(EnumFacing.NORTH);
 		this.validRotations = new LinkedHashSet<>();
-		for (EnumFacing rotation : validRotations) {
-			this.validRotations.add(rotation);
-		}
+		Collections.addAll(this.validRotations, validRotations);
 	}
 
 	@Override

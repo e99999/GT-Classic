@@ -2,6 +2,7 @@ package gtclassic.tile.multi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -194,16 +195,12 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
 		IRecipeModifier[] modifiers = totalEu(totalEu);
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
+		Collections.addAll(inlist, inputs);
 		NBTTagCompound mods = new NBTTagCompound();
 		for (IRecipeModifier modifier : modifiers) {
 			modifier.apply(mods);
 		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
+		Collections.addAll(outlist, outputs);
 		addRecipe(inlist, new MachineOutput(mods, outlist));
 	}
 

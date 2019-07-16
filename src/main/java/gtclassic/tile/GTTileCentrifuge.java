@@ -2,6 +2,7 @@ package gtclassic.tile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -264,16 +265,12 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
+		Collections.addAll(inlist, inputs);
 		NBTTagCompound mods = new NBTTagCompound();
 		for (IRecipeModifier modifier : modifiers) {
 			modifier.apply(mods);
 		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
+		Collections.addAll(outlist, outputs);
 		addRecipe(inlist, new MachineOutput(mods, outlist));
 	}
 
