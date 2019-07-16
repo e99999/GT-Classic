@@ -169,7 +169,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
 		}
 		NBTTagCompound nbt = recipe.getOutputs().getMetadata();
-		boolean shiftContainers = nbt == null ? false : nbt.getBoolean(MOVE_CONTAINER_TAG);
+		boolean shiftContainers = nbt != null && nbt.getBoolean(MOVE_CONTAINER_TAG);
 		List<ItemStack> inputs = getInputs();
 		List<IRecipeInput> recipeKeys = new LinkedList<IRecipeInput>(recipe.getInputs());
 		for (Iterator<IRecipeInput> keyIter = recipeKeys.iterator(); keyIter.hasNext();) {

@@ -80,7 +80,7 @@ public class GTBlockMachine extends GTBlockMultiID {
 	@Deprecated
 	public boolean canProvidePower(IBlockState state) {
 		int meta = this.getMetaFromState(state);
-		return meta >= 0 && meta <= 2 ? true : super.canProvidePower(state);
+		return meta >= 0 && meta <= 2 || super.canProvidePower(state);
 	}
 
 	@Override

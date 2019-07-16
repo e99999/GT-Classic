@@ -41,7 +41,7 @@ public class GTItemLithiumBattery extends ItemBatteryBase {
 
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
-		return this.shouldBeStackable(stack) ? false : super.showDurabilityBar(stack);
+		return !this.shouldBeStackable(stack) && super.showDurabilityBar(stack);
 	}
 
 	@Override
