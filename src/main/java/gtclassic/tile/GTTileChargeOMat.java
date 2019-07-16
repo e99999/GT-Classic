@@ -231,7 +231,7 @@ public class GTTileChargeOMat extends TileEntityMachine
 		for (int i = 0; i < 9; ++i) {
 			if (!this.inventory.get(i).isEmpty()) {
 				if (hasEnergy()) {
-					int removed = (int) ElectricItem.manager.charge((ItemStack) this.inventory.get(i), (double) this.energy, this.tier, false, false);
+					int removed = (int) ElectricItem.manager.charge(this.inventory.get(i), (double) this.energy, this.tier, false, false);
 					this.energy -= removed;
 					if (removed > 0) {
 						this.getNetwork().updateTileGuiField(this, "energy");
@@ -264,7 +264,7 @@ public class GTTileChargeOMat extends TileEntityMachine
 			if (!getEntitiesInRange().isEmpty()) {
 				for (EntityLivingBase entity : getEntitiesInRange()) {
 					for (ItemStack armor : entity.getArmorInventoryList()) {
-						this.drawEnergy(ElectricItem.manager.charge((ItemStack) armor, (double) this.energy, this.tier, false, false));
+						this.drawEnergy(ElectricItem.manager.charge(armor, (double) this.energy, this.tier, false, false));
 					}
 				}
 			}

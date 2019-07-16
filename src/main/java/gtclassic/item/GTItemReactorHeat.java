@@ -101,8 +101,8 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 
 	@Override
 	public NBTPrimitive getReactorStat(ReactorComponentStat stat, ItemStack stack) {
-		return (NBTPrimitive) (stat == ReactorComponentStat.HeatStorage ? new NBTTagInt(this.getMaxCustomDamage(stack))
-				: nulltag);
+		return stat == ReactorComponentStat.HeatStorage ? new NBTTagInt(this.getMaxCustomDamage(stack))
+				: nulltag;
 	}
 
 	@Override

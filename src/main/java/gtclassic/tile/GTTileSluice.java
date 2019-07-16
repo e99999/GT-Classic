@@ -97,7 +97,7 @@ public class GTTileSluice extends GTTileFacing
 	}
 
 	public ItemStack getStackInSlot(int slot) {
-		return (ItemStack) this.inventory.get(slot);
+		return this.inventory.get(slot);
 	}
 
 	public int getSlotCount() {
@@ -120,7 +120,7 @@ public class GTTileSluice extends GTTileFacing
 	public List<ItemStack> getDrops() {
 		List<ItemStack> list = new ArrayList<ItemStack>(this.inventory.size());
 		for (int i = 0; i < this.inventory.size(); ++i) {
-			ItemStack stack = (ItemStack) this.inventory.get(i);
+			ItemStack stack = this.inventory.get(i);
 			if (!stack.isEmpty()) {
 				list.add(stack);
 			}

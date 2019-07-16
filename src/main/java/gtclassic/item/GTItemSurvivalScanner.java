@@ -50,7 +50,7 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 		if (!canScan(player.getHeldItemMainhand())) {
 			return EnumActionResult.PASS;
 		} else {
-			ElectricItem.manager.use(player.getHeldItemMainhand(), energyCost, (EntityLivingBase) null);
+			ElectricItem.manager.use(player.getHeldItemMainhand(), energyCost, null);
 			return GTItemCreativeScanner.scanBlock(player, world, pos, side, hitX, hitY, hitZ, hand);
 		}
 	}

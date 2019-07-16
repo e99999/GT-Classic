@@ -112,7 +112,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 
 	@Override
 	public void useDrill(ItemStack d) {
-		ElectricItem.manager.use(d, this.getEnergyCost(d), (EntityLivingBase) null);
+		ElectricItem.manager.use(d, this.getEnergyCost(d), null);
 	}
 
 	@Override
