@@ -95,7 +95,6 @@ public class MultiBlockHelper {
 			if (sub != null) {
 				for (BlockPos entry : sub) {
 					structureToCore.remove(entry);
-					;
 				}
 			}
 			return coreToStructure.isEmpty();

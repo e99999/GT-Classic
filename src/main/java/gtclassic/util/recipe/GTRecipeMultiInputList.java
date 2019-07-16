@@ -77,7 +77,6 @@ public class GTRecipeMultiInputList {
 	}
 
 	public void removeRecipe(String id) {
-		;
 		if (!recipeMap.containsKey(id)) {
 			GTMod.logger.info("Recipe[" + id + "] doesn't exist for machine " + category);
 			return;
