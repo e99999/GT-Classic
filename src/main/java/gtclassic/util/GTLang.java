@@ -18,6 +18,7 @@ public class GTLang {
 	public static final LocaleComp MATTER_FAB = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.matterfabricator");
 	public static final LocaleComp UU_ASSEMBLER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.uuassembler");
 	public static final LocaleComp QUANTUM_CHEST = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.quantumchest");
+	public static final LocaleComp QUANTUM_TANK = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.quantumtank");
 	public static final LocaleComp PLAYER_DETECTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.playerdetector");
 	public static final LocaleComp FUSION_REACTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.fusionreactor");
 	public static final LocaleComp LIGHTNING_ROD = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lightningrod");

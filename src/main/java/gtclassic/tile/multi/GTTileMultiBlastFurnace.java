@@ -90,13 +90,13 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine implements I
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.tank.readFromNBT(nbt.getCompoundTag("Tank"));
+		this.tank.readFromNBT(nbt.getCompoundTag("tank"));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		this.tank.writeToNBT(this.getTag(nbt, "Tank"));
+		this.tank.writeToNBT(this.getTag(nbt, "tank"));
 		return nbt;
 	}
 
