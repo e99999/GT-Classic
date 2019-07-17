@@ -48,13 +48,11 @@ public class GTRecipeUUAmplifier {
 	}
 
 	public static void addAmplifierToJei(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		List<IRecipeInput> inlist = ObjectArrayList.wrap(inputs);
-		List<ItemStack> outlist = ObjectArrayList.wrap(outputs);
 		NBTTagCompound mods = new NBTTagCompound();
 		for (IRecipeModifier modifier : modifiers) {
 			modifier.apply(mods);
 		}
-		addAmplifierToJei(inlist, new MachineOutput(mods, outlist));
+		addAmplifierToJei(ObjectArrayList.wrap(inputs), new MachineOutput(mods, ObjectArrayList.wrap(outputs)));
 	}
 
 	static void addAmplifierToJei(List<IRecipeInput> input, MachineOutput output) {
