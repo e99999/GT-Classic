@@ -58,7 +58,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 	public GTTileCentrifuge() {
 		super(9, 4, defaultEu, 100, 32);
 		setFuelSlot(slotFuel);
-		maxEnergy = 10000;
+		maxEnergy = 2048;
 	}
 
 	@Override
@@ -154,7 +154,6 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 4), 0, totalEu(6000), GTMaterialGen.get(tube, 3), GTMaterialGen.getFluid(GTMaterial.Deuterium, 1));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Deuterium, 4), 0, totalEu(6000), GTMaterialGen.get(tube, 3), GTMaterialGen.getFluid(GTMaterial.Tritium, 1));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Helium, 16), 0, totalEu(18000), GTMaterialGen.get(tube, 15), GTMaterialGen.getFluid(GTMaterial.Helium3, 1));
-		addCustomRecipe("dustUranium", 16, GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getIc2(Ic2Items.reactorUraniumRodSingle, 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
 		addRecipe("dustRuby", 9, 3, totalEu(25000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Chrome, 1), GTMaterialGen.getFluid(GTMaterial.Oxygen, 3));
 		addRecipe("dustSapphire", 8, 3, totalEu(20000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getFluid(GTMaterial.Oxygen, 3));
 		addRecipe("dustGreenSapphire", 4, 0, totalEu(15000), GTMaterialGen.getDust(GTMaterial.Sapphire, 4));

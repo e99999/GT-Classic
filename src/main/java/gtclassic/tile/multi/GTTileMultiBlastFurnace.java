@@ -61,7 +61,7 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	public GTTileMultiBlastFurnace() {
 		super(8, 2, defaultEu, 128);
-		maxEnergy = 1000;
+		maxEnergy = 8192;
 	}
 
 	@Override

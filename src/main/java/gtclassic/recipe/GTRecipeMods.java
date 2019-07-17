@@ -1,15 +1,20 @@
 package gtclassic.recipe;
 
+import static ic2.api.classic.recipe.ClassicRecipes.macerator;
+
 import gtclassic.GTItems;
 import gtclassic.GTMod;
+import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.util.GTValues;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 
@@ -60,6 +65,17 @@ public class GTRecipeMods {
 				GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
 						metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "metal", 6, 2));
 			}
+		}
+		/** Ic2 Extras **/
+		if (Loader.isModLoaded(GTValues.IC2_EXTRAS)) {
+			TileEntityMacerator.addRecipe("crushedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
+			TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
+		} else {
+			//This is where i will handle my uranium stuff
+			macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
+			TileEntityMacerator.addRecipe("oreUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 2));
+			TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.uraniumDrop, 1), GTMaterialGen.getDust(GTMaterial.Uranium, 1));
+			GTTileCentrifuge.addCustomRecipe("dustUranium", 22, GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getIc2(Ic2Items.reactorUraniumRodSingle, 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
 		}
 	}
 
