@@ -31,8 +31,7 @@ public class GTRecipeMultiInputList {
 	}
 
 	public GTRecipeMultiInputList(String category) {
-		this.category = category;
-		this.energy = 0;
+		this(category, 0);
 	}
 
 	public void addRecipe(List<IRecipeInput> inputs, MachineOutput output, String id, int eu) {

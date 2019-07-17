@@ -49,15 +49,7 @@ public class GTBlockMachine extends GTBlockMultiID {
 	int size = 0;
 
 	public GTBlockMachine(String name, LocaleComp comp) {
-		super(Material.IRON);
-		this.name = name;
-		this.size = 1;
-		setRegistryName(this.name.toLowerCase());
-		setUnlocalizedName(comp);
-		setCreativeTab(GTMod.creativeTabGT);
-		setBlockUnbreakable();
-		setResistance(20.0F);
-		setSoundType(SoundType.METAL);
+		this(name, comp, 0);
 	}
 
 	public GTBlockMachine(String name, LocaleComp comp, int additionalInfo) {

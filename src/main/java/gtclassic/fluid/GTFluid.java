@@ -18,6 +18,15 @@ public class GTFluid extends Fluid {
 	protected static SoundEvent fillSound = SoundEvents.ITEM_BUCKET_FILL;
 	protected static Material material = Material.WATER;
 	GTMaterial mat = null;
+	
+	private GTFluid(GTMaterial mat, String base, String suffix, boolean isGaseous) {
+		super(mat.getDisplayName().toLowerCase() + suffix, new ResourceLocation(GTMod.MODID, "fluids/"
+				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
+		this.mat = mat;
+		this.temperature = 300;
+		this.mapColor = mat.getColor().getRGB();
+		this.setGaseous(isGaseous);
+	}
 
 	/**
 	 * Constructor for a GTFluid with added suffix control.
@@ -27,12 +36,7 @@ public class GTFluid extends Fluid {
 	 * @param flag - GTMaterialFlag to get a custom suffix, used for plasma etc..
 	 */
 	public GTFluid(GTMaterial mat, String base, GTMaterialFlag flag) {
-		super(mat.getDisplayName().toLowerCase() + flag.getSuffix(), new ResourceLocation(GTMod.MODID, "fluids/"
-				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
-		this.mat = mat;
-		this.temperature = 300;
-		this.mapColor = mat.getColor().hashCode();
-		this.setGaseous(flag.equals(GTMaterialFlag.GAS));
+		this(mat, base, flag.getSuffix(), flag.equals(GTMaterialFlag.GAS));
 	}
 
 	/**
@@ -43,12 +47,7 @@ public class GTFluid extends Fluid {
 	 *             for gas texture
 	 */
 	public GTFluid(GTMaterial mat, String base) {
-		super(mat.getDisplayName().toLowerCase(), new ResourceLocation(GTMod.MODID, "fluids/"
-				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
-		this.mat = mat;
-		this.temperature = 300;
-		this.mapColor = mat.getColor().hashCode();
-		this.setGaseous(this.mat.hasFlag(GTMaterialFlag.GAS));
+		this(mat, base, "", mat.hasFlag(GTMaterialFlag.GAS));
 	}
 
 	public GTMaterial getGTMaterial() {

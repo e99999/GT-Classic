@@ -17,11 +17,7 @@ public class GTMaterialFlag {
 	private boolean layered;
 
 	public GTMaterialFlag(String suffix, int id, boolean layered) {
-		this.mask = 1 << LAST_INTERNAL_ID++;
-		this.suffix = suffix;
-		this.texture = GTMod.MODID + "_materials";
-		this.id = id;
-		this.layered = layered;
+		this(suffix, GTMod.MODID + "_materials", id, layered);
 	}
 
 	public GTMaterialFlag(String suffix, String texture, int id, boolean layered) {
