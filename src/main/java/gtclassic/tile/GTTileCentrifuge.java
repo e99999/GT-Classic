@@ -13,7 +13,6 @@ import gtclassic.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTLang;
-import gtclassic.util.int3;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
@@ -42,7 +41,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class GTTileCentrifuge extends GTTileBaseMachine {
@@ -76,12 +74,6 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		handler.registerSlotType(SlotType.Fuel, slotFuel);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
-	}
-
-	@Override
-	public TileEntity getImportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(1).asBlockPos());
 	}
 
 	@Override

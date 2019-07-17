@@ -68,28 +68,26 @@ public class GTTileLESU extends TileEntityElectricBlock {
 		checkArea();
 		super.update();
 	}
-	
+
 	@Override
 	public int getSinkTier() {
 		return 1;
 	}
-	
+
 	@Override
-	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage)
-	  {
-	    if ((amount > 32) || (amount <= 0.0D)) {
-	      return 0.0D;
-	    }
-	    energy = ((int)(energy + amount));
-	    int left = 0;
-	    if (energy >= maxEnergy)
-	    {
-	      left = energy - maxEnergy;
-	      energy = maxEnergy;
-	    }
-	    getNetwork().updateTileGuiField(this, "energy");
-	    return left;
-	  }
+	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
+		if ((amount > 32) || (amount <= 0.0D)) {
+			return 0.0D;
+		}
+		energy = ((int) (energy + amount));
+		int left = 0;
+		if (energy >= maxEnergy) {
+			left = energy - maxEnergy;
+			energy = maxEnergy;
+		}
+		getNetwork().updateTileGuiField(this, "energy");
+		return left;
+	}
 
 	private void checkArea() {
 		if (world.getTotalWorldTime() % 256 == 0 && enabled) {

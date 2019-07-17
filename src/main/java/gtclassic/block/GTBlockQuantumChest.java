@@ -77,7 +77,7 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 		if (tile instanceof GTTileQuantumChest) {
 			GTTileQuantumChest chest = (GTTileQuantumChest) tile;
 			ItemStack playerStack = playerIn.getHeldItemMainhand();
-			if (facing != EnumFacing.UP && !(playerStack.getItem() instanceof ItemToolWrench)) {
+			if (!(playerStack.getItem() instanceof ItemToolWrench)) {
 				boolean isChestEmpty = chest.isSlotEmpty(slotInput) && chest.isSlotEmpty(slotDisplay);
 				boolean isPlayerStackValid = chest.isSlotEmpty(slotInput)
 						&& StackUtil.isStackEqual(chest.getStackInSlot(slotDisplay), playerStack, false, false);

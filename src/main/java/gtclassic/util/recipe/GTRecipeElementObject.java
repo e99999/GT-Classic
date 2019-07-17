@@ -43,7 +43,7 @@ public class GTRecipeElementObject {
 	public static final GTRecipeElementObject plutonium = new GTRecipeElementObject(94, input("dustPlutonium", 1), GTMaterialGen.getDust(GTMaterial.Plutonium, 1));
 	public static final GTRecipeElementObject[] fusionObjects = { iron, gold, copper, tin, silver, aluminium, beryllium,
 			calcium, carbon, chlorine, chrome, helium, hydrogen, iridium, lithium, mercury, nitrogen, oxygen, potassium,
-			silicon, sodium, titanium, tungsten, thorium , uranium, plutonium };
+			silicon, sodium, titanium, tungsten, thorium, uranium, plutonium };
 
 	/**
 	 * Element object constructor used for ore dict input and ItemStack output.

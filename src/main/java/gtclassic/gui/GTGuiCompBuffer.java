@@ -41,7 +41,7 @@ public class GTGuiCompBuffer extends GuiComponent {
 		gui.registerButton(new GTGuiButton(0, bX(gui, 7), bY(gui, 60), 18, 18));
 		if (this.tile instanceof GTTileBufferSmall || this.tile instanceof GTTileBufferLarge) {
 			gui.registerButton(new GTGuiButton(1, bX(gui, 25), bY(gui, 60), 18, 18));
-			gui.registerButton(new GTGuiButton(2, bX(gui, 43), bY(gui, 60), 18, 18));	
+			gui.registerButton(new GTGuiButton(2, bX(gui, 43), bY(gui, 60), 18, 18));
 		}
 	}
 

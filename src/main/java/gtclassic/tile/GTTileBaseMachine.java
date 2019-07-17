@@ -8,7 +8,6 @@ import java.util.function.Predicate;
 
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.util.int3;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
 import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.audio.PositionSpec;
@@ -30,12 +29,8 @@ import ic2.core.block.base.util.info.misc.IEnergyUser;
 import ic2.core.block.base.util.output.MultiSlotOutput;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
-import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.filters.IFilter;
-import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
-import ic2.core.inventory.transport.IItemTransporter;
-import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
@@ -47,7 +42,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
@@ -62,9 +56,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	public static final String MOVE_CONTAINER_TAG = "move_container";
 	@NetworkField(index = 7)
 	public float progress = 0;
-	// Import and Export Booleans
-	public boolean allowImport = true;
-	public boolean allowExport = true;
 	// Defaults
 	public int defaultEnergyConsume;
 	public int defaultOperationLength;
@@ -645,69 +636,5 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	public static IRecipeInput metal(String type, int amount) {
 		return new RecipeInputCombined(amount, new IRecipeInput[] { new RecipeInputOreDict("ingot" + type, amount),
 				new RecipeInputOreDict("dust" + type, amount), });
-	}
-
-	/*
-	 * Below I am experimenting with moving item into the multi block tile
-	 */
-	public TileEntity getImportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.up(1).asBlockPos());
-	}
-
-	public TileEntity getExportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(1).asBlockPos());
-	}
-
-	@SuppressWarnings("static-access")
-	public void tryImportItems() {
-		if (this.allowImport) {
-			if (world.getTotalWorldTime() % 20 == 0 && canWork()) {
-				IItemTransporter slave = TransporterManager.manager.getTransporter(getImportTile(), true);
-				if (slave == null) {
-					return;
-				}
-				IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-				IFilter filter = new MachineFilter(this);
-				int limit = 64;
-				for (int i = 0; i < limit; ++i) {
-					ItemStack stack = slave.removeItem(filter, getFacing().getOpposite(), 1, false);
-					if (stack.isEmpty()) {
-						break;
-					}
-					ItemStack added = controller.addItem(stack, getFacing().UP, true);
-					if (added.getCount() <= 0) {
-						break;
-					}
-					slave.removeItem(filter, getFacing().getOpposite(), 1, true);
-				}
-			}
-		}
-	}
-
-	@SuppressWarnings("static-access")
-	public void tryExportItems() {
-		if (this.allowExport) {
-			if (world.getTotalWorldTime() % 20 == 0) {
-				IItemTransporter slave = TransporterManager.manager.getTransporter(getExportTile(), true);
-				if (slave == null) {
-					return;
-				}
-				IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-				int limit = 64;
-				for (int i = 0; i < limit; ++i) {
-					ItemStack stack = controller.removeItem(CommonFilters.Anything, getFacing().EAST, 1, false);
-					if (stack.isEmpty()) {
-						break;
-					}
-					ItemStack added = slave.addItem(stack, getFacing().UP, true);
-					if (added.getCount() <= 0) {
-						break;
-					}
-					controller.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, true);
-				}
-			}
-		}
 	}
 }

@@ -6,6 +6,7 @@ import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
+import ic2.core.inventory.slots.SlotDisplay;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
@@ -35,6 +36,7 @@ public class GTContainerBlastFurnace extends ContainerTileComponent<GTTileMultiB
 		for (int i = 0; i < 2; ++i) {
 			this.addSlotToContainer(new GTSlotUpgrade(tile, 8 + i, 80 + (i * 18), 62));
 		}
+		this.addSlotToContainer(new SlotDisplay(tile, 10, 44, 62));
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
 	}

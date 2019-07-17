@@ -25,15 +25,18 @@ import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
+import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.obj.ITankListener;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.creativetab.CreativeTabs;
@@ -41,11 +44,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
-public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
+public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine implements ITankListener {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3 };
 	protected static final int[] slotOutputs = { 4, 5, 6, 7 };
@@ -54,13 +62,16 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.blastfurnace");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/blastfurnace.png");
 	private static final int defaultEu = 120;
+	public IC2Tank tank;
 	public static final int COST_TINY = 4000;
 	public static final int COST_SMALL = 16000;
 	public static final int COST_MED = 32000;
 	public static final int COST_HIGH = 64000;
 
 	public GTTileMultiBlastFurnace() {
-		super(8, 2, defaultEu, 128);
+		super(10, 2, defaultEu, 128);
+		this.tank = new IC2Tank(16000);
+		this.tank.addListener(this);
 		maxEnergy = 8192;
 	}
 
@@ -74,6 +85,19 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		handler.registerInputFilter(filter, slotInputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		this.tank.readFromNBT(nbt.getCompoundTag("Tank"));
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		this.tank.writeToNBT(this.getTag(nbt, "Tank"));
+		return nbt;
 	}
 
 	@Override
@@ -128,6 +152,26 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	@Override
 	public ResourceLocation getStartSoundFile() {
 		return Ic2Sounds.generatorLoop;
+	}
+
+	@Override
+	public void update() {
+		checkOxygen();
+		super.update();
+	}
+
+	public void checkOxygen() {
+		if (this.isActive) {
+			int drainAmount = 10;
+			if (this.tank.getFluid() != null && this.tank.getFluidAmount() >= drainAmount) {
+				if (this.tank.getFluid().getFluid() == FluidRegistry.getFluid("oxygen")) {
+					this.tank.drain(drainAmount, true);
+					this.progressPerTick = 2F;
+				}
+			} else {
+				this.progressPerTick = 1F;
+			}
+		}
 	}
 
 	public static void init() {
@@ -338,5 +382,23 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	public boolean isCasing(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == casingState;
+	}
+
+	@Override
+	public void onTankChanged(IFluidTank arg0) {
+		this.inventory.set(10, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
+	}
+
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true
+				: super.hasCapability(capability, facing);
+	}
+
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
+				? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.tank)
+				: super.getCapability(capability, facing);
 	}
 }

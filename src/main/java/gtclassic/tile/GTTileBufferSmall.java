@@ -99,7 +99,7 @@ public class GTTileBufferSmall extends GTTileBaseBuffer implements IHasGui {
 			controller.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, true);
 		}
 	}
-	
+
 	@Override
 	public boolean isInventoryFull() {
 		return this.inventory.get(0).getCount() == 64;

@@ -71,7 +71,7 @@ public class GTRecipeMods {
 			TileEntityMacerator.addRecipe("crushedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 			TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 		} else {
-			//This is where i will handle my uranium stuff
+			// This is where i will handle my uranium stuff
 			macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
 			TileEntityMacerator.addRecipe("oreUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 2));
 			TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.uraniumDrop, 1), GTMaterialGen.getDust(GTMaterial.Uranium, 1));
