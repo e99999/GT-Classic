@@ -1,7 +1,5 @@
 package gtclassic.recipe;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import gtclassic.material.GTMaterialGen;
@@ -15,6 +13,7 @@ import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.registry.Ic2Items;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -49,14 +48,12 @@ public class GTRecipeUUAmplifier {
 	}
 
 	public static void addAmplifierToJei(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		Collections.addAll(inlist, inputs);
+		List<IRecipeInput> inlist = ObjectArrayList.wrap(inputs);
+		List<ItemStack> outlist = ObjectArrayList.wrap(outputs);
 		NBTTagCompound mods = new NBTTagCompound();
 		for (IRecipeModifier modifier : modifiers) {
 			modifier.apply(mods);
 		}
-		Collections.addAll(outlist, outputs);
 		addAmplifierToJei(inlist, new MachineOutput(mods, outlist));
 	}
 

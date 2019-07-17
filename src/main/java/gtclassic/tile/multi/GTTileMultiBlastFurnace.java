@@ -1,8 +1,6 @@
 package gtclassic.tile.multi;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +33,7 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.creativetab.CreativeTabs;
@@ -192,15 +191,13 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 	}
 
 	public static void addRecipe(IRecipeInput[] inputs, int totalEu, ItemStack... outputs) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
+		List<IRecipeInput> inlist = ObjectArrayList.wrap(inputs);
+		List<ItemStack> outlist = ObjectArrayList.wrap(outputs);
 		IRecipeModifier[] modifiers = totalEu(totalEu);
-		Collections.addAll(inlist, inputs);
 		NBTTagCompound mods = new NBTTagCompound();
 		for (IRecipeModifier modifier : modifiers) {
 			modifier.apply(mods);
 		}
-		Collections.addAll(outlist, outputs);
 		addRecipe(inlist, new MachineOutput(mods, outlist));
 	}
 

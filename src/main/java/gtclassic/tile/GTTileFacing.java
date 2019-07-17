@@ -1,16 +1,13 @@
 package gtclassic.tile;
 
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 
 public class GTTileFacing extends TileEntityBlock {
 
-	private Set<EnumFacing> validRotations;
+	private RotationList validRotations;
 
 	// yes this actually works in java to have method overloading with no arguments
 	// and a varargs argument
@@ -22,8 +19,7 @@ public class GTTileFacing extends TileEntityBlock {
 	public GTTileFacing(EnumFacing... validRotations) {
 		super();
 		setFacing(EnumFacing.NORTH);
-		this.validRotations = new LinkedHashSet<>();
-		Collections.addAll(this.validRotations, validRotations);
+		this.validRotations = RotationList.ofFacings(validRotations);
 	}
 
 	@Override
