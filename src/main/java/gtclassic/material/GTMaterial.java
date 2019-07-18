@@ -46,7 +46,7 @@ public class GTMaterial {
 	public static final GTMaterial Oil = new GTMaterial("Oil", 0, 0, 0, fluid);
 	public static final GTMaterial Oxygen = new GTMaterial("Oxygen", 100, 160, 220, gas);
 	public static final GTMaterial Potassium = new GTMaterial("Potassium", 250, 250, 250, fluid);
-	public static final GTMaterial Plutonium = new GTMaterial("Plutonium", 240, 50, 50, dust, ingot);
+	public static final GTMaterial Plutonium = new GTMaterial("Plutonium", 240, 50, 50, false, dust, ingot);
 	public static final GTMaterial Pyrite = new GTMaterial("Pyrite", 150, 120, 40, dust);
 	public static final GTMaterial Ruby = new GTMaterial("Ruby", 255, 100, 100, rubyAll);
 	public static final GTMaterial Sapphire = new GTMaterial("Sapphire", 100, 100, 200, sapphireAll);
@@ -55,7 +55,7 @@ public class GTMaterial {
 	public static final GTMaterial Sodalite = new GTMaterial("Sodalite", 20, 20, 255, dust);
 	public static final GTMaterial Sodium = new GTMaterial("Sodium", 0, 38, 255, fluid);
 	public static final GTMaterial Steel = new GTMaterial("Steel", 128, 128, 128, false, metalAll);
-	public static final GTMaterial Thorium = new GTMaterial("Thorium", 0, 30, 0, dust, ingot);
+	public static final GTMaterial Thorium = new GTMaterial("Thorium", 0, 30, 0, false, dust, ingot);
 	public static final GTMaterial Titanium = new GTMaterial("Titanium", 170, 143, 222, false, metalAll);
 	public static final GTMaterial Tritium = new GTMaterial("Tritium", 255, 0, 0, gas);
 	public static final GTMaterial Tungsten = new GTMaterial("Tungsten", 50, 50, 50, false, metalAll);

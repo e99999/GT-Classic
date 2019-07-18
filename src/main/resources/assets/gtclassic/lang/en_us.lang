@@ -69,6 +69,8 @@ item.gtclassic.dustAluminium.name=Aluminium Dust
 item.gtclassic.dustFlint.name=Flint Dust
 item.gtclassic.dustEmerald.name=Emerald Dust
 item.gtclassic.dustUranium.name=Uranium Dust
+item.gtclassic.dustThorium.name=Thorium Dust
+item.gtclassic.dustPlutonium.name=Plutonium Dust
 
 #gems
 item.gtclassic.gemSapphire.name=Sapphire
@@ -83,16 +85,18 @@ item.gtclassic.ingotTungsten.name=Tungsten Ingot
 item.gtclassic.ingotChrome.name=Chrome Ingot
 item.gtclassic.ingotSilicon.name=Silicon Ingot
 item.gtclassic.ingotAluminium.name=Aluminium Ingot
+item.gtclassic.ingotThorium.name=Thorium Ingot
+item.gtclassic.ingotPlutonium.name=Plutonium Ingot
 
 #items
 item.gtclassic.heatstorage_single.name=60k Helium Coolant Cell
 item.gtclassic.heatstorage_triple.name=180k Helium Coolant Cell
 item.gtclassic.heatstorage_six.name=360k Helium Coolant Cell
 item.gtclassic.singlethorium_rod.name=Thorium Cell
-item.gtclassic.doublethorium_rod.name=Double Thorium Cell
+item.gtclassic.doublethorium_rod.name=Dual Thorium Cell
 item.gtclassic.quadthorium_rod.name=Quad Thorium Cell
 item.gtclassic.singleplutonium_rod.name=Plutonium Cell
-item.gtclassic.doubleplutonium_rod.name=Double Plutonium Cell
+item.gtclassic.doubleplutonium_rod.name=Dual Plutonium Cell
 item.gtclassic.quadplutonium_rod.name=Quad Plutonium Cell
 item.gtclassic.energy_circuit.name=Energy Flow Circuit
 item.gtclassic.data_circuit.name=Data Control Circuit
