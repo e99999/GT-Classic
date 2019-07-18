@@ -14,6 +14,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.util.misc.FluidHelper;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IItemContainer;
 import ic2.core.util.obj.ITankListener;
@@ -23,8 +24,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.Tuple;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
@@ -104,15 +108,19 @@ public class GTTileQuantumTank extends TileEntityMachine implements ITankListene
 	}
 
 	public String getFluidName() {
-		return !this.isEmpty() ? this.tank.getFluid().getLocalizedName() : "Empty";
+		return !this.isTankEmpty() ? this.tank.getFluid().getLocalizedName() : "Empty";
 	}
 
 	public int getFluidAmount() {
-		return !this.isEmpty() ? this.tank.getFluid().amount : 0;
+		return !this.isTankEmpty() ? this.tank.getFluid().amount : 0;
 	}
 
-	public boolean isEmpty() {
-		return this.tank.getFluidAmount() <= 0 && this.tank.getFluid() != null;
+	public boolean isTankEmpty() {
+		return this.tank.getFluid() == null || this.tank.getFluidAmount() == 0;
+	}
+
+	public boolean isTankFull() {
+		return this.getFluidAmount() == Integer.MAX_VALUE;
 	}
 
 	public FluidStack getFluid() {
@@ -129,7 +137,54 @@ public class GTTileQuantumTank extends TileEntityMachine implements ITankListene
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		if (!isSlotEmpty(slotInput)) {
+			// emptying items
+			ItemStack emptyStack = FluidUtil.tryEmptyContainer(getStackInSlot(slotInput), this.tank, this.tank.getCapacity()
+					- this.tank.getFluidAmount(), null, false).getResult();
+			boolean didEmpty = FluidUtil.tryEmptyContainer(getStackInSlot(slotInput), this.tank, this.tank.getCapacity()
+					- this.tank.getFluidAmount(), null, false) != FluidActionResult.FAILURE;
+			if (!isTankFull() && !isSlotFull(slotOutput) && canOutputStack(emptyStack) && didEmpty) {
+				FluidUtil.tryEmptyContainer(getStackInSlot(slotInput), this.tank, this.tank.getCapacity()
+						- this.tank.getFluidAmount(), null, true);
+				if (isSlotEmpty(slotOutput)) {
+					this.setStackInSlot(slotOutput, emptyStack);
+				} else {
+					this.getStackInSlot(slotOutput).grow(1);
+				}
+				this.getStackInSlot(slotInput).shrink(1);
+			}
+			// filling items
+			Tuple<ItemStack, FluidStack> filled = FluidHelper.fillContainer(this.getStackInSlot(slotInput), this.tank.getFluid(), true, true);
+			if (filled != null && canOutputStack(filled.getFirst())) {
+				if (isSlotEmpty(slotOutput)) {
+					this.setStackInSlot(slotOutput, filled.getFirst());
+				} else {
+					this.getStackInSlot(slotOutput).grow(1);
+				}
+				this.getStackInSlot(slotInput).shrink(1);
+				this.tank.drainInternal((FluidStack) filled.getSecond(), true);
+			}
+		}
+	}
+
+	/**
+	 * Checks to see if the stack can merge or override the output slot
+	 * 
+	 * @param stack - the stack to compare to the output slot
+	 * @return
+	 */
+	public boolean canOutputStack(ItemStack stack) {
+		return inventory.get(slotOutput).getCount() < 64
+				&& (StackUtil.isStackEqual(getStackInSlot(slotOutput), stack, false, false)
+						|| inventory.get(slotOutput).isEmpty());
+	}
+
+	public boolean isSlotEmpty(int slot) {
+		return inventory.get(slot).isEmpty();
+	}
+
+	public boolean isSlotFull(int slot) {
+		return inventory.get(slot).getCount() > 64;
 	}
 
 	@Override
