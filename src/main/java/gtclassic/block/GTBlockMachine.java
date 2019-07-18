@@ -64,6 +64,17 @@ public class GTBlockMachine extends GTBlockMultiID {
 		setSoundType(SoundType.METAL);
 	}
 
+	public GTBlockMachine(String name, LocaleComp comp, Material blockMat) {
+		super(blockMat);
+		this.name = name;
+		this.size = 1;
+		setRegistryName(this.name.toLowerCase());
+		setUnlocalizedName(comp);
+		setCreativeTab(GTMod.creativeTabGT);
+		setResistance(20.0F);
+		setSoundType(SoundType.METAL);
+	}
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		for (int i = 0; i < this.size; i++) {

@@ -56,6 +56,8 @@ public class GTRecipe {
 			new RecipeInputItemStack(GTMaterialGen.get(Blocks.PISTON)) });
 	static IRecipeInput ingotHigh = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotTungsten"), new RecipeInputOreDict("ingotTitanium") });
+	static IRecipeInput ingotDigital = new RecipeInputCombined(1, new IRecipeInput[] {
+			new RecipeInputOreDict("ingotChrome"), new RecipeInputOreDict("ingotTitanium") });
 
 	/*
 	 * For now this set of recipes is heavily broken apart which allows me to
@@ -200,13 +202,17 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAESU), new Object[] { "OOO", "OCO", "OOO", 'O',
 				"batteryUltimate", 'C', GTBlocks.tileComputer });
 		/** Quantum Chest **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-				"circuitUltimate", 'I', "ingotChrome", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), new Object[] { "IDI", "MCM", "IDI", 'D',
-				"circuitUltimate", 'I', "ingotTitanium", 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), new Object[] { "ICI", "MDM", "ICI", 'D',
+				"circuitUltimate", 'I', ingotDigital, 'C', "chestWood", 'M', Ic2Items.advMachine.copy() });
+		/** Quantum Tank **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumTank, 1), new Object[] { "ICI", "MDM", "ICI", 'D',
+				"circuitUltimate", 'I', ingotDigital, 'C', Items.BUCKET, 'M', Ic2Items.advMachine.copy() });
 		/** Cabinet **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCabinet), new Object[] { "III", "CIC", "III", 'I',
 				ingotMachine, 'C', "chestWood" });
+		/** Drum **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), new Object[] { "I I", "III", "I I", 'I',
+				ingotRefinedIron });
 		/** Large Chest Buffer **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', "chestWood");
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), "SSS", "SCS", "SSS", 'S', GTBlocks.tileBufferSmall, 'C', Ic2Items.upgradeBase.copy());

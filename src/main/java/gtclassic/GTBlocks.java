@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.block.GTBlockCasing;
+import gtclassic.block.GTBlockDrum;
 import gtclassic.block.GTBlockMachine;
 import gtclassic.block.GTBlockMachineDirectionable;
 import gtclassic.block.GTBlockOre;
@@ -21,6 +22,7 @@ import gtclassic.tile.GTTileCabinet;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
+import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTileLESU;
@@ -75,6 +77,7 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu", GTLang.IDSU));
 	public static final GTBlockMachine tileWorktable = registerBlock(new GTBlockMachine("worktable", GTLang.WORKTABLE));
 	public static final GTBlockMachine tileCabinet = registerBlock(new GTBlockMachine("cabinet", GTLang.CABINET));
+	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
 	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());
 	public static final GTBlockQuantumTank tileQuantumTank = registerBlock(new GTBlockQuantumTank());
 	public static final GTBlockMachineDirectionable tileTranslocator = registerBlock(new GTBlockMachineDirectionable("translocator", GTLang.TRANSLOCATOR, 3));
@@ -83,7 +86,7 @@ public class GTBlocks {
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uuassembler", "quantumchest", "quantumtank", "playerdetector",
-			"fusionreactor", "lightningrod", "idsu", "aesu", "lesu", "cabinet", "worktable", "translocator",
+			"fusionreactor", "lightningrod", "idsu", "aesu", "lesu", "cabinet", "drum", "worktable", "translocator",
 			"bufferlarge", "buffersmall" };
 
 	public static void registerBlocks() {
@@ -132,6 +135,7 @@ public class GTBlocks {
 		registerUtil(GTTileWorktable.class, "Worktable");
 		registerUtil(GTTileFacing.class, "Facing");
 		registerUtil(GTTileCabinet.class, "Cabinet");
+		registerUtil(GTTileDrum.class, "Drum");
 		registerUtil(GTTileTranslocator.class, "Translocator");
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");

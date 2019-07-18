@@ -27,6 +27,7 @@ public class GTLang {
 	public static final LocaleComp IDSU = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.idsu");
 	public static final LocaleComp WORKTABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.worktable");
 	public static final LocaleComp CABINET = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.cabinet");
+	public static final LocaleComp DRUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.drum");
 	public static final LocaleComp TRANSLOCATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocator");
 	public static final LocaleComp BUFFER_LARGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferlarge");
 	public static final LocaleComp BUFFER_SMALL = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.buffersmall");
