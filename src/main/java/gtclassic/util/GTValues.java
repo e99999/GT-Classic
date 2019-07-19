@@ -1,11 +1,9 @@
 package gtclassic.util;
 
 import ic2.core.IC2;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GTValues {
@@ -63,13 +61,6 @@ public class GTValues {
 		} else {
 			return "null";
 		}
-	}
-
-	public static boolean isBCShard(ItemStack stack) {
-		if (Loader.isModLoaded("buildcraftcore")) {
-			return stack.isItemEqual(new ItemStack(Item.getByNameOrId("buildcraftcore:fragile_fluid_shard")));
-		}
-		return false;
 	}
 
 	public static String getOreName(ItemStack stack) {
