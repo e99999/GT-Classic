@@ -43,6 +43,7 @@ tile.gtclassic.drum.name=Drum
 tile.gtclassic.translocator.name=Electric Translocator
 tile.gtclassic.bufferlarge.name=Large Electric Buffer
 tile.gtclassic.buffersmall.name=Small Electric Buffer
+tile.gtclassic.bufferfluid.name=Electric Fluid Buffer
 tile.gtclassic.sluicebox.name=Sluice Box
 tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
 

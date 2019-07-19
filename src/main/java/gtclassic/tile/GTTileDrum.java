@@ -46,13 +46,13 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.tank.readFromNBT(nbt.getCompoundTag("Tank"));
+		this.tank.readFromNBT(nbt.getCompoundTag("tank"));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		this.tank.writeToNBT(this.getTag(nbt, "Tank"));
+		this.tank.writeToNBT(this.getTag(nbt, "tank"));
 		return nbt;
 	}
 

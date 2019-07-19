@@ -5,17 +5,18 @@ import java.util.List;
 
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockDrum;
+import gtclassic.block.GTBlockFluidTank;
 import gtclassic.block.GTBlockMachine;
 import gtclassic.block.GTBlockMachineDirectionable;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockQuantumChest;
-import gtclassic.block.GTBlockQuantumTank;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.itemblock.GTItemBlockInterface;
 import gtclassic.itemblock.GTItemBlockRare;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileAESU;
+import gtclassic.tile.GTTileBufferFluid;
 import gtclassic.tile.GTTileBufferLarge;
 import gtclassic.tile.GTTileBufferSmall;
 import gtclassic.tile.GTTileCabinet;
@@ -79,15 +80,16 @@ public class GTBlocks {
 	public static final GTBlockMachine tileCabinet = registerBlock(new GTBlockMachine("cabinet", GTLang.CABINET));
 	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
 	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());
-	public static final GTBlockQuantumTank tileQuantumTank = registerBlock(new GTBlockQuantumTank());
+	public static final GTBlockFluidTank tileQuantumTank = registerBlock(new GTBlockFluidTank());
 	public static final GTBlockMachineDirectionable tileTranslocator = registerBlock(new GTBlockMachineDirectionable("translocator", GTLang.TRANSLOCATOR, 3));
 	public static final GTBlockMachineDirectionable tileBufferLarge = registerBlock(new GTBlockMachineDirectionable("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
+	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uuassembler", "quantumchest", "quantumtank", "playerdetector",
 			"fusionreactor", "lightningrod", "idsu", "aesu", "lesu", "cabinet", "drum", "worktable", "translocator",
-			"bufferlarge", "buffersmall" };
+			"bufferlarge", "buffersmall", "bufferfluid" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -139,6 +141,7 @@ public class GTBlocks {
 		registerUtil(GTTileTranslocator.class, "Translocator");
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
+		registerUtil(GTTileBufferFluid.class, "BufferFluid");
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

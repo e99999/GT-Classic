@@ -8,11 +8,15 @@ import gtclassic.container.GTContainerQuantumTank;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTFluidUtil;
 import gtclassic.util.GTLang;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
+import ic2.core.inventory.management.AccessRule;
+import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.inventory.management.SlotType;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
@@ -46,10 +50,22 @@ public class GTTileQuantumTank extends TileEntityMachine implements ITankListene
 	}
 
 	@Override
+	protected void addSlots(InventoryHandler handler) {
+		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.UP.invert());
+		handler.registerDefaultSlotAccess(AccessRule.Import, 0);
+		handler.registerDefaultSlotAccess(AccessRule.Export, 1);
+		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), 0);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), 1);
+		handler.registerSlotType(SlotType.Input, 0);
+		handler.registerSlotType(SlotType.Output, 1);
+	}
+
+	@Override
 	public LocaleComp getBlockName() {
 		return GTLang.QUANTUM_TANK;
 	}
 
+	@Override
 	public void onTankChanged(IFluidTank tank) {
 		this.getNetwork().updateTileGuiField(this, "tank");
 		this.inventory.set(2, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));

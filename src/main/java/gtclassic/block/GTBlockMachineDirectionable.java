@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import gtclassic.GTBlocks;
 import gtclassic.tile.GTTileAESU;
+import gtclassic.tile.GTTileBufferFluid;
 import gtclassic.tile.GTTileBufferLarge;
 import gtclassic.tile.GTTileBufferSmall;
 import gtclassic.tile.GTTileIDSU;
@@ -49,6 +50,9 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 		}
 		if (this == GTBlocks.tileBufferSmall) {
 			return new GTTileBufferSmall();
+		}
+		if (this == GTBlocks.tileBufferFluid) {
+			return new GTTileBufferFluid();
 		}
 		return new TileEntityBlock();
 	}

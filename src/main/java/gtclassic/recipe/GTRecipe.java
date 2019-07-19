@@ -216,6 +216,8 @@ public class GTRecipe {
 		/** Large Chest Buffer **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', "chestWood");
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), "SSS", "SCS", "SSS", 'S', GTBlocks.tileBufferSmall, 'C', Ic2Items.upgradeBase.copy());
+		/** Fluid Buffer **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', Items.BUCKET);
 		/** Matter Fabricator **/
 		recipes.overrideRecipe("shaped_tile.blockMatter_1416524227", GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] {
 				"ETE", "HLH", "ETE", 'E', "circuitMaster", 'T', Ic2Items.teleporter, 'H', GTBlocks.casingHighlyAdvanced,
