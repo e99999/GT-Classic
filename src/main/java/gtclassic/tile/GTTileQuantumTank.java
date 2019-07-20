@@ -29,7 +29,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -117,26 +116,6 @@ public class GTTileQuantumTank extends TileEntityMachine implements ITankListene
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
-	}
-
-	public String getFluidName() {
-		return !this.isTankEmpty() ? this.tank.getFluid().getLocalizedName() : "Empty";
-	}
-
-	public int getFluidAmount() {
-		return !this.isTankEmpty() ? this.tank.getFluid().amount : 0;
-	}
-
-	public boolean isTankEmpty() {
-		return this.tank.getFluid() == null || this.tank.getFluidAmount() == 0;
-	}
-
-	public boolean isTankFull() {
-		return this.getFluidAmount() == Integer.MAX_VALUE;
-	}
-
-	public FluidStack getFluid() {
-		return this.tank.getFluid();
 	}
 
 	public IC2Tank getTankInstance() {

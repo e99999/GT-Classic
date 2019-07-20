@@ -1,6 +1,5 @@
 package gtclassic.util;
 
-import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.misc.FluidHelper;
@@ -60,16 +59,6 @@ public class GTFluidUtil {
 	public static boolean doClickableFluidContainerThings(EntityPlayer player, EnumHand hand, World world, BlockPos pos,
 			IC2Tank tank) {
 		ItemStack playerStack = player.getHeldItem(hand);
-		if (playerStack.isEmpty()) {
-			if (!IC2.platform.isSimulating()) {
-				if (isTankEmpty(tank)) {
-					IC2.platform.messagePlayer(player, "Empty");
-				} else {
-					IC2.platform.messagePlayer(player, tank.getFluidAmount() + "mB of " + getFluidName(tank));
-				}
-			}
-			return true;
-		}
 		if (GTFluidUtil.isConsumable(playerStack) || GTFluidUtil.isBCShard(playerStack)) {
 			if (FluidUtil.tryEmptyContainer(playerStack, tank, tank.getCapacity()
 					- tank.getFluidAmount(), player, true) != FluidActionResult.FAILURE) {

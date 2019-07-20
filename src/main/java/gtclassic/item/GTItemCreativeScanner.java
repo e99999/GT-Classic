@@ -3,8 +3,8 @@ package gtclassic.item;
 import gtclassic.GTMod;
 import gtclassic.tile.GTTileBaseBuffer;
 import gtclassic.tile.GTTileBaseMachine;
+import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.GTTileLESU;
-import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
@@ -39,6 +39,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -203,9 +204,12 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "1 out of " + rod.chance
 						+ " chance to strike based on fence height");
 			}
-			if (tileEntity instanceof GTTileQuantumChest) {
-				GTTileQuantumChest chest = (GTTileQuantumChest) tileEntity;
-				IC2.platform.messagePlayer(player, "Internal Count: " + chest.getQuantumCount());
+			if (tileEntity instanceof GTTileDrum) {
+				GTTileDrum drum = (GTTileDrum) tileEntity;
+				FluidStack fluid = drum.getTankInstance().getFluid();
+				if (fluid != null) {
+					IC2.platform.messagePlayer(player, fluid.amount + "mB of " + fluid.getLocalizedName());
+				}
 			}
 			if (tileEntity instanceof TileEntityElectricBlock) {
 				TileEntityElectricBlock eu = (TileEntityElectricBlock) tileEntity;

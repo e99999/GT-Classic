@@ -18,7 +18,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -82,22 +81,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
-	}
-
-	public String getFluidName() {
-		return !this.isTankEmpty() ? this.tank.getFluid().getLocalizedName() : "Empty";
-	}
-
-	public int getFluidAmount() {
-		return !this.isTankEmpty() ? this.tank.getFluid().amount : 0;
-	}
-
-	public boolean isTankEmpty() {
-		return this.tank.getFluid() == null || this.tank.getFluidAmount() == 0;
-	}
-
-	public FluidStack getFluid() {
-		return this.tank.getFluid();
 	}
 
 	public IC2Tank getTankInstance() {
