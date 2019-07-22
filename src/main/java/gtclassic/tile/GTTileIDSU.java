@@ -14,6 +14,7 @@ import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -27,13 +28,14 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 	int open = 0;
 	@NetworkField(index = 7)
 	private UUID owner;
+	private String ownerName = "null";
 	@NetworkField(index = 8)
 	EnergyWrapper wrapper = IDSUStorage.createDummy();
 
 	public GTTileIDSU() {
 		super(4, (int) EnergyNet.instance.getPowerFromTier(4), 400000000);
 		this.addNetworkFields(new String[] { "owner" });
-		addGuiFields("wrapper");
+		addGuiFields("wrapper", "ownerName");
 	}
 
 	@Override
@@ -41,7 +43,8 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 		super.readFromNBT(nbt);
 		if (nbt.hasUniqueId("owner")) {
 			this.owner = nbt.getUniqueId("owner");
-			this.getNetwork().updateTileGuiField(this, "owner");
+			this.ownerName = nbt.getString("ownerName");
+			this.getNetwork().updateTileGuiField(this, "ownerName");
 		}
 	}
 
@@ -50,8 +53,27 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 		super.writeToNBT(nbt);
 		if (this.owner != null) {
 			nbt.setUniqueId("owner", this.owner);
+			nbt.setString("ownerName", this.ownerName);
 		}
 		return nbt;
+	}
+	
+	public void setOwner(EntityLivingBase placer) {
+		UUID user = placer.getUniqueID();
+		String name = placer.getName();
+		if (this.owner == null && user != null) {
+			this.owner = user;
+			this.ownerName = name;
+			this.getNetwork().updateTileGuiField(this, "ownerName");
+		}
+	}
+
+	public UUID getOwner() {
+		return this.owner;
+	}
+	
+	public String getOwnerName() {
+		return this.ownerName;
 	}
 
 	@Override
@@ -144,17 +166,6 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 	@Override
 	public LocaleComp getBlockName() {
 		return GTLang.IDSU;
-	}
-
-	public void setOwner(UUID user) {
-		if (this.owner == null && user != null) {
-			this.owner = user;
-		}
-		this.getNetwork().updateTileGuiField(this, "owner");
-	}
-
-	public UUID getOwner() {
-		return this.owner;
 	}
 
 	@Override

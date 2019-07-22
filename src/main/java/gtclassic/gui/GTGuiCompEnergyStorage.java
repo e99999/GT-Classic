@@ -3,7 +3,6 @@ package gtclassic.gui;
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTileLESU;
@@ -45,11 +44,10 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 				this.block.output }), 12, 48, Color.cyan.hashCode());
 		// This is just for the UUID in the IDSU, didnt warrant a whole new class
 		if (this.block instanceof GTTileIDSU) {
-			UUID owner = ((GTTileIDSU) this.block).getOwner();
+			String owner = ((GTTileIDSU) this.block).getOwnerName();
 			if (owner != null) {
-				gui.drawString("" + owner.toString().substring(0, 15), 12, 58, Color.cyan.hashCode());
-			}
-			if (owner == null) {
+				gui.drawString("" + owner, 12, 58, Color.cyan.hashCode());
+			} else {
 				gui.drawString("No Owner", 12, 58, Color.cyan.hashCode());
 			}
 		}

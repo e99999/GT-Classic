@@ -1,7 +1,5 @@
 package gtclassic.block;
 
-import java.util.UUID;
-
 import gtclassic.GTBlocks;
 import gtclassic.tile.GTTileAESU;
 import gtclassic.tile.GTTileBufferFluid;
@@ -83,8 +81,7 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 		}
 		TileEntity tile = worldIn.getTileEntity(pos);
 		if (tile instanceof GTTileIDSU && placer != null) {
-			UUID owner = placer.getUniqueID();
-			((GTTileIDSU) tile).setOwner(owner);
+			((GTTileIDSU) tile).setOwner(placer);
 		}
 	}
 }

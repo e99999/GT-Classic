@@ -1,5 +1,8 @@
 package gtclassic.recipe;
 
+import java.util.Arrays;
+import java.util.List;
+
 import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
@@ -22,6 +25,11 @@ import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
 
 public class GTRecipe {
 
@@ -68,7 +76,6 @@ public class GTRecipe {
 		GTRecipeIterators.recipeIterators1();
 		GTRecipeProcessing.recipesProcessing();
 		GTRecipeUUAmplifier.init();
-		// below is more how things will go
 		GTTileCentrifuge.init();
 		GTTileMatterFabricator.init();
 		GTTileMultiBlastFurnace.init();
@@ -77,12 +84,30 @@ public class GTRecipe {
 		items();
 		blocks();
 		ic2();
+		//dumpCraftingRecipesForAssembler();
 	}
 
 	public static void postInit() {
 		GTTileMultiBlastFurnace.postInit();
 		GTRecipeMods.postInit();
 	}
+
+	public static void dumpCraftingRecipesForAssembler() {
+        for (IRecipe registeredRecipes : CraftingManager.REGISTRY) {
+            NonNullList<Ingredient> ingredients = registeredRecipes.getIngredients();
+            ItemStack outputStack = registeredRecipes.getRecipeOutput();
+            if(ingredients.size() == 2 && outputStack != null) {
+                GTMod.logger.info("---New Recipe Found for Assembler---");
+                for (Ingredient input: ingredients) {
+                    for (ItemStack inputStack: input.getMatchingStacks()) {
+                        GTMod.logger.info("INPUT: " + inputStack.getDisplayName());
+                    }
+                }
+                GTMod.logger.info("OUTPUT: " + outputStack.getDisplayName());
+                GTMod.logger.info("------------------------------------");
+            }
+        }
+    }
 
 	public static void shapeless() {
 		/** Duct Tape **/
