@@ -13,11 +13,13 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
@@ -26,7 +28,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener, IHasGui {
+public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener, IHasGui, IClickable {
 
 	private IC2Tank tank;
 	int slotInput = 0;
@@ -130,5 +132,24 @@ public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener
 		if (world.getTotalWorldTime() % 20 == 0 && canExport) {
 			FluidUtil.tryFluidTransfer(tile, this.tank, 1000, true);
 		}
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+		return GTFluidUtil.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 }

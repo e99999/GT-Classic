@@ -85,8 +85,7 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 
 	@Override
 	public short getID(ItemStack var1) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (short) (this.variant.getID() + 1200);
 	}
 
 	@Override

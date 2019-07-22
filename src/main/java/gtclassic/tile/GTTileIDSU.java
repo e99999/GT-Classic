@@ -57,7 +57,7 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 		}
 		return nbt;
 	}
-	
+
 	public void setOwner(EntityLivingBase placer) {
 		UUID user = placer.getUniqueID();
 		String name = placer.getName();
@@ -71,7 +71,7 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 	public UUID getOwner() {
 		return this.owner;
 	}
-	
+
 	public String getOwnerName() {
 		return this.ownerName;
 	}

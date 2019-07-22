@@ -20,6 +20,7 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.IItemContainer;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
@@ -27,6 +28,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.IFluidTank;
@@ -34,7 +36,8 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileQuantumTank extends TileEntityMachine implements ITankListener, IItemContainer, ITickable, IHasGui {
+public class GTTileQuantumTank extends TileEntityMachine
+		implements ITankListener, IItemContainer, ITickable, IHasGui, IClickable {
 
 	private IC2Tank tank;
 	int slotInput = 0;
@@ -150,5 +153,24 @@ public class GTTileQuantumTank extends TileEntityMachine implements ITankListene
 	@Override
 	public boolean hasGui(EntityPlayer paramEntityPlayer) {
 		return true;
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+		return GTFluidUtil.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 }
