@@ -178,6 +178,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	 * in, if less it returns the remainder.
 	 */
 	public int getOutputCount() {
+		//this is broken AF
 		return (this.digitalCount >= 64) ? 64 : this.digitalCount;
 	}
 
@@ -229,6 +230,10 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		this.digitalCount = count;
 	}
 
+	public boolean canFit(int count) {
+		return count + this.digitalCount <= Integer.MAX_VALUE;
+	}
+
 	@Override
 	public boolean hasLeftClick() {
 		return false;
@@ -245,8 +250,6 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 
 	@Override
 	public boolean onRightClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, Side side) {
-		// these functions interact directly with the quantum count and not the
-		// input/output slots
 		// tries to pull one item
 		if (playerIn.isSneaking() && !isSlotEmpty(slotDisplay) && this.digitalCount > 0) {
 			ItemHandlerHelper.giveItemToPlayer(playerIn, getStackInSlot(slotDisplay).copy());
@@ -255,9 +258,9 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		}
 		// tries to input a full stack of an item
 		ItemStack playerStack = playerIn.getHeldItemMainhand();
+		int count = playerStack.getCount();
 		boolean isPlayerStackValid = StackUtil.isStackEqual(getStackInSlot(slotDisplay), playerStack, false, false);
-		if (!playerIn.isSneaking() && !isSlotEmpty(slotDisplay) && !playerStack.isEmpty() && isPlayerStackValid) {
-			int count = playerStack.getCount();
+		if (!playerIn.isSneaking() && !isSlotEmpty(slotDisplay) && isPlayerStackValid && canFit(count)) {
 			this.digitalCount = this.digitalCount + count;
 			playerStack.shrink(count);
 			return true;
