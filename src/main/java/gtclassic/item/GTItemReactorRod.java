@@ -21,32 +21,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemReactorRod extends ItemGrandualInt implements ISteamReactorComponent, IReactorPlannerComponent {
+	
+	String name;
+	int id;
 
-	public enum GTItemRodTypes {
-		SINGLETHORIUM(16),
-		DOUBLETHORIUM(17),
-		QUADTHORIUM(18),
-		SINGLEPLUTONIUM(19),
-		DOUBLEPLUTONIUM(20),
-		QUADPLUTONIUM(21);
-
-		private int id;
-
-		GTItemRodTypes(int id) {
-			this.id = id;
-		}
-
-		public int getID() {
-			return id;
-		}
-	}
-
-	GTItemRodTypes variant;
-
-	public GTItemReactorRod(GTItemRodTypes variant) {
-		this.variant = variant;
-		setRegistryName(variant.toString().toLowerCase() + "_rod");
-		setUnlocalizedName(GTMod.MODID + "." + variant.toString().toLowerCase() + "_rod");
+	public GTItemReactorRod(String name, int id) {
+		this.name = name;
+		this.id = id;
+		setRegistryName("rod_" + this.name);
+		setUnlocalizedName(GTMod.MODID + ".rod_" + this.name);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
@@ -58,7 +41,7 @@ public class GTItemReactorRod extends ItemGrandualInt implements ISteamReactorCo
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[this.id];
 	}
 
 	@Override
