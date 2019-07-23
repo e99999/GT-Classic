@@ -17,6 +17,12 @@ public class GTItemComponent extends Item implements IStaticTexturedItem {
 	int x;
 	int y;
 
+	/**
+	 * Constructor for making a simple item with no action.
+	 * @param name - String name for the item
+	 * @param x - int column
+	 * @param y - int row
+	 */
 	public GTItemComponent(String name, int x, int y) {
 		this.name = name;
 		this.x = x;
