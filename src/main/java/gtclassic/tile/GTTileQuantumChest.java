@@ -152,34 +152,28 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 			// set the display slot to show the input item
 			setStackInSlot(slotDisplay, StackUtil.copyWithSize(getStackInSlot(slotInput), 1));
 			// add the stack count to the digital count
-			int count = getSlotStackCount(slotInput);
-			this.digitalCount = this.digitalCount + count;
+			this.digitalCount = this.digitalCount + 1;
 			// remove the input slot stack completely
-			inventory.get(slotInput).shrink(count);
+			inventory.get(slotInput).shrink(1);
 			updateGui();
 		}
 		// now the inverse for outputting to the output slot
 		if (!isSlotEmpty(slotDisplay) && canOutputStack(getStackInSlot(slotDisplay)) && this.digitalCount > 0) {
-			// set the output slot to be the display item + max possible size
-			setStackInSlot(slotOutput, StackUtil.copyWithSize(getStackInSlot(slotDisplay), getOutputCount()));
-			// subtract from the digital storage
-			this.digitalCount = this.digitalCount - getOutputCount();
-			// clear the display slot if the digital count is drained
+			// if output slot is empty, set it to the digital stack
+			if (isSlotEmpty(slotOutput)) {
+				setStackInSlot(slotOutput, getStackInSlot(slotDisplay).copy());
+				this.digitalCount = this.digitalCount - 1;
+				// else if not empty then just grow up the stack, canOutputStack makes this safe
+			} else {
+				getStackInSlot(slotOutput).grow(1);
+				this.digitalCount = this.digitalCount - 1;
+			}
+			// just some checking to keep things from getting weird
 			if (this.digitalCount == 0) {
 				inventory.get(slotDisplay).shrink(1);
 			}
 			updateGui();
 		}
-	}
-
-	/**
-	 * This checks to see if the remaining digital count is above 64, to give the
-	 * stack size for the output slot. If its above 64 it just shoves a full stack
-	 * in, if less it returns the remainder.
-	 */
-	public int getOutputCount() {
-		//this is broken AF
-		return (this.digitalCount >= 64) ? 64 : this.digitalCount;
 	}
 
 	/**
