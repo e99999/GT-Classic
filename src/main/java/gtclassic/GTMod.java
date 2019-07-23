@@ -2,6 +2,7 @@ package gtclassic;
 
 import org.apache.logging.log4j.Logger;
 
+import gtclassic.item.GTItemReactorRod;
 import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
@@ -36,8 +37,6 @@ public class GTMod {
 	@Mod.Instance
 	public static GTMod instance;
 	public static Logger logger;
-	// public static boolean dev = !new
-	// File(GTMod.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getName().endsWith(".jar");
 	private static boolean quickDebug = false;
 	public static boolean debugMode = GTConfig.debugMode || quickDebug;
 
@@ -50,6 +49,7 @@ public class GTMod {
 		GTBlocks.registerTiles();
 		GTMaterialGen.init();
 		GTBlocks.registerBlocks();
+		GTItemReactorRod.init();
 		GTItems.initBaubleItems();
 		GTItems.registerItems();
 		GTMaterialDict.init();

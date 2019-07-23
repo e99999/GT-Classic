@@ -17,16 +17,22 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements IStaticTexturedItem {
 
-	String name;
+	String title;
 	int id;
 	int durability;
 
-	public GTItemReactorHeat(String name, int id, int durability) {
-		this.name = name;
+	/**
+	 * 
+	 * @param name       - String name for the rod item
+	 * @param id         - int for texture entry
+	 * @param durability - int the reactor part
+	 */
+	public GTItemReactorHeat(String title, int id, int durability) {
+		this.title = title;
 		this.id = id;
 		this.durability = durability;
-		setRegistryName("heatstorage_" + this.name);
-		setUnlocalizedName(GTMod.MODID + ".heatstorage_" + this.name);
+		setRegistryName("heatstorage_" + this.title);
+		setUnlocalizedName(GTMod.MODID + ".heatstorage_" + this.title);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
