@@ -91,9 +91,9 @@ item.gtclassic.ingotThorium.name=Thorium Ingot
 item.gtclassic.ingotPlutonium.name=Plutonium Ingot
 
 #items
-item.gtclassic.heatstorage_single.name=60k Helium Coolant Cell
-item.gtclassic.heatstorage_triple.name=180k Helium Coolant Cell
-item.gtclassic.heatstorage_six.name=360k Helium Coolant Cell
+item.gtclassic.heatstorage_helium_single.name=60k Helium Coolant Cell
+item.gtclassic.heatstorage_helium_triple.name=180k Helium Coolant Cell
+item.gtclassic.heatstorage_helium_six.name=360k Helium Coolant Cell
 item.gtclassic.singlethorium_rod.name=Thorium Cell
 item.gtclassic.doublethorium_rod.name=Dual Thorium Cell
 item.gtclassic.quadthorium_rod.name=Quad Thorium Cell

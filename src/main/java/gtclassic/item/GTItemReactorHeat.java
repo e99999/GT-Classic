@@ -3,7 +3,6 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTItems;
 import gtclassic.GTMod;
 import ic2.api.reactor.IReactor;
 import ic2.core.item.reactor.ItemReactorHeatStorageBase;
@@ -17,29 +16,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements IStaticTexturedItem {
+	String name;
+	int id;
+	int durability;
 
-	public enum GTItemHeatStorageTypes {
-		SINGLE(2),
-		TRIPLE(3),
-		SIX(4);
-
-		private int id;
-
-		GTItemHeatStorageTypes(int id) {
-			this.id = id;
-		}
-
-		public int getID() {
-			return id;
-		}
-	}
-
-	GTItemHeatStorageTypes variant;
-
-	public GTItemReactorHeat(GTItemHeatStorageTypes variant) {
-		this.variant = variant;
-		setRegistryName("heatstorage_" + variant.toString().toLowerCase());
-		setUnlocalizedName(GTMod.MODID + ".heatstorage_" + variant.toString().toLowerCase());
+	public GTItemReactorHeat(String name, int id, int durability) {
+		this.name = name;
+		this.id = id;
+		this.durability = durability;
+		setRegistryName("heatstorage_" + this.name);
+		setUnlocalizedName(GTMod.MODID + ".heatstorage_" + this.name);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
@@ -51,22 +37,12 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[variant.getID()];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[this.id];
 	}
 
 	@Override
 	public int getMaxCustomDamage(ItemStack stack) {
-		if (this == GTItems.heatStorageSingle) {
-			return 60000;
-		}
-		if (this == GTItems.heatStorageTriple) {
-			return 180000;
-		}
-		if (this == GTItems.heatStorageSix) {
-			return 360000;
-		} else {
-			return 0;
-		}
+		return this.durability;
 	}
 
 	@Override
@@ -76,7 +52,7 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 
 	@Override
 	public short getID(ItemStack var1) {
-		return (short) (this.variant.getID() + 1200);
+		return (short) (this.id + 1200);
 	}
 
 	@Override
