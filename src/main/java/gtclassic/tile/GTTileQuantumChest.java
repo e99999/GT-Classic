@@ -17,17 +17,20 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
-public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable, IItemContainer {
+public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable, IItemContainer, IClickable {
 
 	int slotInput = 0;
 	int slotOutput = 1;
@@ -224,5 +227,41 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 
 	public void setDigtialCount(int count) {
 		this.digitalCount = count;
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer arg0, Side arg1) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, Side side) {
+		// these functions interact directly with the quantum count and not the
+		// input/output slots
+		// tries to pull one item
+		if (playerIn.isSneaking() && !isSlotEmpty(slotDisplay) && this.digitalCount > 0) {
+			ItemHandlerHelper.giveItemToPlayer(playerIn, getStackInSlot(slotDisplay).copy());
+			this.digitalCount = this.digitalCount - 1;
+			return true;
+		}
+		// tries to input a full stack of an item
+		ItemStack playerStack = playerIn.getHeldItemMainhand();
+		boolean isPlayerStackValid = StackUtil.isStackEqual(getStackInSlot(slotDisplay), playerStack, false, false);
+		if (!playerIn.isSneaking() && !isSlotEmpty(slotDisplay) && !playerStack.isEmpty() && isPlayerStackValid) {
+			int count = playerStack.getCount();
+			this.digitalCount = this.digitalCount + count;
+			playerStack.shrink(count);
+			return true;
+		}
+		return false;
 	}
 }

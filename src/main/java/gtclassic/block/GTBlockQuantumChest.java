@@ -7,7 +7,6 @@ import java.util.Random;
 import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.util.GTLang;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.item.tool.ItemToolWrench;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.state.IBlockState;
@@ -18,12 +17,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTBlockQuantumChest extends GTBlockMachine {
 
@@ -68,34 +64,6 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 			items.addAll(((IItemContainer) te).getDrops());
 		}
 		return items;
-	}
-
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileQuantumChest) {
-			GTTileQuantumChest chest = (GTTileQuantumChest) tile;
-			ItemStack playerStack = playerIn.getHeldItemMainhand();
-			if (!(playerStack.getItem() instanceof ItemToolWrench)) {
-				boolean isChestEmpty = chest.isSlotEmpty(slotInput) && chest.isSlotEmpty(slotDisplay);
-				boolean isPlayerStackValid = chest.isSlotEmpty(slotInput)
-						&& StackUtil.isStackEqual(chest.getStackInSlot(slotDisplay), playerStack, false, false);
-				boolean validInput = isChestEmpty || isPlayerStackValid;
-				if (!playerIn.isSneaking() && validInput && !playerStack.isEmpty()) {
-					chest.setStackInSlot(slotInput, playerStack.copy());
-					playerStack.shrink(playerStack.getCount());
-					chest.updateGui();
-					return true;
-				}
-				if (playerIn.isSneaking() && !chest.isSlotEmpty(slotOutput)) {
-					ItemHandlerHelper.giveItemToPlayer(playerIn, chest.getStackInSlot(slotOutput));
-					chest.setStackInSlot(slotOutput, ItemStack.EMPTY);
-					return true;
-				}
-			}
-		}
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 
 	@Override

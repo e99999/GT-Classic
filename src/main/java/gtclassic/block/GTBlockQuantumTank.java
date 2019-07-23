@@ -23,13 +23,13 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
-public class GTBlockFluidTank extends GTBlockMachine {
+public class GTBlockQuantumTank extends GTBlockMachine {
 
 	int slotInput = 0;
 	int slotOutput = 1;
 	int slotDisplay = 2;
 
-	public GTBlockFluidTank() {
+	public GTBlockQuantumTank() {
 		super("quantumtank", GTLang.QUANTUM_TANK);
 	}
 
