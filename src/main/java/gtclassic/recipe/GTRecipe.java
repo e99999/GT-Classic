@@ -108,12 +108,12 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.jackHammer, 1), new Object[] { "IBI", " C ", " D ", 'I',
 				"ingotTungsten", 'C', "circuitBasic", 'B', Ic2Items.battery.copy(), 'D', "gemDiamond" });
 		/** Helium Reactor Coolant **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageSingle, 1), new Object[] { " I ", "IHI", " I ", 'I',
+		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium1, 1), new Object[] { " I ", "IHI", " I ", 'I',
 				"ingotTin", 'H', GTMaterialGen.getFluid(GTMaterial.Helium, 1) });
-		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageTriple, 1), new Object[] { "III", "HHH", "III", 'I',
-				"ingotTin", 'H', GTItems.heatStorageSingle });
-		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageSix, 1), new Object[] { "IHI", "IPI", "IHI", 'I',
-				"ingotTin", 'H', GTItems.heatStorageTriple, 'P', Ic2Items.denseCopperPlate });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium3, 1), new Object[] { "III", "HHH", "III", 'I',
+				"ingotTin", 'H', GTItems.heatStorageHelium1 });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium6, 1), new Object[] { "IHI", "IPI", "IHI", 'I',
+				"ingotTin", 'H', GTItems.heatStorageHelium3, 'P', Ic2Items.denseCopperPlate });
 		/** Lithium Battery **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.getLithiumBattery(), 1), new Object[] { " G ", "ALA", "ALA", 'G',
 				Ic2Items.goldCable.copy(), 'A', "ingotAluminium", 'L', "dustLithium" });
@@ -140,7 +140,7 @@ public class GTRecipe {
 				Ic2Items.reactorCoolantCellSix.copy(), 'E', "circuitMaster", 'W', "ingotTungsten", 'P',
 				"plateIridiumAlloy" });
 		recipes.addRecipe(GTMaterialGen.get(GTItems.superConductor, 4), new Object[] { "CCC", "PWP", "EEE", 'C',
-				GTItems.heatStorageTriple, 'E', "circuitMaster", 'W', "ingotTungsten", 'P', "plateIridiumAlloy" });
+				GTItems.heatStorageHelium3, 'E', "circuitMaster", 'W', "ingotTungsten", 'P', "plateIridiumAlloy" });
 		/** Lapotron Batpack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.getLapotronPack(), 1), new Object[] { "ELE", "SBS", "EPE", 'E',
 				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'B', GTItems.getLithiumBatpack(),
@@ -330,28 +330,31 @@ public class GTRecipe {
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotSilver, 'V', lowCrystal);
 		/** Overclocker helium coolant recipes **/
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { "CCC", "WEW", 'C',
-				GTMaterialGen.get(GTItems.heatStorageSingle), 'W', Ic2Items.insulatedCopperCable.copy(), 'E',
+				GTMaterialGen.get(GTItems.heatStorageHelium1), 'W', Ic2Items.insulatedCopperCable.copy(), 'E',
 				Ic2Items.electricCircuit.copy() });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 6), new Object[] { "CCC", "WEW", 'C',
-				GTMaterialGen.get(GTItems.heatStorageTriple), 'W',
+				GTMaterialGen.get(GTItems.heatStorageHelium3), 'W',
 				GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 3), 'E',
 				GTMaterialGen.getIc2(Ic2Items.electricCircuit, 3) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 12), new Object[] { "CCC", "WEW", 'C',
-				GTMaterialGen.get(GTItems.heatStorageSix), 'W', GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 6),
-				'E', GTMaterialGen.getIc2(Ic2Items.electricCircuit, 6) });
+				GTMaterialGen.get(GTItems.heatStorageHelium6), 'W',
+				GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 6), 'E',
+				GTMaterialGen.getIc2(Ic2Items.electricCircuit, 6) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { " X ", "XYX", " X ", 'Y',
-				Ic2Items.upgradeBase.copy(), 'X', GTMaterialGen.get(GTItems.heatStorageSingle) });
+				Ic2Items.upgradeBase.copy(), 'X', GTMaterialGen.get(GTItems.heatStorageHelium1) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { "XXX", "XYX", "XXX", 'Y',
-				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 2), 'X', GTMaterialGen.get(GTItems.heatStorageSingle) });
+				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 2), 'X', GTMaterialGen.get(GTItems.heatStorageHelium1) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 8), new Object[] { " X ", "XYX", " X ", 'Y',
-				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 4), 'X', GTMaterialGen.get(GTItems.heatStorageTriple) });
+				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 4), 'X', GTMaterialGen.get(GTItems.heatStorageHelium3) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 16), new Object[] { "XXX", "XYX", "XXX",
 				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 8), 'X',
-				GTMaterialGen.get(GTItems.heatStorageTriple) });
+				GTMaterialGen.get(GTItems.heatStorageHelium3) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 16), new Object[] { " X ", "XYX", " X ",
-				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 8), 'X', GTMaterialGen.get(GTItems.heatStorageSix) });
+				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 8), 'X',
+				GTMaterialGen.get(GTItems.heatStorageHelium6) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 32), new Object[] { "XXX", "XYX", "XXX",
-				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 16), 'X', GTMaterialGen.get(GTItems.heatStorageSix) });
+				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 16), 'X',
+				GTMaterialGen.get(GTItems.heatStorageHelium6) });
 		/** UU-Matter Recipes **/
 		recipes.overrideRecipe("shaped_item.emerald_981588030", GTMaterialGen.get(Items.EMERALD), new Object[] { "UUU",
 				"UUU", " U ", 'U', GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });

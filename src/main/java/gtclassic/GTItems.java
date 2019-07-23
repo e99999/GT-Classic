@@ -34,9 +34,9 @@ public class GTItems {
 	}
 
 	static List<Item> toRegister = new ArrayList<>();
-	public static final GTItemReactorHeat heatStorageSingle = createItem(new GTItemReactorHeat("helium_single", 2, 60000));
-	public static final GTItemReactorHeat heatStorageTriple = createItem(new GTItemReactorHeat("helium_triple", 3, 180000));
-	public static final GTItemReactorHeat heatStorageSix = createItem(new GTItemReactorHeat("helium_six", 4, 360000));
+	public static final GTItemReactorHeat heatStorageHelium1 = createItem(new GTItemReactorHeat("helium_single", 2, 60000));
+	public static final GTItemReactorHeat heatStorageHelium3 = createItem(new GTItemReactorHeat("helium_triple", 3, 180000));
+	public static final GTItemReactorHeat heatStorageHelium6 = createItem(new GTItemReactorHeat("helium_six", 4, 360000));
 	public static final GTItemReactorRod rodThorium1 = createItem(new GTItemReactorRod(GTItemRodTypes.SINGLETHORIUM));
 	public static final GTItemReactorRod rodThorium2 = createItem(new GTItemReactorRod(GTItemRodTypes.DOUBLETHORIUM));
 	public static final GTItemReactorRod rodThorium4 = createItem(new GTItemReactorRod(GTItemRodTypes.QUADTHORIUM));

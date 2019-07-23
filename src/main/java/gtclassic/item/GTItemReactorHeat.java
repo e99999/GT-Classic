@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements IStaticTexturedItem {
+
 	String name;
 	int id;
 	int durability;
