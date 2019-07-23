@@ -262,6 +262,20 @@ public class GTRecipe {
 				ingotRefinedIron, 'S', Blocks.REDSTONE_TORCH, 'R', "stickWood" });
 		recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 16), new Object[] { "IRI", "ISI", "IRI", 'I',
 				ingotHigh, 'S', Blocks.REDSTONE_TORCH, 'R', "stickWood" });
+		/** Thorium rods **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium2), new Object[] { "UCU", 'U', GTItems.rodThorium1, 'C',
+				Ic2Items.denseCopperPlate.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium4), new Object[] { " U ", "CCC", " U ", 'U',
+				GTItems.rodThorium2, 'C', Ic2Items.denseCopperPlate.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium4), new Object[] { "UCU", "CCC", "UCU", 'U',
+				GTItems.rodThorium1, 'C', Ic2Items.denseCopperPlate.copy() });
+		/** Plutonium Rod **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium2), new Object[] { "UCU", 'U', GTItems.rodPlutonium1,
+				'C', Ic2Items.denseCopperPlate.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium4), new Object[] { " U ", "CCC", " U ", 'U',
+				GTItems.rodPlutonium2, 'C', Ic2Items.denseCopperPlate.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium4), new Object[] { "UCU", "CCC", "UCU", 'U',
+				GTItems.rodPlutonium1, 'C', Ic2Items.denseCopperPlate.copy() });
 	}
 
 	public static void ic2() {

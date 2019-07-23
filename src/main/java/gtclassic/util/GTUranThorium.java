@@ -16,17 +16,17 @@ public class GTUranThorium extends UranBaseType {
 
 	@Override
 	public float getEUPerPulse() {
-		return 1.0f;
+		return 0.6f;
 	}
 
 	@Override
 	public float getExplosionEffectModifier() {
-		return 6.0f;
+		return 2.0f;
 	}
 
 	@Override
 	public float getHeatModifier() {
-		return 4.0f;
+		return 1.0f;
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class GTUranThorium extends UranBaseType {
 
 	@Override
 	public int getMaxDurability() {
-		return 10000;
+		return 12500;
 	}
 
 	@Override

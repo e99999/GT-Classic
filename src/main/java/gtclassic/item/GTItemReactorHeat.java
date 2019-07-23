@@ -1,6 +1,7 @@
 package gtclassic.item;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import gtclassic.GTMod;
@@ -25,7 +26,7 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 	 * 
 	 * @param name       - String name for the rod item
 	 * @param id         - int for texture entry
-	 * @param durability - int the reactor part
+	 * @param durability - int, the reactor part
 	 */
 	public GTItemReactorHeat(String title, int id, int durability) {
 		this.title = title;
@@ -54,7 +55,7 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 
 	@Override
 	public List<ReactorComponentStat> getExtraStats(ItemStack stack) {
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -74,8 +75,7 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 
 	@Override
 	public NBTPrimitive getReactorStat(ReactorComponentStat stat, ItemStack stack) {
-		return (NBTPrimitive) (stat == ReactorComponentStat.HeatStorage ? new NBTTagInt(this.getMaxCustomDamage(stack))
-				: nulltag);
+		return stat == ReactorComponentStat.HeatStorage ? new NBTTagInt(this.getMaxCustomDamage(stack)) : nulltag;
 	}
 
 	@Override
