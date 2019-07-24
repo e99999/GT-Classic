@@ -88,15 +88,15 @@ public class GTTileBufferSmall extends GTTileBaseBuffer implements IHasGui {
 		IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
 		int limit = 64;
 		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = controller.removeItem(CommonFilters.Anything, getFacing().NORTH, 1, false);
+			ItemStack stack = controller.removeItem(CommonFilters.Anything, getFacing(), 1, false);
 			if (stack.isEmpty()) {
 				break;
 			}
-			ItemStack added = slave.addItem(stack, getFacing().UP, true);
+			ItemStack added = slave.addItem(stack, getFacing().getOpposite(), true);
 			if (added.getCount() <= 0) {
 				break;
 			}
-			controller.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, true);
+			controller.removeItem(CommonFilters.Anything, getFacing(), 1, true);
 		}
 	}
 

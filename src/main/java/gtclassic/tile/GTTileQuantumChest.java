@@ -246,7 +246,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	public boolean onRightClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, Side side) {
 		// tries to pull one item
 		if (playerIn.isSneaking() && !isSlotEmpty(slotOutput)) {
-			ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotDisplay), 1));
+			ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotOutput), 1));
 			getStackInSlot(slotOutput).shrink(1);
 			return true;
 		}

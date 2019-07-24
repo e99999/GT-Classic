@@ -21,7 +21,7 @@ public class GTItemReactorRod extends ItemUraniumRodBase {
 	String title;
 	int id;
 	int amount;
-	protected static IUranium[] types = new IUranium[0];
+	protected IUranium uran;
 
 	/**
 	 * 
@@ -33,15 +33,23 @@ public class GTItemReactorRod extends ItemUraniumRodBase {
 		this.title = "rod_" + title;
 		this.id = id;
 		this.amount = amount;
+		setUranium();
 		setRegistryName(this.title);
 		setUnlocalizedName(GTMod.MODID + "." + this.title);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
-	public static void init() {
-		types = new IUranium[2];
-		types[0] = new GTUranThorium();
-		types[1] = new GTUranPlutonium();
+	public void setUranium() {
+		switch (this.id) {
+		case 19:
+		case 20:
+		case 21:
+			this.uran = new GTUranPlutonium();
+			break;
+		default:
+			this.uran = new GTUranThorium();
+			break;
+		}
 	}
 
 	@Override
@@ -93,8 +101,6 @@ public class GTItemReactorRod extends ItemUraniumRodBase {
 	// my version to return for both methods
 	public RodType getRodType() {
 		switch (this.amount) {
-		case 1:
-			return IUranium.RodType.SingleRod;
 		case 2:
 			return IUranium.RodType.DualRod;
 		case 4:
@@ -106,17 +112,12 @@ public class GTItemReactorRod extends ItemUraniumRodBase {
 
 	@Override
 	public IUranium getUranium(ItemStack paramItemStack) {
-		return getUranium();
+		return this.uran;
 	}
 
 	@Override
 	public IUranium getUranium(int paramInt) {
-		return getUranium();
-	}
-
-	// my version to return for both methods
-	public IUranium getUranium() {
-		return this.id < 19 ? types[0] : types[1];
+		return this.uran;
 	}
 
 	@Override
