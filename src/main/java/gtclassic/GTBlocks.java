@@ -66,7 +66,7 @@ public class GTBlocks {
 	// GTBlockSluiceBoxExt());
 	public static final GTBlockMachine tileBlastFurnace = registerBlock(new GTBlockMachine("gtblastfurnace", GTLang.BLAST_FURNACE, 3));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
-	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.CHARGE_O_MAT));
+	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
 	public static final GTBlockMachine tileFabricator = registerBlock(new GTBlockMachine("matterfabricator", GTLang.MATTER_FAB));
 	public static final GTBlockMachine tileUUAssembler = registerBlock(new GTBlockMachine("uuassembler", GTLang.UU_ASSEMBLER));

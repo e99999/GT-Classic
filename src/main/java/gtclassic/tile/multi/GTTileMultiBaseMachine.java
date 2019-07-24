@@ -24,6 +24,14 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	public boolean firstCheck = true;
 	List<IEnergyTile> lastPositions = null;
 
+	/**
+	 * Constructor for a basic GTC Machine.
+	 * 
+	 * @param slots        - int amount of slots, input, outputs, battery etc..
+	 * @param upgrades     - int amount of upgrade slots
+	 * @param defaultinput - int default energy input
+	 * @param maxinput     - int maximum energy input
+	 */
 	public GTTileMultiBaseMachine(int slots, int upgrades, int defaultinput, int maxinput) {
 		super(slots, upgrades, defaultinput, 100, maxinput);
 	}
