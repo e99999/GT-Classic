@@ -8,6 +8,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 
 public class GTTileAESU extends TileEntityElectricBlock {
 
@@ -48,6 +49,21 @@ public class GTTileAESU extends TileEntityElectricBlock {
 	@Override
 	public LocaleComp getBlockName() {
 		return GTLang.AESU;
+	}
+
+	@Override
+	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
+		if (amount <= 0.0D) {
+			return 0.0D;
+		}
+		energy = ((int) (energy + amount));
+		int left = 0;
+		if (energy >= maxEnergy) {
+			left = energy - maxEnergy;
+			energy = maxEnergy;
+		}
+		getNetwork().updateTileGuiField(this, "energy");
+		return left;
 	}
 
 	@Override

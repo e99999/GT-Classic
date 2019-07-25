@@ -188,6 +188,9 @@ tooltip.gtclassic.buffersmall2=Also conducts power
 tooltip.gtclassic.bufferlarge0=Has a chest size inventory,
 tooltip.gtclassic.bufferlarge1=Pushes items out of the front,
 tooltip.gtclassic.bufferlarge2=Also conducts power
+tooltip.gtclassic.bufferfluid0=Empties or fills fluid containers,
+tooltip.gtclassic.bufferfluid1=Pushes fluids out of the front,
+tooltip.gtclassic.bufferfluid2=Also conducts power
 jei.centrifugeu.name=%s EU
 
 itemGroup.gtclassic=GT-Classic

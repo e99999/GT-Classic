@@ -6,6 +6,7 @@ import java.util.List;
 import gtclassic.GTBlocks;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTFluidUtil;
+import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.misc.StackUtil;
@@ -18,6 +19,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -103,6 +105,14 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+		FluidStack fluid = this.tank.getFluid();
+		boolean playerConditions = player.isSneaking() && player.getActiveItemStack().isEmpty();
+		if (playerConditions && fluid != null) {
+			if (this.isSimulating()) {
+				IC2.platform.messagePlayer(player, fluid.amount + "mB of " + fluid.getLocalizedName());
+			}
+			return true;
+		}
 		return GTFluidUtil.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 }

@@ -1,5 +1,7 @@
 package gtclassic.tile;
 
+import java.util.List;
+
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -10,9 +12,11 @@ import ic2.api.energy.tile.IEnergySink;
 import ic2.api.network.INetworkClientTileEntityEventListener;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.energy.EnergyNetLocal;
+import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.util.obj.IRedstoneProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -174,6 +178,7 @@ public class GTTileBaseBuffer extends TileEntityMachine
 		if (event == 2) {
 			this.invertRedstone = !this.invertRedstone;
 			this.getNetwork().updateTileGuiField(this, "invertRedstone");
+			world.notifyNeighborsOfStateChange(pos, blockType, true);
 		}
 	}
 
@@ -197,5 +202,16 @@ public class GTTileBaseBuffer extends TileEntityMachine
 		if (this.redstoneStrength != oldStrength) {
 			world.notifyNeighborsOfStateChange(pos, blockType, true);
 		}
+	}
+
+	@Override
+	public List<ItemStack> getDrops() {
+		List<ItemStack> list = super.getDrops();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getItem() instanceof ItemDisplayIcon) {
+				list.remove(i);
+			}
+		}
+		return list;
 	}
 }

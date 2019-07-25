@@ -32,6 +32,7 @@ import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
+import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -610,6 +611,17 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	public static void init() {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List<ItemStack> getDrops() {
+		List<ItemStack> list = super.getDrops();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getItem() instanceof ItemDisplayIcon) {
+				list.remove(i);
+			}
+		}
+		return list;
 	}
 
 	@Override
