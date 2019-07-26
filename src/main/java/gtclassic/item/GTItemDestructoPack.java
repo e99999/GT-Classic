@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
@@ -51,6 +52,16 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		if (playerIn.isSneaking() && playerIn.isCreative()) {
+			for (int i = 0; i < playerIn.inventory.getSizeInventory(); i++) {
+				Item item = playerIn.inventory.getStackInSlot(i).getItem();
+				if (!(item instanceof GTItemDestructoPack || item instanceof GTItemCreativeScanner
+						|| item instanceof GTItemSurvivalScanner)) {
+					playerIn.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
+				}
+			}
+			return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+		}
 		if (IC2.platform.isSimulating()) {
 			IC2.platform.launchGui(playerIn, this.getInventory(playerIn, handIn, playerIn.getHeldItem(handIn)), handIn);
 		}

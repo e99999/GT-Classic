@@ -79,7 +79,6 @@ public class GTRecipe {
 	}
 
 	public static void postInit() {
-		GTTileMultiBlastFurnace.postInit();
 		GTRecipeMods.postInit();
 	}
 

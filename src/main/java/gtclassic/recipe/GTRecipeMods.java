@@ -22,6 +22,26 @@ import net.minecraftforge.fml.common.Loader;
 public class GTRecipeMods {
 
 	public static void postInit() {
+		/** Ic2 Extras **/
+		if (Loader.isModLoaded(GTValues.IC2_EXTRAS)) {
+			TileEntityMacerator.addRecipe("crushedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
+			TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
+			GTTileCentrifuge.addRecipe("dustUranium", 22, 0, GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "uranium238", 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
+			GTTileCentrifuge.addRecipe("dustThorium", 4, 0, GTTileCentrifuge.totalEu(5000), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "thorium232dust", 2));
+			GTTileCentrifuge.addRecipe("dustThorium232", 2, 0, GTTileCentrifuge.totalEu(5000), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "thorium230dust", 1));
+			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodThorium1, 1), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "emptyfuelrod"), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
+			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "emptyfuelrod"), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
+		} else {
+			// If Ic2 Extras is not loaded, run regular recipes
+			macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
+			TileEntityMacerator.addRecipe("oreUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 2));
+			TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.uraniumDrop, 1), GTMaterialGen.getDust(GTMaterial.Uranium, 1));
+			TileEntityCompressor.addRecipe("dustPlutonium", 1, GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
+			GTTileCentrifuge.addCustomRecipe("dustUranium", 22, GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getIc2(Ic2Items.reactorUraniumRodSingle, 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
+			GTTileCentrifuge.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorNearDepletedUraniumRod, 1), 0, GTTileCentrifuge.totalEu(2500), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
+			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodThorium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
+			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
+		}
 		/** Forestry Sub Module **/
 		if (Loader.isModLoaded(GTValues.FORESTRY)) {
 			GTMod.logger.info("OH GOD..... NOT THE BEES!");
@@ -31,7 +51,6 @@ public class GTRecipeMods {
 		/** Draconic Evolution **/
 		if (Loader.isModLoaded(GTValues.DRACONIC)) {
 			GTMod.logger.info("Adding Draconium to Gregtech Blast Furnace...");
-			GTRecipeProcessing.removeSmelting(GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
 					input("dustDraconium", 1) }, GTTileMultiBlastFurnace.COST_HIGH, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
@@ -66,26 +85,6 @@ public class GTRecipeMods {
 				GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
 						metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "metal", 6, 2));
 			}
-		}
-		/** Ic2 Extras **/
-		if (Loader.isModLoaded(GTValues.IC2_EXTRAS)) {
-			TileEntityMacerator.addRecipe("crushedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
-			TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
-			GTTileCentrifuge.addRecipe("dustUranium", 22, 0, GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "uranium238", 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
-			GTTileCentrifuge.addRecipe("dustThorium", 4, 0, GTTileCentrifuge.totalEu(5000), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "thorium232dust", 2));
-			GTTileCentrifuge.addRecipe("dustThorium232", 2, 0, GTTileCentrifuge.totalEu(5000), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "thorium230dust", 1));
-			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodThorium1, 1), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "emptyfuelrod"), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
-			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "emptyfuelrod"), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
-		} else {
-			// If Ic2 Extras is not loaded, run regular recipes
-			macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
-			TileEntityMacerator.addRecipe("oreUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 2));
-			TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.uraniumDrop, 1), GTMaterialGen.getDust(GTMaterial.Uranium, 1));
-			TileEntityCompressor.addRecipe("dustPlutonium", 1, GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
-			GTTileCentrifuge.addCustomRecipe("dustUranium", 22, GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getIc2(Ic2Items.reactorUraniumRodSingle, 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorNearDepletedUraniumRod, 1), 0, GTTileCentrifuge.totalEu(2500), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
-			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodThorium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
-			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 		}
 	}
 
