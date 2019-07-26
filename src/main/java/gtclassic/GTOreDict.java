@@ -22,6 +22,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("plateIridiumAlloy", Ic2Items.iridiumPlate);
 		OreDictionary.registerOre("blockCharcoal", Ic2Items.charcoalBlock);
 		OreDictionary.registerOre("logRubber", Ic2Items.rubberWood);
+		OreDictionary.registerOre("dyeBlack", Ic2Items.coalDust);
 		OreDictionary.registerOre("ingotWroughtIron", Ic2Items.refinedIronIngot);
 		OreDictionary.registerOre("dustRareEarth", Ic2Items.rareEarthDust);
 		// Registering Aluminium for idiots
@@ -32,7 +33,9 @@ public class GTOreDict {
 		// Stuff to fit with how other mods have done it
 		OreDictionary.registerOre("dustEnderEye", (GTMaterialGen.getDust(GTMaterial.EnderEye, 1)));
 		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getIngot(GTMaterial.Silicon, 1)));
-		OreDictionary.registerOre("dyeBlue", (GTMaterialGen.getDust(GTMaterial.Lazurite, 1)));
+		OreDictionary.registerOre("dyeCyan", (GTMaterialGen.getDust(GTMaterial.Lazurite, 1)));
+		OreDictionary.registerOre("dyeBlue", (GTMaterialGen.getDust(GTMaterial.Sodalite, 1)));
+		OreDictionary.registerOre("chestIron", (GTMaterialGen.get(GTBlocks.tileCabinet, 1)));
 		// My Ores
 		OreDictionary.registerOre("oreIridium", (GTMaterialGen.get(GTBlocks.oreEnd, 1)));
 		OreDictionary.registerOre("oreIridium", (GTMaterialGen.get(GTBlocks.oreIridium, 1)));
