@@ -20,7 +20,6 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.util.math.MathUtil;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityLivingBase;
@@ -42,8 +41,8 @@ public class GTTileChargeOMat extends TileEntityMachine
 	public int maxInput = 2048;
 	public int output = 2048;
 	public boolean addedToEnergyNet;
-	protected static final int[] slotInputs = MathUtil.fromTo(0, 8);
-	protected static final int[] slotOutputs = MathUtil.fromTo(9, 18);
+	protected static final int[] slotInputs = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+	protected static final int[] slotOutputs = new int[] { 9, 10, 11, 12, 13, 14, 15, 16, 17 };
 
 	public GTTileChargeOMat() {
 		super(18);
