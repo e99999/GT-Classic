@@ -1,14 +1,13 @@
 package gtclassic.item;
 
-import java.util.Arrays;
-import java.util.List;
-
+import ic2.api.classic.item.IElectricTool;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
 import ic2.core.item.base.BasicElectricItem;
 import ic2.core.platform.registry.Ic2Sounds;
-import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class GTItemBaseToggleItem extends BasicElectricItem implements IStaticTexturedItem {
+public abstract class GTItemBaseToggleItem extends BasicElectricItem implements IElectricTool {
 
 	public static final String ACTIVE = "active";
 	double energyCost;
@@ -77,12 +76,22 @@ public abstract class GTItemBaseToggleItem extends BasicElectricItem implements 
 	}
 
 	@Override
-	public List<Integer> getValidVariants() {
-		return Arrays.asList(0);
+	public int getTextureEntry(int var1) {
+		return 0;
 	}
 
 	@Override
-	public int getTextureEntry(int var1) {
-		return 0;
+	public EnumEnchantmentType getType(ItemStack paramItemStack) {
+		return null;
+	}
+
+	@Override
+	public boolean isSpecialSupported(ItemStack paramItemStack, Enchantment paramEnchantment) {
+		return false;
+	}
+
+	@Override
+	public boolean isExcluded(ItemStack paramItemStack, Enchantment paramEnchantment) {
+		return false;
 	}
 }

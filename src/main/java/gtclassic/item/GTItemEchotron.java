@@ -1,5 +1,6 @@
 package gtclassic.item;
 
+import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
@@ -7,6 +8,7 @@ import gtclassic.util.GTValues;
 import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -18,7 +20,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
-public class GTItemEchotron extends GTItemBaseToggleItem {
+public class GTItemEchotron extends GTItemBaseToggleItem implements IStaticTexturedItem {
 
 	public GTItemEchotron() {
 		super(1, 1000, 10);
@@ -52,5 +54,10 @@ public class GTItemEchotron extends GTItemBaseToggleItem {
 	@Override
 	public TextureAtlasSprite getTexture(int meta) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_items")[8];
+	}
+
+	@Override
+	public List<Integer> getValidVariants() {
+		return Arrays.asList(0);
 	}
 }

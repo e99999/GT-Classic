@@ -1,10 +1,12 @@
 package gtclassic.item;
 
+import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -15,12 +17,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class GTItemCloakingDevice extends GTItemBaseToggleItem {
+public class GTItemCloakingDevice extends GTItemBaseToggleItem implements IStaticTexturedItem {
 
 	public GTItemCloakingDevice() {
 		super(4, 10000000, 1000);
-		this.setRegistryName("cloakingdevice");
-		this.setUnlocalizedName(GTMod.MODID + "." + "cloakingdevice");
+		this.setRegistryName("cloaking_device");
+		this.setUnlocalizedName(GTMod.MODID + "." + "cloaking_device");
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.toggleSound = GTValues.cloak;
 	}
@@ -43,5 +45,10 @@ public class GTItemCloakingDevice extends GTItemBaseToggleItem {
 	@Override
 	public TextureAtlasSprite getTexture(int meta) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_items")[12];
+	}
+
+	@Override
+	public List<Integer> getValidVariants() {
+		return Arrays.asList(0);
 	}
 }

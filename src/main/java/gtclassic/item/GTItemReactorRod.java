@@ -24,9 +24,9 @@ public class GTItemReactorRod extends ItemUraniumRodBase {
 	protected IUranium uran;
 
 	/**
-	 * 
+	 * Constructor for GTC Reactor Rod.
 	 * @param name   - String name for the rod item
-	 * @param id     - int for texture entry
+	 * @param id     - int for texture entry, determines the uran type as well
 	 * @param amount - amount for rod type, single 1, dual 2, quad 4
 	 */
 	public GTItemReactorRod(String title, int id, int amount) {

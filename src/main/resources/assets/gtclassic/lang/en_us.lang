@@ -121,7 +121,7 @@ item.gtclassic.jackhammer.name=Jack Hammer
 item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
 item.gtclassic.echotron.name=Echotron
-item.gtclassic.cloakingdevice.name=Cloaking Device
+item.gtclassic.cloaking_device.name=Cloaking Device
 
 #fluids
 fluid.hydrogen=Hydrogen
@@ -152,7 +152,7 @@ tooltip.gtclassic.destructo_pack=Mobile trash can
 tooltip.gtclassic.electromagnet=Become a walking vacuum!
 tooltip.gtclassic.tesla_staff=O V E R C H A R G E D
 tooltip.gtclassic.jackhammer=Mines 3x3 of any stone block
-tooltip.gtclassic.cloakingdevice=Invisibility Field
+tooltip.gtclassic.cloaking_device=Invisibility Field
 
 #machine tooltips
 tooltip.gtclassic.gtblastfurnace0=You'll have a blast!
