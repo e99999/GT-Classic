@@ -17,6 +17,7 @@ public class GTLang {
 	public static final LocaleComp INDUSTRIAL_CENTRIFUGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.industrialcentrifuge");
 	public static final LocaleComp MATTER_FAB = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.matterfabricator");
 	public static final LocaleComp UU_ASSEMBLER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.uuassembler");
+	public static final LocaleComp ECHOTRON = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.echotronblock");
 	public static final LocaleComp QUANTUM_CHEST = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.quantumchest");
 	public static final LocaleComp QUANTUM_TANK = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.quantumtank");
 	public static final LocaleComp PLAYER_DETECTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.playerdetector");

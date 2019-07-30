@@ -48,8 +48,8 @@ public class GTMaterial {
 	public static final GTMaterial Potassium = new GTMaterial("Potassium", 250, 250, 250, fluid);
 	public static final GTMaterial Plutonium = new GTMaterial("Plutonium", 240, 50, 50, false, dust, ingot);
 	public static final GTMaterial Pyrite = new GTMaterial("Pyrite", 150, 120, 40, dust);
-	public static final GTMaterial Ruby = new GTMaterial("Ruby", 255, 100, 100, rubyAll);
-	public static final GTMaterial Sapphire = new GTMaterial("Sapphire", 100, 100, 200, sapphireAll);
+	public static final GTMaterial Ruby = new GTMaterial("Ruby", 255, 75, 75, rubyAll);
+	public static final GTMaterial Sapphire = new GTMaterial("Sapphire", 75, 75, 200, sapphireAll);
 	public static final GTMaterial SapphireGreen = new GTMaterial("GreenSapphire", 100, 200, 130, dust);
 	public static final GTMaterial Silicon = new GTMaterial("Silicon", 60, 60, 80, dust, ingot);
 	public static final GTMaterial Sodalite = new GTMaterial("Sodalite", 20, 20, 255, dust);

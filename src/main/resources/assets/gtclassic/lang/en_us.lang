@@ -29,6 +29,7 @@ tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
 tile.gtclassic.matterfabricator.name=Matter Fabricator
 tile.gtclassic.uuassembler.name=UU-Matter Assembler
+tile.gtclassic.echotronblock.name=Echotron
 tile.gtclassic.quantumchest.name=Quantum Chest
 tile.gtclassic.quantumtank.name=Quantum Tank
 tile.gtclassic.playerdetector.name=Player Detector
@@ -119,6 +120,8 @@ item.gtclassic.rockcutter.name=Rock Cutter
 item.gtclassic.jackhammer.name=Jack Hammer
 item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
+item.gtclassic.echotron.name=Echotron
+item.gtclassic.cloakingdevice.name=Cloaking Device
 
 #fluids
 fluid.hydrogen=Hydrogen
@@ -149,6 +152,7 @@ tooltip.gtclassic.destructo_pack=Mobile trash can
 tooltip.gtclassic.electromagnet=Become a walking vacuum!
 tooltip.gtclassic.tesla_staff=O V E R C H A R G E D
 tooltip.gtclassic.jackhammer=Mines 3x3 of any stone block
+tooltip.gtclassic.cloakingdevice=Invisibility Field
 
 #machine tooltips
 tooltip.gtclassic.gtblastfurnace0=You'll have a blast!
@@ -158,6 +162,7 @@ tooltip.gtclassic.gtblastfurnace3=Controller centered at the bottom
 tooltip.gtclassic.chargeomat0=Charges all the things
 tooltip.gtclassic.computercube0=Now with more dedotated WAM!
 tooltip.gtclassic.drum0=Portable tank, capacity of 32 buckets
+tooltip.gtclassic.echotronblock0=Reveals entities using echo location
 tooltip.gtclassic.quantumchest0=2 Milliards, uhh I mean billion, items to store here!
 tooltip.gtclassic.quantumtank0=With a capacity of 488.28125 Chunks!
 tooltip.gtclassic.matterfabricator0=Butt Stallion for UU, inside a machine!

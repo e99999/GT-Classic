@@ -3,29 +3,32 @@ package gtclassic.tile;
 import java.util.List;
 import java.util.UUID;
 
+import gtclassic.util.GTValues;
 import gtclassic.util.int3;
+import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.block.personal.base.misc.IPersonalInventory;
-import ic2.core.util.obj.IRedstoneProvider;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 
-public class GTTilePlayerDetector extends TileEntityElecMachine
-		implements IPersonalBlock, ITickable, IRedstoneProvider {
+public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBlock, ITickable {
 
-	double range = 8.0D;
 	AxisAlignedBB areaBB = null;
 	@NetworkField(index = 7)
 	private UUID owner;
-	int mode = 0;
 
-	public GTTilePlayerDetector() {
+	public GTTileEchotron() {
 		super(0, 32);
 		maxEnergy = 1000;
 		this.addNetworkFields(new String[] { "owner" });
@@ -38,65 +41,22 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 
 	@Override
 	public void update() {
-		checkEnergy();
-		if (world.getTotalWorldTime() % 20 == 0) {
-			this.setActive(checkArea());
-			world.notifyNeighborsOfStateChange(pos, blockType, true);
+		if (world.getTotalWorldTime() % 100 == 0 && this.energy >= 10 && !redstoneEnabled()) {
+			IC2.audioManager.playOnce(this, PositionSpec.Center, GTValues.sonar, false, IC2.audioManager.defaultVolume);
+			AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).asBlockPos()).grow(32.0D);
+			List<Entity> list = world.getEntitiesInAABBexcluding(world.getPlayerEntityByUUID(this.owner), area, null);
+			if (!list.isEmpty()) {
+				for (Entity thing : list) {
+					if (thing instanceof EntityLiving) {
+						((EntityLivingBase) thing).addPotionEffect(new PotionEffect(MobEffects.GLOWING, 80, 0, false, false));
+					}
+					if (thing instanceof EntityPlayer) {
+						((EntityPlayer) thing).addPotionEffect(new PotionEffect(MobEffects.GLOWING, 80, 0, false, false));
+					}
+				}
+			}
+			this.useEnergy(10);
 		}
-	}
-
-	public void checkEnergy() {
-		if (this.energy > 0) {
-			useEnergy(1);
-			this.range = 32.0D;
-		} else {
-			this.range = 8.0D;
-		}
-	}
-
-	public boolean checkArea() {
-		if (world.playerEntities.isEmpty()) {
-			return false;
-		}
-		if (!world.isAreaLoaded(pos, 3)) {
-			return false;
-		}
-		if (this.mode == 0) {// any player check
-			return world.isAnyPlayerWithinRangeAt(this.pos.getX(), this.pos.getY(), this.pos.getZ(), range);
-		}
-		if (this.mode == 1) { // owner check
-			return ownerCheck();
-		}
-		if (this.mode == 2) {// enemy check
-			return !ownerCheck();
-		}
-		return false;
-	}
-
-	public void advanceMode() {
-		++this.mode;
-		if (this.mode >= 3) {
-			this.mode = 0;
-		}
-	}
-
-	public String getMode() {
-		switch (mode) {
-		case 0:
-			return "Any Players";
-		case 1:
-			return "Owner";
-		case 2:
-			return "Not Owner";
-		default:
-			return "Error";
-		}
-	}
-
-	public boolean ownerCheck() {
-		AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).asBlockPos()).grow(this.range);
-		List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class, area);
-		return (players.contains(world.getPlayerEntityByUUID(this.owner)));
 	}
 
 	public void setOwner(UUID user) {
@@ -126,7 +86,6 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		if (nbt.hasUniqueId("owner")) {
 			this.owner = nbt.getUniqueId("owner");
 		}
-		this.mode = nbt.getInteger("mode");
 	}
 
 	@Override
@@ -135,13 +94,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		if (this.owner != null) {
 			nbt.setUniqueId("owner", this.owner);
 		}
-		nbt.setInteger("mode", this.mode);
 		return nbt;
-	}
-
-	@Override
-	public int getRedstoneStrenght(EnumFacing var1) {
-		return this.isActive ? 15 : 0;
 	}
 
 	@Override
@@ -152,5 +105,9 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return canAccess(player.getUniqueID());
+	}
+
+	public boolean redstoneEnabled() {
+		return this.world.isBlockPowered(this.getPos());
 	}
 }

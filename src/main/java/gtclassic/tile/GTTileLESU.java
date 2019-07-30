@@ -101,7 +101,6 @@ public class GTTileLESU extends TileEntityElectricBlock {
 			this.maxEnergy = BASE_ENERGY + (this.blockCount * 750000);
 			this.getNetwork().updateTileGuiField(this, "blockCount");
 			this.getNetwork().updateTileGuiField(this, "maxEnergy");
-			setActive(this.blockCount > 0);
 		}
 	}
 

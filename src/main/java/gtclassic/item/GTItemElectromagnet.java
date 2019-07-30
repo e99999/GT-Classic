@@ -33,7 +33,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedTexturedItem {
 
 	public ModelResourceLocation[] model = new ModelResourceLocation[2];
-	public static final String active = "ImActive";
+	public static final String ACTIVE = "active";
 	int range = 7;
 	double speed = 0.04D;
 	double energyCost = 1;
@@ -60,8 +60,8 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 		IC2.audioManager.playOnce(playerIn, Ic2Sounds.forceFieldOp);
 		if (IC2.platform.isSimulating()) {
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(playerIn.getHeldItem(handIn));
-			boolean result = !nbt.getBoolean(active);
-			nbt.setBoolean(active, result);
+			boolean result = !nbt.getBoolean(ACTIVE);
+			nbt.setBoolean(ACTIVE, result);
 		}
 		return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
@@ -70,7 +70,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected) {
 		NBTTagCompound nbt = StackUtil.getNbtData((stack));
 		if (worldIn.getTotalWorldTime() % 2 == 0) {
-			if (!(entityIn instanceof EntityPlayer) || !nbt.getBoolean(active)) {
+			if (!(entityIn instanceof EntityPlayer) || !nbt.getBoolean(ACTIVE)) {
 				this.setDamage(stack, 0);
 				return;
 			}
@@ -99,7 +99,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
 		NBTTagCompound nbt = StackUtil.getOrCreateNbtData((stack));
-		return nbt.getBoolean(active);
+		return nbt.getBoolean(ACTIVE);
 	}
 
 	@Override

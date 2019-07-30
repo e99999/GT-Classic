@@ -11,6 +11,7 @@ import gtclassic.tile.GTTileCabinet;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
+import gtclassic.tile.GTTileEchotron;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileWorktable;
@@ -107,6 +108,9 @@ public class GTBlockMachine extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tilePlayerDetector) {
 			return new GTTilePlayerDetector();
+		}
+		if (this == GTBlocks.tileEchotron) {
+			return new GTTileEchotron();
 		}
 		if (this == GTBlocks.tileChargeOmat) {
 			return new GTTileChargeOMat();

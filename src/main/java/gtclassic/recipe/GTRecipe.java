@@ -152,6 +152,12 @@ public class GTRecipe {
 				"ingotAluminium", 'E', GTMaterialGen.getIc2(Ic2Items.euReader, 1), 'F',
 				GTMaterialGen.getIc2(Ic2Items.cropAnalyzer, 1), 'C', "circuitAdvanced", 'B',
 				GTMaterialGen.get(GTItems.getLithiumBattery()) });
+		/** Cloaking Device **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.cloakingDevice, 1), new Object[] { "IPI", "POP", "IPI", 'I',
+				"ingotChrome", 'P', "plateIridiumAlloy", 'O', "batteryUltimate" });
+		/** Echotron **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.echotron, 1), new Object[] { " C ", "CEC", " C ", 'E',
+				GTBlocks.tileEchotron, 'C', "circuitData" });
 	}
 
 	public static void blocks() {
@@ -231,6 +237,10 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLESU, 1), new Object[] { " L ", "CBC", " H ", 'L',
 				Ic2Items.transformerLV, 'H', Ic2Items.transformerMV, 'C', "circuitAdvanced", 'B',
 				GTBlocks.casingLapotron });
+		/** Echotron **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), new Object[] { "CRC", "JMN", "CBC", 'C',
+				"circuitBasic", 'R', "record", 'J', Blocks.JUKEBOX, 'M', Ic2Items.advMachine, 'N', Blocks.NOTEBLOCK,
+				'B', Ic2Items.battery });
 		/** Stuff that is not ready yet **/
 		if (GTMod.debugMode) {
 			/** Translocator **/

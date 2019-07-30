@@ -1,7 +1,9 @@
 package gtclassic.util;
 
+import gtclassic.GTMod;
 import ic2.core.IC2;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -23,6 +25,10 @@ public class GTValues {
 	public static final String THERMAL = "thermalfoundation";
 	public static final String IMMERSIVE_ENGINEERING = "immersiveengineering";
 	public static final String IC2_EXTRAS = "ic2c_extras";
+	public static final String BAUBLES = "baubles";
+	// sounds
+	public static ResourceLocation sonar = new ResourceLocation(GTMod.MODID, "sounds/sonar.ogg");
+	public static ResourceLocation cloak = new ResourceLocation(GTMod.MODID, "sounds/cloak.ogg");
 
 	public static String getIC2Ingot() {
 		return IC2.getRefinedIron();

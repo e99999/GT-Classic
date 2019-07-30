@@ -1,0 +1,47 @@
+package gtclassic.item;
+
+import java.util.List;
+
+import gtclassic.GTMod;
+import gtclassic.util.GTValues;
+import ic2.core.platform.textures.Ic2Icons;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
+
+public class GTItemCloakingDevice extends GTItemBaseToggleItem {
+
+	public GTItemCloakingDevice() {
+		super(4, 10000000, 1000);
+		this.setRegistryName("cloakingdevice");
+		this.setUnlocalizedName(GTMod.MODID + "." + "cloakingdevice");
+		this.setCreativeTab(GTMod.creativeTabGT);
+		this.toggleSound = GTValues.cloak;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
+	}
+
+	@Override
+	public boolean onItemActive(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected) {
+		if (entityIn instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) entityIn;
+			player.addPotionEffect(new PotionEffect(MobEffects.INVISIBILITY, 5, 0, false, false));
+			player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 18, 0, false, false));
+		}
+		return true;
+	}
+
+	@Override
+	public TextureAtlasSprite getTexture(int meta) {
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[12];
+	}
+}

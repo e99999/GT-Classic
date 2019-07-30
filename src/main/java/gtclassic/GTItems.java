@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.fluid.GTFluidTube;
+import gtclassic.item.GTItemCloakingDevice;
 import gtclassic.item.GTItemComponent;
 import gtclassic.item.GTItemCreativeScanner;
 import gtclassic.item.GTItemDestructoPack;
 import gtclassic.item.GTItemDuctTape;
+import gtclassic.item.GTItemEchotron;
 import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemEnergyOrb;
 import gtclassic.item.GTItemEnergyPack;
@@ -48,10 +50,12 @@ public class GTItems {
 	public static final GTItemComponent superConductor = createItem(new GTItemComponent("super_conductor", 10, 0));
 	public static final GTItemComponent orbData = createItem(new GTItemComponent("data_orb", 11, 0));
 	public static final GTItemDuctTape ductTape = createItem(new GTItemDuctTape());
+	public static final GTItemEchotron echotron = createItem(new GTItemEchotron());
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
 	public static final GTItemElectromagnet electroMagnet = createItem(new GTItemElectromagnet());
 	private static GTItemLithiumBattery lithiumBattery;
 	private static GTItemEnergyOrb orbEnergy;
+	public static final GTItemCloakingDevice cloakingDevice = createItem(new GTItemCloakingDevice());
 	private static GTItemEnergyPack lithiumBatpack;
 	private static GTItemEnergyPack lapotronPack;
 	public static final GTItemTeslaStaff teslaStaff = createItem(new GTItemTeslaStaff());

@@ -40,7 +40,11 @@ public class GTOreDict {
 		OreDictionary.registerOre("oreIridium", (GTMaterialGen.get(GTBlocks.oreEnd, 1)));
 		OreDictionary.registerOre("oreIridium", (GTMaterialGen.get(GTBlocks.oreIridium, 1)));
 		OreDictionary.registerOre("oreRuby", (GTMaterialGen.get(GTBlocks.oreRuby, 1)));
+		// OreDictionary.registerOre("oreGemRuby", (GTMaterialGen.get(GTBlocks.oreRuby,
+		// 1))); TODO THIS YOURSELF
 		OreDictionary.registerOre("oreSapphire", (GTMaterialGen.get(GTBlocks.oreSapphire, 1)));
+		// OreDictionary.registerOre("oreGemSapphire",
+		// (GTMaterialGen.get(GTBlocks.oreSapphire, 1))); TODO THIS YOURSELF
 		OreDictionary.registerOre("oreBauxite", (GTMaterialGen.get(GTBlocks.oreBauxite, 1)));
 		// My Stuff
 		OreDictionary.registerOre("circuitMaster", (GTMaterialGen.get(GTItems.circuitEnergy, 1)));
