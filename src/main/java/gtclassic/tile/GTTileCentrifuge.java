@@ -54,7 +54,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 	private static final int defaultEu = 16;
 
 	public GTTileCentrifuge() {
-		super(10, 4, defaultEu, 100, 32);
+		super(9, 4, defaultEu, 100, 32);
 		setFuelSlot(slotFuel);
 		maxEnergy = 2048;
 	}

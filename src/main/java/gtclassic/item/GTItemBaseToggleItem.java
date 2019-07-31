@@ -39,8 +39,8 @@ public abstract class GTItemBaseToggleItem extends BasicElectricItem implements 
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		IC2.audioManager.playOnce(playerIn, toggleSound);
 		if (IC2.platform.isSimulating()) {
-			IC2.audioManager.playOnce(playerIn, toggleSound);
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(playerIn.getHeldItem(handIn));
 			boolean result = !nbt.getBoolean(ACTIVE);
 			nbt.setBoolean(ACTIVE, result);
