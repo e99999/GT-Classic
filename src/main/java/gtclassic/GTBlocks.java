@@ -29,6 +29,7 @@ import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTileLESU;
 import gtclassic.tile.GTTileMatterFabricator;
+import gtclassic.tile.GTTileMobRepeller;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileQuantumTank;
@@ -73,6 +74,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileUUAssembler = registerBlock(new GTBlockMachine("uuassembler", GTLang.UU_ASSEMBLER));
 	public static final GTBlockMachine tileEchotron = registerBlock(new GTBlockMachine("echotronblock", GTLang.ECHOTRON));
 	public static final GTBlockMachine tilePlayerDetector = registerBlock(new GTBlockMachine("playerdetector", GTLang.PLAYER_DETECTOR, 1));
+	public static final GTBlockMachine tileMobRepeller= registerBlock(new GTBlockMachine("mobrepeller", GTLang.MOB_REPELLER, 1));
 	public static final GTBlockMachine tileFusionReactor = registerBlock(new GTBlockMachine("fusionreactor", GTLang.FUSION_REACTOR, 4));
 	public static final GTBlockMachine tileLightningRod = registerBlock(new GTBlockMachine("lightningrod", GTLang.LIGHTNING_ROD, 2));
 	public static final GTBlockMachineDirectionable tileLESU = registerBlock(new GTBlockMachineDirectionable("lesu", GTLang.LESU));
@@ -90,7 +92,7 @@ public class GTBlocks {
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uuassembler", "echotronblock", "quantumchest", "quantumtank",
-			"playerdetector", "fusionreactor", "lightningrod", "idsu", "aesu", "lesu", "cabinet", "drum", "worktable",
+			"playerdetector","mobrepeller", "fusionreactor", "lightningrod", "idsu", "aesu", "lesu", "cabinet", "drum", "worktable",
 			"translocator", "bufferlarge", "buffersmall", "bufferfluid" };
 
 	public static void registerBlocks() {
@@ -125,6 +127,7 @@ public class GTBlocks {
 		registerUtil(GTTileSluice.class, "Sluice");
 		registerUtil(GTTileCentrifuge.class, "IndustrialCentrifuge");
 		registerUtil(GTTilePlayerDetector.class, "PlayerDetector");
+		registerUtil(GTTileMobRepeller.class, "MobRepeller");
 		registerUtil(GTTileEchotron.class, "Echotron");
 		registerUtil(GTTileComputerCube.class, "ComputerCube");
 		registerUtil(GTTileMultiBlastFurnace.class, "BlastFurnace");

@@ -26,7 +26,7 @@ public class GTItemBlockRare extends ItemBlockRare {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		PlayerHandler handler = PlayerHandler.getClientPlayerHandler();
 		if (handler.hasEUReader()) {
-			if (compare(stack, GTBlocks.tileCentrifuge) || compare(stack, GTBlocks.tilePlayerDetector) || compare(stack, GTBlocks.tileEchotron)) {
+			if (compare(stack, GTBlocks.tileCentrifuge) || compare(stack, GTBlocks.tilePlayerDetector) || compare(stack, GTBlocks.tileEchotron) || compare(stack, GTBlocks.tileMobRepeller)) {
 				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32 })));
 			}
 			if (compare(stack, GTBlocks.tileBlastFurnace)) {

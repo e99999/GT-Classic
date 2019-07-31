@@ -241,6 +241,9 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), new Object[] { "CRC", "JMN", "CBC", 'C',
 				"circuitBasic", 'R', "record", 'J', Blocks.JUKEBOX, 'M', Ic2Items.advMachine, 'N', Blocks.NOTEBLOCK,
 				'B', Ic2Items.battery });
+		/** Monster Repellator **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMobRepeller, 1), new Object[] { "SSS", " M ", "CCC", 'S',
+				"gemSapphire", 'M', Ic2Items.advMachine, 'C', "circuitBasic" });
 		/** Stuff that is not ready yet **/
 		if (GTMod.debugMode) {
 			/** Translocator **/

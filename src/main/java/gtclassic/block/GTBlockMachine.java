@@ -13,6 +13,7 @@ import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileEchotron;
 import gtclassic.tile.GTTileMatterFabricator;
+import gtclassic.tile.GTTileMobRepeller;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileWorktable;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
@@ -108,6 +109,9 @@ public class GTBlockMachine extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tilePlayerDetector) {
 			return new GTTilePlayerDetector();
+		}
+		if (this == GTBlocks.tileMobRepeller) {
+			return new GTTileMobRepeller();
 		}
 		if (this == GTBlocks.tileEchotron) {
 			return new GTTileEchotron();

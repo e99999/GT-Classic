@@ -87,7 +87,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 					break;
 				}
 				item.addVelocity((x - item.posX) * speed, (y - item.posY) * speed, (z - item.posZ) * speed);
-				ElectricItem.manager.use(stack, energyCost, (EntityLivingBase) null);
+				ElectricItem.manager.use(stack, energyCost, (EntityLivingBase) entityIn);
 				pulled++;
 			}
 			this.setDamage(stack, pulled > 0 ? 1 : 0);

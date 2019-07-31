@@ -10,6 +10,7 @@ import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
+import gtclassic.util.GTSpawnEventHandler;
 import gtclassic.util.energy.IDSUStorage;
 import gtclassic.util.energy.MultiBlockHelper;
 import ic2.core.IC2;
@@ -59,6 +60,7 @@ public class GTMod {
 		GTRecipe.init();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
+		MinecraftForge.EVENT_BUS.register(new GTSpawnEventHandler());
 		IC2.saveManager.registerGlobal("IDSU_Storage", IDSUStorage.class, false);
 		GTTileMultiBlastFurnace.removals();
 		proxy.init(e);
