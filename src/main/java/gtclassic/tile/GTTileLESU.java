@@ -10,6 +10,8 @@ import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.helpers.AabbUtil;
+import ic2.core.util.helpers.AabbUtil.BoundingBox;
+import ic2.core.util.helpers.AabbUtil.Processor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -18,10 +20,10 @@ import net.minecraft.util.math.BlockPos;
 public class GTTileLESU extends TileEntityElectricBlock {
 
 	private int blockCount;
-	public boolean enabled = true;
 	public List<BlockPos> lapotronBlockPos;
 	public static final int BASE_ENERGY = 10000000;
 	public static AabbUtil.IBlockFilter filter = new GTLapotronBlockFilter();
+	public Processor task = null;
 
 	public GTTileLESU() {
 		super(3, 512, BASE_ENERGY);
@@ -90,11 +92,13 @@ public class GTTileLESU extends TileEntityElectricBlock {
 	}
 
 	private void checkArea() {
-		if (world.getTotalWorldTime() % 256 == 0 && enabled) {
-			if (!world.isAreaLoaded(pos, 3))
+		if (task != null && world.isAreaLoaded(pos, 16)) {
+			task.update();
+			if (!task.isFinished()) {
 				return;
-			this.lapotronBlockPos = getLapotronBlocks();
-			this.blockCount = this.lapotronBlockPos.size();
+			}
+			this.lapotronBlockPos = task.getResults();
+			this.blockCount = task.getResultCount();
 			if (this.blockCount > 256) {
 				this.blockCount = 256;
 			}
@@ -102,13 +106,15 @@ public class GTTileLESU extends TileEntityElectricBlock {
 			this.getNetwork().updateTileGuiField(this, "blockCount");
 			this.getNetwork().updateTileGuiField(this, "maxEnergy");
 		}
+		if (world.getTotalWorldTime() % 128 == 0) {
+			if (!world.isAreaLoaded(pos, 16))
+				return;
+			task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, false);
+			task.update();
+		}
 	}
 
 	public int getCount() {
 		return blockCount;
-	}
-
-	public List<BlockPos> getLapotronBlocks() {
-		return AabbUtil.getTargets(world, this.pos, 256, filter, false, false, RotationList.ALL);
 	}
 }
