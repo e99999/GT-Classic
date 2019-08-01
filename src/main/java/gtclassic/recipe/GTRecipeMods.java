@@ -2,6 +2,7 @@ package gtclassic.recipe;
 
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
+import gtclassic.GTConfig;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
@@ -22,8 +23,22 @@ import net.minecraftforge.fml.common.Loader;
 public class GTRecipeMods {
 
 	public static void postInit() {
+		/** Draconic Evolution **/
+		if (GTConfig.compatDraconic && Loader.isModLoaded(GTValues.DRACONIC)) {
+			GTMod.logger.info("Doing Draconic Evolution Things");
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
+					input("dustDraconium", 1) }, GTTileMultiBlastFurnace.COST_HIGH, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
+					input("oreDraconium", 1) }, GTTileMultiBlastFurnace.COST_HIGH, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
+		}
+		/** Forestry Sub Module **/
+		if (GTConfig.compatForestry && Loader.isModLoaded(GTValues.FORESTRY)) {
+			GTMod.logger.info("Doing Forestry Things");
+			GTRecipeForestry.notTheBees();
+		}
 		/** Ic2 Extras **/
-		if (Loader.isModLoaded(GTValues.IC2_EXTRAS)) {
+		if (GTConfig.compatIc2Extras && Loader.isModLoaded(GTValues.IC2_EXTRAS)) {
+			GTMod.logger.info("Doing IC2 Extras Things");
 			TileEntityMacerator.addRecipe("crushedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 			TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 			GTTileCentrifuge.addRecipe("dustUranium", 22, 0, GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getModItem(GTValues.IC2_EXTRAS, "uranium238", 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
@@ -42,23 +57,20 @@ public class GTRecipeMods {
 			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodThorium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
 			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 		}
-		/** Forestry Sub Module **/
-		if (Loader.isModLoaded(GTValues.FORESTRY)) {
-			GTMod.logger.info("OH GOD..... NOT THE BEES!");
-			GTMod.logger.info("Haha JK, let me get those centrifuge recipes");
-			GTRecipeForestry.notTheBees();
-		}
-		/** Draconic Evolution **/
-		if (Loader.isModLoaded(GTValues.DRACONIC)) {
-			GTMod.logger.info("Adding Draconium to Gregtech Blast Furnace...");
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
-					input("dustDraconium", 1) }, GTTileMultiBlastFurnace.COST_HIGH, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
-					input("oreDraconium", 1) }, GTTileMultiBlastFurnace.COST_HIGH, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
+		/** Immersive Engineering **/
+		if (GTConfig.compatIE && Loader.isModLoaded(GTValues.IMMERSIVE_ENGINEERING)) {
+			GTMod.logger.info("Doing Immservie Engineering Things");
+			GTTileCentrifuge.addRecipe("dustCoke", 8, 0, GTTileCentrifuge.totalEu(7500), GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "material", 18, 1));
+			// Adds alloys if thermal is not present
+			if (!Loader.isModLoaded(GTValues.THERMAL) || !GTConfig.compatThermal) {
+				// Constantan
+				GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
+						metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "metal", 6, 2));
+			}
 		}
 		/** Thermal Mods **/
-		if (Loader.isModLoaded(GTValues.THERMAL)) {
-			GTMod.logger.info("Adding Thermal alloys to the blast furnace");
+		if (GTConfig.compatThermal && Loader.isModLoaded(GTValues.THERMAL)) {
+			GTMod.logger.info("Doing Thermal Expansion Things");
 			// Invar
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Iron", 2),
 					metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 162, 3));
@@ -74,17 +86,6 @@ public class GTRecipeMods {
 			// Enderium
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 3), metal("Platinum", 1),
 					input("dustEnderPearl", 4) }, GTTileMultiBlastFurnace.COST_MED, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 167, 4));
-		}
-		/** Immersive Engineering **/
-		if (Loader.isModLoaded(GTValues.IMMERSIVE_ENGINEERING)) {
-			GTMod.logger.info("Doing a few things with IE");
-			GTTileCentrifuge.addRecipe("dustCoke", 8, 0, GTTileCentrifuge.totalEu(7500), GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "material", 18, 1));
-			// Adds alloys if thermal is not present
-			if (!Loader.isModLoaded(GTValues.THERMAL)) {
-				// Constantan
-				GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
-						metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "metal", 6, 2));
-			}
 		}
 	}
 

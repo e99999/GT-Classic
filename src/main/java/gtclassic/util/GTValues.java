@@ -69,11 +69,21 @@ public class GTValues {
 		}
 	}
 
-	public static String getOreName(ItemStack stack) {
+	public static String matchOreDictFirst(ItemStack stack) {
 		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
 			return OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[0]);
-		} else {
-			return "null";
 		}
+		return null;
+	}
+
+	public static boolean matchOreDict(ItemStack stack, String entry) {
+		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
+			for (int i = 0; i < OreDictionary.getOreIDs(stack).length; i++) {
+				if (OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[i]).contains(entry)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

@@ -83,7 +83,7 @@ public class GTItems {
 
 	public static void initBaubleItems() {
 		IBaublesPlugin plugin = IC2.loader.getPlugin("baubles", IBaublesPlugin.class);
-		if (plugin != null) {
+		if (GTConfig.compatBaubles && plugin != null) {
 			lithiumBattery = createItem(new GTItemBaublesLithiumBattery());
 			lithiumBatpack = createItem(new GTItemBaublesEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
 			orbEnergy = createItem(new GTItemBaublesEnergyOrb());

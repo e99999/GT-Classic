@@ -168,16 +168,18 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	public static void removals() {
 		// Remove smelting from mods who dont respect my authority
-		if (GTConfig.ingotsRequireBlastFurnace) {
-			for (Item item : Item.REGISTRY) {
-				NonNullList<ItemStack> items = NonNullList.create();
-				item.getSubItems(CreativeTabs.SEARCH, items);
-				for (ItemStack stack : items) {
-					String oreNames = GTValues.getOreName(stack);
-					if (oreNames.contains("ingotIridium") || oreNames.contains("ingotTungsten")
-							|| oreNames.contains("ingotChrome") || oreNames.contains("ingotTitanium")
-							|| oreNames.contains("ingotDraconium")) {
-						GTRecipeProcessing.removeSmelting(GTMaterialGen.get(item));
+		for (Item item : Item.REGISTRY) {
+			NonNullList<ItemStack> items = NonNullList.create();
+			item.getSubItems(CreativeTabs.SEARCH, items);
+			for (ItemStack stack : items) {
+				if (GTConfig.compatDraconic && GTValues.matchOreDict(stack, "ingotDraconium")) {
+					GTRecipeProcessing.removeSmelting(stack);
+				}
+				if (GTConfig.ingotsRequireBlastFurnace) {
+					if (GTValues.matchOreDict(stack, "ingotIridium") || GTValues.matchOreDict(stack, "ingotTungsten")
+							|| GTValues.matchOreDict(stack, "ingotChrome")
+							|| GTValues.matchOreDict(stack, "ingotTitanium")) {
+						GTRecipeProcessing.removeSmelting(stack);
 					}
 				}
 			}

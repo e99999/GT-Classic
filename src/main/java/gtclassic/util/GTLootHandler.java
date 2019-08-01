@@ -1,5 +1,6 @@
 package gtclassic.util;
 
+import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
@@ -30,18 +31,20 @@ public class GTLootHandler {
 		 * Iterates both the stack array and resource location array to create a 2d
 		 * table
 		 */
-		for (ItemStack item : lootitems) {
-			for (ResourceLocation table : loottable) {
-				if (event.getName().equals(table)) {
-					GTMod.debugLogger("Added GregTech stack to loot table: " + item.getUnlocalizedName());
-					event.getTable().getPool("main").addEntry(new LootEntryItem(item.getItem(), 16, 0, new LootFunction[] {}, new LootCondition[0], getStackResourceName(item)));
+		if (GTConfig.addLootItems) {
+			for (ItemStack item : lootitems) {
+				for (ResourceLocation table : loottable) {
+					if (event.getName().equals(table)) {
+						GTMod.debugLogger("Added GregTech stack to loot table: " + item.getUnlocalizedName());
+						event.getTable().getPool("main").addEntry(new LootEntryItem(item.getItem(), 16, 0, new LootFunction[] {}, new LootCondition[0], getStackResourceName(item)));
+					}
 				}
 			}
-		}
-		if (event.getName().equals(LootTableList.CHESTS_END_CITY_TREASURE)
-				|| event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
-			ItemStack dustIridium = GTMaterialGen.getDust(GTMaterial.Iridium, 1);
-			event.getTable().getPool("main").addEntry(new LootEntryItem(dustIridium.getItem(), 16, 0, new LootFunction[] {}, new LootCondition[0], getStackResourceName(dustIridium)));
+			if (event.getName().equals(LootTableList.CHESTS_END_CITY_TREASURE)
+					|| event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
+				ItemStack dustIridium = GTMaterialGen.getDust(GTMaterial.Iridium, 1);
+				event.getTable().getPool("main").addEntry(new LootEntryItem(dustIridium.getItem(), 16, 0, new LootFunction[] {}, new LootCondition[0], getStackResourceName(dustIridium)));
+			}
 		}
 	}
 

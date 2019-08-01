@@ -32,13 +32,13 @@ public class GTSpawnEventHandler {
 				if (rep[3] == world.provider.getDimension()) {
 					TileEntity tile = world.getTileEntity(new BlockPos(rep[0], rep[1], rep[2]));
 					if (tile instanceof GTTileMobRepeller) {
-						int r = ((GTTileMobRepeller)tile).range;
-                        double dx = rep[0] + 0.5F - event.getEntity().posX;
-                        double dy = rep[1] + 0.5F - event.getEntity().posY;
-                        double dz = rep[2] + 0.5F - event.getEntity().posZ;
-                        if ((dx * dx + dz * dz + dy * dy) <= Math.pow(r, 2)) {
-                            event.setResult(Event.Result.DENY);
-                        }
+						int r = ((GTTileMobRepeller) tile).range;
+						double dx = rep[0] + 0.5F - event.getEntity().posX;
+						double dy = rep[1] + 0.5F - event.getEntity().posY;
+						double dz = rep[2] + 0.5F - event.getEntity().posZ;
+						if ((dx * dx + dz * dz + dy * dy) <= Math.pow(r, 2)) {
+							event.setResult(Event.Result.DENY);
+						}
 					}
 				}
 			}
