@@ -1,7 +1,5 @@
 package gtclassic.tile;
 
-import java.util.List;
-
 import gtclassic.container.GTContainerLESU;
 import gtclassic.util.GTLang;
 import gtclassic.util.GTLapotronBlockFilter;
@@ -15,14 +13,13 @@ import ic2.core.util.helpers.AabbUtil.Processor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 
 public class GTTileLESU extends TileEntityElectricBlock {
 
 	private int blockCount;
-	public List<BlockPos> lapotronBlockPos;
+	public boolean enabled = true;
 	public static final int BASE_ENERGY = 10000000;
-	public static AabbUtil.IBlockFilter filter = new GTLapotronBlockFilter();
+	public AabbUtil.IBlockFilter filter = new GTLapotronBlockFilter(this);
 	public Processor task = null;
 
 	public GTTileLESU() {
@@ -92,12 +89,18 @@ public class GTTileLESU extends TileEntityElectricBlock {
 	}
 
 	private void checkArea() {
+		if (!this.enabled) {
+			this.blockCount = 0;
+			this.maxEnergy = BASE_ENERGY;
+			this.getNetwork().updateTileGuiField(this, "blockCount");
+			this.getNetwork().updateTileGuiField(this, "maxEnergy");
+			return;
+		}
 		if (task != null && world.isAreaLoaded(pos, 16)) {
 			task.update();
 			if (!task.isFinished()) {
 				return;
 			}
-			this.lapotronBlockPos = task.getResults();
 			this.blockCount = task.getResultCount();
 			if (this.blockCount > 256) {
 				this.blockCount = 256;
@@ -109,7 +112,7 @@ public class GTTileLESU extends TileEntityElectricBlock {
 		if (world.getTotalWorldTime() % 128 == 0) {
 			if (!world.isAreaLoaded(pos, 16))
 				return;
-			task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, false);
+			task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, true);
 			task.update();
 		}
 	}
