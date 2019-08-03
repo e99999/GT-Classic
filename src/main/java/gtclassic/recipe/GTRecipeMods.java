@@ -59,7 +59,7 @@ public class GTRecipeMods {
 		}
 		/** Immersive Engineering **/
 		if (GTConfig.compatIE && Loader.isModLoaded(GTValues.IMMERSIVE_ENGINEERING)) {
-			GTMod.logger.info("Doing Immservie Engineering Things");
+			GTMod.logger.info("Doing Immersive Engineering Things");
 			GTTileCentrifuge.addRecipe("dustCoke", 8, 0, GTTileCentrifuge.totalEu(7500), GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "material", 18, 1));
 			// Adds alloys if thermal is not present
 			if (!Loader.isModLoaded(GTValues.THERMAL) || !GTConfig.compatThermal) {

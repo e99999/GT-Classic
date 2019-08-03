@@ -19,35 +19,42 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class GTWorldGen implements IWorldGenerator {
 
-	/*
-	 * The block to generate. (IBlockState) The amount of blocks to generate. (int)
-	 * The spawnChance. (int) The minimumHeight. (int) The maximumHeight. (int) The
-	 * block to replace. (Predicate<IBlockState>) The world that is being generated.
-	 * (World) The random object. (Random) The chunk�s x position. (int) The
-	 * chunk�s z position. (int)
-	 */
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
 		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
-		if (GTConfig.genEndIridium) {
-			runGenerator(GTBlocks.oreEnd.getDefaultState(), 3, 4, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
-		}
-		if (GTConfig.genOverworldIridium) {
-			runGenerator(GTBlocks.oreIridium.getDefaultState(), 3, 2, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-		}
-		if (GTConfig.genOverworldRuby && BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
-			runGenerator(GTBlocks.oreRuby.getDefaultState(), 5, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-		}
-		if (GTConfig.genOverworldSapphire && BiomeDictionary.hasType(biomegenbase, Type.OCEAN)) {
-			runGenerator(GTBlocks.oreSapphire.getDefaultState(), 5, 2, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-		}
-		if (GTConfig.genOverworldBauxite && BiomeDictionary.hasType(biomegenbase, Type.FOREST)
+		if (GTConfig.bauxiteGenerate && BiomeDictionary.hasType(biomegenbase, Type.FOREST)
 				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS))) {
-			runGenerator(GTBlocks.oreBauxite.getDefaultState(), 16, 4, 50, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			runGenerator(GTBlocks.oreBauxite.getDefaultState(), GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		}
+		if (GTConfig.iridiumEndGenerate) {
+			runGenerator(GTBlocks.oreEnd.getDefaultState(), GTConfig.iridiumEndSize, GTConfig.iridiumEndWeight, 10, 80, BlockMatcher.forBlock(Blocks.END_STONE), world, random, chunkX, chunkZ);
+		}
+		if (GTConfig.iridiumOverworldGenerate) {
+			runGenerator(GTBlocks.oreIridium.getDefaultState(), GTConfig.iridiumOverworldSize, GTConfig.iridiumOverworldWeight, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		}
+		if (GTConfig.rubyGenerate && BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
+			runGenerator(GTBlocks.oreRuby.getDefaultState(), GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		}
+		if (GTConfig.sapphireGenerate && BiomeDictionary.hasType(biomegenbase, Type.OCEAN)) {
+			runGenerator(GTBlocks.oreSapphire.getDefaultState(), GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 	}
 
+	/**
+	 * Generates ore veins in a vanilla style.
+	 * 
+	 * @param Blockstate     - state of the ore block to gen
+	 * @param                int - amount of ore in a vein
+	 * @param chancesToSpawn int - chances to spawn
+	 * @param minHeight      int - min Y level
+	 * @param maxHeight      int - max Y level
+	 * @param blockToReplace - the blockstate to replace
+	 * @param world          World - pass the world arg
+	 * @param rand           Rand - pass the rand arg
+	 * @param chunkX         - pass chunkX arg
+	 * @param chunkZ         - pass chunkY arg
+	 */
 	private void runGenerator(IBlockState blockToGen, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
 			Predicate<IBlockState> blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)

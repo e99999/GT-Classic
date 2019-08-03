@@ -245,19 +245,21 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	@Override
 	public boolean onRightClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, Side side) {
 		// tries to pull one item
-		if (playerIn.isSneaking() && !isSlotEmpty(slotOutput)) {
-			ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotOutput), 1));
-			getStackInSlot(slotOutput).shrink(1);
-			return true;
-		}
-		// tries to input a full stack of an item
-		ItemStack playerStack = playerIn.getHeldItemMainhand();
-		int count = playerStack.getCount();
-		boolean isPlayerStackValid = StackUtil.isStackEqual(getStackInSlot(slotDisplay), playerStack, false, false);
-		if (!playerIn.isSneaking() && !isSlotEmpty(slotDisplay) && isPlayerStackValid && canFit(count)) {
-			this.digitalCount = this.digitalCount + count;
-			playerStack.shrink(count);
-			return true;
+		if (facing == this.getFacing()) {
+			if (playerIn.isSneaking() && !isSlotEmpty(slotOutput)) {
+				ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotOutput), 1));
+				getStackInSlot(slotOutput).shrink(1);
+				return true;
+			}
+			// tries to input a full stack of an item
+			ItemStack playerStack = playerIn.getHeldItemMainhand();
+			int count = playerStack.getCount();
+			boolean isPlayerStackValid = StackUtil.isStackEqual(getStackInSlot(slotDisplay), playerStack, false, false);
+			if (!playerIn.isSneaking() && !isSlotEmpty(slotDisplay) && isPlayerStackValid && canFit(count)) {
+				this.digitalCount = this.digitalCount + count;
+				playerStack.shrink(count);
+				return true;
+			}
 		}
 		return false;
 	}
