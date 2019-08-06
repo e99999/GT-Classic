@@ -26,6 +26,7 @@ public class GTValues {
 	public static final String IMMERSIVE_ENGINEERING = "immersiveengineering";
 	public static final String IC2_EXTRAS = "ic2c_extras";
 	public static final String BAUBLES = "baubles";
+	public static final String ENDERIO = "enderio";
 	// sounds
 	public static ResourceLocation sonar = new ResourceLocation(GTMod.MODID, "sounds/sonar.ogg");
 	public static ResourceLocation cloak = new ResourceLocation(GTMod.MODID, "sounds/cloak.ogg");

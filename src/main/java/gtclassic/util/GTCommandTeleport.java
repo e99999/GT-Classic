@@ -21,7 +21,7 @@ import net.minecraft.util.text.TextFormatting;
 public class GTCommandTeleport extends CommandBase {
 
 	public GTCommandTeleport() {
-		aliases = Lists.newArrayList(GTMod.MODID, "TP", "tp");
+		aliases = Lists.newArrayList(GTMod.MODID, "GTTP", "gttp");
 	}
 
 	private final List<String> aliases;
@@ -29,13 +29,13 @@ public class GTCommandTeleport extends CommandBase {
 	@Override
 	@Nonnull
 	public String getName() {
-		return "tp";
+		return "gttp";
 	}
 
 	@Override
 	@Nonnull
 	public String getUsage(@Nonnull ICommandSender sender) {
-		return "tp <id>";
+		return "gttp <id>";
 	}
 
 	@Override
