@@ -11,6 +11,7 @@ import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.util.GTValues;
+import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
@@ -21,19 +22,13 @@ import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 
 public class GTRecipeMods {
 
 	public static void postInit() {
-		/** Draconic Evolution **/
-		if (GTConfig.compatDraconic && Loader.isModLoaded(GTValues.DRACONIC)) {
-			GTMod.logger.info("Doing Draconic Evolution Things");
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
-					input("dustDraconium", 1) }, GTTileMultiBlastFurnace.COST_HIGH, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
-					input("oreDraconium", 1) }, GTTileMultiBlastFurnace.COST_HIGH, GTMaterialGen.getModItem(GTValues.DRACONIC, "draconium_ingot"));
-		}
+		/** EnderIO **/
 		if (GTConfig.compatEnderIO && Loader.isModLoaded(GTValues.ENDERIO)) {
 			GTMod.logger.info("Doing EnderIO Things");
 			// Creating a relationship between Enderio Iron Alloy and Mixed Metal
@@ -73,7 +68,7 @@ public class GTRecipeMods {
 					input("enderpearl", 1) }, 40000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 5, 1));
 			// Dark Steel
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Steel", 1),
-					input("obsidian", 1) }, 80000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 6, 1));
+					input("dustObsidian", 1) }, 80000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 6, 1));
 			// End Steel
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("endstone", 1), input("ingotDarkSteel", 1),
 					input("obsidian", 1) }, 80000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 8, 1));
@@ -132,11 +127,6 @@ public class GTRecipeMods {
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustGlowstone", 1),
 					input("itemClay", 1) }, 20000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 76, 2));
 		}
-		/** Forestry Sub Module **/
-		if (GTConfig.compatForestry && Loader.isModLoaded(GTValues.FORESTRY)) {
-			GTMod.logger.info("Doing Forestry Things");
-			GTRecipeForestry.notTheBees();
-		}
 		/** Ic2 Extras **/
 		if (GTConfig.compatIc2Extras && Loader.isModLoaded(GTValues.IC2_EXTRAS)) {
 			GTMod.logger.info("Doing IC2 Extras Things");
@@ -187,6 +177,27 @@ public class GTRecipeMods {
 			// Enderium
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 3), metal("Platinum", 1),
 					input("dustEnderPearl", 4) }, GTTileMultiBlastFurnace.COST_MED, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 167, 4));
+			
+			//Adding thermal stuff to fluid gen
+			doThermalLiquidFuelThings("crude_oil", 50000, 10);
+			doThermalLiquidFuelThings("redstone", 10000, 10);
+			doThermalLiquidFuelThings("glowstone", 25000, 12);
+			doThermalLiquidFuelThings("pyrotheum", 200000, 36);
+			doThermalLiquidFuelThings("cryotheum", 50000, 12);
+			doThermalLiquidFuelThings("aerotheum", 50000, 12);
+			doThermalLiquidFuelThings("petrotheum", 50000, 12);
+			doThermalLiquidFuelThings("creosote", 5000, 8);
+			doThermalLiquidFuelThings("coal", 50000, 10);
+			doThermalLiquidFuelThings("refined_oil", 150000, 24);
+			doThermalLiquidFuelThings("refined_fuel", 200000, 32);
+			doThermalLiquidFuelThings("seed_oil", 6000, 6);
+			doThermalLiquidFuelThings("tree_oil", 50000, 8);
+			doThermalLiquidFuelThings("refined_biofuel", 100000, 10);
+		}
+		/** Forestry Sub Module, last so bees are always last**/
+		if (GTConfig.compatForestry && Loader.isModLoaded(GTValues.FORESTRY)) {
+			GTMod.logger.info("Doing Forestry Things");
+			GTRecipeForestry.notTheBees();
 		}
 	}
 
@@ -203,6 +214,11 @@ public class GTRecipeMods {
 				input("dustCoal", 1) }, 6000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 1));
 		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dye" + color, 1), input("egg", 1),
 				input("dustCharcoal", 1) }, 6000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 1));
+	}
+	
+	public static void doThermalLiquidFuelThings(String fluid, int total, int output) {
+		int translation = total / output;
+		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid(fluid), translation, output);
 	}
 
 	public static IRecipeInput input(ItemStack stack) {

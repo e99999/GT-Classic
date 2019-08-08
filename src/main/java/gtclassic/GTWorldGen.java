@@ -55,7 +55,7 @@ public class GTWorldGen implements IWorldGenerator {
 	 * @param chunkX         - pass chunkX arg
 	 * @param chunkZ         - pass chunkY arg
 	 */
-	private void runGenerator(IBlockState blockToGen, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
+	public void runGenerator(IBlockState blockToGen, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
 			Predicate<IBlockState> blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
 			throw new IllegalArgumentException("Illegal Height Arguments for OreGenerator");
@@ -66,8 +66,6 @@ public class GTWorldGen implements IWorldGenerator {
 			int y = minHeight + rand.nextInt(heightdiff);
 			int z = chunkZ * 16 + rand.nextInt(16);
 			generator.generate(world, rand, new BlockPos(x, y, z));
-			GTMod.debugLogger("GregTech ore generated: " + blockToGen.getBlock().getLocalizedName() + " at X:" + x
-					+ " Y:" + y + " Z:" + z);
 		}
 	}
 

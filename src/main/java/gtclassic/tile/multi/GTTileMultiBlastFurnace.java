@@ -172,9 +172,6 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 			NonNullList<ItemStack> items = NonNullList.create();
 			item.getSubItems(CreativeTabs.SEARCH, items);
 			for (ItemStack stack : items) {
-				if (GTConfig.compatDraconic && GTValues.matchOreDict(stack, "ingotDraconium")) {
-					GTRecipeProcessing.removeSmelting(stack);
-				}
 				if (GTConfig.ingotsRequireBlastFurnace) {
 					if (GTValues.matchOreDict(stack, "ingotIridium") || GTValues.matchOreDict(stack, "ingotTungsten")
 							|| GTValues.matchOreDict(stack, "ingotChrome")

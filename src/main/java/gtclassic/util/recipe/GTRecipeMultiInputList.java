@@ -41,14 +41,14 @@ public class GTRecipeMultiInputList {
 		}
 		for (int i = 0; i < inputs.size(); i++) {
 			if (inputs.get(i) != null && isListInvalid(inputs.get(i).getInputs())) {
-				GTMod.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
+				GTMod.debugLogger("Recipe[" + id + "] has a invalid input for machine " + category);
 				return;
 			}
 		}
 		if (isListInvalid(output.getAllOutputs())) {
 			GTMod.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
 			for (int i = 0; i < inputs.size(); i++) {
-				GTMod.logger.info("Recipe[" + id + ": " + inputs.get(i) + "] as input " + category);
+				GTMod.debugLogger("Recipe[" + id + ": " + inputs.get(i) + "] as input " + category);
 			}
 			return;
 		}

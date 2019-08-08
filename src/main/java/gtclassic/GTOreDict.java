@@ -69,6 +69,7 @@ public class GTOreDict {
 			OreDictionary.registerOre("listAllveggie", GTMaterialGen.get(Blocks.PUMPKIN));
 			OreDictionary.registerOre("listAllveggie", GTMaterialGen.get(Items.CARROT));
 			OreDictionary.registerOre("listAllveggie", GTMaterialGen.get(Items.POTATO));
+			OreDictionary.registerOre("listAllcookie", GTMaterialGen.get(Items.COOKIE));
 		}
 	}
 }
