@@ -3,7 +3,9 @@ package gtclassic.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.GTConfig;
 import gtclassic.tile.GTTileMobRepeller;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -27,6 +29,14 @@ public class GTSpawnEventHandler {
 			return;
 		}
 		if (event.getEntityLiving().isCreatureType(EnumCreatureType.MONSTER, false)) {
+			Entity entity = event.getEntity();
+			BlockPos spawn = entity.getEntityWorld().getSpawnPoint();
+			//This is the code for the safe spawn zone
+			if (GTConfig.preventMobSpawnsCloseToSpawn
+					&& entity.getPosition().distanceSq(spawn.getX(), spawn.getY(), spawn.getZ()) <= 128 * 128) {
+				event.setResult(Event.Result.DENY);
+			}
+			//This is the code for the mob repellator
 			for (int[] rep : mobReps) {
 				World world = event.getEntity().getEntityWorld();
 				if (rep[3] == world.provider.getDimension()) {

@@ -14,6 +14,7 @@ public class GTConfig {
 	public static boolean debugMode = false;
 	public static boolean addLootItems = true;
 	public static boolean ingotsRequireBlastFurnace = true;
+	public static boolean preventMobSpawnsCloseToSpawn = true;
 	// generation
 	public static boolean bauxiteGenerate = true;
 	public static int bauxiteSize = 16;
@@ -60,6 +61,7 @@ public class GTConfig {
 		debugMode = cfg.getBoolean("debugMode", CATEGORY_CONFIG, debugMode, "Enables debug logger for additional information");
 		addLootItems = cfg.getBoolean("addLootItems", CATEGORY_CONFIG, addLootItems, "Adds GregTech items to loot pool");
 		ingotsRequireBlastFurnace = cfg.getBoolean("ingotsRequireBlastFurnace", CATEGORY_CONFIG, ingotsRequireBlastFurnace, "Tries to remove vanilla smelting of end game metals from all loaded mods");
+		preventMobSpawnsCloseToSpawn = cfg.getBoolean("preventMobSpawnsCloseToSpawn", CATEGORY_CONFIG, preventMobSpawnsCloseToSpawn, "Prevents mob spawning in a 128 block radius around world spawn");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {
