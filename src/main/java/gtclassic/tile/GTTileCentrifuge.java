@@ -199,7 +199,6 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addMethaneRecipe(GTMaterialGen.get(Items.SPIDER_EYE, 32));
 		addMethaneRecipe(GTMaterialGen.get(Items.POISONOUS_POTATO, 12));
 		addMethaneRecipe(GTMaterialGen.get(Items.BAKED_POTATO, 24));
-		addMethaneRecipe(GTMaterialGen.get(Items.COOKIE, 64));
 		addMethaneRecipe(GTMaterialGen.get(Items.CAKE, 8));
 		addMethaneRecipe(GTMaterialGen.get(Blocks.BROWN_MUSHROOM_BLOCK, 12));
 		addMethaneRecipe(GTMaterialGen.get(Blocks.RED_MUSHROOM_BLOCK, 12));

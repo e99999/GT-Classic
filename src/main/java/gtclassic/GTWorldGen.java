@@ -23,8 +23,8 @@ public class GTWorldGen implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
 		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
-		if (GTConfig.bauxiteGenerate && BiomeDictionary.hasType(biomegenbase, Type.FOREST)
-				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS))) {
+		if (GTConfig.bauxiteGenerate && (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
+				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS)))) {
 			runGenerator(GTBlocks.oreBauxite.getDefaultState(), GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.iridiumEndGenerate) {
