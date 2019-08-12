@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.block.GTBlockCasing;
+import gtclassic.block.GTBlockCasingAdvanced;
 import gtclassic.block.GTBlockDrum;
 import gtclassic.block.GTBlockMachine;
 import gtclassic.block.GTBlockMachineDirectionable;
@@ -34,6 +35,7 @@ import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileQuantumTank;
 import gtclassic.tile.GTTileSluice;
+import gtclassic.tile.GTTileSupercondensator;
 import gtclassic.tile.GTTileTranslocator;
 import gtclassic.tile.GTTileWorktable;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
@@ -58,10 +60,10 @@ public class GTBlocks {
 	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre("Ruby", 82, 4.0F, 2));
 	public static final GTBlockOre oreSapphire = registerBlock(new GTBlockOre("Sapphire", 83, 4.0F, 2));
 	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre("Bauxite", 84, 3.0F, 1));
-	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 2));
-	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5));
-	public static final GTBlockCasing casingReinforced = registerBlock(new GTBlockCasing("reinforced", 1));
-	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29));
+	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 2, 500.0F));
+	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
+	public static final GTBlockCasing casingReinforced = registerBlock(new GTBlockCasing("reinforced", 1, 150.0F));
+	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29, 250.0F));
 	// public static final GTBlockSluice tileSluice = registerBlock(new
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
@@ -80,6 +82,8 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileLESU = registerBlock(new GTBlockMachineDirectionable("lesu", GTLang.LESU));
 	public static final GTBlockMachineDirectionable tileAESU = registerBlock(new GTBlockMachineDirectionable("aesu", GTLang.AESU));
 	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu", GTLang.IDSU));
+	public static final GTBlockCasingAdvanced casingSupercontainer = registerBlock(new GTBlockCasingAdvanced("supercontainer", 109, 800.0F));
+	public static final GTBlockMachineDirectionable tileSupercondensator = registerBlock(new GTBlockMachineDirectionable("supercondensator", GTLang.SUPERCONDENSATOR));
 	public static final GTBlockMachine tileWorktable = registerBlock(new GTBlockMachine("worktable", GTLang.WORKTABLE));
 	public static final GTBlockMachine tileCabinet = registerBlock(new GTBlockMachine("cabinet", GTLang.CABINET));
 	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
@@ -92,8 +96,9 @@ public class GTBlocks {
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uuassembler", "echotronblock", "quantumchest", "quantumtank",
-			"playerdetector", "mobrepeller", "fusionreactor", "lightningrod", "idsu", "aesu", "lesu", "cabinet", "drum",
-			"worktable", "translocator", "bufferlarge", "buffersmall", "bufferfluid" };
+			"playerdetector", "mobrepeller", "fusionreactor", "lightningrod", "idsu", "aesu", "lesu",
+			"supercondensator", "cabinet", "drum", "worktable", "translocator", "bufferlarge", "buffersmall",
+			"bufferfluid" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -136,6 +141,7 @@ public class GTBlocks {
 		registerUtil(GTTileIDSU.class, "IDSU");
 		registerUtil(GTTileAESU.class, "AESU");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");
+		registerUtil(GTTileSupercondensator.class, "Supercondensator");
 		registerUtil(GTTileMultiFusionReactor.class, "FusionComputer");
 		registerUtil(GTTileQuantumChest.class, "QuantumChest");
 		registerUtil(GTTileQuantumTank.class, "QuantumTank");

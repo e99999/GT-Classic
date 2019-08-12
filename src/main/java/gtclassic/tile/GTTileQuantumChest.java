@@ -203,9 +203,8 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	 * @return
 	 */
 	public boolean canDigitizeStack(ItemStack stack) {
-		return (this.digitalCount + getStackInSlot(slotInput).getCount()) < maxSize
-				&& (StackUtil.isStackEqual(getStackInSlot(slotDisplay), stack, false, false)
-						|| inventory.get(slotDisplay).isEmpty());
+		return this.digitalCount < maxSize && (StackUtil.isStackEqual(getStackInSlot(slotDisplay), stack, false, false)
+				|| inventory.get(slotDisplay).isEmpty());
 	}
 
 	/**

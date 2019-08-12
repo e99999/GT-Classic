@@ -177,8 +177,7 @@ public class GTRecipeMods {
 			// Enderium
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 3), metal("Platinum", 1),
 					input("dustEnderPearl", 4) }, GTTileMultiBlastFurnace.COST_MED, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 167, 4));
-			
-			//Adding thermal stuff to fluid gen
+			// Adding thermal stuff to fluid gen
 			doThermalLiquidFuelThings("crude_oil", 50000, 10);
 			doThermalLiquidFuelThings("redstone", 10000, 10);
 			doThermalLiquidFuelThings("glowstone", 25000, 12);
@@ -194,7 +193,7 @@ public class GTRecipeMods {
 			doThermalLiquidFuelThings("tree_oil", 50000, 8);
 			doThermalLiquidFuelThings("refined_biofuel", 100000, 10);
 		}
-		/** Forestry Sub Module, last so bees are always last**/
+		/** Forestry Sub Module, last so bees are always last **/
 		if (GTConfig.compatForestry && Loader.isModLoaded(GTValues.FORESTRY)) {
 			GTMod.logger.info("Doing Forestry Things");
 			GTRecipeForestry.notTheBees();
@@ -215,7 +214,7 @@ public class GTRecipeMods {
 		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dye" + color, 1), input("egg", 1),
 				input("dustCharcoal", 1) }, 6000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 1));
 	}
-	
+
 	public static void doThermalLiquidFuelThings(String fluid, int total, int output) {
 		int translation = total / output;
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid(fluid), translation, output);

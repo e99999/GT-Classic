@@ -37,12 +37,12 @@ public class GTItemBlockRare extends ItemBlockRare {
 				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
 			}
 			if (compare(stack, GTBlocks.tileFusionReactor)) {
-				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32784 })));
+				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 8192 })));
 			}
 			if (compare(stack, GTBlocks.tileLightningRod)) {
 				tooltip.add((Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] { 25000000 })
 						+ " each strike"));
-				tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 8196 })));
+				tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 8192 })));
 			}
 			if (compare(stack, GTBlocks.tileAESU)) {
 				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
@@ -58,11 +58,14 @@ public class GTItemBlockRare extends ItemBlockRare {
 				tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 512 })));
 			}
 			if (compare(stack, GTBlocks.tileFabricator)) {
-				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 131072 })));
+				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 134217728 })));
 			}
 			if (compare(stack, GTBlocks.tileTranslocator) || compare(stack, GTBlocks.tileBufferSmall)
 					|| compare(stack, GTBlocks.tileBufferLarge) || compare(stack, GTBlocks.tileBufferFluid)) {
 				tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32 })));
+			}
+			if (compare(stack, GTBlocks.tileSupercondensator)) {
+				tooltip.add(Ic2InfoLang.electricTransformer.getLocalizedFormatted(new Object[] { 134217728, 8192 }));
 			}
 		}
 	}

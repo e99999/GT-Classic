@@ -32,7 +32,7 @@ public class GTBlockCasing extends Block implements ITexturedBlock, ILocaleBlock
 	int id;
 	LocaleComp comp;
 
-	public GTBlockCasing(String name, int id) {
+	public GTBlockCasing(String name, int id, float resistance) {
 		super(Material.IRON);
 		this.name = name;
 		this.id = id;
@@ -40,9 +40,9 @@ public class GTBlockCasing extends Block implements ITexturedBlock, ILocaleBlock
 		setRegistryName(this.name.toLowerCase());
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
-		setHardness(3.0F);
-		setResistance(30.0F);
 		setSoundType(SoundType.METAL);
+		setResistance(resistance);
+		setHardness(3.0F);
 		setHarvestLevel("pickaxe", 2);
 	}
 

@@ -52,7 +52,7 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 	IBlockState coilState = GTBlocks.casingFusion.getDefaultState();
 
 	public GTTileMultiFusionReactor() {
-		super(3, 0, 8196, 32784);
+		super(3, 0, 8192, 8192);
 		maxEnergy = 100000000;
 		this.status = "No";
 		this.addGuiFields(new String[] { "status" });
@@ -187,7 +187,7 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 	}
 
 	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 8196);
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 8192);
 	}
 
 	public static void removeRecipe(String id) {

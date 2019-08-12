@@ -191,7 +191,7 @@ public class GTRecipe {
 				Ic2Items.inductionFurnace, 'R', ingotRefinedIron, 'A', Ic2Items.advMachine, 'C', "circuitAdvanced" });
 		/** Lightning Rod **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'A', GTBlocks.casingHighlyAdvanced });
+				"circuitMaster", 'S', GTBlocks.tileSupercondensator, 'A', GTBlocks.casingHighlyAdvanced });
 		/** Fusion Computer **/
 		recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] {
 				"ESE", "LCL", "ESE", 'E', "circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C',
@@ -237,6 +237,14 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLESU, 1), new Object[] { " L ", "CBC", " H ", 'L',
 				Ic2Items.transformerLV, 'H', Ic2Items.transformerMV, 'C', "circuitAdvanced", 'B',
 				GTBlocks.casingLapotron });
+		/** Supercontainer **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingSupercontainer, 1), new Object[] { "EAE", "SMS", "EAE", 'E',
+				"circuitMaster", 'S', GTItems.superConductor, 'A', Ic2Items.reactorReflectorIridium, 'M',
+				GTBlocks.casingHighlyAdvanced });
+		/** Supercondensator **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSupercondensator, 1), new Object[] { "EAE", "SMS", "EAE", 'E',
+				"circuitMaster", 'S', GTItems.superConductor, 'A', "batteryUltimate", 'M',
+				GTBlocks.casingHighlyAdvanced });
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), new Object[] { "CRC", "JMN", "CBC", 'C',
 				"circuitBasic", 'R', "record", 'J', Blocks.JUKEBOX, 'M', Ic2Items.advMachine, 'N', Blocks.NOTEBLOCK,

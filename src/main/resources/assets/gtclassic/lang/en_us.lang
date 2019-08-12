@@ -21,6 +21,7 @@ tile.gtclassic.fusion.name=Fusion Coil
 tile.gtclassic.lapotron.name=Lapotron Block
 tile.gtclassic.reinforced.name=Reinforced Machine Block
 tile.gtclassic.highlyadvanced.name=Highly Advanced Machine Block
+tile.gtclassic.supercontainer.name=Supercontainer
 
 #tiles
 tile.gtclassic.gtblastfurnace.name=Blast Furnace
@@ -39,6 +40,7 @@ tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.aesu.name=AESU
 tile.gtclassic.idsu.name=IDSU
 tile.gtclassic.lesu.name=LESU
+tile.gtclassic.supercondensator.name=Supercondensator
 tile.gtclassic.worktable.name=Basic Worktable
 tile.gtclassic.cabinet.name=Cabinet
 tile.gtclassic.drum.name=Drum
@@ -184,6 +186,8 @@ tooltip.gtclassic.lightningrod2=Controller, with 8-255 iron fence rods on top,
 tooltip.gtclassic.lesu0=Modular energy storage
 tooltip.gtclassic.aesu0=Energy storage with adjustable output
 tooltip.gtclassic.idsu0=Not a tesseract...
+tooltip.gtclassic.supercontainer0=Contains and controls extreme energy sources
+tooltip.gtclassic.supercondensator0=Transforms extremely high energy sources to a usable level
 tooltip.gtclassic.worktable0=Not Yet...
 tooltip.gtclassic.cabinet0=PrEmIuM dOuBlE cHeSt
 tooltip.gtclassic.translocator0=Pulls items in from the back,

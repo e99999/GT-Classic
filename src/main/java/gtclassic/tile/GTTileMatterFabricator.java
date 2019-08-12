@@ -37,7 +37,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/matterfabricator.png");
 
 	public GTTileMatterFabricator() {
-		super(9, 131072);
+		super(9, 134217728);
 		maxEnergy = 10000000;
 		addGuiFields("progress");
 		addInfos(new ProgressInfo(this));

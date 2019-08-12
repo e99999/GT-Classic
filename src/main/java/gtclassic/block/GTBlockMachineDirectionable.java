@@ -7,6 +7,7 @@ import gtclassic.tile.GTTileBufferLarge;
 import gtclassic.tile.GTTileBufferSmall;
 import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTileLESU;
+import gtclassic.tile.GTTileSupercondensator;
 import gtclassic.tile.GTTileTranslocator;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -39,6 +40,9 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 		}
 		if (this == GTBlocks.tileIDSU) {
 			return new GTTileIDSU();
+		}
+		if (this == GTBlocks.tileSupercondensator) {
+			return new GTTileSupercondensator();
 		}
 		if (this == GTBlocks.tileTranslocator) {
 			return new GTTileTranslocator();

@@ -31,12 +31,12 @@ public class GTSpawnEventHandler {
 		if (event.getEntityLiving().isCreatureType(EnumCreatureType.MONSTER, false)) {
 			Entity entity = event.getEntity();
 			BlockPos spawn = entity.getEntityWorld().getSpawnPoint();
-			//This is the code for the safe spawn zone
+			// This is the code for the safe spawn zone
 			if (GTConfig.preventMobSpawnsCloseToSpawn
 					&& entity.getPosition().distanceSq(spawn.getX(), spawn.getY(), spawn.getZ()) <= 128 * 128) {
 				event.setResult(Event.Result.DENY);
 			}
-			//This is the code for the mob repellator
+			// This is the code for the mob repellator
 			for (int[] rep : mobReps) {
 				World world = event.getEntity().getEntityWorld();
 				if (rep[3] == world.provider.getDimension()) {
