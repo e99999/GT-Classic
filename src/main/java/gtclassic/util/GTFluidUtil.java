@@ -3,7 +3,6 @@ package gtclassic.util;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.misc.FluidHelper;
-import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,17 +21,17 @@ public class GTFluidUtil {
 
 	/** Created by e99999, does fluid container handling for GTC tiles **/
 	public static void doFluidContainerThings(TileEntityMachine tile, IC2Tank tank, int slotInput, int slotOutput) {
-		if (!isSlotEmpty(tile, slotInput)) {
+		if (!GTStackUtil.isSlotEmpty(tile, slotInput)) {
 			// emptying items
 			ItemStack emptyStack = FluidUtil.tryEmptyContainer(tile.getStackInSlot(slotInput), tank, tank.getCapacity()
 					- tank.getFluidAmount(), null, false).getResult();
 			boolean didEmpty = FluidUtil.tryEmptyContainer(tile.getStackInSlot(slotInput), tank, tank.getCapacity()
 					- tank.getFluidAmount(), null, false) != FluidActionResult.FAILURE;
-			if (!isTankFull(tank) && !isSlotFull(tile, slotOutput) && canOutputStack(tile, emptyStack, slotOutput)
-					&& didEmpty) {
+			if (!isTankFull(tank) && !GTStackUtil.isSlotFull(tile, slotOutput)
+					&& GTStackUtil.canOutputStack(tile, emptyStack, slotOutput) && didEmpty) {
 				FluidUtil.tryEmptyContainer(tile.getStackInSlot(slotInput), tank, tank.getCapacity()
 						- tank.getFluidAmount(), null, true);
-				if (isSlotEmpty(tile, slotOutput)) {
+				if (GTStackUtil.isSlotEmpty(tile, slotOutput)) {
 					tile.setStackInSlot(slotOutput, emptyStack);
 				} else {
 					tile.getStackInSlot(slotOutput).grow(1);
@@ -41,8 +40,8 @@ public class GTFluidUtil {
 			}
 			// filling items
 			Tuple<ItemStack, FluidStack> filled = FluidHelper.fillContainer(tile.getStackInSlot(slotInput), tank.getFluid(), true, true);
-			if (filled != null && canOutputStack(tile, filled.getFirst(), slotOutput)) {
-				if (isSlotEmpty(tile, slotOutput)) {
+			if (filled != null && GTStackUtil.canOutputStack(tile, filled.getFirst(), slotOutput)) {
+				if (GTStackUtil.isSlotEmpty(tile, slotOutput)) {
 					tile.setStackInSlot(slotOutput, filled.getFirst());
 				} else {
 					tile.getStackInSlot(slotOutput).grow(1);
@@ -84,23 +83,6 @@ public class GTFluidUtil {
 			}
 		}
 		return false;
-	}
-
-	// helper for fluid handling
-	public static boolean canOutputStack(TileEntityMachine tile, ItemStack stack, int slotOutput) {
-		return tile.inventory.get(slotOutput).getCount() < 64
-				&& (StackUtil.isStackEqual(tile.getStackInSlot(slotOutput), stack, false, false)
-						|| tile.inventory.get(slotOutput).isEmpty());
-	}
-
-	// helper for fluid handling
-	public static boolean isSlotEmpty(TileEntityMachine tile, int slot) {
-		return tile.inventory.get(slot).isEmpty();
-	}
-
-	// helper for fluid handling
-	public static boolean isSlotFull(TileEntityMachine tile, int slot) {
-		return tile.inventory.get(slot).getCount() > 64;
 	}
 
 	// helper for fluid handling
