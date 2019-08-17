@@ -1,6 +1,6 @@
 # Changelog
 
-# 1.01
+# 1.01 (Not Released)
 - I recommend regenerating configs in this version.
 - Fixed a bug with the Quantum Chest that would stop it from reaching full capacity.
 - Fixed AESU getting stuck when adjusting near the min/max.
@@ -12,7 +12,7 @@
 - Changed both IC2C macerators to be more expensive like GT1.
 - Added GT6 style "safe spawn" zone, 128 block radius and toggable with configs.
 - Fixed error in my code that prevented disabling of Bauxite ore.
-- Removed useless and Draconic Evolution compat, thats up to mod pack devs.
+- Removed useless Draconic Evolution compat, thats really up to mod pack devs.
 - Fixed and added some more Thermal compat things.
 - Added very thorough EnderIO compat.
 - Added config options for ore generation.
