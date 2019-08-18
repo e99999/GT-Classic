@@ -1,12 +1,15 @@
 package gtclassic.item;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.color.GTColorItemInterface;
 import gtclassic.util.GTValues;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -14,10 +17,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class GTItemCloakingDevice extends GTItemBaseToggleItem implements IStaticTexturedItem {
+public class GTItemCloakingDevice extends GTItemBaseToggleItem implements IStaticTexturedItem, GTColorItemInterface {
 
 	public GTItemCloakingDevice() {
 		super(4, 10000000, 1000);
@@ -50,5 +54,14 @@ public class GTItemCloakingDevice extends GTItemBaseToggleItem implements IStati
 	@Override
 	public List<Integer> getValidVariants() {
 		return Arrays.asList(0);
+	}
+
+	@Override
+	public Color getColor(ItemStack stack, int index) {
+		NBTTagCompound nbt = StackUtil.getOrCreateNbtData(stack);
+		if (nbt.getBoolean(ACTIVE)) {
+			return Color.gray;
+		}
+		return Color.white;
 	}
 }
