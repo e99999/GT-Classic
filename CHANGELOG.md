@@ -3,6 +3,7 @@
 # 1.01 (Not Released)
 - I recommend regenerating configs in this version.
 - Fixed a bug with the Quantum Chest that would stop it from reaching full capacity.
+- Fixed another bug with the Quantum Chest that would ignore items max stack size on output.
 - Fixed AESU getting stuck when adjusting near the min/max.
 - Added Supercontainer, for end game stuff - not a real use yet.
 - Added Supercondensator, not much real use yet just for recipes and stuff.

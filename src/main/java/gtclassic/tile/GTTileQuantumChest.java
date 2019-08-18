@@ -7,6 +7,7 @@ import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerQuantumChest;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTLang;
+import gtclassic.util.GTStackUtil;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -141,34 +142,25 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		return this.digitalCount;
 	}
 
-	/**
-	 * Now that the tile stuff is out of the way we can handle the real logic
-	 */
 	@Override
 	public void update() {
-		// if the digital storage is null, and the input slot has a stack, and that
-		// stack can merge into the digtal storage...
-		if (!isSlotEmpty(slotInput) && canDigitizeStack(getStackInSlot(slotInput))) {
-			// set the display slot to show the input item
+		// Logic for stack input
+		if (!GTStackUtil.isSlotEmpty(this, slotInput) && canDigitizeStack(getStackInSlot(slotInput))) {
 			setStackInSlot(slotDisplay, StackUtil.copyWithSize(getStackInSlot(slotInput), 1));
-			// add the stack count to the digital count
 			this.digitalCount = this.digitalCount + 1;
-			// remove the input slot stack completely
 			inventory.get(slotInput).shrink(1);
 			updateGui();
 		}
-		// now the inverse for outputting to the output slot
-		if (!isSlotEmpty(slotDisplay) && canOutputStack(getStackInSlot(slotDisplay)) && this.digitalCount > 0) {
-			// if output slot is empty, set it to the digital stack
-			if (isSlotEmpty(slotOutput)) {
+		// Logic for stack output
+		if (!GTStackUtil.isSlotEmpty(this, slotDisplay)
+				&& GTStackUtil.canOutputStack(this, getStackInSlot(slotDisplay), slotOutput) && this.digitalCount > 0) {
+			if (GTStackUtil.isSlotEmpty(this, slotOutput)) {
 				setStackInSlot(slotOutput, getStackInSlot(slotDisplay).copy());
 				this.digitalCount = this.digitalCount - 1;
-				// else if not empty then just grow up the stack, canOutputStack makes this safe
 			} else {
 				getStackInSlot(slotOutput).grow(1);
 				this.digitalCount = this.digitalCount - 1;
 			}
-			// just some checking to keep things from getting weird
 			if (this.digitalCount == 0) {
 				inventory.get(slotDisplay).shrink(1);
 			}
@@ -176,49 +168,15 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		}
 	}
 
-	/**
-	 * Just a util for getting the stack size in a given slot.
-	 * 
-	 * @param slot - slot to retrive slot count from
-	 */
-	public int getSlotStackCount(int slot) {
-		return getStackInSlot(slot).getCount();
-	}
-
-	/**
-	 * Another util to see if the slot is empty or not.
-	 * 
-	 * @param slot - slot to isEmpty check
-	 * @return
-	 */
-	public boolean isSlotEmpty(int slot) {
-		return (inventory.get(slot).isEmpty());
-	}
-
-	/**
-	 * Checks to see if the stack can fit into the digital storage
-	 * 
-	 * @param stack - the stack to compare for the display slot/currently stored
-	 *              stack
-	 * @return
-	 */
+	/** Checks to see if the given stack can go into the digital storage **/
 	public boolean canDigitizeStack(ItemStack stack) {
-		return this.digitalCount < maxSize && (StackUtil.isStackEqual(getStackInSlot(slotDisplay), stack, false, false)
-				|| inventory.get(slotDisplay).isEmpty());
+		if (inventory.get(slotDisplay).isEmpty()) {
+			return true;
+		}
+		return this.digitalCount < maxSize && GTStackUtil.isEqual(getStackInSlot(slotDisplay), stack);
 	}
 
-	/**
-	 * Checks to see if the stack can merge or override the output slot
-	 * 
-	 * @param stack - the stack to compare to the output slot
-	 * @return
-	 */
-	public boolean canOutputStack(ItemStack stack) {
-		return inventory.get(slotOutput).getCount() < 64
-				&& (StackUtil.isStackEqual(getStackInSlot(slotOutput), stack, false, false)
-						|| inventory.get(slotOutput).isEmpty());
-	}
-
+	/** Sets the digital count, called when the block is placed for NBT stuff **/
 	public void setDigtialCount(int count) {
 		this.digitalCount = count;
 	}
@@ -245,7 +203,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	public boolean onRightClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, Side side) {
 		// tries to pull one item
 		if (facing == this.getFacing()) {
-			if (playerIn.isSneaking() && !isSlotEmpty(slotOutput)) {
+			if (playerIn.isSneaking() && !GTStackUtil.isSlotEmpty(this, slotOutput)) {
 				ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotOutput), 1));
 				getStackInSlot(slotOutput).shrink(1);
 				return true;
@@ -254,7 +212,8 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 			ItemStack playerStack = playerIn.getHeldItemMainhand();
 			int count = playerStack.getCount();
 			boolean isPlayerStackValid = StackUtil.isStackEqual(getStackInSlot(slotDisplay), playerStack, false, false);
-			if (!playerIn.isSneaking() && !isSlotEmpty(slotDisplay) && isPlayerStackValid && canFit(count)) {
+			if (!playerIn.isSneaking() && !GTStackUtil.isSlotEmpty(this, slotDisplay) && isPlayerStackValid
+					&& canFit(count)) {
 				this.digitalCount = this.digitalCount + count;
 				playerStack.shrink(count);
 				return true;

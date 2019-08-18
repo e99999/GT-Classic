@@ -22,9 +22,13 @@ public class GTStackUtil {
 	}
 
 	/** Checks if a machine slot can accept a stack **/
-	public static boolean canOutputStack(TileEntityMachine tile, ItemStack stack, int slotOutput) {
-		return tile.inventory.get(slotOutput).getCount() < 64
-				&& (isEqual(tile.getStackInSlot(slotOutput), stack) || tile.inventory.get(slotOutput).isEmpty());
+	public static boolean canOutputStack(TileEntityMachine tile, ItemStack stack, int slot) {
+		if (tile.inventory.get(slot).isEmpty()) {
+			return true;
+		}
+		int count = tile.inventory.get(slot).getCount();
+		boolean hasRoom = count < tile.inventory.get(slot).getMaxStackSize();
+		return hasRoom && isEqual(tile.getStackInSlot(slot), stack);
 	}
 
 	/** Checks if a machine slot is empty **/
@@ -34,6 +38,17 @@ public class GTStackUtil {
 
 	/** Checks if a machine slot is full **/
 	public static boolean isSlotFull(TileEntityMachine tile, int slot) {
+		if (tile.inventory.get(slot).isEmpty()) {
+			return false;
+		}
 		return tile.inventory.get(slot).getCount() == tile.inventory.get(slot).getMaxStackSize();
+	}
+	
+	/** Gets the stacksize of a slot **/
+	public int getSlotStackCount(TileEntityMachine tile, int slot) {
+		if (tile.inventory.get(slot).isEmpty()) {
+			return 0;
+		}
+		return tile.getStackInSlot(slot).getCount();
 	}
 }
