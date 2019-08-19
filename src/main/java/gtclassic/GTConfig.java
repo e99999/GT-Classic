@@ -24,7 +24,7 @@ public class GTConfig {
 	public static boolean harderIC2Macerator = true;
 	public static boolean betterIC2SolarRecipes = true;
 	public static boolean gregtechUURecipes = true;
-	public static boolean unifyWroughIron = true;
+	public static boolean unifyWroughtIron = true;
 	// generation
 	public static boolean bauxiteGenerate = true;
 	public static int bauxiteSize = 16;
@@ -81,7 +81,7 @@ public class GTConfig {
 		harderIC2Macerator = cfg.getBoolean("harderIC2Macerator", CATEGORY_CONFIG, harderIC2Macerator, "Makes the IC2 Macerator more expensive");
 		betterIC2SolarRecipes = cfg.getBoolean("betterIC2SolarRecipes", CATEGORY_CONFIG, betterIC2SolarRecipes, "Makes the basic IC2 solar recipes simplier but more expensive");
 		gregtechUURecipes = cfg.getBoolean("gregtechUURecipes", CATEGORY_CONFIG, gregtechUURecipes, "Adds UU recipes for GregTech materials");
-		unifyWroughIron = cfg.getBoolean("unifyWroughIron", CATEGORY_CONFIG, unifyWroughIron, "Unifies all cases of ingotWroughtIron and ingotRefinedIron");
+		unifyWroughtIron = cfg.getBoolean("unifyWroughtIron", CATEGORY_CONFIG, unifyWroughtIron, "Unifies all cases of ingotWroughtIron and ingotRefinedIron");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {

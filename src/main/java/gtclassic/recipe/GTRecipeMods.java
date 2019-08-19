@@ -162,6 +162,9 @@ public class GTRecipeMods {
 		/** Thermal Mods **/
 		if (GTConfig.compatThermal && Loader.isModLoaded(GTValues.THERMAL)) {
 			GTMod.logger.info("Doing Thermal Expansion Things");
+			// Hardended Glass
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 1),
+					input("dustObsidian", 4) }, GTTileMultiBlastFurnace.COST_SMALL, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "glass", 3, 2));
 			// Invar
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Iron", 2),
 					metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 162, 3));
@@ -178,20 +181,30 @@ public class GTRecipeMods {
 			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 3), metal("Platinum", 1),
 					input("dustEnderPearl", 4) }, GTTileMultiBlastFurnace.COST_MED, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 167, 4));
 			// Adding thermal stuff to fluid gen
-			doThermalLiquidFuelThings("crude_oil", 50000, 10);
-			doThermalLiquidFuelThings("redstone", 10000, 10);
-			doThermalLiquidFuelThings("glowstone", 25000, 12);
-			doThermalLiquidFuelThings("pyrotheum", 200000, 36);
-			doThermalLiquidFuelThings("cryotheum", 50000, 12);
-			doThermalLiquidFuelThings("aerotheum", 50000, 12);
-			doThermalLiquidFuelThings("petrotheum", 50000, 12);
-			doThermalLiquidFuelThings("creosote", 5000, 8);
-			doThermalLiquidFuelThings("coal", 50000, 10);
-			doThermalLiquidFuelThings("refined_oil", 150000, 24);
-			doThermalLiquidFuelThings("refined_fuel", 200000, 32);
-			doThermalLiquidFuelThings("seed_oil", 6000, 6);
-			doThermalLiquidFuelThings("tree_oil", 50000, 8);
-			doThermalLiquidFuelThings("refined_biofuel", 100000, 10);
+			addFluidGeneratorRecipe("crude_oil", 50000, 10);
+			addFluidGeneratorRecipe("redstone", 10000, 10);
+			addFluidGeneratorRecipe("glowstone", 25000, 12);
+			addFluidGeneratorRecipe("pyrotheum", 200000, 36);
+			addFluidGeneratorRecipe("cryotheum", 50000, 12);
+			addFluidGeneratorRecipe("aerotheum", 50000, 12);
+			addFluidGeneratorRecipe("petrotheum", 50000, 12);
+			addFluidGeneratorRecipe("creosote", 5000, 8);
+			addFluidGeneratorRecipe("coal", 50000, 10);
+			addFluidGeneratorRecipe("refined_oil", 150000, 24);
+			addFluidGeneratorRecipe("refined_fuel", 200000, 32);
+			addFluidGeneratorRecipe("seed_oil", 6000, 6);
+			addFluidGeneratorRecipe("tree_oil", 50000, 8);
+			addFluidGeneratorRecipe("refined_biofuel", 100000, 10);
+			// Oil sand stuff
+			GTTileCentrifuge.addRecipe("oreClathrateOilSand", 2, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 892, 6), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 833, 1));
+			GTTileCentrifuge.addRecipe("oreClathrateOilShale", 2, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 892, 6), GTMaterialGen.get(Items.FLINT));
+			// Macerator Stuff
+			TileEntityMacerator.addRecipe("oreClathrateRedstone", 1, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 893, 3));
+			TileEntityMacerator.addRecipe("oreClathrateGlowstone", 1, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 894, 3));
+			TileEntityMacerator.addRecipe("oreClathrateEnder", 1, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 895, 3));
+			// Just two fun Electrolyer recipes
+			ClassicRecipes.electrolyzer.addChargeRecipe(GTMaterialGen.getModMetaItem(GTValues.THERMAL, "bait", 1, 1), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "bait", 2, 1), 16000, "ThermalBait");
+			ClassicRecipes.electrolyzer.addChargeRecipe(GTMaterialGen.getModMetaItem(GTValues.THERMAL, "fertilizer", 1, 1), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "fertilizer", 2, 1), 16000, "ThermalFertilizer");
 		}
 		/** Forestry Sub Module, last so bees are always last **/
 		if (GTConfig.compatForestry && Loader.isModLoaded(GTValues.FORESTRY)) {
@@ -215,7 +228,7 @@ public class GTRecipeMods {
 				input("dustCharcoal", 1) }, 6000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 1));
 	}
 
-	public static void doThermalLiquidFuelThings(String fluid, int total, int output) {
+	public static void addFluidGeneratorRecipe(String fluid, int total, int output) {
 		int translation = total / output;
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid(fluid), translation, output);
 	}
