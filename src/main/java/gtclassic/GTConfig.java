@@ -12,9 +12,19 @@ public class GTConfig {
 	private static final String CATEGORY_MODCOMPAT = "modcompatability";
 	// config
 	public static boolean debugMode = false;
+	public static boolean animatedTextures = true;
 	public static boolean addLootItems = true;
 	public static boolean ingotsRequireBlastFurnace = true;
 	public static boolean preventMobSpawnsCloseToSpawn = true;
+	public static boolean removeIC2MassFab = true;
+	public static boolean removeIC2Plasmafier = true;
+	public static boolean addBasicCircuitRecipes = true;
+	public static boolean addAdvCircuitRecipes = true;
+	public static boolean vanillaRailRecipes = true;
+	public static boolean harderIC2Macerator = true;
+	public static boolean betterIC2SolarRecipes = true;
+	public static boolean gregtechUURecipes = true;
+	public static boolean unifyWroughIron = true;
 	// generation
 	public static boolean bauxiteGenerate = true;
 	public static int bauxiteSize = 16;
@@ -59,9 +69,19 @@ public class GTConfig {
 	private static void initGeneralConfig(Configuration cfg) {
 		cfg.addCustomCategoryComment(CATEGORY_CONFIG, "Configuration");
 		debugMode = cfg.getBoolean("debugMode", CATEGORY_CONFIG, debugMode, "Enables debug logger for additional information");
+		animatedTextures = cfg.getBoolean("animatedTextures", CATEGORY_CONFIG, animatedTextures, "Enables animated textures for GT blocks and items");
 		addLootItems = cfg.getBoolean("addLootItems", CATEGORY_CONFIG, addLootItems, "Adds GregTech items to loot pool");
 		ingotsRequireBlastFurnace = cfg.getBoolean("ingotsRequireBlastFurnace", CATEGORY_CONFIG, ingotsRequireBlastFurnace, "Tries to remove vanilla smelting of end game metals from all loaded mods");
 		preventMobSpawnsCloseToSpawn = cfg.getBoolean("preventMobSpawnsCloseToSpawn", CATEGORY_CONFIG, preventMobSpawnsCloseToSpawn, "Prevents mob spawning in a 128 block radius around world spawn");
+		removeIC2MassFab = cfg.getBoolean("removeIc2MassFab", CATEGORY_CONFIG, removeIC2MassFab, "Removes the IC2 Mass Fab in favor of the GT Matter Fabricator");
+		removeIC2Plasmafier = cfg.getBoolean("removeIc2Plasmafier", CATEGORY_CONFIG, removeIC2Plasmafier, "Removes the IC2 Plasmafier in favor of GT Fusion");
+		addBasicCircuitRecipes = cfg.getBoolean("addBasicCircuitRecipes", CATEGORY_CONFIG, addBasicCircuitRecipes, "Adds more metals to basic circuits, and a 2 x basic circuit recipe");
+		addAdvCircuitRecipes = cfg.getBoolean("addAdvCircuitRecipes", CATEGORY_CONFIG, addAdvCircuitRecipes, "Adds more materials to adv circuit recipe");
+		vanillaRailRecipes = cfg.getBoolean("vanillaRailRecipes", CATEGORY_CONFIG, vanillaRailRecipes, "Adds better recipes for vanilla rails");
+		harderIC2Macerator = cfg.getBoolean("harderIC2Macerator", CATEGORY_CONFIG, harderIC2Macerator, "Makes the IC2 Macerator more expensive");
+		betterIC2SolarRecipes = cfg.getBoolean("betterIC2SolarRecipes", CATEGORY_CONFIG, betterIC2SolarRecipes, "Makes the basic IC2 solar recipes simplier but more expensive");
+		gregtechUURecipes = cfg.getBoolean("gregtechUURecipes", CATEGORY_CONFIG, gregtechUURecipes, "Adds UU recipes for GregTech materials");
+		unifyWroughIron = cfg.getBoolean("unifyWroughIron", CATEGORY_CONFIG, unifyWroughIron, "Unifies all cases of ingotWroughtIron and ingotRefinedIron");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {

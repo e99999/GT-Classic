@@ -20,7 +20,7 @@ public class GTRecipeProcessing {
 
 	static IMachineRecipeList smelting = ClassicRecipes.furnace;
 
-	public static void recipesProcessing() {
+	public static void init() {
 		maceratorUtil("oreBauxite", 1, GTMaterialGen.getDust(GTMaterial.Bauxite, 4));
 		maceratorUtil("oreIridium", 1, GTMaterialGen.getDust(GTMaterial.Iridium, 2));
 		TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1), GTMaterialGen.getDust(GTMaterial.Iridium, 1));

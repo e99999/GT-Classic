@@ -62,7 +62,9 @@ public class GTMod {
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
 		MinecraftForge.EVENT_BUS.register(new GTSpawnEventHandler());
 		IC2.saveManager.registerGlobal("IDSU_Storage", IDSUStorage.class, false);
-		GTTileMultiBlastFurnace.removals();
+		if (GTConfig.ingotsRequireBlastFurnace) {
+			GTTileMultiBlastFurnace.removals();
+		}
 		proxy.init(e);
 	}
 
@@ -70,7 +72,9 @@ public class GTMod {
 	public void postInit(FMLPostInitializationEvent e) {
 		proxy.postInit(e);
 		MultiBlockHelper.INSTANCE.init();
-		GTTileMultiBlastFurnace.removals();
+		if (GTConfig.ingotsRequireBlastFurnace) {
+			GTTileMultiBlastFurnace.removals();
+		}
 		GTRecipe.postInit();
 	}
 

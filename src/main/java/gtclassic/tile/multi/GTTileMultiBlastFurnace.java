@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBlastFurnace;
 import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
@@ -16,7 +15,7 @@ import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.recipe.GTRecipeProcessing;
 import gtclassic.util.GTLang;
-import gtclassic.util.GTValues;
+import gtclassic.util.GTStackUtil;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
@@ -172,12 +171,10 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 			NonNullList<ItemStack> items = NonNullList.create();
 			item.getSubItems(CreativeTabs.SEARCH, items);
 			for (ItemStack stack : items) {
-				if (GTConfig.ingotsRequireBlastFurnace) {
-					if (GTValues.matchOreDict(stack, "ingotIridium") || GTValues.matchOreDict(stack, "ingotTungsten")
-							|| GTValues.matchOreDict(stack, "ingotChrome")
-							|| GTValues.matchOreDict(stack, "ingotTitanium")) {
-						GTRecipeProcessing.removeSmelting(stack);
-					}
+				if (GTStackUtil.matchOreDict(stack, "ingotIridium") || GTStackUtil.matchOreDict(stack, "ingotTungsten")
+						|| GTStackUtil.matchOreDict(stack, "ingotChrome")
+						|| GTStackUtil.matchOreDict(stack, "ingotTitanium")) {
+					GTRecipeProcessing.removeSmelting(stack);
 				}
 			}
 		}

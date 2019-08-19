@@ -2,11 +2,9 @@ package gtclassic.util;
 
 import gtclassic.GTMod;
 import ic2.core.IC2;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class GTValues {
 	/*
@@ -68,23 +66,5 @@ public class GTValues {
 		} else {
 			return "null";
 		}
-	}
-
-	public static String matchOreDictFirst(ItemStack stack) {
-		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
-			return OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[0]);
-		}
-		return null;
-	}
-
-	public static boolean matchOreDict(ItemStack stack, String entry) {
-		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
-			for (int i = 0; i < OreDictionary.getOreIDs(stack).length; i++) {
-				if (OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[i]).contains(entry)) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 }

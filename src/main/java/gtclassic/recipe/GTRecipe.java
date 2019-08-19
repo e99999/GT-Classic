@@ -1,6 +1,7 @@
 package gtclassic.recipe;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTConfig;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
@@ -65,8 +66,8 @@ public class GTRecipe {
 	 * recipes with be in this class
 	 */
 	public static void init() {
-		GTRecipeIterators.recipeIterators1();
-		GTRecipeProcessing.recipesProcessing();
+		GTRecipeIterators.init();
+		GTRecipeProcessing.init();
 		GTRecipeUUAmplifier.init();
 		GTTileCentrifuge.init();
 		GTTileMatterFabricator.init();
@@ -79,6 +80,7 @@ public class GTRecipe {
 	}
 
 	public static void postInit() {
+		GTRecipeIterators.postInit();
 		GTRecipeMods.postInit();
 	}
 
@@ -193,9 +195,14 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
 				"circuitMaster", 'S', GTBlocks.tileSupercondensator, 'A', GTBlocks.casingHighlyAdvanced });
 		/** Fusion Computer **/
-		recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] {
-				"ESE", "LCL", "ESE", 'E', "circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C',
-				GTBlocks.tileComputer });
+		if (GTConfig.removeIC2Plasmafier) {
+			recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] {
+					"ESE", "LCL", "ESE", 'E', "circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C',
+					GTBlocks.tileComputer });
+		} else {
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] { "ESE", "LCL", "ESE", 'E',
+					"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C', GTBlocks.tileComputer });
+		}
 		/** Player Detector **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
 				Blocks.OBSERVER, 'C', "circuitBasic", 'c', Ic2Items.advMachine });
@@ -223,9 +230,15 @@ public class GTRecipe {
 		/** Fluid Buffer **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', Items.BUCKET);
 		/** Matter Fabricator **/
-		recipes.overrideRecipe("shaped_tile.blockMatter_1416524227", GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] {
-				"ETE", "HLH", "ETE", 'E', "circuitMaster", 'T', Ic2Items.teleporter, 'H', GTBlocks.casingHighlyAdvanced,
-				'L', "batteryUltimate" });
+		if (GTConfig.removeIC2MassFab) {
+			recipes.overrideRecipe("shaped_tile.blockMatter_1416524227", GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] {
+					"ETE", "HLH", "ETE", 'E', "circuitMaster", 'T', Ic2Items.teleporter, 'H',
+					GTBlocks.casingHighlyAdvanced, 'L', "batteryUltimate" });
+		} else {
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] { "ETE", "HLH", "ETE", 'E',
+					"circuitMaster", 'T', Ic2Items.teleporter, 'H', GTBlocks.casingHighlyAdvanced, 'L',
+					"batteryUltimate" });
+		}
 		/** Charge-O-Mat **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileChargeOmat, 1), new Object[] { "RCR", "AEA", "RMR", 'E',
 				"batteryUltimate", 'R', "circuitMaster", 'A', "chestWood", 'C', GTBlocks.tileComputer, 'M',
@@ -263,25 +276,26 @@ public class GTRecipe {
 					"batteryAdvanced" });
 		}
 		/** More recipes for vanilla rails **/
-		// TODO check for railcraft for these
-		// golden
-		recipes.addRecipe(GTMaterialGen.get(Blocks.GOLDEN_RAIL, 6), new Object[] { "I I", "ISI", "IRI", 'I',
-				"ingotElectrum", 'S', "stickWood", 'R', "dustRedstone" });
-		// detector
-		recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 8), new Object[] { "I I", "ISI", "IRI", 'I',
-				ingotRefinedIron, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', "dustRedstone" });
-		recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 12), new Object[] { "I I", "ISI", "IRI", 'I',
-				ingotHigh, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', "dustRedstone" });
-		// regular
-		recipes.addRecipe(GTMaterialGen.get(Blocks.RAIL, 20), new Object[] { "I I", "ISI", "I I", 'I', ingotRefinedIron,
-				'S', "stickWood" });
-		recipes.addRecipe(GTMaterialGen.get(Blocks.RAIL, 32), new Object[] { "I I", "ISI", "I I", 'I', ingotHigh, 'S',
-				"stickWood" });
-		// activator
-		recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 8), new Object[] { "IRI", "ISI", "IRI", 'I',
-				ingotRefinedIron, 'S', Blocks.REDSTONE_TORCH, 'R', "stickWood" });
-		recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 16), new Object[] { "IRI", "ISI", "IRI", 'I',
-				ingotHigh, 'S', Blocks.REDSTONE_TORCH, 'R', "stickWood" });
+		if (GTConfig.vanillaRailRecipes) {
+			// golden
+			recipes.addRecipe(GTMaterialGen.get(Blocks.GOLDEN_RAIL, 6), new Object[] { "I I", "ISI", "IRI", 'I',
+					"ingotElectrum", 'S', "stickWood", 'R', "dustRedstone" });
+			// detector
+			recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 8), new Object[] { "I I", "ISI", "IRI", 'I',
+					ingotRefinedIron, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', "dustRedstone" });
+			recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 12), new Object[] { "I I", "ISI", "IRI", 'I',
+					ingotHigh, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', "dustRedstone" });
+			// regular
+			recipes.addRecipe(GTMaterialGen.get(Blocks.RAIL, 20), new Object[] { "I I", "ISI", "I I", 'I',
+					ingotRefinedIron, 'S', "stickWood" });
+			recipes.addRecipe(GTMaterialGen.get(Blocks.RAIL, 32), new Object[] { "I I", "ISI", "I I", 'I', ingotHigh,
+					'S', "stickWood" });
+			// activator
+			recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 8), new Object[] { "IRI", "ISI", "IRI", 'I',
+					ingotRefinedIron, 'S', Blocks.REDSTONE_TORCH, 'R', "stickWood" });
+			recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 16), new Object[] { "IRI", "ISI", "IRI", 'I',
+					ingotHigh, 'S', Blocks.REDSTONE_TORCH, 'R', "stickWood" });
+		}
 		/** Thorium rods **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium2), new Object[] { "UCU", 'U', GTItems.rodThorium1, 'C',
 				Ic2Items.denseCopperPlate.copy() });
@@ -338,19 +352,28 @@ public class GTRecipe {
 		/** Iridium Plate **/
 		recipes.overrideRecipe("shaped_item.itemPartIridium_1100834802", GTMaterialGen.getIc2(Ic2Items.iridiumPlate, 1), "IAI", "ADA", "IAI", 'I', "ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
 		/** Circutry Stuff **/
-		recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RIR", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
-		recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CIC", "CRC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CCC", "III", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CIC", "CIC", "CIC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
-		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RGR", "LCL", "RGR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
-		recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RLR", "GCG", "RLR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
+		if (GTConfig.addBasicCircuitRecipes) {
+			recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RIR", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
+			recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CIC", "CRC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
+			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CCC", "III", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
+			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CIC", "CIC", "CIC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
+		}
+		if (GTConfig.addAdvCircuitRecipes) {
+			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RGR", "LCL", "RGR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
+			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RLR", "GCG", "RLR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
+		}
 		/** Making the macerator harder **/
-		recipes.overrideRecipe("shaped_tile.blockStoneMacerator_-130868445", Ic2Items.stoneMacerator.copy(), new Object[] {
-				"FDF", "DPD", "FBF", 'D', "gemDiamond", 'F', Items.FLINT, 'P', Blocks.PISTON, 'B', Blocks.FURNACE });
-		recipes.overrideRecipe("shaped_tile.blockMacerator_127744036", Ic2Items.macerator.copy(), new Object[] { "III",
-				"IMI", "ICI", 'I', ingotRefinedIron, 'M', Ic2Items.stoneMacerator.copy(), 'C', "circuitAdvanced" });
-		recipes.overrideRecipe("shaped_tile.blockMacerator_2072794668", Ic2Items.macerator.copy(), new Object[] { "FDF",
-				"DMD", "FCF", 'D', "gemDiamond", 'F', Items.FLINT, 'M', Ic2Items.machine, 'C', "circuitAdvanced" });
+		if (GTConfig.harderIC2Macerator) {
+			recipes.overrideRecipe("shaped_tile.blockStoneMacerator_-130868445", Ic2Items.stoneMacerator.copy(), new Object[] {
+					"FDF", "DPD", "FBF", 'D', "gemDiamond", 'F', Items.FLINT, 'P', Blocks.PISTON, 'B',
+					Blocks.FURNACE });
+			recipes.overrideRecipe("shaped_tile.blockMacerator_127744036", Ic2Items.macerator.copy(), new Object[] {
+					"III", "IMI", "ICI", 'I', ingotRefinedIron, 'M', Ic2Items.stoneMacerator.copy(), 'C',
+					"circuitAdvanced" });
+			recipes.overrideRecipe("shaped_tile.blockMacerator_2072794668", Ic2Items.macerator.copy(), new Object[] {
+					"FDF", "DMD", "FCF", 'D', "gemDiamond", 'F', Items.FLINT, 'M', Ic2Items.machine, 'C',
+					"circuitAdvanced" });
+		}
 		/** RE Battery **/
 		recipes.overrideRecipe("shaped_item.itemBatRE_2077392104", GTMaterialGen.getIc2(Ic2Items.battery, 1), " C ", "TRT", "TRT", 'T', "ingotTin", 'R', "dustRedstone", 'C', Ic2Items.copperCable.copy());
 		/** Energium Crystal Stuff **/
@@ -360,12 +383,14 @@ public class GTRecipe {
 		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GTMaterialGen.getIc2(Ic2Items.lapotronCrystal, 1), new Object[] {
 				"LCL", "LDL", "LCL", 'D', highCrystal, 'C', "circuitBasic", 'L', anyLapis });
 		/** Solar Panel **/
-		recipes.overrideRecipe("shaped_tile.blockSolarGenerator_1093731471", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] {
-				"XYX", "YXY", "CVC", 'V', Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C',
-				Ic2Items.carbonPlate });
-		recipes.overrideRecipe("shaped_tile.blockSolarGenerator_261816397", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] {
-				"YYY", "XXX", "CVC", 'V', Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C',
-				Ic2Items.carbonPlate });
+		if (GTConfig.betterIC2SolarRecipes) {
+			recipes.overrideRecipe("shaped_tile.blockSolarGenerator_1093731471", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] {
+					"XYX", "YXY", "CVC", 'V', Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C',
+					Ic2Items.carbonPlate });
+			recipes.overrideRecipe("shaped_tile.blockSolarGenerator_261816397", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] {
+					"YYY", "XXX", "CVC", 'V', Ic2Items.machine.copy(), 'X', "itemSilicon", 'Y', "blockGlass", 'C',
+					Ic2Items.carbonPlate });
+		}
 		/** Adding ruby to glass fiber cable **/
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotSilver, 'V', lowCrystal);
@@ -397,17 +422,19 @@ public class GTRecipe {
 				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 16), 'X',
 				GTMaterialGen.get(GTItems.heatStorageHelium6) });
 		/** UU-Matter Recipes **/
-		recipes.overrideRecipe("shaped_item.emerald_981588030", GTMaterialGen.get(Items.EMERALD), new Object[] { "UUU",
-				"UUU", " U ", 'U', GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
-		recipes.addRecipe(GTMaterialGen.getGem(GTMaterial.Ruby, 1), new Object[] { " UU", "UUU", "UU ", 'U',
-				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
-		recipes.addRecipe(GTMaterialGen.getGem(GTMaterial.Sapphire, 1), new Object[] { "UU ", "UUU", " UU", 'U',
-				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.oreBauxite, 6), new Object[] { "U U", " UU", "U U", 'U',
-				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
-		recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Titanium, 2), new Object[] { "UUU", " U ", " U ", 'U',
-				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
-		recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Aluminium, 16), new Object[] { " U ", " U ", "UUU", 'U',
-				GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+		if (GTConfig.gregtechUURecipes) {
+			recipes.overrideRecipe("shaped_item.emerald_981588030", GTMaterialGen.get(Items.EMERALD), new Object[] {
+					"UUU", "UUU", " U ", 'U', GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+			recipes.addRecipe(GTMaterialGen.getGem(GTMaterial.Ruby, 1), new Object[] { " UU", "UUU", "UU ", 'U',
+					GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+			recipes.addRecipe(GTMaterialGen.getGem(GTMaterial.Sapphire, 1), new Object[] { "UU ", "UUU", " UU", 'U',
+					GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.oreBauxite, 6), new Object[] { "U U", " UU", "U U", 'U',
+					GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+			recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Titanium, 2), new Object[] { "UUU", " U ", " U ", 'U',
+					GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+			recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Aluminium, 16), new Object[] { " U ", " U ", "UUU", 'U',
+					GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+		}
 	}
 }

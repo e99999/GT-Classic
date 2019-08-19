@@ -28,6 +28,7 @@ public class GTRecipeUUAmplifier {
 					new RecipeInputItemStack(var.getInput().getInputs().get(0)) }, value(var.getOutput().getMetadata().getInteger("amplification")), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
 		}
 		/** Adding my elements **/
+		// TODO add elements here
 		for (GTRecipeElementObject element : GTRecipeElementObject.fusionObjects) {
 			int value = element.getNumber() * 1000;
 			if (value < 5000) {

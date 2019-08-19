@@ -3,6 +3,7 @@ package gtclassic.util;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class GTStackUtil {
 
@@ -43,12 +44,24 @@ public class GTStackUtil {
 		}
 		return tile.inventory.get(slot).getCount() == tile.inventory.get(slot).getMaxStackSize();
 	}
-	
+
 	/** Gets the stacksize of a slot **/
 	public int getSlotStackCount(TileEntityMachine tile, int slot) {
 		if (tile.inventory.get(slot).isEmpty()) {
 			return 0;
 		}
 		return tile.getStackInSlot(slot).getCount();
+	}
+
+	/** Checks if an itemstack has an oredict entry **/
+	public static boolean matchOreDict(ItemStack stack, String entry) {
+		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
+			for (int i = 0; i < OreDictionary.getOreIDs(stack).length; i++) {
+				if (OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[i]).contains(entry)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }

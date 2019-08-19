@@ -68,12 +68,11 @@ public abstract class GTItemBaseToggleItem extends BasicElectricItem implements 
 		NBTTagCompound nbt = StackUtil.getOrCreateNbtData((stack));
 		return nbt.getBoolean(ACTIVE);
 	}
-	
+
 	@Override
-	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
-    {
-        return false;
-    }
+	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+		return false;
+	}
 
 	public abstract boolean onItemActive(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected);
 

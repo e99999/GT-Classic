@@ -1,19 +1,27 @@
 package gtclassic.recipe;
 
+import gtclassic.GTConfig;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTStackUtil;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class GTRecipeIterators {
 
 	public static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
 
-	public static void recipeIterators1() {
+	/** Iterates through the GregTech Classic mat registry **/
+	public static void init() {
 		/*
 		 * The statements below iterate through the material registry to create recipes
 		 * for the correct corresponding items and blocks.
@@ -22,6 +30,20 @@ public class GTRecipeIterators {
 			createIngotRecipe(mat);
 			createGemRecipe(mat);
 			createBlockRecipe(mat);
+		}
+	}
+
+	/** Iterates through loaded itemstacks for all mods **/
+	public static void postInit() {
+		for (Item item : Item.REGISTRY) {
+			NonNullList<ItemStack> items = NonNullList.create();
+			item.getSubItems(CreativeTabs.SEARCH, items);
+			for (ItemStack stack : items) {
+				if (GTConfig.unifyWroughIron && GTStackUtil.matchOreDict(stack, "ingotWroughtIron")
+						&& !GTStackUtil.matchOreDict(stack, "ingotRefinedIron")) {
+					OreDictionary.registerOre("ingotRefinedIron", stack);
+				}
+			}
 		}
 	}
 
