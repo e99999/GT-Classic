@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBlastFurnace;
 import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
@@ -167,14 +168,17 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 
 	public static void removals() {
 		// Remove smelting from mods who dont respect my authority
-		for (Item item : Item.REGISTRY) {
-			NonNullList<ItemStack> items = NonNullList.create();
-			item.getSubItems(CreativeTabs.SEARCH, items);
-			for (ItemStack stack : items) {
-				if (GTStackUtil.matchOreDict(stack, "ingotIridium") || GTStackUtil.matchOreDict(stack, "ingotTungsten")
-						|| GTStackUtil.matchOreDict(stack, "ingotChrome")
-						|| GTStackUtil.matchOreDict(stack, "ingotTitanium")) {
-					GTRecipeProcessing.removeSmelting(stack);
+		if (GTConfig.ingotsRequireBlastFurnace) {
+			for (Item item : Item.REGISTRY) {
+				NonNullList<ItemStack> items = NonNullList.create();
+				item.getSubItems(CreativeTabs.SEARCH, items);
+				for (ItemStack stack : items) {
+					if (GTStackUtil.matchOreDict(stack, "ingotIridium")
+							|| GTStackUtil.matchOreDict(stack, "ingotTungsten")
+							|| GTStackUtil.matchOreDict(stack, "ingotChrome")
+							|| GTStackUtil.matchOreDict(stack, "ingotTitanium")) {
+						GTRecipeProcessing.removeSmelting(stack);
+					}
 				}
 			}
 		}

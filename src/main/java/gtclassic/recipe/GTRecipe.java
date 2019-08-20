@@ -6,10 +6,6 @@ import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tile.GTTileCentrifuge;
-import gtclassic.tile.GTTileMatterFabricator;
-import gtclassic.tile.multi.GTTileMultiBlastFurnace;
-import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
@@ -60,38 +56,14 @@ public class GTRecipe {
 	static IRecipeInput ingotDigital = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotChrome"), new RecipeInputOreDict("ingotTitanium") });
 
-	/*
-	 * For now this set of recipes is heavily broken apart which allows me to
-	 * reconfigure them with clarity. After the progression is finalized, all
-	 * recipes with be in this class
-	 */
-	public static void init() {
-		GTRecipeIterators.init();
-		GTRecipeProcessing.init();
-		GTRecipeUUAmplifier.init();
-		GTTileCentrifuge.init();
-		GTTileMatterFabricator.init();
-		GTTileMultiBlastFurnace.init();
-		GTTileMultiFusionReactor.init();
-		shapeless();
-		items();
-		blocks();
-		ic2();
-	}
-
-	public static void postInit() {
-		GTRecipeIterators.postInit();
-		GTRecipeMods.postInit();
-	}
-
-	public static void shapeless() {
+	public static void initShapeless() {
 		/** Duct Tape **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.ductTape), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64), GTMaterialGen.getIc2(Ic2Items.rubber, 64));
 		/** Small Buffer **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileBufferSmall, 8), GTMaterialGen.get(GTBlocks.tileBufferLarge, 1));
 	}
 
-	public static void items() {
+	public static void initItems() {
 		/** Test Tube **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.testTube, 32), new Object[] { "G G", "G G", " G ", 'G',
 				"blockGlass" });
@@ -160,9 +132,23 @@ public class GTRecipe {
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.echotron, 1), new Object[] { " C ", "CEC", " C ", 'E',
 				GTBlocks.tileEchotron, 'C', "circuitData" });
+		/** Thorium rods **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium2), new Object[] { "UCU", 'U', GTItems.rodThorium1, 'C',
+				Ic2Items.denseCopperPlate.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium4), new Object[] { " U ", "CCC", " U ", 'U',
+				GTItems.rodThorium2, 'C', Ic2Items.denseCopperPlate.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium4), new Object[] { "UCU", "CCC", "UCU", 'U',
+				GTItems.rodThorium1, 'C', Ic2Items.denseCopperPlate.copy() });
+		/** Plutonium Rod **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium2), new Object[] { "UCU", 'U', GTItems.rodPlutonium1,
+				'C', Ic2Items.denseCopperPlate.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium4), new Object[] { " U ", "CCC", " U ", 'U',
+				GTItems.rodPlutonium2, 'C', Ic2Items.denseCopperPlate.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium4), new Object[] { "UCU", "CCC", "UCU", 'U',
+				GTItems.rodPlutonium1, 'C', Ic2Items.denseCopperPlate.copy() });
 	}
 
-	public static void blocks() {
+	public static void initBlocks() {
 		/** Bonus recipe for piston **/
 		if (GTConfig.morePistonRecipes) {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood",
@@ -300,23 +286,9 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 16), new Object[] { "IRI", "ISI", "IRI", 'I',
 					ingotHigh, 'S', Blocks.REDSTONE_TORCH, 'R', "stickWood" });
 		}
-		/** Thorium rods **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium2), new Object[] { "UCU", 'U', GTItems.rodThorium1, 'C',
-				Ic2Items.denseCopperPlate.copy() });
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium4), new Object[] { " U ", "CCC", " U ", 'U',
-				GTItems.rodThorium2, 'C', Ic2Items.denseCopperPlate.copy() });
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium4), new Object[] { "UCU", "CCC", "UCU", 'U',
-				GTItems.rodThorium1, 'C', Ic2Items.denseCopperPlate.copy() });
-		/** Plutonium Rod **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium2), new Object[] { "UCU", 'U', GTItems.rodPlutonium1,
-				'C', Ic2Items.denseCopperPlate.copy() });
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium4), new Object[] { " U ", "CCC", " U ", 'U',
-				GTItems.rodPlutonium2, 'C', Ic2Items.denseCopperPlate.copy() });
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium4), new Object[] { "UCU", "CCC", "UCU", 'U',
-				GTItems.rodPlutonium1, 'C', Ic2Items.denseCopperPlate.copy() });
 	}
 
-	public static void ic2() {
+	public static void initIC2() {
 		/** Machine casings can take aluminium **/
 		recipes.overrideRecipe("shaped_tile.blockMachine_527557260", Ic2Items.machine.copy(), "III", "I I", "III", 'I', ingotMachine);
 		/** Alt Mining Laser Recipe **/

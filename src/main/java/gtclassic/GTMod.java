@@ -6,7 +6,13 @@ import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
+import gtclassic.recipe.GTRecipeIterators;
+import gtclassic.recipe.GTRecipeMods;
+import gtclassic.recipe.GTRecipeProcessing;
+import gtclassic.tile.GTTileCentrifuge;
+import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
+import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTLootHandler;
@@ -44,7 +50,7 @@ public class GTMod {
 	public synchronized void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
 		proxy.preInit(event);
-		logger.info("Hello from Gregtech Classic!");
+		logger.info("Hello from GregTech Classic!");
 		GTFluids.registerFluids();
 		GTBlocks.registerTiles();
 		GTMaterialGen.init();
@@ -57,14 +63,19 @@ public class GTMod {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
-		GTRecipe.init();
+		GTRecipeIterators.init();
+		GTRecipeProcessing.init();
+		GTTileCentrifuge.init();
+		GTTileMultiBlastFurnace.init();
+		GTTileMultiBlastFurnace.removals();
+		GTRecipe.initShapeless();
+		GTRecipe.initItems();
+		GTRecipe.initBlocks();
+		GTRecipe.initIC2();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
 		MinecraftForge.EVENT_BUS.register(new GTSpawnEventHandler());
 		IC2.saveManager.registerGlobal("IDSU_Storage", IDSUStorage.class, false);
-		if (GTConfig.ingotsRequireBlastFurnace) {
-			GTTileMultiBlastFurnace.removals();
-		}
 		proxy.init(e);
 	}
 
@@ -72,10 +83,11 @@ public class GTMod {
 	public void postInit(FMLPostInitializationEvent e) {
 		proxy.postInit(e);
 		MultiBlockHelper.INSTANCE.init();
-		if (GTConfig.ingotsRequireBlastFurnace) {
-			GTTileMultiBlastFurnace.removals();
-		}
-		GTRecipe.postInit();
+		GTRecipeIterators.postInit();
+		GTTileMatterFabricator.postInit();
+		GTTileMultiFusionReactor.postInit();
+		GTTileMultiBlastFurnace.removals();
+		GTRecipeMods.postInit();
 	}
 
 	@Mod.EventHandler

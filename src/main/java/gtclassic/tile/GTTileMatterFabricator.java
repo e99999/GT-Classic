@@ -1,12 +1,21 @@
 package gtclassic.tile;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import gtclassic.GTElement;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerMatterFabricator;
 import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.recipe.GTRecipeUUAmplifier;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
 import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.ClassicRecipes;
+import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
+import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
+import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -18,6 +27,7 @@ import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
@@ -34,6 +44,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	protected static final int[] slotOutputs = { 8 };
 	@NetworkField(index = 7)
 	float progress = 0;
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.uuamplifier");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/matterfabricator.png");
 
 	public GTTileMatterFabricator() {
@@ -102,7 +113,54 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		return progress;
 	}
 
-	public static void init() {
+	public static void postInit() {
+		/** Collecting ic2 entries **/
+		for (RecipeEntry var : ClassicRecipes.massfabAmplifier.getRecipeMap()) {
+			addAmplifier(new IRecipeInput[] {
+					new RecipeInputItemStack(var.getInput().getInputs().get(0)) }, value(var.getOutput().getMetadata().getInteger("amplification")), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
+		}
+		/** Adding my elements **/
+		for (GTElement element : GTElement.getElementList()) {
+			int value = element.getNumber() * 1000;
+			if (value < 5000) {
+				value = 5000;
+			}
+			if (element.getNumber() != 77) {
+				addAmplifier(new IRecipeInput[] {
+						element.getInput() }, value(value), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
+			}
+		}
+	}
+
+	/**
+	 * Stuff below for actual amp recipes and JEI iterators
+	 **/
+	public static IRecipeModifier[] value(int amount) {
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((amount / 1) - 100) };
+	}
+
+	public static void addAmplifier(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
+		List<IRecipeInput> inlist = new ArrayList<>();
+		List<ItemStack> outlist = new ArrayList<>();
+		for (IRecipeInput input : inputs) {
+			inlist.add(input);
+		}
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifiers) {
+			modifier.apply(mods);
+		}
+		for (ItemStack output : outputs) {
+			outlist.add(output);
+		}
+		addAmplifier(inlist, new MachineOutput(mods, outlist));
+	}
+
+	static void addAmplifier(List<IRecipeInput> input, MachineOutput output) {
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 1);
+	}
+
+	public static void removeRecipe(String id) {
+		RECIPE_LIST.removeRecipe(id);
 	}
 
 	@Override
@@ -119,7 +177,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 					// If stack is null then we do not need to check the recipe list for it.
 					continue;
 				}
-				for (MultiRecipe map : GTRecipeUUAmplifier.RECIPE_LIST.getRecipeList()) {
+				for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
 					IRecipeInput input = map.getInput(0);
 					// Doing a input Check this way because it allows the RecipeInput to define what
 					// it compares with.

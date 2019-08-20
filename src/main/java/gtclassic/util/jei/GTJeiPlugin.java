@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerWorktable;
 import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
-import gtclassic.recipe.GTRecipeUUAmplifier;
+import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.category.GTJeiUUAmplifierCategory;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
@@ -43,7 +43,7 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileWorktable), new String[] { "minecraft.crafting" });
 			// Amplifier
 			registry.handleRecipes(MultiRecipe.class, GTJeiUUAmplifierWrapper::new, "gt.uuamplifier");
-			registry.addRecipes(GTRecipeUUAmplifier.RECIPE_LIST.getRecipeList(), "gt.uuamplifier");
+			registry.addRecipes(GTTileMatterFabricator.RECIPE_LIST.getRecipeList(), "gt.uuamplifier");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileFabricator), "gt.uuamplifier");
 			registry.addRecipeClickArea(GTMatterFabricatorGui.class, 105, 34, 62, 22, "gt.uuamplifier");
 		}

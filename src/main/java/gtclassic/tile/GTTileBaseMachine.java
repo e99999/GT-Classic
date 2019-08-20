@@ -609,10 +609,6 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		return false;
 	}
 
-	public static void init() {
-		// TODO Auto-generated method stub
-	}
-
 	@Override
 	public List<ItemStack> getDrops() {
 		List<ItemStack> list = super.getDrops();

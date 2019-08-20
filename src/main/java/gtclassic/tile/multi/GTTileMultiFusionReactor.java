@@ -7,13 +7,13 @@ import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTElement;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionReactor;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTLang;
 import gtclassic.util.int3;
-import gtclassic.util.recipe.GTRecipeElementObject;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
@@ -144,12 +144,15 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 		return false;
 	}
 
-	public static void init() {
+	public static void postInit() {
+		/** Just regular recipes added manually **/
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
+				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 		/** This iterates the element objects to create all Fusion recipes **/
 		Set<Integer> usedInputs = new HashSet<>();
-		for (GTRecipeElementObject sum : GTRecipeElementObject.fusionObjects) {
-			for (GTRecipeElementObject input1 : GTRecipeElementObject.fusionObjects) {
-				for (GTRecipeElementObject input2 : GTRecipeElementObject.fusionObjects) {
+		for (GTElement sum : GTElement.getElementList()) {
+			for (GTElement input1 : GTElement.getElementList()) {
+				for (GTElement input2 : GTElement.getElementList()) {
 					int hash = input1.hashCode() + input2.hashCode();
 					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2
 							&& !usedInputs.contains(hash)) {
@@ -161,9 +164,6 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 				}
 			}
 		}
-		/** Just regular recipes added manually **/
-		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
-				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
 
 	public static IRecipeModifier[] totalEu(int total) {

@@ -6,7 +6,7 @@ import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.recipe.GTRecipeUUAmplifier;
+import gtclassic.tile.GTTileMatterFabricator;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.platform.registry.Ic2Items;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -33,13 +33,13 @@ public class GTMatterFabSupport {
 
 		@Override
 		public void apply() {
-			GTRecipeUUAmplifier.addAmplifierToJei(new IRecipeInput[] {
-					input }, GTRecipeUUAmplifier.value(amplifier), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
+			GTTileMatterFabricator.addAmplifier(new IRecipeInput[] {
+					input }, GTTileMatterFabricator.value(amplifier), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
 		}
 
 		@Override
 		public String describe() {
-			return String.format(Locale.ENGLISH, "Add Recipe[%s, %s] to %s", this.input, this.amplifier, GTRecipeUUAmplifier.RECIPE_LIST);
+			return String.format(Locale.ENGLISH, "Add Recipe[%s, %s] to %s", this.input, this.amplifier, GTTileMatterFabricator.RECIPE_LIST);
 		}
 	}
 }
