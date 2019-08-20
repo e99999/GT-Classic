@@ -1,6 +1,6 @@
 package gtclassic.tile;
 
-import gtclassic.util.GTSpawnEventHandler;
+import gtclassic.events.GTEventCheckSpawn;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
@@ -25,7 +25,7 @@ public class GTTileMobRepeller extends TileEntityElecMachine implements ITickabl
 		super.onLoaded();
 		int[] coords = new int[] { this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(),
 				this.getWorld().provider.getDimension() };
-		GTSpawnEventHandler.mobReps.add(coords);
+		GTEventCheckSpawn.mobReps.add(coords);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class GTTileMobRepeller extends TileEntityElecMachine implements ITickabl
 		super.onUnloaded();
 		int[] coords = new int[] { this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(),
 				this.getWorld().provider.getDimension() };
-		GTSpawnEventHandler.mobReps.remove(coords);
+		GTEventCheckSpawn.mobReps.remove(coords);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class GTTileMobRepeller extends TileEntityElecMachine implements ITickabl
 		if (!this.redstoneEnabled()) {
 			int[] coords = new int[] { this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(),
 					this.getWorld().provider.getDimension() };
-			if (world.getTotalWorldTime() % 600 == 0 && !GTSpawnEventHandler.mobReps.contains(coords)) {
-				GTSpawnEventHandler.mobReps.add(coords);
+			if (world.getTotalWorldTime() % 600 == 0 && !GTEventCheckSpawn.mobReps.contains(coords)) {
+				GTEventCheckSpawn.mobReps.add(coords);
 			}
 			if (this.energy >= 4) {
 				this.range = 64;

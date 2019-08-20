@@ -1,4 +1,4 @@
-package gtclassic.util;
+package gtclassic.events;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +15,16 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class GTSpawnEventHandler {
+public class GTEventCheckSpawn {
 
 	public static volatile List<int[]> mobReps = new ArrayList<>();
 
-	public GTSpawnEventHandler() {
+	public GTEventCheckSpawn() {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@SubscribeEvent
-	public void denyMobSpawn(CheckSpawn event) {
+	public void onSpawn(CheckSpawn event) {
 		if (event.getResult() == Event.Result.ALLOW) {
 			return;
 		}

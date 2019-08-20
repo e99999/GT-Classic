@@ -27,6 +27,8 @@ public class GTConfig {
 	public static boolean oreDictWroughtIron = true;
 	public static boolean moreHopperRecipes = true;
 	public static boolean morePistonRecipes = true;
+	public static boolean clearerWater = true;
+	public static boolean replaceOceanGravelWithSand = true;
 	// generation
 	public static boolean bauxiteGenerate = true;
 	public static int bauxiteSize = 16;
@@ -86,6 +88,8 @@ public class GTConfig {
 		oreDictWroughtIron = cfg.getBoolean("oreDictWroughtIron", CATEGORY_CONFIG, oreDictWroughtIron, "Ore dictionaries all cases of ingotWroughtIron and ingotRefinedIron together");
 		moreHopperRecipes = cfg.getBoolean("moreHopperRecipes", CATEGORY_CONFIG, moreHopperRecipes, "Adds more metals to vanilla hopper recipe");
 		morePistonRecipes = cfg.getBoolean("morePistonRecipes", CATEGORY_CONFIG, morePistonRecipes, "Adds more metals to vanilla piston recipe");
+		clearerWater = cfg.getBoolean("clearerWater", CATEGORY_CONFIG, clearerWater, "Reduces fog/haze when underwater");
+		replaceOceanGravelWithSand = cfg.getBoolean("replaceOceanGravelWithSand", CATEGORY_CONFIG, replaceOceanGravelWithSand, "Replaces most gravel in oceans with sand");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {

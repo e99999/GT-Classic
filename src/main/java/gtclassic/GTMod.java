@@ -2,6 +2,10 @@ package gtclassic;
 
 import org.apache.logging.log4j.Logger;
 
+import gtclassic.events.GTEventCheckSpawn;
+import gtclassic.events.GTEventChunkLoad;
+import gtclassic.events.GTEventEntityViewRenderEvent;
+import gtclassic.events.GTEventLootTableLoad;
 import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
@@ -15,8 +19,6 @@ import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
-import gtclassic.util.GTLootHandler;
-import gtclassic.util.GTSpawnEventHandler;
 import gtclassic.util.energy.IDSUStorage;
 import gtclassic.util.energy.MultiBlockHelper;
 import ic2.core.IC2;
@@ -73,8 +75,10 @@ public class GTMod {
 		GTRecipe.initBlocks();
 		GTRecipe.initIC2();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
-		MinecraftForge.EVENT_BUS.register(new GTLootHandler());
-		MinecraftForge.EVENT_BUS.register(new GTSpawnEventHandler());
+		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
+		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
+		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
+		MinecraftForge.EVENT_BUS.register(new GTEventChunkLoad());
 		IC2.saveManager.registerGlobal("IDSU_Storage", IDSUStorage.class, false);
 		proxy.init(e);
 	}

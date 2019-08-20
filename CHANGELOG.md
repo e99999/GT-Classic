@@ -2,6 +2,8 @@
 
 # 1.01 (Not Released)
 - I recommend regenerating configs in this version.
+- Added option to replace ocean gravel with sand like newer MC versions.
+- Added option to reduce fog/haze underwater like newer MC versions
 - Added configurable ore dict for any instance of ingotWroughtIron and ingotRefinedIron.
 - Fixed some electric items spamming the "use" animation.
 - Fixed a bug with the Quantum Chest that would stop it from reaching full capacity.

@@ -1,4 +1,4 @@
-package gtclassic.util;
+package gtclassic.events;
 
 import gtclassic.GTConfig;
 import gtclassic.GTMod;
@@ -13,7 +13,7 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class GTLootHandler {
+public class GTEventLootTableLoad {
 
 	@SubscribeEvent
 	public void onLootTableLoad(LootTableLoadEvent event) {
