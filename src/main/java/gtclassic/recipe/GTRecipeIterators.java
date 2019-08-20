@@ -39,7 +39,7 @@ public class GTRecipeIterators {
 			NonNullList<ItemStack> items = NonNullList.create();
 			item.getSubItems(CreativeTabs.SEARCH, items);
 			for (ItemStack stack : items) {
-				if (GTConfig.unifyWroughtIron && GTStackUtil.matchOreDict(stack, "ingotWroughtIron")
+				if (GTConfig.oreDictWroughtIron && GTStackUtil.matchOreDict(stack, "ingotWroughtIron")
 						&& !GTStackUtil.matchOreDict(stack, "ingotRefinedIron")) {
 					OreDictionary.registerOre("ingotRefinedIron", stack);
 				}

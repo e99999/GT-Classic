@@ -164,11 +164,15 @@ public class GTRecipe {
 
 	public static void blocks() {
 		/** Bonus recipe for piston **/
-		recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood", 'C',
-				"cobblestone", 'I', ingotAny, 'R', "dustRedstone" });
+		if (GTConfig.morePistonRecipes) {
+			recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood",
+					'C', "cobblestone", 'I', ingotAny, 'R', "dustRedstone" });
+		}
 		/** Bonus recipe for hopper **/
-		recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), new Object[] { "I I", "ICI", " I ", 'I', ingotAny, 'C',
-				"chestWood" });
+		if (GTConfig.moreHopperRecipes) {
+			recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), new Object[] { "I I", "ICI", " I ", 'I', ingotAny, 'C',
+					"chestWood" });
+		}
 		/** Reinforced Machine Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingReinforced, 5), new Object[] { "III", "CMC", "III", 'I',
 				ingotRefinedIron, 'C', "circuitAdvanced", 'M', Ic2Items.advMachine.copy() });

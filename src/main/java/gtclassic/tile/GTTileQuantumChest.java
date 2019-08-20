@@ -84,7 +84,9 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("digitalCount", this.digitalCount);
-		nbt.setTag("display", display.writeToNBT(new NBTTagCompound()));
+		if (this.display != null) {
+			nbt.setTag("display", display.writeToNBT(new NBTTagCompound()));
+		}
 		return nbt;
 	}
 

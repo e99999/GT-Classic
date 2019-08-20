@@ -24,7 +24,9 @@ public class GTConfig {
 	public static boolean harderIC2Macerator = true;
 	public static boolean betterIC2SolarRecipes = true;
 	public static boolean gregtechUURecipes = true;
-	public static boolean unifyWroughtIron = true;
+	public static boolean oreDictWroughtIron = true;
+	public static boolean moreHopperRecipes = true;
+	public static boolean morePistonRecipes = true;
 	// generation
 	public static boolean bauxiteGenerate = true;
 	public static int bauxiteSize = 16;
@@ -81,7 +83,9 @@ public class GTConfig {
 		harderIC2Macerator = cfg.getBoolean("harderIC2Macerator", CATEGORY_CONFIG, harderIC2Macerator, "Makes the IC2 Macerator more expensive");
 		betterIC2SolarRecipes = cfg.getBoolean("betterIC2SolarRecipes", CATEGORY_CONFIG, betterIC2SolarRecipes, "Makes the basic IC2 solar recipes simplier but more expensive");
 		gregtechUURecipes = cfg.getBoolean("gregtechUURecipes", CATEGORY_CONFIG, gregtechUURecipes, "Adds UU recipes for GregTech materials");
-		unifyWroughtIron = cfg.getBoolean("unifyWroughtIron", CATEGORY_CONFIG, unifyWroughtIron, "Unifies all cases of ingotWroughtIron and ingotRefinedIron");
+		oreDictWroughtIron = cfg.getBoolean("oreDictWroughtIron", CATEGORY_CONFIG, oreDictWroughtIron, "Ore dictionaries all cases of ingotWroughtIron and ingotRefinedIron together");
+		moreHopperRecipes = cfg.getBoolean("moreHopperRecipes", CATEGORY_CONFIG, moreHopperRecipes, "Adds more metals to vanilla hopper recipe");
+		morePistonRecipes = cfg.getBoolean("morePistonRecipes", CATEGORY_CONFIG, morePistonRecipes, "Adds more metals to vanilla piston recipe");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {

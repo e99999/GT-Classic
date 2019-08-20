@@ -25,7 +25,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("logRubber", Ic2Items.rubberWood);
 		OreDictionary.registerOre("dustRareEarth", Ic2Items.rareEarthDust);
 		OreDictionary.registerOre("dustWheat", Ic2Items.flour);
-		if (GTConfig.unifyWroughtIron) {
+		if (GTConfig.oreDictWroughtIron) {
 			OreDictionary.registerOre("ingotWroughtIron", Ic2Items.refinedIronIngot);
 		}
 		// Registering Aluminium for idiots

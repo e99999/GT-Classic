@@ -32,9 +32,9 @@ public class GTGuiCompFusion extends GuiComponent {
 		if (progress > 100) {
 			progress = 100;
 		}
-		gui.drawString("EU:" + this.block.energy, 10, 7, Color.cyan.hashCode());
-		gui.drawString("Coils:" + this.block.status, 10, 17, Color.cyan.hashCode());
-		gui.drawString("Progress:" + Math.round(progress) + "%", 10, 27, Color.cyan.hashCode());
+		gui.drawString("EU: " + this.block.energy, 10, 7, Color.cyan.hashCode());
+		gui.drawString("Coils: " + this.block.status, 10, 17, Color.cyan.hashCode());
+		gui.drawString("Progress: " + Math.round(progress) + "%", 10, 27, Color.cyan.hashCode());
 	}
 
 	@Override

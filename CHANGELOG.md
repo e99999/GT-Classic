@@ -2,7 +2,7 @@
 
 # 1.01 (Not Released)
 - I recommend regenerating configs in this version.
-- Added configurable unification for any instance of ingotWroughtIron and ingotRefinedIron.
+- Added configurable ore dict for any instance of ingotWroughtIron and ingotRefinedIron.
 - Fixed some electric items spamming the "use" animation.
 - Fixed a bug with the Quantum Chest that would stop it from reaching full capacity.
 - Fixed another bug with the Quantum Chest that would ignore items max stack size on output.
