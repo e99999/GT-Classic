@@ -8,11 +8,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
-import net.minecraftforge.event.world.ChunkEvent;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class GTEventChunkLoad {
+public class GTEventPopulateChunk {
 
 	public static final Block fromBlock = Blocks.GRAVEL; // change this to suit your need
 	public static final Block toBlock = Blocks.SAND; // change this to suit your need
@@ -22,10 +22,10 @@ public class GTEventChunkLoad {
 	 * https://www.minecraftforge.net/forum/topic/62021-replace-blocks-while-the-
 	 * world-generates/
 	 */
-	@SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-	public void onEvent(ChunkEvent.Load event) {
+	@SubscribeEvent(priority = EventPriority.NORMAL)
+	public void onEvent(PopulateChunkEvent.Post event) {
 		if (GTConfig.replaceOceanGravelWithSand) {
-			Chunk chunk = event.getChunk();
+			Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
 			Biome biomegenbase = event.getWorld().getBiome(new BlockPos(chunk.x * 16 + 16, 128, chunk.z * 16 + 16));
 			if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN)
 					|| BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {

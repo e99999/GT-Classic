@@ -3,9 +3,9 @@ package gtclassic;
 import org.apache.logging.log4j.Logger;
 
 import gtclassic.events.GTEventCheckSpawn;
-import gtclassic.events.GTEventChunkLoad;
 import gtclassic.events.GTEventEntityViewRenderEvent;
 import gtclassic.events.GTEventLootTableLoad;
+import gtclassic.events.GTEventPopulateChunk;
 import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
@@ -37,7 +37,7 @@ public class GTMod {
 
 	public static final String MODID = "gtclassic";
 	public static final String MODNAME = "GregTech Classic";
-	public static final String MODVERSION = "1.0.1";
+	public static final String MODVERSION = "1.0.2";
 	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
 	@SidedProxy(clientSide = MODID + ".proxy.GTProxyClient", serverSide = MODID + ".proxy.GTProxyServer")
@@ -78,7 +78,7 @@ public class GTMod {
 		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
 		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
-		MinecraftForge.EVENT_BUS.register(new GTEventChunkLoad());
+		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
 		IC2.saveManager.registerGlobal("IDSU_Storage", IDSUStorage.class, false);
 		proxy.init(e);
 	}

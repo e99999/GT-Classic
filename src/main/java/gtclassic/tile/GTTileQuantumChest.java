@@ -205,10 +205,20 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	public boolean onRightClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, Side side) {
 		// tries to pull one item
 		if (facing == this.getFacing()) {
-			if (playerIn.isSneaking() && !GTStackUtil.isSlotEmpty(this, slotOutput)) {
-				ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotOutput), 1));
-				getStackInSlot(slotOutput).shrink(1);
-				return true;
+			if (playerIn.isSneaking()) {
+				if (!GTStackUtil.isSlotEmpty(this, slotDisplay) && this.digitalCount >= 64) {
+					ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotDisplay), 64));
+					this.digitalCount = this.digitalCount - 64;
+					if (this.digitalCount == 0) {
+						inventory.get(slotDisplay).shrink(1);
+					}
+					return true;
+				}
+				if (!GTStackUtil.isSlotEmpty(this, slotOutput)) {
+					ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotOutput), 1));
+					getStackInSlot(slotOutput).shrink(1);
+					return true;
+				}
 			}
 			// tries to input a full stack of an item
 			ItemStack playerStack = playerIn.getHeldItemMainhand();

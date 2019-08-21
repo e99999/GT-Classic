@@ -1,6 +1,10 @@
 # Changelog
+# 1.02 (Not Released)
+- Fixed Fusion casings using the wrong casings
+- Made the Quantum Chest give full stacks if the internal storage is above 64 when clicked.
+- Fixed gravel being constantly overwritten with sand on chunk load.
 
-# 1.01 (Not Released)
+# 1.01
 - I recommend regenerating configs in this version.
 - Added option to replace ocean gravel with sand like newer MC versions.
 - Added option to reduce fog/haze underwater like newer MC versions
