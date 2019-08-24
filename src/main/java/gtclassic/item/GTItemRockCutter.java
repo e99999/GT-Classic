@@ -15,9 +15,11 @@ import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -129,5 +131,10 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_items")[14];
+	}
+
+	@Override
+	public boolean isSpecialSupported(ItemStack item, Enchantment ench) {
+		return ench == Enchantments.SILK_TOUCH || ench == Enchantments.EFFICIENCY;
 	}
 }

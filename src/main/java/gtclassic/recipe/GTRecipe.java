@@ -295,9 +295,10 @@ public class GTRecipe {
 		recipes.addRecipe(Ic2Items.miningLaser.copy(), new Object[] { "Rcc", "AAC", " AA", 'A',
 				Ic2Items.advancedAlloy.copy(), 'C', "circuitAdvanced", 'c',
 				GTMaterialGen.getFluid(GTMaterial.Helium, 1), 'R', "dustRedstone" });
-		/** Alt Reflector Recipe **/
-		recipes.addRecipe(Ic2Items.reactorReflectorThick.copy(), new Object[] { " P ", "PBP", " P ", 'P',
-				Ic2Items.reactorReflector, 'B', GTMaterialGen.getFluid(GTMaterial.Beryllium, 1) });
+		/** Thick Reflector Recipe **/
+		recipes.overrideRecipe("shaped_item.reactorReflectorThick_-1313142365", Ic2Items.reactorReflectorThick.copy(), new Object[] {
+				" P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B',
+				GTMaterialGen.getFluid(GTMaterial.Beryllium, 1) });
 		/** More Luminator Recipes **/
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G',
 				"blockGlass", 'I', "ingotSilver", 'H', GTMaterialGen.getFluid(GTMaterial.Helium, 1), 'C',
@@ -387,15 +388,15 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { "XXX", "XYX", "XXX", 'Y',
 				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 2), 'X', GTMaterialGen.get(GTItems.heatStorageHelium1) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 8), new Object[] { " X ", "XYX", " X ", 'Y',
-				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 4), 'X', GTMaterialGen.get(GTItems.heatStorageHelium3) });
+				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 8), 'X', GTMaterialGen.get(GTItems.heatStorageHelium3) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 16), new Object[] { "XXX", "XYX", "XXX",
-				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 8), 'X',
+				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 16), 'X',
 				GTMaterialGen.get(GTItems.heatStorageHelium3) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 16), new Object[] { " X ", "XYX", " X ",
-				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 8), 'X',
+				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 16), 'X',
 				GTMaterialGen.get(GTItems.heatStorageHelium6) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 32), new Object[] { "XXX", "XYX", "XXX",
-				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 16), 'X',
+				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 32), 'X',
 				GTMaterialGen.get(GTItems.heatStorageHelium6) });
 		/** UU-Matter Recipes **/
 		if (GTConfig.gregtechUURecipes) {

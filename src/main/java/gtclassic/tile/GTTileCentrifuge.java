@@ -139,8 +139,8 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		Item tube = GTItems.testTube;
 		/** Recipes from GT1 **/
 		addCustomRecipe(GTMaterialGen.getFluid(GTMaterial.Oxygen, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 2), totalEu(5000), GTMaterialGen.getIc2(Ic2Items.airCell, 2), GTMaterialGen.get(tube, 1));
-		addRecipe(GTMaterialGen.getWater(6), 0, totalEu(3000), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 4), GTMaterialGen.getFluid(GTMaterial.Oxygen, 2));
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.waterCell, 6), 6, totalEu(3000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 6), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 4), GTMaterialGen.getFluid(GTMaterial.Oxygen, 2));
+		addRecipe(GTMaterialGen.getWater(6), 0, totalEu(90000), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 4), GTMaterialGen.getFluid(GTMaterial.Oxygen, 2));
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.waterCell, 6), 6, totalEu(90000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 6), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 4), GTMaterialGen.getFluid(GTMaterial.Oxygen, 2));
 		addRecipe("dustCoal", 4, 0, totalEu(7500), GTMaterialGen.getDust(GTMaterial.Carbon, 8));
 		addRecipe("logRubber", 16, 4, totalEu(25000), GTMaterialGen.getDust(GTMaterial.Carbon, 8), GTMaterialGen.getIc2(Ic2Items.stickyResin, 8), GTMaterialGen.getIc2(Ic2Items.plantBall, 6), GTMaterialGen.getFluid(GTMaterial.Methane, 4));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Hydrogen, 4), 0, totalEu(6000), GTMaterialGen.get(tube, 3), GTMaterialGen.getFluid(GTMaterial.Deuterium, 1));
@@ -183,6 +183,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addRecipe("dustElectrum", 2, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.silverDust, 1), GTMaterialGen.getIc2(Ic2Items.goldDust, 1));
 		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 16), 4, totalEu(6000), GTMaterialGen.getFluid(GTMaterial.Methane, 4), GTMaterialGen.get(Items.LEATHER, 4), GTMaterialGen.get(Items.SLIME_BALL, 1));
 		addRecipe(GTMaterialGen.get(Blocks.SOUL_SAND, 12), 0, totalEu(12000), GTMaterialGen.get(Blocks.SAND, 11), GTMaterialGen.getFluid(GTMaterial.Oil, 1));
+		
 		/*
 		 * Recipes solely focused on getting methane from various things
 		 */
@@ -223,11 +224,11 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 	}
 
 	public static void addMethaneRecipe(ItemStack stack) {
-		addRecipe(stack, 1, totalEu(25000), GTMaterialGen.getFluid(GTMaterial.Methane, 1));
+		addRecipe(stack, 1, totalEu(50000), GTMaterialGen.getFluid(GTMaterial.Methane, 1));
 	}
 
 	public static void addMethaneRecipe(String input, int amount) {
-		addRecipe(input, amount, 1, totalEu(25000), GTMaterialGen.getFluid(GTMaterial.Methane, 1));
+		addRecipe(input, amount, 1, totalEu(50000), GTMaterialGen.getFluid(GTMaterial.Methane, 1));
 	}
 
 	public static void addRecipe(ItemStack stack, int cells, IRecipeModifier[] modifiers, ItemStack... outputs) {

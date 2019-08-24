@@ -40,8 +40,12 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	public void update() {
 		checkEnergy();
 		if (world.getTotalWorldTime() % 20 == 0) {
-			this.setActive(checkArea());
-			world.notifyNeighborsOfStateChange(pos, blockType, true);
+			boolean oldState = this.getActive();
+			boolean newState = checkArea();
+			if (oldState != newState) {
+				this.setActive(newState);
+				world.notifyNeighborsOfStateChange(pos, blockType, true);
+			}
 		}
 	}
 

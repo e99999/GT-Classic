@@ -28,6 +28,8 @@ import net.minecraftforge.fml.common.Loader;
 public class GTRecipeMods {
 
 	public static void postInit() {
+		/** Stuff for people too slow to handle ore dict at the right time **/
+		GTTileCentrifuge.addRecipe("dustDiamond", 1, 0, GTTileCentrifuge.totalEu(100000), GTMaterialGen.getDust(GTMaterial.Carbon, 64));
 		/** EnderIO **/
 		if (GTConfig.compatEnderIO && Loader.isModLoaded(GTValues.ENDERIO)) {
 			GTMod.logger.info("Doing EnderIO Things");
@@ -202,7 +204,7 @@ public class GTRecipeMods {
 			TileEntityMacerator.addRecipe("oreClathrateRedstone", 1, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 893, 3));
 			TileEntityMacerator.addRecipe("oreClathrateGlowstone", 1, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 894, 3));
 			TileEntityMacerator.addRecipe("oreClathrateEnder", 1, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 895, 3));
-			// Just two fun Electrolyer recipes
+			// Just two fun Electrolyzer recipes
 			ClassicRecipes.electrolyzer.addChargeRecipe(GTMaterialGen.getModMetaItem(GTValues.THERMAL, "bait", 1, 1), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "bait", 2, 1), 16000, "ThermalBait");
 			ClassicRecipes.electrolyzer.addChargeRecipe(GTMaterialGen.getModMetaItem(GTValues.THERMAL, "fertilizer", 1, 1), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "fertilizer", 2, 1), 16000, "ThermalFertilizer");
 		}
