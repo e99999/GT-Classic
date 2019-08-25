@@ -14,6 +14,7 @@ import gtclassic.item.GTItemElectromagnet;
 import gtclassic.item.GTItemEnergyOrb;
 import gtclassic.item.GTItemEnergyPack;
 import gtclassic.item.GTItemJackHammer;
+import gtclassic.item.GTItemLightHelmet;
 import gtclassic.item.GTItemLithiumBattery;
 import gtclassic.item.GTItemReactorHeat;
 import gtclassic.item.GTItemReactorRod;
@@ -58,6 +59,7 @@ public class GTItems {
 	public static final GTItemCloakingDevice cloakingDevice = createItem(new GTItemCloakingDevice());
 	private static GTItemEnergyPack lithiumBatpack;
 	private static GTItemEnergyPack lapotronPack;
+	public static final GTItemLightHelmet lightHelment = createItem(new GTItemLightHelmet());
 	public static final GTItemTeslaStaff teslaStaff = createItem(new GTItemTeslaStaff());
 	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
 	public static final GTItemJackHammer jackHammer = createItem(new GTItemJackHammer());

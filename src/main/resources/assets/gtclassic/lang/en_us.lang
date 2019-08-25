@@ -125,6 +125,7 @@ item.gtclassic.portable_scanner.name=Portable Scanner
 item.gtclassic.debug_scanner.name=Debug Scanner
 item.gtclassic.echotron.name=Echotron
 item.gtclassic.cloaking_device.name=Cloaking Device
+item.gtclassic.light_helmet.name=Light Helmet
 
 #fluids
 fluid.hydrogen=Hydrogen

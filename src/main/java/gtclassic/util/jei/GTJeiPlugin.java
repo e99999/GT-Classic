@@ -5,6 +5,7 @@ import javax.annotation.Nonnull;
 import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerWorktable;
 import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.category.GTJeiUUAmplifierCategory;
@@ -17,6 +18,7 @@ import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
@@ -46,6 +48,9 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipes(GTTileMatterFabricator.RECIPE_LIST.getRecipeList(), "gt.uuamplifier");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileFabricator), "gt.uuamplifier");
 			registry.addRecipeClickArea(GTMatterFabricatorGui.class, 105, 34, 62, 22, "gt.uuamplifier");
+			
+			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
+			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.airBlock));
 		}
 	}
 

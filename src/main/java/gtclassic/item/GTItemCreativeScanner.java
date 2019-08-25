@@ -94,7 +94,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(ItemStack item) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[23];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[31];
 	}
 
 	@Override

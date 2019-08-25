@@ -27,19 +27,17 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
 		super(index, EntityEquipmentSlot.CHEST);
 		this.indexitem = index;
 		this.setMaxDamage(0);
-		this.texture = tex; // "gtclassic:textures/models/armor/lithiumbatpack";
-		this.maxEnergy = max; // 600000;
-		this.setRegistryName(reg); // ("lithium_batpack");
-		this.setUnlocalizedName(GTMod.MODID + unl); // (GTClassic.MODID + ".lithiumBatpack");
+		this.texture = tex;
+		this.maxEnergy = max;
+		this.setRegistryName(reg);
+		this.setUnlocalizedName(GTMod.MODID + unl);
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.tier = lvl; // 1;
-		this.transferlimit = limit; // 200;
+		this.transferlimit = limit;
 		this.rare = EnumRarity.COMMON;
 	}
 
-	// might use this above later to make registering packs easier.
-	// int index, int maxDamage, String tex, int max, String reg, String unl, int
-	// lvl, int limit
+	
 	public GTItemEnergyPack setRarity(EnumRarity newValue) {
 		this.rare = newValue;
 		return this;
