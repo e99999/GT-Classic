@@ -1,5 +1,6 @@
 # Changelog
 # 1.02 (Not Released)
+- Added insufficient power warning to Blast Furnace, Fusion, and Centrifuge GUI's
 - Fixed Hydrogen and Methane processing yielding a net gain of energy.
 - Fixed Player Detector constantly setting state changes despite no actual change.
 - Fixed Fusion casings using the wrong casings

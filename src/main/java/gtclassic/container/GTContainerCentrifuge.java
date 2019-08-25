@@ -1,5 +1,6 @@
 package gtclassic.container;
 
+import gtclassic.gui.GTGuiCompMachinePower;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.util.GTSlotUpgrade;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -36,6 +37,7 @@ public class GTContainerCentrifuge extends ContainerTileComponent<GTTileCentrifu
 		}
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
+		this.addComponent(new GTGuiCompMachinePower(tile));
 	}
 
 	@Override

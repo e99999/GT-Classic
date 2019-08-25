@@ -29,6 +29,7 @@ public class GTGuiCompVerticalProgress extends GuiComponent {
 				GuiComponent.ActionRequest.ToolTip });
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawBackground(GuiIC2 gui, int mouseX, int mouseY, float particalTicks) {
 		float prog = this.progress.getProgress();
@@ -51,6 +52,7 @@ public class GTGuiCompVerticalProgress extends GuiComponent {
 		}
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if ((isMouseOver(mouseX, mouseY)) && (PlayerHandler.getClientPlayerHandler().hasEUReader())) {

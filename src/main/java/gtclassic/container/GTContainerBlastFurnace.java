@@ -1,5 +1,6 @@
 package gtclassic.container;
 
+import gtclassic.gui.GTGuiCompMachinePower;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.util.GTSlotUpgrade;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -37,6 +38,7 @@ public class GTContainerBlastFurnace extends ContainerTileComponent<GTTileMultiB
 		}
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
+		this.addComponent(new GTGuiCompMachinePower(tile));
 	}
 
 	@Override

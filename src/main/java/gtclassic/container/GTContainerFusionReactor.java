@@ -2,6 +2,7 @@ package gtclassic.container;
 
 import gtclassic.gui.GTGuiCompBasicString;
 import gtclassic.gui.GTGuiCompFusion;
+import gtclassic.gui.GTGuiCompMachinePower;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
@@ -30,6 +31,7 @@ public class GTContainerFusionReactor extends ContainerTileComponent<GTTileMulti
 		this.addComponent(new MachineProgressComp(tile, GTContainerFusionReactor.machineProgressBox, GTContainerFusionReactor.machineProgressPos));
 		this.addComponent(new GTGuiCompFusion(tile));
 		this.addComponent(new GTGuiCompBasicString("Fusion Reactor", 92, 5));
+		this.addComponent(new GTGuiCompMachinePower(tile, 112, 52 ));
 	}
 
 	@Override
