@@ -3,10 +3,10 @@ package gtclassic;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.block.GTBlockAir;
 import gtclassic.block.GTBlockCasing;
 import gtclassic.block.GTBlockCasingAdvanced;
 import gtclassic.block.GTBlockDrum;
+import gtclassic.block.GTBlockLightSource;
 import gtclassic.block.GTBlockMachine;
 import gtclassic.block.GTBlockMachineDirectionable;
 import gtclassic.block.GTBlockOre;
@@ -94,7 +94,7 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferLarge = registerBlock(new GTBlockMachineDirectionable("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
-	public static final GTBlockAir airBlock = registerBlock(new GTBlockAir());
+	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uuassembler", "echotronblock", "quantumchest", "quantumtank",

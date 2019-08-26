@@ -15,6 +15,7 @@ import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,6 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -71,6 +73,21 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 	@Override
 	public float getMiningSpeed(ItemStack stack) {
 		return 2.0F;
+	}
+
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (!isInCreativeTab(tab)) {
+			return;
+		}
+		ItemStack empty = new ItemStack(this, 1, 0);
+		ItemStack full = new ItemStack(this, 1, 0);
+		ElectricItem.manager.discharge(empty, 2.147483647E9D, Integer.MAX_VALUE, true, false, false);
+		ElectricItem.manager.charge(full, 2.147483647E9D, Integer.MAX_VALUE, true, false);
+		empty.addEnchantment(Enchantments.SILK_TOUCH, 1);
+		full.addEnchantment(Enchantments.SILK_TOUCH, 1);
+		items.add(empty);
+		items.add(full);
 	}
 
 	@Override

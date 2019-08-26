@@ -23,15 +23,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockAir extends BlockAir implements ITexturedBlock, ILocaleBlock {
+public class GTBlockLightSource extends BlockAir implements ITexturedBlock, ILocaleBlock {
 
 	LocaleComp comp;
 
-	public GTBlockAir() {
+	public GTBlockLightSource() {
 		this.lightValue = 15;
 		this.comp = Ic2Lang.nullKey;
-		setRegistryName("airblock");
-		setUnlocalizedName(GTMod.MODID + "." + "airblock");
+		setRegistryName("lightsource");
+		setUnlocalizedName(GTMod.MODID + "." + "lightsource");
 		this.setTickRandomly(true);
 	}
 
