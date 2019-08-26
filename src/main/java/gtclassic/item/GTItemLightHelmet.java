@@ -92,14 +92,14 @@ public class GTItemLightHelmet extends ItemIC2AdvArmorBase implements IDamageles
 		}
 		doLightHelmetThings(world, player, stack);
 	}
-	
+
 	/** Logic for light helmet block placing with an electric item **/
 	public void doLightHelmetThings(World world, EntityPlayer player, ItemStack stack) {
-		if (world.getTotalWorldTime() % 20 == 0) {
+		if (world.getTotalWorldTime() % 5 == 0) {
 			BlockPos playerPos = player.getPosition();
-			boolean canPlaceLightBlock = world.isAirBlock(playerPos) && world.getLightBrightness(playerPos) < 7.0F && !world.isAirBlock(playerPos.down());
+			boolean canPlaceLightBlock = world.isAirBlock(playerPos) && world.getLightBrightness(playerPos) < 7.0F;
 			boolean isLightPresent = world.getBlockState(playerPos) == GTBlocks.airBlock.getDefaultState();
-			if (ElectricItem.manager.getCharge(stack) >= 1.0D && canPlaceLightBlock && !isLightPresent) {
+			if (canPlaceLightBlock && !isLightPresent && ElectricItem.manager.getCharge(stack) >= 1.0D) {
 				world.setBlockState(player.getPosition(), GTBlocks.airBlock.getDefaultState());
 				ElectricItem.manager.use(stack, 1.0D, player);
 			}

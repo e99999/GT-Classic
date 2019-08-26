@@ -79,6 +79,7 @@ public class GTMod {
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
 		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
 		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
+		// MinecraftForge.EVENT_BUS.register(new GTEventPlayerTick());
 		IC2.saveManager.registerGlobal("IDSU_Storage", IDSUStorage.class, false);
 		proxy.init(e);
 	}

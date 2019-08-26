@@ -24,9 +24,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockAir extends BlockAir implements ITexturedBlock, ILocaleBlock {
-	
+
 	LocaleComp comp;
-	
+
 	public GTBlockAir() {
 		this.lightValue = 15;
 		this.comp = Ic2Lang.nullKey;
@@ -39,7 +39,7 @@ public class GTBlockAir extends BlockAir implements ITexturedBlock, ILocaleBlock
 	public LocaleComp getName() {
 		return this.comp;
 	}
-	
+
 	public Block setUnlocalizedName(LocaleComp name) {
 		this.comp = name;
 		return super.setUnlocalizedName(name.getUnlocalized());
@@ -78,18 +78,14 @@ public class GTBlockAir extends BlockAir implements ITexturedBlock, ILocaleBlock
 	public List<IBlockState> getValidStates() {
 		return this.blockState.getValidStates();
 	}
-	
+
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
 	}
-	
-	 /**
-     * How many world ticks before ticking
-     */
+
 	@Override
-    public int tickRate(World worldIn)
-    {
-        return 1;
-    }
+	public int tickRate(World worldIn) {
+		return 1;
+	}
 }

@@ -37,7 +37,6 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
 		this.rare = EnumRarity.COMMON;
 	}
 
-	
 	public GTItemEnergyPack setRarity(EnumRarity newValue) {
 		this.rare = newValue;
 		return this;

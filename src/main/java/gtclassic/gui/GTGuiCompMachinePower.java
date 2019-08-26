@@ -22,7 +22,7 @@ public class GTGuiCompMachinePower extends GuiComponent {
 		this.x = 80;
 		this.y = 40;
 	}
-	
+
 	public GTGuiCompMachinePower(GTTileBaseMachine tile, int x, int y) {
 		super(Ic2GuiComp.nullBox);
 		this.block = tile;
@@ -34,7 +34,6 @@ public class GTGuiCompMachinePower extends GuiComponent {
 	public List<ActionRequest> getNeededRequests() {
 		return Arrays.asList(ActionRequest.BackgroundDraw);
 	}
-
 
 	@Override
 	@SideOnly(Side.CLIENT)

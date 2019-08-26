@@ -170,10 +170,12 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingHighlyAdvanced), new Object[] { "TCT", "CBC", "TCT", 'T',
 				"ingotTitanium", 'C', "ingotChrome", 'B', Ic2Items.advMachine.copy() });
 		/** Fusion Casing **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingFusion), new Object[] { "YBC", "BRB", "SBY", 'B',
-				GTBlocks.casingHighlyAdvanced, 'C', "circuitMaster", 'S', GTItems.superConductor, 'Y',
-				Ic2Items.teslaCoil.copy(), 'B', GTBlocks.casingHighlyAdvanced, 'R',
-				Ic2Items.reactorReflectorIridium.copy() });
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingFusion), new Object[] { "CSC", "TMT", "CRC", 
+				'M', GTBlocks.casingHighlyAdvanced, 
+				'C', "circuitMaster", 
+				'S', GTItems.superConductor, 
+				'T', Ic2Items.teslaCoil.copy(), 
+				'R',Ic2Items.reactorReflectorIridium.copy() });
 		/** LESU Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLapotron), new Object[] { "BBB", "BCB", "BBB", 'B',
 				"blockLapis", 'C', "circuitBasic" });

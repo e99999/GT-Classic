@@ -1,5 +1,6 @@
 # Changelog
 # 1.02 (Not Released)
+- Changed Fusion casing recipe to be not a such chrome nightmare.
 - Added the Light Helmet like old GT's! Creates light around the player in dark areas.
 - Added insufficient power warning to Blast Furnace, Fusion, and Centrifuge GUI's
 - Fixed Hydrogen and Methane processing yielding a net gain of energy.
@@ -10,7 +11,6 @@
 - Fixed Emerald not having a macerator recipe into emerald dust
 - Removed the default thick reflector recipe for harder one
 - Fixed Rock Cutter defaulting to regular tool enchants in electric enchanter
-- Some more recipes I found would be useful in testing
 
 # 1.01
 - I recommend regenerating configs in this version.
