@@ -1,5 +1,6 @@
 # Changelog
 # 1.02 (Not Released)
+- LESU now outputs multiple packets per every 10 blocks added.
 - Fixed Rock Cutter not having silk touch if you cheated/spawned it in.
 - Changed Fusion casing recipe to be not a such chrome nightmare.
 - Added the Light Helmet like old GT's! Creates light around the player in dark areas.

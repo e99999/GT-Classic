@@ -3,6 +3,7 @@ package gtclassic.tile;
 import gtclassic.container.GTContainerLESU;
 import gtclassic.util.GTLang;
 import gtclassic.util.GTLapotronBlockFilter;
+import ic2.api.energy.tile.IMultiEnergySource;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
@@ -14,7 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
-public class GTTileLESU extends TileEntityElectricBlock {
+public class GTTileLESU extends TileEntityElectricBlock implements IMultiEnergySource{
 
 	private int blockCount;
 	public boolean enabled = true;
@@ -119,5 +120,15 @@ public class GTTileLESU extends TileEntityElectricBlock {
 
 	public int getCount() {
 		return blockCount;
+	}
+
+	@Override
+	public int getMultipleEnergyPacketAmount() {
+		return 1 + (this.blockCount / 10);
+	}
+
+	@Override
+	public boolean sendMultipleEnergyPackets() {
+		return this.blockCount > 9;
 	}
 }
