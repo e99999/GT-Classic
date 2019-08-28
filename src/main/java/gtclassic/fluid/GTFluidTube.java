@@ -204,11 +204,35 @@ public class GTFluidTube extends Item
 			@Nonnull EnumHand hand) {
 		ItemStack itemstack = player.getHeldItem(hand);
 		FluidStack fluidStack = FluidUtil.getFluidContained(itemstack);
-		// empty bucket shouldn't exist, do nothing since it should be handled by the
-		// bucket event
 		if (fluidStack == null) {
+			return tryPickUpFluid(world, player, hand, itemstack, fluidStack);
+		}
+		return tryPlaceFluid(world, player, hand, itemstack, fluidStack);
+	}
+
+	public ActionResult<ItemStack> tryPickUpFluid(@Nonnull World world, @Nonnull EntityPlayer player,
+			@Nonnull EnumHand hand, ItemStack itemstack, FluidStack fluidStack) {
+		RayTraceResult mop = this.rayTrace(world, player, true);
+		ActionResult<ItemStack> ret = ForgeEventFactory.onBucketUse(player, world, itemstack, mop);
+		if (ret != null)
+			return ret;
+		if (mop == null) {
 			return ActionResult.newResult(EnumActionResult.PASS, itemstack);
 		}
+		BlockPos clickPos = mop.getBlockPos();
+		if (world.isBlockModifiable(player, clickPos)) {
+			FluidActionResult result = FluidUtil.tryPickUpFluid(itemstack, player, world, clickPos, mop.sideHit);
+			if (result.isSuccess()) {
+				ItemHandlerHelper.giveItemToPlayer(player, result.getResult());
+				itemstack.shrink(1);
+				return ActionResult.newResult(EnumActionResult.SUCCESS, itemstack);
+			}
+		}
+		return ActionResult.newResult(EnumActionResult.FAIL, itemstack);
+	}
+
+	public ActionResult<ItemStack> tryPlaceFluid(@Nonnull World world, @Nonnull EntityPlayer player,
+			@Nonnull EnumHand hand, ItemStack itemstack, FluidStack fluidStack) {
 		// clicked on a block?
 		RayTraceResult mop = this.rayTrace(world, player, false);
 		ActionResult<ItemStack> ret = ForgeEventFactory.onBucketUse(player, world, itemstack, mop);

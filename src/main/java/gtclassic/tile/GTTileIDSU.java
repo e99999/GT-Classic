@@ -33,7 +33,7 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 	EnergyWrapper wrapper = IDSUStorage.createDummy();
 
 	public GTTileIDSU() {
-		super(4, (int) EnergyNet.instance.getPowerFromTier(4), 400000000);
+		super(5, (int) EnergyNet.instance.getPowerFromTier(5), 400000000);
 		this.addNetworkFields(new String[] { "owner" });
 		addGuiFields("wrapper", "ownerName");
 	}

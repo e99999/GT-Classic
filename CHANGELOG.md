@@ -1,5 +1,7 @@
 # Changelog
 # 1.02 (Not Released)
+- Changed IDSU power tier from 4 to 5. This might cause existing setups to explode :)
+- Fixed tubes can now pick up fluids in addition to already being able to place them.
 - LESU now outputs multiple packets per every 10 blocks added.
 - Fixed Rock Cutter not having silk touch if you cheated/spawned it in.
 - Changed Fusion casing recipe to be not a such chrome nightmare.
@@ -7,7 +9,7 @@
 - Added insufficient power warning to Blast Furnace, Fusion, and Centrifuge GUI's
 - Fixed Hydrogen and Methane processing yielding a net gain of energy.
 - Fixed Player Detector constantly setting state changes despite no actual change.
-- Fixed Fusion casings using the wrong casings
+- Fixed Fusion casings using the wrong casings.
 - Made the Quantum Chest give full stacks if the internal storage is above 64 when clicked.
 - Fixed gravel being constantly overwritten with sand on chunk load.
 - Fixed Emerald not having a macerator recipe into emerald dust

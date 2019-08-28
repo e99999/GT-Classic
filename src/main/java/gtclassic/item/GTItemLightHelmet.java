@@ -101,7 +101,7 @@ public class GTItemLightHelmet extends ItemIC2AdvArmorBase implements IDamageles
 			boolean isLightPresent = world.getBlockState(playerPos) == GTBlocks.lightSource.getDefaultState();
 			if (canPlaceLightBlock && !isLightPresent && ElectricItem.manager.getCharge(stack) >= 1.0D) {
 				world.setBlockState(player.getPosition(), GTBlocks.lightSource.getDefaultState());
-				ElectricItem.manager.use(stack, 1.0D, player);
+				ElectricItem.manager.use(stack, 10.0D, player);
 			}
 		}
 	}

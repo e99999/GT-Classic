@@ -60,11 +60,8 @@ public class GTValues {
 		}
 		if (tier == 8) {
 			return "UV";
-		}
-		if (tier == 9) {
-			return "MAX";
 		} else {
-			return "null";
+			return "MAX";
 		}
 	}
 }

@@ -33,6 +33,11 @@ public class GTOreDict {
 		OreDictionary.registerOre("blockAluminum", (GTMaterialGen.getMaterialBlock(aluminium, 1)));
 		OreDictionary.registerOre("dustAluminum", (GTMaterialGen.getDust(aluminium, 1)));
 		OreDictionary.registerOre("ingotAluminum", (GTMaterialGen.getIngot(aluminium, 1)));
+		// Chrome and chromium
+		GTMaterial chrome = GTMaterial.Chrome;
+		OreDictionary.registerOre("blockChromium", (GTMaterialGen.getMaterialBlock(chrome, 1)));
+		OreDictionary.registerOre("dustChromium", (GTMaterialGen.getDust(chrome, 1)));
+		OreDictionary.registerOre("ingotChromium", (GTMaterialGen.getIngot(chrome, 1)));
 		// Stuff to fit with how other mods have done it
 		OreDictionary.registerOre("dustEnderEye", (GTMaterialGen.getDust(GTMaterial.EnderEye, 1)));
 		OreDictionary.registerOre("itemSilicon", (GTMaterialGen.getIngot(GTMaterial.Silicon, 1)));
