@@ -22,6 +22,7 @@ public class GTMaterial {
 	/** Material Instances **/
 	public static final GTMaterial Aluminium = new GTMaterial("Aluminium", 128, 200, 240, metalAll);
 	public static final GTMaterial Bauxite = new GTMaterial("Bauxite", 200, 100, 0, dust);
+	public static final GTMaterial Basalt = new GTMaterial("Basalt", 30, 20, 20, dust);
 	public static final GTMaterial Beryllium = new GTMaterial("Beryllium", 30, 80, 50, fluid);
 	public static final GTMaterial Calcite = new GTMaterial("Calcite", 250, 230, 220, dust);
 	public static final GTMaterial Calcium = new GTMaterial("Calcium", 155, 96, 80, fluid);

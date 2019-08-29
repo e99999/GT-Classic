@@ -1,6 +1,7 @@
 # Changelog
 # 1.02 (Not Released)
-- Changed IDSU power tier from 4 to 5. This might cause existing setups to explode :)
+- WARNING! Changed IDSU power tier from 4 to 5. This might cause existing setups to explode :)
+- Added Basalt dust, working on a way for it to be obtainable without modded basalt stone.
 - Fixed tubes can now pick up fluids in addition to already being able to place them.
 - LESU now outputs multiple packets per every 10 blocks added.
 - Fixed Rock Cutter not having silk touch if you cheated/spawned it in.
