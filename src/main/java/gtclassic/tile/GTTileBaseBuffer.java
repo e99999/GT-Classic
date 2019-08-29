@@ -32,7 +32,7 @@ public class GTTileBaseBuffer extends TileEntityMachine
 	public int energy;
 	public boolean addedToEnet;
 	@NetworkField(index = 4)
-	public boolean conduct = true;
+	public boolean conduct = false;
 	public boolean outputRedstone = false;
 	public boolean invertRedstone = false;
 	public int redstoneStrength = 0;

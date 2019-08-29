@@ -1,16 +1,12 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerTranslocator;
+import gtclassic.util.GTFilterTranslocator;
 import gtclassic.util.GTLang;
 import gtclassic.util.int3;
-import ic2.core.RotationList;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.gui.GuiComponentContainer;
-import ic2.core.inventory.management.AccessRule;
-import ic2.core.inventory.management.InventoryHandler;
-import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -23,8 +19,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 
+	public GTFilterTranslocator filter = new GTFilterTranslocator(this);
+
 	public GTTileTranslocator() {
-		super(10);
+		super(9);
 	}
 
 	@Override
@@ -41,14 +39,6 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
 		return new GTContainerTranslocator(player.inventory, this);
-	}
-
-	@Override
-	protected void addSlots(InventoryHandler handler) {
-		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerDefaultSlotAccess(AccessRule.Both, 0);
-		handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
-		handler.registerSlotType(SlotType.Storage, 0);
 	}
 
 	@Override
@@ -69,8 +59,7 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % 20 == 0) {
-			tryImportItems();
-			tryExportItems();
+			tryMoveItems();
 		}
 	}
 
@@ -85,15 +74,18 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 	}
 
 	@SuppressWarnings("static-access")
-	public void tryImportItems() {
+	public void tryMoveItems() {
 		IItemTransporter slave = TransporterManager.manager.getTransporter(getImportTile(), true);
 		if (slave == null) {
 			return;
 		}
-		IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
+		IItemTransporter controller = TransporterManager.manager.getTransporter(getExportTile(), true);
+		if (controller == null) {
+			return;
+		}
 		int limit = 64;
 		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = slave.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, false);
+			ItemStack stack = slave.removeItem(this.filter, getFacing().getOpposite(), 1, false);
 			if (stack.isEmpty()) {
 				break;
 			}
@@ -101,28 +93,7 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 			if (added.getCount() <= 0) {
 				break;
 			}
-			slave.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, true);
-		}
-	}
-
-	@SuppressWarnings("static-access")
-	public void tryExportItems() {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(getExportTile(), true);
-		if (slave == null) {
-			return;
-		}
-		IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-		int limit = 64;
-		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = controller.removeItem(CommonFilters.Anything, getFacing(), 1, false);
-			if (stack.isEmpty()) {
-				break;
-			}
-			ItemStack added = slave.addItem(stack, getFacing().getOpposite(), true);
-			if (added.getCount() <= 0) {
-				break;
-			}
-			controller.removeItem(CommonFilters.Anything, getFacing(), 1, true);
+			slave.removeItem(this.filter, getFacing().getOpposite(), 1, true);
 		}
 	}
 }

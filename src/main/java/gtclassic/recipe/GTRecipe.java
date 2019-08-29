@@ -63,6 +63,8 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileBufferSmall, 8), GTMaterialGen.get(GTBlocks.tileBufferLarge, 1));
 		/** Light Helmet **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.lightHelment, 1), Ic2Items.solarHelmet.copy(), Ic2Items.luminator.copy(), Ic2Items.battery.copy());
+		/** Electrum Dust **/
+		recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Electrum, 2), "dustSilver", "dustGold");
 	}
 
 	public static void initItems() {
@@ -220,6 +222,8 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), "SSS", "SCS", "SSS", 'S', GTBlocks.tileBufferSmall, 'C', Ic2Items.upgradeBase.copy());
 		/** Fluid Buffer **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', Items.BUCKET);
+		/** Translocator **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', anyPiston);
 		/** Matter Fabricator **/
 		if (GTConfig.removeIC2MassFab) {
 			recipes.overrideRecipe("shaped_tile.blockMatter_1416524227", GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] {
@@ -258,8 +262,6 @@ public class GTRecipe {
 				"gemSapphire", 'M', Ic2Items.advMachine, 'C', "circuitBasic" });
 		/** Stuff that is not ready yet **/
 		if (GTMod.debugMode) {
-			/** Translocator **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', Ic2Items.machine.copy(), 'P', anyPiston);
 			/** UU Assembler **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
 					"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q',
