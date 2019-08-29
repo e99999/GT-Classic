@@ -12,16 +12,22 @@ public class GTFilterTranslocator implements IFilter {
 		this.tile = tile;
 	}
 
-	@Override
-	public boolean matches(ItemStack paramItemStack) {
-		if (this.tile.inventory.stream().allMatch(e -> e.isEmpty())) {
-			return true;
+	public boolean matches(ItemStack stack) {
+		if (stack.isEmpty()) {
+			return false; // InputStack is null so it does not match.
 		}
-		for (ItemStack invStack : this.tile.inventory) {
-			if (GTStackUtil.isEqual(invStack, paramItemStack)) {
-				return true;
+		int noneEmptyStacks = 0; // Stacks that are not empty
+		for (int i = 0; i < tile.inventory.size(); i++) {
+			ItemStack inventoryStack = tile.inventory.get(i);
+			if (inventoryStack.isEmpty()) {
+				continue;// Skip because the inventory is empty we dont need to compare it.
+			}
+			noneEmptyStacks++;
+			if (GTStackUtil.isEqual(stack, inventoryStack)) {
+				return true; // Found
 			}
 		}
-		return false;
+		return noneEmptyStacks == 0; // If all stacks are empty means no filter. If it is more then 1 stack in the
+										// filter then return false because it didnt match the filter.
 	}
 }
