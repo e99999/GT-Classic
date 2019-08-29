@@ -13,7 +13,7 @@
 - Fixed Hydrogen and Methane processing yielding a net gain of energy.
 - Fixed Player Detector constantly setting state changes despite no actual change.
 - Fixed Fusion casings using the wrong casings.
-- Made the Quantum Chest give full stacks if the internal storage is above 64 when clicked.
+- Fixed the Quantum Chest give full stacks if the internal storage is above 64 when clicked.
 - Fixed gravel being constantly overwritten with sand on chunk load.
 - Fixed Emerald not having a macerator recipe into emerald dust
 - Removed the default thick reflector recipe for harder one

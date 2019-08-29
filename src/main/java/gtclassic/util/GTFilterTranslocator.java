@@ -14,7 +14,7 @@ public class GTFilterTranslocator implements IFilter {
 
 	@Override
 	public boolean matches(ItemStack paramItemStack) {
-		if (this.tile.inventory.stream().allMatch(e -> e.equals(ItemStack.EMPTY))) {
+		if (this.tile.inventory.stream().allMatch(e -> e.isEmpty())) {
 			return true;
 		}
 		for (ItemStack invStack : this.tile.inventory) {
@@ -23,9 +23,5 @@ public class GTFilterTranslocator implements IFilter {
 			}
 		}
 		return false;
-	}
-
-	public void updateTile(GTTileTranslocator tile) {
-		this.tile = tile;
 	}
 }
