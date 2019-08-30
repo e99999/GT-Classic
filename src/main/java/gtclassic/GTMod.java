@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import gtclassic.events.GTEventCheckSpawn;
 import gtclassic.events.GTEventEntityViewRenderEvent;
 import gtclassic.events.GTEventLootTableLoad;
+import gtclassic.events.GTEventOnLivingFall;
 import gtclassic.events.GTEventPopulateChunk;
 import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
@@ -75,6 +76,7 @@ public class GTMod {
 		GTRecipe.initBlocks();
 		GTRecipe.initIC2();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
+		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
 		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
 		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());

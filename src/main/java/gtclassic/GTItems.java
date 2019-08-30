@@ -16,6 +16,7 @@ import gtclassic.item.GTItemEnergyPack;
 import gtclassic.item.GTItemJackHammer;
 import gtclassic.item.GTItemLightHelmet;
 import gtclassic.item.GTItemLithiumBattery;
+import gtclassic.item.GTItemSpringBoots;
 import gtclassic.item.GTItemReactorHeat;
 import gtclassic.item.GTItemReactorRod;
 import gtclassic.item.GTItemRockCutter;
@@ -51,6 +52,7 @@ public class GTItems {
 	public static final GTItemComponent superConductor = createItem(new GTItemComponent("super_conductor", 10, 0));
 	public static final GTItemComponent orbData = createItem(new GTItemComponent("data_orb", 11, 0));
 	public static final GTItemDuctTape ductTape = createItem(new GTItemDuctTape());
+	public static final GTItemSpringBoots springBoots = createItem(new GTItemSpringBoots());
 	public static final GTItemEchotron echotron = createItem(new GTItemEchotron());
 	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
 	public static final GTItemElectromagnet electroMagnet = createItem(new GTItemElectromagnet());

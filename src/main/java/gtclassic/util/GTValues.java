@@ -28,6 +28,7 @@ public class GTValues {
 	// sounds
 	public static ResourceLocation sonar = new ResourceLocation(GTMod.MODID, "sounds/sonar.ogg");
 	public static ResourceLocation cloak = new ResourceLocation(GTMod.MODID, "sounds/cloak.ogg");
+	public static ResourceLocation spring = new ResourceLocation(GTMod.MODID, "sounds/spring.ogg");
 
 	public static String getIC2Ingot() {
 		return IC2.getRefinedIron();

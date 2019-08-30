@@ -59,7 +59,7 @@ public class GTContainerTranslocator extends ContainerTileComponent<GTTileTransl
 	@Nullable
 	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-		if ((slotId >= 0) && (slotId < guiInventorySize())) {
+		if ((slotId >= 0) && (slotId <= 8)) {
 			ItemStack stack = player.inventory.getItemStack();
 			this.block.setStackInSlot(slotId, stack.isEmpty() ? ItemStack.EMPTY : StackUtil.copyWithSize(stack, 1));
 			return ItemStack.EMPTY;
