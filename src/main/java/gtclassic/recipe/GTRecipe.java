@@ -136,6 +136,9 @@ public class GTRecipe {
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.echotron, 1), new Object[] { " C ", "CEC", " C ", 'E',
 				GTBlocks.tileEchotron, 'C', "circuitData" });
+		/** Spring Boots **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.springBoots, 1), new Object[] { "IBI", "I I", 'B',
+				Ic2Items.compositeBoots.copy(), 'I', ingotRefinedIron });
 		/** Thorium rods **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium2), new Object[] { "UCU", 'U', GTItems.rodThorium1, 'C',
 				Ic2Items.denseCopperPlate.copy() });

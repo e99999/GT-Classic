@@ -1,6 +1,10 @@
 # Changelog
-# 1.02 (Not Released)
+# 1.03 (Not Released)
+- Note, nothing is here yet
+
+# 1.02
 - WARNING! Changed IDSU power tier from 4 to 5. This might cause existing setups to explode :)
+- Added Spring Boots, inspired by QwerTech for GT6. Still slightly WIP.
 - Added the Electric Translocator, has no internal inventory but a 9 slot filter to pull items behind it to in front of it.
 - Changed all newly placed buffers disable power transfer by default and you must enable it per tile.
 - Added Basalt dust, working on a way for it to be obtainable without modded basalt stone.
