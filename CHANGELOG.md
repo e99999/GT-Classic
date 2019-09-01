@@ -1,6 +1,8 @@
 # Changelog
 # 1.03 (Not Released)
-- Note, nothing is here yet
+- Added working on ore vein/ocean deposits that are extruded onto the ocean floor.
+- Added in world blocks for gases and fluids, fluids are fluids, gases float up and disperse. WIP
+- Fixed ocean sand not replacing in some chunks near biome borders.
 
 # 1.02
 - WARNING! Changed IDSU power tier from 4 to 5. This might cause existing setups to explode :)

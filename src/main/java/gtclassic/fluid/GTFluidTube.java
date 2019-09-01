@@ -68,7 +68,7 @@ public class GTFluidTube extends Item
 			tooltip.add(TextFormatting.GREEN + I18n.format("Gaseous"));
 		}
 		if (isFluidPlaceable(stack)) {
-			tooltip.add(TextFormatting.YELLOW + I18n.format("Fluid can be placed in world"));
+			tooltip.add(TextFormatting.YELLOW + I18n.format("Can be placed in world"));
 		}
 		if (isFluidBurnable(stack)) {
 			tooltip.add(TextFormatting.RED + I18n.format("Can be burned as liquid fuel"));

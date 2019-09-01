@@ -26,20 +26,21 @@ public class GTEventPopulateChunk {
 	public void onEvent(PopulateChunkEvent.Post event) {
 		if (GTConfig.replaceOceanGravelWithSand) {
 			Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
-			Biome biomegenbase = event.getWorld().getBiome(new BlockPos(chunk.x * 16 + 16, 128, chunk.z * 16 + 16));
-			if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN)
-					|| BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
-				for (int x = 0; x < 16; ++x) {
-					for (int z = 0; z < 16; ++z) {
+			for (int x = 0; x < 16; ++x) {
+				for (int z = 0; z < 16; ++z) {
+					Biome biomegenbase = event.getWorld().getBiome(new BlockPos(chunk.x * 16 + x, 128, chunk.z * 16
+							+ z));
+					if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN)
+							|| BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
 						for (int y = 30; y < 60; ++y) {
 							if (chunk.getBlockState(x, y, z).getBlock() == fromBlock) {
 								chunk.setBlockState(new BlockPos(x, y, z), toBlock.getDefaultState());
 							}
 						}
 					}
-					chunk.markDirty();
 				}
 			}
+			chunk.markDirty();
 		}
 	}
 }

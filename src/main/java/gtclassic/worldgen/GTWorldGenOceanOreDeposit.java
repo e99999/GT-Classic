@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTConfig;
 import ic2.core.platform.registry.Ic2States;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -81,9 +82,15 @@ public class GTWorldGenOceanOreDeposit extends WorldGenerator {
 	}
 
 	public static void initDepositOres() {
-		addOreDeposit(GTBlocks.oreSapphire);
-		addOreDeposit(GTBlocks.oreRuby);
-		addOreDeposit(GTBlocks.oreBauxite);
+		if (GTConfig.sapphireGenerate) {
+			addOreDeposit(GTBlocks.oreSapphire);
+		}
+		if (GTConfig.rubyGenerate) {
+			addOreDeposit(GTBlocks.oreRuby);
+		}
+		if (GTConfig.bauxiteGenerate) {
+			addOreDeposit(GTBlocks.oreBauxite);
+		}
 		addOreDeposit(Blocks.COAL_ORE);
 		addOreDeposit(Blocks.DIAMOND_ORE);
 		addOreDeposit(Blocks.EMERALD_ORE);

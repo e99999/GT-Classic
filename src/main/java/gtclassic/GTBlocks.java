@@ -106,6 +106,7 @@ public class GTBlocks {
 		for (Block block : GTMaterialGen.blockMap.values()) {
 			createBlock(block);
 		}
+		GTFluids.registerFluidBlocks();
 		for (Block block : toRegister) {
 			createBlock(block);
 		}
