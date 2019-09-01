@@ -133,6 +133,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 					+ " -----");
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getUnlocalizedName());
+			IC2.platform.messagePlayer(player, "Meta: " + state.getBlock().getMetaFromState(state));
 			IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
 			IC2.platform.messagePlayer(player, "Blast Resistance: "
 					+ state.getBlock().getExplosionResistance(null) * 5.0F);

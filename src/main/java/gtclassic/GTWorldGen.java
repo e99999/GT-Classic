@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.google.common.base.Predicate;
 
+import gtclassic.worldgen.GTWorldGenOceanOreDeposit;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
@@ -13,6 +14,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -36,8 +38,12 @@ public class GTWorldGen implements IWorldGenerator {
 		if (GTConfig.rubyGenerate && BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
 			runGenerator(GTBlocks.oreRuby.getDefaultState(), GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
-		if (GTConfig.sapphireGenerate && BiomeDictionary.hasType(biomegenbase, Type.OCEAN)) {
-			runGenerator(GTBlocks.oreSapphire.getDefaultState(), GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) || BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
+			if (GTConfig.sapphireGenerate) {
+				runGenerator(GTBlocks.oreSapphire.getDefaultState(), GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			}
+			WorldGenerator genOceanDeposit = new GTWorldGenOceanOreDeposit();
+			genOceanDeposit.generate(world, random, new BlockPos(chunkX * 16 + 16, 32, chunkZ * 16 + 16));
 		}
 	}
 

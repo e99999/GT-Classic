@@ -22,6 +22,7 @@ import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.energy.IDSUStorage;
 import gtclassic.util.energy.MultiBlockHelper;
+import gtclassic.worldgen.GTWorldGenOceanOreDeposit;
 import ic2.core.IC2;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -75,6 +76,7 @@ public class GTMod {
 		GTRecipe.initItems();
 		GTRecipe.initBlocks();
 		GTRecipe.initIC2();
+		GTWorldGenOceanOreDeposit.initDepositOres();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
 		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());

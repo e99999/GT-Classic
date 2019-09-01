@@ -31,10 +31,10 @@ public class GTItemSpringBoots extends ItemCompositeArmor {
 		this.setUnlocalizedName(GTMod.MODID + "." + "spring_boots");
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.ITALIC+ I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
+		tooltip.add(TextFormatting.ITALIC + I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
