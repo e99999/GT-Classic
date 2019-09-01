@@ -16,7 +16,7 @@ public class GTFluid extends Fluid {
 	protected static float overlayAlpha = 0.2F;
 	protected static SoundEvent emptySound = SoundEvents.ITEM_BUCKET_EMPTY;
 	protected static SoundEvent fillSound = SoundEvents.ITEM_BUCKET_FILL;
-	protected static Material material = Material.WATER;
+	protected static Material material = GTFluidMaterial.GAS;
 	GTMaterial mat = null;
 
 	private GTFluid(GTMaterial mat, String base, String suffix, boolean isGaseous) {

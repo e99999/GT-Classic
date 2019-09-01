@@ -4,6 +4,8 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialFlag;
+import ic2.core.item.armor.standart.ItemHazmatArmor;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -13,7 +15,14 @@ import ic2.core.platform.textures.obj.ICustomModeledBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,11 +34,15 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 	GTMaterial mat;
 
 	public GTFluidBlock(GTMaterial mat) {
-		super(FluidRegistry.getFluid(mat.getDisplayName().toLowerCase()), Material.WATER);
+		super(FluidRegistry.getFluid(mat.getDisplayName().toLowerCase()), getMaterialType(mat));
 		setRegistryName(mat.getDisplayName().toLowerCase() + "_fluidblock");
 		setUnlocalizedName(GTMod.MODID + "." + mat.getDisplayName().toLowerCase() + "_fluidblock");
 		this.mat = mat;
 		this.comp = Ic2Lang.nullKey;
+	}
+
+	public static Material getMaterialType(GTMaterial mat) {
+		return mat.hasFlag(GTMaterialFlag.GAS) ? GTFluidMaterial.GAS : Material.WATER;
 	}
 
 	public LocaleComp getName() {
@@ -64,5 +77,21 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 
 	public GTMaterial getMaterial() {
 		return this.mat;
+	}
+
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+		if (!this.getMaterial().equals(GTMaterial.Oxygen) && !this.getMaterial().equals(GTMaterial.Nitrogen)) {
+			if (entityIn instanceof EntityLivingBase) {
+				EntityLivingBase entity = (EntityLivingBase) entityIn;
+				if (this.getMaterial().hasFlag(GTMaterialFlag.GAS)) {
+					entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 20, 0, false, false));
+				}
+				if (!ItemHazmatArmor.isFullHazmatSuit(entity)) {
+					entity.addPotionEffect(new PotionEffect(MobEffects.POISON, 60, 0, false, false));
+					entity.attackEntityFrom(DamageSource.GENERIC, 1.0F);
+				}
+			}
+		}
 	}
 }

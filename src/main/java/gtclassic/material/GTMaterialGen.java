@@ -143,6 +143,18 @@ public class GTMaterialGen {
 		return stack;
 	}
 
+	/** How to get a GT Fluid directly of 1000mb **/
+	public static FluidStack getFluidStack(GTMaterial mat) {
+		String name = mat.getDisplayName().toLowerCase();
+		return FluidRegistry.getFluidStack(name, 1000);
+	}
+
+	/** How to get a GT Fluid directly of a custom amount **/
+	public static FluidStack getFluidStack(GTMaterial mat, int amount) {
+		String name = mat.getDisplayName().toLowerCase();
+		return FluidRegistry.getFluidStack(name, amount);
+	}
+
 	/** How to get a GTFluidTube of lava easily **/
 	public static ItemStack getLava(int count) {
 		FluidStack fluid = FluidRegistry.getFluidStack("lava", 1000);
