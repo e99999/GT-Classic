@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 
 import gtclassic.GTMod;
+import ic2.core.IC2;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -47,6 +48,10 @@ public class GTCommandTeleport extends CommandBase {
 	@Override
 	public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] args)
 			throws CommandException {
+		if (!IC2.platform.isOp(sender.getCommandSenderEntity().getUniqueID())){
+			sender.sendMessage(new TextComponentString(TextFormatting.RED + "You do not have permission to use this command"));
+			return; 
+		}
 		if (args.length < 1) {
 			return;
 		}

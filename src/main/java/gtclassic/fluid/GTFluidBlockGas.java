@@ -19,6 +19,9 @@ public class GTFluidBlockGas extends GTFluidBlock {
 
 	@Override
 	public float getFluidHeightForRender(IBlockAccess world, BlockPos pos, @Nonnull IBlockState up) {
+		if (world.isAirBlock(pos.up())) {
+			return this.getQuantaPercentage(world, pos) * quantaFraction;
+		}
 		return 1.0F;
 	}
 
