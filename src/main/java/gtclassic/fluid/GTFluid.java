@@ -21,7 +21,7 @@ public class GTFluid extends Fluid {
 
 	private GTFluid(GTMaterial mat, String base, String suffix, boolean isGaseous) {
 		super(mat.getDisplayName().toLowerCase() + suffix, new ResourceLocation(GTMod.MODID, "fluids/"
-				+ base), new ResourceLocation(GTMod.MODID, "fluids/flowing"));
+				+ base), new ResourceLocation(GTMod.MODID, "fluids/" + base + "flowing"));
 		this.mat = mat;
 		this.temperature = 300;
 		this.mapColor = mat.getColor().getRGB();

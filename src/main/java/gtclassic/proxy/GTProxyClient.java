@@ -46,8 +46,9 @@ public class GTProxyClient extends GTProxyCommon {
 	@SubscribeEvent
 	public static void onRegisterTexture(TextureStitchEvent.Pre event) {
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/fluid"));
-		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/flowing"));
+		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/fluidflowing"));
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/gas"));
+		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/gasflowing"));
 	}
 
 	public static void registerTintedItems() {
