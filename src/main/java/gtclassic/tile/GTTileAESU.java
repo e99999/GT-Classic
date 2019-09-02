@@ -1,8 +1,8 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerAESU;
+import gtclassic.helpers.GTHelperMath;
 import gtclassic.util.GTLang;
-import gtclassic.util.GTMathUtil;
 import ic2.api.energy.EnergyNet;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
@@ -70,19 +70,19 @@ public class GTTileAESU extends TileEntityElectricBlock {
 	@Override
 	public void onNetworkEvent(EntityPlayer var1, int event) {
 		if (event == 4) {
-			this.output = GTMathUtil.clip(this.output + 64, 0, 2048);
+			this.output = GTHelperMath.clip(this.output + 64, 0, 2048);
 			updateGui();
 		}
 		if (event == 3) {
-			this.output = GTMathUtil.clip(this.output + 1, 0, 2048);
+			this.output = GTHelperMath.clip(this.output + 1, 0, 2048);
 			updateGui();
 		}
 		if (event == 2) {
-			this.output = GTMathUtil.clip(this.output - 1, 0, 2048);
+			this.output = GTHelperMath.clip(this.output - 1, 0, 2048);
 			updateGui();
 		}
 		if (event == 1) {
-			this.output = GTMathUtil.clip(this.output - 64, 0, 2048);
+			this.output = GTHelperMath.clip(this.output - 64, 0, 2048);
 			updateGui();
 		}
 	}

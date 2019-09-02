@@ -1,11 +1,11 @@
-package gtclassic.util;
+package gtclassic.helpers;
 
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class GTStackUtil {
+public class GTHelperStack {
 
 	/** Checks if a stack can merge with default stack size **/
 	public static boolean canMerge(ItemStack stack, ItemStack toCompare) {

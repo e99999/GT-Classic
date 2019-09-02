@@ -12,11 +12,11 @@ import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBlastFurnace;
 import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
+import gtclassic.helpers.GTHelperStack;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.recipe.GTRecipeProcessing;
 import gtclassic.util.GTLang;
-import gtclassic.util.GTStackUtil;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
@@ -173,10 +173,10 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 				NonNullList<ItemStack> items = NonNullList.create();
 				item.getSubItems(CreativeTabs.SEARCH, items);
 				for (ItemStack stack : items) {
-					if (GTStackUtil.matchOreDict(stack, "ingotIridium")
-							|| GTStackUtil.matchOreDict(stack, "ingotTungsten")
-							|| GTStackUtil.matchOreDict(stack, "ingotChrome")
-							|| GTStackUtil.matchOreDict(stack, "ingotTitanium")) {
+					if (GTHelperStack.matchOreDict(stack, "ingotIridium")
+							|| GTHelperStack.matchOreDict(stack, "ingotTungsten")
+							|| GTHelperStack.matchOreDict(stack, "ingotChrome")
+							|| GTHelperStack.matchOreDict(stack, "ingotTitanium")) {
 						GTRecipeProcessing.removeSmelting(stack);
 					}
 				}

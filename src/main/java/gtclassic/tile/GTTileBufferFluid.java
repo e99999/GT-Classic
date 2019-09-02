@@ -1,7 +1,7 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerBufferFluid;
-import gtclassic.util.GTFluidUtil;
+import gtclassic.helpers.GTHelperFluid;
 import gtclassic.util.GTLang;
 import ic2.core.RotationList;
 import ic2.core.fluid.IC2Tank;
@@ -122,7 +122,7 @@ public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener
 
 	@Override
 	public void update() {
-		GTFluidUtil.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
+		GTHelperFluid.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
 		tryExportFluid();
 	}
 
@@ -150,6 +150,6 @@ public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener
 
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
-		return GTFluidUtil.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 }

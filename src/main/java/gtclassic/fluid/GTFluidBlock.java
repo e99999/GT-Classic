@@ -81,7 +81,7 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-		if (!this.getMaterial().equals(GTMaterial.Oxygen) && !this.getMaterial().equals(GTMaterial.Nitrogen)) {
+		if (!this.getMaterial().equals(GTMaterial.Oxygen)) {
 			if (entityIn instanceof EntityLivingBase) {
 				EntityLivingBase entity = (EntityLivingBase) entityIn;
 				if (this.getMaterial().hasFlag(GTMaterialFlag.GAS)) {

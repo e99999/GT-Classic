@@ -86,7 +86,7 @@ public class GTRecipe {
 				"ingotTungsten", 'C', "circuitBasic", 'B', Ic2Items.battery.copy(), 'D', "gemDiamond" });
 		/** Helium Reactor Coolant **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium1, 1), new Object[] { " I ", "IHI", " I ", 'I',
-				"ingotTin", 'H', GTMaterialGen.getFluid(GTMaterial.Helium, 1) });
+				"ingotTin", 'H', GTMaterialGen.getTube(GTMaterial.Helium, 1) });
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium3, 1), new Object[] { "III", "HHH", "III", 'I',
 				"ingotTin", 'H', GTItems.heatStorageHelium1 });
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium6, 1), new Object[] { "IHI", "IPI", "IHI", 'I',
@@ -299,18 +299,18 @@ public class GTRecipe {
 		recipes.overrideRecipe("shaped_tile.blockMachine_527557260", Ic2Items.machine.copy(), "III", "I I", "III", 'I', ingotMachine);
 		/** Alt Mining Laser Recipe **/
 		recipes.addRecipe(Ic2Items.miningLaser.copy(), new Object[] { "Rcc", "AAC", " AA", 'A',
-				Ic2Items.advancedAlloy.copy(), 'C', "circuitAdvanced", 'c',
-				GTMaterialGen.getFluid(GTMaterial.Helium, 1), 'R', "dustRedstone" });
+				Ic2Items.advancedAlloy.copy(), 'C', "circuitAdvanced", 'c', GTMaterialGen.getTube(GTMaterial.Helium, 1),
+				'R', "dustRedstone" });
 		/** Thick Reflector Recipe **/
 		recipes.overrideRecipe("shaped_item.reactorReflectorThick_-1313142365", Ic2Items.reactorReflectorThick.copy(), new Object[] {
 				" P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B',
-				GTMaterialGen.getFluid(GTMaterial.Beryllium, 1) });
+				GTMaterialGen.getTube(GTMaterial.Beryllium, 1) });
 		/** More Luminator Recipes **/
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G',
-				"blockGlass", 'I', "ingotSilver", 'H', GTMaterialGen.getFluid(GTMaterial.Helium, 1), 'C',
+				"blockGlass", 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Helium, 1), 'C',
 				Ic2Items.insulatedCopperCable.copy() });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), new Object[] { "III", "GHG", "GGG", 'G',
-				"blockGlass", 'I', "ingotSilver", 'H', GTMaterialGen.getFluid(GTMaterial.Mercury, 1), 'C',
+				"blockGlass", 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Mercury, 1), 'C',
 				Ic2Items.insulatedCopperCable.copy() });
 		/** MFE with Lithium Batteries **/
 		recipes.addRecipe(Ic2Items.mfe.copy(), new Object[] { "XYX", "YCY", "XYX", 'C', Ic2Items.machine.copy(), 'Y',

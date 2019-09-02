@@ -7,6 +7,7 @@ import gtclassic.GTMod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -113,18 +114,13 @@ public class GTMaterialGen {
 	}
 
 	/** How to a GTFluidTube with any GTMaterial **/
-	public static ItemStack getFluid(GTMaterial mat, int count) {
+	public static ItemStack getTube(GTMaterial mat, int count) {
 		String name = mat.getDisplayName().toLowerCase();
-		FluidStack fluid = FluidRegistry.getFluidStack(name, 1000);
-		ItemStack stack = new ItemStack(GTItems.testTube);
-		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-		handler.fill(fluid, true);
-		stack.setCount(count);
-		return stack;
+		return getModdedTube(name, count);
 	}
 
 	/** How to get a GTFluidTube of any fluid by name **/
-	public static ItemStack getModFluid(String name, int count) {
+	public static ItemStack getModdedTube(String name, int count) {
 		FluidStack fluid = FluidRegistry.getFluidStack(name, 1000);
 		ItemStack stack = new ItemStack(GTItems.testTube);
 		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
@@ -133,36 +129,35 @@ public class GTMaterialGen {
 		return stack;
 	}
 
-	/** How to get a GTFluidTube of water easily **/
-	public static ItemStack getWater(int count) {
-		FluidStack fluid = FluidRegistry.getFluidStack("water", 1000);
-		ItemStack stack = new ItemStack(GTItems.testTube);
-		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-		handler.fill(fluid, true);
-		stack.setCount(count);
-		return stack;
+	/** How to get a GT Gas/Fluid Fluid Instance **/
+	public static Fluid getFluid(GTMaterial mat) {
+		return getFluidStack(mat).getFluid();
 	}
 
-	/** How to get a GT Fluid directly of 1000mb **/
+	/** How to get a GT Gas/Fluid FluidStack directly of 1000mb **/
 	public static FluidStack getFluidStack(GTMaterial mat) {
-		String name = mat.getDisplayName().toLowerCase();
-		return FluidRegistry.getFluidStack(name, 1000);
+		return getFluidStack(mat, 1000);
 	}
 
-	/** How to get a GT Fluid directly of a custom amount **/
+	/** How to get a GT Gas/Fluid FluidStack directly of a custom amount **/
 	public static FluidStack getFluidStack(GTMaterial mat, int amount) {
 		String name = mat.getDisplayName().toLowerCase();
 		return FluidRegistry.getFluidStack(name, amount);
 	}
 
+	/** How to get a Block of GT Fluid **/
+	public static Block getFluidBlock(GTMaterial mat) {
+		return getFluid(mat).getBlock();
+	}
+
+	/** How to get a GTFluidTube of water easily **/
+	public static ItemStack getWater(int count) {
+		return getModdedTube("water", count);
+	}
+
 	/** How to get a GTFluidTube of lava easily **/
 	public static ItemStack getLava(int count) {
-		FluidStack fluid = FluidRegistry.getFluidStack("lava", 1000);
-		ItemStack stack = new ItemStack(GTItems.testTube);
-		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-		handler.fill(fluid, true);
-		stack.setCount(count);
-		return stack;
+		return getModdedTube("lava", count);
 	}
 
 	/** How to properly call an IC2 Classic ItemStack **/
@@ -170,6 +165,11 @@ public class GTMaterialGen {
 		ItemStack ret = itemStack.copy();
 		ret.setCount(count);
 		return ret;
+	}
+
+	/** How to properly call an IC2 Classic ItemStack **/
+	public static ItemStack getIc2(ItemStack itemStack) {
+		return getIc2(itemStack, 1);
 	}
 
 	/**

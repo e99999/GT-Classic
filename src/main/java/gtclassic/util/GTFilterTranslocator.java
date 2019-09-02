@@ -1,5 +1,6 @@
 package gtclassic.util;
 
+import gtclassic.helpers.GTHelperStack;
 import gtclassic.tile.GTTileTranslocator;
 import ic2.core.inventory.filters.IFilter;
 import net.minecraft.item.ItemStack;
@@ -23,7 +24,7 @@ public class GTFilterTranslocator implements IFilter {
 				continue;// Skip because the inventory is empty we dont need to compare it.
 			}
 			noneEmptyStacks++;
-			if (GTStackUtil.isEqual(stack, inventoryStack)) {
+			if (GTHelperStack.isEqual(stack, inventoryStack)) {
 				return true; // Found
 			}
 		}

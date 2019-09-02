@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.GTBlocks;
+import gtclassic.helpers.GTHelperFluid;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.util.GTFluidUtil;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
@@ -113,6 +113,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 			}
 			return true;
 		}
-		return GTFluidUtil.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 }

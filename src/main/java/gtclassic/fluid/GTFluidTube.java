@@ -123,10 +123,10 @@ public class GTFluidTube extends Item
 			subItems.add(GTMaterialGen.getLava(1));
 			for (GTMaterial mat : GTMaterial.values()) {
 				if (mat.hasFlag(GTMaterialFlag.FLUID)) {
-					subItems.add(GTMaterialGen.getFluid(mat, 1));
+					subItems.add(GTMaterialGen.getTube(mat, 1));
 				}
 				if (mat.hasFlag(GTMaterialFlag.GAS)) {
-					subItems.add(GTMaterialGen.getFluid(mat, 1));
+					subItems.add(GTMaterialGen.getTube(mat, 1));
 				}
 			}
 		}
@@ -162,7 +162,7 @@ public class GTFluidTube extends Item
 
 	@Override
 	public List<ItemStack> getValidItemVariants() {
-		return Arrays.asList(GTMaterialGen.get(GTItems.testTube), GTMaterialGen.getFluid(GTMaterial.Hydrogen, 1));
+		return Arrays.asList(GTMaterialGen.get(GTItems.testTube), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1));
 	}
 
 	@Override

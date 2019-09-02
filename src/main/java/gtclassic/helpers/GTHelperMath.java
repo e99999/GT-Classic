@@ -1,6 +1,6 @@
-package gtclassic.util;
+package gtclassic.helpers;
 
-public class GTMathUtil {
+public class GTHelperMath {
 
 	public static int clip(int value, int min, int max) {
 		if (value < min) {

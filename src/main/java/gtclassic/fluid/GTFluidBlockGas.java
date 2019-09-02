@@ -7,12 +7,24 @@ import javax.annotation.Nonnull;
 import gtclassic.material.GTMaterial;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class GTFluidBlockGas extends GTFluidBlock {
 
 	public GTFluidBlockGas(GTMaterial mat) {
 		super(mat);
+	}
+
+	@Override
+	public float getFluidHeightForRender(IBlockAccess world, BlockPos pos, @Nonnull IBlockState up) {
+		return 1.0F;
+	}
+
+	@Override
+	public Vec3d getFlowVector(IBlockAccess world, BlockPos pos) {
+		return new Vec3d(0.0D, 0.0D, 0.0D);
 	}
 
 	@Override
@@ -23,6 +35,7 @@ public class GTFluidBlockGas extends GTFluidBlock {
 			if (!isSourceBlock(world, pos.up()) && !isSourceBlock(world, pos)) {
 				// MABYEDO someday make this sum the two levels
 				world.setBlockState(pos.up(), this.getDefaultState(), 2);
+				world.setBlockToAir(pos);
 			}
 		}
 		// moves the gas block up and dissipates

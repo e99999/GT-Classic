@@ -5,9 +5,9 @@ import java.util.List;
 
 import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerQuantumChest;
+import gtclassic.helpers.GTHelperStack;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTLang;
-import gtclassic.util.GTStackUtil;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -147,16 +147,17 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	@Override
 	public void update() {
 		// Logic for stack input
-		if (!GTStackUtil.isSlotEmpty(this, slotInput) && canDigitizeStack(getStackInSlot(slotInput))) {
+		if (!GTHelperStack.isSlotEmpty(this, slotInput) && canDigitizeStack(getStackInSlot(slotInput))) {
 			setStackInSlot(slotDisplay, StackUtil.copyWithSize(getStackInSlot(slotInput), 1));
 			this.digitalCount = this.digitalCount + 1;
 			inventory.get(slotInput).shrink(1);
 			updateGui();
 		}
 		// Logic for stack output
-		if (!GTStackUtil.isSlotEmpty(this, slotDisplay)
-				&& GTStackUtil.canOutputStack(this, getStackInSlot(slotDisplay), slotOutput) && this.digitalCount > 0) {
-			if (GTStackUtil.isSlotEmpty(this, slotOutput)) {
+		if (!GTHelperStack.isSlotEmpty(this, slotDisplay)
+				&& GTHelperStack.canOutputStack(this, getStackInSlot(slotDisplay), slotOutput)
+				&& this.digitalCount > 0) {
+			if (GTHelperStack.isSlotEmpty(this, slotOutput)) {
 				setStackInSlot(slotOutput, getStackInSlot(slotDisplay).copy());
 				this.digitalCount = this.digitalCount - 1;
 			} else {
@@ -175,7 +176,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		if (inventory.get(slotDisplay).isEmpty()) {
 			return true;
 		}
-		return this.digitalCount < maxSize && GTStackUtil.isEqual(getStackInSlot(slotDisplay), stack);
+		return this.digitalCount < maxSize && GTHelperStack.isEqual(getStackInSlot(slotDisplay), stack);
 	}
 
 	/** Sets the digital count, called when the block is placed for NBT stuff **/
@@ -206,7 +207,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		// tries to pull one item
 		if (facing == this.getFacing()) {
 			if (playerIn.isSneaking()) {
-				if (!GTStackUtil.isSlotEmpty(this, slotDisplay) && this.digitalCount >= 64) {
+				if (!GTHelperStack.isSlotEmpty(this, slotDisplay) && this.digitalCount >= 64) {
 					ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotDisplay), 64));
 					this.digitalCount = this.digitalCount - 64;
 					if (this.digitalCount == 0) {
@@ -214,7 +215,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 					}
 					return true;
 				}
-				if (!GTStackUtil.isSlotEmpty(this, slotOutput)) {
+				if (!GTHelperStack.isSlotEmpty(this, slotOutput)) {
 					ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotOutput), 1));
 					getStackInSlot(slotOutput).shrink(1);
 					return true;
@@ -224,7 +225,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 			ItemStack playerStack = playerIn.getHeldItemMainhand();
 			int count = playerStack.getCount();
 			boolean isPlayerStackValid = StackUtil.isStackEqual(getStackInSlot(slotDisplay), playerStack, false, false);
-			if (!playerIn.isSneaking() && !GTStackUtil.isSlotEmpty(this, slotDisplay) && isPlayerStackValid
+			if (!playerIn.isSneaking() && !GTHelperStack.isSlotEmpty(this, slotDisplay) && isPlayerStackValid
 					&& canFit(count)) {
 				this.digitalCount = this.digitalCount + count;
 				playerStack.shrink(count);
