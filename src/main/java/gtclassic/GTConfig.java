@@ -12,7 +12,6 @@ public class GTConfig {
 	private static final String CATEGORY_MODCOMPAT = "modcompatability";
 	// config
 	public static boolean debugMode = false;
-	public static boolean worldGenDebug = false;
 	public static boolean animatedTextures = true;
 	public static boolean addLootItems = true;
 	public static boolean ingotsRequireBlastFurnace = true;
@@ -71,7 +70,6 @@ public class GTConfig {
 	private static void initGeneralConfig(Configuration cfg) {
 		cfg.addCustomCategoryComment(CATEGORY_CONFIG, "Configuration");
 		debugMode = cfg.getBoolean("debugMode", CATEGORY_CONFIG, debugMode, "Enables debug logger for additional information");
-		worldGenDebug = cfg.getBoolean("worldGenDebug", CATEGORY_CONFIG, worldGenDebug, "Enables in game notifications of GT world gen to OP's");
 		animatedTextures = cfg.getBoolean("animatedTextures", CATEGORY_CONFIG, animatedTextures, "Enables animated textures for GT blocks and items");
 		addLootItems = cfg.getBoolean("addLootItems", CATEGORY_CONFIG, addLootItems, "Adds GregTech items to loot pool");
 		ingotsRequireBlastFurnace = cfg.getBoolean("ingotsRequireBlastFurnace", CATEGORY_CONFIG, ingotsRequireBlastFurnace, "Tries to remove vanilla smelting of end game metals from all loaded mods");

@@ -122,6 +122,10 @@ public class GTMaterial {
 		return mat.hasFlag(GTMaterialFlag.RUBY) || mat.hasFlag(GTMaterialFlag.SAPPHIRE)
 				|| mat.hasFlag(GTMaterialFlag.BLOCKGEM);
 	}
+	
+	public static boolean isFlammible(GTMaterial mat) {
+			return mat.equals(GTMaterial.Methane) || mat.equals(GTMaterial.Hydrogen);
+	}
 
 	/** Map Get **/
 	public GTMaterial get(String name) {

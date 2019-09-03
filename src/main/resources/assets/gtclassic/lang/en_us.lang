@@ -8,6 +8,7 @@ tile.gtclassic.blockSapphire.name=Block of Sapphire
 tile.gtclassic.blockChrome.name=Block of Chrome
 tile.gtclassic.blockRuby.name=Block of Ruby
 tile.gtclassic.blockAluminium.name=Block of Aluminium
+tile.gtclassic.blockPlatinum.name=Block of Platinum
 
 #ore
 tile.gtclassic.orePlatinum.name=Platinum Ore
@@ -79,6 +80,7 @@ item.gtclassic.dustUranium.name=Uranium Dust
 item.gtclassic.dustThorium.name=Thorium Dust
 item.gtclassic.dustPlutonium.name=Plutonium Dust
 item.gtclassic.dustBasalt.name=Basalt Dust
+item.gtclassic.dustPlatinum.name=Platinum Dust
 
 #gems
 item.gtclassic.gemSapphire.name=Sapphire
@@ -95,6 +97,7 @@ item.gtclassic.ingotSilicon.name=Silicon Ingot
 item.gtclassic.ingotAluminium.name=Aluminium Ingot
 item.gtclassic.ingotThorium.name=Thorium Ingot
 item.gtclassic.ingotPlutonium.name=Plutonium Ingot
+item.gtclassic.ingotPlatinum.name=Platinum Ingot
 
 #items
 item.gtclassic.heatstorage_helium_single.name=60k Helium Coolant Cell

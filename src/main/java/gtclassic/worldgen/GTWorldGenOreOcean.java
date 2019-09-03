@@ -30,11 +30,11 @@ public class GTWorldGenOreOcean extends WorldGenerator {
 
 	public void generateOreDeposit(World worldIn, Random rand, BlockPos position) {
 		IBlockState ore = getRandomOreState(rand);
-		// new center pos for the deposite
+		// new center pos for the deposit
 		BlockPos newPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(8)
 				- rand.nextInt(8), rand.nextInt(8) - rand.nextInt(8));
 		// iterating block place attempts
-		GTHelperWorld.notifyPlayersOfGeneration(worldIn, position, "OceanDeposit", ore.getBlock().getLocalizedName());
+		GTHelperWorld.notifyPlayersOfGeneration(worldIn, newPos, "OceanDeposit", ore.getBlock().getLocalizedName());
 		for (int i = 0; i < 256; ++i) {
 			// pos for the specific block in the deposit being generated
 			BlockPos blockpos = newPos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4)

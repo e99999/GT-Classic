@@ -2,7 +2,10 @@ package gtclassic.fluid;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import gtclassic.GTMod;
+import gtclassic.helpers.GTHelperWorld;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import ic2.core.item.armor.standart.ItemHazmatArmor;
@@ -21,7 +24,9 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -78,6 +83,21 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 	public GTMaterial getMaterial() {
 		return this.mat;
 	}
+	
+	@Override
+    public boolean shouldSideBeRendered(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EnumFacing side)
+    {
+        IBlockState neighbor = world.getBlockState(pos.offset(side));
+        if (neighbor.getBlock() == state.getBlock())
+        {
+            return false;
+        }
+        if (side == (densityDir < 0 ? EnumFacing.UP : EnumFacing.DOWN))
+        {
+            return true;
+        }
+        return super.shouldSideBeRendered(state, world, pos, side);
+    }
 
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
@@ -91,7 +111,12 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 					entity.addPotionEffect(new PotionEffect(MobEffects.POISON, 60, 0, false, false));
 					entity.attackEntityFrom(DamageSource.GENERIC, 1.0F);
 				}
+				if (GTMaterial.isFlammible(this.getMaterial()) && GTHelperWorld.entityHasFlammible(entity)) {
+					worldIn.createExplosion(entity, pos.getX(), pos.getY(), pos.getZ(), 2.0F, true);
+				}
 			}
 		}
 	}
+
+	
 }

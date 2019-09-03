@@ -43,7 +43,7 @@ public class GTWorldGenFluidSphere extends WorldGenerator {
 					for (BlockPos blockpos : BlockPos.getAllInBox(position.add(-j, -k, -l), position.add(j, k, l))) {
 						if (blockpos.distanceSq(position) <= (double) (f * f)
 								&& worldIn.getBlockState(blockpos).getBlock() != Blocks.BEDROCK) {
-							worldIn.setBlockState(blockpos, this.block.getDefaultState(), 4);
+							worldIn.setBlockState(blockpos, this.block.getDefaultState(), 1);
 						}
 					}
 					position = position.add(-(i1 + 1) + rand.nextInt(2 + i1 * 2), 0 - rand.nextInt(2), -(i1 + 1)

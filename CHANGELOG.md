@@ -1,5 +1,10 @@
 # Changelog
 # 1.03 (Not Released)
+- Added config option and in game debug command for GT World Gen, allows OP's to see and tp to new features;
+- Methane and Hydrogen gas blocks now explode if near a fire source, or player walks into them holding a torch.
+- Add Platinum Ore, more uses later but for now useful for getting Iridium.
+- Removed Iridium Ore in The End but....
+- Added Helium, Helium3, and Deuterium trapped gas pockets in the End
 - Added working on ore vein/ocean deposits that are extruded onto the ocean floor.
 - Added in world blocks for gases and fluids, fluids are fluids, gases float up and disperse. WIP
 - Fixed ocean sand not replacing in some chunks near biome borders.

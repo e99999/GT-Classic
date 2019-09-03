@@ -18,7 +18,6 @@ import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
-import gtclassic.util.GTCommandLastGenerated;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.energy.IDSUStorage;
@@ -103,7 +102,6 @@ public class GTMod {
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GTCommandTeleport());
-		event.registerServerCommand(new GTCommandLastGenerated());
 	}
 
 	/**
