@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 
 import gtclassic.GTMod;
+import gtclassic.helpers.GTHelperWorld;
 import ic2.core.IC2;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -19,10 +20,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 
-public class GTCommandTeleport extends CommandBase {
+public class GTCommandLastGenerated extends CommandBase {
 
-	public GTCommandTeleport() {
-		aliases = Lists.newArrayList(GTMod.MODID, "GTTP", "gttp");
+	public GTCommandLastGenerated() {
+		aliases = Lists.newArrayList(GTMod.MODID, "GTLG", "gtlg");
 	}
 
 	private final List<String> aliases;
@@ -30,13 +31,13 @@ public class GTCommandTeleport extends CommandBase {
 	@Override
 	@Nonnull
 	public String getName() {
-		return "gttp";
+		return "gtlg";
 	}
 
 	@Override
 	@Nonnull
 	public String getUsage(@Nonnull ICommandSender sender) {
-		return "gttp <id>";
+		return "gtlg";
 	}
 
 	@Override
@@ -53,19 +54,13 @@ public class GTCommandTeleport extends CommandBase {
 					+ "You do not have permission to use this command"));
 			return;
 		}
-		if (args.length < 1) {
-			return;
-		}
-		String s = args[0];
-		int dim;
-		try {
-			dim = Integer.parseInt(s);
-		} catch (NumberFormatException e) {
-			sender.sendMessage(new TextComponentString(TextFormatting.RED + "Error parsing dimension!"));
+		if (GTHelperWorld.lastGenPos == null) {
+			sender.sendMessage(new TextComponentString(TextFormatting.RED
+					+ "Last generated block pos is null"));
 			return;
 		}
 		if (sender instanceof EntityPlayer) {
-			GTCommandTeleporter.teleportToDimension((EntityPlayer) sender, dim, 0, 100, 0);
+			GTCommandTeleporter.teleportToDimension((EntityPlayer) sender, GTHelperWorld.dim, GTHelperWorld.lastGenPos.getX(), GTHelperWorld.lastGenPos.getY(), GTHelperWorld.lastGenPos.getZ());
 		}
 	}
 

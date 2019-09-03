@@ -47,6 +47,7 @@ public class GTMaterial {
 	public static final GTMaterial Oil = new GTMaterial("Oil", 0, 0, 0, fluid);
 	public static final GTMaterial Oxygen = new GTMaterial("Oxygen", 100, 160, 220, gas);
 	public static final GTMaterial Potassium = new GTMaterial("Potassium", 250, 250, 250, fluid);
+	public static final GTMaterial Platinum = new GTMaterial("Platinum", 255, 255, 200, metalAll);
 	public static final GTMaterial Plutonium = new GTMaterial("Plutonium", 240, 50, 50, false, dust, ingot);
 	public static final GTMaterial Pyrite = new GTMaterial("Pyrite", 150, 120, 40, dust);
 	public static final GTMaterial Ruby = new GTMaterial("Ruby", 255, 75, 75, rubyAll);

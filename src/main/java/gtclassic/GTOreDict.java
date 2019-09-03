@@ -45,12 +45,12 @@ public class GTOreDict {
 		OreDictionary.registerOre("dyeBlue", (GTMaterialGen.getDust(GTMaterial.Sodalite, 1)));
 		OreDictionary.registerOre("chestIron", (GTMaterialGen.get(GTBlocks.tileCabinet, 1)));
 		// My Ores
-		OreDictionary.registerOre("oreIridium", (GTMaterialGen.get(GTBlocks.oreEnd, 1)));
+		OreDictionary.registerOre("orePlatinum", (GTMaterialGen.get(GTBlocks.orePlatinum, 1)));
 		OreDictionary.registerOre("oreIridium", (GTMaterialGen.get(GTBlocks.oreIridium, 1)));
 		OreDictionary.registerOre("oreRuby", (GTMaterialGen.get(GTBlocks.oreRuby, 1)));
 		OreDictionary.registerOre("oreSapphire", (GTMaterialGen.get(GTBlocks.oreSapphire, 1)));
 		OreDictionary.registerOre("oreBauxite", (GTMaterialGen.get(GTBlocks.oreBauxite, 1)));
-		ClassicRecipes.oreRegistry.registerValueableOre(GTBlocks.oreEnd, 7);
+		ClassicRecipes.oreRegistry.registerValueableOre(GTBlocks.orePlatinum, 6);
 		ClassicRecipes.oreRegistry.registerValueableOre(GTBlocks.oreIridium, 7);
 		ClassicRecipes.oreRegistry.registerValueableOre(GTBlocks.oreRuby, 3);
 		ClassicRecipes.oreRegistry.registerValueableOre(GTBlocks.oreSapphire, 3);

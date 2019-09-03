@@ -103,7 +103,7 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 	@Override
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
 		ArrayList<ItemStack> drops = new ArrayList<>();
-		if (this.equals(GTBlocks.oreIridium) || this.equals(GTBlocks.oreEnd)) {
+		if (this.equals(GTBlocks.oreIridium)) {
 			drops.add(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1));
 		}
 		if (this.equals(GTBlocks.oreRuby)) {
@@ -122,7 +122,7 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 	public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
 		Random rand = world instanceof World ? ((World) world).rand : new Random();
 		int xp = 0;
-		if (this.equals(GTBlocks.oreIridium) || this.equals(GTBlocks.oreEnd)) {
+		if (this.equals(GTBlocks.oreIridium)) {
 			xp = MathHelper.getInt(rand, 3, 7);
 		}
 		if (this.equals(GTBlocks.oreRuby) || this.equals(GTBlocks.oreSapphire)) {

@@ -10,7 +10,7 @@ tile.gtclassic.blockRuby.name=Block of Ruby
 tile.gtclassic.blockAluminium.name=Block of Aluminium
 
 #ore
-tile.gtclassic.oreEnd.name=Iridium Ore
+tile.gtclassic.orePlatinum.name=Platinum Ore
 tile.gtclassic.oreIridium.name=Iridium Ore
 tile.gtclassic.oreRuby.name=Ruby Ore
 tile.gtclassic.oreSapphire.name=Sapphire Ore
@@ -148,7 +148,7 @@ fluid.chlorine=Chlorine
 fluid.oil=Oil
 
 #ore tooltips
-tooltip.gtclassic.oreEnd=Spawns in the end, twice as likely than in the overworld
+tooltip.gtclassic.orePlatinum=Not Implemented Yet Homeboy
 tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome
 tooltip.gtclassic.oreRuby=Spawns between Y level 0 - 48 in HOT biomes
 tooltip.gtclassic.oreSapphire=Spawns between Y level 0 - 48 in OCEAN biomes

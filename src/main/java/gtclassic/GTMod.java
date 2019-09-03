@@ -18,11 +18,12 @@ import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
+import gtclassic.util.GTCommandLastGenerated;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
 import gtclassic.util.energy.IDSUStorage;
 import gtclassic.util.energy.MultiBlockHelper;
-import gtclassic.worldgen.GTWorldGenOceanOreDeposit;
+import gtclassic.worldgen.GTWorldGenOreOcean;
 import ic2.core.IC2;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -76,7 +77,7 @@ public class GTMod {
 		GTRecipe.initItems();
 		GTRecipe.initBlocks();
 		GTRecipe.initIC2();
-		GTWorldGenOceanOreDeposit.initDepositOres();
+		GTWorldGenOreOcean.initDepositOres();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
 		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
@@ -101,7 +102,8 @@ public class GTMod {
 
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
-			event.registerServerCommand(new GTCommandTeleport());
+		event.registerServerCommand(new GTCommandTeleport());
+		event.registerServerCommand(new GTCommandLastGenerated());
 	}
 
 	/**

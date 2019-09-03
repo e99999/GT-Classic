@@ -56,8 +56,8 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
-	public static final GTBlockOre oreEnd = registerBlock(new GTBlockOre("End", 80, 20.0F, 3));
 	public static final GTBlockOre oreIridium = registerBlock(new GTBlockOre("Iridium", 81, 20.0F, 3));
+	public static final GTBlockOre orePlatinum = registerBlock(new GTBlockOre("Platinum", 80, 5.0F, 2));
 	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre("Ruby", 82, 4.0F, 2));
 	public static final GTBlockOre oreSapphire = registerBlock(new GTBlockOre("Sapphire", 83, 4.0F, 2));
 	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre("Bauxite", 84, 3.0F, 1));

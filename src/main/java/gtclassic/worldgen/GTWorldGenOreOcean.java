@@ -6,6 +6,7 @@ import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
+import gtclassic.helpers.GTHelperWorld;
 import ic2.core.platform.registry.Ic2States;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class GTWorldGenOceanOreDeposit extends WorldGenerator {
+public class GTWorldGenOreOcean extends WorldGenerator {
 
 	static List<IBlockState> oreDepositList = new ArrayList<>();
 
@@ -33,6 +34,7 @@ public class GTWorldGenOceanOreDeposit extends WorldGenerator {
 		BlockPos newPos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(8)
 				- rand.nextInt(8), rand.nextInt(8) - rand.nextInt(8));
 		// iterating block place attempts
+		GTHelperWorld.notifyPlayersOfGeneration(worldIn, position, "OceanDeposit", ore.getBlock().getLocalizedName());
 		for (int i = 0; i < 256; ++i) {
 			// pos for the specific block in the deposit being generated
 			BlockPos blockpos = newPos.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4)
@@ -91,6 +93,7 @@ public class GTWorldGenOceanOreDeposit extends WorldGenerator {
 		if (GTConfig.bauxiteGenerate) {
 			addOreDeposit(GTBlocks.oreBauxite);
 		}
+		addOreDeposit(GTBlocks.orePlatinum);
 		addOreDeposit(Blocks.COAL_ORE);
 		addOreDeposit(Blocks.DIAMOND_ORE);
 		addOreDeposit(Blocks.EMERALD_ORE);
