@@ -1,6 +1,7 @@
 package gtclassic;
 
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
@@ -14,6 +15,25 @@ import net.minecraftforge.oredict.OreDictionary;
 public class GTOreDict {
 
 	public static void init() {
+		//GT Materials
+		for (GTMaterial mat : GTMaterial.values()) {
+			// Iterating through resource blocks
+			if (mat.hasFlag(GTMaterialFlag.BLOCKMETAL) || mat.hasFlag(GTMaterialFlag.BLOCKGEM)) {
+				OreDictionary.registerOre("block" + mat.getDisplayName(), GTMaterialGen.getMaterialBlock(mat, 1));
+			}
+			// Regular dusts
+			if (mat.hasFlag(GTMaterialFlag.DUST)) {
+				OreDictionary.registerOre("dust" + mat.getDisplayName(), GTMaterialGen.getDust(mat, 1));
+			}
+			// Gems
+			if (GTMaterial.isGem(mat)) {
+				OreDictionary.registerOre("gem" + mat.getDisplayName(), GTMaterialGen.getGem(mat, 1));
+			}
+			// Ingots
+			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
+				OreDictionary.registerOre("ingot" + mat.getDisplayName(), GTMaterialGen.getIngot(mat, 1));
+			}
+		}
 		// Just doing these to make iteration & unification easier in some cases
 		OreDictionary.registerOre("dustGunpowder", Items.GUNPOWDER);
 		OreDictionary.registerOre("bookshelf", Blocks.BOOKSHELF);

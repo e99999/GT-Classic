@@ -7,7 +7,6 @@ import gtclassic.events.GTEventEntityViewRenderEvent;
 import gtclassic.events.GTEventLootTableLoad;
 import gtclassic.events.GTEventOnLivingFall;
 import gtclassic.events.GTEventPopulateChunk;
-import gtclassic.material.GTMaterialDict;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.proxy.GTProxyCommon;
 import gtclassic.recipe.GTRecipe;
@@ -61,7 +60,6 @@ public class GTMod {
 		GTBlocks.registerBlocks();
 		GTItems.initBaubleItems();
 		GTItems.registerItems();
-		GTMaterialDict.init();
 		GTOreDict.init();
 	}
 

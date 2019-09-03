@@ -22,7 +22,7 @@ public class GTFluidBlockGas extends GTFluidBlock {
 
 	@Override
 	public float getFluidHeightForRender(IBlockAccess world, BlockPos pos, @Nonnull IBlockState up) {
-		if (world.isAirBlock(pos.up()) || !this.isSourceBlock(world, pos)) {
+		if (world.isAirBlock(pos.up())) {
 			return this.getQuantaPercentage(world, pos) * quantaFraction;
 		}
 		return 1.0F;
@@ -43,6 +43,7 @@ public class GTFluidBlockGas extends GTFluidBlock {
 				world.setBlockToAir(pos);
 			}
 		}
+		//try to escape off the sides
 		for (EnumFacing side : EnumFacing.HORIZONTALS) {
 			if (!world.isAirBlock(pos.up()) && world.isAirBlock(pos.offset(side).up())
 					&& world.isAirBlock(pos.offset(side))) {

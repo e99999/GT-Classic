@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTElement;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionReactor;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
+import gtclassic.material.GTMaterialElement;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTLang;
 import gtclassic.util.int3;
@@ -150,9 +150,9 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 		/** This iterates the element objects to create all Fusion recipes **/
 		Set<Integer> usedInputs = new HashSet<>();
-		for (GTElement sum : GTElement.getElementList()) {
-			for (GTElement input1 : GTElement.getElementList()) {
-				for (GTElement input2 : GTElement.getElementList()) {
+		for (GTMaterialElement sum : GTMaterialElement.getElementList()) {
+			for (GTMaterialElement input1 : GTMaterialElement.getElementList()) {
+				for (GTMaterialElement input2 : GTMaterialElement.getElementList()) {
 					int hash = input1.hashCode() + input2.hashCode();
 					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2
 							&& !usedInputs.contains(hash)) {

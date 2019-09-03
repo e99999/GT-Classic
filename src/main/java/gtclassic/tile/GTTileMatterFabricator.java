@@ -3,10 +3,10 @@ package gtclassic.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.GTElement;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerMatterFabricator;
 import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
+import gtclassic.material.GTMaterialElement;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
 import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
@@ -120,7 +120,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 					new RecipeInputItemStack(var.getInput().getInputs().get(0)) }, value(var.getOutput().getMetadata().getInteger("amplification")), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
 		}
 		/** Adding my elements **/
-		for (GTElement element : GTElement.getElementList()) {
+		for (GTMaterialElement element : GTMaterialElement.getElementList()) {
 			int value = element.getNumber() * 1000;
 			if (value < 5000) {
 				value = 5000;
