@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 
+import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.helpers.GTHelperWorld;
 import ic2.core.IC2;
@@ -49,6 +50,11 @@ public class GTCommandLastGenerated extends CommandBase {
 	@Override
 	public void execute(@Nonnull MinecraftServer server, @Nonnull ICommandSender sender, @Nonnull String[] args)
 			throws CommandException {
+		if (!GTConfig.worldGenDebug) {
+			sender.sendMessage(new TextComponentString(TextFormatting.RED
+					+ "Enable worldGenDebug in the GT config to use this command"));
+			return;
+		}
 		if (!IC2.platform.isOp(sender.getCommandSenderEntity().getUniqueID())) {
 			sender.sendMessage(new TextComponentString(TextFormatting.RED
 					+ "You do not have permission to use this command"));

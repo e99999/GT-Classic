@@ -12,6 +12,7 @@ public class GTConfig {
 	private static final String CATEGORY_MODCOMPAT = "modcompatability";
 	// config
 	public static boolean debugMode = false;
+	public static boolean worldGenDebug = false;
 	public static boolean animatedTextures = true;
 	public static boolean addLootItems = true;
 	public static boolean ingotsRequireBlastFurnace = true;
@@ -33,12 +34,9 @@ public class GTConfig {
 	public static boolean bauxiteGenerate = true;
 	public static int bauxiteSize = 16;
 	public static int bauxiteWeight = 4;
-	public static boolean iridiumEndGenerate = true;
-	public static int iridiumEndSize = 3;
-	public static int iridiumEndWeight = 4;
-	public static boolean iridiumOverworldGenerate = true;
-	public static int iridiumOverworldSize = 3;
-	public static int iridiumOverworldWeight = 2;
+	public static boolean iridiumGenerate = true;
+	public static int iridiumSize = 3;
+	public static int iridiumWeight = 2;
 	public static boolean rubyGenerate = true;
 	public static int rubySize = 5;
 	public static int rubyWeight = 2;
@@ -73,6 +71,7 @@ public class GTConfig {
 	private static void initGeneralConfig(Configuration cfg) {
 		cfg.addCustomCategoryComment(CATEGORY_CONFIG, "Configuration");
 		debugMode = cfg.getBoolean("debugMode", CATEGORY_CONFIG, debugMode, "Enables debug logger for additional information");
+		worldGenDebug = cfg.getBoolean("worldGenDebug", CATEGORY_CONFIG, worldGenDebug, "Enables in game notifications of GT world gen to OP's");
 		animatedTextures = cfg.getBoolean("animatedTextures", CATEGORY_CONFIG, animatedTextures, "Enables animated textures for GT blocks and items");
 		addLootItems = cfg.getBoolean("addLootItems", CATEGORY_CONFIG, addLootItems, "Adds GregTech items to loot pool");
 		ingotsRequireBlastFurnace = cfg.getBoolean("ingotsRequireBlastFurnace", CATEGORY_CONFIG, ingotsRequireBlastFurnace, "Tries to remove vanilla smelting of end game metals from all loaded mods");
@@ -98,14 +97,10 @@ public class GTConfig {
 		bauxiteGenerate = cfg.getBoolean("bauxiteGenerate", CATEGORY_GENERATION, bauxiteGenerate, "Generate Bauxite ore in plains/forest biomes in the overworld");
 		bauxiteSize = cfg.getInt("bauxiteSize", CATEGORY_GENERATION, bauxiteSize, 1, 32, "Max size of Bauxite veins");
 		bauxiteWeight = cfg.getInt("bauxiteWeight", CATEGORY_GENERATION, bauxiteWeight, 1, 32, "Chance of Bauxite veins to spawn");
-		// iridum end ore
-		iridiumEndGenerate = cfg.getBoolean("iridiumEndGenerate", CATEGORY_GENERATION, iridiumEndGenerate, "Generate Iridium ore in the end");
-		iridiumEndSize = cfg.getInt("iridiumEndSize", CATEGORY_GENERATION, iridiumEndSize, 1, 32, "Max size of Iridium veins in the end");
-		iridiumEndWeight = cfg.getInt("iridiumEndWeight", CATEGORY_GENERATION, iridiumEndWeight, 1, 32, "Chance of Iridium veins in the end");
 		// iridium overworld ore
-		iridiumOverworldGenerate = cfg.getBoolean("iridiumOverworldGenerate", CATEGORY_GENERATION, iridiumOverworldGenerate, "Generate Iridium ore in the overworld");
-		iridiumOverworldSize = cfg.getInt("iridiumOverworldSize", CATEGORY_GENERATION, iridiumOverworldSize, 1, 32, "Max size of Iridium veins in the overworld");
-		iridiumOverworldWeight = cfg.getInt("iridiumOverworldWeight", CATEGORY_GENERATION, iridiumOverworldWeight, 1, 32, "Chance of Iridium veins in the overworld");
+		iridiumGenerate = cfg.getBoolean("iridiumOverworldGenerate", CATEGORY_GENERATION, iridiumGenerate, "Generate Iridium ore in the overworld");
+		iridiumSize = cfg.getInt("iridiumOverworldSize", CATEGORY_GENERATION, iridiumSize, 1, 32, "Max size of Iridium veins in the overworld");
+		iridiumWeight = cfg.getInt("iridiumOverworldWeight", CATEGORY_GENERATION, iridiumWeight, 1, 32, "Chance of Iridium veins in the overworld");
 		// ruby overworld ore
 		rubyGenerate = cfg.getBoolean("rubyGenerate", CATEGORY_GENERATION, rubyGenerate, "Generate Ruby ore in hot overworld biomes");
 		rubySize = cfg.getInt("rubySize", CATEGORY_GENERATION, rubySize, 1, 32, "Max size of Ruby veins");
