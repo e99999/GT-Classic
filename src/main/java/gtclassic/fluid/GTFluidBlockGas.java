@@ -44,7 +44,8 @@ public class GTFluidBlockGas extends GTFluidBlock {
 			}
 		}
 		for (EnumFacing side : EnumFacing.HORIZONTALS) {
-			if (!world.isAirBlock(pos.up()) && world.isAirBlock(pos.offset(side).up()) && world.isAirBlock(pos.offset(side))) {
+			if (!world.isAirBlock(pos.up()) && world.isAirBlock(pos.offset(side).up())
+					&& world.isAirBlock(pos.offset(side))) {
 				world.setBlockState(pos.offset(side).up(), state.withProperty(LEVEL, 3), 2);
 				world.setBlockToAir(pos);
 			}

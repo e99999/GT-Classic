@@ -1,11 +1,8 @@
 package gtclassic.helpers;
 
-import gtclassic.GTConfig;
 import gtclassic.GTMod;
-import ic2.core.IC2;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;

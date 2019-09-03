@@ -83,21 +83,19 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 	public GTMaterial getMaterial() {
 		return this.mat;
 	}
-	
+
 	@Override
-    public boolean shouldSideBeRendered(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EnumFacing side)
-    {
-        IBlockState neighbor = world.getBlockState(pos.offset(side));
-        if (neighbor.getBlock() == state.getBlock())
-        {
-            return false;
-        }
-        if (side == (densityDir < 0 ? EnumFacing.UP : EnumFacing.DOWN))
-        {
-            return true;
-        }
-        return super.shouldSideBeRendered(state, world, pos, side);
-    }
+	public boolean shouldSideBeRendered(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos,
+			@Nonnull EnumFacing side) {
+		IBlockState neighbor = world.getBlockState(pos.offset(side));
+		if (neighbor.getBlock() == state.getBlock()) {
+			return false;
+		}
+		if (side == (densityDir < 0 ? EnumFacing.UP : EnumFacing.DOWN)) {
+			return true;
+		}
+		return super.shouldSideBeRendered(state, world, pos, side);
+	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
@@ -117,6 +115,4 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 			}
 		}
 	}
-
-	
 }
