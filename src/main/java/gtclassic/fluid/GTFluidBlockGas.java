@@ -43,7 +43,7 @@ public class GTFluidBlockGas extends GTFluidBlock {
 				world.setBlockToAir(pos);
 			}
 		}
-		//try to escape off the sides
+		// try to escape off the sides
 		for (EnumFacing side : EnumFacing.HORIZONTALS) {
 			if (!world.isAirBlock(pos.up()) && world.isAirBlock(pos.offset(side).up())
 					&& world.isAirBlock(pos.offset(side))) {

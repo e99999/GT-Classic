@@ -85,7 +85,7 @@ public class GTItems {
 		return lapotronPack;
 	}
 
-	public static void initBaubleItems() {
+	public static void initItems() {
 		IBaublesPlugin plugin = IC2.loader.getPlugin("baubles", IBaublesPlugin.class);
 		if (GTConfig.compatBaubles && plugin != null) {
 			lithiumBattery = createItem(new GTItemBaublesLithiumBattery());

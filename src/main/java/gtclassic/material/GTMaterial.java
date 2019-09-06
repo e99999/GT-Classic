@@ -21,6 +21,7 @@ public class GTMaterial {
 	private static HashMap<String, GTMaterial> generatedMap = new HashMap<>();
 	/** Material Instances **/
 	public static final GTMaterial Aluminium = new GTMaterial("Aluminium", 128, 200, 240, metalAll);
+	public static final GTMaterial Argon = new GTMaterial("Argon", 255, 100, 255, gas);
 	public static final GTMaterial Bauxite = new GTMaterial("Bauxite", 200, 100, 0, dust);
 	public static final GTMaterial Basalt = new GTMaterial("Basalt", 30, 20, 20, dust);
 	public static final GTMaterial Beryllium = new GTMaterial("Beryllium", 30, 80, 50, fluid);
@@ -43,6 +44,7 @@ public class GTMaterial {
 	public static final GTMaterial Lithium = new GTMaterial("Lithium", 87, 150, 204, dust);
 	public static final GTMaterial Mercury = new GTMaterial("Mercury", 250, 250, 250, fluid);
 	public static final GTMaterial Methane = new GTMaterial("Methane", 255, 50, 130, gas);
+	public static final GTMaterial Neon = new GTMaterial("Neon", 255, 100, 100, gas);
 	public static final GTMaterial Nitrogen = new GTMaterial("Nitrogen", 0, 190, 190, gas);
 	public static final GTMaterial Oil = new GTMaterial("Oil", 0, 0, 0, fluid);
 	public static final GTMaterial Oxygen = new GTMaterial("Oxygen", 100, 160, 220, gas);
@@ -125,6 +127,10 @@ public class GTMaterial {
 
 	public static boolean isFlammible(GTMaterial mat) {
 		return mat.equals(GTMaterial.Methane) || mat.equals(GTMaterial.Hydrogen);
+	}
+	
+	public static boolean hasGlow(GTMaterial mat) {
+		return mat.equals(GTMaterial.Helium) || mat.equals(GTMaterial.Helium3) || mat.equals(GTMaterial.Mercury) || mat.equals(GTMaterial.Argon) || mat.equals(GTMaterial.Neon);
 	}
 
 	/** Map Get **/

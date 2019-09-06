@@ -41,6 +41,8 @@ public class GTMaterialElement {
 	public static final GTMaterialElement thorium = addElement(90, "dustThorium", GTMaterialGen.getDust(GTMaterial.Thorium, 1));
 	public static final GTMaterialElement uranium = addElement(92, "dustUranium", GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 	public static final GTMaterialElement plutonium = addElement(94, "dustPlutonium", GTMaterialGen.getDust(GTMaterial.Plutonium, 1));
+	public static final GTMaterialElement neon = addElement(10, GTMaterialGen.getTube(GTMaterial.Neon, 1));
+	public static final GTMaterialElement argon = addElement(18, GTMaterialGen.getTube(GTMaterial.Argon, 1));
 
 	public static GTMaterialElement addElement(int number, String input, ItemStack output) {
 		GTMaterialElement element = new GTMaterialElement(number, new RecipeInputOreDict(input, 1), output);

@@ -149,6 +149,8 @@ fluid.calcium=Calcium
 fluid.nitrogen=Nitrogen
 fluid.chlorine=Chlorine
 fluid.oil=Oil
+fluid.neon=Neon
+fluid.argon=Argon
 
 #ore tooltips
 tooltip.gtclassic.orePlatinum=Not Implemented Yet Homeboy

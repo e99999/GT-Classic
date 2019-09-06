@@ -58,7 +58,7 @@ public class GTMod {
 		GTBlocks.registerTiles();
 		GTMaterialGen.init();
 		GTBlocks.registerBlocks();
-		GTItems.initBaubleItems();
+		GTItems.initItems();
 		GTItems.registerItems();
 		GTOreDict.init();
 	}
