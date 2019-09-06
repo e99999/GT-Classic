@@ -2,12 +2,18 @@ package gtclassic.events;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import gtclassic.GTConfig;
+import gtclassic.GTMod;
 import gtclassic.tile.GTTileMobRepeller;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,6 +42,14 @@ public class GTEventCheckSpawn {
 					&& entity.getPosition().distanceSq(spawn.getX(), spawn.getY(), spawn.getZ()) <= 128 * 128) {
 				event.setResult(Event.Result.DENY);
 			}
+			// this is code for zombies spawning with pickaxes
+			if (GTConfig.caveZombiesSpawnWithPickaxe && entity instanceof EntityZombie && event.getY() <= 50.0F
+					&& event.getWorld().rand.nextInt(2) == 0) {
+				EntityZombie zombie = (EntityZombie) entity;
+				ItemStack tool = getRandomPickaxe(event.getWorld().rand);
+				tool.damageItem(event.getWorld().rand.nextInt(tool.getMaxDamage() - 1), zombie);
+				zombie.setHeldItem(EnumHand.MAIN_HAND, tool);
+			}
 			// This is the code for the mob repellator
 			for (int[] rep : mobReps) {
 				World world = event.getEntity().getEntityWorld();
@@ -52,6 +66,19 @@ public class GTEventCheckSpawn {
 					}
 				}
 			}
+		}
+	}
+
+	public ItemStack getRandomPickaxe(Random rand) {
+		switch (rand.nextInt(4)) {
+		case 1:
+			return new ItemStack(Items.STONE_PICKAXE);
+		case 2:
+			return new ItemStack(Items.IRON_PICKAXE);
+		case 3:
+			return new ItemStack(Items.GOLDEN_PICKAXE);
+		default:
+			return new ItemStack(Items.WOODEN_PICKAXE);
 		}
 	}
 }
