@@ -37,67 +37,77 @@ public class GTItems {
 	}
 
 	static List<Item> toRegister = new ArrayList<>();
-	public static final GTItemReactorHeat heatStorageHelium1 = createItem(new GTItemReactorHeat("helium_single", 2, 60000));
-	public static final GTItemReactorHeat heatStorageHelium3 = createItem(new GTItemReactorHeat("helium_triple", 3, 180000));
-	public static final GTItemReactorHeat heatStorageHelium6 = createItem(new GTItemReactorHeat("helium_six", 4, 360000));
-	public static final GTItemReactorRod rodThorium1 = createItem(new GTItemReactorRod("thorium_single", 16, 1));
-	public static final GTItemReactorRod rodThorium2 = createItem(new GTItemReactorRod("thorium_double", 17, 2));
-	public static final GTItemReactorRod rodThorium4 = createItem(new GTItemReactorRod("thorium_quad", 18, 4));
-	public static final GTItemReactorRod rodPlutonium1 = createItem(new GTItemReactorRod("plutonium_single", 19, 1));
-	public static final GTItemReactorRod rodPlutonium2 = createItem(new GTItemReactorRod("plutonium_double", 20, 2));
-	public static final GTItemReactorRod rodPlutonium4 = createItem(new GTItemReactorRod("plutonium_quad", 21, 4));
-	public static final GTItemComponent circuitEnergy = createItem(new GTItemComponent("energy_circuit", 6, 0));
-	public static final GTItemComponent circuitData = createItem(new GTItemComponent("data_circuit", 7, 0));
-	public static final GTItemComponent chipData = createItem(new GTItemComponent("data_chip", 9, 0));
-	public static final GTItemComponent superConductor = createItem(new GTItemComponent("super_conductor", 10, 0));
-	public static final GTItemComponent orbData = createItem(new GTItemComponent("data_orb", 11, 0));
-	public static final GTItemDuctTape ductTape = createItem(new GTItemDuctTape());
-	public static final GTItemSpringBoots springBoots = createItem(new GTItemSpringBoots());
-	public static final GTItemEchotron echotron = createItem(new GTItemEchotron());
-	public static final GTItemDestructoPack destructoPack = createItem(new GTItemDestructoPack());
-	public static final GTItemElectromagnet electroMagnet = createItem(new GTItemElectromagnet());
-	private static GTItemLithiumBattery lithiumBattery;
-	private static GTItemEnergyOrb orbEnergy;
-	public static final GTItemCloakingDevice cloakingDevice = createItem(new GTItemCloakingDevice());
-	private static GTItemEnergyPack lithiumBatpack;
-	private static GTItemEnergyPack lapotronPack;
-	public static final GTItemLightHelmet lightHelment = createItem(new GTItemLightHelmet());
-	public static final GTItemTeslaStaff teslaStaff = createItem(new GTItemTeslaStaff());
-	public static final GTItemRockCutter rockCutter = createItem(new GTItemRockCutter());
-	public static final GTItemJackHammer jackHammer = createItem(new GTItemJackHammer());
-	public static final GTItemSurvivalScanner portableScanner = createItem(new GTItemSurvivalScanner());
-	public static final GTItemCreativeScanner debugScanner = createItem(new GTItemCreativeScanner());
-	public static final GTFluidTube testTube = createItem(new GTFluidTube());
-
-	public static GTItemLithiumBattery getLithiumBattery() {
-		return lithiumBattery;
-	}
-
-	public static GTItemEnergyOrb getOrbEnergy() {
-		return orbEnergy;
-	}
-
-	public static GTItemEnergyPack getLithiumBatpack() {
-		return lithiumBatpack;
-	}
-
-	public static GTItemEnergyPack getLapotronPack() {
-		return lapotronPack;
-	}
+	public static GTItemReactorHeat heatStorageHelium1;
+	public static GTItemReactorHeat heatStorageHelium3;
+	public static GTItemReactorHeat heatStorageHelium6;
+	public static GTItemReactorRod rodThorium1;
+	public static GTItemReactorRod rodThorium2;
+	public static GTItemReactorRod rodThorium4;
+	public static GTItemReactorRod rodPlutonium1;
+	public static GTItemReactorRod rodPlutonium2;
+	public static GTItemReactorRod rodPlutonium4;
+	public static GTItemComponent circuitEnergy;
+	public static GTItemComponent circuitData;
+	public static GTItemComponent chipData;
+	public static GTItemComponent superConductor;
+	public static GTItemComponent orbData;
+	public static GTItemDuctTape ductTape;
+	public static GTItemSpringBoots springBoots;
+	public static GTItemEchotron echotron;
+	public static GTItemDestructoPack destructoPack;
+	public static GTItemElectromagnet electroMagnet;
+	public static GTItemLithiumBattery lithiumBattery;
+	public static GTItemEnergyOrb orbEnergy;
+	public static GTItemCloakingDevice cloakingDevice;
+	public static GTItemEnergyPack lithiumBatpack;
+	public static GTItemEnergyPack lapotronPack;
+	public static GTItemLightHelmet lightHelment;
+	public static GTItemTeslaStaff teslaStaff;
+	public static GTItemRockCutter rockCutter;
+	public static GTItemJackHammer jackHammer;
+	public static GTItemSurvivalScanner portableScanner;
+	public static GTItemCreativeScanner debugScanner;
+	public static GTFluidTube testTube;
 
 	public static void initItems() {
 		IBaublesPlugin plugin = IC2.loader.getPlugin("baubles", IBaublesPlugin.class);
-		if (GTConfig.compatBaubles && plugin != null) {
-			lithiumBattery = createItem(new GTItemBaublesLithiumBattery());
-			lithiumBatpack = createItem(new GTItemBaublesEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
-			orbEnergy = createItem(new GTItemBaublesEnergyOrb());
-			lapotronPack = createItem(new GTItemBaublesEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
-		} else {
-			lithiumBattery = createItem(new GTItemLithiumBattery());
-			lithiumBatpack = createItem(new GTItemEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
-			orbEnergy = createItem(new GTItemEnergyOrb());
-			lapotronPack = createItem(new GTItemEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
-		}
+		boolean doBaubles = GTConfig.compatBaubles && plugin != null;
+		heatStorageHelium1 = createItem(new GTItemReactorHeat("helium_single", 2, 60000));
+		heatStorageHelium3 = createItem(new GTItemReactorHeat("helium_triple", 3, 180000));
+		heatStorageHelium6 = createItem(new GTItemReactorHeat("helium_six", 4, 360000));
+		rodThorium1 = createItem(new GTItemReactorRod("thorium_single", 16, 1));
+		rodThorium2 = createItem(new GTItemReactorRod("thorium_double", 17, 2));
+		rodThorium4 = createItem(new GTItemReactorRod("thorium_quad", 18, 4));
+		rodPlutonium1 = createItem(new GTItemReactorRod("plutonium_single", 19, 1));
+		rodPlutonium2 = createItem(new GTItemReactorRod("plutonium_double", 20, 2));
+		rodPlutonium4 = createItem(new GTItemReactorRod("plutonium_quad", 21, 4));
+		circuitEnergy = createItem(new GTItemComponent("energy_circuit", 6, 0));
+		circuitData = createItem(new GTItemComponent("data_circuit", 7, 0));
+		chipData = createItem(new GTItemComponent("data_chip", 9, 0));
+		superConductor = createItem(new GTItemComponent("super_conductor", 10, 0));
+		orbData = createItem(new GTItemComponent("data_orb", 11, 0));
+		ductTape = createItem(new GTItemDuctTape());
+		springBoots = createItem(new GTItemSpringBoots());
+		echotron = createItem(new GTItemEchotron());
+		destructoPack = createItem(new GTItemDestructoPack());
+		electroMagnet = createItem(new GTItemElectromagnet());
+		lithiumBattery = doBaubles ? createItem(new GTItemBaublesLithiumBattery())
+				: createItem(new GTItemLithiumBattery());
+		orbEnergy = doBaubles ? createItem(new GTItemBaublesEnergyOrb()) : createItem(new GTItemEnergyOrb());
+		cloakingDevice = createItem(new GTItemCloakingDevice());
+		lithiumBatpack = doBaubles
+				? createItem(new GTItemBaublesEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128))
+				: createItem(new GTItemEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
+		lapotronPack = doBaubles
+				? createItem(new GTItemBaublesEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192))
+				: createItem(new GTItemEnergyPack(13, "gtclassic:textures/models/armor/lapotronpack", 10000000, "lapotron_pack", ".lapotronPack", 4, 8192));
+		lightHelment = createItem(new GTItemLightHelmet());
+		teslaStaff = createItem(new GTItemTeslaStaff());
+		rockCutter = createItem(new GTItemRockCutter());
+		jackHammer = createItem(new GTItemJackHammer());
+		portableScanner = createItem(new GTItemSurvivalScanner());
+		debugScanner = createItem(new GTItemCreativeScanner());
+		testTube = createItem(new GTFluidTube());
 	}
 
 	public static <T extends Item> T createItem(T item) {

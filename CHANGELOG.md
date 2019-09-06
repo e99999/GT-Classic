@@ -1,6 +1,7 @@
 # Changelog
 # 1.03 (Not Released)
-- Added config option and in game debug command for GT World Gen, allows OP's to see and tp to new features;
+- Fixed Baubles items deciding to register whenever they felt like it.
+- Added Neon, and Argon, and centrifuge air separating. Cram it Bear im not adding a whole machine/multi for this, it has no use.
 - Methane and Hydrogen gas blocks now explode if near a fire source, or player walks into them holding a torch.
 - Add Platinum Ore, more uses later but for now useful for getting Iridium.
 - Removed Iridium Ore in The End but....
