@@ -128,9 +128,10 @@ public class GTMaterial {
 	public static boolean isFlammible(GTMaterial mat) {
 		return mat.equals(GTMaterial.Methane) || mat.equals(GTMaterial.Hydrogen);
 	}
-	
+
 	public static boolean hasGlow(GTMaterial mat) {
-		return mat.equals(GTMaterial.Helium) || mat.equals(GTMaterial.Helium3) || mat.equals(GTMaterial.Mercury) || mat.equals(GTMaterial.Argon) || mat.equals(GTMaterial.Neon);
+		return mat.equals(GTMaterial.Helium) || mat.equals(GTMaterial.Helium3) || mat.equals(GTMaterial.Mercury)
+				|| mat.equals(GTMaterial.Argon) || mat.equals(GTMaterial.Neon);
 	}
 
 	/** Map Get **/

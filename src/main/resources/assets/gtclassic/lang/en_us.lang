@@ -153,8 +153,8 @@ fluid.neon=Neon
 fluid.argon=Argon
 
 #ore tooltips
-tooltip.gtclassic.orePlatinum=Not Implemented Yet Homeboy
 tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome
+tooltip.gtclassic.orePlatinum=Spawns between Y level 10-30 in JUNGLE biomes
 tooltip.gtclassic.oreRuby=Spawns between Y level 0 - 48 in HOT biomes
 tooltip.gtclassic.oreSapphire=Spawns between Y level 0 - 48 in OCEAN biomes
 tooltip.gtclassic.oreBauxite=Spawns between Y level 50 - 120 in FOREST/PLAINS biomes

@@ -140,7 +140,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		/** Recipes from GT1 **/
 		addCustomRecipe(GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 2), totalEu(5000), GTMaterialGen.getIc2(Ic2Items.airCell, 2), GTMaterialGen.get(tube, 1));
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.airCell, 16)),
-				tubes(16) }, totalEu(1000000),GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTMaterialGen.getTube(GTMaterial.Nitrogen, 9), GTMaterialGen.getTube(GTMaterial.Oxygen, 4), GTMaterialGen.getTube(GTMaterial.Helium, 1), GTMaterialGen.getTube(GTMaterial.Neon, 1), GTMaterialGen.getTube(GTMaterial.Argon, 1));
+				tubes(16) }, totalEu(1000000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTMaterialGen.getTube(GTMaterial.Nitrogen, 9), GTMaterialGen.getTube(GTMaterial.Oxygen, 4), GTMaterialGen.getTube(GTMaterial.Helium, 1), GTMaterialGen.getTube(GTMaterial.Neon, 1), GTMaterialGen.getTube(GTMaterial.Argon, 1));
 		addRecipe(GTMaterialGen.getWater(6), 0, totalEu(90000), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.waterCell, 6), 6, totalEu(90000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 6), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
 		addRecipe("dustCoal", 4, 0, totalEu(7500), GTMaterialGen.getDust(GTMaterial.Carbon, 8));

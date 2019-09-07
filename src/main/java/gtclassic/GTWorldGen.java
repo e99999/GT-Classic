@@ -36,12 +36,11 @@ public class GTWorldGen implements IWorldGenerator {
 			generateFluidSphere(GTMaterial.Deuterium, 0, 32, 20, 60, random, chunkZ, chunkZ, world);
 		}
 		// Default World Gen
-		if (GTConfig.bauxiteGenerate && (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
-				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS)))) {
-			generateOre(GTBlocks.oreBauxite.getDefaultState(), GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
-		}
 		if (GTConfig.iridiumGenerate) {
 			generateOre(GTBlocks.oreIridium.getDefaultState(), GTConfig.iridiumSize, GTConfig.iridiumWeight, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+		}
+		if (GTConfig.platinumGenerate && BiomeDictionary.hasType(biomegenbase, Type.JUNGLE)) {
+			generateOre(GTBlocks.orePlatinum.getDefaultState(), GTConfig.platinumSize, GTConfig.platinumWeight, 10, 30, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.rubyGenerate && BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
 			generateOre(GTBlocks.oreRuby.getDefaultState(), GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
@@ -52,6 +51,10 @@ public class GTWorldGen implements IWorldGenerator {
 			}
 			WorldGenerator genOceanDeposit = new GTWorldGenOreOcean();
 			genOceanDeposit.generate(world, random, new BlockPos(chunkX * 16 + 16, 32, chunkZ * 16 + 16));
+		}
+		if (GTConfig.bauxiteGenerate && (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
+				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS)))) {
+			generateOre(GTBlocks.oreBauxite.getDefaultState(), GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
 		}
 	}
 

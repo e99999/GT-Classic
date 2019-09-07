@@ -15,7 +15,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class GTOreDict {
 
 	public static void init() {
-		//GT Materials
+		// GT Materials
 		for (GTMaterial mat : GTMaterial.values()) {
 			// Iterating through resource blocks
 			if (mat.hasFlag(GTMaterialFlag.BLOCKMETAL) || mat.hasFlag(GTMaterialFlag.BLOCKGEM)) {

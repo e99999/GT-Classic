@@ -3,8 +3,8 @@
 - Added, Zombie's who spawn underground have a chance to spawn carrying a pickaxe. Ofc with config option.
 - Fixed Baubles items deciding to register whenever they felt like it.
 - Added Neon, and Argon, and centrifuge air separating. Cram it Bear im not adding a whole machine/multi for this, it has no use.
-- Methane and Hydrogen gas blocks now explode if near a fire source, or player walks into them holding a torch.
-- Add Platinum Ore, more uses later but for now useful for getting Iridium.
+- Changed Methane and Hydrogen gas blocks now explode if near a fire source, or player walks into them holding a torch.
+- Added Platinum Ore, spawn in small and sparatic amounts in jungle biomes.
 - Removed Iridium Ore in The End but....
 - Added Helium, Helium3, and Deuterium trapped gas pockets in the End
 - Added working on ore vein/ocean deposits that are extruded onto the ocean floor.

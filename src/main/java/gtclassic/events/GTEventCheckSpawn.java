@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTConfig;
-import gtclassic.GTMod;
 import gtclassic.tile.GTTileMobRepeller;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;

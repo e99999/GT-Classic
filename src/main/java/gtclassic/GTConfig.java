@@ -31,18 +31,21 @@ public class GTConfig {
 	public static boolean replaceOceanGravelWithSand = true;
 	public static boolean caveZombiesSpawnWithPickaxe = true;
 	// generation
-	public static boolean bauxiteGenerate = true;
-	public static int bauxiteSize = 16;
-	public static int bauxiteWeight = 4;
 	public static boolean iridiumGenerate = true;
 	public static int iridiumSize = 3;
 	public static int iridiumWeight = 2;
+	public static boolean platinumGenerate = true;
+	public static int platinumSize = 4;
+	public static int platinumWeight = 3;
 	public static boolean rubyGenerate = true;
 	public static int rubySize = 5;
 	public static int rubyWeight = 2;
 	public static boolean sapphireGenerate = true;
 	public static int sapphireSize = 5;
 	public static int sapphireWeight = 2;
+	public static boolean bauxiteGenerate = true;
+	public static int bauxiteSize = 16;
+	public static int bauxiteWeight = 4;
 	// mod compat options
 	public static boolean compatBaubles = true;
 	public static boolean compatBuildcraft = true;
@@ -93,14 +96,14 @@ public class GTConfig {
 
 	private static void initGenerationConfig(Configuration cfg) {
 		cfg.addCustomCategoryComment(CATEGORY_GENERATION, "Generation configuration");
-		// bauxite overworld ore
-		bauxiteGenerate = cfg.getBoolean("bauxiteGenerate", CATEGORY_GENERATION, bauxiteGenerate, "Generate Bauxite ore in plains/forest biomes in the overworld");
-		bauxiteSize = cfg.getInt("bauxiteSize", CATEGORY_GENERATION, bauxiteSize, 1, 32, "Max size of Bauxite veins");
-		bauxiteWeight = cfg.getInt("bauxiteWeight", CATEGORY_GENERATION, bauxiteWeight, 1, 32, "Chance of Bauxite veins to spawn");
 		// iridium overworld ore
-		iridiumGenerate = cfg.getBoolean("iridiumOverworldGenerate", CATEGORY_GENERATION, iridiumGenerate, "Generate Iridium ore in the overworld");
-		iridiumSize = cfg.getInt("iridiumOverworldSize", CATEGORY_GENERATION, iridiumSize, 1, 32, "Max size of Iridium veins in the overworld");
-		iridiumWeight = cfg.getInt("iridiumOverworldWeight", CATEGORY_GENERATION, iridiumWeight, 1, 32, "Chance of Iridium veins in the overworld");
+		iridiumGenerate = cfg.getBoolean("iridiumGenerate", CATEGORY_GENERATION, iridiumGenerate, "Generate Iridium ore in the overworld");
+		iridiumSize = cfg.getInt("iridiumSize", CATEGORY_GENERATION, iridiumSize, 1, 32, "Max size of Iridium veins");
+		iridiumWeight = cfg.getInt("iridiumWeight", CATEGORY_GENERATION, iridiumWeight, 1, 32, "Chance of Iridium veins to spawn");
+		// platinum overworld ore
+		platinumGenerate = cfg.getBoolean("platinumOverworldGenerate", CATEGORY_GENERATION, platinumGenerate, "Generate Platinum ore in jungle overworld biomes");
+		platinumSize = cfg.getInt("platinumOverworldSize", CATEGORY_GENERATION, platinumSize, 1, 32, "Max size of Platinum veins");
+		platinumWeight = cfg.getInt("platinumOverworldWeight", CATEGORY_GENERATION, platinumWeight, 1, 32, "Chance of Platinum veins to spawn");
 		// ruby overworld ore
 		rubyGenerate = cfg.getBoolean("rubyGenerate", CATEGORY_GENERATION, rubyGenerate, "Generate Ruby ore in hot overworld biomes");
 		rubySize = cfg.getInt("rubySize", CATEGORY_GENERATION, rubySize, 1, 32, "Max size of Ruby veins");
@@ -109,6 +112,10 @@ public class GTConfig {
 		sapphireGenerate = cfg.getBoolean("sapphireGenerate", CATEGORY_GENERATION, sapphireGenerate, "Generate Sapphire ore in ocean overworld biomes");
 		sapphireSize = cfg.getInt("sapphireSize", CATEGORY_GENERATION, sapphireSize, 1, 32, "Max size of Sapphire veins");
 		sapphireWeight = cfg.getInt("sapphireWeight", CATEGORY_GENERATION, sapphireWeight, 1, 32, "Chance of Sapphire veins to spawn");
+		// bauxite overworld ore
+		bauxiteGenerate = cfg.getBoolean("bauxiteGenerate", CATEGORY_GENERATION, bauxiteGenerate, "Generate Bauxite ore in plains/forest biomes in the overworld");
+		bauxiteSize = cfg.getInt("bauxiteSize", CATEGORY_GENERATION, bauxiteSize, 1, 32, "Max size of Bauxite veins");
+		bauxiteWeight = cfg.getInt("bauxiteWeight", CATEGORY_GENERATION, bauxiteWeight, 1, 32, "Chance of Bauxite veins to spawn");
 	}
 
 	private static void initCompatConfig(Configuration cfg) {

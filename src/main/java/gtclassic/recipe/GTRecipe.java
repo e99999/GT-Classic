@@ -120,8 +120,8 @@ public class GTRecipe {
 				GTItems.heatStorageHelium3, 'E', "circuitMaster", 'W', "ingotTungsten", 'P', "plateIridiumAlloy" });
 		/** Lapotron Batpack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.lapotronPack, 1), new Object[] { "ELE", "SBS", "EPE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'B', GTItems.lithiumBatpack,
-				'P', "plateIridiumAlloy" });
+				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'B', GTItems.lithiumBatpack, 'P',
+				"plateIridiumAlloy" });
 		/** Tesla Staff **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), new Object[] { " SL", " PS", "P  ", 'L',
 				"batteryUltimate", 'S', GTItems.superConductor, 'P', "plateIridiumAlloy" });
