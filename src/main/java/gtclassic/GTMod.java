@@ -46,7 +46,7 @@ public class GTMod {
 	@Mod.Instance
 	public static GTMod instance;
 	public static Logger logger;
-	private static boolean quickDebug = false;
+	private static boolean quickDebug = true;
 	public static boolean debugMode = GTConfig.debugMode || quickDebug;
 
 	@Mod.EventHandler

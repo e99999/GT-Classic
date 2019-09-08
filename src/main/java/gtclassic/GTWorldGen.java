@@ -2,12 +2,11 @@ package gtclassic;
 
 import java.util.Random;
 
-import com.google.common.base.Predicate;
-
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.worldgen.GTWorldGenFluidSphere;
+import gtclassic.worldgen.GTWorldGenOceanMineable;
 import gtclassic.worldgen.GTWorldGenOreOcean;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
@@ -18,7 +17,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -31,30 +29,43 @@ public class GTWorldGen implements IWorldGenerator {
 		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
 		// End Generation
 		if (world.provider.getDimensionType().equals(DimensionType.THE_END)) {
-			generateFluidSphere(GTMaterial.Helium, 1, 48, 20, 60, random, chunkZ, chunkZ, world);
-			generateFluidSphere(GTMaterial.Helium3, 0, 32, 20, 60, random, chunkZ, chunkZ, world);
-			generateFluidSphere(GTMaterial.Deuterium, 0, 32, 20, 60, random, chunkZ, chunkZ, world);
+			// generateFluidSphere(GTMaterial.Helium, 1, 48, 20, 60, random, chunkZ, chunkZ,
+			// world);
+			// generateFluidSphere(GTMaterial.Helium3, 0, 32, 20, 60, random, chunkZ,
+			// chunkZ, world);
+			// generateFluidSphere(GTMaterial.Deuterium, 0, 32, 20, 60, random, chunkZ,
+			// chunkZ, world);
+			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium), 8, 3, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
+			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium3), 5, 2, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
+			generate(GTMaterialGen.getFluidBlock(GTMaterial.Deuterium), 5, 2, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
 		}
 		// Default World Gen
 		if (GTConfig.iridiumGenerate) {
-			generateOre(GTBlocks.oreIridium.getDefaultState(), GTConfig.iridiumSize, GTConfig.iridiumWeight, 0, 128, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			generate(GTBlocks.oreIridium, GTConfig.iridiumSize, GTConfig.iridiumWeight, 0, 128, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.platinumGenerate && BiomeDictionary.hasType(biomegenbase, Type.JUNGLE)) {
-			generateOre(GTBlocks.orePlatinum.getDefaultState(), GTConfig.platinumSize, GTConfig.platinumWeight, 10, 30, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			generate(GTBlocks.orePlatinum, GTConfig.platinumSize, GTConfig.platinumWeight, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.rubyGenerate && BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
-			generateOre(GTBlocks.oreRuby.getDefaultState(), GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			generate(GTBlocks.oreRuby, GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) || BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
 			if (GTConfig.sapphireGenerate) {
-				generateOre(GTBlocks.oreSapphire.getDefaultState(), GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+				generate(GTBlocks.oreSapphire, GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
 			}
-			WorldGenerator genOceanDeposit = new GTWorldGenOreOcean();
-			genOceanDeposit.generate(world, random, new BlockPos(chunkX * 16 + 16, 32, chunkZ * 16 + 16));
+			for (IBlockState state : GTWorldGenOreOcean.oreDepositList) {
+				generateOceanDeposit(state, 36, 1, 28, 38, world, random, chunkX, chunkZ);
+			}
 		}
 		if (GTConfig.bauxiteGenerate && (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
 				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS)))) {
-			generateOre(GTBlocks.oreBauxite.getDefaultState(), GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, BlockMatcher.forBlock(Blocks.STONE), world, random, chunkX, chunkZ);
+			generate(GTBlocks.oreBauxite, GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
+		}
+		if (BiomeDictionary.hasType(biomegenbase, Type.SNOWY) || BiomeDictionary.hasType(biomegenbase, Type.COLD)) {
+			// generateFluidSphere(GTMaterial.Methane, 2, 256, 0, 30, random, chunkZ,
+			// chunkZ, world);
+			generateRare(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 32, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
+			generateRare(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 64, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 	}
 
@@ -72,11 +83,11 @@ public class GTWorldGen implements IWorldGenerator {
 	 * @param chunkX         - pass chunkX arg
 	 * @param chunkZ         - pass chunkY arg
 	 */
-	public void generateOre(IBlockState blockToGen, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
-			Predicate<IBlockState> blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
+	public void generate(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
+			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
 			throw new IllegalArgumentException("Illegal Height Arguments for OreGenerator");
-		WorldGenMinable generator = new WorldGenMinable(blockToGen, blockAmount, blockToReplace);
+		WorldGenMinable generator = new WorldGenMinable(block.getDefaultState(), blockAmount, BlockMatcher.forBlock(blockToReplace));
 		int heightdiff = maxHeight - minHeight + 1;
 		for (int i = 0; i < chancesToSpawn; i++) {
 			int x = chunkX * 16 + rand.nextInt(16);
@@ -86,19 +97,38 @@ public class GTWorldGen implements IWorldGenerator {
 		}
 	}
 
-	public void generateFluidSphere(GTMaterial mat, int size, int rarityToSpawn, int minHeight, int maxHeight,
-			Random rand, int chunkX, int chunkZ, World world) {
-		if (rand.nextInt(rarityToSpawn) == 1) {
-			WorldGenerator generator = new GTWorldGenFluidSphere(GTMaterialGen.getFluidBlock(mat), size);
-			int heightdiff = maxHeight - minHeight + 1;
-			int x = chunkX * 16 + rand.nextInt(16);
-			int y = minHeight + rand.nextInt(heightdiff);
-			int z = chunkZ * 16 + rand.nextInt(16);
-			generator.generate(world, rand, new BlockPos(x, y, z));
+	public void generateRare(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
+			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
+		WorldGenMinable generator = new WorldGenMinable(block.getDefaultState(), blockAmount, BlockMatcher.forBlock(blockToReplace));
+		int heightdiff = maxHeight - minHeight + 1;
+		for (int i = 0; i < chancesToSpawn; i++) {
+			int var1 = rand.nextInt(128);
+			if (var1 == 0) {
+				int x = chunkX * 16 + rand.nextInt(16);
+				int y = minHeight + rand.nextInt(heightdiff);
+				int z = chunkZ * 16 + rand.nextInt(16);
+				generator.generate(world, rand, new BlockPos(x, y, z));
+			}
 		}
 	}
 
-	public static int clip16(int i) {
-		return Math.min(i, 16);
+	public void generateOceanDeposit(IBlockState state, int blockAmount, int chancesToSpawn, int minHeight,
+			int maxHeight, World world, Random rand, int chunkX, int chunkZ) {
+		GTWorldGenOceanMineable generator = new GTWorldGenOceanMineable(state, blockAmount);
+		int heightdiff = maxHeight - minHeight + 1;
+		for (int i = 0; i < chancesToSpawn; i++) {
+			int var1 = rand.nextInt(64);
+			if (var1 == 0) {
+				int x = chunkX * 16 + rand.nextInt(16);
+				int y = minHeight + rand.nextInt(heightdiff);
+				int z = chunkZ * 16 + rand.nextInt(16);
+				generator.generate(world, rand, new BlockPos(x, y, z));
+			}
+		}
+	}
+
+	public void generateOceanDeposit(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
+			World world, Random rand, int chunkX, int chunkZ) {
+		generateOceanDeposit(block.getDefaultState(), blockAmount, chancesToSpawn, minHeight, maxHeight, world, rand, chunkX, chunkZ);
 	}
 }
