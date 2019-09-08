@@ -35,9 +35,9 @@ public class GTWorldGen implements IWorldGenerator {
 			// chunkZ, world);
 			// generateFluidSphere(GTMaterial.Deuterium, 0, 32, 20, 60, random, chunkZ,
 			// chunkZ, world);
-			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium), 8, 3, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
-			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium3), 5, 2, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
-			generate(GTMaterialGen.getFluidBlock(GTMaterial.Deuterium), 5, 2, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
+			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium), 8, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
+			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium3), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
+			generate(GTMaterialGen.getFluidBlock(GTMaterial.Deuterium), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
 		}
 		// Default World Gen
 		if (GTConfig.iridiumGenerate) {
@@ -62,8 +62,6 @@ public class GTWorldGen implements IWorldGenerator {
 			generate(GTBlocks.oreBauxite, GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (BiomeDictionary.hasType(biomegenbase, Type.SNOWY) || BiomeDictionary.hasType(biomegenbase, Type.COLD)) {
-			// generateFluidSphere(GTMaterial.Methane, 2, 256, 0, 30, random, chunkZ,
-			// chunkZ, world);
 			generateRare(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 32, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 			generateRare(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 64, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
@@ -117,7 +115,7 @@ public class GTWorldGen implements IWorldGenerator {
 		GTWorldGenOceanMineable generator = new GTWorldGenOceanMineable(state, blockAmount);
 		int heightdiff = maxHeight - minHeight + 1;
 		for (int i = 0; i < chancesToSpawn; i++) {
-			int var1 = rand.nextInt(64);
+			int var1 = rand.nextInt(96);
 			if (var1 == 0) {
 				int x = chunkX * 16 + rand.nextInt(16);
 				int y = minHeight + rand.nextInt(heightdiff);

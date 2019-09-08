@@ -3,6 +3,8 @@ package gtclassic.recipe;
 import java.util.Iterator;
 import java.util.Map;
 
+import gtclassic.GTConfig;
+import gtclassic.helpers.GTHelperStack;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import ic2.api.classic.recipe.ClassicRecipes;
@@ -11,9 +13,12 @@ import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidRegistry;
 
 public class GTRecipeProcessing {
@@ -40,6 +45,24 @@ public class GTRecipeProcessing {
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("sodium"), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("hydrogen"), 950, 16);
 		ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("methane"), 3000, 16);
+	}
+
+	public static void removals() {
+		// Remove smelting from mods who dont respect my authority
+		if (GTConfig.ingotsRequireBlastFurnace) {
+			for (Item item : Item.REGISTRY) {
+				NonNullList<ItemStack> items = NonNullList.create();
+				item.getSubItems(CreativeTabs.SEARCH, items);
+				for (ItemStack stack : items) {
+					if (GTHelperStack.matchOreDict(stack, "ingotIridium")
+							|| GTHelperStack.matchOreDict(stack, "ingotTungsten")
+							|| GTHelperStack.matchOreDict(stack, "ingotChrome")
+							|| GTHelperStack.matchOreDict(stack, "ingotTitanium")) {
+						GTRecipeProcessing.removeSmelting(stack);
+					}
+				}
+			}
+		}
 	}
 
 	/*

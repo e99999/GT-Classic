@@ -8,14 +8,11 @@ import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
-import gtclassic.GTConfig;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerBlastFurnace;
 import gtclassic.gui.GTGuiMachine.GTBlastFurnaceGui;
-import gtclassic.helpers.GTHelperStack;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.recipe.GTRecipeProcessing;
 import gtclassic.util.GTLang;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
@@ -36,12 +33,9 @@ import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 
@@ -164,24 +158,6 @@ public class GTTileMultiBlastFurnace extends GTTileMultiBaseMachine {
 		/** Tungsten **/
 		addRecipe(new IRecipeInput[] {
 				input("dustTungsten", 1) }, COST_HIGH, GTMaterialGen.getIngot(GTMaterial.Tungsten, 1));
-	}
-
-	public static void removals() {
-		// Remove smelting from mods who dont respect my authority
-		if (GTConfig.ingotsRequireBlastFurnace) {
-			for (Item item : Item.REGISTRY) {
-				NonNullList<ItemStack> items = NonNullList.create();
-				item.getSubItems(CreativeTabs.SEARCH, items);
-				for (ItemStack stack : items) {
-					if (GTHelperStack.matchOreDict(stack, "ingotIridium")
-							|| GTHelperStack.matchOreDict(stack, "ingotTungsten")
-							|| GTHelperStack.matchOreDict(stack, "ingotChrome")
-							|| GTHelperStack.matchOreDict(stack, "ingotTitanium")) {
-						GTRecipeProcessing.removeSmelting(stack);
-					}
-				}
-			}
-		}
 	}
 
 	public static IRecipeModifier[] totalEu(int total) {

@@ -46,7 +46,7 @@ public class GTMod {
 	@Mod.Instance
 	public static GTMod instance;
 	public static Logger logger;
-	private static boolean quickDebug = true;
+	private static boolean quickDebug = false;
 	public static boolean debugMode = GTConfig.debugMode || quickDebug;
 
 	@Mod.EventHandler
@@ -69,7 +69,7 @@ public class GTMod {
 		GTRecipeProcessing.init();
 		GTTileCentrifuge.init();
 		GTTileMultiBlastFurnace.init();
-		GTTileMultiBlastFurnace.removals();
+		GTRecipeProcessing.removals();
 		GTRecipe.initShapeless();
 		GTRecipe.initItems();
 		GTRecipe.initBlocks();
@@ -93,7 +93,7 @@ public class GTMod {
 		GTRecipeIterators.postInit();
 		GTTileMatterFabricator.postInit();
 		GTTileMultiFusionReactor.postInit();
-		GTTileMultiBlastFurnace.removals();
+		GTRecipeProcessing.removals();
 		GTRecipeMods.postInit();
 	}
 

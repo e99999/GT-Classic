@@ -3,7 +3,6 @@ package gtclassic.material;
 import java.util.LinkedHashMap;
 
 import gtclassic.GTItems;
-import gtclassic.GTMod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -55,7 +54,6 @@ public class GTMaterialGen {
 	 */
 	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {
 		if (mat.hasFlag(flag)) {
-			GTMod.debugLogger("Generating GregTech " + flag.getPrefix() + " :" + mat.getDisplayName());
 			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItem(mat, flag));
 		}
 	}
@@ -68,7 +66,6 @@ public class GTMaterialGen {
 	 */
 	public static void materialBlockUtil(GTMaterial mat, GTMaterialFlag flag) {
 		if (mat.hasFlag(flag)) {
-			GTMod.debugLogger("Generating GregTech " + flag.getPrefix() + " :" + mat.getDisplayName());
 			blockMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialBlock(mat, flag));
 		}
 	}
