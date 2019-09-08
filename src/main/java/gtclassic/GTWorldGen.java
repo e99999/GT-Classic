@@ -29,12 +29,6 @@ public class GTWorldGen implements IWorldGenerator {
 		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
 		// End Generation
 		if (world.provider.getDimensionType().equals(DimensionType.THE_END)) {
-			// generateFluidSphere(GTMaterial.Helium, 1, 48, 20, 60, random, chunkZ, chunkZ,
-			// world);
-			// generateFluidSphere(GTMaterial.Helium3, 0, 32, 20, 60, random, chunkZ,
-			// chunkZ, world);
-			// generateFluidSphere(GTMaterial.Deuterium, 0, 32, 20, 60, random, chunkZ,
-			// chunkZ, world);
 			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium), 8, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
 			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium3), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
 			generate(GTMaterialGen.getFluidBlock(GTMaterial.Deuterium), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
@@ -46,8 +40,11 @@ public class GTWorldGen implements IWorldGenerator {
 		if (GTConfig.platinumGenerate && BiomeDictionary.hasType(biomegenbase, Type.JUNGLE)) {
 			generate(GTBlocks.orePlatinum, GTConfig.platinumSize, GTConfig.platinumWeight, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
-		if (GTConfig.rubyGenerate && BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
-			generate(GTBlocks.oreRuby, GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
+		if (BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
+			if (GTConfig.rubyGenerate) {
+				generate(GTBlocks.oreRuby, GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
+			}
+			generate(GTMaterialGen.getFluidBlock(GTMaterial.Mercury), 3, 1, 5, 15, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) || BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
 			if (GTConfig.sapphireGenerate) {

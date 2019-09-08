@@ -49,6 +49,8 @@ public class GTProxyClient extends GTProxyCommon {
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/fluidflowing"));
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/gas"));
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/gasflowing"));
+		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/molten"));
+		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/moltenflowing"));
 	}
 
 	public static void registerTintedItems() {

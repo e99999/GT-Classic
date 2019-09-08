@@ -1,5 +1,7 @@
 package gtclassic.fluid;
 
+import java.awt.Color;
+
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
@@ -18,13 +20,15 @@ public class GTFluid extends Fluid {
 	protected static SoundEvent fillSound = SoundEvents.ITEM_BUCKET_FILL;
 	protected static Material material = GTFluidMaterial.GAS;
 	GTMaterial mat = null;
+	String base = null;
 
 	private GTFluid(GTMaterial mat, String base, String suffix, boolean isGaseous) {
 		super(mat.getDisplayName().toLowerCase() + suffix, new ResourceLocation(GTMod.MODID, "fluids/"
 				+ base), new ResourceLocation(GTMod.MODID, "fluids/" + base + "flowing"));
 		this.mat = mat;
-		this.temperature = 300;
-		this.mapColor = mat.getColor().getRGB();
+		this.base = base;
+		this.temperature = calculateTemperature();
+		this.mapColor = caluclateMapColor();
 		this.setGaseous(isGaseous);
 	}
 
@@ -52,6 +56,21 @@ public class GTFluid extends Fluid {
 
 	public GTMaterial getGTMaterial() {
 		return this.mat != null ? this.mat : GTMaterial.Mercury;
+	}
+	
+	public int caluclateMapColor() {
+		if (this.base.equals("molten") && (this.mat.equals(GTMaterial.Steel))){
+			return Color.red.getRGB();
+		}
+		return this.mat.getColor().getRGB();
+	}
+	
+	public int calculateTemperature() {
+		if (this.base.equals("molten")) {
+			return 2000;
+		}
+		return 300;
+				
 	}
 
 	@Override

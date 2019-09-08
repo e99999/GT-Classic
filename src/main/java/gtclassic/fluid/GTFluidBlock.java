@@ -47,7 +47,13 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 	}
 
 	public static Material getMaterialType(GTMaterial mat) {
-		return mat.hasFlag(GTMaterialFlag.GAS) ? GTFluidMaterial.GAS : Material.WATER;
+		if (mat.hasFlag(GTMaterialFlag.GAS)) {
+			return GTFluidMaterial.GAS;
+		}
+		if (mat.hasFlag(GTMaterialFlag.MOLTEN)) {
+			return Material.LAVA;
+		}
+		return Material.WATER;
 	}
 
 	public LocaleComp getName() {
@@ -87,7 +93,7 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-		if (GTMaterial.hasGlow(this.getMaterial())) {
+		if (GTMaterial.hasGlow(this.getMaterial()) || this.getMaterial().hasFlag(GTMaterialFlag.MOLTEN)) {
 			return this.getMaterial().getColor().getRGB();
 		}
 		return super.getPackedLightmapCoords(state, source, pos);

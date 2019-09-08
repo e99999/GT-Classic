@@ -1,5 +1,7 @@
 # Changelog
 # 1.03 (Not Released)
+- Added rare chance for desert/hot biomes to spawn small amounts of liquid mercury.
+- Added very large and rare methane cathrates under cold/snowy biomes.
 - Added, Zombie's who spawn underground have a chance to spawn carrying a pickaxe. Ofc with config option.
 - Fixed Baubles items deciding to register whenever they felt like it.
 - Added Neon, and Argon, and centrifuge air separating. Cram it Bear im not adding a whole machine/multi for this, it has no use.

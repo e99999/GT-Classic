@@ -19,6 +19,10 @@ public class GTFluids {
 				GTMod.debugLogger("Generating GregTech fluid: " + mat.getDisplayName());
 				FluidRegistry.registerFluid(new GTFluid(mat, "fluid"));
 			}
+			if (mat.hasFlag(GTMaterialFlag.MOLTEN)) {
+				GTMod.debugLogger("Generating GregTech molten metal: " + mat.getDisplayName());
+				FluidRegistry.registerFluid(new GTFluid(mat, "molten"));
+			}
 		}
 	}
 
@@ -28,6 +32,9 @@ public class GTFluids {
 				GTBlocks.createBlock(new GTFluidBlockGas(mat));
 			}
 			if (mat.hasFlag(GTMaterialFlag.FLUID)) {
+				GTBlocks.createBlock(new GTFluidBlock(mat));
+			}
+			if (mat.hasFlag(GTMaterialFlag.MOLTEN)) {
 				GTBlocks.createBlock(new GTFluidBlock(mat));
 			}
 		}
