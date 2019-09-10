@@ -59,7 +59,7 @@ public class GTFluid extends Fluid {
 	}
 	
 	public int caluclateMapColor() {
-		if (this.base.equals("molten") && (this.mat.equals(GTMaterial.Steel))){
+		if (this.base.equals("molten") && (this.mat.equals(GTMaterial.Steel) || this.mat.equals(GTMaterial.Iron))){
 			return Color.red.getRGB();
 		}
 		return this.mat.getColor().getRGB();

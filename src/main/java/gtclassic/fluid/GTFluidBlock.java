@@ -44,6 +44,9 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 		setUnlocalizedName(GTMod.MODID + "." + mat.getDisplayName().toLowerCase() + "_fluidblock");
 		this.mat = mat;
 		this.comp = Ic2Lang.nullKey;
+		if (this.mat.hasFlag(GTMaterialFlag.MOLTEN)) {
+			this.lightValue = 15;
+		}
 	}
 
 	public static Material getMaterialType(GTMaterial mat) {

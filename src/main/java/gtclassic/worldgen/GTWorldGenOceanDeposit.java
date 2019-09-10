@@ -12,13 +12,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class GTWorldGenOceanMineable extends WorldGenerator {
+public class GTWorldGenOceanDeposit extends WorldGenerator {
 
 	private final IBlockState oreBlock;
 	/** The number of blocks to generate. */
 	private final int numberOfBlocks;
 
-	public GTWorldGenOceanMineable(IBlockState state, int blockCount) {
+	public GTWorldGenOceanDeposit(IBlockState state, int blockCount) {
 		this.oreBlock = state;
 		this.numberOfBlocks = blockCount;
 	}

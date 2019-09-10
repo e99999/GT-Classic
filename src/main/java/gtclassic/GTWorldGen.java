@@ -4,7 +4,8 @@ import java.util.Random;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.worldgen.GTWorldGenOceanMineable;
+import gtclassic.worldgen.GTWorldGenFluid;
+import gtclassic.worldgen.GTWorldGenOceanDeposit;
 import gtclassic.worldgen.GTWorldGenOreOcean;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -27,11 +28,19 @@ public class GTWorldGen implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
 		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
+		if (world.provider.getDimensionType().equals(DimensionType.NETHER)) {
+			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Iron), 5, 2, 0, 128, Blocks.NETHERRACK, world, random, chunkX, chunkZ);
+			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Gold), 3, 1, 0, 64, Blocks.NETHERRACK, world, random, chunkX, chunkZ);
+			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Silver), 3, 1, 0, 64, Blocks.NETHERRACK, world, random, chunkX, chunkZ);
+			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Electrum), 3, 1, 0, 64, Blocks.NETHERRACK, world, random, chunkX, chunkZ);
+			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Uranium), 3, 1, 0, 40, Blocks.NETHERRACK, world, random, chunkX, chunkZ);
+			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Platinum), 3, 1, 0, 50, Blocks.NETHERRACK, world, random, chunkX, chunkZ);
+		}
 		// End Generation
 		if (world.provider.getDimensionType().equals(DimensionType.THE_END)) {
-			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium), 8, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
-			generate(GTMaterialGen.getFluidBlock(GTMaterial.Helium3), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
-			generate(GTMaterialGen.getFluidBlock(GTMaterial.Deuterium), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
+			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Helium), 8, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
+			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Helium3), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
+			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Deuterium), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
 		}
 		// Default World Gen
 		if (GTConfig.iridiumGenerate) {
@@ -59,8 +68,8 @@ public class GTWorldGen implements IWorldGenerator {
 			generate(GTBlocks.oreBauxite, GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (BiomeDictionary.hasType(biomegenbase, Type.SNOWY) || BiomeDictionary.hasType(biomegenbase, Type.COLD)) {
-			generateRare(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 32, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
-			generateRare(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 64, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
+			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 32, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
+			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 64, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 	}
 
@@ -81,7 +90,7 @@ public class GTWorldGen implements IWorldGenerator {
 	public void generate(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
 			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
-			throw new IllegalArgumentException("Illegal Height Arguments for OreGenerator");
+			throw new IllegalArgumentException("Illegal Height Arguments for Ore Generator");
 		WorldGenMinable generator = new WorldGenMinable(block.getDefaultState(), blockAmount, BlockMatcher.forBlock(blockToReplace));
 		int heightdiff = maxHeight - minHeight + 1;
 		for (int i = 0; i < chancesToSpawn; i++) {
@@ -107,9 +116,40 @@ public class GTWorldGen implements IWorldGenerator {
 		}
 	}
 
+	public void generateFluid(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
+			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
+		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
+			throw new IllegalArgumentException("Illegal Height Arguments for Fluid Generator");
+		GTWorldGenFluid generator = new GTWorldGenFluid(block.getDefaultState(), blockAmount, BlockMatcher.forBlock(blockToReplace));
+		int heightdiff = maxHeight - minHeight + 1;
+		for (int i = 0; i < chancesToSpawn; i++) {
+			int x = chunkX * 16 + rand.nextInt(16);
+			int y = minHeight + rand.nextInt(heightdiff);
+			int z = chunkZ * 16 + rand.nextInt(16);
+			generator.generate(world, rand, new BlockPos(x, y, z));
+		}
+	}
+
+	public void generateRareFluid(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
+			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
+		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
+			throw new IllegalArgumentException("Illegal Height Arguments for Fluid Generator");
+		GTWorldGenFluid generator = new GTWorldGenFluid(block.getDefaultState(), blockAmount, BlockMatcher.forBlock(blockToReplace));
+		int heightdiff = maxHeight - minHeight + 1;
+		for (int i = 0; i < chancesToSpawn; i++) {
+			int var1 = rand.nextInt(128);
+			if (var1 == 0) {
+				int x = chunkX * 16 + rand.nextInt(16);
+				int y = minHeight + rand.nextInt(heightdiff);
+				int z = chunkZ * 16 + rand.nextInt(16);
+				generator.generate(world, rand, new BlockPos(x, y, z));
+			}
+		}
+	}
+
 	public void generateOceanDeposit(IBlockState state, int blockAmount, int chancesToSpawn, int minHeight,
 			int maxHeight, World world, Random rand, int chunkX, int chunkZ) {
-		GTWorldGenOceanMineable generator = new GTWorldGenOceanMineable(state, blockAmount);
+		GTWorldGenOceanDeposit generator = new GTWorldGenOceanDeposit(state, blockAmount);
 		int heightdiff = maxHeight - minHeight + 1;
 		for (int i = 0; i < chancesToSpawn; i++) {
 			int var1 = rand.nextInt(96);

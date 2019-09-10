@@ -1,15 +1,16 @@
 # Changelog
 # 1.03 (Not Released)
+- Added the chance for molten metals to spawn in the nether, iron, silver, gold, electrum, uranium, and platinum.
 - Added rare chance for desert/hot biomes to spawn small amounts of liquid mercury.
-- Added very large and rare methane cathrates under cold/snowy biomes.
+- Added very large and rare methane clathrates under cold/snowy biomes.
+- Added Helium, Helium3, and Deuterium trapped gas pockets in the End
+- Added working on ore vein/ocean deposits that are extruded onto the ocean floor.
 - Added, Zombie's who spawn underground have a chance to spawn carrying a pickaxe. Ofc with config option.
 - Fixed Baubles items deciding to register whenever they felt like it.
 - Added Neon, and Argon, and centrifuge air separating. Cram it Bear im not adding a whole machine/multi for this, it has no use.
 - Changed Methane and Hydrogen gas blocks now explode if near a fire source, or player walks into them holding a torch.
-- Added Platinum Ore, spawn in small and sparatic amounts in jungle biomes.
 - Removed Iridium Ore in The End but....
-- Added Helium, Helium3, and Deuterium trapped gas pockets in the End
-- Added working on ore vein/ocean deposits that are extruded onto the ocean floor.
+- Added Platinum Ore, spawn in small and sparatic amounts in jungle biomes.
 - Added in world blocks for gases and fluids, fluids are fluids, gases float up and disperse. WIP
 - Fixed ocean sand not replacing in some chunks near biome borders.
 
