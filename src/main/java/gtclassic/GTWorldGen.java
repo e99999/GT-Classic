@@ -1,12 +1,14 @@
 package gtclassic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.worldgen.GTWorldGenFluid;
 import gtclassic.worldgen.GTWorldGenOceanDeposit;
-import gtclassic.worldgen.GTWorldGenOreOcean;
+import ic2.core.platform.registry.Ic2States;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
@@ -23,6 +25,8 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class GTWorldGen implements IWorldGenerator {
+
+	protected static List<IBlockState> oreDepositList = new ArrayList<>();
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
@@ -59,34 +63,54 @@ public class GTWorldGen implements IWorldGenerator {
 			if (GTConfig.sapphireGenerate) {
 				generate(GTBlocks.oreSapphire, GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
 			}
-			for (IBlockState state : GTWorldGenOreOcean.oreDepositList) {
+			for (IBlockState state : oreDepositList) {
 				generateOceanDeposit(state, 36, 1, 28, 38, world, random, chunkX, chunkZ);
 			}
 		}
-		if (GTConfig.bauxiteGenerate && (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
-				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS)))) {
-			generate(GTBlocks.oreBauxite, GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
+		if (BiomeDictionary.hasType(biomegenbase, Type.FOREST) || (BiomeDictionary.hasType(biomegenbase, Type.PLAINS))) {
+			if (GTConfig.bauxiteGenerate) {
+				generate(GTBlocks.oreBauxite, GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
+			}
+			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 16, 4, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (BiomeDictionary.hasType(biomegenbase, Type.SNOWY) || BiomeDictionary.hasType(biomegenbase, Type.COLD)) {
 			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 32, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 64, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
+		if (BiomeDictionary.hasType(biomegenbase, Type.MAGICAL)) {
+			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Neon), 5, 3, 8, 24, Blocks.STONE, world, random, chunkX, chunkZ);
+			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Argon), 5, 3, 8, 24, Blocks.STONE, world, random, chunkX, chunkZ);
+		}
 	}
 
-	/**
-	 * Generates ore veins in a vanilla style.
-	 * 
-	 * @param Blockstate     - state of the ore block to gen
-	 * @param blockAmount    int - amount of ore in a vein
-	 * @param chancesToSpawn int - chances to spawn
-	 * @param minHeight      int - min Y level
-	 * @param maxHeight      int - max Y level
-	 * @param blockToReplace - the blockstate to replace
-	 * @param world          World - pass the world arg
-	 * @param rand           Rand - pass the rand arg
-	 * @param chunkX         - pass chunkX arg
-	 * @param chunkZ         - pass chunkY arg
-	 */
+	public static void initDepositOres() {
+		if (GTConfig.sapphireGenerate) {
+			addOreDeposit(GTBlocks.oreSapphire);
+		}
+		if (GTConfig.rubyGenerate) {
+			addOreDeposit(GTBlocks.oreRuby);
+		}
+		if (GTConfig.bauxiteGenerate) {
+			addOreDeposit(GTBlocks.oreBauxite);
+		}
+		if (GTConfig.platinumGenerate) {
+			addOreDeposit(GTBlocks.orePlatinum);
+		}
+		addOreDeposit(Blocks.COAL_ORE);
+		addOreDeposit(Blocks.DIAMOND_ORE);
+		addOreDeposit(Blocks.EMERALD_ORE);
+		addOreDeposit(Blocks.GOLD_ORE);
+		addOreDeposit(Blocks.IRON_ORE);
+		addOreDeposit(Blocks.LAPIS_ORE);
+		addOreDeposit(Blocks.REDSTONE_ORE);
+		addOreDeposit(Blocks.STONE);
+		addOreDeposit(Ic2States.copperOre);
+		addOreDeposit(Ic2States.tinOre);
+		addOreDeposit(Ic2States.silverOre);
+		addOreDeposit(Ic2States.uraniumOre);
+	}
+
+	/** default ore generator **/
 	public void generate(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
 			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
@@ -101,6 +125,7 @@ public class GTWorldGen implements IWorldGenerator {
 		}
 	}
 
+	/** infrequent ore generator **/
 	public void generateRare(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
 			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		WorldGenMinable generator = new WorldGenMinable(block.getDefaultState(), blockAmount, BlockMatcher.forBlock(blockToReplace));
@@ -116,6 +141,7 @@ public class GTWorldGen implements IWorldGenerator {
 		}
 	}
 
+	/** default fluid generator **/
 	public void generateFluid(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
 			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
@@ -130,6 +156,7 @@ public class GTWorldGen implements IWorldGenerator {
 		}
 	}
 
+	/** infrequent fluid generator **/
 	public void generateRareFluid(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
 			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
@@ -147,7 +174,8 @@ public class GTWorldGen implements IWorldGenerator {
 		}
 	}
 
-	public void generateOceanDeposit(IBlockState state, int blockAmount, int chancesToSpawn, int minHeight,
+	/** ocean deposit/vein generator not for you to use, add to the list **/
+	private void generateOceanDeposit(IBlockState state, int blockAmount, int chancesToSpawn, int minHeight,
 			int maxHeight, World world, Random rand, int chunkX, int chunkZ) {
 		GTWorldGenOceanDeposit generator = new GTWorldGenOceanDeposit(state, blockAmount);
 		int heightdiff = maxHeight - minHeight + 1;
@@ -162,8 +190,30 @@ public class GTWorldGen implements IWorldGenerator {
 		}
 	}
 
-	public void generateOceanDeposit(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
-			World world, Random rand, int chunkX, int chunkZ) {
-		generateOceanDeposit(block.getDefaultState(), blockAmount, chancesToSpawn, minHeight, maxHeight, world, rand, chunkX, chunkZ);
+	/**
+	 * Adds a block and return the default state for possible ocean floor ore
+	 * deposits
+	 * 
+	 * @param block
+	 */
+	public static void addOreDeposit(Block block) {
+		oreDepositList.add(block.getDefaultState());
+	}
+
+	/**
+	 * Adds a blockstate directly to the ocean floor ore deposits list
+	 * 
+	 * @param block
+	 */
+	public static void addOreDeposit(IBlockState state) {
+		oreDepositList.add(state);
+	}
+
+	public static void removeOreDeposit(IBlockState state) {
+		oreDepositList.remove(state);
+	}
+
+	public static void removeOreDeposit(Block block) {
+		oreDepositList.remove(block.getDefaultState());
 	}
 }

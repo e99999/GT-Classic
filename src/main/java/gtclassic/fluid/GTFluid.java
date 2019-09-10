@@ -57,20 +57,19 @@ public class GTFluid extends Fluid {
 	public GTMaterial getGTMaterial() {
 		return this.mat != null ? this.mat : GTMaterial.Mercury;
 	}
-	
+
 	public int caluclateMapColor() {
-		if (this.base.equals("molten") && (this.mat.equals(GTMaterial.Steel) || this.mat.equals(GTMaterial.Iron))){
+		if (this.base.equals("molten") && (this.mat.equals(GTMaterial.Steel) || this.mat.equals(GTMaterial.Iron))) {
 			return Color.red.getRGB();
 		}
 		return this.mat.getColor().getRGB();
 	}
-	
+
 	public int calculateTemperature() {
 		if (this.base.equals("molten")) {
 			return 2000;
 		}
 		return 300;
-				
 	}
 
 	@Override
