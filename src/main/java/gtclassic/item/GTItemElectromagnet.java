@@ -83,6 +83,9 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 			int pulled = 0;
 			for (EntityItem item : worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(x, y, z, x + 1, y
 					+ 1, z + 1).grow(range))) {
+				if (item.getEntityData().getBoolean("PreventRemoteMovement")) {
+					continue;
+				}
 				if (!canPull(stack) || pulled > 200) {
 					break;
 				}
