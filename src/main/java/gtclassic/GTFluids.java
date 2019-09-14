@@ -3,6 +3,7 @@ package gtclassic;
 import gtclassic.fluid.GTFluid;
 import gtclassic.fluid.GTFluidBlock;
 import gtclassic.fluid.GTFluidBlockGas;
+import gtclassic.fluid.GTFluidBlockMolten;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialFlag;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -35,7 +36,7 @@ public class GTFluids {
 				GTBlocks.createBlock(new GTFluidBlock(mat));
 			}
 			if (mat.hasFlag(GTMaterialFlag.MOLTEN)) {
-				GTBlocks.createBlock(new GTFluidBlock(mat));
+				GTBlocks.createBlock(new GTFluidBlockMolten(mat));
 			}
 		}
 	}

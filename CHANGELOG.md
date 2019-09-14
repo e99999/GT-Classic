@@ -1,10 +1,11 @@
 # Changelog
 # 1.03 (Not Released)
+- Added compat for Comp500's "Demagnetize" mod with the electromagnet.
 - Added the chance for molten metals to spawn in the nether, iron, silver, gold, electrum, uranium, and platinum.
 - Added rare chance for desert/hot biomes to spawn small amounts of liquid mercury.
 - Added very large and rare methane clathrates under cold/snowy biomes.
 - Added small and infrequent methane pockets in plains/forest biomes.
-- Added small and infrequence neon/argon pockets in magical biomes.
+- Added small and infrequent neon/argon pockets in magical biomes.
 - Added Helium, Helium3, and Deuterium trapped gas pockets in the End
 - Added working on ore vein/ocean deposits that are extruded onto the ocean floor.
 - Added, Zombie's who spawn underground have a chance to spawn carrying a pickaxe. Ofc with config option.

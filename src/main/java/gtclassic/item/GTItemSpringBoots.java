@@ -1,7 +1,6 @@
 package gtclassic.item;
 
 import java.util.List;
-import java.util.UUID;
 
 import gtclassic.GTMod;
 import gtclassic.util.GTValues;
@@ -58,9 +57,8 @@ public class GTItemSpringBoots extends ItemCompositeArmor {
 		if (player.onGround && player.isSprinting()) {
 			player.jump();
 			IC2.audioManager.playOnce(player, GTValues.spring);
-			UUID bear = new UUID(0x1964e3d1650040e7L, 0x9ff2e6161d41a8c2L);
-			EntityPlayer foundPlayer = world.getClosestPlayerToEntity(player, 8D);
-			if (foundPlayer != null && foundPlayer.getUniqueID().equals(bear)) {
+			EntityPlayer foundPlayer = world.getClosestPlayerToEntity(player, 8.0D);
+			if (foundPlayer != null) {
 				IC2.audioManager.playOnce(foundPlayer, GTValues.spring);
 			}
 			stack.damageItem(1, player);

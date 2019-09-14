@@ -20,6 +20,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -44,9 +45,6 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 		setUnlocalizedName(GTMod.MODID + "." + mat.getDisplayName().toLowerCase() + "_fluidblock");
 		this.mat = mat;
 		this.comp = Ic2Lang.nullKey;
-		if (this.mat.hasFlag(GTMaterialFlag.MOLTEN)) {
-			this.lightValue = 15;
-		}
 	}
 
 	public static Material getMaterialType(GTMaterial mat) {
@@ -96,7 +94,7 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-		if (GTMaterial.hasGlow(this.getMaterial()) || this.getMaterial().hasFlag(GTMaterialFlag.MOLTEN)) {
+		if (GTMaterial.hasGlow(this.getMaterial())){
 			return this.getMaterial().getColor().getRGB();
 		}
 		return super.getPackedLightmapCoords(state, source, pos);
@@ -120,6 +118,9 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 		if (!this.getMaterial().equals(GTMaterial.Oxygen)) {
 			if (entityIn instanceof EntityLivingBase) {
 				EntityLivingBase entity = (EntityLivingBase) entityIn;
+				if (entity instanceof EntityGhast) {
+					return;
+				}
 				if (this.getMaterial().hasFlag(GTMaterialFlag.GAS)) {
 					entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 20, 0, false, false));
 				}
