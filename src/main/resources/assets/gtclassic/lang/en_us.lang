@@ -11,8 +11,8 @@ tile.gtclassic.blockAluminium.name=Block of Aluminium
 tile.gtclassic.blockPlatinum.name=Block of Platinum
 
 #ore
-tile.gtclassic.orePlatinum.name=Platinum Ore
 tile.gtclassic.oreIridium.name=Iridium Ore
+tile.gtclassic.oreSheldonite.name=Sheldonite Ore
 tile.gtclassic.oreRuby.name=Ruby Ore
 tile.gtclassic.oreSapphire.name=Sapphire Ore
 tile.gtclassic.oreBauxite.name=Bauxite Ore
@@ -172,7 +172,7 @@ fluid.steel=Molten Steel
 
 #ore tooltips
 tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome
-tooltip.gtclassic.orePlatinum=Spawns between Y level 10-30 in JUNGLE biomes
+tooltip.gtclassic.oreSheldonite=Spawns between Y level 10-30 in JUNGLE biomes
 tooltip.gtclassic.oreRuby=Spawns between Y level 0 - 48 in HOT biomes
 tooltip.gtclassic.oreSapphire=Spawns between Y level 0 - 48 in OCEAN biomes
 tooltip.gtclassic.oreBauxite=Spawns between Y level 50 - 120 in FOREST/PLAINS biomes

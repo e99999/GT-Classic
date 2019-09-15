@@ -51,13 +51,13 @@ public class GTWorldGen implements IWorldGenerator {
 			generate(GTBlocks.oreIridium, GTConfig.iridiumSize, GTConfig.iridiumWeight, 0, 128, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (GTConfig.platinumGenerate && BiomeDictionary.hasType(biomegenbase, Type.JUNGLE)) {
-			generate(GTBlocks.orePlatinum, GTConfig.platinumSize, GTConfig.platinumWeight, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
+			generate(GTBlocks.oreSheldonite, GTConfig.platinumSize, GTConfig.platinumWeight, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
 			if (GTConfig.rubyGenerate) {
 				generate(GTBlocks.oreRuby, GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
 			}
-			generate(GTMaterialGen.getFluidBlock(GTMaterial.Mercury), 3, 1, 5, 15, Blocks.STONE, world, random, chunkX, chunkZ);
+			generate(GTMaterialGen.getFluidBlock(GTMaterial.Mercury), 3, 2, 5, 15, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) || BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
 			if (GTConfig.sapphireGenerate) {
@@ -71,7 +71,7 @@ public class GTWorldGen implements IWorldGenerator {
 			if (GTConfig.bauxiteGenerate) {
 				generate(GTBlocks.oreBauxite, GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
 			}
-			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 16, 4, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
+			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 16, 5, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		if (BiomeDictionary.hasType(biomegenbase, Type.SNOWY) || BiomeDictionary.hasType(biomegenbase, Type.COLD)) {
 			generateRareFluid(GTMaterialGen.getFluidBlock(GTMaterial.Methane), 32, 2, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
@@ -94,7 +94,7 @@ public class GTWorldGen implements IWorldGenerator {
 			addOreDeposit(GTBlocks.oreBauxite);
 		}
 		if (GTConfig.platinumGenerate) {
-			addOreDeposit(GTBlocks.orePlatinum);
+			addOreDeposit(GTBlocks.oreSheldonite);
 		}
 		addOreDeposit(Blocks.COAL_ORE);
 		addOreDeposit(Blocks.DIAMOND_ORE);

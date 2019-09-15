@@ -115,8 +115,8 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 		if (this.equals(GTBlocks.oreBauxite)) {
 			drops.add(GTMaterialGen.get(GTBlocks.oreBauxite));
 		}
-		if (this.equals(GTBlocks.orePlatinum)) {
-			drops.add(GTMaterialGen.get(GTBlocks.orePlatinum));
+		if (this.equals(GTBlocks.oreSheldonite)) {
+			drops.add(GTMaterialGen.get(GTBlocks.oreSheldonite));
 		}
 		return drops;
 	}
