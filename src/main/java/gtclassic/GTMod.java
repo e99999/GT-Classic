@@ -19,11 +19,14 @@ import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
+import gtclassic.util.GTValues;
 import gtclassic.util.energy.IDSUStorage;
 import gtclassic.util.energy.MultiBlockHelper;
+import gtclassic.worldgen.GTWorldTwilightForest;
 import ic2.core.IC2;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -38,7 +41,7 @@ public class GTMod {
 	public static final String MODID = "gtclassic";
 	public static final String MODNAME = "GregTech Classic";
 	public static final String MODVERSION = "1.0.3";
-	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
+	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;after:twilightforest@[3.9.984,)";
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
 	@SidedProxy(clientSide = MODID + ".proxy.GTProxyClient", serverSide = MODID + ".proxy.GTProxyServer")
 	public static GTProxyCommon proxy;
@@ -94,6 +97,9 @@ public class GTMod {
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeProcessing.removals();
 		GTRecipeMods.postInit();
+		if (Loader.isModLoaded(GTValues.TFOREST)) {
+			GTWorldTwilightForest.initStalactites();
+		}
 	}
 
 	@Mod.EventHandler

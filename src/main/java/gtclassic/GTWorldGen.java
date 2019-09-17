@@ -201,7 +201,7 @@ public class GTWorldGen implements IWorldGenerator {
 		GTWorldGenOceanDeposit generator = new GTWorldGenOceanDeposit(state, blockAmount);
 		int heightdiff = maxHeight - minHeight + 1;
 		for (int i = 0; i < chancesToSpawn; i++) {
-			int var1 = rand.nextInt(384);
+			int var1 = rand.nextInt(512);
 			if (var1 == 0) {
 				int x = chunkX * 16 + rand.nextInt(16);
 				int y = minHeight + rand.nextInt(heightdiff);
