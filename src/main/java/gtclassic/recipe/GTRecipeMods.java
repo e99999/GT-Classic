@@ -186,7 +186,7 @@ public class GTRecipeMods {
 			addFluidGeneratorRecipe("crude_oil", 50000, 10);
 			addFluidGeneratorRecipe("redstone", 10000, 10);
 			addFluidGeneratorRecipe("glowstone", 25000, 12);
-			addFluidGeneratorRecipe("pyrotheum", 200000, 36);
+			addFluidGeneratorRecipe("pyrotheum", 200000, 32);
 			addFluidGeneratorRecipe("cryotheum", 50000, 12);
 			addFluidGeneratorRecipe("aerotheum", 50000, 12);
 			addFluidGeneratorRecipe("petrotheum", 50000, 12);

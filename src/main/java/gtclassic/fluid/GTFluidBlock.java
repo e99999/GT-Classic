@@ -94,7 +94,7 @@ public class GTFluidBlock extends BlockFluidClassic implements ILocaleBlock, ICu
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos) {
-		if (GTMaterial.hasGlow(this.getMaterial())){
+		if (GTMaterial.hasGlow(this.getMaterial())) {
 			return this.getMaterial().getColor().getRGB();
 		}
 		return super.getPackedLightmapCoords(state, source, pos);
