@@ -35,20 +35,17 @@ public class GTConfig {
 	public static int iridiumSize = 3;
 	public static int iridiumWeight = 2;
 	public static boolean sheldoniteGenerate = true;
-	public static int sheldoniteSize = 5;
-	public static int sheldoniteWeight = 5;
+	public static int sheldoniteSize = 10;
+	public static int sheldoniteWeight = 4;
 	public static boolean rubyGenerate = true;
-	public static int rubySize = 5;
+	public static int rubySize = 6;
 	public static int rubyWeight = 2;
 	public static boolean sapphireGenerate = true;
-	public static int sapphireSize = 5;
+	public static int sapphireSize = 6;
 	public static int sapphireWeight = 2;
 	public static boolean bauxiteGenerate = true;
 	public static int bauxiteSize = 16;
 	public static int bauxiteWeight = 4;
-	public static boolean depositGenerate = true;
-	public static int depositSize = 36;
-	public static int depositWeight = 4;
 	// fluid gens
 	public static boolean fluidOverworldGenerate = true;
 	public static boolean fluidNetherGenerate = true;
@@ -124,10 +121,6 @@ public class GTConfig {
 		bauxiteGenerate = cfg.getBoolean("bauxiteGenerate", CATEGORY_GENERATION, bauxiteGenerate, "Generate Bauxite ore in plains/forest biomes in the overworld");
 		bauxiteSize = cfg.getInt("bauxiteSize", CATEGORY_GENERATION, bauxiteSize, 1, 32, "Max size of Bauxite veins");
 		bauxiteWeight = cfg.getInt("bauxiteWeight", CATEGORY_GENERATION, bauxiteWeight, 1, 32, "Chance of Bauxite veins to spawn");
-		// ocean deposits
-		depositGenerate = cfg.getBoolean("depositGenerate", CATEGORY_GENERATION, depositGenerate, "Generate ore deposits veins on the ocean floor");
-		depositSize = cfg.getInt("depositSize", CATEGORY_GENERATION, depositSize, 1, 64, "Max size of ocean deposit veins");
-		depositWeight = cfg.getInt("depositWeight", CATEGORY_GENERATION, depositWeight, 1, 32, "Chance of an ocean deposit vein to spawn");
 		// fluids
 		fluidOverworldGenerate = cfg.getBoolean("fluidOverworldGenerate", CATEGORY_GENERATION, fluidOverworldGenerate, "Generate gases/fluids in overworld biomes");
 		fluidNetherGenerate = cfg.getBoolean("fluidNetherGenerate", CATEGORY_GENERATION, fluidNetherGenerate, "Generate gases/fluids in nether biomes");

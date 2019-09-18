@@ -208,6 +208,10 @@ public class GTRecipeMods {
 			ClassicRecipes.electrolyzer.addChargeRecipe(GTMaterialGen.getModMetaItem(GTValues.THERMAL, "bait", 1, 1), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "bait", 2, 1), 16000, "ThermalBait");
 			ClassicRecipes.electrolyzer.addChargeRecipe(GTMaterialGen.getModMetaItem(GTValues.THERMAL, "fertilizer", 1, 1), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "fertilizer", 2, 1), 16000, "ThermalFertilizer");
 		}
+		if (GTConfig.compatTwilightForest && Loader.isModLoaded(GTValues.TFOREST)) {
+			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Iron", 1),
+					input(GTMaterialGen.getModItem(GTValues.TFOREST, "liveroot")), input("nuggetGold", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModItem(GTValues.TFOREST, "ironwood_ingot", 2));
+		}
 		/** Forestry Sub Module, last so bees are always last **/
 		if (GTConfig.compatForestry && Loader.isModLoaded(GTValues.FORESTRY)) {
 			GTMod.logger.info("Doing Forestry Things");
