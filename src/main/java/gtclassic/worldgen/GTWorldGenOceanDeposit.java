@@ -10,6 +10,7 @@ import gtclassic.helpers.GTHelperWorld;
 import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2States;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -24,6 +25,10 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 	/** The number of blocks to generate. */
 	private final int numberOfBlocks;
 	private static List<IBlockState> oreDepositList = new ArrayList<>();
+	
+	protected static final IBlockState GRANITE = Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE);
+	protected static final IBlockState ANDESITE = Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE);
+	protected static final IBlockState DIORITE = Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE);
 
 	public GTWorldGenOceanDeposit(IBlockState state, int blockCount) {
 		this.oreBlock = state;
@@ -68,6 +73,8 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 									IBlockState state = worldIn.getBlockState(blockpos);
 									if (isReplaceableOceanGen(state.getBlock())) {
 										worldIn.setBlockState(blockpos, getRandomStateForGen(rand), 2);
+										
+										
 									}
 								}
 							}
@@ -81,7 +88,8 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 	}
 
 	private IBlockState getRandomStateForGen(Random rand) {
-		switch (rand.nextInt(6)) {
+		int r = rand.nextInt(5);
+		switch (r) {
 		case 0:
 			return Blocks.MAGMA.getDefaultState();
 		case 1:
@@ -129,6 +137,9 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 		addOreDeposit(Blocks.REDSTONE_ORE);
 		addOreDeposit(Blocks.STONE);
 		addOreDeposit(Blocks.OBSIDIAN);
+		addOreDeposit(GRANITE);
+		addOreDeposit(ANDESITE);
+		addOreDeposit(DIORITE);
 	}
 
 	private boolean isReplaceableOceanGen(Block block) {
