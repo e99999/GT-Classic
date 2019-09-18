@@ -42,7 +42,7 @@ public class GTWorldGen implements IWorldGenerator {
 		if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) || BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
 			generate(GTBlocks.oreSapphire, GTConfig.sapphireGenerate, GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
 			if (GTConfig.depositGenerate) {
-				for (IBlockState state : GTWorldGenOceanDeposit.oreDepositList) {
+				for (IBlockState state : GTWorldGenOceanDeposit.getOreDepositList()) {
 					generateOceanDeposit(state, GTConfig.depositSize, GTConfig.depositWeight, 28, 38, world, random, chunkX, chunkZ);
 				}
 			}

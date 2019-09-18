@@ -1,7 +1,8 @@
 # Changelog
 # 1.03 (Not Released)
 - Fixed bug where other dims would have safe spawn zones.
-- Added compat for Twilight Forest's, GTC and IC2C ores now generate in hollow hills if ore is enabled (code subject to change)
+- Added compat for Twilight Forest's, GTC and IC2C ores now generate in hollow hills if ore is enabled (code subject to change).
+- Note Twilight Forest compat requires the newest version (3.9.984) as well as updated forge (14.23.5.2813).
 - Added compat for Comp500's "Demagnetize" mod with the electromagnet.
 - Added the chance for molten metals to spawn in the nether, iron, silver, gold, electrum, uranium, and platinum.
 - Added rare chance for desert/hot biomes to spawn small amounts of liquid mercury.
@@ -9,8 +10,8 @@
 - Added small and infrequent methane pockets in plains/forest biomes.
 - Added small and infrequent neon/argon pockets in magical biomes.
 - Added Helium, Helium3, and Deuterium trapped gas pockets in the End
-- Added working on ore vein/ocean deposits that are extruded onto the ocean floor if an ore is enabled.
-- Added, Zombie's who spawn underground have a chance to spawn carrying a pickaxe. Ofc with config option.
+- Added working on ore vein/ocean deposits that are extruded onto the ocean floor.
+- Added, zombie's who spawn underground have a chance to spawn carrying a pickaxe.
 - Fixed Baubles items deciding to register whenever they felt like it.
 - Added Neon, and Argon, and centrifuge air separating. Cram it Bear im not adding a whole machine/multi for this, it has no use.
 - Changed Methane and Hydrogen gas blocks now explode if near a fire source, or player walks into them holding a torch.

@@ -23,7 +23,7 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 	private final IBlockState oreBlock;
 	/** The number of blocks to generate. */
 	private final int numberOfBlocks;
-	public static List<IBlockState> oreDepositList = new ArrayList<>();
+	private static List<IBlockState> oreDepositList = new ArrayList<>();
 
 	public GTWorldGenOceanDeposit(IBlockState state, int blockCount) {
 		this.oreBlock = state;
@@ -133,6 +133,10 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 
 	private boolean isReplaceableOceanGen(Block block) {
 		return block == Blocks.GRAVEL || block == Blocks.SAND || block == Blocks.STONE;
+	}
+	
+	public static List<IBlockState> getOreDepositList(){
+		return oreDepositList;
 	}
 
 	public static void addOreDeposit(Block block) {

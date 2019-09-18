@@ -98,7 +98,7 @@ public class GTMod {
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeProcessing.removals();
 		GTRecipeMods.postInit();
-		if (Loader.isModLoaded(GTValues.TFOREST)) {
+		if (GTConfig.compatTwilightForest && Loader.isModLoaded(GTValues.TFOREST)) {
 			GTWorldTwilightForest.initStalactites();
 		}
 	}

@@ -61,6 +61,7 @@ public class GTConfig {
 	public static boolean compatIc2Extras = true;
 	public static boolean compatIE = true;
 	public static boolean compatThermal = true;
+	public static boolean compatTwilightForest = true;
 
 	public static void readConfig() {
 		Configuration cfg = GTProxyCommon.config;
@@ -142,5 +143,6 @@ public class GTConfig {
 		compatIc2Extras = cfg.getBoolean("compatIc2Extras", CATEGORY_MODCOMPAT, compatIc2Extras, "Enables mod compat for Ic2 Extras");
 		compatIE = cfg.getBoolean("compatIE", CATEGORY_MODCOMPAT, compatIE, "Enables mod compat for Immersive Engineering");
 		compatThermal = cfg.getBoolean("compatThermal", CATEGORY_MODCOMPAT, compatThermal, "Enables mod compat for Thermal Expansion");
+		compatTwilightForest = cfg.getBoolean("compatTwilightForest", CATEGORY_MODCOMPAT, compatTwilightForest, "Enables mod compat for Twilight Forest");
 	}
 }
