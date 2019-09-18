@@ -1,14 +1,11 @@
 package gtclassic;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.worldgen.GTWorldGenFluid;
 import gtclassic.worldgen.GTWorldGenOceanDeposit;
-import ic2.core.platform.registry.Ic2States;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
@@ -25,8 +22,6 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class GTWorldGen implements IWorldGenerator {
-
-	protected static List<IBlockState> oreDepositList = new ArrayList<>();
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
@@ -47,7 +42,7 @@ public class GTWorldGen implements IWorldGenerator {
 		if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) || BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
 			generate(GTBlocks.oreSapphire, GTConfig.sapphireGenerate, GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
 			if (GTConfig.depositGenerate) {
-				for (IBlockState state : oreDepositList) {
+				for (IBlockState state : GTWorldGenOceanDeposit.oreDepositList) {
 					generateOceanDeposit(state, GTConfig.depositSize, GTConfig.depositWeight, 28, 38, world, random, chunkX, chunkZ);
 				}
 			}
@@ -83,34 +78,6 @@ public class GTWorldGen implements IWorldGenerator {
 			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Helium3), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
 			generateFluid(GTMaterialGen.getFluidBlock(GTMaterial.Deuterium), 5, 1, 20, 60, Blocks.END_STONE, world, random, chunkX, chunkZ);
 		}
-	}
-
-	public static void initDepositOres() {
-		if (GTConfig.sapphireGenerate) {
-			addOreDeposit(GTBlocks.oreSapphire);
-		}
-		if (GTConfig.rubyGenerate) {
-			addOreDeposit(GTBlocks.oreRuby);
-		}
-		if (GTConfig.bauxiteGenerate) {
-			addOreDeposit(GTBlocks.oreBauxite);
-		}
-		if (GTConfig.sheldoniteGenerate) {
-			addOreDeposit(GTBlocks.oreSheldonite);
-		}
-		addOreDeposit(Blocks.COAL_ORE);
-		addOreDeposit(Blocks.DIAMOND_ORE);
-		addOreDeposit(Blocks.EMERALD_ORE);
-		addOreDeposit(Blocks.GOLD_ORE);
-		addOreDeposit(Blocks.IRON_ORE);
-		addOreDeposit(Blocks.LAPIS_ORE);
-		addOreDeposit(Blocks.REDSTONE_ORE);
-		addOreDeposit(Blocks.STONE);
-		// TODO check ic2c configs for this
-		addOreDeposit(Ic2States.copperOre);
-		addOreDeposit(Ic2States.tinOre);
-		addOreDeposit(Ic2States.silverOre);
-		addOreDeposit(Ic2States.uraniumOre);
 	}
 
 	/** default ore generator **/
@@ -209,21 +176,5 @@ public class GTWorldGen implements IWorldGenerator {
 				generator.generate(world, rand, new BlockPos(x, y, z));
 			}
 		}
-	}
-
-	public static void addOreDeposit(Block block) {
-		oreDepositList.add(block.getDefaultState());
-	}
-
-	public static void addOreDeposit(IBlockState state) {
-		oreDepositList.add(state);
-	}
-
-	public static void removeOreDeposit(IBlockState state) {
-		oreDepositList.remove(state);
-	}
-
-	public static void removeOreDeposit(Block block) {
-		oreDepositList.remove(block.getDefaultState());
 	}
 }

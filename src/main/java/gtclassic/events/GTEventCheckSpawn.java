@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
@@ -38,6 +39,7 @@ public class GTEventCheckSpawn {
 			BlockPos spawn = entity.getEntityWorld().getSpawnPoint();
 			// This is the code for the safe spawn zone
 			if (GTConfig.preventMobSpawnsCloseToSpawn
+					&& entity.getEntityWorld().provider.getDimensionType().equals(DimensionType.OVERWORLD)
 					&& entity.getPosition().distanceSq(spawn.getX(), spawn.getY(), spawn.getZ()) <= 128 * 128) {
 				event.setResult(Event.Result.DENY);
 			}

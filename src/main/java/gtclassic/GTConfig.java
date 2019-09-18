@@ -49,11 +49,10 @@ public class GTConfig {
 	public static boolean depositGenerate = true;
 	public static int depositSize = 36;
 	public static int depositWeight = 4;
-	//fluid gens
+	// fluid gens
 	public static boolean fluidOverworldGenerate = true;
 	public static boolean fluidNetherGenerate = true;
 	public static boolean fluidEndGenerate = true;
-	
 	// mod compat options
 	public static boolean compatBaubles = true;
 	public static boolean compatBuildcraft = true;
@@ -128,7 +127,7 @@ public class GTConfig {
 		depositGenerate = cfg.getBoolean("depositGenerate", CATEGORY_GENERATION, depositGenerate, "Generate ore deposits veins on the ocean floor");
 		depositSize = cfg.getInt("depositSize", CATEGORY_GENERATION, depositSize, 1, 64, "Max size of ocean deposit veins");
 		depositWeight = cfg.getInt("depositWeight", CATEGORY_GENERATION, depositWeight, 1, 32, "Chance of an ocean deposit vein to spawn");
-		//fluids
+		// fluids
 		fluidOverworldGenerate = cfg.getBoolean("fluidOverworldGenerate", CATEGORY_GENERATION, fluidOverworldGenerate, "Generate gases/fluids in overworld biomes");
 		fluidNetherGenerate = cfg.getBoolean("fluidNetherGenerate", CATEGORY_GENERATION, fluidNetherGenerate, "Generate gases/fluids in nether biomes");
 		fluidEndGenerate = cfg.getBoolean("fluidEndGenerate", CATEGORY_GENERATION, fluidEndGenerate, "Generate gases/fluids in end islands");

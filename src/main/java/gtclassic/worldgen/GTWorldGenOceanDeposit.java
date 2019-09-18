@@ -1,8 +1,14 @@
 package gtclassic.worldgen;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import gtclassic.GTBlocks;
+import gtclassic.GTConfig;
 import gtclassic.helpers.GTHelperWorld;
+import ic2.core.IC2;
+import ic2.core.platform.registry.Ic2States;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,6 +23,7 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 	private final IBlockState oreBlock;
 	/** The number of blocks to generate. */
 	private final int numberOfBlocks;
+	public static List<IBlockState> oreDepositList = new ArrayList<>();
 
 	public GTWorldGenOceanDeposit(IBlockState state, int blockCount) {
 		this.oreBlock = state;
@@ -73,7 +80,7 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 		return true;
 	}
 
-	public IBlockState getRandomStateForGen(Random rand) {
+	private IBlockState getRandomStateForGen(Random rand) {
 		switch (rand.nextInt(6)) {
 		case 0:
 			return Blocks.MAGMA.getDefaultState();
@@ -88,7 +95,59 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 		}
 	}
 
-	public boolean isReplaceableOceanGen(Block block) {
+	public static void initDepositOres() {
+		if (GTConfig.sapphireGenerate) {
+			addOreDeposit(GTBlocks.oreSapphire);
+		}
+		if (GTConfig.rubyGenerate) {
+			addOreDeposit(GTBlocks.oreRuby);
+		}
+		if (GTConfig.bauxiteGenerate) {
+			addOreDeposit(GTBlocks.oreBauxite);
+		}
+		if (GTConfig.sheldoniteGenerate) {
+			addOreDeposit(GTBlocks.oreSheldonite);
+		}
+		if (IC2.config.getFlag("WorldGenOreCopper")) {
+			addOreDeposit(Ic2States.copperOre);
+		}
+		if (IC2.config.getFlag("WorldGenOreTin")) {
+			addOreDeposit(Ic2States.tinOre);
+		}
+		if (IC2.config.getFlag("WorldGenOreSilver")) {
+			addOreDeposit(Ic2States.silverOre);
+		}
+		if (IC2.config.getFlag("WorldGenOreUranium")) {
+			addOreDeposit(Ic2States.uraniumOre);
+		}
+		addOreDeposit(Blocks.COAL_ORE);
+		addOreDeposit(Blocks.DIAMOND_ORE);
+		addOreDeposit(Blocks.EMERALD_ORE);
+		addOreDeposit(Blocks.GOLD_ORE);
+		addOreDeposit(Blocks.IRON_ORE);
+		addOreDeposit(Blocks.LAPIS_ORE);
+		addOreDeposit(Blocks.REDSTONE_ORE);
+		addOreDeposit(Blocks.STONE);
+		addOreDeposit(Blocks.OBSIDIAN);
+	}
+
+	private boolean isReplaceableOceanGen(Block block) {
 		return block == Blocks.GRAVEL || block == Blocks.SAND || block == Blocks.STONE;
+	}
+
+	public static void addOreDeposit(Block block) {
+		oreDepositList.add(block.getDefaultState());
+	}
+
+	public static void addOreDeposit(IBlockState state) {
+		oreDepositList.add(state);
+	}
+
+	public static void removeOreDeposit(IBlockState state) {
+		oreDepositList.remove(state);
+	}
+
+	public static void removeOreDeposit(Block block) {
+		oreDepositList.remove(block.getDefaultState());
 	}
 }
