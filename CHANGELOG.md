@@ -1,4 +1,7 @@
 # Changelog
+# 1.04 (Not Released)
+- Fixed Echotron block not making sonar sound, I think?
+
 # 1.03
 - Changed recipes to use oredict for machine casings for any other mods that wanna use them
 - Fixed bug where other dims would have safe spawn zones.

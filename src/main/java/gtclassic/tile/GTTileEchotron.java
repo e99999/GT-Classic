@@ -7,6 +7,7 @@ import gtclassic.util.GTValues;
 import gtclassic.util.int3;
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.network.INetworkTileEntityEventListener;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
@@ -22,7 +23,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 
-public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBlock, ITickable {
+public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBlock, ITickable, INetworkTileEntityEventListener {
 
 	AxisAlignedBB areaBB = null;
 	@NetworkField(index = 7)
@@ -42,7 +43,7 @@ public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBl
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % 100 == 0 && this.energy >= 10 && !redstoneEnabled()) {
-			IC2.audioManager.playOnce(this, PositionSpec.Center, GTValues.sonar, false, IC2.audioManager.defaultVolume);
+			getNetwork().initiateTileEntityEvent(this, 0, false);
 			AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).asBlockPos()).grow(32.0D);
 			List<Entity> list = world.getEntitiesInAABBexcluding(world.getPlayerEntityByUUID(this.owner), area, null);
 			if (!list.isEmpty()) {
@@ -109,5 +110,13 @@ public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBl
 
 	public boolean redstoneEnabled() {
 		return this.world.isBlockPowered(this.getPos());
+	}
+
+	@Override
+	public void onNetworkEvent(int event) {
+		if (event == 0) {
+			IC2.audioManager.playOnce(this, PositionSpec.Center, GTValues.sonar, false, IC2.audioManager.defaultVolume);
+		}
+		
 	}
 }
