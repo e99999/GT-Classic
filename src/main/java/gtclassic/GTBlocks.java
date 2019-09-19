@@ -38,6 +38,7 @@ import gtclassic.tile.GTTileQuantumTank;
 import gtclassic.tile.GTTileSluice;
 import gtclassic.tile.GTTileSupercondensator;
 import gtclassic.tile.GTTileTranslocator;
+import gtclassic.tile.GTTileUUMAssembler;
 import gtclassic.tile.GTTileWorktable;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
@@ -46,6 +47,7 @@ import gtclassic.util.GTLang;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -74,7 +76,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
 	public static final GTBlockMachine tileFabricator = registerBlock(new GTBlockMachine("matterfabricator", GTLang.MATTER_FAB));
-	public static final GTBlockMachine tileUUAssembler = registerBlock(new GTBlockMachine("uuassembler", GTLang.UU_ASSEMBLER));
+	public static final GTBlockMachine tileUUMAssembler = registerBlock(new GTBlockMachine("uumassembler", GTLang.UUM_ASSEMBLER));
 	public static final GTBlockMachine tileEchotron = registerBlock(new GTBlockMachine("echotronblock", GTLang.ECHOTRON));
 	public static final GTBlockMachine tilePlayerDetector = registerBlock(new GTBlockMachine("playerdetector", GTLang.PLAYER_DETECTOR, 1));
 	public static final GTBlockMachine tileMobRepeller = registerBlock(new GTBlockMachine("mobrepeller", GTLang.MOB_REPELLER, 1));
@@ -97,7 +99,7 @@ public class GTBlocks {
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
-			"industrialcentrifuge", "matterfabricator", "uuassembler", "echotronblock", "quantumchest", "quantumtank",
+			"industrialcentrifuge", "matterfabricator", "uumassembler", "echotronblock", "quantumchest", "quantumtank",
 			"playerdetector", "mobrepeller", "fusionreactor", "lightningrod", "idsu", "aesu", "lesu",
 			"supercondensator", "cabinet", "drum", "worktable", "translocator", "bufferlarge", "buffersmall",
 			"bufferfluid" };
@@ -149,6 +151,7 @@ public class GTBlocks {
 		registerUtil(GTTileQuantumChest.class, "QuantumChest");
 		registerUtil(GTTileQuantumTank.class, "QuantumTank");
 		registerUtil(GTTileMatterFabricator.class, "MatterFabricator");
+		registerUtil(GTTileUUMAssembler.class, "UUMAssembler");
 		registerUtil(GTTileWorktable.class, "Worktable");
 		registerUtil(GTTileFacing.class, "Facing");
 		registerUtil(GTTileCabinet.class, "Cabinet");
@@ -159,8 +162,7 @@ public class GTBlocks {
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void registerUtil(Class tile, String name) {
+	public static void registerUtil(Class<? extends TileEntity>  tile, String name) {
 		GameRegistry.registerTileEntity(tile, new ResourceLocation(GTMod.MODID, "tileEntity" + name));
 	}
 }

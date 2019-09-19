@@ -232,6 +232,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "High: " + transformer.highOutput + " EU");
 				IC2.platform.messagePlayer(player, "High Tier: "
 						+ EnergyNet.instance.getTierFromPower((double) transformer.highOutput));
+				IC2.platform.messagePlayer(player, "Stored: " + transformer.getStoredEU() + " EU");
 			}
 			if (tileEntity instanceof GTTileBaseBuffer) {
 				GTTileBaseBuffer buffer = (GTTileBaseBuffer) tileEntity;

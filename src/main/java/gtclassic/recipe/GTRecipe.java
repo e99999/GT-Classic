@@ -266,7 +266,7 @@ public class GTRecipe {
 		/** Stuff that is not ready yet **/
 		if (GTMod.debugMode) {
 			/** UU Assembler **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
 					"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q',
 					GTBlocks.tileQuantumChest, 'E', Ic2Items.industrialWorktable, 'D', "circuitUltimate", 'B',
 					"batteryAdvanced" });

@@ -83,7 +83,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("circuitData", (GTMaterialGen.get(GTItems.chipData, 1)));
 		OreDictionary.registerOre("circuitUltimate", (GTMaterialGen.get(GTItems.orbData, 1)));
 		OreDictionary.registerOre("batteryUltimate", new ItemStack(GTItems.orbEnergy, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("itemSuperconductor", (GTMaterialGen.get(GTItems.superConductor, 1)));
+		OreDictionary.registerOre("craftingSuperconductor", (GTMaterialGen.get(GTItems.superConductor, 1)));
 		OreDictionary.registerOre("machineBlockElite", (GTMaterialGen.get(GTBlocks.casingHighlyAdvanced, 1)));
 		OreDictionary.registerOre("machineBlockHighlyAdvanced", (GTMaterialGen.get(GTBlocks.casingHighlyAdvanced, 1)));
 		/** Pams Harvestcraft **/
