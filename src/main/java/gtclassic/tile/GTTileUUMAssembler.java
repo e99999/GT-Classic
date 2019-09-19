@@ -1,16 +1,18 @@
 package gtclassic.tile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerUUMAssembler;
 import gtclassic.gui.GTGuiMachine.GTUUMAssemblerGui;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
-import ic2.api.classic.recipe.ClassicRecipes;
-import ic2.api.classic.recipe.crafting.IAdvRecipe;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 
@@ -20,7 +22,7 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/uumassembler.png");
 
 	public GTTileUUMAssembler() {
-		super(32, 512);
+		super(14, 512);
 		maxEnergy = 100000;
 	}
 
@@ -52,15 +54,6 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	public void update() {
 		// TODO Everything
 	}
-	
-	public void postInit() {
-		// TODO have Speiger show the magic
-		for (IAdvRecipe recipe : ClassicRecipes.advCrafting.getRecipes()) {
-			if (recipe.isInvisible()) {
-				//RECIPE_LIST.addRecipe(recipe.getRecipeInput(), recipe.bruhWtf, id, 0);
-			}
-		}
-	}
 
 	@Override
 	public boolean supportsNotify() {
@@ -70,8 +63,15 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	public ResourceLocation getGuiTexture() {
 		return GUI_LOCATION;
 	}
-	
-	public void updateRecipe() {
-		
+
+	public void updateCost() {
+	}
+
+	@Override
+	public List<ItemStack> getDrops() {
+		List<ItemStack> list = new ArrayList<>();
+		list.add(this.getStackInSlot(12));
+		list.add(this.getStackInSlot(13));
+		return list;
 	}
 }

@@ -23,7 +23,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 
-public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBlock, ITickable, INetworkTileEntityEventListener {
+public class GTTileEchotron extends TileEntityElecMachine
+		implements IPersonalBlock, ITickable, INetworkTileEntityEventListener {
 
 	AxisAlignedBB areaBB = null;
 	@NetworkField(index = 7)
@@ -117,6 +118,5 @@ public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBl
 		if (event == 0) {
 			IC2.audioManager.playOnce(this, PositionSpec.Center, GTValues.sonar, false, IC2.audioManager.defaultVolume);
 		}
-		
 	}
 }

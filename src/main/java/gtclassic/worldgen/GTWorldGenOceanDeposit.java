@@ -25,7 +25,6 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 	/** The number of blocks to generate. */
 	private final int numberOfBlocks;
 	private static List<IBlockState> oreDepositList = new ArrayList<>();
-	
 	protected static final IBlockState GRANITE = Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE);
 	protected static final IBlockState ANDESITE = Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE);
 	protected static final IBlockState DIORITE = Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE);
@@ -73,8 +72,6 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 									IBlockState state = worldIn.getBlockState(blockpos);
 									if (isReplaceableOceanGen(state.getBlock())) {
 										worldIn.setBlockState(blockpos, getRandomStateForGen(rand), 2);
-										
-										
 									}
 								}
 							}
@@ -145,8 +142,8 @@ public class GTWorldGenOceanDeposit extends WorldGenerator {
 	private boolean isReplaceableOceanGen(Block block) {
 		return block == Blocks.GRAVEL || block == Blocks.SAND || block == Blocks.STONE;
 	}
-	
-	public static List<IBlockState> getOreDepositList(){
+
+	public static List<IBlockState> getOreDepositList() {
 		return oreDepositList;
 	}
 

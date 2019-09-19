@@ -176,8 +176,8 @@ public class GTRecipe {
 				"ingotTitanium", 'C', "ingotChrome", 'B', "machineBlockAdvanced" });
 		/** Fusion Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingFusion), new Object[] { "CSC", "TMT", "CRC", 'M',
-				"machineBlockElite", 'C', "circuitMaster", 'S', GTItems.superConductor, 'T',
-				Ic2Items.teslaCoil.copy(), 'R', Ic2Items.reactorReflectorIridium.copy() });
+				"machineBlockElite", 'C', "circuitMaster", 'S', GTItems.superConductor, 'T', Ic2Items.teslaCoil.copy(),
+				'R', Ic2Items.reactorReflectorIridium.copy() });
 		/** LESU Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLapotron), new Object[] { "BBB", "BCB", "BBB", 'B',
 				"blockLapis", 'C', "circuitBasic" });
@@ -186,7 +186,8 @@ public class GTRecipe {
 				Ic2Items.extractor, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C', "circuitAdvanced" });
 		/** Blast Furnace **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBlastFurnace, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
-				Ic2Items.inductionFurnace, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C', "circuitAdvanced" });
+				Ic2Items.inductionFurnace, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C',
+				"circuitAdvanced" });
 		/** Lightning Rod **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
 				"circuitMaster", 'S', GTBlocks.tileSupercondensator, 'A', "machineBlockElite" });
@@ -230,12 +231,11 @@ public class GTRecipe {
 		/** Matter Fabricator **/
 		if (GTConfig.removeIC2MassFab) {
 			recipes.overrideRecipe("shaped_tile.blockMatter_1416524227", GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] {
-					"ETE", "HLH", "ETE", 'E', "circuitMaster", 'T', Ic2Items.teleporter, 'H',
-					"machineBlockElite", 'L', "batteryUltimate" });
+					"ETE", "HLH", "ETE", 'E', "circuitMaster", 'T', Ic2Items.teleporter, 'H', "machineBlockElite", 'L',
+					"batteryUltimate" });
 		} else {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] { "ETE", "HLH", "ETE", 'E',
-					"circuitMaster", 'T', Ic2Items.teleporter, 'H', "machineBlockElite", 'L',
-					"batteryUltimate" });
+					"circuitMaster", 'T', Ic2Items.teleporter, 'H', "machineBlockElite", 'L', "batteryUltimate" });
 		}
 		/** Charge-O-Mat **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileChargeOmat, 1), new Object[] { "RCR", "AEA", "RMR", 'E',
@@ -254,8 +254,7 @@ public class GTRecipe {
 				"machineBlockElite" });
 		/** Supercondensator **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSupercondensator, 1), new Object[] { "EAE", "SMS", "EAE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'A', "batteryUltimate", 'M',
-				"machineBlockElite" });
+				"circuitMaster", 'S', GTItems.superConductor, 'A', "batteryUltimate", 'M', "machineBlockElite" });
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), new Object[] { "CRC", "JMN", "CBC", 'C',
 				"circuitBasic", 'R', "record", 'J', Blocks.JUKEBOX, 'M', "machineBlockAdvanced", 'N', Blocks.NOTEBLOCK,

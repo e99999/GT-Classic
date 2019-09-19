@@ -76,7 +76,7 @@ public class GTMod {
 		GTRecipe.initItems();
 		GTRecipe.initBlocks();
 		GTRecipe.initIC2();
-		//GTWorldGenOceanDeposit.initDepositOres();
+		// GTWorldGenOceanDeposit.initDepositOres();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
 		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());

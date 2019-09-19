@@ -162,7 +162,7 @@ public class GTBlocks {
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
 	}
 
-	public static void registerUtil(Class<? extends TileEntity>  tile, String name) {
+	public static void registerUtil(Class<? extends TileEntity> tile, String name) {
 		GameRegistry.registerTileEntity(tile, new ResourceLocation(GTMod.MODID, "tileEntity" + name));
 	}
 }
