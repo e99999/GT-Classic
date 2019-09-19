@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerWorktable;
+import gtclassic.fluid.GTFluidBlock;
 import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileMatterFabricator;
@@ -48,8 +49,14 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipes(GTTileMatterFabricator.RECIPE_LIST.getRecipeList(), "gt.uuamplifier");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileFabricator), "gt.uuamplifier");
 			registry.addRecipeClickArea(GTMatterFabricatorGui.class, 105, 34, 62, 22, "gt.uuamplifier");
+			// Blacklist
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
+			for (Block block : Block.REGISTRY) {
+				if (block instanceof GTFluidBlock) {
+					blacklist.addIngredientToBlacklist(new ItemStack(block));
+				}
+			}
 		}
 	}
 

@@ -5,9 +5,7 @@ import java.util.Random;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.worldgen.GTWorldGenFluid;
-import gtclassic.worldgen.GTWorldGenOceanDeposit;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -162,20 +160,19 @@ public class GTWorldGen implements IWorldGenerator {
 			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		generateRareFluid(block, true, blockAmount, chancesToSpawn, minHeight, maxHeight, blockToReplace, world, rand, chunkX, chunkZ);
 	}
-
-	/** ocean deposit/vein generator not for you to use, add to the list **/
-	private void generateOceanDeposit(IBlockState state, int blockAmount, int chancesToSpawn, int minHeight,
-			int maxHeight, World world, Random rand, int chunkX, int chunkZ) {
-		GTWorldGenOceanDeposit generator = new GTWorldGenOceanDeposit(state, blockAmount);
-		int heightdiff = maxHeight - minHeight + 1;
-		for (int i = 0; i < chancesToSpawn; i++) {
-			int var1 = rand.nextInt(512);
-			if (var1 == 0) {
-				int x = chunkX * 16 + rand.nextInt(16);
-				int y = minHeight + rand.nextInt(heightdiff);
-				int z = chunkZ * 16 + rand.nextInt(16);
-				generator.generate(world, rand, new BlockPos(x, y, z));
-			}
-		}
-	}
+//	/** ocean deposit/vein generator not for you to use, add to the list **/
+//	private void generateOceanDeposit(IBlockState state, int blockAmount, int chancesToSpawn, int minHeight,
+//			int maxHeight, World world, Random rand, int chunkX, int chunkZ) {
+//		GTWorldGenOceanDeposit generator = new GTWorldGenOceanDeposit(state, blockAmount);
+//		int heightdiff = maxHeight - minHeight + 1;
+//		for (int i = 0; i < chancesToSpawn; i++) {
+//			int var1 = rand.nextInt(512);
+//			if (var1 == 0) {
+//				int x = chunkX * 16 + rand.nextInt(16);
+//				int y = minHeight + rand.nextInt(heightdiff);
+//				int z = chunkZ * 16 + rand.nextInt(16);
+//				generator.generate(world, rand, new BlockPos(x, y, z));
+//			}
+//		}
+//	}
 }

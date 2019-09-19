@@ -48,6 +48,8 @@ public class GTOreDict {
 		if (GTConfig.oreDictWroughtIron) {
 			OreDictionary.registerOre("ingotWroughtIron", Ic2Items.refinedIronIngot);
 		}
+		OreDictionary.registerOre("machineBlockBasic", Ic2Items.machine);
+		OreDictionary.registerOre("machineBlockAdvanced", Ic2Items.advMachine);
 		// Registering Aluminium for idiots
 		GTMaterial aluminium = GTMaterial.Aluminium;
 		OreDictionary.registerOre("blockAluminum", (GTMaterialGen.getMaterialBlock(aluminium, 1)));
@@ -81,6 +83,9 @@ public class GTOreDict {
 		OreDictionary.registerOre("circuitData", (GTMaterialGen.get(GTItems.chipData, 1)));
 		OreDictionary.registerOre("circuitUltimate", (GTMaterialGen.get(GTItems.orbData, 1)));
 		OreDictionary.registerOre("batteryUltimate", new ItemStack(GTItems.orbEnergy, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("itemSuperconductor", (GTMaterialGen.get(GTItems.superConductor, 1)));
+		OreDictionary.registerOre("machineBlockElite", (GTMaterialGen.get(GTBlocks.casingHighlyAdvanced, 1)));
+		OreDictionary.registerOre("machineBlockHighlyAdvanced", (GTMaterialGen.get(GTBlocks.casingHighlyAdvanced, 1)));
 		/** Pams Harvestcraft **/
 		if (!Loader.isModLoaded(GTValues.HARVESTCRAFT)) {
 			OreDictionary.registerOre("listAllmeatraw", GTMaterialGen.get(Items.PORKCHOP));

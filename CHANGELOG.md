@@ -1,5 +1,6 @@
 # Changelog
-# 1.03 (Not Released)
+# 1.03
+- Changed recipes to use oredict for machine casings for any other mods that wanna use them
 - Fixed bug where other dims would have safe spawn zones.
 - Added compat for Twilight Forest's, GTC and IC2C ores now generate in hollow hills if ore is enabled (code subject to change).
 - Note Twilight Forest compat requires the newest version (3.9.984) as well as updated forge (14.23.5.2813).

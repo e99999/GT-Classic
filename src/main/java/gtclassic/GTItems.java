@@ -37,6 +37,7 @@ public class GTItems {
 	}
 
 	static List<Item> toRegister = new ArrayList<>();
+	public static GTFluidTube testTube;
 	public static GTItemReactorHeat heatStorageHelium1;
 	public static GTItemReactorHeat heatStorageHelium3;
 	public static GTItemReactorHeat heatStorageHelium6;
@@ -67,11 +68,11 @@ public class GTItems {
 	public static GTItemJackHammer jackHammer;
 	public static GTItemSurvivalScanner portableScanner;
 	public static GTItemCreativeScanner debugScanner;
-	public static GTFluidTube testTube;
 
 	public static void initItems() {
 		IBaublesPlugin plugin = IC2.loader.getPlugin("baubles", IBaublesPlugin.class);
 		boolean doBaubles = GTConfig.compatBaubles && plugin != null;
+		testTube = createItem(new GTFluidTube());
 		heatStorageHelium1 = createItem(new GTItemReactorHeat("helium_single", 2, 60000));
 		heatStorageHelium3 = createItem(new GTItemReactorHeat("helium_triple", 3, 180000));
 		heatStorageHelium6 = createItem(new GTItemReactorHeat("helium_six", 4, 360000));
@@ -107,7 +108,6 @@ public class GTItems {
 		jackHammer = createItem(new GTItemJackHammer());
 		portableScanner = createItem(new GTItemSurvivalScanner());
 		debugScanner = createItem(new GTItemCreativeScanner());
-		testTube = createItem(new GTFluidTube());
 	}
 
 	public static <T extends Item> T createItem(T item) {
@@ -116,11 +116,14 @@ public class GTItems {
 	}
 
 	public static void registerItems() {
+		IC2.getInstance().createItem(testTube);
 		for (Item item : GTMaterialGen.itemMap.values()) {
 			IC2.getInstance().createItem(item);
 		}
 		for (Item item : toRegister) {
-			IC2.getInstance().createItem(item);
+			if (item != testTube) {
+				IC2.getInstance().createItem(item);
+			}
 		}
 	}
 }
