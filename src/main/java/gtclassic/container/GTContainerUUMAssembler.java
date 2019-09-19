@@ -8,6 +8,7 @@ import gtclassic.gui.GTGuiCompBasicString;
 import gtclassic.gui.GTGuiCompUUMAssembler;
 import gtclassic.helpers.GTHelperStack;
 import gtclassic.tile.GTTileUUMAssembler;
+import gtclassic.util.GTFilterUUMAssembler;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.gui.GuiIC2;
@@ -81,24 +82,27 @@ public class GTContainerUUMAssembler extends ContainerTileComponent<GTTileUUMAss
 				this.block.inventory.set(i, ItemStack.EMPTY);
 			}
 			this.block.inventory.set(11, ItemStack.EMPTY);
+			this.block.updateCost();
 			return ItemStack.EMPTY;
 		}
 		// Scanning Slot Logic
 		if (slotId == 10) {
 			ItemStack playerStack = StackUtil.copyWithSize(player.inventory.getItemStack(), 1);
-			for (int i = 0; i < 9; ++i) {
-				// If the Stack is saved already then break
-				ItemStack savedStack = this.block.inventory.get(i);
-				if (GTHelperStack.isEqual(playerStack, savedStack)) {
-					break;
+			if (GTFilterUUMAssembler.matches(playerStack)) {
+				for (int i = 0; i < 9; ++i) {
+					// If the Stack is saved already then break
+					ItemStack savedStack = this.block.inventory.get(i);
+					if (GTHelperStack.isEqual(playerStack, savedStack)) {
+						break;
+					}
+					// If there is an emtpy slot attempt to save the scanned item
+					if (savedStack.isEmpty()) {
+						this.block.setStackInSlot(i, playerStack);
+						break;
+					}
 				}
-				// If there is an emtpy slot attempt to save the scanned item
-				if (savedStack.isEmpty()) {
-					this.block.setStackInSlot(i, playerStack);
-					break;
-				}
+				return ItemStack.EMPTY;
 			}
-			return ItemStack.EMPTY;
 		}
 		// Replication Selection Logic
 		if (slotId >= 0 && slotId <= 9) {

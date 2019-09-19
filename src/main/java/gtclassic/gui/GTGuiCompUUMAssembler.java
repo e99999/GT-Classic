@@ -29,7 +29,11 @@ public class GTGuiCompUUMAssembler extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
 		gui.drawString("EU: " + this.block.energy, 12, 18, Color.cyan.hashCode());
-		gui.drawString("UU: " + "0", 12, 28, Color.cyan.hashCode());
-		gui.drawString("Cost: " + "0", 12, 38, Color.cyan.hashCode());
+		int stored = this.block.getStoredUU();
+		gui.drawString("UU: " + stored, 12, 28, Color.cyan.hashCode());
+		int cost = this.block.getCurrentCost();
+		gui.drawString("Cost: " + cost, 12, 38, Color.cyan.hashCode());
+		int per = this.block.getAmountPer();
+		gui.drawString("Produced: " + per, 12, 48, Color.cyan.hashCode());
 	}
 }
