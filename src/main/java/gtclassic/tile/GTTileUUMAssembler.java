@@ -17,6 +17,7 @@ import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -96,13 +97,35 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	}
 
 	public void tryAssemble() {
+		// Is there even something to replicate?
 		if (this.currentCost == 0 || this.getStackInSlot(11).isEmpty()) {
 			return;
 		}
+		// Is there enough UU to replicate?
 		if (this.digitalCount < this.currentCost) {
 			return;
 		}
-		// if slot 11 GTFilterUUMAssembler.getCost != 0 && hasPower{}
+		// Will the output stack even fit!?
+		ItemStack newStack = StackUtil.copyWithSize(this.getStackInSlot(11), this.amountPer);
+		if (!GTHelperStack.canMerge(newStack, this.getStackInSlot(13))) {
+			return;
+		}
+		// Is the machine paused?
+		if (this.redstoneEnabled()) {
+			return;
+		}
+		// Ok lets do this
+		if (this.energy >= 50) {
+			int count = this.getStackInSlot(13).getCount() + this.amountPer;
+			this.setStackInSlot(13, StackUtil.copyWithSize(newStack, count));
+			this.digitalCount = this.digitalCount - this.currentCost;
+			this.useEnergy(50);
+			this.updateGui();
+		}
+	}
+
+	public boolean redstoneEnabled() {
+		return this.world.isBlockPowered(this.getPos());
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class GTHelperStack {
 
 	/** Checks if a stack can merge **/
 	public static boolean canMerge(ItemStack stack, ItemStack toCompare, int maxCount) {
-		return isEqual(stack, toCompare) && (toCompare.getCount() + stack.getCount() < maxCount);
+		return (isEqual(stack, toCompare) && (toCompare.getCount() + stack.getCount() <= maxCount)) || toCompare.isEmpty();
 	}
 
 	/** Just an easy place for me to call this over and over **/
