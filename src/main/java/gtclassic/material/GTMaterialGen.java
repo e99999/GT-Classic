@@ -235,8 +235,18 @@ public class GTMaterialGen {
 		return new ItemStack(item, count);
 	}
 
+	/** Generic getter for items and blocks with meta **/
+	public static ItemStack get(Item item, int count, int meta) {
+		return new ItemStack(item, count, meta);
+	}
+
 	/** Generic getter for items and blocks **/
 	public static ItemStack get(Block block, int count) {
 		return new ItemStack(block, count);
+	}
+
+	/** Generic getter for items and blocks with meta **/
+	public static ItemStack get(Block block, int count, int meta) {
+		return new ItemStack(block, count, meta);
 	}
 }

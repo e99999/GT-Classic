@@ -1,6 +1,8 @@
 # Changelog
 # 1.04 (Not Released)
 - Fixed Echotron block not making sonar sound, I think?
+- Added UUM-Assmebler, more of a replicator/scanner/assembler hybrid than the original uu autocrafter tile
+- Fixed Sheldonite not having a direct smelting recipe to Platinum.
 
 # 1.03
 - Changed recipes to use oredict for machine casings for any other mods that wanna use them

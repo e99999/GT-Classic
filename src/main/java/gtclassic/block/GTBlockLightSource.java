@@ -14,7 +14,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -81,7 +80,7 @@ public class GTBlockLightSource extends BlockAir implements ITexturedBlock, ILoc
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
+		worldIn.setBlockToAir(pos);
 	}
 
 	@Override

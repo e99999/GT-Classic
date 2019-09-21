@@ -417,6 +417,10 @@ public class GTRecipe {
 					GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
 			recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Aluminium, 16), new Object[] { " U ", " U ", "UUU", 'U',
 					GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+			recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Platinum, 1), new Object[] { "  U", "UUU", "UUU", 'U',
+					GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
+			recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Tungsten, 6), new Object[] { "U  ", "UUU", "UUU", 'U',
+					GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
 		}
 	}
 }

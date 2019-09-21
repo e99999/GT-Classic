@@ -3,6 +3,7 @@ package gtclassic.recipe;
 import java.util.Iterator;
 import java.util.Map;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
 import gtclassic.helpers.GTHelperStack;
 import gtclassic.material.GTMaterial;
@@ -19,12 +20,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GTRecipeProcessing {
 
 	static IMachineRecipeList smelting = ClassicRecipes.furnace;
 
 	public static void init() {
+		GameRegistry.addSmelting(GTMaterialGen.get(GTBlocks.oreSheldonite, 1), (GTMaterialGen.getIngot(GTMaterial.Platinum, 1)), 0.1F);
 		maceratorUtil("oreBauxite", 1, GTMaterialGen.getDust(GTMaterial.Bauxite, 4));
 		maceratorUtil("oreIridium", 1, GTMaterialGen.getDust(GTMaterial.Iridium, 2));
 		TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1), GTMaterialGen.getDust(GTMaterial.Iridium, 1));
