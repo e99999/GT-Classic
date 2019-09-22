@@ -534,6 +534,10 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		return recipeOperation;
 	}
 
+	public LinkedList<IStackOutput> getOutputs() {
+		return outputs;
+	}
+
 	@Override
 	public IHasInventory getOutputInventory() {
 		return new RangedInventoryWrapper(this, getOutputSlots());

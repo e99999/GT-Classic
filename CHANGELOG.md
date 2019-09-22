@@ -1,8 +1,11 @@
 # Changelog
 # 1.04 (Not Released)
+- Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercontainer (must be front or back of the fusion tile).
 - Fixed Echotron block not making sonar sound, I think?
 - Added UUM-Assmebler, more of a replicator/scanner/assembler hybrid than the original uu autocrafter tile
 - Fixed Sheldonite not having a direct smelting recipe to Platinum.
+- Fixed a rare chance for zombies with pickaxes to crash the game with an out of bounds integer.
+- Added platinum to some basic recipes to give a little more use.
 
 # 1.03
 - Changed recipes to use oredict for machine casings for any other mods that wanna use them

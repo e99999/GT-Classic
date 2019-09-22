@@ -24,4 +24,10 @@ public class GTTileSupercondensator extends TileEntityTransformer implements IBi
 	public static int level(int tier) {
 		return (int) EnergyNet.instance.getPowerFromTier(tier);
 	}
+
+	public void doFusionHeliumThings() {
+		if (this.energy + 1048576 <= this.maxEnergy) {
+			this.energy = this.energy + 1048576;
+		}
+	}
 }

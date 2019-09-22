@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import gtclassic.GTConfig;
+import gtclassic.helpers.GTHelperStack;
+import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.recipe.machine.MachineOutput;
@@ -44,6 +47,10 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 		font.drawString("Usage: " + multiRecipe.getMachineEu() + " EU/t", 0, 70, Color.black.getRGB());
 		font.drawString("Cost: " + getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu()
 				+ " EU", 0, 80, Color.black.getRGB());
+		if (multiRecipe.getMachineEu() == 8192
+				&& GTHelperStack.isEqual(GTMaterialGen.getTube(GTMaterial.Helium, 1), multiRecipe.getOutputs().getAllOutputs().get(0))) {
+			font.drawString("Outputs: 1048576 EU", 0, 90, Color.black.getRGB());
+		}
 		if (GTConfig.debugMode) {
 			font.drawString("Recipe Id: " + multiRecipe.getRecipeID(), 0, 90, Color.black.getRGB());
 		}

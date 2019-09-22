@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTConfig;
+import gtclassic.helpers.GTHelperMath;
 import gtclassic.tile.GTTileMobRepeller;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
@@ -48,7 +49,8 @@ public class GTEventCheckSpawn {
 					&& event.getWorld().rand.nextInt(2) == 0) {
 				EntityZombie zombie = (EntityZombie) entity;
 				ItemStack tool = getRandomPickaxe(event.getWorld().rand);
-				tool.damageItem(event.getWorld().rand.nextInt(tool.getMaxDamage() - 1), zombie);
+				int damage = event.getWorld().rand.nextInt(tool.getMaxDamage() + 1);
+				tool.damageItem(GTHelperMath.clip(damage, 1, tool.getMaxDamage() - 1), zombie);
 				zombie.setHeldItem(EnumHand.MAIN_HAND, tool);
 			}
 			// This is the code for the mob repellator

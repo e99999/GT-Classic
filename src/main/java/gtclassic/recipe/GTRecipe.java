@@ -3,7 +3,6 @@ package gtclassic.recipe;
 import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
 import gtclassic.GTItems;
-import gtclassic.GTMod;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
@@ -29,11 +28,11 @@ public class GTRecipe {
 	static IRecipeInput ingotElectric = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("itemSilicon"),
 			new RecipeInputOreDict("ingotAluminium"), new RecipeInputOreDict("ingotSilver"),
-			new RecipeInputOreDict("ingotElectrum") });
+			new RecipeInputOreDict("ingotElectrum"), new RecipeInputOreDict("ingotPlatinum") });
 	static IRecipeInput ingotAny = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotSilver"),
 			new RecipeInputOreDict("ingotBronze"), new RecipeInputOreDict("ingotAluminium"),
-			new RecipeInputOreDict("ingotElectrum") });
+			new RecipeInputOreDict("ingotElectrum"), new RecipeInputOreDict("ingotPlatinum") });
 	static IRecipeInput ingotMixed = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotAluminium"),
 			new RecipeInputOreDict("ingotElectrum") });
@@ -55,6 +54,9 @@ public class GTRecipe {
 			new RecipeInputOreDict("ingotTungsten"), new RecipeInputOreDict("ingotTitanium") });
 	static IRecipeInput ingotDigital = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotChrome"), new RecipeInputOreDict("ingotTitanium") });
+	static IRecipeInput batteryAdvanced = new RecipeInputCombined(1, new IRecipeInput[] {
+			new RecipeInputItemStack(Ic2Items.energyCrystal.copy()),
+			new RecipeInputItemStack(GTMaterialGen.get(GTItems.lithiumBattery)) });
 
 	public static void initShapeless() {
 		/** Duct Tape **/
@@ -194,8 +196,8 @@ public class GTRecipe {
 		/** Fusion Computer **/
 		if (GTConfig.removeIC2Plasmafier) {
 			recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] {
-					"ESE", "LCL", "ESE", 'E', "circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C',
-					GTBlocks.tileComputer });
+					"ESE", "LCL", "ESE", 'E', "circuitMaster", 'S', GTBlocks.tileSupercondensator, 'L',
+					"batteryUltimate", 'C', GTBlocks.tileComputer });
 		} else {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] { "ESE", "LCL", "ESE", 'E',
 					"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C', GTBlocks.tileComputer });
@@ -263,13 +265,10 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMobRepeller, 1), new Object[] { "SSS", " M ", "CCC", 'S',
 				"gemSapphire", 'M', "machineBlockAdvanced", 'C', "circuitBasic" });
 		/** Stuff that is not ready yet **/
-		if (GTMod.debugMode) {
-			/** UU Assembler **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
-					"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q',
-					GTBlocks.tileQuantumChest, 'E', Ic2Items.industrialWorktable, 'D', "circuitUltimate", 'B',
-					"batteryAdvanced" });
-		}
+		/** UU Assembler **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
+				"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E',
+				"workbench", 'D', "circuitUltimate", 'B', batteryAdvanced });
 		/** More recipes for vanilla rails **/
 		if (GTConfig.vanillaRailRecipes) {
 			// golden
