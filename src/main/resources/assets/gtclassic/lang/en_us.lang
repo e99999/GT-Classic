@@ -9,6 +9,8 @@ tile.gtclassic.blockChrome.name=Block of Chrome
 tile.gtclassic.blockRuby.name=Block of Ruby
 tile.gtclassic.blockAluminium.name=Block of Aluminium
 tile.gtclassic.blockPlatinum.name=Block of Platinum
+tile.gtclassic.blockThorium.name=Block of Thorium
+tile.gtclassic.blockPlutonium.name=Block of Plutonium
 
 #ore
 tile.gtclassic.oreIridium.name=Iridium Ore
@@ -133,6 +135,15 @@ item.gtclassic.cloaking_device.name=Cloaking Device
 item.gtclassic.light_helmet.name=Light Helmet
 item.gtclassic.spring_boots.name=Spring Boots
 
+#crops
+ic2.crop.Bauxia.name=Bauxia
+ic2.crop.Platina.name=Platina
+ic2.crop.Rubeus.name=Rubeus
+ic2.crop.Sapphirum.name=Sapphirum
+ic2.crop.GodOfThunder.name=God of Thunder
+ic2.crop.Titania.name=Titania
+ic2.crop.Scheelinium.name=Scheelinium
+
 #fluids
 fluid.hydrogen=Hydrogen
 fluid.tritium=Tritium
@@ -168,6 +179,8 @@ fluid.electrum=Molten Electrum
 fluid.chrome=Molten Chrome
 fluid.platinum=Molten Platinum
 fluid.steel=Molten Steel
+fluid.thorium=Molten Thorium
+fluid.plutonium=Molten Plutonium
 
 
 #ore tooltips

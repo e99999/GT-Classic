@@ -63,6 +63,7 @@ public class GTMod {
 		GTBlocks.registerBlocks();
 		GTItems.initItems();
 		GTItems.registerItems();
+		GTCrops.init();
 		GTOreDict.init();
 	}
 
