@@ -1,8 +1,8 @@
 package gtclassic.block;
 
-import gtclassic.GTCrops.GTCropType;
 import gtclassic.GTMod;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTCropType;
 import ic2.api.crops.CropProperties;
 import ic2.api.crops.ICropTile;
 import ic2.core.block.crop.crops.CropCardBase;
