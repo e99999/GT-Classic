@@ -52,27 +52,20 @@ public class GTCrops {
 		}
 	}
 
-	public static final CropCard cropAluminium = new GTBlockCrop(GTCropType.ALUMINIUM);
-	public static final CropCard cropPlatinum = new GTBlockCrop(GTCropType.PLATINUM);
-	public static final CropCard cropRuby = new GTBlockCrop(GTCropType.RUBY);
-	public static final CropCard cropSapphire = new GTBlockCrop(GTCropType.SAPPHIRE);
-	public static final CropCard cropThorium = new GTBlockCrop(GTCropType.THORIUM);
-	public static final CropCard cropTitanium = new GTBlockCrop(GTCropType.TITANIUM);
-	public static final CropCard cropTungsten = new GTBlockCrop(GTCropType.TUNGSTEN);
-
 	public static void init() {
-		registerCrop(cropAluminium, GTMaterial.Aluminium);
-		registerCrop(cropPlatinum, GTMaterial.Platinum);
-		registerCrop(cropRuby, GTMaterial.Ruby);
-		registerCrop(cropSapphire, GTMaterial.Sapphire);
-		registerCrop(cropThorium, GTMaterial.Thorium);
-		registerCrop(cropTitanium, GTMaterial.Titanium);
-		registerCrop(cropTungsten, GTMaterial.Tungsten);
+		registerCrop(GTCropType.ALUMINIUM);
+		registerCrop(GTCropType.PLATINUM);
+		registerCrop(GTCropType.RUBY);
+		registerCrop(GTCropType.SAPPHIRE);
+		registerCrop(GTCropType.THORIUM);
+		registerCrop(GTCropType.TITANIUM);
+		registerCrop(GTCropType.TUNGSTEN);
 	}
-
-	private static void registerCrop(CropCard card, GTMaterial mat) {
+	
+	private static void registerCrop(GTCropType type) {
 		ClassicCrops crop = ClassicCrops.instance;
+		CropCard card = new GTBlockCrop(type);
 		crop.registerCrop(card);
-		crop.registerCropDisplayItem(card, GTMaterialGen.getDust(mat, 1));
+		crop.registerCropDisplayItem(card, GTMaterialGen.getDust(type.getMaterial(), 1));
 	}
 }
