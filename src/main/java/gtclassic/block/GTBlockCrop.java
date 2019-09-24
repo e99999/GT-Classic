@@ -1,6 +1,5 @@
 package gtclassic.block;
 
-import gtclassic.GTMod;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTCropType;
 import ic2.api.crops.CropProperties;
@@ -22,13 +21,13 @@ public class GTBlockCrop extends CropCardBase {
 
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int state) {
-		return state == 4 ? this.getSprite(GTMod.MODID + "_materials")[32 + this.entry.getId()]
+		return state == 4 ? this.getSprite(this.entry.getSpriteSheet())[this.entry.getId()]
 				: this.getSprite("bc")[31 + state];
 	}
 
 	@Override
 	public String getDiscoveredBy() {
-		return "e99999";
+		return this.entry.getDiscoverer();
 	}
 
 	public String getId() {
@@ -60,7 +59,7 @@ public class GTBlockCrop extends CropCardBase {
 
 	@Override
 	public boolean canGrow(ICropTile cropTile) {
-		String name = entry.getMaterial().getDisplayName();
+		String name = this.entry.getMaterial().getDisplayName();
 		return cropTile.getCurrentSize() < 3 || cropTile.getCurrentSize() == 3
 				&& (cropTile.isBlockBelow("ore" + name) || cropTile.isBlockBelow("block" + name));
 	}

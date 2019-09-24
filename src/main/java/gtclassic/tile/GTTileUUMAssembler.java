@@ -239,6 +239,7 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 			addUUMAssemblerValue(4, GTMaterialGen.get(Items.BONE, 32));
 			addUUMAssemblerValue(4, GTMaterialGen.getIc2(Ic2Items.stickyResin, 21));
 			addUUMAssemblerValue(7, GTMaterialGen.getIc2(Ic2Items.iridiumOre));
+			addUUMAssemblerValue(7, GTMaterialGen.getDust(GTMaterial.Iridium, 1));
 			addUUMAssemblerValue(5, GTMaterialGen.get(Blocks.MYCELIUM, 24));
 			addUUMAssemblerValue(5, GTMaterialGen.get(Blocks.STONEBRICK, 48, 3));
 			addUUMAssemblerValue(3, GTMaterialGen.getIc2(Ic2Items.copperOre, 5));

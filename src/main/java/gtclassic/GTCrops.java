@@ -19,9 +19,16 @@ public class GTCrops {
 		registerCrop(6, GTMaterial.Tungsten, "Scheelinium", 12, "Metal", "Hard", "Tungsten", "Leaves");
 	}
 
+	/** Private method only for GTClassic **/
 	private static void registerCrop(int id, GTMaterial mat, String name, int tier, String... attributes) {
+		registerCrop(32 + id, GTMod.MODID + "_materials", mat, name, "e99999", tier, attributes);
+	}
+
+	/** Public method for constructing basic crops easily **/
+	public static void registerCrop(int id, String sprite, GTMaterial mat, String name, String discoverer, int tier,
+			String... attributes) {
 		ClassicCrops crop = ClassicCrops.instance;
-		GTCropType type = new GTCropType(id, mat, name, tier, attributes);
+		GTCropType type = new GTCropType(id, sprite, mat, name, discoverer, tier, attributes);
 		CropCard card = new GTBlockCrop(type);
 		crop.registerCrop(card);
 		crop.registerCropDisplayItem(card, GTMaterialGen.getDust(type.getMaterial(), 1));

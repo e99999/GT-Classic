@@ -39,12 +39,6 @@ public class GTWorldGen implements IWorldGenerator {
 		// Ocean Biomes
 		if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) || BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
 			generate(GTBlocks.oreSapphire, GTConfig.sapphireGenerate, GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
-			// if (GTConfig.depositGenerate) {
-			// for (IBlockState state : GTWorldGenOceanDeposit.getOreDepositList()) {
-			// generateOceanDeposit(state, GTConfig.depositSize, GTConfig.depositWeight, 28,
-			// 38, world, random, chunkX, chunkZ);
-			// }
-			// }
 		}
 		// Forest or Plains Biomes
 		if (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
@@ -160,19 +154,4 @@ public class GTWorldGen implements IWorldGenerator {
 			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		generateRareFluid(block, true, blockAmount, chancesToSpawn, minHeight, maxHeight, blockToReplace, world, rand, chunkX, chunkZ);
 	}
-//	/** ocean deposit/vein generator not for you to use, add to the list **/
-//	private void generateOceanDeposit(IBlockState state, int blockAmount, int chancesToSpawn, int minHeight,
-//			int maxHeight, World world, Random rand, int chunkX, int chunkZ) {
-//		GTWorldGenOceanDeposit generator = new GTWorldGenOceanDeposit(state, blockAmount);
-//		int heightdiff = maxHeight - minHeight + 1;
-//		for (int i = 0; i < chancesToSpawn; i++) {
-//			int var1 = rand.nextInt(512);
-//			if (var1 == 0) {
-//				int x = chunkX * 16 + rand.nextInt(16);
-//				int y = minHeight + rand.nextInt(heightdiff);
-//				int z = chunkZ * 16 + rand.nextInt(16);
-//				generator.generate(world, rand, new BlockPos(x, y, z));
-//			}
-//		}
-//	}
 }

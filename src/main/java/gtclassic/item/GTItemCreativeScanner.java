@@ -170,7 +170,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 			if (tileEntity instanceof TileEntityCrop) {
 				TileEntityCrop te7 = (TileEntityCrop) tileEntity;
-				IC2.platform.messagePlayer(player, "Crop: " + te7.getCrop());
+				IC2.platform.messagePlayer(player, "Crop: " + te7.getCrop().getId());
 				IC2.platform.messagePlayer(player, "Size: " + te7.getCurrentSize());
 				IC2.platform.messagePlayer(player, "Growth: " + te7.getStatGrowth());
 				IC2.platform.messagePlayer(player, "Gain: " + te7.getStatGain());
