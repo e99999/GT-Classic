@@ -50,6 +50,9 @@ public class GTItemBlockRare extends ItemBlockRare {
 			if (compare(stack, GTBlocks.tileDragonEggEnergySiphon)) {
 				tooltip.add((Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] { 128.0 })));
 			}
+			if (compare(stack, GTBlocks.tileMagicEnergyConverter)) {
+				tooltip.add((Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] { 24.0 })));
+			}
 			if (compare(stack, GTBlocks.tileAESU)) {
 				tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
 				tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 100000000 })));

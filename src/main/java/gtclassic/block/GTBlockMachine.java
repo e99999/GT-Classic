@@ -13,6 +13,7 @@ import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.tile.GTTileEchotron;
+import gtclassic.tile.GTTileMagicEnergyConverter;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.GTTileMobRepeller;
 import gtclassic.tile.GTTilePlayerDetector;
@@ -126,6 +127,9 @@ public class GTBlockMachine extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tileDragonEggEnergySiphon) {
 			return new GTTileDragonEggEnergySiphon();
+		}
+		if (this == GTBlocks.tileMagicEnergyConverter) {
+			return new GTTileMagicEnergyConverter();
 		}
 		if (this == GTBlocks.tileFabricator) {
 			return new GTTileMatterFabricator();

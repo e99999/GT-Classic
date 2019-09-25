@@ -5,6 +5,7 @@ import gtclassic.tile.GTTileBaseBuffer;
 import gtclassic.tile.GTTileBaseMachine;
 import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.GTTileLESU;
+import gtclassic.tile.GTTileMagicEnergyConverter;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
@@ -204,6 +205,11 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.thunderingStrength) * 100) + "%");
 				IC2.platform.messagePlayer(player, "1 out of " + rod.chance
 						+ " chance to strike based on fence height");
+			}
+			if (tileEntity instanceof GTTileMagicEnergyConverter) {
+				GTTileMagicEnergyConverter magic = (GTTileMagicEnergyConverter) tileEntity;
+				IC2.platform.messagePlayer(player, "Stored: " + magic.getStoredEU());
+				IC2.platform.messagePlayer(player, "Storage: " + magic.getMaxEU());
 			}
 			if (tileEntity instanceof GTTileDrum) {
 				GTTileDrum drum = (GTTileDrum) tileEntity;

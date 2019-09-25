@@ -25,7 +25,7 @@ public class GTWorldTwilightForest {
 		if (GTConfig.rubyGenerate) {
 			TFGenCaveStalactite.addStalactite(2, GTBlocks.oreRuby.getDefaultState(), 0.6F, 6, 1, 20);
 		}
-		if (GTConfig.sapphireGenerate) {
+		if (GTConfig.bauxiteGenerate) {
 			TFGenCaveStalactite.addStalactite(1, GTBlocks.oreBauxite.getDefaultState(), 0.8F, 12, 1, 24);
 		}
 		if (IC2.config.getFlag("WorldGenOreCopper")) {
