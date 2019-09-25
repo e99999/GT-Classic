@@ -25,6 +25,7 @@ import gtclassic.tile.GTTileCabinet;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
+import gtclassic.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.GTTileEchotron;
 import gtclassic.tile.GTTileFacing;
@@ -80,6 +81,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileEchotron = registerBlock(new GTBlockMachine("echotronblock", GTLang.ECHOTRON));
 	public static final GTBlockMachine tilePlayerDetector = registerBlock(new GTBlockMachine("playerdetector", GTLang.PLAYER_DETECTOR, 1));
 	public static final GTBlockMachine tileMobRepeller = registerBlock(new GTBlockMachine("mobrepeller", GTLang.MOB_REPELLER, 1));
+	public static final GTBlockMachine tileDragonEggEnergySiphon = registerBlock(new GTBlockMachine("dragoneggenergysiphon", GTLang.DRAGON_EGG_ENERGY_SIPHON));
 	public static final GTBlockMachine tileFusionReactor = registerBlock(new GTBlockMachine("fusionreactor", GTLang.FUSION_REACTOR, 4));
 	public static final GTBlockMachine tileLightningRod = registerBlock(new GTBlockMachine("lightningrod", GTLang.LIGHTNING_ROD, 2));
 	public static final GTBlockMachineDirectionable tileLESU = registerBlock(new GTBlockMachineDirectionable("lesu", GTLang.LESU));
@@ -100,8 +102,8 @@ public class GTBlocks {
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uumassembler", "echotronblock", "quantumchest", "quantumtank",
-			"playerdetector", "mobrepeller", "fusionreactor", "lightningrod", "idsu", "aesu", "lesu",
-			"supercondensator", "cabinet", "drum", "worktable", "translocator", "bufferlarge", "buffersmall",
+			"playerdetector", "mobrepeller", "fusionreactor", "lightningrod", "dragoneggenergysiphon", "idsu", "aesu",
+			"lesu", "supercondensator", "cabinet", "drum", "worktable", "translocator", "bufferlarge", "buffersmall",
 			"bufferfluid" };
 
 	public static void registerBlocks() {
@@ -152,6 +154,7 @@ public class GTBlocks {
 		registerUtil(GTTileQuantumTank.class, "QuantumTank");
 		registerUtil(GTTileMatterFabricator.class, "MatterFabricator");
 		registerUtil(GTTileUUMAssembler.class, "UUMAssembler");
+		registerUtil(GTTileDragonEggEnergySiphon.class, "DragonEggEnergySiphon");
 		registerUtil(GTTileWorktable.class, "Worktable");
 		registerUtil(GTTileFacing.class, "Facing");
 		registerUtil(GTTileCabinet.class, "Cabinet");

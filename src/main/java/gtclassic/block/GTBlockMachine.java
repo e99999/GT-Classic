@@ -11,6 +11,7 @@ import gtclassic.tile.GTTileCabinet;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
+import gtclassic.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.tile.GTTileEchotron;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.GTTileMobRepeller;
@@ -122,6 +123,9 @@ public class GTBlockMachine extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tileLightningRod) {
 			return new GTTileMultiLightningRod();
+		}
+		if (this == GTBlocks.tileDragonEggEnergySiphon) {
+			return new GTTileDragonEggEnergySiphon();
 		}
 		if (this == GTBlocks.tileFabricator) {
 			return new GTTileMatterFabricator();

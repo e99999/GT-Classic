@@ -1,5 +1,6 @@
 # Changelog
 # 1.04 (Not Released)
+- Added the Dragon Egg Energy Siphon, 128 EU per tick when a dragon egg is placed on top.
 - Added crops for Aluminium, Platinum, Ruby, Sapphire, Thorium, Titanium, and Tungsten.
 - Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercontainer (must be front or back of the fusion tile).
 - Fixed Echotron block not making sonar sound, I think?

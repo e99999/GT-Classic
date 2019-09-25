@@ -24,6 +24,7 @@ public class GTLang {
 	public static final LocaleComp MOB_REPELLER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.mobrepeller");
 	public static final LocaleComp FUSION_REACTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.fusionreactor");
 	public static final LocaleComp LIGHTNING_ROD = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lightningrod");
+	public static final LocaleComp DRAGON_EGG_ENERGY_SIPHON = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.dragoneggenergysiphon");
 	public static final LocaleComp LESU = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lesu");
 	public static final LocaleComp AESU = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.aesu");
 	public static final LocaleComp IDSU = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.idsu");

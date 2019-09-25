@@ -193,6 +193,10 @@ public class GTRecipe {
 		/** Lightning Rod **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
 				"circuitMaster", 'S', GTBlocks.tileSupercondensator, 'A', "machineBlockElite" });
+		/** Dragon Egg Energy Siphon **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon, 1), new Object[] { "CTC", "PSP", "CBC",
+				'C', "circuitMaster", 'S', GTBlocks.tileSupercondensator, 'B', "batteryUltimate", 'P',
+				"plateIridiumAlloy", 'T', Ic2Items.teslaCoil.copy() });
 		/** Fusion Computer **/
 		if (GTConfig.removeIC2Plasmafier) {
 			recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] {
