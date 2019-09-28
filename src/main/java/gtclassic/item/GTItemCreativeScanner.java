@@ -5,6 +5,7 @@ import gtclassic.tile.GTTileBaseBuffer;
 import gtclassic.tile.GTTileBaseMachine;
 import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.GTTileLESU;
+import gtclassic.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.tile.GTTileMagicEnergyConverter;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
@@ -208,6 +209,12 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 			if (tileEntity instanceof GTTileMagicEnergyConverter) {
 				GTTileMagicEnergyConverter magic = (GTTileMagicEnergyConverter) tileEntity;
+				IC2.platform.messagePlayer(player, "Stored: " + magic.getStoredEU());
+				IC2.platform.messagePlayer(player, "Storage: " + magic.getMaxEU());
+			}
+			if (tileEntity instanceof GTTileMagicEnergyAbsorber) {
+				GTTileMagicEnergyAbsorber magic = (GTTileMagicEnergyAbsorber) tileEntity;
+				IC2.platform.messagePlayer(player, "Producing: " + magic.getOutput());
 				IC2.platform.messagePlayer(player, "Stored: " + magic.getStoredEU());
 				IC2.platform.messagePlayer(player, "Storage: " + magic.getMaxEU());
 			}

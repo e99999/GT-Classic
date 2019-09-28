@@ -1,10 +1,11 @@
 # Changelog
 # 1.04 (Not Released)
-- Added GT2 style flint/iron mortars with slightly higher durabilit, which can be used for utility or your first bronze.
+- Added GT2 style flint/iron mortars with slightly higher durability, which can be used for utility or your first bronze.
+- Added the Magic Energy Absorber, generates random amounts of EU from enchanted books and tools.
 - Added the Magic Energy Converter, generates 24 EU per tick from Mercury, Berillium, Neon, and Argon (more stuff to come).
 - Added the Dragon Egg Energy Siphon, 128 EU per tick when a dragon egg is placed on top.
 - Added crops for Aluminium, Platinum, Ruby, Sapphire, Thorium, Titanium, and Tungsten.
-- Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercontainer (must be front or back of the fusion tile).
+- Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
 - Fixed Echotron block not making sonar sound, I think?
 - Added UUM-Assmebler, more of a replicator/scanner/assembler hybrid than the original uu autocrafter tile
 - Fixed Sheldonite not having a direct smelting recipe to Platinum.

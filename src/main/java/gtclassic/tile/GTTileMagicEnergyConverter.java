@@ -157,11 +157,11 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 
 	@Override
 	public void update() {
-		GTHelperFluid.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
 		boolean hasPower = this.storage > 0;
 		if ((hasPower) != this.getActive()) {
 			this.setActive(hasPower);
 		}
+		GTHelperFluid.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
 		this.emptyCheck();
 		processLiquidMagicFuel();
 	}
