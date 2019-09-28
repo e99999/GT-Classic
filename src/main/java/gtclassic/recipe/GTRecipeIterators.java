@@ -7,6 +7,7 @@ import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
+import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import net.minecraft.creativetab.CreativeTabs;
@@ -35,6 +36,7 @@ public class GTRecipeIterators {
 
 	/** Iterates through loaded itemstacks for all mods **/
 	public static void postInit() {
+		createMortarRecipe();
 		for (Item item : Item.REGISTRY) {
 			NonNullList<ItemStack> items = NonNullList.create();
 			item.getSubItems(CreativeTabs.SEARCH, items);
@@ -85,6 +87,17 @@ public class GTRecipeIterators {
 				// Inverse
 				recipes.addShapelessRecipe(GTMaterialGen.getIngot(mat, 9), new Object[] { block });
 				TileEntityMacerator.addRecipe(block, 1, GTMaterialGen.getDust(mat, 9), 0.0F);
+			}
+		}
+	}
+
+	public static void createMortarRecipe() {
+		// Grabs everything from the ic2 classic macerator list
+		// Separate method so it can be done last in post init
+		for (RecipeEntry entry : ClassicRecipes.macerator.getRecipeMap()) {
+			if (entry.getInput().getInputs().get(0).getCount() == 1
+					&& entry.getOutput().getAllOutputs().get(0).getCount() == 1) {
+				recipes.addShapelessRecipe(entry.getOutput().getAllOutputs().get(0), entry.getInput(), "craftingToolMortar");
 			}
 		}
 	}

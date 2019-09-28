@@ -16,6 +16,7 @@ import gtclassic.item.GTItemEnergyPack;
 import gtclassic.item.GTItemJackHammer;
 import gtclassic.item.GTItemLightHelmet;
 import gtclassic.item.GTItemLithiumBattery;
+import gtclassic.item.GTItemMortar;
 import gtclassic.item.GTItemReactorHeat;
 import gtclassic.item.GTItemReactorRod;
 import gtclassic.item.GTItemRockCutter;
@@ -52,6 +53,8 @@ public class GTItems {
 	public static GTItemComponent chipData;
 	public static GTItemComponent superConductor;
 	public static GTItemComponent orbData;
+	public static GTItemMortar flintMortar;
+	public static GTItemMortar ironMortar;
 	public static GTItemDuctTape ductTape;
 	public static GTItemSpringBoots springBoots;
 	public static GTItemEchotron echotron;
@@ -87,6 +90,8 @@ public class GTItems {
 		chipData = createItem(new GTItemComponent("data_chip", 9, 0));
 		superConductor = createItem(new GTItemComponent("super_conductor", 10, 0));
 		orbData = createItem(new GTItemComponent("data_orb", 11, 0));
+		flintMortar = createItem(new GTItemMortar("flint_mortar", 1, 2, 3));
+		ironMortar = createItem(new GTItemMortar("iron_mortar", 2, 2, 95));
 		ductTape = createItem(new GTItemDuctTape());
 		springBoots = createItem(new GTItemSpringBoots());
 		echotron = createItem(new GTItemEchotron());

@@ -73,6 +73,12 @@ public class GTRecipe {
 		/** Test Tube **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.testTube, 32), new Object[] { "G G", "G G", " G ", 'G',
 				"blockGlass" });
+		/** Flint Mortar **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.flintMortar), new Object[] { " F ", "BFB", "BBB", 'F', Items.FLINT,
+				'B', "plankWood", });
+		/** Iron Mortar **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.ironMortar, 1), new Object[] { " I ", "BIB", "BBB", 'I',
+				"ingotIron", 'B', "stone", });
 		/** Destructo Pack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.destructoPack, 1), new Object[] { "CIC", "ILI", "CIC", 'L',
 				GTValues.lava, 'C', "circuitBasic", 'I', ingotRefinedIron });
@@ -199,8 +205,8 @@ public class GTRecipe {
 				"plateIridiumAlloy", 'T', Ic2Items.teslaCoil.copy() });
 		/** Magic Energy Converter **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), new Object[] { "CTC", "IBI", "CLC",
-				'C', "circuitAdvanced", 'B', Blocks.BEACON, 'L', Ic2Items.lapotronCrystal.copy(), 'I',
-				"ingotPlatinum", 'T', Ic2Items.teslaCoil.copy() });
+				'C', "circuitAdvanced", 'B', Blocks.BEACON, 'L', Ic2Items.lapotronCrystal.copy(), 'I', "ingotPlatinum",
+				'T', Ic2Items.teslaCoil.copy() });
 		/** Fusion Computer **/
 		if (GTConfig.removeIC2Plasmafier) {
 			recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] {
