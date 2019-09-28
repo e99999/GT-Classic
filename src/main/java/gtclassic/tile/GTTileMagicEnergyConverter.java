@@ -3,7 +3,6 @@ package gtclassic.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerMagicEnergyConverter;
 import gtclassic.helpers.GTHelperFluid;
 import gtclassic.material.GTMaterial;
@@ -57,6 +56,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	int slotOutput = 1;
 	int slotDisplay = 2;
 	boolean enet = false;
+	protected static ArrayList<Fluid> fuelList = new ArrayList<>();
 
 	public GTTileMagicEnergyConverter() {
 		super(3);
@@ -136,10 +136,8 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	@Override
 	public List<ItemStack> getDrops() {
 		List<ItemStack> list = new ArrayList<>();
-		ItemStack stack = GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter);
 		list.add(this.getStackInSlot(slotInput));
 		list.add(this.getStackInSlot(slotOutput));
-		list.add(stack);
 		return list;
 	}
 
@@ -160,33 +158,49 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	@Override
 	public void update() {
 		GTHelperFluid.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
-		this.setActive(this.storage > 0);
-		if (this.tank.getFluidAmount() == 0) {
-			this.tank.setFluid(null);
-			this.setStackInSlot(slotDisplay, ItemStack.EMPTY);
+		boolean hasPower = this.storage > 0;
+		if ((hasPower) != this.getActive()) {
+			this.setActive(hasPower);
 		}
-		if (this.tank.getFluid() != null) {
-			if (isMagicFuel(this.tank.getFluid().getFluid())) {
-				if (this.storage + this.production <= this.maxStorage && this.tank.getFluidAmount() >= 3) {
-					this.tank.setFluid(new FluidStack(this.getContained(), this.tank.getFluid().amount - 3));
-					this.storage = this.storage + this.production;
-					this.onTankChanged(this.tank);
-					return;
-				}
-				if (this.storage + (this.production / 3) <= this.maxStorage && this.tank.getFluidAmount() > 0) {
-					this.tank.setFluid(new FluidStack(this.getContained(), this.tank.getFluid().amount - 1));
-					this.storage = this.storage + (this.production / 3);
-					this.onTankChanged(this.tank);
-				}
+		this.emptyCheck();
+		processLiquidMagicFuel();
+	}
+
+	/** Logic for processing of magic liquids **/
+	public void processLiquidMagicFuel() {
+		if (this.tank.getFluid() != null && isMagicLiquidFuel(this.tank.getFluid().getFluid())) {
+			// This tries burn fuel, 3ml at a time to generate 24eu
+			if (this.storage + this.production <= this.maxStorage && this.tank.getFluidAmount() >= 3) {
+				this.tank.setFluid(new FluidStack(this.getContained(), this.tank.getFluid().amount - 3));
+				this.storage = this.storage + this.production;
+				this.onTankChanged(this.tank);
+				return;
+			}
+			// If there isnt enough, burn the remainder at 1ml to generate 8eu
+			if (this.storage + (this.production / 3) <= this.maxStorage && this.tank.getFluidAmount() > 0) {
+				this.tank.setFluid(new FluidStack(this.getContained(), this.tank.getFluid().amount - 1));
+				this.storage = this.storage + (this.production / 3);
+				this.onTankChanged(this.tank);
 			}
 		}
 	}
 
-	public boolean isMagicFuel(Fluid fluid) {
-		return fluid == GTMaterialGen.getFluid(GTMaterial.Mercury)
-				|| fluid == GTMaterialGen.getFluid(GTMaterial.Beryllium)
-				|| fluid == GTMaterialGen.getFluid(GTMaterial.Argon)
-				|| fluid == GTMaterialGen.getFluid(GTMaterial.Neon);
+	/** Helper method because this tile is weird af **/
+	public void emptyCheck() {
+		if (this.tank.getFluidAmount() == 0) {
+			this.tank.setFluid(null);
+			this.setStackInSlot(slotDisplay, ItemStack.EMPTY);
+		}
+	}
+
+	/** Checks for compatible fluids **/
+	public boolean isMagicLiquidFuel(Fluid fluid) {
+		for (Fluid input : fuelList) {
+			if (input == fluid) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public FluidStack getContained() {
@@ -274,5 +288,16 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	@Override
 	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing facing) {
 		return true;
+	}
+
+	public static void init() {
+		addRecipe(GTMaterialGen.getFluid(GTMaterial.Mercury));
+		addRecipe(GTMaterialGen.getFluid(GTMaterial.Beryllium));
+		addRecipe(GTMaterialGen.getFluid(GTMaterial.Neon));
+		addRecipe(GTMaterialGen.getFluid(GTMaterial.Argon));
+	}
+
+	public static void addRecipe(Fluid fluid) {
+		fuelList.add(fluid);
 	}
 }

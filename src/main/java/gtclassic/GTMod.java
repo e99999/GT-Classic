@@ -14,6 +14,7 @@ import gtclassic.recipe.GTRecipeIterators;
 import gtclassic.recipe.GTRecipeMods;
 import gtclassic.recipe.GTRecipeProcessing;
 import gtclassic.tile.GTTileCentrifuge;
+import gtclassic.tile.GTTileMagicEnergyConverter;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.GTTileUUMAssembler;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
@@ -74,6 +75,7 @@ public class GTMod {
 		GTTileCentrifuge.init();
 		GTTileMultiBlastFurnace.init();
 		GTTileUUMAssembler.init();
+		GTTileMagicEnergyConverter.init();
 		GTRecipeProcessing.removals();
 		GTRecipe.initShapeless();
 		GTRecipe.initItems();
