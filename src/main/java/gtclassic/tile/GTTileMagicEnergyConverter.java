@@ -4,23 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.container.GTContainerMagicEnergyConverter;
+import gtclassic.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.helpers.GTHelperFluid;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTLang;
+import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.energy.tile.IEnergySourceInfo;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.crafting.RecipeInputFluid;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
+import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IEmitterTile;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
@@ -30,6 +34,7 @@ import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -57,6 +62,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	int slotDisplay = 2;
 	boolean enet = false;
 	protected static ArrayList<Fluid> fuelList = new ArrayList<>();
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.magicfuels");
 
 	public GTTileMagicEnergyConverter() {
 		super(3);
@@ -195,6 +201,9 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 
 	/** Checks for compatible fluids **/
 	public boolean isMagicLiquidFuel(Fluid fluid) {
+		if (fuelList.isEmpty()) {
+			return false;
+		}
 		for (Fluid input : fuelList) {
 			if (input == fluid) {
 				return true;
@@ -215,7 +224,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
-		return GuiComponentContainer.class;
+		return GTMagicEnergyConverterGui.class;
 	}
 
 	@Override
@@ -299,5 +308,18 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 
 	public static void addRecipe(Fluid fluid) {
 		fuelList.add(fluid);
+		addJEIRecipe(fluid);
+	}
+
+	private static void addJEIRecipe(Fluid fluid) {
+		List<IRecipeInput> inlist = new ArrayList<>();
+		List<ItemStack> outlist = new ArrayList<>();
+		inlist.add(new RecipeInputFluid(new FluidStack(fluid, 1000)));
+		outlist.add(GTMaterialGen.get(Items.REDSTONE));
+		addRecipe(inlist, new MachineOutput(null, outlist));
+	}
+
+	private static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
+		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 8192);
 	}
 }

@@ -1,7 +1,7 @@
 # Changelog
 # 1.04 (Not Released)
 - Added GT2 style flint/iron mortars with slightly higher durability, which can be used for utility or your first bronze.
-- Added the Magic Energy Absorber, generates random amounts of EU from enchanted books and tools.
+- Added the Magic Energy Absorber, generates random amounts of EU from enchanted books and tools, has two addional modes for absorbing xp or lingering potions.
 - Added the Magic Energy Converter, generates 24 EU per tick from Mercury, Berillium, Neon, and Argon (more stuff to come).
 - Added the Dragon Egg Energy Siphon, 128 EU per tick when a dragon egg is placed on top.
 - Added crops for Aluminium, Platinum, Ruby, Sapphire, Thorium, Titanium, and Tungsten.

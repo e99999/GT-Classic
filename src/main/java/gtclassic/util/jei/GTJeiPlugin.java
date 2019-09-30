@@ -5,11 +5,15 @@ import javax.annotation.Nonnull;
 import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerWorktable;
 import gtclassic.fluid.GTFluidBlock;
+import gtclassic.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.tile.GTTileMagicEnergyConverter;
 import gtclassic.tile.GTTileMatterFabricator;
+import gtclassic.util.jei.category.GTJeiMagicFuelCategory;
 import gtclassic.util.jei.category.GTJeiMultiRecipeCategory;
 import gtclassic.util.jei.category.GTJeiUUAmplifierCategory;
+import gtclassic.util.jei.wrapper.GTJeiMagicFuelWrapper;
 import gtclassic.util.jei.wrapper.GTJeiMultiRecipeWrapper;
 import gtclassic.util.jei.wrapper.GTJeiUUAmplifierWrapper;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
@@ -49,6 +53,11 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipes(GTTileMatterFabricator.RECIPE_LIST.getRecipeList(), "gt.uuamplifier");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileFabricator), "gt.uuamplifier");
 			registry.addRecipeClickArea(GTMatterFabricatorGui.class, 105, 34, 62, 22, "gt.uuamplifier");
+			// Magic Fuel
+			registry.handleRecipes(MultiRecipe.class, GTJeiMagicFuelWrapper::new, "gt.magicfuels");
+			registry.addRecipes(GTTileMagicEnergyConverter.RECIPE_LIST.getRecipeList(), "gt.magicfuels");
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileMagicEnergyConverter), "gt.magicfuels");
+			registry.addRecipeClickArea(GTMagicEnergyConverterGui.class, 78, 35, 16, 17, "gt.magicfuels");
 			// Blacklist
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
@@ -65,8 +74,10 @@ public class GTJeiPlugin implements IModPlugin {
 		for (GTJeiRegistry entry : GTJeiRegistry.values()) {
 			categoryUtil(registry, entry.getRecipeList(), entry.getCatalyst());
 		}
-		// world interaction
+		// amplifier
 		registry.addRecipeCategories(new GTJeiUUAmplifierCategory(registry.getJeiHelpers().getGuiHelper(), "gt.uuamplifier", GTBlocks.tileFabricator));
+		// magic fuels
+		registry.addRecipeCategories(new GTJeiMagicFuelCategory(registry.getJeiHelpers().getGuiHelper(), "gt.magicfuels", GTBlocks.tileMagicEnergyConverter));
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
