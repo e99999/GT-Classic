@@ -1,6 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
+import gtclassic.gui.GTGuiCompMagicEnergyAbsorber;
 import gtclassic.tile.GTTileMagicEnergyAbsorber;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotBase;
@@ -17,6 +18,7 @@ public class GTContainerMagicEnergyAbsorber extends ContainerTileComponent<GTTil
 		super(tile);
 		this.addSlotToContainer(new SlotBase(tile, 0, 80, 17));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 1, 80, 53));
+		this.addComponent(new GTGuiCompMagicEnergyAbsorber(tile));
 		this.addPlayerInventory(player, 0, 0);
 	}
 

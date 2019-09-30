@@ -207,6 +207,10 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), new Object[] { "CTC", "IBI", "CLC",
 				'C', "circuitAdvanced", 'B', Blocks.BEACON, 'L', Ic2Items.lapotronCrystal.copy(), 'I', "ingotPlatinum",
 				'T', Ic2Items.teslaCoil.copy() });
+		/** Magic Energy Absorber **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), new Object[] { "CTC", "PSP", "CBC",
+				'C', "circuitMaster", 'S', Blocks.BEACON, 'B', GTBlocks.tileMagicEnergyConverter, 'P',
+				"plateIridiumAlloy", 'T', "craftingSuperconductor" });
 		/** Fusion Computer **/
 		if (GTConfig.removeIC2Plasmafier) {
 			recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] {

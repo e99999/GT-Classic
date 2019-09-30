@@ -1,13 +1,19 @@
 package gtclassic.tile;
 
+import java.util.List;
+
 import gtclassic.container.GTContainerMagicEnergyAbsorber;
+import gtclassic.helpers.GTHelperPlayer;
 import gtclassic.helpers.GTHelperStack;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTLang;
+import gtclassic.util.int3;
 import ic2.api.classic.energy.tile.IEnergySourceInfo;
+import ic2.api.classic.item.IElectricTool;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.energy.tile.IEnergyAcceptor;
+import ic2.api.network.INetworkClientTileEntityEventListener;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IEmitterTile;
@@ -22,17 +28,21 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 
-public class GTTileMagicEnergyAbsorber extends TileEntityMachine
-		implements ITickable, IHasGui, IEUStorage, IEmitterTile, IEnergySourceInfo {
+public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITickable, IHasGui, IEUStorage,
+		IEmitterTile, IEnergySourceInfo, INetworkClientTileEntityEventListener {
 
 	@NetworkField(index = 4)
 	public int storage = 0;
@@ -41,9 +51,12 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine
 	int slotInput = 0;
 	int slotOutput = 1;
 	boolean enet = false;
+	public boolean potionMode = false;
+	public boolean xpMode = false;
 
 	public GTTileMagicEnergyAbsorber() {
 		super(2);
+		this.addGuiFields("potionMode", "xpMode");
 	}
 
 	@Override
@@ -66,12 +79,16 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.storage = nbt.getInteger("storage");
+		this.potionMode = nbt.getBoolean("potionMode");
+		this.xpMode = nbt.getBoolean("xpMode");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("storage", this.storage);
+		nbt.setBoolean("potionMode", this.potionMode);
+		nbt.setBoolean("xpMode", this.xpMode);
 		return nbt;
 	}
 
@@ -117,11 +134,17 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine
 		}
 		handleTools();
 		handleBooks();
+		if (potionMode) {
+			handleAreaEffectCloud();
+		}
+		if (xpMode) {
+			handlePlayerXP();
+		}
 	}
 
 	public void handleTools() {
 		ItemStack inputStack = this.getStackInSlot(slotInput);
-		if (inputStack.isItemEnchanted()) {
+		if (inputStack.isItemEnchanted() && !(inputStack.getItem() instanceof IElectricTool)) {
 			int level = 0;
 			for (int i : EnchantmentHelper.getEnchantments(this.getStackInSlot(slotInput)).values()) {
 				level = level + i;
@@ -168,6 +191,36 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine
 		}
 	}
 
+	public void handleAreaEffectCloud() {
+		AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).up(1).asBlockPos());
+		List<EntityAreaEffectCloud> list = world.<EntityAreaEffectCloud>getEntitiesWithinAABB(EntityAreaEffectCloud.class, area);
+		if (!list.isEmpty()) {
+			if (this.storage + 128 <= this.maxStorage) {
+				this.storage = this.storage + 128;
+			}
+		}
+	}
+
+	public void handlePlayerXP() {
+		AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).up(1).asBlockPos());
+		List<EntityPlayer> players = (world.getEntitiesWithinAABB(EntityPlayer.class, area));
+		if (!players.isEmpty()) {
+			EntityPlayer activePlayer = players.get(0);
+			int playerXP = GTHelperPlayer.getPlayerXP(activePlayer);
+			if (playerXP <= 0) {
+				return;
+			}
+			if (this.storage + 128 <= this.maxStorage) {
+				this.storage = this.storage + 128;
+				GTHelperPlayer.addPlayerXP(activePlayer, -1);
+				if (world.getTotalWorldTime() % 4 == 0) {
+					world.playSound((EntityPlayer) null, activePlayer.posX, activePlayer.posY, activePlayer.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 0.1F, 0.5F
+							+ world.rand.nextFloat());
+				}
+			}
+		}
+	}
+
 	@Override
 	public int getStoredEU() {
 		return this.storage;
@@ -205,5 +258,22 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine
 	@Override
 	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing facing) {
 		return true;
+	}
+
+	public void updateGui() {
+		this.getNetwork().updateTileGuiField(this, "potionMode");
+		this.getNetwork().updateTileGuiField(this, "xpMode");
+	}
+
+	@Override
+	public void onNetworkEvent(EntityPlayer var1, int event) {
+		if (event == 1) {
+			this.xpMode = !this.xpMode;
+			this.updateGui();
+		}
+		if (event == 2) {
+			this.potionMode = !this.potionMode;
+			this.updateGui();
+		}
 	}
 }
