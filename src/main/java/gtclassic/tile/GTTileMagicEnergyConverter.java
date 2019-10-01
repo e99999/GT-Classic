@@ -43,6 +43,7 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -304,6 +305,36 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Beryllium));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Neon));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Argon));
+		addModRecipe("xpjuice"); // OpenBlocks
+		addModRecipe("redstone"); // Thermal Foundation
+		addModRecipe("glowstone"); // Thermal Foundation
+		addModRecipe("pyrotheum"); // Thermal Foundation
+		addModRecipe("cryotheum"); // Thermal Foundation
+		addModRecipe("aerotheum"); // Thermal Foundation
+		addModRecipe("mana"); // Thermal Foundation
+		addModRecipe("experience"); // Thermal Foundation
+		addModRecipe("potion"); // Thermal Foundation
+		addModRecipe("potion_splash"); // Thermal Foundation
+		addModRecipe("potion_lingering"); // Thermal Foundation
+		addModRecipe("ender"); // Thermal Foundation
+		addModRecipe("astralsorcery.liquidstarlight"); // Astral Sorcery
+		addModRecipe("flux_goo"); // Thaumcraft
+		addModRecipe("liquid_death");// Thaumcraft
+		addModRecipe("purifying_fluid");// Thaumcraft
+		addModRecipe("lifeessence");// Blood Magic
+		addModRecipe("menrilresin"); // Integrated Dynamics
+		addModRecipe("liquidchorus"); // Integrated Dynamics
+		addModRecipe("liquidcoralium"); // AbsyssalCraft
+		addModRecipe("liquidantimatter"); // AbsyssalCraft
+		addModRecipe("mana_fluid"); // Wizardry
+		addModRecipe("nacre_fluid"); // Wizardry
+	}
+
+	public static void addModRecipe(String name) {
+		Fluid input = FluidRegistry.getFluid(name);
+		if (input != null) {
+			addRecipe(input);
+		}
 	}
 
 	public static void addRecipe(Fluid fluid) {
@@ -320,6 +351,6 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	}
 
 	private static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 8192);
+		RECIPE_LIST.addRecipe(input, output, input.get(0).getInputs().get(0).getUnlocalizedName(), 8192);
 	}
 }
