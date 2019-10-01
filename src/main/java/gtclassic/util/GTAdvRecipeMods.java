@@ -49,7 +49,9 @@ public class GTAdvRecipeMods {
         } catch (InstantiationException | InvocationTargetException e){
             e.printStackTrace();
         }
-        recipes.getRecipes().add(overrideRecipe(recipe, modid)); recipes.getRecipes().add(overrideRecipe(recipe, modid));
+        if (recipe != null){
+            recipes.getRecipes().add(overrideRecipe(recipe, modid));
+        }
         loader.setActiveModContainer(old);
     }
 
@@ -81,7 +83,9 @@ public class GTAdvRecipeMods {
         } catch (InstantiationException | InvocationTargetException e){
             e.printStackTrace();
         }
-        recipes.getRecipes().add(overrideRecipe(recipe, modid));
+        if (recipe != null){
+            recipes.getRecipes().add(overrideRecipe(recipe, modid));
+        }
         loader.setActiveModContainer(old);
     }
 
