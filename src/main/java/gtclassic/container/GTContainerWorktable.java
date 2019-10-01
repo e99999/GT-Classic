@@ -1,5 +1,7 @@
 package gtclassic.container;
 
+import javax.annotation.Nullable;
+
 import gtclassic.GTMod;
 import gtclassic.gui.GTGuiCompBasicString;
 import gtclassic.tile.GTTileWorktable;
@@ -8,12 +10,14 @@ import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -53,6 +57,16 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 	public void onCraftMatrixChanged(IInventory inventoryIn) {
 		this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
 	}
+	
+//	@Nullable
+//	@Override
+//	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
+//		writeTileCraftingList();
+//		if (!isCurrentListEqual()) {
+//			readTileCraftingList();
+//		}
+//		return super.slotClick(slotId, dragType, clickTypeIn, player);
+//	}
 
 	@Override
 	public void onContainerClosed(EntityPlayer playerIn) {
@@ -73,6 +87,16 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 			ItemStack mSlot = this.block.craftingInventory.get(i);
 			this.craftMatrix.setInventorySlotContents(i, mSlot);
 		}
+	}
+	
+	//Unused hopefully this can be of use for server support
+	public boolean isCurrentListEqual() {
+		NonNullList<ItemStack> copyList = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
+		for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i) {
+			ItemStack mSlot = this.craftMatrix.getStackInSlot(i);
+			copyList.set(i, mSlot);
+		}
+		return copyList.equals(this.block.craftingInventory);
 	}
 
 	@Override
