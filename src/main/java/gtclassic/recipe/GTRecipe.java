@@ -312,7 +312,8 @@ public class GTRecipe {
 
 	public static void initIC2() {
 		/** Machine casings can take aluminium **/
-		recipes.overrideRecipe("shaped_tile.blockMachine_527557260", Ic2Items.machine.copy(), "III", "I I", "III", 'I', ingotMachine);
+		String machineId = IC2.config.getFlag("SteelRecipes") ? "480320652" : "527557260";
+		recipes.overrideRecipe("shaped_tile.blockmachine_" + machineId, Ic2Items.machine.copy(), "III", "I I", "III", 'I', ingotMachine);
 		/** Alt Mining Laser Recipe **/
 		recipes.addRecipe(Ic2Items.miningLaser.copy(), new Object[] { "Rcc", "AAC", " AA", 'A',
 				Ic2Items.advancedAlloy.copy(), 'C', "circuitAdvanced", 'c', GTMaterialGen.getTube(GTMaterial.Helium, 1),

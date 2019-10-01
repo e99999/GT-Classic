@@ -12,6 +12,7 @@ import gtclassic.block.GTBlockMachineDirectionable;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockQuantumChest;
 import gtclassic.block.GTBlockQuantumTank;
+import gtclassic.block.GTBlockUUMAssembler;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
 import gtclassic.itemblock.GTItemBlockInterface;
@@ -79,7 +80,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
 	public static final GTBlockMachine tileFabricator = registerBlock(new GTBlockMachine("matterfabricator", GTLang.MATTER_FAB));
-	public static final GTBlockMachine tileUUMAssembler = registerBlock(new GTBlockMachine("uumassembler", GTLang.UUM_ASSEMBLER));
+	public static final GTBlockUUMAssembler tileUUMAssembler = registerBlock(new GTBlockUUMAssembler());
 	public static final GTBlockMachine tileEchotron = registerBlock(new GTBlockMachine("echotronblock", GTLang.ECHOTRON));
 	public static final GTBlockMachine tilePlayerDetector = registerBlock(new GTBlockMachine("playerdetector", GTLang.PLAYER_DETECTOR, 1));
 	public static final GTBlockMachine tileMobRepeller = registerBlock(new GTBlockMachine("mobrepeller", GTLang.MOB_REPELLER, 1));

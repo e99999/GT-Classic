@@ -1,5 +1,6 @@
 # Changelog
 # 1.04 (Not Released)
+- Fixed oversight that made machine block recipes glitch when IC2C is in steel mode.
 - Fixed GTC recipes not seeing other mods aluminium ingots because I use the element name not the American spelling.
 - Added GT2 style flint/iron mortars with slightly higher durability, which can be used for utility or your first bronze.
 - Added the Magic Energy Absorber, generates random amounts of EU from enchanted books and tools, has two toggle-able modes for absorbing xp or lingering potions.
@@ -9,7 +10,7 @@
 - Added crops for Aluminium, Platinum, Ruby, Sapphire, Thorium, Titanium, and Tungsten.
 - Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
 - Fixed Echotron block not making sonar sound, I think?
-- Added UUM-Assmebler, more of a replicator/scanner/assembler hybrid than the original uu autocrafter tile
+- Added UUM-Assmebler, more of a replicator/scanner/assembler hybrid than the original uu autocrafter tile... Oh and its completely portable.
 - Fixed Sheldonite not having a direct smelting recipe to Platinum.
 - Fixed a rare chance for zombies with pickaxes to crash the game with an out of bounds integer.
 - Added platinum to some basic recipes to give a little more use.
