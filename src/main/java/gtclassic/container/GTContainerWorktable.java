@@ -13,6 +13,7 @@ import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,9 +26,11 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 	private final World world;
 	private final EntityPlayer player;
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/worktable.png");
+	private GTTileWorktable block;
 
 	public GTContainerWorktable(InventoryPlayer player, GTTileWorktable tile) {
 		super(tile);
+		this.block = tile;
 		this.world = player.player.getEntityWorld();
 		this.player = player.player;
 		this.addComponent(new GTGuiCompBasicString("Basic Worktable", 85, 6));
@@ -43,6 +46,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 			}
 		}
 		this.addPlayerInventory(player, 0, 0);
+		readTileCraftingList();
 	}
 
 	@Override
@@ -53,8 +57,21 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 	@Override
 	public void onContainerClosed(EntityPlayer playerIn) {
 		super.onContainerClosed(playerIn);
-		if (!this.world.isRemote) {
-			this.clearContainer(playerIn, this.world, this.craftMatrix);
+		writeTileCraftingList();
+	}
+
+	public void writeTileCraftingList() {
+		this.block.craftingInventory.clear();
+		for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i) {
+			ItemStack mSlot = this.craftMatrix.getStackInSlot(i);
+			this.block.craftingInventory.set(i, mSlot);
+		}
+	}
+
+	public void readTileCraftingList() {
+		for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i) {
+			ItemStack mSlot = this.block.craftingInventory.get(i);
+			this.craftMatrix.setInventorySlotContents(i, mSlot);
 		}
 	}
 

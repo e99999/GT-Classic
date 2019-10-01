@@ -11,14 +11,49 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileWorktable extends TileEntityMachine implements IHasGui {
 
+	public NonNullList<ItemStack> craftingInventory = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
+
 	public GTTileWorktable() {
 		super(26);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		NBTTagList list = nbt.getTagList("Crafting", 10);
+		for (int i = 0; i < list.tagCount(); ++i) {
+			NBTTagCompound data = list.getCompoundTagAt(i);
+			int slot = data.getInteger("Slot");
+			if (slot >= 0 && slot < 9) {
+				craftingInventory.set(slot, new ItemStack(data));
+			}
+		}
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		NBTTagList list = new NBTTagList();
+		for (int i = 0; i < this.craftingInventory.size(); ++i) {
+			if (i <= 9) {
+				NBTTagCompound data = new NBTTagCompound();
+				((ItemStack) craftingInventory.get(i)).writeToNBT(data);
+				data.setInteger("Slot", i);
+				list.appendTag(data);
+			}
+		}
+		nbt.setTag("Crafting", list);
+		return nbt;
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import net.minecraft.util.NonNullList;
 
 public class GTHelperData {
 
-	/** Reads an inventory list from NBT**/
+	/** Reads an inventory list from NBT **/
 	public static void readFromNBT(NBTTagCompound nbt, TileEntityElecMachine tile) {
 		NBTTagList list = nbt.getTagList("Items", 10);
 		tile.inventory = NonNullList.withSize(tile.slotCount, ItemStack.EMPTY);

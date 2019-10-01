@@ -76,11 +76,11 @@ public class GTBlockUUMAssembler extends GTBlockMachine {
 					uumassembler.setDigtialCount(nbt.getInteger(count));
 				}
 				if (nbt.hasKey("energy")) {
-		              uumassembler.energy = nbt.getInteger("energy");
-		        }
+					uumassembler.energy = nbt.getInteger("energy");
+				}
 				if (nbt.hasKey("ItemsStored")) {
-		               GTHelperData.readFromNBT(nbt.getCompoundTag("ItemsStored"), uumassembler);
-		        }
+					GTHelperData.readFromNBT(nbt.getCompoundTag("ItemsStored"), uumassembler);
+				}
 			}
 		}
 	}

@@ -239,6 +239,9 @@ public class GTRecipe {
 		/** Cabinet **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCabinet), new Object[] { "III", "CIC", "III", 'I',
 				ingotMachine, 'C', "chestWood" });
+		/** Workbench **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileWorktable), new Object[] { "IWI", "III", "ICI", 'I',
+				ingotMachine, 'C', "chestWood", 'W', "workbench" });
 		/** Drum **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), new Object[] { "I I", "IBI", "I I", 'I',
 				ingotRefinedIron, 'B', Items.BUCKET });
@@ -314,7 +317,8 @@ public class GTRecipe {
 	public static void initIC2() {
 		/** Machine casings can take aluminium **/
 		String machineId = IC2.config.getFlag("SteelRecipes") ? "480320652" : "527557260";
-		recipes.overrideRecipe("shaped_tile.blockmachine_" + machineId, Ic2Items.machine.copy(), "III", "I I", "III", 'I', ingotMachine);
+		recipes.overrideRecipe("shaped_tile.blockmachine_"
+				+ machineId, Ic2Items.machine.copy(), "III", "I I", "III", 'I', ingotMachine);
 		/** Alt Mining Laser Recipe **/
 		recipes.addRecipe(Ic2Items.miningLaser.copy(), new Object[] { "Rcc", "AAC", " AA", 'A',
 				Ic2Items.advancedAlloy.copy(), 'C', "circuitAdvanced", 'c', GTMaterialGen.getTube(GTMaterial.Helium, 1),
