@@ -1,4 +1,4 @@
-package gtclassic.util;
+package gtclassic.helpers;
 
 import gtclassic.GTMod;
 import ic2.core.item.recipe.AdvRecipe;
@@ -14,7 +14,7 @@ import net.minecraftforge.registries.ForgeRegistry;
 import java.lang.reflect.Field;
 import java.util.Set;
 
-public class GTAdvRecipeMods {
+public class GTHelperAdvRecipe {
     @SuppressWarnings("unchecked")
     public void overrideGTRecipe(String modid, String recipeId, ItemStack output, Object... input) {
         Loader loader = Loader.instance();
