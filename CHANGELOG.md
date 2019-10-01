@@ -1,5 +1,6 @@
 # Changelog
 # 1.04 (Not Released)
+- Removed crafting recipe for Raw Carbon Fibre, you must now use carbon in a compressor.
 - Fixed oversight that made machine block recipes glitch when IC2C is in steel mode.
 - Fixed GTC recipes not seeing other mods aluminium ingots because I use the element name not the American spelling.
 - Added GT2 style flint/iron mortars with slightly higher durability, which can be used for utility or your first bronze.

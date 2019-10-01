@@ -3,6 +3,7 @@ package gtclassic.recipe;
 import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
 import gtclassic.GTItems;
+import gtclassic.helpers.GTHelperAdvRecipe;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
@@ -392,6 +393,7 @@ public class GTRecipe {
 					Ic2Items.carbonPlate });
 		}
 		/** Adding ruby to glass fiber cable **/
+		GTHelperAdvRecipe.removeRecipe("ic2", "shaped_item.itemPartCarbonFibre_794316583");
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotSilver, 'V', lowCrystal);
 		/** Overclocker helium coolant recipes **/
