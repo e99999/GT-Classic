@@ -152,7 +152,7 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 			if (level != 0) {
 				int generate = (int) (20000 * level * world.rand.nextFloat());
 				if (generate + this.storage > this.maxStorage
-						|| !GTHelperStack.canMerge(inputStack, this.getStackInSlot(slotOutput), inputStack.getMaxStackSize())) {
+						|| !GTHelperStack.canMerge(inputStack, this.getStackInSlot(slotOutput))) {
 					return;
 				}
 				inputStack.getTagCompound().removeTag("ench");
@@ -178,7 +178,7 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 						int generate = (int) (20000 * level * world.rand.nextFloat());
 						ItemStack blankBook = GTMaterialGen.get(Items.BOOK);
 						if (generate + this.storage > this.maxStorage
-								|| !GTHelperStack.canMerge(blankBook, this.getStackInSlot(slotOutput), blankBook.getMaxStackSize())) {
+								|| !GTHelperStack.canMerge(blankBook, this.getStackInSlot(slotOutput))) {
 							return;
 						}
 						this.storage = this.storage + generate;

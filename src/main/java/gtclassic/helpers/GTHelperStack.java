@@ -9,7 +9,7 @@ public class GTHelperStack {
 
 	/** Checks if a stack can merge with default stack size **/
 	public static boolean canMerge(ItemStack stack, ItemStack toCompare) {
-		return canMerge(stack, toCompare, 64);
+		return canMerge(stack, toCompare, stack.getMaxStackSize());
 	}
 
 	/** Checks if a stack can merge **/

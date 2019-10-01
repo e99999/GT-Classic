@@ -10,6 +10,7 @@ import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTLang;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
+import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.energy.tile.IEnergySourceInfo;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.crafting.RecipeInputFluid;
@@ -62,7 +63,6 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	int slotOutput = 1;
 	int slotDisplay = 2;
 	boolean enet = false;
-	protected static ArrayList<Fluid> fuelList = new ArrayList<>();
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.magicfuels");
 
 	public GTTileMagicEnergyConverter() {
@@ -202,12 +202,16 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 
 	/** Checks for compatible fluids **/
 	public boolean isMagicLiquidFuel(Fluid fluid) {
-		if (fuelList.isEmpty()) {
+		if (RECIPE_LIST.getRecipeList().isEmpty()) {
 			return false;
 		}
-		for (Fluid input : fuelList) {
-			if (input == fluid) {
-				return true;
+		for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
+			IRecipeInput input = map.getInput(0);
+			if (input instanceof RecipeInputFluid) {
+				Fluid fluidinput = ((RecipeInputFluid) input).fluid.getFluid();
+				if (fluidinput == fluid) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -338,11 +342,6 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	}
 
 	public static void addRecipe(Fluid fluid) {
-		fuelList.add(fluid);
-		addJEIRecipe(fluid);
-	}
-
-	private static void addJEIRecipe(Fluid fluid) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
 		inlist.add(new RecipeInputFluid(new FluidStack(fluid, 1000)));
