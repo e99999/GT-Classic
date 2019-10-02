@@ -191,6 +191,11 @@ public class GTBlockMachine extends GTBlockMultiID {
 			}
 			return true;
 		}
+		if (tile instanceof GTTileWorktable) {
+			if (((GTTileWorktable) tile).inUse) {
+				return false;
+			}
+		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 

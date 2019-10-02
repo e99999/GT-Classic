@@ -51,6 +51,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		}
 		this.addPlayerInventory(player, 0, 0);
 		readTileCraftingList();
+		this.block.inUse = true;
 	}
 
 	@Override

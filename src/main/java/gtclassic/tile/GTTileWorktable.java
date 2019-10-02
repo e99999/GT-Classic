@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTTileWorktable extends TileEntityMachine implements IHasGui {
 
 	public NonNullList<ItemStack> craftingInventory = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
+	public boolean inUse = false;
 
 	public GTTileWorktable() {
 		super(26);
@@ -90,7 +91,7 @@ public class GTTileWorktable extends TileEntityMachine implements IHasGui {
 
 	@Override
 	public void onGuiClosed(EntityPlayer entityPlayer) {
-		// needed for construction
+		this.inUse = false;
 	}
 
 	@Override
