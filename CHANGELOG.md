@@ -1,6 +1,10 @@
 # Changelog
+# 1.05  (Not Released)
+- Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
+
 # 1.04 (Not Released)
-- Removed crafting recipe for Raw Carbon Fibre, you must now use carbon in a compressor.
+- Finally got around to making progress on the basic workbench, can now keep inventory in crafting slots - limit one active user as a time.
+- Removed crafting recipe for Raw Carbon Fibre, you must now use carbon in a compressor (trying this code out subject to change).
 - Fixed oversight that made machine block recipes glitch when IC2C is in steel mode.
 - Fixed GTC recipes not seeing other mods aluminium ingots because I use the element name not the American spelling.
 - Added GT2 style flint/iron mortars with slightly higher durability, which can be used for utility or your first bronze.
@@ -9,7 +13,6 @@
 - Changed some Thermal Foundation fluids to be in the Magical Energy Converter instead of the IC2C Fluid Generator.
 - Added the Dragon Egg Energy Siphon, 128 EU per tick when a dragon egg is placed on top.
 - Added crops for Aluminium, Platinum, Ruby, Sapphire, Thorium, Titanium, and Tungsten.
-- Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
 - Fixed Echotron block not making sonar sound, I think?
 - Added UUM-Assmebler, more of a replicator/scanner/assembler hybrid than the original uu autocrafter tile... Oh and its completely portable.
 - Fixed Sheldonite not having a direct smelting recipe to Platinum.

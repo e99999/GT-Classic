@@ -10,11 +10,9 @@ import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerFusionReactor;
 import gtclassic.gui.GTGuiMachine.GTFusionComputerGui;
-import gtclassic.helpers.GTHelperStack;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialElement;
 import gtclassic.material.GTMaterialGen;
-import gtclassic.tile.GTTileSupercondensator;
 import gtclassic.util.GTLang;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
@@ -39,7 +37,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -148,24 +145,23 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 		return false;
 	}
 
-	@Override
-	public boolean addToInventory() {
-		if (!this.getOutputs().isEmpty()
-				&& GTHelperStack.isEqual(GTMaterialGen.getTube(GTMaterial.Helium, 1), this.getOutputs().get(0).getStack())) {
-			TileEntity nTile = world.getTileEntity(new int3(getPos(), getFacing()).forward(1).asBlockPos());
-			if (nTile instanceof GTTileSupercondensator) {
-				((GTTileSupercondensator) nTile).doFusionHeliumThings();
-				return super.addToInventory();
-			}
-			TileEntity sTile = world.getTileEntity(new int3(getPos(), getFacing()).back(1).asBlockPos());
-			if (sTile instanceof GTTileSupercondensator) {
-				((GTTileSupercondensator) nTile).doFusionHeliumThings();
-				return super.addToInventory();
-			}
-		}
-		return super.addToInventory();
-	}
-
+//	@Override
+//	public boolean addToInventory() {
+//		if (!this.getOutputs().isEmpty()
+//				&& GTHelperStack.isEqual(GTMaterialGen.getTube(GTMaterial.Helium, 1), this.getOutputs().get(0).getStack())) {
+//			TileEntity nTile = world.getTileEntity(new int3(getPos(), getFacing()).forward(1).asBlockPos());
+//			if (nTile instanceof GTTileSupercondensator) {
+//				((GTTileSupercondensator) nTile).doFusionHeliumThings();
+//				return super.addToInventory();
+//			}
+//			TileEntity sTile = world.getTileEntity(new int3(getPos(), getFacing()).back(1).asBlockPos());
+//			if (sTile instanceof GTTileSupercondensator) {
+//				((GTTileSupercondensator) nTile).doFusionHeliumThings();
+//				return super.addToInventory();
+//			}
+//		}
+//		return super.addToInventory();
+//	}
 	public static void postInit() {
 		/** Just regular recipes added manually **/
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
