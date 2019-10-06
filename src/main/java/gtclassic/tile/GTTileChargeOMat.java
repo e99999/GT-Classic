@@ -12,15 +12,18 @@ import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.item.ElectricItem;
+import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
+import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.plugins.IBaublesPlugin;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -264,6 +267,17 @@ public class GTTileChargeOMat extends TileEntityMachine
 				for (EntityLivingBase entity : getEntitiesInRange()) {
 					for (ItemStack armor : entity.getArmorInventoryList()) {
 						this.drawEnergy(ElectricItem.manager.charge((ItemStack) armor, (double) this.energy, this.tier, false, false));
+					}
+					IBaublesPlugin plugin = (IBaublesPlugin) IC2.loader.getPlugin("baubles", IBaublesPlugin.class);
+					if (plugin != null && entity instanceof EntityPlayer) {
+						IHasInventory inv = plugin.getBaublesInventory((EntityPlayer) entity);
+						if (inv != null) {
+							int i;
+							for (i = 0; i < inv.getSlotCount(); ++i) {
+								ItemStack stack = inv.getStackInSlot(i);
+								this.drawEnergy(ElectricItem.manager.charge((ItemStack) stack, (double) this.energy, this.tier, false, false));
+							}
+						}
 					}
 				}
 			}

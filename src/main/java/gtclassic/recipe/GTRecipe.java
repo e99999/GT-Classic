@@ -34,6 +34,9 @@ public class GTRecipe {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotSilver"),
 			new RecipeInputOreDict("ingotBronze"), new RecipeInputOreDict("ingotAluminium"),
 			new RecipeInputOreDict("ingotElectrum"), new RecipeInputOreDict("ingotPlatinum") });
+	static IRecipeInput ingotAnyIron = new RecipeInputCombined(1, new IRecipeInput[] {
+			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotIron"),
+			new RecipeInputOreDict("ingotSteel") });
 	static IRecipeInput ingotMixed = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotAluminium"),
 			new RecipeInputOreDict("ingotElectrum") });
@@ -79,7 +82,7 @@ public class GTRecipe {
 				'B', "plankWood", });
 		/** Iron Mortar **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.ironMortar, 1), new Object[] { " I ", "BIB", "BBB", 'I',
-				"ingotIron", 'B', "stone", });
+				ingotAnyIron, 'B', "stone", });
 		/** Destructo Pack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.destructoPack, 1), new Object[] { "CIC", "ILI", "CIC", 'L',
 				GTValues.lava, 'C', "circuitBasic", 'I', ingotRefinedIron });
@@ -427,6 +430,15 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 32), new Object[] { "XXX", "XYX", "XXX",
 				'Y', GTMaterialGen.getIc2(Ic2Items.upgradeBase, 32), 'X',
 				GTMaterialGen.get(GTItems.heatStorageHelium6) });
+		/** Tape for cables **/
+		recipes.addShapelessRecipe(Ic2Items.insulatedCopperCable.copy(), new Object[] { Ic2Items.copperCable.copy(),
+				"craftingToolDuctTape" });
+		recipes.addShapelessRecipe(Ic2Items.insulatedBronzeCable.copy(), new Object[] { Ic2Items.bronzeCable.copy(),
+				"craftingToolDuctTape" });
+		recipes.addShapelessRecipe(Ic2Items.insulatedGoldCable.copy(), new Object[] { Ic2Items.goldCable.copy(),
+				"craftingToolDuctTape" });
+		recipes.addShapelessRecipe(Ic2Items.insulatedIronCable.copy(), new Object[] { Ic2Items.ironCable.copy(),
+				"craftingToolDuctTape" });
 		/** UU-Matter Recipes **/
 		if (GTConfig.gregtechUURecipes) {
 			recipes.overrideRecipe("shaped_item.emerald_981588030", GTMaterialGen.get(Items.EMERALD), new Object[] {

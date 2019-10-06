@@ -18,20 +18,17 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
-import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemHandlerHelper;
 
-public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable, IItemContainer, IClickable {
+public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable, IItemContainer {
 
 	int slotInput = 0;
 	int slotOutput = 1;
@@ -186,52 +183,5 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 
 	public boolean canFit(int count) {
 		return count + this.digitalCount <= Integer.MAX_VALUE;
-	}
-
-	@Override
-	public boolean hasLeftClick() {
-		return false;
-	}
-
-	@Override
-	public boolean hasRightClick() {
-		return true;
-	}
-
-	@Override
-	public void onLeftClick(EntityPlayer arg0, Side arg1) {
-	}
-
-	@Override
-	public boolean onRightClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, Side side) {
-		// tries to pull one item
-		if (facing == this.getFacing()) {
-			if (playerIn.isSneaking()) {
-				if (!GTHelperStack.isSlotEmpty(this, slotDisplay) && this.digitalCount >= 64) {
-					ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotDisplay), 64));
-					this.digitalCount = this.digitalCount - 64;
-					if (this.digitalCount == 0) {
-						inventory.get(slotDisplay).shrink(1);
-					}
-					return true;
-				}
-				if (!GTHelperStack.isSlotEmpty(this, slotOutput)) {
-					ItemHandlerHelper.giveItemToPlayer(playerIn, StackUtil.copyWithSize(getStackInSlot(slotOutput), 1));
-					getStackInSlot(slotOutput).shrink(1);
-					return true;
-				}
-			}
-			// tries to input a full stack of an item
-			ItemStack playerStack = playerIn.getHeldItemMainhand();
-			int count = playerStack.getCount();
-			boolean isPlayerStackValid = StackUtil.isStackEqual(getStackInSlot(slotDisplay), playerStack, false, false);
-			if (!playerIn.isSneaking() && !GTHelperStack.isSlotEmpty(this, slotDisplay) && isPlayerStackValid
-					&& canFit(count)) {
-				this.digitalCount = this.digitalCount + count;
-				playerStack.shrink(count);
-				return true;
-			}
-		}
-		return false;
 	}
 }

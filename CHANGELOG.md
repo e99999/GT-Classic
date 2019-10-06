@@ -3,6 +3,10 @@
 - Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
 
 # 1.04 (Not Released)
+- Removed clicking behavior from quantum chest, gonna just redo the input/output code to be faster next version.
+- Removed fluid container clicking behavior from some machines to avoid duping.
+- Fixed Translocator duplicating items when wrenched.
+- Fixed Charge-o-mat not charging baubles slots.
 - Finally got around to making progress on the basic workbench, can now keep inventory in crafting slots - limit one active user as a time.
 - Removed crafting recipe for Raw Carbon Fibre, you must now use carbon in a compressor (trying this code out subject to change).
 - Fixed oversight that made machine block recipes glitch when IC2C is in steel mode.

@@ -41,6 +41,17 @@ public class GTItemDuctTape extends Item implements IStaticTexturedItem {
 	}
 
 	@Override
+	public boolean hasContainerItem(ItemStack itemStack) {
+		return true;
+	}
+
+	@Override
+	public ItemStack getContainerItem(ItemStack itemStack) {
+		ItemStack copy = itemStack.copy();
+		return copy.attemptDamageItem(1, itemRand, null) ? ItemStack.EMPTY : copy;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int meta) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_items")[22];

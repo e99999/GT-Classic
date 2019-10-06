@@ -1,5 +1,8 @@
 package gtclassic.tile;
 
+import java.util.Collections;
+import java.util.List;
+
 import gtclassic.container.GTContainerTranslocator;
 import gtclassic.util.GTFilterTranslocator;
 import gtclassic.util.GTLang;
@@ -95,5 +98,10 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 			}
 			slave.removeItem(this.filter, getFacing(), 1, true);
 		}
+	}
+
+	@Override
+	public List<ItemStack> getDrops() {
+		return Collections.emptyList();
 	}
 }

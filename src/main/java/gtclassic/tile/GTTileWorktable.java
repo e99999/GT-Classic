@@ -1,5 +1,7 @@
 package gtclassic.tile;
 
+import java.util.List;
+
 import gtclassic.container.GTContainerWorktable;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
@@ -102,5 +104,16 @@ public class GTTileWorktable extends TileEntityMachine implements IHasGui {
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != getFacing() && facing.getAxis().isHorizontal();
+	}
+
+	@Override
+	public List<ItemStack> getDrops() {
+		List<ItemStack> drops = super.getDrops();
+		for (ItemStack stack : craftingInventory) {
+			if (!stack.isEmpty()) {
+				drops.add(stack);
+			}
+		}
+		return drops;
 	}
 }

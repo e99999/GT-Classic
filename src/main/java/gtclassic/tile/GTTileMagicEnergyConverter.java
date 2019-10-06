@@ -30,8 +30,8 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.misc.ItemDisplayIcon;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,7 +39,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
@@ -52,7 +51,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileMagicEnergyConverter extends TileEntityMachine
-		implements ITankListener, ITickable, IHasGui, IClickable, IEUStorage, IEmitterTile, IEnergySourceInfo {
+		implements ITankListener, ITickable, IHasGui, IEUStorage, IEmitterTile, IEnergySourceInfo {
 
 	@NetworkField(index = 4)
 	public int storage = 0;
@@ -171,6 +170,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		GTHelperFluid.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
 		this.emptyCheck();
 		processLiquidMagicFuel();
+		processSolidMagicFuel();
 	}
 
 	/** Logic for processing of magic liquids **/
@@ -188,6 +188,16 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 				this.tank.setFluid(new FluidStack(this.getContained(), this.tank.getFluid().amount - 1));
 				this.storage = this.storage + (this.production / 3);
 				this.onTankChanged(this.tank);
+			}
+		}
+	}
+
+	public void processSolidMagicFuel() {
+		if (!this.getStackInSlot(slotInput).isEmpty() && isMagicSolidFuel(this.getStackInSlot(slotInput))) {
+			int generate = (int) (8000 * world.rand.nextFloat());
+			if (generate + this.storage <= this.maxStorage) {
+				this.storage = this.storage + generate;
+				this.getStackInSlot(slotInput).shrink(1);
 			}
 		}
 	}
@@ -210,6 +220,22 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 			if (input instanceof RecipeInputFluid) {
 				Fluid fluidinput = ((RecipeInputFluid) input).fluid.getFluid();
 				if (fluidinput == fluid) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/** Checks for compatible ItemStacks **/
+	public boolean isMagicSolidFuel(ItemStack stack) {
+		if (RECIPE_LIST.getRecipeList().isEmpty()) {
+			return false;
+		}
+		for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
+			IRecipeInput input = map.getInput(0);
+			if (input instanceof RecipeInputItemStack) {
+				if (input.matches(stack)) {
 					return true;
 				}
 			}
@@ -244,25 +270,6 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	@Override
 	public boolean hasGui(EntityPlayer paramEntityPlayer) {
 		return true;
-	}
-
-	@Override
-	public boolean hasLeftClick() {
-		return false;
-	}
-
-	@Override
-	public boolean hasRightClick() {
-		return true;
-	}
-
-	@Override
-	public void onLeftClick(EntityPlayer var1, Side var2) {
-	}
-
-	@Override
-	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
-		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 
 	@Override
@@ -309,6 +316,9 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Beryllium));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Neon));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Argon));
+		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL));
+		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR));
+		addRecipe(GTMaterialGen.get(Items.SHULKER_SHELL));
 		addModRecipe("xpjuice"); // OpenBlocks
 		addModRecipe("redstone"); // Thermal Foundation
 		addModRecipe("glowstone"); // Thermal Foundation
@@ -339,6 +349,14 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		if (input != null) {
 			addRecipe(input);
 		}
+	}
+
+	public static void addRecipe(ItemStack stack) {
+		List<IRecipeInput> inlist = new ArrayList<>();
+		List<ItemStack> outlist = new ArrayList<>();
+		inlist.add(new RecipeInputItemStack(stack));
+		outlist.add(GTMaterialGen.get(Items.REDSTONE));
+		addRecipe(inlist, new MachineOutput(null, outlist));
 	}
 
 	public static void addRecipe(Fluid fluid) {
