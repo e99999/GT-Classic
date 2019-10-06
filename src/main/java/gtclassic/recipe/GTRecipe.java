@@ -318,6 +318,8 @@ public class GTRecipe {
 	}
 
 	public static void initIC2() {
+		/** Testing some removals **/
+		GTHelperAdvRecipe.removeRecipe("ic2", "shaped_item.itemPartCarbonFibre_794316583");
 		/** Machine casings can take aluminium **/
 		String machineId = IC2.config.getFlag("SteelRecipes") ? "480320652" : "527557260";
 		recipes.overrideRecipe("shaped_tile.blockmachine_"
@@ -400,7 +402,6 @@ public class GTRecipe {
 					Ic2Items.carbonPlate });
 		}
 		/** Adding ruby to glass fiber cable **/
-		GTHelperAdvRecipe.removeRecipe("ic2", "shaped_item.itemPartCarbonFibre_794316583");
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotSilver, 'V', lowCrystal);
 		/** Overclocker helium coolant recipes **/
@@ -416,9 +417,9 @@ public class GTRecipe {
 				GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 6), 'E',
 				GTMaterialGen.getIc2(Ic2Items.electricCircuit, 6) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { " X ", "XYX", " X ", 'Y',
-				Ic2Items.upgradeBase.copy(), 'X', GTMaterialGen.get(GTItems.heatStorageHelium1) });
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { "XXX", "XYX", "XXX", 'Y',
 				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 2), 'X', GTMaterialGen.get(GTItems.heatStorageHelium1) });
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 4), new Object[] { "XXX", "XYX", "XXX", 'Y',
+				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 4), 'X', GTMaterialGen.get(GTItems.heatStorageHelium1) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 8), new Object[] { " X ", "XYX", " X ", 'Y',
 				GTMaterialGen.getIc2(Ic2Items.upgradeBase, 8), 'X', GTMaterialGen.get(GTItems.heatStorageHelium3) });
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 16), new Object[] { "XXX", "XYX", "XXX",
