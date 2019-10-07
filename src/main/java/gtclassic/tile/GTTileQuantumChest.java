@@ -149,28 +149,60 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 
 	/** Logic for stack input **/
 	public void inputLogic() {
-		if (!GTHelperStack.isSlotEmpty(this, slotInput) && canDigitizeStack(getStackInSlot(slotInput))) {
-			setStackInSlot(slotDisplay, StackUtil.copyWithSize(getStackInSlot(slotInput), 1));
+		if (input().isEmpty()) {
+			return;
+		}
+		if (canDigitizeStack(input())) {
+			display(input());
 			this.digitalCount = this.digitalCount + 1;
-			inventory.get(slotInput).shrink(1);
+			input().shrink(1);
 			updateGui();
 		}
 	}
 
 	/** Logic for stack output **/
 	public void outputLogic() {
-		if (!GTHelperStack.isSlotEmpty(this, slotDisplay) && this.digitalCount > 0
-				&& GTHelperStack.canOutputStack(this, getStackInSlot(slotDisplay), slotOutput)) {
-			if (GTHelperStack.isSlotEmpty(this, slotOutput)) {
-				setStackInSlot(slotOutput, getStackInSlot(slotDisplay).copy());
+		if (display().isEmpty()) {
+			return;
+		}
+		if (this.digitalCount == 0) {
+			return;
+		}
+		if (GTHelperStack.canOutputStack(this, display(), slotOutput)) {
+			if (output().isEmpty()) {
+				output(display().copy());
 				this.digitalCount = this.digitalCount - 1;
 			} else {
-				getStackInSlot(slotOutput).grow(1);
+				output().grow(1);
 				this.digitalCount = this.digitalCount - 1;
 			}
 			emptyCheck();
 			updateGui();
 		}
+	}
+	
+	public ItemStack input() {
+		return this.getStackInSlot(slotInput);
+	}
+	
+	public void input(ItemStack stack) {
+		this.setStackInSlot(slotInput, stack);
+	}
+	
+	public ItemStack display() {
+		return this.getStackInSlot(slotDisplay);
+	}
+	
+	public void display(ItemStack stack) {
+		this.setStackInSlot(slotDisplay, StackUtil.copyWithSize(stack, 1));
+	}
+	
+	public ItemStack output() {
+		return this.getStackInSlot(slotOutput);
+	}
+	
+	public void output(ItemStack stack) {
+		this.setStackInSlot(slotOutput, stack);
 	}
 
 	public void emptyCheck() {
