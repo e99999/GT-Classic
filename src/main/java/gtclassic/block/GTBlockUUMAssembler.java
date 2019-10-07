@@ -38,6 +38,9 @@ public class GTBlockUUMAssembler extends GTBlockMachine {
 			if (nbt.hasKey(count)) {
 				tooltip.add(TextFormatting.AQUA + I18n.format(nbt.getInteger(count) + " of UU-Matter stored"));
 			}
+			if (nbt.hasKey("energy")) {
+				tooltip.add(TextFormatting.AQUA + I18n.format(nbt.getInteger("energy") + " EU stored"));
+			}
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}

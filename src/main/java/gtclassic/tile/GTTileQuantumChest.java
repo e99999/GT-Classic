@@ -145,7 +145,8 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	public void update() {
 		inputLogic();
 		outputLogic();
-	}
+    }
+	
 
 	/** Logic for stack input **/
 	public void inputLogic() {
@@ -154,27 +155,27 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		}
 		if (canDigitizeStack(input())) {
 			display(input());
-			this.digitalCount = this.digitalCount + 1;
-			input().shrink(1);
+			this.digitalCount = this.digitalCount + input().getCount();
+			input(ItemStack.EMPTY);
 			updateGui();
 		}
 	}
 
 	/** Logic for stack output **/
 	public void outputLogic() {
-		if (display().isEmpty()) {
-			return;
-		}
-		if (this.digitalCount == 0) {
-			return;
-		}
-		if (GTHelperStack.canOutputStack(this, display(), slotOutput)) {
+		if (!display().isEmpty() && GTHelperStack.canOutputStack(this, display(), slotOutput)) {
+			int max = display().getMaxStackSize();
+			int amount = this.digitalCount >= max ? max : this.digitalCount;
+			//if output is empty set the stack
 			if (output().isEmpty()) {
-				output(display().copy());
-				this.digitalCount = this.digitalCount - 1;
+				output(StackUtil.copyWithSize(display(), amount));
+				this.digitalCount = this.digitalCount - amount;
+			//if can merge but not empty grow the stack
 			} else {
-				output().grow(1);
-				this.digitalCount = this.digitalCount - 1;
+				int difference = output().getMaxStackSize() - output().getCount();
+				int count = this.digitalCount >= difference ? difference : this.digitalCount;
+				output().grow(count);
+				this.digitalCount = this.digitalCount - count;
 			}
 			emptyCheck();
 			updateGui();
@@ -207,16 +208,16 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 
 	public void emptyCheck() {
 		if (this.digitalCount == 0) {
-			this.setStackInSlot(slotDisplay, ItemStack.EMPTY);
+			display(ItemStack.EMPTY);
 		}
 	}
 
 	/** Checks to see if the given stack can go into the digital storage **/
 	public boolean canDigitizeStack(ItemStack stack) {
-		if (inventory.get(slotDisplay).isEmpty()) {
+		if (display().isEmpty() && this.digitalCount == 0) {
 			return true;
 		}
-		return this.digitalCount < maxSize && GTHelperStack.isEqual(getStackInSlot(slotDisplay), stack);
+		return (this.digitalCount + stack.getCount() <= maxSize) && GTHelperStack.isEqual(display(), stack);
 	}
 
 	/** Sets the digital count, called when the block is placed for NBT stuff **/

@@ -112,10 +112,21 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	}
 
 	public void tryInputUU() {
-		if (this.digitalCount < 3456 && GTHelperStack.isEqual(this.getStackInSlot(12), Ic2Items.uuMatter.copy())) {
-			this.getStackInSlot(12).shrink(1);
-			this.digitalCount = this.digitalCount + 1;
-			this.updateGui();
+		if (GTHelperStack.isEqual(input(), Ic2Items.uuMatter.copy())) {
+			if (this.digitalCount + input().getCount() <= 3456) {
+				this.digitalCount = this.digitalCount + input().getCount();
+				input().shrink(input().getCount());
+				this.updateGui();
+				return;
+			}
+			if (this.digitalCount < 3456) {
+				int freespace = 3456 - this.digitalCount;
+				int amount = freespace >= input().getCount() ? input().getCount() : freespace;
+				this.digitalCount = this.digitalCount + amount;
+				input().shrink(amount);
+				this.updateGui();
+			}
+			
 		}
 	}
 
@@ -169,6 +180,10 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	/** Sets the digital count, called when the block is placed for NBT stuff **/
 	public void setDigtialCount(int count) {
 		this.digitalCount = count;
+	}
+
+	public ItemStack input() {
+		return this.getStackInSlot(12);
 	}
 
 	@Override
