@@ -11,6 +11,7 @@ public class GTLang {
 	public static LocaleComp sluiceBox = new LocaleBlockComp("tile.gtclassic.sluicebox");
 	public static LocaleComp sluiceBoxExtension = new LocaleBlockComp("tile.gtclassic.sluiceboxextension");
 	// tiles
+	public static final LocaleComp AUTOCRAFTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.autocrafter");
 	public static final LocaleComp CHARGE_O_MAT = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.chargeomat");
 	public static final LocaleComp COMPUTER_CUBE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.computercube");
 	public static final LocaleComp INDUSTRIAL_CENTRIFUGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.industrialcentrifuge");

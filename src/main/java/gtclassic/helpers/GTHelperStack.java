@@ -1,8 +1,12 @@
 package gtclassic.helpers;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GTHelperStack {
@@ -64,5 +68,19 @@ public class GTHelperStack {
 			}
 		}
 		return false;
+	}
+
+	/** removing smelting recipes code by Muramasa **/
+	public static void removeSmelting(ItemStack resultStack) {
+		ItemStack recipeResult;
+		Map<ItemStack, ItemStack> recipes = FurnaceRecipes.instance().getSmeltingList();
+		Iterator<ItemStack> iterator = recipes.keySet().iterator();
+		while (iterator.hasNext()) {
+			ItemStack tmpRecipe = iterator.next();
+			recipeResult = recipes.get(tmpRecipe);
+			if (ItemStack.areItemStacksEqual(resultStack, recipeResult)) {
+				iterator.remove();
+			}
+		}
 	}
 }

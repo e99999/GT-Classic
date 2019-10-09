@@ -14,7 +14,7 @@ public class GTCraftTweakerActions {
 
 	private static final boolean DEBUG = Boolean.getBoolean("gtclassic.debug");
 
-	static void apply(IAction action) {
+	public static void apply(IAction action) {
 		if (DEBUG) {
 			CraftTweakerAPI.apply(action);
 		} else {
@@ -22,11 +22,11 @@ public class GTCraftTweakerActions {
 		}
 	}
 
-	static IRecipeInput of(IItemStack item) {
+	public static IRecipeInput of(IItemStack item) {
 		return new RecipeInputItemStack(CraftTweakerMC.getItemStack(item));
 	}
 
-	static IRecipeInput of(IIngredient ingredient) {
+	public static IRecipeInput of(IIngredient ingredient) {
 		if (ingredient instanceof IItemStack) {
 			return of((IItemStack) ingredient);
 		} else if (ingredient instanceof IOreDictEntry) {
@@ -37,7 +37,7 @@ public class GTCraftTweakerActions {
 		}
 	}
 
-	static IRecipeInput[] of(IIngredient... ingredient) {
+	public static IRecipeInput[] of(IIngredient... ingredient) {
 		IRecipeInput[] out = new IRecipeInput[ingredient.length];
 		for (int index = 0; index < out.length; index++) {
 			out[index] = of(ingredient[index]);

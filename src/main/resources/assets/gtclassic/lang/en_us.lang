@@ -26,6 +26,7 @@ tile.gtclassic.highlyadvanced.name=Highly Advanced Machine Block
 tile.gtclassic.lightsource.name=Light Source
 
 #tiles
+tile.gtclassic.autocrafter.name=Electric Craftingtable
 tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
