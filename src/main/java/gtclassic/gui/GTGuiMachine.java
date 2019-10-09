@@ -39,11 +39,4 @@ public class GTGuiMachine {
 			super(container);
 		}
 	}
-
-	public static class GTSluiceGui extends MachineGui {
-
-		public GTSluiceGui(ContainerComponent<?> container) {
-			super(container);
-		}
-	}
 }

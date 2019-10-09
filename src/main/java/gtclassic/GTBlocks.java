@@ -28,7 +28,6 @@ import gtclassic.tile.GTTileComputerCube;
 import gtclassic.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.GTTileEchotron;
-import gtclassic.tile.GTTileFacing;
 import gtclassic.tile.GTTileIDSU;
 import gtclassic.tile.GTTileLESU;
 import gtclassic.tile.GTTileMagicEnergyAbsorber;
@@ -38,7 +37,6 @@ import gtclassic.tile.GTTileMobRepeller;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileQuantumTank;
-import gtclassic.tile.GTTileSluice;
 import gtclassic.tile.GTTileSupercondensator;
 import gtclassic.tile.GTTileTranslocator;
 import gtclassic.tile.GTTileUUMAssembler;
@@ -68,10 +66,6 @@ public class GTBlocks {
 	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 2, 500.0F));
 	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29, 250.0F));
-	// public static final GTBlockSluice tileSluice = registerBlock(new
-	// GTBlockSluice());
-	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
-	// GTBlockSluiceBoxExt());
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
@@ -136,7 +130,6 @@ public class GTBlocks {
 	}
 
 	public static void registerTiles() {
-		registerUtil(GTTileSluice.class, "Sluice");
 		registerUtil(GTTileCentrifuge.class, "IndustrialCentrifuge");
 		registerUtil(GTTilePlayerDetector.class, "PlayerDetector");
 		registerUtil(GTTileMobRepeller.class, "MobRepeller");
@@ -157,7 +150,6 @@ public class GTBlocks {
 		registerUtil(GTTileMagicEnergyConverter.class, "MagicEnergyConverter");
 		registerUtil(GTTileMagicEnergyAbsorber.class, "MagicEnergyAbsorber");
 		registerUtil(GTTileWorktable.class, "Worktable");
-		registerUtil(GTTileFacing.class, "Facing");
 		registerUtil(GTTileCabinet.class, "Cabinet");
 		registerUtil(GTTileDrum.class, "Drum");
 		registerUtil(GTTileTranslocator.class, "Translocator");
