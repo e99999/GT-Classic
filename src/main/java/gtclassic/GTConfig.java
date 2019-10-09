@@ -14,7 +14,6 @@ public class GTConfig {
 	public static boolean debugMode = false;
 	public static boolean animatedTextures = true;
 	public static boolean addLootItems = true;
-	public static boolean ingotsRequireBlastFurnace = true;
 	public static boolean preventMobSpawnsCloseToSpawn = true;
 	public static boolean removeIC2MassFab = true;
 	public static boolean removeIC2Plasmafier = true;
@@ -47,10 +46,6 @@ public class GTConfig {
 	public static boolean bauxiteGenerate = true;
 	public static int bauxiteSize = 16;
 	public static int bauxiteWeight = 4;
-	// fluid gens
-	public static boolean fluidOverworldGenerate = true;
-	public static boolean fluidNetherGenerate = true;
-	public static boolean fluidEndGenerate = true;
 	// mod compat options
 	public static boolean compatBaubles = true;
 	public static boolean compatBuildcraft = true;
@@ -82,7 +77,6 @@ public class GTConfig {
 		debugMode = cfg.getBoolean("debugMode", CATEGORY_CONFIG, debugMode, "Enables debug logger for additional information");
 		animatedTextures = cfg.getBoolean("animatedTextures", CATEGORY_CONFIG, animatedTextures, "Enables animated textures for GT blocks and items");
 		addLootItems = cfg.getBoolean("addLootItems", CATEGORY_CONFIG, addLootItems, "Adds GregTech items to loot pool");
-		ingotsRequireBlastFurnace = cfg.getBoolean("ingotsRequireBlastFurnace", CATEGORY_CONFIG, ingotsRequireBlastFurnace, "Tries to remove vanilla smelting of end game metals from all loaded mods");
 		preventMobSpawnsCloseToSpawn = cfg.getBoolean("preventMobSpawnsCloseToSpawn", CATEGORY_CONFIG, preventMobSpawnsCloseToSpawn, "Prevents mob spawning in a 128 block radius around world spawn");
 		removeIC2MassFab = cfg.getBoolean("removeIc2MassFab", CATEGORY_CONFIG, removeIC2MassFab, "Removes the IC2 Mass Fab in favor of the GT Matter Fabricator");
 		removeIC2Plasmafier = cfg.getBoolean("removeIc2Plasmafier", CATEGORY_CONFIG, removeIC2Plasmafier, "Removes the IC2 Plasmafier in favor of GT Fusion");
@@ -123,10 +117,6 @@ public class GTConfig {
 		bauxiteGenerate = cfg.getBoolean("bauxiteGenerate", CATEGORY_GENERATION, bauxiteGenerate, "Generate Bauxite ore in plains/forest biomes in the overworld");
 		bauxiteSize = cfg.getInt("bauxiteSize", CATEGORY_GENERATION, bauxiteSize, 1, 32, "Max size of Bauxite veins");
 		bauxiteWeight = cfg.getInt("bauxiteWeight", CATEGORY_GENERATION, bauxiteWeight, 1, 32, "Chance of Bauxite veins to spawn");
-		// fluids
-		fluidOverworldGenerate = cfg.getBoolean("fluidOverworldGenerate", CATEGORY_GENERATION, fluidOverworldGenerate, "Generate gases/fluids in overworld biomes");
-		fluidNetherGenerate = cfg.getBoolean("fluidNetherGenerate", CATEGORY_GENERATION, fluidNetherGenerate, "Generate gases/fluids in nether biomes");
-		fluidEndGenerate = cfg.getBoolean("fluidEndGenerate", CATEGORY_GENERATION, fluidEndGenerate, "Generate gases/fluids in end islands");
 	}
 
 	private static void initCompatConfig(Configuration cfg) {

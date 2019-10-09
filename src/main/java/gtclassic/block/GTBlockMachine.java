@@ -34,6 +34,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -236,5 +237,14 @@ public class GTBlockMachine extends GTBlockMultiID {
 	@Override
 	public List<IBlockState> getValidStates() {
 		return getBlockState().getValidStates();
+	}
+
+	@Override
+	public boolean canEntityDestroy(IBlockState state, IBlockAccess world, BlockPos pos, Entity entity) {
+		if (entity instanceof net.minecraft.entity.boss.EntityDragon
+				&& (this.equals(GTBlocks.tileMagicEnergyAbsorber) || this.equals(GTBlocks.tileMagicEnergyConverter))) {
+			return false;
+		}
+		return super.canEntityDestroy(state, world, pos, entity);
 	}
 }
