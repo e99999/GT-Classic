@@ -1,6 +1,9 @@
 # Changelog
-# 1.05  (Not Released)
+#1.06 (Not Released)
 - Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
+
+# 1.05 (Not Released)
+- Nothing Yet
 
 # 1.04
 - WARNING! In the next version (1.0.5) the Blast Furnace will become part of GTC Expansion (by Trinsdar)
