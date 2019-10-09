@@ -4,7 +4,6 @@ import javax.annotation.Nonnull;
 
 import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerWorktable;
-import gtclassic.fluid.GTFluidBlock;
 import gtclassic.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
 import gtclassic.material.GTMaterialGen;
@@ -61,11 +60,6 @@ public class GTJeiPlugin implements IModPlugin {
 			// Blacklist
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
-			for (Block block : Block.REGISTRY) {
-				if (block instanceof GTFluidBlock) {
-					blacklist.addIngredientToBlacklist(new ItemStack(block));
-				}
-			}
 		}
 	}
 

@@ -145,8 +145,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	public void update() {
 		inputLogic();
 		outputLogic();
-    }
-	
+	}
 
 	/** Logic for stack input **/
 	public void inputLogic() {
@@ -166,11 +165,11 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		if (!display().isEmpty() && GTHelperStack.canOutputStack(this, display(), slotOutput)) {
 			int max = display().getMaxStackSize();
 			int amount = this.digitalCount >= max ? max : this.digitalCount;
-			//if output is empty set the stack
+			// if output is empty set the stack
 			if (output().isEmpty()) {
 				output(StackUtil.copyWithSize(display(), amount));
 				this.digitalCount = this.digitalCount - amount;
-			//if can merge but not empty grow the stack
+				// if can merge but not empty grow the stack
 			} else {
 				int difference = output().getMaxStackSize() - output().getCount();
 				int count = this.digitalCount >= difference ? difference : this.digitalCount;
@@ -181,27 +180,27 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 			updateGui();
 		}
 	}
-	
+
 	public ItemStack input() {
 		return this.getStackInSlot(slotInput);
 	}
-	
+
 	public void input(ItemStack stack) {
 		this.setStackInSlot(slotInput, stack);
 	}
-	
+
 	public ItemStack display() {
 		return this.getStackInSlot(slotDisplay);
 	}
-	
+
 	public void display(ItemStack stack) {
 		this.setStackInSlot(slotDisplay, StackUtil.copyWithSize(stack, 1));
 	}
-	
+
 	public ItemStack output() {
 		return this.getStackInSlot(slotOutput);
 	}
-	
+
 	public void output(ItemStack stack) {
 		this.setStackInSlot(slotOutput, stack);
 	}

@@ -6,10 +6,9 @@ import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.util.EnumFacing;
 
-public class GTTileSuperconductor extends TileEntityBlock implements IEnergyConductor{
-	
+public class GTTileSuperconductor extends TileEntityBlock implements IEnergyConductor {
+
 	public GTTileSuperconductor() {
-		
 	}
 
 	@Override
@@ -26,7 +25,7 @@ public class GTTileSuperconductor extends TileEntityBlock implements IEnergyCond
 
 	@Override
 	public double getConductionLoss() {
-		 return 0.001D;
+		return 0.001D;
 	}
 
 	@Override
@@ -47,12 +46,10 @@ public class GTTileSuperconductor extends TileEntityBlock implements IEnergyCond
 	@Override
 	public void removeConductor() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void removeInsulation() {
 		// TODO Auto-generated method stub
-		
 	}
 }

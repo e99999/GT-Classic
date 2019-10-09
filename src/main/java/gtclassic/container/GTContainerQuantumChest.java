@@ -44,7 +44,7 @@ public class GTContainerQuantumChest extends ContainerTileComponent<GTTileQuantu
 	public int guiInventorySize() {
 		return 3;
 	}
-	
+
 	@Nullable
 	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {

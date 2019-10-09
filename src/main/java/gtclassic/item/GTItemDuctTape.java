@@ -44,12 +44,11 @@ public class GTItemDuctTape extends Item implements IStaticTexturedItem {
 	public boolean hasContainerItem(ItemStack itemStack) {
 		return true;
 	}
-	
+
 	@Override
-    public boolean isEnchantable(ItemStack stack)
-    {
-        return false;
-    }
+	public boolean isEnchantable(ItemStack stack) {
+		return false;
+	}
 
 	@Override
 	public ItemStack getContainerItem(ItemStack itemStack) {

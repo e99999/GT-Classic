@@ -126,7 +126,6 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 				input().shrink(amount);
 				this.updateGui();
 			}
-			
 		}
 	}
 

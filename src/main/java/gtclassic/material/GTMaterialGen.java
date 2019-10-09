@@ -142,11 +142,6 @@ public class GTMaterialGen {
 		return FluidRegistry.getFluidStack(name, amount);
 	}
 
-	/** How to get a Block of GT Fluid **/
-	public static Block getFluidBlock(GTMaterial mat) {
-		return getFluid(mat).getBlock();
-	}
-
 	/** How to get a GTFluidTube of water easily **/
 	public static ItemStack getWater(int count) {
 		return getModdedTube("water", count);

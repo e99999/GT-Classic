@@ -85,12 +85,12 @@ public class GTBlockMachine extends GTBlockMultiID {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this == GTBlocks.tileBlastFurnace) {
-			tooltip.add(TextFormatting.RED + I18n.format("WARNING THIS TILE WILL BE MOVED TO GTC EXPANSION NEXT RELEASE"));
+			tooltip.add(TextFormatting.RED
+					+ I18n.format("WARNING THIS TILE WILL BE MOVED TO GTC EXPANSION NEXT RELEASE"));
 		}
 		for (int i = 0; i < this.size; i++) {
 			tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip") + i));
 		}
-		
 	}
 
 	@Override

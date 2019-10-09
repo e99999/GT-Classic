@@ -128,9 +128,6 @@ public class GTFluidTube extends Item
 				if (mat.hasFlag(GTMaterialFlag.GAS)) {
 					subItems.add(GTMaterialGen.getTube(mat, 1));
 				}
-				if (mat.hasFlag(GTMaterialFlag.MOLTEN)) {
-					subItems.add(GTMaterialGen.getTube(mat, 1));
-				}
 			}
 		}
 	}

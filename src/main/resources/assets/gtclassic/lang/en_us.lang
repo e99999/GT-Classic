@@ -168,26 +168,6 @@ fluid.oil=Oil
 fluid.neon=Neon
 fluid.argon=Argon
 
-#molten fluids
-fluid.iron=Molten Iron
-fluid.gold=Molten Gold
-fluid.copper=Molten Copper
-fluid.tin=Molten Tin
-fluid.silver=Molten Silver
-fluid.uranium=Molten Uranium
-fluid.bronze=Molten Bronze
-fluid.iridium=Molten Iridum
-fluid.titanium=Molten Titanium
-fluid.tungsten=Molten Tungsten
-fluid.aluminium=Molten Aluminium
-fluid.electrum=Molten Electrum
-fluid.chrome=Molten Chrome
-fluid.platinum=Molten Platinum
-fluid.steel=Molten Steel
-fluid.thorium=Molten Thorium
-fluid.plutonium=Molten Plutonium
-
-
 #ore tooltips
 tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome
 tooltip.gtclassic.oreSheldonite=Spawns between Y level 10-30 in JUNGLE biomes
