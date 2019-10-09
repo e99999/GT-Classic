@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.block.GTBlockCasing;
-import gtclassic.block.GTBlockCasingAdvanced;
 import gtclassic.block.GTBlockDrum;
 import gtclassic.block.GTBlockLightSource;
 import gtclassic.block.GTBlockMachine;
@@ -92,8 +91,10 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileLESU = registerBlock(new GTBlockMachineDirectionable("lesu", GTLang.LESU));
 	public static final GTBlockMachineDirectionable tileAESU = registerBlock(new GTBlockMachineDirectionable("aesu", GTLang.AESU));
 	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu", GTLang.IDSU));
-	public static final GTBlockCasingAdvanced casingSupercontainer = registerBlock(new GTBlockCasingAdvanced("supercontainer", 109, 800.0F));
 	public static final GTBlockMachineDirectionable tileSupercondensator = registerBlock(new GTBlockMachineDirectionable("supercondensator", GTLang.SUPERCONDENSATOR));
+	// public static final GTBlockMachineDirectionable tileSuperconductor =
+	// registerBlock(new GTBlockMachineDirectionable("superconductor",
+	// GTLang.SUPERCONDUCTOR));
 	public static final GTBlockMachine tileWorktable = registerBlock(new GTBlockMachine("worktable", GTLang.WORKTABLE));
 	public static final GTBlockMachine tileCabinet = registerBlock(new GTBlockMachine("cabinet", GTLang.CABINET));
 	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
@@ -108,8 +109,8 @@ public class GTBlocks {
 	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
 			"industrialcentrifuge", "matterfabricator", "uumassembler", "echotronblock", "quantumchest", "quantumtank",
 			"playerdetector", "mobrepeller", "fusionreactor", "lightningrod", "dragoneggenergysiphon",
-			"magicenergyconverter", "magicenergyabsorber", "idsu", "aesu", "lesu", "supercondensator", "cabinet",
-			"drum", "worktable", "translocator", "bufferlarge", "buffersmall", "bufferfluid" };
+			"magicenergyconverter", "magicenergyabsorber", "idsu", "aesu", "lesu", "supercondensator", "superconductor",
+			"cabinet", "drum", "worktable", "translocator", "bufferlarge", "buffersmall", "bufferfluid" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {

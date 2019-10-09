@@ -31,6 +31,7 @@ public class GTLang {
 	public static final LocaleComp AESU = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.aesu");
 	public static final LocaleComp IDSU = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.idsu");
 	public static final LocaleComp SUPERCONDENSATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.supercondensator");
+	public static final LocaleComp SUPERCONDUCTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.superconductor");
 	public static final LocaleComp WORKTABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.worktable");
 	public static final LocaleComp CABINET = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.cabinet");
 	public static final LocaleComp DRUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.drum");

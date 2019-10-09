@@ -316,9 +316,6 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Beryllium));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Neon));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Argon));
-		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL));
-		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR));
-		addRecipe(GTMaterialGen.get(Items.SHULKER_SHELL));
 		addModRecipe("xpjuice"); // OpenBlocks
 		addModRecipe("redstone"); // Thermal Foundation
 		addModRecipe("glowstone"); // Thermal Foundation
@@ -342,6 +339,8 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addModRecipe("liquidantimatter"); // AbsyssalCraft
 		addModRecipe("mana_fluid"); // Wizardry
 		addModRecipe("nacre_fluid"); // Wizardry
+		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL));
+		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR));
 	}
 
 	public static void addModRecipe(String name) {

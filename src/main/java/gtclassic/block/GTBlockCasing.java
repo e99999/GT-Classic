@@ -2,6 +2,7 @@ package gtclassic.block;
 
 import java.util.List;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTMod;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
@@ -21,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -48,6 +50,9 @@ public class GTBlockCasing extends Block implements ITexturedBlock, ILocaleBlock
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		if (this == GTBlocks.casingReinforced) {
+			tooltip.add(TextFormatting.RED + I18n.format("WARNING THIS BLOCK WILL BE MOVED TO GTC EXPANSION NEXT RELEASE"));
+		}
 		tooltip.add(I18n.format("Mobs cannot spawn on this block"));
 	}
 

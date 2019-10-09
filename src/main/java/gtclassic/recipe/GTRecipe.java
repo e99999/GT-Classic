@@ -132,11 +132,11 @@ public class GTRecipe {
 				GTItems.heatStorageHelium3, 'E', "circuitMaster", 'W', "ingotTungsten", 'P', "plateIridiumAlloy" });
 		/** Lapotron Batpack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.lapotronPack, 1), new Object[] { "ELE", "SBS", "EPE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'B', GTItems.lithiumBatpack, 'P',
+				"circuitMaster", 'S', "craftingSuperconductor", 'L', "batteryUltimate", 'B', GTItems.lithiumBatpack, 'P',
 				"plateIridiumAlloy" });
 		/** Tesla Staff **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), new Object[] { " SL", " PS", "P  ", 'L',
-				"batteryUltimate", 'S', GTItems.superConductor, 'P', "plateIridiumAlloy" });
+				"batteryUltimate", 'S', "craftingSuperconductor", 'P', "plateIridiumAlloy" });
 		/** Survival Scanner **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.portableScanner, 1), new Object[] { "PEP", "CFC", "PBP", 'P',
 				"ingotAluminium", 'E', GTMaterialGen.getIc2(Ic2Items.euReader, 1), 'F',
@@ -188,7 +188,7 @@ public class GTRecipe {
 				"ingotTitanium", 'C', "ingotChrome", 'B', "machineBlockAdvanced" });
 		/** Fusion Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingFusion), new Object[] { "CSC", "TMT", "CRC", 'M',
-				"machineBlockElite", 'C', "circuitMaster", 'S', GTItems.superConductor, 'T', Ic2Items.teslaCoil.copy(),
+				"machineBlockElite", 'C', "circuitMaster", 'S', "craftingSuperconductor", 'T', Ic2Items.teslaCoil.copy(),
 				'R', Ic2Items.reactorReflectorIridium.copy() });
 		/** LESU Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLapotron), new Object[] { "BBB", "BCB", "BBB", 'B',
@@ -222,7 +222,7 @@ public class GTRecipe {
 					"batteryUltimate", 'C', GTBlocks.tileComputer });
 		} else {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] { "ESE", "LCL", "ESE", 'E',
-					"circuitMaster", 'S', GTItems.superConductor, 'L', "batteryUltimate", 'C', GTBlocks.tileComputer });
+					"circuitMaster", 'S', "craftingSuperconductor", 'L', "batteryUltimate", 'C', GTBlocks.tileComputer });
 		}
 		/** Player Detector **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), new Object[] { " D ", "CcC", " D ", 'D',
@@ -275,13 +275,9 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLESU, 1), new Object[] { " L ", "CBC", " H ", 'L',
 				Ic2Items.transformerLV, 'H', Ic2Items.transformerMV, 'C', "circuitAdvanced", 'B',
 				GTBlocks.casingLapotron });
-		/** Supercontainer **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingSupercontainer, 1), new Object[] { "EAE", "SMS", "EAE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'A', Ic2Items.reactorReflectorIridium, 'M',
-				"machineBlockElite" });
 		/** Supercondensator **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSupercondensator, 1), new Object[] { "EAE", "SMS", "EAE", 'E',
-				"circuitMaster", 'S', GTItems.superConductor, 'A', "batteryUltimate", 'M', "machineBlockElite" });
+				"circuitMaster", 'S', "craftingSuperconductor", 'A', "batteryUltimate", 'M', "machineBlockElite" });
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), new Object[] { "CRC", "JMN", "CBC", 'C',
 				"circuitBasic", 'R', "record", 'J', Blocks.JUKEBOX, 'M', "machineBlockAdvanced", 'N', Blocks.NOTEBLOCK,
@@ -372,6 +368,8 @@ public class GTRecipe {
 			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RGR", "LCL", "RGR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
 			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RLR", "GCG", "RLR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
 		}
+		/** Harder Plasma Core Recipe **/
+		//recipes.overrideRecipe("shaped_item.itemPlasmaCore_-1985082214",Ic2Items.plasmaCore.copy(), new Object[]{"XYX", "YCY", "XYX", 'X', GTMaterialGen.get(GTItems.circuitEnergy, 2), 'Y', GTMaterialGen.getIngot(GTMaterial.Tungsten, 4), 'C', Ic2Items.plasmaCell.copy()});
 		/** Making the macerator harder **/
 		if (GTConfig.harderIC2Macerator) {
 			recipes.overrideRecipe("shaped_tile.blockStoneMacerator_-130868445", Ic2Items.stoneMacerator.copy(), new Object[] {
@@ -436,10 +434,18 @@ public class GTRecipe {
 				"craftingToolDuctTape" });
 		recipes.addShapelessRecipe(Ic2Items.insulatedBronzeCable.copy(), new Object[] { Ic2Items.bronzeCable.copy(),
 				"craftingToolDuctTape" });
+		recipes.addShapelessRecipe(Ic2Items.doubleInsulatedBronzeCable, new Object[] { Ic2Items.insulatedBronzeCable.copy(),
+		"craftingToolDuctTape" });
 		recipes.addShapelessRecipe(Ic2Items.insulatedGoldCable.copy(), new Object[] { Ic2Items.goldCable.copy(),
 				"craftingToolDuctTape" });
+		recipes.addShapelessRecipe(Ic2Items.doubleInsulatedGoldCable.copy(), new Object[] { Ic2Items.insulatedGoldCable.copy(),
+		"craftingToolDuctTape" });
 		recipes.addShapelessRecipe(Ic2Items.insulatedIronCable.copy(), new Object[] { Ic2Items.ironCable.copy(),
 				"craftingToolDuctTape" });
+		recipes.addShapelessRecipe(Ic2Items.doubleInsulatedIronCable, new Object[] { Ic2Items.insulatedIronCable.copy(),
+		"craftingToolDuctTape" });
+		recipes.addShapelessRecipe(Ic2Items.tribbleInsulatedIronCable, new Object[] { Ic2Items.doubleInsulatedIronCable.copy(),
+		"craftingToolDuctTape" });
 		/** UU-Matter Recipes **/
 		if (GTConfig.gregtechUURecipes) {
 			recipes.overrideRecipe("shaped_item.emerald_981588030", GTMaterialGen.get(Items.EMERALD), new Object[] {

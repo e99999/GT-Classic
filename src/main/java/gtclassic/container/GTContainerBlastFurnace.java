@@ -3,6 +3,7 @@ package gtclassic.container;
 import gtclassic.gui.GTGuiCompMachinePower;
 import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.util.GTSlotUpgrade;
+import ic2.core.IC2;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -39,6 +40,9 @@ public class GTContainerBlastFurnace extends ContainerTileComponent<GTTileMultiB
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
 		this.addComponent(new GTGuiCompMachinePower(tile));
+		if (tile.isSimulating()) {
+		IC2.platform.messagePlayer(player.player, "WARNING: this tile will be moved to be part of GTC Expansion next release");
+		}
 	}
 
 	@Override
