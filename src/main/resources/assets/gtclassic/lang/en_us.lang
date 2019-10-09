@@ -1,6 +1,5 @@
 #blocks
 tile.gtclassic.blockElectrum.name=Block of Electrum
-tile.gtclassic.blockSteel.name=Block of Steel
 tile.gtclassic.blockTitanium.name=Block of Titanium
 tile.gtclassic.blockIridium.name=Block of Iridium
 tile.gtclassic.blockTungsten.name=Block of Tungsten
@@ -27,7 +26,6 @@ tile.gtclassic.highlyadvanced.name=Highly Advanced Machine Block
 tile.gtclassic.lightsource.name=Light Source
 
 #tiles
-tile.gtclassic.gtblastfurnace.name=Blast Furnace
 tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
@@ -60,7 +58,6 @@ tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
 
 #dust
 item.gtclassic.dustElectrum.name=Electrum Dust
-item.gtclassic.dustSteel.name=Steel Dust
 item.gtclassic.dustEnderEye.name=Eye of Ender Dust
 item.gtclassic.dustTitanium.name=Titanium Dust
 item.gtclassic.dustLazurite.name=Lazurite Dust
@@ -93,7 +90,6 @@ item.gtclassic.gemRuby.name=Ruby
 
 #ingots
 item.gtclassic.ingotElectrum.name=Electrum Ingot
-item.gtclassic.ingotSteel.name=Steel Ingot
 item.gtclassic.ingotTitanium.name=Titanium Ingot
 item.gtclassic.ingotIridium.name=Iridium Ingot
 item.gtclassic.ingotTungsten.name=Tungsten Ingot
@@ -184,10 +180,6 @@ tooltip.gtclassic.cloaking_device=Invisibility Field
 tooltip.gtclassic.spring_boots=QwerTech intensifies
 
 #machine tooltips
-tooltip.gtclassic.gtblastfurnace0=You'll have a blast!
-tooltip.gtclassic.gtblastfurnace1=Structure:
-tooltip.gtclassic.gtblastfurnace2=3x4x3 solid of (35) Reinforced Machine Blocks,
-tooltip.gtclassic.gtblastfurnace3=Controller centered at the bottom
 tooltip.gtclassic.chargeomat0=Charges all the things
 tooltip.gtclassic.computercube0=Now with more dedotated WAM!
 tooltip.gtclassic.drum0=Portable tank, capacity of 32 buckets

@@ -17,7 +17,6 @@ import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileMagicEnergyConverter;
 import gtclassic.tile.GTTileMatterFabricator;
 import gtclassic.tile.GTTileUUMAssembler;
-import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.util.GTCommandTeleport;
 import gtclassic.util.GTCreativeTab;
@@ -73,10 +72,8 @@ public class GTMod {
 		GTRecipeIterators.init();
 		GTRecipeProcessing.init();
 		GTTileCentrifuge.init();
-		GTTileMultiBlastFurnace.init();
 		GTTileUUMAssembler.init();
 		GTTileMagicEnergyConverter.init();
-		GTRecipeProcessing.removals();
 		GTRecipe.initShapeless();
 		GTRecipe.initItems();
 		GTRecipe.initBlocks();
@@ -99,7 +96,6 @@ public class GTMod {
 		GTRecipeIterators.postInit();
 		GTTileMatterFabricator.postInit();
 		GTTileMultiFusionReactor.postInit();
-		GTRecipeProcessing.removals();
 		GTRecipeMods.postInit();
 		if (GTConfig.compatTwilightForest && Loader.isModLoaded(GTValues.TFOREST)) {
 			GTWorldTwilightForest.initStalactites();

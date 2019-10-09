@@ -30,9 +30,6 @@ public class GTItemBlockRare extends ItemBlockRare {
 					|| compare(stack, GTBlocks.tileEchotron) || compare(stack, GTBlocks.tileMobRepeller)) {
 				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32 })));
 			}
-			if (compare(stack, GTBlocks.tileBlastFurnace)) {
-				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 128 })));
-			}
 			if (compare(stack, GTBlocks.tileChargeOmat)) {
 				tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
 			}

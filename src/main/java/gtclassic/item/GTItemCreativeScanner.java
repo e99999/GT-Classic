@@ -8,7 +8,6 @@ import gtclassic.tile.GTTileLESU;
 import gtclassic.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.tile.GTTileMagicEnergyConverter;
 import gtclassic.tile.multi.GTTileMultiBaseMachine;
-import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.energy.EnergyNet;
@@ -187,9 +186,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 						+ (Math.round((machine.getProgress() / machine.getMaxProgress()) * 100)) + "%");
 				IC2.platform.messagePlayer(player, "Default Input: " + machine.defaultEnergyConsume + " EU");
 				IC2.platform.messagePlayer(player, "Max Input: " + machine.defaultMaxInput + " EU");
-				if (machine instanceof GTTileMultiBlastFurnace) {
-					IC2.platform.messagePlayer(player, "Speed Boost: " + machine.progressPerTick + "X");
-				}
 			}
 			if (tileEntity instanceof GTTileMultiBaseMachine) {
 				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;

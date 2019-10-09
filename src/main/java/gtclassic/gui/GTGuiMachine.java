@@ -12,13 +12,6 @@ public class GTGuiMachine {
 		}
 	}
 
-	public static class GTBlastFurnaceGui extends MachineGui {
-
-		public GTBlastFurnaceGui(ContainerComponent<?> container) {
-			super(container);
-		}
-	}
-
 	public static class GTMatterFabricatorGui extends MachineGui {
 
 		public GTMatterFabricatorGui(ContainerComponent<?> container) {

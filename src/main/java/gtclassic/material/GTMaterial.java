@@ -29,7 +29,7 @@ public class GTMaterial {
 	public static final GTMaterial Calcium = new GTMaterial("Calcium", 155, 96, 80, fluid);
 	public static final GTMaterial Carbon = new GTMaterial("Carbon", 0, 0, 0, dust);
 	public static final GTMaterial Chlorine = new GTMaterial("Chlorine", 50, 150, 150, fluid);
-	public static final GTMaterial Chrome = new GTMaterial("Chrome", 240, 210, 230, false, metalAll);
+	public static final GTMaterial Chrome = new GTMaterial("Chrome", 240, 210, 230, metalAll);
 	public static final GTMaterial Deuterium = new GTMaterial("Deuterium", 255, 255, 0, gas);
 	public static final GTMaterial Electrum = new GTMaterial("Electrum", 255, 255, 100, metalAll);
 	public static final GTMaterial Emerald = new GTMaterial("Emerald", 80, 255, 80, dust);
@@ -39,7 +39,7 @@ public class GTMaterial {
 	public static final GTMaterial Helium = new GTMaterial("Helium", 255, 255, 0, gas);
 	public static final GTMaterial Helium3 = new GTMaterial("Helium3", 255, 255, 0, gas);
 	public static final GTMaterial Hydrogen = new GTMaterial("Hydrogen", 0, 38, 255, gas);
-	public static final GTMaterial Iridium = new GTMaterial("Iridium", 255, 255, 255, false, metalAll);
+	public static final GTMaterial Iridium = new GTMaterial("Iridium", 255, 255, 255, metalAll);
 	public static final GTMaterial Lazurite = new GTMaterial("Lazurite", 100, 120, 255, dust);
 	public static final GTMaterial Lithium = new GTMaterial("Lithium", 87, 150, 204, dust);
 	public static final GTMaterial Mercury = new GTMaterial("Mercury", 250, 250, 250, fluid);
@@ -58,11 +58,10 @@ public class GTMaterial {
 	public static final GTMaterial Silicon = new GTMaterial("Silicon", 60, 60, 80, dust, ingot);
 	public static final GTMaterial Sodalite = new GTMaterial("Sodalite", 20, 20, 255, dust);
 	public static final GTMaterial Sodium = new GTMaterial("Sodium", 0, 38, 255, fluid);
-	public static final GTMaterial Steel = new GTMaterial("Steel", 128, 128, 128, false, metalAll);
 	public static final GTMaterial Thorium = new GTMaterial("Thorium", 0, 30, 0, false, metalAll);
-	public static final GTMaterial Titanium = new GTMaterial("Titanium", 170, 143, 222, false, metalAll);
+	public static final GTMaterial Titanium = new GTMaterial("Titanium", 170, 143, 222, metalAll);
 	public static final GTMaterial Tritium = new GTMaterial("Tritium", 255, 0, 0, gas);
-	public static final GTMaterial Tungsten = new GTMaterial("Tungsten", 50, 50, 50, false, metalAll);
+	public static final GTMaterial Tungsten = new GTMaterial("Tungsten", 50, 50, 50, metalAll);
 	public static final GTMaterial Uranium = new GTMaterial("Uranium", 50, 240, 50, dust);
 	/** Instance Members **/
 	private String name, displayName;

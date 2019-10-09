@@ -6,7 +6,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerCentrifuge;
@@ -213,9 +212,6 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addMethaneRecipe(GTMaterialGen.getIc2(Ic2Items.terraWart, 16));
 		addMethaneRecipe(GTMaterialGen.getIc2(Ic2Items.plantBall, 6));
 		addMethaneRecipe(GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 4));
-		/* Temporary ways to get back stuff */
-		addRecipe(GTMaterialGen.get(GTBlocks.tileBlastFurnace), 0, totalEu(1000), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 4), GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 2), GTMaterialGen.getIc2(Ic2Items.advMachine, 2), GTMaterialGen.getIc2(Ic2Items.inductionFurnace, 1));
-		addRecipe(GTMaterialGen.get(GTBlocks.casingReinforced, 5), 0, totalEu(1000), GTMaterialGen.getIc2(Ic2Items.refinedIronIngot, 6), GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 2), GTMaterialGen.getIc2(Ic2Items.advMachine, 1));
 	}
 
 	public static void addCustomRecipe(ItemStack stack0, ItemStack stack1, IRecipeModifier[] modifiers,

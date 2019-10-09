@@ -35,8 +35,7 @@ public class GTRecipe {
 			new RecipeInputOreDict("ingotBronze"), new RecipeInputOreDict("ingotAluminium"),
 			new RecipeInputOreDict("ingotElectrum"), new RecipeInputOreDict("ingotPlatinum") });
 	static IRecipeInput ingotAnyIron = new RecipeInputCombined(1, new IRecipeInput[] {
-			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotIron"),
-			new RecipeInputOreDict("ingotSteel") });
+			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotIron") });
 	static IRecipeInput ingotMixed = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotAluminium"),
 			new RecipeInputOreDict("ingotElectrum") });
@@ -178,9 +177,6 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), new Object[] { "I I", "ICI", " I ", 'I', ingotAny, 'C',
 					"chestWood" });
 		}
-		/** Reinforced Machine Casing **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingReinforced, 5), new Object[] { "III", "CMC", "III", 'I',
-				ingotRefinedIron, 'C', "circuitAdvanced", 'M', "machineBlockAdvanced" });
 		/** Highly Advanced Machine Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingHighlyAdvanced), new Object[] { "CTC", "TBT", "CTC", 'T',
 				"ingotTitanium", 'C', "ingotChrome", 'B', "machineBlockAdvanced" });
@@ -196,10 +192,6 @@ public class GTRecipe {
 		/** Industrial Centrifuge **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 				Ic2Items.extractor, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C', "circuitAdvanced" });
-		/** Blast Furnace **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBlastFurnace, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
-				Ic2Items.inductionFurnace, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C',
-				"circuitAdvanced" });
 		/** Lightning Rod **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
 				"circuitMaster", 'S', GTBlocks.tileSupercondensator, 'A', "machineBlockElite" });

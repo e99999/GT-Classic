@@ -20,7 +20,6 @@ import gtclassic.tile.GTTileMobRepeller;
 import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileUUMAssembler;
 import gtclassic.tile.GTTileWorktable;
-import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.core.IC2;
@@ -43,7 +42,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -84,10 +82,6 @@ public class GTBlockMachine extends GTBlockMultiID {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (this == GTBlocks.tileBlastFurnace) {
-			tooltip.add(TextFormatting.RED
-					+ I18n.format("WARNING THIS TILE WILL BE MOVED TO GTC EXPANSION NEXT RELEASE"));
-		}
 		for (int i = 0; i < this.size; i++) {
 			tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip") + i));
 		}
@@ -112,9 +106,6 @@ public class GTBlockMachine extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tileCentrifuge) {
 			return new GTTileCentrifuge();
-		}
-		if (this == GTBlocks.tileBlastFurnace) {
-			return new GTTileMultiBlastFurnace();
 		}
 		if (this == GTBlocks.tilePlayerDetector) {
 			return new GTTilePlayerDetector();

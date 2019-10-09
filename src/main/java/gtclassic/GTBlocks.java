@@ -43,7 +43,6 @@ import gtclassic.tile.GTTileSupercondensator;
 import gtclassic.tile.GTTileTranslocator;
 import gtclassic.tile.GTTileUUMAssembler;
 import gtclassic.tile.GTTileWorktable;
-import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import gtclassic.util.GTLang;
@@ -68,13 +67,11 @@ public class GTBlocks {
 	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre("Bauxite", 84, 3.0F, 1));
 	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 2, 500.0F));
 	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
-	public static final GTBlockCasing casingReinforced = registerBlock(new GTBlockCasing("reinforced", 1, 150.0F));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29, 250.0F));
 	// public static final GTBlockSluice tileSluice = registerBlock(new
 	// GTBlockSluice());
 	// public static final GTBlockSluiceBoxExt tileSluiceExt = registerBlock(new
 	// GTBlockSluiceBoxExt());
-	public static final GTBlockMachine tileBlastFurnace = registerBlock(new GTBlockMachine("gtblastfurnace", GTLang.BLAST_FURNACE, 3));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
@@ -92,9 +89,7 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileAESU = registerBlock(new GTBlockMachineDirectionable("aesu", GTLang.AESU));
 	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu", GTLang.IDSU));
 	public static final GTBlockMachineDirectionable tileSupercondensator = registerBlock(new GTBlockMachineDirectionable("supercondensator", GTLang.SUPERCONDENSATOR));
-	// public static final GTBlockMachineDirectionable tileSuperconductor =
-	// registerBlock(new GTBlockMachineDirectionable("superconductor",
-	// GTLang.SUPERCONDUCTOR));
+	public static final GTBlockMachineDirectionable tileSuperconductor = registerBlock(new GTBlockMachineDirectionable("superconductor", GTLang.SUPERCONDUCTOR));
 	public static final GTBlockMachine tileWorktable = registerBlock(new GTBlockMachine("worktable", GTLang.WORKTABLE));
 	public static final GTBlockMachine tileCabinet = registerBlock(new GTBlockMachine("cabinet", GTLang.CABINET));
 	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
@@ -106,11 +101,11 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
-	protected static final String[] textureTileBasic = { "gtblastfurnace", "chargeomat", "computercube",
-			"industrialcentrifuge", "matterfabricator", "uumassembler", "echotronblock", "quantumchest", "quantumtank",
-			"playerdetector", "mobrepeller", "fusionreactor", "lightningrod", "dragoneggenergysiphon",
-			"magicenergyconverter", "magicenergyabsorber", "idsu", "aesu", "lesu", "supercondensator", "superconductor",
-			"cabinet", "drum", "worktable", "translocator", "bufferlarge", "buffersmall", "bufferfluid" };
+	protected static final String[] textureTileBasic = { "chargeomat", "computercube", "industrialcentrifuge",
+			"matterfabricator", "uumassembler", "echotronblock", "quantumchest", "quantumtank", "playerdetector",
+			"mobrepeller", "fusionreactor", "lightningrod", "dragoneggenergysiphon", "magicenergyconverter",
+			"magicenergyabsorber", "idsu", "aesu", "lesu", "supercondensator", "superconductor", "cabinet", "drum",
+			"worktable", "translocator", "bufferlarge", "buffersmall", "bufferfluid" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -147,7 +142,6 @@ public class GTBlocks {
 		registerUtil(GTTileMobRepeller.class, "MobRepeller");
 		registerUtil(GTTileEchotron.class, "Echotron");
 		registerUtil(GTTileComputerCube.class, "ComputerCube");
-		registerUtil(GTTileMultiBlastFurnace.class, "BlastFurnace");
 		registerUtil(GTTileChargeOMat.class, "ChargeOMat");
 		registerUtil(GTTileLESU.class, "LESU");
 		registerUtil(GTTileIDSU.class, "IDSU");

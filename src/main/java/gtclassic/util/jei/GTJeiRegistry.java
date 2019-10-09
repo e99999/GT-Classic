@@ -3,14 +3,12 @@ package gtclassic.util.jei;
 import gtclassic.GTBlocks;
 import gtclassic.gui.GTGuiMachine;
 import gtclassic.tile.GTTileCentrifuge;
-import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
 import net.minecraft.block.Block;
 
 public enum GTJeiRegistry {
 	CENTRIFUGE(GTTileCentrifuge.RECIPE_LIST, GTBlocks.tileCentrifuge, GTGuiMachine.GTIndustrialCentrifugeGui.class, 78, 24, 20, 18),
-	BLASTFURNACE(GTTileMultiBlastFurnace.RECIPE_LIST, GTBlocks.tileBlastFurnace, GTGuiMachine.GTBlastFurnaceGui.class, 78, 24, 20, 18),
 	FUSION(GTTileMultiFusionReactor.RECIPE_LIST, GTBlocks.tileFusionReactor, GTGuiMachine.GTFusionComputerGui.class, 110, 34, 25, 17);
 
 	private GTRecipeMultiInputList list;

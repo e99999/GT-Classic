@@ -10,7 +10,6 @@ import gtclassic.helpers.GTHelperAdvRecipe;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileCentrifuge;
-import gtclassic.tile.multi.GTTileMultiBlastFurnace;
 import gtclassic.util.GTValues;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.recipe.IRecipeInput;
@@ -20,7 +19,6 @@ import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -47,88 +45,6 @@ public class GTRecipeMods {
 			TileEntityMacerator.addRecipe("gemLapis", 1, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 32, 1));
 			TileEntityMacerator.addRecipe("dustBedrock", 1, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_infinity_fog"));
 			TileEntityMacerator.addRecipe("itemClayedGlowstone", 1, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_holy_fog"));
-			// Dark steel upgrade
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] {
-					input(GTMaterialGen.getModItem(GTValues.ENDERIO, "block_dark_iron_bars", 1)), input("itemClay", 1),
-					input("string", 4) }, 120000, GTMaterialGen.getModItem(GTValues.ENDERIO, "item_dark_steel_upgrade"));
-			// Electric Steel
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Iron", 1), input("dustCoal", 1),
-					input("itemSilicon", 1) }, 40000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 0, 1));
-			// Energenic Alloy
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustRedstone", 1), metal("Gold", 1),
-					input("dustGlowstone", 1) }, 40000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 1, 1));
-			// Vibrant Alloy
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("ingotEnergeticAlloy", 1),
-					input("enderpearl", 1) }, 40000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 2, 1));
-			// Redstone Alloy
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustRedstone", 1),
-					input("itemSilicon", 1) }, 40000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 3, 1));
-			// Conductive Iron
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustRedstone", 1),
-					metal("Iron", 1) }, 40000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 4, 1));
-			// Pulsating Alloy
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Iron", 1),
-					input("enderpearl", 1) }, 40000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 5, 1));
-			// Dark Steel
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Steel", 1),
-					input("dustObsidian", 1) }, 80000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 6, 1));
-			// End Steel
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("endstone", 1), input("ingotDarkSteel", 1),
-					input("obsidian", 1) }, 80000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 8, 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input(GTMaterialGen.get(Blocks.SOUL_SAND, 1)),
-					metal("Gold", 1) }, 40000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_alloy_ingot", 7, 1));
-			// Fused Quartz - Custom Recipe!
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustNetherQuartz", 2),
-					input("blockGlass", 1) }, 10000, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_fused_quartz", 1));
-			// Enlightened Fused Quartz
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("gemQuartz", 4),
-					input("dustGlowstone", 4) }, 20000, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_enlightened_fused_quartz", 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("blockQuartz", 4),
-					input("glowstone", 4) }, 20000, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_enlightened_fused_quartz", 1));
-			// Enlightned Clear Glass
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("blockGlass", 1),
-					input("dustGlowstone", 4) }, 20000, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_enlightened_fused_glass", 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("blockGlass", 1),
-					input("glowstone", 1) }, 20000, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_enlightened_fused_glass", 1));
-			// Dark Fused Quartz
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dyeBlack", 1),
-					input("gemQuartz", 4) }, 20000, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_dark_fused_quartz", 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dyeBlack", 1),
-					input("blockQuartz", 1) }, 20000, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_dark_fused_quartz", 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dyeBlack", 1),
-					input("blockGlassHardened", 1) }, 10000, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_dark_fused_quartz", 1));
-			// Dyes
-			doEnderIOBlastFurnaceDyeThings("Green", 48);
-			doEnderIOBlastFurnaceDyeThings("Brown", 49);
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustCoal", 6),
-					input("slimeball", 1) }, 8000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 50, 2));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustCoal", 3),
-					input("egg", 1) }, 6000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 50, 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustCharcoal", 6),
-					input("slimeball", 1) }, 8000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 50, 2));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustCharcoal", 3),
-					input("egg", 1) }, 6000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 50, 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input(GTMaterialGen.get(Items.BEETROOT, 1)),
-					input("itemClay", 3), input("egg", 6) }, 60000, new ItemStack(Items.DYE, 12, 1));
-			// Machine Chassis
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("itemSimpleMachineChassi", 1),
-					input("dyeMachine", 1) }, 14400, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 1, 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("itemEndSteelMachineChassi", 1),
-					input("dyeEnhancedMachine", 1) }, 14400, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 54, 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("itemSimpleMachineChassi", 1),
-					input("dyeSoulMachine", 1) }, 14400, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 53, 1));
-			// Other Stuff
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustLapis", 1), input("blockWool", 1),
-					input("dustTin", 1) }, 20000, GTMaterialGen.getModItem(GTValues.ENDERIO, "block_industrial_insulation", 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("ingotBrickNether", 1),
-					input("cropNetherWart", 4),
-					input("itemClay", 6) }, 80000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 72, 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustBedrock", 1),
-					input("dustCoal", 1) }, 20000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 75, 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustBedrock", 1),
-					input("dustCharcoal", 1) }, 20000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 75, 1));
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dustGlowstone", 1),
-					input("itemClay", 1) }, 20000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", 76, 2));
 		}
 		/** Ic2 Extras **/
 		if (GTConfig.compatIc2Extras && Loader.isModLoaded(GTValues.IC2_EXTRAS)) {
@@ -155,34 +71,10 @@ public class GTRecipeMods {
 		if (GTConfig.compatIE && Loader.isModLoaded(GTValues.IMMERSIVE_ENGINEERING)) {
 			GTMod.logger.info("Doing Immersive Engineering Things");
 			GTTileCentrifuge.addRecipe("dustCoke", 8, 0, GTTileCentrifuge.totalEu(7500), GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "material", 18, 1));
-			// Adds alloys if thermal is not present
-			if (!Loader.isModLoaded(GTValues.THERMAL) || !GTConfig.compatThermal) {
-				// Constantan
-				GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
-						metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.IMMERSIVE_ENGINEERING, "metal", 6, 2));
-			}
 		}
 		/** Thermal Mods **/
 		if (GTConfig.compatThermal && Loader.isModLoaded(GTValues.THERMAL)) {
 			GTMod.logger.info("Doing Thermal Expansion Things");
-			// Hardended Glass
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 1),
-					input("dustObsidian", 4) }, GTTileMultiBlastFurnace.COST_SMALL, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "glass", 3, 2));
-			// Invar
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Iron", 2),
-					metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 162, 3));
-			// Constantan
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 1),
-					metal("Nickel", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 164, 2));
-			// Signalum
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Copper", 3), metal("Silver", 1),
-					input("dustRedstone", 9) }, GTTileMultiBlastFurnace.COST_SMALL, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 165, 4));
-			// Lumium
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Tin", 3), metal("Silver", 1),
-					input("dustGlowstone", 4) }, GTTileMultiBlastFurnace.COST_MED, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 166, 4));
-			// Enderium
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Lead", 3), metal("Platinum", 1),
-					input("dustEnderPearl", 4) }, GTTileMultiBlastFurnace.COST_MED, GTMaterialGen.getModMetaItem(GTValues.THERMAL, "material", 167, 4));
 			// Adding thermal stuff to fluid gen
 			addFluidGeneratorRecipe("crude_oil", 50000, 10);
 			addFluidGeneratorRecipe("petrotheum", 50000, 12);
@@ -204,11 +96,6 @@ public class GTRecipeMods {
 			ClassicRecipes.electrolyzer.addChargeRecipe(GTMaterialGen.getModMetaItem(GTValues.THERMAL, "bait", 1, 1), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "bait", 2, 1), 16000, "ThermalBait");
 			ClassicRecipes.electrolyzer.addChargeRecipe(GTMaterialGen.getModMetaItem(GTValues.THERMAL, "fertilizer", 1, 1), GTMaterialGen.getModMetaItem(GTValues.THERMAL, "fertilizer", 2, 1), 16000, "ThermalFertilizer");
 		}
-		if (GTConfig.compatTwilightForest && Loader.isModLoaded(GTValues.TFOREST)) {
-			GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { metal("Iron", 1),
-					input(GTMaterialGen.getModItem(GTValues.TFOREST, "liveroot")),
-					input("nuggetGold", 1) }, GTTileMultiBlastFurnace.COST_TINY, GTMaterialGen.getModItem(GTValues.TFOREST, "ironwood_ingot", 2));
-		}
 		/** Forestry Sub Module, last so bees are always last **/
 		if (GTConfig.compatForestry && Loader.isModLoaded(GTValues.FORESTRY)) {
 			GTMod.logger.info("Doing Forestry Things");
@@ -216,21 +103,6 @@ public class GTRecipeMods {
 			GTTileCentrifuge.addRecipe("gemApatite", 5, 0, GTTileCentrifuge.totalEu(4000), GTMaterialGen.getDust(GTMaterial.Calcite, 4), GTMaterialGen.getIc2(Ic2Items.fertilizer, 1));
 			GTRecipeForestry.notTheBees();
 		}
-	}
-
-	public static void doEnderIOBlastFurnaceDyeThings(String color, int meta) {
-		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("itemPlant" + color.toLowerCase(), 12),
-				input("slimeball", 1) }, 8000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 2));
-		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("itemPlant" + color.toLowerCase(), 6),
-				input("egg", 1) }, 6000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 1));
-		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dye" + color, 2), input("slimeball", 1),
-				input("dustCoal", 2) }, 8000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 2));
-		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dye" + color, 2), input("slimeball", 1),
-				input("dustCharcoal", 2) }, 8000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 2));
-		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dye" + color, 1), input("egg", 1),
-				input("dustCoal", 1) }, 6000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 1));
-		GTTileMultiBlastFurnace.addRecipe(new IRecipeInput[] { input("dye" + color, 1), input("egg", 1),
-				input("dustCharcoal", 1) }, 6000, GTMaterialGen.getModMetaItem(GTValues.ENDERIO, "item_material", meta, 1));
 	}
 
 	public static void addFluidGeneratorRecipe(String fluid, int total, int output) {
