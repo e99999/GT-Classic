@@ -2,9 +2,10 @@
 # 1.05  (Not Released)
 - Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
 
-# 1.04 (Not Released)
+# 1.04
 - WARNING! In the next version (1.0.5) the Blast Furnace will become part of GTC Expansion (by Trinsdar)
 - WARNING! In the next version (1.0.5) GTC fluid blocks and molten fluids will be removed, molten fluids will be part of GTC Expansion as well.
+- Removed forestry bronze ingot crafting recipe if its loaded.
 - Added temporary recipes for getting your resources back from the Reinforced casing/block and Blast Furnace before next release!
 - Added more crafting recipes for duct tape, that hopefully indicate what its capible of doing in world : )
 - Removed clicking behavior from quantum chest, but i redid the input/ouput logic to be instantaneous.

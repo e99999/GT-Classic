@@ -6,6 +6,7 @@ import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 import gtclassic.GTConfig;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
+import gtclassic.helpers.GTHelperAdvRecipe;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileCentrifuge;
@@ -211,6 +212,7 @@ public class GTRecipeMods {
 		/** Forestry Sub Module, last so bees are always last **/
 		if (GTConfig.compatForestry && Loader.isModLoaded(GTValues.FORESTRY)) {
 			GTMod.logger.info("Doing Forestry Things");
+			GTHelperAdvRecipe.removeRecipe(GTValues.FORESTRY, "bronze_ingot");
 			GTTileCentrifuge.addRecipe("gemApatite", 5, 0, GTTileCentrifuge.totalEu(4000), GTMaterialGen.getDust(GTMaterial.Calcite, 4), GTMaterialGen.getIc2(Ic2Items.fertilizer, 1));
 			GTRecipeForestry.notTheBees();
 		}
