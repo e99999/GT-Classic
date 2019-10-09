@@ -78,6 +78,10 @@ public class GTItemBlockRare extends ItemBlockRare {
 			if (compare(stack, GTBlocks.tileSupercondensator)) {
 				tooltip.add(Ic2InfoLang.electricTransformer.getLocalizedFormatted(new Object[] { 134217728, 8192 }));
 			}
+			if (compare(stack, GTBlocks.tileSuperconductorCable)) {
+				tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));
+				tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));
+			}
 		}
 	}
 

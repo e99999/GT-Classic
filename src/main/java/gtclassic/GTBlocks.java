@@ -11,6 +11,7 @@ import gtclassic.block.GTBlockMachineDirectionable;
 import gtclassic.block.GTBlockOre;
 import gtclassic.block.GTBlockQuantumChest;
 import gtclassic.block.GTBlockQuantumTank;
+import gtclassic.block.GTBlockSuperconductorCable;
 import gtclassic.block.GTBlockUUMAssembler;
 import gtclassic.color.GTColorBlockInterface;
 import gtclassic.color.GTColorItemBlock;
@@ -38,6 +39,7 @@ import gtclassic.tile.GTTilePlayerDetector;
 import gtclassic.tile.GTTileQuantumChest;
 import gtclassic.tile.GTTileQuantumTank;
 import gtclassic.tile.GTTileSupercondensator;
+import gtclassic.tile.GTTileSuperconductorCable;
 import gtclassic.tile.GTTileTranslocator;
 import gtclassic.tile.GTTileUUMAssembler;
 import gtclassic.tile.GTTileWorktable;
@@ -83,7 +85,7 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileAESU = registerBlock(new GTBlockMachineDirectionable("aesu", GTLang.AESU));
 	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu", GTLang.IDSU));
 	public static final GTBlockMachineDirectionable tileSupercondensator = registerBlock(new GTBlockMachineDirectionable("supercondensator", GTLang.SUPERCONDENSATOR));
-	public static final GTBlockMachineDirectionable tileSuperconductor = registerBlock(new GTBlockMachineDirectionable("superconductor", GTLang.SUPERCONDUCTOR));
+	public static final GTBlockSuperconductorCable tileSuperconductorCable = registerBlock(new GTBlockSuperconductorCable());
 	public static final GTBlockMachine tileWorktable = registerBlock(new GTBlockMachine("worktable", GTLang.WORKTABLE));
 	public static final GTBlockMachine tileCabinet = registerBlock(new GTBlockMachine("cabinet", GTLang.CABINET));
 	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
@@ -98,7 +100,7 @@ public class GTBlocks {
 	protected static final String[] textureTileBasic = { "chargeomat", "computercube", "industrialcentrifuge",
 			"matterfabricator", "uumassembler", "echotronblock", "quantumchest", "quantumtank", "playerdetector",
 			"mobrepeller", "fusionreactor", "lightningrod", "dragoneggenergysiphon", "magicenergyconverter",
-			"magicenergyabsorber", "idsu", "aesu", "lesu", "supercondensator", "superconductor", "cabinet", "drum",
+			"magicenergyabsorber", "idsu", "aesu", "lesu", "supercondensator", "superconductorcable", "cabinet", "drum",
 			"worktable", "translocator", "bufferlarge", "buffersmall", "bufferfluid" };
 
 	public static void registerBlocks() {
@@ -141,6 +143,7 @@ public class GTBlocks {
 		registerUtil(GTTileAESU.class, "AESU");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");
 		registerUtil(GTTileSupercondensator.class, "Supercondensator");
+		registerUtil(GTTileSuperconductorCable.class, "SuperconductorCable");
 		registerUtil(GTTileMultiFusionReactor.class, "FusionComputer");
 		registerUtil(GTTileQuantumChest.class, "QuantumChest");
 		registerUtil(GTTileQuantumTank.class, "QuantumTank");

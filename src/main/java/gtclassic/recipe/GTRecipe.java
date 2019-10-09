@@ -270,7 +270,10 @@ public class GTRecipe {
 				GTBlocks.casingLapotron });
 		/** Supercondensator **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSupercondensator, 1), new Object[] { "EAE", "SMS", "EAE", 'E',
-				"circuitMaster", 'S', "craftingSuperconductor", 'A', "batteryUltimate", 'M', "machineBlockElite" });
+				"circuitMaster", 'S', "craftingSuperconductor", 'A', "batteryUltimate", 'M', "machineBlockAdvanced" });
+		/** Superconductor Cable **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable, 4), new Object[] { "MEM", "SSS", "MEM",
+				'E', "circuitMaster", 'S', "craftingSuperconductor", 'M', "machineBlockAdvanced" });
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), new Object[] { "CRC", "JMN", "CBC", 'C',
 				"circuitBasic", 'R', "record", 'J', Blocks.JUKEBOX, 'M', "machineBlockAdvanced", 'N', Blocks.NOTEBLOCK,

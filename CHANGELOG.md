@@ -3,7 +3,12 @@
 - Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
 
 # 1.05 (Not Released)
-- Nothing Yet
+- This will be the last version that has world changes/removed machines or items from existing worlds.
+- Removed Blast Furnace it is now in Trinsdars Mod "GTC Expansion" which focuses on GT2-GT4 content.
+- Removed molten fluids are now/will be in GTC Expansion as well.
+- Removed in world fluid stuff, it was gonna be a pain todo if/when I port forward - it did not spark "joy".
+- Fixed some minor errors and cleaned up unused assets
+- Fixed a naming issue with the super conductor item, might have to recraft some if you had any lying around.
 
 # 1.04
 - WARNING! In the next version (1.0.5) the Blast Furnace will become part of GTC Expansion (by Trinsdar)

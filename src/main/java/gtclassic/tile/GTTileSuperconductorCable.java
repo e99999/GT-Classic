@@ -1,26 +1,47 @@
 package gtclassic.tile;
 
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyConductor;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.MinecraftForge;
 
-public class GTTileSuperconductor extends TileEntityBlock implements IEnergyConductor {
+public class GTTileSuperconductorCable extends TileEntityBlock implements IEnergyConductor {
 
-	public GTTileSuperconductor() {
+	protected boolean addedToEnergyNet;
+
+	public GTTileSuperconductorCable() {
+	}
+
+	@Override
+	public void onLoaded() {
+		super.onLoaded();
+		if (!this.addedToEnergyNet && this.isSimulating()) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+			this.addedToEnergyNet = true;
+		}
+	}
+
+	@Override
+	public void onUnloaded() {
+		if (this.addedToEnergyNet && this.isSimulating()) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+			this.addedToEnergyNet = false;
+		}
+		super.onUnloaded();
 	}
 
 	@Override
 	public boolean acceptsEnergyFrom(IEnergyEmitter var1, EnumFacing var2) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing var2) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
