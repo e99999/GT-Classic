@@ -1,18 +1,25 @@
 package gtclassic.container;
 
+import javax.annotation.Nullable;
+
+import gtclassic.GTMod;
+import gtclassic.helpers.GTHelperStack;
 import gtclassic.tile.GTTileAutocrafter;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotGhoest;
 import ic2.core.inventory.slots.SlotOutput;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -52,6 +59,7 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 			}
 		}
 		this.addPlayerInventory(player, 0, 0);
+		readTileCraftingList();
 	}
 
 	@Override
@@ -64,6 +72,64 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 	@Override
 	public void onCraftMatrixChanged(IInventory inventoryIn) {
 		this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
+		if (this.block.isSimulating()) {
+			
+		}
+	}
+
+	@Nullable
+	@Override
+	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
+		GTMod.logger.info("Slot: " + slotId);
+		if (slotId == 0) {
+			return ItemStack.EMPTY;
+		}
+		if ((slotId >= 20) && (slotId <= 28)) {
+			ItemStack stack = player.inventory.getItemStack();
+			//I need to offset the slot by -20 here because normal stack methods freak out
+			this.craftMatrix.setInventorySlotContents(slotId - 20, doWeirdStackCraftingStuff(stack, slotId));
+			writeTileCraftingList();
+			return ItemStack.EMPTY;
+		}
+		return super.slotClick(slotId, dragType, clickTypeIn, player);
+	}
+	
+	//this increases a stack size if its valid to handle stack crafting
+	public ItemStack doWeirdStackCraftingStuff(ItemStack stack, int slotId) {
+		if (stack.isEmpty()){
+			return ItemStack.EMPTY;
+		}
+		ItemStack slotStack = this.craftMatrix.getStackInSlot(slotId-20);
+		if (GTHelperStack.isEqual(stack, slotStack) && slotStack.getCount() < slotStack.getMaxStackSize()) {
+			return StackUtil.copyWithSize(slotStack, slotStack.getCount() + 1);
+		}
+		return StackUtil.copyWithSize(stack, 1);
+	}
+	
+	@Override
+	public void onContainerClosed(EntityPlayer playerIn) {
+		super.onContainerClosed(playerIn);
+		writeTileCraftingList();
+	}
+	
+	public void writeTileCraftingList() {
+		this.block.craftingList.clear();
+		//this is where the crafting slots are saved in the tile
+		for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i) {
+			ItemStack mSlot = this.craftMatrix.getStackInSlot(i);
+			this.block.craftingList.set(i, mSlot);
+		}
+		//this is weird the key is set for the itemstack output in the tile
+		this.block.target = this.craftResult.getStackInSlot(0);
+		GTMod.logger.info("Target Set To: " + this.block.target.getDisplayName() + " x "
+				+ this.block.target.getCount());
+	}
+
+	public void readTileCraftingList() {
+		for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i) {
+			ItemStack mSlot = this.block.craftingList.get(i);
+			this.craftMatrix.setInventorySlotContents(i, mSlot);
+		}
 	}
 
 	@Override
