@@ -99,11 +99,12 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
-	protected static final String[] textureTileBasic = { "autocrafter","chargeomat", "computercube", "industrialcentrifuge",
-			"matterfabricator", "uumassembler", "echotronblock", "quantumchest", "quantumtank", "playerdetector",
-			"mobrepeller", "fusionreactor", "lightningrod", "dragoneggenergysiphon", "magicenergyconverter",
-			"magicenergyabsorber", "idsu", "aesu", "lesu", "supercondensator", "superconductorcable", "cabinet", "drum",
-			"worktable", "translocator", "bufferlarge", "buffersmall", "bufferfluid" };
+	protected static final String[] textureTileBasic = { "autocrafter", "chargeomat", "computercube",
+			"industrialcentrifuge", "matterfabricator", "uumassembler", "echotronblock", "quantumchest", "quantumtank",
+			"playerdetector", "mobrepeller", "fusionreactor", "lightningrod", "dragoneggenergysiphon",
+			"magicenergyconverter", "magicenergyabsorber", "idsu", "aesu", "lesu", "supercondensator",
+			"superconductorcable", "cabinet", "drum", "worktable", "translocator", "bufferlarge", "buffersmall",
+			"bufferfluid" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {

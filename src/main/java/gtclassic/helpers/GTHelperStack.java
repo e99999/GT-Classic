@@ -1,6 +1,7 @@
 package gtclassic.helpers;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import ic2.core.block.base.tile.TileEntityMachine;
@@ -56,6 +57,32 @@ public class GTHelperStack {
 			return 0;
 		}
 		return tile.getStackInSlot(slot).getCount();
+	}
+
+	/** Created by Muramasa - Merges B into A, ignoring maxStackSize **/
+	public static List<ItemStack> mergeItems(List<ItemStack> a, List<ItemStack> b) {
+		int position, size = b.size();
+		for (int i = 0; i < size; i++) {
+			if (b.get(i).isEmpty())
+				continue;
+			position = contains(a, b.get(i));
+			if (position == -1)
+				a.add(b.get(i));
+			else
+				a.get(position).grow(b.get(i).getCount());
+		}
+		return a;
+	}
+
+	/** Returns the index of an item in a list, or -1 if not found **/
+	public static int contains(List<ItemStack> list, ItemStack item) {
+		int size = list.size();
+		for (int i = 0; i < size; i++) {
+			if (StackUtil.isStackEqual(list.get(i), item)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/** Checks if an itemstack has an oredict entry **/

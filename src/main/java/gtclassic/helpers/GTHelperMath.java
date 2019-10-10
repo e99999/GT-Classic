@@ -11,4 +11,8 @@ public class GTHelperMath {
 		}
 		return value;
 	}
+
+	public static boolean within(int value, int low, int high) {
+		return (value >= low) && (value <= high);
+	}
 }
