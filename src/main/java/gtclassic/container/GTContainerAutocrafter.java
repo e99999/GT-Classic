@@ -9,7 +9,6 @@ import gtclassic.tile.GTTileAutocrafter;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
-import ic2.core.inventory.slots.SlotGhoest;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,9 +46,9 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 				this.addSlotToContainer(new SlotBase(tile, (k + l * 3) + 1, 8 + l * 18, 5 + k * 18));
 			}
 		}
-		// holo slots - unused atm 10-19
+		// holo slots - unused atm 10-18
 		for (int l = 0; l < 9; ++l) {
-			this.addSlotToContainer(new SlotOutput(player.player,tile , l + 10, 8 + l * 18, 60));
+			this.addSlotToContainer(new SlotOutput(player.player, tile, l + 10, 8 + l * 18, 60));
 		}
 		// output slot
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 19, 143, 41));

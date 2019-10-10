@@ -125,7 +125,6 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 		if (world.getTotalWorldTime() % 20 == 0) {
 			tryImportItems();
 			if (canAttemptToCraft() && this.inventory.get(19).isEmpty()) {
-				// GTMod.logger.info("Minimums met for crafting");
 				/** this part copies the crafting inventory and removes empty stacks **/
 				ArrayList<ItemStack> resourceList = new ArrayList<>();
 				for (ItemStack stack : this.craftingList) {
@@ -136,10 +135,6 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 				/** this part condenses and compacts similar ItemStacks **/
 				ArrayList<ItemStack> finalList = new ArrayList<>();
 				GTHelperStack.mergeItems(finalList, resourceList);
-				// for (ItemStack foo : finalList) {
-				// GTMod.logger.info("NEEDED: " + foo.getDisplayName() + " x " +
-				// foo.getCount());
-				// }
 				/**
 				 * this part iterates the stored inventory and final list too see if the recipe
 				 * has what it needs
@@ -154,28 +149,46 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 						}
 					}
 				}
-				// GTMod.logger.info("MATCHED: " + matched + " stacks out of " + needed);
 				if (matched >= needed) {
-					// GTMod.logger.info("Crafting materials found");
 					/**
 					 * this is where i reduce the stack size of the stored stuff, at this point it
 					 * is certain the inventory has whats need to craft
 					 **/
 					ArrayList<ItemStack> alreadySubtracted = new ArrayList<>();
+					boolean canContinue = true; // disables moving forward for container item stuff
 					for (ItemStack neededStack : finalList) {
 						for (int i = 0; i < 9; ++i) {
 							int j = i + 1;
 							if (GTHelperStack.isEqual(this.inventory.get(j), neededStack)) {
 								if (GTHelperStack.contains(alreadySubtracted, neededStack) == -1) {
-									//TODO container item stuff
-									this.inventory.get(j).shrink(neededStack.getCount());
-									alreadySubtracted.add(neededStack);
+									/** Handling container items **/
+									if (this.inventory.get(j).getItem().hasContainerItem(this.inventory.get(j))) {
+										if (roomForContainerItems() == 0) {
+											canContinue = false;
+											return;
+										}
+										ItemStack container = this.inventory.get(j).getItem().getContainerItem(this.inventory.get(j));
+										for (int k = 0; k < 9; ++k) {
+											int m = k + 10;
+											if (this.inventory.get(m).isEmpty() && canContinue) {
+												this.inventory.set(m, container.copy());
+												break;
+											}
+										}
+									}
+									/** Now begin shrinking stacks **/
+									if (canContinue) {
+										this.inventory.get(j).shrink(neededStack.getCount());
+										alreadySubtracted.add(neededStack);
+									}
 								}
 							}
 						}
 					}
-					this.setStackInSlot(19, target.copy());
-					this.useEnergy(50);
+					if (canContinue) {
+						this.setStackInSlot(19, target.copy());
+						this.useEnergy(50);
+					}
 				}
 			}
 			if (!this.inventory.get(19).isEmpty()) {
@@ -193,6 +206,17 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 			}
 		}
 		return storedList;
+	}
+
+	public int roomForContainerItems() {
+		int emptySlots = 0;
+		for (int i = 0; i < 9; ++i) {
+			int j = i + 10;
+			if (this.inventory.get(j).isEmpty()) {
+				emptySlots = emptySlots + 1;
+			}
+		}
+		return emptySlots;
 	}
 
 	public boolean canAttemptToCraft() {
