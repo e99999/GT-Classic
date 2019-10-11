@@ -5,6 +5,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.container.GTContainerAutocrafter;
+import gtclassic.helpers.GTHelperMath;
 import gtclassic.helpers.GTHelperStack;
 import gtclassic.util.int3;
 import ic2.core.RotationList;
@@ -37,6 +38,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	public ItemStack target;
 	public NonNullList<ItemStack> craftingList = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
 	protected static final int[] slotInputs = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	protected static final int[] slotContainer = { 10, 11, 12, 13, 14, 15, 16, 17, 18 };
 	protected static final int[] slotOutputs = { 19 };
 
 	public GTTileAutocrafter() {
@@ -49,11 +51,14 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
 		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
+		handler.registerDefaultSlotAccess(AccessRule.Export, slotContainer);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInputs);
 		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.DOWN, slotContainer);
 		handler.registerInputFilter(CommonFilters.Anything, slotInputs);
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
+		handler.registerSlotType(SlotType.Output, slotContainer);
 	}
 
 	@Override
@@ -124,6 +129,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	public void update() {
 		if (world.getTotalWorldTime() % 20 == 0) {
 			tryImportItems();
+			tryCondenseInventory();
 			if (canAttemptToCraft() && this.inventory.get(19).isEmpty()) {
 				/** this part copies the crafting inventory and removes empty stacks **/
 				ArrayList<ItemStack> resourceList = new ArrayList<>();
@@ -217,6 +223,24 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 			}
 		}
 		return emptySlots;
+	}
+
+	public void tryCondenseInventory() {
+		for (int i = 1; i < 10; ++i) {
+			for (int j = 1; j < 10; ++j) {
+				ItemStack stack1 = this.inventory.get(i);
+				ItemStack stack2 = this.inventory.get(j);
+				if (!stack1.isEmpty() && !stack2.isEmpty()) {
+					if (GTHelperStack.isEqual(stack1, stack2) && stack1.getCount() < stack1.getMaxStackSize()) {
+						int max = stack1.getMaxStackSize() - stack1.getCount();
+						int available = stack2.getCount();
+						int size = GTHelperMath.clip(available, 1, max);
+						stack1.grow(size);
+						stack2.shrink(size);
+					}
+				}
+			}
+		}
 	}
 
 	public boolean canAttemptToCraft() {

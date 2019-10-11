@@ -28,6 +28,7 @@ import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -112,6 +113,13 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		return ActionResult.newResult(EnumActionResult.FAIL, playerIn.getHeldItem(handIn));
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected) {
+		if (ElectricItem.manager.getCharge(stack) < ElectricItem.manager.getMaxCharge(stack)) {
+			ElectricItem.manager.charge(stack, 2.147483647E9D, Integer.MAX_VALUE, true, false);
+		}
 	}
 
 	@Override
