@@ -28,6 +28,21 @@ public class GTHelperStack {
 		return StackUtil.isStackEqual(stack, toCompare, false, false);
 	}
 
+	public static boolean isEqualCompareOreDict(ItemStack stack, ItemStack toCompare) {
+		return StackUtil.isStackEqual(stack, toCompare, false, false) || sharesOreDict(stack, toCompare);
+	}
+
+	public static boolean sharesOreDict(ItemStack stack, ItemStack toCompare) {
+		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
+			for (int i = 0; i < OreDictionary.getOreIDs(stack).length; i++) {
+				if (matchOreDict(toCompare, OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[i]))) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	/** Checks if a machine slot can accept a stack **/
 	public static boolean canOutputStack(TileEntityMachine tile, ItemStack stack, int slot) {
 		if (tile.inventory.get(slot).isEmpty()) {

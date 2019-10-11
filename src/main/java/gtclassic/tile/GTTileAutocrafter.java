@@ -150,7 +150,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 				ArrayList<ItemStack> alreadyCounted = new ArrayList<>();
 				for (ItemStack neededStack : finalList) {
 					for (ItemStack storedStack : storedInventory()) {
-						if (GTHelperStack.isEqual(storedStack, neededStack)
+						if (GTHelperStack.isEqualCompareOreDict(storedStack, neededStack)
 								&& GTHelperStack.contains(alreadyCounted, storedStack) == -1 
 								&& (storedStack.getCount() >= neededStack.getCount())) {
 							alreadyCounted.add(storedStack);
@@ -168,7 +168,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 					for (ItemStack neededStack : finalList) {
 						for (int i = 1; i < 10; ++i) {
 							ItemStack input = this.inventory.get(i);
-							if (GTHelperStack.isEqual(input, neededStack)
+							if (GTHelperStack.isEqualCompareOreDict(input, neededStack)
 									&& GTHelperStack.contains(alreadySubtracted, neededStack) == -1) {
 								/** Handling container items **/
 								if (input.getItem().hasContainerItem(input) || neededStack.getItem().hasContainerItem(neededStack)) {
@@ -177,10 +177,9 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 										return;
 									}
 									ItemStack container = input.getItem().getContainerItem(input);
-									for (int k = 0; k < 9; ++k) {
-										int m = k + 10;
-										if (this.inventory.get(m).isEmpty() && canContinue) {
-											this.inventory.set(m, container.copy());
+									for (int k = 10; k < 19; ++k) {
+										if (this.inventory.get(k).isEmpty() && canContinue) {
+											this.inventory.set(k, container.copy());
 											break;
 										}
 									}

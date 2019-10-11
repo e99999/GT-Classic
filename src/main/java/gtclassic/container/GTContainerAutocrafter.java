@@ -77,7 +77,7 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 	@Nullable
 	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-		 GTMod.logger.info("Slot: " + slotId);
+		// GTMod.logger.info("Slot: " + slotId);
 		if (clickTypeIn == ClickType.QUICK_MOVE && !(slotId > 9 && slotId < 20)) {
 			return ItemStack.EMPTY;
 		}
@@ -121,8 +121,8 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 		}
 		// this is weird the key is set for the itemstack output in the tile
 		this.block.target = this.craftResult.getStackInSlot(0);
-		GTMod.logger.info("Target Set To: " + this.block.target.getDisplayName() + " x "
-				+ this.block.target.getCount());
+		//GTMod.logger.info("Target Set To: " + this.block.target.getDisplayName() + " x "
+		//		+ this.block.target.getCount());
 	}
 
 	public void readTileCraftingList() {
