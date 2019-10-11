@@ -163,30 +163,29 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 					ArrayList<ItemStack> alreadySubtracted = new ArrayList<>();
 					boolean canContinue = true; // disables moving forward for container item stuff
 					for (ItemStack neededStack : finalList) {
-						for (int i = 0; i < 9; ++i) {
-							int j = i + 1;
-							if (GTHelperStack.isEqual(this.inventory.get(j), neededStack)) {
-								if (GTHelperStack.contains(alreadySubtracted, neededStack) == -1) {
-									/** Handling container items **/
-									if (this.inventory.get(j).getItem().hasContainerItem(this.inventory.get(j))) {
-										if (roomForContainerItems() == 0) {
-											canContinue = false;
-											return;
-										}
-										ItemStack container = this.inventory.get(j).getItem().getContainerItem(this.inventory.get(j));
-										for (int k = 0; k < 9; ++k) {
-											int m = k + 10;
-											if (this.inventory.get(m).isEmpty() && canContinue) {
-												this.inventory.set(m, container.copy());
-												break;
-											}
+						for (int i = 1; i < 10; ++i) {
+							ItemStack input = this.inventory.get(i);
+							if (GTHelperStack.isEqual(input, neededStack)
+									&& GTHelperStack.contains(alreadySubtracted, neededStack) == -1) {
+								/** Handling container items **/
+								if (input.getItem().hasContainerItem(input)) {
+									if (roomForContainerItems() == 0) {
+										canContinue = false;
+										return;
+									}
+									ItemStack container = input.getItem().getContainerItem(input);
+									for (int k = 0; k < 9; ++k) {
+										int m = k + 10;
+										if (this.inventory.get(m).isEmpty() && canContinue) {
+											this.inventory.set(m, container.copy());
+											break;
 										}
 									}
-									/** Now begin shrinking stacks **/
-									if (canContinue) {
-										this.inventory.get(j).shrink(neededStack.getCount());
-										alreadySubtracted.add(neededStack);
-									}
+								}
+								/** Now begin shrinking stacks **/
+								if (canContinue) {
+									alreadySubtracted.add(neededStack);
+									input.shrink(neededStack.getCount());
 								}
 							}
 						}
@@ -205,10 +204,9 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 
 	public List<ItemStack> storedInventory() {
 		ArrayList<ItemStack> storedList = new ArrayList<>();
-		for (int i = 0; i < 9; ++i) {
-			int j = i + 1;
-			if (!this.inventory.get(j).isEmpty()) {
-				storedList.add(this.inventory.get(j));
+		for (int i = 1; i < 10; ++i) {
+			if (!this.inventory.get(i).isEmpty()) {
+				storedList.add(this.inventory.get(i));
 			}
 		}
 		return storedList;
@@ -216,9 +214,8 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 
 	public int roomForContainerItems() {
 		int emptySlots = 0;
-		for (int i = 0; i < 9; ++i) {
-			int j = i + 10;
-			if (this.inventory.get(j).isEmpty()) {
+		for (int i = 10; i < 19; ++i) {
+			if (this.inventory.get(i).isEmpty()) {
 				emptySlots = emptySlots + 1;
 			}
 		}
