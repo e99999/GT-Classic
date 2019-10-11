@@ -46,7 +46,7 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 				this.addSlotToContainer(new SlotBase(tile, (k + l * 3) + 1, 8 + l * 18, 5 + k * 18));
 			}
 		}
-		// holo slots - unused atm 10-18
+		// container output slots
 		for (int l = 0; l < 9; ++l) {
 			this.addSlotToContainer(new SlotOutput(player.player, tile, l + 10, 8 + l * 18, 60));
 		}
@@ -77,7 +77,10 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 	@Nullable
 	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-		// GTMod.logger.info("Slot: " + slotId);
+		 GTMod.logger.info("Slot: " + slotId);
+		if (clickTypeIn == ClickType.QUICK_MOVE && !(slotId > 9 && slotId < 20)) {
+			return ItemStack.EMPTY;
+		}
 		if (slotId == 0) {
 			return ItemStack.EMPTY;
 		}

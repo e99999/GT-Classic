@@ -147,10 +147,13 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 				 **/
 				int matched = 0;
 				int needed = finalList.size();
+				ArrayList<ItemStack> alreadyCounted = new ArrayList<>();
 				for (ItemStack neededStack : finalList) {
 					for (ItemStack storedStack : storedInventory()) {
 						if (GTHelperStack.isEqual(storedStack, neededStack)
+								&& GTHelperStack.contains(alreadyCounted, storedStack) == -1 
 								&& (storedStack.getCount() >= neededStack.getCount())) {
+							alreadyCounted.add(storedStack);
 							matched = matched + 1;
 						}
 					}
@@ -168,7 +171,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 							if (GTHelperStack.isEqual(input, neededStack)
 									&& GTHelperStack.contains(alreadySubtracted, neededStack) == -1) {
 								/** Handling container items **/
-								if (input.getItem().hasContainerItem(input)) {
+								if (input.getItem().hasContainerItem(input) || neededStack.getItem().hasContainerItem(neededStack)) {
 									if (roomForContainerItems() == 0) {
 										canContinue = false;
 										return;
