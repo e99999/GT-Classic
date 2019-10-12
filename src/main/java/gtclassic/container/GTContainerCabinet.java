@@ -1,6 +1,7 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
+import gtclassic.gui.GTGuiCompSort;
 import gtclassic.tile.GTTileCabinet;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
@@ -22,6 +23,7 @@ public class GTContainerCabinet extends ContainerTileComponent<GTTileCabinet> {
 				this.addSlotToContainer(new SlotBase(tile, x + y * 9, 8 + x * 18, 18 + y * 18));
 			}
 		}
+		this.addComponent(new GTGuiCompSort(tile));
 		this.addPlayerInventory(player, 0, 56);
 	}
 

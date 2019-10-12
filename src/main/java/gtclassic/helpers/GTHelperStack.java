@@ -28,10 +28,19 @@ public class GTHelperStack {
 		return StackUtil.isStackEqual(stack, toCompare, false, false);
 	}
 
+	/** Just an easy place for me to call this over and over **/
+	public static ItemStack copyWithSize(ItemStack itemStack, int newSize) {
+		ItemStack ret = itemStack.copy();
+		ret.setCount(newSize);
+		return ret;
+	}
+
+	/** Checks if a stack is equal or if they are "equal" via ore dictionary **/
 	public static boolean isEqualCompareOreDict(ItemStack stack, ItemStack toCompare) {
 		return StackUtil.isStackEqual(stack, toCompare, false, false) || sharesOreDict(stack, toCompare);
 	}
 
+	/** Checks if two items share ore dict entries **/
 	public static boolean sharesOreDict(ItemStack stack, ItemStack toCompare) {
 		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
 			for (int i = 0; i < OreDictionary.getOreIDs(stack).length; i++) {
@@ -122,6 +131,31 @@ public class GTHelperStack {
 			recipeResult = recipes.get(tmpRecipe);
 			if (ItemStack.areItemStacksEqual(resultStack, recipeResult)) {
 				iterator.remove();
+			}
+		}
+	}
+
+	/** Attempts to sort/merge similar itemstacks in an inventory **/
+	public static void tryCondenseInventory(TileEntityMachine tile, int startSlot, int endSlot) {
+		for (int i = startSlot; i < endSlot; ++i) {
+			for (int j = startSlot; j < endSlot; ++j) {
+				if (i == j) {
+					continue;
+				}
+				ItemStack stack1 = tile.inventory.get(i);
+				ItemStack stack2 = tile.inventory.get(j);
+				if (!stack1.isEmpty() && !stack2.isEmpty()
+						&& (GTHelperStack.isEqual(stack1, stack2) && stack1.getCount() < stack1.getMaxStackSize())) {
+					int max = stack1.getMaxStackSize() - stack1.getCount();
+					int available = stack2.getCount();
+					int size = GTHelperMath.clip(available, 1, max);
+					stack1.grow(size);
+					stack2.shrink(size);
+				}
+				if (stack2.isEmpty() && !stack1.isEmpty() && j < i) {
+					tile.inventory.set(j, stack1.copy());
+					tile.inventory.set(i, ItemStack.EMPTY);
+				}
 			}
 		}
 	}

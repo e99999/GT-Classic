@@ -1,7 +1,9 @@
 package gtclassic.tile;
 
 import gtclassic.container.GTContainerCabinet;
+import gtclassic.helpers.GTHelperStack;
 import gtclassic.util.GTLang;
+import ic2.api.network.INetworkClientTileEntityEventListener;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -18,7 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileCabinet extends TileEntityMachine implements IHasGui {
+public class GTTileCabinet extends TileEntityMachine implements IHasGui , INetworkClientTileEntityEventListener {
 
 	public GTTileCabinet() {
 		super(54);
@@ -72,5 +74,13 @@ public class GTTileCabinet extends TileEntityMachine implements IHasGui {
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
+	}
+
+	@Override
+	public void onNetworkEvent(EntityPlayer arg0, int event) {
+		if (event == 1) {
+			GTHelperStack.tryCondenseInventory(this, 0, this.inventory.size());
+		}
+		
 	}
 }
