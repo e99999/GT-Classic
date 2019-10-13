@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.recipe.crafting.RecipeInputFluid;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
-import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
@@ -38,9 +38,8 @@ public class GTJeiMagicFuelWrapper implements IRecipeWrapper {
 			font.drawString("Total: 8000 EU", 0, 40, Color.black.getRGB());
 			font.drawString("Per: 1000ml", 0, 50, Color.black.getRGB());
 			font.drawString("Production: 24 EU/t", 0, 60, Color.black.getRGB());
-		}
-		if (multiRecipe.getInputs().get(0) instanceof RecipeInputItemStack) {
-			font.drawString("Total: 0-8000 EU", 0, 40, Color.black.getRGB());
+		} else {
+			font.drawString("Total: 0-" + getEntryValue(multiRecipe.getOutputs()) + " EU", 0, 40, Color.black.getRGB());
 			font.drawString("Per: Item", 0, 50, Color.black.getRGB());
 			font.drawString("Production: Random", 0, 60, Color.black.getRGB());
 		}
@@ -48,5 +47,12 @@ public class GTJeiMagicFuelWrapper implements IRecipeWrapper {
 
 	public MultiRecipe getMultiRecipe() {
 		return multiRecipe;
+	}
+
+	public static int getEntryValue(MachineOutput output) {
+		if (output == null || output.getMetadata() == null) {
+			return 0;
+		}
+		return (output.getMetadata().getInteger("RecipeTime"));
 	}
 }

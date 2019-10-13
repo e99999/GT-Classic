@@ -13,6 +13,8 @@ import gtclassic.util.recipe.GTRecipeMultiInputList;
 import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.energy.tile.IEnergySourceInfo;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
+import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.crafting.RecipeInputFluid;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.machine.IEUStorage;
@@ -31,10 +33,13 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -193,11 +198,14 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	}
 
 	public void processSolidMagicFuel() {
-		if (!this.getStackInSlot(slotInput).isEmpty() && isMagicSolidFuel(this.getStackInSlot(slotInput))) {
-			int generate = (int) (8000 * world.rand.nextFloat());
-			if (generate + this.storage <= this.maxStorage) {
-				this.storage = this.storage + generate;
-				this.getStackInSlot(slotInput).shrink(1);
+		if (!this.getStackInSlot(slotInput).isEmpty()) {
+			int energy = getMagicSolidFuelValue(this.getStackInSlot(slotInput));
+			if (energy > 0) {
+				int generate = (int) (energy * world.rand.nextFloat());
+				if (generate + this.storage <= this.maxStorage) {
+					this.storage = this.storage + generate;
+					this.getStackInSlot(slotInput).shrink(1);
+				}
 			}
 		}
 	}
@@ -228,19 +236,17 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	}
 
 	/** Checks for compatible ItemStacks **/
-	public boolean isMagicSolidFuel(ItemStack stack) {
+	public int getMagicSolidFuelValue(ItemStack stack) {
 		if (RECIPE_LIST.getRecipeList().isEmpty()) {
-			return false;
+			return 0;
 		}
 		for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
 			IRecipeInput input = map.getInput(0);
-			if (input instanceof RecipeInputItemStack) {
-				if (input.matches(stack)) {
-					return true;
-				}
+			if (!(input instanceof RecipeInputFluid) && input.matches(stack)) {
+				return map.getOutputs().getMetadata().getInteger("RecipeTime");
 			}
 		}
-		return false;
+		return 0;
 	}
 
 	public FluidStack getContained() {
@@ -339,8 +345,21 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addModRecipe("liquidantimatter"); // AbsyssalCraft
 		addModRecipe("mana_fluid"); // Wizardry
 		addModRecipe("nacre_fluid"); // Wizardry
-		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL));
-		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR));
+		addRecipe(GTMaterialGen.get(Items.NETHER_WART), 60);
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.terraWart), 80);
+		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL), 8000);
+		addRecipe("dustEnderPearl", 8000);
+		addRecipe(GTMaterialGen.get(Items.ENDER_EYE), 10000);
+		addRecipe("dustEnderEye", 10000);
+		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR), 10000);
+		addRecipe(GTMaterialGen.get(Items.END_CRYSTAL), 20000);
+		addRecipe(GTMaterialGen.get(Items.DRAGON_BREATH), 32000);
+		addRecipe(GTMaterialGen.get(Items.NETHER_STAR), 124000);
+		addRecipe(GTMaterialGen.get(Blocks.BEACON), 124000);
+	}
+
+	public static IRecipeModifier[] value(int amount) {
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(amount) };
 	}
 
 	public static void addModRecipe(String name) {
@@ -350,20 +369,28 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		}
 	}
 
-	public static void addRecipe(ItemStack stack) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		inlist.add(new RecipeInputItemStack(stack));
-		outlist.add(GTMaterialGen.get(Items.REDSTONE));
-		addRecipe(inlist, new MachineOutput(null, outlist));
+	public static void addRecipe(Fluid fluid) {
+		addRecipe(new RecipeInputFluid(new FluidStack(fluid, 1000)), value(8000));
 	}
 
-	public static void addRecipe(Fluid fluid) {
+	public static void addRecipe(ItemStack stack, int energy) {
+		addRecipe(new RecipeInputItemStack(stack), value(energy));
+	}
+
+	public static void addRecipe(String stack, int energy) {
+		addRecipe(new RecipeInputOreDict(stack, 1), value(energy));
+	}
+
+	private static void addRecipe(IRecipeInput input, IRecipeModifier[] modifiers) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
-		inlist.add(new RecipeInputFluid(new FluidStack(fluid, 1000)));
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifiers) {
+			modifier.apply(mods);
+		}
+		inlist.add(input);
 		outlist.add(GTMaterialGen.get(Items.REDSTONE));
-		addRecipe(inlist, new MachineOutput(null, outlist));
+		addRecipe(inlist, new MachineOutput(mods, outlist));
 	}
 
 	private static void addRecipe(List<IRecipeInput> input, MachineOutput output) {

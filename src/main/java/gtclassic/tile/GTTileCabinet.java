@@ -20,7 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileCabinet extends TileEntityMachine implements IHasGui , INetworkClientTileEntityEventListener {
+public class GTTileCabinet extends TileEntityMachine implements IHasGui, INetworkClientTileEntityEventListener {
 
 	public GTTileCabinet() {
 		super(54);
@@ -81,6 +81,5 @@ public class GTTileCabinet extends TileEntityMachine implements IHasGui , INetwo
 		if (event == 1) {
 			GTHelperStack.tryCondenseInventory(this, 0, this.inventory.size());
 		}
-		
 	}
 }

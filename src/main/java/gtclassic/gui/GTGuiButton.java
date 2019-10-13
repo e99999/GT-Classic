@@ -6,6 +6,7 @@ import ic2.core.inventory.gui.buttons.IC2Button;
 import net.minecraft.client.Minecraft;
 
 public class GTGuiButton extends IC2Button {
+
 	int width;
 	int height;
 

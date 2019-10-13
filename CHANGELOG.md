@@ -7,7 +7,8 @@
 - Removed Blast Furnace it is now in Trinsdars Mod "GTC Expansion" which focuses on GT2-GT4 content.
 - Removed molten fluids are now/will be in GTC Expansion as well.
 - Removed in world fluid stuff, it was gonna be a pain todo if/when I port forward - it did not spark "joy".
-- Added Electric Craftingtable tile, works with container items - however i am sure there are lingering bugs to squash in this tile.
+- Added more solid fuels with variable amounts to the Magic Energy Converter.
+- Added sorting button to GTC Cabinets since inventory tweaks is not compatible with IC2C inventories.
 - Fixed Creative Scanner loosing power - it now recharges to max the second it returns to a players inventory.
 - Fixed some minor errors and cleaned up unused assets
 - Fixed a naming issue with the super conductor item, might have to recraft some if you had any lying around.

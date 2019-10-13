@@ -38,10 +38,10 @@ public class GTGuiCompBuffer extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiInit(GuiIC2 gui) {
-		gui.registerButton(new GTGuiButton(0, bX(gui, 7), bY(gui, 60), 18, 18));
+		gui.registerButton(new GTGuiButton(0, bX(gui, 7), bY(gui, 60), 18, 20));
 		if (this.tile instanceof GTTileBufferSmall || this.tile instanceof GTTileBufferLarge) {
-			gui.registerButton(new GTGuiButton(1, bX(gui, 25), bY(gui, 60), 18, 18));
-			gui.registerButton(new GTGuiButton(2, bX(gui, 43), bY(gui, 60), 18, 18));
+			gui.registerButton(new GTGuiButton(1, bX(gui, 25), bY(gui, 60), 18, 20));
+			gui.registerButton(new GTGuiButton(2, bX(gui, 43), bY(gui, 60), 18, 20));
 		}
 	}
 

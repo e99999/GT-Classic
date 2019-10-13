@@ -28,8 +28,8 @@ public class GTGuiCompMagicEnergyAbsorber extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiInit(GuiIC2 gui) {
-		gui.registerButton((new GTGuiButton(1, bX(gui, 9), bY(gui, 15), 18, 18))); // xp mode
-		gui.registerButton((new GTGuiButton(2, bX(gui, 9), bY(gui, 33), 18, 18))); // potion mode
+		gui.registerButton((new GTGuiButton(1, bX(gui, 11), bY(gui, 16), 15, 18))); // xp mode
+		gui.registerButton((new GTGuiButton(2, bX(gui, 11), bY(gui, 33), 15, 18))); // potion mode
 	}
 
 	@Override
