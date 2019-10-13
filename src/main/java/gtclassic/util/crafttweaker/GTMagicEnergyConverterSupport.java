@@ -19,8 +19,8 @@ import java.util.Locale;
 public class GTMagicEnergyConverterSupport {
 
 	@ZenMethod
-	public static void addRecipe(IItemStack input, @Optional(valueLong = 8000L) int totalEu) {
-		GTCraftTweakerActions.apply(new MagicEnergyConverterRecipeAction(CraftTweakerMC.getItemStack(input), totalEu));
+	public static void addRecipe(IItemStack input, @Optional(valueLong = 8000L) int totalGeneratedEu) {
+		GTCraftTweakerActions.apply(new MagicEnergyConverterRecipeAction(CraftTweakerMC.getItemStack(input), totalGeneratedEu));
 	}
 
 	@ZenMethod
@@ -32,19 +32,19 @@ public class GTMagicEnergyConverterSupport {
 
 		private final ItemStack itemInput;
 		private final Fluid fluidInput;
-		private final int totalEu;
+		private final int totalGeneratedEu;
 		private boolean fluid;
 
-		MagicEnergyConverterRecipeAction(ItemStack input, int totalEu) {
+		MagicEnergyConverterRecipeAction(ItemStack input, int totalGeneratedEu) {
 			this.itemInput = input;
 			this.fluidInput = null;
-			this.totalEu = totalEu;
+			this.totalGeneratedEu = totalGeneratedEu;
 			this.fluid = false;
 		}
 
 		MagicEnergyConverterRecipeAction(Fluid fluidInput) {
 			this.itemInput = null;
-			this.totalEu = 0;
+			this.totalGeneratedEu = 0;
 			this.fluidInput = fluidInput;
 			this.fluid = true;
 		}
@@ -54,7 +54,7 @@ public class GTMagicEnergyConverterSupport {
 			if (fluid){
 				GTTileMagicEnergyConverter.addRecipe(fluidInput);
 			} else {
-				GTTileMagicEnergyConverter.addRecipe(itemInput);
+				GTTileMagicEnergyConverter.addRecipe(itemInput, totalGeneratedEu);
 			}
 		}
 
@@ -63,7 +63,7 @@ public class GTMagicEnergyConverterSupport {
 			if (fluid) {
 				return String.format(Locale.ENGLISH, "Add Recipe[%s -> %s] to %s", this.fluidInput, 8000, GTTileMagicEnergyConverter.RECIPE_LIST);
 			} else {
-				return String.format(Locale.ENGLISH, "Add Recipe[%s -> %s] to %s", this.itemInput, totalEu, GTTileMagicEnergyConverter.RECIPE_LIST);
+				return String.format(Locale.ENGLISH, "Add Recipe[%s -> %s] to %s", this.itemInput, totalGeneratedEu, GTTileMagicEnergyConverter.RECIPE_LIST);
 			}
 		}
 	}
