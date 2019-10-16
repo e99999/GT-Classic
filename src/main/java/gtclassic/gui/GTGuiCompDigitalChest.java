@@ -11,17 +11,13 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTGuiCompSort extends GuiComponent {
+public class GTGuiCompDigitalChest extends GuiComponent {
 
 	TileEntityMachine block;
-	int x;
-	int y;
 
-	public GTGuiCompSort(TileEntityMachine tile, int x, int y) {
+	public GTGuiCompDigitalChest(TileEntityMachine tile) {
 		super(Ic2GuiComp.nullBox);
 		this.block = tile;
-		this.x = x;
-		this.y = y;
 	}
 
 	@Override
@@ -32,14 +28,22 @@ public class GTGuiCompSort extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiInit(GuiIC2 gui) {
-		gui.registerButton((new GTGuiButton(1, bX(gui, x), bY(gui, y), 18, 20)));
+		gui.registerButton((new GTGuiButton(0, bX(gui, 7), bY(gui, 116), 18, 20)));
+		gui.registerButton((new GTGuiButton(1, bX(gui, 25), bY(gui, 116), 18, 20)));
+		gui.registerButton((new GTGuiButton(2, bX(gui, 43), bY(gui, 116), 18, 20)));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onButtonClick(GuiIC2 gui, GuiButton button) {
+		if (button.id == 0) {
+			this.block.getNetwork().initiateClientTileEntityEvent(this.block, 0);
+		}
 		if (button.id == 1) {
 			this.block.getNetwork().initiateClientTileEntityEvent(this.block, 1);
+		}
+		if (button.id == 2) {
+			this.block.getNetwork().initiateClientTileEntityEvent(this.block, 2);
 		}
 	}
 

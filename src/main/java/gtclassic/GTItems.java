@@ -7,6 +7,7 @@ import gtclassic.fluid.GTFluidTube;
 import gtclassic.item.GTItemCloakingDevice;
 import gtclassic.item.GTItemComponent;
 import gtclassic.item.GTItemCreativeScanner;
+import gtclassic.item.GTItemDataOrbStorage;
 import gtclassic.item.GTItemDestructoPack;
 import gtclassic.item.GTItemDuctTape;
 import gtclassic.item.GTItemEchotron;
@@ -53,6 +54,7 @@ public class GTItems {
 	public static GTItemComponent chipData;
 	public static GTItemComponent superConductor;
 	public static GTItemComponent orbData;
+	public static GTItemDataOrbStorage orbDataStorage;
 	public static GTItemMortar flintMortar;
 	public static GTItemMortar ironMortar;
 	public static GTItemDuctTape ductTape;
@@ -90,6 +92,7 @@ public class GTItems {
 		chipData = createItem(new GTItemComponent("data_chip", 9, 0));
 		superConductor = createItem(new GTItemComponent("superconductor", 10, 0));
 		orbData = createItem(new GTItemComponent("data_orb", 11, 0));
+		orbDataStorage = createItem(new GTItemDataOrbStorage());
 		flintMortar = createItem(new GTItemMortar("flint_mortar", 1, 2, 3));
 		ironMortar = createItem(new GTItemMortar("iron_mortar", 2, 2, 95));
 		ductTape = createItem(new GTItemDuctTape());

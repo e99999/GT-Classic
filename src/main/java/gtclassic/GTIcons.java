@@ -30,6 +30,7 @@ public class GTIcons {
 			addCustomTexture("fusioncomputer", 0, 7, location("fusion_top"));
 			addCustomTexture("quantumchest", 0, 3, location("qchest_front"));
 			addCustomTexture("quantumtank", 0, 1, location("qtank_top"));
+			addCustomTexture("digitalchest", 0, 1, location("digichest_top"));
 			addCustomTexture("industrialcentrifuge", 0, 7, location("centrifuge_top"));
 			addCustomTexture("industrialcentrifuge", 0, 8, location("centrifuge_back"));
 			addCustomTexture("industrialcentrifuge", 0, 9, location("centrifuge_front"));

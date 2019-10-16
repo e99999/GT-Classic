@@ -1,29 +1,33 @@
 package gtclassic.container;
 
 import gtclassic.GTMod;
-import gtclassic.gui.GTGuiCompSort;
-import gtclassic.tile.GTTileCabinet;
+import gtclassic.gui.GTGuiCompDigitalChest;
+import gtclassic.tile.GTTileDigitalChest;
+import gtclassic.util.GTFilterDigitalChest;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
+import ic2.core.inventory.slots.SlotCustom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerCabinet extends ContainerTileComponent<GTTileCabinet> {
+public class GTContainerDigitalChest extends ContainerTileComponent<GTTileDigitalChest> {
 
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/cabinet.png");
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/digitalchest.png");
 
-	public GTContainerCabinet(InventoryPlayer player, GTTileCabinet tile) {
+	public GTContainerDigitalChest(InventoryPlayer player, GTTileDigitalChest tile) {
 		super(tile);
 		for (int y = 0; y < 6; ++y) {
 			for (int x = 0; x < 9; ++x) {
-				this.addSlotToContainer(new SlotBase(tile, x + y * 9, 8 + x * 18, 8 + y * 18));
+				this.addSlotToContainer(new SlotCustom(tile, x + y * 9, 8 + x * 18, 8
+						+ y * 18, new GTFilterDigitalChest()));
 			}
 		}
-		this.addComponent(new GTGuiCompSort(tile, 7, 116));
+		this.addSlotToContainer(new SlotBase(tile, 54, 80, 119));
+		this.addComponent(new GTGuiCompDigitalChest(tile));
 		this.addPlayerInventory(player, 0, 56);
 	}
 
@@ -47,6 +51,6 @@ public class GTContainerCabinet extends ContainerTileComponent<GTTileCabinet> {
 
 	@Override
 	public int guiInventorySize() {
-		return 54;
+		return 55;
 	}
 }

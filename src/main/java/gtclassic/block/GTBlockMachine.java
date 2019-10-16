@@ -12,6 +12,7 @@ import gtclassic.tile.GTTileCabinet;
 import gtclassic.tile.GTTileCentrifuge;
 import gtclassic.tile.GTTileChargeOMat;
 import gtclassic.tile.GTTileComputerCube;
+import gtclassic.tile.GTTileDigitalChest;
 import gtclassic.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.tile.GTTileEchotron;
 import gtclassic.tile.GTTileMagicEnergyAbsorber;
@@ -147,6 +148,9 @@ public class GTBlockMachine extends GTBlockMultiID {
 		}
 		if (this == GTBlocks.tileWorktable) {
 			return new GTTileWorktable();
+		}
+		if (this == GTBlocks.tileDigitalChest) {
+			return new GTTileDigitalChest();
 		}
 		if (this == GTBlocks.tileCabinet) {
 			return new GTTileCabinet();

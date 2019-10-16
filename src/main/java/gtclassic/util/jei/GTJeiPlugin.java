@@ -3,6 +3,7 @@ package gtclassic.util.jei;
 import javax.annotation.Nonnull;
 
 import gtclassic.GTBlocks;
+import gtclassic.GTItems;
 import gtclassic.container.GTContainerWorktable;
 import gtclassic.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.gui.GTGuiMachine.GTMatterFabricatorGui;
@@ -60,6 +61,7 @@ public class GTJeiPlugin implements IModPlugin {
 			// Blacklist
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
+			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTItems.orbDataStorage));
 		}
 	}
 

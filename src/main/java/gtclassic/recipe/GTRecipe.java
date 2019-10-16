@@ -56,7 +56,8 @@ public class GTRecipe {
 	static IRecipeInput ingotHigh = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotTungsten"), new RecipeInputOreDict("ingotTitanium") });
 	static IRecipeInput ingotDigital = new RecipeInputCombined(1, new IRecipeInput[] {
-			new RecipeInputOreDict("ingotChrome"), new RecipeInputOreDict("ingotTitanium") });
+			new RecipeInputOreDict("ingotChrome"), new RecipeInputOreDict("ingotTitanium"),
+			new RecipeInputOreDict("ingotPlatinum") });
 	static IRecipeInput batteryAdvanced = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputItemStack(Ic2Items.energyCrystal.copy()),
 			new RecipeInputItemStack(GTMaterialGen.get(GTItems.lithiumBattery)) });
@@ -70,6 +71,10 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.lightHelment, 1), Ic2Items.solarHelmet.copy(), Ic2Items.luminator.copy(), Ic2Items.battery.copy());
 		/** Electrum Dust **/
 		recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Electrum, 2), "dustSilver", "dustGold");
+		/** Methane **/
+		recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.Methane, 4), GTMaterialGen.getDust(GTMaterial.Carbon, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1));
+		/** Gunpowder **/
+		recipes.addShapelessRecipe(GTMaterialGen.get(Items.GUNPOWDER, 5), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 	}
 
 	public static void initItems() {
@@ -226,6 +231,9 @@ public class GTRecipe {
 		/** Energy Storage **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAESU), new Object[] { "OOO", "OCO", "OOO", 'O',
 				"batteryUltimate", 'C', GTBlocks.tileComputer });
+		/** Digital Chest **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitalChest, 1), new Object[] { "ICI", "MDM", "ICI", 'D',
+				GTBlocks.tileComputer, 'I', ingotDigital, 'C', Items.SHULKER_SHELL, 'M', GTItems.chipData });
 		/** Quantum Chest **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), new Object[] { "ICI", "MDM", "ICI", 'D',
 				"circuitUltimate", 'I', ingotDigital, 'C', "chestWood", 'M', "machineBlockAdvanced" });

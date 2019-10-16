@@ -1,0 +1,21 @@
+# Todo
+- Finish Electric Craftingtable tile
+- Try to fix unidict breaking the mortar
+- Mabye, if check trins mod before i add things to vanilla smelting that would be removed
+- Configurable harder jetpack recipe gated by the end
+- Sluice with meduris? If so then mortar block as well.
+- Figure out Fusion outputs power stuff
+- That one probe compat for quantum chest/tank contents and eu stored in machines if reader is present
+- LESU inputs power thru all casings
+- Multiplayer support for Basic Worktable
+- Look at forge universal bucket for overlaying liquid texture over the test tube
+- Mabye bring back the crafting tablet now that you know how to save the nbt
+- Make fluid tube burnable tooltip and arraylist trins can add too
+- Add config option to show all fluid tubes vs just gtc ones
+- Redo scanner to use interfaces not tiles
+- Check how many mods use ingotChromium and do compat for that like iron, aluminium.
+- Telsa staff should do more damage
+- Fix surrounding players not hearing spring boots
+- Come up with uses for Calcium, Nitrogen, Potassium, Chlorine.
+- Extractor recipes for getting empty tubes
+- Do GT1 nuke recipe if its enabled
