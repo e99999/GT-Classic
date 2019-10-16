@@ -1,10 +1,10 @@
 # GT-Classic
 ![alt text](https://cdn.discordapp.com/attachments/443994226003279874/586981401404899379/splash.png)
 # About 
-GregTech Classic is a GT1 inspired rewrite for IC2 Classic 1.12.2 /Join the discussion in Bear989's GT Help Discord https://discord.gg/W7CPXE8
+GregTech Classic is a GT1 inspired rewrite for IC2 Classic 1.12.2. Join the discussion on Greg's forum https://forum.gregtech.overminddl1.com/t/gregtech-classic-for-1-12-2/973
 
 # Download
-Alpha downloads are available on curse now! https://minecraft.curseforge.com/projects/gregtech-classic 
+Downloads are available on curse! https://minecraft.curseforge.com/projects/gregtech-classic 
 
 # Current State
 If you followed this project previously, you might be aware there was a more GT5/GT6 verison of this mod in the works. However due to various other GT projects in progress - I would like to contribute those ideas elsewhere rather than constructing a mod like that from scratch myself. This project will remain a fun and easy going GT1 style addon for IC2C. Thanks for understanding.
