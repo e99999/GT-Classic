@@ -2,10 +2,12 @@ package gtclassic.util.crafttweaker;
 
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import gtclassic.tile.GTTileMagicEnergyConverter;
+import ic2.api.recipe.IRecipeInput;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import stanhebben.zenscript.annotations.Optional;
@@ -19,8 +21,8 @@ import java.util.Locale;
 public class GTMagicEnergyConverterSupport {
 
 	@ZenMethod
-	public static void addRecipe(IItemStack input, @Optional(valueLong = 8000L) int totalGeneratedEu) {
-		GTCraftTweakerActions.apply(new MagicEnergyConverterRecipeAction(CraftTweakerMC.getItemStack(input), totalGeneratedEu));
+	public static void addRecipe(IIngredient input, @Optional(valueLong = 8000L) int totalGeneratedEu) {
+		GTCraftTweakerActions.apply(new MagicEnergyConverterRecipeAction(GTCraftTweakerActions.of(input), totalGeneratedEu));
 	}
 
 	@ZenMethod
@@ -30,12 +32,12 @@ public class GTMagicEnergyConverterSupport {
 
 	private static final class MagicEnergyConverterRecipeAction implements IAction {
 
-		private final ItemStack itemInput;
+		private final IRecipeInput itemInput;
 		private final Fluid fluidInput;
 		private final int totalGeneratedEu;
 		private boolean fluid;
 
-		MagicEnergyConverterRecipeAction(ItemStack input, int totalGeneratedEu) {
+		MagicEnergyConverterRecipeAction(IRecipeInput input, int totalGeneratedEu) {
 			this.itemInput = input;
 			this.fluidInput = null;
 			this.totalGeneratedEu = totalGeneratedEu;
