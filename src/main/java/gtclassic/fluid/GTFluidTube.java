@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import gtclassic.GTFluids;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
@@ -103,9 +104,7 @@ public class GTFluidTube extends Item
 	public Boolean isFluidBurnable(ItemStack stack) {
 		FluidStack fluid = FluidUtil.getFluidContained(stack);
 		if (fluid != null) {
-			return fluid.getFluid().getName().equalsIgnoreCase("hydrogen")
-					|| fluid.getFluid().getName().equalsIgnoreCase("methane")
-					|| fluid.getFluid().getName().equalsIgnoreCase("sodium");
+			return GTFluids.burnableFluids.contains(fluid.getFluid().getName());
 		}
 		return false;
 	}
