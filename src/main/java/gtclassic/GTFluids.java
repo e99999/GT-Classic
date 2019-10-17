@@ -12,11 +12,14 @@ import java.util.List;
 public class GTFluids {
 
 	public static List<String> burnableFluids = new ArrayList<>();
+	public static List<GTMaterialFlag> fluidFlags = new ArrayList<>();
 
 	public static void registerFluids() {
 		burnableFluids.add("hydrogen");
 		burnableFluids.add("methane");
 		burnableFluids.add("sodium");
+		fluidFlags.add(GTMaterialFlag.FLUID);
+		fluidFlags.add(GTMaterialFlag.GAS);
 		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.hasFlag(GTMaterialFlag.GAS)) {
 				GTMod.debugLogger("Generating GregTech gas: " + mat.getDisplayName());

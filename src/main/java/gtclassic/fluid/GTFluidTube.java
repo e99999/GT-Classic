@@ -121,11 +121,10 @@ public class GTFluidTube extends Item
 			subItems.add(GTMaterialGen.getWater(1));
 			subItems.add(GTMaterialGen.getLava(1));
 			for (GTMaterial mat : GTMaterial.values()) {
-				if (mat.hasFlag(GTMaterialFlag.FLUID)) {
-					subItems.add(GTMaterialGen.getTube(mat, 1));
-				}
-				if (mat.hasFlag(GTMaterialFlag.GAS)) {
-					subItems.add(GTMaterialGen.getTube(mat, 1));
+				for (GTMaterialFlag flag : GTFluids.fluidFlags){
+					if (mat.hasFlag(flag)){
+						subItems.add(GTMaterialGen.getTube(mat, 1));
+					}
 				}
 			}
 		}
