@@ -45,9 +45,6 @@ public class GTRecipe {
 			new RecipeInputOreDict("gemSapphire"), new RecipeInputItemStack(Ic2Items.energyCrystal.copy()) });
 	static IRecipeInput anyLapis = new RecipeInputCombined(1, new IRecipeInput[] { new RecipeInputOreDict("gemLapis"),
 			new RecipeInputOreDict("dustLazurite"), new RecipeInputOreDict("dustSodalite") });
-	static IRecipeInput anyConductor = new RecipeInputCombined(1, new IRecipeInput[] {
-			new RecipeInputOreDict("dustRedstone"), new RecipeInputOreDict("ingotSilver"),
-			new RecipeInputOreDict("ingotElectrum") });
 	static IRecipeInput ingotSilver = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotElectrum") });
 	static IRecipeInput anyPiston = new RecipeInputCombined(1, new IRecipeInput[] {
@@ -61,6 +58,8 @@ public class GTRecipe {
 	static IRecipeInput batteryAdvanced = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputItemStack(Ic2Items.energyCrystal.copy()),
 			new RecipeInputItemStack(GTMaterialGen.get(GTItems.lithiumBattery)) });
+	static IRecipeInput circuitBasicX2 = new RecipeInputCombined(2, new IRecipeInput[] {
+			new RecipeInputOreDict("circuitBasic") });
 
 	public static void initShapeless() {
 		/** Duct Tape **/
@@ -369,8 +368,10 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CIC", "CIC", "CIC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
 		}
 		if (GTConfig.addAdvCircuitRecipes) {
-			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RGR", "LCL", "RGR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
-			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RLR", "GCG", "RLR", 'R', anyConductor, 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
+			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RGR", "LCL", "RGR", 'R', "dustRedstone", 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
+			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RLR", "GCG", "RLR", 'R', "dustRedstone", 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
+			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 2), "RGR", "LCL", "RGR", 'R', ingotSilver, 'G', "dustGlowstone", 'C', circuitBasicX2, 'L', anyLapis);
+			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 2), "RLR", "GCG", "RLR", 'R', ingotSilver, 'G', "dustGlowstone", 'C', circuitBasicX2, 'L', anyLapis);
 		}
 		/** Harder Plasma Core Recipe **/
 		// recipes.overrideRecipe("shaped_item.itemPlasmaCore_-1985082214",Ic2Items.plasmaCore.copy(),
@@ -454,6 +455,9 @@ public class GTRecipe {
 				"craftingToolDuctTape" });
 		recipes.addShapelessRecipe(Ic2Items.tribbleInsulatedIronCable, new Object[] {
 				Ic2Items.doubleInsulatedIronCable.copy(), "craftingToolDuctTape" });
+		if (IC2.config.getFlag("CraftingNuke")) {
+			recipes.overrideRecipe("shaped_tile.blockNuke_-814805840", GTMaterialGen.getIc2(Ic2Items.nuke, 1), "CUC", "RPR", "CUC", 'C', "circuitAdvanced", 'U', Ic2Items.reactorReEnrichedUraniumRod.copy(), 'P', GTItems.rodPlutonium1, 'R', Ic2Items.reactorReflectorThick.copy());
+		}
 		/** UU-Matter Recipes **/
 		if (GTConfig.gregtechUURecipes) {
 			recipes.overrideRecipe("shaped_item.emerald_981588030", GTMaterialGen.get(Items.EMERALD), new Object[] {

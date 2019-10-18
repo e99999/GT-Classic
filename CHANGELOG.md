@@ -14,7 +14,9 @@
 - Fixed Creative Scanner loosing power - it now recharges to max the second it returns to a players inventory.
 - Fixed some minor errors and cleaned up unused assets
 - Fixed a naming issue with the super conductor item, might have to recraft some if you had any lying around.
+- Fixed adv circuts recipes eating tons of metal with no added benefit, now you can get 2x adv circuits.
 - Added config option to show all possible fluids as GTC tubes instead of just GTC based fluids.
+- Added GT1 recipe for Ic2c nuke if the nuke is enabled in ic2c configs.
 
 # 1.04
 - WARNING! In the next version (1.0.5) the Blast Furnace will become part of GTC Expansion (by Trinsdar)
