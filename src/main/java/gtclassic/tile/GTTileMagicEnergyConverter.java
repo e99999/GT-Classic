@@ -381,6 +381,10 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addRecipe(new RecipeInputOreDict(stack, 1), value(energy));
 	}
 
+	public static void addRecipe(IRecipeInput input, int energy) {
+		addRecipe(input, value(energy));
+	}
+
 	private static void addRecipe(IRecipeInput input, IRecipeModifier[] modifiers) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();

@@ -1,5 +1,5 @@
 # Changelog
-#1.06 (Not Released)
+# 1.06 (Not Released)
 - Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
 
 # 1.05 (Not Released)
@@ -10,6 +10,7 @@
 - Added a "Digital Chest" however instead of being a small Qchest, it is now a double chest that can store/load its inventory with data orbs.
 - Added sorting button to GTC Cabinets since inventory tweaks is not compatible with IC2C inventories.
 - Added more solid fuels with variable amounts to the Magic Energy Converter.
+- Added CT support for UUM-Assembler and Magic Energy Converter thanks to Trinsdar.
 - Fixed Creative Scanner loosing power - it now recharges to max the second it returns to a players inventory.
 - Fixed some minor errors and cleaned up unused assets
 - Fixed a naming issue with the super conductor item, might have to recraft some if you had any lying around.

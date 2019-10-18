@@ -1,20 +1,18 @@
 package gtclassic.util.crafttweaker;
 
+import java.util.Locale;
+
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
-import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.liquid.ILiquidStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import gtclassic.tile.GTTileMagicEnergyConverter;
 import ic2.api.recipe.IRecipeInput;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-
-import java.util.Locale;
 
 @ZenClass("mods.gtclassic.MagicEnergyConverter")
 @ZenRegister
@@ -53,7 +51,7 @@ public class GTMagicEnergyConverterSupport {
 
 		@Override
 		public void apply() {
-			if (fluid){
+			if (fluid) {
 				GTTileMagicEnergyConverter.addRecipe(fluidInput);
 			} else {
 				GTTileMagicEnergyConverter.addRecipe(itemInput, totalGeneratedEu);
