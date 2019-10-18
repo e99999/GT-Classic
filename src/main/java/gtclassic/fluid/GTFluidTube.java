@@ -191,7 +191,7 @@ public class GTFluidTube extends Item
 		}
 		if (fluid != null && index == 1 && fluid.getFluid() instanceof GTFluid) {
 			GTFluid gtFluid = (GTFluid) fluid.getFluid();
-			return gtFluid.getGTMaterial().getColor();
+			return Color.getColor("", gtFluid.getColor());
 		}
 		return Color.white;
 	}
