@@ -93,6 +93,7 @@ public class GTMod {
 	public void postInit(FMLPostInitializationEvent e) {
 		proxy.postInit(e);
 		MultiBlockHelper.INSTANCE.init();
+		GTFluids.postInitProperities();
 		GTRecipeIterators.postInit();
 		GTTileMatterFabricator.postInit();
 		GTTileMultiFusionReactor.postInit();

@@ -7,11 +7,12 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import gtclassic.GTConfig;
+import gtclassic.GTFluids;
 import gtclassic.GTItems;
 import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
 import gtclassic.material.GTMaterialGen;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IAdvancedTexturedItem;
@@ -103,9 +104,7 @@ public class GTFluidTube extends Item
 	public Boolean isFluidBurnable(ItemStack stack) {
 		FluidStack fluid = FluidUtil.getFluidContained(stack);
 		if (fluid != null) {
-			return fluid.getFluid().getName().equalsIgnoreCase("hydrogen")
-					|| fluid.getFluid().getName().equalsIgnoreCase("methane")
-					|| fluid.getFluid().getName().equalsIgnoreCase("sodium");
+			return (GTFluids.burnableTooltip.contains(fluid.getFluid().getName()));
 		}
 		return false;
 	}
@@ -121,12 +120,15 @@ public class GTFluidTube extends Item
 			subItems.add(empty);
 			subItems.add(GTMaterialGen.getWater(1));
 			subItems.add(GTMaterialGen.getLava(1));
-			for (GTMaterial mat : GTMaterial.values()) {
-				if (mat.hasFlag(GTMaterialFlag.FLUID)) {
-					subItems.add(GTMaterialGen.getTube(mat, 1));
-				}
-				if (mat.hasFlag(GTMaterialFlag.GAS)) {
-					subItems.add(GTMaterialGen.getTube(mat, 1));
+			for (Fluid fluid : FluidRegistry.getRegisteredFluids().values()) {
+				if (!GTConfig.displayAllFluidTubes) {
+					if (fluid instanceof GTFluid) {
+						subItems.add(GTMaterialGen.getModdedTube(fluid.getName(), 1));
+					}
+				} else {
+					if (fluid.getName() != "water" && fluid.getName() != "lava") {
+						subItems.add(GTMaterialGen.getModdedTube(fluid.getName(), 1));
+					}
 				}
 			}
 		}

@@ -10,8 +10,6 @@
 - Multiplayer support for Basic Worktable
 - Look at forge universal bucket for overlaying liquid texture over the test tube
 - Mabye bring back the crafting tablet now that you know how to save the nbt
-- Make fluid tube burnable tooltip and arraylist trins can add too
-- Add config option to show all fluid tubes vs just gtc ones
 - Redo scanner to use interfaces not tiles
 - Check how many mods use ingotChromium and do compat for that like iron, aluminium.
 - Telsa staff should do more damage

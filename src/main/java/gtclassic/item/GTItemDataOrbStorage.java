@@ -8,6 +8,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -29,9 +30,15 @@ public class GTItemDataOrbStorage extends GTItemComponent {
 			return;
 		}
 		for (int i = 0; i < list.tagCount(); ++i) {
-			NBTTagCompound data = list.getCompoundTagAt(i);
-			ItemStack contained = new ItemStack(data);
-			tooltip.add(I18n.format(contained.getDisplayName() + " x" + contained.getCount()));
+			if (i < 5) {
+				NBTTagCompound data = list.getCompoundTagAt(i);
+				ItemStack contained = new ItemStack(data);
+				tooltip.add(I18n.format(contained.getDisplayName() + " x" + contained.getCount()));
+			}
+		}
+		int remaining = list.tagCount() - 5;
+		if (remaining > 0) {
+			tooltip.add(TextFormatting.ITALIC + I18n.format("and " + remaining + " more..."));
 		}
 	}
 

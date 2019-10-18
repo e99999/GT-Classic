@@ -30,6 +30,7 @@ public class GTConfig {
 	public static boolean replaceOceanGravelWithSand = true;
 	public static boolean caveZombiesSpawnWithPickaxe = true;
 	public static boolean generateUUMAssemblerRecipes = true;
+	public static boolean displayAllFluidTubes = false;
 	// generation
 	public static boolean iridiumGenerate = true;
 	public static int iridiumSize = 3;
@@ -93,6 +94,7 @@ public class GTConfig {
 		replaceOceanGravelWithSand = cfg.getBoolean("replaceOceanGravelWithSand", CATEGORY_CONFIG, replaceOceanGravelWithSand, "Replaces most gravel in oceans with sand");
 		caveZombiesSpawnWithPickaxe = cfg.getBoolean("caveZombiesSpawnWithPickaxe", CATEGORY_CONFIG, caveZombiesSpawnWithPickaxe, "Zombies spawned in deep caves have a chance of wielding a pickaxe");
 		generateUUMAssemblerRecipes = cfg.getBoolean("generateUUMAssemblerRecipes", CATEGORY_CONFIG, generateUUMAssemblerRecipes, "Automatically adds basic IC2/GT UU Recipes to the UUM-Assembler");
+		displayAllFluidTubes = cfg.getBoolean("displayAllFluidTubes", CATEGORY_CONFIG, displayAllFluidTubes, "Enables all fluids to be shown in Glass tubes instead of just GT based fluids");
 	}
 
 	private static void initGenerationConfig(Configuration cfg) {
