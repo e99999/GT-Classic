@@ -83,7 +83,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	public final boolean supportsUpgrades;
 	public final int upgradeSlots;
 	public AudioSource audioSource;
-	LinkedList<IStackOutput> outputs = new LinkedList<>();
+	protected LinkedList<IStackOutput> outputs = new LinkedList<>();
 
 	public GTTileBaseMachine(int slots, int upgrades, int energyPerTick, int maxProgress, int maxinput) {
 		super(slots + upgrades, maxinput);

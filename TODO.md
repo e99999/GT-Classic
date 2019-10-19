@@ -16,4 +16,3 @@
 - Fix surrounding players not hearing spring boots
 - Come up with uses for Calcium, Nitrogen, Potassium, Chlorine.
 - Extractor recipes for getting empty tubes
-- Do GT1 nuke recipe if its enabled
