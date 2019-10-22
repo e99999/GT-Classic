@@ -3,7 +3,6 @@ package gtclassic.tile.multi;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import gtclassic.GTBlocks;
@@ -17,12 +16,16 @@ import gtclassic.util.GTLang;
 import gtclassic.util.int3;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
+import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyEmitter;
+import ic2.api.energy.tile.IEnergySource;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
+import ic2.core.block.base.util.info.misc.IEmitterTile;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.filters.MachineFilter;
@@ -39,9 +42,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 
-public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
+public class GTTileMultiFusionReactor extends GTTileMultiBaseMachineSimple implements IEnergySource, IEmitterTile {
 
 	public static final int slotInput0 = 0;
 	public static final int slotInput1 = 1;
@@ -51,6 +53,8 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusionreactor.png");
 	public String status;
 	IBlockState coilState = GTBlocks.casingFusion.getDefaultState();
+	@NetworkField(index = 13)
+	public int energyOut = 0;
 
 	public GTTileMultiFusionReactor() {
 		super(3, 0, 8192, 8192);
@@ -87,12 +91,14 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.status = nbt.getString("status");
+		this.energyOut = nbt.getInteger("energyOut");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setString("status", this.status);
+		nbt.setInteger("energyOut", this.energyOut);
 		return nbt;
 	}
 
@@ -142,32 +148,32 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 
 	@Override
 	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing side) {
-		return false;
+		return side != this.getFacing() && side != this.getFacing().getOpposite();
 	}
 
-//	@Override
-//	public boolean addToInventory() {
-//		if (!this.getOutputs().isEmpty()
-//				&& GTHelperStack.isEqual(GTMaterialGen.getTube(GTMaterial.Helium, 1), this.getOutputs().get(0).getStack())) {
-//			TileEntity nTile = world.getTileEntity(new int3(getPos(), getFacing()).forward(1).asBlockPos());
-//			if (nTile instanceof GTTileSupercondensator) {
-//				((GTTileSupercondensator) nTile).doFusionHeliumThings();
-//				return super.addToInventory();
-//			}
-//			TileEntity sTile = world.getTileEntity(new int3(getPos(), getFacing()).back(1).asBlockPos());
-//			if (sTile instanceof GTTileSupercondensator) {
-//				((GTTileSupercondensator) nTile).doFusionHeliumThings();
-//				return super.addToInventory();
-//			}
-//		}
-//		return super.addToInventory();
-//	}
+	@Override
+	public void onRecipeComplete() {
+		if (this.lastRecipe != null) {
+			int recipePower = lastRecipe.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
+			int recipeFraction = ((recipePower * lastRecipe.getMachineEu()) / 20) / 2;
+			int recipeFinal = (int) (recipeFraction + (recipeFraction * this.getWorld().rand.nextFloat()));
+			GTMod.logger.info("Fusion Reactor Tried to Produce:" + recipeFinal);
+			if (this.energyOut + recipeFinal >= 134217728) {
+				this.energyOut = 134217728;
+			} else {
+				this.energyOut = this.energyOut + recipeFinal;
+			}
+		}
+	}
+
 	public static void postInit() {
 		/** Just regular recipes added manually **/
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
 				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getTube(GTMaterial.Deuterium, 1)),
 				input(GTMaterialGen.getTube(GTMaterial.Tritium, 1)) }, totalEu(40000000), GTMaterialGen.getTube(GTMaterial.Helium, 1));
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getTube(GTMaterial.Deuterium, 1)),
+				input(GTMaterialGen.getTube(GTMaterial.Helium3, 1)) }, totalEu(40000000), GTMaterialGen.getTube(GTMaterial.Helium, 1));
 		/** This iterates the element objects to create all Fusion recipes **/
 		Set<Integer> usedInputs = new HashSet<>();
 		for (GTMaterialElement sum : GTMaterialElement.getElementList()) {
@@ -215,43 +221,6 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 	}
 
 	@Override
-	public Map<BlockPos, IBlockState> provideStructure() {
-		Map<BlockPos, IBlockState> states = super.provideStructure();
-		int3 dir = new int3(getPos(), getFacing());
-		// first line
-		states.put(dir.forward(3).asBlockPos(), coilState);
-		states.put(dir.right(1).asBlockPos(), coilState);
-		states.put(dir.back(1).asBlockPos(), coilState);
-		states.put(dir.right(1).asBlockPos(), coilState);
-		// second line
-		states.put(dir.back(1).asBlockPos(), coilState);
-		states.put(dir.right(1).asBlockPos(), coilState);
-		states.put(dir.back(1).asBlockPos(), coilState);
-		states.put(dir.back(1).asBlockPos(), coilState);
-		// third line
-		states.put(dir.left(1).asBlockPos(), coilState);
-		states.put(dir.back(1).asBlockPos(), coilState);
-		states.put(dir.left(1).asBlockPos(), coilState);
-		states.put(dir.back(1).asBlockPos(), coilState);
-		// fourth line
-		states.put(dir.left(1).asBlockPos(), coilState);
-		states.put(dir.left(1).asBlockPos(), coilState);
-		states.put(dir.forward(1).asBlockPos(), coilState);
-		states.put(dir.left(1).asBlockPos(), coilState);
-		// fifth
-		states.put(dir.forward(1).asBlockPos(), coilState);
-		states.put(dir.left(1).asBlockPos(), coilState);
-		states.put(dir.forward(1).asBlockPos(), coilState);
-		states.put(dir.forward(1).asBlockPos(), coilState);
-		// sixth
-		states.put(dir.right(1).asBlockPos(), coilState);
-		states.put(dir.forward(1).asBlockPos(), coilState);
-		states.put(dir.right(1).asBlockPos(), coilState);
-		states.put(dir.forward(1).asBlockPos(), coilState);
-		return states;
-	}
-
-	@Override
 	public boolean checkStructure() {
 		int3 dir = new int3(getPos(), getFacing());
 		// first line
@@ -277,5 +246,30 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine {
 
 	public boolean isCoil(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == coilState;
+	}
+
+	@Override
+	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing side) {
+		return side == this.getFacing() || side == this.getFacing().getOpposite();
+	}
+
+	@Override
+	public int getOutput() {
+		return 134217728;
+	}
+
+	@Override
+	public double getOfferedEnergy() {
+		return (double) this.energyOut;
+	}
+
+	@Override
+	public void drawEnergy(double amount) {
+		this.energyOut = (int) ((double) this.energyOut - amount);
+	}
+
+	@Override
+	public int getSourceTier() {
+		return 12;
 	}
 }

@@ -159,6 +159,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		MachineOutput output = recipe.getOutputs().copy();
 		for (ItemStack stack : output.getRecipeOutput(getWorld().rand, getTileData())) {
 			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
+			onRecipeComplete();
 		}
 		NBTTagCompound nbt = recipe.getOutputs().getMetadata();
 		boolean shiftContainers = nbt == null ? false : nbt.getBoolean(MOVE_CONTAINER_TAG);
@@ -215,6 +216,9 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 			}
 		}
 		shouldCheckRecipe = true;
+	}
+
+	public void onRecipeComplete() {
 	}
 
 	public boolean addToInventory() {

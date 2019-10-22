@@ -36,6 +36,7 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
+		int extraHeight = 0;
 		FontRenderer font = minecraft.fontRenderer;
 		font.drawString("Ticks: " + getEntryTicks(multiRecipe.getOutputs()), 0, 40, Color.black.getRGB());
 		font.drawString("Seconds: " + getEntryTicks(multiRecipe.getOutputs()) / 20.0F, 0, 50, Color.black.getRGB());
@@ -44,12 +45,13 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 		font.drawString("Usage: " + multiRecipe.getMachineEu() + " EU/t", 0, 70, Color.black.getRGB());
 		font.drawString("Cost: " + getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu()
 				+ " EU", 0, 80, Color.black.getRGB());
-//		if (multiRecipe.getMachineEu() == 8192
-//				&& GTHelperStack.isEqual(GTMaterialGen.getTube(GTMaterial.Helium, 1), multiRecipe.getOutputs().getAllOutputs().get(0))) {
-//			font.drawString("Outputs: 1048576 EU", 0, 90, Color.black.getRGB());
-//		}
+		if (multiRecipe.getMachineEu() == 8192) {
+			extraHeight = 10;
+			font.drawString("Output: " + (getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu() / 20)
+					+ " EU Possible", 0, 90, Color.black.getRGB());
+		}
 		if (GTConfig.debugMode) {
-			font.drawString("Recipe Id: " + multiRecipe.getRecipeID(), 0, 90, Color.black.getRGB());
+			font.drawString("Recipe Id: " + multiRecipe.getRecipeID(), 0, 90 + extraHeight, Color.black.getRGB());
 		}
 	}
 

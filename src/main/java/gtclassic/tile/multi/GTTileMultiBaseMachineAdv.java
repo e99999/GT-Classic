@@ -18,7 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 
-public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implements IMetaDelegate {
+public abstract class GTTileMultiBaseMachineAdv extends GTTileBaseMachine implements IMetaDelegate {
 
 	public boolean lastState;
 	public boolean firstCheck = true;
@@ -32,7 +32,7 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	 * @param defaultinput - int default energy input
 	 * @param maxinput     - int maximum energy input
 	 */
-	public GTTileMultiBaseMachine(int slots, int upgrades, int defaultinput, int maxinput) {
+	public GTTileMultiBaseMachineAdv(int slots, int upgrades, int defaultinput, int maxinput) {
 		super(slots, upgrades, defaultinput, 100, maxinput);
 	}
 

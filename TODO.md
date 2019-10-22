@@ -4,9 +4,8 @@
 - Mabye, if check trins mod before i add things to vanilla smelting that would be removed
 - Configurable harder jetpack recipe gated by the end
 - Sluice with meduris? If so then mortar block as well.
-- Figure out Fusion outputs power stuff
 - That one probe compat for quantum chest/tank contents and eu stored in machines if reader is present
-- LESU inputs power thru all casings
+- LESU inputs power thru all casings? Mabye
 - Multiplayer support for Basic Worktable
 - Look at forge universal bucket for overlaying liquid texture over the test tube
 - Mabye bring back the crafting tablet now that you know how to save the nbt

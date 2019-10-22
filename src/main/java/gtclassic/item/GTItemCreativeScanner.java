@@ -7,7 +7,9 @@ import gtclassic.tile.GTTileDrum;
 import gtclassic.tile.GTTileLESU;
 import gtclassic.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.tile.GTTileMagicEnergyConverter;
-import gtclassic.tile.multi.GTTileMultiBaseMachine;
+import gtclassic.tile.multi.GTTileMultiBaseMachineAdv;
+import gtclassic.tile.multi.GTTileMultiBaseMachineSimple;
+import gtclassic.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.energy.EnergyNet;
@@ -195,8 +197,16 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "Default Input: " + machine.defaultEnergyConsume + " EU");
 				IC2.platform.messagePlayer(player, "Max Input: " + machine.defaultMaxInput + " EU");
 			}
-			if (tileEntity instanceof GTTileMultiBaseMachine) {
-				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;
+			if (tileEntity instanceof GTTileMultiFusionReactor) {
+				GTTileMultiFusionReactor fusion = (GTTileMultiFusionReactor) tileEntity;
+				IC2.platform.messagePlayer(player, "Fusion Output Energy: " + fusion.energyOut);
+			}
+			if (tileEntity instanceof GTTileMultiBaseMachineAdv) {
+				GTTileMultiBaseMachineAdv multi = (GTTileMultiBaseMachineAdv) tileEntity;
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
+			}
+			if (tileEntity instanceof GTTileMultiBaseMachineSimple) {
+				GTTileMultiBaseMachineSimple multi = (GTTileMultiBaseMachineSimple) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
 			}
 			if (tileEntity instanceof GTTileMultiLightningRod) {

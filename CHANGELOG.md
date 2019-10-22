@@ -1,12 +1,11 @@
 # Changelog
-# 1.06 (Not Released)
-- Added original GT1 helium fusion recipe, costs 40 million EU but will output 1,048,576 EU into adjacent Supercondensator(must be front or back of the fusion tile).
 
 # 1.05 (Not Released)
 - This will be the last version that has world changes/removed machines or items from existing worlds.
 - Removed Blast Furnace it is now in Trinsdars Mod "GTC Expansion" which focuses on GT2-GT4 content.
 - Removed molten fluids are now/will be in GTC Expansion as well.
 - Removed in world fluid stuff, it was gonna be a pain todo if/when I port forward - it did not spark "joy".
+- Added power from Fusion! you can now reclaim 5% possible energy of the eu required per recipe. No more power thru casings just the tile itself!!!
 - Added a "Digital Chest" however instead of being a small Qchest, it is now a double chest that can store/load its inventory with data orbs.
 - Added sorting button to GTC Cabinets since inventory tweaks is not compatible with IC2C inventories.
 - Added more solid fuels with variable amounts to the Magic Energy Converter.
