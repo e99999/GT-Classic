@@ -1,6 +1,9 @@
 # Changelog
 
-# 1.05 (Not Released)
+# 1.06 (Not Released)
+- Nothing to see here yet
+
+# 1.05
 - This will be the last version that has world changes/removed machines or items from existing worlds.
 - Removed Blast Furnace it is now in Trinsdars Mod "GTC Expansion" which focuses on GT2-GT4 content.
 - Removed molten fluids are now/will be in GTC Expansion as well.
