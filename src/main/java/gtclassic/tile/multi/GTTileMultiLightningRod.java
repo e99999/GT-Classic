@@ -19,7 +19,7 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 	public GTTileMultiLightningRod() {
 		super(0);
 		this.maxStorage = 100000000;
-		this.production = 8096;
+		this.production = 8192;
 		this.casingheight = 0;
 		this.chance = 262;
 	}

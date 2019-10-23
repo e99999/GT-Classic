@@ -4,6 +4,7 @@ import gtclassic.gui.GTGuiCompBasicString;
 import gtclassic.gui.GTGuiCompFusion;
 import gtclassic.gui.GTGuiCompMachinePower;
 import gtclassic.tile.multi.GTTileMultiFusionReactor;
+import ic2.core.IC2;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -32,6 +33,11 @@ public class GTContainerFusionReactor extends ContainerTileComponent<GTTileMulti
 		this.addComponent(new GTGuiCompFusion(tile));
 		this.addComponent(new GTGuiCompBasicString("Fusion Reactor", 92, 5));
 		this.addComponent(new GTGuiCompMachinePower(tile, 112, 52));
+		if (tile.isSimulating()) {
+			IC2.platform.messagePlayer(player.player, "Note: the Fusion Reactor has had some changes");
+			IC2.platform.messagePlayer(player.player, "Power now goes directly into the tile, left, right, up, or down");
+			IC2.platform.messagePlayer(player.player, "Power now comes out of the front or back!");
+		}
 	}
 
 	@Override

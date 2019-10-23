@@ -8,6 +8,14 @@ public abstract class GTTileMultiBaseMachineSimple extends GTTileBaseMachine {
 	public boolean lastState;
 	public boolean firstCheck = true;
 
+	/**
+	 * Constructor for a GTC Multi-block Machine.
+	 * 
+	 * @param slots        - int amount of slots, input, outputs, battery etc..
+	 * @param upgrades     - int amount of upgrade slots
+	 * @param defaultinput - int default energy input
+	 * @param maxinput     - int maximum energy input
+	 */
 	public GTTileMultiBaseMachineSimple(int slots, int upgrades, int defaultinput, int maxinput) {
 		super(slots, upgrades, defaultinput, 100, maxinput);
 	}
@@ -34,6 +42,6 @@ public abstract class GTTileMultiBaseMachineSimple extends GTTileBaseMachine {
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
-		return checkStructure();
+		return true;
 	}
 }

@@ -24,14 +24,8 @@ public abstract class GTTileMultiBaseMachineAdv extends GTTileBaseMachine implem
 	public boolean firstCheck = true;
 	List<IEnergyTile> lastPositions = null;
 
-	/**
-	 * Constructor for a basic GTC Machine.
-	 * 
-	 * @param slots        - int amount of slots, input, outputs, battery etc..
-	 * @param upgrades     - int amount of upgrade slots
-	 * @param defaultinput - int default energy input
-	 * @param maxinput     - int maximum energy input
-	 */
+	@Deprecated
+	/** Use GTTileMultiBaseMachineSimple until this tile is completed **/
 	public GTTileMultiBaseMachineAdv(int slots, int upgrades, int defaultinput, int maxinput) {
 		super(slots, upgrades, defaultinput, 100, maxinput);
 	}

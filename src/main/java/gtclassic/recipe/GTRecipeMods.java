@@ -29,6 +29,13 @@ public class GTRecipeMods {
 	public static void postInit() {
 		/** Stuff for people too slow to handle ore dict at the right time **/
 		GTTileCentrifuge.addRecipe("dustDiamond", 1, 0, GTTileCentrifuge.totalEu(100000), GTMaterialGen.getDust(GTMaterial.Carbon, 64));
+		if (GTConfig.compatBuildcraft && Loader.isModLoaded(GTValues.BUILDCRAFT)) {
+			// Classic GT Quarry stuff
+			GTHelperAdvRecipe.removeRecipe(GTValues.BUILDCRAFT, "quarry");
+			GTRecipe.recipes.addRecipe(GTMaterialGen.getModItem(GTValues.BUILDCRAFT, "quarry"), new Object[] { "ICI",
+					"GIG", "DRD", 'I', "gearIron", 'C', "circuitAdvanced", 'G', "gearGold", 'D', "gearDiamond", 'R',
+					Ic2Items.diamondDrill.copy() });
+		}
 		/** EnderIO **/
 		if (GTConfig.compatEnderIO && Loader.isModLoaded(GTValues.ENDERIO)) {
 			GTMod.logger.info("Doing EnderIO Things");

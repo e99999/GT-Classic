@@ -122,9 +122,9 @@ public class GTBlockMachine extends GTBlockMultiID {
 		if (this == GTBlocks.tileChargeOmat) {
 			return new GTTileChargeOMat();
 		}
-		if (this == GTBlocks.tileAutocrafter) {
-			return new GTTileAutocrafter();
-		}
+		//if (this == GTBlocks.tileAutocrafter) {
+		//	return new GTTileAutocrafter();
+		//}
 		if (this == GTBlocks.tileLightningRod) {
 			return new GTTileMultiLightningRod();
 		}

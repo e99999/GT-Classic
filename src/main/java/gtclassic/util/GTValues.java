@@ -16,7 +16,7 @@ public class GTValues {
 	public static FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
 	public static FluidStack lava = new FluidStack(FluidRegistry.LAVA, 1000);
 	// mod ids
-	public static final String BUILDCRAFT = "buildcraftcore";
+	public static final String BUILDCRAFT = "buildcraftbuilders";
 	public static final String FORESTRY = "forestry";
 	public static final String HARVESTCRAFT = "harvestcraft";
 	public static final String DRACONIC = "draconicevolution";

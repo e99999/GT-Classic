@@ -157,7 +157,6 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachineSimple imple
 			int recipePower = lastRecipe.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
 			int recipeFraction = ((recipePower * lastRecipe.getMachineEu()) / 20) / 2;
 			int recipeFinal = (int) (recipeFraction + (recipeFraction * this.getWorld().rand.nextFloat()));
-			GTMod.logger.info("Fusion Reactor Tried to Produce:" + recipeFinal);
 			if (this.energyOut + recipeFinal >= 134217728) {
 				this.energyOut = 134217728;
 			} else {

@@ -1,8 +1,6 @@
 package gtclassic.block;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import gtclassic.GTBlocks;
 import gtclassic.GTMod;
@@ -24,6 +22,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -101,16 +100,17 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 	}
 
 	@Override
-	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState blockstate, int fortune) {
-		ArrayList<ItemStack> drops = new ArrayList<>();
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state,
+			int fortune) {
+		int bonus = fortune > 0 ? RANDOM.nextInt(fortune + 1) : 0;
 		if (this.equals(GTBlocks.oreIridium)) {
-			drops.add(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1));
+			drops.add(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1 + bonus));
 		}
 		if (this.equals(GTBlocks.oreRuby)) {
-			drops.add(GTMaterialGen.getGem(GTMaterial.Ruby, 1));
+			drops.add(GTMaterialGen.getGem(GTMaterial.Ruby, 1 + bonus));
 		}
 		if (this.equals(GTBlocks.oreSapphire)) {
-			drops.add(GTMaterialGen.getGem(GTMaterial.Sapphire, 1));
+			drops.add(GTMaterialGen.getGem(GTMaterial.Sapphire, 1 + bonus));
 		}
 		if (this.equals(GTBlocks.oreBauxite)) {
 			drops.add(GTMaterialGen.get(GTBlocks.oreBauxite));
@@ -118,19 +118,16 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 		if (this.equals(GTBlocks.oreSheldonite)) {
 			drops.add(GTMaterialGen.get(GTBlocks.oreSheldonite));
 		}
-		return drops;
 	}
 
 	@Override
 	public int getExpDrop(IBlockState state, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-		Random rand = world instanceof World ? ((World) world).rand : new Random();
-		int xp = 0;
 		if (this.equals(GTBlocks.oreIridium)) {
-			xp = MathHelper.getInt(rand, 3, 7);
+			return MathHelper.getInt(RANDOM, 3, 7);
 		}
 		if (this.equals(GTBlocks.oreRuby) || this.equals(GTBlocks.oreSapphire)) {
-			xp = MathHelper.getInt(rand, 2, 5);
+			return MathHelper.getInt(RANDOM, 2, 5);
 		}
-		return xp;
+		return 0;
 	}
 }
