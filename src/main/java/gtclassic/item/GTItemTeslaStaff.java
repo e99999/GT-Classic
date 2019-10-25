@@ -3,6 +3,9 @@ package gtclassic.item;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 import gtclassic.GTMod;
 import ic2.api.item.ElectricItem;
 import ic2.core.item.base.ItemElectricTool;
@@ -11,10 +14,14 @@ import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -69,12 +76,30 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 			return true;
 		} else {
 			if (ElectricItem.manager.use(stack, this.operationEnergyCost, attacker)) {
-				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1000.0F);
 				attacker.world.addWeatherEffect(new EntityLightningBolt(attacker.world, target.lastTickPosX, target.lastTickPosY, target.lastTickPosZ, false));
 			} else {
 				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), 1.0F);
 			}
 			return false;
 		}
+	}
+
+	@Override
+	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+		Multimap<String, AttributeModifier> map = HashMultimap.create();
+		if (slot == EntityEquipmentSlot.MAINHAND) {
+			map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 512.0D, 0));
+		}
+		return map;
+	}
+
+	@Override
+	public boolean isSpecialSupported(ItemStack paramItemStack, Enchantment paramEnchantment) {
+		return false;
+	}
+
+	@Override
+	public boolean isExcluded(ItemStack paramItemStack, Enchantment paramEnchantment) {
+		return false;
 	}
 }

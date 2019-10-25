@@ -1,7 +1,7 @@
 # Changelog
 
 # 1.06 (Not Released)
-- Nothing to see here yet
+- Changed Tesla Staff damage to be higher
 
 # 1.05
 - This will be the last version that has world changes/removed machines or items from existing worlds.
