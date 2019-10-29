@@ -13,6 +13,7 @@ import gtclassic.helpers.GTHelperStack;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTFilterUUMAssembler;
+import gtclassic.util.GTItemContainerInterface;
 import gtclassic.util.recipe.GTRecipeMultiInputList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
@@ -27,7 +28,6 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
-import ic2.core.util.obj.IItemContainer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -38,7 +38,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 
-public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickable, IHasGui, IItemContainer {
+public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickable, IHasGui, GTItemContainerInterface {
 
 	int digitalCount;
 	int currentCost;
@@ -187,7 +187,7 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 
 	@Override
 	public List<ItemStack> getDrops() {
-		List<ItemStack> list = new ArrayList<ItemStack>();
+		List<ItemStack> list = new ArrayList<>();
 		ItemStack stack = GTMaterialGen.get(GTBlocks.tileUUMAssembler);
 		if (this.digitalCount > 0) {
 			StackUtil.getOrCreateNbtData(stack).setInteger("digitalCount", this.digitalCount);
@@ -199,6 +199,13 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 		GTHelperData.writeToNBT(nbt, this, 9);
 		stack.setTagInfo("ItemsStored", nbt);
 		list.add(stack);
+		list.addAll(getInventoryDrops());
+		return list;
+	}
+
+	@Override
+	public List<ItemStack> getInventoryDrops() {
+		List<ItemStack> list = new ArrayList<>();
 		list.add(this.getStackInSlot(12));
 		list.add(this.getStackInSlot(13));
 		return list;

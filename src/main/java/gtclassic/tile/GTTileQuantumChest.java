@@ -7,6 +7,7 @@ import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerQuantumChest;
 import gtclassic.helpers.GTHelperStack;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTItemContainerInterface;
 import gtclassic.util.GTLang;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
@@ -18,7 +19,6 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
-import ic2.core.util.obj.IItemContainer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,7 +28,7 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable, IItemContainer {
+public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable, GTItemContainerInterface {
 
 	int slotInput = 0;
 	int slotOutput = 1;
@@ -89,13 +89,20 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 
 	@Override
 	public List<ItemStack> getDrops() {
-		List<ItemStack> list = new ArrayList<ItemStack>();
+		List<ItemStack> list = new ArrayList<>();
 		ItemStack stack = GTMaterialGen.get(GTBlocks.tileQuantumChest);
 		if (this.display != null && this.digitalCount > 0) {
 			StackUtil.getOrCreateNbtData(stack).setTag("display", display.writeToNBT(new NBTTagCompound()));
 			StackUtil.getOrCreateNbtData(stack).setInteger("digitalCount", this.digitalCount);
 		}
 		list.add(stack);
+		list.addAll(getInventoryDrops());
+		return list;
+	}
+
+	@Override
+	public List<ItemStack> getInventoryDrops() {
+		List<ItemStack> list = new ArrayList<>();
 		list.add(this.getStackInSlot(slotInput));
 		list.add(this.getStackInSlot(slotOutput));
 		return list;

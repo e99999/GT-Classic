@@ -2,7 +2,6 @@ package gtclassic.block;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import gtclassic.tile.GTTileDrum;
 import gtclassic.util.GTLang;
@@ -57,11 +56,6 @@ public class GTBlockDrum extends GTBlockMachine {
 				}
 			}
 		}
-	}
-
-	@Override
-	public int quantityDropped(Random random) {
-		return 0;
 	}
 
 	@Override

@@ -2,14 +2,13 @@ package gtclassic.block;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import gtclassic.tile.GTTileQuantumTank;
+import gtclassic.util.GTItemContainerInterface;
 import gtclassic.util.GTLang;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.util.misc.StackUtil;
-import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -20,6 +19,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -39,11 +39,6 @@ public class GTBlockQuantumTank extends GTBlockMachine {
 	}
 
 	@Override
-	public int quantityDropped(Random random) {
-		return 0;
-	}
-
-	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (stack.hasTagCompound()) {
 			NBTTagCompound nbt;
@@ -57,11 +52,22 @@ public class GTBlockQuantumTank extends GTBlockMachine {
 	}
 
 	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		List<ItemStack> items = new ArrayList<>();
+		TileEntity te = this.getLocalTile() == null ? world.getTileEntity(pos) : this.getLocalTile();
+		if (te instanceof GTItemContainerInterface) {
+			items.addAll(((GTItemContainerInterface) te).getInventoryDrops());
+			return items;
+		}
+		return items;
+	}
+
+	@Override
 	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te,
 			EntityPlayer player, int fortune) {
-		List<ItemStack> items = new ArrayList<ItemStack>();
-		if (te instanceof IItemContainer) {
-			items.addAll(((IItemContainer) te).getDrops());
+		List<ItemStack> items = new ArrayList<>();
+		if (te instanceof GTItemContainerInterface) {
+			items.addAll(((GTItemContainerInterface) te).getDrops());
 		}
 		return items;
 	}

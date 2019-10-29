@@ -1,6 +1,7 @@
 package gtclassic.block;
 
 import java.util.List;
+import java.util.Random;
 
 import gtclassic.tile.GTTileSuperconductorCable;
 import gtclassic.util.GTLang;
@@ -35,5 +36,10 @@ public class GTBlockSuperconductorCable extends GTBlockMachine {
 	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
 		return new GTTileSuperconductorCable();
+	}
+
+	@Override
+	public int quantityDropped(Random random) {
+		return 1;
 	}
 }

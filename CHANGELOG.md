@@ -1,6 +1,7 @@
 # Changelog
 
 # 1.06 (Not Released)
+- Added compat for Funky Locomotion/frames based systems - machines are no longer unbreakable but just super slow to break with the wrong tool (non wrench).
 - Changed Tesla Staff damage to be higher
 
 # 1.05

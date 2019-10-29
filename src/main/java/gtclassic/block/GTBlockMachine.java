@@ -3,6 +3,7 @@ package gtclassic.block;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import gtclassic.GTBlocks;
@@ -67,7 +68,7 @@ public class GTBlockMachine extends GTBlockMultiID {
 		setRegistryName(this.name.toLowerCase());
 		setUnlocalizedName(comp);
 		setCreativeTab(GTMod.creativeTabGT);
-		setBlockUnbreakable();
+		setHardness(100.0F);
 		setResistance(20.0F);
 		setSoundType(SoundType.METAL);
 	}
@@ -229,6 +230,11 @@ public class GTBlockMachine extends GTBlockMultiID {
 	@Override
 	public List<Integer> getValidMetas() {
 		return Arrays.asList(0);
+	}
+
+	@Override
+	public int quantityDropped(Random random) {
+		return 0;
 	}
 
 	@Override

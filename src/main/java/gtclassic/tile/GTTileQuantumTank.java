@@ -7,6 +7,7 @@ import gtclassic.GTBlocks;
 import gtclassic.container.GTContainerQuantumTank;
 import gtclassic.helpers.GTHelperFluid;
 import gtclassic.material.GTMaterialGen;
+import gtclassic.util.GTItemContainerInterface;
 import gtclassic.util.GTLang;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
@@ -21,7 +22,6 @@ import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IClickable;
-import ic2.core.util.obj.IItemContainer;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +37,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileQuantumTank extends TileEntityMachine
-		implements ITankListener, IItemContainer, ITickable, IHasGui, IClickable {
+		implements ITankListener, GTItemContainerInterface, ITickable, IHasGui, IClickable {
 
 	private IC2Tank tank;
 	int slotInput = 0;
@@ -100,14 +100,21 @@ public class GTTileQuantumTank extends TileEntityMachine
 	}
 
 	public List<ItemStack> getDrops() {
-		List<ItemStack> list = new ArrayList<ItemStack>();
+		List<ItemStack> list = new ArrayList<>();
 		ItemStack stack = GTMaterialGen.get(GTBlocks.tileQuantumTank);
 		if (this.tank.getFluid() != null) {
 			StackUtil.getOrCreateNbtData(stack).setTag("Fluid", this.tank.getFluid().writeToNBT(new NBTTagCompound()));
 		}
+		list.add(stack);
+		list.addAll(getInventoryDrops());
+		return list;
+	}
+
+	@Override
+	public List<ItemStack> getInventoryDrops() {
+		List<ItemStack> list = new ArrayList<>();
 		list.add(this.getStackInSlot(slotInput));
 		list.add(this.getStackInSlot(slotOutput));
-		list.add(stack);
 		return list;
 	}
 
