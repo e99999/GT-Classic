@@ -1,6 +1,7 @@
 # Changelog
 
 # 1.06 (Not Released)
+- Added another check into the Magic Energy Converter recipe system to hopefully stop an unknown bug im unable to reproduce myself.
 - Added compat for Funky Locomotion/frames based systems - machines are no longer unbreakable but just super slow to break with the wrong tool (non wrench).
 - Changed Tesla Staff damage to be higher
 
