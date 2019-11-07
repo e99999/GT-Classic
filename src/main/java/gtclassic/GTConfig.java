@@ -37,7 +37,7 @@ public class GTConfig {
 	public static int iridiumWeight = 2;
 	public static boolean sheldoniteGenerate = true;
 	public static int sheldoniteSize = 10;
-	public static int sheldoniteWeight = 4;
+	public static int sheldoniteWeight = 3;
 	public static boolean rubyGenerate = true;
 	public static int rubySize = 6;
 	public static int rubyWeight = 2;
