@@ -1,6 +1,10 @@
 # Changelog
 
-# 1.06 (Not Released)
+# 1.07 (Not Released)
+- Changed JEI system so addons can handle JEI automatically if they want
+- TODO bring back carbon fiber crafting recipe with carbon
+
+# 1.06
 - Note, this release is small in changes because GTC expansion updates were stalled till this was released.
 - Changed overworld Sheldonite to be slightly more rare for balance. might need to regen configs or set sheldonite weight to "3".
 - Added another check into the Magic Energy Converter recipe system to hopefully stop an unknown bug im unable to reproduce myself.

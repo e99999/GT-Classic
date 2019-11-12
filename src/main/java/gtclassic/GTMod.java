@@ -23,6 +23,7 @@ import gtclassic.util.GTCreativeTab;
 import gtclassic.util.GTValues;
 import gtclassic.util.energy.IDSUStorage;
 import gtclassic.util.energy.MultiBlockHelper;
+import gtclassic.util.jei.GTJeiHandler;
 import gtclassic.worldgen.GTWorldTwilightForest;
 import ic2.core.IC2;
 import net.minecraft.creativetab.CreativeTabs;
@@ -98,6 +99,7 @@ public class GTMod {
 		GTTileMatterFabricator.postInit();
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeMods.postInit();
+		GTJeiHandler.collectJeiEntries();
 		if (GTConfig.compatTwilightForest && Loader.isModLoaded(GTValues.TFOREST)) {
 			GTWorldTwilightForest.initStalactites();
 		}

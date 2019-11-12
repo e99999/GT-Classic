@@ -41,7 +41,7 @@ public class GTJeiPlugin implements IModPlugin {
 	@Override
 	public void register(@Nonnull IModRegistry registry) {
 		if (SubModul.load) {
-			for (GTJeiRegistry entry : GTJeiRegistry.values()) {
+			for (GTJeiEntry entry : GTJeiHandler.registry) {
 				wrapperUtil(registry, entry.getRecipeList(), entry.getCatalyst(), entry.getGuiClass(), entry.getClickX(), entry.getClickY(), entry.getSizeX(), entry.getSizeY());
 			}
 			// More Vanilla Crafting
@@ -67,7 +67,7 @@ public class GTJeiPlugin implements IModPlugin {
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
-		for (GTJeiRegistry entry : GTJeiRegistry.values()) {
+		for (GTJeiEntry entry : GTJeiHandler.registry) {
 			categoryUtil(registry, entry.getRecipeList(), entry.getCatalyst());
 		}
 		// amplifier
