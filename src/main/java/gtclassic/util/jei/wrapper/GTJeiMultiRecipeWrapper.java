@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import gtclassic.GTConfig;
 import gtclassic.util.GTValues;
 import gtclassic.util.recipe.GTRecipeMultiInputList.MultiRecipe;
+import ic2.api.classic.recipe.crafting.RecipeInputFluid;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.energy.EnergyNet;
 import ic2.api.recipe.IRecipeInput;
@@ -14,6 +15,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 
@@ -26,11 +28,19 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ArrayList<ItemStack> inputs = new ArrayList<>();
+		ArrayList<FluidStack> inputFluids = new ArrayList<>();
+		ArrayList<ItemStack> inputItems = new ArrayList<>();
 		for (IRecipeInput input : multiRecipe.getInputs()) {
-			inputs.addAll(input.getInputs());
+			if (input instanceof RecipeInputFluid){
+				inputFluids.add(((RecipeInputFluid)input).fluid);
+			} else {
+				inputItems.addAll(input.getInputs());
+			}
 		}
-		ingredients.setInputs(ItemStack.class, inputs);
+		if (!inputFluids.isEmpty()){
+			ingredients.setInputs(FluidStack.class, inputFluids);
+		}
+		ingredients.setInputs(ItemStack.class, inputItems);
 		ingredients.setOutputs(ItemStack.class, multiRecipe.getOutputs().getAllOutputs());
 	}
 
