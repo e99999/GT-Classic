@@ -22,29 +22,29 @@ public class GTWorldGen implements IWorldGenerator {
 			IChunkProvider chunkProvider) {
 		Biome biomegenbase = world.getBiome(new BlockPos(chunkX * 16 + 16, 128, chunkZ * 16 + 16));
 		// Any Biome
-		generate(GTBlocks.oreIridium, GTConfig.iridiumGenerate, GTConfig.iridiumSize, GTConfig.iridiumWeight, 0, 128, Blocks.STONE, world, random, chunkX, chunkZ);
+		generateBasicVein(GTBlocks.oreIridium, GTConfig.iridiumGenerate, GTConfig.iridiumSize, GTConfig.iridiumWeight, 0, 128, Blocks.STONE, world, random, chunkX, chunkZ);
 		// Jungle Biomes
 		if (BiomeDictionary.hasType(biomegenbase, Type.JUNGLE)) {
-			generate(GTBlocks.oreSheldonite, GTConfig.sheldoniteGenerate, GTConfig.sheldoniteSize, GTConfig.sheldoniteWeight, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
+			generateBasicVein(GTBlocks.oreSheldonite, GTConfig.sheldoniteGenerate, GTConfig.sheldoniteSize, GTConfig.sheldoniteWeight, 10, 30, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		// Hot Biomes
 		if (BiomeDictionary.hasType(biomegenbase, Type.HOT)) {
-			generate(GTBlocks.oreRuby, GTConfig.rubyGenerate, GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
+			generateBasicVein(GTBlocks.oreRuby, GTConfig.rubyGenerate, GTConfig.rubySize, GTConfig.rubyWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		// Ocean Biomes
 		if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN) || BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
-			generate(GTBlocks.oreSapphire, GTConfig.sapphireGenerate, GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
+			generateBasicVein(GTBlocks.oreSapphire, GTConfig.sapphireGenerate, GTConfig.sapphireSize, GTConfig.sapphireWeight, 0, 48, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 		// Forest or Plains Biomes
 		if (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
 				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS))) {
-			generate(GTBlocks.oreBauxite, GTConfig.bauxiteGenerate, GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
+			generateBasicVein(GTBlocks.oreBauxite, GTConfig.bauxiteGenerate, GTConfig.bauxiteSize, GTConfig.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
 	}
 
 	/** default ore generator **/
-	public void generate(Block block, boolean generate, int blockAmount, int chancesToSpawn, int minHeight,
-			int maxHeight, Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
+	public static void generateBasicVein(Block block, boolean generate, int blockAmount, int chancesToSpawn,
+			int minHeight, int maxHeight, Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
 		if (generate) {
 			WorldGenMinable generator = new WorldGenMinable(block.getDefaultState(), blockAmount, BlockMatcher.forBlock(blockToReplace));
 			int heightdiff = maxHeight - minHeight + 1;
@@ -57,10 +57,21 @@ public class GTWorldGen implements IWorldGenerator {
 		}
 	}
 
-	/** overloaded version for anyone using the old generator **/
-	@Deprecated
-	public void generate(Block block, int blockAmount, int chancesToSpawn, int minHeight, int maxHeight,
-			Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
-		generate(block, true, blockAmount, chancesToSpawn, minHeight, maxHeight, blockToReplace, world, rand, chunkX, chunkZ);
+	/** rare ore generator **/
+	public static void generateRareVein(Block block, boolean generate, int blockAmount, int chancesToSpawn,
+			int minHeight, int maxHeight, Block blockToReplace, World world, Random rand, int chunkX, int chunkZ) {
+		if (generate) {
+			WorldGenMinable generator = new WorldGenMinable(block.getDefaultState(), blockAmount, BlockMatcher.forBlock(blockToReplace));
+			int heightdiff = maxHeight - minHeight + 1;
+			for (int i = 0; i < chancesToSpawn; i++) {
+				int var1 = rand.nextInt(256);
+				if (var1 == 0) {
+					int x = chunkX * 16 + rand.nextInt(16);
+					int y = minHeight + rand.nextInt(heightdiff);
+					int z = chunkZ * 16 + rand.nextInt(16);
+					generator.generate(world, rand, new BlockPos(x, y, z));
+				}
+			}
+		}
 	}
 }
