@@ -3,7 +3,6 @@ package gtclassic.recipe;
 import gtclassic.GTBlocks;
 import gtclassic.GTConfig;
 import gtclassic.GTItems;
-import gtclassic.helpers.GTHelperAdvRecipe;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.util.GTValues;
@@ -317,8 +316,9 @@ public class GTRecipe {
 	}
 
 	public static void initIC2() {
-		/** Testing some removals **/
-		GTHelperAdvRecipe.removeRecipe("ic2", "shaped_item.itemPartCarbonFibre_794316583");
+		/** Carbon Fiber **/
+		recipes.overrideRecipe("shaped_item.itemPartCarbonFibre_794316583", GTMaterialGen.getIc2(Ic2Items.carbonFiber, 1), new Object[] {
+				"DDD", "D D", "DDD", 'D', "dustCarbon", 'D' });
 		/** Machine casings can take aluminium **/
 		String machineId = IC2.config.getFlag("SteelRecipes") ? "480320652" : "527557260";
 		recipes.overrideRecipe("shaped_tile.blockmachine_"

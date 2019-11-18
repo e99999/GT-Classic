@@ -4,7 +4,7 @@ import gtclassic.util.recipe.GTRecipeMultiInputList;
 import net.minecraft.block.Block;
 
 public class GTJeiEntry {
-	
+
 	private GTRecipeMultiInputList list;
 	private Block catalyst;
 	@SuppressWarnings("rawtypes")

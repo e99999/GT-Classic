@@ -1,8 +1,10 @@
 # Changelog
 
 # 1.07 (Not Released)
-- Changed JEI system so addons can handle JEI automatically if they want
-- TODO bring back carbon fiber crafting recipe with carbon
+- Changed JEI system so addons can handle JEI automatically if they want, this wont effect gameplay at all
+- Added Phosphorus dust to the base mod, its a byproduct of Netherrack by default.
+- Changed Basalt dust is now a lava byproduct instead of Netherrack.
+- Brought back a shaped recipe for Raw Carbon Fibre out of Carbon.
 
 # 1.06
 - Note, this release is small in changes because GTC expansion updates were stalled till this was released.
