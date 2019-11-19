@@ -24,7 +24,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class GTBlockDrum extends GTBlockMachine {
 
 	public GTBlockDrum() {
-		super("drum", GTLang.DRUM, Material.GROUND);
+		super("drum", GTLang.DRUM, Material.GROUND, 1);
 		setHardness(0.5F);
 	}
 

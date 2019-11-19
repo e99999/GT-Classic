@@ -62,6 +62,7 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
 			ItemStack stack) {
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 		if (!IC2.platform.isRendering()) {
 			TileEntity tile = worldIn.getTileEntity(pos);
 			if (tile instanceof TileEntityBlock) {

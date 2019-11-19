@@ -3,17 +3,12 @@ package gtclassic.common.block;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.api.block.GTBlockBase;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
-import ic2.core.platform.lang.ILocaleBlock;
-import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
-import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
-import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.platform.textures.obj.ITexturedBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -23,7 +18,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -31,17 +25,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
+public class GTBlockOre extends GTBlockBase{
 
 	String name;
 	int id;
-	LocaleComp comp;
 
 	public GTBlockOre(String name, int id, float hardness, int level) {
 		super(Material.ROCK);
 		this.name = name;
 		this.id = id;
-		this.comp = Ic2Lang.nullKey;
 		setRegistryName(this.name + "_ore");
 		setUnlocalizedName(GTMod.MODID + ".ore" + this.name);
 		setCreativeTab(GTMod.creativeTabGT);
@@ -56,47 +48,10 @@ public class GTBlockOre extends Block implements ITexturedBlock, ILocaleBlock {
 		tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
 	}
 
-	@Override
-	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
-		return FULL_BLOCK_AABB;
-	}
-
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[this.id];
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getParticleTexture(IBlockState state) {
-		return this.getTextureFromState(state, EnumFacing.SOUTH);
-	}
-
-	@Override
-	public List<IBlockState> getValidStates() {
-		return this.blockState.getValidStates();
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public IBlockState getStateFromStack(ItemStack stack) {
-		return this.getStateFromMeta(stack.getMetadata());
-	}
-
-	public LocaleComp getName() {
-		return this.comp;
-	}
-
-	public Block setUnlocalizedName(LocaleComp name) {
-		this.comp = name;
-		return super.setUnlocalizedName(name.getUnlocalized());
-	}
-
-	@Override
-	public Block setUnlocalizedName(String name) {
-		this.comp = new LocaleBlockComp("tile." + name);
-		return super.setUnlocalizedName(name);
 	}
 
 	@Override
