@@ -18,7 +18,6 @@ import ic2.api.reactor.IReactor;
 import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.block.base.tile.TileEntityTransformer;
 import ic2.core.block.crop.TileEntityCrop;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.item.base.ItemBatteryBase;
@@ -185,8 +184,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 			if (tileEntity instanceof IEUStorage) {
 				IEUStorage euStorage = (IEUStorage) tileEntity;
-				IC2.platform.messagePlayer(player, "Stored: " + euStorage.getStoredEU());
-				IC2.platform.messagePlayer(player, "Storage Max: " + euStorage.getMaxEU());
+				IC2.platform.messagePlayer(player, "Stored: " + euStorage.getStoredEU() + " EU");
+				IC2.platform.messagePlayer(player, "Storage Max: " + euStorage.getMaxEU() + " EU");
 			}
 			if (tileEntity instanceof IEnergyStorage) {
 				IEnergyStorage te4 = (IEnergyStorage) tileEntity;
@@ -198,7 +197,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IEnergySource euSource = (IEnergySource) tileEntity;
 				IC2.platform.messagePlayer(player, "Output Source Tier: " + euSource.getSourceTier());
 				IC2.platform.messagePlayer(player, "Output Source Max: "
-						+ EnergyNet.instance.getPowerFromTier(euSource.getSourceTier()));
+						+ EnergyNet.instance.getPowerFromTier(euSource.getSourceTier()) + " EU");
 				IC2.platform.messagePlayer(player, "Output Source Actual: " + euSource.getOfferedEnergy() + " EU");
 			}
 			if (tileEntity instanceof IProgressMachine) {
@@ -228,7 +227,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 			if (tileEntity instanceof GTTileLESU) {
 				GTTileLESU lesu = (GTTileLESU) tileEntity;
-				IC2.platform.messagePlayer(player, "Max Input: 32 EU");
 				IC2.platform.messagePlayer(player, "Lapotron Blocks: " + lesu.getCount());
 				IC2.platform.messagePlayer(player, "Energy Packets: " + lesu.getMultipleEnergyPacketAmount());
 			}

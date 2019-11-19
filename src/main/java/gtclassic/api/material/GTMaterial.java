@@ -58,6 +58,7 @@ public class GTMaterial {
 	public static final GTMaterial Silicon = new GTMaterial("Silicon", 60, 60, 80, dust, ingot);
 	public static final GTMaterial Sodalite = new GTMaterial("Sodalite", 20, 20, 255, dust);
 	public static final GTMaterial Sodium = new GTMaterial("Sodium", 0, 38, 255, fluid);
+	public static final GTMaterial Sulfur = new GTMaterial("Sulfur", 200, 200, 0, dust);
 	public static final GTMaterial Thorium = new GTMaterial("Thorium", 0, 30, 0, false, metalAll);
 	public static final GTMaterial Titanium = new GTMaterial("Titanium", 170, 143, 222, metalAll);
 	public static final GTMaterial Tritium = new GTMaterial("Tritium", 255, 0, 0, gas);

@@ -103,12 +103,12 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 
 	public TileEntity getImportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.left(1).asBlockPos());
+		return world.getTileEntity(dir.back(1).asBlockPos());
 	}
 
 	public TileEntity getExportTile() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.right(1).asBlockPos());
+		return world.getTileEntity(dir.forward(1).asBlockPos());
 	}
 
 	@SuppressWarnings("static-access")

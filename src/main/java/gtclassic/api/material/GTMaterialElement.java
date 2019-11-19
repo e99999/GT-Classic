@@ -24,6 +24,7 @@ public class GTMaterialElement {
 	public static final GTMaterialElement aluminium = addElement(13, "dustAluminium", GTMaterialGen.getDust(GTMaterial.Aluminium, 1));
 	public static final GTMaterialElement silicon = addElement(14, "dustSilicon", GTMaterialGen.getDust(GTMaterial.Silicon, 1));
 	public static final GTMaterialElement phosphorus = addElement(15, "dustPhosphorus", GTMaterialGen.getDust(GTMaterial.Phosphorus, 1));
+	public static final GTMaterialElement sulfur = addElement(16, "dustSulfur", GTMaterialGen.getDust(GTMaterial.Sulfur, 1));
 	public static final GTMaterialElement chlorine = addElement(17, GTMaterialGen.getTube(GTMaterial.Chlorine, 1));
 	public static final GTMaterialElement argon = addElement(18, GTMaterialGen.getTube(GTMaterial.Argon, 1));
 	public static final GTMaterialElement potassium = addElement(19, GTMaterialGen.getTube(GTMaterial.Potassium, 1));

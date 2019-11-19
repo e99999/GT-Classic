@@ -86,6 +86,7 @@ item.gtclassic.dustPlutonium.name=Plutonium Dust
 item.gtclassic.dustBasalt.name=Basalt Dust
 item.gtclassic.dustPlatinum.name=Platinum Dust
 item.gtclassic.dustPhosphorus.name=Phosphorus Dust
+item.gtclassic.dustSulfur.name=Sulfur Dust
 
 #gems
 item.gtclassic.gemSapphire.name=Sapphire
@@ -184,6 +185,7 @@ tooltip.gtclassic.cloaking_device=Invisibility Field
 tooltip.gtclassic.spring_boots=QwerTech intensifies
 
 #machine tooltips
+tooltip.gtclassic.autocrafter0=Work In Progress!
 tooltip.gtclassic.chargeomat0=Charges all the things
 tooltip.gtclassic.computercube0=Now with more dedotated WAM!
 tooltip.gtclassic.drum0=Portable tank, capacity of 32 buckets
