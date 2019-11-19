@@ -1,10 +1,12 @@
 # Changelog
 
 # 1.07 (Not Released)
+- Completely refactored the entire project to now have a dedicated API although this doesnt change the mod for players at all.
 - Changed JEI system so addons can handle JEI automatically if they want, this wont effect gameplay at all
 - Added Phosphorus dust to the base mod, its a byproduct of Netherrack by default.
 - Changed Basalt dust is now a lava byproduct instead of Netherrack.
-- Brought back a shaped recipe for Raw Carbon Fibre out of Carbon.
+- Added a shaped recipe for Raw Carbon Fibre out of Carbon.
+- Fixed Tesla Staff doing max damage without power.
 
 # 1.06
 - Note, this release is small in changes because GTC expansion updates were stalled till this was released.

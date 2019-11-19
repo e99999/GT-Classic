@@ -2,29 +2,35 @@ package gtclassic;
 
 import org.apache.logging.log4j.Logger;
 
-import gtclassic.events.GTEventCheckSpawn;
-import gtclassic.events.GTEventEntityViewRenderEvent;
-import gtclassic.events.GTEventLootTableLoad;
-import gtclassic.events.GTEventOnLivingFall;
-import gtclassic.events.GTEventPopulateChunk;
-import gtclassic.material.GTMaterialGen;
-import gtclassic.proxy.GTProxyCommon;
-import gtclassic.recipe.GTRecipe;
-import gtclassic.recipe.GTRecipeIterators;
-import gtclassic.recipe.GTRecipeMods;
-import gtclassic.recipe.GTRecipeProcessing;
-import gtclassic.tile.GTTileCentrifuge;
-import gtclassic.tile.GTTileMagicEnergyConverter;
-import gtclassic.tile.GTTileMatterFabricator;
-import gtclassic.tile.GTTileUUMAssembler;
-import gtclassic.tile.multi.GTTileMultiFusionReactor;
-import gtclassic.util.GTCommandTeleport;
-import gtclassic.util.GTCreativeTab;
-import gtclassic.util.GTValues;
-import gtclassic.util.energy.IDSUStorage;
-import gtclassic.util.energy.MultiBlockHelper;
-import gtclassic.util.jei.GTJeiHandler;
-import gtclassic.worldgen.GTWorldTwilightForest;
+import gtclassic.api.commands.GTCommandTeleport;
+import gtclassic.api.helpers.GTHelperMods;
+import gtclassic.api.material.GTMaterialGen;
+import gtclassic.common.GTBlocks;
+import gtclassic.common.GTConfig;
+import gtclassic.common.GTCreativeTab;
+import gtclassic.common.GTCrops;
+import gtclassic.common.GTFluids;
+import gtclassic.common.GTItems;
+import gtclassic.common.GTJei;
+import gtclassic.common.GTOreDict;
+import gtclassic.common.GTWorldGen;
+import gtclassic.common.event.GTEventCheckSpawn;
+import gtclassic.common.event.GTEventEntityViewRenderEvent;
+import gtclassic.common.event.GTEventLootTableLoad;
+import gtclassic.common.event.GTEventOnLivingFall;
+import gtclassic.common.event.GTEventPopulateChunk;
+import gtclassic.common.proxy.GTProxyCommon;
+import gtclassic.common.recipe.GTRecipe;
+import gtclassic.common.recipe.GTRecipeIterators;
+import gtclassic.common.recipe.GTRecipeMods;
+import gtclassic.common.recipe.GTRecipeProcessing;
+import gtclassic.common.tile.GTTileCentrifuge;
+import gtclassic.common.tile.GTTileMagicEnergyConverter;
+import gtclassic.common.tile.GTTileMatterFabricator;
+import gtclassic.common.tile.GTTileUUMAssembler;
+import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
+import gtclassic.common.util.GTIDSUStorageManager;
+import gtclassic.common.worldgen.GTWorldTwilightForest;
 import ic2.core.IC2;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,7 +51,7 @@ public class GTMod {
 	public static final String MODVERSION = "1.0.7";
 	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;after:twilightforest@[3.9.984,)";
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
-	@SidedProxy(clientSide = MODID + ".proxy.GTProxyClient", serverSide = MODID + ".proxy.GTProxyServer")
+	@SidedProxy(clientSide = MODID + ".common.proxy.GTProxyClient", serverSide = MODID + ".common.proxy.GTProxyServer")
 	public static GTProxyCommon proxy;
 	@Mod.Instance
 	public static GTMod instance;
@@ -86,21 +92,20 @@ public class GTMod {
 		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
 		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
 		// MinecraftForge.EVENT_BUS.register(new GTEventPlayerTick());
-		IC2.saveManager.registerGlobal("IDSU_Storage", IDSUStorage.class, false);
+		IC2.saveManager.registerGlobal("IDSU_Storage", GTIDSUStorageManager.class, false);
 		proxy.init(e);
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 		proxy.postInit(e);
-		MultiBlockHelper.INSTANCE.init();
 		GTFluids.postInitProperities();
 		GTRecipeIterators.postInit();
 		GTTileMatterFabricator.postInit();
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeMods.postInit();
-		GTJeiHandler.collectJeiEntries();
-		if (GTConfig.compatTwilightForest && Loader.isModLoaded(GTValues.TFOREST)) {
+		GTJei.initEntries();
+		if (GTConfig.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)) {
 			GTWorldTwilightForest.initStalactites();
 		}
 	}
