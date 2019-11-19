@@ -161,6 +161,15 @@ public class GTRecipeMultiInputList {
 		return INVALID_RECIPE;
 	}
 
+	public List<MultiRecipe> getAllRecipes(Predicate<MultiRecipe> checker) {
+		List<MultiRecipe> result = new ArrayList<>();
+		for (MultiRecipe recipe : recipes) {
+			if (checker.test(recipe))
+				result.add(recipe);
+		}
+		return result;
+	}
+
 	public MultiRecipe getFromID(String id) {
 		return recipeMap.get(id);
 	}
