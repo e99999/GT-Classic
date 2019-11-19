@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class GTRecipeMachineHandler {
-	
+
 	public static IRecipeModifier[] totalEu(GTRecipeMultiInputList recipeList, int total) {
 		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / recipeList.energy) - 100) };
 	}

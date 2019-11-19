@@ -1,9 +1,10 @@
 package gtclassic.api.tile.multi;
 
+import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
 import net.minecraft.entity.player.EntityPlayer;
 
-public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine {
+public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implements IGTMultiTileStatus{
 
 	public boolean lastState;
 	public boolean firstCheck = true;
@@ -43,5 +44,10 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine {
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
+	}
+	
+	@Override
+	public boolean getStructureValid() {
+		return lastState;
 	}
 }

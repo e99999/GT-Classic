@@ -1,5 +1,6 @@
 package gtclassic.common.tile.multi;
 
+import gtclassic.api.interfaces.IGTMultiTileStatus;
 import ic2.core.block.base.tile.TileEntityGeneratorBase;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.registry.Ic2States;
@@ -11,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 
-public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
+public class GTTileMultiLightningRod extends TileEntityGeneratorBase implements IGTMultiTileStatus{
 
 	public int casingheight;
 	public int chance;
@@ -22,12 +23,13 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 		this.production = 8192;
 		this.casingheight = 0;
 		this.chance = 262;
+		this.tier = 5;
 	}
 
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % 256 == 0 && world.rand.nextInt(chance) == 0) {
-			if (world.isThundering() && (world.getPrecipitationHeight(pos).getY() <= (casingheight + 3))
+			if (world.isRaining() && (world.getPrecipitationHeight(pos).getY() <= (casingheight + 3))
 					&& checkStructure()) {
 				this.world.addWeatherEffect(new EntityLightningBolt(this.world, this.getPos().getX(), casingheight, this.getPos().getZ(), false));
 				if (this.storage < this.maxStorage) {
@@ -112,4 +114,14 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase {
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != getFacing() && facing.getAxis().isHorizontal();
 	}
+
+	@Override
+	public boolean getStructureValid() {
+		return checkStructure();
+	}
+	
+	@Override 
+	public int getSourceTier() {
+		 return 5;
+	 }
 }

@@ -18,7 +18,6 @@ import gtclassic.common.gui.GTGuiMachine.GTFusionComputerGui;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
-import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySource;
@@ -216,7 +215,7 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 	public int getSourceTier() {
 		return 12;
 	}
-	
+
 	public static void postInit() {
 		/** Just regular recipes added manually **/
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),

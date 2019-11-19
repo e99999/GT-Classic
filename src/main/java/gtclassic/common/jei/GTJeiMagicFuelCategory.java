@@ -2,11 +2,13 @@ package gtclassic.common.jei;
 
 import gtclassic.GTMod;
 import gtclassic.common.GTConfig;
+import ic2.api.classic.recipe.crafting.RecipeInputFluid;
 import ic2.api.recipe.IRecipeInput;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IDrawableStatic;
+import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
@@ -62,13 +64,19 @@ public class GTJeiMagicFuelCategory implements IRecipeCategory<GTJeiMagicFuelWra
 	@Override
 	public void setRecipe(IRecipeLayout layout, GTJeiMagicFuelWrapper wrapper, IIngredients ingredients) {
 		IGuiItemStackGroup itemGroup = layout.getItemStacks();
+		IGuiFluidStackGroup fluidGroup = layout.getFluidStacks();
 		int index = 0;
 		int actualIndex = 0;
 		for (IRecipeInput list : wrapper.getMultiRecipe().getInputs()) {
 			int x = index % 3;
 			int y = index / 3;
-			itemGroup.init(actualIndex, true, (18 * x), (18 * y));
-			itemGroup.set(actualIndex, list.getInputs());
+			if (list instanceof RecipeInputFluid){
+				fluidGroup.init(actualIndex, true, (18 * x) + 1, (18 * y) + 1, 16, 16, ((RecipeInputFluid)list).fluid.amount, true, null);
+				fluidGroup.set(actualIndex, ((RecipeInputFluid)list).fluid);
+			} else {
+				itemGroup.init(actualIndex, true, (18 * x), (18 * y));
+				itemGroup.set(actualIndex, list.getInputs());
+			}
 			index++;
 			actualIndex++;
 			if (index >= 6) {

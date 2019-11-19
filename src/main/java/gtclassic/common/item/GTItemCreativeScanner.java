@@ -1,25 +1,23 @@
 package gtclassic.common.item;
 
 import gtclassic.GTMod;
+import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
-import gtclassic.api.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.common.tile.GTTileBaseBuffer;
 import gtclassic.common.tile.GTTileDrum;
 import gtclassic.common.tile.GTTileLESU;
-import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
-import gtclassic.common.tile.GTTileMagicEnergyConverter;
-import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
+import ic2.api.classic.tile.machine.IEUStorage;
+import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.energy.EnergyNet;
+import ic2.api.energy.tile.IEnergySink;
+import ic2.api.energy.tile.IEnergySource;
 import ic2.api.item.ElectricItem;
 import ic2.api.reactor.IReactor;
 import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.block.base.tile.TileEntityElecMachine;
-import ic2.core.block.base.tile.TileEntityElectricBlock;
-import ic2.core.block.base.tile.TileEntityGeneratorBase;
 import ic2.core.block.base.tile.TileEntityTransformer;
 import ic2.core.block.crop.TileEntityCrop;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
@@ -153,20 +151,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "Active: " + te.getActive());
 				IC2.platform.messagePlayer(player, "Facing: " + te.getFacing());
 			}
-			if (tileEntity instanceof TileEntityGeneratorBase) {
-				TileEntityGeneratorBase te2 = (TileEntityGeneratorBase) tileEntity;
-				IC2.platform.messagePlayer(player, "Fuel: " + te2.fuel);
-				IC2.platform.messagePlayer(player, "Storage: " + te2.storage + " EU");
-			}
-			if (tileEntity instanceof TileEntityElecMachine) {
-				TileEntityElecMachine te3 = (TileEntityElecMachine) tileEntity;
-				IC2.platform.messagePlayer(player, "Tier: " + te3.getTier());
-				IC2.platform.messagePlayer(player, "Energy: " + te3.energy + " EU");
-			}
-			if (tileEntity instanceof IEnergyStorage) {
-				IEnergyStorage te4 = (IEnergyStorage) tileEntity;
-				IC2.platform.messagePlayer(player, "Stored: " + te4.getStored() + " EU");
-			}
 			if (tileEntity instanceof IReactor) {
 				IReactor te5 = (IReactor) tileEntity;
 				IC2.platform.messagePlayer(player, "Reactor Heat: " + te5.getHeat());
@@ -189,47 +173,51 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "Water: " + te7.getTerrainHumidity());
 				IC2.platform.messagePlayer(player, "Growth Points: " + te7.getGrowthPoints());
 			}
+			if (tileEntity instanceof IEnergySink) {
+				IEnergySink euSink = (IEnergySink) tileEntity;
+				IC2.platform.messagePlayer(player, "Input Tier: " + euSink.getSinkTier());
+				IC2.platform.messagePlayer(player, "Input Max: "
+						+ EnergyNet.instance.getPowerFromTier(euSink.getSinkTier()));
+			}
 			if (tileEntity instanceof GTTileBaseMachine) {
 				GTTileBaseMachine machine = (GTTileBaseMachine) tileEntity;
+				IC2.platform.messagePlayer(player, "Usage: " + (double) machine.defaultEnergyConsume + " EU Per Tick");
+			}
+			if (tileEntity instanceof IEUStorage) {
+				IEUStorage euStorage = (IEUStorage) tileEntity;
+				IC2.platform.messagePlayer(player, "Stored: " + euStorage.getStoredEU());
+				IC2.platform.messagePlayer(player, "Storage Max: " + euStorage.getMaxEU());
+			}
+			if (tileEntity instanceof IEnergyStorage) {
+				IEnergyStorage te4 = (IEnergyStorage) tileEntity;
+				IC2.platform.messagePlayer(player, "Output Tier: "
+						+ EnergyNet.instance.getTierFromPower(te4.getOutputEnergyUnitsPerTick()));
+				IC2.platform.messagePlayer(player, "Output: " + te4.getOutputEnergyUnitsPerTick() + " EU");
+			}
+			if (tileEntity instanceof IEnergySource) {
+				IEnergySource euSource = (IEnergySource) tileEntity;
+				IC2.platform.messagePlayer(player, "Output Source Tier: " + euSource.getSourceTier());
+				IC2.platform.messagePlayer(player, "Output Source Max: "
+						+ EnergyNet.instance.getPowerFromTier(euSource.getSourceTier()));
+				IC2.platform.messagePlayer(player, "Output Source Actual: " + euSource.getOfferedEnergy() + " EU");
+			}
+			if (tileEntity instanceof IProgressMachine) {
+				IProgressMachine progress = (IProgressMachine) tileEntity;
 				IC2.platform.messagePlayer(player, "Progress: "
-						+ (Math.round((machine.getProgress() / machine.getMaxProgress()) * 100)) + "%");
-				IC2.platform.messagePlayer(player, "Default Input: " + machine.defaultEnergyConsume + " EU");
-				IC2.platform.messagePlayer(player, "Max Input: " + machine.defaultMaxInput + " EU");
+						+ +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100)) + "%");
 			}
-			if (tileEntity instanceof GTTileMultiFusionReactor) {
-				GTTileMultiFusionReactor fusion = (GTTileMultiFusionReactor) tileEntity;
-				IC2.platform.messagePlayer(player, "Fusion Output Energy: " + fusion.energyOut);
-			}
-			if (tileEntity instanceof GTTileMultiBaseMachine) {
-				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
-			}
-			if (tileEntity instanceof GTTileMultiBaseMachine) {
-				GTTileMultiBaseMachine multi = (GTTileMultiBaseMachine) tileEntity;
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.checkStructure());
+			if (tileEntity instanceof IGTMultiTileStatus) {
+				IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;
+				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.getStructureValid());
 			}
 			if (tileEntity instanceof GTTileMultiLightningRod) {
 				GTTileMultiLightningRod rod = (GTTileMultiLightningRod) tileEntity;
-				IC2.platform.messagePlayer(player, "Correct Strucuture: " + rod.checkStructure());
-				IC2.platform.messagePlayer(player, "Casing Block Amount: "
-						+ (rod.casingheight - (rod.getPos().getY() + 1)));
-				IC2.platform.messagePlayer(player, "Casing Block Level: " + rod.casingheight);
-				IC2.platform.messagePlayer(player, "Weather Height: " + world.getPrecipitationHeight(pos).getY());
-				IC2.platform.messagePlayer(player, "Block Up Level: " + (rod.getPos().getY() + 1));
-				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.thunderingStrength) * 100) + "%");
-				IC2.platform.messagePlayer(player, "1 out of " + rod.chance
+				int fenceCount = rod.casingheight - (rod.getPos().getY() + 1);
+				IC2.platform.messagePlayer(player, "Fence Count: " + fenceCount);
+				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.rainingStrength) * 100) + "%");
+				int outOf = fenceCount >= 8 ? 1 : 0;
+				IC2.platform.messagePlayer(player, outOf + " out of " + rod.chance
 						+ " chance to strike based on fence height");
-			}
-			if (tileEntity instanceof GTTileMagicEnergyConverter) {
-				GTTileMagicEnergyConverter magic = (GTTileMagicEnergyConverter) tileEntity;
-				IC2.platform.messagePlayer(player, "Stored: " + magic.getStoredEU());
-				IC2.platform.messagePlayer(player, "Storage: " + magic.getMaxEU());
-			}
-			if (tileEntity instanceof GTTileMagicEnergyAbsorber) {
-				GTTileMagicEnergyAbsorber magic = (GTTileMagicEnergyAbsorber) tileEntity;
-				IC2.platform.messagePlayer(player, "Producing: " + magic.getOutput());
-				IC2.platform.messagePlayer(player, "Stored: " + magic.getStoredEU());
-				IC2.platform.messagePlayer(player, "Storage: " + magic.getMaxEU());
 			}
 			if (tileEntity instanceof GTTileDrum) {
 				GTTileDrum drum = (GTTileDrum) tileEntity;
@@ -238,27 +226,11 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 					IC2.platform.messagePlayer(player, fluid.amount + "mB of " + fluid.getLocalizedName());
 				}
 			}
-			if (tileEntity instanceof TileEntityElectricBlock) {
-				TileEntityElectricBlock eu = (TileEntityElectricBlock) tileEntity;
-				IC2.platform.messagePlayer(player, "Tier: " + eu.getTier());
-				IC2.platform.messagePlayer(player, "Capacity: " + eu.getMaxEU() + " EU");
-				IC2.platform.messagePlayer(player, "Output: " + eu.getOutput() + " EU");
-				if (eu instanceof GTTileLESU) {
-					IC2.platform.messagePlayer(player, "Max Input: 32 EU");
-					IC2.platform.messagePlayer(player, "Lapotron Blocks: " + ((GTTileLESU) eu).getCount());
-					IC2.platform.messagePlayer(player, "Energy Packets: "
-							+ ((GTTileLESU) eu).getMultipleEnergyPacketAmount());
-				}
-			}
-			if (tileEntity instanceof TileEntityTransformer) {
-				TileEntityTransformer transformer = (TileEntityTransformer) tileEntity;
-				IC2.platform.messagePlayer(player, "Low: " + transformer.lowOutput + " EU");
-				IC2.platform.messagePlayer(player, "Low Tier: "
-						+ EnergyNet.instance.getTierFromPower((double) transformer.lowOutput));
-				IC2.platform.messagePlayer(player, "High: " + transformer.highOutput + " EU");
-				IC2.platform.messagePlayer(player, "High Tier: "
-						+ EnergyNet.instance.getTierFromPower((double) transformer.highOutput));
-				IC2.platform.messagePlayer(player, "Stored: " + transformer.getStoredEU() + " EU");
+			if (tileEntity instanceof GTTileLESU) {
+				GTTileLESU lesu = (GTTileLESU) tileEntity;
+				IC2.platform.messagePlayer(player, "Max Input: 32 EU");
+				IC2.platform.messagePlayer(player, "Lapotron Blocks: " + lesu.getCount());
+				IC2.platform.messagePlayer(player, "Energy Packets: " + lesu.getMultipleEnergyPacketAmount());
 			}
 			if (tileEntity instanceof GTTileBaseBuffer) {
 				GTTileBaseBuffer buffer = (GTTileBaseBuffer) tileEntity;

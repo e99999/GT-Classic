@@ -12,6 +12,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public class GTJeiMagicFuelWrapper implements IRecipeWrapper {
 
@@ -24,11 +25,20 @@ public class GTJeiMagicFuelWrapper implements IRecipeWrapper {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ArrayList<ItemStack> inputs = new ArrayList<>();
+		ArrayList<FluidStack> inputFluids = new ArrayList<>();
+		ArrayList<ItemStack> inputItems = new ArrayList<>();
 		for (IRecipeInput input : multiRecipe.getInputs()) {
-			inputs.addAll(input.getInputs());
+			if (input instanceof RecipeInputFluid){
+				inputFluids.add(((RecipeInputFluid)input).fluid);
+			} else {
+				inputItems.addAll(input.getInputs());
+			}
 		}
-		ingredients.setInputs(ItemStack.class, inputs);
+		if (!inputFluids.isEmpty()){
+			ingredients.setInputs(FluidStack.class, inputFluids);
+		}
+		ingredients.setInputs(ItemStack.class, inputItems);
+		ingredients.setOutputs(ItemStack.class, multiRecipe.getOutputs().getAllOutputs());
 	}
 
 	@Override
