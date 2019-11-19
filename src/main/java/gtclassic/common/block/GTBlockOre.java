@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockOre extends GTBlockBase{
+public class GTBlockOre extends GTBlockBase {
 
 	String name;
 	int id;

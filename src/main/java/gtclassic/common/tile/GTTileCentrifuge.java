@@ -1,14 +1,13 @@
 package gtclassic.common.tile;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import gtclassic.GTMod;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
+import gtclassic.api.recipe.GTRecipeMachineHandler;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.tile.GTTileBaseMachine;
 import gtclassic.common.GTItems;
@@ -17,8 +16,6 @@ import gtclassic.common.container.GTContainerCentrifuge;
 import gtclassic.common.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
-import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
-import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.inventory.container.ContainerIC2;
@@ -41,7 +38,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 
 public class GTTileCentrifuge extends GTTileBaseMachine {
@@ -51,8 +47,8 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 	protected static final int[] slotOutputs = { 2, 3, 4, 5, 6, 7 };
 	public IFilter filter = new MachineFilter(this);
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/industrialcentrifuge.png");
-	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.centrifuge");
 	private static final int defaultEu = 16;
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.centrifuge", defaultEu);
 
 	public GTTileCentrifuge() {
 		super(9, 4, defaultEu, 100, 32);
@@ -124,11 +120,6 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 
 	public ResourceLocation getGuiTexture() {
 		return GUI_LOCATION;
-	}
-
-	@Override
-	public boolean hasGui(EntityPlayer player) {
-		return true;
 	}
 
 	@Override
@@ -253,31 +244,11 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		}
 	}
 
-	public static IRecipeModifier[] totalEu(int amount) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((amount / defaultEu) - 100) };
+	public static IRecipeModifier[] totalEu(int total) {
+		return GTRecipeMachineHandler.totalEu(RECIPE_LIST, total);
 	}
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
-		NBTTagCompound mods = new NBTTagCompound();
-		for (IRecipeModifier modifier : modifiers) {
-			modifier.apply(mods);
-		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
-		addRecipe(inlist, new MachineOutput(mods, outlist));
-	}
-
-	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), defaultEu);
-	}
-
-	public static void removeRecipe(String id) {
-		RECIPE_LIST.removeRecipe(id);
+		GTRecipeMachineHandler.addRecipe(RECIPE_LIST, inputs, modifiers, outputs);
 	}
 }

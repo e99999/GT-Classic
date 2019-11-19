@@ -18,14 +18,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class GTBlockBase extends Block implements ITexturedBlock, ILocaleBlock {
-	
+
 	private LocaleComp comp;
-	
+
 	public GTBlockBase(Material materialIn) {
 		super(materialIn);
 		this.comp = Ic2Lang.nullKey;
 	}
-	
+
 	@Override
 	public LocaleComp getName() {
 		return this.comp;
@@ -41,12 +41,12 @@ public abstract class GTBlockBase extends Block implements ITexturedBlock, ILoca
 		this.comp = new LocaleBlockComp("tile." + name);
 		return super.setUnlocalizedName(name);
 	}
-	
+
 	@Override
 	public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
 		return FULL_BLOCK_AABB;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getParticleTexture(IBlockState state) {
@@ -63,7 +63,7 @@ public abstract class GTBlockBase extends Block implements ITexturedBlock, ILoca
 	public IBlockState getStateFromStack(ItemStack stack) {
 		return this.getStateFromMeta(stack.getMetadata());
 	}
-	
+
 	public LocaleComp getLocaleComp() {
 		return this.comp;
 	}

@@ -618,7 +618,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
-		return false;
+		return true;
 	}
 
 	@Override

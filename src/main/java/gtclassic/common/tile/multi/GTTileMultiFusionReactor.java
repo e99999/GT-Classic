@@ -1,8 +1,6 @@
 package gtclassic.common.tile.multi;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import gtclassic.GTMod;
@@ -10,6 +8,7 @@ import gtclassic.api.helpers.int3;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialElement;
 import gtclassic.api.material.GTMaterialGen;
+import gtclassic.api.recipe.GTRecipeMachineHandler;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.tile.multi.GTTileMultiBaseMachine;
 import gtclassic.common.GTBlocks;
@@ -20,7 +19,6 @@ import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
-import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySource;
@@ -50,7 +48,7 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 	public static final int slotInput1 = 1;
 	public static final int slotOutput = 2;
 	public IFilter filter = new MachineFilter(this);
-	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.fusion");
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.fusion", 8192);
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusionreactor.png");
 	public String status;
 	IBlockState coilState = GTBlocks.casingFusion.getDefaultState();
@@ -166,60 +164,6 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 		}
 	}
 
-	public static void postInit() {
-		/** Just regular recipes added manually **/
-		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
-				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
-		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getTube(GTMaterial.Deuterium, 1)),
-				input(GTMaterialGen.getTube(GTMaterial.Tritium, 1)) }, totalEu(40000000), GTMaterialGen.getTube(GTMaterial.Helium, 1));
-		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getTube(GTMaterial.Deuterium, 1)),
-				input(GTMaterialGen.getTube(GTMaterial.Helium3, 1)) }, totalEu(40000000), GTMaterialGen.getTube(GTMaterial.Helium, 1));
-		/** This iterates the element objects to create all Fusion recipes **/
-		Set<Integer> usedInputs = new HashSet<>();
-		for (GTMaterialElement sum : GTMaterialElement.getElementList()) {
-			for (GTMaterialElement input1 : GTMaterialElement.getElementList()) {
-				for (GTMaterialElement input2 : GTMaterialElement.getElementList()) {
-					int hash = input1.hashCode() + input2.hashCode();
-					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2
-							&& !usedInputs.contains(hash)) {
-						float ratio = (sum.getNumber() / 100.0F) * 7000000.0F;
-						addRecipe(new IRecipeInput[] { input1.getInput(),
-								input2.getInput() }, totalEu(Math.round(ratio)), sum.getOutput());
-						usedInputs.add(hash);
-					}
-				}
-			}
-		}
-	}
-
-	public static IRecipeModifier[] totalEu(int total) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((total / 8196) - 100) };
-	}
-
-	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
-		NBTTagCompound mods = new NBTTagCompound();
-		for (IRecipeModifier modifier : modifiers) {
-			modifier.apply(mods);
-		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
-		addRecipe(inlist, new MachineOutput(mods, outlist));
-	}
-
-	static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 8192);
-	}
-
-	public static void removeRecipe(String id) {
-		RECIPE_LIST.removeRecipe(id);
-	}
-
 	@Override
 	public boolean checkStructure() {
 		int3 dir = new int3(getPos(), getFacing());
@@ -271,5 +215,39 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 	@Override
 	public int getSourceTier() {
 		return 12;
+	}
+	
+	public static void postInit() {
+		/** Just regular recipes added manually **/
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
+				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getTube(GTMaterial.Deuterium, 1)),
+				input(GTMaterialGen.getTube(GTMaterial.Tritium, 1)) }, totalEu(40000000), GTMaterialGen.getTube(GTMaterial.Helium, 1));
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getTube(GTMaterial.Deuterium, 1)),
+				input(GTMaterialGen.getTube(GTMaterial.Helium3, 1)) }, totalEu(40000000), GTMaterialGen.getTube(GTMaterial.Helium, 1));
+		/** This iterates the element objects to create all Fusion recipes **/
+		Set<Integer> usedInputs = new HashSet<>();
+		for (GTMaterialElement sum : GTMaterialElement.getElementList()) {
+			for (GTMaterialElement input1 : GTMaterialElement.getElementList()) {
+				for (GTMaterialElement input2 : GTMaterialElement.getElementList()) {
+					int hash = input1.hashCode() + input2.hashCode();
+					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2
+							&& !usedInputs.contains(hash)) {
+						float ratio = (sum.getNumber() / 100.0F) * 7000000.0F;
+						addRecipe(new IRecipeInput[] { input1.getInput(),
+								input2.getInput() }, totalEu(Math.round(ratio)), sum.getOutput());
+						usedInputs.add(hash);
+					}
+				}
+			}
+		}
+	}
+
+	public static IRecipeModifier[] totalEu(int total) {
+		return GTRecipeMachineHandler.totalEu(RECIPE_LIST, total);
+	}
+
+	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
+		GTRecipeMachineHandler.addRecipe(RECIPE_LIST, inputs, modifiers, outputs);
 	}
 }
