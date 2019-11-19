@@ -1,6 +1,6 @@
 package gtclassic.api.gui;
 
-import gtclassic.api.interfaces.IGTStatus;
+import gtclassic.api.interfaces.IGTMultiTileStatus;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.util.math.Box2D;
@@ -10,9 +10,9 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class GTGuiCompRedOverlay extends GuiComponent {
-    IGTStatus tile;
-    public GTGuiCompRedOverlay(IGTStatus tile, Box2D box) {
+public class GTGuiCompMultiTileStatus extends GuiComponent {
+    IGTMultiTileStatus tile;
+    public GTGuiCompMultiTileStatus(IGTMultiTileStatus tile, Box2D box) {
         super(box);
         this.tile = tile;
     }
