@@ -70,9 +70,10 @@ public class GTJeiMagicFuelCategory implements IRecipeCategory<GTJeiMagicFuelWra
 		for (IRecipeInput list : wrapper.getMultiRecipe().getInputs()) {
 			int x = index % 3;
 			int y = index / 3;
-			if (list instanceof RecipeInputFluid){
-				fluidGroup.init(actualIndex, true, (18 * x) + 1, (18 * y) + 1, 16, 16, ((RecipeInputFluid)list).fluid.amount, true, null);
-				fluidGroup.set(actualIndex, ((RecipeInputFluid)list).fluid);
+			if (list instanceof RecipeInputFluid) {
+				fluidGroup.init(actualIndex, true, (18 * x) + 1, (18 * y)
+						+ 1, 16, 16, ((RecipeInputFluid) list).fluid.amount, true, null);
+				fluidGroup.set(actualIndex, ((RecipeInputFluid) list).fluid);
 			} else {
 				itemGroup.init(actualIndex, true, (18 * x), (18 * y));
 				itemGroup.set(actualIndex, list.getInputs());

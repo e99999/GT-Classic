@@ -48,12 +48,12 @@ public class GTMaterialGen {
 			}
 		}
 	}
-	
-	public static void addBlockFlag(GTMaterialFlag flag){
+
+	public static void addBlockFlag(GTMaterialFlag flag) {
 		blockFlags.add(flag);
 	}
-	
-	public static void addItemFlag(GTMaterialFlag flag){
+
+	public static void addItemFlag(GTMaterialFlag flag) {
 		itemFlags.add(flag);
 	}
 
@@ -66,8 +66,7 @@ public class GTMaterialGen {
 	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {
 		if (flag == GTMaterialFlag.INGOTHOT && mat.hasFlag(GTMaterialFlag.INGOTHOT)) {
 			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItemHot(mat));
-		}
-		else if (mat.hasFlag(flag)) {
+		} else if (mat.hasFlag(flag)) {
 			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItem(mat, flag));
 		}
 	}
@@ -123,7 +122,7 @@ public class GTMaterialGen {
 	public static ItemStack getIngot(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.INGOT.getSuffix()), count, 0);
 	}
-	
+
 	/** How to get a hot ingot of any GTMaterial **/
 	public static ItemStack getHotIngot(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.INGOTHOT.getSuffix()), count, 0);

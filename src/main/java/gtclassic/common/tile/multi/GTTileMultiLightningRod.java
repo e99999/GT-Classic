@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 
-public class GTTileMultiLightningRod extends TileEntityGeneratorBase implements IGTMultiTileStatus{
+public class GTTileMultiLightningRod extends TileEntityGeneratorBase implements IGTMultiTileStatus {
 
 	public int casingheight;
 	public int chance;
@@ -119,9 +119,9 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase implements 
 	public boolean getStructureValid() {
 		return checkStructure();
 	}
-	
-	@Override 
+
+	@Override
 	public int getSourceTier() {
-		 return 5;
-	 }
+		return 5;
+	}
 }

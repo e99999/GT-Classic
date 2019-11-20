@@ -1,4 +1,5 @@
 package gtclassic.api.material;
+
 import java.util.List;
 
 import gtclassic.api.helpers.GTHelperPlayer;
@@ -12,18 +13,18 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-public class GTMaterialItemHot extends GTMaterialItem{
+public class GTMaterialItemHot extends GTMaterialItem {
 
 	public GTMaterialItemHot(GTMaterial material) {
 		super(material, GTMaterialFlag.INGOTHOT);
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(TextFormatting.RED + I18n.format("Hot stuff coming through!"));
 		tooltip.add(TextFormatting.YELLOW + I18n.format("Can be handled safely wearing a full Hazmat or Quantum Suit"));
 	}
-	
+
 	/**
 	 * Creates the behavior harming the player if unprotected
 	 */
@@ -31,7 +32,8 @@ public class GTMaterialItemHot extends GTMaterialItem{
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
 		if (entityIn instanceof EntityLivingBase) {
 			EntityLivingBase player = (EntityLivingBase) entityIn;
-			if (!ItemHazmatArmor.isFullHazmatSuit(player) && !player.isImmuneToFire() && !GTHelperPlayer.hasFullQuantumSuit(player)) {
+			if (!ItemHazmatArmor.isFullHazmatSuit(player) && !player.isImmuneToFire()
+					&& !GTHelperPlayer.hasFullQuantumSuit(player)) {
 				entityIn.attackEntityFrom(DamageSource.IN_FIRE, 4.0F);
 			}
 		}

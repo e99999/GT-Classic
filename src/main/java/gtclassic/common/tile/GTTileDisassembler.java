@@ -13,7 +13,6 @@ import ic2.api.classic.recipe.crafting.IAdvRecipe;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.crafting.IRecipeObject;
 import ic2.api.classic.tile.machine.IProgressMachine;
-import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.util.info.ProgressInfo;
 import ic2.core.inventory.base.IHasGui;
@@ -83,8 +82,9 @@ public class GTTileDisassembler extends TileEntityElecMachine implements ITickab
 				IRecipe recipe = (IRecipe) currentRecipe;
 				ItemStack craftingOutput = recipe.getRecipeOutput().copy();
 				if (!currentRecipe.isInvisible()) {
-					//TODO check meta but not nbt
-					if (GTHelperStack.isEqual(craftingOutput, this.getStackInSlot(0)) && this.getStackInSlot(0).getCount() >= craftingOutput.getCount()) {
+					// TODO check meta but not nbt
+					if (GTHelperStack.isEqual(craftingOutput, this.getStackInSlot(0))
+							&& this.getStackInSlot(0).getCount() >= craftingOutput.getCount()) {
 						List<ItemStack> outputList = new ArrayList<>();
 						for (int i = 0; i < ingredients.size(); ++i) {
 							outputList.add(ingredients.get(i).getItems().get(0).copy());
@@ -97,6 +97,11 @@ public class GTTileDisassembler extends TileEntityElecMachine implements ITickab
 					}
 				}
 			}
+		}
+	}
+
+	public void update2() {
+		if (world.getTotalWorldTime() % 20 == 0) {
 		}
 	}
 

@@ -31,19 +31,18 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 		ArrayList<FluidStack> inputFluids = new ArrayList<>();
 		ArrayList<ItemStack> inputItems = new ArrayList<>();
 		for (IRecipeInput input : multiRecipe.getInputs()) {
-			if (input instanceof RecipeInputFluid){
-				inputFluids.add(((RecipeInputFluid)input).fluid);
+			if (input instanceof RecipeInputFluid) {
+				inputFluids.add(((RecipeInputFluid) input).fluid);
 			} else {
 				inputItems.addAll(input.getInputs());
 			}
 		}
-		if (!inputFluids.isEmpty()){
+		if (!inputFluids.isEmpty()) {
 			ingredients.setInputs(FluidStack.class, inputFluids);
 		}
 		ingredients.setInputs(ItemStack.class, inputItems);
 		ingredients.setOutputs(ItemStack.class, multiRecipe.getOutputs().getAllOutputs());
 	}
-
 
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {

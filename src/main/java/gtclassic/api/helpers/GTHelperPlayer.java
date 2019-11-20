@@ -5,24 +5,25 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class GTHelperPlayer {
-	
+
 	/**
-	 *  Checks to see if a player is fully equipped in quantum gear
+	 * Checks to see if a player is fully equipped in quantum gear
+	 * 
 	 * @param entity - usually the player in this case
 	 * @return
 	 */
 	public static boolean hasFullQuantumSuit(EntityLivingBase entity) {
-	        if (!(entity instanceof EntityPlayer)){
-	            return false;
-	        }
-	        EntityPlayer player = (EntityPlayer) entity;
-	        for (int i = 0; i < 4; i++) {
-	            if (!(player.inventory.armorInventory.get(i).getItem() instanceof ItemArmorQuantumSuit)) {
-	                return false;
-	            }
-	        }
-	        return true;
-	    }
+		if (!(entity instanceof EntityPlayer)) {
+			return false;
+		}
+		EntityPlayer player = (EntityPlayer) entity;
+		for (int i = 0; i < 4; i++) {
+			if (!(player.inventory.armorInventory.get(i).getItem() instanceof ItemArmorQuantumSuit)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * Thanks to OpenMods/OpenBlocks for being MIT which allows me to use the code
