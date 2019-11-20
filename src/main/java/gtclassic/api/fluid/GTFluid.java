@@ -1,6 +1,5 @@
 package gtclassic.api.fluid;
 
-import gtclassic.GTMod;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialFlag;
 import net.minecraft.block.material.Material;
@@ -17,39 +16,17 @@ public class GTFluid extends Fluid {
 	protected static SoundEvent emptySound = SoundEvents.ITEM_BUCKET_EMPTY;
 	protected static SoundEvent fillSound = SoundEvents.ITEM_BUCKET_FILL;
 	protected static Material material = Material.WATER;
-	GTMaterial mat = null;
-	String base = null;
+	GTMaterial mat;
+	GTMaterialFlag flag;
 
-	private GTFluid(GTMaterial mat, String base, String suffix, boolean isGaseous) {
-		super(mat.getDisplayName().toLowerCase() + suffix, new ResourceLocation(GTMod.MODID, "fluids/"
-				+ base), new ResourceLocation(GTMod.MODID, "fluids/" + base + "flowing"));
+	public GTFluid(GTMaterial mat, GTMaterialFlag flag) {
+		super(mat.getDisplayName().toLowerCase(), new ResourceLocation(flag.getModID(), "fluids/"
+				+ flag.getPrefix()), new ResourceLocation(flag.getModID(), "fluids/" + flag.getPrefix() + "flowing"));
 		this.mat = mat;
-		this.base = base;
-		this.temperature = 300;
+		this.flag = flag;
+		this.temperature = this.mat.hasFlag(GTMaterialFlag.INGOT) ? 2000 : 300;
 		this.mapColor = caluclateMapColor();
-		this.setGaseous(isGaseous);
-	}
-
-	/**
-	 * Constructor for a GTFluid with added suffix control.
-	 * 
-	 * @param mat  - GTMaterial to create, grabs the color and fluid type
-	 * @param base - String for background, can be "fluid" or "gas"
-	 * @param flag - GTMaterialFlag to get a custom suffix, used for plasma etc..
-	 */
-	public GTFluid(GTMaterial mat, String base, GTMaterialFlag flag) {
-		this(mat, base, flag.getSuffix(), flag.equals(GTMaterialFlag.GAS));
-	}
-
-	/**
-	 * Constructor for a GTFluid.
-	 * 
-	 * @param mat  - GTMaterial to create, grabs the color and fluid type
-	 * @param base - String for background, "fluid" for flowing texture and "gas"
-	 *             for gas texture
-	 */
-	public GTFluid(GTMaterial mat, String base) {
-		this(mat, base, "", mat.hasFlag(GTMaterialFlag.GAS));
+		this.setGaseous(this.flag == GTMaterialFlag.GAS);
 	}
 
 	public GTMaterial getGTMaterial() {

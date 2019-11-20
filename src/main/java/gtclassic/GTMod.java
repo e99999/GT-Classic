@@ -9,7 +9,6 @@ import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTCreativeTab;
 import gtclassic.common.GTCrops;
-import gtclassic.common.GTFluids;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTJei;
 import gtclassic.common.GTOreDict;
@@ -64,7 +63,6 @@ public class GTMod {
 		logger = event.getModLog();
 		proxy.preInit(event);
 		logger.info("Hello from GregTech Classic!");
-		GTFluids.registerFluids();
 		GTBlocks.registerTiles();
 		GTMaterialGen.initFlags();
 		GTMaterialGen.init();
@@ -100,7 +98,7 @@ public class GTMod {
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 		proxy.postInit(e);
-		GTFluids.postInitProperities();
+		GTMaterialGen.postInitProperities();
 		GTRecipeIterators.postInit();
 		GTTileMatterFabricator.postInit();
 		GTTileMultiFusionReactor.postInit();

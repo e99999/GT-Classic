@@ -9,8 +9,8 @@ public class GTMaterialFlag {
 	public static GTMaterialFlag INGOTHOT = new GTMaterialFlag("_ingothot", 1, true);
 	public static GTMaterialFlag RUBY = new GTMaterialFlag("_gem", 3, false);
 	public static GTMaterialFlag SAPPHIRE = new GTMaterialFlag("_gem", 4, false);
-	public static GTMaterialFlag FLUID = new GTMaterialFlag("", 13, true);
-	public static GTMaterialFlag GAS = new GTMaterialFlag("", 13, true);
+	public static GTMaterialFlag FLUID = new GTMaterialFlag("_fluid", 13, true);
+	public static GTMaterialFlag GAS = new GTMaterialFlag("_gas", 13, true);
 	public static GTMaterialFlag BLOCKMETAL = new GTMaterialFlag("_block", 16, false);
 	public static GTMaterialFlag BLOCKGEM = new GTMaterialFlag("_block", 17, false);
 	private static int LAST_INTERNAL_ID;
@@ -19,17 +19,19 @@ public class GTMaterialFlag {
 	private String texture;
 	private int id;
 	private boolean layered;
+	private String modid;
 
 	public GTMaterialFlag(String suffix, int id, boolean layered) {
-		this(suffix, GTMod.MODID + "_materials", id, layered);
+		this(suffix, GTMod.MODID + "_materials", id, layered, GTMod.MODID);
 	}
 
-	public GTMaterialFlag(String suffix, String texture, int id, boolean layered) {
+	public GTMaterialFlag(String suffix, String texture, int id, boolean layered, String modid) {
 		this.mask = 1 << LAST_INTERNAL_ID++;
 		this.suffix = suffix;
 		this.texture = texture;
 		this.id = id;
 		this.layered = layered;
+		this.modid = modid;
 	}
 
 	public String getTexture() {
@@ -54,5 +56,9 @@ public class GTMaterialFlag {
 
 	public boolean isLayered() {
 		return layered;
+	}
+	
+	public String getModID() {
+		return this.modid;
 	}
 }

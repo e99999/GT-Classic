@@ -168,6 +168,7 @@ fluid.chlorine=Chlorine
 fluid.oil=Oil
 fluid.neon=Neon
 fluid.argon=Argon
+fluid.sulfuricacid=Sulfuric Acid
 
 #ore tooltips
 tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome

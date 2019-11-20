@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import gtclassic.api.fluid.GTFluid;
+import gtclassic.api.fluid.GTFluidHandler;
 import gtclassic.common.GTItems;
+import ic2.api.classic.recipe.ClassicRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,7 +24,11 @@ public class GTMaterialGen {
 	public static LinkedHashMap<String, Block> blockMap = new LinkedHashMap<>();
 	private static List<GTMaterialFlag> blockFlags = new ArrayList<>();
 	private static List<GTMaterialFlag> itemFlags = new ArrayList<>();
+	private static List<GTMaterialFlag> fluidFlags = new ArrayList<>();
 
+	/**
+	 * Initializing flags to generate here before the material map is iterated
+	 **/
 	public static void initFlags() {
 		blockFlags.add(GTMaterialFlag.BLOCKGEM);
 		blockFlags.add(GTMaterialFlag.BLOCKMETAL);
@@ -30,13 +37,14 @@ public class GTMaterialGen {
 		itemFlags.add(GTMaterialFlag.SAPPHIRE);
 		itemFlags.add(GTMaterialFlag.INGOT);
 		itemFlags.add(GTMaterialFlag.INGOTHOT);
+		fluidFlags.add(GTMaterialFlag.GAS);
+		fluidFlags.add(GTMaterialFlag.FLUID);
 	}
 
 	/**
 	 * Where GTClassic iterates the material list and put items on the matieral map.
 	 **/
 	public static void init() {
-		// Add material entries and flags to correct maps
 		for (GTMaterialFlag blockFlag : blockFlags) {
 			for (GTMaterial mat : GTMaterial.values()) {
 				materialBlockUtil(mat, blockFlag);
@@ -47,14 +55,53 @@ public class GTMaterialGen {
 				materialItemUtil(mat, itemFlag);
 			}
 		}
+		for (GTMaterialFlag fluidFlag : fluidFlags) {
+			for (GTMaterial mat : GTMaterial.values()) {
+				materialFluidUtil(mat, fluidFlag);
+			}
+		}
+	}
+	
+	public static void postInitProperities() {
+		for (Fluid entry : ClassicRecipes.fluidGenerator.getBurnMap().keySet()) {
+			GTFluidHandler.addBurnableToolTip(entry);
+		}
 	}
 
+	/**
+	 * Add your own flag to the block flag list
+	 * @param flag
+	 */
 	public static void addBlockFlag(GTMaterialFlag flag) {
 		blockFlags.add(flag);
 	}
 
+	/**
+	 * Add your own flag to the item flag list
+	 * @param flag
+	 */
 	public static void addItemFlag(GTMaterialFlag flag) {
 		itemFlags.add(flag);
+	}
+	
+	/**
+	 * Add your own flag to the fluid flag list
+	 * @param flag
+	 */
+	public static void addFluidFlag(GTMaterialFlag flag) {
+		fluidFlags.add(flag);
+	}
+	
+	/**
+	 * For creating a fluid from a material directly.
+	 * 
+	 * @param mat  - GTMaterial to use
+	 * @param flag - GTMaterialFlag to combine with the material
+	 */
+	public static void materialFluidUtil(GTMaterial mat, GTMaterialFlag flag){
+		if (mat.hasFlag(flag)) {
+			FluidRegistry.registerFluid(new GTFluid(mat, flag));
+		}
 	}
 
 	/**
