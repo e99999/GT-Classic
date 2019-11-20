@@ -4,7 +4,6 @@ import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.misc.FluidHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Tuple;
@@ -14,8 +13,6 @@ import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTHelperFluid {
 
@@ -58,27 +55,28 @@ public class GTHelperFluid {
 	public static boolean doClickableFluidContainerThings(EntityPlayer player, EnumHand hand, World world, BlockPos pos,
 			IC2Tank tank) {
 		ItemStack playerStack = player.getHeldItem(hand);
-		if (GTHelperFluid.isConsumable(playerStack) || GTHelperFluid.isBCShard(playerStack)) {
-			if (FluidUtil.tryEmptyContainer(playerStack, tank, tank.getCapacity()
-					- tank.getFluidAmount(), player, true) != FluidActionResult.FAILURE) {
-				playerStack.shrink(1);
-				return true;
-			}
-		}
 		if (!playerStack.isEmpty()) {
-			ItemStack stackEmpty = FluidUtil.tryEmptyContainer(playerStack, tank, tank.getCapacity()
-					- tank.getFluidAmount(), player, true).getResult();
-			ItemStack stackCopy = FluidUtil.tryEmptyContainer(playerStack, tank, tank.getCapacity()
-					- tank.getFluidAmount(), player, false).getResult();
-			if (!stackCopy.isEmpty()) {
+			FluidActionResult result = FluidUtil.tryEmptyContainer(playerStack, tank, tank.getCapacity()
+					- tank.getFluidAmount(), player, true);
+			if (result.isSuccess()) {
 				playerStack.shrink(1);
-				ItemHandlerHelper.giveItemToPlayer(player, stackEmpty);
+				ItemStack resultStack = result.getResult();
+				if (!resultStack.isEmpty()) {
+					if (!player.inventory.addItemStackToInventory(resultStack)) {
+						player.dropItem(resultStack, false);
+					}
+				}
 				return true;
 			}
-			ItemStack stackFilled = FluidUtil.tryFillContainer(playerStack, tank, 1000, player, true).getResult();
-			if (!stackFilled.isEmpty()) {
+			FluidActionResult result2 = FluidUtil.tryFillContainer(playerStack, tank, tank.getCapacity(), player, true);
+			if (result2.isSuccess()) {
 				playerStack.shrink(1);
-				ItemHandlerHelper.giveItemToPlayer(player, stackFilled);
+				ItemStack resultStack = result2.getResult();
+				if (!resultStack.isEmpty()) {
+					if (!player.inventory.addItemStackToInventory(resultStack)) {
+						player.dropItem(resultStack, false);
+					}
+				}
 				return true;
 			}
 		}
@@ -88,14 +86,6 @@ public class GTHelperFluid {
 	// helper for fluid handling
 	public static boolean isTankFull(IC2Tank tank) {
 		return tank.getFluidAmount() == tank.getCapacity();
-	}
-
-	// helper for fluid handling
-	public static boolean isBCShard(ItemStack stack) {
-		if (Loader.isModLoaded("buildcraftcore")) {
-			return stack.isItemEqual(new ItemStack(Item.getByNameOrId("buildcraftcore:fragile_fluid_shard")));
-		}
-		return false;
 	}
 
 	// helper for fluid handling
