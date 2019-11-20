@@ -123,6 +123,11 @@ public class GTMaterialGen {
 	public static ItemStack getIngot(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.INGOT.getSuffix()), count, 0);
 	}
+	
+	/** How to get a hot ingot of any GTMaterial **/
+	public static ItemStack getHotIngot(GTMaterial mat, int count) {
+		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.INGOTHOT.getSuffix()), count, 0);
+	}
 
 	/** How to a GTFluidTube with any GTMaterial **/
 	public static ItemStack getTube(GTMaterial mat, int count) {
