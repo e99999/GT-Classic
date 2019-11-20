@@ -29,6 +29,7 @@ public class GTMaterialGen {
 		itemFlags.add(GTMaterialFlag.RUBY);
 		itemFlags.add(GTMaterialFlag.SAPPHIRE);
 		itemFlags.add(GTMaterialFlag.INGOT);
+		itemFlags.add(GTMaterialFlag.INGOTHOT);
 	}
 
 	/**
@@ -63,7 +64,10 @@ public class GTMaterialGen {
 	 * @param flag - GTMaterialFlag to combine with the material
 	 */
 	public static void materialItemUtil(GTMaterial mat, GTMaterialFlag flag) {
-		if (mat.hasFlag(flag)) {
+		if (flag == GTMaterialFlag.INGOTHOT && mat.hasFlag(GTMaterialFlag.INGOTHOT)) {
+			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItemHot(mat));
+		}
+		else if (mat.hasFlag(flag)) {
 			itemMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialItem(mat, flag));
 		}
 	}
