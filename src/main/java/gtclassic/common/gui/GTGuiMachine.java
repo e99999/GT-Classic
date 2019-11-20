@@ -39,4 +39,11 @@ public class GTGuiMachine {
 			super(container);
 		}
 	}
+	
+	public static class GTDisassemblerGui extends MachineGui {
+
+		public GTDisassemblerGui(ContainerComponent<?> container) {
+			super(container);
+		}
+	}
 }

@@ -12,6 +12,7 @@ import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileChargeOMat;
 import gtclassic.common.tile.GTTileComputerCube;
 import gtclassic.common.tile.GTTileDigitalChest;
+import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileEchotron;
 import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
@@ -154,6 +155,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileAutocrafter) {
 			return new GTTileAutocrafter();
+		}
+		if (this == GTBlocks.tileDisassembler) {
+			return new GTTileDisassembler();
 		}
 		if (this == GTBlocks.tileLightningRod) {
 			return new GTTileMultiLightningRod();

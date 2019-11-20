@@ -1,6 +1,8 @@
 package gtclassic.api.material;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import gtclassic.common.GTItems;
 import net.minecraft.block.Block;
@@ -17,33 +19,41 @@ public class GTMaterialGen {
 
 	public static LinkedHashMap<String, Item> itemMap = new LinkedHashMap<>();
 	public static LinkedHashMap<String, Block> blockMap = new LinkedHashMap<>();
+	private static List<GTMaterialFlag> blockFlags = new ArrayList<>();
+	private static List<GTMaterialFlag> itemFlags = new ArrayList<>();
+
+	public static void initFlags() {
+		blockFlags.add(GTMaterialFlag.BLOCKGEM);
+		blockFlags.add(GTMaterialFlag.BLOCKMETAL);
+		itemFlags.add(GTMaterialFlag.DUST);
+		itemFlags.add(GTMaterialFlag.RUBY);
+		itemFlags.add(GTMaterialFlag.SAPPHIRE);
+		itemFlags.add(GTMaterialFlag.INGOT);
+	}
 
 	/**
 	 * Where GTClassic iterates the material list and put items on the matieral map.
 	 **/
 	public static void init() {
 		// Add material entries and flags to correct maps
-		for (GTMaterial mat : GTMaterial.values()) {
-			materialBlockUtil(mat, GTMaterialFlag.BLOCKGEM);
-		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			materialBlockUtil(mat, GTMaterialFlag.BLOCKMETAL);
-		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			materialItemUtil(mat, GTMaterialFlag.DUST);
-		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			materialItemUtil(mat, GTMaterialFlag.RUBY);
-		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			// to make sure no same gem and override eachother
-			if (!mat.hasFlag(GTMaterialFlag.RUBY)) {
-				materialItemUtil(mat, GTMaterialFlag.SAPPHIRE);
+		for (GTMaterialFlag blockFlag : blockFlags) {
+			for (GTMaterial mat : GTMaterial.values()) {
+				materialBlockUtil(mat, blockFlag);
 			}
 		}
-		for (GTMaterial mat : GTMaterial.values()) {
-			materialItemUtil(mat, GTMaterialFlag.INGOT);
+		for (GTMaterialFlag itemFlag : itemFlags) {
+			for (GTMaterial mat : GTMaterial.values()) {
+				materialItemUtil(mat, itemFlag);
+			}
 		}
+	}
+	
+	public static void addBlockFlag(GTMaterialFlag flag){
+		blockFlags.add(flag);
+	}
+	
+	public static void addItemFlag(GTMaterialFlag flag){
+		itemFlags.add(flag);
 	}
 
 	/**

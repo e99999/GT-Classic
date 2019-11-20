@@ -66,6 +66,7 @@ public class GTMod {
 		logger.info("Hello from GregTech Classic!");
 		GTFluids.registerFluids();
 		GTBlocks.registerTiles();
+		GTMaterialGen.initFlags();
 		GTMaterialGen.init();
 		GTBlocks.registerBlocks();
 		GTItems.initItems();

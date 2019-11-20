@@ -29,6 +29,7 @@ import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileChargeOMat;
 import gtclassic.common.tile.GTTileComputerCube;
 import gtclassic.common.tile.GTTileDigitalChest;
+import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileDrum;
 import gtclassic.common.tile.GTTileEchotron;
@@ -71,6 +72,7 @@ public class GTBlocks {
 	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29, 250.0F));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
+	public static final GTBlockMachine tileDisassembler = registerBlock(new GTBlockMachine("disassembler", GTLang.DISASSEMBLER));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
@@ -102,7 +104,7 @@ public class GTBlocks {
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "autocrafter", "chargeomat", "computercube",
-			"industrialcentrifuge", "matterfabricator", "uumassembler", "echotronblock", "digitalchest", "quantumchest",
+			"industrialcentrifuge", "matterfabricator", "uumassembler","disassembler", "echotronblock", "digitalchest", "quantumchest",
 			"quantumtank", "playerdetector", "mobrepeller", "fusionreactor", "lightningrod", "dragoneggenergysiphon",
 			"magicenergyconverter", "magicenergyabsorber", "idsu", "aesu", "lesu", "supercondensator",
 			"superconductorcable", "cabinet", "drum", "worktable", "translocator", "bufferlarge", "buffersmall",
@@ -143,6 +145,7 @@ public class GTBlocks {
 		registerUtil(GTTileEchotron.class, "Echotron");
 		registerUtil(GTTileComputerCube.class, "ComputerCube");
 		registerUtil(GTTileAutocrafter.class, "Autocrafter");
+		registerUtil(GTTileDisassembler.class, "Disassembler");
 		registerUtil(GTTileChargeOMat.class, "ChargeOMat");
 		registerUtil(GTTileLESU.class, "LESU");
 		registerUtil(GTTileIDSU.class, "IDSU");
