@@ -52,6 +52,10 @@ public class GTHelperStack {
 		return false;
 	}
 
+	public static boolean isEqualOrSharesOreDict(ItemStack stack, ItemStack toCompare) {
+		return isEqual(stack, toCompare) || sharesOreDict(stack, toCompare);
+	}
+
 	/** Checks if a machine slot can accept a stack **/
 	public static boolean canOutputStack(TileEntityMachine tile, ItemStack stack, int slot) {
 		if (tile.inventory.get(slot).isEmpty()) {
@@ -103,6 +107,34 @@ public class GTHelperStack {
 		int size = list.size();
 		for (int i = 0; i < size; i++) {
 			if (StackUtil.isStackEqual(list.get(i), item)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * Returns the index of an item in a list with stack size check, or -1 if not
+	 * found
+	 **/
+	public static int containsWithSize(List<ItemStack> list, ItemStack item) {
+		int size = list.size();
+		for (int i = 0; i < size; i++) {
+			if (StackUtil.isStackEqual(list.get(i), item) && item.getCount() >= list.get(i).getCount()) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	/**
+	 * Returns the index of an item in a list with stack size check, or -1 if not
+	 * found
+	 **/
+	public static int containsWithSizeFuzzy(List<ItemStack> list, ItemStack item) {
+		int size = list.size();
+		for (int i = 0; i < size; i++) {
+			if (GTHelperStack.isEqualOrSharesOreDict(list.get(i), item) && item.getCount() >= list.get(i).getCount()) {
 				return i;
 			}
 		}

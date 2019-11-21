@@ -94,17 +94,17 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 			ItemStack craftingOutput = recipe.getRecipeOutput().copy();
 			// iterates the tiles ghost slots to the fake crafting inventory for matching
 			for (int i = 18; i < 27; ++i) {
-				this.fakeMatrix.setInventorySlotContents(i - 18, this.block.inventory.get(i));
+				this.fakeMatrix.setInventorySlotContents(i - 18, this.block.inventory.get(i).copy());
 			}
 			// if recipe matches set the output ghost slot to the recipe output
 			if (recipe.matches(fakeMatrix, this.block.getWorld())) {
-				this.block.setStackInSlot(27, craftingOutput);
 				this.block.currentRecipe.clear();
 				List<ItemStack> tempList = new ArrayList<>();
 				// condense stacks and remove empty stacks in raw resource demands
 				for (int j = 0; j < fakeMatrix.getSizeInventory(); ++j) {
 					tempList.add((fakeMatrix.getStackInSlot(j).copy()));
 				}
+				this.block.setStackInSlot(27, craftingOutput);
 				GTHelperStack.mergeItems(this.block.currentRecipe, tempList);
 				return;
 				// else then set the output slot to air

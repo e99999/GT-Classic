@@ -9,6 +9,7 @@ import gtclassic.api.helpers.int3;
 import gtclassic.common.container.GTContainerAutocrafter;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
+import ic2.core.block.machine.low.logic.crafter.CraftingRecipe;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.CommonFilters;
@@ -35,6 +36,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	protected static final int[] slotContainer = { 9, 10, 11, 12, 13, 14, 15, 16, 17 };
 	protected static final int[] slotOutputs = { 28 };
 	public List<ItemStack> currentRecipe = new ArrayList<>();
+	public CraftingRecipe craftingThingy = new CraftingRecipe();
 
 	public GTTileAutocrafter() {
 		super(29, 32);
@@ -91,26 +93,56 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	public void update() {
 		if (world.getTotalWorldTime() % 20 == 0) {
 			tryImportItems();
-			//if there is a recipe selected and ghost slot is valid and the output slot is empty
-			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty() && this.inventory.get(28).isEmpty()) {
-
-				for (ItemStack rStack : this.currentRecipe) {
-					GTMod.logger.info("Autocrafter Demands: " + rStack.getDisplayName() + " x " + rStack.getCount());
-				}
+			// if there is a recipe selected and ghost slot is valid and the output slot is
+			// empty
+			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty()
+					&& this.inventory.get(28).isEmpty()) {
 				// see if the tile inventory has what the currentRecipe needs
 				int recipeMatches = 0;
 				for (int i = 0; i < 9; ++i) {
-					if (GTHelperStack.contains(this.currentRecipe, this.getStackInSlot(i)) != -1) {
+					if (GTHelperStack.containsWithSizeFuzzy(this.currentRecipe, this.getStackInSlot(i)) != -1) {
 						recipeMatches++;
 					}
-					
 				}
-				//enough matches found
+				// enough matches found
 				if (recipeMatches >= this.currentRecipe.size()) {
-					GTMod.logger.info("Congratulations you have the items needed to craft this");
+					int tooMatch = recipeMatches;
+					for (int i = 0; i < 9; ++i) {
+						int currentIndex = GTHelperStack.containsWithSizeFuzzy(this.currentRecipe, this.getStackInSlot(i));
+						if (currentIndex != -1 && tooMatch > 0) {
+							ItemStack matchedSlot = this.getStackInSlot(i);
+							tryToDamageItems(matchedSlot);
+							//checking if the damage didnt void the item
+							if (!matchedSlot.isEmpty()) {
+								tryToShiftContainerItems(matchedSlot);
+								matchedSlot.shrink(this.currentRecipe.get(currentIndex).getCount());
+								tooMatch--;
+							}
+						}
+					}
+					if (tooMatch == 0) {
+						this.setStackInSlot(28, this.getStackInSlot(27).copy());
+					}
 				}
 				// keep this last
 				tryExportItems();
+			}
+		}
+	}
+
+	public void tryToDamageItems(ItemStack stack) {
+		if (stack.isItemStackDamageable()) {
+			stack.attemptDamageItem(1, this.world.rand, null);
+		}
+	}
+
+	public void tryToShiftContainerItems(ItemStack container) {
+		if (container.getItem().hasContainerItem(container)) {
+			for (int i = 9; i < 18; ++i) {
+				if (this.getStackInSlot(i).isEmpty()) {
+					this.setStackInSlot(i, container.getItem().getContainerItem(container));
+					return;
+				}
 			}
 		}
 	}
