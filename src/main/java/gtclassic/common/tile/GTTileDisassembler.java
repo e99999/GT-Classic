@@ -206,7 +206,7 @@ public class GTTileDisassembler extends GTTileBaseMachine {
 				List<ItemStack> tempList = new ArrayList<>();
 				Collections.addAll(tempList, recipe.getIngredients().get(i).getMatchingStacks());
 				if (!tempList.isEmpty()) {
-					ItemStack tempStack = tempList.get(0).copy();
+					ItemStack tempStack = isHighValueMaterial(tempList.get(0).copy()) ? Ic2Items.scrapMetal.copy() : tempList.get(0).copy();
 					if (canItemBeReturned(tempStack)) {
 						outputList.add(tempStack);
 					}
@@ -225,6 +225,10 @@ public class GTTileDisassembler extends GTTileBaseMachine {
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		GTRecipeMachineHandler.addRecipe(RECIPE_LIST, inputs, modifiers, outputs);
+	}
+	
+	public static boolean isHighValueMaterial(ItemStack input) {
+		return GTHelperStack.matchOreDict(input, "ingotChrome") || GTHelperStack.matchOreDict(input, "ingotTitanium") || GTHelperStack.matchOreDict(input, "ingotPlatinum");
 	}
 
 	public static boolean canInputBeUsed(ItemStack input) {
