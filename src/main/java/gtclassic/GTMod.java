@@ -24,6 +24,7 @@ import gtclassic.common.recipe.GTRecipeIterators;
 import gtclassic.common.recipe.GTRecipeMods;
 import gtclassic.common.recipe.GTRecipeProcessing;
 import gtclassic.common.tile.GTTileCentrifuge;
+import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileUUMAssembler;
@@ -103,6 +104,7 @@ public class GTMod {
 		GTTileMatterFabricator.postInit();
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeMods.postInit();
+		GTTileDisassembler.init();
 		GTJei.initEntries();
 		if (GTConfig.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)) {
 			GTWorldTwilightForest.initStalactites();

@@ -61,7 +61,7 @@ public class GTMaterialGen {
 			}
 		}
 	}
-	
+
 	public static void postInitProperities() {
 		for (Fluid entry : ClassicRecipes.fluidGenerator.getBurnMap().keySet()) {
 			GTFluidHandler.addBurnableToolTip(entry);
@@ -70,6 +70,7 @@ public class GTMaterialGen {
 
 	/**
 	 * Add your own flag to the block flag list
+	 * 
 	 * @param flag
 	 */
 	public static void addBlockFlag(GTMaterialFlag flag) {
@@ -78,27 +79,29 @@ public class GTMaterialGen {
 
 	/**
 	 * Add your own flag to the item flag list
+	 * 
 	 * @param flag
 	 */
 	public static void addItemFlag(GTMaterialFlag flag) {
 		itemFlags.add(flag);
 	}
-	
+
 	/**
 	 * Add your own flag to the fluid flag list
+	 * 
 	 * @param flag
 	 */
 	public static void addFluidFlag(GTMaterialFlag flag) {
 		fluidFlags.add(flag);
 	}
-	
+
 	/**
 	 * For creating a fluid from a material directly.
 	 * 
 	 * @param mat  - GTMaterial to use
 	 * @param flag - GTMaterialFlag to combine with the material
 	 */
-	public static void materialFluidUtil(GTMaterial mat, GTMaterialFlag flag){
+	public static void materialFluidUtil(GTMaterial mat, GTMaterialFlag flag) {
 		if (mat.hasFlag(flag)) {
 			FluidRegistry.registerFluid(new GTFluid(mat, flag));
 		}
@@ -260,19 +263,19 @@ public class GTMaterialGen {
 	 * @param modname - String, the mod name
 	 * @param itemid  - String, the item by name
 	 * @param meta    - int, the meta value of the item
-	 * @param amount  - int, the count
+	 * @param count   - int, the count
 	 * @return ItemStack - the ItemStack requested
 	 */
-	public static ItemStack getModMetaItem(String modname, String itemid, int meta, int size) {
+	public static ItemStack getModMetaItem(String modname, String itemid, int meta, int count) {
 		String pair = modname + ":" + itemid;
-		return GameRegistry.makeItemStack(pair, meta, size, null);
+		return GameRegistry.makeItemStack(pair, meta, count, null);
 	}
 
 	/**
 	 * A getter for retrieving modded blocks.
 	 * 
 	 * @param modname - String, the mod name
-	 * @param itemid  - String, the block by name
+	 * @param blockid - String, the block by name
 	 * @return ItemStack - the ItemStack requested
 	 */
 	public static ItemStack getModBlock(String modname, String blockid) {

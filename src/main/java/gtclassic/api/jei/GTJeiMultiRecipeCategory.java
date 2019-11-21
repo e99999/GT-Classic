@@ -74,8 +74,8 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 			int x = index % 3;
 			int y = index / 3;
 			if (list instanceof RecipeInputFluid) {
-				fluidGroup.init(actualIndex, true, (18 * x), (18
-						* y), 16, 16, ((RecipeInputFluid) list).fluid.amount, true, null);
+				fluidGroup.init(actualIndex, true, (18 * x) + 1, (18 * y)
+						+ 1, 16, 16, ((RecipeInputFluid) list).fluid.amount, true, null);
 				fluidGroup.set(actualIndex, ((RecipeInputFluid) list).fluid);
 			} else {
 				itemGroup.init(actualIndex, true, (18 * x), (18 * y));

@@ -1,11 +1,13 @@
 package gtclassic.common.container;
 
 import gtclassic.api.gui.GTGuiCompBasicString;
+import gtclassic.api.gui.GTGuiCompMachinePower;
+import gtclassic.api.slot.GTSlotUpgrade;
 import gtclassic.common.tile.GTTileDisassembler;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
-import ic2.core.inventory.slots.SlotBase;
+import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.util.math.Box2D;
@@ -23,15 +25,19 @@ public class GTContainerDisassembler extends ContainerTileComponent<GTTileDisass
 
 	public GTContainerDisassembler(InventoryPlayer player, GTTileDisassembler tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotBase(tile, 0, 53, 25));
+		this.addSlotToContainer(new SlotCustom(tile, 0, 53, 25, tile.filter));
 		for (int y = 0; y < 3; ++y) {
 			for (int x = 0; x < 3; ++x) {
 				this.addSlotToContainer(new SlotOutput(player.player, tile, 1 + x + y * 3, 107 + x * 18, 7 + y * 18));
 			}
 		}
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 10, 8, 62));
+		for (int i = 0; i < 4; ++i) {
+			this.addSlotToContainer(new GTSlotUpgrade(tile, 11 + i, 62 + (i * 18), 62));
+		}
 		this.addComponent(new GTGuiCompBasicString("Disassembler", 28, 5));
 		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
+		this.addComponent(new GTGuiCompMachinePower(tile));
 		this.addPlayerInventory(player);
 	}
 

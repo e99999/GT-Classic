@@ -57,7 +57,7 @@ public class GTMaterialFlag {
 	public boolean isLayered() {
 		return layered;
 	}
-	
+
 	public String getModID() {
 		return this.modid;
 	}

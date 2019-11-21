@@ -26,6 +26,7 @@ tile.gtclassic.lightsource.name=Light Source
 
 #tiles
 tile.gtclassic.autocrafter.name=Electric Craftingtable
+tile.gtclassic.disassembler.name=Disassembler
 tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.computercube.name=Computer Cube
 tile.gtclassic.industrialcentrifuge.name=Industrial Centrifuge
@@ -196,6 +197,7 @@ tooltip.gtclassic.quantumtank0=With a capacity of 488.28125 Chunks!
 tooltip.gtclassic.matterfabricator0=Creates UU as fast as you can supply it.
 tooltip.gtclassic.uumassembler0=Sick of hand crafting with UU? Look no further.
 tooltip.gtclassic.industrialcentrifuge0=Round and round it goes!
+tooltip.gtclassic.disassembler0=Uncrafts craftables with an 80 percent chance of return.
 tooltip.gtclassic.playerdetector0=Detects player activity in a radius
 tooltip.gtclassic.playerdetector1=8 to 32 blocks depending on power
 tooltip.gtclassic.mobrepeller0=Stops nasty creatures from spawning

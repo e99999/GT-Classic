@@ -76,7 +76,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	@Override
 	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this == GTBlocks.tileCentrifuge || this == GTBlocks.tilePlayerDetector || this == GTBlocks.tileEchotron
-				|| this == GTBlocks.tileMobRepeller) {
+				|| this == GTBlocks.tileMobRepeller || this == GTBlocks.tileDisassembler) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32 })));
 		}
 		if (this == GTBlocks.tileChargeOmat) {

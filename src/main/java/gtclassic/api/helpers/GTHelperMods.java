@@ -12,4 +12,5 @@ public class GTHelperMods {
 	public static final String BAUBLES = "baubles";
 	public static final String ENDERIO = "enderio";
 	public static final String TFOREST = "twilightforest";
+	public static final String GTCX = "gtc_expansion";
 }

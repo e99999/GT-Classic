@@ -52,6 +52,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 
 	public GTTileCentrifuge() {
 		super(9, 4, defaultEu, 100, 32);
+		this.maxEnergy = 10000;
 		setFuelSlot(slotFuel);
 	}
 

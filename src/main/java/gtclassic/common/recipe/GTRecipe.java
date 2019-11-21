@@ -1,5 +1,6 @@
 package gtclassic.common.recipe;
 
+import gtclassic.api.helpers.GTHelperMods;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
@@ -17,8 +18,10 @@ import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.Loader;
 
 public class GTRecipe {
 
@@ -297,6 +300,12 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
 				"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E',
 				"workbench", 'D', "circuitUltimate", 'B', batteryAdvanced });
+		/** Disassemembler stuff with other mods **/
+		Item top = GTConfig.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)
+				? GTMaterialGen.getModItem(GTHelperMods.TFOREST, "uncrafting_table").getItem()
+				: GTMaterialGen.getIc2(Ic2Items.extractor).getItem();
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), new Object[] { "RAR", "CEC", "RWR", 'A', top,
+				'W', GTBlocks.tileWorktable, 'R', ingotRefinedIron, 'E', "machineBlockBasic", 'C', "circuitAdvanced" });
 		/** More recipes for vanilla rails **/
 		if (GTConfig.vanillaRailRecipes) {
 			// golden
