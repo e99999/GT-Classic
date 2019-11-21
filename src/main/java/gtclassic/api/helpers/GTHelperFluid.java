@@ -83,6 +83,45 @@ public class GTHelperFluid {
 		return false;
 	}
 
+	public static boolean doClickableFluidContainerFillThings(EntityPlayer player, EnumHand hand, World world, BlockPos pos, IC2Tank tank) {
+		ItemStack playerStack = player.getHeldItem(hand);
+		if (!playerStack.isEmpty()) {
+			FluidActionResult result = FluidUtil.tryFillContainer(playerStack, tank, tank.getCapacity(), player, true);
+			if (result.isSuccess()){
+				playerStack.shrink(1);
+				ItemStack resultStack = result.getResult();
+				if (!resultStack.isEmpty()) {
+					if (!player.inventory.addItemStackToInventory(resultStack)) {
+						player.dropItem(resultStack, false);
+					}
+				}
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public static boolean doClickableFluidContainerEmptyThings(EntityPlayer player, EnumHand hand, World world, BlockPos pos, IC2Tank tank) {
+		ItemStack playerStack = player.getHeldItem(hand);
+		if (!playerStack.isEmpty()) {
+			FluidActionResult result = FluidUtil.tryEmptyContainer(playerStack, tank, tank.getCapacity()
+					- tank.getFluidAmount(), player, true);
+			if (result.isSuccess()) {
+				playerStack.shrink(1);
+				ItemStack resultStack = result.getResult();
+				if (!resultStack.isEmpty()) {
+					if (!player.inventory.addItemStackToInventory(resultStack)) {
+						player.dropItem(resultStack, false);
+					}
+				}
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	// helper for fluid handling
 	public static boolean isTankFull(IC2Tank tank) {
 		return tank.getFluidAmount() == tank.getCapacity();
