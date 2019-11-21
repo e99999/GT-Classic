@@ -1,5 +1,8 @@
 package gtclassic.common.container;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import gtclassic.api.helpers.GTHelperMath;
@@ -14,14 +17,18 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocrafter> {
 
 	GTTileAutocrafter block;
+	private InventoryCrafting fakeMatrix = new InventoryCrafting(this, 3, 3);
 
 	public GTContainerAutocrafter(InventoryPlayer player, GTTileAutocrafter tile) {
 		super(tile);
@@ -63,8 +70,8 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 		// GTMod.logger.info("Slot: " + slotId);
 		if (GTHelperMath.within(slotId, 18, 26)) {
 			ItemStack stack = player.inventory.getItemStack();
-			// I need to offset the slot by -20 here because normal stack methods freak out
 			this.block.inventory.set(slotId, doWeirdStackCraftingStuff(stack, slotId));
+			checkForMatchingRecipes();
 			return ItemStack.EMPTY;
 		}
 		return super.slotClick(slotId, dragType, clickTypeIn, player);
@@ -80,6 +87,23 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 			return StackUtil.copyWithSize(slotStack, slotStack.getCount() + 1);
 		}
 		return StackUtil.copyWithSize(stack, 1);
+	}
+	
+	public void checkForMatchingRecipes() {
+		for (IRecipe recipe : ForgeRegistries.RECIPES) {
+			ItemStack craftingOutput = recipe.getRecipeOutput().copy();
+			List<ItemStack> craftingList = new ArrayList<>();
+			for (int i = 18; i < 27; ++i) {
+			this.fakeMatrix.setInventorySlotContents(i - 18, this.block.inventory.get(i));
+			}
+			
+			if (recipe.matches(fakeMatrix, this.block.getWorld())){
+				this.block.setStackInSlot(27, craftingOutput);
+				return;
+			} else {
+				this.block.setStackInSlot(27, ItemStack.EMPTY);
+			}
+		}
 	}
 
 	@Override

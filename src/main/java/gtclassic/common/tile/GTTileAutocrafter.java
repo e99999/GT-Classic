@@ -1,5 +1,8 @@
 package gtclassic.common.tile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gtclassic.GTMod;
 import gtclassic.api.helpers.int3;
 import gtclassic.common.container.GTContainerAutocrafter;
@@ -16,11 +19,14 @@ import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -110,6 +116,8 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 		int3 dir = new int3(getPos(), getFacing());
 		return world.getTileEntity(dir.forward(1).asBlockPos());
 	}
+	
+	
 
 	@SuppressWarnings("static-access")
 	public void tryImportItems() {
