@@ -22,6 +22,8 @@ import ic2.core.inventory.transport.TransporterManager;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -56,6 +58,30 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 		handler.registerSlotType(SlotType.Input, slotInputs);
 		handler.registerSlotType(SlotType.Output, slotOutputs);
 		handler.registerSlotType(SlotType.Output, slotContainer);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		NBTTagList list = nbt.getTagList("currentRecipe", 10);
+		this.currentRecipe.clear();
+		for (int i = 0; i < list.tagCount(); ++i) {
+			NBTTagCompound data = list.getCompoundTagAt(i);
+			this.currentRecipe.add(new ItemStack(data));
+		}
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		NBTTagList list = new NBTTagList();
+		for (int i = 0; i < this.currentRecipe.size(); ++i) {
+			NBTTagCompound data = new NBTTagCompound();
+			this.currentRecipe.get(i).writeToNBT(data);
+			list.appendTag(data);
+		}
+		nbt.setTag("currentRecipe", list);
+		return nbt;
 	}
 
 	@Override
@@ -95,9 +121,11 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 			tryImportItems();
 			// if there is a recipe selected and ghost slot is valid and the output slot is
 			// empty
+			
 			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty()
-					&& this.inventory.get(28).isEmpty()) {
+					&& this.inventory.get(28).isEmpty() && this.energy >= 50) {
 				// see if the tile inventory has what the currentRecipe needs
+				GTHelperStack.tryCondenseInventory(this, 0, 10);
 				int recipeMatches = 0;
 				for (int i = 0; i < 9; ++i) {
 					if (GTHelperStack.containsWithSizeFuzzy(this.currentRecipe, this.getStackInSlot(i)) != -1) {
@@ -112,7 +140,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 						if (currentIndex != -1 && tooMatch > 0) {
 							ItemStack matchedSlot = this.getStackInSlot(i);
 							tryToDamageItems(matchedSlot);
-							//checking if the damage didnt void the item
+							// checking if the damage didnt void the item
 							if (!matchedSlot.isEmpty()) {
 								tryToShiftContainerItems(matchedSlot);
 								matchedSlot.shrink(this.currentRecipe.get(currentIndex).getCount());
@@ -120,8 +148,10 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 							}
 						}
 					}
+					//if all matching stacks have been subtracted
 					if (tooMatch == 0) {
 						this.setStackInSlot(28, this.getStackInSlot(27).copy());
+						this.useEnergy(50);
 					}
 				}
 				// keep this last
