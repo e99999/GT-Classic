@@ -21,7 +21,6 @@ tile.gtclassic.oreBauxite.name=Bauxite Ore
 #blocks
 tile.gtclassic.fusion.name=Fusion Coil
 tile.gtclassic.lapotron.name=Lapotron Block
-tile.gtclassic.reinforced.name=Reinforced Machine Block
 tile.gtclassic.highlyadvanced.name=Highly Advanced Machine Block
 tile.gtclassic.lightsource.name=Light Source
 

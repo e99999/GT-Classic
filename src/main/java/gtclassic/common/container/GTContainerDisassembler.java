@@ -1,8 +1,10 @@
 package gtclassic.common.container;
 
+import gtclassic.api.gui.GTGuiCompBasicString;
 import gtclassic.common.tile.GTTileDisassembler;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
+import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotOutput;
@@ -28,6 +30,8 @@ public class GTContainerDisassembler extends ContainerTileComponent<GTTileDisass
 			}
 		}
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 10, 8, 62));
+		this.addComponent(new GTGuiCompBasicString("Disassembler", 28, 5));
+		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
 		this.addPlayerInventory(player);
 	}
 
