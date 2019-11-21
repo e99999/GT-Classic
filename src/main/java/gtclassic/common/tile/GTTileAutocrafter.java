@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.helpers.int3;
 import gtclassic.common.container.GTContainerAutocrafter;
 import ic2.core.RotationList;
@@ -90,10 +91,23 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	public void update() {
 		if (world.getTotalWorldTime() % 20 == 0) {
 			tryImportItems();
-			// TODO ALL STUFF BUT BETTER
-			if (!this.currentRecipe.isEmpty() && this.inventory.get(28).isEmpty()) {
+			//if there is a recipe selected and ghost slot is valid and the output slot is empty
+			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty() && this.inventory.get(28).isEmpty()) {
+
 				for (ItemStack rStack : this.currentRecipe) {
 					GTMod.logger.info("Autocrafter Demands: " + rStack.getDisplayName() + " x " + rStack.getCount());
+				}
+				// see if the tile inventory has what the currentRecipe needs
+				int recipeMatches = 0;
+				for (int i = 0; i < 9; ++i) {
+					if (GTHelperStack.contains(this.currentRecipe, this.getStackInSlot(i)) != -1) {
+						recipeMatches++;
+					}
+					
+				}
+				//enough matches found
+				if (recipeMatches >= this.currentRecipe.size()) {
+					GTMod.logger.info("Congratulations you have the items needed to craft this");
 				}
 				// keep this last
 				tryExportItems();
