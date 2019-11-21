@@ -19,14 +19,11 @@ import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -36,6 +33,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	protected static final int[] slotInputs = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 	protected static final int[] slotContainer = { 9, 10, 11, 12, 13, 14, 15, 16, 17 };
 	protected static final int[] slotOutputs = { 28 };
+	public List<ItemStack> currentRecipe = new ArrayList<>();
 
 	public GTTileAutocrafter() {
 		super(29, 32);
@@ -93,7 +91,11 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 		if (world.getTotalWorldTime() % 20 == 0) {
 			tryImportItems();
 			// TODO ALL STUFF BUT BETTER
-			if (!this.inventory.get(19).isEmpty()) {
+			if (!this.currentRecipe.isEmpty() && this.inventory.get(28).isEmpty()) {
+				for (ItemStack rStack : this.currentRecipe) {
+					GTMod.logger.info("Autocrafter Demands: " + rStack.getDisplayName() + " x " + rStack.getCount());
+				}
+				// keep this last
 				tryExportItems();
 			}
 		}
@@ -116,8 +118,6 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 		int3 dir = new int3(getPos(), getFacing());
 		return world.getTileEntity(dir.forward(1).asBlockPos());
 	}
-	
-	
 
 	@SuppressWarnings("static-access")
 	public void tryImportItems() {

@@ -88,20 +88,29 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 		}
 		return StackUtil.copyWithSize(stack, 1);
 	}
-	
+
 	public void checkForMatchingRecipes() {
 		for (IRecipe recipe : ForgeRegistries.RECIPES) {
 			ItemStack craftingOutput = recipe.getRecipeOutput().copy();
-			List<ItemStack> craftingList = new ArrayList<>();
+			// iterates the tiles ghost slots to the fake crafting inventory for matching
 			for (int i = 18; i < 27; ++i) {
-			this.fakeMatrix.setInventorySlotContents(i - 18, this.block.inventory.get(i));
+				this.fakeMatrix.setInventorySlotContents(i - 18, this.block.inventory.get(i));
 			}
-			
-			if (recipe.matches(fakeMatrix, this.block.getWorld())){
+			// if recipe matches set the output ghost slot to the recipe output
+			if (recipe.matches(fakeMatrix, this.block.getWorld())) {
 				this.block.setStackInSlot(27, craftingOutput);
+				this.block.currentRecipe.clear();
+				List<ItemStack> tempList = new ArrayList<>();
+				// condense stacks and remove empty stacks in raw resource demands
+				for (int j = 0; j < fakeMatrix.getSizeInventory(); ++j) {
+					tempList.add((fakeMatrix.getStackInSlot(j).copy()));
+				}
+				GTHelperStack.mergeItems(this.block.currentRecipe, tempList);
 				return;
+				// else then set the output slot to air
 			} else {
 				this.block.setStackInSlot(27, ItemStack.EMPTY);
+				this.block.currentRecipe.clear();
 			}
 		}
 	}
