@@ -1,9 +1,12 @@
 package gtclassic.api.jei;
 
 import gtclassic.GTMod;
+import gtclassic.api.recipe.GTFluidMachineOutput;
 import gtclassic.common.GTConfig;
 import ic2.api.classic.recipe.crafting.RecipeInputFluid;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.item.misc.ItemDisplayIcon;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -17,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 
 public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecipeWrapper> {
 
@@ -88,16 +92,49 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 			}
 		}
 		index = 0;
-		for (ItemStack stack : wrapper.getMultiRecipe().getOutputs().getAllOutputs()) {
-			int x = index % 3;
-			int y = index / 3;
-			itemGroup.init(actualIndex, false, 90 + (18 * x), (18 * y));
-			itemGroup.set(actualIndex, stack);
-			index++;
-			actualIndex++;
-			if (index >= 6) {
-				break;
+		MachineOutput output = wrapper.getMultiRecipe().getOutputs();
+		if (output instanceof GTFluidMachineOutput){
+			for (FluidStack stack : ((GTFluidMachineOutput)output).getFluids()) {
+				int x = index % 3;
+				int y = index / 3;
+				fluidGroup.init(actualIndex, false, 91 + (18 * x), (18 * y) + 1, 16, 16, stack.amount, true, null);
+				fluidGroup.set(actualIndex, stack);
+				index++;
+				actualIndex++;
+				if (index >= 6) {
+					break;
+				}
+			}
+			for (ItemStack stack : output.getAllOutputs()) {
+				if (index >= 6) {
+					break;
+				}
+				if (stack.getItem() instanceof ItemDisplayIcon){
+					continue;
+				}
+				int x = index % 3;
+				int y = index / 3;
+				itemGroup.init(actualIndex, false, 90 + (18 * x), (18 * y));
+				itemGroup.set(actualIndex, stack);
+				index++;
+				actualIndex++;
+				if (index == 6) {
+					break;
+				}
+			}
+		} else {
+			for (ItemStack stack : output.getAllOutputs()) {
+				int x = index % 3;
+				int y = index / 3;
+				itemGroup.init(actualIndex, false, 90 + (18 * x), (18 * y));
+				itemGroup.set(actualIndex, stack);
+				index++;
+				actualIndex++;
+				if (index >= 6) {
+					break;
+				}
 			}
 		}
+
 	}
 }
