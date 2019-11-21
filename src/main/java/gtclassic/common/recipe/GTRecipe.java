@@ -200,6 +200,8 @@ public class GTRecipe {
 		/** LESU Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLapotron), new Object[] { "BBB", "BCB", "BBB", 'B',
 				"blockLapis", 'C', "circuitBasic" });
+		/** Electric Craftingtable **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAutocrafter), " W ", "CMC", " P ", 'W', Ic2Items.battery.copy(), 'C', "circuitAdvanced", 'M', "workbench", 'P', "machineBlockAdvanced");
 		/** Industrial Centrifuge **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 				Ic2Items.extractor, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C', "circuitAdvanced" });
@@ -299,13 +301,13 @@ public class GTRecipe {
 		/** UU Assembler **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
 				"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E',
-				"workbench", 'D', "circuitUltimate", 'B', batteryAdvanced });
+				GTBlocks.tileAutocrafter, 'D', "circuitUltimate", 'B', batteryAdvanced });
 		/** Disassemembler stuff with other mods **/
 		Item top = GTConfig.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)
 				? GTMaterialGen.getModItem(GTHelperMods.TFOREST, "uncrafting_table").getItem()
 				: GTMaterialGen.getIc2(Ic2Items.extractor).getItem();
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), new Object[] { "RAR", "CEC", "RWR", 'A', top,
-				'W', GTBlocks.tileWorktable, 'R', ingotRefinedIron, 'E', "machineBlockBasic", 'C', "circuitAdvanced" });
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), new Object[] { "RAR", "ECE", "RWR", 'A', top,
+				'W', GTBlocks.tileAutocrafter, 'R', ingotRefinedIron, 'E', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitAdvanced" });
 		/** More recipes for vanilla rails **/
 		if (GTConfig.vanillaRailRecipes) {
 			// golden
