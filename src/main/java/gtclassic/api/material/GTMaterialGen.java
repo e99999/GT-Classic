@@ -1,5 +1,9 @@
 package gtclassic.api.material;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import gtclassic.api.fluid.GTFluid;
 import gtclassic.api.fluid.GTFluidHandler;
 import gtclassic.common.GTItems;
@@ -13,10 +17,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 public class GTMaterialGen {
 
@@ -313,16 +313,15 @@ public class GTMaterialGen {
 		return new ItemStack(block, count, meta);
 	}
 
-
 	/**
-	 * A helper method to check if one material equals another by using the material names,
-	 * thereby avoiding problems casued by material overrides.
+	 * A helper method to check if one material equals another by using the material
+	 * names, thereby avoiding problems casued by material overrides.
 	 *
 	 * @param mat1 - GTMaterial, the material being checked.
-	 * @param mat2  - GTMaterial, the material being checked against.
+	 * @param mat2 - GTMaterial, the material being checked against.
 	 * @return boolean - whether the 2 materials are equal.
 	 */
-	public static boolean isMaterialEqual(GTMaterial mat1, GTMaterial mat2){
+	public static boolean isMaterialEqual(GTMaterial mat1, GTMaterial mat2) {
 		return mat1.getDisplayName().equals(mat2.getDisplayName());
 	}
 }

@@ -83,11 +83,12 @@ public class GTHelperFluid {
 		return false;
 	}
 
-	public static boolean doClickableFluidContainerFillThings(EntityPlayer player, EnumHand hand, World world, BlockPos pos, IC2Tank tank) {
+	public static boolean doClickableFluidContainerFillThings(EntityPlayer player, EnumHand hand, World world,
+			BlockPos pos, IC2Tank tank) {
 		ItemStack playerStack = player.getHeldItem(hand);
 		if (!playerStack.isEmpty()) {
 			FluidActionResult result = FluidUtil.tryFillContainer(playerStack, tank, tank.getCapacity(), player, true);
-			if (result.isSuccess()){
+			if (result.isSuccess()) {
 				playerStack.shrink(1);
 				ItemStack resultStack = result.getResult();
 				if (!resultStack.isEmpty()) {
@@ -98,11 +99,11 @@ public class GTHelperFluid {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
-	public static boolean doClickableFluidContainerEmptyThings(EntityPlayer player, EnumHand hand, World world, BlockPos pos, IC2Tank tank) {
+	public static boolean doClickableFluidContainerEmptyThings(EntityPlayer player, EnumHand hand, World world,
+			BlockPos pos, IC2Tank tank) {
 		ItemStack playerStack = player.getHeldItem(hand);
 		if (!playerStack.isEmpty()) {
 			FluidActionResult result = FluidUtil.tryEmptyContainer(playerStack, tank, tank.getCapacity()
@@ -118,7 +119,6 @@ public class GTHelperFluid {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
