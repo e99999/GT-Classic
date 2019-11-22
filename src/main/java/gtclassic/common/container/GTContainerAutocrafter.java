@@ -36,7 +36,7 @@ public class GTContainerAutocrafter extends ContainerTileComponent<GTTileAutocra
 		// inventory - 0-8
 		for (int k = 0; k < 3; ++k) {
 			for (int l = 0; l < 3; ++l) {
-				this.addSlotToContainer(new SlotBase(tile, (k + l * 3), 8 + l * 18, 5 + k * 18));
+				this.addSlotToContainer(new SlotBase(tile, (k + l * 3), 8 + k * 18, 5 + l * 18));
 			}
 		}
 		// container output - 9-17

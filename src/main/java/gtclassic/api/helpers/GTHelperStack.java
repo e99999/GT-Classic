@@ -126,7 +126,7 @@ public class GTHelperStack {
 		}
 		return -1;
 	}
-	
+
 	/**
 	 * Returns the index of an item in a list with stack size check, or -1 if not
 	 * found

@@ -1,15 +1,11 @@
 # Todo
-- Finish Electric Craftingtable tile
-- Try to fix unidict breaking the mortar
-- Mabye, if check trins mod before i add things to vanilla smelting that would be removed
 - Configurable harder jetpack recipe gated by the end
 - Sluice with meduris? If so then mortar block as well.
 - That one probe compat for quantum chest/tank contents and eu stored in machines if reader is present
 - Multiplayer support for Basic Worktable
 - Look at forge universal bucket for overlaying liquid texture over the test tube
 - Mabye bring back the crafting tablet now that you know how to save the nbt
-- Redo scanner to use interfaces not tiles
 - Check how many mods use ingotChromium and do compat for that like iron, aluminium.
 - Fix surrounding players not hearing spring boots
-- Come up with uses for Calcium, Nitrogen, Potassium, Chlorine.
+- Come up with uses for Calcium, Nitrogen, Potassium, Chlorine, and now Sulfuric Acid
 - Extractor recipes for getting empty tubes

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 
 import gtclassic.api.commands.GTCommandTeleport;
 import gtclassic.api.helpers.GTHelperMods;
+import gtclassic.api.material.GTMaterialElement;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
@@ -49,7 +50,7 @@ public class GTMod {
 	public static final String MODID = "gtclassic";
 	public static final String MODNAME = "GregTech Classic";
 	public static final String MODVERSION = "1.0.7";
-	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;after:twilightforest@[3.9.984,)";
+	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;before:gtc_expansion@[0.0.5,);after:twilightforest@[3.9.984,)";
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
 	@SidedProxy(clientSide = MODID + ".common.proxy.GTProxyClient", serverSide = MODID + ".common.proxy.GTProxyServer")
 	public static GTProxyCommon proxy;
@@ -76,6 +77,7 @@ public class GTMod {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
+		GTMaterialElement.init();
 		GTRecipeIterators.init();
 		GTRecipeProcessing.init();
 		GTTileCentrifuge.init();

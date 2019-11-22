@@ -5,6 +5,7 @@
 - Changed JEI system so addons can handle JEI automatically if they want, this wont effect gameplay at all
 - Fixed JEI now displays fluid inputs as fluids not fluid containers.
 - Added a Disassembler machine that gives an 80% return on each item uncrafting something, uses 5000EU per operation.
+- Added the Electric Crafting table, although atm it is in an alpha testing phase with very basic code, use at your own risk!
 - Added Phosphorus dust to the base mod, its a byproduct of Netherrack by default.
 - Added Sulfur dust to the base mod, its a byproduct of Netherrack by default.
 - Added Sulfuric Acid to the base mod, no use for it atm.

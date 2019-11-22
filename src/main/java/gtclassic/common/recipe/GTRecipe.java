@@ -307,7 +307,8 @@ public class GTRecipe {
 				? GTMaterialGen.getModItem(GTHelperMods.TFOREST, "uncrafting_table").getItem()
 				: GTMaterialGen.getIc2(Ic2Items.extractor).getItem();
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), new Object[] { "RAR", "ECE", "RWR", 'A', top,
-				'W', GTBlocks.tileAutocrafter, 'R', ingotRefinedIron, 'E', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitAdvanced" });
+				'W', GTBlocks.tileAutocrafter, 'R', ingotRefinedIron, 'E', Ic2Items.insulatedCopperCable.copy(), 'C',
+				"circuitAdvanced" });
 		/** More recipes for vanilla rails **/
 		if (GTConfig.vanillaRailRecipes) {
 			// golden

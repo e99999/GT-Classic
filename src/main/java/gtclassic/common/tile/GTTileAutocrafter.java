@@ -121,9 +121,8 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 			tryImportItems();
 			// if there is a recipe selected and ghost slot is valid and the output slot is
 			// empty
-			
-			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty()
-					&& this.inventory.get(28).isEmpty() && this.energy >= 50) {
+			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty() && this.inventory.get(28).isEmpty()
+					&& this.energy >= 50) {
 				// see if the tile inventory has what the currentRecipe needs
 				GTHelperStack.tryCondenseInventory(this, 0, 10);
 				int recipeMatches = 0;
@@ -148,7 +147,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 							}
 						}
 					}
-					//if all matching stacks have been subtracted
+					// if all matching stacks have been subtracted
 					if (tooMatch == 0) {
 						this.setStackInSlot(28, this.getStackInSlot(27).copy());
 						this.useEnergy(50);
@@ -162,7 +161,9 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 
 	public void tryToDamageItems(ItemStack stack) {
 		if (stack.isItemStackDamageable()) {
+			if (this.isRendering()) {
 			stack.attemptDamageItem(1, this.world.rand, null);
+			}
 		}
 	}
 
@@ -175,14 +176,6 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 				}
 			}
 		}
-	}
-
-	public boolean canAttemptToCraft() {
-		// if there is not enough power return
-		if (this.energy < 50) {
-			return false;
-		}
-		return true;
 	}
 
 	public TileEntity getImportTile() {
