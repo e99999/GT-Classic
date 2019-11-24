@@ -116,7 +116,7 @@ public class GTTileEchotron extends TileEntityElecMachine
 	@Override
 	public void onNetworkEvent(int event) {
 		if (event == 0) {
-			IC2.audioManager.playOnce(this, PositionSpec.Center, GTSounds.sonar, false, IC2.audioManager.defaultVolume);
+			IC2.audioManager.playOnce(this, PositionSpec.Center, GTSounds.SONAR, false, IC2.audioManager.defaultVolume);
 		}
 	}
 }

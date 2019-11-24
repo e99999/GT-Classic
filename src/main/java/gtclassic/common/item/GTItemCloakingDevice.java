@@ -29,7 +29,7 @@ public class GTItemCloakingDevice extends GTItemBaseToggleItem implements IStati
 		this.setRegistryName("cloaking_device");
 		this.setUnlocalizedName(GTMod.MODID + "." + "cloaking_device");
 		this.setCreativeTab(GTMod.creativeTabGT);
-		this.toggleSound = GTSounds.cloak;
+		this.toggleSound = GTSounds.CLOAK;
 	}
 
 	@Override

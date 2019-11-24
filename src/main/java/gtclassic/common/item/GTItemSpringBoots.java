@@ -56,10 +56,10 @@ public class GTItemSpringBoots extends ItemCompositeArmor {
 		}
 		if (player.onGround && player.isSprinting()) {
 			player.jump();
-			IC2.audioManager.playOnce(player, GTSounds.spring);
+			IC2.audioManager.playOnce(player, GTSounds.SPRING);
 			EntityPlayer foundPlayer = world.getClosestPlayerToEntity(player, 8.0D);
 			if (foundPlayer != null) {
-				IC2.audioManager.playOnce(foundPlayer, GTSounds.spring);
+				IC2.audioManager.playOnce(foundPlayer, GTSounds.SPRING);
 			}
 			stack.damageItem(1, player);
 		}

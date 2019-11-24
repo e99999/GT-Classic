@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GTSounds {
 
-	public static ResourceLocation sonar = new ResourceLocation(GTMod.MODID, "sounds/sonar.ogg");
-	public static ResourceLocation cloak = new ResourceLocation(GTMod.MODID, "sounds/cloak.ogg");
-	public static ResourceLocation spring = new ResourceLocation(GTMod.MODID, "sounds/spring.ogg");
+	public static final ResourceLocation SONAR = new ResourceLocation(GTMod.MODID, "sounds/sonar.ogg");
+	public static final ResourceLocation CLOAK = new ResourceLocation(GTMod.MODID, "sounds/cloak.ogg");
+	public static final ResourceLocation SPRING = new ResourceLocation(GTMod.MODID, "sounds/spring.ogg");
 }

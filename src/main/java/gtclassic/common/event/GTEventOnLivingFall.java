@@ -25,7 +25,7 @@ public class GTEventOnLivingFall {
 						armor.damageItem(Math.round(amount), player);
 						event.setDamageMultiplier(event.getDamageMultiplier() * 0.5F);
 						player.jump();
-						IC2.audioManager.playOnce(player, GTSounds.spring);
+						IC2.audioManager.playOnce(player, GTSounds.SPRING);
 					}
 				}
 			}
