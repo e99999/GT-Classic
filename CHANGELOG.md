@@ -15,6 +15,7 @@
 - Changed Lightning rod checks for just rain now instead of a thunder storm to make it more viable.
 - Fixed Creative/Portable Scanner's now have better method interfaces to debug any IC2C based tiles not just GTC ones.
 - Fixed a bug with clicking fluid containers that would happen when a tank was near full.
+- Fixed the crash with the Magic Energy Converter for real this time.. I think.
 
 # 1.06
 - Note, this release is small in changes because GTC expansion updates were stalled till this was released.

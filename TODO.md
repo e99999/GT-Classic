@@ -9,3 +9,4 @@
 - Fix surrounding players not hearing spring boots
 - Come up with uses for Calcium, Nitrogen, Potassium, Chlorine, and now Sulfuric Acid
 - Extractor recipes for getting empty tubes
+- Add a config option to disable disassembler and recipe iteration.

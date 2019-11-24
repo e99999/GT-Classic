@@ -87,6 +87,9 @@ public class GTRecipe {
 		/** Test Tube **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.testTube, 32), new Object[] { "G G", "G G", " G ", 'G',
 				"blockGlass" });
+		/** Sulfur Torches **/
+		recipes.addRecipe(GTMaterialGen.get(Blocks.TORCH, 3), new Object[] { "R", "I", 'I', "stickWood", 'R',
+		"dustSulfur" });
 		/** Flint Mortar **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.flintMortar), new Object[] { " F ", "BFB", "BBB", 'F', Items.FLINT,
 				'B', "plankWood", });
