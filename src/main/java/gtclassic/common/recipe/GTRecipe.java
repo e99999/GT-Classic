@@ -89,7 +89,7 @@ public class GTRecipe {
 				"blockGlass" });
 		/** Sulfur Torches **/
 		recipes.addRecipe(GTMaterialGen.get(Blocks.TORCH, 3), new Object[] { "R", "I", 'I', "stickWood", 'R',
-		"dustSulfur" });
+				"dustSulfur" });
 		/** Flint Mortar **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.flintMortar), new Object[] { " F ", "BFB", "BBB", 'F', Items.FLINT,
 				'B', "plankWood", });
@@ -182,12 +182,12 @@ public class GTRecipe {
 
 	public static void initBlocks() {
 		/** Bonus recipe for piston **/
-		if (GTConfig.morePistonRecipes) {
+		if (GTConfig.general.morePistonRecipes) {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), new Object[] { "WWW", "CIC", "CRC", 'W', "plankWood",
 					'C', "cobblestone", 'I', ingotAny, 'R', "dustRedstone" });
 		}
 		/** Bonus recipe for hopper **/
-		if (GTConfig.moreHopperRecipes) {
+		if (GTConfig.general.moreHopperRecipes) {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), new Object[] { "I I", "ICI", " I ", 'I', ingotAny, 'C',
 					"chestWood" });
 		}
@@ -224,7 +224,7 @@ public class GTRecipe {
 				'C', "circuitMaster", 'S', Blocks.BEACON, 'B', GTBlocks.tileMagicEnergyConverter, 'P',
 				"plateIridiumAlloy", 'T', "craftingSuperconductor" });
 		/** Fusion Computer **/
-		if (GTConfig.removeIC2Plasmafier) {
+		if (GTConfig.general.removeIC2Plasmafier) {
 			recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), new Object[] {
 					"ESE", "LCL", "ESE", 'E', "circuitMaster", 'S', GTBlocks.tileSupercondensator, 'L',
 					"batteryUltimate", 'C', GTBlocks.tileComputer });
@@ -268,7 +268,7 @@ public class GTRecipe {
 		/** Translocator **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', anyPiston);
 		/** Matter Fabricator **/
-		if (GTConfig.removeIC2MassFab) {
+		if (GTConfig.general.removeIC2MassFab) {
 			recipes.overrideRecipe("shaped_tile.blockMatter_1416524227", GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] {
 					"ETE", "HLH", "ETE", 'E', "circuitMaster", 'T', Ic2Items.teleporter, 'H', "machineBlockElite", 'L',
 					"batteryUltimate" });
@@ -306,14 +306,14 @@ public class GTRecipe {
 				"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E',
 				GTBlocks.tileAutocrafter, 'D', "circuitUltimate", 'B', batteryAdvanced });
 		/** Disassemembler stuff with other mods **/
-		Item top = GTConfig.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)
+		Item top = GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)
 				? GTMaterialGen.getModItem(GTHelperMods.TFOREST, "uncrafting_table").getItem()
 				: GTMaterialGen.getIc2(Ic2Items.extractor).getItem();
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), new Object[] { "RAR", "ECE", "RWR", 'A', top,
 				'W', GTBlocks.tileAutocrafter, 'R', ingotRefinedIron, 'E', Ic2Items.insulatedCopperCable.copy(), 'C',
 				"circuitAdvanced" });
 		/** More recipes for vanilla rails **/
-		if (GTConfig.vanillaRailRecipes) {
+		if (GTConfig.general.vanillaRailRecipes) {
 			// golden
 			recipes.addRecipe(GTMaterialGen.get(Blocks.GOLDEN_RAIL, 6), new Object[] { "I I", "ISI", "IRI", 'I',
 					"ingotElectrum", 'S', "stickWood", 'R', "dustRedstone" });
@@ -386,13 +386,13 @@ public class GTRecipe {
 		/** Iridium Plate **/
 		recipes.overrideRecipe("shaped_item.itemPartIridium_1100834802", GTMaterialGen.getIc2(Ic2Items.iridiumPlate, 1), "IAI", "ADA", "IAI", 'I', "ingotIridium", 'A', Ic2Items.advancedAlloy.copy(), 'D', "gemDiamond");
 		/** Circutry Stuff **/
-		if (GTConfig.addBasicCircuitRecipes) {
+		if (GTConfig.general.addBasicCircuitRecipes) {
 			recipes.overrideRecipe("shaped_item.itemPartCircuit_1058514721", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RIR", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
 			recipes.overrideRecipe("shaped_item.itemPartCircuit_1521116961", GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CIC", "CRC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CCC", "III", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CIC", "CIC", "CIC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
 		}
-		if (GTConfig.addAdvCircuitRecipes) {
+		if (GTConfig.general.addAdvCircuitRecipes) {
 			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-1948043137", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RGR", "LCL", "RGR", 'R', "dustRedstone", 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
 			recipes.overrideRecipe("shaped_item.itemPartCircuitAdv_-205948801", GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 1), "RLR", "GCG", "RLR", 'R', "dustRedstone", 'G', "dustGlowstone", 'C', "circuitBasic", 'L', anyLapis);
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 2), "RGR", "LCL", "RGR", 'R', ingotSilver, 'G', "dustGlowstone", 'C', circuitBasicX2, 'L', anyLapis);
@@ -405,7 +405,7 @@ public class GTRecipe {
 		// GTMaterialGen.getIngot(GTMaterial.Tungsten, 4), 'C',
 		// Ic2Items.plasmaCell.copy()});
 		/** Making the macerator harder **/
-		if (GTConfig.harderIC2Macerator) {
+		if (GTConfig.general.harderIC2Macerator) {
 			recipes.overrideRecipe("shaped_tile.blockStoneMacerator_-130868445", Ic2Items.stoneMacerator.copy(), new Object[] {
 					"FDF", "DPD", "FBF", 'D', "gemDiamond", 'F', Items.FLINT, 'P', Blocks.PISTON, 'B',
 					Blocks.FURNACE });
@@ -425,7 +425,7 @@ public class GTRecipe {
 		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GTMaterialGen.getIc2(Ic2Items.lapotronCrystal, 1), new Object[] {
 				"LCL", "LDL", "LCL", 'D', highCrystal, 'C', "circuitBasic", 'L', anyLapis });
 		/** Solar Panel **/
-		if (GTConfig.betterIC2SolarRecipes) {
+		if (GTConfig.general.betterIC2SolarRecipes) {
 			recipes.overrideRecipe("shaped_tile.blockSolarGenerator_1093731471", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] {
 					"XYX", "YXY", "CVC", 'V', "machineBlockBasic", 'X', "itemSilicon", 'Y', "blockGlass", 'C',
 					Ic2Items.carbonPlate });
@@ -484,7 +484,7 @@ public class GTRecipe {
 			recipes.overrideRecipe("shaped_tile.blockNuke_-814805840", GTMaterialGen.getIc2(Ic2Items.nuke, 1), "CUC", "RPR", "CUC", 'C', "circuitAdvanced", 'U', Ic2Items.reactorReEnrichedUraniumRod.copy(), 'P', GTItems.rodPlutonium1, 'R', Ic2Items.reactorReflectorThick.copy());
 		}
 		/** UU-Matter Recipes **/
-		if (GTConfig.gregtechUURecipes) {
+		if (GTConfig.general.gregtechUURecipes) {
 			recipes.overrideRecipe("shaped_item.emerald_981588030", GTMaterialGen.get(Items.EMERALD), new Object[] {
 					"UUU", "UUU", " U ", 'U', GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true });
 			recipes.addRecipe(GTMaterialGen.getGem(GTMaterial.Ruby, 1), new Object[] { " UU", "UUU", "UU ", 'U',

@@ -123,7 +123,7 @@ public class GTItemFluidTube extends Item
 			subItems.add(GTMaterialGen.getWater(1));
 			subItems.add(GTMaterialGen.getLava(1));
 			for (Fluid fluid : FluidRegistry.getRegisteredFluids().values()) {
-				if (!GTConfig.displayAllFluidTubes) {
+				if (!GTConfig.general.displayAllFluidTubes) {
 					if (fluid instanceof GTFluid) {
 						subItems.add(GTMaterialGen.getModdedTube(fluid.getName(), 1));
 					}

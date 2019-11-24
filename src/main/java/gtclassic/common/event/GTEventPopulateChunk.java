@@ -24,7 +24,7 @@ public class GTEventPopulateChunk {
 	 */
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onEvent(PopulateChunkEvent.Post event) {
-		if (GTConfig.replaceOceanGravelWithSand) {
+		if (GTConfig.general.replaceOceanGravelWithSand) {
 			Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
 			for (int x = 0; x < 16; ++x) {
 				for (int z = 0; z < 16; ++z) {

@@ -76,7 +76,7 @@ public class GTItems {
 
 	public static void initItems() {
 		IBaublesPlugin plugin = IC2.loader.getPlugin("baubles", IBaublesPlugin.class);
-		boolean doBaubles = GTConfig.compatBaubles && plugin != null;
+		boolean doBaubles = GTConfig.modcompat.compatBaubles && plugin != null;
 		testTube = createItem(new GTItemFluidTube());
 		heatStorageHelium1 = createItem(new GTItemReactorHeat("helium_single", 2, 60000));
 		heatStorageHelium3 = createItem(new GTItemReactorHeat("helium_triple", 3, 180000));

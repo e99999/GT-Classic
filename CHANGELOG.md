@@ -1,6 +1,7 @@
 # Changelog
 
 # 1.07 (Not Released)
+- Completely redid the config system, YOU MUST DELETE AND REGEN YOUR CONFIGS FOR THE LASTTTT TIME.
 - Completely refactored the entire project to now have a dedicated API although this doesnt change the mod for players at all.
 - Changed JEI system so addons can handle JEI automatically if they want, this wont effect gameplay at all
 - Fixed JEI now displays fluid inputs as fluids not fluid containers.

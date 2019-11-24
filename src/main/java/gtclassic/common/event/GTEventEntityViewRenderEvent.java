@@ -13,7 +13,7 @@ public class GTEventEntityViewRenderEvent {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onRenderFog(EntityViewRenderEvent.FogDensity event) {
-		if (GTConfig.clearerWater) {
+		if (GTConfig.general.clearerWater) {
 			if (event.getState().getMaterial() == Material.WATER) {
 				GlStateManager.setFog(GlStateManager.FogMode.EXP);
 				event.setDensity(0.02F);

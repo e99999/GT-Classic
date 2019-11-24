@@ -32,7 +32,7 @@ public class GTJeiUUAmplifierCategory implements IRecipeCategory<GTJeiUUAmplifie
 	}
 
 	private int getHeight() {
-		return GTConfig.debugMode ? 80 : 70;
+		return GTConfig.general.debugMode ? 80 : 70;
 	}
 
 	@Override

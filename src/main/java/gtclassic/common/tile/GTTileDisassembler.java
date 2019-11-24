@@ -15,6 +15,7 @@ import gtclassic.api.recipe.GTRecipeMachineHandler;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import gtclassic.api.tile.GTTileBaseMachine;
+import gtclassic.common.GTConfig;
 import gtclassic.common.container.GTContainerDisassembler;
 import gtclassic.common.gui.GTGuiMachine.GTDisassemblerGui;
 import ic2.api.classic.item.IMachineUpgradeItem;
@@ -199,23 +200,25 @@ public class GTTileDisassembler extends GTTileBaseMachine {
 	}
 
 	public static void init() {
-		for (IRecipe recipe : ForgeRegistries.RECIPES) {
-			ItemStack input = recipe.getRecipeOutput().copy();
-			List<ItemStack> outputList = new ArrayList<>();
-			for (int i = 0; i < recipe.getIngredients().size(); ++i) {
-				List<ItemStack> tempList = new ArrayList<>();
-				Collections.addAll(tempList, recipe.getIngredients().get(i).getMatchingStacks());
-				if (!tempList.isEmpty()) {
-					ItemStack tempStack = isHighValueMaterial(tempList.get(0).copy()) ? Ic2Items.scrapMetal.copy()
-							: tempList.get(0).copy();
-					if (canItemBeReturned(tempStack)) {
-						outputList.add(tempStack);
+		if (GTConfig.general.enableDisassembler) {
+			for (IRecipe recipe : ForgeRegistries.RECIPES) {
+				ItemStack input = recipe.getRecipeOutput().copy();
+				List<ItemStack> outputList = new ArrayList<>();
+				for (int i = 0; i < recipe.getIngredients().size(); ++i) {
+					List<ItemStack> tempList = new ArrayList<>();
+					Collections.addAll(tempList, recipe.getIngredients().get(i).getMatchingStacks());
+					if (!tempList.isEmpty()) {
+						ItemStack tempStack = isHighValueMaterial(tempList.get(0).copy()) ? Ic2Items.scrapMetal.copy()
+								: tempList.get(0).copy();
+						if (canItemBeReturned(tempStack)) {
+							outputList.add(tempStack);
+						}
 					}
 				}
-			}
-			if (canInputBeUsed(input) && !outputList.isEmpty()) {
-				ItemStack[] arr = outputList.toArray(new ItemStack[0]);
-				addRecipe(new IRecipeInput[] { new RecipeInputItemStack(input) }, totalEu(5000), arr);
+				if (canInputBeUsed(input) && !outputList.isEmpty()) {
+					ItemStack[] arr = outputList.toArray(new ItemStack[0]);
+					addRecipe(new IRecipeInput[] { new RecipeInputItemStack(input) }, totalEu(5000), arr);
+				}
 			}
 		}
 	}

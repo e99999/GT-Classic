@@ -29,7 +29,7 @@ public class GTRecipeMods {
 	public static void postInit() {
 		/** Stuff for people too slow to handle ore dict at the right time **/
 		GTTileCentrifuge.addRecipe("dustDiamond", 1, 0, GTTileCentrifuge.totalEu(100000), GTMaterialGen.getDust(GTMaterial.Carbon, 64));
-		if (GTConfig.compatBuildcraft && Loader.isModLoaded(GTHelperMods.BUILDCRAFT)) {
+		if (GTConfig.modcompat.compatBuildcraft && Loader.isModLoaded(GTHelperMods.BUILDCRAFT)) {
 			// Classic GT Quarry stuff
 			GTRecipeCraftingHandler.removeRecipe(GTHelperMods.BUILDCRAFT, "quarry");
 			GTRecipe.recipes.addRecipe(GTMaterialGen.getModItem(GTHelperMods.BUILDCRAFT, "quarry"), new Object[] {
@@ -37,7 +37,7 @@ public class GTRecipeMods {
 					'R', Ic2Items.diamondDrill.copy() });
 		}
 		/** EnderIO **/
-		if (GTConfig.compatEnderIO && Loader.isModLoaded(GTHelperMods.ENDERIO)) {
+		if (GTConfig.modcompat.compatEnderIO && Loader.isModLoaded(GTHelperMods.ENDERIO)) {
 			GTMod.logger.info("Doing EnderIO Things");
 			// Creating a relationship between Enderio Iron Alloy and Mixed Metal
 			compressor.removeRecipe(input(Ic2Items.mixedMetalIngot.copy()));
@@ -54,7 +54,7 @@ public class GTRecipeMods {
 			TileEntityMacerator.addRecipe("itemClayedGlowstone", 1, GTMaterialGen.getModItem(GTHelperMods.ENDERIO, "block_holy_fog"));
 		}
 		/** Ic2 Extras **/
-		if (GTConfig.compatIc2Extras && Loader.isModLoaded(GTHelperMods.IC2_EXTRAS)) {
+		if (GTConfig.modcompat.compatIc2Extras && Loader.isModLoaded(GTHelperMods.IC2_EXTRAS)) {
 			GTMod.logger.info("Doing IC2 Extras Things");
 			TileEntityMacerator.addRecipe("crushedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 			TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
@@ -75,12 +75,12 @@ public class GTRecipeMods {
 			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 		}
 		/** Immersive Engineering **/
-		if (GTConfig.compatIE && Loader.isModLoaded(GTHelperMods.IMMERSIVE_ENGINEERING)) {
+		if (GTConfig.modcompat.compatIE && Loader.isModLoaded(GTHelperMods.IMMERSIVE_ENGINEERING)) {
 			GTMod.logger.info("Doing Immersive Engineering Things");
 			GTTileCentrifuge.addRecipe("dustCoke", 8, 0, GTTileCentrifuge.totalEu(7500), GTMaterialGen.getModMetaItem(GTHelperMods.IMMERSIVE_ENGINEERING, "material", 18, 1));
 		}
 		/** Thermal Mods **/
-		if (GTConfig.compatThermal && Loader.isModLoaded(GTHelperMods.THERMAL)) {
+		if (GTConfig.modcompat.compatThermal && Loader.isModLoaded(GTHelperMods.THERMAL)) {
 			GTMod.logger.info("Doing Thermal Expansion Things");
 			// Adding thermal stuff to fluid gen
 			addFluidGeneratorRecipe("crude_oil", 50000, 10);
@@ -104,7 +104,7 @@ public class GTRecipeMods {
 			ClassicRecipes.electrolyzer.addChargeRecipe(GTMaterialGen.getModMetaItem(GTHelperMods.THERMAL, "fertilizer", 1, 1), GTMaterialGen.getModMetaItem(GTHelperMods.THERMAL, "fertilizer", 2, 1), 16000, "ThermalFertilizer");
 		}
 		/** Forestry Sub Module, last so bees are always last **/
-		if (GTConfig.compatForestry && Loader.isModLoaded(GTHelperMods.FORESTRY)) {
+		if (GTConfig.modcompat.compatForestry && Loader.isModLoaded(GTHelperMods.FORESTRY)) {
 			GTMod.logger.info("Doing Forestry Things");
 			GTRecipeCraftingHandler.removeRecipe(GTHelperMods.FORESTRY, "bronze_ingot");
 			GTTileCentrifuge.addRecipe("gemApatite", 5, 0, GTTileCentrifuge.totalEu(4000), GTMaterialGen.getDust(GTMaterial.Calcite, 4), GTMaterialGen.getIc2(Ic2Items.fertilizer, 1));

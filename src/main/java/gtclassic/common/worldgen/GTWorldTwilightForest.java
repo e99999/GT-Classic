@@ -13,19 +13,19 @@ public class GTWorldTwilightForest {
 
 	public static void initStalactites() {
 		GTMod.logger.info("Adding ores to Twilight Forest hollow hills");
-		if (GTConfig.iridiumGenerate) {
+		if (GTConfig.generation.iridiumGenerate) {
 			TFGenCaveStalactite.addStalactite(3, GTBlocks.oreIridium.getDefaultState(), 0.5F, 4, 16, 30);
 		}
-		if (GTConfig.sheldoniteGenerate) {
+		if (GTConfig.generation.sheldoniteGenerate) {
 			TFGenCaveStalactite.addStalactite(2, GTBlocks.oreSheldonite.getDefaultState(), 0.5F, 8, 1, 12);
 		}
-		if (GTConfig.sapphireGenerate) {
+		if (GTConfig.generation.sapphireGenerate) {
 			TFGenCaveStalactite.addStalactite(2, GTBlocks.oreSapphire.getDefaultState(), 0.6F, 6, 1, 20);
 		}
-		if (GTConfig.rubyGenerate) {
+		if (GTConfig.generation.rubyGenerate) {
 			TFGenCaveStalactite.addStalactite(2, GTBlocks.oreRuby.getDefaultState(), 0.6F, 6, 1, 20);
 		}
-		if (GTConfig.bauxiteGenerate) {
+		if (GTConfig.generation.bauxiteGenerate) {
 			TFGenCaveStalactite.addStalactite(1, GTBlocks.oreBauxite.getDefaultState(), 0.8F, 12, 1, 24);
 		}
 		if (IC2.config.getFlag("WorldGenOreCopper")) {

@@ -41,7 +41,7 @@ public class GTJeiUUAmplifierWrapper implements IRecipeWrapper {
 		font.drawString("Progress: " + df.format(100.0 / (1000000.0 / value)) + "%", 0, 40, Color.black.getRGB());
 		font.drawString("Multiplier: " + value / 5000.0 + "X", 0, 50, Color.black.getRGB());
 		font.drawString("Cost: " + value + " EU", 0, 60, Color.black.getRGB());
-		if (GTConfig.debugMode) {
+		if (GTConfig.general.debugMode) {
 			font.drawString("Recipe Id: " + multiRecipe.getRecipeID(), 0, 70, Color.black.getRGB());
 		}
 	}

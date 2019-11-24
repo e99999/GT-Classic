@@ -60,7 +60,7 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 			font.drawString("Output: " + (getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu() / 20)
 					+ " EU Possible", 0, 90, Color.black.getRGB());
 		}
-		if (GTConfig.debugMode) {
+		if (GTConfig.general.debugMode) {
 			font.drawString("Recipe Id: " + multiRecipe.getRecipeID(), 0, 90 + extraHeight, Color.black.getRGB());
 		}
 	}

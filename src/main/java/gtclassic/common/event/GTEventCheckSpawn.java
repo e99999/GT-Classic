@@ -39,13 +39,13 @@ public class GTEventCheckSpawn {
 			Entity entity = event.getEntity();
 			BlockPos spawn = entity.getEntityWorld().getSpawnPoint();
 			// This is the code for the safe spawn zone
-			if (GTConfig.preventMobSpawnsCloseToSpawn
+			if (GTConfig.general.preventMobSpawnsCloseToSpawn
 					&& entity.getEntityWorld().provider.getDimensionType().equals(DimensionType.OVERWORLD)
 					&& entity.getPosition().distanceSq(spawn.getX(), spawn.getY(), spawn.getZ()) <= 128 * 128) {
 				event.setResult(Event.Result.DENY);
 			}
 			// this is code for zombies spawning with pickaxes
-			if (GTConfig.caveZombiesSpawnWithPickaxe && entity instanceof EntityZombie && event.getY() <= 50.0F
+			if (GTConfig.general.caveZombiesSpawnWithPickaxe && entity instanceof EntityZombie && event.getY() <= 50.0F
 					&& event.getWorld().rand.nextInt(2) == 0) {
 				EntityZombie zombie = (EntityZombie) entity;
 				ItemStack tool = getRandomPickaxe(event.getWorld().rand);

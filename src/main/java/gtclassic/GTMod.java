@@ -35,6 +35,9 @@ import gtclassic.common.worldgen.GTWorldTwilightForest;
 import ic2.core.IC2;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -42,6 +45,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = GTMod.MODID, name = GTMod.MODNAME, version = GTMod.MODVERSION, dependencies = GTMod.DEPENDS, useMetadata = true)
@@ -57,8 +61,10 @@ public class GTMod {
 	@Mod.Instance
 	public static GTMod instance;
 	public static Logger logger;
-	private static boolean quickDebug = false;
-	public static boolean debugMode = GTConfig.debugMode || quickDebug;
+
+	public GTMod() {
+		MinecraftForge.EVENT_BUS.register(this);
+	}
 
 	@Mod.EventHandler
 	public synchronized void preInit(FMLPreInitializationEvent event) {
@@ -108,24 +114,20 @@ public class GTMod {
 		GTRecipeMods.postInit();
 		GTTileDisassembler.init();
 		GTJei.initEntries();
-		if (GTConfig.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)) {
+		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)) {
 			GTWorldTwilightForest.initStalactites();
+		}
+	}
+
+	@SubscribeEvent
+	public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
+		if (event.getModID().equals(MODID)) {
+			ConfigManager.sync(MODID, Config.Type.INSTANCE);
 		}
 	}
 
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event) {
 		event.registerServerCommand(new GTCommandTeleport());
-	}
-
-	/**
-	 * A logger that will only work if debug mode is enabled
-	 * 
-	 * @param message
-	 */
-	public static void debugLogger(String message) {
-		if (debugMode) {
-			logger.info(message);
-		}
 	}
 }

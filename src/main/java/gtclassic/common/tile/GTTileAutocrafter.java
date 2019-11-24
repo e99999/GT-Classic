@@ -162,7 +162,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	public void tryToDamageItems(ItemStack stack) {
 		if (stack.isItemStackDamageable()) {
 			if (this.isRendering()) {
-			stack.attemptDamageItem(1, this.world.rand, null);
+				stack.attemptDamageItem(1, this.world.rand, null);
 			}
 		}
 	}

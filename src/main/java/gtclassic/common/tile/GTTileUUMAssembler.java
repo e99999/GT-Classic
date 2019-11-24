@@ -235,7 +235,7 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	}
 
 	public static void init() {
-		if (GTConfig.generateUUMAssemblerRecipes) {
+		if (GTConfig.general.generateUUMAssemblerRecipes) {
 			addUUMAssemblerValue(1, GTMaterialGen.get(Blocks.COBBLESTONE, 16));
 			addUUMAssemblerValue(1, GTMaterialGen.get(Blocks.STONE, 16));
 			addUUMAssemblerValue(4, GTMaterialGen.get(Blocks.GLASS, 32));

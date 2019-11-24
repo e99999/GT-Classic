@@ -27,7 +27,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 16));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 4));
-		if (GTConfig.animatedTextures) {
+		if (GTConfig.general.animatedTextures) {
 			addCustomTexture("fusioncomputer", 0, 7, location("fusion_top"));
 			addCustomTexture("quantumchest", 0, 3, location("qchest_front"));
 			addCustomTexture("quantumtank", 0, 1, location("qtank_top"));
@@ -38,7 +38,6 @@ public class GTIcons {
 			addCustomTexture("industrialcentrifuge", 0, 10, location("centrifuge_left"));
 			addCustomTexture("industrialcentrifuge", 0, 11, location("centrifuge_right"));
 		}
-		GTMod.debugLogger("All GregTech textures generated without error");
 	}
 
 	private static ResourceLocation location(String name) {
@@ -47,7 +46,6 @@ public class GTIcons {
 
 	public static void collectBasicTileSprites() {
 		for (String string : GTBlocks.textureTileBasic) {
-			GTMod.debugLogger("Attempting to get sprite data for: " + string);
 			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string
 					+ ".png", new Sprites.SpriteInfo(1, 12)));
 			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));

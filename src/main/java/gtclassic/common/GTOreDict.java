@@ -45,7 +45,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("logRubber", Ic2Items.rubberWood);
 		OreDictionary.registerOre("dustRareEarth", Ic2Items.rareEarthDust);
 		OreDictionary.registerOre("dustWheat", Ic2Items.flour);
-		if (GTConfig.oreDictWroughtIron) {
+		if (GTConfig.general.oreDictWroughtIron) {
 			OreDictionary.registerOre("ingotWroughtIron", Ic2Items.refinedIronIngot);
 		}
 		OreDictionary.registerOre("machineBlockBasic", Ic2Items.machine);
