@@ -388,9 +388,11 @@ public class GTRecipe {
 		/** Circutry Stuff **/
 		if (GTConfig.general.addBasicCircuitRecipes) {
 			int recipeId = IC2.config.getFlag("SteelRecipes") ? 1921363733 : 1058514721;
-			recipes.overrideRecipe("shaped_item.itemPartCircuit_" + recipeId, GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RIR", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
+			recipes.overrideRecipe("shaped_item.itemPartCircuit_"
+					+ recipeId, GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CCC", "RIR", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
 			recipeId = IC2.config.getFlag("SteelRecipes") ? -1911001323 : 1521116961;
-			recipes.overrideRecipe("shaped_item.itemPartCircuit_" + recipeId, GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CIC", "CRC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
+			recipes.overrideRecipe("shaped_item.itemPartCircuit_"
+					+ recipeId, GTMaterialGen.getIc2(Ic2Items.electricCircuit, 1), "CRC", "CIC", "CRC", 'C', Ic2Items.insulatedCopperCable.copy(), 'R', "dustRedstone", 'I', ingotElectric);
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CCC", "III", "CCC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.electricCircuit, 2), "CIC", "CIC", "CIC", 'C', Ic2Items.insulatedCopperCable.copy(), 'I', ingotElectric);
 		}

@@ -1,5 +1,8 @@
 package gtclassic.api.jei;
 
+import java.awt.Color;
+import java.util.ArrayList;
+
 import gtclassic.api.helpers.GTHelperString;
 import gtclassic.api.recipe.GTFluidMachineOutput;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
@@ -14,9 +17,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-
-import java.awt.*;
-import java.util.ArrayList;
 
 public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 
@@ -43,8 +43,8 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 		}
 		ingredients.setInputs(ItemStack.class, inputItems);
 		MachineOutput output = multiRecipe.getOutputs();
-		if (output instanceof GTFluidMachineOutput){
-			ingredients.setOutputs(FluidStack.class, ((GTFluidMachineOutput)output).getFluids());
+		if (output instanceof GTFluidMachineOutput) {
+			ingredients.setOutputs(FluidStack.class, ((GTFluidMachineOutput) output).getFluids());
 		}
 		ingredients.setOutputs(ItemStack.class, multiRecipe.getOutputs().getAllOutputs());
 	}

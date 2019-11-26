@@ -93,8 +93,8 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 		}
 		index = 0;
 		MachineOutput output = wrapper.getMultiRecipe().getOutputs();
-		if (output instanceof GTFluidMachineOutput){
-			for (FluidStack stack : ((GTFluidMachineOutput)output).getFluids()) {
+		if (output instanceof GTFluidMachineOutput) {
+			for (FluidStack stack : ((GTFluidMachineOutput) output).getFluids()) {
 				int x = index % 3;
 				int y = index / 3;
 				fluidGroup.init(actualIndex, false, 91 + (18 * x), (18 * y) + 1, 16, 16, stack.amount, true, null);
@@ -109,7 +109,7 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 				if (index >= 6) {
 					break;
 				}
-				if (stack.getItem() instanceof ItemDisplayIcon){
+				if (stack.getItem() instanceof ItemDisplayIcon) {
 					continue;
 				}
 				int x = index % 3;
@@ -135,6 +135,5 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 				}
 			}
 		}
-
 	}
 }

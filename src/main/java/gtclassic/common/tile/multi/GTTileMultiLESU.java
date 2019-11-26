@@ -16,7 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
-public class GTTileMultiLESU extends TileEntityElectricBlock implements IMultiEnergySource ,IGTMultiTileStatus{
+public class GTTileMultiLESU extends TileEntityElectricBlock implements IMultiEnergySource, IGTMultiTileStatus {
 
 	private int blockCount;
 	public boolean enabled = true;

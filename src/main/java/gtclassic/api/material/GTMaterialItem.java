@@ -71,6 +71,9 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColo
 		if (this.material.equals(GTMaterial.Carbon) && this.flag.equals(GTMaterialFlag.DUST)) {
 			return 1000;
 		}
+		if (this.material.equals(GTMaterial.Sulfur) && this.flag.equals(GTMaterialFlag.DUST)) {
+			return 1600;
+		}
 		return 0;
 	}
 

@@ -39,12 +39,12 @@ public class GTProxyClient extends GTProxyCommon {
 		registerTintedItems();
 		MinecraftForge.EVENT_BUS.register(this);
 	}
-	
+
 	@Override
 	public void postInit(FMLPostInitializationEvent e) {
 		GTJei.initEntries();
 	}
-	
+
 	@SubscribeEvent
 	public void onIconLoad(SpriteReloadEvent event) {
 		GTIcons.loadSprites();
