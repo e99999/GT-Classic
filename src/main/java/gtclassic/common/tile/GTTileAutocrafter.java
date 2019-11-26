@@ -124,7 +124,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty() && this.inventory.get(28).isEmpty()
 					&& this.energy >= 50) {
 				// see if the tile inventory has what the currentRecipe needs
-				GTHelperStack.tryCondenseInventory(this, 0, 10);
+				GTHelperStack.tryCondenseInventory(this, 0, 9);
 				int recipeMatches = 0;
 				for (int i = 0; i < 9; ++i) {
 					if (GTHelperStack.containsWithSizeFuzzy(this.currentRecipe, this.getStackInSlot(i)) != -1) {

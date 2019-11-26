@@ -1,6 +1,7 @@
 package gtclassic.api.material;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -96,15 +97,30 @@ public class GTMaterialGen {
 	}
 
 	/**
-	 * For creating a fluid from a material directly.
+	 * returns an unmodifiable version of the item flags list
 	 * 
-	 * @param mat  - GTMaterial to use
-	 * @param flag - GTMaterialFlag to combine with the material
+	 * @return
 	 */
-	public static void materialFluidUtil(GTMaterial mat, GTMaterialFlag flag) {
-		if (mat.hasFlag(flag)) {
-			FluidRegistry.registerFluid(new GTFluid(mat, flag));
-		}
+	public static List<GTMaterialFlag> getItemFlagList() {
+		return Collections.unmodifiableList(itemFlags);
+	}
+
+	/**
+	 * returns an unmodifiable version of the blocks flags list
+	 * 
+	 * @return
+	 */
+	public static List<GTMaterialFlag> getBlockFlagList() {
+		return Collections.unmodifiableList(blockFlags);
+	}
+
+	/**
+	 * returns an unmodifiable version of the fluid flags list
+	 * 
+	 * @return
+	 */
+	public static List<GTMaterialFlag> getFluidFlagList() {
+		return Collections.unmodifiableList(fluidFlags);
 	}
 
 	/**
@@ -130,6 +146,18 @@ public class GTMaterialGen {
 	public static void materialBlockUtil(GTMaterial mat, GTMaterialFlag flag) {
 		if (mat.hasFlag(flag)) {
 			blockMap.put(mat.getName() + "_" + flag.getSuffix(), new GTMaterialBlock(mat, flag));
+		}
+	}
+
+	/**
+	 * For creating a fluid from a material directly.
+	 * 
+	 * @param mat  - GTMaterial to use
+	 * @param flag - GTMaterialFlag to combine with the material
+	 */
+	public static void materialFluidUtil(GTMaterial mat, GTMaterialFlag flag) {
+		if (mat.hasFlag(flag)) {
+			FluidRegistry.registerFluid(new GTFluid(mat, flag));
 		}
 	}
 

@@ -5,10 +5,12 @@ import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTConfig;
+import gtclassic.common.GTItems;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.core.block.machine.low.TileEntityCompressor;
+import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -31,6 +33,7 @@ public class GTRecipeIterators {
 			createIngotRecipe(mat);
 			createGemRecipe(mat);
 			createBlockRecipe(mat);
+			createTubeRecipe(mat);
 		}
 	}
 
@@ -91,6 +94,14 @@ public class GTRecipeIterators {
 				// Inverse
 				recipes.addShapelessRecipe(GTMaterialGen.getIngot(mat, 9), new Object[] { block });
 				TileEntityMacerator.addRecipe(block, 1, GTMaterialGen.getDust(mat, 9), 0.0F);
+			}
+		}
+	}
+
+	public static void createTubeRecipe(GTMaterial mat) {
+		for (GTMaterialFlag fluidFlag : GTMaterialGen.getFluidFlagList()) {
+			if (mat.hasFlag(fluidFlag)) {
+				TileEntityExtractor.addRecipe(GTMaterialGen.getTube(mat, 1), GTMaterialGen.get(GTItems.testTube));
 			}
 		}
 	}

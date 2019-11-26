@@ -83,8 +83,8 @@ public class GTMod {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
 		GTMaterialElement.init();
-		GTRecipeIterators.init();
 		GTRecipeProcessing.init();
+		GTRecipeIterators.init();
 		GTTileCentrifuge.init();
 		GTTileUUMAssembler.init();
 		GTTileMagicEnergyConverter.init();
