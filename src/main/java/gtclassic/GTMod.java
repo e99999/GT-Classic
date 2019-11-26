@@ -11,7 +11,6 @@ import gtclassic.common.GTConfig;
 import gtclassic.common.GTCreativeTab;
 import gtclassic.common.GTCrops;
 import gtclassic.common.GTItems;
-import gtclassic.common.GTJei;
 import gtclassic.common.GTOreDict;
 import gtclassic.common.GTWorldGen;
 import gtclassic.common.event.GTEventCheckSpawn;
@@ -113,7 +112,6 @@ public class GTMod {
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeMods.postInit();
 		GTTileDisassembler.init();
-		GTJei.initEntries();
 		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)) {
 			GTWorldTwilightForest.initStalactites();
 		}

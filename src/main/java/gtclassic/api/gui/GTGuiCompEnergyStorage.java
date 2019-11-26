@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.common.tile.GTTileIDSU;
-import gtclassic.common.tile.GTTileLESU;
+import gtclassic.common.tile.multi.GTTileMultiLESU;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -51,8 +51,8 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 				gui.drawString("No Owner", 12, 58, Color.cyan.hashCode());
 			}
 		}
-		if (this.block instanceof GTTileLESU) {
-			gui.drawString("Blocks: " + ((GTTileLESU) this.block).getCount(), 12, 58, Color.cyan.hashCode());
+		if (this.block instanceof GTTileMultiLESU) {
+			gui.drawString("Blocks: " + ((GTTileMultiLESU) this.block).getCount(), 12, 58, Color.cyan.hashCode());
 		}
 	}
 }

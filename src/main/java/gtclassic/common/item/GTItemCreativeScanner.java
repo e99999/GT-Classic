@@ -5,7 +5,7 @@ import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
 import gtclassic.common.tile.GTTileBaseBuffer;
 import gtclassic.common.tile.GTTileDrum;
-import gtclassic.common.tile.GTTileLESU;
+import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.classic.tile.machine.IEUStorage;
@@ -225,8 +225,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 					IC2.platform.messagePlayer(player, fluid.amount + "mB of " + fluid.getLocalizedName());
 				}
 			}
-			if (tileEntity instanceof GTTileLESU) {
-				GTTileLESU lesu = (GTTileLESU) tileEntity;
+			if (tileEntity instanceof GTTileMultiLESU) {
+				GTTileMultiLESU lesu = (GTTileMultiLESU) tileEntity;
 				IC2.platform.messagePlayer(player, "Lapotron Blocks: " + lesu.getCount());
 				IC2.platform.messagePlayer(player, "Energy Packets: " + lesu.getMultipleEnergyPacketAmount());
 			}

@@ -6,9 +6,9 @@ import gtclassic.common.tile.GTTileBufferFluid;
 import gtclassic.common.tile.GTTileBufferLarge;
 import gtclassic.common.tile.GTTileBufferSmall;
 import gtclassic.common.tile.GTTileIDSU;
-import gtclassic.common.tile.GTTileLESU;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileTranslocator;
+import gtclassic.common.tile.multi.GTTileMultiLESU;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -33,7 +33,7 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.tileLESU) {
-			return new GTTileLESU();
+			return new GTTileMultiLESU();
 		}
 		if (this == GTBlocks.tileAESU) {
 			return new GTTileAESU();

@@ -6,6 +6,7 @@ import gtclassic.api.color.GTColorItem;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTColorItem;
 import gtclassic.common.GTIcons;
+import gtclassic.common.GTJei;
 import ic2.core.platform.textures.Ic2Icons.SpriteReloadEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -17,6 +18,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,7 +39,12 @@ public class GTProxyClient extends GTProxyCommon {
 		registerTintedItems();
 		MinecraftForge.EVENT_BUS.register(this);
 	}
-
+	
+	@Override
+	public void postInit(FMLPostInitializationEvent e) {
+		GTJei.initEntries();
+	}
+	
 	@SubscribeEvent
 	public void onIconLoad(SpriteReloadEvent event) {
 		GTIcons.loadSprites();

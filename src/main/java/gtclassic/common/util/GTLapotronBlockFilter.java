@@ -1,7 +1,7 @@
 package gtclassic.common.util;
 
 import gtclassic.common.GTBlocks;
-import gtclassic.common.tile.GTTileLESU;
+import gtclassic.common.tile.multi.GTTileMultiLESU;
 import ic2.core.util.helpers.AabbUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -30,8 +30,8 @@ public class GTLapotronBlockFilter implements AabbUtil.IBlockFilter {
 				return false;
 			}
 			TileEntity worldTile = world.getTileEntity(blockPos);
-			if (worldTile instanceof GTTileLESU) {
-				((GTTileLESU) worldTile).enabled = false;
+			if (worldTile instanceof GTTileMultiLESU) {
+				((GTTileMultiLESU) worldTile).enabled = false;
 			}
 			return false;
 		}

@@ -5,7 +5,7 @@ import static ic2.core.block.wiring.container.ContainerElectricBlock.VALID_EQUIP
 import gtclassic.GTMod;
 import gtclassic.api.gui.GTGuiCompEnergyStorage;
 import gtclassic.api.gui.GTGuiCompEnergyStorageBar;
-import gtclassic.common.tile.GTTileLESU;
+import gtclassic.common.tile.multi.GTTileMultiLESU;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotArmor;
@@ -19,14 +19,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerLESU extends ContainerTileComponent<GTTileLESU> {
+public class GTContainerLESU extends ContainerTileComponent<GTTileMultiLESU> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/energystorage.png");
 	public static Box2D chargeProgressBox = new Box2D(8, 73, 116, 5); // where the background to cover is, and the size
 																		// xy
 	public static Vec2i chargeProgressPos = new Vec2i(0, 251); // where the overlay is located
 
-	public GTContainerLESU(InventoryPlayer player, GTTileLESU tile) {
+	public GTContainerLESU(InventoryPlayer player, GTTileMultiLESU tile) {
 		super(tile);
 		this.addSlotToContainer(new SlotDischarge(tile, tile.tier, 1, 128, 50));
 		this.addSlotToContainer(new SlotCharge(tile, tile.tier, 0, 128, 14));

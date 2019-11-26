@@ -1,5 +1,6 @@
-package gtclassic.common.tile;
+package gtclassic.common.tile.multi;
 
+import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerLESU;
 import gtclassic.common.util.GTLapotronBlockFilter;
@@ -15,7 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
-public class GTTileLESU extends TileEntityElectricBlock implements IMultiEnergySource {
+public class GTTileMultiLESU extends TileEntityElectricBlock implements IMultiEnergySource ,IGTMultiTileStatus{
 
 	private int blockCount;
 	public boolean enabled = true;
@@ -23,7 +24,7 @@ public class GTTileLESU extends TileEntityElectricBlock implements IMultiEnergyS
 	public AabbUtil.IBlockFilter filter = new GTLapotronBlockFilter(this);
 	public Processor task = null;
 
-	public GTTileLESU() {
+	public GTTileMultiLESU() {
 		super(3, 512, BASE_ENERGY);
 		this.blockCount = 0;
 		this.addGuiFields(new String[] { "blockCount", "maxEnergy" });
@@ -130,5 +131,10 @@ public class GTTileLESU extends TileEntityElectricBlock implements IMultiEnergyS
 	@Override
 	public boolean sendMultipleEnergyPackets() {
 		return this.blockCount > 9;
+	}
+
+	@Override
+	public boolean getStructureValid() {
+		return this.blockCount > 0;
 	}
 }
