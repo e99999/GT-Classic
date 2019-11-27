@@ -8,4 +8,3 @@
 - Check how many mods use ingotChromium and do compat for that like iron, aluminium.
 - Fix surrounding players not hearing spring boots
 - Come up with uses for Calcium, Nitrogen, Potassium, Chlorine, and now Sulfuric Acid
-- Extractor recipes for getting empty tubes

@@ -1,6 +1,9 @@
 # Changelog
 
-# 1.07 (Not Released)
+# 1.08 (Not Released)
+- Nothing to see here yet
+
+# 1.07
 - Completely redid the config system, YOU MUST DELETE AND REGEN YOUR CONFIGS FOR THE LASTTTT TIME.
 - Completely refactored the entire project to now have a dedicated API although this doesnt change the mod for players at all.
 - Changed JEI system so addons can handle JEI automatically if they want, this wont effect gameplay at all
