@@ -8,8 +8,7 @@
 - Check how many mods use ingotChromium and do compat for that like iron, aluminium.
 - Fix surrounding players not hearing spring boots
 - Come up with uses for Calcium, Nitrogen, Potassium, Chlorine, and now Sulfuric Acid
+- Convert String references in gui's to localecomps
 
 # Testing Todo
-- Make spring boot damage random chance not 100% and check for unbreaking
 - Mabye just disable a fuckload of recipes with gtcx loaded cause so many recipes change?
-- Add phosphorus recipe for fertilzer?

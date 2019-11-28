@@ -77,6 +77,9 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.Methane, 4), GTMaterialGen.getDust(GTMaterial.Carbon, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1));
 		/** Gunpowder **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(Items.GUNPOWDER, 5), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
+		/** IC2 Fertilizer **/
+		recipes.addShapelessRecipe(GTMaterialGen.getIc2(Ic2Items.fertilizer, 3), new Object[] { "dustSulfur",
+				"dustPhosphorus", "dustCalcite" });
 		/** Sulfuric Acid **/
 		recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.SulfuricAcid, 3), GTMaterialGen.getDust(GTMaterial.Sulfur, 1), GTMaterialGen.getWater(1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 		/** Electrum Dust **/
@@ -401,12 +404,6 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 2), "RGR", "LCL", "RGR", 'R', ingotSilver, 'G', "dustGlowstone", 'C', circuitBasicX2, 'L', anyLapis);
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.advancedCircuit, 2), "RLR", "GCG", "RLR", 'R', ingotSilver, 'G', "dustGlowstone", 'C', circuitBasicX2, 'L', anyLapis);
 		}
-		/** Harder Plasma Core Recipe **/
-		// recipes.overrideRecipe("shaped_item.itemPlasmaCore_-1985082214",Ic2Items.plasmaCore.copy(),
-		// new Object[]{"XYX", "YCY", "XYX", 'X',
-		// GTMaterialGen.get(GTItems.circuitEnergy, 2), 'Y',
-		// GTMaterialGen.getIngot(GTMaterial.Tungsten, 4), 'C',
-		// Ic2Items.plasmaCell.copy()});
 		/** Making the macerator harder **/
 		if (GTConfig.general.harderIC2Macerator) {
 			recipes.overrideRecipe("shaped_tile.blockStoneMacerator_-130868445", Ic2Items.stoneMacerator.copy(), new Object[] {

@@ -61,7 +61,9 @@ public class GTItemSpringBoots extends ItemCompositeArmor {
 			if (foundPlayer != null) {
 				IC2.audioManager.playOnce(foundPlayer, GTSounds.SPRING);
 			}
-			stack.damageItem(1, player);
+			if (world.rand.nextInt(2) == 0) {
+				stack.damageItem(1, player);
+			}
 		}
 	}
 }
