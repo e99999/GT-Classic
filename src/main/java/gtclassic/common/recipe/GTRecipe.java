@@ -73,14 +73,16 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileBufferSmall, 8), GTMaterialGen.get(GTBlocks.tileBufferLarge, 1));
 		/** Light Helmet **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.lightHelment, 1), Ic2Items.solarHelmet.copy(), Ic2Items.luminator.copy(), Ic2Items.battery.copy());
-		/** Electrum Dust **/
-		recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Electrum, 2), "dustSilver", "dustGold");
 		/** Methane **/
 		recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.Methane, 4), GTMaterialGen.getDust(GTMaterial.Carbon, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1));
 		/** Gunpowder **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(Items.GUNPOWDER, 5), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 		/** Sulfuric Acid **/
 		recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.SulfuricAcid, 3), GTMaterialGen.getDust(GTMaterial.Sulfur, 1), GTMaterialGen.getWater(1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
+		/** Electrum Dust **/
+		recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Electrum, 2), "dustSilver", "dustGold");
+		/** Invar Dust **/
+		recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Invar, 3), "dustIron", "dustIron", "dustNickel");
 	}
 
 	public static void initItems() {
@@ -336,9 +338,6 @@ public class GTRecipe {
 	}
 
 	public static void initIC2() {
-		/** Carbon Fiber **/
-		recipes.overrideRecipe("shaped_item.itemPartCarbonFibre_794316583", GTMaterialGen.getIc2(Ic2Items.carbonFiber, 1), new Object[] {
-				"DDD", "D D", "DDD", 'D', "dustCarbon", 'D' });
 		/** Machine casings can take aluminium **/
 		String machineId = IC2.config.getFlag("SteelRecipes") ? "480320652" : "527557260";
 		recipes.overrideRecipe("shaped_tile.blockmachine_"

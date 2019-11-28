@@ -39,6 +39,7 @@ public class GTMaterial {
 	public static final GTMaterial Helium = new GTMaterial(2, "Helium", 255, 255, 0, gas);
 	public static final GTMaterial Helium3 = new GTMaterial("Helium3", 255, 255, 0, gas);
 	public static final GTMaterial Hydrogen = new GTMaterial(1, "Hydrogen", 0, 38, 255, gas);
+	public static final GTMaterial Invar = new GTMaterial("Invar", 220, 220, 150, metalAll);
 	public static final GTMaterial Iridium = new GTMaterial(77, "Iridium", 255, 255, 255, metalAll);
 	public static final GTMaterial Lazurite = new GTMaterial("Lazurite", 100, 120, 255, dust);
 	public static final GTMaterial Lithium = new GTMaterial(3, "Lithium", 87, 150, 204, dust);
@@ -46,11 +47,12 @@ public class GTMaterial {
 	public static final GTMaterial Methane = new GTMaterial("Methane", 255, 50, 130, gas);
 	public static final GTMaterial Neon = new GTMaterial(10, "Neon", 255, 100, 100, gas);
 	public static final GTMaterial Nitrogen = new GTMaterial(7, "Nitrogen", 0, 190, 190, gas);
+	public static final GTMaterial Nickel = new GTMaterial(28, "Nickel", 250, 250, 200, metalAll);
 	public static final GTMaterial Oil = new GTMaterial("Oil", 0, 0, 0, fluid);
 	public static final GTMaterial Oxygen = new GTMaterial(8, "Oxygen", 100, 160, 220, gas);
 	public static final GTMaterial Phosphorus = new GTMaterial(15, "Phosphorus", 190, 0, 0, dust);
 	public static final GTMaterial Potassium = new GTMaterial(19, "Potassium", 250, 250, 250, fluid);
-	public static final GTMaterial Platinum = new GTMaterial(78, "Platinum", 255, 255, 200, metalAll);
+	public static final GTMaterial Platinum = new GTMaterial(78, "Platinum", 100, 180, 250, metalAll);
 	public static final GTMaterial Plutonium = new GTMaterial(94, "Plutonium", 240, 50, 50, false, metalAll);
 	public static final GTMaterial Pyrite = new GTMaterial("Pyrite", 150, 120, 40, dust);
 	public static final GTMaterial Ruby = new GTMaterial("Ruby", 255, 75, 75, rubyAll);

@@ -29,8 +29,11 @@ public class GTHelperString {
 		}
 		if (tier == 8) {
 			return "UV";
-		} else {
+		}
+		if (tier == 9) {
 			return "MAX";
+		} else {
+			return "N/A";
 		}
 	}
 }

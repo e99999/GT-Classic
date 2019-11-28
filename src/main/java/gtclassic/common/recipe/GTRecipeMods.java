@@ -107,7 +107,7 @@ public class GTRecipeMods {
 		if (GTConfig.modcompat.compatForestry && Loader.isModLoaded(GTHelperMods.FORESTRY)) {
 			GTMod.logger.info("Doing Forestry Things");
 			GTRecipeCraftingHandler.removeRecipe(GTHelperMods.FORESTRY, "bronze_ingot");
-			GTTileCentrifuge.addRecipe("gemApatite", 5, 0, GTTileCentrifuge.totalEu(4000), GTMaterialGen.getDust(GTMaterial.Calcite, 4), GTMaterialGen.getIc2(Ic2Items.fertilizer, 1));
+			GTTileCentrifuge.addRecipe("gemApatite", 5, 0, GTTileCentrifuge.totalEu(4000), GTMaterialGen.getDust(GTMaterial.Calcite, 4), GTMaterialGen.getDust(GTMaterial.Phosphorus, 1));
 			GTRecipeForestry.notTheBees();
 		}
 	}
