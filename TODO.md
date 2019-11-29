@@ -9,6 +9,3 @@
 - Fix surrounding players not hearing spring boots
 - Come up with uses for Calcium, Nitrogen, Potassium, Chlorine, and now Sulfuric Acid
 - Convert String references in gui's to localecomps
-
-# Testing Todo
-- Mabye just disable a fuckload of recipes with gtcx loaded cause so many recipes change?

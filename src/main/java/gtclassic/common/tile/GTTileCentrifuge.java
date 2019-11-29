@@ -174,6 +174,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addRecipe(GTMaterialGen.get(Items.QUARTZ, 1), 2, totalEu(8000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
 		addRecipe(GTMaterialGen.get(Blocks.MAGMA, 64), 64, totalEu(3000), GTMaterialGen.getLava(64));
 		addRecipe("dustElectrum", 2, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.silverDust, 1), GTMaterialGen.getIc2(Ic2Items.goldDust, 1));
+		addRecipe("dustInvar", 3, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getDust(GTMaterial.Nickel, 1));
 		addRecipe("dustBronze", 4, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.tinDust, 1), GTMaterialGen.getIc2(Ic2Items.copperDust, 3));
 		addRecipe("dustPlatinum", 9, 0, totalEu(135000), GTMaterialGen.getDust(GTMaterial.Iridium, 1), GTMaterialGen.getDust(GTMaterial.Nickel, 2));
 		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 16), 4, totalEu(6000), GTMaterialGen.getTube(GTMaterial.Methane, 4), GTMaterialGen.get(Items.LEATHER, 4), GTMaterialGen.get(Items.SLIME_BALL, 1));

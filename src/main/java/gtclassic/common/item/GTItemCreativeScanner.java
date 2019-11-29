@@ -176,7 +176,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IEnergySink euSink = (IEnergySink) tileEntity;
 				IC2.platform.messagePlayer(player, "Input Tier: " + euSink.getSinkTier());
 				IC2.platform.messagePlayer(player, "Input Max: "
-						+ EnergyNet.instance.getPowerFromTier(euSink.getSinkTier()));
+						+ EnergyNet.instance.getPowerFromTier(euSink.getSinkTier()) + " EU");
 			}
 			if (tileEntity instanceof GTTileBaseMachine) {
 				GTTileBaseMachine machine = (GTTileBaseMachine) tileEntity;
