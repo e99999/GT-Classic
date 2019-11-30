@@ -116,11 +116,12 @@ public class GTMaterial {
 		return (mask & flag.getMask()) != 0;
 	}
 
-	/** Getters/Setters **/
+	/** Returns original name with upper case and special characters **/
 	public String getDisplayName() {
 		return displayName;
 	}
 
+	/** Returns lower case and formatted version of mat name **/
 	public String getName() {
 		return name;
 	}

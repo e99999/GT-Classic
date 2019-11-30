@@ -8,13 +8,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import gtclassic.GTMod;
-import gtclassic.api.fluid.GTFluid;
 import gtclassic.api.fluid.GTFluidHandler;
 import gtclassic.api.fluid.GTFluidItemStackHandler;
 import gtclassic.api.interfaces.IGTColorItem;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
-import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IAdvancedTexturedItem;
@@ -120,18 +118,8 @@ public class GTItemFluidTube extends Item
 	public void getSubItems(@Nullable final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
 		if (this.isInCreativeTab(tab)) {
 			subItems.add(empty);
-			subItems.add(GTMaterialGen.getWater(1));
-			subItems.add(GTMaterialGen.getLava(1));
 			for (Fluid fluid : FluidRegistry.getRegisteredFluids().values()) {
-				if (!GTConfig.general.displayAllFluidTubes) {
-					if (fluid instanceof GTFluid) {
-						subItems.add(GTMaterialGen.getModdedTube(fluid.getName(), 1));
-					}
-				} else {
-					if (fluid.getName() != "water" && fluid.getName() != "lava") {
-						subItems.add(GTMaterialGen.getModdedTube(fluid.getName(), 1));
-					}
-				}
+				subItems.add(GTMaterialGen.getModdedTube(fluid.getName(), 1));
 			}
 		}
 	}
@@ -194,10 +182,11 @@ public class GTItemFluidTube extends Item
 			if (fluid.getFluid().getName().contains("fuel")) {
 				return Color.yellow;
 			}
-		}
-		if (fluid != null && index == 1 && fluid.getFluid() instanceof GTFluid) {
-			GTFluid gtFluid = (GTFluid) fluid.getFluid();
-			return gtFluid.getGTMaterial().getColor();
+			for (GTMaterial mat : GTMaterial.values()) {
+				if (fluid.getFluid().getName().contains(mat.getName())) {
+					return mat.getColor();
+				}
+			}
 		}
 		return Color.white;
 	}
@@ -237,7 +226,6 @@ public class GTItemFluidTube extends Item
 
 	public ActionResult<ItemStack> tryPlaceFluid(@Nonnull World world, @Nonnull EntityPlayer player,
 			@Nonnull EnumHand hand, ItemStack itemstack, FluidStack fluidStack) {
-		// clicked on a block?
 		RayTraceResult mop = this.rayTrace(world, player, false);
 		ActionResult<ItemStack> ret = ForgeEventFactory.onBucketUse(player, world, itemstack, mop);
 		if (ret != null)
@@ -246,31 +234,23 @@ public class GTItemFluidTube extends Item
 			return ActionResult.newResult(EnumActionResult.PASS, itemstack);
 		}
 		BlockPos clickPos = mop.getBlockPos();
-		// can we place liquid there?
 		if (world.isBlockModifiable(player, clickPos)) {
-			// the block adjacent to the side we clicked on
 			BlockPos targetPos = clickPos.offset(mop.sideHit);
-			// can the player place there?
 			if (player.canPlayerEdit(targetPos, mop.sideHit, itemstack)) {
-				// try placing liquid
 				FluidActionResult result = FluidUtil.tryPlaceFluid(player, world, targetPos, itemstack, fluidStack);
 				if (result.isSuccess() && !player.capabilities.isCreativeMode) {
-					// success!
 					player.addStat(StatList.getObjectUseStats(this));
 					itemstack.shrink(1);
 					ItemStack emptyStack = new ItemStack(GTItems.testTube);
-					// check whether we replace the item or add the empty one to the inventory
 					if (itemstack.isEmpty()) {
 						return ActionResult.newResult(EnumActionResult.SUCCESS, emptyStack);
 					} else {
-						// add empty bucket to player inventory
 						ItemHandlerHelper.giveItemToPlayer(player, emptyStack);
 						return ActionResult.newResult(EnumActionResult.SUCCESS, itemstack);
 					}
 				}
 			}
 		}
-		// couldn't place liquid there2
 		return ActionResult.newResult(EnumActionResult.FAIL, itemstack);
 	}
 }

@@ -32,7 +32,6 @@ public class GTConfig {
 		public boolean replaceOceanGravelWithSand = true;
 		public boolean caveZombiesSpawnWithPickaxe = true;
 		public boolean generateUUMAssemblerRecipes = true;
-		public boolean displayAllFluidTubes = false;
 		public boolean enableDisassembler = true;
 	}
 
