@@ -1,0 +1,11 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "inventory": {
+      "model": "gtclassic:item/test_tube_overlay_model"
+    },
+	"normal": {
+      "model": "gtclassic:item/test_tube_overlay_model"
+    }
+  }
+}
