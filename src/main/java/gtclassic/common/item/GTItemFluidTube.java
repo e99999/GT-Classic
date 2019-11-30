@@ -1,15 +1,12 @@
 package gtclassic.common.item;
 
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import gtclassic.GTMod;
 import gtclassic.api.fluid.GTFluidItemStackHandler;
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTItems;
+import gtclassic.common.util.render.GTModelLoader;
+import gtclassic.common.util.render.GTModelTestTube;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -30,14 +27,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidActionResult;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class GTItemFluidTube extends Item {
 
@@ -147,5 +144,6 @@ public class GTItemFluidTube extends Item {
 	@SideOnly(Side.CLIENT)
 	public void initModel() {
 		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+		GTModelLoader.register("test_tube", new GTModelTestTube());
 	}
 }

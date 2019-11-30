@@ -1,0 +1,13 @@
+{
+	"elements": [
+		{
+			"from": [7, 2, 7.5],
+			"to": [9, 13, 8.5],
+			"color": 2,
+			"faces": {
+				"north": {"uv": [0, 0, 2, 10], "texture": "#missing"},
+				"south": {"uv": [0, 0, 2, 10], "texture": "#missing"}
+			}
+		}
+	]
+}
