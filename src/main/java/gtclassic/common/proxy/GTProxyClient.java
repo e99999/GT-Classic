@@ -6,6 +6,7 @@ import gtclassic.api.color.GTColorItem;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTColorItem;
 import gtclassic.common.GTIcons;
+import gtclassic.common.GTItems;
 import gtclassic.common.GTJei;
 import ic2.core.platform.textures.Ic2Icons.SpriteReloadEvent;
 import net.minecraft.block.Block;
@@ -14,6 +15,7 @@ import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -56,6 +58,11 @@ public class GTProxyClient extends GTProxyCommon {
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/fluidflowing"));
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/gas"));
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/gasflowing"));
+	}
+
+	@SubscribeEvent
+	public static void registerModels(ModelRegistryEvent event) {
+		GTItems.testTube.initModel();
 	}
 
 	public static void registerTintedItems() {
