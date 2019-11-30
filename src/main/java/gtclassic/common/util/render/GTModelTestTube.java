@@ -1,12 +1,6 @@
 package gtclassic.common.util.render;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
-
 import com.google.common.collect.ImmutableList;
-
 import gtclassic.GTMod;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -16,6 +10,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.fluids.Fluid;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
 
 public class GTModelTestTube implements IModel {
 
@@ -35,7 +34,7 @@ public class GTModelTestTube implements IModel {
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> getter) {
         if (BAKED_BASE == null) BAKED_BASE = GTModelUtils.load(GTMod.MODID, "test_tube_model").bake(state, format, getter);
-        if (BAKED_OVERLAY == null) BAKED_OVERLAY = GTModelUtils.load(GTMod.MODID, "test_tube_model").bake(state, format, getter);
+        if (BAKED_OVERLAY == null) BAKED_OVERLAY = GTModelUtils.load(GTMod.MODID, "test_tube_overlay_model").bake(state, format, getter);
 
         ImmutableList.Builder<BakedQuad> builder = ImmutableList.builder();
 
@@ -49,7 +48,7 @@ public class GTModelTestTube implements IModel {
         }
         builder.addAll(BAKED_BASE.getQuads(null, null, 0));
 
-        return new BakedFluidCell(builder.build(), this, getter.apply(BASE), format);
+        return new GTBakedTestTube(builder.build(), this, getter.apply(BASE), format);
     }
 
     @Override
