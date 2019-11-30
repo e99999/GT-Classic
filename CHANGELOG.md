@@ -2,6 +2,7 @@
 
 # 1.08 (Not Released)
 - Fixed for the last time, the null error with the magic energy converter, now all possible fluids tubes are displayed in JEI instead of just GTC.
+- Fixed rendering of fluids on tubes are now the actual fluid, thanks to some help from Muramasa!
 - Changed the color of Platinum and Sheldonite ore to match other mods
 - Added recipe for IC2C Fertilizer from Sulfur, Calacite, and Phosphorus
 - Changed centrifuging Apatite to give Phosphorus now instead of straight fertilizer.
