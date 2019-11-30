@@ -1,5 +1,6 @@
 package gtclassic.api.helpers;
 
+import gtclassic.api.fluid.GTFluidHandler;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.misc.FluidHelper;
@@ -145,5 +146,35 @@ public class GTHelperFluid {
 	// helper for fluid handling
 	public static boolean isTankEmpty(IC2Tank tank) {
 		return tank.getFluid() == null || tank.getFluidAmount() == 0;
+	}
+
+	// helper for fluid containing itemstacks
+	public static String getFluidName(ItemStack stack) {
+		FluidStack fluid = FluidUtil.getFluidContained(stack);
+		if (fluid != null) {
+			return fluid.amount + "mB of " + fluid.getLocalizedName();
+		}
+		return "Empty";
+	}
+
+	// helper for fluid containing itemstacks
+	public static Boolean isFluidPlaceable(ItemStack stack) {
+		FluidStack fluid = FluidUtil.getFluidContained(stack);
+		return fluid != null && fluid.getFluid().canBePlacedInWorld();
+	}
+
+	// helper for fluid containing itemstacks
+	public static Boolean isFluidGas(ItemStack stack) {
+		FluidStack fluid = FluidUtil.getFluidContained(stack);
+		return fluid != null && fluid.getFluid().isGaseous();
+	}
+
+	// helper for fluid containing itemstacks
+	public static Boolean isFluidBurnable(ItemStack stack) {
+		FluidStack fluid = FluidUtil.getFluidContained(stack);
+		if (fluid != null) {
+			return (GTFluidHandler.getBurnableToolTipList().contains(fluid.getFluid().getName()));
+		}
+		return false;
 	}
 }

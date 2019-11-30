@@ -8,8 +8,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import gtclassic.GTMod;
-import gtclassic.api.fluid.GTFluidHandler;
 import gtclassic.api.fluid.GTFluidItemStackHandler;
+import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTColorItem;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
@@ -64,49 +64,16 @@ public class GTItemFluidTube extends Item
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(getFluidName(stack));
-		if (isFluidGas(stack)) {
+		tooltip.add(GTHelperFluid.getFluidName(stack));
+		if (GTHelperFluid.isFluidGas(stack)) {
 			tooltip.add(TextFormatting.GREEN + I18n.format("Gaseous"));
 		}
-		if (isFluidPlaceable(stack)) {
+		if (GTHelperFluid.isFluidPlaceable(stack)) {
 			tooltip.add(TextFormatting.YELLOW + I18n.format("Can be placed in world"));
 		}
-		if (isFluidBurnable(stack)) {
+		if (GTHelperFluid.isFluidBurnable(stack)) {
 			tooltip.add(TextFormatting.RED + I18n.format("Can be burned as liquid fuel"));
 		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean hasEffect(ItemStack stack) {
-		FluidStack fluid = FluidUtil.getFluidContained(stack);
-		return (fluid != null) && (fluid.getFluid().getName().contains("plasma"));
-	}
-
-	public String getFluidName(ItemStack stack) {
-		FluidStack fluid = FluidUtil.getFluidContained(stack);
-		if (fluid != null) {
-			return fluid.amount + "mB of " + fluid.getLocalizedName();
-		}
-		return "Empty";
-	}
-
-	public Boolean isFluidPlaceable(ItemStack stack) {
-		FluidStack fluid = FluidUtil.getFluidContained(stack);
-		return fluid != null && fluid.getFluid().canBePlacedInWorld();
-	}
-
-	public Boolean isFluidGas(ItemStack stack) {
-		FluidStack fluid = FluidUtil.getFluidContained(stack);
-		return fluid != null && fluid.getFluid().isGaseous();
-	}
-
-	public Boolean isFluidBurnable(ItemStack stack) {
-		FluidStack fluid = FluidUtil.getFluidContained(stack);
-		if (fluid != null) {
-			return (GTFluidHandler.getBurnableToolTipList().contains(fluid.getFluid().getName()));
-		}
-		return false;
 	}
 
 	@Override
