@@ -33,6 +33,7 @@ public class GTConfig {
 		public boolean caveZombiesSpawnWithPickaxe = true;
 		public boolean generateUUMAssemblerRecipes = true;
 		public boolean enableDisassembler = true;
+		public boolean harderJetpacks = false;
 	}
 
 	@Comment("World Generation")

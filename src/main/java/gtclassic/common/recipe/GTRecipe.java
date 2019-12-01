@@ -15,6 +15,7 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.item.recipe.upgrades.EnchantmentModifier;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
@@ -444,6 +445,17 @@ public class GTRecipe {
 			recipes.overrideRecipe("shaped_tile.blockSolarGenerator_261816397", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] {
 					"YYY", "XXX", "CVC", 'V', "machineBlockBasic", 'X', "itemSilicon", 'Y', "blockGlass", 'C',
 					Ic2Items.carbonPlate });
+		}
+		if (GTConfig.general.harderJetpacks) {
+			String inputItem = Loader.isModLoaded(GTHelperMods.GTCX) ? "plateStainlessSteel" : "ingotTitanium";
+			int id = IC2.config.getFlag("SteelRecipes") ? -1657838234 : 176647782;
+			recipes.overrideRecipe("shaped_item.itemArmorJetpack_"
+					+ id, StackUtil.copyWithDamage(Ic2Items.jetpack, 18001), new Object[] { "ICI", "IFI", "R R", 'I',
+							inputItem, 'C', "circuitBasic", 'F', Ic2Items.fuelCan.copy(), 'R', "dustRedstone" });
+			id = IC2.config.getFlag("SteelRecipes") ? -1370803315 : 463682701;
+			recipes.overrideRecipe("shaped_item.itemArmorJetpackElectric_"
+					+ id, GTMaterialGen.getIc2(Ic2Items.electricJetpack), new Object[] { "ICI", "IBI", "G G", 'I',
+							inputItem, 'C', "circuitAdvanced", 'B', Ic2Items.batBox.copy(), 'G', Items.DRAGON_BREATH });
 		}
 		/** Adding ruby to glass fiber cable **/
 		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
