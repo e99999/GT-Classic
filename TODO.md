@@ -3,6 +3,5 @@
 - That one probe compat for quantum chest/tank contents and eu stored in machines if reader is present
 - Multiplayer support for Basic Worktable
 - Check how many mods use ingotChromium and do compat for that like iron, aluminium.
-- Fix surrounding players not hearing spring boots
 - Come up with uses for Calcium, Nitrogen, Potassium, Chlorine, and now Sulfuric Acid
 - Convert String references in gui's to localecomps
