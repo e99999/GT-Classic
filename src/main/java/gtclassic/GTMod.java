@@ -12,6 +12,7 @@ import gtclassic.common.GTCreativeTab;
 import gtclassic.common.GTCrops;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTOreDict;
+import gtclassic.common.GTSounds;
 import gtclassic.common.GTWorldGen;
 import gtclassic.common.event.GTEventCheckSpawn;
 import gtclassic.common.event.GTEventEntityViewRenderEvent;
@@ -78,6 +79,7 @@ public class GTMod {
 		GTItems.registerItems();
 		GTCrops.init();
 		GTOreDict.init();
+		MinecraftForge.EVENT_BUS.register(new GTSounds());
 	}
 
 	@Mod.EventHandler

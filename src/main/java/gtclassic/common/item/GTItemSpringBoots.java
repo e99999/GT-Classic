@@ -4,7 +4,6 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.common.GTSounds;
-import ic2.core.IC2;
 import ic2.core.item.armor.standart.ItemCompositeArmor;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -17,6 +16,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -56,11 +56,8 @@ public class GTItemSpringBoots extends ItemCompositeArmor {
 		}
 		if (player.onGround && player.isSprinting()) {
 			player.jump();
-			IC2.audioManager.playOnce(player, GTSounds.SPRING);
-			EntityPlayer foundPlayer = world.getClosestPlayerToEntity(player, 8.0D);
-			if (foundPlayer != null) {
-				IC2.audioManager.playOnce(foundPlayer, GTSounds.SPRING);
-			}
+			world.playSound(player, player.getPosition(), GTSounds.SPRING, SoundCategory.NEUTRAL, 1.0F, 1.0F
+					+ world.rand.nextFloat());
 			if (world.rand.nextInt(2) == 0) {
 				stack.damageItem(1, player);
 			}

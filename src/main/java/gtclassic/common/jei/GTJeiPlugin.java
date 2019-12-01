@@ -46,6 +46,7 @@ public class GTJeiPlugin implements IModPlugin {
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
 			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorktable.class, VanillaRecipeCategoryUid.CRAFTING, 17, 25, 10, 52);
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileWorktable), new String[] { "minecraft.crafting" });
+			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileAutocrafter), new String[] { "minecraft.crafting" });
 			// Amplifier
 			registry.handleRecipes(MultiRecipe.class, GTJeiUUAmplifierWrapper::new, "gt.uuamplifier");
 			registry.addRecipes(GTTileMatterFabricator.RECIPE_LIST.getRecipeList(), "gt.uuamplifier");
