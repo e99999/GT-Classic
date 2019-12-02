@@ -1,5 +1,8 @@
 {
   "spring": {
     "sounds": [ "gtclassic:spring" ]
+  },
+  "sonar": {
+    "sounds": [ "gtclassic:sonar" ]
   }
 }

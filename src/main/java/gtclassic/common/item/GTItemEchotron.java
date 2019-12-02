@@ -6,7 +6,6 @@ import java.util.List;
 import gtclassic.GTMod;
 import gtclassic.api.item.GTItemBaseToggleItem;
 import gtclassic.common.GTSounds;
-import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -18,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -34,7 +34,9 @@ public class GTItemEchotron extends GTItemBaseToggleItem implements IStaticTextu
 	@Override
 	public boolean onItemActive(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected) {
 		if (worldIn.getTotalWorldTime() % 100 == 0) {
-			IC2.audioManager.playOnce(entityIn, GTSounds.SONAR);
+			if (entityIn instanceof EntityPlayer) {
+				worldIn.playSound((EntityPlayer) entityIn, entityIn.getPosition(), GTSounds.SONAR, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			}
 			AxisAlignedBB area = new AxisAlignedBB(entityIn.getPosition()).grow(16);
 			List<Entity> list = entityIn.world.getEntitiesInAABBexcluding(entityIn, area, null);
 			if (!list.isEmpty()) {

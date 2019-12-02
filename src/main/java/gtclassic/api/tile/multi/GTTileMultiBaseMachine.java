@@ -3,6 +3,7 @@ package gtclassic.api.tile.multi;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implements IGTMultiTileStatus {
 
@@ -19,6 +20,20 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	 */
 	public GTTileMultiBaseMachine(int slots, int upgrades, int defaultinput, int maxinput) {
 		super(slots, upgrades, defaultinput, 100, maxinput);
+		this.addGuiFields(new String[] { "lastState" });
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		this.lastState = nbt.getBoolean("lastState");
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setBoolean("lastState", lastState);
+		return nbt;
 	}
 
 	@Override

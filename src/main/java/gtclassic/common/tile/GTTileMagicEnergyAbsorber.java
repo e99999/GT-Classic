@@ -214,7 +214,7 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 				this.storage = this.storage + 128;
 				GTHelperPlayer.addPlayerXP(activePlayer, -1);
 				if (world.getTotalWorldTime() % 4 == 0) {
-					world.playSound((EntityPlayer) null, activePlayer.posX, activePlayer.posY, activePlayer.posZ, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.NEUTRAL, 0.1F, 0.5F
+					world.playSound((EntityPlayer) null, this.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.1F, 0.5F
 							+ world.rand.nextFloat());
 				}
 			}
