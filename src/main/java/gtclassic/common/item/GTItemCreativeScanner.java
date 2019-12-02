@@ -1,5 +1,7 @@
 package gtclassic.common.item;
 
+import java.util.List;
+
 import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
@@ -23,13 +25,17 @@ import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.item.base.ItemBatteryBase;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -38,6 +44,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -55,6 +62,24 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		this.transferLimit = Integer.MAX_VALUE;
 		this.tier = 1;
 		this.provider = true;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		genToolTip(stack, worldIn, tooltip, flagIn);
+	}
+
+	public static void genToolTip(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		NBTTagCompound nbt = StackUtil.getNbtData(stack);
+		if (nbt.getIntArray("pos").length == 4) {
+			int[] pos = nbt.getIntArray("pos");
+			tooltip.add(TextFormatting.GREEN + I18n.format("Position Stored: "));
+			if (nbt.getString("block") != null) {
+				tooltip.add(TextFormatting.DARK_GREEN + I18n.format(nbt.getString("block")));
+			}
+			tooltip.add(TextFormatting.DARK_GREEN + I18n.format("X: " + pos[0] + " Y: " + pos[1] + " Z: " + pos[2]));
+			tooltip.add(TextFormatting.DARK_GREEN + I18n.format("Dimension: " + pos[3]));
+		}
 	}
 
 	@Override
@@ -134,6 +159,9 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		if (player.isSneaking() || !IC2.platform.isSimulating()) {
 			return EnumActionResult.PASS;
 		} else {
+			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(player.getHeldItem(hand));
+			nbt.setIntArray("pos", new int[] { pos.getX(), pos.getY(), pos.getZ(), world.provider.getDimension() });
+			nbt.setString("block", world.getBlockState(pos).getBlock().getLocalizedName());
 			TileEntity tileEntity = world.getTileEntity(pos);
 			IBlockState state = world.getBlockState(pos);
 			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()

@@ -22,8 +22,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 
-public class GTTileEchotron extends TileEntityElecMachine
-		implements IPersonalBlock, ITickable{
+public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBlock, ITickable {
 
 	AxisAlignedBB areaBB = null;
 	@NetworkField(index = 7)
@@ -43,7 +42,6 @@ public class GTTileEchotron extends TileEntityElecMachine
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % 100 == 0 && this.energy >= 10 && !redstoneEnabled()) {
-			getNetwork().initiateTileEntityEvent(this, 0, false);
 			world.playSound((EntityPlayer) null, this.pos, GTSounds.SONAR, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).asBlockPos()).grow(32.0D);
 			List<Entity> list = world.getEntitiesInAABBexcluding(world.getPlayerEntityByUUID(this.owner), area, null);
