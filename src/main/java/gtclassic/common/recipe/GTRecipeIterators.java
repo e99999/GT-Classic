@@ -52,6 +52,10 @@ public class GTRecipeIterators {
 						&& !GTHelperStack.matchOreDict(stack, "ingotAluminium")) {
 					OreDictionary.registerOre("ingotAluminium", stack);
 				}
+				if (GTHelperStack.matchOreDict(stack, "ingotChromium")
+						&& !GTHelperStack.matchOreDict(stack, "ingotChrome")) {
+					OreDictionary.registerOre("ingotChrome", stack);
+				}
 			}
 		}
 	}
