@@ -7,11 +7,11 @@
 - Changed the color of Platinum and Sheldonite ore to match other mods
 - Added recipe for IC2C Fertilizer from Sulfur, Calacite, and Phosphorus
 - Changed centrifuging Apatite to give Phosphorus now instead of straight fertilizer.
-- Removed forcing carbon for Carbon Fibre so the Centrifuge isnt gated behind itself.. oops
+- Removed forcing Carbon for Carbon Fibre so the Centrifuge isnt gated behind itself.. oops
 - Added Invar and Nickel into base mod materials, not a whole lot of use yet but its a very common material.
 - Changed Spring boots now only damage when running 50% of the time not every single leap.
 - Fixed some recipes not overriding with GTCX and IC2C Steel Mode.
-- Fixed other players not hearing spring boots go BOING BOING BOING in SMP.
+- Fixed other players not hearing spring boots going BOING BOING BOING in SMP.
 
 # 1.07
 - Completely redid the config system, YOU MUST DELETE AND REGEN YOUR CONFIGS FOR THE LASTTTT TIME.

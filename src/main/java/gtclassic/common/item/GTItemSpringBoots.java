@@ -56,7 +56,7 @@ public class GTItemSpringBoots extends ItemCompositeArmor {
 		}
 		if (player.onGround && player.isSprinting()) {
 			player.jump();
-			world.playSound(player, player.getPosition(), GTSounds.SPRING, SoundCategory.PLAYERS, 1.0F, 1.0F
+			world.playSound(null, player.getPosition().down(), GTSounds.SPRING, SoundCategory.PLAYERS, 1.0F, 1.0F
 					+ world.rand.nextFloat());
 			if (world.rand.nextInt(2) == 0) {
 				stack.damageItem(1, player);

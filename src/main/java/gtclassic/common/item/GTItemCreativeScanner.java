@@ -3,6 +3,7 @@ package gtclassic.common.item;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
 import gtclassic.common.tile.GTTileBaseBuffer;
@@ -73,12 +74,13 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
 		if (nbt.getIntArray("pos").length == 4) {
 			int[] pos = nbt.getIntArray("pos");
-			tooltip.add(TextFormatting.GREEN + I18n.format("Position Stored: "));
+			tooltip.add(TextFormatting.GREEN + I18n.format("Last Scanned: "));
 			if (nbt.getString("block") != null) {
 				tooltip.add(TextFormatting.DARK_GREEN + I18n.format(nbt.getString("block")));
 			}
 			tooltip.add(TextFormatting.DARK_GREEN + I18n.format("X: " + pos[0] + " Y: " + pos[1] + " Z: " + pos[2]));
 			tooltip.add(TextFormatting.DARK_GREEN + I18n.format("Dimension: " + pos[3]));
+			tooltip.add(TextFormatting.ITALIC + I18n.format("Sneak to apply coords to a machine"));
 		}
 	}
 
@@ -156,8 +158,23 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	@SuppressWarnings("deprecation")
 	public static EnumActionResult scanBlock(EntityPlayer player, World world, BlockPos pos, EnumFacing side,
 			float hitX, float hitY, float hitZ, EnumHand hand) {
-		if (player.isSneaking() || !IC2.platform.isSimulating()) {
+		if (!IC2.platform.isSimulating()) {
 			return EnumActionResult.PASS;
+		}
+		IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+		if (player.isSneaking()) {
+			TileEntity tileEntity = world.getTileEntity(pos);
+			NBTTagCompound nbt = StackUtil.getNbtData(player.getHeldItem(hand));
+			if (tileEntity instanceof IGTCoordinateTile && nbt.getIntArray("pos").length == 4) {
+				int[] posArr = nbt.getIntArray("pos");
+				IGTCoordinateTile coordTile = (IGTCoordinateTile) tileEntity;
+				coordTile.applyCoordinates(new BlockPos(posArr[0], posArr[1], posArr[2]), posArr[3]);
+				IC2.platform.messagePlayer(player, "Coordinates successfully parsed to machine!");
+				return EnumActionResult.SUCCESS;
+			} else {
+				IC2.platform.messagePlayer(player, "Parsing GT coordinates to this block failed!");
+				return EnumActionResult.PASS;
+			}
 		} else {
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(player.getHeldItem(hand));
 			nbt.setIntArray("pos", new int[] { pos.getX(), pos.getY(), pos.getZ(), world.provider.getDimension() });
@@ -172,7 +189,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
 			IC2.platform.messagePlayer(player, "Blast Resistance: "
 					+ state.getBlock().getExplosionResistance(null) * 5.0F);
-			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 			if (tileEntity instanceof TileEntityBlock) {
 				TileEntityBlock te = (TileEntityBlock) tileEntity;
 				IC2.platform.messagePlayer(player, "Active: " + te.getActive());
