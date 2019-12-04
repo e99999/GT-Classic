@@ -11,7 +11,6 @@
 - Added Invar and Nickel into base mod materials, not a whole lot of use yet but its a very common material.
 - Changed Spring boots now only damage when running 50% of the time not every single leap.
 - Fixed some recipes not overriding with GTCX and IC2C Steel Mode.
-- Fixed other players not hearing spring boots going BOING BOING BOING in SMP.
 - Added bi-directional ore dicting for "ingotChromium" and "ingotChrome" which I believe only Alchemistry uses atm.
 
 # 1.07

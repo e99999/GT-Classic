@@ -78,6 +78,9 @@ public class GTRecipe {
 		/** IC2 Fertilizer **/
 		recipes.addShapelessRecipe(GTMaterialGen.getIc2(Ic2Items.fertilizer, 3), new Object[] { "dustSulfur",
 				"dustPhosphorus", "dustCalcite" });
+		/** Clearing Scanner of NBT data **/
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.portableScanner), new Object[] {
+				GTMaterialGen.get(GTItems.portableScanner) });
 		if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
 			/** Gunpowder **/
 			recipes.addShapelessRecipe(GTMaterialGen.get(Items.GUNPOWDER, 5), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));

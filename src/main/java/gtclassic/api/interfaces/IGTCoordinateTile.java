@@ -6,6 +6,8 @@ public interface IGTCoordinateTile {
 
 	public void applyCoordinates(BlockPos pos, int dimensionId);
 
+	public boolean isInterdimensional();
+
 	public BlockPos getAppliedPos();
 
 	public int getAppliedDimId();

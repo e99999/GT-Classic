@@ -17,7 +17,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
@@ -34,7 +33,7 @@ public class GTItemEchotron extends GTItemBaseToggleItem implements IStaticTextu
 	@Override
 	public boolean onItemActive(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected) {
 		if (worldIn.getTotalWorldTime() % 100 == 0) {
-			worldIn.playSound(null, entityIn.getPosition(), GTSounds.SONAR, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			entityIn.playSound(GTSounds.SONAR, 1.0F, 1.0F);
 			AxisAlignedBB area = new AxisAlignedBB(entityIn.getPosition()).grow(16);
 			List<Entity> list = entityIn.world.getEntitiesInAABBexcluding(entityIn, area, null);
 			if (!list.isEmpty()) {

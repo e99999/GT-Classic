@@ -168,11 +168,15 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			if (tileEntity instanceof IGTCoordinateTile && nbt.getIntArray("pos").length == 4) {
 				int[] posArr = nbt.getIntArray("pos");
 				IGTCoordinateTile coordTile = (IGTCoordinateTile) tileEntity;
+				if (!coordTile.isInterdimensional() && posArr[3] != world.provider.getDimension()) {
+					IC2.platform.messagePlayer(player, "This machine does not support interdimensional communication");
+					return EnumActionResult.PASS;
+				}
 				coordTile.applyCoordinates(new BlockPos(posArr[0], posArr[1], posArr[2]), posArr[3]);
 				IC2.platform.messagePlayer(player, "Coordinates successfully parsed to machine!");
 				return EnumActionResult.SUCCESS;
 			} else {
-				IC2.platform.messagePlayer(player, "Parsing GT coordinates to this block failed!");
+				IC2.platform.messagePlayer(player, "Parsing coordinates to this block failed!");
 				return EnumActionResult.PASS;
 			}
 		} else {

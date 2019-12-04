@@ -16,7 +16,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -56,8 +55,7 @@ public class GTItemSpringBoots extends ItemCompositeArmor {
 		}
 		if (player.onGround && player.isSprinting()) {
 			player.jump();
-			world.playSound(null, player.getPosition().down(), GTSounds.SPRING, SoundCategory.PLAYERS, 1.0F, 1.0F
-					+ world.rand.nextFloat());
+			player.playSound(GTSounds.SPRING, 1.0F, 1.0F + world.rand.nextFloat());
 			if (world.rand.nextInt(2) == 0) {
 				stack.damageItem(1, player);
 			}

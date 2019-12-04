@@ -43,6 +43,7 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 			if (world.getTotalWorldTime() % 256 == 0 || firstCheck) {
 				lastState = checkStructure();
 				firstCheck = false;
+				this.getNetwork().updateTileGuiField(this, "lastState");
 			}
 			superCall = superCall && lastState;
 		}

@@ -207,7 +207,7 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 		world.removeTileEntity(pos);
 	}
 
-	private boolean shouldBreak(EntityPlayer playerIn, World worldIn, BlockPos originalPos, BlockPos pos) {
+	public boolean shouldBreak(EntityPlayer playerIn, World worldIn, BlockPos originalPos, BlockPos pos) {
 		if (originalPos.equals(pos)) {
 			return false;
 		}
@@ -229,7 +229,7 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 		return true;
 	}
 
-	private boolean isValidState(IBlockState blockstate) {
+	public boolean isValidState(IBlockState blockstate) {
 		return ItemElectricToolDrill.rocks.contains(blockstate) || blockstate.equals(Blocks.END_STONE.getDefaultState())
 				|| blockstate.equals(Blocks.NETHERRACK.getDefaultState());
 	}
