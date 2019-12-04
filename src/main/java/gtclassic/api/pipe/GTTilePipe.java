@@ -71,4 +71,12 @@ public class GTTilePipe extends TileEntityBlock {
 			}
 		}
 	}
+
+	@Override
+	public void onNetworkUpdate(String field) {
+		if (field.equals("connection")) {
+			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
+		}
+		super.onNetworkUpdate(field);
+	}
 }
