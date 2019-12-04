@@ -10,14 +10,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
-import net.minecraftforge.items.CapabilityItemHandler;
 
-public class GTTilePipe extends TileEntityBlock {
+public class GTTilePipeBase extends TileEntityBlock {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
 
-	public GTTilePipe() {
+	public GTTilePipeBase() {
 		this.connection = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
 	}
@@ -54,8 +53,7 @@ public class GTTilePipe extends TileEntityBlock {
 			for (int var5 = 0; var5 < var4; ++var5) {
 				EnumFacing dir = var3[var5];
 				TileEntity tile = this.getWorld().getTileEntity(this.getPos().offset(dir));
-				if (tile instanceof GTTilePipe
-						|| (tile != null && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir))) {
+				if (canConnect(tile, dir)) {
 					newList = newList.add(dir);
 				}
 			}
@@ -64,6 +62,14 @@ public class GTTilePipe extends TileEntityBlock {
 				this.getNetwork().updateTileEntityField(this, "connection");
 			}
 		}
+	}
+
+	/** This is what you override for different types of pipes **/
+	public boolean canConnect(TileEntity tile, EnumFacing dir) {
+		if (tile == null) {
+			return false;
+		}
+		return tile instanceof GTTilePipeBase;
 	}
 
 	@Override

@@ -8,9 +8,12 @@ import gtclassic.api.color.GTColorItemBlock;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.itemblock.GTItemBlockRare;
+import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.pipe.GTBlockPipe;
-import gtclassic.api.pipe.GTTilePipe;
+import gtclassic.api.pipe.GTTilePipeBase;
+import gtclassic.api.pipe.GTTilePipeFluid;
+import gtclassic.api.pipe.GTTilePipeItem;
 import gtclassic.common.block.GTBlockCasing;
 import gtclassic.common.block.GTBlockDrum;
 import gtclassic.common.block.GTBlockLightSource;
@@ -103,7 +106,10 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferLarge = registerBlock(new GTBlockMachineDirectionable("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
-	public static final GTBlockPipe pipe = registerBlock(new GTBlockPipe());
+	public static final GTBlockPipe pipeElectrum = registerBlock(new GTBlockPipe(GTMaterial.Electrum, false));
+	public static final GTBlockPipe pipePlatinum = registerBlock(new GTBlockPipe(GTMaterial.Platinum, false));
+	public static final GTBlockPipe pipeAluminium = registerBlock(new GTBlockPipe(GTMaterial.Aluminium, true));
+	public static final GTBlockPipe pipeInvar = registerBlock(new GTBlockPipe(GTMaterial.Invar, true));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "autocrafter", "chargeomat", "computercube",
@@ -172,7 +178,9 @@ public class GTBlocks {
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
-		registerUtil(GTTilePipe.class, "Pipe");
+		registerUtil(GTTilePipeBase.class, "Pipe");
+		registerUtil(GTTilePipeItem.class, "ItemPipe");
+		registerUtil(GTTilePipeFluid.class, "FluidPipe");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {

@@ -32,9 +32,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IGTColorBlock {
 
-	public GTBlockPipe() {
+	GTMaterial mat;
+	Color color;
+	boolean fluid;
+
+	public GTBlockPipe(GTMaterial mat, boolean fluid) {
 		super(Material.IRON);
-		setRegistryName("pipe");
+		this.mat = mat;
+		this.color = mat.getColor();
+		this.fluid = fluid;
+		setRegistryName("pipe_" + mat.getName());
 		setUnlocalizedName(GTLang.PIPE);
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
@@ -89,7 +96,10 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IG
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		return new GTTilePipe();
+		if (this.fluid) {
+			return new GTTilePipeFluid();
+		}
+		return new GTTilePipeItem();
 	}
 
 	@Override
@@ -122,8 +132,8 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IG
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		try {
 			TileEntity tile = world.getTileEntity(pos);
-			if (tile instanceof GTTilePipe) {
-				GTTilePipe pipe = (GTTilePipe) tile;
+			if (tile instanceof GTTilePipeBase) {
+				GTTilePipeBase pipe = (GTTilePipeBase) tile;
 				return new BlockStateContainerIC2.IC2BlockState(state, pipe.getConnections());
 			}
 		} catch (Exception exception) {
@@ -153,6 +163,6 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IG
 
 	@Override
 	public Color getColor(Block block, int index) {
-		return GTMaterial.Electrum.getColor();
+		return this.color;
 	}
 }
