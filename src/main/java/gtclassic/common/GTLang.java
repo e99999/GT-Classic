@@ -41,4 +41,5 @@ public class GTLang {
 	public static final LocaleComp BUFFER_LARGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferlarge");
 	public static final LocaleComp BUFFER_SMALL = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.buffersmall");
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
+	public static final LocaleComp PIPE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipe");
 }
