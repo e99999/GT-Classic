@@ -82,7 +82,7 @@ public class GTModelPipe extends BaseModel {
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {
 		if (side == null) {
 			if (!(state instanceof IC2BlockState)) {
-				return this.quads[0];
+				return this.quads[12];
 			} else {
 				Vec3i vec = (Vec3i) ((IC2BlockState) state).getData();
 				if (vec.getY() > 0) {

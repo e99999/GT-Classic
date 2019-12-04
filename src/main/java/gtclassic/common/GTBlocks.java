@@ -111,7 +111,7 @@ public class GTBlocks {
 			"quantumchest", "quantumtank", "playerdetector", "mobrepeller", "fusionreactor", "lightningrod",
 			"dragoneggenergysiphon", "magicenergyconverter", "magicenergyabsorber", "idsu", "aesu", "lesu",
 			"supercondensator", "superconductorcable", "cabinet", "drum", "worktable", "translocator", "bufferlarge",
-			"buffersmall", "bufferfluid" , "pipe"};
+			"buffersmall", "bufferfluid", "pipe" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {

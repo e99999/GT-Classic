@@ -5,11 +5,11 @@ import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
+import net.minecraftforge.items.CapabilityItemHandler;
 
 public class GTTilePipe extends TileEntityBlock {
 
@@ -19,19 +19,6 @@ public class GTTilePipe extends TileEntityBlock {
 	public GTTilePipe() {
 		this.connection = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-		this.connection = RotationList.ofNumber(nbt.getByte("Connection"));
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-		nbt.setByte("Connection", (byte) this.connection.getCode());
-		return nbt;
 	}
 
 	public Vec3i getConnections() {
@@ -61,7 +48,8 @@ public class GTTilePipe extends TileEntityBlock {
 			for (int var5 = 0; var5 < var4; ++var5) {
 				EnumFacing dir = var3[var5];
 				TileEntity tile = this.getWorld().getTileEntity(this.getPos().offset(dir));
-				if (tile instanceof GTTilePipe) {
+				if (tile instanceof GTTilePipe
+						|| (tile != null && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir))) {
 					newList = newList.add(dir);
 				}
 			}
