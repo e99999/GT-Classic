@@ -121,7 +121,7 @@ public class GTModelPipe extends BaseModel {
 	private Map<EnumFacing, BakedQuad> generateCoreQuads(GTBlockPipe pipe, int min, int max) {
 		Vector3f minF = new Vector3f((float) min, (float) min, (float) min);
 		Vector3f maxF = new Vector3f((float) max, (float) max, (float) max);
-		BlockPartFace face = new BlockPartFace((EnumFacing) null, -1, "", new BlockFaceUV(new float[] { (float) min,
+		BlockPartFace face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
 				(float) min, (float) max, (float) max }, 0));
 		Map<EnumFacing, BakedQuad> quads = new EnumMap(EnumFacing.class);
 		EnumFacing[] var8 = EnumFacing.VALUES;
@@ -143,10 +143,10 @@ public class GTModelPipe extends BaseModel {
 			if (side.getOpposite() != facing) {
 				BlockPartFace face = null;
 				if (side == facing) {
-					face = new BlockPartFace((EnumFacing) null, -1, "", new BlockFaceUV(new float[] { (float) min,
+					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
 							(float) min, (float) max, (float) max }, 0));
 				} else if (facing.getAxis() == Axis.Z && side.getAxis() == Axis.X) {
-					face = new BlockPartFace((EnumFacing) null, -1, "", new BlockFaceUV(new float[] { (float) max,
+					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) max,
 							(float) min, 16.0F, (float) max }, 0));
 				} else {
 					face = this.getFace(facing, min, max);
@@ -167,10 +167,10 @@ public class GTModelPipe extends BaseModel {
 			if (side.getOpposite() != facing) {
 				BlockPartFace face = null;
 				if (side == facing) {
-					face = new BlockPartFace((EnumFacing) null, -1, "", new BlockFaceUV(new float[] { (float) min,
+					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
 							(float) min, (float) max, (float) max }, 0));
 				} else if (facing.getAxis() == Axis.Z && side.getAxis() == Axis.X) {
-					face = new BlockPartFace((EnumFacing) null, -1, "", new BlockFaceUV(new float[] { (float) max,
+					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) max,
 							(float) min, 16.0F, (float) max }, 0));
 				} else {
 					face = this.getFace(facing, min, max);
@@ -202,18 +202,18 @@ public class GTModelPipe extends BaseModel {
 	private BlockPartFace getFace(EnumFacing facing, int min, int max) {
 		switch (facing) {
 		case DOWN:
-			return new BlockPartFace(null, -1, "", new BlockFaceUV(new float[] { min, max, max, 16.0F }, 0));
+			return new BlockPartFace(null, 0, "", new BlockFaceUV(new float[] { min, max, max, 16.0F }, 0));
 		case UP:
-			return new BlockPartFace(null, -1, "", new BlockFaceUV(new float[] { min, 0.0F, max, min }, 0));
+			return new BlockPartFace(null, 0, "", new BlockFaceUV(new float[] { min, 0.0F, max, min }, 0));
 		case NORTH:
-			return new BlockPartFace(null, -1, "", new BlockFaceUV(new float[] { min, 0.0F, max, min }, 0));
+			return new BlockPartFace(null, 0, "", new BlockFaceUV(new float[] { min, 0.0F, max, min }, 0));
 		case SOUTH:
-			return new BlockPartFace(null, -1, "", new BlockFaceUV(new float[] { min, max, max, 16.0F }, 0));
+			return new BlockPartFace(null, 0, "", new BlockFaceUV(new float[] { min, max, max, 16.0F }, 0));
 		case WEST:
-			return new BlockPartFace(null, -1, "", new BlockFaceUV(new float[] { 0.0F, min, min, max }, 0));
+			return new BlockPartFace(null, 0, "", new BlockFaceUV(new float[] { 0.0F, min, min, max }, 0));
 		case EAST:
-			return new BlockPartFace(null, -1, "", new BlockFaceUV(new float[] { max, min, 16.0F, max }, 0));
+			return new BlockPartFace(null, 0, "", new BlockFaceUV(new float[] { max, min, 16.0F, max }, 0));
 		}
-		return new BlockPartFace(null, -1, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F, 16.0F }, 0));
+		return new BlockPartFace(null, 0, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F, 16.0F }, 0));
 	}
 }

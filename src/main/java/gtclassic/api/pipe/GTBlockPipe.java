@@ -1,10 +1,13 @@
 package gtclassic.api.pipe;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.GTMod;
+import gtclassic.api.interfaces.IGTColorBlock;
+import gtclassic.api.material.GTMaterial;
 import gtclassic.common.GTLang;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -12,6 +15,7 @@ import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.platform.textures.obj.ICustomModeledBlock;
 import ic2.core.util.helpers.BlockStateContainerIC2;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -26,7 +30,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock {
+public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock , IGTColorBlock{
 
 	public GTBlockPipe() {
 		super(Material.IRON);
@@ -145,5 +149,10 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock {
 	@Override
 	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
 		return BlockFaceShape.UNDEFINED;
+	}
+
+	@Override
+	public Color getColor(Block block, int index) {
+		return GTMaterial.Electrum.getColor();
 	}
 }
