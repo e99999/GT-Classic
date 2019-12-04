@@ -9,15 +9,23 @@ import gtclassic.common.GTLang;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.models.BaseModel;
+import ic2.core.platform.textures.obj.ICustomModeledBlock;
 import ic2.core.util.helpers.BlockStateContainerIC2;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockPipe extends BlockMultiID {
+public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock {
 
 	public GTBlockPipe() {
 		super(Material.IRON);
@@ -57,12 +65,12 @@ public class GTBlockPipe extends BlockMultiID {
 		}
 		return state;
 	}
-	
+
 	@Override
 	public List<IBlockState> getValidStates() {
 		return getBlockState().getValidStates();
 	}
-	
+
 	@Override
 	public List<IBlockState> getValidStateList() {
 		IBlockState def = getDefaultState();
@@ -73,7 +81,7 @@ public class GTBlockPipe extends BlockMultiID {
 		}
 		return states;
 	}
-	
+
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityBlock();
@@ -83,9 +91,45 @@ public class GTBlockPipe extends BlockMultiID {
 	public TextureAtlasSprite[] getIconSheet(int var1) {
 		return Ic2Icons.getTextures("pipe");
 	}
-	
+
 	@Override
 	public int getMaxSheetSize(int meta) {
 		return 1;
+	}
+
+	@Override
+	public List<IBlockState> getValidModelStates() {
+		return this.getBlockState().getValidStates();
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.TRANSLUCENT;
+	}
+
+	@Override
+	public BaseModel getModelFromState(IBlockState var1) {
+		return new GTModelPipe(var1, Ic2Icons.getTextures("pipe")[0]);
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isBlockNormalCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+		return BlockFaceShape.UNDEFINED;
 	}
 }
