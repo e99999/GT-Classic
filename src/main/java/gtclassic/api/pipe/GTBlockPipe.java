@@ -17,6 +17,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -84,7 +85,7 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityBlock();
+		return new GTTilePipe();
 	}
 
 	@Override
@@ -111,6 +112,19 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock {
 	@Override
 	public BaseModel getModelFromState(IBlockState var1) {
 		return new GTModelPipe(var1, Ic2Icons.getTextures("pipe")[0]);
+	}
+
+	@Override
+	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+		try {
+			TileEntity tile = world.getTileEntity(pos);
+			if (tile instanceof GTTilePipe) {
+				GTTilePipe pipe = (GTTilePipe) tile;
+				return new BlockStateContainerIC2.IC2BlockState(state, pipe.getConnections());
+			}
+		} catch (Exception exception) {
+		}
+		return super.getExtendedState(state, world, pos);
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.itemblock.GTItemBlockRare;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.pipe.GTBlockPipe;
+import gtclassic.api.pipe.GTTilePipe;
 import gtclassic.common.block.GTBlockCasing;
 import gtclassic.common.block.GTBlockDrum;
 import gtclassic.common.block.GTBlockLightSource;
@@ -171,6 +172,7 @@ public class GTBlocks {
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
+		registerUtil(GTTilePipe.class, "Pipe");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {
