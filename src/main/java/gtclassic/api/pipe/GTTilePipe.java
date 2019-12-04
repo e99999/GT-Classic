@@ -4,6 +4,7 @@ import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -27,6 +28,11 @@ public class GTTilePipe extends TileEntityBlock {
 
 	@Override
 	public void onLoaded() {
+		super.onLoaded();
+		updateConnections();
+	}
+
+	public void updateConnections() {
 		for (EnumFacing facing : EnumFacing.VALUES) {
 			BlockPos sidedPos = pos.offset(facing);
 			if (world.isBlockLoaded(sidedPos)) {
@@ -66,5 +72,10 @@ public class GTTilePipe extends TileEntityBlock {
 			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
 		}
 		super.onNetworkUpdate(field);
+	}
+
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return true;
 	}
 }

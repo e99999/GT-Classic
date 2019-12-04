@@ -30,7 +30,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock , IGTColorBlock{
+public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IGTColorBlock {
 
 	public GTBlockPipe() {
 		super(Material.IRON);

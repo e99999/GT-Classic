@@ -36,6 +36,7 @@ public class GTModelPipe extends BaseModel {
 
 	List<BakedQuad>[] quads = this.createList(64);
 	List<BakedQuad>[] anchorQuads = this.createList(64);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	Map<Integer, List<BakedQuad>> comboQuads = new HashMap();
 	IBlockState state;
 	TextureAtlasSprite sprite;
@@ -46,11 +47,12 @@ public class GTModelPipe extends BaseModel {
 		this.sprite = texture;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void init() {
 		GTBlockPipe pipe = (GTBlockPipe) this.state.getBlock();
 		this.setParticalTexture(pipe.getParticleTexture(this.state));
-		int min = 2;
-		int max = 14;
+		int min = 4;
+		int max = 12;
 		Map<EnumFacing, BakedQuad> coreQuads = this.generateCoreQuads(pipe, min, max);
 		Map<EnumFacing, List<BakedQuad>> sideQuads = new EnumMap(EnumFacing.class);
 		Map<EnumFacing, List<BakedQuad>> anchorQuadList = new EnumMap(EnumFacing.class);
@@ -79,6 +81,7 @@ public class GTModelPipe extends BaseModel {
 		}
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {
 		if (side == null) {
 			if (!(state instanceof IC2BlockState)) {
@@ -118,6 +121,7 @@ public class GTModelPipe extends BaseModel {
 		return PerspectiveMapWrapper.handlePerspective(this, this.getCamera(), cameraTransformType);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Map<EnumFacing, BakedQuad> generateCoreQuads(GTBlockPipe pipe, int min, int max) {
 		Vector3f minF = new Vector3f((float) min, (float) min, (float) min);
 		Vector3f maxF = new Vector3f((float) max, (float) max, (float) max);
@@ -133,6 +137,7 @@ public class GTModelPipe extends BaseModel {
 		return quads;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<BakedQuad> generateQuadsForAnchor(TextureAtlasSprite sprite, EnumFacing facing, int min, int max) {
 		List<BakedQuad> quads = new ArrayList();
 		Pair<Vector3f, Vector3f> position = this.getPosForSide(facing, min, max);
@@ -157,6 +162,7 @@ public class GTModelPipe extends BaseModel {
 		return quads;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<BakedQuad> generateQuadsForSide(GTBlockPipe pipe, EnumFacing facing, int min, int max) {
 		List<BakedQuad> quads = new ArrayList();
 		Pair<Vector3f, Vector3f> position = this.getPosForSide(facing, min, max);
