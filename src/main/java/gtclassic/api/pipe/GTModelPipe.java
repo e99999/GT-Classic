@@ -40,19 +40,21 @@ public class GTModelPipe extends BaseModel {
 	Map<Integer, List<BakedQuad>> comboQuads = new HashMap();
 	IBlockState state;
 	TextureAtlasSprite sprite;
+	int[] sizes;
 
-	public GTModelPipe(IBlockState block, TextureAtlasSprite texture) {
+	public GTModelPipe(IBlockState block, TextureAtlasSprite texture, int[] sizes) {
 		super(Ic2Models.getBlockTransforms());
 		this.state = block;
 		this.sprite = texture;
+		this.sizes = sizes;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void init() {
-		GTBlockPipe pipe = (GTBlockPipe) this.state.getBlock();
+		GTBlockPipeBase pipe = (GTBlockPipeBase) this.state.getBlock();
 		this.setParticalTexture(pipe.getParticleTexture(this.state));
-		int min = 4;
-		int max = 12;
+		int min = this.sizes[0];
+		int max = this.sizes[1];
 		Map<EnumFacing, BakedQuad> coreQuads = this.generateCoreQuads(pipe, min, max);
 		Map<EnumFacing, List<BakedQuad>> sideQuads = new EnumMap(EnumFacing.class);
 		Map<EnumFacing, List<BakedQuad>> anchorQuadList = new EnumMap(EnumFacing.class);
@@ -122,7 +124,7 @@ public class GTModelPipe extends BaseModel {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private Map<EnumFacing, BakedQuad> generateCoreQuads(GTBlockPipe pipe, int min, int max) {
+	private Map<EnumFacing, BakedQuad> generateCoreQuads(GTBlockPipeBase pipe, int min, int max) {
 		Vector3f minF = new Vector3f((float) min, (float) min, (float) min);
 		Vector3f maxF = new Vector3f((float) max, (float) max, (float) max);
 		BlockPartFace face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
@@ -163,7 +165,7 @@ public class GTModelPipe extends BaseModel {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private List<BakedQuad> generateQuadsForSide(GTBlockPipe pipe, EnumFacing facing, int min, int max) {
+	private List<BakedQuad> generateQuadsForSide(GTBlockPipeBase pipe, EnumFacing facing, int min, int max) {
 		List<BakedQuad> quads = new ArrayList();
 		Pair<Vector3f, Vector3f> position = this.getPosForSide(facing, min, max);
 		EnumFacing[] var7 = EnumFacing.VALUES;

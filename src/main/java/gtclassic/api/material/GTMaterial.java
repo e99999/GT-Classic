@@ -26,7 +26,7 @@ public class GTMaterial {
 	public static final GTMaterial Bauxite = new GTMaterial("Bauxite", 200, 100, 0, dust);
 	public static final GTMaterial Basalt = new GTMaterial("Basalt", 30, 20, 20, dust);
 	public static final GTMaterial Beryllium = new GTMaterial(4, "Beryllium", 30, 80, 50, fluid);
-	public static final GTMaterial Bronze = new GTMaterial("Bronze", 210, 130,  60, empty);
+	public static final GTMaterial Bronze = new GTMaterial("Bronze", 210, 130, 60, empty);
 	public static final GTMaterial Calcite = new GTMaterial("Calcite", 250, 230, 220, dust);
 	public static final GTMaterial Calcium = new GTMaterial(20, "Calcium", 155, 96, 80, fluid);
 	public static final GTMaterial Carbon = new GTMaterial(6, "Carbon", 0, 0, 0, dust);

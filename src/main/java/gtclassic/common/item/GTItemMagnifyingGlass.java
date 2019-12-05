@@ -29,7 +29,7 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 		if (player.isSneaking() || !IC2.platform.isSimulating()) {
 			return EnumActionResult.PASS;
 		}
-		world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT,SoundCategory.PLAYERS, 1.0F, 1.0F);
+		world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		IC2.platform.messagePlayer(player, state.getBlock().getLocalizedName());
 		if (tileEntity instanceof IProgressMachine) {
 			IProgressMachine progress = (IProgressMachine) tileEntity;

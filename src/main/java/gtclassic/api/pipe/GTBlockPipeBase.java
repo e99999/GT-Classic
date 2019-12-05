@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.material.GTMaterial;
-import gtclassic.common.GTLang;
 import ic2.core.block.base.BlockMultiID;
-import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.platform.textures.obj.ICustomModeledBlock;
@@ -26,24 +23,21 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IGTColorBlock {
+public abstract class GTBlockPipeBase extends BlockMultiID implements ICustomModeledBlock, IGTColorBlock {
 
 	GTMaterial mat;
 	Color color;
 	boolean fluid;
+	int[] sizes;
 
-	public GTBlockPipe(GTMaterial mat, boolean fluid) {
+	public GTBlockPipeBase(GTMaterial mat, int[] sizes) {
 		super(Material.IRON);
 		this.mat = mat;
 		this.color = mat.getColor();
-		this.fluid = fluid;
-		setRegistryName("pipe_" + mat.getName());
-		setUnlocalizedName(GTLang.PIPE);
-		setCreativeTab(GTMod.creativeTabGT);
+		this.sizes = sizes;
 		setHardness(5.0F);
 		setResistance(10.0F);
 		setHarvestLevel("pickaxe", 2);
@@ -95,14 +89,6 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IG
 	}
 
 	@Override
-	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		if (this.fluid) {
-			return new GTTilePipeFluid();
-		}
-		return new GTTilePipeItem();
-	}
-
-	@Override
 	public TextureAtlasSprite[] getIconSheet(int var1) {
 		return Ic2Icons.getTextures("pipe");
 	}
@@ -124,8 +110,8 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IG
 	}
 
 	@Override
-	public BaseModel getModelFromState(IBlockState var1) {
-		return new GTModelPipe(var1, Ic2Icons.getTextures("pipe")[0]);
+	public BaseModel getModelFromState(IBlockState state) {
+		return new GTModelPipe(state, Ic2Icons.getTextures("pipe")[0], this.sizes);
 	}
 
 	@Override
@@ -165,7 +151,7 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IG
 	public Color getColor(Block block, int index) {
 		return this.color;
 	}
-	
+
 	public GTMaterial getMaterial() {
 		return this.mat;
 	}
