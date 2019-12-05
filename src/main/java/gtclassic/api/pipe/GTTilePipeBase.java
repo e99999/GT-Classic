@@ -26,15 +26,15 @@ public class GTTilePipeBase extends TileEntityBlock {
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.lastIn = EnumFacing.getFront(nbt.getByte("lastIn"));
+		if (nbt.getInteger("lastIn") != -1) {
+			this.lastIn = EnumFacing.getFront(nbt.getInteger("lastIn"));
+		}
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		if (lastIn != null) {
-			nbt.setByte("lastIn", (byte) this.lastIn.getIndex());
-		}
+		nbt.setInteger("lastIn", lastIn != null ? this.lastIn.getIndex() : -1);
 		return nbt;
 	}
 

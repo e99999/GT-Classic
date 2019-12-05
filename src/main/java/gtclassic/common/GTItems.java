@@ -18,6 +18,7 @@ import gtclassic.common.item.GTItemFluidTube;
 import gtclassic.common.item.GTItemJackHammer;
 import gtclassic.common.item.GTItemLightHelmet;
 import gtclassic.common.item.GTItemLithiumBattery;
+import gtclassic.common.item.GTItemMagnifyingGlass;
 import gtclassic.common.item.GTItemMortar;
 import gtclassic.common.item.GTItemReactorHeat;
 import gtclassic.common.item.GTItemReactorRod;
@@ -57,6 +58,7 @@ public class GTItems {
 	public static GTItemDataOrbStorage orbDataStorage;
 	public static GTItemMortar flintMortar;
 	public static GTItemMortar ironMortar;
+	public static GTItemMagnifyingGlass magnifyingGlass;
 	public static GTItemDuctTape ductTape;
 	public static GTItemSpringBoots springBoots;
 	public static GTItemEchotron echotron;
@@ -95,6 +97,7 @@ public class GTItems {
 		orbDataStorage = createItem(new GTItemDataOrbStorage());
 		flintMortar = createItem(new GTItemMortar("flint_mortar", 1, 2, 3));
 		ironMortar = createItem(new GTItemMortar("iron_mortar", 2, 2, 95));
+		magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 		ductTape = createItem(new GTItemDuctTape());
 		springBoots = createItem(new GTItemSpringBoots());
 		echotron = createItem(new GTItemEchotron());
