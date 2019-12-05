@@ -1,6 +1,5 @@
 package gtclassic.api.pipe;
 
-import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.obj.ITankListener;
@@ -8,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -70,15 +70,7 @@ public class GTTilePipeFluid extends GTTilePipeBase implements ITankListener, IG
 		return this.tank;
 	}
 
-	@Override
-	public String[] debugInfo() {
-		FluidStack fluid = this.tank.getFluid();
-		if (fluid != null) {
-			return new String[] { fluid.amount + "mB of " + fluid.getLocalizedName() };
-		} else {
-			return new String[] { "Empty" };
-		}
-	}
+	
 
 	@Override
 	public boolean canUpdate() {
@@ -89,14 +81,39 @@ public class GTTilePipeFluid extends GTTilePipeBase implements ITankListener, IG
 	public void update() {
 		if (world.getTotalWorldTime() % 2 == 0) {
 			for (EnumFacing side : this.connection.getRandomIterator()) {
-				IFluidHandler tile = FluidUtil.getFluidHandler(world, this.pos.offset(side), side);
-				boolean canExport = tile != null && this.tank.getFluid() != null;
-				if (canExport) {
-					if (FluidUtil.tryFluidTransfer(tile, this.tank, this.tank.getCapacity() / 10, true) != null) {
-						//GTMod.logger.info("Pipe moved fluids");
+				BlockPos sidePos = this.pos.offset(side);
+				if (world.isBlockLoaded(sidePos) && side != lastIn) {
+					IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, sidePos, side);
+					boolean canExport = fluidTile != null && this.tank.getFluid() != null;
+					if (canExport) {
+						if (FluidUtil.tryFluidTransfer(fluidTile, this.tank, this.tank.getCapacity()
+								/ 10, true) != null) {
+							TileEntity tile = world.getTileEntity(sidePos);
+							if (tile instanceof GTTilePipeFluid) {
+								((GTTilePipeFluid) tile).lastIn = side.getOpposite();
+							}
+						}
 					}
 				}
 			}
 		}
 	}
+	
+	@Override
+	public boolean canDebugWithMagnifyingGlass() {
+		return true;
+	}
+	
+	@Override
+	public String[] debugInfo() {
+		FluidStack fluid = this.tank.getFluid();
+		String in = this.lastIn != null ? this.lastIn.toString() : "Null";
+		if (fluid != null) {
+			return new String[] { fluid.amount + "mB of " + fluid.getLocalizedName(), "Last In: " + in};
+		} else {
+			return new String[] { "Empty", "Last In: " + in };
+		}
+	}
+
+	
 }

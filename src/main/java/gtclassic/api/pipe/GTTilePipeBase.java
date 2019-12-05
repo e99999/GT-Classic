@@ -6,6 +6,7 @@ import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -15,10 +16,26 @@ public class GTTilePipeBase extends TileEntityBlock {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
+	public EnumFacing lastIn;
 
 	public GTTilePipeBase() {
 		this.connection = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		this.lastIn = EnumFacing.getFront(nbt.getByte("lastIn"));
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		if (lastIn != null) {
+			nbt.setByte("lastIn", (byte) this.lastIn.getIndex());
+		}
+		return nbt;
 	}
 
 	public Vec3i getConnections() {
