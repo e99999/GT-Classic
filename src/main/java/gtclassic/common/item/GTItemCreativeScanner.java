@@ -4,6 +4,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTCoordinateTile;
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
 import gtclassic.common.tile.GTTileBaseBuffer;
@@ -289,6 +290,12 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 					IC2.platform.messagePlayer(player, "Redstone Strength: " + buffer.redstoneStrength);
 				}
 				IC2.platform.messagePlayer(player, "Inverted Redstone: " + buffer.invertRedstone);
+			}
+			if (tileEntity instanceof IGTDebuggableTile) {
+				IGTDebuggableTile debug = (IGTDebuggableTile) tileEntity;
+				for (String data : debug.debugInfo()) {
+					IC2.platform.messagePlayer(player, data);
+				}
 			}
 			return EnumActionResult.SUCCESS;
 		}
