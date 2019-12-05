@@ -120,7 +120,7 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IG
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
+		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
 	@Override
@@ -164,5 +164,9 @@ public class GTBlockPipe extends BlockMultiID implements ICustomModeledBlock, IG
 	@Override
 	public Color getColor(Block block, int index) {
 		return this.color;
+	}
+	
+	public GTMaterial getMaterial() {
+		return this.mat;
 	}
 }

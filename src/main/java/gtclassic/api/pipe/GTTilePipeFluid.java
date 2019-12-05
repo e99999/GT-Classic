@@ -70,8 +70,6 @@ public class GTTilePipeFluid extends GTTilePipeBase implements ITankListener, IG
 		return this.tank;
 	}
 
-	
-
 	@Override
 	public boolean canUpdate() {
 		return true;
@@ -79,41 +77,35 @@ public class GTTilePipeFluid extends GTTilePipeBase implements ITankListener, IG
 
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 2 == 0) {
-			for (EnumFacing side : this.connection.getRandomIterator()) {
-				BlockPos sidePos = this.pos.offset(side);
-				if (world.isBlockLoaded(sidePos) && side != lastIn) {
-					IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, sidePos, side);
-					boolean canExport = fluidTile != null && this.tank.getFluid() != null;
-					if (canExport) {
-						if (FluidUtil.tryFluidTransfer(fluidTile, this.tank, this.tank.getCapacity()
-								/ 10, true) != null) {
-							TileEntity tile = world.getTileEntity(sidePos);
-							if (tile instanceof GTTilePipeFluid) {
-								((GTTilePipeFluid) tile).lastIn = side.getOpposite();
-							}
-						}
+		for (EnumFacing side : this.connection.getRandomIterator()) {
+			BlockPos sidePos = this.pos.offset(side);
+			if (world.isBlockLoaded(sidePos) && side != lastIn) {
+				IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, sidePos, side);
+				boolean canExport = fluidTile != null && this.tank.getFluid() != null;
+				if (canExport && FluidUtil.tryFluidTransfer(fluidTile, this.tank, this.tank.getCapacity()
+						/ 20, true) != null) {
+					TileEntity tile = world.getTileEntity(sidePos);
+					if (tile instanceof GTTilePipeFluid) {
+						((GTTilePipeFluid) tile).lastIn = side.getOpposite();
 					}
 				}
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean canDebugWithMagnifyingGlass() {
 		return true;
 	}
-	
+
 	@Override
 	public String[] debugInfo() {
 		FluidStack fluid = this.tank.getFluid();
 		String in = this.lastIn != null ? this.lastIn.toString() : "Null";
 		if (fluid != null) {
-			return new String[] { fluid.amount + "mB of " + fluid.getLocalizedName(), "Last In: " + in};
+			return new String[] { fluid.amount + "mB of " + fluid.getLocalizedName(), "Last In: " + in };
 		} else {
 			return new String[] { "Empty", "Last In: " + in };
 		}
 	}
-
-	
 }

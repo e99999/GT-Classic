@@ -106,8 +106,10 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferLarge = registerBlock(new GTBlockMachineDirectionable("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
+	public static final GTBlockPipe pipeConstantan = registerBlock(new GTBlockPipe(GTMaterial.Constantan, false));
 	public static final GTBlockPipe pipeElectrum = registerBlock(new GTBlockPipe(GTMaterial.Electrum, false));
 	public static final GTBlockPipe pipePlatinum = registerBlock(new GTBlockPipe(GTMaterial.Platinum, false));
+	public static final GTBlockPipe pipeBronze = registerBlock(new GTBlockPipe(GTMaterial.Bronze, true));
 	public static final GTBlockPipe pipeAluminium = registerBlock(new GTBlockPipe(GTMaterial.Aluminium, true));
 	public static final GTBlockPipe pipeInvar = registerBlock(new GTBlockPipe(GTMaterial.Invar, true));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
