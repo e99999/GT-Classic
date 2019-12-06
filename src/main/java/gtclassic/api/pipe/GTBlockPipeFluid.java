@@ -35,7 +35,20 @@ public class GTBlockPipeFluid extends GTBlockPipeBase {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		return new GTTilePipeFluid();
+		switch (this.size) {
+		case S800:
+			return new GTTilePipeFluid.GTTileFluidPipe800();
+		case S1600:
+			return new GTTilePipeFluid.GTTileFluidPipe1600();
+		case S3200:
+			return new GTTilePipeFluid.GTTileFluidPipe3200();
+		case S6400:
+			return new GTTilePipeFluid.GTTileFluidPipe6400();
+		case S12800:
+			return new GTTilePipeFluid.GTTileFluidPipe12800();
+		default:
+			return new TileEntityBlock();
+		}
 	}
 
 	public String getPipeType() {

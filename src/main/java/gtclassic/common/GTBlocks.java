@@ -16,7 +16,6 @@ import gtclassic.api.pipe.GTBlockPipeItem;
 import gtclassic.api.pipe.GTPipeTypes.GTFluidPipeSize;
 import gtclassic.api.pipe.GTPipeTypes.GTFluidPipeType;
 import gtclassic.api.pipe.GTPipeTypes.GTItemPipeType;
-import gtclassic.api.pipe.GTTilePipeBase;
 import gtclassic.api.pipe.GTTilePipeFluid;
 import gtclassic.api.pipe.GTTilePipeItem;
 import gtclassic.common.block.GTBlockCasing;
@@ -122,9 +121,9 @@ public class GTBlocks {
 	public static final GTBlockPipeBase pipeLargeBronze = registerBlock(new GTBlockPipeFluid(GTMaterial.Bronze, GTFluidPipeType.LARGE, GTFluidPipeSize.S3200, GTLang.PIPE_FLUID_BRONZE));
 	public static final GTBlockPipeBase pipeSmallInvar = registerBlock(new GTBlockPipeFluid(GTMaterial.Invar, GTFluidPipeType.SMALL, GTFluidPipeSize.S1600, GTLang.PIPE_FLUID_INVAR));
 	public static final GTBlockPipeBase pipeMedInvar = registerBlock(new GTBlockPipeFluid(GTMaterial.Invar, GTFluidPipeType.MED, GTFluidPipeSize.S3200, GTLang.PIPE_FLUID_INVAR));
-	public static final GTBlockPipeBase pipeLargeInvar = registerBlock(new GTBlockPipeFluid(GTMaterial.Invar, GTFluidPipeType.LARGE, GTFluidPipeSize.S64000, GTLang.PIPE_FLUID_INVAR));
+	public static final GTBlockPipeBase pipeLargeInvar = registerBlock(new GTBlockPipeFluid(GTMaterial.Invar, GTFluidPipeType.LARGE, GTFluidPipeSize.S6400, GTLang.PIPE_FLUID_INVAR));
 	public static final GTBlockPipeBase pipeSmallTitanium = registerBlock(new GTBlockPipeFluid(GTMaterial.Titanium, GTFluidPipeType.SMALL, GTFluidPipeSize.S3200, GTLang.PIPE_FLUID_TITANIUM));
-	public static final GTBlockPipeBase pipeMedTitanium = registerBlock(new GTBlockPipeFluid(GTMaterial.Titanium, GTFluidPipeType.MED, GTFluidPipeSize.S64000, GTLang.PIPE_FLUID_TITANIUM));
+	public static final GTBlockPipeBase pipeMedTitanium = registerBlock(new GTBlockPipeFluid(GTMaterial.Titanium, GTFluidPipeType.MED, GTFluidPipeSize.S6400, GTLang.PIPE_FLUID_TITANIUM));
 	public static final GTBlockPipeBase pipeLargeTitanium = registerBlock(new GTBlockPipeFluid(GTMaterial.Titanium, GTFluidPipeType.LARGE, GTFluidPipeSize.S12800, GTLang.PIPE_FLUID_TITANIUM));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
@@ -194,9 +193,12 @@ public class GTBlocks {
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
-		registerUtil(GTTilePipeBase.class, "Pipe");
 		registerUtil(GTTilePipeItem.class, "ItemPipe");
-		registerUtil(GTTilePipeFluid.class, "FluidPipe");
+		registerUtil(GTTilePipeFluid.GTTileFluidPipe800.class, "TinyFluidPipe");
+		registerUtil(GTTilePipeFluid.GTTileFluidPipe1600.class, "SmallFluidPipe");
+		registerUtil(GTTilePipeFluid.GTTileFluidPipe3200.class, "MedFluidPipe");
+		registerUtil(GTTilePipeFluid.GTTileFluidPipe6400.class, "LargeFluidPipe");
+		registerUtil(GTTilePipeFluid.GTTileFluidPipe12800.class, "HugeFluidPipe");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {
