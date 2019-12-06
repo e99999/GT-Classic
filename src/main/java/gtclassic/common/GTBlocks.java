@@ -115,6 +115,8 @@ public class GTBlocks {
 	public static final GTBlockPipeBase pipeLargeConstantan = registerBlock(new GTBlockPipeItem(GTMaterial.Constantan, GTItemPipeType.LARGE, GTLang.PIPE_ITEM_CONSTANTAN));
 	public static final GTBlockPipeBase pipeElectrum = registerBlock(new GTBlockPipeItem(GTMaterial.Electrum, GTItemPipeType.NORMAL, GTLang.PIPE_ITEM_ELECTRUM));
 	public static final GTBlockPipeBase pipeLargeElectrum = registerBlock(new GTBlockPipeItem(GTMaterial.Electrum, GTItemPipeType.LARGE, GTLang.PIPE_ITEM_ELECTRUM));
+	public static final GTBlockPipeBase pipeMagnalium = registerBlock(new GTBlockPipeItem(GTMaterial.Magnalium, GTItemPipeType.NORMAL, GTLang.PIPE_ITEM_MAGNALIUM));
+	public static final GTBlockPipeBase pipeLargeMagnalium = registerBlock(new GTBlockPipeItem(GTMaterial.Magnalium, GTItemPipeType.LARGE, GTLang.PIPE_ITEM_MAGNALIUM));
 	public static final GTBlockPipeBase pipePlatinum = registerBlock(new GTBlockPipeItem(GTMaterial.Platinum, GTItemPipeType.NORMAL, GTLang.PIPE_ITEM_PLATINUM));
 	public static final GTBlockPipeBase pipeLargePlatinum = registerBlock(new GTBlockPipeItem(GTMaterial.Platinum, GTItemPipeType.LARGE, GTLang.PIPE_ITEM_PLATINUM));
 	public static final GTBlockPipeBase pipeSmallBronze = registerBlock(new GTBlockPipeFluid(GTMaterial.Bronze, GTFluidPipeType.SMALL, GTFluidPipeSize.S800, GTLang.PIPE_FLUID_BRONZE));

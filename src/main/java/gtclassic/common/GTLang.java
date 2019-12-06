@@ -43,6 +43,7 @@ public class GTLang {
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
 	public static final LocaleComp PIPE_ITEM_CONSTANTAN = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemconstantan");
 	public static final LocaleComp PIPE_ITEM_ELECTRUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemelectrum");
+	public static final LocaleComp PIPE_ITEM_MAGNALIUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemmagnalium");
 	public static final LocaleComp PIPE_ITEM_PLATINUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemplatinum");
 	public static final LocaleComp PIPE_FLUID_BRONZE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidbronze");
 	public static final LocaleComp PIPE_FLUID_INVAR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidinvar");

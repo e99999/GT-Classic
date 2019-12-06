@@ -79,6 +79,9 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase
 
 	@Override
 	public void update() {
+		if (this.tank.getFluid() == null) {
+			return;
+		}
 		for (EnumFacing side : this.connection.getRandomIterator()) {
 			BlockPos sidePos = this.pos.offset(side);
 			if (world.isBlockLoaded(sidePos) && side != lastIn) {

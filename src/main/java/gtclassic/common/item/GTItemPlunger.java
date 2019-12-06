@@ -40,7 +40,7 @@ public class GTItemPlunger extends GTItemComponent {
 			GTTilePipeFluidBase pipe = (GTTilePipeFluidBase) tileEntity;
 			FluidStack fluid = pipe.getTankInstance().getFluid();
 			if (fluid != null) {
-				if (fluid.amount >= 1000) {
+				if (fluid.amount >= 1000 && !fluid.getFluid().getName().contains("steam")) {
 					for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
 						if (GTHelperStack.isEqual(GTMaterialGen.get(GTItems.testTube), player.inventory.getStackInSlot(i))) {
 							player.inventory.getStackInSlot(i).shrink(1);
@@ -50,7 +50,7 @@ public class GTItemPlunger extends GTItemComponent {
 				}
 				// Do all this below no matter what
 				pipe.getTankInstance().drain(1000, true);
-				world.playSound(null, player.getPosition(), SoundEvents.ITEM_BUCKET_FILL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				world.playSound(null, player.getPosition(), SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				player.getHeldItem(hand).damageItem(1, player);
 				return EnumActionResult.SUCCESS;
 			}
