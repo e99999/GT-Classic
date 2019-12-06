@@ -7,7 +7,6 @@ import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.misc.FluidHelper;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -20,12 +19,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
-import net.minecraftforge.fluids.capability.wrappers.BlockLiquidWrapper;
-import net.minecraftforge.fluids.capability.wrappers.FluidBlockWrapper;
 
 public class GTHelperFluid {
 
@@ -134,28 +130,24 @@ public class GTHelperFluid {
 		}
 		return false;
 	}
-	
-	 /**
-     * Helper method to get an IFluidHandler for at tile position.
-     *
-     * Returns null if there is no valid fluid handler tile.
-     */
-    @Nullable
-    public static IFluidHandler getFluidHandler(World world, BlockPos blockPos, @Nullable EnumFacing side)
-    {
-        IBlockState state = world.getBlockState(blockPos);
-        Block block = state.getBlock();
 
-        if (block.hasTileEntity(state))
-        {
-            TileEntity tileEntity = world.getTileEntity(blockPos);
-            if (tileEntity != null && tileEntity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side))
-            {
-                return tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
-            }
-        }
-        return null;
-    }
+	/**
+	 * Helper method to get an IFluidHandler for at tile position.
+	 *
+	 * Returns null if there is no valid fluid handler tile.
+	 */
+	@Nullable
+	public static IFluidHandler getFluidHandler(World world, BlockPos blockPos, @Nullable EnumFacing side) {
+		IBlockState state = world.getBlockState(blockPos);
+		Block block = state.getBlock();
+		if (block.hasTileEntity(state)) {
+			TileEntity tileEntity = world.getTileEntity(blockPos);
+			if (tileEntity != null && tileEntity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side)) {
+				return tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+			}
+		}
+		return null;
+	}
 
 	// helper for fluid handling
 	public static boolean isTankFull(IC2Tank tank) {

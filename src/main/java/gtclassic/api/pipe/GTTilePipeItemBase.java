@@ -26,7 +26,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
@@ -40,12 +39,14 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 	protected InventoryHandler handler = new InventoryHandler(this);
 	public NonNullList<ItemStack> inventory;
 	public int slotCount;
+	public boolean restrict;
 
 	public GTTilePipeItemBase() {
 		this.slotCount = 1;
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
 		this.addSlots(this.handler);
 		this.handler.validateSlots();
+		this.restrict = false;
 	}
 
 	@Override
@@ -109,6 +110,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 		super.readFromNBT(nbt);
 		this.handler.readFromNBT(nbt.getCompoundTag("HandlerNBT"));
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
+		this.restrict = nbt.getBoolean("restrict");
 		NBTTagList list = nbt.getTagList("Items", 10);
 		for (int i = 0; i < list.tagCount(); ++i) {
 			NBTTagCompound data = list.getCompoundTagAt(i);
@@ -123,6 +125,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		this.handler.writeToNBT(this.getTag(nbt, "HandlerNBT"));
+		nbt.setBoolean("restrict", this.restrict);
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.inventory.size(); ++i) {
 			ItemStack stack = this.inventory.get(i);
@@ -220,7 +223,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 			if (world.isBlockLoaded(sidePos) && side != lastIn) {
 				TileEntity tile = world.getTileEntity(sidePos);
 				// temp for testing with hoppers without returning
-				if (tile instanceof TileEntityHopper) {
+				if (this.restrict && !(tile instanceof GTTilePipeItemBase)) {
 					continue;
 				}
 				IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
@@ -240,6 +243,10 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 		// }
 	}
 
+	public void toggleRestrict() {
+		this.restrict = !this.restrict;
+	}
+
 	@Override
 	public boolean canDebugWithMagnifyingGlass() {
 		return true;
@@ -250,6 +257,6 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 		ItemStack stack = this.getStackInSlot(0).copy();
 		String in = this.lastIn != null ? this.lastIn.toString() : "Null";
 		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
-		return new String[] { itemName, "Last In: " + in };
+		return new String[] { itemName, "Last In: " + in, "Restricted only to pipes: " + this.restrict };
 	}
 }

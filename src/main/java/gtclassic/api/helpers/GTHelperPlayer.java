@@ -28,7 +28,7 @@ public class GTHelperPlayer {
 	}
 
 	public static boolean doesPlayerHaveMonkeyWrench(EntityPlayer player) {
-		return player.getHeldItemMainhand().getItem() instanceof IGTMonkeyWrenchItem;
+		return player.getHeldItemMainhand().getItem() instanceof IGTMonkeyWrenchItem || player.getHeldItemOffhand().getItem() instanceof IGTMonkeyWrenchItem;
 	}
 
 	public static void useMonkeyWrench(EntityPlayer player) {
