@@ -15,7 +15,8 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITankListener, IGTDebuggableTile, ITickable {
+public abstract class GTTilePipeFluidBase extends GTTilePipeBase
+		implements ITankListener, IGTDebuggableTile, ITickable {
 
 	private IC2Tank tank;
 

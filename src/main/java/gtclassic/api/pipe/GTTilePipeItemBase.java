@@ -14,6 +14,7 @@ import ic2.core.inventory.management.IHasHandler;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.util.math.MathUtil;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,10 +35,9 @@ public class GTTilePipeItemBase extends GTTilePipeBase implements IItemContainer
 
 	public GTTilePipeItemBase() {
 		this.slotCount = 1;
-		this.handler.validateSlots();
-		this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
-		this.addSlots(this.handler);
-		this.handler.validateSlots();
+		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
+	    this.addSlots(this.handler);
+	    this.handler.validateSlots();
 	}
 
 	@Override
@@ -46,10 +46,11 @@ public class GTTilePipeItemBase extends GTTilePipeBase implements IItemContainer
 	}
 
 	protected void addSlots(InventoryHandler handler) {
+		int[] array = MathUtil.fromTo(0, this.inventory.size());
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerDefaultSlotAccess(AccessRule.Both, 0);
-		handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
-		handler.registerSlotType(SlotType.Storage, 0);
+		handler.registerDefaultSlotAccess(AccessRule.Both, array);
+		handler.registerDefaultSlotsForSide(RotationList.ALL, array);
+		handler.registerSlotType(SlotType.Storage, array);
 	}
 
 	@Override
@@ -86,7 +87,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase implements IItemContainer
 			IHasInventory inv = handler.getUpgradeSlots();
 			for (int i = 0; i < inv.getSlotCount(); ++i) {
 				ItemStack result = inv.getStackInSlot(i);
-				if (result != null) {
+				if (!result.isEmpty()) {
 					list.add(result);
 				}
 			}
