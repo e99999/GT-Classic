@@ -52,4 +52,22 @@ public class GTPipeTypes {
 			return this.sizes;
 		}
 	}
+
+	public enum GTFluidPipeSize {
+		S800(800),
+		S1600(1600),
+		S3200(3200),
+		S64000(6400),
+		S12800(12800);
+
+		int size;
+
+		GTFluidPipeSize(int size) {
+			this.size = size;
+		}
+
+		public int getSize() {
+			return this.size;
+		}
+	}
 }

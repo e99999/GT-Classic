@@ -102,10 +102,9 @@ public class GTTilePipeFluid extends GTTilePipeBase implements ITankListener, IG
 	public String[] debugInfo() {
 		FluidStack fluid = this.tank.getFluid();
 		String in = this.lastIn != null ? this.lastIn.toString() : "Null";
-		if (fluid != null) {
-			return new String[] { fluid.amount + "mB of " + fluid.getLocalizedName(), "Last In: " + in };
-		} else {
-			return new String[] { "Empty", "Last In: " + in };
-		}
+		String fluidName = fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Empty";
+		return new String[] { fluidName,
+				"Capacity: " + this.tank.getCapacity() + "mB Total / " + this.tank.getCapacity() / 20 + " mB per Tick",
+				"Last In: " + in };
 	}
 }
