@@ -1,5 +1,6 @@
 package gtclassic.api.pipe;
 
+import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.obj.ITankListener;
@@ -81,7 +82,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase
 		for (EnumFacing side : this.connection.getRandomIterator()) {
 			BlockPos sidePos = this.pos.offset(side);
 			if (world.isBlockLoaded(sidePos) && side != lastIn) {
-				IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, sidePos, side);
+				IFluidHandler fluidTile = GTHelperFluid.getFluidHandler(world, sidePos, side);
 				boolean canExport = fluidTile != null && this.tank.getFluid() != null;
 				if (canExport && FluidUtil.tryFluidTransfer(fluidTile, this.tank, this.tank.getCapacity()
 						/ 20, true) != null) {
