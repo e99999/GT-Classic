@@ -41,6 +41,7 @@ public class GTMaterial {
 	public static final GTMaterial Flint = new GTMaterial("Flint", 0, 32, 64, dust);
 	public static final GTMaterial Helium = new GTMaterial(2, "Helium", 255, 255, 0, gas);
 	public static final GTMaterial Helium3 = new GTMaterial("Helium3", 255, 255, 0, gas);
+	public static final GTMaterial HighPressure = new GTMaterial("HighPressure", 255, 0, 0, empty);
 	public static final GTMaterial Hydrogen = new GTMaterial(1, "Hydrogen", 0, 38, 255, gas);
 	public static final GTMaterial Invar = new GTMaterial("Invar", 220, 220, 150, metalAll);
 	public static final GTMaterial Iridium = new GTMaterial(77, "Iridium", 255, 255, 255, metalAll);

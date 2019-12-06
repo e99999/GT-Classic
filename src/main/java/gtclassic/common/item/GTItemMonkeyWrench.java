@@ -1,7 +1,8 @@
 package gtclassic.common.item;
 
+import gtclassic.api.helpers.GTHelperPlayer;
 import gtclassic.api.interfaces.IGTMonkeyWrenchItem;
-import gtclassic.api.pipe.GTTilePipeItemBase;
+import gtclassic.api.pipe.GTTilePipeBase;
 import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,19 +32,22 @@ public class GTItemMonkeyWrench extends GTItemComponent implements IGTMonkeyWren
 	@Override
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
 			float hitY, float hitZ, EnumHand hand) {
-		if (player.isSneaking()) {
-			TileEntity tileEntity = world.getTileEntity(pos);
-			if (tileEntity instanceof GTTilePipeItemBase) {
-				GTTilePipeItemBase pipe = (GTTilePipeItemBase) tileEntity;
-				pipe.toggleRestrict();
-				if (IC2.platform.isSimulating()) {
-					IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
-					String msg = pipe.restrict ? "Will only flow into other pipes" : "Flow unrestricted";
-					IC2.platform.messagePlayer(player, msg);
-				}
-				player.getHeldItem(hand).damageItem(1, player);
-				return EnumActionResult.SUCCESS;
+		return doMonkeyWrenchThings(player, world, pos, side, hitZ, hitZ, hitZ, hand);
+	}
+
+	public static EnumActionResult doMonkeyWrenchThings(EntityPlayer player, World world, BlockPos pos, EnumFacing side,
+			float hitX, float hitY, float hitZ, EnumHand hand) {
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (player.isSneaking() && tileEntity instanceof GTTilePipeBase) {
+			GTTilePipeBase pipe = (GTTilePipeBase) tileEntity;
+			pipe.toggleRestrict();
+			if (IC2.platform.isSimulating()) {
+				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+				String msg = pipe.restrict ? "Will only flow into other pipes" : "Flow unrestricted";
+				IC2.platform.messagePlayer(player, msg);
 			}
+			player.getHeldItem(hand).damageItem(1, player);
+			return EnumActionResult.SUCCESS;
 		}
 		return EnumActionResult.PASS;
 	}
@@ -60,7 +64,9 @@ public class GTItemMonkeyWrench extends GTItemComponent implements IGTMonkeyWren
 
 	@Override
 	public void onUse(EntityPlayer player) {
-		//TODO check for off hand
-		player.getHeldItemMainhand().damageItem(1, player);
+		EnumHand hand = GTHelperPlayer.doesPlayerHaveMonkeyWrench(player);
+		if (hand != null) {
+			player.getHeldItem(hand).damageItem(1, player);
+		}
 	}
 }

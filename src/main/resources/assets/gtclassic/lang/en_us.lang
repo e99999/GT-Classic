@@ -68,6 +68,7 @@ tile.gtclassic.pipeitemplatinum.name=Platinum Item Pipe
 tile.gtclassic.pipefluidbronze.name=Bronze Fluid Pipe
 tile.gtclassic.pipefluidinvar.name=Invar Fluid Pipe
 tile.gtclassic.pipefluidtitanium.name=Titanium Fluid Pipe
+tile.gtclassic.pipefluidhighpressure.name=High Pressure Fluid Pipe
 tile.gtclassic.pipename.name=Item Pipe
 
 #dust
@@ -159,6 +160,8 @@ item.gtclassic.cloaking_device.name=Cloaking Device
 item.gtclassic.light_helmet.name=Light Helmet
 item.gtclassic.spring_boots.name=Spring Boots
 item.gtclassic.magnifying_glass.name=Magnifying Glass
+item.gtclassic.plunger.name=Plunger
+item.gtclassic.monkey_wrench.name=Monkey Wrench
 
 #crops
 ic2.crop.Bauxia.name=Bauxia

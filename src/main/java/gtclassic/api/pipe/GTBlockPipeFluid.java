@@ -11,6 +11,7 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public class GTBlockPipeFluid extends GTBlockPipeBase {
@@ -29,8 +30,8 @@ public class GTBlockPipeFluid extends GTBlockPipeBase {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("Transfers " + this.size.getSize() + " mB per second"));
-		super.addInformation(stack, worldIn, tooltip, flagIn);
+		tooltip.add(TextFormatting.BLUE + I18n.format("Fluid Capacity:  " + this.size.getSize() + " mB/sec"));
+		//super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
 	@Override
@@ -46,6 +47,12 @@ public class GTBlockPipeFluid extends GTBlockPipeBase {
 			return new GTTilePipeFluid.GTTileFluidPipe6400();
 		case S12800:
 			return new GTTilePipeFluid.GTTileFluidPipe12800();
+		case SMAX1:
+			return new GTTilePipeFluid.GTTileFluidPipeMax1();
+		case SMAX2:
+			return new GTTilePipeFluid.GTTileFluidPipeMax2();
+		case SMAX3:
+			return new GTTilePipeFluid.GTTileFluidPipeMax3();
 		default:
 			return new TileEntityBlock();
 		}

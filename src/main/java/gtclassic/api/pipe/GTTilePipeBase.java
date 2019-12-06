@@ -17,15 +17,18 @@ public class GTTilePipeBase extends TileEntityBlock {
 	@NetworkField(index = 8)
 	public RotationList connection;
 	public EnumFacing lastIn;
+	public boolean restrict;
 
 	public GTTilePipeBase() {
 		this.connection = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
+		this.restrict = false;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
+		this.restrict = nbt.getBoolean("restrict");
 		if (nbt.getInteger("lastIn") != -1) {
 			this.lastIn = EnumFacing.getFront(nbt.getInteger("lastIn"));
 		}
@@ -34,6 +37,7 @@ public class GTTilePipeBase extends TileEntityBlock {
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
+		nbt.setBoolean("restrict", this.restrict);
 		nbt.setInteger("lastIn", lastIn != null ? this.lastIn.getIndex() : -1);
 		return nbt;
 	}
@@ -100,5 +104,9 @@ public class GTTilePipeBase extends TileEntityBlock {
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
+	}
+	
+	public void toggleRestrict() {
+		this.restrict = !this.restrict;
 	}
 }

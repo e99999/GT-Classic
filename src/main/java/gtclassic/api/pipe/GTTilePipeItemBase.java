@@ -39,14 +39,12 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 	protected InventoryHandler handler = new InventoryHandler(this);
 	public NonNullList<ItemStack> inventory;
 	public int slotCount;
-	public boolean restrict;
 
 	public GTTilePipeItemBase() {
 		this.slotCount = 1;
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
 		this.addSlots(this.handler);
 		this.handler.validateSlots();
-		this.restrict = false;
 	}
 
 	@Override
@@ -110,7 +108,6 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 		super.readFromNBT(nbt);
 		this.handler.readFromNBT(nbt.getCompoundTag("HandlerNBT"));
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
-		this.restrict = nbt.getBoolean("restrict");
 		NBTTagList list = nbt.getTagList("Items", 10);
 		for (int i = 0; i < list.tagCount(); ++i) {
 			NBTTagCompound data = list.getCompoundTagAt(i);
@@ -125,7 +122,6 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		this.handler.writeToNBT(this.getTag(nbt, "HandlerNBT"));
-		nbt.setBoolean("restrict", this.restrict);
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.inventory.size(); ++i) {
 			ItemStack stack = this.inventory.get(i);
@@ -190,7 +186,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return !this.isInvalid() && GTHelperPlayer.doesPlayerHaveMonkeyWrench(player);
+		return !this.isInvalid() && GTHelperPlayer.doesPlayerHaveMonkeyWrench(player) != null;
 	}
 
 	@Override
@@ -205,7 +201,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
-		return GTHelperPlayer.doesPlayerHaveMonkeyWrench(player);
+		return GTHelperPlayer.doesPlayerHaveMonkeyWrench(player) != null;
 	}
 
 	@Override
@@ -214,37 +210,32 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 
 	@Override
 	public void update() {
-		// if (world.getTotalWorldTime() % 20 == 0) {
-		if (this.getStackInSlot(0).isEmpty()) {
-			return;
-		}
-		for (EnumFacing side : this.connection) {
-			BlockPos sidePos = this.pos.offset(side);
-			if (world.isBlockLoaded(sidePos) && side != lastIn) {
-				TileEntity tile = world.getTileEntity(sidePos);
-				// temp for testing with hoppers without returning
-				if (this.restrict && !(tile instanceof GTTilePipeItemBase)) {
-					continue;
-				}
-				IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
-				if (slave != null) {
-					int added = slave.addItem(this.getStackInSlot(0).copy(), side.getOpposite(), true).getCount();
-					if (added > 0) {
-						// GTMod.logger.info("Pipe pushed: " + added + " to " + side.toString());
-						this.getStackInSlot(0).shrink(added);
-						if (tile instanceof GTTilePipeItemBase) {
-							((GTTilePipeItemBase) tile).lastIn = side.getOpposite();
+		if (world.getTotalWorldTime() % 5 == 0) {
+			if (this.getStackInSlot(0).isEmpty()) {
+				return;
+			}
+			for (EnumFacing side : this.connection) {
+				BlockPos sidePos = this.pos.offset(side);
+				if (world.isBlockLoaded(sidePos) && side != lastIn) {
+					TileEntity tile = world.getTileEntity(sidePos);
+					if (this.restrict && !(tile instanceof GTTilePipeItemBase)) {
+						continue;
+					}
+					IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
+					if (slave != null) {
+						int added = slave.addItem(this.getStackInSlot(0).copy(), side.getOpposite(), true).getCount();
+						if (added > 0) {
+							// GTMod.logger.info("Pipe pushed: " + added + " to " + side.toString());
+							this.getStackInSlot(0).shrink(added);
+							if (tile instanceof GTTilePipeItemBase) {
+								((GTTilePipeItemBase) tile).lastIn = side.getOpposite();
+							}
+							break;
 						}
-						break;
 					}
 				}
 			}
 		}
-		// }
-	}
-
-	public void toggleRestrict() {
-		this.restrict = !this.restrict;
 	}
 
 	@Override

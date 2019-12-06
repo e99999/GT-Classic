@@ -47,5 +47,6 @@ public class GTLang {
 	public static final LocaleComp PIPE_FLUID_BRONZE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidbronze");
 	public static final LocaleComp PIPE_FLUID_INVAR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidinvar");
 	public static final LocaleComp PIPE_FLUID_TITANIUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidtitanium");
+	public static final LocaleComp PIPE_FLUID_HIGHPRESSURE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidhighpressure");
 	public static final LocaleComp PIPE_LANG = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipename");
 }
