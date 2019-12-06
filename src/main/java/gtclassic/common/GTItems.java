@@ -19,7 +19,9 @@ import gtclassic.common.item.GTItemJackHammer;
 import gtclassic.common.item.GTItemLightHelmet;
 import gtclassic.common.item.GTItemLithiumBattery;
 import gtclassic.common.item.GTItemMagnifyingGlass;
+import gtclassic.common.item.GTItemMonkeyWrench;
 import gtclassic.common.item.GTItemMortar;
+import gtclassic.common.item.GTItemPlunger;
 import gtclassic.common.item.GTItemReactorHeat;
 import gtclassic.common.item.GTItemReactorRod;
 import gtclassic.common.item.GTItemRockCutter;
@@ -60,6 +62,8 @@ public class GTItems {
 	public static GTItemMortar ironMortar;
 	public static GTItemMagnifyingGlass magnifyingGlass;
 	public static GTItemDuctTape ductTape;
+	public static GTItemPlunger plunger;
+	public static GTItemMonkeyWrench monkeyWrench;
 	public static GTItemSpringBoots springBoots;
 	public static GTItemEchotron echotron;
 	public static GTItemDestructoPack destructoPack;
@@ -99,6 +103,8 @@ public class GTItems {
 		ironMortar = createItem(new GTItemMortar("iron_mortar", 2, 2, 95));
 		magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 		ductTape = createItem(new GTItemDuctTape());
+		plunger = createItem(new GTItemPlunger());
+		monkeyWrench = createItem(new GTItemMonkeyWrench());
 		springBoots = createItem(new GTItemSpringBoots());
 		echotron = createItem(new GTItemEchotron());
 		destructoPack = createItem(new GTItemDestructoPack());

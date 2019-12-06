@@ -3,6 +3,8 @@ package gtclassic.api.pipe;
 import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.api.helpers.GTHelperPlayer;
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTLang;
 import ic2.core.RotationList;
 import ic2.core.inventory.base.IHasGui;
@@ -13,6 +15,8 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.IHasHandler;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.inventory.transport.IItemTransporter;
+import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.math.MathUtil;
 import ic2.core.util.obj.IItemContainer;
@@ -22,12 +26,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class GTTilePipeItemBase extends GTTilePipeBase implements IItemContainer, IHasInventory, IHasHandler, IHasGui {
+public class GTTilePipeItemBase extends GTTilePipeBase
+		implements IItemContainer, IHasInventory, IHasHandler, IHasGui, ITickable, IGTDebuggableTile {
 
 	protected InventoryHandler handler = new InventoryHandler(this);
 	public NonNullList<ItemStack> inventory;
@@ -36,8 +44,8 @@ public class GTTilePipeItemBase extends GTTilePipeBase implements IItemContainer
 	public GTTilePipeItemBase() {
 		this.slotCount = 1;
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
-	    this.addSlots(this.handler);
-	    this.handler.validateSlots();
+		this.addSlots(this.handler);
+		this.handler.validateSlots();
 	}
 
 	@Override
@@ -69,6 +77,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase implements IItemContainer
 		return this.handler;
 	}
 
+	@Override
 	public boolean canUpdate() {
 		return this.isSimulating();
 	}
@@ -178,7 +187,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase implements IItemContainer
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return !this.isInvalid();
+		return !this.isInvalid() && GTHelperPlayer.doesPlayerHaveMonkeyWrench(player);
 	}
 
 	@Override
@@ -193,10 +202,54 @@ public class GTTilePipeItemBase extends GTTilePipeBase implements IItemContainer
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
-		return true;
+		return GTHelperPlayer.doesPlayerHaveMonkeyWrench(player);
 	}
 
 	@Override
 	public void onGuiClosed(EntityPlayer player) {
+	}
+
+	@Override
+	public void update() {
+		// if (world.getTotalWorldTime() % 20 == 0) {
+		if (this.getStackInSlot(0).isEmpty()) {
+			return;
+		}
+		for (EnumFacing side : this.connection) {
+			BlockPos sidePos = this.pos.offset(side);
+			if (world.isBlockLoaded(sidePos) && side != lastIn) {
+				TileEntity tile = world.getTileEntity(sidePos);
+				// temp for testing with hoppers without returning
+				if (tile instanceof TileEntityHopper) {
+					continue;
+				}
+				IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
+				if (slave != null) {
+					int added = slave.addItem(this.getStackInSlot(0).copy(), side.getOpposite(), true).getCount();
+					if (added > 0) {
+						// GTMod.logger.info("Pipe pushed: " + added + " to " + side.toString());
+						this.getStackInSlot(0).shrink(added);
+						if (tile instanceof GTTilePipeItemBase) {
+							((GTTilePipeItemBase) tile).lastIn = side.getOpposite();
+						}
+						break;
+					}
+				}
+			}
+		}
+		// }
+	}
+
+	@Override
+	public boolean canDebugWithMagnifyingGlass() {
+		return true;
+	}
+
+	@Override
+	public String[] debugInfo() {
+		ItemStack stack = this.getStackInSlot(0).copy();
+		String in = this.lastIn != null ? this.lastIn.toString() : "Null";
+		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
+		return new String[] { itemName, "Last In: " + in };
 	}
 }

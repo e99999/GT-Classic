@@ -73,7 +73,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase
 
 	@Override
 	public boolean canUpdate() {
-		return true;
+		return this.isSimulating();
 	}
 
 	@Override
