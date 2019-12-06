@@ -120,6 +120,20 @@ public class GTMaterial {
 		return (mask & flag.getMask()) != 0;
 	}
 
+	public GTMaterial addFlags(GTMaterialFlag... flags){
+		for (GTMaterialFlag flag : flags) {
+			if (!this.hasFlag(flag)){
+				mask |= flag.getMask();
+			}
+		}
+		return this;
+	}
+
+	public GTMaterial setSmeltable(boolean smeltable){
+		this.smeltable = smeltable;
+		return this;
+	}
+
 	/** Returns original name with upper case and special characters **/
 	public String getDisplayName() {
 		return displayName;
