@@ -21,7 +21,7 @@ public class GTBlockPipeItem extends GTBlockPipeBase {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		return new GTTilePipeItem();
+		return new GTTilePipeItemBase();
 	}
 
 	public GTItemPipeType getPipeType() {

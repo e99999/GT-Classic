@@ -68,6 +68,7 @@ tile.gtclassic.pipeitemplatinum.name=Platinum Item Pipe
 tile.gtclassic.pipefluidbronze.name=Bronze Fluid Pipe
 tile.gtclassic.pipefluidinvar.name=Invar Fluid Pipe
 tile.gtclassic.pipefluidtitanium.name=Titanium Fluid Pipe
+tile.gtclassic.pipename.name=Item Pipe
 
 #dust
 item.gtclassic.dustElectrum.name=Electrum Dust
