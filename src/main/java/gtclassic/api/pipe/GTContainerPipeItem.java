@@ -1,7 +1,7 @@
 package gtclassic.api.pipe;
 
 import gtclassic.GTMod;
-import gtclassic.api.helpers.GTHelperPlayer;
+import gtclassic.common.item.GTItemMonkeyWrench;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +17,7 @@ public class GTContainerPipeItem extends ContainerTileComponent<GTTilePipeItemBa
 		super(tile);
 		player.player.playSound(SoundEvents.BLOCK_IRON_DOOR_OPEN, 1.0F, 1.0F
 				+ (player.player.getEntityWorld().rand.nextFloat() * .1F));
-		GTHelperPlayer.useMonkeyWrench(player.player);
+		GTItemMonkeyWrench.useMonkeyWrench(player.player);
 		this.addSlotToContainer(new SlotBase(tile, 0, 80, 23));
 		this.addPlayerInventory(player);
 	}

@@ -31,7 +31,7 @@ public class GTBlockPipeFluid extends GTBlockPipeBase {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(TextFormatting.BLUE + I18n.format("Fluid Capacity:  " + this.size.getSize() + " mB/sec"));
-		//super.addInformation(stack, worldIn, tooltip, flagIn);
+		// super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
 	@Override

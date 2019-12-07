@@ -110,7 +110,7 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferLarge = registerBlock(new GTBlockMachineDirectionable("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
-	//Pipes are here for now until they are done via iteration
+	// Pipes are here for now until they are done via iteration
 	public static final GTBlockPipeBase pipeConstantan = registerBlock(new GTBlockPipeItem(GTMaterial.Constantan, GTItemPipeType.NORMAL, GTLang.PIPE_ITEM_CONSTANTAN));
 	public static final GTBlockPipeBase pipeLargeConstantan = registerBlock(new GTBlockPipeItem(GTMaterial.Constantan, GTItemPipeType.LARGE, GTLang.PIPE_ITEM_CONSTANTAN));
 	public static final GTBlockPipeBase pipeElectrum = registerBlock(new GTBlockPipeItem(GTMaterial.Electrum, GTItemPipeType.NORMAL, GTLang.PIPE_ITEM_ELECTRUM));

@@ -35,7 +35,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase
 		if (tile instanceof GTTilePipeFluidBase) {
 			return true;
 		}
-		return tile.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, dir);
+		return !this.pipemode && tile.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, dir);
 	}
 
 	public void onTankChanged(IFluidTank tank) {

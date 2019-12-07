@@ -1,11 +1,8 @@
 package gtclassic.api.helpers;
 
-import gtclassic.api.interfaces.IGTMonkeyWrenchItem;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.util.EnumHand;
 
 public class GTHelperPlayer {
 
@@ -26,20 +23,6 @@ public class GTHelperPlayer {
 			}
 		}
 		return true;
-	}
-
-	public static EnumHand doesPlayerHaveMonkeyWrench(EntityPlayer player) {
-		if (player.getHeldItemMainhand().getItem() instanceof IGTMonkeyWrenchItem) {
-			return EnumHand.MAIN_HAND;
-		}
-		return null;
-	}
-
-	public static void useMonkeyWrench(EntityPlayer player) {
-		Item itemMain = player.getHeldItemMainhand().getItem();
-		if (itemMain instanceof IGTMonkeyWrenchItem) {
-			((IGTMonkeyWrenchItem) itemMain).onUse(player);
-		}
 	}
 
 	/**

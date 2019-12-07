@@ -3,9 +3,9 @@ package gtclassic.api.pipe;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.api.helpers.GTHelperPlayer;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTLang;
+import gtclassic.common.item.GTItemMonkeyWrench;
 import ic2.core.RotationList;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
@@ -26,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
@@ -68,7 +69,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 		if (tile instanceof GTTilePipeItemBase) {
 			return true;
 		}
-		return tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir);
+		return !this.pipemode && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir);
 	}
 
 	@Override
@@ -186,7 +187,8 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return !this.isInvalid() && GTHelperPlayer.doesPlayerHaveMonkeyWrench(player) != null;
+		return !this.isInvalid() && GTItemMonkeyWrench.doesPlayerHaveMonkeyWrench(player)
+				&& GTItemMonkeyWrench.getMode(player) == 0;
 	}
 
 	@Override
@@ -201,7 +203,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
-		return GTHelperPlayer.doesPlayerHaveMonkeyWrench(player) != null;
+		return GTItemMonkeyWrench.doesPlayerHaveMonkeyWrench(player) && GTItemMonkeyWrench.getMode(player) == 0;
 	}
 
 	@Override
@@ -219,6 +221,9 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 				if (world.isBlockLoaded(sidePos) && side != lastIn) {
 					TileEntity tile = world.getTileEntity(sidePos);
 					if (this.restrict && !(tile instanceof GTTilePipeItemBase)) {
+						continue;
+					}
+					if (side == EnumFacing.UP && tile instanceof TileEntityHopper) {
 						continue;
 					}
 					IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);

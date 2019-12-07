@@ -36,21 +36,21 @@ public class GTTilePipeFluid {
 			super(12800);
 		}
 	}
-	
+
 	public static class GTTileFluidPipeMax1 extends GTTilePipeFluidBase {
 
 		public GTTileFluidPipeMax1() {
 			super(96000);
 		}
 	}
-	
+
 	public static class GTTileFluidPipeMax2 extends GTTilePipeFluidBase {
 
 		public GTTileFluidPipeMax2() {
 			super(144000);
 		}
 	}
-	
+
 	public static class GTTileFluidPipeMax3 extends GTTilePipeFluidBase {
 
 		public GTTileFluidPipeMax3() {

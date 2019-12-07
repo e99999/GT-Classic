@@ -16,19 +16,23 @@ public class GTTilePipeBase extends TileEntityBlock {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
+	public RotationList playerconnections;
 	public EnumFacing lastIn;
 	public boolean restrict;
+	public boolean pipemode;
 
 	public GTTilePipeBase() {
 		this.connection = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
 		this.restrict = false;
+		this.pipemode = false;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.restrict = nbt.getBoolean("restrict");
+		this.pipemode = nbt.getBoolean("pipemode");
 		if (nbt.getInteger("lastIn") != -1) {
 			this.lastIn = EnumFacing.getFront(nbt.getInteger("lastIn"));
 		}
@@ -38,6 +42,7 @@ public class GTTilePipeBase extends TileEntityBlock {
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setBoolean("restrict", this.restrict);
+		nbt.setBoolean("pipemode", this.pipemode);
 		nbt.setInteger("lastIn", lastIn != null ? this.lastIn.getIndex() : -1);
 		return nbt;
 	}
@@ -85,6 +90,14 @@ public class GTTilePipeBase extends TileEntityBlock {
 		}
 	}
 
+	public void toggleConnection(EnumFacing side) {
+		if (!this.playerconnections.contains(side)) {
+			this.playerconnections.add(side);
+		} else {
+			this.playerconnections.remove(side);
+		}
+	}
+
 	/** This is what you override for different types of pipes **/
 	public boolean canConnect(TileEntity tile, EnumFacing dir) {
 		if (tile == null) {
@@ -105,7 +118,7 @@ public class GTTilePipeBase extends TileEntityBlock {
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
 	}
-	
+
 	public void toggleRestrict() {
 		this.restrict = !this.restrict;
 	}

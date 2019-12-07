@@ -94,7 +94,7 @@ public class GTRecipe {
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Invar, 3), "dustIron", "dustIron", "dustNickel");
 			/** Constantan Dust **/
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Constantan, 2), "dustCopper", "dustNickel");
-			/** Magnalium Dust**/
+			/** Magnalium Dust **/
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Magnalium, 3), "dustMagnesium", "dustAluminium", "dustAluminium");
 		}
 	}
