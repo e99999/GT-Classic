@@ -35,7 +35,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase
 		if (tile instanceof GTTilePipeFluidBase) {
 			return true;
 		}
-		return !this.pipemode && tile.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, dir);
+		return mode != 2 && tile.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, dir);
 	}
 
 	public void onTankChanged(IFluidTank tank) {
@@ -86,7 +86,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase
 			BlockPos sidePos = this.pos.offset(side);
 			if (world.isBlockLoaded(sidePos) && side != lastIn) {
 				TileEntity tile = world.getTileEntity(sidePos);
-				if (this.restrict && !(tile instanceof GTTilePipeFluidBase)) {
+				if (mode != 0 && !(tile instanceof GTTilePipeFluidBase)) {
 					continue;
 				}
 				IFluidHandler fluidTile = GTHelperFluid.getFluidHandler(world, sidePos, side);
@@ -113,6 +113,6 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase
 		String fluidName = fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Empty";
 		return new String[] { fluidName,
 				"Capacity: " + this.tank.getCapacity() + "mB Total / " + this.tank.getCapacity() / 20 + " mB per Tick",
-				"Last In: " + in, "Restricted only to pipes: " + this.restrict };
+				"Last In: " + in, "Restricted only to pipes: " + this.info[this.mode] };
 	}
 }

@@ -17,22 +17,20 @@ public class GTTilePipeBase extends TileEntityBlock {
 	@NetworkField(index = 8)
 	public RotationList connection;
 	public EnumFacing lastIn;
-	public boolean restrict;
-	public boolean pipemode;
 	public int mode;
+	public String [] info = {"Flow unrestricted","Will only flow into pipes", "Will only flow and connect into pipes"};
+	
 
 	public GTTilePipeBase() {
+		this.mode = 0;
 		this.connection = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
-		this.restrict = false;
-		this.pipemode = false;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.restrict = nbt.getBoolean("restrict");
-		this.pipemode = nbt.getBoolean("pipemode");
+		this.mode = nbt.getInteger("mode");
 		if (nbt.getInteger("lastIn") != -1) {
 			this.lastIn = EnumFacing.getFront(nbt.getInteger("lastIn"));
 		}
@@ -41,8 +39,7 @@ public class GTTilePipeBase extends TileEntityBlock {
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setBoolean("restrict", this.restrict);
-		nbt.setBoolean("pipemode", this.pipemode);
+		nbt.setInteger("mode", this.mode);
 		nbt.setInteger("lastIn", lastIn != null ? this.lastIn.getIndex() : -1);
 		return nbt;
 	}
@@ -111,7 +108,11 @@ public class GTTilePipeBase extends TileEntityBlock {
 		return true;
 	}
 
-	public void toggleRestrict() {
-		this.restrict = !this.restrict;
+	public void toggleMode() {
+		if (this.mode + 1 > 2) {
+			this.mode = 0;
+			return;
+		}
+		this.mode = this.mode + 1;
 	}
 }

@@ -69,7 +69,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 		if (tile instanceof GTTilePipeItemBase) {// do color stuff here
 			return true;
 		}
-		return !this.pipemode && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir);
+		return mode != 2 && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir);
 	}
 
 	@Override
@@ -219,7 +219,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 				BlockPos sidePos = this.pos.offset(side);
 				if (world.isBlockLoaded(sidePos) && side != lastIn) {
 					TileEntity tile = world.getTileEntity(sidePos);
-					if (this.restrict && !(tile instanceof GTTilePipeItemBase)) {
+					if (mode != 0 && !(tile instanceof GTTilePipeItemBase)) {
 						continue;
 					}
 					if (side == EnumFacing.UP && tile instanceof TileEntityHopper) {
@@ -252,6 +252,6 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 		ItemStack stack = this.getStackInSlot(0).copy();
 		String in = this.lastIn != null ? this.lastIn.toString() : "Null";
 		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
-		return new String[] { itemName, "Last In: " + in, "Restricted only to pipes: " + this.restrict };
+		return new String[] { itemName, "Last In: " + in, this.info[this.mode] };
 	}
 }
