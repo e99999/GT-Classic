@@ -24,6 +24,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 	private IC2Tank tank;
 
 	public GTTilePipeFluidBase(int capacity) {
+		super(1);
 		this.tank = new IC2Tank(capacity);
 		this.tank.addListener(this);
 		this.addGuiFields("tank");

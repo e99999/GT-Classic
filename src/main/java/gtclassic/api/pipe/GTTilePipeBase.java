@@ -45,11 +45,11 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	public NonNullList<ItemStack> inventory;
 	public int slotCount;
 
-	public GTTilePipeBase() {
+	public GTTilePipeBase(int slots) {
 		this.mode = 0;
 		this.connection = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
-		this.slotCount = 1;
+		this.slotCount = slots;
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
 		this.addSlots(this.handler);
 		this.handler.validateSlots();

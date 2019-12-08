@@ -17,7 +17,7 @@ import gtclassic.api.pipe.GTPipeTypes.GTFluidPipeSize;
 import gtclassic.api.pipe.GTPipeTypes.GTFluidPipeType;
 import gtclassic.api.pipe.GTPipeTypes.GTItemPipeType;
 import gtclassic.api.pipe.GTTilePipeFluid;
-import gtclassic.api.pipe.GTTilePipeItemBase;
+import gtclassic.api.pipe.GTTilePipeItem;
 import gtclassic.common.block.GTBlockCasing;
 import gtclassic.common.block.GTBlockDrum;
 import gtclassic.common.block.GTBlockLightSource;
@@ -199,7 +199,8 @@ public class GTBlocks {
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
-		registerUtil(GTTilePipeItemBase.class, "ItemPipe");
+		registerUtil(GTTilePipeItem.GTTilePipeItemSmall.class, "SmallItemPipe");
+		registerUtil(GTTilePipeItem.GTTilePipeItemLarge.class, "LargeItemPipe");
 		registerUtil(GTTilePipeFluid.GTTileFluidPipe800.class, "TinyFluidPipe");
 		registerUtil(GTTilePipeFluid.GTTileFluidPipe1600.class, "SmallFluidPipe");
 		registerUtil(GTTilePipeFluid.GTTileFluidPipe3200.class, "MedFluidPipe");

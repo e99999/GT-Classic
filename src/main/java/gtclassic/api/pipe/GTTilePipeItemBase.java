@@ -1,11 +1,9 @@
 package gtclassic.api.pipe;
 
 import gtclassic.common.GTLang;
-import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityHopper;
@@ -14,9 +12,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class GTTilePipeItemBase extends GTTilePipeBase {
+public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 
-	public GTTilePipeItemBase() {
+	public GTTilePipeItemBase(int slots) {
+		super(slots);
 	}
 
 	@Override
@@ -56,11 +55,6 @@ public class GTTilePipeItemBase extends GTTilePipeBase {
 			return (T) this.handler.getInventory(facing);
 		}
 		return super.getCapability(capability, facing);
-	}
-
-	@Override
-	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerPipeItem(player.inventory, this);
 	}
 
 	@Override

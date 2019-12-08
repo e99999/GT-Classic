@@ -21,7 +21,10 @@ public class GTBlockPipeItem extends GTBlockPipeBase {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		return new GTTilePipeItemBase();
+		if (this.type == GTItemPipeType.LARGE) {
+			return new GTTilePipeItem.GTTilePipeItemLarge();
+		}
+		return new GTTilePipeItem.GTTilePipeItemSmall();
 	}
 
 	public GTItemPipeType getPipeType() {
