@@ -66,7 +66,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 		if (tile == null) {
 			return false;
 		}
-		if (tile instanceof GTTilePipeItemBase) {
+		if (tile instanceof GTTilePipeItemBase) {// do color stuff here
 			return true;
 		}
 		return !this.pipemode && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir);
@@ -187,8 +187,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return !this.isInvalid() && GTItemMonkeyWrench.doesPlayerHaveMonkeyWrench(player)
-				&& GTItemMonkeyWrench.getMode(player) == 0;
+		return !this.isInvalid() && GTItemMonkeyWrench.doesPlayerHaveMonkeyWrench(player);
 	}
 
 	@Override
@@ -203,7 +202,7 @@ public class GTTilePipeItemBase extends GTTilePipeBase
 
 	@Override
 	public boolean hasGui(EntityPlayer player) {
-		return GTItemMonkeyWrench.doesPlayerHaveMonkeyWrench(player) && GTItemMonkeyWrench.getMode(player) == 0;
+		return GTItemMonkeyWrench.doesPlayerHaveMonkeyWrench(player);
 	}
 
 	@Override

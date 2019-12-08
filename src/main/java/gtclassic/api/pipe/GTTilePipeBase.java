@@ -16,10 +16,10 @@ public class GTTilePipeBase extends TileEntityBlock {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
-	public RotationList playerconnections;
 	public EnumFacing lastIn;
 	public boolean restrict;
 	public boolean pipemode;
+	public int mode;
 
 	public GTTilePipeBase() {
 		this.connection = RotationList.EMPTY;
@@ -87,14 +87,6 @@ public class GTTilePipeBase extends TileEntityBlock {
 				this.connection = newList;
 				this.getNetwork().updateTileEntityField(this, "connection");
 			}
-		}
-	}
-
-	public void toggleConnection(EnumFacing side) {
-		if (!this.playerconnections.contains(side)) {
-			this.playerconnections.add(side);
-		} else {
-			this.playerconnections.remove(side);
 		}
 	}
 
