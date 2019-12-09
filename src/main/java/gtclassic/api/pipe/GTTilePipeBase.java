@@ -210,7 +210,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	
 	public void updateIdle() {
 		this.idle = idle + 10;
-		if (this.idle >= 600){
+		if (this.idle >= 100){
 			this.blacklist = RotationList.EMPTY;
 			this.idle = 0;
 		}

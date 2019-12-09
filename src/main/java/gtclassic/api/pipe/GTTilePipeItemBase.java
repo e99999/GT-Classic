@@ -115,6 +115,6 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 	public String[] debugInfo() {
 		ItemStack stack = this.getStackInSlot(0).copy();
 		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
-		return new String[] { itemName, this.info[this.mode], "Time Idle: " + this.idle / 20 + "/30 Seconds" };
+		return new String[] { itemName, this.info[this.mode], "Time Idle: " + this.idle / 20 + "/5 Seconds" };
 	}
 }

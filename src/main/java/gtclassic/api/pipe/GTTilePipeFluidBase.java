@@ -71,7 +71,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && this.connection.contains(facing) ? true
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true
 				: super.hasCapability(capability, facing);
 	}
 
@@ -121,6 +121,6 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 		String fluidName = fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Empty";
 		return new String[] { fluidName,
 				"Capacity: " + this.tank.getCapacity() + "mB Total / " + this.tank.getCapacity() / 20 + " mB per Tick",
-				"Restricted only to pipes: " + this.info[this.mode], "Time Idle: " + this.idle / 20 + "/30 Seconds" };
+				"Restricted only to pipes: " + this.info[this.mode], "Time Idle: " + this.idle / 20 + "/5 Seconds" };
 	}
 }
