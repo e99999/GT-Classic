@@ -71,13 +71,13 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY  && this.connection.contains(facing)? true
 				: super.hasCapability(capability, facing);
 	}
 
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && this.connection.contains(facing)
 				? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.tank)
 				: super.getCapability(capability, facing);
 	}

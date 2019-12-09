@@ -8,7 +8,6 @@ import java.util.List;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.material.GTMaterial;
 import ic2.core.block.base.BlockMultiID;
-import ic2.core.block.wiring.tile.TileEntityCable;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.platform.textures.obj.ICustomModeledBlock;

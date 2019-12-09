@@ -40,6 +40,9 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 			if (getHandler() == null) {
 				return false;
 			}
+			if (!this.connection.contains(facing)){
+				return false;
+			}
 			return this.handler.hasInventory(facing);
 		}
 		return super.hasCapability(capability, facing);
@@ -52,7 +55,10 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 			if (getHandler() == null) {
 				return null;
 			}
-			return (T) this.handler.getInventory(facing);
+			if (!this.connection.contains(facing)){
+				return null;
+			}
+			return (T) this.handler.getInventory(facing) ;
 		}
 		return super.getCapability(capability, facing);
 	}
