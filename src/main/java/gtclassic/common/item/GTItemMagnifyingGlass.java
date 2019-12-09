@@ -2,6 +2,7 @@ package gtclassic.common.item;
 
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
+import gtclassic.api.pipe.GTTilePipeBase;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.IC2;
 import net.minecraft.block.state.IBlockState;
@@ -30,7 +31,7 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 			return EnumActionResult.PASS;
 		}
 		world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-		IC2.platform.messagePlayer(player, state.getBlock().getLocalizedName());
+		IC2.platform.messagePlayer(player, "---" + state.getBlock().getLocalizedName() + "---");
 		if (tileEntity instanceof IProgressMachine) {
 			IProgressMachine progress = (IProgressMachine) tileEntity;
 			IC2.platform.messagePlayer(player, "Progress: "
@@ -48,6 +49,16 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 				}
 			}
 		}
+		if (tileEntity instanceof GTTilePipeBase) {
+			GTTilePipeBase pipe = (GTTilePipeBase) tileEntity;
+			if (pipe.blacklist.isEmpty()) {
+				IC2.platform.messagePlayer(player, "Export Blacklist is empty");
+			}
+			for (EnumFacing facing : pipe.blacklist) {
+				IC2.platform.messagePlayer(player, "Will not export " + facing.toString().toUpperCase());
+			}
+		}
+		IC2.platform.messagePlayer(player, "You are facing: " + GTItemCreativeScanner.getPlayerDirection(player, side).toString().toUpperCase());
 		return EnumActionResult.SUCCESS;
 	}
 }

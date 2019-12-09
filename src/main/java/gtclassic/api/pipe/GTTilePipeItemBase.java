@@ -57,15 +57,26 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 		return super.getCapability(capability, facing);
 	}
 
+	public boolean isEmpty() {
+		int empty = 0;
+		for (int j = 0; j < this.inventory.size(); ++j) {
+			if (this.inventory.get(j).isEmpty()) {
+				empty = empty + 1;
+			}
+		}
+		return empty == this.inventory.size();
+	}
+
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 5 == 0) {
-			if (this.getStackInSlot(0).isEmpty()) {
+		if (world.getTotalWorldTime() % 10 == 0) {
+			this.updateIdle();
+			if (this.isEmpty()) {
 				return;
 			}
 			for (EnumFacing side : this.connection) {
 				BlockPos sidePos = this.pos.offset(side);
-				if (world.isBlockLoaded(sidePos) && side != lastIn) {
+				if (world.isBlockLoaded(sidePos) && !blacklist.contains(side)) {
 					TileEntity tile = world.getTileEntity(sidePos);
 					if (mode != 0 && !(tile instanceof GTTilePipeItemBase)) {
 						continue;
@@ -80,8 +91,10 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 							if (added > 0) {
 								// GTMod.logger.info("Pipe pushed: " + added + " to " + side.toString());
 								this.getStackInSlot(i).shrink(added);
+								this.idle = 0;
 								if (tile instanceof GTTilePipeItemBase) {
-									((GTTilePipeItemBase) tile).lastIn = side.getOpposite();
+									GTTilePipeItemBase pipe = (GTTilePipeItemBase) tile;
+									pipe.blacklist = pipe.blacklist.add(side.getOpposite());
 								}
 								break;
 							}
@@ -95,8 +108,7 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 	@Override
 	public String[] debugInfo() {
 		ItemStack stack = this.getStackInSlot(0).copy();
-		String in = this.lastIn != null ? this.lastIn.toString() : "Null";
 		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
-		return new String[] { itemName, "Last In: " + in, this.info[this.mode] };
+		return new String[] { itemName, this.info[this.mode], "Time Idle: " + this.idle / 20 + "/30 Seconds" };
 	}
 }

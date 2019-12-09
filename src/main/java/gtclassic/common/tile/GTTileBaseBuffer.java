@@ -2,6 +2,7 @@ package gtclassic.common.tile;
 
 import java.util.List;
 
+import gtclassic.api.pipe.GTTilePipeBase;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -18,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
@@ -213,5 +215,13 @@ public class GTTileBaseBuffer extends TileEntityMachine
 			}
 		}
 		return list;
+	}
+
+	public static void tryBlacklistPipe(GTTileBaseBuffer buffer, EnumFacing side) {
+		TileEntity tile = buffer.getWorld().getTileEntity(buffer.pos.offset(side));
+		if (tile instanceof GTTilePipeBase) {
+			GTTilePipeBase pipe = (GTTilePipeBase) tile;
+			pipe.blacklist = pipe.blacklist.add(side.getOpposite());
+		}
 	}
 }

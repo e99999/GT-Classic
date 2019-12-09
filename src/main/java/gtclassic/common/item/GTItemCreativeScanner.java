@@ -6,6 +6,7 @@ import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
+import gtclassic.api.pipe.GTTilePipeBase;
 import gtclassic.api.tile.GTTileBaseMachine;
 import gtclassic.common.tile.GTTileBaseBuffer;
 import gtclassic.common.tile.GTTileDrum;
@@ -297,7 +298,24 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 					IC2.platform.messagePlayer(player, data);
 				}
 			}
+			if (tileEntity instanceof GTTilePipeBase) {
+				GTTilePipeBase pipe = (GTTilePipeBase) tileEntity;
+				if (pipe.blacklist.isEmpty()) {
+					IC2.platform.messagePlayer(player, "Export Blacklist is empty");
+				}
+				for (EnumFacing facing : pipe.blacklist) {
+					IC2.platform.messagePlayer(player, "Will not export " + facing.toString().toUpperCase());
+				}
+			}
+			IC2.platform.messagePlayer(player, "You are facing: " + getPlayerDirection(player, side).toString().toUpperCase());
 			return EnumActionResult.SUCCESS;
 		}
+	}
+	
+	public static EnumFacing getPlayerDirection(EntityPlayer player, EnumFacing side) {
+		if (side == EnumFacing.DOWN || side == EnumFacing.UP) {
+			return side.getOpposite();
+		}
+		return player.getHorizontalFacing();
 	}
 }

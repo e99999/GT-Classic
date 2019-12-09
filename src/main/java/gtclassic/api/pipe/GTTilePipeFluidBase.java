@@ -88,22 +88,27 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 
 	@Override
 	public void update() {
-		if (this.tank.getFluid() == null) {
-			return;
-		}
-		for (EnumFacing side : this.connection.getRandomIterator()) {
-			BlockPos sidePos = this.pos.offset(side);
-			if (world.isBlockLoaded(sidePos) && side != lastIn) {
-				TileEntity tile = world.getTileEntity(sidePos);
-				if (mode != 0 && !(tile instanceof GTTilePipeFluidBase)) {
-					continue;
-				}
-				IFluidHandler fluidTile = GTHelperFluid.getFluidHandler(world, sidePos, side);
-				boolean canExport = fluidTile != null && this.tank.getFluid() != null;
-				if (canExport && FluidUtil.tryFluidTransfer(fluidTile, this.tank, this.tank.getCapacity()
-						/ 20, true) != null) {
-					if (tile instanceof GTTilePipeFluidBase) {
-						((GTTilePipeFluidBase) tile).lastIn = side.getOpposite();
+		if (world.getTotalWorldTime() % 10 == 0) {
+			this.updateIdle();
+			if (this.tank.getFluid() == null) {
+				return;
+			}
+			for (EnumFacing side : this.connection.getRandomIterator()) {
+				BlockPos sidePos = this.pos.offset(side);
+				if (world.isBlockLoaded(sidePos) && !blacklist.contains(side)) {
+					TileEntity tile = world.getTileEntity(sidePos);
+					if (mode != 0 && !(tile instanceof GTTilePipeFluidBase)) {
+						continue;
+					}
+					IFluidHandler fluidTile = GTHelperFluid.getFluidHandler(world, sidePos, side);
+					boolean canExport = fluidTile != null && this.tank.getFluid() != null;
+					if (canExport && FluidUtil.tryFluidTransfer(fluidTile, this.tank, this.tank.getCapacity()
+							/ 2, true) != null) {
+						this.idle = 0;
+						if (tile instanceof GTTilePipeFluidBase) {
+							GTTilePipeFluidBase pipe = (GTTilePipeFluidBase) tile;
+							pipe.blacklist = pipe.blacklist.add(side.getOpposite());
+						}
 					}
 				}
 			}
@@ -113,10 +118,9 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 	@Override
 	public String[] debugInfo() {
 		FluidStack fluid = this.tank.getFluid();
-		String in = this.lastIn != null ? this.lastIn.toString() : "Null";
 		String fluidName = fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Empty";
 		return new String[] { fluidName,
 				"Capacity: " + this.tank.getCapacity() + "mB Total / " + this.tank.getCapacity() / 20 + " mB per Tick",
-				"Last In: " + in, "Restricted only to pipes: " + this.info[this.mode] };
+				"Restricted only to pipes: " + this.info[this.mode], "Time Idle: " + this.idle / 20 + "/30 Seconds" };
 	}
 }

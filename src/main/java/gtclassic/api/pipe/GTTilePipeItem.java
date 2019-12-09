@@ -10,19 +10,19 @@ public class GTTilePipeItem {
 		public GTTilePipeItemSmall() {
 			super(1);
 		}
-		
+
 		@Override
 		public ContainerIC2 getGuiContainer(EntityPlayer player) {
 			return new GTContainerPipeItem(player.inventory, this);
 		}
 	}
-	
+
 	public static class GTTilePipeItemLarge extends GTTilePipeItemBase {
 
 		public GTTilePipeItemLarge() {
 			super(4);
 		}
-		
+
 		@Override
 		public ContainerIC2 getGuiContainer(EntityPlayer player) {
 			return new GTContainerPipeItemLarge(player.inventory, this);

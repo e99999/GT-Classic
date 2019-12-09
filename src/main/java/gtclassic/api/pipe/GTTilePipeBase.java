@@ -37,17 +37,19 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 
 	@NetworkField(index = 8)
 	public RotationList connection;
-	public EnumFacing lastIn;
+	public RotationList blacklist;
 	public int mode;
-	public String[] info = { "Flow unrestricted", "Will only flow into pipes",
-			"Will only flow and connect into pipes" };
+	public int idle;
 	protected InventoryHandler handler = new InventoryHandler(this);
 	public NonNullList<ItemStack> inventory;
 	public int slotCount;
+	public String[] info = { "Flow unrestricted", "Will only flow into pipes", "Will only flow and connect to pipes" };
 
 	public GTTilePipeBase(int slots) {
 		this.mode = 0;
+		this.idle = 0;
 		this.connection = RotationList.EMPTY;
+		this.blacklist = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
 		this.slotCount = slots;
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
@@ -80,9 +82,8 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.mode = nbt.getInteger("mode");
-		if (nbt.getInteger("lastIn") != -1) {
-			this.lastIn = EnumFacing.getFront(nbt.getInteger("lastIn"));
-		}
+		this.idle = nbt.getInteger("idle");
+		this.blacklist = RotationList.ofNumber(nbt.getByte("Blacklist"));
 		this.handler.readFromNBT(nbt.getCompoundTag("HandlerNBT"));
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
 		NBTTagList list = nbt.getTagList("Items", 10);
@@ -99,7 +100,8 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("mode", this.mode);
-		nbt.setInteger("lastIn", lastIn != null ? this.lastIn.getIndex() : -1);
+		nbt.setInteger("idle", this.idle);
+		nbt.setByte("Blacklist", (byte) this.blacklist.getCode());
 		this.handler.writeToNBT(this.getTag(nbt, "HandlerNBT"));
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.inventory.size(); ++i) {
@@ -204,6 +206,14 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 			return;
 		}
 		this.mode = this.mode + 1;
+	}
+	
+	public void updateIdle() {
+		this.idle = idle + 10;
+		if (this.idle >= 600){
+			this.blacklist = RotationList.EMPTY;
+			this.idle = 0;
+		}
 	}
 
 	@Override

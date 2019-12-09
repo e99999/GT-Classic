@@ -61,7 +61,7 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 20 == 0) {
+		if (world.getTotalWorldTime() % 10 == 0) {
 			tryMoveItems();
 		}
 	}
@@ -76,7 +76,6 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 		return world.getTileEntity(dir.forward(1).asBlockPos());
 	}
 
-	@SuppressWarnings("static-access")
 	public void tryMoveItems() {
 		IItemTransporter slave = TransporterManager.manager.getTransporter(getImportTile(), true);
 		if (slave == null) {
@@ -89,6 +88,7 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 		int limit = 64;
 		for (int i = 0; i < limit; ++i) {
 			ItemStack stack = slave.removeItem(this.filter, getFacing(), 1, false);
+			tryBlacklistPipe(this, getFacing());
 			if (stack.isEmpty()) {
 				break;
 			}

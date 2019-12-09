@@ -71,7 +71,7 @@ public class GTTileBufferLarge extends GTTileBaseBuffer implements IHasGui {
 	@Override
 	public void update() {
 		super.update();
-		if (world.getTotalWorldTime() % 20 == 0) {
+		if (world.getTotalWorldTime() % 10 == 0) {
 			tryExportItems();
 		}
 	}
@@ -87,6 +87,7 @@ public class GTTileBufferLarge extends GTTileBaseBuffer implements IHasGui {
 		if (slave == null) {
 			return;
 		}
+		tryBlacklistPipe(this, getFacing());
 		IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
 		int limit = 64;
 		for (int i = 0; i < limit; ++i) {
