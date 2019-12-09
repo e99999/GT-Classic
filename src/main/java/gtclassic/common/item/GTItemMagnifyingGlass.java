@@ -58,7 +58,8 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 				IC2.platform.messagePlayer(player, "Will not export " + facing.toString().toUpperCase());
 			}
 		}
-		IC2.platform.messagePlayer(player, "You are facing: " + GTItemCreativeScanner.getPlayerDirection(player, side).toString().toUpperCase());
+		IC2.platform.messagePlayer(player, "You are facing: "
+				+ GTItemCreativeScanner.getPlayerDirection(player, side).toString().toUpperCase());
 		return EnumActionResult.SUCCESS;
 	}
 }

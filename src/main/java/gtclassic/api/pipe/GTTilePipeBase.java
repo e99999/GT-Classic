@@ -38,15 +38,15 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@NetworkField(index = 8)
 	public RotationList connection;
 	public RotationList blacklist;
-	public int mode;
+	public boolean onlyPipes;
 	public int idle;
 	protected InventoryHandler handler = new InventoryHandler(this);
 	public NonNullList<ItemStack> inventory;
 	public int slotCount;
-	public String[] info = { "Flow unrestricted", "Will only flow into pipes", "Will only flow and connect to pipes" };
+	public static final int TICK_RATE = 10;
 
 	public GTTilePipeBase(int slots) {
-		this.mode = 0;
+		this.onlyPipes = false;
 		this.idle = 0;
 		this.connection = RotationList.EMPTY;
 		this.blacklist = RotationList.EMPTY;
@@ -81,7 +81,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.mode = nbt.getInteger("mode");
+		this.onlyPipes = nbt.getBoolean("onlyPipes");
 		this.idle = nbt.getInteger("idle");
 		this.blacklist = RotationList.ofNumber(nbt.getByte("Blacklist"));
 		this.handler.readFromNBT(nbt.getCompoundTag("HandlerNBT"));
@@ -99,7 +99,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("mode", this.mode);
+		nbt.setBoolean("onlyPipes", this.onlyPipes);
 		nbt.setInteger("idle", this.idle);
 		nbt.setByte("Blacklist", (byte) this.blacklist.getCode());
 		this.handler.writeToNBT(this.getTag(nbt, "HandlerNBT"));
@@ -200,17 +200,27 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 		return true;
 	}
 
-	public void toggleMode() {
-		if (this.mode + 1 > 2) {
-			this.mode = 0;
-			return;
+	public abstract boolean isEmpty();
+
+	public void update() {
+		if (world.getTotalWorldTime() % TICK_RATE == 0) {
+			this.updateIdle();
+			if (isEmpty()) {
+				return;
+			}
+			onPipeTick();
 		}
-		this.mode = this.mode + 1;
 	}
-	
+
+	public abstract void onPipeTick();
+
+	public void togglePipeOnlyMode() {
+		this.onlyPipes = !this.onlyPipes;
+	}
+
 	public void updateIdle() {
-		this.idle = idle + 10;
-		if (this.idle >= 100){
+		this.idle = idle + TICK_RATE;
+		if (this.idle >= 100) {
 			this.blacklist = RotationList.EMPTY;
 			this.idle = 0;
 		}

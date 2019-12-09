@@ -28,19 +28,16 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 		if (tile == null) {
 			return false;
 		}
-		if (tile instanceof GTTilePipeItemBase) {// do color stuff here
+		if (tile instanceof GTTilePipeItemBase) {
 			return true;
 		}
-		return mode != 2 && tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir);
+		return tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir);
 	}
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			if (getHandler() == null) {
-				return false;
-			}
-			if (!this.connection.contains(facing)){
 				return false;
 			}
 			return this.handler.hasInventory(facing);
@@ -55,14 +52,12 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 			if (getHandler() == null) {
 				return null;
 			}
-			if (!this.connection.contains(facing)){
-				return null;
-			}
-			return (T) this.handler.getInventory(facing) ;
+			return (T) this.handler.getInventory(facing);
 		}
 		return super.getCapability(capability, facing);
 	}
 
+	@Override
 	public boolean isEmpty() {
 		int empty = 0;
 		for (int j = 0; j < this.inventory.size(); ++j) {
@@ -74,35 +69,27 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 	}
 
 	@Override
-	public void update() {
-		if (world.getTotalWorldTime() % 10 == 0) {
-			this.updateIdle();
-			if (this.isEmpty()) {
-				return;
-			}
-			for (EnumFacing side : this.connection) {
-				BlockPos sidePos = this.pos.offset(side);
-				if (world.isBlockLoaded(sidePos) && !blacklist.contains(side)) {
-					TileEntity tile = world.getTileEntity(sidePos);
-					if (mode != 0 && !(tile instanceof GTTilePipeItemBase)) {
-						continue;
-					}
-					if (side == EnumFacing.UP && tile instanceof TileEntityHopper) {
-						continue;
-					}
-					IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
-					if (slave != null) {
-						for (int i = 0; i < this.inventory.size(); ++i) {
-							int added = slave.addItem(this.getStackInSlot(i).copy(), side.getOpposite(), true).getCount();
-							if (added > 0) {
-								// GTMod.logger.info("Pipe pushed: " + added + " to " + side.toString());
-								this.getStackInSlot(i).shrink(added);
-								this.idle = 0;
-								if (tile instanceof GTTilePipeItemBase) {
-									GTTilePipeItemBase pipe = (GTTilePipeItemBase) tile;
-									pipe.blacklist = pipe.blacklist.add(side.getOpposite());
-								}
-								break;
+	public void onPipeTick() {
+		for (EnumFacing side : this.connection) {
+			BlockPos sidePos = this.pos.offset(side);
+			if (world.isBlockLoaded(sidePos) && !blacklist.contains(side)) {
+				TileEntity tile = world.getTileEntity(sidePos);
+				if (this.onlyPipes && !(tile instanceof GTTilePipeItemBase)) {
+					continue;
+				}
+				if (side == EnumFacing.UP && tile instanceof TileEntityHopper) {
+					continue;
+				}
+				IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
+				if (slave != null) {
+					for (int i = 0; i < this.inventory.size(); ++i) {
+						int added = slave.addItem(this.getStackInSlot(i).copy(), side.getOpposite(), true).getCount();
+						if (added > 0) {
+							this.getStackInSlot(i).shrink(added);
+							this.idle = 0;
+							if (tile instanceof GTTilePipeItemBase) {
+								GTTilePipeItemBase pipe = (GTTilePipeItemBase) tile;
+								pipe.blacklist = pipe.blacklist.add(side.getOpposite());
 							}
 						}
 					}
@@ -115,6 +102,7 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 	public String[] debugInfo() {
 		ItemStack stack = this.getStackInSlot(0).copy();
 		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
-		return new String[] { itemName, this.info[this.mode], "Time Idle: " + this.idle / 20 + "/5 Seconds" };
+		return new String[] { itemName, "Restricted only to pipes: " + this.onlyPipes,
+				"Time Idle: " + this.idle / 20 + "/5 Seconds" };
 	}
 }

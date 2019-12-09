@@ -48,11 +48,11 @@ public class GTItemMonkeyWrench extends GTItemComponent implements IGTMonkeyWren
 		TileEntity tileEntity = world.getTileEntity(pos);
 		if (player.isSneaking() && tileEntity instanceof GTTilePipeBase) {
 			GTTilePipeBase pipe = (GTTilePipeBase) tileEntity;
-			pipe.toggleMode();
+			pipe.togglePipeOnlyMode();
 			pipe.onBlockUpdate(world.getBlockState(pos).getBlock());
 			if (IC2.platform.isSimulating()) {
 				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
-				String msg = pipe.info[pipe.mode];
+				String msg = pipe.onlyPipes ? "Will only flow into pipes" : "Will flow into any connection";
 				IC2.platform.messagePlayer(player, msg);
 			}
 			player.getHeldItem(hand).damageItem(1, player);

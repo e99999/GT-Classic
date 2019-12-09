@@ -307,11 +307,12 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 					IC2.platform.messagePlayer(player, "Will not export " + facing.toString().toUpperCase());
 				}
 			}
-			IC2.platform.messagePlayer(player, "You are facing: " + getPlayerDirection(player, side).toString().toUpperCase());
+			IC2.platform.messagePlayer(player, "You are facing: "
+					+ getPlayerDirection(player, side).toString().toUpperCase());
 			return EnumActionResult.SUCCESS;
 		}
 	}
-	
+
 	public static EnumFacing getPlayerDirection(EntityPlayer player, EnumFacing side) {
 		if (side == EnumFacing.DOWN || side == EnumFacing.UP) {
 			return side.getOpposite();
