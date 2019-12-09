@@ -95,7 +95,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 	public void onPipeTick() {
 		for (EnumFacing side : this.connection.getRandomIterator()) {
 			BlockPos sidePos = this.pos.offset(side);
-			if (world.isBlockLoaded(sidePos) && !blacklist.contains(side)) {
+			if (world.isBlockLoaded(sidePos) && !isLastRecievedFrom(side)) {
 				TileEntity tile = world.getTileEntity(sidePos);
 				if (this.onlyPipes && !(tile instanceof GTTilePipeFluidBase)) {
 					continue;
@@ -106,8 +106,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 						/ 2, true) != null) {
 					this.idle = 0;
 					if (tile instanceof GTTilePipeFluidBase) {
-						GTTilePipeFluidBase pipe = (GTTilePipeFluidBase) tile;
-						pipe.blacklist = pipe.blacklist.add(side.getOpposite());
+						((GTTilePipeFluidBase) tile).lastRecievedFrom = side.getOpposite();
 					}
 				}
 			}
@@ -118,8 +117,10 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 	public String[] debugInfo() {
 		FluidStack fluid = this.tank.getFluid();
 		String fluidName = fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Empty";
+		String in = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
 		return new String[] { fluidName,
 				"Capacity: " + this.tank.getCapacity() + "mB Total / " + this.tank.getCapacity() / 20 + " mB per Tick",
-				"Restricted only to pipes: " + this.onlyPipes, "Time Idle: " + this.idle / 20 + "/5 Seconds" };
+				"Restricted only to pipes: " + this.onlyPipes, "Time Idle: " + this.idle / 20 + "/5 Seconds",
+				"Last Recieved From: " + in };
 	}
 }

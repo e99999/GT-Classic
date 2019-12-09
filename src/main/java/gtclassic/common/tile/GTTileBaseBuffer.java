@@ -220,8 +220,7 @@ public class GTTileBaseBuffer extends TileEntityMachine
 	public static void tryBlacklistPipe(GTTileBaseBuffer buffer, EnumFacing side) {
 		TileEntity tile = buffer.getWorld().getTileEntity(buffer.pos.offset(side));
 		if (tile instanceof GTTilePipeBase) {
-			GTTilePipeBase pipe = (GTTilePipeBase) tile;
-			pipe.blacklist = pipe.blacklist.add(side.getOpposite());
+			((GTTilePipeBase) tile).lastRecievedFrom = side.getOpposite();
 		}
 	}
 }

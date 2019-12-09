@@ -37,7 +37,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 
 	@NetworkField(index = 8)
 	public RotationList connection;
-	public RotationList blacklist;
+	public EnumFacing lastRecievedFrom;
 	public boolean onlyPipes;
 	public int idle;
 	protected InventoryHandler handler = new InventoryHandler(this);
@@ -49,7 +49,6 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 		this.onlyPipes = false;
 		this.idle = 0;
 		this.connection = RotationList.EMPTY;
-		this.blacklist = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
 		this.slotCount = slots;
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
@@ -83,9 +82,11 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 		super.readFromNBT(nbt);
 		this.onlyPipes = nbt.getBoolean("onlyPipes");
 		this.idle = nbt.getInteger("idle");
-		this.blacklist = RotationList.ofNumber(nbt.getByte("Blacklist"));
 		this.handler.readFromNBT(nbt.getCompoundTag("HandlerNBT"));
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
+		if (nbt.getInteger("lastRecievedFrom") != -1) {
+			this.lastRecievedFrom = EnumFacing.getFront(nbt.getInteger("lastRecievedFrom"));
+		}
 		NBTTagList list = nbt.getTagList("Items", 10);
 		for (int i = 0; i < list.tagCount(); ++i) {
 			NBTTagCompound data = list.getCompoundTagAt(i);
@@ -101,7 +102,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 		super.writeToNBT(nbt);
 		nbt.setBoolean("onlyPipes", this.onlyPipes);
 		nbt.setInteger("idle", this.idle);
-		nbt.setByte("Blacklist", (byte) this.blacklist.getCode());
+		nbt.setInteger("lastRecievedFrom", lastRecievedFrom != null ? this.lastRecievedFrom.getIndex() : -1);
 		this.handler.writeToNBT(this.getTag(nbt, "HandlerNBT"));
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.inventory.size(); ++i) {
@@ -221,9 +222,16 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	public void updateIdle() {
 		this.idle = idle + TICK_RATE;
 		if (this.idle >= 100) {
-			this.blacklist = RotationList.EMPTY;
+			this.lastRecievedFrom = null;
 			this.idle = 0;
 		}
+	}
+
+	public boolean isLastRecievedFrom(EnumFacing side) {
+		if (lastRecievedFrom == null) {
+			return false;
+		}
+		return side == lastRecievedFrom;
 	}
 
 	@Override

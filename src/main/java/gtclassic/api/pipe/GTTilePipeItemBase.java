@@ -72,12 +72,11 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 	public void onPipeTick() {
 		for (EnumFacing side : this.connection) {
 			BlockPos sidePos = this.pos.offset(side);
-			if (world.isBlockLoaded(sidePos) && !blacklist.contains(side)) {
+			if (world.isBlockLoaded(sidePos) && !isLastRecievedFrom(side)) {
 				TileEntity tile = world.getTileEntity(sidePos);
-				if (this.onlyPipes && !(tile instanceof GTTilePipeItemBase)) {
-					continue;
-				}
-				if (side == EnumFacing.UP && tile instanceof TileEntityHopper) {
+				boolean onlyPipesAndNotPipe = this.onlyPipes && !(tile instanceof GTTilePipeItemBase);
+				boolean upwardHopper = side == EnumFacing.UP && tile instanceof TileEntityHopper;
+				if (onlyPipesAndNotPipe || upwardHopper) {
 					continue;
 				}
 				IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
@@ -88,8 +87,7 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 							this.getStackInSlot(i).shrink(added);
 							this.idle = 0;
 							if (tile instanceof GTTilePipeItemBase) {
-								GTTilePipeItemBase pipe = (GTTilePipeItemBase) tile;
-								pipe.blacklist = pipe.blacklist.add(side.getOpposite());
+								((GTTilePipeItemBase) tile).lastRecievedFrom = side.getOpposite();
 							}
 						}
 					}
@@ -101,8 +99,9 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 	@Override
 	public String[] debugInfo() {
 		ItemStack stack = this.getStackInSlot(0).copy();
+		String in = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
 		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
 		return new String[] { itemName, "Restricted only to pipes: " + this.onlyPipes,
-				"Time Idle: " + this.idle / 20 + "/5 Seconds" };
+				"Time Idle: " + this.idle / 20 + "/5 Seconds", "Last Recieved From: " + in };
 	}
 }

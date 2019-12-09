@@ -2,7 +2,6 @@ package gtclassic.common.item;
 
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
-import gtclassic.api.pipe.GTTilePipeBase;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.IC2;
 import net.minecraft.block.state.IBlockState;
@@ -49,17 +48,7 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 				}
 			}
 		}
-		if (tileEntity instanceof GTTilePipeBase) {
-			GTTilePipeBase pipe = (GTTilePipeBase) tileEntity;
-			if (pipe.blacklist.isEmpty()) {
-				IC2.platform.messagePlayer(player, "Export Blacklist is empty");
-			}
-			for (EnumFacing facing : pipe.blacklist) {
-				IC2.platform.messagePlayer(player, "Will not export " + facing.toString().toUpperCase());
-			}
-		}
-		IC2.platform.messagePlayer(player, "You are facing: "
-				+ GTItemCreativeScanner.getPlayerDirection(player, side).toString().toUpperCase());
+		IC2.platform.messagePlayer(player, "You are facing: " + player.getHorizontalFacing().toString().toUpperCase());
 		return EnumActionResult.SUCCESS;
 	}
 }

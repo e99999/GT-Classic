@@ -2,7 +2,6 @@ package gtclassic.common.item;
 
 import java.util.List;
 
-import gtclassic.api.interfaces.IGTMonkeyWrenchItem;
 import gtclassic.api.pipe.GTTilePipeBase;
 import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -17,7 +16,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GTItemMonkeyWrench extends GTItemComponent implements IGTMonkeyWrenchItem {
+public class GTItemMonkeyWrench extends GTItemComponent {
 
 	public GTItemMonkeyWrench() {
 		super("monkey_wrench", 5, 2);
@@ -49,7 +48,6 @@ public class GTItemMonkeyWrench extends GTItemComponent implements IGTMonkeyWren
 		if (player.isSneaking() && tileEntity instanceof GTTilePipeBase) {
 			GTTilePipeBase pipe = (GTTilePipeBase) tileEntity;
 			pipe.togglePipeOnlyMode();
-			pipe.onBlockUpdate(world.getBlockState(pos).getBlock());
 			if (IC2.platform.isSimulating()) {
 				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
 				String msg = pipe.onlyPipes ? "Will only flow into pipes" : "Will flow into any connection";
@@ -62,16 +60,10 @@ public class GTItemMonkeyWrench extends GTItemComponent implements IGTMonkeyWren
 	}
 
 	@Override
-	public boolean isMonkeyWrench() {
-		return true;
-	}
-
-	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
 		return false;
 	}
 
-	@Override
 	public void onUse(EntityPlayer player) {
 		if (doesPlayerHaveMonkeyWrench(player)) {
 			player.getHeldItemMainhand().damageItem(1, player);
@@ -86,14 +78,14 @@ public class GTItemMonkeyWrench extends GTItemComponent implements IGTMonkeyWren
 	 * @return - returns true if player has monkey wrench in their main hand
 	 */
 	public static boolean doesPlayerHaveMonkeyWrench(EntityPlayer player) {
-		return player.getHeldItemMainhand().getItem() instanceof IGTMonkeyWrenchItem;
+		return player.getHeldItemMainhand().getItem() instanceof GTItemMonkeyWrench;
 	}
 
 	/** public static helper to use a monkey wrench **/
 	public static void useMonkeyWrench(EntityPlayer player) {
 		Item itemMain = player.getHeldItemMainhand().getItem();
-		if (itemMain instanceof IGTMonkeyWrenchItem) {
-			((IGTMonkeyWrenchItem) itemMain).onUse(player);
+		if (itemMain instanceof GTItemMonkeyWrench) {
+			((GTItemMonkeyWrench) itemMain).onUse(player);
 		}
 	}
 }
