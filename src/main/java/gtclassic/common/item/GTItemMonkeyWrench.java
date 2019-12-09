@@ -2,7 +2,7 @@ package gtclassic.common.item;
 
 import java.util.List;
 
-import gtclassic.api.pipe.GTTilePipeBase;
+import gtclassic.api.interfaces.IGTMonkeyWrenchTile;
 import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.client.util.ITooltipFlag;
@@ -39,22 +39,15 @@ public class GTItemMonkeyWrench extends GTItemComponent {
 	@Override
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
 			float hitY, float hitZ, EnumHand hand) {
-		return doMonkeyWrenchThings(player, world, pos, side, hitZ, hitZ, hitZ, hand);
-	}
-
-	public static EnumActionResult doMonkeyWrenchThings(EntityPlayer player, World world, BlockPos pos, EnumFacing side,
-			float hitX, float hitY, float hitZ, EnumHand hand) {
 		TileEntity tileEntity = world.getTileEntity(pos);
-		if (player.isSneaking() && tileEntity instanceof GTTilePipeBase) {
-			GTTilePipeBase pipe = (GTTilePipeBase) tileEntity;
-			pipe.togglePipeOnlyMode();
-			if (IC2.platform.isSimulating()) {
-				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
-				String msg = pipe.onlyPipes ? "Will only flow into pipes" : "Will flow into any connection";
-				IC2.platform.messagePlayer(player, msg);
+		if (tileEntity instanceof IGTMonkeyWrenchTile) {
+			if (((IGTMonkeyWrenchTile) tileEntity).onMonkeyWrench(player, world, pos, side, hand)) {
+				if (IC2.platform.isSimulating()) {
+					IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+				}
+				player.getHeldItem(hand).damageItem(1, player);
+				return EnumActionResult.SUCCESS;
 			}
-			player.getHeldItem(hand).damageItem(1, player);
-			return EnumActionResult.SUCCESS;
 		}
 		return EnumActionResult.PASS;
 	}

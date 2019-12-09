@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import gtclassic.api.interfaces.IGTMonkeyWrenchTile;
 import gtclassic.common.item.GTItemMonkeyWrench;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.inventory.base.IHasGui;
@@ -16,6 +18,7 @@ import ic2.core.inventory.management.IHasHandler;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.misc.ItemDisplayIcon;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.math.MathUtil;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.Block;
@@ -27,13 +30,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
 
-public abstract class GTTilePipeBase extends TileEntityBlock
-		implements IHasGui, IHasInventory, IHasHandler, IItemContainer, ITickable, IGTDebuggableTile {
+public abstract class GTTilePipeBase extends TileEntityBlock implements IHasGui, IHasInventory, IHasHandler,
+		IItemContainer, ITickable, IGTDebuggableTile, IGTMonkeyWrenchTile {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
@@ -64,13 +69,8 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 		handler.registerSlotType(SlotType.Storage, array);
 	}
 
-	/** This is what you override for different types of pipes **/
-	public boolean canConnect(TileEntity tile, EnumFacing dir) {
-		if (tile == null) {
-			return false;
-		}
-		return tile instanceof GTTilePipeBase;
-	}
+	
+	public abstract boolean canConnect(TileEntity tile, EnumFacing dir);
 
 	@Override
 	public InventoryHandler getHandler() {
@@ -138,6 +138,19 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public boolean onMonkeyWrench(EntityPlayer player, World world, BlockPos pos, EnumFacing side, EnumHand hand) {
+		if (player.isSneaking()) {
+			this.togglePipeOnlyMode();
+			if (this.isSimulating()) {
+				String msg = this.onlyPipes ? "Will only flow into pipes" : "Will flow into any connection";
+				IC2.platform.messagePlayer(player, msg);
+			}
+			return true;
+		}
+		return false;
 	}
 
 	public Vec3i getConnections() {
