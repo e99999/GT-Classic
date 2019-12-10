@@ -14,8 +14,8 @@ public class GTMaterialFlag {
 	public static GTMaterialFlag SAPPHIRE = new GTMaterialFlag("_gem", 4, false, GTLang.GEM_LANG);
 	public static GTMaterialFlag FLUID = new GTMaterialFlag("_fluid", 13, true);
 	public static GTMaterialFlag GAS = new GTMaterialFlag("_gas", 13, true);
-	public static GTMaterialFlag BLOCKMETAL = new GTMaterialFlag("_block", 16, false);
-	public static GTMaterialFlag BLOCKGEM = new GTMaterialFlag("_block", 17, false);
+	public static GTMaterialFlag BLOCKMETAL = new GTMaterialFlag("_block", 16, false, GTLang.BLOCK_LANG);
+	public static GTMaterialFlag BLOCKGEM = new GTMaterialFlag("_block", 17, false, GTLang.BLOCK_LANG);
 	public static GTMaterialFlag PIPEITEM = new GTMaterialFlag("_itempipe", -1, false);
 	public static GTMaterialFlag PIPEFLUID = new GTMaterialFlag("_fluidpipe", -1, false);
 	public static GTMaterialFlag NULL = new GTMaterialFlag("", -1, false);

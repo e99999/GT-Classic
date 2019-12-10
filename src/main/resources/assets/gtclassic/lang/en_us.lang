@@ -1,18 +1,3 @@
-#blocks
-tile.gtclassic.blockElectrum.name=Block of Electrum
-tile.gtclassic.blockTitanium.name=Block of Titanium
-tile.gtclassic.blockIridium.name=Block of Iridium
-tile.gtclassic.blockTungsten.name=Block of Tungsten
-tile.gtclassic.blockSapphire.name=Block of Sapphire
-tile.gtclassic.blockChrome.name=Block of Chrome
-tile.gtclassic.blockRuby.name=Block of Ruby
-tile.gtclassic.blockAluminium.name=Block of Aluminium
-tile.gtclassic.blockPlatinum.name=Block of Platinum
-tile.gtclassic.blockThorium.name=Block of Thorium
-tile.gtclassic.blockPlutonium.name=Block of Plutonium
-tile.gtclassic.blockNickel.name=Block of Nickel
-tile.gtclassic.blockInvar.name=Block of Invar
-tile.gtclassic.blockConstantan.name=Block of Constantan
 
 #pipes
 tile.gtclassic.platinumitempipe.name=Platinum Item Pipe
@@ -89,6 +74,7 @@ tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
 dust.name=%s Dust
 ingot.name=%s Ingot
 gem.name=%s
+block.name=Block of %s
 
 
 material.Electrum.name=Electrum

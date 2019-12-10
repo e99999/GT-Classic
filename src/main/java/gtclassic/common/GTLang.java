@@ -55,4 +55,5 @@ public class GTLang {
 	public static final LocaleComp INGOT_LANG = new LangComponentHolder.TranslationComp("ingot.name");
 	public static final LocaleComp INGOT_HOT_LANG = new LangComponentHolder.TranslationComp("ingot_hot.name");
 	public static final LocaleComp GEM_LANG = new LangComponentHolder.TranslationComp("gem.name");
+	public static final LocaleComp BLOCK_LANG = new LangComponentHolder.TranslationComp("block.name");
 }
