@@ -123,14 +123,17 @@ public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener
 	@Override
 	public void update() {
 		GTHelperFluid.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
-		tryExportFluid();
+		if (world.getTotalWorldTime() % 10 == 0) {
+			tryExportFluid();
+		}
 	}
 
 	public void tryExportFluid() {
-		IFluidHandler tile = FluidUtil.getFluidHandler(world, getPos().offset(getFacing()), getFacing().getOpposite());
-		boolean canExport = tile != null && this.tank.getFluid() != null;
-		if (world.getTotalWorldTime() % 20 == 0 && canExport) {
-			FluidUtil.tryFluidTransfer(tile, this.tank, 1000, true);
+		IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, getPos().offset(getFacing()), getFacing().getOpposite());
+		boolean canExport = fluidTile != null && this.tank.getFluid() != null;
+		tryBlacklistPipe(this, getFacing());
+		if (canExport) {
+			FluidUtil.tryFluidTransfer(fluidTile, this.tank, 1000, true);
 		}
 	}
 

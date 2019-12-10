@@ -7,6 +7,11 @@ import java.util.List;
 
 import gtclassic.api.fluid.GTFluid;
 import gtclassic.api.fluid.GTFluidHandler;
+import gtclassic.api.pipe.GTBlockPipeFluid;
+import gtclassic.api.pipe.GTBlockPipeItem;
+import gtclassic.api.pipe.GTHelperPipes;
+import gtclassic.api.pipe.GTHelperPipes.GTPipeFluidCapacity;
+import gtclassic.api.pipe.GTHelperPipes.GTPipeModel;
 import gtclassic.common.GTItems;
 import ic2.api.classic.recipe.ClassicRecipes;
 import net.minecraft.block.Block;
@@ -24,6 +29,7 @@ public class GTMaterialGen {
 	public static LinkedHashMap<String, Item> itemMap = new LinkedHashMap<>();
 	public static LinkedHashMap<String, Block> blockMap = new LinkedHashMap<>();
 	private static List<GTMaterialFlag> blockFlags = new ArrayList<>();
+	private static List<GTMaterialFlag> pipeFlags = new ArrayList<>();
 	private static List<GTMaterialFlag> itemFlags = new ArrayList<>();
 	private static List<GTMaterialFlag> fluidFlags = new ArrayList<>();
 
@@ -33,6 +39,8 @@ public class GTMaterialGen {
 	public static void initFlags() {
 		blockFlags.add(GTMaterialFlag.BLOCKGEM);
 		blockFlags.add(GTMaterialFlag.BLOCKMETAL);
+		pipeFlags.add(GTMaterialFlag.PIPEITEM);
+		pipeFlags.add(GTMaterialFlag.PIPEFLUID);
 		itemFlags.add(GTMaterialFlag.DUST);
 		itemFlags.add(GTMaterialFlag.RUBY);
 		itemFlags.add(GTMaterialFlag.SAPPHIRE);
@@ -49,6 +57,11 @@ public class GTMaterialGen {
 		for (GTMaterialFlag blockFlag : blockFlags) {
 			for (GTMaterial mat : GTMaterial.values()) {
 				materialBlockUtil(mat, blockFlag);
+			}
+		}
+		for (GTMaterialFlag pipeFlag : pipeFlags) {
+			for (GTMaterial mat : GTMaterial.values()) {
+				materialPipeUtil(mat, pipeFlag);
 			}
 		}
 		for (GTMaterialFlag itemFlag : itemFlags) {
@@ -149,6 +162,24 @@ public class GTMaterialGen {
 		}
 	}
 
+	public static void materialPipeUtil(GTMaterial mat, GTMaterialFlag flag) {
+		if (mat.hasFlag(GTMaterialFlag.PIPEITEM) && flag.equals(GTMaterialFlag.PIPEITEM)) {
+			blockMap.put(mat.getName() + "_"
+					+ GTMaterialFlag.PIPEITEM.getSuffix(), new GTBlockPipeItem(mat, GTPipeModel.MED));
+			blockMap.put(mat.getName() + "_" + GTMaterialFlag.PIPEITEM.getSuffix()
+					+ "_large", new GTBlockPipeItem(mat, GTPipeModel.LARGE));
+		}
+		if (mat.hasFlag(GTMaterialFlag.PIPEFLUID) && flag.equals(GTMaterialFlag.PIPEFLUID)) {
+			GTPipeFluidCapacity[] capacity = GTHelperPipes.getPipeCapacityFromTier(mat.getTier());
+			blockMap.put(mat.getName() + "_" + GTMaterialFlag.PIPEFLUID.getSuffix()
+					+ "_small", new GTBlockPipeFluid(mat, GTPipeModel.SMALL, capacity[0]));
+			blockMap.put(mat.getName() + "_"
+					+ GTMaterialFlag.PIPEFLUID.getSuffix(), new GTBlockPipeFluid(mat, GTPipeModel.MED, capacity[1]));
+			blockMap.put(mat.getName() + "_" + GTMaterialFlag.PIPEFLUID.getSuffix()
+					+ "_large", new GTBlockPipeFluid(mat, GTPipeModel.LARGE, capacity[2]));
+		}
+	}
+
 	/**
 	 * For creating a fluid from a material directly.
 	 * 
@@ -204,6 +235,29 @@ public class GTMaterialGen {
 	/** How to get a hot ingot of any GTMaterial **/
 	public static ItemStack getHotIngot(GTMaterial mat, int count) {
 		return new ItemStack(itemMap.get(mat.getName() + "_" + GTMaterialFlag.INGOTHOT.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getItemPipe(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.PIPEITEM.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getItemPipeLarge(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.PIPEITEM.getSuffix()
+				+ "_large"), count, 0);
+	}
+
+	public static ItemStack getFluidPipeSmall(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.PIPEFLUID.getSuffix()
+				+ "_small"), count, 0);
+	}
+
+	public static ItemStack getFluidPipe(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.PIPEFLUID.getSuffix()), count, 0);
+	}
+
+	public static ItemStack getFluidPipeLarge(GTMaterial mat, int count) {
+		return new ItemStack(blockMap.get(mat.getName() + "_" + GTMaterialFlag.PIPEFLUID.getSuffix()
+				+ "_large"), count, 0);
 	}
 
 	/** How to a GTFluidTube with any GTMaterial **/

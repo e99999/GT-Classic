@@ -56,7 +56,7 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 			for (int i = 0; i < playerIn.inventory.getSizeInventory(); i++) {
 				Item item = playerIn.inventory.getStackInSlot(i).getItem();
 				if (!(item instanceof GTItemDestructoPack || item instanceof GTItemCreativeScanner
-						|| item instanceof GTItemSurvivalScanner)) {
+						|| item instanceof GTItemSurvivalScanner || item instanceof GTItemMagnifyingGlass)) {
 					playerIn.inventory.setInventorySlotContents(i, ItemStack.EMPTY);
 				}
 			}

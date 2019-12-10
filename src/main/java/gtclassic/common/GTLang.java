@@ -41,4 +41,13 @@ public class GTLang {
 	public static final LocaleComp BUFFER_LARGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferlarge");
 	public static final LocaleComp BUFFER_SMALL = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.buffersmall");
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
+	public static final LocaleComp PIPE_ITEM_CONSTANTAN = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemconstantan");
+	public static final LocaleComp PIPE_ITEM_ELECTRUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemelectrum");
+	public static final LocaleComp PIPE_ITEM_PLATINUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemplatinum");
+	public static final LocaleComp PIPE_FLUID_BRONZE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidbronze");
+	public static final LocaleComp PIPE_FLUID_INVAR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidinvar");
+	public static final LocaleComp PIPE_FLUID_TITANIUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidtitanium");
+	public static final LocaleComp PIPE_FLUID_HIGHPRESSURE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidhighpressure");
+	public static final LocaleComp ITEM_PIPE_LANG = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.itempipename");
+	public static final LocaleComp FLUID_PIPE_LANG = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.fluidpipename");
 }

@@ -14,9 +14,12 @@ public class GTMaterial {
 	static GTMaterialFlag ingot = GTMaterialFlag.INGOT;
 	static GTMaterialFlag blockMetal = GTMaterialFlag.BLOCKMETAL;
 	static GTMaterialFlag blockGem = GTMaterialFlag.BLOCKGEM;
+	static GTMaterialFlag empty = GTMaterialFlag.NULL;
 	static GTMaterialFlag[] rubyAll = { dust, gemRuby, blockGem };
 	static GTMaterialFlag[] sapphireAll = { dust, gemSapphire, blockGem };
 	static GTMaterialFlag[] metalAll = { dust, ingot, blockMetal };
+	static GTMaterialFlag[] pipeItemAll = { dust, ingot, blockMetal, GTMaterialFlag.PIPEITEM };
+	static GTMaterialFlag[] pipeFluidAll = { dust, ingot, blockMetal, GTMaterialFlag.PIPEFLUID };
 	/** Master Material Map **/
 	private static HashMap<String, GTMaterial> generatedMap = new HashMap<>();
 	/** Material Instances **/
@@ -25,21 +28,24 @@ public class GTMaterial {
 	public static final GTMaterial Bauxite = new GTMaterial("Bauxite", 200, 100, 0, dust);
 	public static final GTMaterial Basalt = new GTMaterial("Basalt", 30, 20, 20, dust);
 	public static final GTMaterial Beryllium = new GTMaterial(4, "Beryllium", 30, 80, 50, fluid);
+	public static final GTMaterial Bronze = new GTMaterial("Bronze", 1, 255, 128, 0, GTMaterialFlag.PIPEFLUID);
 	public static final GTMaterial Calcite = new GTMaterial("Calcite", 250, 230, 220, dust);
 	public static final GTMaterial Calcium = new GTMaterial(20, "Calcium", 155, 96, 80, fluid);
 	public static final GTMaterial Carbon = new GTMaterial(6, "Carbon", 0, 0, 0, dust);
 	public static final GTMaterial Chlorine = new GTMaterial(17, "Chlorine", 50, 150, 150, fluid);
 	public static final GTMaterial Chrome = new GTMaterial(24, "Chrome", 240, 210, 230, metalAll);
+	public static final GTMaterial Constantan = new GTMaterial("Constantan", 2, 227, 150, 128, pipeItemAll);
 	public static final GTMaterial Deuterium = new GTMaterial("Deuterium", 255, 255, 0, gas);
-	public static final GTMaterial Electrum = new GTMaterial("Electrum", 255, 255, 100, metalAll);
+	public static final GTMaterial Electrum = new GTMaterial("Electrum", 2, 255, 255, 100, pipeItemAll);
 	public static final GTMaterial Emerald = new GTMaterial("Emerald", 80, 255, 80, dust);
 	public static final GTMaterial EnderEye = new GTMaterial("EnderEye", 160, 250, 230, dust);
 	public static final GTMaterial EnderPearl = new GTMaterial("EnderPearl", 108, 220, 200, dust);
 	public static final GTMaterial Flint = new GTMaterial("Flint", 0, 32, 64, dust);
 	public static final GTMaterial Helium = new GTMaterial(2, "Helium", 255, 255, 0, gas);
 	public static final GTMaterial Helium3 = new GTMaterial("Helium3", 255, 255, 0, gas);
+	public static final GTMaterial HighPressure = new GTMaterial("HighPressure", Integer.MAX_VALUE, 255, 0, 0, GTMaterialFlag.PIPEFLUID);
 	public static final GTMaterial Hydrogen = new GTMaterial(1, "Hydrogen", 0, 38, 255, gas);
-	public static final GTMaterial Invar = new GTMaterial("Invar", 220, 220, 150, metalAll);
+	public static final GTMaterial Invar = new GTMaterial("Invar", 2, 220, 220, 150, pipeFluidAll);
 	public static final GTMaterial Iridium = new GTMaterial(77, "Iridium", 255, 255, 255, metalAll);
 	public static final GTMaterial Lazurite = new GTMaterial("Lazurite", 100, 120, 255, dust);
 	public static final GTMaterial Lithium = new GTMaterial(3, "Lithium", 87, 150, 204, dust);
@@ -52,8 +58,8 @@ public class GTMaterial {
 	public static final GTMaterial Oxygen = new GTMaterial(8, "Oxygen", 100, 160, 220, gas);
 	public static final GTMaterial Phosphorus = new GTMaterial(15, "Phosphorus", 190, 0, 0, dust);
 	public static final GTMaterial Potassium = new GTMaterial(19, "Potassium", 250, 250, 250, fluid);
-	public static final GTMaterial Platinum = new GTMaterial(78, "Platinum", 100, 180, 250, metalAll);
-	public static final GTMaterial Plutonium = new GTMaterial(94, "Plutonium", 240, 50, 50, false, metalAll);
+	public static final GTMaterial Platinum = new GTMaterial(78, "Platinum", 3, 100, 180, 250, pipeItemAll);
+	public static final GTMaterial Plutonium = new GTMaterial(94, "Plutonium", 3, 240, 50, 50, false, metalAll);
 	public static final GTMaterial Pyrite = new GTMaterial("Pyrite", 150, 120, 40, dust);
 	public static final GTMaterial Ruby = new GTMaterial("Ruby", 255, 75, 75, rubyAll);
 	public static final GTMaterial Sapphire = new GTMaterial("Sapphire", 75, 75, 200, sapphireAll);
@@ -62,28 +68,37 @@ public class GTMaterial {
 	public static final GTMaterial Sodium = new GTMaterial(11, "Sodium", 0, 38, 255, fluid);
 	public static final GTMaterial Sulfur = new GTMaterial(16, "Sulfur", 200, 200, 0, dust);
 	public static final GTMaterial SulfuricAcid = new GTMaterial("SulfuricAcid", 255, 106, 0, fluid);
-	public static final GTMaterial Thorium = new GTMaterial(90, "Thorium", 0, 30, 0, false, metalAll);
-	public static final GTMaterial Titanium = new GTMaterial(22, "Titanium", 170, 143, 222, metalAll);
+	public static final GTMaterial Thorium = new GTMaterial(90, "Thorium", 2, 0, 30, 0, false, metalAll);
+	public static final GTMaterial Titanium = new GTMaterial(22, "Titanium", 3, 170, 143, 222, pipeFluidAll);
 	public static final GTMaterial Tritium = new GTMaterial("Tritium", 255, 0, 0, gas);
 	public static final GTMaterial Tungsten = new GTMaterial(74, "Tungsten", 50, 50, 50, metalAll);
 	public static final GTMaterial Uranium = new GTMaterial("Uranium", 50, 240, 50, dust);
 	/** Instance Members **/
 	private int element;
 	private String name, displayName;
+	private int tier;
 	private int mask;
 	private Color color;
 	private boolean smeltable;
 
 	public GTMaterial(int element, String displayName, int r, int g, int b, GTMaterialFlag... flags) {
-		this(element, displayName, r, g, b, true, flags);
+		this(element, displayName, 0, r, g, b, true, flags);
+	}
+
+	public GTMaterial(int element, String displayName, int tier, int r, int g, int b, GTMaterialFlag... flags) {
+		this(element, displayName, tier, r, g, b, true, flags);
 	}
 
 	public GTMaterial(String displayName, int r, int g, int b, GTMaterialFlag... flags) {
-		this(-1, displayName, r, g, b, true, flags);
+		this(-1, displayName, 0, r, g, b, true, flags);
+	}
+
+	public GTMaterial(String displayName, int tier, int r, int g, int b, GTMaterialFlag... flags) {
+		this(-1, displayName, tier, r, g, b, true, flags);
 	}
 
 	public GTMaterial(String displayName, int r, int g, int b, boolean smeltable, GTMaterialFlag... flags) {
-		this(-1, displayName, r, g, b, smeltable, flags);
+		this(-1, displayName, 0, r, g, b, smeltable, flags);
 	}
 
 	/**
@@ -95,11 +110,12 @@ public class GTMaterial {
 	 * @param smeltable   - Can it be smelted
 	 * @param flags       - Types of items and blocks to generate from material
 	 */
-	public GTMaterial(int element, String displayName, int r, int g, int b, boolean smeltable,
+	public GTMaterial(int element, String displayName, int tier, int r, int g, int b, boolean smeltable,
 			GTMaterialFlag... flags) {
 		this.element = element;
 		this.displayName = displayName;
 		this.name = displayName.toLowerCase().replaceAll("-", "_").replaceAll(" ", "_");
+		this.tier = tier;
 		this.color = new Color(r, g, b, 255);
 		this.smeltable = smeltable;
 		for (GTMaterialFlag flag : flags) {
@@ -136,6 +152,10 @@ public class GTMaterial {
 
 	public int getElementNumber() {
 		return element;
+	}
+
+	public int getTier() {
+		return tier;
 	}
 
 	public static boolean isGem(GTMaterial mat) {

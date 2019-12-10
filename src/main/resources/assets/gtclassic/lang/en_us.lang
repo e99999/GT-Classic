@@ -12,6 +12,31 @@ tile.gtclassic.blockThorium.name=Block of Thorium
 tile.gtclassic.blockPlutonium.name=Block of Plutonium
 tile.gtclassic.blockNickel.name=Block of Nickel
 tile.gtclassic.blockInvar.name=Block of Invar
+tile.gtclassic.blockConstantan.name=Block of Constantan
+
+#pipes
+tile.gtclassic.platinumitempipe.name=Platinum Item Pipe
+tile.gtclassic.platinumitempipelarge.name=Large Platinum Item Pipe
+tile.gtclassic.electrumitempipe.name=Electrum Item Pipe
+tile.gtclassic.electrumitempipelarge.name=Large Electrum Item Pipe
+tile.gtclassic.constantanitempipe.name=Constantan Item Pipe
+tile.gtclassic.constantanitempipelarge.name=Large Constantan Item Pipe
+tile.gtclassic.invarfluidpipesmall.name=Small Invar Fluid Pipe
+tile.gtclassic.invarfluidpipe.name=Invar Fluid Pipe
+tile.gtclassic.invarfluidpipelarge.name=Large Invar Fluid Pipe
+tile.gtclassic.highpressurefluidpipesmall.name=Small High Pressure Fluid Pipe
+tile.gtclassic.highpressurefluidpipe.name=High Pressure Fluid Pipe
+tile.gtclassic.highpressurefluidpipelarge.name=Large High Pressure Fluid Pipe
+tile.gtclassic.bronzefluidpipesmall.name=Small Bronze Fluid Pipe
+tile.gtclassic.bronzefluidpipe.name=Bronze Fluid Pipe
+tile.gtclassic.bronzefluidpipelarge.name=Large Bronze Fluid Pipe
+tile.gtclassic.titaniumfluidpipesmall.name=Small Titanium Fluid Pipe
+tile.gtclassic.titaniumfluidpipe.name=Titanium Fluid Pipe
+tile.gtclassic.titaniumfluidpipelarge.name=Large Titanium Fluid Pipe
+
+tile.gtclassic.itempipename.name=Item Pipe
+tile.gtclassic.fluidpipename.name=Fluid Pipe
+
 
 #ore
 tile.gtclassic.oreIridium.name=Iridium Ore
@@ -91,6 +116,7 @@ item.gtclassic.dustPhosphorus.name=Phosphorus Dust
 item.gtclassic.dustSulfur.name=Sulfur Dust
 item.gtclassic.dustNickel.name=Nickel Dust
 item.gtclassic.dustInvar.name=Invar Dust
+item.gtclassic.dustConstantan.name=Constantan Dust
 
 #gems
 item.gtclassic.gemSapphire.name=Sapphire
@@ -109,6 +135,7 @@ item.gtclassic.ingotPlutonium.name=Plutonium Ingot
 item.gtclassic.ingotPlatinum.name=Platinum Ingot
 item.gtclassic.ingotNickel.name=Nickel Ingot
 item.gtclassic.ingotInvar.name=Invar Ingot
+item.gtclassic.ingotConstantan.name=Constantan Ingot
 
 #items
 item.gtclassic.flint_mortar.name=Flint Mortar
@@ -146,6 +173,9 @@ item.gtclassic.echotron.name=Echotron
 item.gtclassic.cloaking_device.name=Cloaking Device
 item.gtclassic.light_helmet.name=Light Helmet
 item.gtclassic.spring_boots.name=Spring Boots
+item.gtclassic.magnifying_glass.name=Magnifying Glass
+item.gtclassic.plunger.name=Plunger
+item.gtclassic.monkey_wrench.name=Monkey Wrench
 
 #crops
 ic2.crop.Bauxia.name=Bauxia
