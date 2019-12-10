@@ -18,7 +18,6 @@ import ic2.core.inventory.management.IHasHandler;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.misc.ItemDisplayIcon;
-import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.math.MathUtil;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.Block;
@@ -69,7 +68,6 @@ public abstract class GTTilePipeBase extends TileEntityBlock implements IHasGui,
 		handler.registerSlotType(SlotType.Storage, array);
 	}
 
-	
 	public abstract boolean canConnect(TileEntity tile, EnumFacing dir);
 
 	@Override

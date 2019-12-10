@@ -13,6 +13,8 @@ public class GTMaterialFlag {
 	public static GTMaterialFlag GAS = new GTMaterialFlag("_gas", 13, true);
 	public static GTMaterialFlag BLOCKMETAL = new GTMaterialFlag("_block", 16, false);
 	public static GTMaterialFlag BLOCKGEM = new GTMaterialFlag("_block", 17, false);
+	public static GTMaterialFlag PIPEITEM = new GTMaterialFlag("_itempipe", -1, false);
+	public static GTMaterialFlag PIPEFLUID = new GTMaterialFlag("_fluidpipe", -1, false);
 	public static GTMaterialFlag NULL = new GTMaterialFlag("", -1, false);
 	private static int LAST_INTERNAL_ID;
 	private int mask;

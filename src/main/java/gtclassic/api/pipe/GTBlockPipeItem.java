@@ -4,9 +4,8 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.material.GTMaterial;
-import gtclassic.api.pipe.GTPipeTypes.GTItemPipeType;
+import gtclassic.api.pipe.GTPipeTypes.GTPipeModel;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -14,30 +13,30 @@ import net.minecraft.world.World;
 
 public class GTBlockPipeItem extends GTBlockPipeBase {
 
-	GTItemPipeType type;
+	GTPipeModel type;
 
-	public GTBlockPipeItem(GTMaterial mat, GTItemPipeType type, LocaleComp comp) {
+	public GTBlockPipeItem(GTMaterial mat, GTPipeModel type) {
 		super(mat, type.getSizes());
 		this.type = type;
-		setRegistryName("pipe_item_" + mat.getName() + type.getSuffix());
-		setUnlocalizedName(comp);
+		setRegistryName(mat.getName() + "_itempipe_" + type.getPrefix());
+		setUnlocalizedName(GTMod.MODID + "." + mat.getName() + "itempipe" + type.getPrefix());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("Item Capacity:  " + (this.type == GTItemPipeType.LARGE ? 8 : 2) + " Stacks/sec"));
+		tooltip.add(I18n.format("Item Capacity:  " + (this.type == GTPipeModel.LARGE ? 8 : 2) + " Stacks/sec"));
 	}
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
-		if (this.type == GTItemPipeType.LARGE) {
+		if (this.type == GTPipeModel.LARGE) {
 			return new GTTilePipeItem.GTTilePipeItemLarge();
 		}
 		return new GTTilePipeItem.GTTilePipeItemSmall();
 	}
 
-	public GTItemPipeType getPipeType() {
+	public GTPipeModel getPipeType() {
 		return this.type;
 	}
 }

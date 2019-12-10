@@ -4,10 +4,9 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.material.GTMaterial;
-import gtclassic.api.pipe.GTPipeTypes.GTFluidPipeSize;
-import gtclassic.api.pipe.GTPipeTypes.GTFluidPipeType;
+import gtclassic.api.pipe.GTPipeTypes.GTPipeFluidCapacity;
+import gtclassic.api.pipe.GTPipeTypes.GTPipeModel;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -16,15 +15,15 @@ import net.minecraft.world.World;
 
 public class GTBlockPipeFluid extends GTBlockPipeBase {
 
-	GTFluidPipeType type;
-	GTFluidPipeSize size;
+	GTPipeModel type;
+	GTPipeFluidCapacity size;
 
-	public GTBlockPipeFluid(GTMaterial mat, GTFluidPipeType type, GTFluidPipeSize size, LocaleComp comp) {
+	public GTBlockPipeFluid(GTMaterial mat, GTPipeModel type, GTPipeFluidCapacity size) {
 		super(mat, type.getSizes());
 		this.type = type;
 		this.size = size;
-		setRegistryName("pipe_fluid_" + mat.getName() + type.getSuffix());
-		setUnlocalizedName(comp);
+		setRegistryName(mat.getName() + "_pipefluid_" + type.getPrefix());
+		setUnlocalizedName(GTMod.MODID + "." + mat.getName() + "pipefluid" + type.getPrefix());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
@@ -57,11 +56,11 @@ public class GTBlockPipeFluid extends GTBlockPipeBase {
 		}
 	}
 
-	public String getPipeType() {
-		return this.type.getName();
+	public GTPipeModel getPipeType() {
+		return this.type;
 	}
 
-	public int getCapacity() {
-		return this.size.getSize();
+	public GTPipeFluidCapacity getCapacity() {
+		return this.size;
 	}
 }

@@ -2,24 +2,25 @@ package gtclassic.api.pipe;
 
 public class GTPipeTypes {
 
-	public enum GTItemPipeType {
-		NORMAL("", new int[] { 4, 12 }),
-		LARGE("large", new int[] { 1, 15 });
+	public enum GTPipeModel {
+		SMALL("_small", new int[] { 6, 10 }),
+		MED("", new int[] { 4, 12 }),
+		LARGE("_large", new int[] { 1, 15 });
 
-		String name;
+		String suffix;
 		int[] sizes;
 
-		GTItemPipeType(String name, int[] sizes) {
-			this.name = name;
+		GTPipeModel(String suffix, int[] sizes) {
+			this.suffix = suffix;
 			this.sizes = sizes;
 		}
 
-		public String getName() {
-			return this.name;
+		public String getPrefix() {
+			return suffix.replace("_", "");
 		}
 
 		public String getSuffix() {
-			return "_" + this.name.toLowerCase();
+			return this.suffix.toLowerCase();
 		}
 
 		public int[] getSizes() {
@@ -27,33 +28,7 @@ public class GTPipeTypes {
 		}
 	}
 
-	public enum GTFluidPipeType {
-		SMALL("small", new int[] { 6, 10 }),
-		MED("med", new int[] { 4, 12 }),
-		LARGE("large", new int[] { 1, 15 });
-
-		String name;
-		int[] sizes;
-
-		GTFluidPipeType(String name, int[] sizes) {
-			this.name = name;
-			this.sizes = sizes;
-		}
-
-		public String getName() {
-			return this.name;
-		}
-
-		public String getSuffix() {
-			return "_" + this.name.toLowerCase();
-		}
-
-		public int[] getSizes() {
-			return this.sizes;
-		}
-	}
-
-	public enum GTFluidPipeSize {
+	public enum GTPipeFluidCapacity {
 		S800(800),
 		S1600(1600),
 		S3200(3200),
@@ -65,7 +40,7 @@ public class GTPipeTypes {
 
 		int size;
 
-		GTFluidPipeSize(int size) {
+		GTPipeFluidCapacity(int size) {
 			this.size = size;
 		}
 

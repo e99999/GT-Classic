@@ -8,14 +8,7 @@ import gtclassic.api.color.GTColorItemBlock;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.itemblock.GTItemBlockRare;
-import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
-import gtclassic.api.pipe.GTBlockPipeBase;
-import gtclassic.api.pipe.GTBlockPipeFluid;
-import gtclassic.api.pipe.GTBlockPipeItem;
-import gtclassic.api.pipe.GTPipeTypes.GTFluidPipeSize;
-import gtclassic.api.pipe.GTPipeTypes.GTFluidPipeType;
-import gtclassic.api.pipe.GTPipeTypes.GTItemPipeType;
 import gtclassic.api.pipe.GTTilePipeFluid;
 import gtclassic.api.pipe.GTTilePipeItem;
 import gtclassic.common.block.GTBlockCasing;
@@ -110,25 +103,6 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferLarge = registerBlock(new GTBlockMachineDirectionable("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
-	// Pipes are here for now until they are done via iteration
-	public static final GTBlockPipeBase pipeConstantan = registerBlock(new GTBlockPipeItem(GTMaterial.Constantan, GTItemPipeType.NORMAL, GTLang.PIPE_ITEM_CONSTANTAN));
-	public static final GTBlockPipeBase pipeLargeConstantan = registerBlock(new GTBlockPipeItem(GTMaterial.Constantan, GTItemPipeType.LARGE, GTLang.PIPE_ITEM_CONSTANTAN));
-	public static final GTBlockPipeBase pipeElectrum = registerBlock(new GTBlockPipeItem(GTMaterial.Electrum, GTItemPipeType.NORMAL, GTLang.PIPE_ITEM_ELECTRUM));
-	public static final GTBlockPipeBase pipeLargeElectrum = registerBlock(new GTBlockPipeItem(GTMaterial.Electrum, GTItemPipeType.LARGE, GTLang.PIPE_ITEM_ELECTRUM));
-	public static final GTBlockPipeBase pipePlatinum = registerBlock(new GTBlockPipeItem(GTMaterial.Platinum, GTItemPipeType.NORMAL, GTLang.PIPE_ITEM_PLATINUM));
-	public static final GTBlockPipeBase pipeLargePlatinum = registerBlock(new GTBlockPipeItem(GTMaterial.Platinum, GTItemPipeType.LARGE, GTLang.PIPE_ITEM_PLATINUM));
-	public static final GTBlockPipeBase pipeSmallBronze = registerBlock(new GTBlockPipeFluid(GTMaterial.Bronze, GTFluidPipeType.SMALL, GTFluidPipeSize.S800, GTLang.PIPE_FLUID_BRONZE));
-	public static final GTBlockPipeBase pipeMedBronze = registerBlock(new GTBlockPipeFluid(GTMaterial.Bronze, GTFluidPipeType.MED, GTFluidPipeSize.S1600, GTLang.PIPE_FLUID_BRONZE));
-	public static final GTBlockPipeBase pipeLargeBronze = registerBlock(new GTBlockPipeFluid(GTMaterial.Bronze, GTFluidPipeType.LARGE, GTFluidPipeSize.S3200, GTLang.PIPE_FLUID_BRONZE));
-	public static final GTBlockPipeBase pipeSmallInvar = registerBlock(new GTBlockPipeFluid(GTMaterial.Invar, GTFluidPipeType.SMALL, GTFluidPipeSize.S1600, GTLang.PIPE_FLUID_INVAR));
-	public static final GTBlockPipeBase pipeMedInvar = registerBlock(new GTBlockPipeFluid(GTMaterial.Invar, GTFluidPipeType.MED, GTFluidPipeSize.S3200, GTLang.PIPE_FLUID_INVAR));
-	public static final GTBlockPipeBase pipeLargeInvar = registerBlock(new GTBlockPipeFluid(GTMaterial.Invar, GTFluidPipeType.LARGE, GTFluidPipeSize.S6400, GTLang.PIPE_FLUID_INVAR));
-	public static final GTBlockPipeBase pipeSmallTitanium = registerBlock(new GTBlockPipeFluid(GTMaterial.Titanium, GTFluidPipeType.SMALL, GTFluidPipeSize.S3200, GTLang.PIPE_FLUID_TITANIUM));
-	public static final GTBlockPipeBase pipeMedTitanium = registerBlock(new GTBlockPipeFluid(GTMaterial.Titanium, GTFluidPipeType.MED, GTFluidPipeSize.S6400, GTLang.PIPE_FLUID_TITANIUM));
-	public static final GTBlockPipeBase pipeLargeTitanium = registerBlock(new GTBlockPipeFluid(GTMaterial.Titanium, GTFluidPipeType.LARGE, GTFluidPipeSize.S12800, GTLang.PIPE_FLUID_TITANIUM));
-	public static final GTBlockPipeBase pipeSmallHighPressure = registerBlock(new GTBlockPipeFluid(GTMaterial.HighPressure, GTFluidPipeType.SMALL, GTFluidPipeSize.SMAX1, GTLang.PIPE_FLUID_HIGHPRESSURE));
-	public static final GTBlockPipeBase pipeMedHighPressure = registerBlock(new GTBlockPipeFluid(GTMaterial.HighPressure, GTFluidPipeType.MED, GTFluidPipeSize.SMAX2, GTLang.PIPE_FLUID_HIGHPRESSURE));
-	public static final GTBlockPipeBase pipeLargeHighPressure = registerBlock(new GTBlockPipeFluid(GTMaterial.HighPressure, GTFluidPipeType.LARGE, GTFluidPipeSize.SMAX3, GTLang.PIPE_FLUID_HIGHPRESSURE));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "autocrafter", "chargeomat", "computercube",
