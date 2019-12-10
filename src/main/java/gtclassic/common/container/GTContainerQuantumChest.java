@@ -6,7 +6,7 @@ import gtclassic.GTMod;
 import gtclassic.common.gui.GTGuiCompQuantumChest;
 import gtclassic.common.tile.GTTileQuantumChest;
 import ic2.core.inventory.container.ContainerTileComponent;
-import ic2.core.inventory.slots.SlotBase;
+import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDisplay;
 import ic2.core.inventory.slots.SlotOutput;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +23,7 @@ public class GTContainerQuantumChest extends ContainerTileComponent<GTTileQuantu
 	public GTContainerQuantumChest(InventoryPlayer player, GTTileQuantumChest tile) {
 		super(tile);
 		this.activeplayer = player;
-		this.addSlotToContainer(new SlotBase(tile, 0, 80, 17));
+		this.addSlotToContainer(new SlotCustom(tile, 0, 80, 17, tile.filter));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 1, 80, 53));
 		this.addSlotToContainer(new SlotDisplay(tile, 2, 59, 42));
 		this.addComponent(new GTGuiCompQuantumChest(tile));

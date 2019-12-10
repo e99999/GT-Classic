@@ -288,9 +288,4 @@ public abstract class GTTilePipeBase extends TileEntityBlock implements IHasGui,
 	public boolean canInsert(int slot, ItemStack stack) {
 		return true;
 	}
-
-	@Override
-	public boolean canDebugWithMagnifyingGlass() {
-		return true;
-	}
 }

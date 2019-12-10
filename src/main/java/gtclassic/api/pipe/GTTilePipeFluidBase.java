@@ -114,11 +114,15 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 	}
 
 	@Override
-	public String[] debugInfo() {
+	public String[] cheapInfo() {
 		FluidStack fluid = this.tank.getFluid();
 		String fluidName = fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Empty";
+		return new String[] { fluidName, "Restricted only to pipes: " + this.onlyPipes };
+	}
+
+	@Override
+	public String[] scannerInfo() {
 		String in = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
-		return new String[] { fluidName, "Restricted only to pipes: " + this.onlyPipes,
-				"Time Idle: " + this.idle / 20 + "/5 Seconds", "Last Recieved From: " + in };
+		return new String[] { "Time Idle: " + this.idle / 20 + "/5 Seconds", "Last Recieved From: " + in };
 	}
 }

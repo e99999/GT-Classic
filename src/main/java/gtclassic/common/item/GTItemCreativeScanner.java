@@ -293,7 +293,10 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 			if (tileEntity instanceof IGTDebuggableTile) {
 				IGTDebuggableTile debug = (IGTDebuggableTile) tileEntity;
-				for (String data : debug.debugInfo()) {
+				for (String data : debug.cheapInfo()) {
+					IC2.platform.messagePlayer(player, data);
+				}
+				for (String data : debug.scannerInfo()) {
 					IC2.platform.messagePlayer(player, data);
 				}
 			}

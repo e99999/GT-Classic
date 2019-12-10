@@ -85,10 +85,10 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 		if (controller == null) {
 			return;
 		}
+		tryBlacklistPipe(this, getFacing());
 		int limit = 64;
 		for (int i = 0; i < limit; ++i) {
 			ItemStack stack = slave.removeItem(this.filter, getFacing(), 1, false);
-			tryBlacklistPipe(this, getFacing());
 			if (stack.isEmpty()) {
 				break;
 			}

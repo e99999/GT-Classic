@@ -1,5 +1,6 @@
 package gtclassic.common.recipe;
 
+import gtclassic.api.helpers.GTHelperMods;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialFlag;
@@ -16,6 +17,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -34,6 +36,9 @@ public class GTRecipeIterators {
 			createGemRecipe(mat);
 			createBlockRecipe(mat);
 			createTubeRecipe(mat);
+			if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
+				createPipeRecipe(mat);
+			}
 		}
 	}
 
@@ -111,6 +116,20 @@ public class GTRecipeIterators {
 			if (mat.hasFlag(fluidFlag)) {
 				TileEntityExtractor.addRecipe(GTMaterialGen.getTube(mat, 1), GTMaterialGen.get(GTItems.testTube));
 			}
+		}
+	}
+
+	public static void createPipeRecipe(GTMaterial mat) {
+		String ingot = "ingot" + mat.getDisplayName();
+		String tool = "craftingToolMonkeyWrench";
+		if (mat.hasFlag(GTMaterialFlag.PIPEITEM)) {
+			recipes.addRecipe(GTMaterialGen.getItemPipe(mat, 2), "III", " T ", "III", 'I', ingot, 'T', tool);
+			recipes.addRecipe(GTMaterialGen.getItemPipeLarge(mat, 1), "I I", "ITI", "I I", 'I', ingot, 'T', tool);
+		}
+		if (mat.hasFlag(GTMaterialFlag.PIPEFLUID) && mat != GTMaterial.HighPressure) {
+			recipes.addRecipe(GTMaterialGen.getFluidPipeSmall(mat, 6), "ITI", "I I", "I I", 'I', ingot, 'T', tool);
+			recipes.addRecipe(GTMaterialGen.getFluidPipe(mat, 2), "III", " T ", "III", 'I', ingot, 'T', tool);
+			recipes.addRecipe(GTMaterialGen.getFluidPipeLarge(mat, 1), "I I", "I I", "ITI", 'I', ingot, 'T', tool);
 		}
 	}
 

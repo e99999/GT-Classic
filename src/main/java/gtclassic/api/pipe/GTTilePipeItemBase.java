@@ -1,6 +1,7 @@
 package gtclassic.api.pipe;
 
 import gtclassic.common.GTLang;
+import gtclassic.common.tile.GTTileTranslocator;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -29,6 +30,9 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 			return false;
 		}
 		if (tile instanceof GTTilePipeItemBase) {
+			return true;
+		}
+		if (tile instanceof GTTileTranslocator) {
 			return true;
 		}
 		return tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, dir);
@@ -97,11 +101,15 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 	}
 
 	@Override
-	public String[] debugInfo() {
+	public String[] cheapInfo() {
 		ItemStack stack = this.getStackInSlot(0).copy();
-		String in = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
 		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
-		return new String[] { itemName, "Restricted only to pipes: " + this.onlyPipes,
-				"Time Idle: " + this.idle / 20 + "/5 Seconds", "Last Recieved From: " + in };
+		return new String[] { itemName, "Restricted only to pipes: " + this.onlyPipes };
+	}
+
+	@Override
+	public String[] scannerInfo() {
+		String in = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
+		return new String[] { "Time Idle: " + this.idle / 20 + "/5 Seconds", "Last Recieved From: " + in };
 	}
 }

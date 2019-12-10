@@ -2,11 +2,18 @@ package gtclassic.common.item;
 
 import java.util.List;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 import gtclassic.api.interfaces.IGTMonkeyWrenchTile;
 import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -28,6 +35,11 @@ public class GTItemMonkeyWrench extends GTItemComponent {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		// empty atm
+	}
+
+	@Override
+	public boolean hasContainerItem(ItemStack itemStack) {
+		return true;
 	}
 
 	@Override
@@ -61,6 +73,21 @@ public class GTItemMonkeyWrench extends GTItemComponent {
 		if (doesPlayerHaveMonkeyWrench(player)) {
 			player.getHeldItemMainhand().damageItem(1, player);
 		}
+	}
+
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
+		stack.damageItem(10, attacker);
+		return super.hitEntity(stack, target, attacker);
+	}
+
+	@Override
+	public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
+		Multimap<String, AttributeModifier> map = HashMultimap.create();
+		if (slot == EntityEquipmentSlot.MAINHAND) {
+			map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 10.0D, 0));
+		}
+		return map;
 	}
 
 	/** Do not call any methods below, they will probably be moved **/

@@ -123,6 +123,8 @@ public class GTRecipe {
 					"ingotAluminium", 'E', GTMaterialGen.getIc2(Ic2Items.euReader, 1), 'F',
 					GTMaterialGen.getIc2(Ic2Items.cropAnalyzer, 1), 'C', "circuitAdvanced", 'B',
 					GTMaterialGen.get(GTItems.lithiumBattery) });
+			/** Monkey Wrench **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.monkeyWrench), "II ", " II", "II ", 'I', "ingotRefinedIron");
 		}
 		/** Test Tube **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.testTube, 32), new Object[] { "G G", "G G", " G ", 'G',
@@ -136,6 +138,10 @@ public class GTRecipe {
 		/** Iron Mortar **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.ironMortar, 1), new Object[] { " I ", "BIB", "BBB", 'I',
 				ingotAnyIron, 'B', "stone", });
+		/** Plunger **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.plunger), " RR", " SR", "S  ", 'R', "itemRubber", 'S', "stickWood");
+		/** Magnifying Glass **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.magnifyingGlass), " P", "S ", 'P', "paneGlass", 'S', "stickWood");
 		/** Destructo Pack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.destructoPack, 1), new Object[] { "CIC", "ILI", "CIC", 'L', lava,
 				'C', "circuitBasic", 'I', ingotRefinedIron });

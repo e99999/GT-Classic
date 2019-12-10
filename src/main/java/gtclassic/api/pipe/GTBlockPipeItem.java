@@ -4,7 +4,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.material.GTMaterial;
-import gtclassic.api.pipe.GTPipeTypes.GTPipeModel;
+import gtclassic.api.pipe.GTHelperPipes.GTPipeModel;
 import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -18,7 +18,7 @@ public class GTBlockPipeItem extends GTBlockPipeBase {
 	public GTBlockPipeItem(GTMaterial mat, GTPipeModel type) {
 		super(mat, type.getSizes());
 		this.type = type;
-		setRegistryName(mat.getName() + "_itempipe_" + type.getPrefix());
+		setRegistryName(mat.getName() + "_itempipe" + type.getSuffix());
 		setUnlocalizedName(GTMod.MODID + "." + mat.getName() + "itempipe" + type.getPrefix());
 		setCreativeTab(GTMod.creativeTabGT);
 	}

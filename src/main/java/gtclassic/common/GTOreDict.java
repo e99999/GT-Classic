@@ -81,6 +81,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("craftingToolMortar", new ItemStack(GTItems.flintMortar, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("craftingToolMortar", new ItemStack(GTItems.ironMortar, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("craftingToolDuctTape", new ItemStack(GTItems.ductTape, 1, OreDictionary.WILDCARD_VALUE));
+		OreDictionary.registerOre("craftingToolMonkeyWrench", new ItemStack(GTItems.monkeyWrench, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("circuitMaster", (GTMaterialGen.get(GTItems.circuitEnergy, 1)));
 		OreDictionary.registerOre("circuitElite", (GTMaterialGen.get(GTItems.circuitData, 1)));
 		OreDictionary.registerOre("circuitStorage", (GTMaterialGen.get(GTItems.chipData, 1)));

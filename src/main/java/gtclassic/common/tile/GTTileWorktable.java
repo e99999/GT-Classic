@@ -3,14 +3,11 @@ package gtclassic.common.tile;
 import java.util.List;
 
 import gtclassic.common.container.GTContainerWorktable;
-import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
-import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
-import ic2.core.inventory.management.SlotType;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -77,13 +74,13 @@ public class GTTileWorktable extends TileEntityMachine implements IHasGui {
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
-		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		for (int i = 9; i < 25; i++) {
-			handler.registerDefaultSlotAccess(AccessRule.Both, i);
-			handler.registerDefaultSlotsForSide(RotationList.ALL, i);
-			handler.registerSlotType(SlotType.Input, i);
-			handler.registerSlotType(SlotType.Output, i);
-		}
+		// handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+		// for (int i = 9; i < 25; i++) {
+		// handler.registerDefaultSlotAccess(AccessRule.Both, i);
+		// handler.registerDefaultSlotsForSide(RotationList.ALL, i);
+		// handler.registerSlotType(SlotType.Input, i);
+		// handler.registerSlotType(SlotType.Output, i);
+		// }
 	}
 
 	@Override

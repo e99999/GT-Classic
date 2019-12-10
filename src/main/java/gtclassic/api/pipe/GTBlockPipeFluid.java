@@ -4,8 +4,8 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.material.GTMaterial;
-import gtclassic.api.pipe.GTPipeTypes.GTPipeFluidCapacity;
-import gtclassic.api.pipe.GTPipeTypes.GTPipeModel;
+import gtclassic.api.pipe.GTHelperPipes.GTPipeFluidCapacity;
+import gtclassic.api.pipe.GTHelperPipes.GTPipeModel;
 import ic2.core.block.base.tile.TileEntityBlock;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -22,8 +22,8 @@ public class GTBlockPipeFluid extends GTBlockPipeBase {
 		super(mat, type.getSizes());
 		this.type = type;
 		this.size = size;
-		setRegistryName(mat.getName() + "_pipefluid_" + type.getPrefix());
-		setUnlocalizedName(GTMod.MODID + "." + mat.getName() + "pipefluid" + type.getPrefix());
+		setRegistryName(mat.getName() + "_fluidpipe" + type.getSuffix());
+		setUnlocalizedName(GTMod.MODID + "." + mat.getName() + "fluidpipe" + type.getPrefix());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

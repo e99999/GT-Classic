@@ -554,8 +554,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	@Override
 	public IHasInventory getInputInventory() {
 		int[] input = getInputSlots();
-		RangedInventoryWrapper result = new RangedInventoryWrapper(this, input).addFilters(getInputFilters(input));
-		return result;
+		return new RangedInventoryWrapper(this, input).addFilters(getInputFilters(input));
 	}
 
 	@Override

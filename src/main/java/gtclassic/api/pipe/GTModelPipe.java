@@ -87,6 +87,7 @@ public class GTModelPipe extends BaseModel {
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {
 		if (side == null) {
 			if (!(state instanceof IC2BlockState)) {
+				// if its in jei/creative tab
 				return this.quads[12];
 			} else {
 				Vec3i vec = (Vec3i) ((IC2BlockState) state).getData();
@@ -107,14 +108,17 @@ public class GTModelPipe extends BaseModel {
 		}
 	}
 
+	@Override
 	public boolean isAmbientOcclusion() {
 		return true;
 	}
 
+	@Override
 	public boolean isGui3d() {
-		return false;
+		return true;
 	}
 
+	@Override
 	public boolean isBuiltInRenderer() {
 		return false;
 	}
