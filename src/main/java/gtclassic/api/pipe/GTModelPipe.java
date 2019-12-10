@@ -15,6 +15,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.util.vector.Vector3f;
 
 import ic2.core.RotationList;
+import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.Ic2Models;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.util.helpers.BlockStateContainerIC2.IC2BlockState;
@@ -187,7 +188,7 @@ public class GTModelPipe extends BaseModel {
 				} else {
 					face = this.getFace(facing, min, max);
 				}
-				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, pipe.getTextureFromState(this.state, side), side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
+				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, Ic2Icons.getTextures("pipe")[getSideTextureFromSize(sizes[0], pipe)], side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 			}
 		}
 		return quads;
@@ -227,5 +228,18 @@ public class GTModelPipe extends BaseModel {
 			return new BlockPartFace(null, 0, "", new BlockFaceUV(new float[] { max, min, 16.0F, max }, 0));
 		}
 		return new BlockPartFace(null, 0, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F, 16.0F }, 0));
+	}
+
+	private int getSideTextureFromSize(int size, GTBlockPipeBase pipe) {
+		if (size == 6) {
+			return 6;
+		}
+		if (size == 4) {
+			return 7;
+		}
+		if (size == 1) {
+			return pipe instanceof GTBlockPipeItem ? 9 : 8;
+		}
+		return 0;
 	}
 }
