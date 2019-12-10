@@ -50,4 +50,10 @@ public class GTLang {
 	public static final LocaleComp PIPE_FLUID_HIGHPRESSURE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidhighpressure");
 	public static final LocaleComp ITEM_PIPE_LANG = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.itempipename");
 	public static final LocaleComp FLUID_PIPE_LANG = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.fluidpipename");
+
+	public static final LocaleComp DUST_LANG = new LangComponentHolder.TranslationComp("dust.name");
+	public static final LocaleComp INGOT_LANG = new LangComponentHolder.TranslationComp("ingot.name");
+	public static final LocaleComp INGOT_HOT_LANG = new LangComponentHolder.TranslationComp("ingot_hot.name");
+	public static final LocaleComp GEM_LANG = new LangComponentHolder.TranslationComp("gem.name");
+	public static final LocaleComp BLOCK_LANG = new LangComponentHolder.TranslationComp("block.name");
 }

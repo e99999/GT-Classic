@@ -1,8 +1,5 @@
 package gtclassic.api.material;
 
-import java.awt.Color;
-import java.util.List;
-
 import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTColorBlock;
 import ic2.core.platform.lang.ILocaleBlock;
@@ -28,6 +25,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.awt.*;
+import java.util.List;
+
 public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBlock, ILocaleBlock {
 
 	private GTMaterial material;
@@ -52,6 +52,14 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format("Mobs cannot spawn on this block"));
 		tooltip.add(I18n.format("Can be used as a beacon base"));
+	}
+
+	@Override
+	public String getLocalizedName() {
+		if (flag.getComp() != Ic2Lang.nullKey){
+			return flag.getComp().getLocalizedFormatted(net.minecraft.util.text.translation.I18n.translateToLocal("material." + material.getDisplayName() + ".name").trim());
+		}
+		return super.getLocalizedName();
 	}
 
 	@Override
@@ -110,5 +118,13 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 	public Block setUnlocalizedName(String name) {
 		this.comp = new LocaleBlockComp("tile." + name);
 		return super.setUnlocalizedName(name);
+	}
+
+	public GTMaterial getMaterial() {
+		return material;
+	}
+
+	public GTMaterialFlag getFlag() {
+		return flag;
 	}
 }
