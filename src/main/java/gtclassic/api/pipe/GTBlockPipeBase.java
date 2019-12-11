@@ -1,10 +1,5 @@
 package gtclassic.api.pipe;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.material.GTMaterial;
 import ic2.core.block.base.BlockMultiID;
@@ -27,6 +22,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class GTBlockPipeBase extends BlockMultiID implements ICustomModeledBlock, IGTColorBlock {
 
@@ -90,6 +90,7 @@ public abstract class GTBlockPipeBase extends BlockMultiID implements ICustomMod
 		return states;
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite[] getIconSheet(int var1) {
 		return Ic2Icons.getTextures("pipe");
@@ -111,6 +112,7 @@ public abstract class GTBlockPipeBase extends BlockMultiID implements ICustomMod
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
 		return new GTModelPipe(state, Ic2Icons.getTextures("pipe")[0], this.sizes);
