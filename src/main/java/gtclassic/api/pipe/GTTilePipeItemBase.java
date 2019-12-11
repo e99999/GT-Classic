@@ -1,5 +1,7 @@
 package gtclassic.api.pipe;
 
+import java.util.Map;
+
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileTranslocator;
 import ic2.core.inventory.transport.IItemTransporter;
@@ -99,17 +101,15 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 			}
 		}
 	}
-
+	
 	@Override
-	public String[] cheapInfo() {
+	public void getData(Map<String, Boolean> data) {
 		ItemStack stack = this.getStackInSlot(0).copy();
 		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
-		return new String[] { itemName, "Restricted only to pipes: " + this.onlyPipes };
-	}
-
-	@Override
-	public String[] scannerInfo() {
-		String in = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
-		return new String[] { "Time Idle: " + this.idle / 20 + "/5 Seconds", "Last Recieved From: " + in };
+		String last = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
+		data.put(itemName, false);
+		data.put("Restricted only to pipes: " + this.onlyPipes, false);
+		data.put("Time Idle: " + this.idle / 20 + "/5 Seconds", true);
+		data.put("Last Recieved From: " + last, true);
 	}
 }

@@ -1,5 +1,8 @@
 package gtclassic.common.item;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import ic2.api.classic.tile.machine.IProgressMachine;
@@ -40,10 +43,13 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 			IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.getStructureValid());
 		}
 		if (tileEntity instanceof IGTDebuggableTile) {
-			f = true;
+			LinkedHashMap<String, Boolean> data = new LinkedHashMap<>();
 			IGTDebuggableTile debug = (IGTDebuggableTile) tileEntity;
-			for (String data : debug.cheapInfo()) {
-				IC2.platform.messagePlayer(player, data);
+			debug.getData(data);
+			for (Map.Entry<String, Boolean> entry : data.entrySet()) {
+				if (!entry.getValue()) {
+					IC2.platform.messagePlayer(player, entry.getKey());
+				}
 			}
 		}
 		if (f) {

@@ -1,5 +1,8 @@
 package gtclassic.common.tile.multi;
 
+import java.util.Map;
+
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerLESU;
@@ -16,7 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
-public class GTTileMultiLESU extends TileEntityElectricBlock implements IMultiEnergySource, IGTMultiTileStatus {
+public class GTTileMultiLESU extends TileEntityElectricBlock implements IMultiEnergySource, IGTMultiTileStatus, IGTDebuggableTile {
 
 	private int blockCount;
 	public boolean enabled = true;
@@ -136,5 +139,12 @@ public class GTTileMultiLESU extends TileEntityElectricBlock implements IMultiEn
 	@Override
 	public boolean getStructureValid() {
 		return this.blockCount > 0;
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		data.put("Lapotron Blocks: " + this.getCount(), true);
+		data.put("Energy Packets: " + this.getMultipleEnergyPacketAmount(), true);
+		
 	}
 }

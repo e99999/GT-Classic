@@ -1,7 +1,9 @@
 package gtclassic.common.tile;
 
 import java.util.List;
+import java.util.Map;
 
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.pipe.GTTilePipeBase;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.event.EnergyTileLoadEvent;
@@ -24,8 +26,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 
-public class GTTileBaseBuffer extends TileEntityMachine
-		implements IEnergyConductor, IEnergySink, INetworkClientTileEntityEventListener, IRedstoneProvider, ITickable {
+public class GTTileBaseBuffer extends TileEntityMachine implements IEnergyConductor, IEnergySink,
+		INetworkClientTileEntityEventListener, IRedstoneProvider, ITickable, IGTDebuggableTile {
 
 	public int tier = 1;
 	public int output = 32;
@@ -222,5 +224,17 @@ public class GTTileBaseBuffer extends TileEntityMachine
 		if (tile instanceof GTTilePipeBase) {
 			((GTTilePipeBase) tile).lastRecievedFrom = side.getOpposite();
 		}
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		data.put("Outputs Power: " + this.conduct, true);
+		if (this.conduct) {
+			data.put("Stored: " + this.energy + " EU", true);
+		}
+		if (this.outputRedstone) {
+			data.put("Redstone Strength: " + this.redstoneStrength, true);
+		}
+		data.put("Inverted Redstone: " + this.invertRedstone, true);
 	}
 }

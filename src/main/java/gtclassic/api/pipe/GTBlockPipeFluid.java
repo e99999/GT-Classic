@@ -45,6 +45,8 @@ public class GTBlockPipeFluid extends GTBlockPipeBase {
 			return new GTTilePipeFluid.GTTileFluidPipe6400();
 		case S12800:
 			return new GTTilePipeFluid.GTTileFluidPipe12800();
+		case S25600:
+			return new GTTilePipeFluid.GTTileFluidPipe25600();
 		case SMAX1:
 			return new GTTilePipeFluid.GTTileFluidPipeMax1();
 		case SMAX2:

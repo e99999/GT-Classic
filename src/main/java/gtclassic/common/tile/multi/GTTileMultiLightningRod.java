@@ -1,5 +1,8 @@
 package gtclassic.common.tile.multi;
 
+import java.util.Map;
+
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import ic2.core.block.base.tile.TileEntityGeneratorBase;
 import ic2.core.inventory.container.ContainerIC2;
@@ -12,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 
-public class GTTileMultiLightningRod extends TileEntityGeneratorBase implements IGTMultiTileStatus {
+public class GTTileMultiLightningRod extends TileEntityGeneratorBase implements IGTMultiTileStatus, IGTDebuggableTile {
 
 	public int casingheight;
 	public int chance;
@@ -123,5 +126,14 @@ public class GTTileMultiLightningRod extends TileEntityGeneratorBase implements 
 	@Override
 	public int getSourceTier() {
 		return 5;
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		int fenceCount = this.casingheight - (this.getPos().getY() + 1);
+		int outOf = fenceCount >= 8 ? 1 : 0;
+		data.put("Fence Count: " + fenceCount, true);
+		data.put("Storm Strength: " + ((int) (world.rainingStrength) * 100) + "%", true);
+		data.put(outOf + " out of " + this.chance + " chance to strike based on fence height", true);
 	}
 }

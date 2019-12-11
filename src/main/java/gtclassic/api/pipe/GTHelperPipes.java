@@ -34,6 +34,7 @@ public class GTHelperPipes {
 		S3200(3200),
 		S6400(6400),
 		S12800(12800),
+		S25600(25600),
 		SMAX1(96000),
 		SMAX2(144000),
 		SMAX3(192000);
@@ -49,25 +50,33 @@ public class GTHelperPipes {
 		}
 	}
 
+	private static final GTPipeFluidCapacity[] TIER_0 = { GTPipeFluidCapacity.S800, GTPipeFluidCapacity.S800,
+			GTPipeFluidCapacity.S800 };
 	private static final GTPipeFluidCapacity[] TIER_1 = { GTPipeFluidCapacity.S800, GTPipeFluidCapacity.S1600,
 			GTPipeFluidCapacity.S3200 };
 	private static final GTPipeFluidCapacity[] TIER_2 = { GTPipeFluidCapacity.S1600, GTPipeFluidCapacity.S3200,
 			GTPipeFluidCapacity.S6400 };
 	private static final GTPipeFluidCapacity[] TIER_3 = { GTPipeFluidCapacity.S3200, GTPipeFluidCapacity.S6400,
 			GTPipeFluidCapacity.S12800 };
+	private static final GTPipeFluidCapacity[] TIER_4 = { GTPipeFluidCapacity.S6400, GTPipeFluidCapacity.S12800,
+			GTPipeFluidCapacity.S25600 };
 	private static final GTPipeFluidCapacity[] TIER_MAX = { GTPipeFluidCapacity.SMAX1, GTPipeFluidCapacity.SMAX2,
 			GTPipeFluidCapacity.SMAX3 };
 
 	public static GTPipeFluidCapacity[] getPipeCapacityFromTier(int tier) {
 		switch (tier) {
+		case 1:
+			return TIER_1;
 		case 2:
 			return TIER_2;
 		case 3:
 			return TIER_3;
+		case 4:
+			return TIER_4;
 		case Integer.MAX_VALUE:
 			return TIER_MAX;
 		default:
-			return TIER_1;
+			return TIER_0;
 		}
 	}
 }

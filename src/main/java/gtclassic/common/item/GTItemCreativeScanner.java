@@ -1,16 +1,14 @@
 package gtclassic.common.item;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
-import gtclassic.common.tile.GTTileBaseBuffer;
-import gtclassic.common.tile.GTTileDrum;
-import gtclassic.common.tile.multi.GTTileMultiLESU;
-import gtclassic.common.tile.multi.GTTileMultiLightningRod;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.classic.tile.machine.IProgressMachine;
@@ -48,7 +46,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -258,46 +255,17 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;
 				IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.getStructureValid());
 			}
-			if (tileEntity instanceof GTTileMultiLightningRod) {
-				GTTileMultiLightningRod rod = (GTTileMultiLightningRod) tileEntity;
-				int fenceCount = rod.casingheight - (rod.getPos().getY() + 1);
-				IC2.platform.messagePlayer(player, "Fence Count: " + fenceCount);
-				IC2.platform.messagePlayer(player, "Storm Strength: " + ((int) (world.rainingStrength) * 100) + "%");
-				int outOf = fenceCount >= 8 ? 1 : 0;
-				IC2.platform.messagePlayer(player, outOf + " out of " + rod.chance
-						+ " chance to strike based on fence height");
-			}
-			if (tileEntity instanceof GTTileDrum) {
-				GTTileDrum drum = (GTTileDrum) tileEntity;
-				FluidStack fluid = drum.getTankInstance().getFluid();
-				if (fluid != null) {
-					IC2.platform.messagePlayer(player, fluid.amount + "mB of " + fluid.getLocalizedName());
-				}
-			}
-			if (tileEntity instanceof GTTileMultiLESU) {
-				GTTileMultiLESU lesu = (GTTileMultiLESU) tileEntity;
-				IC2.platform.messagePlayer(player, "Lapotron Blocks: " + lesu.getCount());
-				IC2.platform.messagePlayer(player, "Energy Packets: " + lesu.getMultipleEnergyPacketAmount());
-			}
-			if (tileEntity instanceof GTTileBaseBuffer) {
-				GTTileBaseBuffer buffer = (GTTileBaseBuffer) tileEntity;
-				IC2.platform.messagePlayer(player, "Outputs Power: " + buffer.conduct);
-				if (buffer.conduct) {
-					IC2.platform.messagePlayer(player, "Stored: " + buffer.energy + " EU");
-				}
-				IC2.platform.messagePlayer(player, "Outputs Redstone: " + buffer.outputRedstone);
-				if (buffer.outputRedstone) {
-					IC2.platform.messagePlayer(player, "Redstone Strength: " + buffer.redstoneStrength);
-				}
-				IC2.platform.messagePlayer(player, "Inverted Redstone: " + buffer.invertRedstone);
-			}
 			if (tileEntity instanceof IGTDebuggableTile) {
+				LinkedHashMap<String, Boolean> data = new LinkedHashMap<>();
 				IGTDebuggableTile debug = (IGTDebuggableTile) tileEntity;
-				for (String data : debug.cheapInfo()) {
-					IC2.platform.messagePlayer(player, data);
-				}
-				for (String data : debug.scannerInfo()) {
-					IC2.platform.messagePlayer(player, data);
+				debug.getData(data);
+				for (Map.Entry<String, Boolean> entry : data.entrySet()) {
+					if (!entry.getValue()) {
+						IC2.platform.messagePlayer(player, entry.getKey());
+					}
+					if (entry.getValue()) {
+						IC2.platform.messagePlayer(player, entry.getKey());
+					}
 				}
 			}
 			IC2.platform.messagePlayer(player, "You are facing: "

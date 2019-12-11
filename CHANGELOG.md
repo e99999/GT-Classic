@@ -1,6 +1,13 @@
 # Changelog
 
-# 1.08 (Not Released)
+# 1.09 (Not Released)
+- Added Fluid Pipes! Bronze, Invar, Titanium, and High Pressure.
+- Added Item Pipes! Constantan, Electrum, and Platinum.
+- Added monkey wrench for messing with flow and debugging pipes, sneak click to toggle pipe flow restriction - regular click to open a pipe.
+- Added magnifying glass to get small amounts of info from various tiles.
+- Added a plunger to get fluids stuck in pipes out, if you have glass tubes you will get the fluid returned (except steam).
+
+# 1.08
 - Fixed for the last time, the null error with the magic energy converter, now all possible fluids tubes are displayed in JEI instead of just GTC.
 - Fixed rendering of fluids on tubes are now the actual fluid, thanks to some help from Muramasa!
 - Added config option for harder jeptacks (off by default) which is also GTCX compatible.

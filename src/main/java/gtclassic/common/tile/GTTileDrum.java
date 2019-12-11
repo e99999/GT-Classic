@@ -2,11 +2,12 @@ package gtclassic.common.tile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import gtclassic.api.helpers.GTHelperFluid;
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
-import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.misc.StackUtil;
@@ -24,7 +25,7 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class GTTileDrum extends TileEntityMachine implements ITankListener, IItemContainer, IClickable {
+public class GTTileDrum extends TileEntityMachine implements ITankListener, IItemContainer, IClickable, IGTDebuggableTile {
 
 	private IC2Tank tank;
 
@@ -105,14 +106,13 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
-		FluidStack fluid = this.tank.getFluid();
-		boolean playerConditions = player.isSneaking() && player.getActiveItemStack().isEmpty();
-		if (playerConditions && fluid != null) {
-			if (this.isSimulating()) {
-				IC2.platform.messagePlayer(player, fluid.amount + "mB of " + fluid.getLocalizedName());
-			}
-			return true;
-		}
 		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		FluidStack fluid = this.tank.getFluid();
+		String info = fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Empty";
+		data.put(info, false);
 	}
 }

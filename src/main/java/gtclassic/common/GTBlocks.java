@@ -178,6 +178,7 @@ public class GTBlocks {
 		registerUtil(GTTilePipeFluid.GTTileFluidPipe3200.class, "MedFluidPipe");
 		registerUtil(GTTilePipeFluid.GTTileFluidPipe6400.class, "LargeFluidPipe");
 		registerUtil(GTTilePipeFluid.GTTileFluidPipe12800.class, "HugeFluidPipe");
+		registerUtil(GTTilePipeFluid.GTTileFluidPipe25600.class, "MassiveFluidPipe");
 		registerUtil(GTTilePipeFluid.GTTileFluidPipeMax1.class, "SmallSuperFluidPipe");
 		registerUtil(GTTilePipeFluid.GTTileFluidPipeMax2.class, "MedSuperFluidPipe");
 		registerUtil(GTTilePipeFluid.GTTileFluidPipeMax3.class, "LargeSuperFluidPipe");
