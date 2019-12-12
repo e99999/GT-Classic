@@ -25,7 +25,8 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class GTTileDrum extends TileEntityMachine implements ITankListener, IItemContainer, IClickable, IGTDebuggableTile {
+public class GTTileDrum extends TileEntityMachine
+		implements ITankListener, IItemContainer, IClickable, IGTDebuggableTile {
 
 	private IC2Tank tank;
 

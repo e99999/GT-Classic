@@ -19,7 +19,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
-public class GTTileMultiLESU extends TileEntityElectricBlock implements IMultiEnergySource, IGTMultiTileStatus, IGTDebuggableTile {
+public class GTTileMultiLESU extends TileEntityElectricBlock
+		implements IMultiEnergySource, IGTMultiTileStatus, IGTDebuggableTile {
 
 	private int blockCount;
 	public boolean enabled = true;
@@ -145,6 +146,5 @@ public class GTTileMultiLESU extends TileEntityElectricBlock implements IMultiEn
 	public void getData(Map<String, Boolean> data) {
 		data.put("Lapotron Blocks: " + this.getCount(), true);
 		data.put("Energy Packets: " + this.getMultipleEnergyPacketAmount(), true);
-		
 	}
 }

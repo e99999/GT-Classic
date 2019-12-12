@@ -101,7 +101,7 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 			}
 		}
 	}
-	
+
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		ItemStack stack = this.getStackInSlot(0).copy();

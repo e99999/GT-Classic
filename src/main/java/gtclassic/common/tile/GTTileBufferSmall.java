@@ -1,12 +1,10 @@
 package gtclassic.common.tile;
 
-import gtclassic.api.helpers.int3;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerBufferSmall;
 import ic2.core.RotationList;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
@@ -16,8 +14,6 @@ import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -67,37 +63,16 @@ public class GTTileBufferSmall extends GTTileBaseBuffer implements IHasGui {
 	}
 
 	@Override
-	public void update() {
-		super.update();
-		if (world.getTotalWorldTime() % 10 == 0) {
-			tryExportItems();
-		}
-	}
-
-	public TileEntity getExportTile() {
-		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.forward(1).asBlockPos());
-	}
-
-	@SuppressWarnings("static-access")
-	public void tryExportItems() {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(getExportTile(), true);
-		if (slave == null) {
-			return;
-		}
-		tryBlacklistPipe(this, getFacing());
-		IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-		int limit = 64;
-		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = controller.removeItem(CommonFilters.Anything, getFacing(), 1, false);
-			if (stack.isEmpty()) {
-				break;
+	public void onBufferTick() {
+		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), false);
+		if (slave != null) {
+			for (int i = 0; i < this.inventory.size(); ++i) {
+				int added = slave.addItem(this.getStackInSlot(i).copy(), getFacing().getOpposite(), true).getCount();
+				if (added > 0) {
+					this.getStackInSlot(i).shrink(added);
+					tryBlacklistPipe(this, getFacing());
+				}
 			}
-			ItemStack added = slave.addItem(stack, getFacing().getOpposite(), true);
-			if (added.getCount() <= 0) {
-				break;
-			}
-			controller.removeItem(CommonFilters.Anything, getFacing(), 1, true);
 		}
 	}
 

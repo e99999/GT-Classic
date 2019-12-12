@@ -46,6 +46,7 @@ import gtclassic.common.tile.GTTileQuantumTank;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileSuperconductorCable;
 import gtclassic.common.tile.GTTileTranslocator;
+import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
@@ -102,6 +103,7 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileTranslocator = registerBlock(new GTBlockMachineDirectionable("translocator", GTLang.TRANSLOCATOR, 3));
 	public static final GTBlockMachineDirectionable tileBufferLarge = registerBlock(new GTBlockMachineDirectionable("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
+	public static final GTBlockMachineDirectionable tileTranslocatorFluid = registerBlock(new GTBlockMachineDirectionable("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
@@ -109,8 +111,8 @@ public class GTBlocks {
 			"industrialcentrifuge", "matterfabricator", "uumassembler", "disassembler", "echotronblock", "digitalchest",
 			"quantumchest", "quantumtank", "playerdetector", "mobrepeller", "fusionreactor", "lightningrod",
 			"dragoneggenergysiphon", "magicenergyconverter", "magicenergyabsorber", "idsu", "aesu", "lesu",
-			"supercondensator", "superconductorcable", "cabinet", "drum", "worktable", "translocator", "bufferlarge",
-			"buffersmall", "bufferfluid", "pipe" };
+			"supercondensator", "superconductorcable", "cabinet", "drum", "worktable", "translocator",
+			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid", "pipe" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -170,6 +172,7 @@ public class GTBlocks {
 		registerUtil(GTTileTranslocator.class, "Translocator");
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
+		registerUtil(GTTileTranslocatorFluid.class, "TranslocatorFluid");
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
 		registerUtil(GTTilePipeItem.GTTilePipeItemSmall.class, "SmallItemPipe");
 		registerUtil(GTTilePipeItem.GTTilePipeItemLarge.class, "LargeItemPipe");

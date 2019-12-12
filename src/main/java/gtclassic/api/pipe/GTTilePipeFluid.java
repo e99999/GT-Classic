@@ -36,7 +36,7 @@ public class GTTilePipeFluid {
 			super(12800);
 		}
 	}
-	
+
 	public static class GTTileFluidPipe25600 extends GTTilePipeFluidBase {
 
 		public GTTileFluidPipe25600() {

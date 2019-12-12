@@ -4,6 +4,7 @@ import java.util.Map;
 
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.common.GTLang;
+import gtclassic.common.tile.GTTileTranslocatorFluid;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.item.misc.ItemDisplayIcon;
@@ -43,6 +44,9 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 			return false;
 		}
 		if (tile instanceof GTTilePipeFluidBase) {
+			return true;
+		}
+		if (tile instanceof GTTileTranslocatorFluid) {
 			return true;
 		}
 		return tile.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, dir);

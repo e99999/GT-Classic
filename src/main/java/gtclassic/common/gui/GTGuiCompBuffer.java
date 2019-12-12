@@ -6,8 +6,6 @@ import java.util.List;
 import gtclassic.api.gui.GTGuiButton;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.tile.GTTileBaseBuffer;
-import gtclassic.common.tile.GTTileBufferLarge;
-import gtclassic.common.tile.GTTileBufferSmall;
 import ic2.core.IC2;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -40,7 +38,7 @@ public class GTGuiCompBuffer extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void onGuiInit(GuiIC2 gui) {
 		gui.registerButton(new GTGuiButton(0, bX(gui, 7), bY(gui, 60), 18, 20));
-		if (this.tile instanceof GTTileBufferSmall || this.tile instanceof GTTileBufferLarge) {
+		if (this.tile.hasRedstone) {
 			gui.registerButton(new GTGuiButton(1, bX(gui, 25), bY(gui, 60), 18, 20));
 			gui.registerButton(new GTGuiButton(2, bX(gui, 43), bY(gui, 60), 18, 20));
 		}
@@ -53,13 +51,16 @@ public class GTGuiCompBuffer extends GuiComponent {
 			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 0);
 			IC2.platform.messagePlayer(this.player.player, "Outputs Power: " + !this.tile.conduct);
 		}
-		if (button.id == 1) {
-			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 1);
-			IC2.platform.messagePlayer(this.player.player, "Outputs Redstone If Full: " + !this.tile.outputRedstone);
-		}
-		if (button.id == 2) {
-			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 2);
-			IC2.platform.messagePlayer(this.player.player, "Invert Redstone: " + !this.tile.invertRedstone);
+		if (this.tile.hasRedstone) {
+			if (button.id == 1) {
+				this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 1);
+				IC2.platform.messagePlayer(this.player.player, "Outputs Redstone If Full: "
+						+ !this.tile.outputRedstone);
+			}
+			if (button.id == 2) {
+				this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 2);
+				IC2.platform.messagePlayer(this.player.player, "Invert Redstone: " + !this.tile.invertRedstone);
+			}
 		}
 	}
 

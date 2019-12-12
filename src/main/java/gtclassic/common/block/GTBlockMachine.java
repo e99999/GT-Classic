@@ -104,28 +104,8 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 					Ic2InfoLang.electricTransferRateVariable.getLocalized() })));
 			tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 128 })));
 		}
-		if (this == GTBlocks.tileAESU) {
-			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
-			tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 100000000 })));
-		}
-		if (this == GTBlocks.tileIDSU) {
-			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 8192 })));
-			tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 400000000 })));
-		}
-		if (this == GTBlocks.tileLESU) {
-			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 32 })));
-			tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 202000000 })));
-			tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 512 })));
-		}
 		if (this == GTBlocks.tileFabricator) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 134217728 })));
-		}
-		if (this == GTBlocks.tileTranslocator || this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
-				|| this == GTBlocks.tileBufferFluid) {
-			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32 })));
-		}
-		if (this == GTBlocks.tileSupercondensator) {
-			tooltip.add(Ic2InfoLang.electricTransformer.getLocalizedFormatted(new Object[] { 134217728, 8192 }));
 		}
 		if (this == GTBlocks.tileSuperconductorCable) {
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));

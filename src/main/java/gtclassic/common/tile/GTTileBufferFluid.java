@@ -40,6 +40,7 @@ public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener
 		this.tank = new IC2Tank(16000);
 		this.tank.addListener(this);
 		this.addGuiFields("tank");
+		this.hasRedstone = false;
 	}
 
 	@Override
@@ -123,17 +124,16 @@ public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener
 	@Override
 	public void update() {
 		GTHelperFluid.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
-		if (world.getTotalWorldTime() % 10 == 0) {
-			tryExportFluid();
-		}
+		super.update();
 	}
 
-	public void tryExportFluid() {
+	@Override
+	public void onBufferTick() {
 		IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, getPos().offset(getFacing()), getFacing().getOpposite());
 		boolean canExport = fluidTile != null && this.tank.getFluid() != null;
-		tryBlacklistPipe(this, getFacing());
 		if (canExport) {
-			FluidUtil.tryFluidTransfer(fluidTile, this.tank, 1000, true);
+			FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true);
+			tryBlacklistPipe(this, getFacing());
 		}
 	}
 
@@ -154,5 +154,10 @@ public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
 		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+	}
+
+	@Override
+	public boolean isInventoryFull() {
+		return false;
 	}
 }

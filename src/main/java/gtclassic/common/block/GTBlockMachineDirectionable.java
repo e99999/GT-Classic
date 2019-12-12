@@ -1,5 +1,7 @@
 package gtclassic.common.block;
 
+import java.util.List;
+
 import gtclassic.common.GTBlocks;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileBufferFluid;
@@ -8,11 +10,14 @@ import gtclassic.common.tile.GTTileBufferSmall;
 import gtclassic.common.tile.GTTileIDSU;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileTranslocator;
+import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.lang.storage.Ic2InfoLang;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -47,6 +52,9 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 		if (this == GTBlocks.tileTranslocator) {
 			return new GTTileTranslocator();
 		}
+		if (this == GTBlocks.tileTranslocatorFluid) {
+			return new GTTileTranslocatorFluid();
+		}
 		if (this == GTBlocks.tileBufferLarge) {
 			return new GTTileBufferLarge();
 		}
@@ -57,6 +65,30 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 			return new GTTileBufferFluid();
 		}
 		return new TileEntityBlock();
+	}
+
+	@Override
+	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		if (this == GTBlocks.tileAESU) {
+			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 2048 })));
+			tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 100000000 })));
+		}
+		if (this == GTBlocks.tileIDSU) {
+			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 8192 })));
+			tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 400000000 })));
+		}
+		if (this == GTBlocks.tileLESU) {
+			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 32 })));
+			tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 202000000 })));
+			tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 512 })));
+		}
+		if (this == GTBlocks.tileTranslocator || this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
+				|| this == GTBlocks.tileBufferFluid || this == GTBlocks.tileTranslocatorFluid) {
+			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32 })));
+		}
+		if (this == GTBlocks.tileSupercondensator) {
+			tooltip.add(Ic2InfoLang.electricTransformer.getLocalizedFormatted(new Object[] { 134217728, 8192 }));
+		}
 	}
 
 	@Override

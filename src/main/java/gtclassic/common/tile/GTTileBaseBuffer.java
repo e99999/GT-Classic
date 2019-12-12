@@ -3,6 +3,7 @@ package gtclassic.common.tile;
 import java.util.List;
 import java.util.Map;
 
+import gtclassic.api.helpers.int3;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.pipe.GTTilePipeBase;
 import ic2.api.classic.network.adv.NetworkField;
@@ -24,9 +25,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 
-public class GTTileBaseBuffer extends TileEntityMachine implements IEnergyConductor, IEnergySink,
+public abstract class GTTileBaseBuffer extends TileEntityMachine implements IEnergyConductor, IEnergySink,
 		INetworkClientTileEntityEventListener, IRedstoneProvider, ITickable, IGTDebuggableTile {
 
 	public int tier = 1;
@@ -40,6 +42,7 @@ public class GTTileBaseBuffer extends TileEntityMachine implements IEnergyConduc
 	public boolean outputRedstone = false;
 	public boolean invertRedstone = false;
 	public int redstoneStrength = 0;
+	public boolean hasRedstone = true;
 
 	public GTTileBaseBuffer(int slots) {
 		super(slots);
@@ -175,14 +178,16 @@ public class GTTileBaseBuffer extends TileEntityMachine implements IEnergyConduc
 			onLoaded();
 			this.getNetwork().updateTileGuiField(this, "conduct");
 		}
-		if (event == 1) {
-			this.outputRedstone = !this.outputRedstone;
-			this.getNetwork().updateTileGuiField(this, "outputRedstone");
-		}
-		if (event == 2) {
-			this.invertRedstone = !this.invertRedstone;
-			this.getNetwork().updateTileGuiField(this, "invertRedstone");
-			world.notifyNeighborsOfStateChange(pos, blockType, true);
+		if (this.hasRedstone) {
+			if (event == 1) {
+				this.outputRedstone = !this.outputRedstone;
+				this.getNetwork().updateTileGuiField(this, "outputRedstone");
+			}
+			if (event == 2) {
+				this.invertRedstone = !this.invertRedstone;
+				this.getNetwork().updateTileGuiField(this, "invertRedstone");
+				world.notifyNeighborsOfStateChange(pos, blockType, true);
+			}
 		}
 	}
 
@@ -191,22 +196,40 @@ public class GTTileBaseBuffer extends TileEntityMachine implements IEnergyConduc
 		return this.invertRedstone ? 15 - this.redstoneStrength : this.redstoneStrength;
 	}
 
-	public boolean isInventoryFull() {
-		return false;
+	public abstract boolean isInventoryFull();
+
+	public BlockPos getImportTilePos() {
+		int3 dir = new int3(getPos(), getFacing());
+		return dir.back(1).asBlockPos();
+	}
+
+	public BlockPos getExportTilePos() {
+		int3 dir = new int3(getPos(), getFacing());
+		return dir.forward(1).asBlockPos();
 	}
 
 	@Override
 	public void update() {
-		int oldStrength = this.redstoneStrength;
-		if (this.outputRedstone && isInventoryFull()) {
-			this.redstoneStrength = 15;
-		} else {
-			this.redstoneStrength = 0;
-		}
-		if (this.redstoneStrength != oldStrength) {
-			world.notifyNeighborsOfStateChange(pos, blockType, true);
+		if (world.getTotalWorldTime() % 10 == 0) {
+			if (this.hasRedstone) {
+				int oldStrength = this.redstoneStrength;
+				if (this.outputRedstone && isInventoryFull()) {
+					this.redstoneStrength = 15;
+				} else {
+					this.redstoneStrength = 0;
+				}
+				if (this.redstoneStrength != oldStrength) {
+					world.notifyNeighborsOfStateChange(pos, blockType, true);
+				}
+			}
+			if (world.isBlockLoaded(getImportTilePos()) && world.isBlockLoaded(getExportTilePos())) {
+				onBufferTick();
+			}
 		}
 	}
+
+	/** Called twice a second for buffer operations **/
+	public abstract void onBufferTick();
 
 	@Override
 	public List<ItemStack> getDrops() {
@@ -232,9 +255,11 @@ public class GTTileBaseBuffer extends TileEntityMachine implements IEnergyConduc
 		if (this.conduct) {
 			data.put("Stored: " + this.energy + " EU", true);
 		}
-		if (this.outputRedstone) {
-			data.put("Redstone Strength: " + this.redstoneStrength, true);
+		if (this.hasRedstone) {
+			if (this.outputRedstone) {
+				data.put("Redstone Strength: " + this.redstoneStrength, true);
+			}
+			data.put("Inverted Redstone: " + this.invertRedstone, true);
 		}
-		data.put("Inverted Redstone: " + this.invertRedstone, true);
 	}
 }
