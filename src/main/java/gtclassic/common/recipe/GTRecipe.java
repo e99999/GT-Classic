@@ -231,6 +231,8 @@ public class GTRecipe {
 						'E', "circuitMaster", 'S', "craftingSuperconductor", 'L', "batteryUltimate", 'C',
 						GTBlocks.tileComputer });
 			}
+			/** Electric Craftingtable **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAutocrafter), " W ", "CMC", " P ", 'W', Ic2Items.battery.copy(), 'C', "circuitAdvanced", 'M', "workbench", 'P', "machineBlockAdvanced");
 			/** Industrial Centrifuge **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), new Object[] { "RCR", "AEA", "RCR", 'E',
 					Ic2Items.extractor, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C', "circuitAdvanced" });
@@ -257,6 +259,19 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Ic2Items.importBasicUpgrade);
 			/** Large Chest Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', "chestWood");
+			/** Cabinet **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCabinet), new Object[] { "III", "CIC", "III", 'I',
+					ingotMachine, 'C', "chestWood" });
+			/** Workbench **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileWorktable), new Object[] { "IWI", "III", "ICI", 'I',
+					ingotMachine, 'C', "chestWood", 'W', "workbench" });
+			/** Drum **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), new Object[] { "ICI", "IBI", "IBI", 'I',
+					ingotRefinedIron, 'B', Items.BUCKET, 'C', "craftingToolMonkeyWrench" });
+			/** Fluid Translocator **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Ic2Items.basicFluidImportUpgrade);
+			/** Fluid Buffer **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Items.BUCKET);
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {
@@ -271,8 +286,6 @@ public class GTRecipe {
 		/** LESU Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLapotron), new Object[] { "BBB", "BCB", "BBB", 'B',
 				"blockLapis", 'C', "circuitBasic" });
-		/** Electric Craftingtable **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAutocrafter), " W ", "CMC", " P ", 'W', Ic2Items.battery.copy(), 'C', "circuitAdvanced", 'M', "workbench", 'P', "machineBlockAdvanced");
 		/** Lightning Rod **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), new Object[] { "EAE", "ASA", "EAE", 'E',
 				"circuitMaster", 'S', GTBlocks.tileSupercondensator, 'A', "machineBlockElite" });
@@ -294,21 +307,8 @@ public class GTRecipe {
 		/** Energy Storage **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAESU), new Object[] { "OOO", "OCO", "OOO", 'O',
 				"batteryUltimate", 'C', GTBlocks.tileComputer });
-		/** Cabinet **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCabinet), new Object[] { "III", "CIC", "III", 'I',
-				ingotMachine, 'C', "chestWood" });
-		/** Workbench **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileWorktable), new Object[] { "IWI", "III", "ICI", 'I',
-				ingotMachine, 'C', "chestWood", 'W', "workbench" });
-		/** Drum **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), new Object[] { "I I", "IBI", "I I", 'I',
-				ingotRefinedIron, 'B', Items.BUCKET });
 		/** Large Chest Buffer **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), "SSS", "SCS", "SSS", 'S', GTBlocks.tileBufferSmall, 'C', Ic2Items.upgradeBase.copy());
-		/** Fluid Translocator **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Ic2Items.basicFluidImportUpgrade);
-		/** Fluid Buffer **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Items.BUCKET);
 		/** Matter Fabricator **/
 		if (GTConfig.general.removeIC2MassFab) {
 			recipes.overrideRecipe("shaped_tile.blockMatter_1416524227", GTMaterialGen.get(GTBlocks.tileFabricator, 1), new Object[] {

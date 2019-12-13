@@ -43,6 +43,7 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 			IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.getStructureValid());
 		}
 		if (tileEntity instanceof IGTDebuggableTile) {
+			f = true;
 			LinkedHashMap<String, Boolean> data = new LinkedHashMap<>();
 			IGTDebuggableTile debug = (IGTDebuggableTile) tileEntity;
 			debug.getData(data);

@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.api.interfaces.IGTItemBlock;
-import gtclassic.common.GTLang;
+import gtclassic.api.tile.GTTileBatteryBase;
+import gtclassic.common.itemblock.GTItemBlockBatteryMV;
 import gtclassic.common.tile.GTTileBattery;
-import gtclassic.common.util.GTItemBlockBattery;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.item.block.ItemBlockRare;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -24,20 +25,20 @@ import net.minecraft.world.World;
 
 public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 
-	public GTBlockBattery() {
-		super("battery", GTLang.BATTERY, Material.GROUND, 0);
+	public GTBlockBattery(String name, LocaleComp comp) {
+		super(name, comp, Material.GROUND, 3);
 		this.setHardness(0.2F);
 		this.setSoundType(SoundType.CLOTH);
 	}
 
 	@Override
 	public Class<? extends ItemBlockRare> getCustomItemBlock() {
-		return GTItemBlockBattery.class;
+		return GTItemBlockBatteryMV.class;
 	}
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World world, int arg1) {
-		return new GTTileBattery();
+		return new GTTileBattery.GTTileBatteryMV();
 	}
 
 	@Override
@@ -45,8 +46,8 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 			ItemStack stack) {
 		if (!IC2.platform.isRendering()) {
 			TileEntity tile = worldIn.getTileEntity(pos);
-			if (tile instanceof GTTileBattery) {
-				((GTTileBattery) tile).setItem(stack.copy());
+			if (tile instanceof GTTileBatteryBase) {
+				((GTTileBatteryBase) tile).setItem(stack.copy());
 			}
 		}
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);

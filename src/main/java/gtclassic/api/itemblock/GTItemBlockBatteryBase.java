@@ -1,7 +1,5 @@
-package gtclassic.common.util;
+package gtclassic.api.itemblock;
 
-import gtclassic.GTMod;
-import gtclassic.api.itemblock.GTItemBlockRare;
 import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
 import net.minecraft.block.Block;
@@ -9,18 +7,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessElectricItem {
+public abstract class GTItemBlockBatteryBase extends GTItemBlockRare implements IDamagelessElectricItem {
 
 	public int maxCharge;
 	public int transferLimit;
 	public int tier;
 
-	public GTItemBlockBattery(Block block) {
+	public GTItemBlockBatteryBase(Block block) {
 		super(block);
-		maxCharge = 1000000;
-		transferLimit = 128;
-		tier = 2;
-		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setNoRepair();
 		this.setHasSubtypes(true);
 	}

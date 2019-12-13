@@ -115,6 +115,10 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));
 			tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));
 		}
+		if (this == GTBlocks.tileBattery) {
+			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 128 })));
+			tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 1000000 })));
+		}
 	}
 
 	@Override
