@@ -16,6 +16,7 @@ import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -33,6 +34,10 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 
 	public GTBlockMachineDirectionable(String name, LocaleComp comp, int additionalInfo) {
 		super(name, comp, additionalInfo);
+	}
+	
+	public GTBlockMachineDirectionable(String name, LocaleComp comp, Material material, int additionalInfo) {
+		super(name, comp, material, additionalInfo);
 	}
 
 	@Override

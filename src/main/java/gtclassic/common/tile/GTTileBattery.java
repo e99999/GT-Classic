@@ -4,13 +4,13 @@ import gtclassic.api.tile.GTTileBatteryBase;
 
 public class GTTileBattery {
 
-	public static class GTTileBatteryMV extends GTTileBatteryBase {
+	public static class GTTileBatteryLV extends GTTileBatteryBase {
 
-		public GTTileBatteryMV() {
-			this.tier = 2;
-			this.maxEnergy = 1000000;
-			this.maxInput = 128;
-			this.output = 128;
+		public GTTileBatteryLV() {
+			this.tier = 1;
+			this.maxEnergy = 80000;
+			this.maxInput = 32;
+			this.output = 32;
 		}
 	}
 }

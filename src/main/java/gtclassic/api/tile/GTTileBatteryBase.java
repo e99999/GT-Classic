@@ -105,18 +105,13 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 	}
 
 	@Override
-	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing.getAxis().isHorizontal();
-	}
-
-	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
 	}
 
 	@Override
-	public void getData(Map<String, Boolean> data) {
-		data.put("Stored Energy: " + this.energy, false);
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return facing != getFacing() && facing.getAxis().isHorizontal();
 	}
 
 	@Override
@@ -184,5 +179,10 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 	@Override
 	public int getSourceTier() {
 		return this.tier;
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		data.put("Stored Energy: " + this.energy, false);
 	}
 }

@@ -37,7 +37,7 @@ public class GTLang {
 	public static final LocaleComp WORKTABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.worktable");
 	public static final LocaleComp CABINET = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.cabinet");
 	public static final LocaleComp DRUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.drum");
-	public static final LocaleComp BATTERYMV = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.batterymv");
+	public static final LocaleComp BATTERYBLOCK_LV = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.batteryblocklv");
 	public static final LocaleComp TRANSLOCATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocator");
 	public static final LocaleComp TRANSLOCATOR_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocatorfluid");
 	public static final LocaleComp BUFFER_LARGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferlarge");

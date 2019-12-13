@@ -91,11 +91,6 @@ public class GTRecipe {
 			// GTMaterialGen.getTube(GTMaterial.Hydrogen, 1),
 			// GTMaterialGen.getTube(GTMaterial.Hydrogen, 1),
 			// GTMaterialGen.getTube(GTMaterial.Hydrogen, 1));
-			/** Sulfuric Acid **/
-			// recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.SulfuricAcid, 3),
-			// GTMaterialGen.getDust(GTMaterial.Sulfur, 1), GTMaterialGen.getWater(1),
-			// GTMaterialGen.getTube(GTMaterial.Oxygen, 1),
-			// GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 			/** Electrum Dust **/
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Electrum, 2), "dustSilver", "dustGold");
 			/** Invar Dust **/
@@ -346,6 +341,8 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), new Object[] { "dCd", "TQE", "DBD", 'd',
 				"circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E',
 				GTBlocks.tileAutocrafter, 'D', "circuitUltimate", 'B', batteryAdvanced });
+		/** Low Voltage Battery Block **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBatteryLV), " W ", "IRI", "IMI", 'W', Ic2Items.copperCable, 'I', "ingotTin", 'M', "machineBlockBasic", 'R', "blockRedstone");
 		/** More recipes for vanilla rails **/
 		if (GTConfig.general.vanillaRailRecipes) {
 			// golden
