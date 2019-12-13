@@ -73,7 +73,7 @@ public class GTTileDrum extends TileEntityMachine
 	}
 
 	public List<ItemStack> getDrops() {
-		List<ItemStack> list = new ArrayList<ItemStack>();
+		List<ItemStack> list = new ArrayList<>();
 		ItemStack stack = GTMaterialGen.get(GTBlocks.tileDrum);
 		if (this.tank.getFluid() != null) {
 			StackUtil.getOrCreateNbtData(stack).setTag("Fluid", this.tank.getFluid().writeToNBT(new NBTTagCompound()));

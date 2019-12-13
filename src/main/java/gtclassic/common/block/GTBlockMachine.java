@@ -79,6 +79,10 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 				|| this == GTBlocks.tileMobRepeller || this == GTBlocks.tileDisassembler) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32 })));
 		}
+		if (this == GTBlocks.tileAutocrafter) {
+			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32 })));
+			tooltip.add("Energy Used Per Craft: 50 EU");
+		}
 		if (this == GTBlocks.tileChargeOmat) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
 		}

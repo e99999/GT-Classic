@@ -85,9 +85,17 @@ public class GTRecipe {
 			/** Gunpowder **/
 			recipes.addShapelessRecipe(GTMaterialGen.get(Items.GUNPOWDER, 5), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 			/** Methane **/
-			recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.Methane, 4), GTMaterialGen.getDust(GTMaterial.Carbon, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1));
+			// recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.Methane, 4),
+			// GTMaterialGen.getDust(GTMaterial.Carbon, 1),
+			// GTMaterialGen.getTube(GTMaterial.Hydrogen, 1),
+			// GTMaterialGen.getTube(GTMaterial.Hydrogen, 1),
+			// GTMaterialGen.getTube(GTMaterial.Hydrogen, 1),
+			// GTMaterialGen.getTube(GTMaterial.Hydrogen, 1));
 			/** Sulfuric Acid **/
-			recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.SulfuricAcid, 3), GTMaterialGen.getDust(GTMaterial.Sulfur, 1), GTMaterialGen.getWater(1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
+			// recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.SulfuricAcid, 3),
+			// GTMaterialGen.getDust(GTMaterial.Sulfur, 1), GTMaterialGen.getWater(1),
+			// GTMaterialGen.getTube(GTMaterial.Oxygen, 1),
+			// GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 			/** Electrum Dust **/
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Electrum, 2), "dustSilver", "dustGold");
 			/** Invar Dust **/
