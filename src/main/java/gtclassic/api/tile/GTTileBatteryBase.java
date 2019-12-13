@@ -34,6 +34,7 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 	public int maxInput;
 	public int output;
 	public boolean addedToEnergyNet;
+	public int state = 0;
 
 	public GTTileBatteryBase() {
 	}
@@ -82,13 +83,21 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 	}
 
 	public void updateActive() {
-		if (this.energy > (this.maxEnergy * .01)) {
-			if (this.isActive) {
-				return;
-			}
-			this.setActive(true);
-		} else {
-			this.setActive(false);
+		if (this.energy < 20000) {
+			this.state = 0;
+			return;
+		}
+		//this.setActive(true);
+		if (this.energy > 20000 && this.energy < 40000) {
+			this.state = 1;
+			return;
+		}
+		if (this.energy > 40000 && this.energy < 60000) {
+			this.state = 2;
+			return;
+		}
+		if (this.energy > 60000) {
+			this.state = 3;
 		}
 	}
 
@@ -184,5 +193,6 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		data.put("Stored Energy: " + this.energy, false);
+		data.put("Charge State: " + this.state, false);
 	}
 }
