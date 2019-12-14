@@ -43,17 +43,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockBattery extends GTBlockBaseMachine implements IGTItemBlock, IGTReaderInfoBlock {
 
-	public int maxCharge;
-	public int transferLimit;
 	public int tier;
+	public int transferLimit;
+	public int maxCharge;
 	public String name;
 	public static PropertyInteger chargelevel = PropertyInteger.create("chargelevel", 0, 4);
 
-	public GTBlockBattery(String name) {
+	public GTBlockBattery(String name, int tier, int transferLimit, int maxCharge) {
 		super(Material.GROUND, Ic2Lang.nullKey, 3);
-		this.maxCharge = 80000;
-		this.transferLimit = 32;
-		this.tier = 1;
+		this.maxCharge = maxCharge;
+		this.transferLimit = transferLimit;
+		this.tier = tier;
 		this.name = name;
 		this.setUnlocalizedName(GTMod.MODID + "." + name);
 		this.setRegistryName(name.toLowerCase());
