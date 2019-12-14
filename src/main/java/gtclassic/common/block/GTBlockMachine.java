@@ -111,10 +111,6 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileFabricator) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 134217728 })));
 		}
-		if (this == GTBlocks.tileSuperconductorCable) {
-			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));
-			tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));
-		}
 	}
 
 	@Override

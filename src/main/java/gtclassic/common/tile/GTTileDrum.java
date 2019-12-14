@@ -89,13 +89,12 @@ public class GTTileDrum extends TileEntityMachine
 		ItemStack stack = GTMaterialGen.get(GTBlocks.tileDrum);
 		if (this.tank.getFluid() != null) {
 			StackUtil.getOrCreateNbtData(stack).setTag("Fluid", this.tank.getFluid().writeToNBT(new NBTTagCompound()));
-			
 		}
 		StackUtil.getOrCreateNbtData(stack).setBoolean("flow", this.flow);
 		list.add(stack);
 		return list;
 	}
-	
+
 	public void setFlow(boolean canFlow) {
 		this.flow = canFlow;
 	}

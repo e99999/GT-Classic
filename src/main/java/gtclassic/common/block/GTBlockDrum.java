@@ -36,10 +36,10 @@ public class GTBlockDrum extends GTBlockMachine {
 			if (nbt.hasKey("Fluid")) {
 				FluidStack fluid = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("Fluid"));
 				tooltip.add(I18n.format(fluid.amount + "mB of " + fluid.getLocalizedName()));
-			} else {
-				super.addInformation(stack, worldIn, tooltip, flagIn);
 			}
+			
 		}
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
 	@Override
