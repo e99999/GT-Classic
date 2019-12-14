@@ -5,16 +5,17 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTMod;
+import gtclassic.api.block.GTBlockBaseMachine;
 import gtclassic.api.interfaces.IGTItemBlock;
-import gtclassic.api.tile.GTTileBatteryBase;
+import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.itemblock.GTItemBlockBattery;
 import gtclassic.common.tile.GTTileBattery;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.item.block.ItemBlockRare;
-import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
+import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.helpers.BlockStateContainerIC2;
 import ic2.core.util.misc.StackUtil;
@@ -40,12 +41,25 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
+public class GTBlockBattery extends GTBlockBaseMachine implements IGTItemBlock, IGTReaderInfoBlock {
 
+	public int maxCharge;
+	public int transferLimit;
+	public int tier;
+	public String name;
 	public static PropertyInteger chargelevel = PropertyInteger.create("chargelevel", 0, 4);
 
-	public GTBlockBattery(String name, LocaleComp comp) {
-		super(name, comp, Material.GROUND, 3);
+	public GTBlockBattery(String name) {
+		super(Material.GROUND, Ic2Lang.nullKey, 3);
+		this.maxCharge = 80000;
+		this.transferLimit = 32;
+		this.tier = 1;
+		this.name = name;
+		this.setUnlocalizedName(GTMod.MODID + "." + name);
+		this.setRegistryName(name.toLowerCase());
+		this.setResistance(20.0F);
+		this.setSoundType(SoundType.METAL);
+		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setHardness(0.2F);
 		this.setSoundType(SoundType.CLOTH);
 	}
@@ -53,7 +67,7 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite[] getIconSheet(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_batteryblocklv");
+		return Ic2Icons.getTextures(GTMod.MODID + "_" + this.name);
 	}
 
 	@Override
@@ -87,6 +101,16 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 	}
 
 	@Override
+	public Class<? extends ItemBlockRare> getCustomItemBlock() {
+		return GTItemBlockBattery.class;
+	}
+
+	@Override
+	public TileEntityBlock createNewTileEntity(World world, int arg1) {
+		return new GTTileBattery();
+	}
+
+	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		NBTTagCompound nbt = StackUtil.getOrCreateNbtData(stack);
 		if (nbt.hasKey("charge")) {
@@ -94,7 +118,7 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 		}
 		return this.getStateFromMeta(stack.getMetadata());
 	}
-	
+
 	public int getStateFromCharge(int energy, int maxEnergy) {
 		double half = maxEnergy * .5;
 		double partial = maxEnergy * .75;
@@ -111,7 +135,6 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 			return 3;
 		}
 		return 4;
-		
 	}
 
 	@Override
@@ -147,21 +170,11 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		IBlockState result = super.getActualState(state, worldIn, pos);
 		TileEntityBlock tile = (TileEntityBlock) worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileBatteryBase) {
-			GTTileBatteryBase block = (GTTileBatteryBase) tile;
+		if (tile instanceof GTTileBattery) {
+			GTTileBattery block = (GTTileBattery) tile;
 			result = result.withProperty(chargelevel, block.state);
 		}
 		return result;
-	}
-
-	@Override
-	public Class<? extends ItemBlockRare> getCustomItemBlock() {
-		return GTItemBlockBattery.GTItemBlockBatteryLV.class;
-	}
-
-	@Override
-	public TileEntityBlock createNewTileEntity(World world, int arg1) {
-		return new GTTileBattery.GTTileBatteryLV();
 	}
 
 	@Override
@@ -169,8 +182,9 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 			ItemStack stack) {
 		if (!IC2.platform.isRendering()) {
 			TileEntity tile = worldIn.getTileEntity(pos);
-			if (tile instanceof GTTileBatteryBase) {
-				((GTTileBatteryBase) tile).setItem(stack.copy());
+			if (tile instanceof GTTileBattery) {
+				((GTTileBattery) tile).setItem(stack.copy());
+				((GTTileBattery) tile).setElectricTileInfo(this.tier, this.maxCharge, this.transferLimit);
 			}
 		}
 		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
