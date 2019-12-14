@@ -91,7 +91,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileMagicEnergyAbsorber = registerBlock(new GTBlockMachine("magicenergyabsorber", GTLang.MAGIC_ENERGY_ABSORBER));
 	public static final GTBlockMachine tileFusionReactor = registerBlock(new GTBlockMachine("fusionreactor", GTLang.FUSION_REACTOR, 5));
 	public static final GTBlockMachine tileLightningRod = registerBlock(new GTBlockMachine("lightningrod", GTLang.LIGHTNING_ROD, 3));
-	public static final GTBlockBattery tileBatteryLV = registerBlock(new GTBlockBattery("batteryblocklv", GTLang.BATTERYBLOCK_LV));
+	public static final GTBlockBattery tileBatteryLV = registerBlock(new GTBlockBattery("batteryblocklv"));
 	public static final GTBlockMachineDirectionable tileLESU = registerBlock(new GTBlockMachineDirectionable("lesu", GTLang.LESU, 2));
 	public static final GTBlockMachineDirectionable tileAESU = registerBlock(new GTBlockMachineDirectionable("aesu", GTLang.AESU));
 	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu", GTLang.IDSU));
@@ -115,7 +115,7 @@ public class GTBlocks {
 			"quantumchest", "quantumtank", "playerdetector", "mobrepeller", "fusionreactor", "lightningrod",
 			"dragoneggenergysiphon", "magicenergyconverter", "magicenergyabsorber", "idsu", "aesu", "lesu",
 			"supercondensator", "superconductorcable", "cabinet", "drum", "worktable", "translocator",
-			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid", "batteryblocklv", "pipe" };
+			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid", "pipe" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -172,7 +172,7 @@ public class GTBlocks {
 		registerUtil(GTTileWorktable.class, "Worktable");
 		registerUtil(GTTileCabinet.class, "Cabinet");
 		registerUtil(GTTileDrum.class, "Drum");
-		registerUtil(GTTileBattery.GTTileBatteryLV.class, "Battery");
+		registerUtil(GTTileBattery.class, "BatteryBase");
 		registerUtil(GTTileTranslocator.class, "Translocator");
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
