@@ -48,7 +48,9 @@ public class GTOreDict {
 		if (GTConfig.general.oreDictWroughtIron) {
 			OreDictionary.registerOre("ingotWroughtIron", Ic2Items.refinedIronIngot);
 		}
-		OreDictionary.registerOre("machineBlockBasic", Ic2Items.machine);
+		if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
+			OreDictionary.registerOre("machineBlockBasic", Ic2Items.machine);
+		}
 		OreDictionary.registerOre("machineBlockAdvanced", Ic2Items.advMachine);
 		// Registering Aluminium for idiots
 		GTMaterial aluminium = GTMaterial.Aluminium;

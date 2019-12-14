@@ -6,8 +6,11 @@ import java.util.Map;
 
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import gtclassic.api.interfaces.IGTMonkeyWrenchTile;
 import gtclassic.api.material.GTMaterialGen;
+import gtclassic.api.pipe.GTTilePipeBase;
 import gtclassic.common.GTBlocks;
+import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.misc.StackUtil;
@@ -17,18 +20,25 @@ import ic2.core.util.obj.ITankListener;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class GTTileDrum extends TileEntityMachine
-		implements ITankListener, IItemContainer, IClickable, IGTDebuggableTile {
+		implements ITankListener, IItemContainer, IClickable, IGTDebuggableTile, IGTMonkeyWrenchTile, ITickable {
 
 	private IC2Tank tank;
+	private boolean flow = false;
 
 	public GTTileDrum() {
 		super(0);
@@ -50,12 +60,14 @@ public class GTTileDrum extends TileEntityMachine
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.tank.readFromNBT(nbt.getCompoundTag("tank"));
+		this.flow = nbt.getBoolean("flow");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		this.tank.writeToNBT(this.getTag(nbt, "tank"));
+		nbt.setBoolean("flow", this.flow);
 		return nbt;
 	}
 
@@ -77,9 +89,15 @@ public class GTTileDrum extends TileEntityMachine
 		ItemStack stack = GTMaterialGen.get(GTBlocks.tileDrum);
 		if (this.tank.getFluid() != null) {
 			StackUtil.getOrCreateNbtData(stack).setTag("Fluid", this.tank.getFluid().writeToNBT(new NBTTagCompound()));
+			
 		}
+		StackUtil.getOrCreateNbtData(stack).setBoolean("flow", this.flow);
 		list.add(stack);
 		return list;
+	}
+	
+	public void setFlow(boolean canFlow) {
+		this.flow = canFlow;
 	}
 
 	@Override
@@ -111,9 +129,43 @@ public class GTTileDrum extends TileEntityMachine
 	}
 
 	@Override
+	public void update() {
+		if (this.flow && world.getTotalWorldTime() % 10 == 0 && this.tank.getFluid() != null) {
+			boolean isGas = this.tank.getFluid().getFluid().isGaseous();
+			BlockPos direction = isGas ? getPos().up() : getPos().down();
+			EnumFacing side = isGas ? EnumFacing.DOWN : EnumFacing.UP;
+			IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, direction, side);
+			if (fluidTile != null && FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true) != null) {
+				TileEntity tile = this.getWorld().getTileEntity(direction);
+				if (tile instanceof GTTilePipeBase) {
+					((GTTilePipeBase) tile).lastRecievedFrom = side;
+				}
+			}
+		}
+	}
+
+	@Override
 	public void getData(Map<String, Boolean> data) {
 		FluidStack fluid = this.tank.getFluid();
-		String info = fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Empty";
-		data.put(info, false);
+		boolean fluidNotNull = fluid != null;
+		if (fluidNotNull) {
+			String type = fluid.getFluid().isGaseous() ? "Is gaseous will flow upward" : "Is fluid will flow downward";
+			data.put(fluid.amount + "mB of " + fluid.getLocalizedName(), false);
+			data.put(type, false);
+		} else {
+			data.put("Empty", false);
+		}
+		String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
+		data.put(msg, false);
+	}
+
+	@Override
+	public boolean onMonkeyWrench(EntityPlayer player, World world, BlockPos pos, EnumFacing side, EnumHand hand) {
+		this.flow = !this.flow;
+		if (this.isSimulating()) {
+			String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
+			IC2.platform.messagePlayer(player, msg);
+		}
+		return true;
 	}
 }

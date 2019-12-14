@@ -69,7 +69,6 @@ public class GTMaterial {
 	public static final GTMaterial Sodalite = new GTMaterial("Sodalite", 20, 20, 255, dust);
 	public static final GTMaterial Sodium = new GTMaterial(11, "Sodium", 0, 38, 255, fluid);
 	public static final GTMaterial Sulfur = new GTMaterial(16, "Sulfur", 200, 200, 0, dust);
-	public static final GTMaterial SulfuricAcid = new GTMaterial("SulfuricAcid", 255, 106, 0, fluid);
 	public static final GTMaterial Thorium = new GTMaterial(90, "Thorium", 2, 0, 30, 0, false, metalAll);
 	public static final GTMaterial Titanium = new GTMaterial(22, "Titanium", 3, 170, 143, 222, pipeFluidAll);
 	public static final GTMaterial Tritium = new GTMaterial("Tritium", 255, 0, 0, gas);
