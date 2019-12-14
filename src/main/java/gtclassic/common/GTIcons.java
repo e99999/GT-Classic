@@ -22,11 +22,14 @@ public class GTIcons {
 				+ ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 16)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_builder", GTMod.MODID
 				+ ":textures/sprites/builder.png", new Sprites.SpriteInfo(1, 12)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_batteryblocklv", GTMod.MODID
+				+ ":textures/sprites/batteryblocklv.png", new Sprites.SpriteInfo(5, 6)));
 		collectBasicTileSprites();
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_builder", 0, 0, 1, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 16));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 4));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_batteryblocklv", 0, 0, 5, 6));
 		if (GTConfig.general.animatedTextures) {
 			addCustomTexture("fusioncomputer", 0, 7, location("fusion_top"));
 			addCustomTexture("quantumchest", 0, 3, location("qchest_front"));

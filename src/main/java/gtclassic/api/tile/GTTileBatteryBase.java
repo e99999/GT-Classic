@@ -2,10 +2,9 @@ package gtclassic.api.tile;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.network.adv.NetworkField.BitLevel;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -24,7 +23,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
 
 public abstract class GTTileBatteryBase extends TileEntityBlock
-		implements IItemContainer, IEnergySink, IEUStorage, IEnergyEmitter, IEnergySource, IGTDebuggableTile {
+		implements IItemContainer, IEnergySink, IEUStorage, IEnergyEmitter, IEnergySource {
 
 	private ItemStack drop = ItemStack.EMPTY;
 	@NetworkField(index = 3)
@@ -34,9 +33,11 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 	public int maxInput;
 	public int output;
 	public boolean addedToEnergyNet;
+	@NetworkField(index = 5, compression = BitLevel.Bit8)
 	public int state = 0;
 
 	public GTTileBatteryBase() {
+		this.addNetworkFields(new String[] { "state" });
 	}
 
 	@Override
@@ -44,6 +45,7 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 		super.readFromNBT(nbt);
 		this.drop = new ItemStack(nbt.getCompoundTag("drop"));
 		this.energy = nbt.getInteger("energy");
+		this.state = nbt.getInteger("state");
 	}
 
 	@Override
@@ -51,7 +53,16 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 		super.writeToNBT(nbt);
 		nbt.setTag("drop", drop.writeToNBT(new NBTTagCompound()));
 		nbt.setInteger("energy", this.energy);
+		nbt.setInteger("state", this.state);
 		return nbt;
+	}
+
+	@Override
+	public void onNetworkUpdate(String field) {
+		super.onNetworkUpdate(field);
+		if (field.equals("state")) {
+			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
+		}
 	}
 
 	@Override
@@ -83,21 +94,31 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 	}
 
 	public void updateActive() {
-		if (this.energy < 20000) {
-			this.state = 0;
-			return;
+		updateState(getStateFromCharge(this.energy, this.maxEnergy));
+	}
+
+	public int getStateFromCharge(int energy, int maxEnergy) {
+		double half = maxEnergy * .5;
+		double partial = maxEnergy * .75;
+		if (energy == 0) {
+			return 0;
 		}
-		//this.setActive(true);
-		if (this.energy > 20000 && this.energy < 40000) {
-			this.state = 1;
-			return;
+		if (energy > 0 && energy < half) {
+			return 1;
 		}
-		if (this.energy > 40000 && this.energy < 60000) {
-			this.state = 2;
-			return;
+		if (energy >= half && energy < partial) {
+			return 2;
 		}
-		if (this.energy > 60000) {
-			this.state = 3;
+		if (energy >= partial && energy < maxEnergy) {
+			return 3;
+		}
+		return 4;
+	}
+
+	public void updateState(int newState) {
+		if (newState != state) {
+			this.state = newState;
+			this.getNetwork().updateTileEntityField(this, "state");
 		}
 	}
 
@@ -106,9 +127,7 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 		ArrayList<ItemStack> drops = new ArrayList<>();
 		ItemStack newDrop = drop.copy();
 		NBTTagCompound nbt = StackUtil.getOrCreateNbtData(newDrop);
-		if (this.energy > 0) {
-			nbt.setInteger("charge", this.energy);
-		}
+		nbt.setInteger("charge", this.energy);
 		drops.add(newDrop);
 		return drops;
 	}
@@ -150,7 +169,6 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 
 	@Override
 	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
-		// Only place invert is actually called for energy input
 		if (amount <= (double) this.maxInput && amount > 0.0D) {
 			this.energy = (int) ((double) this.energy + amount);
 			int left = 0;
@@ -188,11 +206,5 @@ public abstract class GTTileBatteryBase extends TileEntityBlock
 	@Override
 	public int getSourceTier() {
 		return this.tier;
-	}
-
-	@Override
-	public void getData(Map<String, Boolean> data) {
-		data.put("Stored Energy: " + this.energy, false);
-		data.put("Charge State: " + this.state, false);
 	}
 }

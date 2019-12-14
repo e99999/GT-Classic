@@ -35,7 +35,7 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 	public GTBlockMachineDirectionable(String name, LocaleComp comp, int additionalInfo) {
 		super(name, comp, additionalInfo);
 	}
-	
+
 	public GTBlockMachineDirectionable(String name, LocaleComp comp, Material material, int additionalInfo) {
 		super(name, comp, material, additionalInfo);
 	}

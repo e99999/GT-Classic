@@ -1,7 +1,6 @@
 package gtclassic.common.block;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -18,6 +17,7 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.helpers.BlockStateContainerIC2;
+import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -31,6 +31,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -41,23 +42,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 
-	public static PropertyInteger chargelevel = PropertyInteger.create("chargelevel", 0, 3);
+	public static PropertyInteger chargelevel = PropertyInteger.create("chargelevel", 0, 4);
 
 	public GTBlockBattery(String name, LocaleComp comp) {
 		super(name, comp, Material.GROUND, 3);
 		this.setHardness(0.2F);
 		this.setSoundType(SoundType.CLOTH);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite[] getIconSheet(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks");
+		return Ic2Icons.getTextures(GTMod.MODID + "_batteryblocklv");
 	}
-	
+
 	@Override
 	public int getMaxSheetSize(int meta) {
-		return 16;
+		return 5;
 	}
 
 	@Override
@@ -77,8 +78,7 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainerIC2(this, new IProperty[] { this.getMetadataProperty(), allFacings, active,
-				chargelevel });
+		return new BlockStateContainerIC2(this, new IProperty[] { allFacings, active, chargelevel });
 	}
 
 	@Override
@@ -87,48 +87,53 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 	}
 
 	@Override
+	public IBlockState getStateFromStack(ItemStack stack) {
+		NBTTagCompound nbt = StackUtil.getOrCreateNbtData(stack);
+		if (nbt.hasKey("charge")) {
+			return this.getDefaultBlockState().withProperty(chargelevel, getStateFromCharge(nbt.getInteger("charge"), 80000));
+		}
+		return this.getStateFromMeta(stack.getMetadata());
+	}
+	
+	public int getStateFromCharge(int energy, int maxEnergy) {
+		double half = maxEnergy * .5;
+		double partial = maxEnergy * .75;
+		if (energy == 0) {
+			return 0;
+		}
+		if (energy > 0 && energy < half) {
+			return 1;
+		}
+		if (energy >= half && energy < partial) {
+			return 2;
+		}
+		if (energy >= partial && energy < maxEnergy) {
+			return 3;
+		}
+		return 4;
+		
+	}
+
+	@Override
 	public List<IBlockState> getValidStateList() {
-		IBlockState def = this.getDefaultState();
 		List<IBlockState> states = new ArrayList<>();
-		int[] array = new int[] { 0, 1, 2, 3, 5 };
-		int[] var4 = array;
-		int var5 = array.length;
-		int var6;
+		IBlockState def = this.getDefaultState();
+		int[] arr = new int[] { 0, 1, 2, 3, 4 };
+		int arrLength = arr.length;
 		int i;
-		EnumFacing[] var8;
-		int var9;
-		int var10;
+		EnumFacing[] facings;
+		int facingsLength;
+		int j;
 		EnumFacing side;
-		for (var6 = 0; var6 < var5; ++var6) {
-			i = var4[var6];
-			var8 = EnumFacing.VALUES;
-			var9 = var8.length;
-			for (var10 = 0; var10 < var9; ++var10) {
-				side = var8[var10];
-				for (int x = 0; x < 4; ++x) {
-					states.add(def.withProperty(this.getMetadataProperty(), i).withProperty(allFacings, side).withProperty(chargelevel, x));
+		for (i = 0; i < arrLength; ++i) {
+			facings = EnumFacing.VALUES;
+			facingsLength = facings.length;
+			for (j = 0; j < facingsLength; ++j) {
+				side = facings[j];
+				for (int x = 0; x < 5; ++x) {
+					states.add(def.withProperty(allFacings, side).withProperty(chargelevel, x));
 				}
 			}
-		}
-		states.add(def.withProperty(this.getMetadataProperty(), 4));
-		array = new int[] { 8, 9, 10, 11, 13 };
-		var4 = array;
-		var5 = array.length;
-		for (var6 = 0; var6 < var5; ++var6) {
-			i = var4[var6];
-			var8 = EnumFacing.VALUES;
-			var9 = var8.length;
-			for (var10 = 0; var10 < var9; ++var10) {
-				side = var8[var10];
-				states.add(def.withProperty(this.getMetadataProperty(), i).withProperty(allFacings, side).withProperty(active, false));
-				states.add(def.withProperty(this.getMetadataProperty(), i).withProperty(allFacings, side).withProperty(active, true));
-			}
-		}
-		EnumFacing[] var13 = EnumFacing.VALUES;
-		var5 = var13.length;
-		for (var6 = 0; var6 < var5; ++var6) {
-			EnumFacing s = var13[var6];
-			states.add(def.withProperty(this.getMetadataProperty(), 12).withProperty(allFacings, s));
 		}
 		return states;
 	}
@@ -141,18 +146,13 @@ public class GTBlockBattery extends GTBlockMachine implements IGTItemBlock {
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		IBlockState result = super.getActualState(state, worldIn, pos);
-			TileEntityBlock tile = (TileEntityBlock) worldIn.getTileEntity(pos);
-			if (tile instanceof GTTileBatteryBase) {
-				GTTileBatteryBase block = (GTTileBatteryBase) tile;
-				result = result.withProperty(chargelevel, block.state);
-			}
-		
+		TileEntityBlock tile = (TileEntityBlock) worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileBatteryBase) {
+			GTTileBatteryBase block = (GTTileBatteryBase) tile;
+			result = result.withProperty(chargelevel, block.state);
+		}
 		return result;
 	}
-
-	//public int getMaxSheetSize(int meta) {
-	//	return meta >= 4 && meta != 5 ? 16 : 4;
-	//}
 
 	@Override
 	public Class<? extends ItemBlockRare> getCustomItemBlock() {
