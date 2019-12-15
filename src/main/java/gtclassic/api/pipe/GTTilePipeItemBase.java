@@ -104,12 +104,20 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		ItemStack stack = this.getStackInSlot(0).copy();
-		String itemName = !stack.isEmpty() ? stack.getDisplayName() + " x " + stack.getCount() : "Empty";
-		String last = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
-		data.put(itemName, false);
+		boolean empty = true;
+		for (int i = 0; i < this.inventory.size(); ++i) {
+			ItemStack stack = this.getStackInSlot(i).copy();
+			if (!stack.isEmpty()) {
+				data.put(stack.getDisplayName() + " x " + stack.getCount(), false);
+				empty = false;
+			}
+		}
+		if (empty) {
+			data.put("Empty", false);
+		}
 		data.put("Restricted only to pipes: " + this.onlyPipes, false);
 		data.put("Time Idle: " + this.idle / 20 + "/5 Seconds", true);
+		String last = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
 		data.put("Last Recieved From: " + last, true);
 	}
 }

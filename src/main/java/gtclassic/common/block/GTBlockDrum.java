@@ -37,7 +37,6 @@ public class GTBlockDrum extends GTBlockMachine {
 				FluidStack fluid = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("Fluid"));
 				tooltip.add(I18n.format(fluid.amount + "mB of " + fluid.getLocalizedName()));
 			}
-			
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}

@@ -69,7 +69,7 @@ public abstract class GTBlockBaseConnect extends BlockMultiID implements ICustom
 		}
 		return states;
 	}
-	
+
 	@Override
 	public int getMaxSheetSize(int meta) {
 		return 1;

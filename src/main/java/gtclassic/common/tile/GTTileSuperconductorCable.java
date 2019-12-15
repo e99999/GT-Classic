@@ -139,7 +139,7 @@ public class GTTileSuperconductorCable extends TileEntityBlock implements IEnerg
 	public boolean canConnect(IEnergyTile tile, EnumFacing side) {
 		if (tile instanceof TileEntityCable) {
 			return true;
-		}else if (tile instanceof GTTileSuperconductorCable) {
+		} else if (tile instanceof GTTileSuperconductorCable) {
 			return true;
 		} else if (tile instanceof IAnchorConductor && ((IAnchorConductor) tile).hasAnchor(side.getOpposite())) {
 			return false;

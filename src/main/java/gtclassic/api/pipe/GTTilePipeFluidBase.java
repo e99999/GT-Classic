@@ -6,11 +6,9 @@ import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import ic2.core.fluid.IC2Tank;
-import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.obj.ITankListener;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -68,11 +66,6 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 		super.writeToNBT(nbt);
 		this.tank.writeToNBT(this.getTag(nbt, "tank"));
 		return nbt;
-	}
-
-	@Override
-	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerPipeFluid(player.inventory, this);
 	}
 
 	@Override

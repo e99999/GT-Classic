@@ -210,7 +210,7 @@ public abstract class GTTileBaseBuffer extends TileEntityMachine implements IEne
 
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 10 == 0) {
+		if (world.getTotalWorldTime() % 8 == 0) {
 			if (this.hasRedstone) {
 				int oldStrength = this.redstoneStrength;
 				if (this.outputRedstone && isInventoryFull()) {

@@ -3,7 +3,7 @@
 # 1.09 (Not Released)
 - Added Fluid Pipes! Bronze, Invar, Titanium, and High Pressure.
 - Added Item Pipes! Constantan, Electrum, and Platinum.
-- Added Monkey Wrench for messing with flow and debugging pipes, sneak click to toggle pipe flow restriction - regular click to open a pipe.
+- Added Monkey Wrench for messing with flow of pipes and drums and probably other things in the future.
 - Added Magnifying Glass to get small amounts of info from various tiles.
 - Added a Plunger to get fluids stuck in pipes out, if you have glass tubes you will get the fluid returned (except steam).
 - Added Low Voltage Battery Block, its a battery that is a block and and item, you can use either as either one. Just LV for now.
