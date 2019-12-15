@@ -12,7 +12,6 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTItems;
 import gtclassic.common.util.render.GTModelLoader;
 import gtclassic.common.util.render.GTModelTestTube;
-import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -67,20 +66,6 @@ public class GTItemFluidTube extends Item {
 		if (GTHelperFluid.isFluidBurnable(stack)) {
 			tooltip.add(TextFormatting.RED + I18n.format("Can be burned as liquid fuel"));
 		}
-	}
-
-	@Override
-	public boolean hasContainerItem(ItemStack itemStack) {
-		return true;
-	}
-
-	@Override
-	public ItemStack getContainerItem(ItemStack itemStack) {
-		NBTTagCompound nbt = StackUtil.getNbtData(itemStack);
-		if (nbt.hasNoTags()) {
-			return ItemStack.EMPTY;
-		}
-		return GTMaterialGen.get(GTItems.testTube);
 	}
 
 	@Override

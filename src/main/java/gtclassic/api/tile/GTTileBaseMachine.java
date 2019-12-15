@@ -10,7 +10,6 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import gtclassic.common.GTItems;
-import gtclassic.common.item.GTItemFluidTube;
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
@@ -173,7 +172,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 				ItemStack input = inputIter.next();
 				if (key.matches(input)) {
 					if (input.getCount() >= count) {
-						if (input.getItem().hasContainerItem(input) && !(input.getItem() instanceof GTItemFluidTube)) {
+						if (input.getItem().hasContainerItem(input)) {
 							if (!shiftContainers) {
 								continue;
 							}
@@ -191,7 +190,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 						keyIter.remove();
 						break;
 					}
-					if (input.getItem().hasContainerItem(input) && !(input.getItem() instanceof GTItemFluidTube)) {
+					if (input.getItem().hasContainerItem(input)) {
 						if (!shiftContainers) {
 							continue;
 						}

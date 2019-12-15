@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import gtclassic.api.recipe.GTRecipeMultiInputList;
-import gtclassic.common.item.GTItemFluidTube;
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.MachineOutput;
@@ -200,7 +199,7 @@ public abstract class GTTileFuelBaseMachine extends TileEntityMachine
 				ItemStack input = inputIter.next();
 				if (key.matches(input)) {
 					if (input.getCount() >= count) {
-						if (input.getItem().hasContainerItem(input) && !(input.getItem() instanceof GTItemFluidTube)) {
+						if (input.getItem().hasContainerItem(input)) {
 							if (!shiftContainers) {
 								continue;
 							}
@@ -218,7 +217,7 @@ public abstract class GTTileFuelBaseMachine extends TileEntityMachine
 						keyIter.remove();
 						break;
 					}
-					if (input.getItem().hasContainerItem(input) && !(input.getItem() instanceof GTItemFluidTube)) {
+					if (input.getItem().hasContainerItem(input)) {
 						if (!shiftContainers) {
 							continue;
 						}

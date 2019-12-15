@@ -8,6 +8,7 @@ import com.google.common.collect.Multimap;
 import gtclassic.api.interfaces.IGTMonkeyWrenchTile;
 import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.platform.textures.obj.ICustomItemCameraTransform;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,10 +21,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GTItemMonkeyWrench extends GTItemComponent {
+public class GTItemMonkeyWrench extends GTItemComponent implements ICustomItemCameraTransform {
 
 	public GTItemMonkeyWrench() {
 		super("monkey_wrench", 5, 2);
@@ -88,6 +90,16 @@ public class GTItemMonkeyWrench extends GTItemComponent {
 			map.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", 10.0D, 0));
 		}
 		return map;
+	}
+
+	@Override
+	public boolean hasCustomTransform(int meta) {
+		return true;
+	}
+
+	@Override
+	public ResourceLocation getCustomTransform(int meta) {
+		return new ResourceLocation("minecraft:models/item/handheld");
 	}
 
 	/** Do not call any methods below, they will probably be moved **/

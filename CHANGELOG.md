@@ -7,9 +7,9 @@
 - Added Magnifying Glass to get small amounts of info from various tiles.
 - Added a Plunger to get fluids stuck in pipes out, if you have glass tubes you will get the fluid returned (except steam).
 - Added Low Voltage Battery Block, its a battery that is a block and and item, you can use either as either one. Just LV for now.
-- Changed Tubes are now container items which means you get them back for crafting.
 - Changed the GTC Drums can now output its contents when enabled via monkey wrenching, gases go up, fluids go down.
 - Removed Sulfuric Acid its back to GTCX because with the above change you can no longer hand craft it.
+- Changed Superconductor cable now has a model instead of full block.
 
 # 1.08
 - Fixed for the last time, the null error with the magic energy converter, now all possible fluids tubes are displayed in JEI instead of just GTC.
