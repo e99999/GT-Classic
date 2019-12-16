@@ -32,7 +32,8 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 			return false;
 		}
 		if (tile instanceof GTTilePipeItemBase) {
-			return true;
+			GTTilePipeItemBase pipe = (GTTilePipeItemBase) tile;
+			return (!pipe.isColored() || !this.isColored()) || (this.color == pipe.color);
 		}
 		if (tile instanceof GTTileTranslocator) {
 			return true;

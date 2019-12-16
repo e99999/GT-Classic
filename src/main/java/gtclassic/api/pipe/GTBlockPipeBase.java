@@ -16,6 +16,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -97,8 +98,31 @@ public abstract class GTBlockPipeBase extends GTBlockBaseConnect implements IGTC
 	}
 
 	@Override
-	public Color getColor(Block block, int index) {
-		return this.color;
+	public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, net.minecraft.item.EnumDyeColor color) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof GTTilePipeBase) {
+			GTTilePipeBase pipe = (GTTilePipeBase) tile;
+			pipe.color = color.getColorValue();
+			IBlockState state = tile.getWorld().getBlockState(tile.getPos());
+			pipe.updateConnections();
+			world.notifyBlockUpdate(pos, state, state, 2);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Color getColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, Block block, int index) {
+		if (worldIn != null) {
+			TileEntity tile = worldIn.getTileEntity(pos);
+			if (tile instanceof GTTilePipeBase) {
+				GTTilePipeBase pipe = (GTTilePipeBase) tile;
+				if (pipe.isColored()) {
+					return new Color(pipe.color);
+				}
+			}
+		}
+		return this.mat.getColor();
 	}
 
 	public GTMaterial getMaterial() {

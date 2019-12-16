@@ -20,7 +20,7 @@ public class GTColorItemBlock extends GTItemBlockRare implements IGTColorItem {
 	@Override
 	public Color getColor(ItemStack stack, int index) {
 		if (this.block instanceof IGTColorBlock) {
-			return ((IGTColorBlock) block).getColor(this.block, index);
+			return ((IGTColorBlock) block).getColor(null, null, null, this.block, index);
 		} else {
 			return null;
 		}

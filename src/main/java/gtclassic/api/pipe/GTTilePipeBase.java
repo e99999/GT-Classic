@@ -43,13 +43,16 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	protected InventoryHandler handler = new InventoryHandler(this);
 	public NonNullList<ItemStack> inventory;
 	public int slotCount;
+	@NetworkField(index = 9)
+	public int color;
 	public static final int TICK_RATE = 10;
 
 	public GTTilePipeBase(int slots) {
 		this.onlyPipes = false;
+		this.color = 16383998;
 		this.idle = 0;
 		this.connection = RotationList.EMPTY;
-		this.addNetworkFields(new String[] { "connection" });
+		this.addNetworkFields(new String[] { "connection", "color" });
 		this.slotCount = slots;
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
 		this.addSlots(this.handler);
@@ -74,6 +77,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
+		this.color = nbt.getInteger("color");
 		this.onlyPipes = nbt.getBoolean("onlyPipes");
 		this.idle = nbt.getInteger("idle");
 		this.handler.readFromNBT(nbt.getCompoundTag("HandlerNBT"));
@@ -94,6 +98,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
+		nbt.setInteger("color", this.color);
 		nbt.setBoolean("onlyPipes", this.onlyPipes);
 		nbt.setInteger("idle", this.idle);
 		nbt.setInteger("lastRecievedFrom", lastRecievedFrom != null ? this.lastRecievedFrom.getIndex() : -1);
@@ -194,7 +199,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 
 	@Override
 	public void onNetworkUpdate(String field) {
-		if (field.equals("connection")) {
+		if (field.equals("connection") || field.equals("color")) {
 			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
 		}
 		super.onNetworkUpdate(field);
@@ -261,5 +266,10 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@Override
 	public boolean canInsert(int slot, ItemStack stack) {
 		return true;
+	}
+	
+	public boolean isColored() {
+		return this.color != 16383998;
+		
 	}
 }

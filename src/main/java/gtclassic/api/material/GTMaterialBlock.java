@@ -93,7 +93,7 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 	}
 
 	@Override
-	public Color getColor(Block block, int index) {
+	public Color getColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, Block block, int index) {
 		return this.material.getColor();
 	}
 
