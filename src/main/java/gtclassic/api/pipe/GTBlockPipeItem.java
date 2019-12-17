@@ -31,7 +31,7 @@ public class GTBlockPipeItem extends GTBlockPipeBase {
 		tooltip.add(I18n.format("Item Capacity:  " + (this.type == GTPipeModel.LARGE ? 8 : 2) + " Stacks/sec"));
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
 		if (nbt.hasKey("color")) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("Can be painted white to remove color"));	
+			tooltip.add(TextFormatting.ITALIC + I18n.format("Can be painted white to remove color"));
 		} else {
 			tooltip.add(TextFormatting.ITALIC + I18n.format("Can be painted different colors"));
 		}

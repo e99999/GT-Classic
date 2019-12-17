@@ -27,7 +27,7 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
 			float hitY, float hitZ, EnumHand hand) {
 		TileEntity tileEntity = world.getTileEntity(pos);
-		if (player.isSneaking() || !IC2.platform.isSimulating()) {
+		if (player.isSneaking() || !IC2.platform.isSimulating() || hand.equals(EnumHand.OFF_HAND)) {
 			return EnumActionResult.PASS;
 		}
 		boolean f = false;

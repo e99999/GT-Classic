@@ -7,7 +7,6 @@ import gtclassic.api.block.GTBlockBaseMachine;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.tile.GTTileAutocrafter;
-import gtclassic.common.tile.GTTileCabinet;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileChargeOMat;
 import gtclassic.common.tile.GTTileComputerCube;
@@ -21,7 +20,6 @@ import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileMobRepeller;
 import gtclassic.common.tile.GTTilePlayerDetector;
 import gtclassic.common.tile.GTTileUUMAssembler;
-import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
 import ic2.core.IC2;
@@ -160,14 +158,8 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileFusionReactor) {
 			return new GTTileMultiFusionReactor();
 		}
-		if (this == GTBlocks.tileWorktable) {
-			return new GTTileWorktable();
-		}
 		if (this == GTBlocks.tileDigitalChest) {
 			return new GTTileDigitalChest();
-		}
-		if (this == GTBlocks.tileCabinet) {
-			return new GTTileCabinet();
 		} else {
 			return new TileEntityBlock();
 		}
@@ -193,11 +185,6 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 				IC2.platform.messagePlayer(playerIn, "Mode: " + ((GTTilePlayerDetector) tile).getMode());
 			}
 			return true;
-		}
-		if (tile instanceof GTTileWorktable) {
-			if (((GTTileWorktable) tile).inUse) {
-				return false;
-			}
 		}
 		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}

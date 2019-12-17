@@ -1,13 +1,21 @@
 package gtclassic.common.tile;
 
+import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.api.interfaces.IGTItemContainerTile;
+import gtclassic.api.interfaces.IGTRecolorableStorageTile;
+import gtclassic.api.material.GTMaterialGen;
+import gtclassic.common.GTBlocks;
 import gtclassic.common.container.GTContainerWorktable;
+import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,18 +26,24 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileWorktable extends TileEntityMachine implements IHasGui {
+public class GTTileWorktable extends TileEntityMachine
+		implements IHasGui, IGTRecolorableStorageTile, IGTItemContainerTile {
 
 	public NonNullList<ItemStack> craftingInventory = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
 	public boolean inUse = false;
+	@NetworkField(index = 9)
+	public int color;
 
 	public GTTileWorktable() {
 		super(26);
+		this.color = 16383998;
+		this.addNetworkFields(new String[] { "color" });
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
+		this.color = nbt.getInteger("color");
 		NBTTagList list = nbt.getTagList("Crafting", 10);
 		for (int i = 0; i < list.tagCount(); ++i) {
 			NBTTagCompound data = list.getCompoundTagAt(i);
@@ -43,6 +57,7 @@ public class GTTileWorktable extends TileEntityMachine implements IHasGui {
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
+		nbt.setInteger("color", this.color);
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.craftingInventory.size(); ++i) {
 			if (i <= 9) {
@@ -104,9 +119,50 @@ public class GTTileWorktable extends TileEntityMachine implements IHasGui {
 	}
 
 	@Override
+	public void onNetworkUpdate(String field) {
+		if (field.equals("color")) {
+			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
+		}
+		super.onNetworkUpdate(field);
+	}
+
+	@Override
+	public void setTileColor(int color) {
+		this.color = color;
+	}
+
+	@Override
+	public Color getTileColor() {
+		return new Color(this.color);
+	}
+
+	@Override
+	public boolean isColored() {
+		return this.color != 16383998;
+	}
+
+	@Override
 	public List<ItemStack> getDrops() {
-		List<ItemStack> drops = super.getDrops();
+		List<ItemStack> drops = new ArrayList<>();
+		ItemStack block = GTMaterialGen.get(GTBlocks.tileWorktable);
+		if (this.isColored()) {
+			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(block);
+			nbt.setInteger("color", this.color);
+		}
+		drops.addAll(getInventoryDrops());
+		drops.add(block);
+		return drops;
+	}
+
+	@Override
+	public List<ItemStack> getInventoryDrops() {
+		List<ItemStack> drops = new ArrayList<>();
 		for (ItemStack stack : craftingInventory) {
+			if (!stack.isEmpty()) {
+				drops.add(stack);
+			}
+		}
+		for (ItemStack stack : this.inventory) {
 			if (!stack.isEmpty()) {
 				drops.add(stack);
 			}

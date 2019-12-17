@@ -33,14 +33,17 @@ public class GTOreDict {
 			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
 				OreDictionary.registerOre("ingot" + mat.getDisplayName(), GTMaterialGen.getIngot(mat, 1));
 			}
-			if (mat.hasFlag(GTMaterialFlag.PIPEITEM)){
-				OreDictionary.registerOre("pipeItem" + mat.getDisplayName(), GTMaterialGen.getItemPipe(mat, 1));	
-				OreDictionary.registerOre("pipeItemLarge" + mat.getDisplayName(), GTMaterialGen.getItemPipeLarge(mat, 1));
+			if (mat.hasFlag(GTMaterialFlag.PIPEITEM)) {
+				OreDictionary.registerOre("pipeItem" + mat.getDisplayName(), GTMaterialGen.getItemPipe(mat, 1));
+				OreDictionary.registerOre("pipeItemLarge"
+						+ mat.getDisplayName(), GTMaterialGen.getItemPipeLarge(mat, 1));
 			}
-			if (mat.hasFlag(GTMaterialFlag.PIPEFLUID)){
-				OreDictionary.registerOre("pipeFluidSmall" + mat.getDisplayName(), GTMaterialGen.getFluidPipeSmall(mat, 1));	
-				OreDictionary.registerOre("pipeFluid" + mat.getDisplayName(), GTMaterialGen.getFluidPipe(mat, 1));	
-				OreDictionary.registerOre("pipeFluidLarge" + mat.getDisplayName(), GTMaterialGen.getFluidPipeLarge(mat, 1));
+			if (mat.hasFlag(GTMaterialFlag.PIPEFLUID)) {
+				OreDictionary.registerOre("pipeFluidSmall"
+						+ mat.getDisplayName(), GTMaterialGen.getFluidPipeSmall(mat, 1));
+				OreDictionary.registerOre("pipeFluid" + mat.getDisplayName(), GTMaterialGen.getFluidPipe(mat, 1));
+				OreDictionary.registerOre("pipeFluidLarge"
+						+ mat.getDisplayName(), GTMaterialGen.getFluidPipeLarge(mat, 1));
 			}
 		}
 		// Just doing these to make iteration & unification easier in some cases

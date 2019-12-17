@@ -1,15 +1,19 @@
 package gtclassic.common.tile;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTMonkeyWrenchTile;
+import gtclassic.api.interfaces.IGTRecolorableStorageTile;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.pipe.GTTilePipeBase;
 import gtclassic.common.GTBlocks;
+import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
@@ -34,17 +38,21 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class GTTileDrum extends TileEntityMachine
-		implements ITankListener, IItemContainer, IClickable, IGTDebuggableTile, IGTMonkeyWrenchTile, ITickable {
+public class GTTileDrum extends TileEntityMachine implements ITankListener, IItemContainer, IClickable,
+		IGTDebuggableTile, IGTMonkeyWrenchTile, ITickable, IGTRecolorableStorageTile, IGTItemContainerTile {
 
 	private IC2Tank tank;
 	private boolean flow = false;
+	@NetworkField(index = 9)
+	public int color;
 
 	public GTTileDrum() {
 		super(0);
+		this.color = 16383998;
 		this.tank = new IC2Tank(32000);
 		this.tank.addListener(this);
 		this.addGuiFields("tank");
+		this.addNetworkFields(new String[] { "color" });
 	}
 
 	@Override
@@ -60,12 +68,14 @@ public class GTTileDrum extends TileEntityMachine
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.tank.readFromNBT(nbt.getCompoundTag("tank"));
+		this.color = nbt.getInteger("color");
 		this.flow = nbt.getBoolean("flow");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
+		nbt.setInteger("color", this.color);
 		this.tank.writeToNBT(this.getTag(nbt, "tank"));
 		nbt.setBoolean("flow", this.flow);
 		return nbt;
@@ -82,17 +92,6 @@ public class GTTileDrum extends TileEntityMachine
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
 				? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.tank)
 				: super.getCapability(capability, facing);
-	}
-
-	public List<ItemStack> getDrops() {
-		List<ItemStack> list = new ArrayList<>();
-		ItemStack stack = GTMaterialGen.get(GTBlocks.tileDrum);
-		if (this.tank.getFluid() != null) {
-			StackUtil.getOrCreateNbtData(stack).setTag("Fluid", this.tank.getFluid().writeToNBT(new NBTTagCompound()));
-		}
-		StackUtil.getOrCreateNbtData(stack).setBoolean("flow", this.flow);
-		list.add(stack);
-		return list;
 	}
 
 	public void setFlow(boolean canFlow) {
@@ -166,5 +165,57 @@ public class GTTileDrum extends TileEntityMachine
 			IC2.platform.messagePlayer(player, msg);
 		}
 		return true;
+	}
+
+	@Override
+	public void onNetworkUpdate(String field) {
+		if (field.equals("color")) {
+			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
+		}
+		super.onNetworkUpdate(field);
+	}
+
+	@Override
+	public void setTileColor(int color) {
+		this.color = color;
+	}
+
+	@Override
+	public Color getTileColor() {
+		return new Color(this.color);
+	}
+
+	@Override
+	public boolean isColored() {
+		return this.color != 16383998;
+	}
+
+	public List<ItemStack> getDrops() {
+		List<ItemStack> list = new ArrayList<>();
+		ItemStack stack = GTMaterialGen.get(GTBlocks.tileDrum);
+		NBTTagCompound nbt = StackUtil.getOrCreateNbtData(stack);
+		boolean data = false;
+		if (this.tank.getFluid() != null) {
+			nbt.setTag("Fluid", this.tank.getFluid().writeToNBT(new NBTTagCompound()));
+			data = true;
+		}
+		if (isColored()) {
+			nbt.setInteger("color", this.color);
+			data = true;
+		}
+		if (this.flow) {
+			nbt.setBoolean("flow", this.flow);
+			data = true;
+		}
+		if (!data) {
+			stack.setTagCompound(null);
+		}
+		list.add(stack);
+		return list;
+	}
+
+	@Override
+	public List<ItemStack> getInventoryDrops() {
+		return getDrops();
 	}
 }

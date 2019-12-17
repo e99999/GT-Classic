@@ -20,6 +20,7 @@ import gtclassic.common.block.GTBlockMachineDirectionable;
 import gtclassic.common.block.GTBlockOre;
 import gtclassic.common.block.GTBlockQuantumChest;
 import gtclassic.common.block.GTBlockQuantumTank;
+import gtclassic.common.block.GTBlockStorage;
 import gtclassic.common.block.GTBlockSuperconductorCable;
 import gtclassic.common.block.GTBlockUUMAssembler;
 import gtclassic.common.tile.GTTileAESU;
@@ -97,8 +98,8 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu", GTLang.IDSU));
 	public static final GTBlockMachineDirectionable tileSupercondensator = registerBlock(new GTBlockMachineDirectionable("supercondensator", GTLang.SUPERCONDENSATOR));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable = registerBlock(new GTBlockSuperconductorCable());
-	public static final GTBlockMachine tileWorktable = registerBlock(new GTBlockMachine("worktable", GTLang.WORKTABLE));
-	public static final GTBlockMachine tileCabinet = registerBlock(new GTBlockMachine("cabinet", GTLang.CABINET));
+	public static final GTBlockStorage tileWorktable = registerBlock(new GTBlockStorage("worktable", GTLang.WORKTABLE));
+	public static final GTBlockStorage tileCabinet = registerBlock(new GTBlockStorage("cabinet", GTLang.CABINET));
 	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
 	public static final GTBlockMachine tileDigitalChest = registerBlock(new GTBlockMachine("digitalchest", GTLang.DIGITAL_CHEST));
 	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());

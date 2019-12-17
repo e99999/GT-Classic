@@ -1,19 +1,16 @@
 package gtclassic.common.block;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileDrum;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.util.misc.StackUtil;
-import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -21,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
-public class GTBlockDrum extends GTBlockMachine {
+public class GTBlockDrum extends GTBlockStorage {
 
 	public GTBlockDrum() {
 		super("drum", GTLang.DRUM, Material.GROUND, 1);
@@ -59,16 +56,6 @@ public class GTBlockDrum extends GTBlockMachine {
 				}
 			}
 		}
-	}
-
-	@Override
-	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te,
-			EntityPlayer player, int fortune) {
-		List<ItemStack> items = new ArrayList<ItemStack>();
-		if (te instanceof IItemContainer) {
-			items.addAll(((IItemContainer) te).getDrops());
-		}
-		return items;
 	}
 
 	@Override
