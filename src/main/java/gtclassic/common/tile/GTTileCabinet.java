@@ -47,7 +47,11 @@ public class GTTileCabinet extends TileEntityMachine
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.color = nbt.getInteger("color");
+		if (nbt.hasKey("color")) {
+			this.color = nbt.getInteger("color");
+		} else {
+			this.color = 16383998;
+		}
 	}
 
 	@Override

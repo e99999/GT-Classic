@@ -68,7 +68,12 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.tank.readFromNBT(nbt.getCompoundTag("tank"));
-		this.color = nbt.getInteger("color");
+		if (nbt.hasKey("color")) {
+			this.color = nbt.getInteger("color");
+		} else {
+			this.color = 16383998;
+		}
+		this.flow = nbt.getBoolean("flow");
 		this.flow = nbt.getBoolean("flow");
 	}
 

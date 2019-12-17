@@ -43,7 +43,11 @@ public class GTTileWorktable extends TileEntityMachine
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.color = nbt.getInteger("color");
+		if (nbt.hasKey("color")) {
+			this.color = nbt.getInteger("color");
+		} else {
+			this.color = 16383998;
+		}
 		NBTTagList list = nbt.getTagList("Crafting", 10);
 		for (int i = 0; i < list.tagCount(); ++i) {
 			NBTTagCompound data = list.getCompoundTagAt(i);
