@@ -16,6 +16,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.util.math.MathUtil;
+import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,6 +41,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	public EnumFacing lastRecievedFrom;
 	public boolean onlyPipes;
 	public int idle;
+	public ItemStack drop;
 	protected InventoryHandler handler = new InventoryHandler(this);
 	public NonNullList<ItemStack> inventory;
 	public int slotCount;
@@ -77,6 +79,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
+		this.drop = new ItemStack(nbt.getCompoundTag("drop"));
 		this.color = nbt.getInteger("color");
 		this.onlyPipes = nbt.getBoolean("onlyPipes");
 		this.idle = nbt.getInteger("idle");
@@ -99,6 +102,9 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger("color", this.color);
+		if (this.drop != null) {
+			nbt.setTag("drop", drop.writeToNBT(new NBTTagCompound()));
+		}
 		nbt.setBoolean("onlyPipes", this.onlyPipes);
 		nbt.setInteger("idle", this.idle);
 		nbt.setInteger("lastRecievedFrom", lastRecievedFrom != null ? this.lastRecievedFrom.getIndex() : -1);
@@ -126,16 +132,12 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 				list.add(stack);
 			}
 		}
-		InventoryHandler handler = this.getHandler();
-		if (handler != null) {
-			IHasInventory inv = handler.getUpgradeSlots();
-			for (int i = 0; i < inv.getSlotCount(); ++i) {
-				ItemStack result = inv.getStackInSlot(i);
-				if (!result.isEmpty()) {
-					list.add(result);
-				}
-			}
+		ItemStack newDrop = drop.copy();
+		if (this.isColored()) {
+			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(newDrop);
+			nbt.setInteger("color", this.color);
 		}
+		list.add(newDrop.copy());
 		return list;
 	}
 
@@ -267,9 +269,8 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	public boolean canInsert(int slot, ItemStack stack) {
 		return true;
 	}
-	
+
 	public boolean isColored() {
 		return this.color != 16383998;
-		
 	}
 }

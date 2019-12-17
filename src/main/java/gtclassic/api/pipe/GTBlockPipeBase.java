@@ -1,16 +1,26 @@
 package gtclassic.api.pipe;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.material.GTMaterial;
+import gtclassic.api.material.GTMaterialGen;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.util.helpers.BlockStateContainerIC2;
+import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -95,6 +105,36 @@ public abstract class GTBlockPipeBase extends GTBlockBaseConnect implements IGTC
 			}
 			return new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);
 		}
+	}
+
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+		TileEntity tile = worldIn.getTileEntity(pos);
+		NBTTagCompound nbt = StackUtil.getNbtData(stack);
+		if (tile instanceof GTTilePipeBase) {
+			GTTilePipeBase pipe = (GTTilePipeBase) tile;
+			pipe.drop = GTMaterialGen.get(this);
+			if (nbt.hasKey("color")) {
+				pipe.color = nbt.getInteger("color");
+			}
+		}
+	}
+
+	@Override
+	public int quantityDropped(Random random) {
+		return 0;
+	}
+
+	@Override
+	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te,
+			EntityPlayer player, int fortune) {
+		List<ItemStack> items = new ArrayList<ItemStack>();
+		if (te instanceof IItemContainer) {
+			items.addAll(((IItemContainer) te).getDrops());
+		}
+		return items;
 	}
 
 	@Override

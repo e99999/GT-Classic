@@ -6,9 +6,12 @@ import gtclassic.GTMod;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.pipe.GTHelperPipes.GTPipeModel;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public class GTBlockPipeItem extends GTBlockPipeBase {
@@ -26,6 +29,12 @@ public class GTBlockPipeItem extends GTBlockPipeBase {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format("Item Capacity:  " + (this.type == GTPipeModel.LARGE ? 8 : 2) + " Stacks/sec"));
+		NBTTagCompound nbt = StackUtil.getNbtData(stack);
+		if (nbt.hasKey("color")) {
+			tooltip.add(TextFormatting.ITALIC + I18n.format("Can be painted white to remove color"));	
+		} else {
+			tooltip.add(TextFormatting.ITALIC + I18n.format("Can be painted different colors"));
+		}
 	}
 
 	@Override

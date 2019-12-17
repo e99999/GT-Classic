@@ -125,11 +125,16 @@ public class GTRecipeIterators {
 		if (mat.hasFlag(GTMaterialFlag.PIPEITEM)) {
 			recipes.addRecipe(GTMaterialGen.getItemPipe(mat, 2), "III", " T ", "III", 'I', ingot, 'T', tool);
 			recipes.addRecipe(GTMaterialGen.getItemPipeLarge(mat, 1), "I I", "ITI", "I I", 'I', ingot, 'T', tool);
+			TileEntityMacerator.addRecipe("pipeItem" + mat.getDisplayName(), 1, GTMaterialGen.getDust(mat, 3));
+			TileEntityMacerator.addRecipe("pipeItemLarge" + mat.getDisplayName(), 1, GTMaterialGen.getDust(mat, 6));
 		}
 		if (mat.hasFlag(GTMaterialFlag.PIPEFLUID) && mat != GTMaterial.HighPressure) {
 			recipes.addRecipe(GTMaterialGen.getFluidPipeSmall(mat, 6), "ITI", "I I", "I I", 'I', ingot, 'T', tool);
 			recipes.addRecipe(GTMaterialGen.getFluidPipe(mat, 2), "III", " T ", "III", 'I', ingot, 'T', tool);
 			recipes.addRecipe(GTMaterialGen.getFluidPipeLarge(mat, 1), "I I", "I I", "ITI", 'I', ingot, 'T', tool);
+			TileEntityMacerator.addRecipe("pipeFluidSmall" + mat.getDisplayName(), 1, GTMaterialGen.getDust(mat, 1));
+			TileEntityMacerator.addRecipe("pipeFluid" + mat.getDisplayName(), 1, GTMaterialGen.getDust(mat, 3));
+			TileEntityMacerator.addRecipe("pipeFluidLarge" + mat.getDisplayName(), 1, GTMaterialGen.getDust(mat, 6));
 		}
 	}
 
