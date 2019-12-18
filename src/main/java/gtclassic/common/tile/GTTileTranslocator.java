@@ -80,7 +80,6 @@ public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
 				break;
 			}
 			slave.removeItem(new BasicItemFilter(added), getFacing(), added.getCount(), true);
-			tryBlacklistPipe(this, getFacing());
 		}
 	}
 

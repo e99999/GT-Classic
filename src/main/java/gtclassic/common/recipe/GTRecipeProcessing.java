@@ -3,14 +3,18 @@ package gtclassic.common.recipe;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
+import gtclassic.common.GTItems;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GTRecipeProcessing {
@@ -38,6 +42,10 @@ public class GTRecipeProcessing {
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Sodium), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Hydrogen), 950, 16);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Methane), 3000, 16);
+		ItemStack fullCan = GTMaterialGen.get(GTItems.sprayCan);
+		NBTTagCompound nbt = StackUtil.getNbtData(fullCan);
+		nbt.setInteger("color", 15);
+		ClassicRecipes.canningMachine.registerCannerItem(GTMaterialGen.get(GTItems.sprayCanEmpty), new RecipeInputItemStack(GTMaterialGen.getTube(GTMaterial.MagicDye, 1)), fullCan);
 	}
 
 	/*

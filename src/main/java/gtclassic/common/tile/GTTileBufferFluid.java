@@ -133,7 +133,6 @@ public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener
 		boolean canExport = fluidTile != null && this.tank.getFluid() != null;
 		if (canExport) {
 			FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true);
-			tryBlacklistPipe(this, getFacing());
 		}
 	}
 

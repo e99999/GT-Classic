@@ -1,5 +1,7 @@
 package gtclassic.common.itemblock;
 
+import java.awt.Color;
+
 import gtclassic.api.itemblock.GTItemBlockRare;
 import gtclassic.common.block.GTBlockBattery;
 import ic2.api.classic.item.IDamagelessElectricItem;
@@ -31,6 +33,11 @@ public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessEl
 	@Override
 	public boolean canProvideEnergy(ItemStack var1) {
 		return true;
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	@Override

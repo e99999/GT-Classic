@@ -38,9 +38,8 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 
 	@NetworkField(index = 8)
 	public RotationList connection;
-	public EnumFacing lastRecievedFrom;
+	public EnumFacing blacklistSide;
 	public boolean onlyPipes;
-	public int idle;
 	public ItemStack drop;
 	protected InventoryHandler handler = new InventoryHandler(this);
 	public NonNullList<ItemStack> inventory;
@@ -48,13 +47,17 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@NetworkField(index = 9)
 	public int color;
 	public static final int TICK_RATE = 10;
+	public static final String NBT_SIDE_BLACKLIST = "blacklistside";
+	public static final String NBT_DROP = "drop";
+	public static final String NBT_COLOR = "color";
+	public static final String NBT_PIPEMODE = "onlyPipes";
+	public static final String NBT_CONNECTION = "connection";
 
 	public GTTilePipeBase(int slots) {
 		this.onlyPipes = false;
 		this.color = 16383998;
-		this.idle = 0;
 		this.connection = RotationList.EMPTY;
-		this.addNetworkFields(new String[] { "connection", "color" });
+		this.addNetworkFields(new String[] { NBT_CONNECTION, NBT_COLOR });
 		this.slotCount = slots;
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
 		this.addSlots(this.handler);
@@ -79,14 +82,13 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.drop = new ItemStack(nbt.getCompoundTag("drop"));
-		this.color = nbt.getInteger("color");
-		this.onlyPipes = nbt.getBoolean("onlyPipes");
-		this.idle = nbt.getInteger("idle");
+		this.drop = new ItemStack(nbt.getCompoundTag(NBT_DROP));
+		this.color = nbt.getInteger(NBT_COLOR);
+		this.onlyPipes = nbt.getBoolean(NBT_PIPEMODE);
 		this.handler.readFromNBT(nbt.getCompoundTag("HandlerNBT"));
 		this.inventory = NonNullList.withSize(this.slotCount, ItemStack.EMPTY);
-		if (nbt.getInteger("lastRecievedFrom") != -1) {
-			this.lastRecievedFrom = EnumFacing.getFront(nbt.getInteger("lastRecievedFrom"));
+		if (nbt.getInteger(NBT_SIDE_BLACKLIST) != -1) {
+			this.blacklistSide = EnumFacing.getFront(nbt.getInteger(NBT_SIDE_BLACKLIST));
 		}
 		NBTTagList list = nbt.getTagList("Items", 10);
 		for (int i = 0; i < list.tagCount(); ++i) {
@@ -101,13 +103,12 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("color", this.color);
+		nbt.setInteger(NBT_COLOR, this.color);
 		if (this.drop != null) {
-			nbt.setTag("drop", drop.writeToNBT(new NBTTagCompound()));
+			nbt.setTag(NBT_DROP, drop.writeToNBT(new NBTTagCompound()));
 		}
-		nbt.setBoolean("onlyPipes", this.onlyPipes);
-		nbt.setInteger("idle", this.idle);
-		nbt.setInteger("lastRecievedFrom", lastRecievedFrom != null ? this.lastRecievedFrom.getIndex() : -1);
+		nbt.setBoolean(NBT_PIPEMODE, this.onlyPipes);
+		nbt.setInteger(NBT_SIDE_BLACKLIST, blacklistSide != null ? this.blacklistSide.getIndex() : -1);
 		this.handler.writeToNBT(this.getTag(nbt, "HandlerNBT"));
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.inventory.size(); ++i) {
@@ -135,7 +136,7 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 		ItemStack newDrop = drop.copy();
 		if (this.isColored()) {
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(newDrop);
-			nbt.setInteger("color", this.color);
+			nbt.setInteger(NBT_COLOR, this.color);
 		}
 		list.add(newDrop.copy());
 		return list;
@@ -143,6 +144,23 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 
 	@Override
 	public boolean onMonkeyWrench(EntityPlayer player, World world, BlockPos pos, EnumFacing side, EnumHand hand) {
+		if (player.isSneaking()) {
+			EnumFacing newSide = side.getOpposite();
+			if (this.blacklistSide == newSide) {
+				this.blacklistSide = null;
+				if (this.isSimulating()) {
+					String msg = "Pipe will flow into any direction";
+					IC2.platform.messagePlayer(player, msg);
+					return true;
+				}
+			}
+			this.blacklistSide = newSide;
+			if (this.isSimulating()) {
+				String msg = "Pipe will not flow backwards from this direction";
+				IC2.platform.messagePlayer(player, msg);
+			}
+			return true;
+		}
 		this.togglePipeOnlyMode();
 		if (this.isSimulating()) {
 			String msg = this.onlyPipes ? "Will only flow into pipes" : "Will flow into any connection";
@@ -194,14 +212,14 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 			}
 			if (this.connection.getCode() != newList.getCode()) {
 				this.connection = newList;
-				this.getNetwork().updateTileEntityField(this, "connection");
+				this.getNetwork().updateTileEntityField(this, NBT_CONNECTION);
 			}
 		}
 	}
 
 	@Override
 	public void onNetworkUpdate(String field) {
-		if (field.equals("connection") || field.equals("color")) {
+		if (field.equals(NBT_CONNECTION) || field.equals(NBT_COLOR)) {
 			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
 		}
 		super.onNetworkUpdate(field);
@@ -216,7 +234,6 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 
 	public void update() {
 		if (world.getTotalWorldTime() % TICK_RATE == 0) {
-			this.updateIdle();
 			if (isEmpty()) {
 				return;
 			}
@@ -230,19 +247,11 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 		this.onlyPipes = !this.onlyPipes;
 	}
 
-	public void updateIdle() {
-		this.idle = idle + TICK_RATE;
-		if (this.idle >= 100) {
-			this.lastRecievedFrom = null;
-			this.idle = 0;
-		}
-	}
-
-	public boolean isLastRecievedFrom(EnumFacing side) {
-		if (lastRecievedFrom == null) {
+	public boolean isBlacklistSide(EnumFacing side) {
+		if (blacklistSide == null || blacklistSide.getIndex() == -1) {
 			return false;
 		}
-		return side == lastRecievedFrom;
+		return side == blacklistSide;
 	}
 
 	@Override

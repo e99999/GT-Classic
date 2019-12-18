@@ -72,7 +72,6 @@ public class GTTileBufferLarge extends GTTileBaseBuffer implements IHasGui {
 				int added = slave.addItem(this.getStackInSlot(i).copy(), getFacing().getOpposite(), true).getCount();
 				if (added > 0) {
 					this.getStackInSlot(i).shrink(added);
-					tryBlacklistPipe(this, getFacing());
 					break;
 				}
 			}

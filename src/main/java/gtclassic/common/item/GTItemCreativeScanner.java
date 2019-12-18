@@ -1,5 +1,6 @@
 package gtclassic.common.item;
 
+import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader {
 
+	public static final String POS = "pos";
+	public static final String BLOCK = "block";
+
 	public GTItemCreativeScanner() {
 		super(0);
 		this.setRightClick();
@@ -68,13 +72,18 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		genToolTip(stack, worldIn, tooltip, flagIn);
 	}
 
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
+	}
+
 	public static void genToolTip(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
-		if (nbt.getIntArray("pos").length == 4) {
-			int[] pos = nbt.getIntArray("pos");
+		if (nbt.getIntArray(POS).length == 4) {
+			int[] pos = nbt.getIntArray(POS);
 			tooltip.add(TextFormatting.GREEN + I18n.format("Last Scanned: "));
 			if (nbt.getString("block") != null) {
-				tooltip.add(TextFormatting.DARK_GREEN + I18n.format(nbt.getString("block")));
+				tooltip.add(TextFormatting.DARK_GREEN + I18n.format(nbt.getString(BLOCK)));
 			}
 			tooltip.add(TextFormatting.DARK_GREEN + I18n.format("X: " + pos[0] + " Y: " + pos[1] + " Z: " + pos[2]));
 			tooltip.add(TextFormatting.DARK_GREEN + I18n.format("Dimension: " + pos[3]));
@@ -163,8 +172,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		if (player.isSneaking()) {
 			TileEntity tileEntity = world.getTileEntity(pos);
 			NBTTagCompound nbt = StackUtil.getNbtData(player.getHeldItem(hand));
-			if (tileEntity instanceof IGTCoordinateTile && nbt.getIntArray("pos").length == 4) {
-				int[] posArr = nbt.getIntArray("pos");
+			if (tileEntity instanceof IGTCoordinateTile && nbt.getIntArray(POS).length == 4) {
+				int[] posArr = nbt.getIntArray(POS);
 				IGTCoordinateTile coordTile = (IGTCoordinateTile) tileEntity;
 				if (!coordTile.isInterdimensional() && posArr[3] != world.provider.getDimension()) {
 					IC2.platform.messagePlayer(player, "This machine does not support interdimensional communication");
@@ -179,8 +188,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 		} else {
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(player.getHeldItem(hand));
-			nbt.setIntArray("pos", new int[] { pos.getX(), pos.getY(), pos.getZ(), world.provider.getDimension() });
-			nbt.setString("block", world.getBlockState(pos).getBlock().getLocalizedName());
+			nbt.setIntArray(POS, new int[] { pos.getX(), pos.getY(), pos.getZ(), world.provider.getDimension() });
+			nbt.setString(BLOCK, world.getBlockState(pos).getBlock().getLocalizedName());
 			TileEntity tileEntity = world.getTileEntity(pos);
 			IBlockState state = world.getBlockState(pos);
 			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()

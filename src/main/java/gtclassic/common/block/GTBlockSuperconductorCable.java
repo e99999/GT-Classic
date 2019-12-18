@@ -59,7 +59,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTModelWire(state, Ic2Icons.getTextures("superconductorcable")[0], new int[] { 2, 14 });
+		return new GTModelWire(state, Ic2Icons.getTextures("superconductorcable")[0], new int[] { 3, 13 });
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -88,7 +88,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 			return new AxisAlignedBB(0.25D, 0.25D, 0.25D, 0.75D, 0.75D, 0.75D);
 		} else {
 			GTTileSuperconductorCable pipe = (GTTileSuperconductorCable) tile;
-			double thickness = (14 - 2) / 32.0D;
+			double thickness = (13 - 3) / 32.0D;
 			double minX = 0.5D - thickness;
 			double minY = 0.5D - thickness;
 			double minZ = 0.5D - thickness;

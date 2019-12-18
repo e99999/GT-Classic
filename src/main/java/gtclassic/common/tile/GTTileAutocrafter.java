@@ -121,7 +121,11 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 			tryImportItems();
 			// if there is a recipe selected and ghost slot is valid and the output slot is
 			// empty
-			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty() && this.inventory.get(28).isEmpty()
+			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty() && this.inventory.get(28).isEmpty()// TODO
+																														// check
+																														// if
+																														// can
+																														// merge
 					&& this.energy >= 50) {
 				// see if the tile inventory has what the currentRecipe needs
 				GTHelperStack.tryCondenseInventory(this, 0, 9);
@@ -170,6 +174,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	public void tryToShiftContainerItems(ItemStack container) {
 		if (container.getItem().hasContainerItem(container)) {
 			for (int i = 9; i < 18; ++i) {
+				// TODO check if stack can merge
 				if (this.getStackInSlot(i).isEmpty()) {
 					this.setStackInSlot(i, container.getItem().getContainerItem(container));
 					return;

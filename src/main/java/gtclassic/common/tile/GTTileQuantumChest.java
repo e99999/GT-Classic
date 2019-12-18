@@ -38,11 +38,13 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	int maxSize = Integer.MAX_VALUE;
 	int digitalCount;
 	ItemStack display;
+	public static final String NBT_DIGITALCOUNT = "digitalCount";
+	public static final String NBT_DISPLAYITEM = "display";
 
 	public GTTileQuantumChest() {
 		super(3);
 		this.digitalCount = 0;
-		this.addGuiFields(new String[] { "digitalCount", "display" });
+		this.addGuiFields(new String[] { NBT_DIGITALCOUNT, NBT_DISPLAYITEM });
 	}
 
 	@Override
@@ -63,9 +65,9 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	}
 
 	public void updateGui() {
-		this.getNetwork().updateTileGuiField(this, "digitalCount");
+		this.getNetwork().updateTileGuiField(this, NBT_DIGITALCOUNT);
 		this.display = StackUtil.copyWithSize(this.getStackInSlot(slotDisplay), 1);
-		this.getNetwork().updateTileGuiField(this, "display");
+		this.getNetwork().updateTileGuiField(this, NBT_DISPLAYITEM);
 	}
 
 	@Override
@@ -76,16 +78,16 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.digitalCount = nbt.getInteger("digitalCount");
-		this.display = new ItemStack(nbt.getCompoundTag("display"));
+		this.digitalCount = nbt.getInteger(NBT_DIGITALCOUNT);
+		this.display = new ItemStack(nbt.getCompoundTag(NBT_DISPLAYITEM));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("digitalCount", this.digitalCount);
+		nbt.setInteger(NBT_DIGITALCOUNT, this.digitalCount);
 		if (this.display != null) {
-			nbt.setTag("display", display.writeToNBT(new NBTTagCompound()));
+			nbt.setTag(NBT_DISPLAYITEM, display.writeToNBT(new NBTTagCompound()));
 		}
 		return nbt;
 	}
@@ -95,8 +97,8 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		List<ItemStack> list = new ArrayList<>();
 		ItemStack stack = GTMaterialGen.get(GTBlocks.tileQuantumChest);
 		if (this.display != null && this.digitalCount > 0) {
-			StackUtil.getOrCreateNbtData(stack).setTag("display", display.writeToNBT(new NBTTagCompound()));
-			StackUtil.getOrCreateNbtData(stack).setInteger("digitalCount", this.digitalCount);
+			StackUtil.getOrCreateNbtData(stack).setTag(NBT_DISPLAYITEM, display.writeToNBT(new NBTTagCompound()));
+			StackUtil.getOrCreateNbtData(stack).setInteger(NBT_DIGITALCOUNT, this.digitalCount);
 		}
 		list.add(stack);
 		list.addAll(getInventoryDrops());

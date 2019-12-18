@@ -86,6 +86,8 @@ public class GTRecipe {
 			recipes.addShapelessRecipe(GTMaterialGen.get(Items.GUNPOWDER, 5), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 			/** Methane **/
 			recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.Methane, 4), GTMaterialGen.getDust(GTMaterial.Carbon, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 1));
+			/** Magical Dye **/
+			recipes.addShapelessRecipe(GTMaterialGen.getTube(GTMaterial.MagicDye, 1), "dyeCyan", "dyeMagenta", "dyeYellow", "dyeBlack", GTMaterialGen.get(Items.BLAZE_POWDER), GTMaterialGen.getTube(GTMaterial.Chlorine, 1));
 			/** Electrum Dust **/
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Electrum, 2), "dustSilver", "dustGold");
 			/** Invar Dust **/
@@ -123,6 +125,8 @@ public class GTRecipe {
 					GTMaterialGen.get(GTItems.lithiumBattery) });
 			/** Monkey Wrench **/
 			recipes.addRecipe(GTMaterialGen.get(GTItems.monkeyWrench), "II ", " II", "II ", 'I', "ingotRefinedIron");
+			/** Empty Spray Can **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.sprayCanEmpty), "R", "C", 'C', Ic2Items.emptyCell, 'R', "dustRedstone");
 		}
 		/** Test Tube **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.testTube, 32), new Object[] { "G G", "G G", " G ", 'G',

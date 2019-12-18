@@ -11,7 +11,6 @@ import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTMonkeyWrenchTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
 import gtclassic.api.material.GTMaterialGen;
-import gtclassic.api.pipe.GTTilePipeBase;
 import gtclassic.common.GTBlocks;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
@@ -24,7 +23,6 @@ import ic2.core.util.obj.ITankListener;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
@@ -45,14 +43,17 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	private boolean flow = false;
 	@NetworkField(index = 9)
 	public int color;
+	public static final String NBT_COLOR = "color";
+	public static final String NBT_TANK = "tank";
+	public static final String NBT_FLOW = "flow";
 
 	public GTTileDrum() {
 		super(0);
 		this.color = 16383998;
 		this.tank = new IC2Tank(32000);
 		this.tank.addListener(this);
-		this.addGuiFields("tank");
-		this.addNetworkFields(new String[] { "color" });
+		this.addGuiFields(NBT_TANK);
+		this.addNetworkFields(new String[] { NBT_COLOR });
 	}
 
 	@Override
@@ -61,28 +62,27 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	}
 
 	public void onTankChanged(IFluidTank tank) {
-		this.getNetwork().updateTileGuiField(this, "tank");
+		this.getNetwork().updateTileGuiField(this, NBT_TANK);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.tank.readFromNBT(nbt.getCompoundTag("tank"));
-		if (nbt.hasKey("color")) {
-			this.color = nbt.getInteger("color");
+		this.tank.readFromNBT(nbt.getCompoundTag(NBT_TANK));
+		if (nbt.hasKey(NBT_COLOR)) {
+			this.color = nbt.getInteger(NBT_COLOR);
 		} else {
 			this.color = 16383998;
 		}
-		this.flow = nbt.getBoolean("flow");
-		this.flow = nbt.getBoolean("flow");
+		this.flow = nbt.getBoolean(NBT_FLOW);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("color", this.color);
-		this.tank.writeToNBT(this.getTag(nbt, "tank"));
-		nbt.setBoolean("flow", this.flow);
+		nbt.setInteger(NBT_COLOR, this.color);
+		this.tank.writeToNBT(this.getTag(nbt, NBT_TANK));
+		nbt.setBoolean(NBT_FLOW, this.flow);
 		return nbt;
 	}
 
@@ -139,10 +139,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 			EnumFacing side = isGas ? EnumFacing.DOWN : EnumFacing.UP;
 			IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, direction, side);
 			if (fluidTile != null && FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true) != null) {
-				TileEntity tile = this.getWorld().getTileEntity(direction);
-				if (tile instanceof GTTilePipeBase) {
-					((GTTilePipeBase) tile).lastRecievedFrom = side;
-				}
+				// empty if transfered method
 			}
 		}
 	}
@@ -174,7 +171,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 
 	@Override
 	public void onNetworkUpdate(String field) {
-		if (field.equals("color")) {
+		if (field.equals(NBT_COLOR)) {
 			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
 		}
 		super.onNetworkUpdate(field);
@@ -205,11 +202,11 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 			data = true;
 		}
 		if (isColored()) {
-			nbt.setInteger("color", this.color);
+			nbt.setInteger(NBT_COLOR, this.color);
 			data = true;
 		}
 		if (this.flow) {
-			nbt.setBoolean("flow", this.flow);
+			nbt.setBoolean(NBT_FLOW, this.flow);
 			data = true;
 		}
 		if (!data) {

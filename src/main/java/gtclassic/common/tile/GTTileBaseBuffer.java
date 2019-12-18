@@ -5,7 +5,6 @@ import java.util.Map;
 
 import gtclassic.api.helpers.int3;
 import gtclassic.api.interfaces.IGTDebuggableTile;
-import gtclassic.api.pipe.GTTilePipeBase;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -22,7 +21,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
@@ -240,13 +238,6 @@ public abstract class GTTileBaseBuffer extends TileEntityMachine implements IEne
 			}
 		}
 		return list;
-	}
-
-	public static void tryBlacklistPipe(GTTileBaseBuffer buffer, EnumFacing side) {
-		TileEntity tile = buffer.getWorld().getTileEntity(buffer.pos.offset(side));
-		if (tile instanceof GTTilePipeBase) {
-			((GTTilePipeBase) tile).lastRecievedFrom = side.getOpposite();
-		}
 	}
 
 	@Override

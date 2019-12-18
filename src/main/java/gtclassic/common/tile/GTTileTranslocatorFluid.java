@@ -89,7 +89,6 @@ public class GTTileTranslocatorFluid extends GTTileBaseBuffer implements IHasGui
 			FluidStack fake = FluidUtil.tryFluidTransfer(end, start, 500, false);
 			if (fake != null && (fake.getFluid().getName() == filter.getFluid().getName())) {
 				FluidUtil.tryFluidTransfer(end, start, 500, true);
-				tryBlacklistPipe(this, getFacing());
 			}
 		}
 	}

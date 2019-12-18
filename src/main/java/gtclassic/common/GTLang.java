@@ -5,12 +5,7 @@ import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockCom
 import ic2.core.platform.lang.components.base.LocaleComp;
 
 public class GTLang {
-	/* Because Speiger */
 
-	// lang
-	public static LocaleComp sluiceBox = new LocaleBlockComp("tile.gtclassic.sluicebox");
-	public static LocaleComp sluiceBoxExtension = new LocaleBlockComp("tile.gtclassic.sluiceboxextension");
-	// tiles
 	public static final LocaleComp AUTOCRAFTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.autocrafter");
 	public static final LocaleComp CHARGE_O_MAT = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.chargeomat");
 	public static final LocaleComp COMPUTER_CUBE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.computercube");
@@ -43,13 +38,6 @@ public class GTLang {
 	public static final LocaleComp BUFFER_LARGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferlarge");
 	public static final LocaleComp BUFFER_SMALL = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.buffersmall");
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
-	public static final LocaleComp PIPE_ITEM_CONSTANTAN = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemconstantan");
-	public static final LocaleComp PIPE_ITEM_ELECTRUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemelectrum");
-	public static final LocaleComp PIPE_ITEM_PLATINUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipeitemplatinum");
-	public static final LocaleComp PIPE_FLUID_BRONZE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidbronze");
-	public static final LocaleComp PIPE_FLUID_INVAR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidinvar");
-	public static final LocaleComp PIPE_FLUID_TITANIUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidtitanium");
-	public static final LocaleComp PIPE_FLUID_HIGHPRESSURE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.pipefluidhighpressure");
-	public static final LocaleComp ITEM_PIPE_LANG = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.itempipename");
-	public static final LocaleComp FLUID_PIPE_LANG = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.fluidpipename");
+	public static final LocaleComp SLUICE_BOX = new LocaleBlockComp("tile.gtclassic.sluicebox");
+	public static final LocaleComp SLUICE_EXT = new LocaleBlockComp("tile.gtclassic.sluiceboxextension");
 }

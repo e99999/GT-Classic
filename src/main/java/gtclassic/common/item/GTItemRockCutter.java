@@ -1,5 +1,6 @@
 package gtclassic.common.item;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +48,11 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		// TODO add this back
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	@Override

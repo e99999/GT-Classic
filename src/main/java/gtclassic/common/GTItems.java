@@ -25,6 +25,7 @@ import gtclassic.common.item.GTItemPlunger;
 import gtclassic.common.item.GTItemReactorHeat;
 import gtclassic.common.item.GTItemReactorRod;
 import gtclassic.common.item.GTItemRockCutter;
+import gtclassic.common.item.GTItemSprayCan;
 import gtclassic.common.item.GTItemSpringBoots;
 import gtclassic.common.item.GTItemSurvivalScanner;
 import gtclassic.common.item.GTItemTeslaStaff;
@@ -64,6 +65,8 @@ public class GTItems {
 	public static GTItemDuctTape ductTape;
 	public static GTItemPlunger plunger;
 	public static GTItemMonkeyWrench monkeyWrench;
+	public static GTItemComponent sprayCanEmpty;
+	public static GTItemSprayCan sprayCan;
 	public static GTItemSpringBoots springBoots;
 	public static GTItemEchotron echotron;
 	public static GTItemDestructoPack destructoPack;
@@ -105,6 +108,8 @@ public class GTItems {
 		ductTape = createItem(new GTItemDuctTape());
 		plunger = createItem(new GTItemPlunger());
 		monkeyWrench = createItem(new GTItemMonkeyWrench());
+		sprayCanEmpty = createItem(new GTItemComponent("spray_can_empty", 6, 2));
+		sprayCan = createItem(new GTItemSprayCan());
 		springBoots = createItem(new GTItemSpringBoots());
 		echotron = createItem(new GTItemEchotron());
 		destructoPack = createItem(new GTItemDestructoPack());

@@ -1,5 +1,6 @@
 package gtclassic.common.item;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +33,11 @@ public class GTItemLightHelmet extends ItemIC2AdvArmorBase implements IDamageles
 		this.setUnlocalizedName(GTMod.MODID + "." + "light_helmet");
 		this.setCreativeTab(GTMod.creativeTabGT);
 		setMaxDamage(0);
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	@Override

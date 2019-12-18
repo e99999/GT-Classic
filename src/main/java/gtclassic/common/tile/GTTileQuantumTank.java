@@ -43,12 +43,13 @@ public class GTTileQuantumTank extends TileEntityMachine
 	int slotInput = 0;
 	int slotOutput = 1;
 	int slotDisplay = 2;
+	public static final String NBT_TANK = "tank";
 
 	public GTTileQuantumTank() {
 		super(3);
 		this.tank = new IC2Tank(Integer.MAX_VALUE);
 		this.tank.addListener(this);
-		this.addGuiFields("tank");
+		this.addGuiFields(NBT_TANK);
 	}
 
 	@Override
@@ -69,20 +70,20 @@ public class GTTileQuantumTank extends TileEntityMachine
 
 	@Override
 	public void onTankChanged(IFluidTank tank) {
-		this.getNetwork().updateTileGuiField(this, "tank");
+		this.getNetwork().updateTileGuiField(this, NBT_TANK);
 		this.inventory.set(2, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.tank.readFromNBT(nbt.getCompoundTag("tank"));
+		this.tank.readFromNBT(nbt.getCompoundTag(NBT_TANK));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		this.tank.writeToNBT(this.getTag(nbt, "tank"));
+		this.tank.writeToNBT(this.getTag(nbt, NBT_TANK));
 		return nbt;
 	}
 

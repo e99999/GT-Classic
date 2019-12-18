@@ -1,5 +1,6 @@
 package gtclassic.common.item;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,6 +57,11 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	@Override

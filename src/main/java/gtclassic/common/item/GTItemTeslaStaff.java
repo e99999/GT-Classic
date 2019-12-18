@@ -1,5 +1,6 @@
 package gtclassic.common.item;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,6 +48,11 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 	@Override
 	public EnumRarity getRarity(ItemStack thisItem) {
 		return EnumRarity.RARE;
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	@Override

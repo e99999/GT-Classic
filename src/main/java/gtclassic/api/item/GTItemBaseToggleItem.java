@@ -1,5 +1,7 @@
 package gtclassic.api.item;
 
+import java.awt.Color;
+
 import ic2.api.classic.item.IElectricTool;
 import ic2.api.item.ElectricItem;
 import ic2.core.IC2;
@@ -35,6 +37,11 @@ public abstract class GTItemBaseToggleItem extends BasicElectricItem implements 
 		this.maxCharge = maxCharge;
 		this.transferLimit = cost;
 		this.energyCost = cost;
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	@Override

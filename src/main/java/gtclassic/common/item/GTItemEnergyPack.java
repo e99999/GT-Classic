@@ -1,5 +1,7 @@
 package gtclassic.common.item;
 
+import java.awt.Color;
+
 import gtclassic.GTMod;
 import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
@@ -35,6 +37,11 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
 		this.tier = lvl; // 1;
 		this.transferlimit = limit;
 		this.rare = EnumRarity.COMMON;
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	public GTItemEnergyPack setRarity(EnumRarity newValue) {

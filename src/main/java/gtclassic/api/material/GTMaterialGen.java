@@ -48,6 +48,7 @@ public class GTMaterialGen {
 		itemFlags.add(GTMaterialFlag.INGOTHOT);
 		fluidFlags.add(GTMaterialFlag.GAS);
 		fluidFlags.add(GTMaterialFlag.FLUID);
+		fluidFlags.add(GTMaterialFlag.MAGICDYE);
 	}
 
 	/**

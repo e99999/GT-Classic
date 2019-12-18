@@ -3,11 +3,9 @@ package gtclassic.api.pipe;
 import java.util.Map;
 
 import gtclassic.api.helpers.GTHelperFluid;
-import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.item.misc.ItemDisplayIcon;
-import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -23,17 +21,13 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITankListener {
 
 	private IC2Tank tank;
+	public static final String NBT_TANK = "tank";
 
 	public GTTilePipeFluidBase(int capacity) {
 		super(1);
 		this.tank = new IC2Tank(capacity);
 		this.tank.addListener(this);
-		this.addGuiFields("tank");
-	}
-
-	@Override
-	public LocaleComp getBlockName() {
-		return GTLang.FLUID_PIPE_LANG;
+		this.addGuiFields(NBT_TANK);
 	}
 
 	@Override
@@ -52,20 +46,20 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 	}
 
 	public void onTankChanged(IFluidTank tank) {
-		this.getNetwork().updateTileGuiField(this, "tank");
+		this.getNetwork().updateTileGuiField(this, NBT_TANK);
 		this.inventory.set(0, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.tank.readFromNBT(nbt.getCompoundTag("tank"));
+		this.tank.readFromNBT(nbt.getCompoundTag(NBT_TANK));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		this.tank.writeToNBT(this.getTag(nbt, "tank"));
+		this.tank.writeToNBT(this.getTag(nbt, NBT_TANK));
 		return nbt;
 	}
 
@@ -95,7 +89,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 	public void onPipeTick() {
 		for (EnumFacing side : this.connection.getRandomIterator()) {
 			BlockPos sidePos = this.pos.offset(side);
-			if (world.isBlockLoaded(sidePos) && !isLastRecievedFrom(side)) {
+			if (world.isBlockLoaded(sidePos) && !isBlacklistSide(side)) {
 				TileEntity tile = world.getTileEntity(sidePos);
 				if (this.onlyPipes && !(tile instanceof GTTilePipeFluidBase)) {
 					continue;
@@ -104,10 +98,7 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 				boolean canExport = fluidTile != null && this.tank.getFluid() != null;
 				if (canExport && FluidUtil.tryFluidTransfer(fluidTile, this.tank, this.tank.getCapacity()
 						/ 2, true) != null) {
-					this.idle = 0;
-					if (tile instanceof GTTilePipeFluidBase) {
-						((GTTilePipeFluidBase) tile).lastRecievedFrom = side.getOpposite();
-					}
+					// Empty on true method
 				}
 			}
 		}
@@ -116,10 +107,9 @@ public abstract class GTTilePipeFluidBase extends GTTilePipeBase implements ITan
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		FluidStack fluid = this.tank.getFluid();
-		String last = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
-		data.put(fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Empty", false);
+		String last = this.blacklistSide != null ? this.blacklistSide.toString().toUpperCase() : "None";
+		data.put(fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Pipe is empty", false);
 		data.put("Restricted only to pipes: " + this.onlyPipes, false);
-		data.put("Time Idle: " + this.idle / 20 + "/5 Seconds", true);
-		data.put("Last Recieved From: " + last, true);
+		data.put("Blacklisted side: " + last, true);
 	}
 }

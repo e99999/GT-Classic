@@ -2,11 +2,9 @@ package gtclassic.api.pipe;
 
 import java.util.Map;
 
-import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileTranslocator;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
-import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityHopper;
@@ -19,11 +17,6 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 
 	public GTTilePipeItemBase(int slots) {
 		super(slots);
-	}
-
-	@Override
-	public LocaleComp getBlockName() {
-		return GTLang.ITEM_PIPE_LANG;
 	}
 
 	@Override
@@ -79,7 +72,7 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 	public void onPipeTick() {
 		for (EnumFacing side : this.connection) {
 			BlockPos sidePos = this.pos.offset(side);
-			if (world.isBlockLoaded(sidePos) && !isLastRecievedFrom(side)) {
+			if (world.isBlockLoaded(sidePos) && !isBlacklistSide(side)) {
 				TileEntity tile = world.getTileEntity(sidePos);
 				boolean onlyPipesAndNotPipe = this.onlyPipes && !(tile instanceof GTTilePipeItemBase);
 				boolean upwardHopper = side == EnumFacing.UP && tile instanceof TileEntityHopper;
@@ -92,10 +85,6 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 						int added = slave.addItem(this.getStackInSlot(i).copy(), side.getOpposite(), true).getCount();
 						if (added > 0) {
 							this.getStackInSlot(i).shrink(added);
-							this.idle = 0;
-							if (tile instanceof GTTilePipeItemBase) {
-								((GTTilePipeItemBase) tile).lastRecievedFrom = side.getOpposite();
-							}
 						}
 					}
 				}
@@ -114,11 +103,10 @@ public abstract class GTTilePipeItemBase extends GTTilePipeBase {
 			}
 		}
 		if (empty) {
-			data.put("Empty", false);
+			data.put("Pipe is empty", false);
 		}
 		data.put("Restricted only to pipes: " + this.onlyPipes, false);
-		data.put("Time Idle: " + this.idle / 20 + "/5 Seconds", true);
-		String last = this.lastRecievedFrom != null ? this.lastRecievedFrom.toString().toUpperCase() : "None";
-		data.put("Last Recieved From: " + last, true);
+		String last = this.blacklistSide != null ? this.blacklistSide.toString().toUpperCase() : "None";
+		data.put("Blacklisted Side: " + last, true);
 	}
 }

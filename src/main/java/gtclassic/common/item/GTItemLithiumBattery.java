@@ -1,5 +1,7 @@
 package gtclassic.common.item;
 
+import java.awt.Color;
+
 import gtclassic.GTMod;
 import ic2.api.item.ElectricItem;
 import ic2.core.item.base.ItemBatteryBase;
@@ -23,6 +25,11 @@ public class GTItemLithiumBattery extends ItemBatteryBase {
 		this.tier = 1;
 		this.provider = true;
 		this.setCreativeTab(GTMod.creativeTabGT);
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	@Override

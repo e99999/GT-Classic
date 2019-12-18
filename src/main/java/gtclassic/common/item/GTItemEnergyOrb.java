@@ -1,5 +1,7 @@
 package gtclassic.common.item;
 
+import java.awt.Color;
+
 import gtclassic.GTMod;
 import ic2.core.item.base.ItemBatteryBase;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -22,6 +24,11 @@ public class GTItemEnergyOrb extends ItemBatteryBase {
 		this.tier = 4;
 		this.provider = true;
 		this.setCreativeTab(GTMod.creativeTabGT);
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	@Override

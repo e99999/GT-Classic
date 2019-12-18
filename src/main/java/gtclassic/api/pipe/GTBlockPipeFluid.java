@@ -34,9 +34,9 @@ public class GTBlockPipeFluid extends GTBlockPipeBase {
 		tooltip.add(TextFormatting.BLUE + I18n.format("Fluid Capacity:  " + this.size.getSize() + " mB/sec"));
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
 		if (nbt.hasKey("color")) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("Can be painted white to remove color"));
+			tooltip.add(I18n.format("Can be painted white to remove color"));
 		} else {
-			tooltip.add(TextFormatting.ITALIC + I18n.format("Can be painted different colors"));
+			tooltip.add(I18n.format("Can be painted different colors"));
 		}
 	}
 

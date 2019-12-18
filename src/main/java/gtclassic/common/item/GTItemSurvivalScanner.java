@@ -1,5 +1,6 @@
 package gtclassic.common.item;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,6 +43,11 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		GTItemCreativeScanner.genToolTip(stack, worldIn, tooltip, flagIn);
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return Color.CYAN.hashCode();
 	}
 
 	@Override

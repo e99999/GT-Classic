@@ -110,6 +110,7 @@ public class GTTileWorktable extends TileEntityMachine
 	@Override
 	public void onGuiClosed(EntityPlayer entityPlayer) {
 		this.inUse = false;
+		this.setActive(false);
 	}
 
 	@Override

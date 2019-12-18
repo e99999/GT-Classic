@@ -34,10 +34,6 @@ tile.gtclassic.titaniumfluidpipesmall.name=Small Titanium Fluid Pipe
 tile.gtclassic.titaniumfluidpipe.name=Titanium Fluid Pipe
 tile.gtclassic.titaniumfluidpipelarge.name=Large Titanium Fluid Pipe
 
-tile.gtclassic.itempipename.name=Item Pipe
-tile.gtclassic.fluidpipename.name=Fluid Pipe
-
-
 #ore
 tile.gtclassic.oreIridium.name=Iridium Ore
 tile.gtclassic.oreSheldonite.name=Sheldonite Ore
@@ -178,6 +174,8 @@ item.gtclassic.spring_boots.name=Spring Boots
 item.gtclassic.magnifying_glass.name=Magnifying Glass
 item.gtclassic.plunger.name=Plunger
 item.gtclassic.monkey_wrench.name=Monkey Wrench
+item.gtclassic.spray_can_empty.name=Empty Spray Can
+item.gtclassic.spray_can.name=Spray Can
 
 #crops
 ic2.crop.Bauxia.name=Bauxia
@@ -206,6 +204,7 @@ fluid.chlorine=Chlorine
 fluid.oil=Oil
 fluid.neon=Neon
 fluid.argon=Argon
+fluid.magicdye=Incredible Magic Dye
 
 #ore tooltips
 tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome

@@ -45,11 +45,15 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	int amountPer;
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.uumassembler");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/uumassembler.png");
+	public static final String NBT_DIGITALCOUNT = "digitalCount";
+	public static final String NBT_RECIPECOST = "currentCost";
+	public static final String NBT_OUTPUTSTACKSIZE = "amountPer";
+	public static final String NBT_STOREDENERGY = "energy";
 
 	public GTTileUUMAssembler() {
 		super(14, 512);
 		maxEnergy = 100000;
-		this.addGuiFields(new String[] { "digitalCount", "currentCost", "amountPer" });
+		this.addGuiFields(new String[] { NBT_DIGITALCOUNT, NBT_RECIPECOST, NBT_OUTPUTSTACKSIZE });
 	}
 
 	@Override
@@ -67,17 +71,17 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.digitalCount = nbt.getInteger("digitalCount");
-		this.currentCost = nbt.getInteger("currentCost");
-		this.amountPer = nbt.getInteger("amountPer");
+		this.digitalCount = nbt.getInteger(NBT_DIGITALCOUNT);
+		this.currentCost = nbt.getInteger(NBT_RECIPECOST);
+		this.amountPer = nbt.getInteger(NBT_OUTPUTSTACKSIZE);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("digitalCount", this.digitalCount);
-		nbt.setInteger("currentCost", this.currentCost);
-		nbt.setInteger("amountPer", this.amountPer);
+		nbt.setInteger(NBT_DIGITALCOUNT, this.digitalCount);
+		nbt.setInteger(NBT_RECIPECOST, this.currentCost);
+		nbt.setInteger(NBT_OUTPUTSTACKSIZE, this.amountPer);
 		return nbt;
 	}
 
@@ -167,9 +171,9 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	}
 
 	public void updateGui() {
-		this.getNetwork().updateTileGuiField(this, "digitalCount");
-		this.getNetwork().updateTileGuiField(this, "currentCost");
-		this.getNetwork().updateTileGuiField(this, "amountPer");
+		this.getNetwork().updateTileGuiField(this, NBT_DIGITALCOUNT);
+		this.getNetwork().updateTileGuiField(this, NBT_RECIPECOST);
+		this.getNetwork().updateTileGuiField(this, NBT_OUTPUTSTACKSIZE);
 	}
 
 	public ResourceLocation getGuiTexture() {
@@ -190,10 +194,10 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 		List<ItemStack> list = new ArrayList<>();
 		ItemStack stack = GTMaterialGen.get(GTBlocks.tileUUMAssembler);
 		if (this.digitalCount > 0) {
-			StackUtil.getOrCreateNbtData(stack).setInteger("digitalCount", this.digitalCount);
+			StackUtil.getOrCreateNbtData(stack).setInteger(NBT_DIGITALCOUNT, this.digitalCount);
 		}
 		if (this.energy > 0) {
-			StackUtil.getOrCreateNbtData(stack).setInteger("energy", this.energy);
+			StackUtil.getOrCreateNbtData(stack).setInteger(NBT_STOREDENERGY, this.energy);
 		}
 		NBTTagCompound nbt = new NBTTagCompound();
 		GTHelperData.writeToNBT(nbt, this, 9);

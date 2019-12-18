@@ -31,7 +31,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 4));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_batteryblocklv", 0, 0, 5, 6));
 		if (GTConfig.general.animatedTextures) {
-			addCustomTexture("fusioncomputer", 0, 7, location("fusion_top"));
+			addCustomTexture("fusionreactor", 0, 7, location("fusion_top"));
 			addCustomTexture("quantumchest", 0, 3, location("qchest_front"));
 			addCustomTexture("quantumtank", 0, 1, location("qtank_top"));
 			addCustomTexture("digitalchest", 0, 1, location("digichest_top"));

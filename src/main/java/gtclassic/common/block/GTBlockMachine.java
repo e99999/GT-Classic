@@ -4,7 +4,9 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseMachine;
+import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
+import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.tile.GTTileAutocrafter;
 import gtclassic.common.tile.GTTileCentrifuge;
@@ -172,6 +174,17 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	}
 
 	@Override
+	public IBlockState getStateFromStack(ItemStack stack) {
+		if (thisIs(stack, GTBlocks.tileCentrifuge) || thisIs(stack, GTBlocks.tileFabricator)
+				|| thisIs(stack, GTBlocks.tileDisassembler) || thisIs(stack, GTBlocks.tileDragonEggEnergySiphon)
+				|| thisIs(stack, GTBlocks.tileMagicEnergyAbsorber) || thisIs(stack, GTBlocks.tileMagicEnergyConverter)
+				|| thisIs(stack, GTBlocks.tileFusionReactor)) {
+			return this.getDefaultBlockState().withProperty(active, true);
+		}
+		return this.getStateFromMeta(stack.getMetadata());
+	}
+
+	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack hStack = playerIn.getHeldItemMainhand();
@@ -196,5 +209,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			return false;
 		}
 		return super.canEntityDestroy(state, world, pos, entity);
+	}
+
+	public boolean thisIs(ItemStack stack, GTBlockMachine block) {
+		return (GTHelperStack.isEqual(stack, GTMaterialGen.get(block)));
 	}
 }
