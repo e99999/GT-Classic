@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTTileTranslocatorFluid extends GTTileBaseBuffer implements IHasGui {
 
 	public FluidStack filter;
+	public static final String NBT_FLUIDFILTER = "filter";
 
 	public GTTileTranslocatorFluid() {
 		super(1);
@@ -37,8 +39,11 @@ public class GTTileTranslocatorFluid extends GTTileBaseBuffer implements IHasGui
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		if (nbt.getString("filter") != null) {
-			this.filter = new FluidStack(FluidRegistry.getFluid(nbt.getString("filter")), 1000);
+		if (nbt.hasKey(NBT_FLUIDFILTER)) {
+			Fluid storedFluid = FluidRegistry.getFluid(nbt.getString(NBT_FLUIDFILTER));
+			if (storedFluid != null) {
+				this.filter = new FluidStack(FluidRegistry.getFluid(nbt.getString(NBT_FLUIDFILTER)), 1000);
+			}
 		}
 	}
 
@@ -46,7 +51,7 @@ public class GTTileTranslocatorFluid extends GTTileBaseBuffer implements IHasGui
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		if (this.filter != null) {
-			nbt.setString("filter", this.filter.getFluid().getName());
+			nbt.setString(NBT_FLUIDFILTER, this.filter.getFluid().getName());
 		}
 		return nbt;
 	}

@@ -195,6 +195,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 
 	@SuppressWarnings("static-access")
 	public void tryImportItems() {
+		// TODO redo this
 		IItemTransporter slave = TransporterManager.manager.getTransporter(getImportTile(), true);
 		if (slave == null) {
 			return;
@@ -216,6 +217,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 
 	@SuppressWarnings("static-access")
 	public void tryExportItems() {
+		// TODO redo this
 		IItemTransporter slave = TransporterManager.manager.getTransporter(getExportTile(), true);
 		if (slave == null) {
 			return;

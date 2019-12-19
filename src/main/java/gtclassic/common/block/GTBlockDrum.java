@@ -2,6 +2,7 @@ package gtclassic.common.block;
 
 import java.util.List;
 
+import gtclassic.api.helpers.GTHelperString;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileDrum;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -36,6 +37,7 @@ public class GTBlockDrum extends GTBlockStorage {
 			}
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
+		GTHelperString.tooltipMonkeyWrench(tooltip);
 	}
 
 	@Override

@@ -41,28 +41,32 @@ public abstract class GTTileBaseBuffer extends TileEntityMachine implements IEne
 	public boolean invertRedstone = false;
 	public int redstoneStrength = 0;
 	public boolean hasRedstone = true;
+	public static final String NBT_STOREDENERGY = "energy";
+	public static final String NBT_CONDUCT = "conduct";
+	public static final String NBT_OUTPUTREDSTONE = "outputRedstone";
+	public static final String NBT_INVERTREDSTONE = "invertRedstone";
 
 	public GTTileBaseBuffer(int slots) {
 		super(slots);
-		this.addGuiFields(new String[] { "energy", "conduct", "outputRedstone", "invertRedstone" });
+		this.addGuiFields(new String[] { NBT_STOREDENERGY, NBT_CONDUCT, NBT_OUTPUTREDSTONE, NBT_INVERTREDSTONE });
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.energy = nbt.getInteger("energy");
-		this.conduct = nbt.getBoolean("conduct");
-		this.outputRedstone = nbt.getBoolean("outputRedstone");
-		this.invertRedstone = nbt.getBoolean("invertRedstone");
+		this.energy = nbt.getInteger(NBT_STOREDENERGY);
+		this.conduct = nbt.getBoolean(NBT_CONDUCT);
+		this.outputRedstone = nbt.getBoolean(NBT_OUTPUTREDSTONE);
+		this.invertRedstone = nbt.getBoolean(NBT_INVERTREDSTONE);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("energy", this.energy);
-		nbt.setBoolean("conduct", this.conduct);
-		nbt.setBoolean("outputRedstone", this.outputRedstone);
-		nbt.setBoolean("invertRedstone", this.invertRedstone);
+		nbt.setInteger(NBT_STOREDENERGY, this.energy);
+		nbt.setBoolean(NBT_CONDUCT, this.conduct);
+		nbt.setBoolean(NBT_OUTPUTREDSTONE, this.outputRedstone);
+		nbt.setBoolean(NBT_INVERTREDSTONE, this.invertRedstone);
 		return nbt;
 	}
 
@@ -126,7 +130,7 @@ public abstract class GTTileBaseBuffer extends TileEntityMachine implements IEne
 				left = this.energy - this.maxEnergy;
 				this.energy = this.maxEnergy;
 			}
-			this.getNetwork().updateTileGuiField(this, "energy");
+			this.getNetwork().updateTileGuiField(this, NBT_STOREDENERGY);
 			return (double) left;
 		} else {
 			return 0.0D;
@@ -174,16 +178,16 @@ public abstract class GTTileBaseBuffer extends TileEntityMachine implements IEne
 			onUnloaded();
 			this.conduct = !this.conduct;
 			onLoaded();
-			this.getNetwork().updateTileGuiField(this, "conduct");
+			this.getNetwork().updateTileGuiField(this, NBT_CONDUCT);
 		}
 		if (this.hasRedstone) {
 			if (event == 1) {
 				this.outputRedstone = !this.outputRedstone;
-				this.getNetwork().updateTileGuiField(this, "outputRedstone");
+				this.getNetwork().updateTileGuiField(this, NBT_OUTPUTREDSTONE);
 			}
 			if (event == 2) {
 				this.invertRedstone = !this.invertRedstone;
-				this.getNetwork().updateTileGuiField(this, "invertRedstone");
+				this.getNetwork().updateTileGuiField(this, NBT_INVERTREDSTONE);
 				world.notifyNeighborsOfStateChange(pos, blockType, true);
 			}
 		}

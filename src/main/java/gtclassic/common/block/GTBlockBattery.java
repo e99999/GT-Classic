@@ -9,13 +9,13 @@ import gtclassic.api.block.GTBlockBaseMachine;
 import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.common.GTBlocks;
+import gtclassic.common.GTLang;
 import gtclassic.common.itemblock.GTItemBlockBattery;
 import gtclassic.common.tile.GTTileBattery;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.item.block.ItemBlockRare;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
-import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.helpers.BlockStateContainerIC2;
 import ic2.core.util.misc.StackUtil;
@@ -50,12 +50,11 @@ public class GTBlockBattery extends GTBlockBaseMachine implements IGTItemBlock, 
 	public static PropertyInteger chargelevel = PropertyInteger.create("chargelevel", 0, 4);
 
 	public GTBlockBattery(String name, int tier, int transferLimit, int maxCharge) {
-		super(Material.GROUND, Ic2Lang.nullKey, 3);
+		super(Material.GROUND, GTLang.BATTERYBLOCK_LV, 3);
 		this.maxCharge = maxCharge;
 		this.transferLimit = transferLimit;
 		this.tier = tier;
 		this.name = name;
-		this.setUnlocalizedName(GTMod.MODID + "." + name);
 		this.setRegistryName(name.toLowerCase());
 		this.setResistance(20.0F);
 		this.setSoundType(SoundType.METAL);

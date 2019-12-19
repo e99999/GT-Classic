@@ -221,6 +221,13 @@ tooltip.gtclassic.jackhammer=Mines 3x3 of any stone block
 tooltip.gtclassic.cloaking_device=Invisibility Field
 tooltip.gtclassic.spring_boots=QwerTech intensifies
 
+#generic tooltips
+tooltip.gtclassic.paintedtrue=Can be painted white to remove color
+tooltip.gtclassic.paintedfalse=Can be painted different colors
+tooltip.gtclassic.monkeywrench=Can be monkey wrenched to toggle modes
+tooltip.gtclassic.beaconbase=Can be used as a beacon base
+tooltip.gtclassic.nomobs=Mobs cannot spawn on this block
+
 #machine tooltips
 tooltip.gtclassic.autocrafter0=Work In Progress!
 tooltip.gtclassic.chargeomat0=Charges all the things

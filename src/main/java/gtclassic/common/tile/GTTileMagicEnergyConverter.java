@@ -322,6 +322,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Beryllium));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Neon));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Argon));
+		addRecipe(GTMaterialGen.getFluid(GTMaterial.MagicDye));
 		addModRecipe("xpjuice"); // OpenBlocks
 		addModRecipe("redstone"); // Thermal Foundation
 		addModRecipe("glowstone"); // Thermal Foundation

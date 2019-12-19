@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.api.helpers.GTHelperString;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
@@ -16,7 +17,6 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -46,12 +46,7 @@ public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		NBTTagCompound nbt = StackUtil.getNbtData(stack);
-		if (nbt.hasKey("color")) {
-			tooltip.add(I18n.format("Can be painted white to remove color"));
-		} else {
-			tooltip.add(I18n.format("Can be painted different colors"));
-		}
+		GTHelperString.tooltipPaintable(stack, tooltip);
 	}
 
 	@Override
