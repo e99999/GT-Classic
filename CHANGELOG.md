@@ -8,8 +8,14 @@
 - Added a Plunger to get fluids stuck in pipes out, if you have glass tubes you will get the fluid returned (except steam).
 - Added Low Voltage Battery Block, its a battery that is a block and and item, you can use either as either one. Just LV for now.
 - Changed the GTC Drums can now output its contents when enabled via monkey wrenching, gases go up, fluids go down.
-- Removed Sulfuric Acid its back to GTCX because with the above change you can no longer hand craft it.
 - Changed Superconductor cable now has a model instead of full block.
+- Changed all GTC electric items have that nice gt cyan charge/damage bar.
+- Added Spray Can item which can be used with the new dye I added...
+- Added Incredible Magic Dye which can be put into a spray can used for ANY color!
+- Changed a bunch of GTC machines now show their active state in jei instead of inactive.
+- Changed storage blocks are now colorable, cabinets, drums, and workbenches.
+- Fixed a bug where fusion reactors would not animate on being active.
+- Added "in use" texture to worktable for SMP until its able to support multiple players.
 
 # 1.08
 - Fixed for the last time, the null error with the magic energy converter, now all possible fluids tubes are displayed in JEI instead of just GTC.
