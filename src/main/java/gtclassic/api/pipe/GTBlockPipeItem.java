@@ -1,7 +1,5 @@
 package gtclassic.api.pipe;
 
-import java.util.List;
-
 import gtclassic.GTMod;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.pipe.GTHelperPipes.GTPipeModel;
@@ -10,6 +8,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class GTBlockPipeItem extends GTBlockPipeBase {
 
@@ -26,6 +26,11 @@ public class GTBlockPipeItem extends GTBlockPipeBase {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format("Item Capacity:  " + (this.type == GTPipeModel.LARGE ? 8 : 2) + " Stacks/sec"));
+	}
+
+	@Override
+	public String getLocalizedName() {
+		return net.minecraft.util.text.translation.I18n.translateToLocalFormatted("part.item_pipe" + type.getSuffix(), net.minecraft.util.text.translation.I18n.translateToLocal("material." + mat.getDisplayName()).trim());
 	}
 
 	@Override

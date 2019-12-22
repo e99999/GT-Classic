@@ -1,24 +1,4 @@
 
-#pipes
-tile.gtclassic.platinumitempipe.name=Platinum Item Pipe
-tile.gtclassic.platinumitempipelarge.name=Large Platinum Item Pipe
-tile.gtclassic.electrumitempipe.name=Electrum Item Pipe
-tile.gtclassic.electrumitempipelarge.name=Large Electrum Item Pipe
-tile.gtclassic.constantanitempipe.name=Constantan Item Pipe
-tile.gtclassic.constantanitempipelarge.name=Large Constantan Item Pipe
-tile.gtclassic.invarfluidpipesmall.name=Small Invar Fluid Pipe
-tile.gtclassic.invarfluidpipe.name=Invar Fluid Pipe
-tile.gtclassic.invarfluidpipelarge.name=Large Invar Fluid Pipe
-tile.gtclassic.highpressurefluidpipesmall.name=Small High Pressure Fluid Pipe
-tile.gtclassic.highpressurefluidpipe.name=High Pressure Fluid Pipe
-tile.gtclassic.highpressurefluidpipelarge.name=Large High Pressure Fluid Pipe
-tile.gtclassic.bronzefluidpipesmall.name=Small Bronze Fluid Pipe
-tile.gtclassic.bronzefluidpipe.name=Bronze Fluid Pipe
-tile.gtclassic.bronzefluidpipelarge.name=Large Bronze Fluid Pipe
-tile.gtclassic.titaniumfluidpipesmall.name=Small Titanium Fluid Pipe
-tile.gtclassic.titaniumfluidpipe.name=Titanium Fluid Pipe
-tile.gtclassic.titaniumfluidpipelarge.name=Large Titanium Fluid Pipe
-
 tile.gtclassic.itempipename.name=Item Pipe
 tile.gtclassic.fluidpipename.name=Fluid Pipe
 
@@ -75,6 +55,11 @@ part.dust=%s Dust
 part.ingot=%s Ingot
 part.gem=%s
 part.block=Block of %s
+part.item_pipe=%s Item Pipe
+part.item_pipe_large=Large %s Item Pipe
+part.fluid_pipe_small=Small %s Fluid Pipe
+part.fluid_pipe=%s Fluid Pipe
+part.fluid_pipe_large=Large %s Fluid Pipe
 
 
 material.Electrum=Electrum
@@ -108,6 +93,8 @@ material.Sulfur=Sulfur
 material.Nickel=Nickel
 material.Invar=Invar
 material.Constantan=Constantan
+material.HighPressure=High Pressure
+material.Bronze=Bronze
 
 #items
 item.gtclassic.flint_mortar.name=Flint Mortar

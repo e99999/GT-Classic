@@ -6,13 +6,14 @@ import gtclassic.api.itemblock.GTItemBlockRare;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialBlock;
 import gtclassic.api.material.GTMaterialFlag;
-import ic2.core.platform.registry.Ic2Lang;
+import gtclassic.api.pipe.GTBlockPipeFluid;
+import gtclassic.api.pipe.GTBlockPipeItem;
+import gtclassic.api.pipe.GTHelperPipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
 
 import javax.annotation.Nonnull;
-import java.awt.*;
+import java.awt.Color;
 
 public class GTColorItemBlock extends GTItemBlockRare implements IGTColorItem {
 
@@ -30,9 +31,19 @@ public class GTColorItemBlock extends GTItemBlockRare implements IGTColorItem {
 			GTMaterialBlock block1 = (GTMaterialBlock)block;
 			GTMaterialFlag flag = block1.getFlag();
 			GTMaterial material = block1.getMaterial();
-			if (flag.getComp() != Ic2Lang.nullKey){
-				return flag.getComp().getLocalizedFormatted(I18n.translateToLocal("material." + material.getDisplayName()).trim());
-			}
+			return net.minecraft.util.text.translation.I18n.translateToLocalFormatted("part." + flag.getPrefix(), net.minecraft.util.text.translation.I18n.translateToLocal("material." + material.getDisplayName()).trim());
+		}
+		if (block instanceof GTBlockPipeFluid){
+			GTBlockPipeFluid block1 = (GTBlockPipeFluid)block;
+			GTHelperPipes.GTPipeModel type = block1.getPipeType();
+			GTMaterial mat = block1.getMaterial();
+			return net.minecraft.util.text.translation.I18n.translateToLocalFormatted("part.fluid_pipe" + type.getSuffix(), net.minecraft.util.text.translation.I18n.translateToLocal("material." + mat.getDisplayName()).trim());
+		}
+		if (block instanceof GTBlockPipeItem){
+			GTBlockPipeItem block1 = (GTBlockPipeItem)block;
+			GTHelperPipes.GTPipeModel type = block1.getPipeType();
+			GTMaterial mat = block1.getMaterial();
+			return net.minecraft.util.text.translation.I18n.translateToLocalFormatted("part.item_pipe" + type.getSuffix(), net.minecraft.util.text.translation.I18n.translateToLocal("material." + mat.getDisplayName()).trim());
 		}
 		return super.getItemStackDisplayName(stack);
 	}

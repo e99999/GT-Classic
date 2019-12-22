@@ -1,7 +1,5 @@
 package gtclassic.api.pipe;
 
-import java.util.List;
-
 import gtclassic.GTMod;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.pipe.GTHelperPipes.GTPipeFluidCapacity;
@@ -12,6 +10,8 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class GTBlockPipeFluid extends GTBlockPipeBase {
 
@@ -25,6 +25,11 @@ public class GTBlockPipeFluid extends GTBlockPipeBase {
 		setRegistryName(mat.getName() + "_fluidpipe" + type.getSuffix());
 		setUnlocalizedName(GTMod.MODID + "." + mat.getName() + "fluidpipe" + type.getPrefix());
 		setCreativeTab(GTMod.creativeTabGT);
+	}
+
+	@Override
+	public String getLocalizedName() {
+		return net.minecraft.util.text.translation.I18n.translateToLocalFormatted("part.fluid_pipe" + type.getSuffix(), net.minecraft.util.text.translation.I18n.translateToLocal("material." + mat.getDisplayName()).trim());
 	}
 
 	@Override
