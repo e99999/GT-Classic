@@ -156,8 +156,9 @@ public abstract class GTTilePipeBase extends TileEntityBlock
 			}
 			this.blacklistSide = newSide;
 			if (this.isSimulating()) {
-				String msg = "Pipe will not flow backwards from this direction";
+				String msg = "Pipe will not flow: " + newSide.toString().toUpperCase();
 				IC2.platform.messagePlayer(player, msg);
+				IC2.platform.messagePlayer(player, "You are Facing: " + newSide.toString().toUpperCase());
 			}
 			return true;
 		}

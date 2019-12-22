@@ -26,8 +26,6 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 	int slotInput = 0;
 	int slotOutput = 1;
 	int slotDisplay = 2;
-	String display = "display";
-	String count = "digitalCount";
 
 	public GTBlockQuantumChest() {
 		super("quantumchest", GTLang.QUANTUM_CHEST);
@@ -43,9 +41,10 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 		if (stack.hasTagCompound()) {
 			NBTTagCompound nbt;
 			nbt = StackUtil.getNbtData(stack);
-			if (nbt.hasKey(display) && nbt.hasKey(count)) {
-				tooltip.add(TextFormatting.AQUA + I18n.format((nbt.getInteger(count)) + " of "
-						+ StackUtil.copyWithSize(new ItemStack(nbt.getCompoundTag(display)), 1).getDisplayName()));
+			if (nbt.hasKey(GTTileQuantumChest.NBT_DISPLAYITEM) && nbt.hasKey(GTTileQuantumChest.NBT_DIGITALCOUNT)) {
+				tooltip.add(TextFormatting.AQUA + I18n.format((nbt.getInteger(GTTileQuantumChest.NBT_DIGITALCOUNT))
+						+ " of "
+						+ StackUtil.copyWithSize(new ItemStack(nbt.getCompoundTag(GTTileQuantumChest.NBT_DISPLAYITEM)), 1).getDisplayName()));
 			}
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
@@ -82,9 +81,9 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 			GTTileQuantumChest chest = (GTTileQuantumChest) tile;
 			if (stack.hasTagCompound()) {
 				nbt = StackUtil.getNbtData(stack);
-				if (nbt.hasKey(display) && nbt.hasKey(count)) {
-					chest.setDigtialCount(nbt.getInteger(count));
-					chest.setStackInSlot(slotDisplay, StackUtil.copyWithSize(new ItemStack(nbt.getCompoundTag(display)), 1));
+				if (nbt.hasKey(GTTileQuantumChest.NBT_DISPLAYITEM) && nbt.hasKey(GTTileQuantumChest.NBT_DIGITALCOUNT)) {
+					chest.setDigtialCount(nbt.getInteger(GTTileQuantumChest.NBT_DIGITALCOUNT));
+					chest.setStackInSlot(slotDisplay, StackUtil.copyWithSize(new ItemStack(nbt.getCompoundTag(GTTileQuantumChest.NBT_DISPLAYITEM)), 1));
 				}
 			}
 		}

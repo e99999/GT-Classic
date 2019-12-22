@@ -14,7 +14,6 @@ public class GTHelperString {
 	private static final String MONKEYWRENCH = "tooltip.gtclassic.monkeywrench";
 	public static final String BEACONBASE = "tooltip.gtclassic.beaconbase";
 	public static final String NOMOBSPAWN = "tooltip.gtclassic.nomobs";
-	
 
 	public static void tooltipPaintable(ItemStack stack, List<String> tooltip) {
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
@@ -24,8 +23,9 @@ public class GTHelperString {
 			tooltip.add(I18n.format(PAINTED_FALSE));
 		}
 	}
+
 	public static void tooltipMonkeyWrench(List<String> tooltip) {
-			tooltip.add(I18n.format(MONKEYWRENCH));
+		tooltip.add(I18n.format(MONKEYWRENCH));
 	}
 
 	public static String getTierString(int tier) {

@@ -13,6 +13,7 @@ tile.gtclassic.blockPlutonium.name=Block of Plutonium
 tile.gtclassic.blockNickel.name=Block of Nickel
 tile.gtclassic.blockInvar.name=Block of Invar
 tile.gtclassic.blockConstantan.name=Block of Constantan
+tile.gtclassic.blockTechnetium.name=Block of Technetium
 
 #pipes
 tile.gtclassic.platinumitempipe.name=Platinum Item Pipe
@@ -115,6 +116,7 @@ item.gtclassic.dustSulfur.name=Sulfur Dust
 item.gtclassic.dustNickel.name=Nickel Dust
 item.gtclassic.dustInvar.name=Invar Dust
 item.gtclassic.dustConstantan.name=Constantan Dust
+item.gtclassic.dustTechnetium.name=Technetium Dust
 
 #gems
 item.gtclassic.gemSapphire.name=Sapphire
@@ -134,6 +136,7 @@ item.gtclassic.ingotPlatinum.name=Platinum Ingot
 item.gtclassic.ingotNickel.name=Nickel Ingot
 item.gtclassic.ingotInvar.name=Invar Ingot
 item.gtclassic.ingotConstantan.name=Constantan Ingot
+item.gtclassic.ingotTechnetium.name=Technetium Ingot
 
 #items
 item.gtclassic.flint_mortar.name=Flint Mortar

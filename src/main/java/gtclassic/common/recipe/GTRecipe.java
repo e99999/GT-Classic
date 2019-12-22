@@ -3,6 +3,7 @@ package gtclassic.common.recipe;
 import gtclassic.api.helpers.GTHelperMods;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
+import gtclassic.api.recipe.GTRecipeCraftingHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
@@ -14,6 +15,7 @@ import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.item.recipe.upgrades.EnchantmentModifier;
+import ic2.core.item.recipe.upgrades.FlagModifier;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.init.Blocks;
@@ -328,7 +330,7 @@ public class GTRecipe {
 				"circuitMaster", 'S', "craftingSuperconductor", 'A', "batteryUltimate", 'M', "machineBlockAdvanced" });
 		/** Superconductor Cable **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable, 4), new Object[] { "MEM", "SSS", "MEM",
-				'E', "circuitMaster", 'S', "craftingSuperconductor", 'M', "machineBlockAdvanced" });
+				'E', "circuitMaster", 'S', "craftingSuperconductor", 'M', Ic2Items.magnet });
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), new Object[] { "CRC", "JMN", "CBC", 'C',
 				"circuitBasic", 'R', "record", 'J', Blocks.JUKEBOX, 'M', "machineBlockAdvanced", 'N', Blocks.NOTEBLOCK,
@@ -424,6 +426,38 @@ public class GTRecipe {
 			/** Alt Reactor Vent **/
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorVent, 1), new Object[] { "IBI", "B B", "IBI", 'I',
 					"ingotAluminium", 'B', Blocks.IRON_BARS });
+			/*
+			 * Ive dreaded this part for so long, but it appears Speiger lost his mind when
+			 * he made these recipes and needs my help to fix them!
+			 */
+			/** Redoing Plasma Core **/
+			recipes.overrideRecipe("shaped_item.itemPlasmaCore_-1985082214", Ic2Items.plasmaCore.copy(), new Object[] {
+					"XYX", "YCY", "XYX", 'X', "craftingSuperconductor", 'Y',
+					GTMaterialGen.getIngot(GTMaterial.Tungsten, 1), 'C', Ic2Items.plasmaCell.copy() });
+			/** Removing the most ugly cable ever to bless modded mc */
+			GTRecipeCraftingHandler.removeRecipe("ic2", "shaped_item.itemPlasmaCable_449044295");
+			/** Quantum Overclocker BS **/
+			recipes.overrideRecipe("shaped_item.quantumOverclockerUpgrade_-1387578587", Ic2Items.quantumOverclockerUpgrade.copy(), new Object[] {
+					"XHX", "HVH", "XSX", 'X', "ingotTechnetium", 'H', GTItems.heatStorageHelium6, 'V',
+					Ic2Items.overClockerUpgrade.copy(), 'S', "craftingSuperconductor" });
+			/** PESD Thingy **/
+			recipes.overrideRecipe("shaped_item.itemPESD_-912043277", Ic2Items.pesd.copy(), new Object[] { "XYX", "YVY",
+					"XYX", 'Y', "ingotTungsten", 'X', "batteryUltimate", 'V', Ic2Items.plasmaCore.copy() });
+			/** PESU **/
+			recipes.overrideRecipe("shaped_tile.blockPesu_281205134", Ic2Items.pesu.copy(), new Object[] { "XYX", "CCC",
+					"XYX", 'X', "ingotTungsten", 'Y', "circuitMaster", 'C', Ic2Items.pesd.copy() });
+			/** IV Transformer **/
+			recipes.overrideRecipe("shaped_tile.blockTransformerIV_1876908464", Ic2Items.transformerIV.copy(), new Object[] {
+					"XYX", "CVB", "XYX", 'X', "ingotTungsten", 'Y', "craftingSuperconductor", 'C', "circuitMaster", 'V',
+					Ic2Items.transformerEV.copy(), 'B', Ic2Items.pesd });
+			/** Teleporter-Ma-Bob **/
+			recipes.overrideRecipe("shaped_item.itemPortableTeleporter_-869928001", Ic2Items.portableTeleporter.copy(), "XYX", "XCX", "BNB", 'X', "ingotPlatinum", 'Y', GTItems.chipData, 'C', "circuitMaster", 'B', "batteryUltimate", 'N', Ic2Items.teleporter.copy());
+			/** Removing the different versions of final wrench **/
+			GTRecipeCraftingHandler.removeRecipe("ic2", "shaped_item.precisionWrench_-1322002202");
+			/**
+			 * This will make the highest teir wrench craftable after the regular wrench
+			 **/
+			recipes.overrideRecipe("shaped_item.precisionWrench_-1943783685", Ic2Items.precisionWrench.copy(), "XRX", "CVC", "XYX", (new FlagModifier(Ic2Items.precisionWrench.copy(), "Lossless", true)).setUsesInput(), 'X', Ic2Items.advancedCircuit.copy(), 'C', "ingotTungsten", 'Y', Ic2Items.electricWrench.copy(), 'V', Ic2Items.iridiumPlate.copy(), 'R', GTItems.rockCutter);
 		}
 		/** Thick Reflector Recipe **/
 		recipes.overrideRecipe("shaped_item.reactorReflectorThick_-1313142365", Ic2Items.reactorReflectorThick.copy(), new Object[] {
@@ -454,6 +488,9 @@ public class GTRecipe {
 		/** Lapotron Stuff **/
 		recipes.overrideRecipe("shaped_item.itemBatLamaCrystal_1330077638", GTMaterialGen.getIc2(Ic2Items.lapotronCrystal, 1), new Object[] {
 				"LCL", "LDL", "LCL", 'D', highCrystal, 'C', "circuitBasic", 'L', anyLapis });
+		/** Adding ruby to glass fiber cable **/
+		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
+		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotSilver, 'V', lowCrystal);
 		/** Solar Panel **/
 		if (GTConfig.general.betterIC2SolarRecipes) {
 			recipes.overrideRecipe("shaped_tile.blockSolarGenerator_1093731471", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), new Object[] {
@@ -474,9 +511,6 @@ public class GTRecipe {
 					+ id, GTMaterialGen.getIc2(Ic2Items.electricJetpack), new Object[] { "ICI", "IBI", "G G", 'I',
 							inputItem, 'C', "circuitAdvanced", 'B', Ic2Items.batBox.copy(), 'G', Items.DRAGON_BREATH });
 		}
-		/** Adding ruby to glass fiber cable **/
-		recipes.overrideRecipe("shaped_item.itemGlassCable_-542195504", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 4), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', "dustRedstone", 'V', lowCrystal);
-		recipes.overrideRecipe("shaped_item.itemGlassCable_-410929364", GTMaterialGen.getIc2(Ic2Items.glassFiberCable, 6), "XXX", "CVC", "XXX", 'X', "blockGlass", 'C', ingotSilver, 'V', lowCrystal);
 		/** Overclocker helium coolant recipes **/
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), new Object[] { "CCC", "WEW", 'C',
 				GTMaterialGen.get(GTItems.heatStorageHelium1), 'W', Ic2Items.insulatedCopperCable.copy(), 'E',

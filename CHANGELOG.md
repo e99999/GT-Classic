@@ -16,6 +16,7 @@
 - Changed storage blocks are now colorable, cabinets, drums, and workbenches.
 - Fixed a bug where fusion reactors would not animate on being active.
 - Added "in use" texture to worktable for SMP until its able to support multiple players.
+- Fixed Speigers extremely funky recipes for end game content, rebalanced for use with GTC.
 
 # 1.08
 - Fixed for the last time, the null error with the magic energy converter, now all possible fluids tubes are displayed in JEI instead of just GTC.
