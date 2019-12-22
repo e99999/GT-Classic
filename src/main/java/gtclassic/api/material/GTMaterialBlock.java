@@ -57,7 +57,7 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 	@Override
 	public String getLocalizedName() {
 		if (flag.getComp() != Ic2Lang.nullKey){
-			return flag.getComp().getLocalizedFormatted(net.minecraft.util.text.translation.I18n.translateToLocal("material." + material.getDisplayName() + ".name").trim());
+			return flag.getComp().getLocalizedFormatted(net.minecraft.util.text.translation.I18n.translateToLocal("material." + material.getDisplayName()).trim());
 		}
 		return super.getLocalizedName();
 	}

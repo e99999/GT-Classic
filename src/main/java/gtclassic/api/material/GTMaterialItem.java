@@ -35,7 +35,7 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColo
 	@Override
 	public String getItemStackDisplayName(@Nonnull ItemStack stack) {
 		if (flag.getComp() != Ic2Lang.nullKey){
-			return flag.getComp().getLocalizedFormatted(I18n.translateToLocal("material." + material.getDisplayName() + ".name").trim());
+			return flag.getComp().getLocalizedFormatted(I18n.translateToLocal("material." + material.getDisplayName()).trim());
 		}
 		return super.getItemStackDisplayName(stack);
 	}

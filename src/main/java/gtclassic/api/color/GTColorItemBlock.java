@@ -31,7 +31,7 @@ public class GTColorItemBlock extends GTItemBlockRare implements IGTColorItem {
 			GTMaterialFlag flag = block1.getFlag();
 			GTMaterial material = block1.getMaterial();
 			if (flag.getComp() != Ic2Lang.nullKey){
-				return flag.getComp().getLocalizedFormatted(I18n.translateToLocal("material." + material.getDisplayName() + ".name").trim());
+				return flag.getComp().getLocalizedFormatted(I18n.translateToLocal("material." + material.getDisplayName()).trim());
 			}
 		}
 		return super.getItemStackDisplayName(stack);
