@@ -33,18 +33,6 @@ public class GTOreDict {
 			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
 				OreDictionary.registerOre("ingot" + mat.getDisplayName(), GTMaterialGen.getIngot(mat, 1));
 			}
-			if (mat.hasFlag(GTMaterialFlag.PIPEITEM)) {
-				OreDictionary.registerOre("pipeItem" + mat.getDisplayName(), GTMaterialGen.getItemPipe(mat, 1));
-				OreDictionary.registerOre("pipeItemLarge"
-						+ mat.getDisplayName(), GTMaterialGen.getItemPipeLarge(mat, 1));
-			}
-			if (mat.hasFlag(GTMaterialFlag.PIPEFLUID)) {
-				OreDictionary.registerOre("pipeFluidSmall"
-						+ mat.getDisplayName(), GTMaterialGen.getFluidPipeSmall(mat, 1));
-				OreDictionary.registerOre("pipeFluid" + mat.getDisplayName(), GTMaterialGen.getFluidPipe(mat, 1));
-				OreDictionary.registerOre("pipeFluidLarge"
-						+ mat.getDisplayName(), GTMaterialGen.getFluidPipeLarge(mat, 1));
-			}
 		}
 		// Just doing these to make iteration & unification easier in some cases
 		OreDictionary.registerOre("dustGunpowder", Items.GUNPOWDER);
@@ -95,7 +83,6 @@ public class GTOreDict {
 		OreDictionary.registerOre("craftingToolMortar", new ItemStack(GTItems.flintMortar, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("craftingToolMortar", new ItemStack(GTItems.ironMortar, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("craftingToolDuctTape", new ItemStack(GTItems.ductTape, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolMonkeyWrench", new ItemStack(GTItems.monkeyWrench, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("circuitMaster", (GTMaterialGen.get(GTItems.circuitEnergy, 1)));
 		OreDictionary.registerOre("circuitElite", (GTMaterialGen.get(GTItems.circuitData, 1)));
 		OreDictionary.registerOre("circuitStorage", (GTMaterialGen.get(GTItems.chipData, 1)));

@@ -12,28 +12,7 @@ tile.gtclassic.blockThorium.name=Block of Thorium
 tile.gtclassic.blockPlutonium.name=Block of Plutonium
 tile.gtclassic.blockNickel.name=Block of Nickel
 tile.gtclassic.blockInvar.name=Block of Invar
-tile.gtclassic.blockConstantan.name=Block of Constantan
 tile.gtclassic.blockTechnetium.name=Block of Technetium
-
-#pipes
-tile.gtclassic.platinumitempipe.name=Platinum Item Pipe
-tile.gtclassic.platinumitempipelarge.name=Large Platinum Item Pipe
-tile.gtclassic.electrumitempipe.name=Electrum Item Pipe
-tile.gtclassic.electrumitempipelarge.name=Large Electrum Item Pipe
-tile.gtclassic.constantanitempipe.name=Constantan Item Pipe
-tile.gtclassic.constantanitempipelarge.name=Large Constantan Item Pipe
-tile.gtclassic.invarfluidpipesmall.name=Small Invar Fluid Pipe
-tile.gtclassic.invarfluidpipe.name=Invar Fluid Pipe
-tile.gtclassic.invarfluidpipelarge.name=Large Invar Fluid Pipe
-tile.gtclassic.highpressurefluidpipesmall.name=Small High Pressure Fluid Pipe
-tile.gtclassic.highpressurefluidpipe.name=High Pressure Fluid Pipe
-tile.gtclassic.highpressurefluidpipelarge.name=Large High Pressure Fluid Pipe
-tile.gtclassic.bronzefluidpipesmall.name=Small Bronze Fluid Pipe
-tile.gtclassic.bronzefluidpipe.name=Bronze Fluid Pipe
-tile.gtclassic.bronzefluidpipelarge.name=Large Bronze Fluid Pipe
-tile.gtclassic.titaniumfluidpipesmall.name=Small Titanium Fluid Pipe
-tile.gtclassic.titaniumfluidpipe.name=Titanium Fluid Pipe
-tile.gtclassic.titaniumfluidpipelarge.name=Large Titanium Fluid Pipe
 
 #ore
 tile.gtclassic.oreIridium.name=Iridium Ore
@@ -115,7 +94,6 @@ item.gtclassic.dustPhosphorus.name=Phosphorus Dust
 item.gtclassic.dustSulfur.name=Sulfur Dust
 item.gtclassic.dustNickel.name=Nickel Dust
 item.gtclassic.dustInvar.name=Invar Dust
-item.gtclassic.dustConstantan.name=Constantan Dust
 item.gtclassic.dustTechnetium.name=Technetium Dust
 
 #gems
@@ -135,7 +113,6 @@ item.gtclassic.ingotPlutonium.name=Plutonium Ingot
 item.gtclassic.ingotPlatinum.name=Platinum Ingot
 item.gtclassic.ingotNickel.name=Nickel Ingot
 item.gtclassic.ingotInvar.name=Invar Ingot
-item.gtclassic.ingotConstantan.name=Constantan Ingot
 item.gtclassic.ingotTechnetium.name=Technetium Ingot
 
 #items
@@ -175,8 +152,6 @@ item.gtclassic.cloaking_device.name=Cloaking Device
 item.gtclassic.light_helmet.name=Light Helmet
 item.gtclassic.spring_boots.name=Spring Boots
 item.gtclassic.magnifying_glass.name=Magnifying Glass
-item.gtclassic.plunger.name=Plunger
-item.gtclassic.monkey_wrench.name=Monkey Wrench
 item.gtclassic.spray_can_empty.name=Empty Spray Can
 item.gtclassic.spray_can.name=Spray Can
 
@@ -227,12 +202,11 @@ tooltip.gtclassic.spring_boots=QwerTech intensifies
 #generic tooltips
 tooltip.gtclassic.paintedtrue=Can be painted white to remove color
 tooltip.gtclassic.paintedfalse=Can be painted different colors
-tooltip.gtclassic.monkeywrench=Can be monkey wrenched to toggle modes
 tooltip.gtclassic.beaconbase=Can be used as a beacon base
 tooltip.gtclassic.nomobs=Mobs cannot spawn on this block
 
 #machine tooltips
-tooltip.gtclassic.autocrafter0=Work In Progress!
+tooltip.gtclassic.autocrafter0=Automatic Crafting Table Mk III
 tooltip.gtclassic.chargeomat0=Charges all the things
 tooltip.gtclassic.computercube0=Now with more dedotated WAM!
 tooltip.gtclassic.drum0=Portable tank, capacity of 32 buckets

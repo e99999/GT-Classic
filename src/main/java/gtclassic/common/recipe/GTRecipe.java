@@ -94,8 +94,6 @@ public class GTRecipe {
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Electrum, 2), "dustSilver", "dustGold");
 			/** Invar Dust **/
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Invar, 3), "dustIron", "dustIron", "dustNickel");
-			/** Constantan Dust **/
-			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Constantan, 2), "dustCopper", "dustNickel");
 		}
 	}
 
@@ -125,8 +123,6 @@ public class GTRecipe {
 					"ingotAluminium", 'E', GTMaterialGen.getIc2(Ic2Items.euReader, 1), 'F',
 					GTMaterialGen.getIc2(Ic2Items.cropAnalyzer, 1), 'C', "circuitAdvanced", 'B',
 					GTMaterialGen.get(GTItems.lithiumBattery) });
-			/** Monkey Wrench **/
-			recipes.addRecipe(GTMaterialGen.get(GTItems.monkeyWrench), "II ", " II", "II ", 'I', "ingotRefinedIron");
 			/** Empty Spray Can **/
 			recipes.addRecipe(GTMaterialGen.get(GTItems.sprayCanEmpty), "R", "C", 'C', Ic2Items.emptyCell, 'R', "dustRedstone");
 		}
@@ -142,8 +138,6 @@ public class GTRecipe {
 		/** Iron Mortar **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.ironMortar, 1), new Object[] { " I ", "BIB", "BBB", 'I',
 				ingotAnyIron, 'B', "stone", });
-		/** Plunger **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.plunger), " RR", " SR", "S  ", 'R', "itemRubber", 'S', "stickWood");
 		/** Magnifying Glass **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.magnifyingGlass), " P", "S ", 'P', "paneGlass", 'S', "stickWood");
 		/** Destructo Pack **/
@@ -262,8 +256,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileWorktable), new Object[] { "IWI", "III", "ICI", 'I',
 					ingotMachine, 'C', "chestWood", 'W', "workbench" });
 			/** Drum **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), new Object[] { "ICI", "IBI", "IBI", 'I',
-					ingotRefinedIron, 'B', Items.BUCKET, 'C', "craftingToolMonkeyWrench" });
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), new Object[] { "I I", "IBI", "IBI", 'I',
+					ingotRefinedIron, 'B', Items.BUCKET });
 			/** Fluid Translocator **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Ic2Items.basicFluidImportUpgrade);
 			/** Fluid Buffer **/
@@ -435,7 +429,9 @@ public class GTRecipe {
 					"XYX", "YCY", "XYX", 'X', "craftingSuperconductor", 'Y',
 					GTMaterialGen.getIngot(GTMaterial.Tungsten, 1), 'C', Ic2Items.plasmaCell.copy() });
 			/** Removing the most ugly cable ever to bless modded mc */
-			GTRecipeCraftingHandler.removeRecipe("ic2", "shaped_item.itemPlasmaCable_449044295");
+			GTRecipeCraftingHandler.removeRecipe("ic2", "shaped_item.itemPlasmaCable_449044295");// TODO make sure this
+																									// works if steel
+																									// mode is on
 			/** Quantum Overclocker BS **/
 			recipes.overrideRecipe("shaped_item.quantumOverclockerUpgrade_-1387578587", Ic2Items.quantumOverclockerUpgrade.copy(), new Object[] {
 					"XHX", "HVH", "XSX", 'X', "ingotTechnetium", 'H', GTItems.heatStorageHelium6, 'V',

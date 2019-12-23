@@ -11,7 +11,6 @@ public class GTHelperString {
 
 	private static final String PAINTED_TRUE = "tooltip.gtclassic.paintedtrue";
 	private static final String PAINTED_FALSE = "tooltip.gtclassic.paintedfalse";
-	private static final String MONKEYWRENCH = "tooltip.gtclassic.monkeywrench";
 	public static final String BEACONBASE = "tooltip.gtclassic.beaconbase";
 	public static final String NOMOBSPAWN = "tooltip.gtclassic.nomobs";
 
@@ -22,10 +21,6 @@ public class GTHelperString {
 		} else {
 			tooltip.add(I18n.format(PAINTED_FALSE));
 		}
-	}
-
-	public static void tooltipMonkeyWrench(List<String> tooltip) {
-		tooltip.add(I18n.format(MONKEYWRENCH));
 	}
 
 	public static String getTierString(int tier) {

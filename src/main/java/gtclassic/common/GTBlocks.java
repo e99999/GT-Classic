@@ -9,8 +9,6 @@ import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.itemblock.GTItemBlockRare;
 import gtclassic.api.material.GTMaterialGen;
-import gtclassic.api.pipe.GTTilePipeFluid;
-import gtclassic.api.pipe.GTTilePipeItem;
 import gtclassic.common.block.GTBlockBattery;
 import gtclassic.common.block.GTBlockCasing;
 import gtclassic.common.block.GTBlockDrum;
@@ -116,7 +114,7 @@ public class GTBlocks {
 			"quantumchest", "quantumtank", "playerdetector", "mobrepeller", "fusionreactor", "lightningrod",
 			"dragoneggenergysiphon", "magicenergyconverter", "magicenergyabsorber", "idsu", "aesu", "lesu",
 			"supercondensator", "superconductorcable", "cabinet", "drum", "worktable", "translocator",
-			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid", "pipe" };
+			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -179,17 +177,6 @@ public class GTBlocks {
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileTranslocatorFluid.class, "TranslocatorFluid");
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
-		registerUtil(GTTilePipeItem.GTTilePipeItemSmall.class, "SmallItemPipe");
-		registerUtil(GTTilePipeItem.GTTilePipeItemLarge.class, "LargeItemPipe");
-		registerUtil(GTTilePipeFluid.GTTileFluidPipe800.class, "TinyFluidPipe");
-		registerUtil(GTTilePipeFluid.GTTileFluidPipe1600.class, "SmallFluidPipe");
-		registerUtil(GTTilePipeFluid.GTTileFluidPipe3200.class, "MedFluidPipe");
-		registerUtil(GTTilePipeFluid.GTTileFluidPipe6400.class, "LargeFluidPipe");
-		registerUtil(GTTilePipeFluid.GTTileFluidPipe12800.class, "HugeFluidPipe");
-		registerUtil(GTTilePipeFluid.GTTileFluidPipe25600.class, "MassiveFluidPipe");
-		registerUtil(GTTilePipeFluid.GTTileFluidPipeMax1.class, "SmallSuperFluidPipe");
-		registerUtil(GTTilePipeFluid.GTTileFluidPipeMax2.class, "MedSuperFluidPipe");
-		registerUtil(GTTilePipeFluid.GTTileFluidPipeMax3.class, "LargeSuperFluidPipe");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {

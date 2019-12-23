@@ -75,7 +75,6 @@ public class GTItemSprayCan extends Item implements IStaticTexturedItem, IGTColo
 		} else {
 			tooltip.add(I18n.format("Current: NONE"));
 		}
-		tooltip.add(I18n.format("Used to paint blocks and pipes"));
 		tooltip.add(I18n.format("Sneak + click to change colors"));
 	}
 
@@ -160,13 +159,13 @@ public class GTItemSprayCan extends Item implements IStaticTexturedItem, IGTColo
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[38];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[36];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int i, ItemStack var2) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_items")[38 + i];
+		return Ic2Icons.getTextures(GTMod.MODID + "_items")[36 + i];
 	}
 
 	@Override
