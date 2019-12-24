@@ -1,4 +1,4 @@
-package gtclassic.common.tile;
+package gtclassic.common.tile.wiring;
 
 import ic2.api.classic.energy.tile.IAnchorConductor;
 import ic2.api.classic.network.adv.NetworkField;

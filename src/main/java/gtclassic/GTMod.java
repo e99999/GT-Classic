@@ -93,6 +93,7 @@ public class GTMod {
 		GTRecipe.initShapeless();
 		GTRecipe.initItems();
 		GTRecipe.initBlocks();
+		GTRecipe.initCables();
 		GTRecipe.initIC2();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());

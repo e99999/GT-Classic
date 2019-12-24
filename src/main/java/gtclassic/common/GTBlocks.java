@@ -45,7 +45,6 @@ import gtclassic.common.tile.GTTilePlayerDetector;
 import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
 import gtclassic.common.tile.GTTileSupercondensator;
-import gtclassic.common.tile.GTTileSuperconductorCable;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
@@ -53,6 +52,9 @@ import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
+import gtclassic.common.tile.wiring.GTTileSuperconductorCable;
+import gtclassic.common.tile.wiring.GTTileSuperconductorCable2;
+import gtclassic.common.tile.wiring.GTTileSuperconductorCable4;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
@@ -95,7 +97,6 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileAESU = registerBlock(new GTBlockMachineDirectionable("aesu", GTLang.AESU));
 	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu", GTLang.IDSU));
 	public static final GTBlockMachineDirectionable tileSupercondensator = registerBlock(new GTBlockMachineDirectionable("supercondensator", GTLang.SUPERCONDENSATOR));
-	public static final GTBlockSuperconductorCable tileSuperconductorCable = registerBlock(new GTBlockSuperconductorCable());
 	public static final GTBlockStorage tileWorktable = registerBlock(new GTBlockStorage("worktable", GTLang.WORKTABLE));
 	public static final GTBlockStorage tileCabinet = registerBlock(new GTBlockStorage("cabinet", GTLang.CABINET));
 	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
@@ -107,6 +108,9 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachineDirectionable tileTranslocatorFluid = registerBlock(new GTBlockMachineDirectionable("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
+	public static final GTBlockSuperconductorCable tileSuperconductorCable = registerBlock(new GTBlockSuperconductorCable(12, ""));
+	public static final GTBlockSuperconductorCable tileSuperconductorCable2x = registerBlock(new GTBlockSuperconductorCable(6, "2"));
+	public static final GTBlockSuperconductorCable tileSuperconductorCable4x = registerBlock(new GTBlockSuperconductorCable(4, "4"));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 	/** This is where GTBlockTile holds its textures **/
 	protected static final String[] textureTileBasic = { "autocrafter", "chargeomat", "computercube",
@@ -158,7 +162,6 @@ public class GTBlocks {
 		registerUtil(GTTileAESU.class, "AESU");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");
 		registerUtil(GTTileSupercondensator.class, "Supercondensator");
-		registerUtil(GTTileSuperconductorCable.class, "SuperconductorCable");
 		registerUtil(GTTileMultiFusionReactor.class, "FusionComputer");
 		registerUtil(GTTileDigitalChest.class, "DigitalChest");
 		registerUtil(GTTileQuantumChest.class, "QuantumChest");
@@ -177,6 +180,9 @@ public class GTBlocks {
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileTranslocatorFluid.class, "TranslocatorFluid");
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
+		registerUtil(GTTileSuperconductorCable.class, "SuperconductorCable");
+		registerUtil(GTTileSuperconductorCable2.class, "SuperconductorCable2");
+		registerUtil(GTTileSuperconductorCable4.class, "SuperconductorCable4");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {

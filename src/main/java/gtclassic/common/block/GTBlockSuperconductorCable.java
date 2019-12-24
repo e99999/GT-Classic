@@ -7,8 +7,11 @@ import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelWire;
+import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
-import gtclassic.common.tile.GTTileSuperconductorCable;
+import gtclassic.common.tile.wiring.GTTileSuperconductorCable;
+import gtclassic.common.tile.wiring.GTTileSuperconductorCable2;
+import gtclassic.common.tile.wiring.GTTileSuperconductorCable4;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.textures.Ic2Icons;
@@ -31,10 +34,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IGTReaderInfoBlock {
 
-	public GTBlockSuperconductorCable() {
+	int size;
+
+	public GTBlockSuperconductorCable(int size, String suffix) {
 		super();
 		setUnlocalizedName(GTLang.SUPERCONDUCTORCABLE);
-		setRegistryName("superconductorcable");
+		setRegistryName("superconductorcable" + suffix);
+		this.size = size;
 		this.setHardness(0.2F);
 		this.setSoundType(SoundType.CLOTH);
 		this.setHarvestLevel("axe", 0);
@@ -48,6 +54,12 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
+		if (this == GTBlocks.tileSuperconductorCable2x) {
+			return new GTTileSuperconductorCable2();
+		}
+		if (this == GTBlocks.tileSuperconductorCable4x) {
+			return new GTTileSuperconductorCable4();
+		}
 		return new GTTileSuperconductorCable();
 	}
 
@@ -56,10 +68,15 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 		return 1;
 	}
 
+	private int[] getSize() {
+		int var = (16 - this.size) / 2;
+		return new int[] { 0 + var, 16 - var };
+	}
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTModelWire(state, Ic2Icons.getTextures("superconductorcable")[0], new int[] { 3, 13 });
+		return new GTModelWire(state, Ic2Icons.getTextures("superconductorcable")[0], getSize());
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -88,7 +105,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 			return new AxisAlignedBB(0.25D, 0.25D, 0.25D, 0.75D, 0.75D, 0.75D);
 		} else {
 			GTTileSuperconductorCable pipe = (GTTileSuperconductorCable) tile;
-			double thickness = (13 - 3) / 32.0D;
+			double thickness = this.size / 32.0D;
 			double minX = 0.5D - thickness;
 			double minY = 0.5D - thickness;
 			double minZ = 0.5D - thickness;
@@ -119,7 +136,15 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 
 	@Override
 	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));
+		if (this == GTBlocks.tileSuperconductorCable) {
+			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));
+		}
+		if (this == GTBlocks.tileSuperconductorCable2x) {
+			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32769 })));
+		}
+		if (this == GTBlocks.tileSuperconductorCable4x) {
+			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 512 })));
+		}
 		tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));
 	}
 }

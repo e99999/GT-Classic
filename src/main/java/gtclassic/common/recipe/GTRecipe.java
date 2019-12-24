@@ -361,6 +361,16 @@ public class GTRecipe {
 		}
 	}
 
+	public static void initCables() {
+		/** Superconductor Cable x 2 **/
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 2), GTMaterialGen.get(GTBlocks.tileSuperconductorCable, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 1));
+		/** Superconductor Cable x 4 **/
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable4x, 2), GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCable4x, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCable4x, 1));
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable, 1), "CC", "CC", 'C', GTBlocks.tileSuperconductorCable4x);
+	}
+
 	public static void initIC2() {
 		if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
 			/** Alt Wind Mill **/
