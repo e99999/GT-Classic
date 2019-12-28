@@ -1,6 +1,7 @@
 # Changelog
 
 # 1.09 (Not Released)
+- Fixed materials not part of GTC being overlooked with basic automation machine recipes, blocks to dusts, gems to block etc..
 - Added Magnifying Glass to get small amounts of info from various tiles.
 - Added Low Voltage Battery Block, its a battery that is a block and and item, you can use either as either one. Just LV for now.
 - Changed Superconductor cable now has a model instead of full block.

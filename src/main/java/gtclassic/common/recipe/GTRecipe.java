@@ -32,42 +32,43 @@ public class GTRecipe {
 	public static String ingotRefinedIron = IC2.getRefinedIron();
 	public static FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
 	public static FluidStack lava = new FluidStack(FluidRegistry.LAVA, 1000);
-	static IRecipeInput ingotMachine = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput ingotMachine = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotAluminium") });
-	static IRecipeInput ingotElectric = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput ingotElectric = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("itemSilicon"),
 			new RecipeInputOreDict("ingotAluminium"), new RecipeInputOreDict("ingotSilver"),
 			new RecipeInputOreDict("ingotElectrum"), new RecipeInputOreDict("ingotPlatinum") });
-	static IRecipeInput ingotAny = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput ingotAny = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotSilver"),
 			new RecipeInputOreDict("ingotBronze"), new RecipeInputOreDict("ingotAluminium"),
 			new RecipeInputOreDict("ingotElectrum"), new RecipeInputOreDict("ingotPlatinum"),
 			new RecipeInputOreDict("ingotNickel") });
-	static IRecipeInput ingotAnyIron = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput ingotAnyIron = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotIron") });
-	static IRecipeInput ingotMixed = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput ingotMixed = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotAluminium"),
 			new RecipeInputOreDict("ingotElectrum") });
-	static IRecipeInput lowCrystal = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput lowCrystal = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("gemDiamond"), new RecipeInputOreDict("gemRuby") });
-	static IRecipeInput highCrystal = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput highCrystal = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("gemSapphire"), new RecipeInputItemStack(Ic2Items.energyCrystal.copy()) });
-	static IRecipeInput anyLapis = new RecipeInputCombined(1, new IRecipeInput[] { new RecipeInputOreDict("gemLapis"),
-			new RecipeInputOreDict("dustLazurite"), new RecipeInputOreDict("dustSodalite") });
-	static IRecipeInput ingotSilver = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput anyLapis = new RecipeInputCombined(1, new IRecipeInput[] {
+			new RecipeInputOreDict("gemLapis"), new RecipeInputOreDict("dustLazurite"),
+			new RecipeInputOreDict("dustSodalite") });
+	static final IRecipeInput ingotSilver = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotElectrum") });
-	static IRecipeInput anyPiston = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput anyPiston = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputItemStack(GTMaterialGen.get(Blocks.STICKY_PISTON)),
 			new RecipeInputItemStack(GTMaterialGen.get(Blocks.PISTON)) });
-	static IRecipeInput ingotHigh = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput ingotHigh = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotTungsten"), new RecipeInputOreDict("ingotTitanium") });
-	static IRecipeInput ingotDigital = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput ingotDigital = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotChrome"), new RecipeInputOreDict("ingotTitanium"),
 			new RecipeInputOreDict("ingotPlatinum") });
-	static IRecipeInput batteryAdvanced = new RecipeInputCombined(1, new IRecipeInput[] {
+	static final IRecipeInput batteryAdvanced = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputItemStack(Ic2Items.energyCrystal.copy()),
 			new RecipeInputItemStack(GTMaterialGen.get(GTItems.lithiumBattery)) });
-	static IRecipeInput circuitBasicX2 = new RecipeInputCombined(2, new IRecipeInput[] {
+	static final IRecipeInput circuitBasicX2 = new RecipeInputCombined(2, new IRecipeInput[] {
 			new RecipeInputOreDict("circuitBasic") });
 
 	public static void initShapeless() {

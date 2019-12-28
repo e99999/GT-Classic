@@ -40,6 +40,7 @@ public class GTRecipeIterators {
 	/** Iterates through loaded itemstacks for all mods **/
 	public static void postInit() {
 		createMortarRecipe();
+		createUniversalProcessingRecipes();
 		for (Item item : Item.REGISTRY) {
 			NonNullList<ItemStack> items = NonNullList.create();
 			item.getSubItems(CreativeTabs.SEARCH, items);
@@ -82,8 +83,6 @@ public class GTRecipeIterators {
 			if (mat.hasFlag(GTMaterialFlag.BLOCKGEM)) {
 				// Block and gem related logic
 				recipes.addShapelessRecipe(GTMaterialGen.getGem(mat, 9), new Object[] { block });
-				TileEntityCompressor.addRecipe(gem, 9, GTMaterialGen.getMaterialBlock(mat, 1), 0.0F);
-				TileEntityMacerator.addRecipe(block, 1, GTMaterialGen.getDust(mat, 9), 0.0F);
 				recipes.addRecipe(GTMaterialGen.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X',
 						gem });
 			}
@@ -98,10 +97,8 @@ public class GTRecipeIterators {
 				// Block crafting recipe
 				recipes.addRecipe(GTMaterialGen.getMaterialBlock(mat, 1), new Object[] { "XXX", "XXX", "XXX", 'X',
 						ingot });
-				TileEntityCompressor.addRecipe(ingot, 9, GTMaterialGen.getMaterialBlock(mat, 1), 0.0F);
 				// Inverse
 				recipes.addShapelessRecipe(GTMaterialGen.getIngot(mat, 9), new Object[] { block });
-				TileEntityMacerator.addRecipe(block, 1, GTMaterialGen.getDust(mat, 9), 0.0F);
 			}
 		}
 	}
@@ -121,6 +118,47 @@ public class GTRecipeIterators {
 			if (entry.getInput().getInputs().get(0).getCount() == 1
 					&& entry.getOutput().getAllOutputs().get(0).getCount() == 1) {
 				recipes.addShapelessRecipe(entry.getOutput().getAllOutputs().get(0), entry.getInput(), "craftingToolMortar");
+			}
+		}
+	}
+
+	public static void createUniversalProcessingRecipes() {
+		String[] oreDict = OreDictionary.getOreNames();
+		int oreDictSize = oreDict.length;
+		for (int i = 0; i < oreDictSize; ++i) {
+			String id = oreDict[i];
+			String dust;
+			NonNullList<ItemStack> list;
+			// block to dust iterator
+			if (id.startsWith("block")) {
+				dust = "dust" + id.substring(5);
+				if (OreDictionary.doesOreNameExist(dust)) {
+					list = OreDictionary.getOres(dust, false);
+					if (!list.isEmpty()) {
+						TileEntityMacerator.addRecipe((String) id, 1, GTHelperStack.copyWithSize((ItemStack) list.get(0), 9), 0.1F);
+					}
+				}
+			}
+			// ingot to block iterator
+			String block;
+			if (id.startsWith("ingot")) {
+				block = "block" + id.substring(5);
+				if (OreDictionary.doesOreNameExist(block)) {
+					list = OreDictionary.getOres(block, false);
+					if (!list.isEmpty()) {
+						TileEntityCompressor.addRecipe((String) id, 9, GTHelperStack.copyWithSize((ItemStack) list.get(0), 1), 0.1F);
+					}
+				}
+			} else
+			// gems to block iterator
+			if (id.startsWith("gem")) {
+				block = "block" + id.substring(3);
+				if (OreDictionary.doesOreNameExist(block)) {
+					list = OreDictionary.getOres(block, false);
+					if (!list.isEmpty()) {
+						TileEntityCompressor.addRecipe((String) id, 9, GTHelperStack.copyWithSize((ItemStack) list.get(0), 1), 0.1F);
+					}
+				}
 			}
 		}
 	}
