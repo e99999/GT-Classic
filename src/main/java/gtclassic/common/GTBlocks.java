@@ -8,6 +8,7 @@ import gtclassic.api.color.GTColorItemBlock;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.itemblock.GTItemBlockRare;
+import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.block.GTBlockBattery;
 import gtclassic.common.block.GTBlockCasing;
@@ -16,6 +17,7 @@ import gtclassic.common.block.GTBlockLightSource;
 import gtclassic.common.block.GTBlockMachine;
 import gtclassic.common.block.GTBlockMachineDirectionable;
 import gtclassic.common.block.GTBlockOre;
+import gtclassic.common.block.GTBlockOreBedrock;
 import gtclassic.common.block.GTBlockQuantumChest;
 import gtclassic.common.block.GTBlockQuantumTank;
 import gtclassic.common.block.GTBlockStorage;
@@ -69,6 +71,7 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
+	public static final GTBlockOreBedrock oreBedRock = registerBlock(new GTBlockOreBedrock(GTMaterial.Platinum));
 	public static final GTBlockOre oreIridium = registerBlock(new GTBlockOre("Iridium", 81, 20.0F, 3));
 	public static final GTBlockOre oreSheldonite = registerBlock(new GTBlockOre("Sheldonite", 80, 5.0F, 2));
 	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre("Ruby", 82, 4.0F, 2));
