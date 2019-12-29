@@ -7,10 +7,9 @@ import javax.vecmath.Matrix4f;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import gtclassic.api.interfaces.IGTColorBlock;
 import ic2.core.platform.textures.Ic2Models;
 import ic2.core.platform.textures.models.BaseModel;
-import ic2.core.platform.textures.obj.IBlockTextureModifier;
-import ic2.core.platform.textures.obj.IColorEffectedTexture;
 import ic2.core.platform.textures.obj.ILayeredBlockModel;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -42,7 +41,7 @@ public class GTModelOre extends BaseModel {
 		int layers = this.block.getLayers(this.meta);
 		this.quads = this.createList(7);
 		this.setParticalTexture(this.block.getParticleTexture(this.meta));
-		boolean color = this.block instanceof IColorEffectedTexture;
+		boolean color = this.block instanceof IGTColorBlock;
 		EnumFacing blockFacing = EnumFacing.NORTH;
 		ModelRotation rotation = ModelRotation.X0_Y0;
 		for (int i = 0; i < layers; ++i) {
@@ -59,10 +58,10 @@ public class GTModelOre extends BaseModel {
 			for (j = 0; j < facingLength; ++j) {
 				side = facings[j];
 				sideRotation = this.getRotation(blockFacing, side, rotation);
-				face = this.createBlockFace(side, i, color, null);
+				face = this.createBlockFace(side, i, color);
 				sprite = this.block.getLayerTexture(this.meta, side, i);
 				if (sprite != null) {
-					this.quads[i].add(this.getBakery().makeBakedQuad(this.getMinBox(side, box), this.getMaxBox(side, box), face, sprite, side, sideRotation, (BlockPartRotation) null, false, true));
+					this.quads[side.getIndex()].add(this.getBakery().makeBakedQuad(this.getMinBox(side, box), this.getMaxBox(side, box), face, sprite, side, sideRotation, (BlockPartRotation) null, false, true));
 				}
 			}
 		}
@@ -96,11 +95,16 @@ public class GTModelOre extends BaseModel {
 		return false;
 	}
 
+	@Override
 	public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType cameraTransformType) {
 		return Pair.of(this, PerspectiveMapWrapper.handlePerspective(this, this.getCamera(), cameraTransformType).getRight());
 	}
 
-	protected BlockPartFace createBlockFace(EnumFacing side, int layer, boolean color, IBlockTextureModifier mod) {
+	protected BlockPartFace createBlockFace(EnumFacing side, int layer, boolean color) {
+		if (layer == 0) {
+			return new BlockPartFace((EnumFacing) null, -1, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F,
+					16.0F }, 0));
+		}
 		return new BlockPartFace((EnumFacing) null, color ? side.getIndex() + layer * 6
 				: -1, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F, 16.0F }, 0));
 	}

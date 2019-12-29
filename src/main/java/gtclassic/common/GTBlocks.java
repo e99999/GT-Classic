@@ -71,7 +71,9 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
-	public static final GTBlockOreBedrock oreBedRock = registerBlock(new GTBlockOreBedrock(GTMaterial.Platinum));
+	public static final GTBlockOreBedrock oreBedRockPlatinum = registerBlock(new GTBlockOreBedrock(GTMaterial.Platinum));
+	public static final GTBlockOreBedrock oreBedRockChrome = registerBlock(new GTBlockOreBedrock(GTMaterial.Chrome));
+	public static final GTBlockOreBedrock oreBedRockTungsten = registerBlock(new GTBlockOreBedrock(GTMaterial.Tungsten));
 	public static final GTBlockOre oreIridium = registerBlock(new GTBlockOre("Iridium", 81, 20.0F, 3));
 	public static final GTBlockOre oreSheldonite = registerBlock(new GTBlockOre("Sheldonite", 80, 5.0F, 2));
 	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre("Ruby", 82, 4.0F, 2));

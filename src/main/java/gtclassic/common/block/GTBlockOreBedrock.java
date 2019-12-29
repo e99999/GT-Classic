@@ -1,15 +1,18 @@
 package gtclassic.common.block;
 
+import java.awt.Color;
 import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBase;
+import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.model.GTModelOre;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.platform.textures.obj.ICustomModeledBlock;
 import ic2.core.platform.textures.obj.ILayeredBlockModel;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,10 +21,12 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockOreBedrock extends GTBlockBase implements ILayeredBlockModel, ICustomModeledBlock {
+public class GTBlockOreBedrock extends GTBlockBase implements ILayeredBlockModel, ICustomModeledBlock, IGTColorBlock {
 
 	GTMaterial mat;
 
@@ -89,5 +94,10 @@ public class GTBlockOreBedrock extends GTBlockBase implements ILayeredBlockModel
 	@Override
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
+	}
+
+	@Override
+	public Color getColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, Block block, int index) {
+		return index == 0 ? Color.white : this.mat.getColor();
 	}
 }
