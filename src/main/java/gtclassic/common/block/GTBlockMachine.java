@@ -9,6 +9,7 @@ import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.tile.GTTileAutocrafter;
+import gtclassic.common.tile.GTTileBedrockMiner;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileChargeOMat;
 import gtclassic.common.tile.GTTileComputerCube;
@@ -139,6 +140,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileDisassembler) {
 			return new GTTileDisassembler();
 		}
+		if (this == GTBlocks.tileBedrockMiner) {
+			return new GTTileBedrockMiner();
+		}
 		if (this == GTBlocks.tileLightningRod) {
 			return new GTTileMultiLightningRod();
 		}
@@ -178,7 +182,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (thisIs(stack, GTBlocks.tileCentrifuge) || thisIs(stack, GTBlocks.tileFabricator)
 				|| thisIs(stack, GTBlocks.tileDisassembler) || thisIs(stack, GTBlocks.tileDragonEggEnergySiphon)
 				|| thisIs(stack, GTBlocks.tileMagicEnergyAbsorber) || thisIs(stack, GTBlocks.tileMagicEnergyConverter)
-				|| thisIs(stack, GTBlocks.tileFusionReactor)) {
+				|| thisIs(stack, GTBlocks.tileFusionReactor) || thisIs(stack, GTBlocks.tileBedrockMiner)) {
 			return this.getDefaultBlockState().withProperty(active, true);
 		}
 		return this.getStateFromMeta(stack.getMetadata());

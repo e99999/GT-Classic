@@ -26,6 +26,7 @@ public class GTMaterial {
 	public static final GTMaterial Bauxite = new GTMaterial("Bauxite", 200, 100, 0, dust);
 	public static final GTMaterial Basalt = new GTMaterial("Basalt", 30, 20, 20, dust);
 	public static final GTMaterial Beryllium = new GTMaterial(4, "Beryllium", 30, 80, 50, fluid);
+	public static final GTMaterial BrownDye = new GTMaterial("BrownDye", 130, 80, 0, dust);
 	public static final GTMaterial Calcite = new GTMaterial("Calcite", 250, 230, 220, dust);
 	public static final GTMaterial Calcium = new GTMaterial(20, "Calcium", 155, 96, 80, fluid);
 	public static final GTMaterial Carbon = new GTMaterial(6, "Carbon", 0, 0, 0, dust);
@@ -33,7 +34,7 @@ public class GTMaterial {
 	public static final GTMaterial Chrome = new GTMaterial(24, "Chrome", 3, 240, 210, 230, metalAll);
 	public static final GTMaterial Deuterium = new GTMaterial("Deuterium", 255, 255, 0, gas);
 	public static final GTMaterial Electrum = new GTMaterial("Electrum", 2, 255, 255, 100, metalAll);
-	public static final GTMaterial Emerald = new GTMaterial("Emerald", 80, 255, 80, dust);
+	public static final GTMaterial Emerald = new GTMaterial("Emerald", 70, 232, 100, dust);
 	public static final GTMaterial EnderEye = new GTMaterial("EnderEye", 160, 250, 230, dust);
 	public static final GTMaterial EnderPearl = new GTMaterial("EnderPearl", 108, 220, 200, dust);
 	public static final GTMaterial Flint = new GTMaterial("Flint", 1, 0, 32, 64, dust);
@@ -57,8 +58,9 @@ public class GTMaterial {
 	public static final GTMaterial Platinum = new GTMaterial(78, "Platinum", 3, 100, 180, 250, metalAll);
 	public static final GTMaterial Plutonium = new GTMaterial(94, "Plutonium", 2, 240, 50, 50, false, metalAll);
 	public static final GTMaterial Pyrite = new GTMaterial("Pyrite", 150, 120, 40, dust);
-	public static final GTMaterial Ruby = new GTMaterial("Ruby", 2, 255, 75, 75, rubyAll);
-	public static final GTMaterial Sapphire = new GTMaterial("Sapphire", 2, 75, 75, 200, sapphireAll);
+	public static final GTMaterial Ruby = new GTMaterial("Ruby", 2, 255, 100, 100, rubyAll);
+	public static final GTMaterial Sapphire = new GTMaterial("Sapphire", 2, 100, 100, 200, sapphireAll);
+	public static final GTMaterial Sheldonite = new GTMaterial("Sheldonite", 200, 212, 240, empty);
 	public static final GTMaterial Silicon = new GTMaterial(14, "Silicon", 60, 60, 80, dust, ingot);
 	public static final GTMaterial Sodalite = new GTMaterial("Sodalite", 20, 20, 255, dust);
 	public static final GTMaterial Sodium = new GTMaterial(11, "Sodium", 0, 38, 255, fluid);

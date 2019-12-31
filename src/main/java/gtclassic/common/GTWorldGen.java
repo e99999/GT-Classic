@@ -1,7 +1,10 @@
 package gtclassic.common;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import gtclassic.api.block.GTBlockBaseOre;
 import gtclassic.api.world.GTOreGenerator;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -14,6 +17,8 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class GTWorldGen implements IWorldGenerator {
+
+	public static List<GTBlockBaseOre> bedrockOres = new ArrayList<>();
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
@@ -37,6 +42,9 @@ public class GTWorldGen implements IWorldGenerator {
 		if (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
 				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS))) {
 			GTOreGenerator.generateBasicVein(GTBlocks.oreBauxite, GTConfig.generation.bauxiteGenerate, GTConfig.generation.bauxiteSize, GTConfig.generation.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
+		}
+		for (GTBlockBaseOre bedrockOre : bedrockOres) {
+			GTOreGenerator.generateBedrockVein(bedrockOre, world, random, chunkX, chunkZ);
 		}
 	}
 }

@@ -34,6 +34,7 @@ public class GTConfig {
 		public boolean generateUUMAssemblerRecipes = true;
 		public boolean enableDisassembler = true;
 		public boolean harderJetpacks = false;
+		public boolean hideBedrockOresInJei = true;
 	}
 
 	@Comment("World Generation")
@@ -57,6 +58,9 @@ public class GTConfig {
 		public boolean bauxiteGenerate = true;
 		public int bauxiteSize = 16;
 		public int bauxiteWeight = 4;
+		public boolean bedrockOreGenerate = true;
+		public int bedrockOreSize = 24;
+		public int bedrockOreWeight = 4;
 	}
 
 	@Comment("Mod Compatability")

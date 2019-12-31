@@ -20,11 +20,14 @@ tile.gtclassic.oreSheldonite.name=Sheldonite Ore
 tile.gtclassic.oreRuby.name=Ruby Ore
 tile.gtclassic.oreSapphire.name=Sapphire Ore
 tile.gtclassic.oreBauxite.name=Bauxite Ore
+tile.gtclassic.oreBedrock.name=Bedrock Ore
 
 #blocks
 tile.gtclassic.fusion.name=Fusion Coil
 tile.gtclassic.lapotron.name=Lapotron Block
 tile.gtclassic.highlyadvanced.name=Highly Advanced Machine Block
+tile.gtclassic.orechid.name=Orechid
+tile.gtclassic.tungstenminingpipe.name=Tungsten Mining Pipe
 tile.gtclassic.lightsource.name=Light Source
 
 #tiles
@@ -41,6 +44,7 @@ tile.gtclassic.quantumchest.name=Quantum Chest
 tile.gtclassic.quantumtank.name=Quantum Tank
 tile.gtclassic.playerdetector.name=Player Detector
 tile.gtclassic.mobrepeller.name=Monster Repellator
+tile.gtclassic.bedrockminer.name=Bedrock Miner
 tile.gtclassic.fusionreactor.name=Fusion Reactor
 tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.dragoneggenergysiphon.name=Dragon Egg Energy Siphon
@@ -95,6 +99,7 @@ item.gtclassic.dustSulfur.name=Sulfur Dust
 item.gtclassic.dustNickel.name=Nickel Dust
 item.gtclassic.dustInvar.name=Invar Dust
 item.gtclassic.dustTechnetium.name=Technetium Dust
+item.gtclassic.dustBrownDye.name=Brown Dye Dust
 
 #gems
 item.gtclassic.gemSapphire.name=Sapphire

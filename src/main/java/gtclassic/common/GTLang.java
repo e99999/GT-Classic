@@ -19,6 +19,7 @@ public class GTLang {
 	public static final LocaleComp PLAYER_DETECTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.playerdetector");
 	public static final LocaleComp DISASSEMBLER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.disassembler");
 	public static final LocaleComp MOB_REPELLER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.mobrepeller");
+	public static final LocaleComp BEDROCK_MINER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bedrockminer");
 	public static final LocaleComp FUSION_REACTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.fusionreactor");
 	public static final LocaleComp LIGHTNING_ROD = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lightningrod");
 	public static final LocaleComp DRAGON_EGG_ENERGY_SIPHON = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.dragoneggenergysiphon");
@@ -40,4 +41,5 @@ public class GTLang {
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
 	public static final LocaleComp SLUICE_BOX = new LocaleBlockComp("tile.gtclassic.sluicebox");
 	public static final LocaleComp SLUICE_EXT = new LocaleBlockComp("tile.gtclassic.sluiceboxextension");
+	public static final LocaleComp ORE_BEDROCK = new LocaleBlockComp("tile.gtclassic.oreBedrock");
 }

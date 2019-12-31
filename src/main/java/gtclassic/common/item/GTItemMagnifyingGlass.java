@@ -3,10 +3,12 @@ package gtclassic.common.item;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import gtclassic.api.interfaces.IGTBedrockMineableBlock;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.IC2;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
@@ -27,6 +29,7 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
 			float hitY, float hitZ, EnumHand hand) {
 		TileEntity tileEntity = world.getTileEntity(pos);
+		Block block = world.getBlockState(pos).getBlock();
 		if (player.isSneaking() || !IC2.platform.isSimulating() || hand.equals(EnumHand.OFF_HAND)) {
 			return EnumActionResult.PASS;
 		}
@@ -52,6 +55,11 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 					IC2.platform.messagePlayer(player, entry.getKey());
 				}
 			}
+		}
+		if (block instanceof IGTBedrockMineableBlock) {
+			f = true;
+			IGTBedrockMineableBlock ore = (IGTBedrockMineableBlock) block;
+			IC2.platform.messagePlayer(player, "Contains: " + ore.getMineableResource().getDisplayName());
 		}
 		if (f) {
 			world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.PLAYERS, 1.0F, 1.0F);

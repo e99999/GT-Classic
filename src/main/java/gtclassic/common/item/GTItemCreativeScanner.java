@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import gtclassic.GTMod;
+import gtclassic.api.interfaces.IGTBedrockMineableBlock;
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
+import gtclassic.common.GTWorldGen;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.classic.tile.machine.IProgressMachine;
@@ -27,6 +29,7 @@ import ic2.core.item.base.ItemBatteryBase;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
@@ -192,6 +195,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			nbt.setString(BLOCK, world.getBlockState(pos).getBlock().getLocalizedName());
 			TileEntity tileEntity = world.getTileEntity(pos);
 			IBlockState state = world.getBlockState(pos);
+			Block block = state.getBlock();
 			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()
 					+ " -----");
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
@@ -259,6 +263,12 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IProgressMachine progress = (IProgressMachine) tileEntity;
 				IC2.platform.messagePlayer(player, "Progress: "
 						+ +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100)) + "%");
+			}
+			if (block instanceof IGTBedrockMineableBlock) {
+				IGTBedrockMineableBlock ore = (IGTBedrockMineableBlock) block;
+				IC2.platform.messagePlayer(player, "Contains: " + ore.getMineableResource().getDisplayName());
+				IC2.platform.messagePlayer(player, GTWorldGen.bedrockOres.size()
+						+ " Bedrock Ores currently registered to generate in world");
 			}
 			if (tileEntity instanceof IGTMultiTileStatus) {
 				IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;
