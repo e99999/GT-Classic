@@ -6,6 +6,7 @@ import gtclassic.api.commands.GTCommandTeleport;
 import gtclassic.api.helpers.GTHelperMods;
 import gtclassic.api.material.GTMaterialElement;
 import gtclassic.api.material.GTMaterialGen;
+import gtclassic.api.world.GTBedrockOreHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTCreativeTab;
@@ -95,6 +96,7 @@ public class GTMod {
 		GTRecipe.initBlocks();
 		GTRecipe.initCables();
 		GTRecipe.initIC2();
+		GTBedrockOreHandler.bedrockOresInit();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
 		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());

@@ -1,16 +1,13 @@
 package gtclassic.common;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.api.block.GTBlockBaseOre;
 import gtclassic.api.color.GTColorItemBlock;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.itemblock.GTItemBlockRare;
-import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.block.GTBlockBattery;
 import gtclassic.common.block.GTBlockCasing;
@@ -76,27 +73,27 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
-	public static final GTBlockOreBedrock oreBedrockGold = registerBlock(new GTBlockOreBedrock("Gold", new Color(252, 238, 75), GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockIron = registerBlock(new GTBlockOreBedrock("Iron", new Color(226, 192, 170), GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockCoal = registerBlock(new GTBlockOreBedrock("Coal", Color.darkGray, GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockLapis = registerBlock(new GTBlockOreBedrock("Lapis", new Color(21, 66, 204), GTBlockBaseOre.TextureSet.LAPIS));
-	public static final GTBlockOreBedrock oreBedrockDiamond = registerBlock(new GTBlockOreBedrock("Diamond", new Color(200, 255, 255), GTBlockBaseOre.TextureSet.GEM));
-	public static final GTBlockOreBedrock oreBedrockRedstone = registerBlock(new GTBlockOreBedrock("Redstone", Color.red, GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockEmerald = registerBlock(new GTBlockOreBedrock(GTMaterial.Emerald, GTBlockBaseOre.TextureSet.GEM));
-	public static final GTBlockOreBedrock oreBedrockCopper = registerBlock(new GTBlockOreBedrock("Copper", new Color(180, 113, 61), GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockTin = registerBlock(new GTBlockOreBedrock("Tin", new Color(220, 220, 220), GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockUranium = registerBlock(new GTBlockOreBedrock(GTMaterial.Uranium, GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockSilver = registerBlock(new GTBlockOreBedrock("Silver", new Color(160, 207, 230), GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockIridium = registerBlock(new GTBlockOreBedrock(GTMaterial.Iridium, GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockSheldonite = registerBlock(new GTBlockOreBedrock(GTMaterial.Sheldonite, GTBlockBaseOre.TextureSet.METAL));
-	public static final GTBlockOreBedrock oreBedrockRuby = registerBlock(new GTBlockOreBedrock(GTMaterial.Ruby, GTBlockBaseOre.TextureSet.GEM));
-	public static final GTBlockOreBedrock oreBedrockSapphire = registerBlock(new GTBlockOreBedrock(GTMaterial.Sapphire, GTBlockBaseOre.TextureSet.GEM));
-	public static final GTBlockOreBedrock oreBedrockBauxite = registerBlock(new GTBlockOreBedrock(GTMaterial.Bauxite, GTBlockBaseOre.TextureSet.LAPIS));
-	public static final GTBlockOre oreIridium = registerBlock(new GTBlockOre(GTMaterial.Iridium, 20.0F, 3));
-	public static final GTBlockOre oreSheldonite = registerBlock(new GTBlockOre(GTMaterial.Sheldonite, 5.0F, 2));
-	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre(GTMaterial.Ruby, 4.0F, 2));
-	public static final GTBlockOre oreSapphire = registerBlock(new GTBlockOre(GTMaterial.Sapphire, 4.0F, 2));
-	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre(GTMaterial.Bauxite, 3.0F, 1));
+	public static final GTBlockOreBedrock oreBedrockGold = registerBlock(new GTBlockOreBedrock("Gold", 0));
+	public static final GTBlockOreBedrock oreBedrockIron = registerBlock(new GTBlockOreBedrock("Iron", 1));
+	public static final GTBlockOreBedrock oreBedrockCoal = registerBlock(new GTBlockOreBedrock("Coal", 2));
+	public static final GTBlockOreBedrock oreBedrockLapis = registerBlock(new GTBlockOreBedrock("Lapis", 3));
+	public static final GTBlockOreBedrock oreBedrockDiamond = registerBlock(new GTBlockOreBedrock("Diamond", 4));
+	public static final GTBlockOreBedrock oreBedrockRedstone = registerBlock(new GTBlockOreBedrock("Redstone", 5));
+	public static final GTBlockOreBedrock oreBedrockEmerald = registerBlock(new GTBlockOreBedrock("Emerald", 6));
+	public static final GTBlockOreBedrock oreBedrockCopper = registerBlock(new GTBlockOreBedrock("Copper", 7));
+	public static final GTBlockOreBedrock oreBedrockTin = registerBlock(new GTBlockOreBedrock("Tin", 8));
+	public static final GTBlockOreBedrock oreBedrockUranium = registerBlock(new GTBlockOreBedrock("Uranium", 9));
+	public static final GTBlockOreBedrock oreBedrockSilver = registerBlock(new GTBlockOreBedrock("Silver", 10));
+	public static final GTBlockOreBedrock oreBedrockIridium = registerBlock(new GTBlockOreBedrock("Iridium", 11));
+	public static final GTBlockOreBedrock oreBedrockSheldonite = registerBlock(new GTBlockOreBedrock("Sheldonite", 12));
+	public static final GTBlockOreBedrock oreBedrockRuby = registerBlock(new GTBlockOreBedrock("Ruby", 13));
+	public static final GTBlockOreBedrock oreBedrockSapphire = registerBlock(new GTBlockOreBedrock("Sapphire", 14));
+	public static final GTBlockOreBedrock oreBedrockBauxite = registerBlock(new GTBlockOreBedrock("Bauxite", 15));
+	public static final GTBlockOre oreIridium = registerBlock(new GTBlockOre("Iridium", 11, 20.0F, 3));
+	public static final GTBlockOre oreSheldonite = registerBlock(new GTBlockOre("Sheldonite", 12, 5.0F, 2));
+	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre("Ruby", 13, 4.0F, 2));
+	public static final GTBlockOre oreSapphire = registerBlock(new GTBlockOre("Sapphire", 14, 4.0F, 2));
+	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre("Bauxite", 15, 3.0F, 1));
 	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 1, 500.0F));
 	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29, 250.0F));
@@ -105,7 +102,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
 	public static final GTBlockMachine tileDisassembler = registerBlock(new GTBlockMachine("disassembler", GTLang.DISASSEMBLER));
-	public static final GTBlockMachine tileBedrockMiner = registerBlock(new GTBlockMachine("bedrockminer", GTLang.BEDROCK_MINER));
+	public static final GTBlockMachine tileBedrockMiner = registerBlock(new GTBlockMachine("bedrockminer", GTLang.BEDROCK_MINER, 3));
 	public static final GTBlockMachine tileFabricator = registerBlock(new GTBlockMachine("matterfabricator", GTLang.MATTER_FAB));
 	public static final GTBlockUUMAssembler tileUUMAssembler = registerBlock(new GTBlockUUMAssembler());
 	public static final GTBlockMachine tileEchotron = registerBlock(new GTBlockMachine("echotronblock", GTLang.ECHOTRON));

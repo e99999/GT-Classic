@@ -5,11 +5,12 @@ import java.util.List;
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseOre;
 import gtclassic.api.material.GTMaterial;
-import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -21,14 +22,16 @@ import net.minecraft.world.World;
 
 public class GTBlockOre extends GTBlockBaseOre {
 
-	GTMaterial mat;
+	String name;
 	int id;
 
-	public GTBlockOre(GTMaterial mat, float hardness, int level) {
-		super(mat.getColor(), getSetFromFlags(mat), GTBlockBaseOre.BackgroundSet.STONE);
-		this.mat = mat;
-		setRegistryName(this.mat.getName() + "_ore");
-		setUnlocalizedName(GTMod.MODID + ".ore" + this.mat.getDisplayName());
+	public GTBlockOre(String name, int id, float hardness, int level) {
+		super(GTBlockBaseOre.BackgroundSet.STONE);
+		this.name = name;
+		this.id = id;
+		setRegistryName(this.name.toLowerCase() + "_ore");
+		setUnlocalizedName(GTMod.MODID + ".ore" + this.name.substring(0, 1).toUpperCase()
+				+ this.name.substring(1).toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(hardness);
 		setResistance(10.0F);
@@ -72,13 +75,8 @@ public class GTBlockOre extends GTBlockBaseOre {
 		return 0;
 	}
 
-	private static TextureSet getSetFromFlags(GTMaterial mat) {
-		if (GTMaterial.isGem(mat)) {
-			return TextureSet.GEM;
-		}
-		if (mat.hasFlag(GTMaterialFlag.INGOT) || mat.hasFlag(GTMaterialFlag.NULL)) {
-			return TextureSet.METAL;
-		}
-		return TextureSet.LAPIS;
+	@Override
+	public TextureAtlasSprite getTopLayer() {
+		return Ic2Icons.getTextures(GTMod.MODID + "_ores")[this.id];
 	}
 }

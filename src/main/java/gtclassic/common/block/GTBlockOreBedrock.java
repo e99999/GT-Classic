@@ -1,80 +1,41 @@
 package gtclassic.common.block;
 
-import java.awt.Color;
 import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseOre;
-import gtclassic.api.interfaces.IGTBedrockMineableBlock;
-import gtclassic.api.material.GTMaterial;
-import gtclassic.api.material.GTMaterialGen;
-import gtclassic.common.GTBlocks;
+import gtclassic.api.world.GTBedrockOreHandler;
 import gtclassic.common.GTLang;
-import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.textures.Ic2Icons;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class GTBlockOreBedrock extends GTBlockBaseOre implements IGTBedrockMineableBlock {
+public class GTBlockOreBedrock extends GTBlockBaseOre {
 
 	String name;
-	GTMaterial mat;
+	int id;
 
-	public GTBlockOreBedrock(String name, Color color, TextureSet set) {
-		super(color, set, GTBlockBaseOre.BackgroundSet.BEDROCK);
+	public GTBlockOreBedrock(String name, int id) {
+		super(GTBlockBaseOre.BackgroundSet.BEDROCK);
 		this.name = name;
+		this.id = id;
 		setRegistryName(this.name.toLowerCase() + "_bedrockore");
 		setUnlocalizedName(GTLang.ORE_BEDROCK);
 		setCreativeTab(GTMod.creativeTabGT);
-	}
-
-	public GTBlockOreBedrock(GTMaterial mat, TextureSet set) {
-		this(mat.getDisplayName(), mat.getColor(), set);
-		this.mat = mat;
+		setBlockUnbreakable();
+		setResistance(6000000.0F);
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format("Contains: " + this.getMineableResource().getDisplayName()));
+		tooltip.add(I18n.format("Contains: " + GTBedrockOreHandler.getResource(this).getDisplayName()));
 	}
 
 	@Override
-	public ItemStack getMineableResource() {
-		if (this == GTBlocks.oreBedrockGold) {
-			return Ic2Items.goldDust.copy();
-		}
-		if (this == GTBlocks.oreBedrockIron) {
-			return Ic2Items.ironDust.copy();
-		}
-		if (this == GTBlocks.oreBedrockCoal) {
-			return Ic2Items.coalDust.copy();
-		}
-		if (this == GTBlocks.oreBedrockLapis) {
-			return new ItemStack(Items.DYE, 1, 4);
-		}
-		if (this == GTBlocks.oreBedrockDiamond) {
-			return GTMaterialGen.get(Items.DIAMOND);
-		}
-		if (this == GTBlocks.oreBedrockRedstone) {
-			return GTMaterialGen.get(Items.REDSTONE);
-		}
-		if (this == GTBlocks.oreBedrockCopper) {
-			return Ic2Items.copperDust;
-		}
-		if (this == GTBlocks.oreBedrockTin) {
-			return Ic2Items.tinDust;
-		}
-		if (this == GTBlocks.oreBedrockSilver) {
-			return Ic2Items.silverDust;
-		}
-		if (this.mat != null) {
-			if (this.mat == GTMaterial.Sheldonite) {
-				return GTMaterialGen.getDust(GTMaterial.Platinum, 1);
-			}
-			return GTMaterialGen.getDust(this.mat, 1);
-		}
-		return ItemStack.EMPTY;
+	public TextureAtlasSprite getTopLayer() {
+		return Ic2Icons.getTextures(GTMod.MODID + "_ores")[this.id];
 	}
 }

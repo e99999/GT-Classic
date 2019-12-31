@@ -20,6 +20,8 @@ public class GTIcons {
 				+ ":textures/sprites/sprites_items.png", new Sprites.SpriteInfo(16, 16)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_materials", GTMod.MODID
 				+ ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 16)));
+		addSprite(new Sprites.SpriteData(GTMod.MODID + "_ores", GTMod.MODID
+				+ ":textures/sprites/sprites_ores.png", new Sprites.SpriteInfo(16, 1)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_builder", GTMod.MODID
 				+ ":textures/sprites/builder.png", new Sprites.SpriteInfo(1, 12)));
 		addSprite(new Sprites.SpriteData(GTMod.MODID + "_batteryblocklv", GTMod.MODID
@@ -29,6 +31,7 @@ public class GTIcons {
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 12));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 16));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 4));
+		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_ores", 0, 0, 16, 1));
 		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_batteryblocklv", 0, 0, 5, 6));
 		if (GTConfig.general.animatedTextures) {
 			addCustomTexture("fusionreactor", 0, 7, location("fusion_top"));

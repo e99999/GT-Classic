@@ -2,7 +2,6 @@ package gtclassic.common.jei;
 
 import javax.annotation.Nonnull;
 
-import gtclassic.api.interfaces.IGTBedrockMineableBlock;
 import gtclassic.api.jei.GTJeiEntry;
 import gtclassic.api.jei.GTJeiHandler;
 import gtclassic.api.jei.GTJeiMultiRecipeCategory;
@@ -13,6 +12,7 @@ import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
+import gtclassic.common.block.GTBlockOreBedrock;
 import gtclassic.common.container.GTContainerWorktable;
 import gtclassic.common.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.common.gui.GTGuiMachine.GTMatterFabricatorGui;
@@ -65,7 +65,7 @@ public class GTJeiPlugin implements IModPlugin {
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTItems.orbDataStorage));
 			if (GTConfig.general.hideBedrockOresInJei) {
 				for (Block block : Block.REGISTRY) {
-					if (block instanceof IGTBedrockMineableBlock) {
+					if (block instanceof GTBlockOreBedrock) {
 						blacklist.addIngredientToBlacklist(new ItemStack(block));
 					}
 				}

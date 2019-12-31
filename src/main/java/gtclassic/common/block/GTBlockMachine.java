@@ -87,7 +87,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileChargeOmat) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
 		}
-		if (this == GTBlocks.tileUUMAssembler) {
+		if (this == GTBlocks.tileUUMAssembler || this == GTBlocks.tileBedrockMiner) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
 		}
 		if (this == GTBlocks.tileFusionReactor) {

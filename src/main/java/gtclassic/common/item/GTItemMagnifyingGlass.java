@@ -3,9 +3,9 @@ package gtclassic.common.item;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import gtclassic.api.interfaces.IGTBedrockMineableBlock;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
+import gtclassic.api.world.GTBedrockOreHandler;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.IC2;
 import net.minecraft.block.Block;
@@ -56,10 +56,9 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 				}
 			}
 		}
-		if (block instanceof IGTBedrockMineableBlock) {
+		if (GTBedrockOreHandler.isBedrockOre(block)) {
 			f = true;
-			IGTBedrockMineableBlock ore = (IGTBedrockMineableBlock) block;
-			IC2.platform.messagePlayer(player, "Contains: " + ore.getMineableResource().getDisplayName());
+			IC2.platform.messagePlayer(player, "Contains: " + GTBedrockOreHandler.getResource(block).getDisplayName());
 		}
 		if (f) {
 			world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.PLAYERS, 1.0F, 1.0F);

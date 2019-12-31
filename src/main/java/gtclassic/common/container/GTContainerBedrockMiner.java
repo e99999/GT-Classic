@@ -19,8 +19,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTContainerBedrockMiner extends ContainerTileComponent<GTTileBedrockMiner> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/bedrockminer.png");
-	public static Box2D chargeProgressBox = new Box2D(30, 67, 116, 5);
-	public static Vec2i chargeProgressPos = new Vec2i(0, 251);
+	public static final Box2D chargeProgressBox = new Box2D(78, 23, 20, 18);
+	public static final Vec2i chargeProgressPos = new Vec2i(176, 0);
 
 	public GTContainerBedrockMiner(InventoryPlayer player, GTTileBedrockMiner tile) {
 		super(tile);

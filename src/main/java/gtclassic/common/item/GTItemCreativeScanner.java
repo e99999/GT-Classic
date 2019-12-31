@@ -6,12 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import gtclassic.GTMod;
-import gtclassic.api.interfaces.IGTBedrockMineableBlock;
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
-import gtclassic.common.GTWorldGen;
+import gtclassic.api.world.GTBedrockOreHandler;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.classic.tile.machine.IProgressMachine;
@@ -264,11 +263,9 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 				IC2.platform.messagePlayer(player, "Progress: "
 						+ +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100)) + "%");
 			}
-			if (block instanceof IGTBedrockMineableBlock) {
-				IGTBedrockMineableBlock ore = (IGTBedrockMineableBlock) block;
-				IC2.platform.messagePlayer(player, "Contains: " + ore.getMineableResource().getDisplayName());
-				IC2.platform.messagePlayer(player, GTWorldGen.bedrockOres.size()
-						+ " Bedrock Ores currently registered to generate in world");
+			if (GTBedrockOreHandler.isBedrockOre(block)) {
+				IC2.platform.messagePlayer(player, "Contains: "
+						+ GTBedrockOreHandler.getResource(block).getDisplayName());
 			}
 			if (tileEntity instanceof IGTMultiTileStatus) {
 				IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;
