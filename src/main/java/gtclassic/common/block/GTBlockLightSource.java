@@ -70,7 +70,7 @@ public class GTBlockLightSource extends BlockAir implements ITexturedBlock, ILoc
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[85];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[15];
 	}
 
 	@Override

@@ -20,8 +20,7 @@ public class GTCropBlock extends CropCardBase {
 
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTexture(int state) {
-		return state == 4 ? this.getSprite(this.entry.getSpriteSheet())[this.entry.getId()]
-				: this.getSprite("bc")[31 + state];
+		return this.getSprite(this.entry.getSpriteSheet())[this.entry.getId() + (state - 1)];
 	}
 
 	@Override

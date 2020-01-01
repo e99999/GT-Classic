@@ -94,9 +94,9 @@ public class GTBlocks {
 	public static final GTBlockOre oreRuby = registerBlock(new GTBlockOre("Ruby", 13, 4.0F, 2));
 	public static final GTBlockOre oreSapphire = registerBlock(new GTBlockOre("Sapphire", 14, 4.0F, 2));
 	public static final GTBlockOre oreBauxite = registerBlock(new GTBlockOre("Bauxite", 15, 3.0F, 1));
-	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 1, 500.0F));
-	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
-	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 29, 250.0F));
+	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 0, 500.0F));
+	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 1, 100.0F));
+	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 2, 250.0F));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
