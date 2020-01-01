@@ -8,6 +8,7 @@ import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDischarge;
+import ic2.core.inventory.slots.SlotDisplay;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
@@ -31,9 +32,10 @@ public class GTContainerCentrifuge extends ContainerTileComponent<GTTileCentrifu
 				this.addSlotToContainer(new SlotOutput(player.player, tile, 2 + x + y * 3, 107 + x * 18, 17 + y * 18));
 			}
 		}
-		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 8, 8, 62));
+		this.addSlotToContainer(new SlotDisplay(tile, 8, 35, 62));
+		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 9, 8, 62));
 		for (int i = 0; i < 4; ++i) {
-			this.addSlotToContainer(new GTSlotUpgrade(tile, 9 + i, 62 + (i * 18), 62));
+			this.addSlotToContainer(new GTSlotUpgrade(tile, 10 + i, 62 + (i * 18), 62));
 		}
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));

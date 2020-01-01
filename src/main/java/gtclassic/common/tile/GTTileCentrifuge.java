@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import gtclassic.GTMod;
+import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeMachineHandler;
@@ -18,6 +19,7 @@ import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
+import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -27,55 +29,103 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.obj.IClickable;
+import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
 
-public class GTTileCentrifuge extends GTTileBaseMachine {
+public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener, IClickable {
 
-	public static final int slotFuel = 8;
-	protected static final int[] slotInputs = { 0, 1 };
-	protected static final int[] slotOutputs = { 2, 3, 4, 5, 6, 7 };
+	public static final int SLOT_FUEL = 9;
+	public static final int SLOT_TANK = 8;
+	public static final String NBT_TANK = "tank";
+	protected static final int[] SLOT_INPUTS = { 0, 1 };
+	protected static final int[] SLOT_OUTPUTS = { 2, 3, 4, 5, 6, 7 };
+	private IC2Tank tank;
 	public IFilter filter = new MachineFilter(this);
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/industrialcentrifuge.png");
-	private static final int defaultEu = 16;
-	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.centrifuge", defaultEu);
+	private static final int EU_TICK = 16;
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.centrifuge", EU_TICK);
 
 	public GTTileCentrifuge() {
-		super(9, 4, defaultEu, 100, 32);
+		super(10, 4, EU_TICK, 100, 32);
+		setFuelSlot(SLOT_FUEL);
+		this.tank = new IC2Tank(16000);
+		this.tank.addListener(this);
+		this.addGuiFields(NBT_TANK);
 		this.maxEnergy = 10000;
-		setFuelSlot(slotFuel);
 	}
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
-		handler.registerDefaultSlotAccess(AccessRule.Import, slotInputs);
-		handler.registerDefaultSlotAccess(AccessRule.Export, slotOutputs);
+		handler.registerDefaultSlotAccess(AccessRule.Both, SLOT_FUEL);
+		handler.registerDefaultSlotAccess(AccessRule.Import, SLOT_INPUTS);
+		handler.registerDefaultSlotAccess(AccessRule.Export, SLOT_OUTPUTS);
 		handler.registerDefaultSlotsForSide(RotationList.UP, 0);
 		handler.registerDefaultSlotsForSide(RotationList.HORIZONTAL, 1);
-		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutputs);
-		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
-		handler.registerInputFilter(filter, slotInputs);
-		handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
-		handler.registerSlotType(SlotType.Fuel, slotFuel);
-		handler.registerSlotType(SlotType.Input, slotInputs);
-		handler.registerSlotType(SlotType.Output, slotOutputs);
+		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), SLOT_OUTPUTS);
+		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), SLOT_FUEL);
+		handler.registerInputFilter(filter, SLOT_INPUTS);
+		handler.registerOutputFilter(CommonFilters.NotDischargeEU, SLOT_FUEL);
+		handler.registerSlotType(SlotType.Fuel, SLOT_FUEL);
+		handler.registerSlotType(SlotType.Input, SLOT_INPUTS);
+		handler.registerSlotType(SlotType.Output, SLOT_OUTPUTS);
 	}
 
 	@Override
 	public LocaleComp getBlockName() {
 		return GTLang.INDUSTRIAL_CENTRIFUGE;
+	}
+
+	@Override
+	public void onTankChanged(IFluidTank tank) {
+		this.getNetwork().updateTileGuiField(this, NBT_TANK);
+		this.inventory.set(SLOT_TANK, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		this.tank.readFromNBT(nbt.getCompoundTag(NBT_TANK));
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		this.tank.writeToNBT(this.getTag(nbt, NBT_TANK));
+		return nbt;
+	}
+
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true
+				: super.hasCapability(capability, facing);
+	}
+
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
+				? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.tank)
+				: super.getCapability(capability, facing);
 	}
 
 	@Override
@@ -95,7 +145,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 
 	@Override
 	public int[] getInputSlots() {
-		return slotInputs;
+		return SLOT_INPUTS;
 	}
 
 	@Override
@@ -110,7 +160,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 
 	@Override
 	public int[] getOutputSlots() {
-		return slotOutputs;
+		return SLOT_OUTPUTS;
 	}
 
 	@Override
@@ -162,9 +212,9 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addRecipe("dustGlowstone", 16, 1, totalEu(25000), GTMaterialGen.get(Items.REDSTONE, 8), GTMaterialGen.getIc2(Ic2Items.goldDust, 8), GTMaterialGen.getTube(GTMaterial.Helium, 1));
 		addRecipe("dustRedstone", 10, 3, totalEu(35000), GTMaterialGen.getTube(GTMaterial.Mercury, 3), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getDust(GTMaterial.Pyrite, 5), GTMaterialGen.getDust(GTMaterial.Ruby, 1));
 		addRecipe("dustNetherrack", 64, 0, totalEu(50000), GTMaterialGen.get(Items.GOLD_NUGGET, 4), GTMaterialGen.get(Items.REDSTONE, 4), GTMaterialGen.get(Items.GUNPOWDER, 8), GTMaterialGen.getIc2(Ic2Items.coalDust, 4), GTMaterialGen.getDust(GTMaterial.Sulfur, 4), GTMaterialGen.getDust(GTMaterial.Phosphorus, 2));
-		addRecipe(GTMaterialGen.getLava(64), 0, totalEu(250000), GTMaterialGen.get(tube, 64), GTMaterialGen.getIngot(GTMaterial.Electrum, 4), GTMaterialGen.get(Items.IRON_INGOT, 16), GTMaterialGen.getDust(GTMaterial.Tungsten, 4), GTMaterialGen.getDust(GTMaterial.Basalt, 4));
-		addRecipe(GTMaterialGen.get(Blocks.LAVA, 64), 0, totalEu(250000), GTMaterialGen.getIngot(GTMaterial.Electrum, 4), GTMaterialGen.get(Items.IRON_INGOT, 16), GTMaterialGen.getDust(GTMaterial.Tungsten, 4), GTMaterialGen.getDust(GTMaterial.Basalt, 4));
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.lavaCell, 64), 0, totalEu(250000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 64), GTMaterialGen.getIngot(GTMaterial.Electrum, 4), GTMaterialGen.get(Items.IRON_INGOT, 16), GTMaterialGen.getDust(GTMaterial.Tungsten, 4), GTMaterialGen.getDust(GTMaterial.Basalt, 4));
+		addRecipe(GTMaterialGen.getLava(16), 0, totalEu(64000), GTMaterialGen.get(tube, 16), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.get(Items.IRON_INGOT, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
+		addRecipe(GTMaterialGen.get(Blocks.LAVA, 16), 0, totalEu(64000), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.get(Items.IRON_INGOT, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.lavaCell, 16), 0, totalEu(64000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.get(Items.IRON_INGOT, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
 		addRecipe("endstone", 64, 8, totalEu(100000), GTMaterialGen.get(Blocks.SAND, 48), GTMaterialGen.getTube(GTMaterial.Helium3, 4), GTMaterialGen.getTube(GTMaterial.Helium, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1));
 		/** New Recipes I added **/
 		addRecipe("stoneGranite", 4, 0, totalEu(24000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Flint, 1), GTMaterialGen.getIc2(Ic2Items.clayDust, 1));
@@ -252,5 +302,24 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 
 	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		GTRecipeMachineHandler.addRecipe(RECIPE_LIST, inputs, modifiers, outputs);
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 }

@@ -348,7 +348,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
 		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
-	
+
 	@Override
 	public double getWrenchDropRate() {
 		return 1.0D;

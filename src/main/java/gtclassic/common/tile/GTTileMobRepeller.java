@@ -68,7 +68,7 @@ public class GTTileMobRepeller extends TileEntityElecMachine implements ITickabl
 	public boolean redstoneEnabled() {
 		return this.world.isBlockPowered(this.getPos());
 	}
-	
+
 	@Override
 	public double getWrenchDropRate() {
 		return 1.0D;

@@ -110,7 +110,7 @@ public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBl
 	public boolean redstoneEnabled() {
 		return this.world.isBlockPowered(this.getPos());
 	}
-	
+
 	@Override
 	public double getWrenchDropRate() {
 		return 1.0D;
