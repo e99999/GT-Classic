@@ -246,6 +246,11 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
 	}
+	
+	@Override
+	public double getWrenchDropRate() {
+		return 1.0D;
+	}
 
 	public ResourceLocation getGuiTexture() {
 		return GUI_LOCATION;

@@ -331,4 +331,9 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	public static void removeRecipe(String id) {
 		RECIPE_LIST.removeRecipe(id);
 	}
+	
+	@Override
+	public double getWrenchDropRate() {
+		return 1.0D;
+	}
 }

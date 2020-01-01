@@ -187,6 +187,8 @@ fluid.chlorine=Chlorine
 fluid.oil=Oil
 fluid.neon=Neon
 fluid.argon=Argon
+fluid.lubricant=Lubricant
+fluid.fuel=Fuel
 fluid.magicdye=Incredible Magic Dye
 
 #ore tooltips
@@ -223,9 +225,10 @@ tooltip.gtclassic.matterfabricator0=Creates UU as fast as you can supply it.
 tooltip.gtclassic.uumassembler0=Sick of hand crafting with UU? Look no further.
 tooltip.gtclassic.industrialcentrifuge0=Round and round it goes!
 tooltip.gtclassic.disassembler0=Uncrafts craftables with an 80 percent chance of return.
-tooltip.gtclassic.bedrockminer0=Mines bedrock ore veins up to 5 blocks directly blow
+tooltip.gtclassic.bedrockminer0=Mines bedrock ore in a 5 x 5 area below it
 tooltip.gtclassic.bedrockminer1=Requires tungsten mining pipes to function
-tooltip.gtclassic.bedrockminer2=Outputs top the top.
+tooltip.gtclassic.bedrockminer2=Use lubricant to negate damage to pipes
+tooltip.gtclassic.bedrockminer3=Outputs to the top.
 tooltip.gtclassic.playerdetector0=Detects player activity in a radius
 tooltip.gtclassic.playerdetector1=8 to 32 blocks depending on power
 tooltip.gtclassic.mobrepeller0=Stops nasty creatures from spawning

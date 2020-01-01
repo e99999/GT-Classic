@@ -606,6 +606,11 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 	}
 
 	@Override
+	public double getWrenchDropRate() {
+		return 1.0D;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
 		return GuiComponentContainer.class;

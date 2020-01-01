@@ -157,4 +157,9 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return canAccess(player.getUniqueID());
 	}
+	
+	@Override
+	public double getWrenchDropRate() {
+		return 1.0D;
+	}
 }

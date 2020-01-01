@@ -1,7 +1,9 @@
 package gtclassic.common.tile;
 
+import java.util.List;
 import java.util.Random;
 
+import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
 import gtclassic.api.material.GTMaterial;
@@ -12,6 +14,7 @@ import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerBedrockMiner;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
+import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
@@ -24,8 +27,11 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
+import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.obj.IClickable;
+import ic2.core.util.obj.ITankListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
@@ -34,48 +40,85 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileBedrockMiner extends TileEntityElecMachine implements ITickable, IHasGui, IGTDisplayTickTile {
+public class GTTileBedrockMiner extends TileEntityElecMachine
+		implements ITickable, IHasGui, IGTDisplayTickTile, ITankListener, IClickable {
 
 	ItemStack output;
+	private IC2Tank tank;
 	public static final ItemStack pipe = GTMaterialGen.get(GTBlocks.miningPipe);
 	public static final IFilter filter = new BasicItemFilter(pipe);
-	static final int[] INPUTS = { 0, 1 };
-	static final int[] OUTPUTS = { 2, 3 };
-	static final int[] ALL = { 0, 1, 2, 3 };
-	static final int FUEL = 4;
+	static final int[] SLOT_INPUTS = { 0, 1 };
+	static final int[] SLOT_OUTPUTS = { 2, 3 };
+	static final int[] SLOT_ALLVALID = { 0, 1, 2, 3 };
+	static final int SLOT_TANK = 4;
+	static final int SLOT_FUEL = 5;
+	public static final String NBT_TANK = "tank";
 
 	public GTTileBedrockMiner() {
-		super(5, 512);
-		this.setFuelSlot(FUEL);
+		super(6, 512);
+		this.setFuelSlot(SLOT_FUEL);
+		this.tank = new IC2Tank(16000);
+		this.tank.addListener(this);
+		this.addGuiFields(NBT_TANK);
 		maxEnergy = 1000000;
 	}
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
 		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-		handler.registerDefaultSlotAccess(AccessRule.Both, 4);
-		handler.registerDefaultSlotAccess(AccessRule.Import, INPUTS);
-		handler.registerDefaultSlotAccess(AccessRule.Export, OUTPUTS);
-		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), ALL);
-		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), FUEL);
-		handler.registerOutputFilter(CommonFilters.NotDischargeEU, FUEL);
-		handler.registerSlotType(SlotType.Fuel, FUEL);
-		handler.registerSlotType(SlotType.Input, INPUTS);
-		handler.registerSlotType(SlotType.Output, OUTPUTS);
+		handler.registerDefaultSlotAccess(AccessRule.Import, SLOT_INPUTS);
+		handler.registerDefaultSlotAccess(AccessRule.Export, SLOT_OUTPUTS);
+		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), SLOT_ALLVALID);
+		handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), SLOT_FUEL);
+		handler.registerOutputFilter(CommonFilters.NotDischargeEU, SLOT_FUEL);
+		handler.registerSlotType(SlotType.Fuel, SLOT_FUEL);
+		handler.registerSlotType(SlotType.Input, SLOT_INPUTS);
+		handler.registerSlotType(SlotType.Output, SLOT_OUTPUTS);
 	}
 
 	@Override
 	public LocaleComp getBlockName() {
 		return GTLang.BEDROCK_MINER;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		this.tank.readFromNBT(nbt.getCompoundTag(NBT_TANK));
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		this.tank.writeToNBT(this.getTag(nbt, NBT_TANK));
+		return nbt;
+	}
+
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true
+				: super.hasCapability(capability, facing);
+	}
+
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
+				? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.tank)
+				: super.getCapability(capability, facing);
 	}
 
 	@Override
@@ -103,11 +146,11 @@ public class GTTileBedrockMiner extends TileEntityElecMachine implements ITickab
 	}
 
 	public int[] getInputSlots() {
-		return INPUTS;
+		return SLOT_INPUTS;
 	}
 
 	public int[] getOutputSlots() {
-		return OUTPUTS;
+		return SLOT_OUTPUTS;
 	}
 
 	@Override
@@ -137,6 +180,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine implements ITickab
 					this.setStackInSlot(i, GTHelperStack.copyWithSize(this.output, count + 1));
 					world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 0.4F, 1.0F);
 					tryDamagePipe();
+					tryRemoveOre();
 					tryExport();
 				}
 				this.energy = this.energy - 4096;
@@ -150,18 +194,30 @@ public class GTTileBedrockMiner extends TileEntityElecMachine implements ITickab
 	}
 
 	public void tryDamagePipe() {
-		if (world.rand.nextInt(23) == 0) {
+		if (world.rand.nextInt(15) == 0) {
 			for (int i : getInputSlots()) {
 				if (GTHelperStack.isEqual(pipe, this.inventory.get(i))) {
-					// check for lubricant here
-					this.inventory.get(i).shrink(1);
-					world.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 0.4F, 1.0F);
-					tryAndBeNice();
-					tryRemoveOre();
+					if (this.hasLube()) {
+						useLube();
+					} else {
+						this.inventory.get(i).shrink(1);
+						world.playSound((EntityPlayer) null, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 0.4F, 1.0F);
+						tryAndBeNice();
+					}
 					break;
 				}
 			}
 		}
+	}
+
+	public boolean hasLube() {
+		return this.tank.getFluid() != null
+				&& this.tank.getFluid().getFluid() == GTMaterialGen.getFluid(GTMaterial.Lubricant)
+				&& this.tank.getFluidAmount() >= 100;
+	}
+
+	public void useLube() {
+		this.tank.drain(100, true);
 	}
 
 	public void tryAndBeNice() {
@@ -177,11 +233,11 @@ public class GTTileBedrockMiner extends TileEntityElecMachine implements ITickab
 	}
 
 	public void tryRemoveOre() {
-		if (world.rand.nextInt(15) == 0) {
-			for (int i = 0; i < 6; ++i) {
-				Block block = world.getBlockState(pos.offset(EnumFacing.DOWN, i)).getBlock();
+		if (world.rand.nextInt(63) == 0) {
+			for (BlockPos pos : getAreaToCheck()) {
+				Block block = world.getBlockState(pos).getBlock();
 				if (GTBedrockOreHandler.isBedrockOre(block)) {
-					world.setBlockState(pos.offset(EnumFacing.DOWN, i), Blocks.BEDROCK.getDefaultState());
+					world.setBlockState(pos, Blocks.BEDROCK.getDefaultState());
 					this.output = null;
 					break;
 				}
@@ -189,11 +245,16 @@ public class GTTileBedrockMiner extends TileEntityElecMachine implements ITickab
 		}
 	}
 
+	public Iterable<BlockPos> getAreaToCheck() {
+		BlockPos downPos = this.pos.offset(EnumFacing.DOWN);
+		return BlockPos.getAllInBox(downPos.offset(EnumFacing.SOUTH, 2).offset(EnumFacing.WEST, 2), downPos.offset(EnumFacing.NORTH, 2).offset(EnumFacing.EAST, 2).offset(EnumFacing.DOWN, 5));
+	}
+
 	public void checkForBedrockOre() {
 		if (world.getTotalWorldTime() % 100 == 0) {
-			for (int i = 0; i < 6; ++i) {
-				Block block = world.getBlockState(pos.offset(EnumFacing.DOWN, i)).getBlock();
-				if (GTBedrockOreHandler.isBedrockOre(block)) {
+			for (BlockPos pos : getAreaToCheck()) {
+				Block block = world.getBlockState(pos).getBlock();
+				if (isBlockProperlySet() && GTBedrockOreHandler.isBedrockOre(block)) {
 					this.output = GTBedrockOreHandler.getResource(block).copy();
 					break;
 				} else {
@@ -201,6 +262,11 @@ public class GTTileBedrockMiner extends TileEntityElecMachine implements ITickab
 				}
 			}
 		}
+	}
+
+	public boolean isBlockProperlySet() {
+		Block block = world.getBlockState(pos.down()).getBlock();
+		return block == Blocks.BEDROCK || GTBedrockOreHandler.isBedrockOre(block);
 	}
 
 	public void tryExport() {
@@ -235,6 +301,17 @@ public class GTTileBedrockMiner extends TileEntityElecMachine implements ITickab
 	}
 
 	@Override
+	public List<ItemStack> getDrops() {
+		List<ItemStack> list = super.getDrops();
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getItem() instanceof ItemDisplayIcon) {
+				list.remove(i);
+			}
+		}
+		return list;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomTickDisplay(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (this.isActive) {
@@ -245,5 +322,35 @@ public class GTTileBedrockMiner extends TileEntityElecMachine implements ITickab
 				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 			}
 		}
+	}
+
+	@Override
+	public void onTankChanged(IFluidTank tank) {
+		this.getNetwork().updateTileGuiField(this, NBT_TANK);
+		this.inventory.set(SLOT_TANK, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+	}
+	
+	@Override
+	public double getWrenchDropRate() {
+		return 1.0D;
 	}
 }

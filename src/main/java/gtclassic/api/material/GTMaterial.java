@@ -38,6 +38,7 @@ public class GTMaterial {
 	public static final GTMaterial EnderEye = new GTMaterial("EnderEye", 160, 250, 230, dust);
 	public static final GTMaterial EnderPearl = new GTMaterial("EnderPearl", 108, 220, 200, dust);
 	public static final GTMaterial Flint = new GTMaterial("Flint", 1, 0, 32, 64, dust);
+	public static final GTMaterial Fuel = new GTMaterial("Fuel", 255, 255, 0, fluid);
 	public static final GTMaterial Helium = new GTMaterial(2, "Helium", 255, 255, 0, gas);
 	public static final GTMaterial Helium3 = new GTMaterial("Helium3", 255, 255, 0, gas);
 	public static final GTMaterial Hydrogen = new GTMaterial(1, "Hydrogen", 0, 38, 255, gas);
@@ -45,6 +46,7 @@ public class GTMaterial {
 	public static final GTMaterial Iridium = new GTMaterial(77, "Iridium", 4, 255, 255, 255, metalAll);
 	public static final GTMaterial Lazurite = new GTMaterial("Lazurite", 100, 120, 255, dust);
 	public static final GTMaterial Lithium = new GTMaterial(3, "Lithium", 87, 150, 204, dust);
+	public static final GTMaterial Lubricant = new GTMaterial("Lubricant", 255, 196, 0, fluid);
 	public static final GTMaterial MagicDye = new GTMaterial("MagicDye", 255, 255, 255, GTMaterialFlag.MAGICDYE);
 	public static final GTMaterial Mercury = new GTMaterial(88, "Mercury", 250, 250, 250, fluid);
 	public static final GTMaterial Methane = new GTMaterial("Methane", 255, 50, 130, gas);

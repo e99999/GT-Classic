@@ -179,6 +179,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine {
 		addRecipe("dustPlatinum", 9, 0, totalEu(135000), GTMaterialGen.getDust(GTMaterial.Iridium, 1), GTMaterialGen.getDust(GTMaterial.Nickel, 2));
 		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 16), 4, totalEu(6000), GTMaterialGen.getTube(GTMaterial.Methane, 4), GTMaterialGen.get(Items.LEATHER, 4), GTMaterialGen.get(Items.SLIME_BALL, 1));
 		addRecipe(GTMaterialGen.get(Blocks.SOUL_SAND, 12), 0, totalEu(12000), GTMaterialGen.get(Blocks.SAND, 11), GTMaterialGen.getTube(GTMaterial.Oil, 1));
+		addRecipe(GTMaterialGen.getTube(GTMaterial.Oil, 3), 0, totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
 		/*
 		 * Recipes solely focused on getting methane from various things
 		 */

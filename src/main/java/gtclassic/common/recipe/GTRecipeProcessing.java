@@ -42,6 +42,7 @@ public class GTRecipeProcessing {
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Sodium), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Hydrogen), 950, 16);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Methane), 3000, 16);
+		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Fuel), 4000, 30);
 		ItemStack fullCan = GTMaterialGen.get(GTItems.sprayCan);
 		NBTTagCompound nbt = StackUtil.getNbtData(fullCan);
 		nbt.setInteger("color", 15);

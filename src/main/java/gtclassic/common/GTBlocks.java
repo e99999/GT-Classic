@@ -102,7 +102,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
 	public static final GTBlockMachine tileDisassembler = registerBlock(new GTBlockMachine("disassembler", GTLang.DISASSEMBLER));
-	public static final GTBlockMachine tileBedrockMiner = registerBlock(new GTBlockMachine("bedrockminer", GTLang.BEDROCK_MINER, 3));
+	public static final GTBlockMachine tileBedrockMiner = registerBlock(new GTBlockMachine("bedrockminer", GTLang.BEDROCK_MINER, 4));
 	public static final GTBlockMachine tileFabricator = registerBlock(new GTBlockMachine("matterfabricator", GTLang.MATTER_FAB));
 	public static final GTBlockUUMAssembler tileUUMAssembler = registerBlock(new GTBlockUUMAssembler());
 	public static final GTBlockMachine tileEchotron = registerBlock(new GTBlockMachine("echotronblock", GTLang.ECHOTRON));

@@ -247,6 +247,11 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	public int getMaxEnergy() {
 		return this.maxEnergy;
 	}
+	
+	@Override
+	public double getWrenchDropRate() {
+		return 1.0D;
+	}
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
