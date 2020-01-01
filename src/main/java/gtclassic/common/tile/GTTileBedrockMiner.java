@@ -12,6 +12,8 @@ import gtclassic.api.world.GTBedrockOreHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerBedrockMiner;
+import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.fluid.IC2Tank;
@@ -55,7 +57,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileBedrockMiner extends TileEntityElecMachine
-		implements ITickable, IHasGui, IGTDisplayTickTile, ITankListener, IClickable {
+		implements ITickable, IHasGui, IGTDisplayTickTile, ITankListener, IClickable, IProgressMachine {
 
 	ItemStack output;
 	private IC2Tank tank;
@@ -66,14 +68,18 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	static final int[] SLOT_ALLVALID = { 0, 1, 2, 3 };
 	static final int SLOT_TANK = 4;
 	static final int SLOT_FUEL = 5;
+	static final int EU_COST = 4096;
 	public static final String NBT_TANK = "tank";
+	public static final String NBT_PROGRESS = "progress";
+	@NetworkField(index = 7)
+	float progress = 0;
 
 	public GTTileBedrockMiner() {
 		super(6, 512);
 		this.setFuelSlot(SLOT_FUEL);
 		this.tank = new IC2Tank(16000);
 		this.tank.addListener(this);
-		this.addGuiFields(NBT_TANK);
+		this.addGuiFields(NBT_TANK, NBT_PROGRESS);
 		maxEnergy = 1000000;
 	}
 
@@ -99,12 +105,14 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.tank.readFromNBT(nbt.getCompoundTag(NBT_TANK));
+		this.progress = nbt.getFloat(NBT_PROGRESS);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		this.tank.writeToNBT(this.getTag(nbt, NBT_TANK));
+		nbt.setFloat(NBT_PROGRESS, this.progress);
 		return nbt;
 	}
 
@@ -157,6 +165,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	public void update() {
 		this.handleChargeSlot(this.maxEnergy);
 		checkForBedrockOre();
+		updateProgress();
 		if (this.output == null) {
 			this.setActive(false);
 			return;
@@ -172,8 +181,9 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 			this.setActive(false);
 			return;
 		}
+		this.setActive(true);
 		for (int i : getOutputSlots()) {
-			if (GTHelperStack.canMerge(this.output, this.getStackInSlot(i)) && this.energy >= 4096
+			if (GTHelperStack.canMerge(this.output, this.getStackInSlot(i)) && this.energy >= EU_COST
 					&& !this.redstoneEnabled()) {
 				if (world.rand.nextInt(31) == 0) {
 					int count = this.getStackInSlot(i).getCount();
@@ -183,18 +193,15 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 					tryRemoveOre();
 					tryExport();
 				}
-				this.energy = this.energy - 4096;
+				this.energy = this.energy - EU_COST;
 				this.getNetwork().updateTileGuiField(this, "energy");
-				this.setActive(true);
 				break;
-			} else {
-				this.setActive(false);
 			}
 		}
 	}
 
 	public void tryDamagePipe() {
-		if (world.rand.nextInt(15) == 0) {
+		if (world.rand.nextInt(11) == 0) {
 			for (int i : getInputSlots()) {
 				if (GTHelperStack.isEqual(pipe, this.inventory.get(i))) {
 					if (this.hasLube()) {
@@ -314,7 +321,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomTickDisplay(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if (this.isActive) {
+		if (this.isActive && this.hasEnergy(1)) {
 			for (int i = 0; i < 3; ++i) {
 				double d0 = (double) pos.getX() + rand.nextDouble();
 				double d1 = (double) pos.getY() + .5D + rand.nextDouble() * 0.5D + 0.5D;
@@ -352,5 +359,23 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	@Override
 	public double getWrenchDropRate() {
 		return 1.0D;
+	}
+
+	public void updateProgress() {
+		float oldProgress = this.progress;
+		this.progress = this.energy > EU_COST ? EU_COST : ((float) this.energy / EU_COST) * EU_COST;
+		if (this.progress != oldProgress) {
+			getNetwork().updateTileGuiField(this, NBT_PROGRESS);
+		}
+	}
+
+	@Override
+	public float getMaxProgress() {
+		return EU_COST;
+	}
+
+	@Override
+	public float getProgress() {
+		return this.progress;
 	}
 }

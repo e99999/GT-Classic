@@ -8,6 +8,7 @@ import ic2.core.block.render.model.ModelSapling;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.platform.textures.obj.ICustomModeledBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -15,9 +16,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -51,11 +52,8 @@ public class GTBlockOrechid extends GTBlockBase implements ICustomModeledBlock {
 		return Ic2Icons.getTextures(GTMod.MODID + "_items")[38];
 	}
 
-	public EnumBlockRenderType getRenderType(IBlockState state) {
-		return EnumBlockRenderType.MODEL;
-	}
-
 	@SideOnly(Side.CLIENT)
+	@Override
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
@@ -82,7 +80,7 @@ public class GTBlockOrechid extends GTBlockBase implements ICustomModeledBlock {
 
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return new AxisAlignedBB(0.2D, 0.0D, 0.2D, 0.8D, 0.7D, 0.8D);
+		return new AxisAlignedBB(0.4D, 0.0D, 0.4D, 0.6D, 0.45D, 0.6D).grow(.125D);
 	}
 
 	@Override
@@ -108,6 +106,17 @@ public class GTBlockOrechid extends GTBlockBase implements ICustomModeledBlock {
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
 		IBlockState soil = worldIn.getBlockState(pos.down());
-		return super.canPlaceBlockAt(worldIn, pos) && soil.getMaterial() == Material.GRASS;
+		return super.canPlaceBlockAt(worldIn, pos)
+				&& (soil.getMaterial() == Material.GRASS || soil.getMaterial() == Material.GROUND);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
+		if (worldIn.isAirBlock(pos.down())) {
+			this.dropBlockAsItem(worldIn, pos, state, 0);
+			worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+		}
 	}
 }

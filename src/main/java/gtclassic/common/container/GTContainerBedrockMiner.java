@@ -5,6 +5,7 @@ import gtclassic.api.gui.GTGuiCompEnergyStorageBar;
 import gtclassic.common.tile.GTTileBedrockMiner;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
+import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotDisplay;
@@ -20,8 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTContainerBedrockMiner extends ContainerTileComponent<GTTileBedrockMiner> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/bedrockminer.png");
-	public static final Box2D chargeProgressBox = new Box2D(78, 23, 20, 18);
-	public static final Vec2i chargeProgressPos = new Vec2i(176, 0);
+	public static final Box2D machineProgressBox = new Box2D(78, 23, 20, 18);
+	public static final Vec2i machineProgressPos = new Vec2i(176, 0);
 
 	public GTContainerBedrockMiner(InventoryPlayer player, GTTileBedrockMiner tile) {
 		super(tile);
@@ -31,7 +32,8 @@ public class GTContainerBedrockMiner extends ContainerTileComponent<GTTileBedroc
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 125, 25));
 		this.addSlotToContainer(new SlotDisplay(tile, 4, 35, 62));
 		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 5, 8, 62));
-		this.addComponent(new GTGuiCompEnergyStorageBar(tile, chargeProgressBox, chargeProgressPos));
+		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
+		this.addComponent(new GTGuiCompEnergyStorageBar(tile, new Box2D(8, 49, 160, 5), new Vec2i(0, 251)));
 		this.addPlayerInventory(player);
 	}
 

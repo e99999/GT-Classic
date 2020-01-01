@@ -17,7 +17,6 @@ public class GTBedrockOreHandler {
 	private static HashMap<Block, ItemStack> bedrockOreMap = new HashMap<>();
 
 	public static void bedrockOresInit() {
-		// vanilla
 		addBedrockOre(GTBlocks.oreBedrockGold, Ic2Items.goldDust);
 		addBedrockOre(GTBlocks.oreBedrockIron, Ic2Items.ironDust);
 		addBedrockOre(GTBlocks.oreBedrockCoal, GTMaterialGen.get(Items.COAL));
@@ -25,12 +24,10 @@ public class GTBedrockOreHandler {
 		addBedrockOre(GTBlocks.oreBedrockDiamond, GTMaterialGen.get(Items.DIAMOND));
 		addBedrockOre(GTBlocks.oreBedrockRedstone, GTMaterialGen.get(Items.REDSTONE));
 		addBedrockOre(GTBlocks.oreBedrockEmerald, GTMaterialGen.getDust(GTMaterial.Emerald, 1));
-		// ic2
 		addBedrockOre(GTBlocks.oreBedrockCopper, Ic2Items.copperDust);
 		addBedrockOre(GTBlocks.oreBedrockTin, Ic2Items.tinDust);
 		addBedrockOre(GTBlocks.oreBedrockUranium, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 		addBedrockOre(GTBlocks.oreBedrockSilver, Ic2Items.silverDust);
-		// gtc
 		addBedrockOre(GTBlocks.oreBedrockIridium, GTMaterialGen.getDust(GTMaterial.Iridium, 1));
 		addBedrockOre(GTBlocks.oreBedrockSheldonite, GTMaterialGen.getDust(GTMaterial.Platinum, 1));
 		addBedrockOre(GTBlocks.oreBedrockRuby, GTMaterialGen.getDust(GTMaterial.Ruby, 1));
