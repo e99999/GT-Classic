@@ -257,6 +257,8 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), "CRC", "JMN", "CBC", 'C', "circuitBasic", 'R', "record", 'J', Blocks.JUKEBOX, 'M', "machineBlockAdvanced", 'N', Blocks.NOTEBLOCK, 'B', Ic2Items.battery);
 		/** Monster Repellator **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMobRepeller, 1), "SSS", " M ", "CCC", 'S', "gemSapphire", 'M', "machineBlockAdvanced", 'C', "circuitBasic");
+		/** Energy Transmitter **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEnergyTransmitter, 1), "STS", "WEW", "SCS", 'S', "gemSapphire", 'T', Ic2Items.teleporter, 'C', GTBlocks.tileComputer, 'E', Ic2Items.adjustableTransformer, 'W', "craftingSuperconductor");
 		/** UU Assembler **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), "dCd", "TQE", "DBD", 'd', "circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E', GTBlocks.tileAutocrafter, 'D', "circuitUltimate", 'B', batteryAdvanced);
 		/** Low Voltage Battery Block **/

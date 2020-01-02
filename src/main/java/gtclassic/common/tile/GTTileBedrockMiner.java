@@ -12,9 +12,12 @@ import gtclassic.api.world.GTBedrockOreHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerBedrockMiner;
+import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.tile.machine.IProgressMachine;
+import ic2.core.IC2;
 import ic2.core.RotationList;
+import ic2.core.audio.AudioSource;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasGui;
@@ -32,6 +35,7 @@ import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.block.Block;
@@ -61,6 +65,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 
 	ItemStack output;
 	private IC2Tank tank;
+	private AudioSource audioSource;
 	public static final ItemStack pipe = GTMaterialGen.get(GTBlocks.miningPipe);
 	public static final IFilter filter = new BasicItemFilter(pipe);
 	static final int[] SLOT_INPUTS = { 0, 1 };
@@ -117,6 +122,15 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	}
 
 	@Override
+	public void onUnloaded() {
+		if (this.isRendering() && this.audioSource != null) {
+			IC2.audioManager.removeSources(this);
+			this.audioSource = null;
+		}
+		super.onUnloaded();
+	}
+
+	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true
 				: super.hasCapability(capability, facing);
@@ -165,9 +179,8 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	public void update() {
 		this.handleChargeSlot(this.maxEnergy);
 		checkForBedrockOre();
-		updateProgress();
 		if (this.output == null) {
-			this.setActive(false);
+			resetMachine();
 			return;
 		}
 		boolean pipeFound = false;
@@ -178,30 +191,41 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 			}
 		}
 		if (!pipeFound) {
-			this.setActive(false);
+			resetMachine();
 			return;
 		}
-		this.setActive(true);
+		if (this.isActive) {
+			updateProgress();
+		}
+		if (world.getTotalWorldTime() % 8 == 0) {
+			onMinerTick();
+		}
+	}
+
+	public void onMinerTick() {
 		for (int i : getOutputSlots()) {
 			if (GTHelperStack.canMerge(this.output, this.getStackInSlot(i)) && this.energy >= EU_COST
 					&& !this.redstoneEnabled()) {
 				if (world.rand.nextInt(31) == 0) {
 					int count = this.getStackInSlot(i).getCount();
 					this.setStackInSlot(i, GTHelperStack.copyWithSize(this.output, count + 1));
-					world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 0.4F, 1.0F);
+					world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 0.6F, 1.0F);
 					tryDamagePipe();
 					tryRemoveOre();
 					tryExport();
 				}
-				this.energy = this.energy - EU_COST;
+				this.useEnergy(EU_COST);
 				this.getNetwork().updateTileGuiField(this, "energy");
+				this.setActive(true);
 				break;
+			} else {
+				resetMachine();
 			}
 		}
 	}
 
 	public void tryDamagePipe() {
-		if (world.rand.nextInt(11) == 0) {
+		if (world.rand.nextInt(7) == 0) {
 			for (int i : getInputSlots()) {
 				if (GTHelperStack.isEqual(pipe, this.inventory.get(i))) {
 					if (this.hasLube()) {
@@ -321,7 +345,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomTickDisplay(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if (this.isActive && this.hasEnergy(1)) {
+		if (this.isActive) {
 			for (int i = 0; i < 3; ++i) {
 				double d0 = (double) pos.getX() + rand.nextDouble();
 				double d1 = (double) pos.getY() + .5D + rand.nextDouble() * 0.5D + 0.5D;
@@ -363,10 +387,19 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 
 	public void updateProgress() {
 		float oldProgress = this.progress;
-		this.progress = this.energy > EU_COST ? EU_COST : ((float) this.energy / EU_COST) * EU_COST;
+		this.progress = this.progress + 512;
+		if (this.progress > EU_COST) {
+			this.progress = 0;
+		}
 		if (this.progress != oldProgress) {
 			getNetwork().updateTileGuiField(this, NBT_PROGRESS);
 		}
+	}
+
+	public void resetMachine() {
+		this.setActive(false);
+		this.progress = 0;
+		getNetwork().updateTileGuiField(this, NBT_PROGRESS);
 	}
 
 	@Override
@@ -377,5 +410,25 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	@Override
 	public float getProgress() {
 		return this.progress;
+	}
+
+	@Override
+	public void onNetworkUpdate(String field) {
+		if (field.equals("isActive") && this.isActiveChanged()) {
+			if (this.audioSource != null && this.audioSource.isRemoved()) {
+				this.audioSource = null;
+			}
+			if (this.audioSource == null) {
+				this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, Ic2Sounds.drillSoft, true, false, IC2.audioManager.defaultVolume);
+			}
+			if (this.getActive()) {
+				if (this.audioSource != null) {
+					this.audioSource.play();
+				}
+			} else if (this.audioSource != null) {
+				this.audioSource.stop();
+			}
+		}
+		super.onNetworkUpdate(field);
 	}
 }

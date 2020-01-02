@@ -21,7 +21,6 @@ import ic2.api.item.ElectricItem;
 import ic2.api.reactor.IReactor;
 import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
-import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.block.crop.TileEntityCrop;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.item.base.ItemBatteryBase;
@@ -161,6 +160,25 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		return true;
 	}
 
+	public static EnumActionResult tryParseCoords(World world, BlockPos pos, EntityPlayer player, EnumHand hand) {
+		TileEntity tileEntity = world.getTileEntity(pos);
+		NBTTagCompound nbt = StackUtil.getNbtData(player.getHeldItem(hand));
+		if (tileEntity instanceof IGTCoordinateTile && nbt.getIntArray(POS).length == 4) {
+			int[] posArr = nbt.getIntArray(POS);
+			IGTCoordinateTile coordTile = (IGTCoordinateTile) tileEntity;
+			if (!coordTile.isInterdimensional() && posArr[3] != world.provider.getDimension()) {
+				IC2.platform.messagePlayer(player, "This machine does not support interdimensional communication");
+				return EnumActionResult.PASS;
+			}
+			if (coordTile.applyCoordinates(new BlockPos(posArr[0], posArr[1], posArr[2]), posArr[3])) {
+				IC2.platform.messagePlayer(player, "Coordinates successfully parsed to machine!");
+				return EnumActionResult.SUCCESS;
+			}
+		}
+		IC2.platform.messagePlayer(player, "Parsing coordinates to this block failed!");
+		return EnumActionResult.FAIL;
+	}
+
 	/*
 	 * The logic for both the creative and survival scanners.
 	 */
@@ -172,22 +190,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 		}
 		IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 		if (player.isSneaking()) {
-			TileEntity tileEntity = world.getTileEntity(pos);
-			NBTTagCompound nbt = StackUtil.getNbtData(player.getHeldItem(hand));
-			if (tileEntity instanceof IGTCoordinateTile && nbt.getIntArray(POS).length == 4) {
-				int[] posArr = nbt.getIntArray(POS);
-				IGTCoordinateTile coordTile = (IGTCoordinateTile) tileEntity;
-				if (!coordTile.isInterdimensional() && posArr[3] != world.provider.getDimension()) {
-					IC2.platform.messagePlayer(player, "This machine does not support interdimensional communication");
-					return EnumActionResult.PASS;
-				}
-				coordTile.applyCoordinates(new BlockPos(posArr[0], posArr[1], posArr[2]), posArr[3]);
-				IC2.platform.messagePlayer(player, "Coordinates successfully parsed to machine!");
-				return EnumActionResult.SUCCESS;
-			} else {
-				IC2.platform.messagePlayer(player, "Parsing coordinates to this block failed!");
-				return EnumActionResult.PASS;
-			}
+			return tryParseCoords(world, pos, player, hand);
 		} else {
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(player.getHeldItem(hand));
 			nbt.setIntArray(POS, new int[] { pos.getX(), pos.getY(), pos.getZ(), world.provider.getDimension() });
@@ -197,16 +200,14 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			Block block = state.getBlock();
 			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()
 					+ " -----");
+			IC2.platform.messagePlayer(player, "You are facing: "
+					+ player.getHorizontalFacing().toString().toUpperCase());
+			IC2.platform.messagePlayer(player, "You clicked: " + side.toString().toUpperCase());
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
-			IC2.platform.messagePlayer(player, "" + state.getBlock().getUnlocalizedName());
-			IC2.platform.messagePlayer(player, "Meta: " + state.getBlock().getMetaFromState(state));
-			IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
-			IC2.platform.messagePlayer(player, "Blast Resistance: "
-					+ state.getBlock().getExplosionResistance(null) * 5.0F);
-			if (tileEntity instanceof TileEntityBlock) {
-				TileEntityBlock te = (TileEntityBlock) tileEntity;
-				IC2.platform.messagePlayer(player, "Active: " + te.getActive());
-				IC2.platform.messagePlayer(player, "Facing: " + te.getFacing());
+			if (tileEntity == null) {
+				IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
+				IC2.platform.messagePlayer(player, "Blast Resistance: "
+						+ state.getBlock().getExplosionResistance(null) * 5.0F);
 			}
 			if (tileEntity instanceof IReactor) {
 				IReactor te5 = (IReactor) tileEntity;
@@ -284,8 +285,6 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 					}
 				}
 			}
-			IC2.platform.messagePlayer(player, "You are facing: "
-					+ player.getHorizontalFacing().toString().toUpperCase());
 			return EnumActionResult.SUCCESS;
 		}
 	}

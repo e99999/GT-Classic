@@ -3,6 +3,7 @@
 # 1.09 (Not Released)
 - Added Bedrock Ore Veins, which are indicated by "Orechids" (GT6) off all vanilla/ic2/gtc ores. Not infinite but can be mined for a long time.
 - Added Bedrock Miner, an HV machine which mines bedrock ores in 5 x 5 area below the miner, 4096 per operation.
+- Added Microwave Energy Transmitter from GT5u, however it no longer explodes machines and self adjusts its own internal transformer.
 - Fixed materials not part of GTC being overlooked with basic automation machine recipes, blocks to dusts, gems to block etc..
 - Added Magnifying Glass to get small amounts of info from various tiles.
 - Added Low Voltage Battery Block, its a battery that is a block and and item, you can use either as either one. Just LV for now.

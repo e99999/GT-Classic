@@ -76,13 +76,25 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTModelWire(state, Ic2Icons.getTextures("superconductorcable")[0], getSize());
+		return new GTModelWire(state, Ic2Icons.getTextures(GTMod.MODID + "_blocks")[4], getSize());
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite[] getIconSheet(int arg0) {
-		return Ic2Icons.getTextures("superconductorcable");
+		return null;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[4];
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public TextureAtlasSprite getParticleTexture(IBlockState state) {
+		return this.getTextureFromState(state, EnumFacing.SOUTH);
 	}
 
 	@Override

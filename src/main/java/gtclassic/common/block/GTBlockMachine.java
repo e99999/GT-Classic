@@ -17,6 +17,7 @@ import gtclassic.common.tile.GTTileDigitalChest;
 import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileEchotron;
+import gtclassic.common.tile.GTTileEnergyTransmitter;
 import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
@@ -87,7 +88,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileChargeOmat) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
 		}
-		if (this == GTBlocks.tileUUMAssembler || this == GTBlocks.tileBedrockMiner) {
+		if (this == GTBlocks.tileUUMAssembler) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
 		}
 		if (this == GTBlocks.tileFusionReactor) {
@@ -100,6 +101,17 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileDragonEggEnergySiphon) {
 			tooltip.add((Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] { 128.0 })));
+		}
+		if (this == GTBlocks.tileBedrockMiner) {
+			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
+			tooltip.add("Energy Used Per Operation: 4096 EU");
+		}
+		if (this == GTBlocks.tileEnergyTransmitter) {
+			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 512 })));
+			tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 1000000 })));
+			tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] {
+					Ic2InfoLang.electricTransferRateVariable.getLocalized() })));
+			tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.010 })));
 		}
 		if (this == GTBlocks.tileMagicEnergyConverter) {
 			tooltip.add((Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] { 24.0 })));
@@ -127,6 +139,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileMobRepeller) {
 			return new GTTileMobRepeller();
+		}
+		if (this == GTBlocks.tileEnergyTransmitter) {
+			return new GTTileEnergyTransmitter();
 		}
 		if (this == GTBlocks.tileEchotron) {
 			return new GTTileEchotron();

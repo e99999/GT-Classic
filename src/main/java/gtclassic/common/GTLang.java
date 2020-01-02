@@ -19,6 +19,7 @@ public class GTLang {
 	public static final LocaleComp PLAYER_DETECTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.playerdetector");
 	public static final LocaleComp DISASSEMBLER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.disassembler");
 	public static final LocaleComp MOB_REPELLER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.mobrepeller");
+	public static final LocaleComp ENERGY_TRANSMITTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.energytransmitter");
 	public static final LocaleComp BEDROCK_MINER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bedrockminer");
 	public static final LocaleComp FUSION_REACTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.fusionreactor");
 	public static final LocaleComp LIGHTNING_ROD = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lightningrod");

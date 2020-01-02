@@ -37,7 +37,7 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 		progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
 	}
 
-	private int getHeight() {
+	protected int getHeight() {
 		int baseHeight = this.name == "gt.fusion" ? 100 : 90;
 		int extraHeight = GTConfig.general.debugMode ? 10 : 0;
 		return baseHeight + extraHeight;
