@@ -15,6 +15,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -27,7 +28,9 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 		implements ITickable, IGTCoordinateTile, IGTDebuggableTile, IGTDisplayTickTile {
 
 	private int[] targetPos;
+	private BlockPos tPos;
 	private static final String NBT_TARGET = "target";
+	private static final String NBT_POS = "tPos";
 	public static final double EU_LOSS = 0.01D;
 
 	public GTTileEnergyTransmitter() {

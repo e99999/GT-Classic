@@ -179,6 +179,9 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	public void update() {
 		this.handleChargeSlot(this.maxEnergy);
 		checkForBedrockOre();
+		if (this.getActive()) {
+			updateProgress();
+		}
 		if (this.output == null) {
 			resetMachine();
 			return;
@@ -194,18 +197,18 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 			resetMachine();
 			return;
 		}
-		if (this.isActive) {
-			updateProgress();
-		}
 		if (world.getTotalWorldTime() % 8 == 0) {
-			onMinerTick();
+			if (this.energy >= EU_COST && !this.redstoneEnabled()) {
+				onMinerTick();
+			} else {
+				resetMachine();
+			}
 		}
 	}
 
 	public void onMinerTick() {
 		for (int i : getOutputSlots()) {
-			if (GTHelperStack.canMerge(this.output, this.getStackInSlot(i)) && this.energy >= EU_COST
-					&& !this.redstoneEnabled()) {
+			if (GTHelperStack.canMerge(this.output, this.getStackInSlot(i))) {
 				if (world.rand.nextInt(31) == 0) {
 					int count = this.getStackInSlot(i).getCount();
 					this.setStackInSlot(i, GTHelperStack.copyWithSize(this.output, count + 1));
@@ -283,9 +286,17 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 
 	public void checkForBedrockOre() {
 		if (world.getTotalWorldTime() % 100 == 0) {
+			int count = 0;
 			for (BlockPos pos : getAreaToCheck()) {
+				if (!world.isBlockLoaded(pos)) {
+					continue;
+				}
+				count++;
+				if (count > 125) {
+					break;
+				}
 				Block block = world.getBlockState(pos).getBlock();
-				if (isBlockProperlySet() && GTBedrockOreHandler.isBedrockOre(block)) {
+				if (isMinerProperlySet() && GTBedrockOreHandler.isBedrockOre(block)) {
 					this.output = GTBedrockOreHandler.getResource(block).copy();
 					break;
 				} else {
@@ -295,7 +306,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 		}
 	}
 
-	public boolean isBlockProperlySet() {
+	public boolean isMinerProperlySet() {
 		Block block = world.getBlockState(pos.down()).getBlock();
 		return block == Blocks.BEDROCK || GTBedrockOreHandler.isBedrockOre(block);
 	}
@@ -398,8 +409,10 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 
 	public void resetMachine() {
 		this.setActive(false);
-		this.progress = 0;
-		getNetwork().updateTileGuiField(this, NBT_PROGRESS);
+		if (progress != 0) {
+			this.progress = 0;
+			getNetwork().updateTileGuiField(this, NBT_PROGRESS);
+		}
 	}
 
 	@Override
