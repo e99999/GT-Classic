@@ -27,10 +27,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTTileEnergyTransmitter extends TileEntityElecMachine
 		implements ITickable, IGTCoordinateTile, IGTDebuggableTile, IGTDisplayTickTile {
 
-	private int[] targetPos;
-	private BlockPos tPos;
-	private static final String NBT_TARGET = "target";
-	private static final String NBT_POS = "tPos";
+	private BlockPos targetPos;
+	private static final String NBT_TARGETPOS = "targetPos";
 	public static final double EU_LOSS = 0.01D;
 
 	public GTTileEnergyTransmitter() {
@@ -41,14 +39,14 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.targetPos = nbt.getIntArray(NBT_TARGET);
+		this.targetPos = NBTUtil.getPosFromTag(nbt.getCompoundTag(NBT_TARGETPOS));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		if (this.targetPos != null) {
-			nbt.setIntArray(NBT_TARGET, this.targetPos);
+			nbt.setTag(NBT_TARGETPOS, NBTUtil.createPosTag(targetPos));
 		}
 		return nbt;
 	}
@@ -56,7 +54,7 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 	@Override
 	public boolean applyCoordinates(BlockPos pos, int dimensionId) {
 		if (!pos.toString().equals(this.pos.toString())) {
-			this.targetPos = new int[] { pos.getX(), pos.getY(), pos.getZ(), dimensionId };
+			this.targetPos = pos;
 			return true;
 		}
 		return false;
@@ -69,7 +67,7 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 
 	@Override
 	public BlockPos getAppliedPos() {
-		return new BlockPos(this.targetPos[0], this.targetPos[1], this.targetPos[2]);
+		return this.targetPos;
 	}
 
 	@Override
@@ -79,17 +77,17 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 
 	@Override
 	public void update() {
-		if (this.targetPos == null || getAppliedPos() == null) {
+		if (this.targetPos == null) {
 			this.setActive(false);
 			return;
 		}
 		if (world.getTotalWorldTime() % 20 == 0) {
-			TileEntity tile = world.getTileEntity(getAppliedPos());
-			this.setActive(world.isBlockLoaded(getAppliedPos()) && tile instanceof IEnergySink && this.energy > 0);
+			TileEntity tile = world.getTileEntity(this.targetPos);
+			this.setActive(world.isBlockLoaded(this.targetPos) && tile instanceof IEnergySink && this.energy > 0);
 		}
 		if (this.isActive) {
-			TileEntity tile = world.getTileEntity(getAppliedPos());
-			if (!world.isBlockLoaded(getAppliedPos()) || tile == null || this.redstoneEnabled()) {
+			TileEntity tile = world.getTileEntity(this.targetPos);
+			if (!world.isBlockLoaded(this.targetPos) || tile == null || this.redstoneEnabled()) {
 				this.setActive(false);
 				return;
 			}
@@ -106,7 +104,7 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 				if (energyBase > 512.0D) {
 					energyBase = 512.0D;
 				}
-				double distance = getDistanceToTarget(this.pos, this.getAppliedPos());
+				double distance = getDistanceToTarget(this.pos, this.targetPos);
 				double energyWithLoss = energyBase - distance * EU_LOSS;
 				if (energyWithLoss > 0.0D) {
 					sink.injectEnergy(EnumFacing.UP, energyWithLoss, 0.0D);
@@ -137,11 +135,10 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		if (this.targetPos != null) {
-			BlockPos tPos = this.getAppliedPos();
-			double distance = getDistanceToTarget(this.pos, tPos);
+			double distance = getDistanceToTarget(this.pos, targetPos);
 			double loss = distance * EU_LOSS;
 			DecimalFormat df = new DecimalFormat("0.0");
-			data.put("Connected to: " + world.getBlockState(tPos).getBlock().getLocalizedName(), false);
+			data.put("Connected to: " + world.getBlockState(targetPos).getBlock().getLocalizedName(), false);
 			data.put("Distance to target: " + distance, true);
 			data.put("Total Loss from distance: " + df.format(loss) + "EU", true);
 		} else {
