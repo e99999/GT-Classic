@@ -24,10 +24,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -112,21 +112,15 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 
 	@Override
 	public void onGuiClosed(EntityPlayer arg0) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % 20 == 0) {
 			tryImportItems();
-			// if there is a recipe selected and ghost slot is valid and the output slot is
-			// empty
-			if (!this.currentRecipe.isEmpty() && !this.getStackInSlot(27).isEmpty() && this.inventory.get(28).isEmpty()// TODO
-																														// check
-																														// if
-																														// can
-																														// merge
-					&& this.energy >= 50) {
+			ItemStack mStack = this.getStackInSlot(27);
+			if (!this.currentRecipe.isEmpty() && !mStack.isEmpty()
+					&& GTHelperStack.canMerge(mStack, this.inventory.get(28)) && this.energy >= 50) {
 				// see if the tile inventory has what the currentRecipe needs
 				GTHelperStack.tryCondenseInventory(this, 0, 9);
 				int recipeMatches = 0;
@@ -153,11 +147,12 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 					}
 					// if all matching stacks have been subtracted
 					if (tooMatch == 0) {
-						this.setStackInSlot(28, this.getStackInSlot(27).copy());
+						int oldCount = this.getStackInSlot(28).getCount();
+						this.setStackInSlot(28, GTHelperStack.copyWithSize(mStack.copy(), oldCount
+								+ mStack.getCount()));
 						this.useEnergy(50);
 					}
 				}
-				// keep this last
 				tryExportItems();
 			}
 		}
@@ -173,67 +168,57 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 
 	public void tryToShiftContainerItems(ItemStack container) {
 		if (container.getItem().hasContainerItem(container)) {
+			ItemStack cItem = container.getItem().getContainerItem(container);
 			for (int i = 9; i < 18; ++i) {
-				// TODO check if stack can merge
-				if (this.getStackInSlot(i).isEmpty()) {
-					this.setStackInSlot(i, container.getItem().getContainerItem(container));
+				if (GTHelperStack.canMerge(cItem, this.getStackInSlot(i))) {
+					int oldCount = this.getStackInSlot(i).getCount();
+					this.setStackInSlot(i, GTHelperStack.copyWithSize(cItem, oldCount + cItem.getCount()));
 					return;
 				}
 			}
 		}
 	}
 
-	public TileEntity getImportTile() {
+	public BlockPos getImportTilePos() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.back(1).asBlockPos());
+		return dir.back(1).asBlockPos();
 	}
 
-	public TileEntity getExportTile() {
+	public BlockPos getExportTilePos() {
 		int3 dir = new int3(getPos(), getFacing());
-		return world.getTileEntity(dir.forward(1).asBlockPos());
+		return dir.forward(1).asBlockPos();
 	}
 
-	@SuppressWarnings("static-access")
 	public void tryImportItems() {
-		// TODO redo this
-		IItemTransporter slave = TransporterManager.manager.getTransporter(getImportTile(), true);
-		if (slave == null) {
-			return;
-		}
-		IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-		int limit = 64;
-		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = slave.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, false);
-			if (stack.isEmpty()) {
-				break;
+		if (world.isBlockLoaded(getImportTilePos())) {
+			IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(getImportTilePos()), true);
+			if (slave != null) {
+				IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
+				int limit = controller.getSizeInventory(getFacing());
+				for (int i = 0; i < limit; ++i) {
+					ItemStack stack = slave.removeItem(CommonFilters.Anything, getFacing(), 1, false);
+					if (stack.isEmpty()) {
+						break;
+					}
+					ItemStack added = controller.addItem(stack, getFacing().getOpposite(), true);
+					if (added.getCount() <= 0) {
+						break;
+					}
+					slave.removeItem(CommonFilters.Anything, getFacing(), 1, true);
+				}
 			}
-			ItemStack added = controller.addItem(stack, getFacing().UP, true);
-			if (added.getCount() <= 0) {
-				break;
-			}
-			slave.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, true);
 		}
 	}
 
-	@SuppressWarnings("static-access")
 	public void tryExportItems() {
-		// TODO redo this
-		IItemTransporter slave = TransporterManager.manager.getTransporter(getExportTile(), true);
-		if (slave == null) {
-			return;
-		}
-		IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-		int limit = 64;
-		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = controller.removeItem(CommonFilters.Anything, getFacing().EAST, 1, false);
-			if (stack.isEmpty()) {
-				break;
+		if (world.isBlockLoaded(getExportTilePos())) {
+			IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), false);
+			if (slave != null) {
+				int added = slave.addItem(this.getStackInSlot(28).copy(), getFacing().getOpposite(), true).getCount();
+				if (added > 0) {
+					this.getStackInSlot(28).shrink(added);
+				}
 			}
-			ItemStack added = slave.addItem(stack, getFacing().UP, true);
-			if (added.getCount() <= 0) {
-				break;
-			}
-			controller.removeItem(CommonFilters.Anything, getFacing().getOpposite(), 1, true);
 		}
 	}
 
