@@ -75,6 +75,11 @@ public class GTBlockBattery extends GTBlockBaseMachine implements IGTItemBlock, 
 	}
 
 	@Override
+	public boolean hasFacing() {
+		return false;
+	}
+
+	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format("tooltip.gtclassic.batteryblock0"));
 		tooltip.add(I18n.format("tooltip.gtclassic.batteryblock1"));

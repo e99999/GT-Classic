@@ -76,6 +76,14 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	}
 
 	@Override
+	public boolean hasFacing() {
+		return !(this == GTBlocks.tilePlayerDetector || this == GTBlocks.tileEchotron
+				|| this == GTBlocks.tileMobRepeller || this == GTBlocks.tileFabricator
+				|| this == GTBlocks.tileEnergyTransmitter || this == GTBlocks.tileDragonEggEnergySiphon
+				|| this == GTBlocks.tileMagicEnergyAbsorber);
+	}
+
+	@Override
 	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this == GTBlocks.tileCentrifuge || this == GTBlocks.tilePlayerDetector || this == GTBlocks.tileEchotron
 				|| this == GTBlocks.tileMobRepeller || this == GTBlocks.tileDisassembler) {
@@ -87,9 +95,6 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileChargeOmat) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
-		}
-		if (this == GTBlocks.tileUUMAssembler) {
-			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
 		}
 		if (this == GTBlocks.tileFusionReactor) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 8192 })));

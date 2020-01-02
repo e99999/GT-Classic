@@ -211,7 +211,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 			if (GTHelperStack.canMerge(this.output, this.getStackInSlot(i))) {
 				if (world.rand.nextInt(31) == 0) {
 					int count = this.getStackInSlot(i).getCount();
-					this.setStackInSlot(i, GTHelperStack.copyWithSize(this.output, count + 1));
+					this.setStackInSlot(i, GTHelperStack.copyWithSize(this.output, count + this.output.getCount()));
 					world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 0.6F, 1.0F);
 					tryDamagePipe();
 					tryRemoveOre();

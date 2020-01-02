@@ -8,6 +8,7 @@ import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -31,6 +32,11 @@ public class GTBlockUUMAssembler extends GTBlockMachine {
 	}
 
 	@Override
+	public boolean hasFacing() {
+		return false;
+	}
+
+	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (stack.hasTagCompound()) {
 			NBTTagCompound nbt;
@@ -43,6 +49,11 @@ public class GTBlockUUMAssembler extends GTBlockMachine {
 			}
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
+	}
+
+	@Override
+	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
 	}
 
 	@Override

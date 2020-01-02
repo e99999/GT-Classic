@@ -265,8 +265,10 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 						+ +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100)) + "%");
 			}
 			if (GTBedrockOreHandler.isBedrockOre(block)) {
+				ItemStack resource = GTBedrockOreHandler.getResource(block);
+				String amount = resource.getCount() > 1 ? " x " + resource.getCount() : "";
 				IC2.platform.messagePlayer(player, "Contains: "
-						+ GTBedrockOreHandler.getResource(block).getDisplayName());
+						+ GTBedrockOreHandler.getResource(block).getDisplayName() + amount);
 			}
 			if (tileEntity instanceof IGTMultiTileStatus) {
 				IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;

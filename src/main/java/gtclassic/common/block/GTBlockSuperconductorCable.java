@@ -53,6 +53,11 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	}
 
 	@Override
+	public boolean hasFacing() {
+		return false;
+	}
+
+	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
 		if (this == GTBlocks.tileSuperconductorCable2x) {
 			return new GTTileSuperconductorCable2();

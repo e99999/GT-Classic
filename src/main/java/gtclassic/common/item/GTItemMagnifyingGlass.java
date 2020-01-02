@@ -11,6 +11,7 @@ import ic2.core.IC2;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -58,7 +59,10 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 		}
 		if (GTBedrockOreHandler.isBedrockOre(block)) {
 			f = true;
-			IC2.platform.messagePlayer(player, "Contains: " + GTBedrockOreHandler.getResource(block).getDisplayName());
+			ItemStack resource = GTBedrockOreHandler.getResource(block);
+			String amount = resource.getCount() > 1 ? " x " + resource.getCount() : "";
+			IC2.platform.messagePlayer(player, "Contains: " + GTBedrockOreHandler.getResource(block).getDisplayName()
+					+ amount);
 		}
 		if (f) {
 			world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.PLAYERS, 1.0F, 1.0F);
