@@ -8,6 +8,7 @@ import gtclassic.common.tile.GTTileBufferFluid;
 import gtclassic.common.tile.GTTileBufferLarge;
 import gtclassic.common.tile.GTTileBufferSmall;
 import gtclassic.common.tile.GTTileIDSU;
+import gtclassic.common.tile.GTTilePipelineItemEnd;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
@@ -68,6 +69,9 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 		}
 		if (this == GTBlocks.tileBufferFluid) {
 			return new GTTileBufferFluid();
+		}
+		if (this == GTBlocks.tilePipelineItemEnd) {
+			return new GTTilePipelineItemEnd();
 		}
 		return new TileEntityBlock();
 	}

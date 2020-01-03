@@ -101,7 +101,6 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 			IEnergySink sink = (IEnergySink) tile;
 			double needed = sink.getDemandedEnergy();
 			if (needed == 0) {
-				this.setActive(false);
 				return;
 			}
 			if (this.energy >= 512) {

@@ -70,7 +70,7 @@ public class GTBedrockOreMineable extends WorldGenerator {
 										if (worldIn.rand.nextInt(4) == 0) {
 											for (j = 0; j < 100; ++j) {
 												Material mat = worldIn.getBlockState(blockpos.offset(EnumFacing.UP, j)).getMaterial();
-												if (mat == Material.GRASS || mat == Material.GROUND) {
+												if (mat == Material.GRASS) {
 													BlockPos upPos = blockpos.offset(EnumFacing.UP, j + 1);
 													if (worldIn.getBlockState(upPos).getBlock().isReplaceable(worldIn, upPos)) {
 														worldIn.setBlockState(upPos, GTBlocks.oreChid.getDefaultState());

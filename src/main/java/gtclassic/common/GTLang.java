@@ -36,6 +36,8 @@ public class GTLang {
 	public static final LocaleComp DRUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.drum");
 	public static final LocaleComp ITEM_PIPELINE = new LocaleBlockComp("tile.gtclassic.itempipeline");
 	public static final LocaleComp FLUID_PIPELINE = new LocaleBlockComp("tile.gtclassic.itempipeline");
+	public static final LocaleComp ITEM_PIPELINE_END = new LocaleBlockComp("tile.gtclassic.itempipeend");
+	public static final LocaleComp FLUID_PIPELINE_END = new LocaleBlockComp("tile.gtclassic.fluidpipeend");
 	public static final LocaleComp BATTERYBLOCK_LV = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.batteryblocklv");
 	public static final LocaleComp TRANSLOCATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocator");
 	public static final LocaleComp TRANSLOCATOR_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocatorfluid");
