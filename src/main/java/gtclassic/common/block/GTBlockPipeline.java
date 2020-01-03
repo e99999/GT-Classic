@@ -5,7 +5,9 @@ import java.awt.Color;
 import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
 import gtclassic.api.material.GTMaterial;
-import gtclassic.common.tile.GTTilePipelineItem;
+import gtclassic.common.GTBlocks;
+import gtclassic.common.tile.pipeline.GTTilePipelineFluid;
+import gtclassic.common.tile.pipeline.GTTilePipelineItem;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.textures.Ic2Icons;
@@ -45,7 +47,10 @@ public class GTBlockPipeline extends GTBlockStorage {
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
-		return new GTTilePipelineItem();
+		if (this == GTBlocks.pipelineItem) {
+			return new GTTilePipelineItem();
+		}
+		return new GTTilePipelineFluid();
 	}
 
 	@Override

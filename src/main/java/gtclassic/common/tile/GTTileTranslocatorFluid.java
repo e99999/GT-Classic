@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileTranslocatorFluid extends GTTileBaseBuffer implements IHasGui {
+public class GTTileTranslocatorFluid extends GTTileBufferBase implements IHasGui {
 
 	public FluidStack filter;
 	public static final String NBT_FLUIDFILTER = "filter";

@@ -1,9 +1,8 @@
-package gtclassic.common.tile;
+package gtclassic.common.tile.pipeline;
 
 import java.util.Map;
 
 import gtclassic.api.interfaces.IGTDebuggableTile;
-import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
 import ic2.core.RotationList;
 import ic2.core.inventory.management.AccessRule;
@@ -13,20 +12,11 @@ import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
 
-public class GTTilePipelineItem extends GTTileBaseRecolorableTile implements ITickable, IGTDebuggableTile {
-
-	public BlockPos targetPos;
-	private static final String NBT_TARGETPOS = "targetPos";
-	public static final int TICK_RATE = 10;
+public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebuggableTile {
 
 	public GTTilePipelineItem() {
 		super(4);
@@ -42,30 +32,11 @@ public class GTTilePipelineItem extends GTTileBaseRecolorableTile implements ITi
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-		this.targetPos = NBTUtil.getPosFromTag(nbt.getCompoundTag(NBT_TARGETPOS));
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
-		super.writeToNBT(nbt);
-		if (this.targetPos != null) {
-			nbt.setTag(NBT_TARGETPOS, NBTUtil.createPosTag(targetPos));
-		}
-		return nbt;
-	}
-
-	@Override
 	public Block getBlockDrop() {
 		return GTBlocks.pipelineItem;
 	}
 
 	@Override
-	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return false;
-	}
-
 	public boolean isEmpty() {
 		int empty = 0;
 		for (int j = 0; j < this.inventory.size(); ++j) {
@@ -77,24 +48,6 @@ public class GTTilePipelineItem extends GTTileBaseRecolorableTile implements ITi
 	}
 
 	@Override
-	public void update() {
-		if (world.getTotalWorldTime() % 126 == 0) {
-			this.targetPos = null;
-		}
-		if (world.getTotalWorldTime() % TICK_RATE == 0) {
-			if (this.targetPos == null || this.targetPos == this.pos) {
-				return;
-			}
-			if (!world.isBlockLoaded(this.targetPos)) {
-				return;
-			}
-			if (isEmpty()) {
-				return;
-			}
-			onPipelineTick();
-		}
-	}
-
 	public void onPipelineTick() {
 		TileEntity tile = world.getTileEntity(this.targetPos);
 		IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);

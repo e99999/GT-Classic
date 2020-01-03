@@ -19,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileTranslocator extends GTTileBaseBuffer implements IHasGui {
+public class GTTileTranslocator extends GTTileBufferBase implements IHasGui {
 
 	public GTFilterTranslocator filter = new GTFilterTranslocator(this);
 

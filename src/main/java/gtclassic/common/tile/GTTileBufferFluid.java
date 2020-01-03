@@ -28,7 +28,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileBufferFluid extends GTTileBaseBuffer implements ITankListener, IHasGui, IClickable {
+public class GTTileBufferFluid extends GTTileBufferBase implements ITankListener, IHasGui, IClickable {
 
 	private IC2Tank tank;
 	int slotInput = 0;

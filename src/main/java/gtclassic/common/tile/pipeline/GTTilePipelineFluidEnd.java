@@ -1,4 +1,4 @@
-package gtclassic.common.tile;
+package gtclassic.common.tile.pipeline;
 
 import java.util.Map;
 
@@ -17,13 +17,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public class GTTilePipelineItemEnd extends TileEntityMachine implements ITickable, IGTDebuggableTile {
+public class GTTilePipelineFluidEnd extends TileEntityMachine implements ITickable, IGTDebuggableTile {
 
 	private Processor task = null;
-	private AabbUtil.IBlockFilter filter = new GTIBlockFilter(GTBlocks.pipelineItem);
+	private AabbUtil.IBlockFilter filter = new GTIBlockFilter(GTBlocks.pipelineFluid);
 	private int blockCount;
 
-	public GTTilePipelineItemEnd() {
+	public GTTilePipelineFluidEnd() {
 		super(0);
 		this.blockCount = 0;
 	}
@@ -43,8 +43,8 @@ public class GTTilePipelineItemEnd extends TileEntityMachine implements ITickabl
 					break;
 				}
 				TileEntity worldTile = world.getTileEntity(pPos);
-				if (worldTile instanceof GTTilePipelineItem && ((GTTilePipelineItem) worldTile).targetPos == null) {
-					((GTTilePipelineItem) worldTile).targetPos = this.getExportTilePos();
+				if (worldTile instanceof GTTilePipelineFluid && ((GTTilePipelineFluid) worldTile).targetPos == null) {
+					((GTTilePipelineFluid) worldTile).targetPos = this.getExportTilePos();
 				}
 			}
 		}

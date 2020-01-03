@@ -26,7 +26,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 
-public abstract class GTTileBaseBuffer extends TileEntityMachine implements IEnergyConductor, IEnergySink,
+public abstract class GTTileBufferBase extends TileEntityMachine implements IEnergyConductor, IEnergySink,
 		INetworkClientTileEntityEventListener, IRedstoneProvider, ITickable, IGTDebuggableTile {
 
 	public int tier = 1;
@@ -46,7 +46,7 @@ public abstract class GTTileBaseBuffer extends TileEntityMachine implements IEne
 	public static final String NBT_OUTPUTREDSTONE = "outputRedstone";
 	public static final String NBT_INVERTREDSTONE = "invertRedstone";
 
-	public GTTileBaseBuffer(int slots) {
+	public GTTileBufferBase(int slots) {
 		super(slots);
 		this.addGuiFields(new String[] { NBT_STOREDENERGY, NBT_CONDUCT, NBT_OUTPUTREDSTONE, NBT_INVERTREDSTONE });
 	}

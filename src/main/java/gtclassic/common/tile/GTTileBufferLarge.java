@@ -18,7 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileBufferLarge extends GTTileBaseBuffer implements IHasGui {
+public class GTTileBufferLarge extends GTTileBufferBase implements IHasGui {
 
 	public GTTileBufferLarge() {
 		super(27);

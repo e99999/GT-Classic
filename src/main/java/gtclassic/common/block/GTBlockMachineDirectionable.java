@@ -8,11 +8,12 @@ import gtclassic.common.tile.GTTileBufferFluid;
 import gtclassic.common.tile.GTTileBufferLarge;
 import gtclassic.common.tile.GTTileBufferSmall;
 import gtclassic.common.tile.GTTileIDSU;
-import gtclassic.common.tile.GTTilePipelineItemEnd;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
+import gtclassic.common.tile.pipeline.GTTilePipelineFluidEnd;
+import gtclassic.common.tile.pipeline.GTTilePipelineItemEnd;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -72,6 +73,9 @@ public class GTBlockMachineDirectionable extends GTBlockMachine {
 		}
 		if (this == GTBlocks.tilePipelineItemEnd) {
 			return new GTTilePipelineItemEnd();
+		}
+		if (this == GTBlocks.tilePipelineFluidEnd) {
+			return new GTTilePipelineFluidEnd();
 		}
 		return new TileEntityBlock();
 	}

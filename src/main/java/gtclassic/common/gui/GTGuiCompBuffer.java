@@ -5,7 +5,7 @@ import java.util.List;
 
 import gtclassic.api.gui.GTGuiButton;
 import gtclassic.api.material.GTMaterialGen;
-import gtclassic.common.tile.GTTileBaseBuffer;
+import gtclassic.common.tile.GTTileBufferBase;
 import ic2.core.IC2;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -20,10 +20,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTGuiCompBuffer extends GuiComponent {
 
 	public static final ItemStack cable = GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 1);
-	GTTileBaseBuffer tile;
+	GTTileBufferBase tile;
 	InventoryPlayer player;
 
-	public GTGuiCompBuffer(GTTileBaseBuffer tile, InventoryPlayer player) {
+	public GTGuiCompBuffer(GTTileBufferBase tile, InventoryPlayer player) {
 		super(Ic2GuiComp.nullBox);
 		this.tile = tile;
 		this.player = player;
