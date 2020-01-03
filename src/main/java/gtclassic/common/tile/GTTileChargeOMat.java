@@ -118,10 +118,6 @@ public class GTTileChargeOMat extends TileEntityMachine
 	public void onGuiClosed(EntityPlayer var1) {
 		// Needed but unused
 	}
-	// @Override
-	// public int getMaxStackSize(int slot) {
-	// return 1;
-	// }
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {

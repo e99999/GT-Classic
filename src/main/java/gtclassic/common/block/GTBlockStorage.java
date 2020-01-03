@@ -121,6 +121,11 @@ public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 	}
 
 	@Override
+	public boolean hasFacing() {
+		return this != GTBlocks.tileWorktable;
+	}
+
+	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.tileWorktable) {
 			return new GTTileWorktable();

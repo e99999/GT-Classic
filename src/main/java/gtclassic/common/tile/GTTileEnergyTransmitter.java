@@ -14,6 +14,7 @@ import ic2.core.block.wiring.misc.EntityChargePadAuraFX;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
@@ -116,6 +117,11 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 				this.useEnergy((int) energyBase);
 			}
 		}
+	}
+
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return false;
 	}
 
 	@Override

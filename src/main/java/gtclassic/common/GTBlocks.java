@@ -8,6 +8,7 @@ import gtclassic.api.color.GTColorItemBlock;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.itemblock.GTItemBlockRare;
+import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.block.GTBlockBattery;
 import gtclassic.common.block.GTBlockCasing;
@@ -19,6 +20,7 @@ import gtclassic.common.block.GTBlockMiningPipe;
 import gtclassic.common.block.GTBlockOre;
 import gtclassic.common.block.GTBlockOreBedrock;
 import gtclassic.common.block.GTBlockOrechid;
+import gtclassic.common.block.GTBlockPipeline;
 import gtclassic.common.block.GTBlockQuantumChest;
 import gtclassic.common.block.GTBlockQuantumTank;
 import gtclassic.common.block.GTBlockStorage;
@@ -46,6 +48,7 @@ import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileMobRepeller;
+import gtclassic.common.tile.GTTilePipelineItem;
 import gtclassic.common.tile.GTTilePlayerDetector;
 import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
@@ -74,6 +77,8 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
+	public static final GTBlockPipeline pipelineItem = registerBlock(new GTBlockPipeline(GTMaterial.Electrum, GTLang.ITEM_PIPELINE));
+	public static final GTBlockPipeline pipelineFluid = registerBlock(new GTBlockPipeline(GTMaterial.Aluminium, GTLang.FLUID_PIPELINE));
 	public static final GTBlockOreBedrock oreBedrockGold = registerBlock(new GTBlockOreBedrock("Gold", 0));
 	public static final GTBlockOreBedrock oreBedrockIron = registerBlock(new GTBlockOreBedrock("Iron", 1));
 	public static final GTBlockOreBedrock oreBedrockCoal = registerBlock(new GTBlockOreBedrock("Coal", 2));
@@ -210,6 +215,7 @@ public class GTBlocks {
 		registerUtil(GTTileSuperconductorCable.class, "SuperconductorCable");
 		registerUtil(GTTileSuperconductorCable2.class, "SuperconductorCable2");
 		registerUtil(GTTileSuperconductorCable4.class, "SuperconductorCable4");
+		registerUtil(GTTilePipelineItem.class, "ItemPipeline");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {

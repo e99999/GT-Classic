@@ -255,6 +255,6 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing.getAxis().isHorizontal();
+		return false;
 	}
 }

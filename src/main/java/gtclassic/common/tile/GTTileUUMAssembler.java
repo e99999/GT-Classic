@@ -223,7 +223,7 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing.getAxis().isHorizontal();
+		return false;
 	}
 
 	public int getStoredUU() {

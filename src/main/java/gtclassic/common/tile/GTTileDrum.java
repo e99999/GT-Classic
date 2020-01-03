@@ -47,11 +47,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		this.addNetworkFields(new String[] { NBT_COLOR });
 	}
 
-	@Override
-	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing.getAxis().isHorizontal();
-	}
-
 	public void onTankChanged(IFluidTank tank) {
 		this.getNetwork().updateTileGuiField(this, NBT_TANK);
 	}
@@ -86,6 +81,11 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
 				? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.tank)
 				: super.getCapability(capability, facing);
+	}
+
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return false;
 	}
 
 	@Override

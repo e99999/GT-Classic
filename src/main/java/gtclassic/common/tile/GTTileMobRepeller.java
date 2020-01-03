@@ -57,7 +57,7 @@ public class GTTileMobRepeller extends TileEntityElecMachine implements ITickabl
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing.getAxis().isHorizontal();
+		return false;
 	}
 
 	@Override

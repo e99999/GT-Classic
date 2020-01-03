@@ -83,6 +83,6 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine implements IT
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing.getAxis().isHorizontal();
+		return false;
 	}
 }
