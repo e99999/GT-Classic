@@ -238,6 +238,11 @@ public class GTMaterialGen {
 		String name = mat.getDisplayName().toLowerCase();
 		return FluidRegistry.getFluidStack(name, amount);
 	}
+	
+	/** How to get any FluidStack of a custom amount **/
+	public static FluidStack getFluidStack(String name, int amount) {
+		return FluidRegistry.getFluidStack(name, amount);
+	}
 
 	/** How to get a GTFluidTube of water easily **/
 	public static ItemStack getWater(int count) {
