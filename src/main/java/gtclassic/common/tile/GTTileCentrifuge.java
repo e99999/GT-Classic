@@ -1,24 +1,25 @@
 package gtclassic.common.tile;
 
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeMachineHandler;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
+import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import gtclassic.api.tile.GTTileBaseMachine;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerCentrifuge;
 import gtclassic.common.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
+import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
+import ic2.api.classic.recipe.crafting.RecipeInputFluid;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
+import ic2.core.block.base.util.output.MultiSlotOutput;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
@@ -35,6 +36,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
@@ -48,9 +50,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener, IClickable {
 
@@ -116,9 +127,160 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 	}
 
 	@Override
+	public void process(MultiRecipe recipe) {
+		MachineOutput output = recipe.getOutputs().copy();
+		for (ItemStack stack : output.getRecipeOutput(getWorld().rand, getTileData())) {
+			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
+			onRecipeComplete();
+		}
+		NBTTagCompound nbt = recipe.getOutputs().getMetadata();
+		boolean shiftContainers = nbt != null && nbt.getBoolean(MOVE_CONTAINER_TAG);
+		boolean fluidExtracted = false;
+		List<ItemStack> inputs = getInputs();
+		for (IRecipeInput key : recipe.getInputs()) {
+			int count = key.getAmount();
+			if (key instanceof RecipeInputFluid && !fluidExtracted){
+				tank.drainInternal(((RecipeInputFluid)key).fluid, true);
+				fluidExtracted = true;
+				continue;
+			}
+			ItemStack input = inventory.get(1);
+			if (key.matches(input)) {
+				if (input.getCount() >= count) {
+					if (input.getItem().hasContainerItem(input)) {
+						if (!shiftContainers) {
+							continue;
+						}
+						ItemStack container = input.getItem().getContainerItem(input);
+						if (!container.isEmpty()) {
+							container.setCount(count);
+							outputs.add(new MultiSlotOutput(container, getOutputSlots()));
+						}
+					}
+					input.shrink(count);
+					count = 0;
+					continue;
+				}
+				if (input.getItem().hasContainerItem(input)) {
+					if (!shiftContainers) {
+						continue;
+					}
+					ItemStack container = input.getItem().getContainerItem(input);
+					if (!container.isEmpty()) {
+						container.setCount(input.getCount());
+						outputs.add(new MultiSlotOutput(container, getOutputSlots()));
+					}
+				}
+				count -= input.getCount();
+				input.setCount(0);
+			}
+		}
+		addToInventory();
+		if (supportsUpgrades) {
+			for (int i = 0; i < upgradeSlots; i++) {
+				ItemStack item = inventory.get(i + inventory.size() - upgradeSlots);
+				if (item.getItem() instanceof IMachineUpgradeItem) {
+					((IMachineUpgradeItem) item.getItem()).onProcessFinished(item, this);
+				}
+			}
+		}
+		shouldCheckRecipe = true;
+	}
+
+	@Override
+	public MultiRecipe getRecipe() {
+		if (lastRecipe == GTRecipeMultiInputList.INVALID_RECIPE) {
+			return null;
+		}
+		// Check if previous recipe is valid
+		List<ItemStack> inputs = getInputs();
+		FluidStack fluid = tank.getFluid();
+		if (lastRecipe != null) {
+			lastRecipe = checkRecipe(lastRecipe, fluid, inputs) ? lastRecipe : null;
+			if (lastRecipe == null) {
+				progress = 0;
+			}
+		}
+		// If previous is not valid, find a new one
+		if (lastRecipe == null) {
+			lastRecipe = getRecipeList().getPriorityRecipe(new Predicate<MultiRecipe>() {
+
+				@Override
+				public boolean test(MultiRecipe t) {
+					return checkRecipe(t, fluid, inputs);
+				}
+			});
+		}
+		// If no recipe is found, return
+		if (lastRecipe == null) {
+			return null;
+		}
+		applyRecipeEffect(lastRecipe.getOutputs());
+		int empty = 0;
+		int[] outputSlots = getOutputSlots();
+		for (int slot : outputSlots) {
+			if (getStackInSlot(slot).isEmpty()) {
+				empty++;
+			}
+		}
+		if (empty == outputSlots.length) {
+			return lastRecipe;
+		}
+		for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
+			for (int outputSlot : outputSlots) {
+				if (inventory.get(outputSlot).isEmpty()) {
+					return lastRecipe;
+				}
+				if (StackUtil.isStackEqual(inventory.get(outputSlot), output, false, true)) {
+					if (inventory.get(outputSlot).getCount()
+							+ output.getCount() <= inventory.get(outputSlot).getMaxStackSize()) {
+						return lastRecipe;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public boolean checkRecipe(MultiRecipe entry, FluidStack inputFluid, List<ItemStack> inputs) {
+		boolean hasCheckedFluid = false;
+		List<IRecipeInput> recipeKeys = new LinkedList<IRecipeInput>(entry.getInputs());
+		for (Iterator<IRecipeInput> keyIter = recipeKeys.iterator(); keyIter.hasNext();) {
+			IRecipeInput key = keyIter.next();
+			if (key instanceof RecipeInputFluid){
+				if (!hasCheckedFluid){
+					hasCheckedFluid = true;
+					if (inputFluid != null && inputFluid.containsFluid(((RecipeInputFluid)key).fluid)){
+						keyIter.remove();
+					}
+				} else {
+					return false;
+				}
+			}
+			int toFind = key.getAmount();
+			for (Iterator<ItemStack> inputIter = inputs.iterator(); inputIter.hasNext();) {
+				ItemStack input = inputIter.next();
+				if (key.matches(input)) {
+					if (input.getCount() >= toFind) {
+						input.shrink(toFind);
+						keyIter.remove();
+						if (input.isEmpty()) {
+							inputIter.remove();
+						}
+						break;
+					}
+					toFind -= input.getCount();
+					input.setCount(0);
+					inputIter.remove();
+				}
+			}
+		}
+		return recipeKeys.isEmpty();
+	}
+
+	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true
-				: super.hasCapability(capability, facing);
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 
 	@Override
