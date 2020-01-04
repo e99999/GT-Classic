@@ -1,14 +1,14 @@
 package gtclassic.api.slot;
 
-import gtclassic.api.tile.GTTileFuelBaseMachine;
+import gtclassic.api.tile.GTTileBaseFuelMachine;
 import ic2.core.inventory.filters.IFilter;
 import net.minecraft.item.ItemStack;
 
 public class GTFuelMachineFilter implements IFilter {
 
-	GTTileFuelBaseMachine machine;
+	GTTileBaseFuelMachine machine;
 
-	public GTFuelMachineFilter(GTTileFuelBaseMachine machine) {
+	public GTFuelMachineFilter(GTTileBaseFuelMachine machine) {
 		this.machine = machine;
 	}
 

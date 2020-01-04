@@ -42,7 +42,7 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class GTTileFuelBaseMachine extends TileEntityMachine
+public abstract class GTTileBaseFuelMachine extends TileEntityMachine
 		implements ITickable, IFuelMachine, IProgressMachine, IHasGui, INetworkTileEntityEventListener {
 
 	@NetworkField(index = 3)
@@ -64,7 +64,7 @@ public abstract class GTTileFuelBaseMachine extends TileEntityMachine
 	public AudioSource audioSource;
 	LinkedList<IStackOutput> outputs = new LinkedList<>();
 
-	public GTTileFuelBaseMachine(int slots, int maxProgress, int fuelPerTick) {
+	public GTTileBaseFuelMachine(int slots, int maxProgress, int fuelPerTick) {
 		super(slots);
 		this.maxProgress = maxProgress;
 		this.fuelConsume = fuelPerTick;

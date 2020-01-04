@@ -22,6 +22,7 @@ public abstract class GTTileBaseRecolorableTile extends TileEntityMachine
 	@NetworkField(index = 9)
 	public int color;
 	private static final String NBT_COLOR = "color";
+	private static final String NBT_ACTIVE = "active";
 
 	public GTTileBaseRecolorableTile(int slots) {
 		super(slots);
@@ -32,6 +33,7 @@ public abstract class GTTileBaseRecolorableTile extends TileEntityMachine
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
+		this.setActive(nbt.getBoolean(NBT_ACTIVE));
 		if (nbt.hasKey(NBT_COLOR)) {
 			this.color = nbt.getInteger(NBT_COLOR);
 		} else {
@@ -43,6 +45,7 @@ public abstract class GTTileBaseRecolorableTile extends TileEntityMachine
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger(NBT_COLOR, this.color);
+		nbt.setBoolean(NBT_ACTIVE, this.getActive());
 		return nbt;
 	}
 

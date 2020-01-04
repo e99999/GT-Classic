@@ -23,6 +23,8 @@ tile.gtclassic.oreBauxite.name=Bauxite Ore
 tile.gtclassic.oreBedrock.name=Bedrock Ore
 
 #blocks
+tile.gtclassic.itempipeline.name=Item Pipeline
+tile.gtclassic.fluidpipeline.name=Fluid Pipeline
 tile.gtclassic.fusion.name=Fusion Coil
 tile.gtclassic.lapotron.name=Lapotron Block
 tile.gtclassic.highlyadvanced.name=Highly Advanced Machine Block
@@ -65,6 +67,8 @@ tile.gtclassic.bufferlarge.name=Large Item Buffer
 tile.gtclassic.buffersmall.name=Small Item Buffer
 tile.gtclassic.translocatorfluid.name=Fluid Translocator
 tile.gtclassic.bufferfluid.name=Fluid Buffer
+tile.gtclassic.itempipeend.name=Item Pipeline Endpoint
+tile.gtclassic.fluidpipeend.name=Fluid Pipeline Endpoint
 tile.gtclassic.sluicebox.name=Sluice Box
 tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
 
