@@ -3,7 +3,6 @@ package gtclassic.common.tile;
 import java.util.List;
 import java.util.Map;
 
-import gtclassic.api.helpers.int3;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.event.EnergyTileLoadEvent;
@@ -201,13 +200,11 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 	public abstract boolean isInventoryFull();
 
 	public BlockPos getImportTilePos() {
-		int3 dir = new int3(getPos(), getFacing());
-		return dir.back(1).asBlockPos();
+		return this.pos.offset(this.getFacing().getOpposite());
 	}
 
 	public BlockPos getExportTilePos() {
-		int3 dir = new int3(getPos(), getFacing());
-		return dir.forward(1).asBlockPos();
+		return this.pos.offset(this.getFacing());
 	}
 
 	@Override

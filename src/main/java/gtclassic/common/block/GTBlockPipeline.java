@@ -6,6 +6,7 @@ import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.common.GTBlocks;
+import gtclassic.common.tile.pipeline.GTTilePipelineBase;
 import gtclassic.common.tile.pipeline.GTTilePipelineFluid;
 import gtclassic.common.tile.pipeline.GTTilePipelineItem;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -36,7 +37,10 @@ public class GTBlockPipeline extends GTBlockStorage {
 		if (worldIn != null) {
 			TileEntity tile = worldIn.getTileEntity(pos);
 			if (tile instanceof IGTRecolorableStorageTile) {
-				IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
+				GTTilePipelineBase colorTile = (GTTilePipelineBase) tile;
+				if (colorTile.isActive) {
+					return Color.WHITE;
+				}
 				if (colorTile.isColored()) {
 					return colorTile.getTileColor();
 				}
@@ -66,8 +70,9 @@ public class GTBlockPipeline extends GTBlockStorage {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[13];
+	public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing enumFacing) {
+		int overlay = this == GTBlocks.pipelineFluid ? 13 : 12;
+		return Ic2Icons.getTextures(GTMod.MODID + "_materials")[state.getValue(active) ? overlay : 11];
 	}
 
 	@SideOnly(Side.CLIENT)

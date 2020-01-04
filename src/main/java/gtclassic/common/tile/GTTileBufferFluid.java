@@ -33,6 +33,7 @@ public class GTTileBufferFluid extends GTTileBufferBase implements ITankListener
 	private IC2Tank tank;
 	int slotInput = 0;
 	int slotOutput = 1;
+	int[] slotAll = { 0, 1 };
 	int slotDisplay = 2;
 	public static final String NBT_TANK = "tank";
 
@@ -46,11 +47,11 @@ public class GTTileBufferFluid extends GTTileBufferBase implements ITankListener
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
-		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.UP.invert());
+		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, 0);
 		handler.registerDefaultSlotAccess(AccessRule.Export, 1);
-		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), 0);
-		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), 1);
+		handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
+		handler.registerDefaultSlotsForSide(RotationList.ALL, 1);
 		handler.registerSlotType(SlotType.Input, 0);
 		handler.registerSlotType(SlotType.Output, 1);
 	}

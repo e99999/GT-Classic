@@ -80,8 +80,6 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
-	public static final GTBlockPipeline pipelineItem = registerBlock(new GTBlockPipeline(GTMaterial.Electrum, GTLang.ITEM_PIPELINE));
-	public static final GTBlockPipeline pipelineFluid = registerBlock(new GTBlockPipeline(GTMaterial.Aluminium, GTLang.FLUID_PIPELINE));
 	public static final GTBlockOreBedrock oreBedrockGold = registerBlock(new GTBlockOreBedrock("Gold", 0));
 	public static final GTBlockOreBedrock oreBedrockIron = registerBlock(new GTBlockOreBedrock("Iron", 1));
 	public static final GTBlockOreBedrock oreBedrockCoal = registerBlock(new GTBlockOreBedrock("Coal", 2));
@@ -106,6 +104,8 @@ public class GTBlocks {
 	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 0, 500.0F));
 	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 1, 100.0F));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 2, 250.0F));
+	public static final GTBlockPipeline pipelineItem = registerBlock(new GTBlockPipeline(GTMaterial.Electrum, GTLang.ITEM_PIPELINE));
+	public static final GTBlockPipeline pipelineFluid = registerBlock(new GTBlockPipeline(GTMaterial.Aluminium, GTLang.FLUID_PIPELINE));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));

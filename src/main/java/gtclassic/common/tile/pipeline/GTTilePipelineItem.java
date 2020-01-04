@@ -5,11 +5,13 @@ import java.util.Map;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTBlocks;
 import ic2.core.RotationList;
+import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -48,6 +50,27 @@ public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebugga
 	}
 
 	@Override
+	public boolean onPipelineImport(EnumFacing side) {
+		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(this.pos.offset(side)), true);
+		if (slave != null) {
+			IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
+			int limit = controller.getSizeInventory(side);
+			for (int i = 0; i < limit; ++i) {
+				ItemStack stack = slave.removeItem(CommonFilters.Anything, side.getOpposite(), 1, false);
+				if (stack.isEmpty()) {
+					break;
+				}
+				ItemStack added = controller.addItem(stack, side, true);
+				if (added.getCount() <= 0) {
+					break;
+				}
+				slave.removeItem(CommonFilters.Anything, side.getOpposite(), 1, true);
+			}
+		}
+		return false;
+	}
+
+	@Override
 	public void onPipelineTick() {
 		TileEntity tile = world.getTileEntity(this.targetPos);
 		IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
@@ -64,6 +87,7 @@ public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebugga
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		boolean empty = true;
+		data.put("Will Import: " + this.getActive(), false);
 		for (int i = 0; i < this.inventory.size(); ++i) {
 			ItemStack stack = this.getStackInSlot(i).copy();
 			if (!stack.isEmpty()) {
@@ -82,5 +106,10 @@ public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebugga
 				? "Destination: " + world.getBlockState(this.targetPos).getBlock().getLocalizedName()
 				: "Destination is not loaded!";
 		data.put(block, false);
+	}
+
+	@Override
+	public ItemStack getUpgradeStack() {
+		return Ic2Items.importUpgrade;
 	}
 }

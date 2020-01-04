@@ -1,6 +1,8 @@
 # Changelog
 
 # 1.09 (Not Released)
+- Fixed some buffers getting pissy about what could go in what side.
+- Fixed Methane and Hydrogen processing yeilding a net loss on power, they are now valid sources to generate power from.
 - Added Bedrock Ore Veins, which are indicated by "Orechids" (GT6) off all vanilla/ic2/gtc ores. Not infinite but can be mined for a long time.
 - Added Bedrock Miner, an HV machine which mines bedrock ores in 5 x 5 area below the miner, 4096 per operation.
 - Added Microwave Energy Transmitter from GT5U, however it no longer explodes machines and self adjusts its own internal transformer.

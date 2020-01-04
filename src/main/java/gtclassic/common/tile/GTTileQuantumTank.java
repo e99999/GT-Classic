@@ -54,11 +54,11 @@ public class GTTileQuantumTank extends TileEntityMachine
 
 	@Override
 	protected void addSlots(InventoryHandler handler) {
-		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.UP.invert());
+		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
 		handler.registerDefaultSlotAccess(AccessRule.Import, 0);
 		handler.registerDefaultSlotAccess(AccessRule.Export, 1);
-		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), 0);
-		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), 1);
+		handler.registerDefaultSlotsForSide(RotationList.ALL, 0);
+		handler.registerDefaultSlotsForSide(RotationList.ALL, 1);
 		handler.registerSlotType(SlotType.Input, 0);
 		handler.registerSlotType(SlotType.Output, 1);
 	}

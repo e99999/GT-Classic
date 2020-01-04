@@ -25,13 +25,13 @@ import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.client.model.PerspectiveMapWrapper;
 
-public class GTModelOre extends BaseModel {
+public class GTModelBlock extends BaseModel {
 
 	List<BakedQuad>[] quads;
 	ILayeredBlockModel block;
 	IBlockState meta;
 
-	public GTModelOre(ILayeredBlockModel model, IBlockState state) {
+	public GTModelBlock(ILayeredBlockModel model, IBlockState state) {
 		super(Ic2Models.getBlockTransforms());
 		this.block = model;
 		this.meta = state;
@@ -101,6 +101,10 @@ public class GTModelOre extends BaseModel {
 	}
 
 	protected BlockPartFace createBlockFace(EnumFacing side, int layer, boolean color) {
+		if (layer == 0) {
+			return new BlockPartFace((EnumFacing) null, color ? side.getIndex() + layer * 6
+					: -1, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F, 16.0F }, 0));
+		}
 		return new BlockPartFace((EnumFacing) null, -1, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F,
 				16.0F }, 0));
 	}
