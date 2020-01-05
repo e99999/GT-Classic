@@ -298,9 +298,8 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 			addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount) }, modifiers, outputs);
 		}
 	}
-	
-	public static void addRecipe(FluidStack fluid, int cells, IRecipeModifier[] modifiers,
-			ItemStack... outputs) {
+
+	public static void addRecipe(FluidStack fluid, int cells, IRecipeModifier[] modifiers, ItemStack... outputs) {
 		if (cells > 0) {
 			addRecipe(new IRecipeInput[] { new RecipeInputFluid(fluid),
 					new RecipeInputItemStack(GTMaterialGen.get(GTItems.testTube, cells)) }, modifiers, outputs);

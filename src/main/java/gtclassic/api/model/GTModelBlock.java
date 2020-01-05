@@ -101,11 +101,11 @@ public class GTModelBlock extends BaseModel {
 	}
 
 	protected BlockPartFace createBlockFace(EnumFacing side, int layer, boolean color) {
-		if (layer == 0) {
-			return new BlockPartFace((EnumFacing) null, color ? side.getIndex() + layer * 6
-					: -1, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F, 16.0F }, 0));
+		if (layer == 1) {
+			return new BlockPartFace((EnumFacing) null, -1, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F,
+					16.0F }, 0));
 		}
-		return new BlockPartFace((EnumFacing) null, -1, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F,
-				16.0F }, 0));
+		return new BlockPartFace((EnumFacing) null, color ? side.getIndex() + layer * 6
+				: -1, "", new BlockFaceUV(new float[] { 0.0F, 0.0F, 16.0F, 16.0F }, 0));
 	}
 }
