@@ -1,5 +1,13 @@
 package gtclassic.common.tile;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.material.GTMaterial;
@@ -54,14 +62,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
-
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Predicate;
 
 public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener, IClickable {
 
@@ -136,11 +136,10 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		NBTTagCompound nbt = recipe.getOutputs().getMetadata();
 		boolean shiftContainers = nbt != null && nbt.getBoolean(MOVE_CONTAINER_TAG);
 		boolean fluidExtracted = false;
-		List<ItemStack> inputs = getInputs();
 		for (IRecipeInput key : recipe.getInputs()) {
 			int count = key.getAmount();
-			if (key instanceof RecipeInputFluid && !fluidExtracted){
-				tank.drainInternal(((RecipeInputFluid)key).fluid, true);
+			if (key instanceof RecipeInputFluid && !fluidExtracted) {
+				tank.drainInternal(((RecipeInputFluid) key).fluid, true);
 				fluidExtracted = true;
 				continue;
 			}
@@ -247,10 +246,10 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		List<IRecipeInput> recipeKeys = new LinkedList<IRecipeInput>(entry.getInputs());
 		for (Iterator<IRecipeInput> keyIter = recipeKeys.iterator(); keyIter.hasNext();) {
 			IRecipeInput key = keyIter.next();
-			if (key instanceof RecipeInputFluid){
-				if (!hasCheckedFluid){
+			if (key instanceof RecipeInputFluid) {
+				if (!hasCheckedFluid) {
 					hasCheckedFluid = true;
-					if (inputFluid != null && inputFluid.containsFluid(((RecipeInputFluid)key).fluid)){
+					if (inputFluid != null && inputFluid.containsFluid(((RecipeInputFluid) key).fluid)) {
 						keyIter.remove();
 					}
 				} else {
@@ -375,7 +374,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addRecipe("dustGlowstone", 16, 1, totalEu(25000), GTMaterialGen.get(Items.REDSTONE, 8), GTMaterialGen.getIc2(Ic2Items.goldDust, 8), GTMaterialGen.getTube(GTMaterial.Helium, 1));
 		addRecipe("dustRedstone", 10, 3, totalEu(35000), GTMaterialGen.getTube(GTMaterial.Mercury, 3), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getDust(GTMaterial.Pyrite, 5), GTMaterialGen.getDust(GTMaterial.Ruby, 1));
 		addRecipe("dustNetherrack", 64, 0, totalEu(50000), GTMaterialGen.get(Items.GOLD_NUGGET, 4), GTMaterialGen.get(Items.REDSTONE, 4), GTMaterialGen.get(Items.GUNPOWDER, 8), GTMaterialGen.getIc2(Ic2Items.coalDust, 4), GTMaterialGen.getDust(GTMaterial.Sulfur, 4), GTMaterialGen.getDust(GTMaterial.Phosphorus, 2));
-		addRecipe(GTMaterialGen.getFluidStack("lava", 64000), 0, totalEu(64000), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.get(Items.IRON_INGOT, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
+		addRecipe(GTMaterialGen.getFluidStack("lava", 16000), 0, totalEu(64000), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.get(Items.IRON_INGOT, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
 		addRecipe(GTMaterialGen.getLava(16), 0, totalEu(64000), GTMaterialGen.get(tube, 16), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.get(Items.IRON_INGOT, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.lavaCell, 16), 0, totalEu(64000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.get(Items.IRON_INGOT, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
 		addRecipe("endstone", 64, 8, totalEu(100000), GTMaterialGen.get(Blocks.SAND, 48), GTMaterialGen.getTube(GTMaterial.Helium3, 4), GTMaterialGen.getTube(GTMaterial.Helium, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1));
