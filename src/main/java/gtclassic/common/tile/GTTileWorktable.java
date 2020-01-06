@@ -1,8 +1,5 @@
 package gtclassic.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.container.GTContainerWorktable;
@@ -21,13 +18,16 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGui {
 
 	public NonNullList<ItemStack> craftingInventory = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
 	public boolean inUse = false;
 
 	public GTTileWorktable() {
-		super(26);
+		super(32);
 	}
 
 	@Override
