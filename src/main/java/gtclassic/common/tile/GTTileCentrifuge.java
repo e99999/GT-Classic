@@ -1,13 +1,5 @@
 package gtclassic.common.tile;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Predicate;
-
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.material.GTMaterial;
@@ -63,6 +55,14 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
+
 public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener, IClickable {
 
 	public static final int SLOT_FUEL = 9;
@@ -111,6 +111,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 	public void onTankChanged(IFluidTank tank) {
 		this.getNetwork().updateTileGuiField(this, NBT_TANK);
 		this.inventory.set(SLOT_TANK, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
+		shouldCheckRecipe = true;
 	}
 
 	@Override
@@ -252,7 +253,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 					if (inputFluid != null && inputFluid.containsFluid(((RecipeInputFluid) key).fluid)) {
 						keyIter.remove();
 					}
-				} else {
+				} else { // should never get here
 					return false;
 				}
 			}
