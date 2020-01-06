@@ -47,8 +47,8 @@ public class GTTilePipelineFluidEnd extends GTTileBaseRecolorableTile implements
 					break;
 				}
 				TileEntity worldTile = world.getTileEntity(pPos);
-				if (worldTile instanceof GTTilePipelineFluid && ((GTTilePipelineFluid) worldTile).targetPos == null) {
-					((GTTilePipelineFluid) worldTile).targetPos = this.getExportTilePos();
+				if (worldTile instanceof GTTilePipelineFluid && ((GTTilePipelineFluid) worldTile).outputNodes != null) {
+					((GTTilePipelineFluid) worldTile).outputNodes.add(this.getExportTilePos());
 				}
 			}
 		}

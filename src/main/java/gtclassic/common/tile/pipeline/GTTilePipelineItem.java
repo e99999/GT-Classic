@@ -16,6 +16,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 
 public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebuggableTile {
 
@@ -70,17 +71,20 @@ public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebugga
 	}
 
 	@Override
-	public void onPipelineTick() {
-		TileEntity tile = world.getTileEntity(this.targetPos);
+	public boolean onPipelineTick(BlockPos nodePos) {
+		TileEntity tile = world.getTileEntity(nodePos);
 		IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
+		boolean found = false;
 		if (slave != null) {
 			for (int i = 0; i < this.inventory.size(); ++i) {
 				int added = slave.addItem(this.getStackInSlot(i).copy(), EnumFacing.UP, true).getCount();
 				if (added > 0) {
 					this.getStackInSlot(i).shrink(added);
+					found = true;
 				}
 			}
 		}
+		return found;
 	}
 
 	@Override
@@ -97,13 +101,10 @@ public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebugga
 		if (empty) {
 			data.put("Pipe is empty", false);
 		}
-		if (this.targetPos == null) {
+		if (this.outputNodes.isEmpty()) {
 			data.put("No Endpoint Attached", false);
 			return;
 		}
-		String block = world.isBlockLoaded(this.targetPos)
-				? "Destination: " + world.getBlockState(this.targetPos).getBlock().getLocalizedName()
-				: "Destination is not loaded!";
-		data.put(block, false);
+		data.put("Endpoints found: " + this.outputNodes.size(), false);
 	}
 }

@@ -1,5 +1,7 @@
 package gtclassic.common.tile.pipeline;
 
+import java.util.HashSet;
+
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
 import ic2.core.IC2;
@@ -9,7 +11,6 @@ import ic2.core.util.obj.IClickable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
@@ -18,8 +19,8 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public abstract class GTTilePipelineBase extends GTTileBaseRecolorableTile implements ITickable, IClickable {
 
-	public BlockPos targetPos;
-	private static final String NBT_TARGETPOS = "targetPos";
+	public HashSet<BlockPos> outputNodes = new HashSet<>();
+	// private static final String NBT_TARGETPOS = "targetPos";
 	public static final int TICK_RATE = 10;
 
 	public GTTilePipelineBase(int slots) {
@@ -29,15 +30,15 @@ public abstract class GTTilePipelineBase extends GTTileBaseRecolorableTile imple
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.targetPos = NBTUtil.getPosFromTag(nbt.getCompoundTag(NBT_TARGETPOS));
+		// this.targetPos = NBTUtil.getPosFromTag(nbt.getCompoundTag(NBT_TARGETPOS));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		if (this.targetPos != null) {
-			nbt.setTag(NBT_TARGETPOS, NBTUtil.createPosTag(targetPos));
-		}
+		// if (this.targetPos != null) {
+		// nbt.setTag(NBT_TARGETPOS, NBTUtil.createPosTag(targetPos));
+		// }
 		return nbt;
 	}
 
@@ -68,20 +69,24 @@ public abstract class GTTilePipelineBase extends GTTileBaseRecolorableTile imple
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % 126 == 0) {
-			this.targetPos = null;
+			this.outputNodes.clear();
 		}
 		if (world.getTotalWorldTime() % TICK_RATE == 0) {
-			if (this.targetPos == null || this.targetPos == this.pos) {
+			if (this.outputNodes.isEmpty()) {
 				return;
 			}
 			tryImport();
-			if (!world.isBlockLoaded(this.targetPos)) {
-				return;
-			}
 			if (isEmpty()) {
 				return;
 			}
-			onPipelineTick();
+			for (BlockPos nodePos : outputNodes) {
+				if (!world.isBlockLoaded(nodePos) || nodePos == this.pos) {
+					continue;
+				}
+				if (onPipelineTick(nodePos)) {
+					break;
+				}
+			}
 		}
 	}
 
@@ -101,7 +106,7 @@ public abstract class GTTilePipelineBase extends GTTileBaseRecolorableTile imple
 
 	public abstract boolean onPipelineImport(EnumFacing side);
 
-	public abstract void onPipelineTick();
+	public abstract boolean onPipelineTick(BlockPos nodePos);
 
 	@Override
 	public boolean hasRightClick() {

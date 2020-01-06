@@ -10,6 +10,7 @@ import ic2.core.util.obj.ITankListener;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -81,12 +82,13 @@ public class GTTilePipelineFluid extends GTTilePipelineBase implements ITankList
 	}
 
 	@Override
-	public void onPipelineTick() {
-		IFluidHandler fluidTile = GTHelperFluid.getFluidHandler(world, this.targetPos, EnumFacing.UP);
+	public boolean onPipelineTick(BlockPos nodePos) {
+		IFluidHandler fluidTile = GTHelperFluid.getFluidHandler(world, nodePos, EnumFacing.UP);
 		boolean canExport = fluidTile != null && this.tank.getFluid() != null;
 		if (canExport && FluidUtil.tryFluidTransfer(fluidTile, this.tank, this.tank.getCapacity() / 2, true) != null) {
-			// Empty on true method
+			return true;
 		}
+		return false;
 	}
 
 	@Override
@@ -94,13 +96,10 @@ public class GTTilePipelineFluid extends GTTilePipelineBase implements ITankList
 		FluidStack fluid = this.tank.getFluid();
 		data.put("Will Import: " + this.getActive(), false);
 		data.put(fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Pipe is empty", false);
-		if (this.targetPos == null) {
+		if (this.outputNodes.isEmpty()) {
 			data.put("No Endpoint Attached", false);
 			return;
 		}
-		String block = world.isBlockLoaded(this.targetPos)
-				? "Destination: " + world.getBlockState(this.targetPos).getBlock().getLocalizedName()
-				: "Destination is not loaded!";
-		data.put(block, false);
+		data.put("Endpoints found: " + this.outputNodes.size(), false);
 	}
 }
