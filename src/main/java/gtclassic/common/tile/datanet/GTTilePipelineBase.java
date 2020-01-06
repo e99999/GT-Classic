@@ -1,4 +1,4 @@
-package gtclassic.common.tile.pipeline;
+package gtclassic.common.tile.datanet;
 
 import java.util.HashSet;
 

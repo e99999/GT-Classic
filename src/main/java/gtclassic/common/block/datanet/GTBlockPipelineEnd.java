@@ -1,4 +1,4 @@
-package gtclassic.common.block;
+package gtclassic.common.block.datanet;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -9,8 +9,9 @@ import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
 import gtclassic.common.GTBlocks;
-import gtclassic.common.tile.pipeline.GTTilePipelineFluidEnd;
-import gtclassic.common.tile.pipeline.GTTilePipelineItemEnd;
+import gtclassic.common.block.GTBlockMachineDirectionable;
+import gtclassic.common.tile.datanet.GTTilePipelineFluidEnd;
+import gtclassic.common.tile.datanet.GTTilePipelineItemEnd;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.misc.StackUtil;
@@ -88,7 +89,7 @@ public class GTBlockPipelineEnd extends GTBlockMachineDirectionable implements I
 				}
 			}
 		}
-		return this == GTBlocks.tilePipelineItemEnd ? Color.LIGHT_GRAY : Color.GRAY;
+		return GTBlockPipeline.REFINED_IRON;
 	}
 
 	@Override

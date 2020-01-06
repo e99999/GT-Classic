@@ -1,4 +1,4 @@
-package gtclassic.common.block;
+package gtclassic.common.block.datanet;
 
 import java.awt.Color;
 import java.util.List;
@@ -7,8 +7,9 @@ import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
 import gtclassic.api.model.GTModelBlock;
 import gtclassic.common.GTBlocks;
-import gtclassic.common.tile.pipeline.GTTilePipelineFluid;
-import gtclassic.common.tile.pipeline.GTTilePipelineItem;
+import gtclassic.common.block.GTBlockStorage;
+import gtclassic.common.tile.datanet.GTTilePipelineFluid;
+import gtclassic.common.tile.datanet.GTTilePipelineItem;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.textures.Ic2Icons;
@@ -30,6 +31,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockPipeline extends GTBlockStorage implements ILayeredBlockModel, ICustomModeledBlock {
 
+	public static final Color REFINED_IRON = new Color(220, 235, 235);
+
 	public GTBlockPipeline(String name, LocaleComp comp) {
 		super(name + "_pipeline", comp, 3);
 	}
@@ -45,7 +48,7 @@ public class GTBlockPipeline extends GTBlockStorage implements ILayeredBlockMode
 				}
 			}
 		}
-		return this == GTBlocks.pipelineItem ? Color.LIGHT_GRAY : Color.GRAY;
+		return REFINED_IRON;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package gtclassic.common.tile.pipeline;
+package gtclassic.common.tile.datanet;
 
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +8,7 @@ import gtclassic.api.helpers.int3;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
-import gtclassic.common.util.GTIBlockFilter;
+import gtclassic.common.util.GTDataNetFitler;
 import ic2.core.RotationList;
 import ic2.core.util.helpers.AabbUtil;
 import ic2.core.util.helpers.AabbUtil.BoundingBox;
@@ -21,13 +21,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public class GTTilePipelineFluidEnd extends GTTileBaseRecolorableTile implements ITickable, IGTDebuggableTile {
+public class GTTilePipelineItemEnd extends GTTileBaseRecolorableTile implements ITickable, IGTDebuggableTile {
 
 	private Processor task = null;
-	private AabbUtil.IBlockFilter filter = new GTIBlockFilter(GTBlocks.pipelineFluid);
+	private AabbUtil.IBlockFilter filter = new GTDataNetFitler(GTBlocks.pipelineItem);
 	private int blockCount;
 
-	public GTTilePipelineFluidEnd() {
+	public GTTilePipelineItemEnd() {
 		super(0);
 		this.blockCount = 0;
 	}
@@ -39,16 +39,17 @@ public class GTTilePipelineFluidEnd extends GTTileBaseRecolorableTile implements
 			if (!task.isFinished()) {
 				return;
 			}
-			this.blockCount = task.getResults().size();
-			int i = 0;
+			this.blockCount = 0;
 			for (BlockPos pPos : task.getResults()) {
-				i++;
-				if (i > 256) {
+				if (world.getBlockState(pPos) != GTBlocks.dataCable.getDefaultState()) {
+					this.blockCount++;
+				}
+				if (this.blockCount > 256) {
 					break;
 				}
 				TileEntity worldTile = world.getTileEntity(pPos);
-				if (worldTile instanceof GTTilePipelineFluid && ((GTTilePipelineFluid) worldTile).outputNodes != null) {
-					((GTTilePipelineFluid) worldTile).outputNodes.add(this.getExportTilePos());
+				if (worldTile instanceof GTTilePipelineItem && ((GTTilePipelineItem) worldTile).outputNodes != null) {
+					((GTTilePipelineItem) worldTile).outputNodes.add(this.getExportTilePos());
 				}
 			}
 		}
@@ -72,7 +73,7 @@ public class GTTilePipelineFluidEnd extends GTTileBaseRecolorableTile implements
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		data.put("Connected Pipes: " + this.blockCount, false);
+		data.put("Connected Item Input Nodes: " + this.blockCount, false);
 	}
 
 	@Override
@@ -82,6 +83,6 @@ public class GTTilePipelineFluidEnd extends GTTileBaseRecolorableTile implements
 
 	@Override
 	public Block getBlockDrop() {
-		return GTBlocks.tilePipelineFluidEnd;
+		return GTBlocks.tilePipelineItemEnd;
 	}
 }
