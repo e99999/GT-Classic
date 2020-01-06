@@ -12,8 +12,11 @@ import gtclassic.api.interfaces.IGTRecolorableStorageTile;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.block.base.util.info.misc.IWrench;
 import ic2.core.fluid.IC2Tank;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.IItemContainer;
@@ -23,32 +26,43 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class GTTileDrum extends TileEntityMachine implements ITankListener, IItemContainer, IClickable,
-		IGTDebuggableTile, IGTRecolorableStorageTile, IGTItemContainerTile {
+		IGTDebuggableTile, ITickable, IGTRecolorableStorageTile, IGTItemContainerTile {
 
 	private IC2Tank tank;
+	private boolean flow = false;
 	@NetworkField(index = 9)
 	public int color;
 	public static final String NBT_COLOR = "color";
 	public static final String NBT_TANK = "tank";
+	public static final String NBT_FLOW = "flow";
 
 	public GTTileDrum() {
 		super(0);
 		this.color = 16383998;
 		this.tank = new IC2Tank(32000);
 		this.tank.addListener(this);
-		this.addGuiFields(NBT_TANK);
+		// this.addGuiFields(NBT_TANK);
 		this.addNetworkFields(new String[] { NBT_COLOR });
 	}
 
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return false;
+	}
+
 	public void onTankChanged(IFluidTank tank) {
-		this.getNetwork().updateTileGuiField(this, NBT_TANK);
+		// this.getNetwork().updateTileGuiField(this, NBT_TANK);
 	}
 
 	@Override
@@ -60,6 +74,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		} else {
 			this.color = 16383998;
 		}
+		this.flow = nbt.getBoolean(NBT_FLOW);
 	}
 
 	@Override
@@ -67,6 +82,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		super.writeToNBT(nbt);
 		nbt.setInteger(NBT_COLOR, this.color);
 		this.tank.writeToNBT(this.getTag(nbt, NBT_TANK));
+		nbt.setBoolean(NBT_FLOW, this.flow);
 		return nbt;
 	}
 
@@ -83,13 +99,21 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 				: super.getCapability(capability, facing);
 	}
 
-	@Override
-	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return false;
+	public void setFlow(boolean canFlow) {
+		this.flow = canFlow;
 	}
 
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
+		if (player.isSneaking() && player.getHeldItemMainhand().getItem() instanceof IWrench) {
+			this.flow = !this.flow;
+			if (this.isSimulating()) {
+				String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
+				IC2.platform.messagePlayer(player, msg);
+				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+			}
+			return false;
+		}
 		return true;
 	}
 
@@ -117,14 +141,31 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	}
 
 	@Override
+	public void update() {
+		if (this.flow && world.getTotalWorldTime() % 10 == 0 && this.tank.getFluid() != null) {
+			boolean isGas = this.tank.getFluid().getFluid().isGaseous();
+			BlockPos direction = isGas ? getPos().up() : getPos().down();
+			EnumFacing side = isGas ? EnumFacing.DOWN : EnumFacing.UP;
+			IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, direction, side);
+			if (fluidTile != null && FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true) != null) {
+				// empty if transfered method
+			}
+		}
+	}
+
+	@Override
 	public void getData(Map<String, Boolean> data) {
 		FluidStack fluid = this.tank.getFluid();
 		boolean fluidNotNull = fluid != null;
 		if (fluidNotNull) {
+			String type = fluid.getFluid().isGaseous() ? "Is gaseous will flow upward" : "Is fluid will flow downward";
 			data.put(fluid.amount + "mB of " + fluid.getLocalizedName(), false);
+			data.put(type, false);
 		} else {
-			data.put("Drum is Empty", false);
+			data.put("Empty", false);
 		}
+		String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
+		data.put(msg, false);
 	}
 
 	@Override
@@ -161,6 +202,10 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		}
 		if (isColored()) {
 			nbt.setInteger(NBT_COLOR, this.color);
+			data = true;
+		}
+		if (this.flow) {
+			nbt.setBoolean(NBT_FLOW, this.flow);
 			data = true;
 		}
 		if (!data) {

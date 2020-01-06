@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class GTBlockDrum extends GTBlockStorage {
 
 	public GTBlockDrum() {
-		super("drum", GTLang.DRUM, Material.GROUND, 1);
+		super("drum", GTLang.DRUM, Material.GROUND, 2);
 		setHardness(0.5F);
 	}
 
@@ -55,6 +55,9 @@ public class GTBlockDrum extends GTBlockStorage {
 				nbt = StackUtil.getNbtData(stack);
 				if (nbt.hasKey("Fluid")) {
 					tank.getTankInstance().setFluid(FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("Fluid")));
+				}
+				if (nbt.hasKey("flow")) {
+					tank.setFlow(nbt.getBoolean("flow"));
 				}
 			}
 		}

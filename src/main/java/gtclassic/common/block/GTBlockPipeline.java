@@ -5,7 +5,6 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
-import gtclassic.api.material.GTMaterial;
 import gtclassic.api.model.GTModelBlock;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.tile.pipeline.GTTilePipelineFluid;
@@ -31,11 +30,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTBlockPipeline extends GTBlockStorage implements ILayeredBlockModel, ICustomModeledBlock {
 
-	GTMaterial mat;
-
-	public GTBlockPipeline(GTMaterial mat, LocaleComp comp) {
-		super(mat.getDisplayName() + "_pipeline", comp, 2);
-		this.mat = mat;
+	public GTBlockPipeline(String name, LocaleComp comp) {
+		super(name + "_pipeline", comp, 3);
 	}
 
 	@Override
@@ -49,7 +45,7 @@ public class GTBlockPipeline extends GTBlockStorage implements ILayeredBlockMode
 				}
 			}
 		}
-		return this.mat.getColor();
+		return this == GTBlocks.pipelineItem ? Color.LIGHT_GRAY : Color.GRAY;
 	}
 
 	@Override

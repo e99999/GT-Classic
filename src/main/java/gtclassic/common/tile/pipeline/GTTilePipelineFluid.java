@@ -6,10 +6,8 @@ import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTBlocks;
 import ic2.core.fluid.IC2Tank;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -104,10 +102,5 @@ public class GTTilePipelineFluid extends GTTilePipelineBase implements ITankList
 				? "Destination: " + world.getBlockState(this.targetPos).getBlock().getLocalizedName()
 				: "Destination is not loaded!";
 		data.put(block, false);
-	}
-
-	@Override
-	public ItemStack getUpgradeStack() {
-		return Ic2Items.carbonPlate.copy();
 	}
 }

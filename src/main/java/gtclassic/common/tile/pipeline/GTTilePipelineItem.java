@@ -11,7 +11,6 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -106,10 +105,5 @@ public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebugga
 				? "Destination: " + world.getBlockState(this.targetPos).getBlock().getLocalizedName()
 				: "Destination is not loaded!";
 		data.put(block, false);
-	}
-
-	@Override
-	public ItemStack getUpgradeStack() {
-		return Ic2Items.importUpgrade;
 	}
 }

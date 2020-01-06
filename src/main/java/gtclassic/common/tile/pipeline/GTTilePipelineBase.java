@@ -1,15 +1,13 @@
 package gtclassic.common.tile.pipeline;
 
-import java.util.List;
-
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
 import ic2.core.IC2;
+import ic2.core.block.base.util.info.misc.IWrench;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.obj.IClickable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.EnumFacing;
@@ -51,6 +49,18 @@ public abstract class GTTilePipelineBase extends GTTileBaseRecolorableTile imple
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return false;
+	}
+
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		if (player.isSneaking() && player.getHeldItemMainhand().getItem() instanceof IWrench) {
+			this.setActive(!this.getActive());
+			if (IC2.platform.isSimulating()) {
+				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+			}
+			return false;
+		}
+		return true;
 	}
 
 	public abstract boolean isEmpty();
@@ -95,29 +105,11 @@ public abstract class GTTilePipelineBase extends GTTileBaseRecolorableTile imple
 
 	@Override
 	public boolean hasRightClick() {
-		return true;
-	}
-
-	public abstract ItemStack getUpgradeStack();
-
-	@Override
-	public List<ItemStack> getInventoryDrops() {
-		List<ItemStack> drops = super.getInventoryDrops();
-		if (this.getActive()) {
-			drops.add(this.getUpgradeStack());
-		}
-		return drops;
+		return false;
 	}
 
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand var2, EnumFacing var3, Side var4) {
-		if (player.isSneaking()) {
-			this.setActive(!this.getActive());
-			if (IC2.platform.isSimulating()) {
-				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
-			}
-			return true;
-		}
 		return false;
 	}
 
