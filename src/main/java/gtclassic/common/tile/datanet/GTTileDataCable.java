@@ -56,8 +56,8 @@ public class GTTileDataCable extends TileEntityBlock {
 			int var4 = var3.length;
 			for (int var5 = 0; var5 < var4; ++var5) {
 				EnumFacing dir = var3[var5];
-				Block sideBlock = this.getWorld().getBlockState(this.getPos().offset(dir)).getBlock();
-				if (canConnect(sideBlock, dir)) {
+				BlockPos worldPos = this.pos.offset(dir);
+				if (canConnect(worldPos)) {
 					newList = newList.add(dir);
 				}
 			}
@@ -68,8 +68,8 @@ public class GTTileDataCable extends TileEntityBlock {
 		}
 	}
 
-	public boolean canConnect(Block block, EnumFacing side) {
-		return block instanceof IGTDataNetBlock;
+	public boolean canConnect(BlockPos worldPos) {
+		return this.getWorld().getBlockState(worldPos).getBlock() instanceof IGTDataNetBlock || this.getWorld().getTileEntity(worldPos) instanceof IGTDataNetBlock;
 	}
 
 	@Override

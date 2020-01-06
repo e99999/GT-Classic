@@ -1,5 +1,6 @@
 package gtclassic.common.tile;
 
+import gtclassic.api.interfaces.IGTDataNetBlock;
 import gtclassic.common.container.GTContainerComputerCube;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -12,7 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileComputerCube extends TileEntityMachine implements IHasGui {
+public class GTTileComputerCube extends TileEntityMachine implements IHasGui , IGTDataNetBlock{
 
 	public int index;
 

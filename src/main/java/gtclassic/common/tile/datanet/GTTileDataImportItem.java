@@ -4,6 +4,7 @@ import java.util.Map;
 
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.core.RotationList;
+import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
@@ -32,67 +33,35 @@ public class GTTileDataImportItem extends GTTileDataImportBase implements IGTDeb
 	}
 
 	@Override
-	public boolean isEmpty() {
-		int empty = 0;
-		for (int j = 0; j < this.inventory.size(); ++j) {
-			if (this.inventory.get(j).isEmpty()) {
-				empty++;
-			}
-		}
-		return empty == this.inventory.size();
-	}
-
-	@Override
-	public void onPipelineImport() {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(this.pos.offset(this.getFacing())), true);
-		if (slave != null) {
-			IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-			int limit = controller.getSizeInventory(this.getFacing());
-			for (int i = 0; i < limit; ++i) {
-				ItemStack stack = slave.removeItem(CommonFilters.Anything, this.getFacing(), 1, false);
-				if (stack.isEmpty()) {
-					break;
-				}
-				ItemStack added = controller.addItem(stack, this.getFacing(), true);
-				if (added.getCount() <= 0) {
-					break;
-				}
-				slave.removeItem(CommonFilters.Anything, this.getFacing().getOpposite(), 1, true);
-			}
-		}
-	}
-
-	@Override
 	public boolean onPipelineTick(BlockPos nodePos) {
-		TileEntity tile = world.getTileEntity(nodePos);
-		IItemTransporter slave = TransporterManager.manager.getTransporter(tile, false);
+		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(this.pos.offset(this.getFacing())), true);
+		if (slave == null) {
+			return false;
+		}
+		IItemTransporter controller = TransporterManager.manager.getTransporter(world.getTileEntity(nodePos), true);
+		if (controller == null) {
+			return false;
+		}
 		boolean found = false;
-		if (slave != null) {
-			for (int i = 0; i < this.inventory.size(); ++i) {
-				int added = slave.addItem(this.getStackInSlot(i).copy(), EnumFacing.UP, true).getCount();
-				if (added > 0) {
-					this.getStackInSlot(i).shrink(added);
-					found = true;
-				}
+		int limit = controller.getSizeInventory(getFacing());
+		for (int i = 0; i < limit; ++i) {
+			ItemStack stack = slave.removeItem(CommonFilters.Anything, this.getFacing().getOpposite(), 64, false);
+			if (stack.isEmpty()) {
+				break;
 			}
+			ItemStack added = controller.addItem(stack, EnumFacing.UP, true);
+			if (added.getCount() <= 0) {
+				found = true;
+				break;
+			}
+			slave.removeItem(new BasicItemFilter(added), this.getFacing().getOpposite(), added.getCount(), true);
 		}
 		return found;
 	}
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		boolean empty = true;
-		data.put("Will Import: " + this.getActive(), false);
-		for (int i = 0; i < this.inventory.size(); ++i) {
-			ItemStack stack = this.getStackInSlot(i).copy();
-			if (!stack.isEmpty()) {
-				data.put(stack.getDisplayName() + " x " + stack.getCount(), false);
-				empty = false;
-			}
-		}
-		if (empty) {
-			data.put("Pipe is empty", false);
-		}
+		data.put("Active: " + this.getActive(), false);
 		if (this.outputNodes.isEmpty()) {
 			data.put("No Endpoint Attached", false);
 			return;

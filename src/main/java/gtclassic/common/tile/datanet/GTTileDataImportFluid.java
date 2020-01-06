@@ -62,24 +62,11 @@ public class GTTileDataImportFluid extends GTTileDataImportBase implements ITank
 	}
 
 	@Override
-	public boolean isEmpty() {
-		return this.tank.getFluid() == null;
-	}
-
-	@Override
-	public void onPipelineImport() {
-		IFluidHandler start = GTHelperFluid.getFluidHandler(world, this.pos.offset(this.getFacing()), this.getFacing().getOpposite());
-		IFluidHandler end = FluidUtil.getFluidHandler(world, this.pos, getFacing());
-		if (start != null && end != null) {
-			FluidUtil.tryFluidTransfer(end, start, this.tank.getCapacity() / 2, true);
-		}
-	}
-
-	@Override
 	public boolean onPipelineTick(BlockPos nodePos) {
-		IFluidHandler fluidTile = GTHelperFluid.getFluidHandler(world, nodePos, EnumFacing.UP);
-		boolean canExport = fluidTile != null && this.tank.getFluid() != null;
-		if (canExport && FluidUtil.tryFluidTransfer(fluidTile, this.tank, this.tank.getCapacity() / 2, true) != null) {
+		IFluidHandler start = FluidUtil.getFluidHandler(world, this.pos.offset(this.getFacing()), getFacing());
+		IFluidHandler end = FluidUtil.getFluidHandler(world, nodePos, EnumFacing.UP);
+		boolean canExport = start != null && end != null;
+		if (canExport && FluidUtil.tryFluidTransfer(end, start, 4000, true) != null) {
 			return true;
 		}
 		return false;
@@ -87,9 +74,7 @@ public class GTTileDataImportFluid extends GTTileDataImportBase implements ITank
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		FluidStack fluid = this.tank.getFluid();
-		data.put("Will Import: " + this.getActive(), false);
-		data.put(fluid != null ? fluid.amount + "mB of " + fluid.getLocalizedName() : "Pipe is empty", false);
+		data.put("Active: " + this.getActive(), false);
 		if (this.outputNodes.isEmpty()) {
 			data.put("No Endpoint Attached", false);
 			return;

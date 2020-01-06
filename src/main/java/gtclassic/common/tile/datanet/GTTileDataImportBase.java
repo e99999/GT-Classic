@@ -39,8 +39,6 @@ public abstract class GTTileDataImportBase extends TileEntityMachine implements 
 		return true;
 	}
 
-	public abstract boolean isEmpty();
-
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % 126 == 0) {
@@ -48,13 +46,13 @@ public abstract class GTTileDataImportBase extends TileEntityMachine implements 
 		}
 		if (world.getTotalWorldTime() % TICK_RATE == 0) {
 			this.setActive(!this.redstoneEnabled());
+			if (!this.getActive()) {
+				return;
+			}
 			if (this.outputNodes.isEmpty()) {
 				return;
 			}
-			tryImport();
-			if (isEmpty()) {
-				return;
-			}
+			//if import pos not loaded return;
 			for (BlockPos nodePos : outputNodes) {
 				if (!world.isBlockLoaded(nodePos) || nodePos == this.pos) {
 					continue;
@@ -69,18 +67,6 @@ public abstract class GTTileDataImportBase extends TileEntityMachine implements 
 	public boolean redstoneEnabled() {
 		return this.world.isBlockPowered(this.getPos());
 	}
-
-	public void tryImport() {
-		if (this.getActive()) {
-			if (!world.isBlockLoaded(this.pos.offset(this.getFacing()))
-					|| world.getTileEntity(pos.offset(this.getFacing())) instanceof GTTileDataImportBase) {
-				return;
-			}
-			onPipelineImport();
-		}
-	}
-
-	public abstract void onPipelineImport();
 
 	public abstract boolean onPipelineTick(BlockPos nodePos);
 }
