@@ -2,7 +2,7 @@ package gtclassic.common.container;
 
 import gtclassic.GTMod;
 import gtclassic.common.gui.GTGuiCompComputerCube;
-import gtclassic.common.tile.GTTileComputerCube;
+import gtclassic.common.tile.datanet.GTTileComputerCube;
 import ic2.core.inventory.container.ContainerTileComponent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

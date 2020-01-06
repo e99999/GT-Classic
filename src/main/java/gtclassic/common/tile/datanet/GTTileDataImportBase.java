@@ -13,9 +13,11 @@ public abstract class GTTileDataImportBase extends TileEntityMachine implements 
 
 	public HashSet<BlockPos> outputNodes = new HashSet<>();
 	public static final int TICK_RATE = 10;
+	public boolean hasComputer;
 
 	public GTTileDataImportBase(int slots) {
 		super(slots);
+		this.hasComputer = false;
 	}
 
 	@Override
@@ -43,13 +45,14 @@ public abstract class GTTileDataImportBase extends TileEntityMachine implements 
 	public void update() {
 		if (world.getTotalWorldTime() % 126 == 0) {
 			this.outputNodes.clear();
+			this.hasComputer = false;
 		}
 		if (world.getTotalWorldTime() % TICK_RATE == 0) {
 			this.setActive(!this.redstoneEnabled());
 			if (!this.getActive()) {
 				return;
 			}
-			if (this.outputNodes.isEmpty()) {
+			if (this.outputNodes.isEmpty() && !this.hasComputer) {
 				return;
 			}
 			//if import pos not loaded return;

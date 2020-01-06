@@ -7,12 +7,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GTDataNetFitler implements AabbUtil.IBlockFilter {
+public class GTDataBlockFilter implements AabbUtil.IBlockFilter {
 
 	Block block;
 	Block dCable = GTBlocks.dataCable;
 
-	public GTDataNetFitler(Block block) {
+	public GTDataBlockFilter(Block block) {
 		this.block = block;
 	}
 

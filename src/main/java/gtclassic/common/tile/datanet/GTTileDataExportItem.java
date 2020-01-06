@@ -21,6 +21,7 @@ public class GTTileDataExportItem extends GTTileDataExportBase implements IGTDeb
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
+		data.put("Has Computer: " + this.hasComputer, false);
 		data.put("Connected Item Input Nodes: " + this.blockCount, false);
 	}
 }

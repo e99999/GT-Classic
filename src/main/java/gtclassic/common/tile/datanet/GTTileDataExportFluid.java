@@ -21,6 +21,7 @@ public class GTTileDataExportFluid extends GTTileDataExportBase implements IGTDe
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
+		data.put("Has Computer: " + this.hasComputer, false);
 		data.put("Connected Fluid Input Nodes: " + this.blockCount, false);
 	}
 }

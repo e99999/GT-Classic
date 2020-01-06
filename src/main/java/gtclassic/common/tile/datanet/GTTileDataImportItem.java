@@ -13,7 +13,6 @@ import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
@@ -66,6 +65,7 @@ public class GTTileDataImportItem extends GTTileDataImportBase implements IGTDeb
 			data.put("No Endpoint Attached", false);
 			return;
 		}
+		data.put("Has Computer: " + this.hasComputer, false);
 		data.put("Endpoints found: " + this.outputNodes.size(), false);
 	}
 }

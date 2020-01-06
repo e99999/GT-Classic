@@ -2,7 +2,7 @@ package gtclassic.common.tile.datanet;
 
 import gtclassic.api.helpers.int3;
 import gtclassic.common.GTBlocks;
-import gtclassic.common.util.GTDataNetFitler;
+import gtclassic.common.util.GTDataBlockFilter;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.helpers.AabbUtil;
@@ -20,37 +20,44 @@ public abstract class GTTileDataExportBase extends TileEntityMachine implements 
 	private Processor task = null;
 	private AabbUtil.IBlockFilter filter;
 	public int blockCount;
+	public boolean hasComputer;
 
 	public GTTileDataExportBase(Block nodeBlock) {
 		super(0);
-		filter = new GTDataNetFitler(nodeBlock);
+		filter = new GTDataBlockFilter(nodeBlock);
 		this.blockCount = 0;
+		this.hasComputer = false;
 	}
 
 	@Override
 	public void update() {
-		if (task != null && world.isAreaLoaded(pos, 16)) {
-			task.update();
-			if (!task.isFinished()) {
-				return;
+		if (this.hasComputer) {
+			if (world.getTotalWorldTime() % 126 == 0) {
+				this.hasComputer = false;
 			}
-			this.blockCount = 0;
-			for (BlockPos pPos : task.getResults()) {
-				if (world.getBlockState(pPos) != GTBlocks.dataCable.getDefaultState()) {
-					this.blockCount++;
+			if (task != null && world.isAreaLoaded(pos, 16)) {
+				task.update();
+				if (!task.isFinished()) {
+					return;
 				}
-				if (this.blockCount > 256) {
-					break;
+				this.blockCount = 0;
+				for (BlockPos pPos : task.getResults()) {
+					if (world.getBlockState(pPos) != GTBlocks.dataCable.getDefaultState()) {
+						this.blockCount++;
+					}
+					if (this.blockCount > 256) {
+						break;
+					}
+					TileEntity worldTile = world.getTileEntity(pPos);
+					handleNodes(worldTile);
 				}
-				TileEntity worldTile = world.getTileEntity(pPos);
-				handleNodes(worldTile);
 			}
-		}
-		if (world.getTotalWorldTime() % 128 == 0) {
-			if (!world.isAreaLoaded(pos, 16))
-				return;
-			task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, false);
-			task.update();
+			if (world.getTotalWorldTime() % 128 == 0) {
+				if (!world.isAreaLoaded(pos, 16))
+					return;
+				task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, false);
+				task.update();
+			}
 		}
 	}
 

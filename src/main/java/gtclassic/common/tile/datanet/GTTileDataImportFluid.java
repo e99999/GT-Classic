@@ -2,7 +2,6 @@ package gtclassic.common.tile.datanet;
 
 import java.util.Map;
 
-import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.obj.ITankListener;
@@ -10,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -75,10 +73,7 @@ public class GTTileDataImportFluid extends GTTileDataImportBase implements ITank
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		data.put("Active: " + this.getActive(), false);
-		if (this.outputNodes.isEmpty()) {
-			data.put("No Endpoint Attached", false);
-			return;
-		}
-		data.put("Endpoints found: " + this.outputNodes.size(), false);
+		data.put("Has Computer: " + this.hasComputer, false);
+		data.put("Fluid Output Nodes: " + this.outputNodes.size(), false);
 	}
 }
