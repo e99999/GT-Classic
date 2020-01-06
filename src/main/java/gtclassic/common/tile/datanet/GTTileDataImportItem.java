@@ -3,7 +3,6 @@ package gtclassic.common.tile.datanet;
 import java.util.Map;
 
 import gtclassic.api.interfaces.IGTDebuggableTile;
-import gtclassic.common.GTBlocks;
 import ic2.core.RotationList;
 import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.management.AccessRule;
@@ -12,15 +11,14 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.util.math.MathUtil;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebuggableTile {
+public class GTTileDataImportItem extends GTTileDataImportBase implements IGTDebuggableTile {
 
-	public GTTilePipelineItem() {
+	public GTTileDataImportItem() {
 		super(4);
 	}
 
@@ -31,11 +29,6 @@ public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebugga
 		handler.registerDefaultSlotAccess(AccessRule.Both, array);
 		handler.registerDefaultSlotsForSide(RotationList.ALL, array);
 		handler.registerSlotType(SlotType.Storage, array);
-	}
-
-	@Override
-	public Block getBlockDrop() {
-		return GTBlocks.pipelineItem;
 	}
 
 	@Override
@@ -50,24 +43,23 @@ public class GTTilePipelineItem extends GTTilePipelineBase implements IGTDebugga
 	}
 
 	@Override
-	public boolean onPipelineImport(EnumFacing side) {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(this.pos.offset(side)), true);
+	public void onPipelineImport() {
+		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(this.pos.offset(this.getFacing())), true);
 		if (slave != null) {
 			IItemTransporter controller = TransporterManager.manager.getTransporter(this, true);
-			int limit = controller.getSizeInventory(side);
+			int limit = controller.getSizeInventory(this.getFacing());
 			for (int i = 0; i < limit; ++i) {
-				ItemStack stack = slave.removeItem(CommonFilters.Anything, side.getOpposite(), 1, false);
+				ItemStack stack = slave.removeItem(CommonFilters.Anything, this.getFacing(), 1, false);
 				if (stack.isEmpty()) {
 					break;
 				}
-				ItemStack added = controller.addItem(stack, side, true);
+				ItemStack added = controller.addItem(stack, this.getFacing(), true);
 				if (added.getCount() <= 0) {
 					break;
 				}
-				slave.removeItem(CommonFilters.Anything, side.getOpposite(), 1, true);
+				slave.removeItem(CommonFilters.Anything, this.getFacing().getOpposite(), 1, true);
 			}
 		}
-		return false;
 	}
 
 	@Override

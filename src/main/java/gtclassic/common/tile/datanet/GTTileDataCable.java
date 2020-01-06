@@ -1,6 +1,6 @@
 package gtclassic.common.tile.datanet;
 
-import gtclassic.common.GTBlocks;
+import gtclassic.api.interfaces.IGTDataNetBlock;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -69,9 +69,7 @@ public class GTTileDataCable extends TileEntityBlock {
 	}
 
 	public boolean canConnect(Block block, EnumFacing side) {
-		return (block == GTBlocks.pipelineFluid || block == GTBlocks.pipelineItem
-				|| block == GTBlocks.tilePipelineFluidEnd || block == GTBlocks.tilePipelineItemEnd)
-				|| block == GTBlocks.dataCable;
+		return block instanceof IGTDataNetBlock;
 	}
 
 	@Override

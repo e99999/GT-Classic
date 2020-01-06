@@ -25,8 +25,8 @@ import gtclassic.common.block.GTBlockStorage;
 import gtclassic.common.block.GTBlockSuperconductorCable;
 import gtclassic.common.block.GTBlockUUMAssembler;
 import gtclassic.common.block.datanet.GTBlockDataCable;
-import gtclassic.common.block.datanet.GTBlockPipeline;
-import gtclassic.common.block.datanet.GTBlockPipelineEnd;
+import gtclassic.common.block.datanet.GTBlockDataExporter;
+import gtclassic.common.block.datanet.GTBlockDataImporter;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
 import gtclassic.common.tile.GTTileBattery;
@@ -58,10 +58,10 @@ import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.tile.datanet.GTTileDataCable;
-import gtclassic.common.tile.datanet.GTTilePipelineFluid;
-import gtclassic.common.tile.datanet.GTTilePipelineFluidEnd;
-import gtclassic.common.tile.datanet.GTTilePipelineItem;
-import gtclassic.common.tile.datanet.GTTilePipelineItemEnd;
+import gtclassic.common.tile.datanet.GTTileDataExportFluid;
+import gtclassic.common.tile.datanet.GTTileDataExportItem;
+import gtclassic.common.tile.datanet.GTTileDataImportFluid;
+import gtclassic.common.tile.datanet.GTTileDataImportItem;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
@@ -140,10 +140,10 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileTranslocatorFluid = registerBlock(new GTBlockMachineDirectionable("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
 	public static final GTBlockDataCable dataCable = registerBlock(new GTBlockDataCable());
-	public static final GTBlockPipeline pipelineItem = registerBlock(new GTBlockPipeline("item", GTLang.ITEM_PIPELINE));
-	public static final GTBlockPipeline pipelineFluid = registerBlock(new GTBlockPipeline("fluid", GTLang.FLUID_PIPELINE));
-	public static final GTBlockPipelineEnd tilePipelineItemEnd = registerBlock(new GTBlockPipelineEnd("pipeenditem", GTLang.ITEM_PIPELINE_END, 2));
-	public static final GTBlockPipelineEnd tilePipelineFluidEnd = registerBlock(new GTBlockPipelineEnd("pipeendfluid", GTLang.FLUID_PIPELINE_END, 2));
+	public static final GTBlockDataImporter tileDataItemImporter = registerBlock(new GTBlockDataImporter("dataimportitem", GTLang.DATA_ITEM_IMPORTER));
+	public static final GTBlockDataImporter tileDataFluidImporter = registerBlock(new GTBlockDataImporter("dataimportfluid", GTLang.DATA_FLUID_IMPORTER));
+	public static final GTBlockDataExporter tileDataItemExporter = registerBlock(new GTBlockDataExporter("dataexportitem", GTLang.DATA_ITEM_EXPORTER, 2));
+	public static final GTBlockDataExporter tileDataFluidExporter = registerBlock(new GTBlockDataExporter("dataexportfluid", GTLang.DATA_FLUID_EXPORTER, 2));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable = registerBlock(new GTBlockSuperconductorCable(12, ""));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable2x = registerBlock(new GTBlockSuperconductorCable(6, "2"));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable4x = registerBlock(new GTBlockSuperconductorCable(4, "4"));
@@ -156,7 +156,8 @@ public class GTBlocks {
 			"quantumchest", "quantumtank", "playerdetector", "mobrepeller", "energytransmitter", "bedrockminer",
 			"fusionreactor", "lightningrod", "dragoneggenergysiphon", "magicenergyconverter", "magicenergyabsorber",
 			"idsu", "aesu", "lesu", "supercondensator", "cabinet", "drum", "worktable", "translocator",
-			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid", "pipeenditem", "pipeendfluid" };
+			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid", "dataimportitem", "dataimportfluid",
+			"dataexportitem", "dataexportfluid" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -224,10 +225,10 @@ public class GTBlocks {
 		registerUtil(GTTileSuperconductorCable2.class, "SuperconductorCable2");
 		registerUtil(GTTileSuperconductorCable4.class, "SuperconductorCable4");
 		registerUtil(GTTileDataCable.class, "DataCable");
-		registerUtil(GTTilePipelineItem.class, "ItemPipeline");
-		registerUtil(GTTilePipelineFluid.class, "FluidPipeline");
-		registerUtil(GTTilePipelineItemEnd.class, "ItemPipelineEnd");
-		registerUtil(GTTilePipelineFluidEnd.class, "FluidPipelineEnd");
+		registerUtil(GTTileDataImportItem.class, "ItemImporter");
+		registerUtil(GTTileDataImportFluid.class, "FluidImporter");
+		registerUtil(GTTileDataExportItem.class, "ItemExporter");
+		registerUtil(GTTileDataExportFluid.class, "FluidExporter");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {

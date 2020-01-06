@@ -209,10 +209,16 @@ public class GTRecipe {
 			/** Fluid Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Items.BUCKET);
 			/** Pipelines **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.pipelineItem, 4), "III", "PMP", "III", 'P', anyPiston, 'I', ingotRefinedIron, 'M', "machineBlockBasic");
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.pipelineFluid, 4), "III", "BMB", "III", 'B', Items.BUCKET, 'I', "ingotInvar", 'M', "machineBlockBasic");
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePipelineItemEnd, 1), "PIP", "IMI", "PIP", 'P', anyPiston, 'I', "ingotPlatinum", 'M', GTBlocks.pipelineItem);
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePipelineFluidEnd, 1), "BIB", "IMI", "BIB", 'B', Items.BUCKET, 'I', "ingotTungsten", 'M', GTBlocks.pipelineFluid);
+			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.pipelineItem, 4), "III", "PMP",
+			// "III", 'P', anyPiston, 'I', ingotRefinedIron, 'M', "machineBlockBasic");
+			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.pipelineFluid, 4), "III", "BMB",
+			// "III", 'B', Items.BUCKET, 'I', "ingotInvar", 'M', "machineBlockBasic");
+			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePipelineItemEnd, 1), "PIP",
+			// "IMI", "PIP", 'P', anyPiston, 'I', "ingotPlatinum", 'M',
+			// GTBlocks.pipelineItem);
+			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePipelineFluidEnd, 1), "BIB",
+			// "IMI", "BIB", 'B', Items.BUCKET, 'I', "ingotTungsten", 'M',
+			// GTBlocks.pipelineFluid);
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {

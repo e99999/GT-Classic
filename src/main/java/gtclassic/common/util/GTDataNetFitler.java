@@ -23,8 +23,8 @@ public class GTDataNetFitler implements AabbUtil.IBlockFilter {
 
 	@Override
 	public boolean isValidBlock(World world, BlockPos blockPos) {
-		Block block = world.getBlockState(blockPos).getBlock();
-		return block == this.block || block == dCable;
+		Block worldBlock = world.getBlockState(blockPos).getBlock();
+		return worldBlock == this.block || worldBlock == dCable;
 	}
 
 	@Override

@@ -4,10 +4,8 @@ import java.util.Map;
 
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTDebuggableTile;
-import gtclassic.common.GTBlocks;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.util.obj.ITankListener;
-import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -18,20 +16,15 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class GTTilePipelineFluid extends GTTilePipelineBase implements ITankListener, IGTDebuggableTile {
+public class GTTileDataImportFluid extends GTTileDataImportBase implements ITankListener, IGTDebuggableTile {
 
 	private IC2Tank tank;
 	public static final String NBT_TANK = "tank";
 
-	public GTTilePipelineFluid() {
+	public GTTileDataImportFluid() {
 		super(0);
 		this.tank = new IC2Tank(8000);
 		this.tank.addListener(this);
-	}
-
-	@Override
-	public Block getBlockDrop() {
-		return GTBlocks.pipelineFluid;
 	}
 
 	public void onTankChanged(IFluidTank tank) {
@@ -74,11 +67,12 @@ public class GTTilePipelineFluid extends GTTilePipelineBase implements ITankList
 	}
 
 	@Override
-	public boolean onPipelineImport(EnumFacing side) {
-		IFluidHandler start = GTHelperFluid.getFluidHandler(world, this.pos.offset(side), side.getOpposite());
+	public void onPipelineImport() {
+		IFluidHandler start = GTHelperFluid.getFluidHandler(world, this.pos.offset(this.getFacing()), this.getFacing().getOpposite());
 		IFluidHandler end = FluidUtil.getFluidHandler(world, this.pos, getFacing());
-		return start != null && end != null
-				&& FluidUtil.tryFluidTransfer(end, start, this.tank.getCapacity() / 2, true) != null;
+		if (start != null && end != null) {
+			FluidUtil.tryFluidTransfer(end, start, this.tank.getCapacity() / 2, true);
+		}
 	}
 
 	@Override
