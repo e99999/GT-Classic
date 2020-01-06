@@ -9,13 +9,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public abstract class GTTileDataImportBase extends TileEntityMachine implements ITickable {
+public abstract class GTTileDigitizerBase extends TileEntityMachine implements ITickable {
 
 	public HashSet<BlockPos> outputNodes = new HashSet<>();
 	public static final int TICK_RATE = 10;
 	public boolean hasComputer;
 
-	public GTTileDataImportBase(int slots) {
+	public GTTileDigitizerBase(int slots) {
 		super(slots);
 		this.hasComputer = false;
 	}

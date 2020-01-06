@@ -24,9 +24,9 @@ import gtclassic.common.block.GTBlockQuantumTank;
 import gtclassic.common.block.GTBlockStorage;
 import gtclassic.common.block.GTBlockSuperconductorCable;
 import gtclassic.common.block.GTBlockUUMAssembler;
+import gtclassic.common.block.datanet.GTBlockConstructor;
 import gtclassic.common.block.datanet.GTBlockDataCable;
-import gtclassic.common.block.datanet.GTBlockDataExporter;
-import gtclassic.common.block.datanet.GTBlockDataImporter;
+import gtclassic.common.block.datanet.GTBlockDigitizer;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
 import gtclassic.common.tile.GTTileBattery;
@@ -57,11 +57,11 @@ import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.tile.datanet.GTTileComputerCube;
+import gtclassic.common.tile.datanet.GTTileConstructorFluid;
+import gtclassic.common.tile.datanet.GTTileConstructorItem;
 import gtclassic.common.tile.datanet.GTTileDataCable;
-import gtclassic.common.tile.datanet.GTTileDataExportFluid;
-import gtclassic.common.tile.datanet.GTTileDataExportItem;
-import gtclassic.common.tile.datanet.GTTileDataImportFluid;
-import gtclassic.common.tile.datanet.GTTileDataImportItem;
+import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
+import gtclassic.common.tile.datanet.GTTileDigitizerItem;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
@@ -108,7 +108,7 @@ public class GTBlocks {
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 2, 250.0F));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
-	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
+	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE, 3));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
 	public static final GTBlockMachine tileDisassembler = registerBlock(new GTBlockMachine("disassembler", GTLang.DISASSEMBLER));
 	public static final GTBlockMachine tileBedrockMiner = registerBlock(new GTBlockMachine("bedrockminer", GTLang.BEDROCK_MINER, 5));
@@ -139,10 +139,10 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachineDirectionable tileTranslocatorFluid = registerBlock(new GTBlockMachineDirectionable("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
-	public static final GTBlockDataImporter tileDataItemImporter = registerBlock(new GTBlockDataImporter("dataimportitem", GTLang.DATA_ITEM_IMPORTER));
-	public static final GTBlockDataImporter tileDataFluidImporter = registerBlock(new GTBlockDataImporter("dataimportfluid", GTLang.DATA_FLUID_IMPORTER));
-	public static final GTBlockDataExporter tileDataItemExporter = registerBlock(new GTBlockDataExporter("dataexportitem", GTLang.DATA_ITEM_EXPORTER, 2));
-	public static final GTBlockDataExporter tileDataFluidExporter = registerBlock(new GTBlockDataExporter("dataexportfluid", GTLang.DATA_FLUID_EXPORTER, 2));
+	public static final GTBlockDigitizer tileDigitizerItem = registerBlock(new GTBlockDigitizer("itemdigitizer", GTLang.ITEM_DIGITIZER));
+	public static final GTBlockDigitizer tileDigitizerFluid = registerBlock(new GTBlockDigitizer("fluiddigitizer", GTLang.FLUID_DIGITIZER));
+	public static final GTBlockConstructor tileConstructorItem = registerBlock(new GTBlockConstructor("itemconstructor", GTLang.ITEM_CONSTRUCTOR, 2));
+	public static final GTBlockConstructor tileConstructorFluid = registerBlock(new GTBlockConstructor("fluidconstructor", GTLang.FLUID_CONTSTRUCTOR, 2));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable = registerBlock(new GTBlockSuperconductorCable(12, ""));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable2x = registerBlock(new GTBlockSuperconductorCable(6, "2"));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable4x = registerBlock(new GTBlockSuperconductorCable(4, "4"));
@@ -156,8 +156,8 @@ public class GTBlocks {
 			"quantumchest", "quantumtank", "playerdetector", "mobrepeller", "energytransmitter", "bedrockminer",
 			"fusionreactor", "lightningrod", "dragoneggenergysiphon", "magicenergyconverter", "magicenergyabsorber",
 			"idsu", "aesu", "lesu", "supercondensator", "cabinet", "drum", "worktable", "translocator",
-			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid", "dataimportitem", "dataimportfluid",
-			"dataexportitem", "dataexportfluid" };
+			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid", "itemdigitizer", "fluiddigitizer",
+			"itemconstructor", "fluidconstructor" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {
@@ -225,10 +225,10 @@ public class GTBlocks {
 		registerUtil(GTTileSuperconductorCable2.class, "SuperconductorCable2");
 		registerUtil(GTTileSuperconductorCable4.class, "SuperconductorCable4");
 		registerUtil(GTTileDataCable.class, "DataCable");
-		registerUtil(GTTileDataImportItem.class, "ItemImporter");
-		registerUtil(GTTileDataImportFluid.class, "FluidImporter");
-		registerUtil(GTTileDataExportItem.class, "ItemExporter");
-		registerUtil(GTTileDataExportFluid.class, "FluidExporter");
+		registerUtil(GTTileDigitizerItem.class, "ItemImporter");
+		registerUtil(GTTileDigitizerFluid.class, "FluidImporter");
+		registerUtil(GTTileConstructorItem.class, "ItemExporter");
+		registerUtil(GTTileConstructorFluid.class, "FluidExporter");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {

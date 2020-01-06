@@ -44,8 +44,8 @@ public class GTIcons {
 			addCustomTexture("industrialcentrifuge", 0, 9, location("centrifuge_front"));
 			addCustomTexture("industrialcentrifuge", 0, 10, location("centrifuge_left"));
 			addCustomTexture("industrialcentrifuge", 0, 11, location("centrifuge_right"));
-			addCustomTexture("dataimportitem", 0, 9, location("importitem"));
-			addCustomTexture("dataimportfluid", 0, 9, location("importfluid"));
+			addCustomTexture("itemdigitizer", 0, 9, location("importitem"));
+			addCustomTexture("fluiddigitizer", 0, 9, location("importfluid"));
 		}
 	}
 

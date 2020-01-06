@@ -20,7 +20,7 @@ public class GTDataAllFilter implements AabbUtil.IBlockFilter {
 	@Override
 	public boolean isValidBlock(World world, BlockPos blockPos) {
 		Block worldBlock = world.getBlockState(blockPos).getBlock();
-		return worldBlock instanceof IGTDataNetBlock;
+		return worldBlock instanceof IGTDataNetBlock || world.getTileEntity(blockPos) instanceof IGTDataNetBlock;
 	}
 
 	@Override

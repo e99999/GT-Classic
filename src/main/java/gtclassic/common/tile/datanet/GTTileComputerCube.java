@@ -91,7 +91,10 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	@Override
 	public void update() {
-		this.setActive(this.energy > 0);
+		this.setActive(this.isOnlyComputer && this.energy > 0);
+		if (world.getTotalWorldTime() % 126 == 0) {
+			this.isOnlyComputer = true;
+		}
 		if (this.nodeCount > 0) {
 			this.useEnergy(this.nodeCount);
 		}
@@ -110,21 +113,21 @@ public class GTTileComputerCube extends TileEntityElecMachine
 						break;
 					}
 					TileEntity worldTile = world.getTileEntity(pPos);
-					if (worldTile instanceof GTTileComputerCube) {
+					if (worldTile != this && worldTile instanceof GTTileComputerCube) {
 						((GTTileComputerCube) worldTile).isOnlyComputer = false;
 					}
-					if (worldTile instanceof GTTileDataImportBase) {
-						((GTTileDataImportBase) worldTile).hasComputer = true;
+					if (worldTile instanceof GTTileDigitizerBase) {
+						((GTTileDigitizerBase) worldTile).hasComputer = true;
 					}
-					if (worldTile instanceof GTTileDataExportBase) {
-						((GTTileDataExportBase) worldTile).hasComputer = true;
+					if (worldTile instanceof GTTileConstructorBase) {
+						((GTTileConstructorBase) worldTile).hasComputer = true;
 					}
 				}
 			}
 			if (world.getTotalWorldTime() % 128 == 0) {
 				if (!world.isAreaLoaded(pos, 16))
 					return;
-				task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, false);
+				task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, true);
 				task.update();
 			}
 		}

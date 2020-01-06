@@ -15,14 +15,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public abstract class GTTileDataExportBase extends TileEntityMachine implements ITickable {
+public abstract class GTTileConstructorBase extends TileEntityMachine implements ITickable {
 
 	private Processor task = null;
 	private AabbUtil.IBlockFilter filter;
 	public int blockCount;
 	public boolean hasComputer;
 
-	public GTTileDataExportBase(Block nodeBlock) {
+	public GTTileConstructorBase(Block nodeBlock) {
 		super(0);
 		filter = new GTDataBlockFilter(nodeBlock);
 		this.blockCount = 0;

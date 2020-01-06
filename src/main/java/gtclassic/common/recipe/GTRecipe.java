@@ -208,17 +208,11 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Ic2Items.basicFluidImportUpgrade);
 			/** Fluid Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Items.BUCKET);
-			/** Pipelines **/
-			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.pipelineItem, 4), "III", "PMP",
-			// "III", 'P', anyPiston, 'I', ingotRefinedIron, 'M', "machineBlockBasic");
-			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.pipelineFluid, 4), "III", "BMB",
-			// "III", 'B', Items.BUCKET, 'I', "ingotInvar", 'M', "machineBlockBasic");
-			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePipelineItemEnd, 1), "PIP",
-			// "IMI", "PIP", 'P', anyPiston, 'I', "ingotPlatinum", 'M',
-			// GTBlocks.pipelineItem);
-			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePipelineFluidEnd, 1), "BIB",
-			// "IMI", "BIB", 'B', Items.BUCKET, 'I', "ingotTungsten", 'M',
-			// GTBlocks.pipelineFluid);
+			/** Digital Stuff **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerItem, 1), "CPC", "PMP", "CPC", 'P', anyPiston, 'C', "circuitData", 'M', "machineBlockAdvanced");
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerFluid, 1), "CPC", "PMP", "CPC", 'P', Items.BUCKET, 'C', "circuitData", 'M', "machineBlockAdvanced");
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileConstructorItem, 1), "PIP", "CMC", "PIP", 'P', anyPiston, 'C', "circuitData", 'M', "machineBlockAdvanced", 'I', "ingotPlatinum");
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileConstructorFluid, 1), "PIP", "CMC", "PIP", 'P', Items.BUCKET, 'C', "circuitData", 'M', "machineBlockAdvanced", 'I', "ingotTungsten");
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {

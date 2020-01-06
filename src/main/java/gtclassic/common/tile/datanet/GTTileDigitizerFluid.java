@@ -8,9 +8,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class GTTileDataImportFluid extends GTTileDataImportBase implements IGTDebuggableTile {
+public class GTTileDigitizerFluid extends GTTileDigitizerBase implements IGTDebuggableTile {
 
-	public GTTileDataImportFluid() {
+	public GTTileDigitizerFluid() {
 		super(0);
 	}
 

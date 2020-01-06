@@ -35,10 +35,10 @@ public class GTLang {
 	public static final LocaleComp WORKTABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.worktable");
 	public static final LocaleComp CABINET = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.cabinet");
 	public static final LocaleComp DRUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.drum");
-	public static final LocaleComp DATA_ITEM_IMPORTER = new LocaleBlockComp("tile.gtclassic.dataimportitem");
-	public static final LocaleComp DATA_FLUID_IMPORTER = new LocaleBlockComp("tile.gtclassic.dataimportfluid");
-	public static final LocaleComp DATA_ITEM_EXPORTER = new LocaleBlockComp("tile.gtclassic.dataexportitem");
-	public static final LocaleComp DATA_FLUID_EXPORTER = new LocaleBlockComp("tile.gtclassic.dataexportfluid");
+	public static final LocaleComp ITEM_DIGITIZER = new LocaleBlockComp("tile.gtclassic.itemdigitizer");
+	public static final LocaleComp FLUID_DIGITIZER = new LocaleBlockComp("tile.gtclassic.fluiddigitizer");
+	public static final LocaleComp ITEM_CONSTRUCTOR = new LocaleBlockComp("tile.gtclassic.itemconstructor");
+	public static final LocaleComp FLUID_CONTSTRUCTOR = new LocaleBlockComp("tile.gtclassic.itemconstructor");
 	public static final LocaleComp BATTERYBLOCK_LV = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.batteryblocklv");
 	public static final LocaleComp TRANSLOCATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocator");
 	public static final LocaleComp TRANSLOCATOR_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocatorfluid");

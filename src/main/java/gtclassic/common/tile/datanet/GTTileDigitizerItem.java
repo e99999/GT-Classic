@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-public class GTTileDataImportItem extends GTTileDataImportBase implements IGTDebuggableTile {
+public class GTTileDigitizerItem extends GTTileDigitizerBase implements IGTDebuggableTile {
 
-	public GTTileDataImportItem() {
+	public GTTileDigitizerItem() {
 		super(0);
 	}
 
@@ -27,7 +27,7 @@ public class GTTileDataImportItem extends GTTileDataImportBase implements IGTDeb
 		if (controller == null) {
 			return false;
 		}
-		//boolean found = false;
+		// boolean found = false;
 		int limit = controller.getSizeInventory(getFacing());
 		for (int i = 0; i < limit; ++i) {
 			ItemStack stack = slave.removeItem(CommonFilters.Anything, this.getFacing().getOpposite(), 64, false);
@@ -36,7 +36,7 @@ public class GTTileDataImportItem extends GTTileDataImportBase implements IGTDeb
 			}
 			ItemStack added = controller.addItem(stack, EnumFacing.UP, true);
 			if (added.getCount() <= 0) {
-				//found = true;
+				// found = true;
 				break;
 			}
 			slave.removeItem(new BasicItemFilter(added), this.getFacing().getOpposite(), added.getCount(), true);

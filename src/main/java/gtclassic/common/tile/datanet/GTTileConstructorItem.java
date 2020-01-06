@@ -6,16 +6,16 @@ import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTBlocks;
 import net.minecraft.tileentity.TileEntity;
 
-public class GTTileDataExportItem extends GTTileDataExportBase implements IGTDebuggableTile {
+public class GTTileConstructorItem extends GTTileConstructorBase implements IGTDebuggableTile {
 
-	public GTTileDataExportItem() {
-		super(GTBlocks.tileDataItemImporter);
+	public GTTileConstructorItem() {
+		super(GTBlocks.tileDigitizerItem);
 	}
 
 	@Override
 	public void handleNodes(TileEntity worldTile) {
-		if (worldTile instanceof GTTileDataImportItem && ((GTTileDataImportItem) worldTile).outputNodes != null) {
-			((GTTileDataImportItem) worldTile).outputNodes.add(this.getExportTilePos());
+		if (worldTile instanceof GTTileDigitizerItem && ((GTTileDigitizerItem) worldTile).outputNodes != null) {
+			((GTTileDigitizerItem) worldTile).outputNodes.add(this.getExportTilePos());
 		}
 	}
 
