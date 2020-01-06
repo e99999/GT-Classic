@@ -34,7 +34,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	private AabbUtil.IBlockFilter filter = new GTDataAllFilter();
 
 	public GTTileComputerCube() {
-		super(0, 128);
+		super(0, 512);
 		this.maxEnergy = 10000;
 		this.nodeCount = 0;
 	}
@@ -91,6 +91,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	@Override
 	public void update() {
+		this.setActive(this.energy > 0);
 		if (this.nodeCount > 0) {
 			this.useEnergy(this.nodeCount);
 		}

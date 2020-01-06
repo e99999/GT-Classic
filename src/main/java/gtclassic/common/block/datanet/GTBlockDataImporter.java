@@ -24,7 +24,7 @@ public class GTBlockDataImporter extends GTBlockMachineDirectionable implements 
 		}
 		return new GTTileDataImportFluid();
 	}
-	
+
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		if (thisIs(stack, GTBlocks.tileDataFluidImporter) || thisIs(stack, GTBlocks.tileDataItemImporter)) {

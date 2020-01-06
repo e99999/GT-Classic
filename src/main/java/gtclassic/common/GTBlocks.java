@@ -139,7 +139,6 @@ public class GTBlocks {
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachineDirectionable tileTranslocatorFluid = registerBlock(new GTBlockMachineDirectionable("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
 	public static final GTBlockMachineDirectionable tileBufferFluid = registerBlock(new GTBlockMachineDirectionable("bufferfluid", GTLang.BUFFER_FLUID, 2));
-	public static final GTBlockDataCable dataCable = registerBlock(new GTBlockDataCable());
 	public static final GTBlockDataImporter tileDataItemImporter = registerBlock(new GTBlockDataImporter("dataimportitem", GTLang.DATA_ITEM_IMPORTER));
 	public static final GTBlockDataImporter tileDataFluidImporter = registerBlock(new GTBlockDataImporter("dataimportfluid", GTLang.DATA_FLUID_IMPORTER));
 	public static final GTBlockDataExporter tileDataItemExporter = registerBlock(new GTBlockDataExporter("dataexportitem", GTLang.DATA_ITEM_EXPORTER, 2));
@@ -147,6 +146,7 @@ public class GTBlocks {
 	public static final GTBlockSuperconductorCable tileSuperconductorCable = registerBlock(new GTBlockSuperconductorCable(12, ""));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable2x = registerBlock(new GTBlockSuperconductorCable(6, "2"));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable4x = registerBlock(new GTBlockSuperconductorCable(4, "4"));
+	public static final GTBlockDataCable dataCable = registerBlock(new GTBlockDataCable());
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid());
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());

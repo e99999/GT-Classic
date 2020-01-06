@@ -69,7 +69,8 @@ public class GTTileDataCable extends TileEntityBlock {
 	}
 
 	public boolean canConnect(BlockPos worldPos) {
-		return this.getWorld().getBlockState(worldPos).getBlock() instanceof IGTDataNetBlock || this.getWorld().getTileEntity(worldPos) instanceof IGTDataNetBlock;
+		return this.getWorld().getBlockState(worldPos).getBlock() instanceof IGTDataNetBlock
+				|| this.getWorld().getTileEntity(worldPos) instanceof IGTDataNetBlock;
 	}
 
 	@Override

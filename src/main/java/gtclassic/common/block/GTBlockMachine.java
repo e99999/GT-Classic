@@ -200,9 +200,10 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		if (thisIs(stack, GTBlocks.tileCentrifuge) || thisIs(stack, GTBlocks.tileFabricator)
-				|| thisIs(stack, GTBlocks.tileDisassembler) || thisIs(stack, GTBlocks.tileDragonEggEnergySiphon)
-				|| thisIs(stack, GTBlocks.tileMagicEnergyAbsorber) || thisIs(stack, GTBlocks.tileMagicEnergyConverter)
-				|| thisIs(stack, GTBlocks.tileFusionReactor) || thisIs(stack, GTBlocks.tileBedrockMiner)) {
+				|| thisIs(stack, GTBlocks.tileComputer) || thisIs(stack, GTBlocks.tileDisassembler)
+				|| thisIs(stack, GTBlocks.tileDragonEggEnergySiphon) || thisIs(stack, GTBlocks.tileMagicEnergyAbsorber)
+				|| thisIs(stack, GTBlocks.tileMagicEnergyConverter) || thisIs(stack, GTBlocks.tileFusionReactor)
+				|| thisIs(stack, GTBlocks.tileBedrockMiner)) {
 			return this.getDefaultBlockState().withProperty(active, true);
 		}
 		return this.getStateFromMeta(stack.getMetadata());

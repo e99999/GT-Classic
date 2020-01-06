@@ -55,12 +55,12 @@ public abstract class GTTileDataImportBase extends TileEntityMachine implements 
 			if (this.outputNodes.isEmpty() && !this.hasComputer) {
 				return;
 			}
-			//if import pos not loaded return;
+			// if import pos not loaded return;
 			for (BlockPos nodePos : outputNodes) {
 				if (!world.isBlockLoaded(nodePos) || nodePos == this.pos) {
 					continue;
 				}
-				if (onPipelineTick(nodePos)) {
+				if (onDataNetTick(nodePos)) {
 					break;
 				}
 			}
@@ -71,5 +71,5 @@ public abstract class GTTileDataImportBase extends TileEntityMachine implements 
 		return this.world.isBlockPowered(this.getPos());
 	}
 
-	public abstract boolean onPipelineTick(BlockPos nodePos);
+	public abstract boolean onDataNetTick(BlockPos nodePos);
 }
