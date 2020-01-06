@@ -1,13 +1,5 @@
 package gtclassic.common.tile;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Predicate;
-
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.material.GTMaterial;
@@ -63,6 +55,14 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
+
 public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener, IClickable {
 
 	public static final int SLOT_FUEL = 9;
@@ -110,7 +110,8 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 	@Override
 	public void onTankChanged(IFluidTank tank) {
 		this.getNetwork().updateTileGuiField(this, NBT_TANK);
-		this.inventory.set(SLOT_TANK, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
+		this.setStackInSlot(SLOT_TANK, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
+		shouldCheckRecipe = true;
 	}
 
 	@Override
@@ -136,42 +137,53 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		NBTTagCompound nbt = recipe.getOutputs().getMetadata();
 		boolean shiftContainers = nbt != null && nbt.getBoolean(MOVE_CONTAINER_TAG);
 		boolean fluidExtracted = false;
-		for (IRecipeInput key : recipe.getInputs()) {
-			int count = key.getAmount();
+		List<ItemStack> inputs = getInputs();
+		List<IRecipeInput> recipeKeys = new LinkedList<IRecipeInput>(recipe.getInputs());
+		for (Iterator<IRecipeInput> keyIter = recipeKeys.iterator(); keyIter.hasNext();) {
+			IRecipeInput key = keyIter.next();
 			if (key instanceof RecipeInputFluid && !fluidExtracted) {
 				tank.drainInternal(((RecipeInputFluid) key).fluid, true);
 				fluidExtracted = true;
+				keyIter.remove();
 				continue;
 			}
-			ItemStack input = inventory.get(1);
-			if (key.matches(input)) {
-				if (input.getCount() >= count) {
+			int count = key.getAmount();
+			for (Iterator<ItemStack> inputIter = inputs.iterator(); inputIter.hasNext();) {
+				ItemStack input = inputIter.next();
+				if (key.matches(input)) {
+					if (input.getCount() >= count) {
+						if (input.getItem().hasContainerItem(input)) {
+							if (!shiftContainers) {
+								continue;
+							}
+							ItemStack container = input.getItem().getContainerItem(input);
+							if (!container.isEmpty()) {
+								container.setCount(count);
+								outputs.add(new MultiSlotOutput(container, getOutputSlots()));
+							}
+						}
+						input.shrink(count);
+						count = 0;
+						if (input.isEmpty()) {
+							inputIter.remove();
+						}
+						keyIter.remove();
+						break;
+					}
 					if (input.getItem().hasContainerItem(input)) {
 						if (!shiftContainers) {
 							continue;
 						}
 						ItemStack container = input.getItem().getContainerItem(input);
 						if (!container.isEmpty()) {
-							container.setCount(count);
+							container.setCount(input.getCount());
 							outputs.add(new MultiSlotOutput(container, getOutputSlots()));
 						}
 					}
-					input.shrink(count);
-					count = 0;
-					continue;
+					count -= input.getCount();
+					input.setCount(0);
+					inputIter.remove();
 				}
-				if (input.getItem().hasContainerItem(input)) {
-					if (!shiftContainers) {
-						continue;
-					}
-					ItemStack container = input.getItem().getContainerItem(input);
-					if (!container.isEmpty()) {
-						container.setCount(input.getCount());
-						outputs.add(new MultiSlotOutput(container, getOutputSlots()));
-					}
-				}
-				count -= input.getCount();
-				input.setCount(0);
 			}
 		}
 		addToInventory();
@@ -195,7 +207,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		List<ItemStack> inputs = getInputs();
 		FluidStack fluid = tank.getFluid();
 		if (lastRecipe != null) {
-			lastRecipe = checkRecipe(lastRecipe, fluid, inputs) ? lastRecipe : null;
+			lastRecipe = checkRecipe(lastRecipe, fluid, StackUtil.copyList(inputs)) ? lastRecipe : null;
 			if (lastRecipe == null) {
 				progress = 0;
 			}
@@ -206,7 +218,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 
 				@Override
 				public boolean test(MultiRecipe t) {
-					return checkRecipe(t, fluid, inputs);
+					return checkRecipe(t, fluid, StackUtil.copyList(inputs));
 				}
 			});
 		}
@@ -252,8 +264,6 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 					if (inputFluid != null && inputFluid.containsFluid(((RecipeInputFluid) key).fluid)) {
 						keyIter.remove();
 					}
-				} else {
-					return false;
 				}
 			}
 			int toFind = key.getAmount();
@@ -343,7 +353,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addCustomRecipe(GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 2), totalEu(5000), GTMaterialGen.getIc2(Ic2Items.airCell, 2), GTMaterialGen.get(tube, 1));
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.airCell, 16)),
 				tubes(16) }, totalEu(1000000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTMaterialGen.getTube(GTMaterial.Nitrogen, 9), GTMaterialGen.getTube(GTMaterial.Oxygen, 4), GTMaterialGen.getTube(GTMaterial.Helium, 1), GTMaterialGen.getTube(GTMaterial.Neon, 1), GTMaterialGen.getTube(GTMaterial.Argon, 1));
-		addRecipe(GTMaterialGen.getFluidStack("water", 6000), 0, totalEu(9000), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
+		addRecipe(GTMaterialGen.getFluidStack("water", 6000), 6, totalEu(9000), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
 		addRecipe(GTMaterialGen.getWater(6), 0, totalEu(9000), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.waterCell, 6), 6, totalEu(9000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 6), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
 		addRecipe("dustCoal", 4, 0, totalEu(7500), GTMaterialGen.getDust(GTMaterial.Carbon, 8));
