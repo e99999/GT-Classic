@@ -3,25 +3,19 @@ package gtclassic.common.tile.datanet;
 import java.util.Map;
 
 import gtclassic.api.interfaces.IGTDebuggableTile;
-import gtclassic.common.GTBlocks;
-import net.minecraft.tileentity.TileEntity;
 
-public class GTTileConstructorItem extends GTTileConstructorBase implements IGTDebuggableTile {
+public class GTTileConstructorItem extends GTTileOutputNodeBase implements IGTDebuggableTile {
 
 	public GTTileConstructorItem() {
-		super(0, GTBlocks.tileDigitizerItem); // MAKE NODE TYPE
-	}
-
-	@Override
-	public void handleNodes(TileEntity worldTile) {
-		if (worldTile instanceof GTTileDigitizerItem && ((GTTileDigitizerItem) worldTile).outputNodes != null) {
-			((GTTileDigitizerItem) worldTile).outputNodes.add(this.getExportTilePos());
-		}
+		super(0);
 	}
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		data.put("Has Computer: " + this.hasComputer, false);
-		data.put("Connected Item Input Nodes: " + this.blockCount, false);
+		if (this.computer != null && this.computer.dataNet != null) {
+			data.put("Connected to network", false);
+		} else {
+			data.put("No network found", false);
+		}
 	}
 }

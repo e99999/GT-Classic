@@ -9,25 +9,25 @@ import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 
-public class GTTileDigitizerItem extends GTTileDigitizerBase implements IGTDebuggableTile {
+public class GTTileDigitizerItem extends GTTileInputNodeBase implements IGTDebuggableTile {
 
 	public GTTileDigitizerItem() {
 		super(0);
 	}
 
 	@Override
-	public boolean onDataNetTick(BlockPos nodePos) {
+	public boolean onDataNetTick(GTTileOutputNodeBase node) {
 		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(this.pos.offset(this.getFacing())), true);
 		if (slave == null) {
 			return false;
 		}
-		IItemTransporter controller = TransporterManager.manager.getTransporter(world.getTileEntity(nodePos), true);
+		IItemTransporter controller = TransporterManager.manager.getTransporter(world.getTileEntity(node.getPos().offset(node.getFacing())), true);
 		if (controller == null) {
 			return false;
 		}
 		int limit = controller.getSizeInventory(getFacing());
+		boolean found = false;
 		for (int i = 0; i < limit; ++i) {
 			ItemStack stack = slave.removeItem(CommonFilters.Anything, this.getFacing().getOpposite(), 64, false);
 			if (stack.isEmpty()) {
@@ -38,14 +38,17 @@ public class GTTileDigitizerItem extends GTTileDigitizerBase implements IGTDebug
 				break;
 			}
 			slave.removeItem(new BasicItemFilter(added), this.getFacing().getOpposite(), added.getCount(), true);
+			found = true;
 		}
-		return false;
+		return found;
 	}
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		data.put("Active: " + this.getActive(), false);
-		data.put("Has Computer: " + this.hasComputer, false);
-		data.put("Item output Nodes Found: " + this.outputNodes.size(), false);
+		if (this.computer != null && this.computer.dataNet != null) {
+			data.put("Connected to network", false);
+		} else {
+			data.put("No network found", false);
+		}
 	}
 }

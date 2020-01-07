@@ -1,7 +1,9 @@
 package gtclassic.common.tile.datanet;
 
+import java.util.HashSet;
 import java.util.Map;
 
+import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTDataNetBlock;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTBlocks;
@@ -29,20 +31,36 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTTileComputerCube extends TileEntityElecMachine
 		implements IHasGui, IGTDebuggableTile, ITickable, IGTDataNetBlock {
 
-	int nodeCount;
 	boolean isOnlyComputer = true;
 	private Processor task = null;
 	private AabbUtil.IBlockFilter filter = new GTBlockFilterDataAll();
+	public HashSet<BlockPos> dataNet = new HashSet<>();
 
 	public GTTileComputerCube() {
 		super(0, 512);
 		this.maxEnergy = 10000;
-		this.nodeCount = 0;
+		this.onUnloaded();
 	}
 
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
+	}
+
+	@Override
+	public void onUnloaded() {
+		if (this.isSimulating() && this.hasNodes()) {
+			for (BlockPos pPos : dataNet) {
+				TileEntity worldTile = world.getTileEntity(pPos);
+				if (worldTile instanceof GTTileInputNodeBase) {
+					((GTTileInputNodeBase) worldTile).computer = null;
+				}
+				if (worldTile instanceof GTTileOutputNodeBase) {
+					((GTTileOutputNodeBase) worldTile).computer = null;
+				}
+			}
+		}
+		super.onUnloaded();
 	}
 
 	@Override
@@ -92,12 +110,13 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	@Override
 	public void update() {
-		this.setActive(this.isOnlyComputer && this.energy > this.nodeCount);
+		this.setActive(this.isOnlyComputer && this.energy > this.getNodeCount());
 		if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
 			this.isOnlyComputer = true;
+			this.dataNet.clear();
 		}
-		if (this.nodeCount > 0) {
-			this.useEnergy(this.nodeCount);
+		if (this.getNodeCount() > 0) {
+			this.useEnergy(this.getNodeCount());
 		}
 		if (this.isOnlyComputer) {
 			if (task != null && world.isAreaLoaded(pos, 16)) {
@@ -105,24 +124,29 @@ public class GTTileComputerCube extends TileEntityElecMachine
 				if (!task.isFinished()) {
 					return;
 				}
-				this.nodeCount = 0;
-				for (BlockPos pPos : task.getResults()) {
-					if (world.getBlockState(pPos) != GTBlocks.dataCable.getDefaultState()) {
-						this.nodeCount++;
+				// getting all objects but skipping cables as nodes
+				for (BlockPos tPos : task.getResults()) {
+					if (!world.isBlockLoaded(tPos)) {
+						continue;
 					}
-					if (this.nodeCount > 256) {
-						break;
+					if (world.getBlockState(tPos).getBlock() != GTBlocks.dataCable) {
+						this.dataNet.add(tPos);
 					}
-					TileEntity worldTile = world.getTileEntity(pPos);
-					if (worldTile != this && worldTile instanceof GTTileComputerCube) {
-						((GTTileComputerCube) worldTile).isOnlyComputer = false;
-					}
-					if (this.energy > 0) {
-						if (worldTile instanceof GTTileDigitizerBase) {
-							((GTTileDigitizerBase) worldTile).hasComputer = true;
+				}
+				// checking for other computers, parsing the network to tiles
+				if (!dataNet.isEmpty()) {
+					for (BlockPos pPos : dataNet) {
+						TileEntity worldTile = world.getTileEntity(pPos);
+						if (worldTile != this && worldTile instanceof GTTileComputerCube) {
+							((GTTileComputerCube) worldTile).isOnlyComputer = false;
 						}
-						if (worldTile instanceof GTTileConstructorBase) {
-							((GTTileConstructorBase) worldTile).hasComputer = true;
+						if (this.energy > 0) {
+							if (worldTile instanceof GTTileInputNodeBase) {
+								((GTTileInputNodeBase) worldTile).computer = this;
+							}
+							if (worldTile instanceof GTTileOutputNodeBase) {
+								((GTTileOutputNodeBase) worldTile).computer = this;
+							}
 						}
 					}
 				}
@@ -136,9 +160,16 @@ public class GTTileComputerCube extends TileEntityElecMachine
 		}
 	}
 
+	public boolean hasNodes() {
+		return this.dataNet != null && !this.dataNet.isEmpty();
+	}
+
+	public int getNodeCount() {
+		return this.hasNodes() ? this.dataNet.size() : 0;
+	}
+
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		data.put("Connected nodes: " + this.nodeCount, false);
-		data.put("Power Drain: " + this.nodeCount + " EU", false);
+		data.put("Nodes in network: " + this.getNodeCount(), false);
 	}
 }
