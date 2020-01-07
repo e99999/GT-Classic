@@ -6,7 +6,8 @@ import gtclassic.api.interfaces.IGTDataNetBlock;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.container.GTContainerComputerCube;
-import gtclassic.common.util.GTDataAllFilter;
+import gtclassic.common.util.datanet.GTBlockFilterDataAll;
+import gtclassic.common.util.datanet.GTDataNet;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -31,7 +32,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	int nodeCount;
 	boolean isOnlyComputer = true;
 	private Processor task = null;
-	private AabbUtil.IBlockFilter filter = new GTDataAllFilter();
+	private AabbUtil.IBlockFilter filter = new GTBlockFilterDataAll();
 
 	public GTTileComputerCube() {
 		super(0, 512);
@@ -91,14 +92,14 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	@Override
 	public void update() {
-		this.setActive(this.isOnlyComputer && this.energy > 0);
-		if (world.getTotalWorldTime() % 126 == 0) {
+		this.setActive(this.isOnlyComputer && this.energy > this.nodeCount);
+		if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
 			this.isOnlyComputer = true;
 		}
 		if (this.nodeCount > 0) {
 			this.useEnergy(this.nodeCount);
 		}
-		if (this.isOnlyComputer && this.energy > 0) {
+		if (this.isOnlyComputer) {
 			if (task != null && world.isAreaLoaded(pos, 16)) {
 				task.update();
 				if (!task.isFinished()) {
@@ -116,15 +117,17 @@ public class GTTileComputerCube extends TileEntityElecMachine
 					if (worldTile != this && worldTile instanceof GTTileComputerCube) {
 						((GTTileComputerCube) worldTile).isOnlyComputer = false;
 					}
-					if (worldTile instanceof GTTileDigitizerBase) {
-						((GTTileDigitizerBase) worldTile).hasComputer = true;
-					}
-					if (worldTile instanceof GTTileConstructorBase) {
-						((GTTileConstructorBase) worldTile).hasComputer = true;
+					if (this.energy > 0) {
+						if (worldTile instanceof GTTileDigitizerBase) {
+							((GTTileDigitizerBase) worldTile).hasComputer = true;
+						}
+						if (worldTile instanceof GTTileConstructorBase) {
+							((GTTileConstructorBase) worldTile).hasComputer = true;
+						}
 					}
 				}
 			}
-			if (world.getTotalWorldTime() % 128 == 0) {
+			if (world.getTotalWorldTime() % GTDataNet.SEARCH_RATE == 0) {
 				if (!world.isAreaLoaded(pos, 16))
 					return;
 				task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, true);

@@ -27,7 +27,6 @@ public class GTTileDigitizerItem extends GTTileDigitizerBase implements IGTDebug
 		if (controller == null) {
 			return false;
 		}
-		// boolean found = false;
 		int limit = controller.getSizeInventory(getFacing());
 		for (int i = 0; i < limit; ++i) {
 			ItemStack stack = slave.removeItem(CommonFilters.Anything, this.getFacing().getOpposite(), 64, false);
@@ -36,7 +35,6 @@ public class GTTileDigitizerItem extends GTTileDigitizerBase implements IGTDebug
 			}
 			ItemStack added = controller.addItem(stack, EnumFacing.UP, true);
 			if (added.getCount() <= 0) {
-				// found = true;
 				break;
 			}
 			slave.removeItem(new BasicItemFilter(added), this.getFacing().getOpposite(), added.getCount(), true);

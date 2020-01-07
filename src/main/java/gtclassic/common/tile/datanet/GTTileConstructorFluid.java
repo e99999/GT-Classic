@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 public class GTTileConstructorFluid extends GTTileConstructorBase implements IGTDebuggableTile {
 
 	public GTTileConstructorFluid() {
-		super(GTBlocks.tileDigitizerFluid);
+		super(0, GTBlocks.tileDigitizerFluid); // MAKE NODE TYPE
 	}
 
 	@Override

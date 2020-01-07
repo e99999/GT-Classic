@@ -1,30 +1,27 @@
-package gtclassic.common.util;
+package gtclassic.common.util.datanet;
 
-import gtclassic.common.GTBlocks;
+import gtclassic.api.interfaces.IGTDataNetBlock;
 import ic2.core.util.helpers.AabbUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GTDataBlockFilter implements AabbUtil.IBlockFilter {
+public class GTBlockFilterDataAll implements AabbUtil.IBlockFilter {
 
-	Block block;
-	Block dCable = GTBlocks.dataCable;
-
-	public GTDataBlockFilter(Block block) {
-		this.block = block;
+	/** This filter will loop over ANY valid data net block **/
+	public GTBlockFilterDataAll() {
 	}
 
 	@Override
 	public boolean isValidBlock(IBlockState state) {
-		return state.equals(this.block.getDefaultState()) || state.equals(this.dCable.getDefaultState());
+		return state.getBlock() instanceof IGTDataNetBlock;
 	}
 
 	@Override
 	public boolean isValidBlock(World world, BlockPos blockPos) {
 		Block worldBlock = world.getBlockState(blockPos).getBlock();
-		return worldBlock == this.block || worldBlock == dCable;
+		return worldBlock instanceof IGTDataNetBlock || world.getTileEntity(blockPos) instanceof IGTDataNetBlock;
 	}
 
 	@Override

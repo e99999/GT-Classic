@@ -209,6 +209,7 @@ public class GTRecipe {
 			/** Fluid Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Items.BUCKET);
 			/** Digital Stuff **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.dataCable, 6), "RRR", "CIC", "RRR", 'I', "ingotSilicon", 'C', "circuitData", 'R', "itemRubber");
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerItem, 1), "CPC", "PMP", "CPC", 'P', anyPiston, 'C', "circuitData", 'M', "machineBlockAdvanced");
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerFluid, 1), "CPC", "PMP", "CPC", 'P', Items.BUCKET, 'C', "circuitData", 'M', "machineBlockAdvanced");
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileConstructorItem, 1), "PIP", "CMC", "PIP", 'P', anyPiston, 'C', "circuitData", 'M', "machineBlockAdvanced", 'I', "ingotPlatinum");
@@ -223,7 +224,7 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), "I I", "ICI", " I ", 'I', ingotAny, 'C', "chestWood");
 		}
 		/** Tungsten Mining Pipe **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.miningPipe, 8), "T T", "T T", "TIT", 'T', "ingotTungsten", 'I', ingotRefinedIron);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.miningPipe, 8), "T T", "T T", "TIT", 'T', "ingotTungsten", 'I', "gemDiamond");
 		/** LESU Casing **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLapotron), "BBB", "BCB", "BBB", 'B', "blockLapis", 'C', "circuitBasic");
 		/** Lightning Rod **/
@@ -263,7 +264,7 @@ public class GTRecipe {
 		/** Monster Repellator **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMobRepeller, 1), "SSS", " M ", "CCC", 'S', "gemSapphire", 'M', "machineBlockAdvanced", 'C', "circuitBasic");
 		/** Energy Transmitter **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEnergyTransmitter, 1), "STS", "WEW", "SCS", 'S', "gemSapphire", 'T', Ic2Items.teleporter, 'C', GTBlocks.tileComputer, 'E', Ic2Items.adjustableTransformer, 'W', "craftingSuperconductor");
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEnergyTransmitter, 1), "STS", "WEW", "SCS", 'S', "gemSapphire", 'T', Ic2Items.teleporter, 'C', GTBlocks.tileComputer, 'E', Ic2Items.transformerMV, 'W', "craftingSuperconductor");
 		/** UU Assembler **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), "dCd", "TQE", "DBD", 'd', "circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E', GTBlocks.tileAutocrafter, 'D', "circuitUltimate", 'B', batteryAdvanced);
 		/** Low Voltage Battery Block **/

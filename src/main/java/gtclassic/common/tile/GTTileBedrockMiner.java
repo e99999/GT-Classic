@@ -267,7 +267,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	}
 
 	public void tryRemoveOre() {
-		if (world.rand.nextInt(127) == 0) {
+		if (world.rand.nextInt(511) == 0) {
 			for (BlockPos pos : getAreaToCheck()) {
 				Block block = world.getBlockState(pos).getBlock();
 				if (GTBedrockOreHandler.isBedrockOre(block)) {

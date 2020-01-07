@@ -2,6 +2,7 @@ package gtclassic.common.tile.datanet;
 
 import java.util.HashSet;
 
+import gtclassic.common.util.datanet.GTDataNet;
 import ic2.core.block.base.tile.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,9 +13,11 @@ import net.minecraft.util.math.BlockPos;
 public abstract class GTTileDigitizerBase extends TileEntityMachine implements ITickable {
 
 	public HashSet<BlockPos> outputNodes = new HashSet<>();
-	public static final int TICK_RATE = 10;
 	public boolean hasComputer;
 
+	/**
+	 * This tile actually moves items or fluids, and stores the output node list
+	 **/
 	public GTTileDigitizerBase(int slots) {
 		super(slots);
 		this.hasComputer = false;
@@ -43,16 +46,12 @@ public abstract class GTTileDigitizerBase extends TileEntityMachine implements I
 
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 126 == 0) {
+		if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
 			this.outputNodes.clear();
 			this.hasComputer = false;
 		}
-		if (world.getTotalWorldTime() % TICK_RATE == 0) {
-			this.setActive(!this.redstoneEnabled());
-			if (!this.getActive()) {
-				return;
-			}
-			if (this.outputNodes.isEmpty() && !this.hasComputer) {
+		if (world.getTotalWorldTime() % GTDataNet.TICK_RATE == 0) {
+			if (this.outputNodes.isEmpty() || !this.hasComputer) {
 				return;
 			}
 			// if import pos not loaded return;

@@ -2,7 +2,8 @@ package gtclassic.common.tile.datanet;
 
 import gtclassic.api.helpers.int3;
 import gtclassic.common.GTBlocks;
-import gtclassic.common.util.GTDataBlockFilter;
+import gtclassic.common.util.datanet.GTBlockFilterData;
+import gtclassic.common.util.datanet.GTDataNet;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.helpers.AabbUtil;
@@ -22,9 +23,13 @@ public abstract class GTTileConstructorBase extends TileEntityMachine implements
 	public int blockCount;
 	public boolean hasComputer;
 
-	public GTTileConstructorBase(Block nodeBlock) {
-		super(0);
-		filter = new GTDataBlockFilter(nodeBlock);
+	/**
+	 * This tile does not move anything, it merely provides the location of an
+	 * output point to input nodes
+	 **/
+	public GTTileConstructorBase(int slots, Block nodeBlock) {
+		super(slots);
+		filter = new GTBlockFilterData(nodeBlock);
 		this.blockCount = 0;
 		this.hasComputer = false;
 	}
@@ -32,7 +37,7 @@ public abstract class GTTileConstructorBase extends TileEntityMachine implements
 	@Override
 	public void update() {
 		if (this.hasComputer) {
-			if (world.getTotalWorldTime() % 126 == 0) {
+			if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
 				this.hasComputer = false;
 			}
 			if (task != null && world.isAreaLoaded(pos, 16)) {
@@ -52,7 +57,7 @@ public abstract class GTTileConstructorBase extends TileEntityMachine implements
 					handleNodes(worldTile);
 				}
 			}
-			if (world.getTotalWorldTime() % 128 == 0) {
+			if (world.getTotalWorldTime() % GTDataNet.SEARCH_RATE == 0) {
 				if (!world.isAreaLoaded(pos, 16))
 					return;
 				task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, false);
@@ -71,5 +76,10 @@ public abstract class GTTileConstructorBase extends TileEntityMachine implements
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != getFacing();
+	}
+
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return true;
 	}
 }
