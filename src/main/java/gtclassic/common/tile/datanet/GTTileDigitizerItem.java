@@ -3,37 +3,42 @@ package gtclassic.common.tile.datanet;
 import java.util.Map;
 
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import gtclassic.common.util.datanet.GTDataNet.DataType;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 
 public class GTTileDigitizerItem extends GTTileInputNodeBase implements IGTDebuggableTile {
 
+	/** Transmits Items from the facing pos to valid output nodes on the network **/
 	public GTTileDigitizerItem() {
 		super(0);
 	}
 
 	@Override
 	public boolean onDataNetTick(GTTileOutputNodeBase node) {
+		if (node.dataType() != DataType.ITEM) {
+			return false;
+		}
 		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(this.pos.offset(this.getFacing())), true);
 		if (slave == null) {
 			return false;
 		}
-		IItemTransporter controller = TransporterManager.manager.getTransporter(world.getTileEntity(node.getPos().offset(node.getFacing())), true);
-		if (controller == null) {
+		IItemTransporter nodeTile = TransporterManager.manager.getTransporter(world.getTileEntity(node.getPos().offset(node.getFacing())), true);
+		if (nodeTile == null) {
 			return false;
 		}
-		int limit = controller.getSizeInventory(getFacing());
+		int limit = slave.getSizeInventory(getFacing());//this might need to be opposite who knows, im not even sure what direction im facing right now
 		boolean found = false;
+		//mabye i have to iterate this more or 2d to just skip stacks that cant go anywhere
 		for (int i = 0; i < limit; ++i) {
 			ItemStack stack = slave.removeItem(CommonFilters.Anything, this.getFacing().getOpposite(), 64, false);
 			if (stack.isEmpty()) {
 				break;
 			}
-			ItemStack added = controller.addItem(stack, EnumFacing.UP, true);
+			ItemStack added = nodeTile.addItem(stack, node.getFacing().getOpposite(), true);
 			if (added.getCount() <= 0) {
 				break;
 			}

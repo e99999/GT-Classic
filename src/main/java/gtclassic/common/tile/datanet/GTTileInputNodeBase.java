@@ -35,7 +35,9 @@ public abstract class GTTileInputNodeBase extends TileEntityMachine implements I
 			if (this.computer == null || this.computer.dataNet == null || this.computer.dataNet.isEmpty()) {
 				return;
 			}
-			// if import pos not loaded return;
+			if (!world.isBlockLoaded(this.pos.offset(this.getFacing()))) {
+				return;
+			}
 			for (BlockPos nodePos : this.computer.dataNet) {
 				if (!world.isBlockLoaded(nodePos) || nodePos == this.pos) {
 					continue;
@@ -51,7 +53,5 @@ public abstract class GTTileInputNodeBase extends TileEntityMachine implements I
 		}
 	}
 
-	// TODO redo this to pass the tile and get all the info for the node output from
-	// the node tile, like facing etc..
 	public abstract boolean onDataNetTick(GTTileOutputNodeBase node);
 }

@@ -1,21 +1,16 @@
 package gtclassic.common.tile.datanet;
 
-import java.util.Map;
+import gtclassic.common.util.datanet.GTDataNet.DataType;
 
-import gtclassic.api.interfaces.IGTDebuggableTile;
+public class GTTileConstructorFluid extends GTTileOutputNodeBase {
 
-public class GTTileConstructorFluid extends GTTileOutputNodeBase implements IGTDebuggableTile {
-
+	/** Literally just a pointer on the network to where an output pos is **/
 	public GTTileConstructorFluid() {
 		super(0);
 	}
 
 	@Override
-	public void getData(Map<String, Boolean> data) {
-		if (this.computer != null && this.computer.dataNet != null) {
-			data.put("Connected to network", false);
-		} else {
-			data.put("No network found", false);
-		}
+	public DataType dataType() {
+		return DataType.FLUID;
 	}
 }

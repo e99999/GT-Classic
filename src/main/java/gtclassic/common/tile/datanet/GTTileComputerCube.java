@@ -3,7 +3,6 @@ package gtclassic.common.tile.datanet;
 import java.util.HashSet;
 import java.util.Map;
 
-import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTDataNetBlock;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTBlocks;
@@ -115,6 +114,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 			this.isOnlyComputer = true;
 			this.dataNet.clear();
 		}
+		// set energy drain to node count, this includes itself
 		if (this.getNodeCount() > 0) {
 			this.useEnergy(this.getNodeCount());
 		}
@@ -140,13 +140,11 @@ public class GTTileComputerCube extends TileEntityElecMachine
 						if (worldTile != this && worldTile instanceof GTTileComputerCube) {
 							((GTTileComputerCube) worldTile).isOnlyComputer = false;
 						}
-						if (this.energy > 0) {
-							if (worldTile instanceof GTTileInputNodeBase) {
-								((GTTileInputNodeBase) worldTile).computer = this;
-							}
-							if (worldTile instanceof GTTileOutputNodeBase) {
-								((GTTileOutputNodeBase) worldTile).computer = this;
-							}
+						if (worldTile instanceof GTTileInputNodeBase) {
+							((GTTileInputNodeBase) worldTile).computer = this.energy > 0 ? this : null;
+						}
+						if (worldTile instanceof GTTileOutputNodeBase) {
+							((GTTileOutputNodeBase) worldTile).computer = this.energy > 0 ? this : null;
 						}
 					}
 				}
