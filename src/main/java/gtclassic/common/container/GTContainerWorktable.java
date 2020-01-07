@@ -42,7 +42,6 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		int k;
 		for (k = 0; k < 4; ++k) {
 			for (int l = 0; l < 4; ++l) {
-				GTMod.logger.info((k + l * 4) + 1);
 				this.addSlotToContainer(new SlotBase(tile, (k + l * 4) + 1, 8 + l * 18, 8 + k * 18));
 			}
 		}

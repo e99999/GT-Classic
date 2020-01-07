@@ -21,7 +21,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGui, INetworkClientTileEntityEventListener {
@@ -65,41 +64,44 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 	@Override
 	public void onNetworkEvent(EntityPlayer player, int event) {
 		if (event == 2) {
-			for (int i = 0; i < player.inventory.mainInventory.size(); i++){
-				if (craftingInventory.isEmpty()){
-					break;
+			for (int j = 0; j < 9; j++){
+				ItemStack stack = craftingInventory.get(j);
+				if (stack.isEmpty()){
+					continue;
 				}
-				for (Iterator<ItemStack> j = craftingInventory.iterator(); j.hasNext();){
-					ItemStack stack = j.next();
+				for (int i = 1; i < 17; i++){
+					ItemStack stackInSlot = player.inventory.mainInventory.get(i);
 					int count = stack.getCount();
-					if (GTHelperStack.canOutputStack(player, stack, i)){
-						if (player.inventory.mainInventory.get(i).isEmpty()){
+					if (GTHelperStack.canMerge(stack, stackInSlot)){
+						if (stackInSlot.isEmpty()){
 							player.inventory.mainInventory.set(i, stack);
 						} else {
-							player.inventory.mainInventory.get(i).grow(count);
+							stackInSlot.grow(count);
 						}
-						stack.shrink(count);
+						craftingInventory.set(j, ItemStack.EMPTY);
+						break;
 					}
 				}
-
 			}
 
 		}
 		if (event == 1) {
-			for (int i = 1; i < 17; i++){
-				if (craftingInventory.isEmpty()){
-					break;
+			for (int j = 0; j < 9; j++){
+				ItemStack stack = craftingInventory.get(j);
+				if (stack.isEmpty()){
+					continue;
 				}
-				for (Iterator<ItemStack> j = craftingInventory.iterator(); j.hasNext();){
-					ItemStack stack = j.next();
+				for (int i = 1; i < 17; i++){
+					ItemStack stackInSlot = this.getStackInSlot(i);
 					int count = stack.getCount();
-					if (GTHelperStack.canOutputStack(this, stack, i)){
-						if (this.getStackInSlot(i).isEmpty()){
+					if (GTHelperStack.canMerge(stack, stackInSlot)){
+						if (stackInSlot.isEmpty()){
 							this.setStackInSlot(i, stack);
 						} else {
-							this.getStackInSlot(i).grow(count);
+							stackInSlot.grow(count);
 						}
-						stack.shrink(count);
+						craftingInventory.set(j, ItemStack.EMPTY);
+						break;
 					}
 				}
 			}
