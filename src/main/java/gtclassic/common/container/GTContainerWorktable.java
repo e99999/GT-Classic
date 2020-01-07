@@ -2,6 +2,7 @@ package gtclassic.common.container;
 
 import gtclassic.GTMod;
 import gtclassic.api.slot.GTToolSlotFilter;
+import gtclassic.common.gui.GTGuiCompWorktable;
 import gtclassic.common.tile.GTTileWorktable;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.IFilter;
@@ -54,6 +55,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 				this.addSlotToContainer(new Slot(craftMatrix, (j + i * 3), 82 + j * 18, 28 + i * 18));
 			}
 		}
+		this.addComponent(new GTGuiCompWorktable(tile));
 		this.addPlayerInventory(player, 0, 0);
 		readTileCraftingList();
 		this.block.inUse = true;

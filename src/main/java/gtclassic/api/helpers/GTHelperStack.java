@@ -1,14 +1,15 @@
 package gtclassic.api.helpers;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class GTHelperStack {
 
@@ -61,9 +62,19 @@ public class GTHelperStack {
 		if (tile.inventory.get(slot).isEmpty()) {
 			return true;
 		}
-		int count = tile.inventory.get(slot).getCount();
-		boolean hasRoom = count < tile.inventory.get(slot).getMaxStackSize();
+		int count = tile.inventory.get(slot).getCount() + stack.getCount();
+		boolean hasRoom = count <= tile.inventory.get(slot).getMaxStackSize();
 		return hasRoom && isEqual(tile.getStackInSlot(slot), stack);
+	}
+
+	/** Checks if a player slot can accept a stack. **/
+	public static boolean canOutputStack(EntityPlayer player, ItemStack stack, int slot) {
+		if (player.inventory.mainInventory.get(slot).isEmpty()) {
+			return true;
+		}
+		int count = player.inventory.mainInventory.get(slot).getCount() + stack.getCount();
+		boolean hasRoom = count <= player.inventory.mainInventory.get(slot).getMaxStackSize();
+		return hasRoom && isEqual(player.inventory.mainInventory.get(slot), stack);
 	}
 
 	/** Checks if a machine slot is empty **/

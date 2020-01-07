@@ -1,8 +1,10 @@
 package gtclassic.common.tile;
 
+import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.container.GTContainerWorktable;
+import ic2.api.network.INetworkClientTileEntityEventListener;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
@@ -19,9 +21,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGui {
+public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGui, INetworkClientTileEntityEventListener {
 
 	public NonNullList<ItemStack> craftingInventory = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
 	public boolean inUse = false;
@@ -57,6 +60,50 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 		}
 		nbt.setTag("Crafting", list);
 		return nbt;
+	}
+
+	@Override
+	public void onNetworkEvent(EntityPlayer player, int event) {
+		if (event == 2) {
+			for (int i = 0; i < player.inventory.mainInventory.size(); i++){
+				if (craftingInventory.isEmpty()){
+					break;
+				}
+				for (Iterator<ItemStack> j = craftingInventory.iterator(); j.hasNext();){
+					ItemStack stack = j.next();
+					int count = stack.getCount();
+					if (GTHelperStack.canOutputStack(player, stack, i)){
+						if (player.inventory.mainInventory.get(i).isEmpty()){
+							player.inventory.mainInventory.set(i, stack);
+						} else {
+							player.inventory.mainInventory.get(i).grow(count);
+						}
+						stack.shrink(count);
+					}
+				}
+
+			}
+
+		}
+		if (event == 1) {
+			for (int i = 1; i < 17; i++){
+				if (craftingInventory.isEmpty()){
+					break;
+				}
+				for (Iterator<ItemStack> j = craftingInventory.iterator(); j.hasNext();){
+					ItemStack stack = j.next();
+					int count = stack.getCount();
+					if (GTHelperStack.canOutputStack(this, stack, i)){
+						if (this.getStackInSlot(i).isEmpty()){
+							this.setStackInSlot(i, stack);
+						} else {
+							this.getStackInSlot(i).grow(count);
+						}
+						stack.shrink(count);
+					}
+				}
+			}
+		}
 	}
 
 	@Override
