@@ -122,11 +122,13 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 		curSlot = FIRST_SLOT;
 		// Try to deliver into empty slot
 		while (curSlot <= LAST_SLOT && count > 0) {
+			GTMod.logger.info("slot " + curSlot + " empty? " + this.getStackInSlot(curSlot).isEmpty());
 			if (this.getStackInSlot(curSlot).isEmpty()) {
 				GTMod.logger.info("got to empty slot");
 				GTMod.logger.info("count: " + count);
-				this.setStackInSlot(curSlot, craftingStack);
+				this.setStackInSlot(curSlot, craftingStack.copy());
 				craftingStack.grow(- count);
+				craftingInventory.set(slot, craftingStack);
 				count = 0;
 			}
 			curSlot++;

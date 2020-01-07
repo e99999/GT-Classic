@@ -25,7 +25,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable> {
 
-	private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
+	private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3){
+		@Override
+		public void setInventorySlotContents(int index, ItemStack stack) {
+			super.setInventorySlotContents(index, stack);
+			block.craftingInventory.set(index, stack);
+		}
+	};
 	private InventoryCraftResult craftResult = new InventoryCraftResult();
 	private final World world;
 	private final EntityPlayer player;
