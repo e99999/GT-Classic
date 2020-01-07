@@ -1,6 +1,5 @@
 package gtclassic.common.tile;
 
-import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
@@ -107,7 +106,6 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 			if (GTHelperStack.isEqual(craftingStack, slotStack) && slotStack.getCount() < maxStackSize) {
 				room = maxStackSize - slotStack.getCount();
 				toDeliver = Math.min(room, count);
-				GTMod.logger.info("todeliver: " + toDeliver);
 				slotStack.grow(toDeliver);
 				this.setStackInSlot(curSlot, slotStack);
 				craftingStack.grow(-toDeliver);
@@ -122,10 +120,7 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 		curSlot = FIRST_SLOT;
 		// Try to deliver into empty slot
 		while (curSlot <= LAST_SLOT && count > 0) {
-			GTMod.logger.info("slot " + curSlot + " empty? " + this.getStackInSlot(curSlot).isEmpty());
 			if (this.getStackInSlot(curSlot).isEmpty()) {
-				GTMod.logger.info("got to empty slot");
-				GTMod.logger.info("count: " + count);
 				this.setStackInSlot(curSlot, craftingStack.copy());
 				craftingStack.grow(- count);
 				craftingInventory.set(slot, craftingStack);
