@@ -1,5 +1,6 @@
 package gtclassic.common.tile;
 
+import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
@@ -29,7 +30,7 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 	public boolean inUse = false;
 
 	public GTTileWorktable() {
-		super(32);
+		super(23);
 	}
 
 	@Override
@@ -69,44 +70,70 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 				if (stack.isEmpty()){
 					continue;
 				}
-				for (int i = 1; i < 17; i++){
-					ItemStack stackInSlot = player.inventory.mainInventory.get(i);
-					int count = stack.getCount();
-					if (GTHelperStack.canMerge(stack, stackInSlot)){
-						if (stackInSlot.isEmpty()){
-							player.inventory.mainInventory.set(i, stack);
-						} else {
-							stackInSlot.grow(count);
-						}
-						craftingInventory.set(j, ItemStack.EMPTY);
-						break;
-					}
-				}
+				player.inventory.addItemStackToInventory(stack);
 			}
 
 		}
 		if (event == 1) {
-			for (int j = 0; j < 9; j++){
-				ItemStack stack = craftingInventory.get(j);
-				if (stack.isEmpty()){
-					continue;
-				}
-				for (int i = 1; i < 17; i++){
-					ItemStack stackInSlot = this.getStackInSlot(i);
-					int count = stack.getCount();
-					if (GTHelperStack.canMerge(stack, stackInSlot)){
-						if (stackInSlot.isEmpty()){
-							this.setStackInSlot(i, stack);
-						} else {
-							stackInSlot.grow(count);
-						}
-						craftingInventory.set(j, ItemStack.EMPTY);
-						break;
+			if (inUse){
+				for (int j = 0; j < 9; j++){
+					ItemStack stack = craftingInventory.get(j);
+					if (stack.isEmpty()){
+						continue;
 					}
+					insert(j, stack);
 				}
 			}
 		}
 	}
+
+	static final int FIRST_SLOT = 1;
+	static final int LAST_SLOT = 16;
+
+	ItemStack insert(int slot, ItemStack aStack) {
+		ItemStack craftingStack = aStack;
+		int curSlot = FIRST_SLOT;
+		int maxStackSize = craftingStack.getMaxStackSize();
+		int count = craftingStack.getCount();
+		int room;
+		int toDeliver;
+
+		// Try to first insert into same ItemStacks
+		while (curSlot <= LAST_SLOT && count > 0) {
+			ItemStack slotStack = this.getStackInSlot(curSlot);
+			if (craftingStack.isEmpty()){
+				count = 0;
+			}
+			if (GTHelperStack.isEqual(craftingStack, slotStack) && slotStack.getCount() < maxStackSize) {
+				room = maxStackSize - slotStack.getCount();
+				toDeliver = Math.min(room, count);
+				GTMod.logger.info("todeliver: " + toDeliver);
+				slotStack.grow(toDeliver);
+				this.setStackInSlot(curSlot, slotStack);
+				craftingStack.grow(-toDeliver);
+				craftingInventory.set(slot, craftingStack);
+				if (count >= room){
+					count -= room;
+				}
+			}
+			curSlot++;
+		}
+
+		curSlot = FIRST_SLOT;
+		// Try to deliver into empty slot
+		while (curSlot <= LAST_SLOT && count > 0) {
+			if (this.getStackInSlot(curSlot).isEmpty()) {
+				GTMod.logger.info("got to empty slot");
+				GTMod.logger.info("count: " + count);
+				this.setStackInSlot(curSlot, craftingStack);
+				craftingStack.grow(- count);
+				count = 0;
+			}
+			curSlot++;
+		}
+		return craftingStack;
+	}
+
 
 	@Override
 	@SideOnly(Side.CLIENT)
