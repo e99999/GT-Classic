@@ -9,10 +9,10 @@ import gtclassic.api.jei.GTJeiMultiRecipeWrapper;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
+import gtclassic.api.world.GTBedrockOreHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
-import gtclassic.common.block.GTBlockOreBedrock;
 import gtclassic.common.container.GTContainerWorktable;
 import gtclassic.common.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.common.gui.GTGuiMachine.GTMatterFabricatorGui;
@@ -64,8 +64,8 @@ public class GTJeiPlugin implements IModPlugin {
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTItems.orbDataStorage));
 			if (GTConfig.general.hideBedrockOresInJei) {
-				for (Block block : Block.REGISTRY) {
-					if (block instanceof GTBlockOreBedrock) {
+				for (Block block : GTBedrockOreHandler.getBedrockOreMap().keySet()) {
+					if (GTBedrockOreHandler.shouldGTCHandleGeneration(block)) {
 						blacklist.addIngredientToBlacklist(new ItemStack(block));
 					}
 				}

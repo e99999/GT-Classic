@@ -1,16 +1,21 @@
 package gtclassic.common.tile.datanet;
 
+import java.util.ArrayList;
 import java.util.Map;
 
+import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import gtclassic.common.util.GTFilterItemDigitizer;
 import gtclassic.common.util.datanet.GTDataNet.DataType;
 import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.filters.CommonFilters;
+import ic2.core.inventory.filters.InvertedFilter;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import net.minecraft.item.ItemStack;
 
 public class GTTileDigitizerItem extends GTTileInputNodeBase implements IGTDebuggableTile {
+	
+	public ArrayList<ItemStack> blacklist = new ArrayList<>();
 
 	/** Transmits Items from the facing pos to valid output nodes on the network **/
 	public GTTileDigitizerItem() {
@@ -31,21 +36,24 @@ public class GTTileDigitizerItem extends GTTileInputNodeBase implements IGTDebug
 			return false;
 		}
 		int limit = nodeTile.getSizeInventory(getFacing());//this might need to be opposite who knows, im not even sure what direction im facing right now
-		boolean found = false;
+		//boolean found = false;
 		//mabye i have to iterate this more or 2d to just skip stacks that cant go anywhere
 		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = slave.removeItem(CommonFilters.Anything, this.getFacing().getOpposite(), 64, false);
+			ItemStack stack = slave.removeItem(new InvertedFilter(new GTFilterItemDigitizer(this)), this.getFacing().getOpposite(), 64, false);
 			if (stack.isEmpty()) {
 				break;
 			}
 			ItemStack added = nodeTile.addItem(stack, node.getFacing().getOpposite(), true);
 			if (added.getCount() <= 0) {
+				blacklist.add(stack);
 				break;
 			}
+			GTMod.logger.info("We got here breh");
 			slave.removeItem(new BasicItemFilter(added), this.getFacing().getOpposite(), added.getCount(), true);
-			found = true;
+			//found = true;
+			blacklist.clear();
 		}
-		return found;
+		return false;
 	}
 
 	@Override

@@ -61,25 +61,25 @@ public class GTTileTranslocator extends GTTileBufferBase implements IHasGui {
 
 	@Override
 	public void onBufferTick() {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(getImportTilePos()), true);
-		if (slave == null) {
+		IItemTransporter in = TransporterManager.manager.getTransporter(world.getTileEntity(getImportTilePos()), true);
+		if (in == null) {
 			return;
 		}
-		IItemTransporter controller = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), true);
-		if (controller == null) {
+		IItemTransporter out = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), true);
+		if (out == null) {
 			return;
 		}
-		int limit = controller.getSizeInventory(getFacing());
+		int limit = out.getSizeInventory(getFacing());
 		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = slave.removeItem(this.filter, getFacing(), 64, false);
+			ItemStack stack = in.removeItem(this.filter, getFacing(), 64, false);
 			if (stack.isEmpty()) {
 				break;
 			}
-			ItemStack added = controller.addItem(stack, getFacing(), true);
+			ItemStack added = out.addItem(stack, getFacing(), true);
 			if (added.getCount() <= 0) {
 				break;
 			}
-			slave.removeItem(new BasicItemFilter(added), getFacing(), added.getCount(), true);
+			in.removeItem(new BasicItemFilter(added), getFacing(), added.getCount(), true);
 		}
 	}
 
