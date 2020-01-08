@@ -30,7 +30,7 @@ public class GTTileDigitizerItem extends GTTileInputNodeBase implements IGTDebug
 		if (nodeTile == null) {
 			return false;
 		}
-		int limit = slave.getSizeInventory(getFacing());//this might need to be opposite who knows, im not even sure what direction im facing right now
+		int limit = nodeTile.getSizeInventory(getFacing());//this might need to be opposite who knows, im not even sure what direction im facing right now
 		boolean found = false;
 		//mabye i have to iterate this more or 2d to just skip stacks that cant go anywhere
 		for (int i = 0; i < limit; ++i) {

@@ -9,7 +9,4 @@
 - Convert String references in gui's to localecomps
 
 # DataNet
-- Make the IGTDataBlock thing tile only, and be ready to allow the searching to loop over nodes not just cables
-- Constructor tiles should look for any valid item input points not just literal blocks with the filter
-- Make Constructors respect the side they output too by create in and out node interfaces for import tiles to handle
-- Hard code the computer cube block being connectable to wires but not viewable by other shit
+- add more data to output nodes so you can get the output tile directly from the node and not offset yourself in input node child classes
