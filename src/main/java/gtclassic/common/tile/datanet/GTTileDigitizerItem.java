@@ -14,7 +14,7 @@ import ic2.core.inventory.transport.TransporterManager;
 import net.minecraft.item.ItemStack;
 
 public class GTTileDigitizerItem extends GTTileInputNodeBase implements IGTDebuggableTile {
-	
+
 	public ArrayList<ItemStack> blacklist = new ArrayList<>();
 
 	/** Transmits Items from the facing pos to valid output nodes on the network **/
@@ -35,29 +35,35 @@ public class GTTileDigitizerItem extends GTTileInputNodeBase implements IGTDebug
 		if (nodeTile == null) {
 			return false;
 		}
-		int limit = nodeTile.getSizeInventory(getFacing());//this might need to be opposite who knows, im not even sure what direction im facing right now
-		//boolean found = false;
-		//mabye i have to iterate this more or 2d to just skip stacks that cant go anywhere
+		int limit = slave.getSizeInventory(getFacing());
+		// boolean found = false;
 		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = slave.removeItem(new InvertedFilter(new GTFilterItemDigitizer(this)), this.getFacing().getOpposite(), 64, false);
-			if (stack.isEmpty()) {
-				break;
+			if (i == limit - 1) {
+				blacklist.clear();
 			}
+			ItemStack stack = slave.removeItem(new InvertedFilter(new GTFilterItemDigitizer(this)), this.getFacing().getOpposite(), 64, false);
+			// if (stack.isEmpty()) {
+			// break;
+			// }
 			ItemStack added = nodeTile.addItem(stack, node.getFacing().getOpposite(), true);
 			if (added.getCount() <= 0) {
-				blacklist.add(stack);
-				break;
+				if (!stack.isEmpty()) {
+					blacklist.add(stack);
+				}
+			} else {
+				slave.removeItem(new BasicItemFilter(added), this.getFacing().getOpposite(), added.getCount(), true);
+				// found = true;
+				blacklist.clear();
 			}
-			GTMod.logger.info("We got here breh");
-			slave.removeItem(new BasicItemFilter(added), this.getFacing().getOpposite(), added.getCount(), true);
-			//found = true;
-			blacklist.clear();
 		}
 		return false;
 	}
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
+		for (ItemStack foo : blacklist) {
+			data.put("Blacklisted: " + foo.getDisplayName(), false);
+		}
 		if (this.computer != null && this.computer.dataNet != null) {
 			data.put("Connected to network", false);
 		} else {

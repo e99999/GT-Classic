@@ -15,7 +15,7 @@ public class GTFilterItemDigitizer implements IFilter {
 
 	public boolean matches(ItemStack stack) {
 		if (stack.isEmpty()) {
-			return false;
+			return true;
 		}
 		if (!this.tile.blacklist.isEmpty()) {
 			for (ItemStack bStack : this.tile.blacklist) {
