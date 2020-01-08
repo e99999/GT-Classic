@@ -1,5 +1,6 @@
 package gtclassic.common.tile;
 
+import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
@@ -17,6 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -26,6 +28,7 @@ import java.util.List;
 public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGui, INetworkClientTileEntityEventListener {
 
 	public NonNullList<ItemStack> craftingInventory = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
+	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/worktable.png");
 	public boolean inUse = false;
 
 	public GTTileWorktable() {
@@ -156,6 +159,10 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 	public void onGuiClosed(EntityPlayer entityPlayer) {
 		this.inUse = false;
 		this.setActive(false);
+	}
+
+	public ResourceLocation getGuiTexture(){
+		return TEXTURE;
 	}
 
 	@Override

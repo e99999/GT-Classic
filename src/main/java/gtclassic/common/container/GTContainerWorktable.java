@@ -1,6 +1,5 @@
 package gtclassic.common.container;
 
-import gtclassic.GTMod;
 import gtclassic.api.slot.GTToolSlotFilter;
 import gtclassic.common.gui.GTGuiCompWorktable;
 import gtclassic.common.tile.GTTileWorktable;
@@ -35,7 +34,6 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 	private InventoryCraftResult craftResult = new InventoryCraftResult();
 	private final World world;
 	private final EntityPlayer player;
-	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/worktable.png");
 	private GTTileWorktable block;
 	public IFilter toolFilter = new GTToolSlotFilter();
 
@@ -121,7 +119,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 
 	@Override
 	public ResourceLocation getTexture() {
-		return TEXTURE;
+		return getGuiHolder().getGuiTexture();
 	}
 
 	@Override
