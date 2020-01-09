@@ -46,7 +46,7 @@ public class GTJeiPlugin implements IModPlugin {
 			}
 			// More Vanilla Crafting
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
-			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorktable.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 54);
+			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorktable.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 58);
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileWorktable), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileAutocrafter), new String[] { "minecraft.crafting" });
 			// Amplifier
