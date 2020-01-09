@@ -86,7 +86,11 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 					if (stack.isEmpty()){
 						continue;
 					}
-					player.inventory.addItemStackToInventory(stack);
+					stack = insert(j, stack, 59, 67);
+					if (stack.isEmpty()){
+						continue;
+					}
+					insert(j, stack, 32, 58);
 				}
 			}
 		}
@@ -98,25 +102,22 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 					if (stack.isEmpty()){
 						continue;
 					}
-					insert(j, stack);
+					insert(j, stack, 10, 26);
 				}
 			}
 		}
 	}
 
-	static final int FIRST_SLOT = 10;
-	static final int LAST_SLOT = 26;
-
-	ItemStack insert(int slot, ItemStack aStack) {
+	ItemStack insert(int slot, ItemStack aStack, final int firstSlot, final int lastSlot) {
 		ItemStack craftingStack = aStack;
-		int curSlot = FIRST_SLOT;
+		int curSlot = firstSlot;
 		int maxStackSize = craftingStack.getMaxStackSize();
 		int count = craftingStack.getCount();
 		int room;
 		int toDeliver;
 
 		// Try to first insert into same ItemStacks
-		while (curSlot <= LAST_SLOT && count > 0) {
+		while (curSlot <= lastSlot && count > 0) {
 			ItemStack slotStack = this.getStackInSlot(curSlot);
 			if (craftingStack.isEmpty()){
 				count = 0;
@@ -135,9 +136,9 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 			curSlot++;
 		}
 
-		curSlot = FIRST_SLOT;
+		curSlot = firstSlot;
 		// Try to deliver into empty slot
-		while (curSlot <= LAST_SLOT && count > 0) {
+		while (curSlot <= lastSlot && count > 0) {
 			if (this.getStackInSlot(curSlot).isEmpty()) {
 				this.setStackInSlot(curSlot, craftingStack.copy());
 				craftingStack.grow(- count);

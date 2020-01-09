@@ -13,6 +13,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -67,25 +68,9 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile
 
 	@Override
 	public void onNetworkEvent(EntityPlayer player, int event) {
-		if (event == 2) {
-			if (inUse){
-				for (int j = 0; j < 9; j++){
-					ItemStack stack = craftingInventory.get(j);
-					if (stack.isEmpty()){
-						continue;
-					}
-					player.inventory.addItemStackToInventory(stack);
-				}
-			}
-		}
-		if (event == 1 && this.inUse) {
-			for (int j = 0; j < 9; j++) {
-				ItemStack stack = craftingInventory.get(j);
-				if (stack.isEmpty()) {
-					continue;
-				}
-				insert(j, stack);
-			}
+		Container container = player.openContainer;
+		if (container instanceof GTContainerWorktable){
+			((GTContainerWorktable)container).onButtonClick(event);
 		}
 	}
 

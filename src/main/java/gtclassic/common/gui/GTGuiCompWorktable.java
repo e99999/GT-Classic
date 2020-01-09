@@ -43,10 +43,10 @@ public class GTGuiCompWorktable extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void onButtonClick(GuiIC2 gui, GuiButton button) {
 		if (button.id == 2) {
-			this.container.onButtonClick(2);
+			this.block.getNetwork().initiateClientTileEntityEvent(this.block, 2);
 		}
 		if (button.id == 1) {
-			this.container.onButtonClick(1);
+			this.block.getNetwork().initiateClientTileEntityEvent(this.block, 1);
 		}
 	}
 
