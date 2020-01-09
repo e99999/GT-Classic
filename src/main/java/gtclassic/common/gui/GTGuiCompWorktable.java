@@ -1,9 +1,7 @@
 package gtclassic.common.gui;
 
-import java.util.Arrays;
-import java.util.List;
-
 import gtclassic.api.gui.GTGuiButton;
+import gtclassic.common.container.GTContainerWorktable;
 import gtclassic.common.tile.GTTileWorktable;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -12,14 +10,20 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class GTGuiCompWorktable extends GuiComponent {
 
-	GTTileWorktable block;
+    GTContainerWorktable container;
+    GTTileWorktable block;
 
-	public GTGuiCompWorktable(GTTileWorktable tile) {
-		super(Ic2GuiComp.nullBox);
-		this.block = tile;
-	}
+
+    public GTGuiCompWorktable(GTTileWorktable tile, GTContainerWorktable container) {
+        super(Ic2GuiComp.nullBox);
+        this.block = tile;
+        this.container = container;
+    }
 
 	@Override
 	public List<ActionRequest> getNeededRequests() {
@@ -39,10 +43,10 @@ public class GTGuiCompWorktable extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void onButtonClick(GuiIC2 gui, GuiButton button) {
 		if (button.id == 2) {
-			this.block.getNetwork().initiateClientTileEntityEvent(this.block, 2);
+			this.container.onButtonClick(2);
 		}
 		if (button.id == 1) {
-			this.block.getNetwork().initiateClientTileEntityEvent(this.block, 1);
+			this.container.onButtonClick(1);
 		}
 	}
 

@@ -1,8 +1,5 @@
 package gtclassic.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
@@ -24,6 +21,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GTTileWorktable extends GTTileBaseRecolorableTile
 		implements IHasGui, INetworkClientTileEntityEventListener {
@@ -68,12 +68,14 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile
 	@Override
 	public void onNetworkEvent(EntityPlayer player, int event) {
 		if (event == 2) {
-			for (int j = 0; j < 9; j++) {
-				ItemStack stack = craftingInventory.get(j);
-				if (stack.isEmpty()) {
-					continue;
+			if (inUse){
+				for (int j = 0; j < 9; j++){
+					ItemStack stack = craftingInventory.get(j);
+					if (stack.isEmpty()){
+						continue;
+					}
+					player.inventory.addItemStackToInventory(stack);
 				}
-				player.inventory.addItemStackToInventory(stack);
 			}
 		}
 		if (event == 1 && this.inUse) {
