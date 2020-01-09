@@ -42,22 +42,30 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		this.block = tile;
 		this.world = player.player.getEntityWorld();
 		this.player = player.player;
+		// crafting output slot
 		this.addSlotToContainer(new SlotCrafting(this.player, craftMatrix, craftResult, 0, 136, 64));// slot 0
+
+		// crafting slots
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 3; ++j) {
+				this.addSlotToContainer(new Slot(craftMatrix, (j + i * 3), 82 + j * 18, 28 + i * 18));
+			}
+		}
+
+		// main inventory
 		int k;
 		for (k = 0; k < 4; ++k) {
 			for (int l = 0; l < 4; ++l) {
 				this.addSlotToContainer(new SlotBase(tile, (k + l * 4) + 1, 8 + l * 18, 8 + k * 18));
 			}
 		}
+		// tool slots
 		for (k = 0; k < 5; k++){
 			this.addSlotToContainer(new SlotCustom(tile, k + 17, 82 + (k * 18), 8, toolFilter));
 		}
+		// park slot
 		this.addSlotToContainer(new SlotBase(tile, 22, 154, 64));
-		for (int i = 0; i < 3; ++i) {
-			for (int j = 0; j < 3; ++j) {
-				this.addSlotToContainer(new Slot(craftMatrix, (j + i * 3), 82 + j * 18, 28 + i * 18));
-			}
-		}
+
 		this.addComponent(new GTGuiCompWorktable(tile));
 		this.addPlayerInventory(player, 0, 0);
 		readTileCraftingList();
