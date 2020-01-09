@@ -5,7 +5,7 @@ import java.util.List;
 
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.common.GTLang;
-import gtclassic.common.tile.GTTileQuantumTank;
+import gtclassic.common.tile.datanet.GTTileQuantumTank;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.util.misc.StackUtil;

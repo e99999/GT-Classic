@@ -1,6 +1,8 @@
 package gtclassic.common.tile.datanet;
 
 import gtclassic.common.util.datanet.GTDataNet.DataType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 
 public class GTTileConstructorFluid extends GTTileOutputNodeBase {
 
@@ -12,5 +14,15 @@ public class GTTileConstructorFluid extends GTTileOutputNodeBase {
 	@Override
 	public DataType dataType() {
 		return DataType.FLUID;
+	}
+
+	@Override
+	public BlockPos inventoryPos() {
+		return this.getPos().offset(this.getFacing());
+	}
+
+	@Override
+	public EnumFacing inventoryFacing() {
+		return this.getFacing().getOpposite();
 	}
 }

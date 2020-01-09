@@ -2,13 +2,17 @@ package gtclassic.common.tile.datanet;
 
 import java.util.Map;
 
+import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.util.datanet.GTDataNet;
 import ic2.core.block.base.tile.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 
-public abstract class GTTileOutputNodeBase extends TileEntityMachine implements IGTDebuggableTile {
+public abstract class GTTileOutputNodeBase extends TileEntityMachine
+		implements IGTDebuggableTile, IGTDataNetObject, ITickable {
 
 	public GTTileComputerCube computer;
 
@@ -30,6 +34,15 @@ public abstract class GTTileOutputNodeBase extends TileEntityMachine implements 
 		return true;
 	}
 
+	/**
+	 * This returns the position for digitizer/input nodes to check for a valid
+	 * inventory
+	 **/
+	public abstract BlockPos inventoryPos();
+
+	/** This returns the side the above inventory should be interacted with **/
+	public abstract EnumFacing inventoryFacing();
+
 	public abstract GTDataNet.DataType dataType();
 
 	@Override
@@ -37,7 +50,14 @@ public abstract class GTTileOutputNodeBase extends TileEntityMachine implements 
 		if (this.computer != null && this.computer.dataNet != null) {
 			data.put("Connected to network", false);
 		} else {
-			data.put("No network found", false);
+			data.put("No network found or network is not powered", false);
+		}
+	}
+
+	@Override
+	public void update() {
+		if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
+			this.computer = null;
 		}
 	}
 }

@@ -1,6 +1,5 @@
 package gtclassic.common.block.datanet;
 
-import gtclassic.api.interfaces.IGTDataNetBlock;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.block.GTBlockMachineDirectionable;
 import gtclassic.common.tile.datanet.GTTileConstructorFluid;
@@ -9,7 +8,7 @@ import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.world.World;
 
-public class GTBlockConstructor extends GTBlockMachineDirectionable implements IGTDataNetBlock {
+public class GTBlockConstructor extends GTBlockMachineDirectionable {
 
 	public GTBlockConstructor(String name, LocaleComp comp, int additionalInfo) {
 		super(name, comp, additionalInfo);

@@ -209,11 +209,20 @@ public class GTRecipe {
 			/** Fluid Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitBasic", 'M', "machineBlockBasic", 'P', Items.BUCKET);
 			/** Digital Stuff **/
-			//recipes.addRecipe(GTMaterialGen.get(GTBlocks.dataCable, 6), "RRR", "CIC", "RRR", 'I', "ingotSilicon", 'C', "circuitData", 'R', "itemRubber");
-			//recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerItem, 1), "CPC", "PMP", "CPC", 'P', anyPiston, 'C', "circuitData", 'M', "machineBlockAdvanced");
-			//recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerFluid, 1), "CPC", "PMP", "CPC", 'P', Items.BUCKET, 'C', "circuitData", 'M', "machineBlockAdvanced");
-			//recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileConstructorItem, 1), "PIP", "CMC", "PIP", 'P', anyPiston, 'C', "circuitData", 'M', "machineBlockAdvanced", 'I', "ingotPlatinum");
-			//recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileConstructorFluid, 1), "PIP", "CMC", "PIP", 'P', Items.BUCKET, 'C', "circuitData", 'M', "machineBlockAdvanced", 'I', "ingotTungsten");
+			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.dataCable, 6), "RRR", "CIC",
+			// "RRR", 'I', "ingotSilicon", 'C', "circuitData", 'R', "itemRubber");
+			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerItem, 1), "CPC",
+			// "PMP", "CPC", 'P', anyPiston, 'C', "circuitData", 'M',
+			// "machineBlockAdvanced");
+			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerFluid, 1), "CPC",
+			// "PMP", "CPC", 'P', Items.BUCKET, 'C', "circuitData", 'M',
+			// "machineBlockAdvanced");
+			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileConstructorItem, 1), "PIP",
+			// "CMC", "PIP", 'P', anyPiston, 'C', "circuitData", 'M',
+			// "machineBlockAdvanced", 'I', "ingotPlatinum");
+			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileConstructorFluid, 1), "PIP",
+			// "CMC", "PIP", 'P', Items.BUCKET, 'C', "circuitData", 'M',
+			// "machineBlockAdvanced", 'I', "ingotTungsten");
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {

@@ -4,9 +4,10 @@ import gtclassic.GTMod;
 import gtclassic.api.gui.GTGuiCompFluidTank;
 import gtclassic.common.gui.GTGuiCompBuffer;
 import gtclassic.common.tile.GTTileBufferFluid;
+import gtclassic.common.util.GTFilterFluidCapability;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
-import ic2.core.inventory.slots.SlotBase;
+import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDisplay;
 import ic2.core.inventory.slots.SlotOutput;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +22,7 @@ public class GTContainerBufferFluid extends ContainerTileComponent<GTTileBufferF
 
 	public GTContainerBufferFluid(InventoryPlayer player, GTTileBufferFluid tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotBase(tile, 0, 80, 17));
+		this.addSlotToContainer(new SlotCustom(tile, 0, 80, 17, new GTFilterFluidCapability()));
 		this.addSlotToContainer(new SlotOutput(player.player, tile, 1, 80, 53));
 		this.addSlotToContainer(new SlotDisplay(tile, 2, 59, 42));
 		this.addComponent(new GTGuiCompFluidTank(tile.getTankInstance()));

@@ -22,6 +22,7 @@ import gtclassic.common.container.GTContainerCentrifuge;
 import gtclassic.common.gui.GTGuiMachine.GTIndustrialCentrifugeGui;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.item.IMachineUpgradeItem.UpgradeType;
+import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.crafting.RecipeInputFluid;
 import ic2.api.classic.recipe.machine.MachineOutput;
@@ -70,6 +71,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 	public static final String NBT_TANK = "tank";
 	protected static final int[] SLOT_INPUTS = { 0, 1 };
 	protected static final int[] SLOT_OUTPUTS = { 2, 3, 4, 5, 6, 7 };
+	@NetworkField(index = 13)
 	private IC2Tank tank;
 	public IFilter filter = new MachineFilter(this);
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/industrialcentrifuge.png");

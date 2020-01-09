@@ -3,7 +3,7 @@ package gtclassic.common.tile.datanet;
 import java.util.HashSet;
 import java.util.Map;
 
-import gtclassic.api.interfaces.IGTDataNetBlock;
+import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.container.GTContainerComputerCube;
@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileComputerCube extends TileEntityElecMachine
-		implements IHasGui, IGTDebuggableTile, ITickable, IGTDataNetBlock {
+		implements IHasGui, IGTDebuggableTile, ITickable, IGTDataNetObject {
 
 	boolean isOnlyComputer = true;
 	private Processor task = null;
@@ -129,7 +129,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 					if (!world.isBlockLoaded(tPos)) {
 						continue;
 					}
-					if (world.getBlockState(tPos).getBlock() != GTBlocks.dataCable) {
+					if (world.getBlockState(tPos).getBlock() != GTBlocks.dataCable && !this.dataNet.contains(tPos)) {
 						this.dataNet.add(tPos);
 					}
 				}

@@ -5,7 +5,7 @@ import java.util.Random;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseConnect;
-import gtclassic.api.interfaces.IGTDataNetBlock;
+import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelWire;
 import gtclassic.common.GTLang;
@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockDataCable extends GTBlockBaseConnect implements IGTReaderInfoBlock, IGTDataNetBlock {
+public class GTBlockDataCable extends GTBlockBaseConnect implements IGTReaderInfoBlock, IGTDataNetObject {
 
 	int size;
 

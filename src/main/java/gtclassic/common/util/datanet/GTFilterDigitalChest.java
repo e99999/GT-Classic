@@ -1,4 +1,4 @@
-package gtclassic.common.util;
+package gtclassic.common.util.datanet;
 
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.material.GTMaterialGen;

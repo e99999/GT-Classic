@@ -26,6 +26,7 @@ public class GTDataNet {
 	/** Enum for data types **/
 	public enum DataType {
 		ITEM(),
-		FLUID();
+		FLUID(),
+		BOTH;
 	}
 }

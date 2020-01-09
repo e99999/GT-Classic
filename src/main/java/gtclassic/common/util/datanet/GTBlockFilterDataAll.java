@@ -1,6 +1,6 @@
 package gtclassic.common.util.datanet;
 
-import gtclassic.api.interfaces.IGTDataNetBlock;
+import gtclassic.api.interfaces.IGTDataNetObject;
 import ic2.core.util.helpers.AabbUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -15,13 +15,13 @@ public class GTBlockFilterDataAll implements AabbUtil.IBlockFilter {
 
 	@Override
 	public boolean isValidBlock(IBlockState state) {
-		return state.getBlock() instanceof IGTDataNetBlock;
+		return state.getBlock() instanceof IGTDataNetObject;
 	}
 
 	@Override
 	public boolean isValidBlock(World world, BlockPos blockPos) {
 		Block worldBlock = world.getBlockState(blockPos).getBlock();
-		return worldBlock instanceof IGTDataNetBlock || world.getTileEntity(blockPos) instanceof IGTDataNetBlock;
+		return worldBlock instanceof IGTDataNetObject || world.getTileEntity(blockPos) instanceof IGTDataNetObject;
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package gtclassic.common.tile.datanet;
 
-import gtclassic.api.interfaces.IGTDataNetBlock;
+import gtclassic.api.interfaces.IGTDataNetObject;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -69,8 +69,8 @@ public class GTTileDataCable extends TileEntityBlock {
 	}
 
 	public boolean canConnect(BlockPos worldPos) {
-		return this.getWorld().getBlockState(worldPos).getBlock() instanceof IGTDataNetBlock
-				|| this.getWorld().getTileEntity(worldPos) instanceof IGTDataNetBlock;
+		return this.getWorld().getBlockState(worldPos).getBlock() instanceof IGTDataNetObject
+				|| this.getWorld().getTileEntity(worldPos) instanceof IGTDataNetObject;
 	}
 
 	@Override

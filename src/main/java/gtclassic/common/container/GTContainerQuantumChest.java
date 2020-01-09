@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import gtclassic.GTMod;
 import gtclassic.common.gui.GTGuiCompQuantumChest;
-import gtclassic.common.tile.GTTileQuantumChest;
+import gtclassic.common.tile.datanet.GTTileQuantumChest;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDisplay;

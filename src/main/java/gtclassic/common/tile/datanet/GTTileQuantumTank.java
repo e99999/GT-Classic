@@ -1,4 +1,4 @@
-package gtclassic.common.tile;
+package gtclassic.common.tile.datanet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerQuantumTank;
+import gtclassic.common.util.datanet.GTDataNet.DataType;
 import ic2.core.RotationList;
-import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
@@ -30,13 +30,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileQuantumTank extends TileEntityMachine
+public class GTTileQuantumTank extends GTTileOutputNodeBase
 		implements ITankListener, IGTItemContainerTile, ITickable, IHasGui, IClickable {
 
 	private IC2Tank tank;
@@ -180,5 +181,20 @@ public class GTTileQuantumTank extends TileEntityMachine
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
 		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+	}
+
+	@Override
+	public DataType dataType() {
+		return DataType.FLUID;
+	}
+
+	@Override
+	public BlockPos inventoryPos() {
+		return this.getPos();
+	}
+
+	@Override
+	public EnumFacing inventoryFacing() {
+		return EnumFacing.UP;
 	}
 }
