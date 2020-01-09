@@ -1,5 +1,8 @@
 package gtclassic.common.tile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
@@ -22,10 +25,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGui, INetworkClientTileEntityEventListener {
+public class GTTileWorktable extends GTTileBaseRecolorableTile
+		implements IHasGui, INetworkClientTileEntityEventListener {
 
 	public NonNullList<ItemStack> craftingInventory = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/worktable.png");
@@ -67,24 +68,21 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 	@Override
 	public void onNetworkEvent(EntityPlayer player, int event) {
 		if (event == 2) {
-			for (int j = 0; j < 9; j++){
+			for (int j = 0; j < 9; j++) {
 				ItemStack stack = craftingInventory.get(j);
-				if (stack.isEmpty()){
+				if (stack.isEmpty()) {
 					continue;
 				}
 				player.inventory.addItemStackToInventory(stack);
 			}
-
 		}
-		if (event == 1) {
-			if (inUse){
-				for (int j = 0; j < 9; j++){
-					ItemStack stack = craftingInventory.get(j);
-					if (stack.isEmpty()){
-						continue;
-					}
-					insert(j, stack);
+		if (event == 1 && this.inUse) {
+			for (int j = 0; j < 9; j++) {
+				ItemStack stack = craftingInventory.get(j);
+				if (stack.isEmpty()) {
+					continue;
 				}
+				insert(j, stack);
 			}
 		}
 	}
@@ -99,11 +97,10 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 		int count = craftingStack.getCount();
 		int room;
 		int toDeliver;
-
 		// Try to first insert into same ItemStacks
 		while (curSlot <= LAST_SLOT && count > 0) {
 			ItemStack slotStack = this.getStackInSlot(curSlot);
-			if (craftingStack.isEmpty()){
+			if (craftingStack.isEmpty()) {
 				count = 0;
 			}
 			if (GTHelperStack.isEqual(craftingStack, slotStack) && slotStack.getCount() < maxStackSize) {
@@ -113,19 +110,18 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 				this.setStackInSlot(curSlot, slotStack);
 				craftingStack.grow(-toDeliver);
 				craftingInventory.set(slot, craftingStack);
-				if (count >= room){
+				if (count >= room) {
 					count -= room;
 				}
 			}
 			curSlot++;
 		}
-
 		curSlot = FIRST_SLOT;
 		// Try to deliver into empty slot
 		while (curSlot <= LAST_SLOT && count > 0) {
 			if (this.getStackInSlot(curSlot).isEmpty()) {
 				this.setStackInSlot(curSlot, craftingStack.copy());
-				craftingStack.grow(- count);
+				craftingStack.grow(-count);
 				craftingInventory.set(slot, craftingStack);
 				count = 0;
 			}
@@ -133,7 +129,6 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 		}
 		return craftingStack;
 	}
-
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -161,7 +156,7 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile implements IHasGu
 		this.setActive(false);
 	}
 
-	public ResourceLocation getGuiTexture(){
+	public ResourceLocation getGuiTexture() {
 		return TEXTURE;
 	}
 

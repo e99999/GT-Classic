@@ -6,6 +6,7 @@ import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.util.datanet.GTDataNet;
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.inventory.filters.IFilter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -59,5 +60,9 @@ public abstract class GTTileOutputNodeBase extends TileEntityMachine
 		if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
 			this.computer = null;
 		}
+	}
+
+	public IFilter inventoryFilter() {
+		return null;
 	}
 }

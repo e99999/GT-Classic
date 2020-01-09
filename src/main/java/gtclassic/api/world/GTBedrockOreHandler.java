@@ -28,7 +28,6 @@ public class GTBedrockOreHandler {
 		addBedrockOre(GTBlocks.oreBedrockTin, Ic2Items.tinDust);
 		addBedrockOre(GTBlocks.oreBedrockUranium, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 		addBedrockOre(GTBlocks.oreBedrockSilver, Ic2Items.silverDust);
-		addBedrockOre(GTBlocks.oreBedrockIridium, GTMaterialGen.getDust(GTMaterial.Iridium, 1));
 		addBedrockOre(GTBlocks.oreBedrockSheldonite, GTMaterialGen.getDust(GTMaterial.Platinum, 1));
 		addBedrockOre(GTBlocks.oreBedrockRuby, GTMaterialGen.getDust(GTMaterial.Ruby, 1));
 		addBedrockOre(GTBlocks.oreBedrockSapphire, GTMaterialGen.getDust(GTMaterial.Sapphire, 1));

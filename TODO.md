@@ -9,4 +9,6 @@
 - Convert String references in gui's to localecomps
 
 # DataNet
-- add more data to output nodes so you can get the output tile directly from the node and not offset yourself in input node child classes
+- once you make nodes have fancier rendering/modeling, update the filter to have the logic for list adding so you can define nodes to pass over and nodes to not pass over for the network connections
+- Need todo channels
+- need todo filters

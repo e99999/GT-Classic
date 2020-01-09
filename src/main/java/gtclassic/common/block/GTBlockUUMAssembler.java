@@ -3,7 +3,6 @@ package gtclassic.common.block;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.api.helpers.GTHelperData;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileUUMAssembler;
@@ -99,7 +98,7 @@ public class GTBlockUUMAssembler extends GTBlockMachine {
 					uumassembler.energy = nbt.getInteger("energy");
 				}
 				if (nbt.hasKey("ItemsStored")) {
-					GTHelperData.readFromNBT(nbt.getCompoundTag("ItemsStored"), uumassembler);
+					GTTileUUMAssembler.readInventory(nbt.getCompoundTag("ItemsStored"), uumassembler);
 				}
 			}
 		}

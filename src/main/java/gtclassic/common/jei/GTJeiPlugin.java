@@ -1,5 +1,7 @@
 package gtclassic.common.jei;
 
+import javax.annotation.Nonnull;
+
 import gtclassic.api.jei.GTJeiEntry;
 import gtclassic.api.jei.GTJeiHandler;
 import gtclassic.api.jei.GTJeiMultiRecipeCategory;
@@ -27,8 +29,6 @@ import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-
-import javax.annotation.Nonnull;
 
 @JEIPlugin
 public class GTJeiPlugin implements IModPlugin {

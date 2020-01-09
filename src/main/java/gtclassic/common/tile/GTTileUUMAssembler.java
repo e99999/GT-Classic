@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.GTMod;
-import gtclassic.api.helpers.GTHelperData;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.material.GTMaterial;
@@ -34,8 +33,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
 public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickable, IHasGui, IGTItemContainerTile {
@@ -200,7 +201,7 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 			StackUtil.getOrCreateNbtData(stack).setInteger(NBT_STOREDENERGY, this.energy);
 		}
 		NBTTagCompound nbt = new NBTTagCompound();
-		GTHelperData.writeToNBT(nbt, this, 9);
+		writeInventory(nbt, this, 9);
 		stack.setTagInfo("ItemsStored", nbt);
 		list.add(stack);
 		list.addAll(getInventoryDrops());
@@ -213,6 +214,33 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 		list.add(this.getStackInSlot(12));
 		list.add(this.getStackInSlot(13));
 		return list;
+	}
+
+	/** Reads the inventory list from NBT **/
+	public static void readInventory(NBTTagCompound nbt, TileEntityElecMachine tile) {
+		NBTTagList list = nbt.getTagList("Items", 10);
+		tile.inventory = NonNullList.withSize(tile.slotCount, ItemStack.EMPTY);
+		for (int i = 0; i < list.tagCount(); ++i) {
+			NBTTagCompound data = list.getCompoundTagAt(i);
+			int slot = data.getInteger("Slot");
+			if (slot >= 0 && slot < tile.slotCount) {
+				tile.inventory.set(slot, new ItemStack(data));
+			}
+		}
+	}
+
+	/** Saves this inventory to NBT with a slot max **/
+	public static void writeInventory(NBTTagCompound nbt, TileEntityElecMachine tile, int slotMax) {
+		NBTTagList list = new NBTTagList();
+		for (int i = 0; i < tile.slotCount; ++i) {
+			if (i <= slotMax) {
+				NBTTagCompound data = new NBTTagCompound();
+				((ItemStack) tile.inventory.get(i)).writeToNBT(data);
+				data.setInteger("Slot", i);
+				list.appendTag(data);
+			}
+		}
+		nbt.setTag("Items", list);
 	}
 
 	public void updateCost() {

@@ -1,14 +1,14 @@
 package gtclassic.api.helpers;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 public class GTHelperStack {
 

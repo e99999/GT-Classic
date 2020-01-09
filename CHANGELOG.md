@@ -1,6 +1,9 @@
 # Changelog
 
 # 1.09 (Not Released)
+- Centrifuge now has tank to process fluids, although this shifts the slot count so you might have an upgrade or battery in the wrong slot.. oops : )
+- Changed, drums can now auto output if sneak-wrenched, gases go up, fluids go down.
+- Improved the basic worktable with help from Trinsdar
 - Fixed some buffers getting pissy about what could go in what side.
 - Fixed Methane and Hydrogen processing yeilding a net loss on power, they are now valid sources to generate power from.
 - Added Bedrock Ore Veins, which are indicated by "Orechids" (GT6) off all vanilla/ic2/gtc ores. Not infinite but can be mined for a long time.

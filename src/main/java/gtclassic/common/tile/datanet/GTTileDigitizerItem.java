@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import gtclassic.common.util.datanet.GTDataNet.DataType;
 import gtclassic.common.util.datanet.GTFilterItemDigitizer;
 import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.filters.InvertedFilter;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
@@ -37,7 +38,9 @@ public class GTTileDigitizerItem extends GTTileInputNodeBase {
 			if (i == limit - 1) {
 				blacklist.clear();
 			}
-			ItemStack stack = slave.removeItem(new InvertedFilter(new GTFilterItemDigitizer(this)), this.getFacing().getOpposite(), 64, false);
+			IFilter filter = node.inventoryFilter() != null ? node.inventoryFilter()
+					: new InvertedFilter(new GTFilterItemDigitizer(this));
+			ItemStack stack = slave.removeItem(filter, this.getFacing().getOpposite(), 64, false);
 			ItemStack added = nodeTile.addItem(stack, node.inventoryFacing(), true);
 			if (added.getCount() <= 0) {
 				if (!stack.isEmpty()) {

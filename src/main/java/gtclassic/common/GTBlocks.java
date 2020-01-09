@@ -93,7 +93,6 @@ public class GTBlocks {
 	public static final GTBlockOreBedrock oreBedrockTin = registerBlock(new GTBlockOreBedrock("Tin", 8));
 	public static final GTBlockOreBedrock oreBedrockUranium = registerBlock(new GTBlockOreBedrock("Uranium", 9));
 	public static final GTBlockOreBedrock oreBedrockSilver = registerBlock(new GTBlockOreBedrock("Silver", 10));
-	public static final GTBlockOreBedrock oreBedrockIridium = registerBlock(new GTBlockOreBedrock("Iridium", 11));
 	public static final GTBlockOreBedrock oreBedrockSheldonite = registerBlock(new GTBlockOreBedrock("Sheldonite", 12));
 	public static final GTBlockOreBedrock oreBedrockRuby = registerBlock(new GTBlockOreBedrock("Ruby", 13));
 	public static final GTBlockOreBedrock oreBedrockSapphire = registerBlock(new GTBlockOreBedrock("Sapphire", 14));

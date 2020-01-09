@@ -24,7 +24,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable> {
 
-	private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3){
+	private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3) {
+
 		@Override
 		public void setInventorySlotContents(int index, ItemStack stack) {
 			super.setInventorySlotContents(index, stack);
@@ -44,14 +45,12 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		this.player = player.player;
 		// crafting output slot
 		this.addSlotToContainer(new SlotCrafting(this.player, craftMatrix, craftResult, 0, 136, 46));// slot 0
-
 		// crafting slots
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 3; ++j) {
 				this.addSlotToContainer(new Slot(craftMatrix, (j + i * 3), 82 + j * 18, 28 + i * 18));
 			}
 		}
-
 		// main inventory
 		int k;
 		for (k = 0; k < 4; ++k) {
@@ -60,12 +59,11 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 			}
 		}
 		// tool slots
-		for (k = 0; k < 5; k++){
+		for (k = 0; k < 5; k++) {
 			this.addSlotToContainer(new SlotCustom(tile, k + 17, 82 + (k * 18), 8, toolFilter));
 		}
 		// park slot
 		this.addSlotToContainer(new SlotBase(tile, 22, 154, 46));
-
 		this.addComponent(new GTGuiCompWorktable(tile));
 		this.addPlayerInventory(player, 0, 0);
 		readTileCraftingList();
@@ -78,15 +76,6 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
 	}
 
-//	@Nullable
-//	@Override
-//	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-//		writeTileCraftingList();
-//		if (!isCurrentListEqual()) {
-//			readTileCraftingList();
-//		}
-//		return super.slotClick(slotId, dragType, clickTypeIn, player);
-//	}
 	@Override
 	public void onContainerClosed(EntityPlayer playerIn) {
 		super.onContainerClosed(playerIn);
