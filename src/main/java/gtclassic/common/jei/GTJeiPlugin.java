@@ -1,7 +1,5 @@
 package gtclassic.common.jei;
 
-import javax.annotation.Nonnull;
-
 import gtclassic.api.jei.GTJeiEntry;
 import gtclassic.api.jei.GTJeiHandler;
 import gtclassic.api.jei.GTJeiMultiRecipeCategory;
@@ -30,6 +28,8 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 @JEIPlugin
 public class GTJeiPlugin implements IModPlugin {
 
@@ -46,7 +46,7 @@ public class GTJeiPlugin implements IModPlugin {
 			}
 			// More Vanilla Crafting
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
-			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorktable.class, VanillaRecipeCategoryUid.CRAFTING, 17, 25, 10, 52);
+			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorktable.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 58);
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileWorktable), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileAutocrafter), new String[] { "minecraft.crafting" });
 			// Amplifier
