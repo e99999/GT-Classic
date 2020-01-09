@@ -28,8 +28,8 @@ public class GTGuiCompWorktable  extends GuiComponent {
     @Override
     @SideOnly(Side.CLIENT)
     public void onGuiInit(GuiIC2 gui) {
-        gui.registerButton((new GTGuiButton(2, bX(gui, 153), bY(gui, 45), 18, 18)));// shift crafting grid items into player inventory
-        gui.registerButton((new GTGuiButton(1, bX(gui, 135), bY(gui, 45), 18, 18)));// shift crafting grid items into main inventory
+        gui.registerButton((new GTGuiButton(2, bX(gui, 153), bY(gui, 25), 18, 20)));// shift crafting grid items into player inventory
+        gui.registerButton((new GTGuiButton(1, bX(gui, 135), bY(gui, 25), 18, 20)));// shift crafting grid items into main inventory
     }
 
     @Override

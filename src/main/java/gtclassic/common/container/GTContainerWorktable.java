@@ -43,7 +43,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		this.world = player.player.getEntityWorld();
 		this.player = player.player;
 		// crafting output slot
-		this.addSlotToContainer(new SlotCrafting(this.player, craftMatrix, craftResult, 0, 136, 64));// slot 0
+		this.addSlotToContainer(new SlotCrafting(this.player, craftMatrix, craftResult, 0, 136, 46));// slot 0
 
 		// crafting slots
 		for (int i = 0; i < 3; ++i) {
@@ -64,7 +64,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 			this.addSlotToContainer(new SlotCustom(tile, k + 17, 82 + (k * 18), 8, toolFilter));
 		}
 		// park slot
-		this.addSlotToContainer(new SlotBase(tile, 22, 154, 64));
+		this.addSlotToContainer(new SlotBase(tile, 22, 154, 46));
 
 		this.addComponent(new GTGuiCompWorktable(tile));
 		this.addPlayerInventory(player, 0, 0);
