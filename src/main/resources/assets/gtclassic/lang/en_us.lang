@@ -289,6 +289,9 @@ tooltip.gtclassic.itemconstructor0=Moves items from a data network to output fac
 tooltip.gtclassic.itemconstructor1=Requires a computer cube on the network to function
 tooltip.gtclassic.fluidconstructor0=Moves fluids from a data network to output facing
 tooltip.gtclassic.fluidconstructor1=Requires a computer cube on the network to function
+
+tooltip.worktable_button1=Shift crafting grid items into player inventory
+tooltip.worktable_button2=Shift crafting grid items into main inventory
 jei.centrifugeu.name=%s EU
 
 itemGroup.gtclassic=GT-Classic

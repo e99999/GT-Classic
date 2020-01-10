@@ -102,7 +102,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 					if (stack.isEmpty()){
 						continue;
 					}
-					insert(j, stack, 10, 26);
+					insert(j, stack, 10, 25);
 				}
 			}
 		}
