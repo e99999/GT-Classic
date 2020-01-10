@@ -48,8 +48,6 @@ import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSand;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

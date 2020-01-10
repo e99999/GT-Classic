@@ -151,14 +151,16 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 
 	@Override
 	public void onRecipeComplete() {
-		if (this.lastRecipe != null) {
-			int recipePower = lastRecipe.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
-			int recipeFraction = ((recipePower * lastRecipe.getMachineEu()) / 20) / 2;
-			int recipeFinal = (int) (recipeFraction + (recipeFraction * this.getWorld().rand.nextFloat()));
-			if (this.energyOut + recipeFinal >= 134217728) {
+		if (this.lastRecipe != null && this.lastRecipe != GTRecipeMultiInputList.INVALID_RECIPE) {
+			int rTime = lastRecipe.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
+			if (rTime < 3000) {
+				return;
+			}
+			int euOutput = rTime * 32000;
+			if (this.energyOut + euOutput >= 134217728) {
 				this.energyOut = 134217728;
 			} else {
-				this.energyOut = this.energyOut + recipeFinal;
+				this.energyOut = this.energyOut + euOutput;
 			}
 		}
 	}
@@ -218,8 +220,6 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 
 	public static void postInit() {
 		/** Just regular recipes added manually **/
-		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
-				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getTube(GTMaterial.Deuterium, 1)),
 				input(GTMaterialGen.getTube(GTMaterial.Tritium, 1)) }, totalEu(40000000), GTMaterialGen.getTube(GTMaterial.Helium, 1));
 		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getTube(GTMaterial.Deuterium, 1)),
@@ -240,6 +240,8 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 				}
 			}
 		}
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
+				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
 
 	public static IRecipeModifier[] totalEu(int total) {
