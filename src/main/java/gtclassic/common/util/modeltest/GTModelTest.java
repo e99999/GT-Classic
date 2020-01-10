@@ -14,8 +14,10 @@ import javax.vecmath.Matrix4f;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.util.vector.Vector3f;
 
+import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseConnect;
 import ic2.core.RotationList;
+import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.Ic2Models;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.util.helpers.BlockStateContainerIC2.IC2BlockState;
@@ -64,7 +66,7 @@ public class GTModelTest extends BaseModel {
 		for (int var9 = 0; var9 < var8; ++var9) {
 			EnumFacing side = var7[var9];
 			sideQuads.put(side, this.generateQuadsForSide(wire, side, min, max));
-			anchorQuadList.put(side, this.generateQuadsForAnchor(this.sprite, side, min, max));
+			anchorQuadList.put(side, this.generateQuadsForAnchor(this.sprite, side, min - 4, max + 4));
 		}
 		for (int i = 0; i < 64; ++i) {
 			RotationList rotation = RotationList.ofNumber(i);
@@ -154,16 +156,17 @@ public class GTModelTest extends BaseModel {
 			EnumFacing side = var7[var9];
 			if (side.getOpposite() != facing) {
 				BlockPartFace face = null;
+				//the stuff below seems to change the texture
 				if (side == facing) {
 					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
 							(float) min, (float) max, (float) max }, 0));
 				} else if (facing.getAxis() == Axis.Z && side.getAxis() == Axis.X) {
 					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) max,
-							(float) min, 16.0F, (float) max }, 0));
+							(float) min, 16.0F, (float) max}, 0));
 				} else {
 					face = this.getFace(facing, min, max);
 				}
-				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, sprite, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
+				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, Ic2Icons.getTextures(GTMod.MODID + "_blocks")[15], side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 			}
 		}
 		return quads;

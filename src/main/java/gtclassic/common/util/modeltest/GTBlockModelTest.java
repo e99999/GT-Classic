@@ -8,21 +8,27 @@ import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.common.GTLang;
+import gtclassic.common.tile.GTTileDrum;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.util.helpers.BlockStateContainerIC2;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -39,6 +45,17 @@ public class GTBlockModelTest extends GTBlockBaseConnect implements IGTReaderInf
 		this.setSoundType(SoundType.CLOTH);
 		this.setHarvestLevel("axe", 0);
 		setCreativeTab(GTMod.creativeTabGT);
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+			ItemStack stack) {
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileModelTest) {
+			GTTileModelTest test = (GTTileModelTest) tile;
+			test.anchors = RotationList.ofFacings(test.getFacing());
+		}
 	}
 
 	@Override
@@ -69,7 +86,7 @@ public class GTBlockModelTest extends GTBlockBaseConnect implements IGTReaderInf
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTModelTest(state, Ic2Icons.getTextures(GTMod.MODID + "_blocks")[15], getSize());
+		return new GTModelTest(state, Ic2Icons.getTextures(GTMod.MODID + "_blocks")[5], getSize());
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -81,7 +98,7 @@ public class GTBlockModelTest extends GTBlockBaseConnect implements IGTReaderInf
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[15];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[5];
 	}
 
 	@SideOnly(Side.CLIENT)
