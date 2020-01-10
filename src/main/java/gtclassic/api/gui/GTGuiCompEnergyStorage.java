@@ -1,8 +1,10 @@
 package gtclassic.api.gui;
 
 import java.awt.Color;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import gtclassic.common.tile.GTTileIDSU;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
@@ -38,8 +40,8 @@ public class GTGuiCompEnergyStorage extends GuiComponent {
 		if (eu > max) {
 			eu = max;
 		}
-		gui.drawString("" + eu, 12, 28, Color.cyan.hashCode());
-		gui.drawString("/" + max, 12, 38, Color.cyan.hashCode());
+		gui.drawString("" + NumberFormat.getNumberInstance(Locale.US).format(eu), 12, 28, Color.cyan.hashCode());
+		gui.drawString("/" + NumberFormat.getNumberInstance(Locale.US).format(max), 12, 38, Color.cyan.hashCode());
 		gui.drawString(Ic2GuiLang.energyStorageOutput.getLocalizedFormatted(new Object[] {
 				this.block.output }), 12, 48, Color.cyan.hashCode());
 		// This is just for the UUID in the IDSU, didnt warrant a whole new class

@@ -17,6 +17,8 @@ public class GTDataNet {
 	/** Tick rate for networks to reset and require revalidation **/
 	public static final int RESET_RATE = 126;
 	public static final String NBT_CHANNEL = "channel";
+	
+	public static final String TOOLTIP = "Currently work in progress!";
 
 	/** Enum for node types **/
 	public enum NodeType {

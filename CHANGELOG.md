@@ -1,7 +1,11 @@
 # Changelog
 
-# 1.09 (Not Released)
-- Changed added configurable option to put red sand in other biomes, just experimenting.
+# 1.1.0 (Not Released)
+- Nothing to see here
+
+# 1.09
+- Started working on my own digital item/fluid management system, blocks are left in for testing with no recipes while i work on it.
+- Added commas to big numbers in various places, JEI, energy storage gui's etc..
 - Changed the Centrifuge now has tank to process fluids, although this shifts the slot count so you might have an upgrade or battery in the wrong slot.. oops : )
 - Change the Matter Fabricator now also has a tank for processing fluids directly.
 - Changed, drums can now auto output if sneak-wrenched, gases go up, fluids go down.

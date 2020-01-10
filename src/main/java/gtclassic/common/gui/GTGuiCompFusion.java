@@ -1,8 +1,10 @@
 package gtclassic.common.gui;
 
 import java.awt.Color;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import ic2.core.inventory.gui.GuiIC2;
@@ -32,7 +34,7 @@ public class GTGuiCompFusion extends GuiComponent {
 		if (progress > 100) {
 			progress = 100;
 		}
-		gui.drawString("EU: " + this.block.energy, 10, 7, Color.cyan.hashCode());
+		gui.drawString("EU: " + NumberFormat.getNumberInstance(Locale.US).format(this.block.energy), 10, 7, Color.cyan.hashCode());
 		gui.drawString("Coils: " + this.block.status, 10, 17, Color.cyan.hashCode());
 		gui.drawString("Progress: " + Math.round(progress) + "%", 10, 27, Color.cyan.hashCode());
 	}

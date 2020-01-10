@@ -2,7 +2,9 @@ package gtclassic.common.jei;
 
 import java.awt.Color;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import gtclassic.common.GTConfig;
@@ -50,7 +52,7 @@ public class GTJeiUUAmplifierWrapper implements IRecipeWrapper {
 		DecimalFormat df = new DecimalFormat("###.##");
 		font.drawString("Progress: " + df.format(100.0 / (1000000.0 / value)) + "%", 0, 40, Color.black.getRGB());
 		font.drawString("Multiplier: " + value / 5000.0 + "X", 0, 50, Color.black.getRGB());
-		font.drawString("Cost: " + value + " EU", 0, 60, Color.black.getRGB());
+		font.drawString("Cost: " + NumberFormat.getNumberInstance(Locale.US).format(value) + " EU", 0, 60, Color.black.getRGB());
 		if (GTConfig.general.debugMode) {
 			font.drawString("Recipe Id: " + multiRecipe.getRecipeID(), 0, 70, Color.black.getRGB());
 		}

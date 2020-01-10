@@ -1,7 +1,9 @@
 package gtclassic.api.jei;
 
 import java.awt.Color;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import gtclassic.api.helpers.GTHelperString;
 import gtclassic.api.recipe.GTFluidMachineOutput;
@@ -58,11 +60,11 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 		font.drawString("Tier: "
 				+ GTHelperString.getTierString(EnergyNet.instance.getTierFromPower(multiRecipe.getMachineEu())), 0, 60, Color.black.getRGB());
 		font.drawString("Usage: " + multiRecipe.getMachineEu() + " EU/t", 0, 70, Color.black.getRGB());
-		font.drawString("Cost: " + getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu()
+		font.drawString("Cost: " + NumberFormat.getNumberInstance(Locale.US).format(getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu())
 				+ " EU", 0, 80, Color.black.getRGB());
 		if (multiRecipe.getMachineEu() == 8192 && getEntryTicks(multiRecipe.getOutputs()) > 3000) {
 			extraHeight = 10;
-			font.drawString("Output: " + (getEntryTicks(multiRecipe.getOutputs()) * 32000)
+			font.drawString("Output: " + NumberFormat.getNumberInstance(Locale.US).format(getEntryTicks(multiRecipe.getOutputs()) * 32000)
 					+ " EU Out", 0, 90, Color.black.getRGB());
 		}
 		if (GTConfig.general.debugMode) {

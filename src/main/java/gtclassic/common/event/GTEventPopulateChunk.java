@@ -2,8 +2,6 @@ package gtclassic.common.event;
 
 import gtclassic.common.GTConfig;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSand;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
@@ -19,7 +17,7 @@ public class GTEventPopulateChunk {
 
 	public static final Block BLOCK_GRAVEL = Blocks.GRAVEL; // change this to suit your need
 	public static final Block BLOCK_SAND = Blocks.SAND; // change this to suit your need
-	protected static final IBlockState BLOCKSTATE_RED_SAND = Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.RED_SAND);
+	//protected static final IBlockState BLOCKSTATE_RED_SAND = Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.RED_SAND);
 
 	/*
 	 * Makes oceans have sand, thanks to Jabelar for finding this work around
@@ -49,23 +47,23 @@ public class GTEventPopulateChunk {
 			}
 			chunk.markDirty();
 		}
-		if (GTConfig.general.redSandInForestsAndPlains) {
-			Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
-			for (int x = 0; x < 16; ++x) {
-				for (int z = 0; z < 16; ++z) {
-					Biome biomegenbase = event.getWorld().getBiome(new BlockPos(chunk.x * 16 + x, 128, chunk.z * 16
-							+ z));
-					if (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
-							|| BiomeDictionary.hasType(biomegenbase, Type.PLAINS)) {
-						for (int y = 30; y < 80; ++y) {
-							if (chunk.getBlockState(x, y, z).getBlock() == BLOCK_SAND) {
-								chunk.setBlockState(new BlockPos(x, y, z), BLOCKSTATE_RED_SAND);
-							}
-						}
-					}
-				}
-			}
-			chunk.markDirty();
-		}
+//		if (GTConfig.general.redSandInForestsAndPlains) {
+//			Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
+//			for (int x = 0; x < 16; ++x) {
+//				for (int z = 0; z < 16; ++z) {
+//					Biome biomegenbase = event.getWorld().getBiome(new BlockPos(chunk.x * 16 + x, 128, chunk.z * 16
+//							+ z));
+//					if (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
+//							|| BiomeDictionary.hasType(biomegenbase, Type.PLAINS)) {
+//						for (int y = 30; y < 80; ++y) {
+//							if (chunk.getBlockState(x, y, z).getBlock() == BLOCK_SAND) {
+//								chunk.setBlockState(new BlockPos(x, y, z), BLOCKSTATE_RED_SAND);
+//							}
+//						}
+//					}
+//				}
+//			}
+//			chunk.markDirty();
+//		}
 	}
 }
