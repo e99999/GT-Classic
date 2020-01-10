@@ -1,5 +1,6 @@
 package gtclassic.common.container;
 
+import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.slot.GTToolSlotFilter;
 import gtclassic.common.gui.GTGuiCompWorktable;
 import gtclassic.common.tile.GTTileWorktable;
@@ -32,7 +33,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 			block.craftingInventory.set(index, stack);
 		}
 	};
-	private InventoryCraftResult craftResult = new InventoryCraftResult();
+	public InventoryCraftResult craftResult = new InventoryCraftResult();
 	private final World world;
 	private final EntityPlayer player;
 	private GTTileWorktable block;
@@ -64,7 +65,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		}
 		// park slot
 		this.addSlotToContainer(new SlotBase(tile, 22, 154, 46));
-		this.addComponent(new GTGuiCompWorktable(tile));
+		this.addComponent(new GTGuiCompWorktable(tile, this));
 		this.addPlayerInventory(player, 0, 0);
 		readTileCraftingList();
 		this.block.inUse = true;
@@ -74,6 +75,87 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 	@Override
 	public void onCraftMatrixChanged(IInventory inventoryIn) {
 		this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
+	}
+
+	public void onButtonClick(int event) {
+		if (event == 2) {
+			if (block.inUse){
+				for (int j = 1; j < 10; j++){
+					Slot slot = getSlot(j);
+					ItemStack stack = slot.getStack();
+					if (stack.isEmpty()){
+						continue;
+					}
+					stack = insert(j, stack, 59, 67);
+					if (stack.isEmpty()){
+						continue;
+					}
+					insert(j, stack, 32, 58);
+				}
+			}
+		}
+		if (event == 1) {
+			if (block.inUse){
+				for (int j = 1; j < 10; j++){
+					Slot slot = getSlot(j);
+					ItemStack stack = slot.getStack();
+					if (stack.isEmpty()){
+						continue;
+					}
+					insert(j, stack, 10, 25);
+				}
+			}
+		}
+	}
+
+	ItemStack insert(int slot, ItemStack aStack, final int firstSlot, final int lastSlot) {
+		ItemStack craftingStack = aStack;
+		int curSlot = firstSlot;
+		int maxStackSize = craftingStack.getMaxStackSize();
+		int count = craftingStack.getCount();
+		int room;
+		int toDeliver;
+
+		// Try to first insert into same ItemStacks
+		while (curSlot <= lastSlot && count > 0) {
+			ItemStack slotStack = this.getStackInSlot(curSlot);
+			if (craftingStack.isEmpty()){
+				count = 0;
+			}
+			if (GTHelperStack.isEqual(craftingStack, slotStack) && slotStack.getCount() < maxStackSize) {
+				room = maxStackSize - slotStack.getCount();
+				toDeliver = Math.min(room, count);
+				slotStack.grow(toDeliver);
+				this.setStackInSlot(curSlot, slotStack);
+				craftingStack.grow(-toDeliver);
+				setStackInSlot(slot, craftingStack);
+				if (count >= room){
+					count -= room;
+				}
+			}
+			curSlot++;
+		}
+
+		curSlot = firstSlot;
+		// Try to deliver into empty slot
+		while (curSlot <= lastSlot && count > 0) {
+			if (this.getStackInSlot(curSlot).isEmpty()) {
+				this.setStackInSlot(curSlot, craftingStack.copy());
+				craftingStack.grow(- count);
+				setStackInSlot(slot, craftingStack);
+				count = 0;
+			}
+			curSlot++;
+		}
+		return craftingStack;
+	}
+
+	public ItemStack getStackInSlot(int slot){
+		return getSlot(slot).getStack();
+	}
+
+	public void setStackInSlot(int slot, ItemStack stack){
+		getSlot(slot).putStack(stack);
 	}
 
 	@Override

@@ -1,8 +1,5 @@
 package gtclassic.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.tile.GTTileBaseRecolorableTile;
@@ -16,6 +13,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -24,6 +22,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GTTileWorktable extends GTTileBaseRecolorableTile
 		implements IHasGui, INetworkClientTileEntityEventListener {
@@ -67,23 +68,9 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile
 
 	@Override
 	public void onNetworkEvent(EntityPlayer player, int event) {
-		if (event == 2) {
-			for (int j = 0; j < 9; j++) {
-				ItemStack stack = craftingInventory.get(j);
-				if (stack.isEmpty()) {
-					continue;
-				}
-				player.inventory.addItemStackToInventory(stack);
-			}
-		}
-		if (event == 1 && this.inUse) {
-			for (int j = 0; j < 9; j++) {
-				ItemStack stack = craftingInventory.get(j);
-				if (stack.isEmpty()) {
-					continue;
-				}
-				insert(j, stack);
-			}
+		Container container = player.openContainer;
+		if (container instanceof GTContainerWorktable){
+			((GTContainerWorktable)container).onButtonClick(event);
 		}
 	}
 
