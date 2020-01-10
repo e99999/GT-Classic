@@ -48,4 +48,5 @@ public class GTLang {
 	public static final LocaleComp SLUICE_BOX = new LocaleBlockComp("tile.gtclassic.sluicebox");
 	public static final LocaleComp SLUICE_EXT = new LocaleBlockComp("tile.gtclassic.sluiceboxextension");
 	public static final LocaleComp ORE_BEDROCK = new LocaleBlockComp("tile.gtclassic.oreBedrock");
+	public static final LocaleComp TEST = new LocaleBlockComp("tile.gtclassic.test");
 }

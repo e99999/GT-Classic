@@ -68,6 +68,8 @@ import gtclassic.common.tile.multi.GTTileMultiLightningRod;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable2;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable4;
+import gtclassic.common.util.modeltest.GTBlockModelTest;
+import gtclassic.common.util.modeltest.GTTileModelTest;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
@@ -146,6 +148,7 @@ public class GTBlocks {
 	public static final GTBlockSuperconductorCable tileSuperconductorCable2x = registerBlock(new GTBlockSuperconductorCable(6, "2"));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable4x = registerBlock(new GTBlockSuperconductorCable(4, "4"));
 	public static final GTBlockDataCable dataCable = registerBlock(new GTBlockDataCable());
+	public static final GTBlockModelTest testModel = registerBlock(new GTBlockModelTest());
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid());
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
@@ -228,6 +231,7 @@ public class GTBlocks {
 		registerUtil(GTTileDigitizerFluid.class, "FluidImporter");
 		registerUtil(GTTileConstructorItem.class, "ItemExporter");
 		registerUtil(GTTileConstructorFluid.class, "FluidExporter");
+		registerUtil(GTTileModelTest.class, "TestModel");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {
