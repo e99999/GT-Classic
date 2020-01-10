@@ -1,5 +1,8 @@
 package gtclassic.common.gui;
 
+import java.util.Arrays;
+import java.util.List;
+
 import gtclassic.api.gui.GTGuiButton;
 import gtclassic.common.container.GTContainerWorktable;
 import gtclassic.common.tile.GTTileWorktable;
@@ -11,20 +14,16 @@ import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class GTGuiCompWorktable extends GuiComponent {
 
-    GTContainerWorktable container;
-    GTTileWorktable block;
+	GTContainerWorktable container;
+	GTTileWorktable block;
 
-
-    public GTGuiCompWorktable(GTTileWorktable tile, GTContainerWorktable container) {
-        super(new Box2D(135, 25, 36, 20));
-        this.block = tile;
-        this.container = container;
-    }
+	public GTGuiCompWorktable(GTTileWorktable tile, GTContainerWorktable container) {
+		super(new Box2D(135, 25, 36, 20));
+		this.block = tile;
+		this.container = container;
+	}
 
 	@Override
 	public List<ActionRequest> getNeededRequests() {
@@ -55,14 +54,12 @@ public class GTGuiCompWorktable extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
-			if (mouseX > 153){
+			if (mouseX > 153) {
 				tooltips.add(I18n.format("tooltip.worktable_button1"));
 			} else {
 				tooltips.add(I18n.format("tooltip.worktable_button2"));
 			}
-
 		}
-
 	}
 
 	private int bX(GuiIC2 gui, int position) {

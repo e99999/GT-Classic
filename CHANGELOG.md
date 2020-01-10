@@ -1,7 +1,9 @@
 # Changelog
 
 # 1.09 (Not Released)
-- Centrifuge now has tank to process fluids, although this shifts the slot count so you might have an upgrade or battery in the wrong slot.. oops : )
+- Changed added configurable option to put red sand in other biomes, just experimenting.
+- Changed the Centrifuge now has tank to process fluids, although this shifts the slot count so you might have an upgrade or battery in the wrong slot.. oops : )
+- Change the Matter Fabricator now also has a tank for processing fluids directly.
 - Changed, drums can now auto output if sneak-wrenched, gases go up, fluids go down.
 - Improved the basic worktable with help from Trinsdar
 - Fixed some buffers getting pissy about what could go in what side.

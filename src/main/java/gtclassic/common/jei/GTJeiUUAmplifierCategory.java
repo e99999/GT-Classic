@@ -1,12 +1,17 @@
 package gtclassic.common.jei;
 
 import gtclassic.GTMod;
+import gtclassic.api.recipe.GTFluidMachineOutput;
 import gtclassic.common.GTConfig;
+import ic2.api.classic.recipe.crafting.RecipeInputFluid;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.item.misc.ItemDisplayIcon;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IDrawableStatic;
+import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
@@ -15,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 
 public class GTJeiUUAmplifierCategory implements IRecipeCategory<GTJeiUUAmplifierWrapper> {
 
@@ -63,13 +69,20 @@ public class GTJeiUUAmplifierCategory implements IRecipeCategory<GTJeiUUAmplifie
 	@Override
 	public void setRecipe(IRecipeLayout layout, GTJeiUUAmplifierWrapper wrapper, IIngredients ingredients) {
 		IGuiItemStackGroup itemGroup = layout.getItemStacks();
+		IGuiFluidStackGroup fluidGroup = layout.getFluidStacks();
 		int index = 0;
 		int actualIndex = 0;
 		for (IRecipeInput list : wrapper.getMultiRecipe().getInputs()) {
 			int x = index % 3;
 			int y = index / 3;
-			itemGroup.init(actualIndex, true, (18 * x), (18 * y));
-			itemGroup.set(actualIndex, list.getInputs());
+			if (list instanceof RecipeInputFluid) {
+				fluidGroup.init(actualIndex, true, (18 * x) + 1, (18 * y)
+						+ 1, 16, 16, ((RecipeInputFluid) list).fluid.amount, true, null);
+				fluidGroup.set(actualIndex, ((RecipeInputFluid) list).fluid);
+			} else {
+				itemGroup.init(actualIndex, true, (18 * x), (18 * y));
+				itemGroup.set(actualIndex, list.getInputs());
+			}
 			index++;
 			actualIndex++;
 			if (index >= 6) {
@@ -77,15 +90,47 @@ public class GTJeiUUAmplifierCategory implements IRecipeCategory<GTJeiUUAmplifie
 			}
 		}
 		index = 0;
-		for (ItemStack stack : wrapper.getMultiRecipe().getOutputs().getAllOutputs()) {
-			int x = index % 3;
-			int y = index / 3;
-			itemGroup.init(actualIndex, false, 90 + (18 * x), (18 * y));
-			itemGroup.set(actualIndex, stack);
-			index++;
-			actualIndex++;
-			if (index >= 6) {
-				break;
+		MachineOutput output = wrapper.getMultiRecipe().getOutputs();
+		if (output instanceof GTFluidMachineOutput) {
+			for (FluidStack stack : ((GTFluidMachineOutput) output).getFluids()) {
+				int x = index % 3;
+				int y = index / 3;
+				fluidGroup.init(actualIndex, false, 91 + (18 * x), (18 * y) + 1, 16, 16, stack.amount, true, null);
+				fluidGroup.set(actualIndex, stack);
+				index++;
+				actualIndex++;
+				if (index >= 6) {
+					break;
+				}
+			}
+			for (ItemStack stack : output.getAllOutputs()) {
+				if (index >= 6) {
+					break;
+				}
+				if (stack.getItem() instanceof ItemDisplayIcon) {
+					continue;
+				}
+				int x = index % 3;
+				int y = index / 3;
+				itemGroup.init(actualIndex, false, 90 + (18 * x), (18 * y));
+				itemGroup.set(actualIndex, stack);
+				index++;
+				actualIndex++;
+				if (index == 6) {
+					break;
+				}
+			}
+		} else {
+			for (ItemStack stack : output.getAllOutputs()) {
+				int x = index % 3;
+				int y = index / 3;
+				itemGroup.init(actualIndex, false, 90 + (18 * x), (18 * y));
+				itemGroup.set(actualIndex, stack);
+				index++;
+				actualIndex++;
+				if (index >= 6) {
+					break;
+				}
 			}
 		}
 	}

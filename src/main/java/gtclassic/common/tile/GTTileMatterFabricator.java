@@ -2,9 +2,13 @@ package gtclassic.common.tile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import gtclassic.GTMod;
+import gtclassic.api.interfaces.IGTDebuggableTile;
+import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialElement;
+import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
@@ -14,6 +18,7 @@ import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
+import ic2.api.classic.recipe.crafting.RecipeInputFluid;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
@@ -21,6 +26,7 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.util.info.ProgressInfo;
+import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.CommonFilters;
@@ -28,8 +34,10 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -37,20 +45,29 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
-public class GTTileMatterFabricator extends TileEntityElecMachine implements ITickable, IProgressMachine, IHasGui {
+public class GTTileMatterFabricator extends TileEntityElecMachine
+		implements ITickable, IProgressMachine, IHasGui, ITankListener, IGTDebuggableTile {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3, 4, 5, 6, 7 };
 	protected static final int[] slotOutputs = { 8 };
 	@NetworkField(index = 7)
 	float progress = 0;
+	private IC2Tank tank;
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.uuamplifier");
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/matterfabricator.png");
+	private static final String NBT_PROGRESS = "progress";
+	private static final String NBT_TANK = "tank";
 
 	public GTTileMatterFabricator() {
 		super(9, 134217728);
+		this.tank = new IC2Tank(16000);
+		this.tank.addListener(this);
 		maxEnergy = 10000000;
-		addGuiFields("progress");
+		addGuiFields(NBT_PROGRESS, NBT_TANK);
 		addInfos(new ProgressInfo(this));
 	}
 
@@ -69,14 +86,29 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.progress = nbt.getFloat("progress");
+		this.progress = nbt.getFloat(NBT_PROGRESS);
+		this.tank.readFromNBT(nbt.getCompoundTag(NBT_TANK));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setFloat("progress", this.progress);
+		nbt.setFloat(NBT_PROGRESS, this.progress);
+		this.tank.writeToNBT(this.getTag(nbt, NBT_TANK));
 		return nbt;
+	}
+
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true
+				: super.hasCapability(capability, facing);
+	}
+
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
+				? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.tank)
+				: super.getCapability(capability, facing);
 	}
 
 	@Override
@@ -121,6 +153,9 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		}
 		/** Adding my elements **/
 		for (GTMaterialElement element : GTMaterialElement.getElementList()) {
+			if (!(element.getInput() instanceof RecipeInputOreDict)) {
+				continue;
+			}
 			int value = element.getNumber() * 1000;
 			if (value < 5000) {
 				value = 5000;
@@ -128,6 +163,18 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 			if (element.getNumber() != 77) {
 				addAmplifier(new IRecipeInput[] {
 						element.getInput() }, value(value), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
+			}
+		}
+		/** Adding fluid element entries direct from the mat list **/
+		for (GTMaterial mat : GTMaterial.values()) {
+			if ((mat.hasFlag(GTMaterialFlag.FLUID) || mat.hasFlag(GTMaterialFlag.GAS))
+					&& mat.getElementNumber() != -1) {
+				int value = mat.getElementNumber() * 1000;
+				if (value < 5000) {
+					value = 5000;
+				}
+				addAmplifier(new IRecipeInput[] {
+						new RecipeInputFluid(GTMaterialGen.getFluidStack(mat, 1000)) }, value(value), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
 			}
 		}
 	}
@@ -171,35 +218,58 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 		// Redstone check last because its the most CPU intensive.
 		if (hasPower() && output.getCount() < output.getMaxStackSize() && !redstoneEnabled()) {
 			// Checking ItemStacks first because it reduces iteration.
+			checkRecipe();
+		}
+	}
+
+	public void checkRecipe() {
+		for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
+			IRecipeInput input = map.getInput(0);
+			// Checking for fluids here
+			if (!tankEmpty() && input instanceof RecipeInputFluid) {
+				int uuValue = map.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
+				RecipeInputFluid fluid = (RecipeInputFluid) input;
+				boolean sameFluid = tank.getFluid().getFluid() == fluid.fluid.getFluid();
+				boolean enoughFluid = tank.getFluidAmount() >= 1000;
+				if (sameFluid && enoughFluid && energy - uuValue >= 0) {
+					this.tank.drain(1000, true);
+					energy -= uuValue;
+					progress += uuValue;
+					updateGui();
+					checkProgress();
+					return;
+				}
+			}
+			// Doing a input Check this way because it allows the RecipeInput to define what
+			// it compares with.
+			// Not the inhouse ItemStack compare.
 			for (int i = 0; i < 8; ++i) {
 				ItemStack stack = inventory.get(i);
 				if (stack.isEmpty()) {
 					// If stack is null then we do not need to check the recipe list for it.
 					continue;
 				}
-				for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
-					IRecipeInput input = map.getInput(0);
-					// Doing a input Check this way because it allows the RecipeInput to define what
-					// it compares with.
-					// Not the inhouse ItemStack compare.
-					if (input.matches(stack) && stack.getCount() >= input.getAmount()) {
-						int uuValue = map.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
-						if (energy - uuValue < 0) {
-							// Using break because it found the matching item but it does not have enough
-							// energy for i t.
-							// No need to further compare.
-							break;
-						}
-						stack.shrink(input.getAmount()); // Allowing multi item usage
-						energy -= uuValue;
-						progress += uuValue;
-						updateGui();
-						checkProgress();
-						return;
+				if (input.matches(stack) && stack.getCount() >= input.getAmount()) {
+					int uuValue = map.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
+					if (energy - uuValue < 0) {
+						// Using break because it found the matching item but it does not have enough
+						// energy for i t.
+						// No need to further compare.
+						break;
 					}
+					stack.shrink(input.getAmount()); // Allowing multi item usage
+					energy -= uuValue;
+					progress += uuValue;
+					updateGui();
+					checkProgress();
+					return;
 				}
 			}
 		}
+	}
+
+	public boolean tankEmpty() {
+		return this.tank.getFluid() == null || this.tank.getFluidAmount() < 1000;
 	}
 
 	public boolean redstoneEnabled() {
@@ -222,7 +292,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	}
 
 	public void updateGui() {
-		this.getNetwork().updateTileGuiField(this, "progress");
+		this.getNetwork().updateTileGuiField(this, NBT_PROGRESS);
 		this.getNetwork().updateTileGuiField(this, "energy");
 	}
 
@@ -256,5 +326,17 @@ public class GTTileMatterFabricator extends TileEntityElecMachine implements ITi
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return false;
+	}
+
+	@Override
+	public void onTankChanged(IFluidTank tank) {
+		this.getNetwork().updateTileGuiField(this, NBT_TANK);
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		String info = this.tank.getFluid() == null ? "Tank is empty"
+				: this.tank.getFluidAmount() + "Mb of " + this.tank.getFluid().getLocalizedName();
+		data.put(info, false);
 	}
 }

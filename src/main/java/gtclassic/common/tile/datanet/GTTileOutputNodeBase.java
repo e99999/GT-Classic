@@ -2,7 +2,6 @@ package gtclassic.common.tile.datanet;
 
 import java.util.Map;
 
-import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.util.datanet.GTDataNet;
@@ -30,7 +29,7 @@ public abstract class GTTileOutputNodeBase extends TileEntityMachine
 	public GTTileOutputNodeBase(int slots) {
 		super(slots);
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
@@ -86,7 +85,7 @@ public abstract class GTTileOutputNodeBase extends TileEntityMachine
 	public IFilter inventoryFilter() {
 		return null;
 	}
-	
+
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		if (this.computer != null && this.computer.dataNet != null) {

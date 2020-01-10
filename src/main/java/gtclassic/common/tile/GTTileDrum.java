@@ -52,7 +52,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		this.color = 16383998;
 		this.tank = new IC2Tank(32000);
 		this.tank.addListener(this);
-		// this.addGuiFields(NBT_TANK);
 		this.addNetworkFields(new String[] { NBT_COLOR });
 	}
 
@@ -62,7 +61,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	}
 
 	public void onTankChanged(IFluidTank tank) {
-		// this.getNetwork().updateTileGuiField(this, NBT_TANK);
 	}
 
 	@Override

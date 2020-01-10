@@ -30,6 +30,7 @@ public class GTConfig {
 		public boolean morePistonRecipes = true;
 		public boolean clearerWater = true;
 		public boolean replaceOceanGravelWithSand = true;
+		public boolean redSandInForestsAndPlains = true;
 		public boolean caveZombiesSpawnWithPickaxe = true;
 		public boolean generateUUMAssemblerRecipes = true;
 		public boolean enableDisassembler = true;
