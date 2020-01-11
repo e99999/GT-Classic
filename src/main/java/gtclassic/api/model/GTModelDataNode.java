@@ -1,4 +1,4 @@
-package gtclassic.common.util.modeltest;
+package gtclassic.api.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,7 +43,8 @@ public class GTModelDataNode extends BaseModel {
 	Map<Integer, List<BakedQuad>> comboQuads = new HashMap();
 	IBlockState state;
 	TextureAtlasSprite cableSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[5];
-	TextureAtlasSprite backOfNodeSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[3];
+	TextureAtlasSprite cableConnectedSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[6];
+	TextureAtlasSprite backOfNodeSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[11];
 	TextureAtlasSprite nodeSprite;
 	int[] cableSizes;
 
@@ -70,7 +71,7 @@ public class GTModelDataNode extends BaseModel {
 			sideQuads.put(side, this.generateQuadsForSide(wire, side, min, max));
 			// This where i mess with the size to make the cover side different than the
 			// cable
-			anchorQuadList.put(side, this.generateQuadsForAnchor(this.cableSprite, side, min - 4, max + 4));
+			anchorQuadList.put(side, this.generateQuadsForAnchor(this.cableSprite, side, min - 3, max + 3));
 		}
 		for (int i = 0; i < 64; ++i) {
 			RotationList rotation = RotationList.ofNumber(i);
@@ -161,17 +162,20 @@ public class GTModelDataNode extends BaseModel {
 		for (int var9 = 0; var9 < var8; ++var9) {
 			EnumFacing side = var7[var9];
 			BlockPartFace face = null;
-			// the stuff below seems to change the texture
-			if (side == facing) {
+			// from or back side
+			if (side == facing || side == facing.getOpposite()) {
 				face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
 						(float) min, (float) max, (float) max }, 0));
+				// sides
 			} else if (facing.getAxis() == Axis.Z && side.getAxis() == Axis.X) {
 				face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) max,
 						(float) min, 16.0F, (float) max }, 0));
+				// nothing
 			} else {
 				face = this.getFace(facing, min, max);
 			}
-			quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, this.nodeSprite, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
+			TextureAtlasSprite texture = side == facing.getOpposite() ? this.backOfNodeSprite : this.nodeSprite;
+			quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, texture, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 		}
 		return quads;
 	}
@@ -195,7 +199,7 @@ public class GTModelDataNode extends BaseModel {
 				} else {
 					face = this.getFace(facing, min, max);
 				}
-				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, wire.getTextureFromState(this.state, side), side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
+				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, cableConnectedSprite, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 			}
 		}
 		return quads;

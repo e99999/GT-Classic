@@ -3,7 +3,8 @@ package gtclassic.common.block.datanet;
 import java.util.List;
 
 import gtclassic.common.GTBlocks;
-import gtclassic.common.block.GTBlockMachineDirectionable;
+import gtclassic.common.tile.datanet.GTTileConstructorFluid;
+import gtclassic.common.tile.datanet.GTTileConstructorItem;
 import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
 import gtclassic.common.tile.datanet.GTTileDigitizerItem;
 import gtclassic.common.util.datanet.GTDataNet;
@@ -15,10 +16,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
-public class GTBlockDigitizer extends GTBlockMachineDirectionable {
+public class GTBlockDataNode extends GTBlockBaseDataNode {
 
-	public GTBlockDigitizer(String name, LocaleComp comp) {
-		super(name, comp, 2);
+	public GTBlockDataNode(String name, int id, LocaleComp comp) {
+		super(name, id, comp);
 	}
 
 	@Override
@@ -28,7 +29,13 @@ public class GTBlockDigitizer extends GTBlockMachineDirectionable {
 	}
 
 	@Override
-	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
+	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
+		if (this == GTBlocks.tileReconstructorItem) {
+			return new GTTileConstructorItem();
+		}
+		if (this == GTBlocks.tileReconstructorFluid) {
+			return new GTTileConstructorFluid();
+		}
 		if (this == GTBlocks.tileDigitizerItem) {
 			return new GTTileDigitizerItem();
 		}

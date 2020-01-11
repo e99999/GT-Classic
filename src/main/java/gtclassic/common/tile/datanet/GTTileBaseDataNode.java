@@ -1,4 +1,4 @@
-package gtclassic.common.util.modeltest;
+package gtclassic.common.tile.datanet;
 
 import java.util.Map;
 
@@ -24,8 +24,8 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	private static final String NBT_CONNECTION = "connection";
 	private static final String NBT_ANCHORS = "anchors";
 
-	public GTTileBaseDataNode() {
-		super(0);
+	public GTTileBaseDataNode(int slots) {
+		super(slots);
 		this.connection = RotationList.EMPTY;
 		this.anchors = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { NBT_CONNECTION, NBT_ANCHORS });

@@ -24,9 +24,8 @@ import gtclassic.common.block.GTBlockQuantumTank;
 import gtclassic.common.block.GTBlockStorage;
 import gtclassic.common.block.GTBlockSuperconductorCable;
 import gtclassic.common.block.GTBlockUUMAssembler;
-import gtclassic.common.block.datanet.GTBlockConstructor;
 import gtclassic.common.block.datanet.GTBlockDataCable;
-import gtclassic.common.block.datanet.GTBlockDigitizer;
+import gtclassic.common.block.datanet.GTBlockDataNode;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
 import gtclassic.common.tile.GTTileBattery;
@@ -56,6 +55,7 @@ import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
+import gtclassic.common.tile.datanet.GTTileBaseDataNode;
 import gtclassic.common.tile.datanet.GTTileComputerCube;
 import gtclassic.common.tile.datanet.GTTileConstructorFluid;
 import gtclassic.common.tile.datanet.GTTileConstructorItem;
@@ -68,8 +68,6 @@ import gtclassic.common.tile.multi.GTTileMultiLightningRod;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable2;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable4;
-import gtclassic.common.util.modeltest.GTBlockDataNode;
-import gtclassic.common.util.modeltest.GTTileBaseDataNode;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
@@ -135,10 +133,6 @@ public class GTBlocks {
 	public static final GTBlockMachine tileDigitalChest = registerBlock(new GTBlockMachine("digitalchest", GTLang.DIGITAL_CHEST));
 	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());
 	public static final GTBlockQuantumTank tileQuantumTank = registerBlock(new GTBlockQuantumTank());
-	public static final GTBlockDigitizer tileDigitizerItem = registerBlock(new GTBlockDigitizer("itemdigitizer", GTLang.ITEM_DIGITIZER));
-	public static final GTBlockDigitizer tileDigitizerFluid = registerBlock(new GTBlockDigitizer("fluiddigitizer", GTLang.FLUID_DIGITIZER));
-	public static final GTBlockConstructor tileConstructorItem = registerBlock(new GTBlockConstructor("itemconstructor", GTLang.ITEM_CONSTRUCTOR, 2));
-	public static final GTBlockConstructor tileConstructorFluid = registerBlock(new GTBlockConstructor("fluidconstructor", GTLang.FLUID_CONTSTRUCTOR, 2));
 	public static final GTBlockMachineDirectionable tileTranslocator = registerBlock(new GTBlockMachineDirectionable("translocator", GTLang.TRANSLOCATOR, 3));
 	public static final GTBlockMachineDirectionable tileBufferLarge = registerBlock(new GTBlockMachineDirectionable("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachineDirectionable tileBufferSmall = registerBlock(new GTBlockMachineDirectionable("buffersmall", GTLang.BUFFER_SMALL, 2));
@@ -148,8 +142,10 @@ public class GTBlocks {
 	public static final GTBlockSuperconductorCable tileSuperconductorCable2x = registerBlock(new GTBlockSuperconductorCable(6, "2"));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable4x = registerBlock(new GTBlockSuperconductorCable(4, "4"));
 	public static final GTBlockDataCable dataCable = registerBlock(new GTBlockDataCable());
-	public static final GTBlockDataNode testModel = registerBlock(new GTBlockDataNode("testnode", 12, GTLang.TEST));
-	public static final GTBlockDataNode testModel2 = registerBlock(new GTBlockDataNode("testnode2", 13, GTLang.TEST));
+	public static final GTBlockDataNode tileDigitizerItem = registerBlock(new GTBlockDataNode("itemdigitizer", 12, GTLang.ITEM_DIGITIZER));
+	public static final GTBlockDataNode tileDigitizerFluid = registerBlock(new GTBlockDataNode("fluiddigitizer", 13, GTLang.FLUID_DIGITIZER));
+	public static final GTBlockDataNode tileReconstructorItem = registerBlock(new GTBlockDataNode("itemreconstructor", 14, GTLang.ITEM_RECONSTRUCTOR));
+	public static final GTBlockDataNode tileReconstructorFluid = registerBlock(new GTBlockDataNode("fluidreconstructor", 15, GTLang.FLUID_RECONTSTRUCTOR));
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid());
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
@@ -159,8 +155,7 @@ public class GTBlocks {
 			"quantumchest", "quantumtank", "playerdetector", "mobrepeller", "energytransmitter", "bedrockminer",
 			"fusionreactor", "lightningrod", "dragoneggenergysiphon", "magicenergyconverter", "magicenergyabsorber",
 			"idsu", "aesu", "lesu", "supercondensator", "cabinet", "drum", "worktable", "translocator",
-			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid", "itemdigitizer", "fluiddigitizer",
-			"itemconstructor", "fluidconstructor" };
+			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {

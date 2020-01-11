@@ -6,7 +6,6 @@ import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.util.datanet.GTDataNet;
 import ic2.core.IC2;
-import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IWrench;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -16,7 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public abstract class GTTileOutputNodeBase extends TileEntityMachine
+public abstract class GTTileOutputNodeBase extends GTTileBaseDataNode
 		implements IGTDebuggableTile, IGTDataNetObject, ITickable {
 
 	public GTTileComputerCube computer;

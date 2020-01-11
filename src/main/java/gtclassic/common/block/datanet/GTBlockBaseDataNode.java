@@ -1,4 +1,4 @@
-package gtclassic.common.util.modeltest;
+package gtclassic.common.block.datanet;
 
 import java.util.List;
 import java.util.Random;
@@ -7,7 +7,8 @@ import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
-import gtclassic.common.GTLang;
+import gtclassic.api.model.GTModelDataNode;
+import gtclassic.common.tile.datanet.GTTileBaseDataNode;
 import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -24,25 +25,26 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockDataNode extends GTBlockBaseConnect implements IGTReaderInfoBlock, IGTDataNetObject {
+public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements IGTReaderInfoBlock, IGTDataNetObject {
 
 	int size;
 	String name;
 	int id;
 
-	public GTBlockDataNode(String name, int id, LocaleComp comp) {
+	public GTBlockBaseDataNode(String name, int id, LocaleComp comp) {
 		super();
 		this.name = name;
 		this.id = id;
-		setUnlocalizedName(GTLang.TEST);
+		setUnlocalizedName(comp);
 		setRegistryName(this.name);
-		this.size = 4;
+		this.size = 6;
 		this.setHardness(0.2F);
 		this.setSoundType(SoundType.CLOTH);
 		this.setHarvestLevel("axe", 0);
@@ -91,11 +93,6 @@ public class GTBlockDataNode extends GTBlockBaseConnect implements IGTReaderInfo
 	}
 
 	@Override
-	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
-		return new GTTileBaseDataNode();
-	}
-
-	@Override
 	public int quantityDropped(Random random) {
 		return 1;
 	}
@@ -140,6 +137,42 @@ public class GTBlockDataNode extends GTBlockBaseConnect implements IGTReaderInfo
 		} catch (Exception exception) {
 		}
 		return super.getExtendedState(state, world, pos);
+	}
+
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (!(tile instanceof GTTileBaseDataNode)) {
+			return new AxisAlignedBB(0.25D, 0.25D, 0.25D, 0.75D, 0.75D, 0.75D);
+		} else {
+			GTTileBaseDataNode pipe = (GTTileBaseDataNode) tile;
+			double thickness = (this.size + 6) / 32.0D;
+			double minX = 0.5D - thickness;
+			double minY = 0.5D - thickness;
+			double minZ = 0.5D - thickness;
+			double maxX = 0.5D + thickness;
+			double maxY = 0.5D + thickness;
+			double maxZ = 0.5D + thickness;
+			if (pipe.connection.contains(EnumFacing.WEST)) {
+				minX = 0.0D;
+			}
+			if (pipe.connection.contains(EnumFacing.DOWN)) {
+				minY = 0.0D;
+			}
+			if (pipe.connection.contains(EnumFacing.NORTH)) {
+				minZ = 0.0D;
+			}
+			if (pipe.connection.contains(EnumFacing.EAST)) {
+				maxX = 1.0D;
+			}
+			if (pipe.connection.contains(EnumFacing.UP)) {
+				maxY = 1.0D;
+			}
+			if (pipe.connection.contains(EnumFacing.SOUTH)) {
+				maxZ = 1.0D;
+			}
+			return new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);
+		}
 	}
 
 	@Override
