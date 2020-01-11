@@ -56,7 +56,8 @@ public class GTTileModelTest extends TileEntityMachine implements IGTDebuggableT
 	}
 
 	public Vec3i getConnections() {
-		return new Vec3i(this.connection.getCode(), this.anchors.getCode(), this.connection.getCode() << 6| this.anchors.getCode());
+		return new Vec3i(this.connection.getCode(), this.anchors.getCode(), this.connection.getCode() << 6
+				| this.anchors.getCode());
 	}
 
 	public void setFacing(EnumFacing face) {

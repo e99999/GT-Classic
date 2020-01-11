@@ -46,7 +46,7 @@ public class GTBlockDataCable extends GTBlockBaseConnect implements IGTReaderInf
 		this.setHarvestLevel("axe", 0);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);

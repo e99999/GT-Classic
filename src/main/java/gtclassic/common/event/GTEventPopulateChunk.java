@@ -17,7 +17,9 @@ public class GTEventPopulateChunk {
 
 	public static final Block BLOCK_GRAVEL = Blocks.GRAVEL; // change this to suit your need
 	public static final Block BLOCK_SAND = Blocks.SAND; // change this to suit your need
-	//protected static final IBlockState BLOCKSTATE_RED_SAND = Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.RED_SAND);
+	// protected static final IBlockState BLOCKSTATE_RED_SAND =
+	// Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT,
+	// BlockSand.EnumType.RED_SAND);
 
 	/*
 	 * Makes oceans have sand, thanks to Jabelar for finding this work around

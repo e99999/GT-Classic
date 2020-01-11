@@ -160,20 +160,18 @@ public class GTModelTest extends BaseModel {
 		int var8 = var7.length;
 		for (int var9 = 0; var9 < var8; ++var9) {
 			EnumFacing side = var7[var9];
-			if (side.getOpposite() != facing) {
-				BlockPartFace face = null;
-				// the stuff below seems to change the texture
-				if (side == facing) {
-					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] 
-							{ (float) min, (float) min, (float) max, (float) max }, 0));
-				} else if (facing.getAxis() == Axis.Z && side.getAxis() == Axis.X) {
-					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] 
-							{ (float) max, (float) min, 16.0F, (float) max }, 0));
-				} else {
-					face = this.getFace(facing, min, max);
-				}
-				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, this.nodeSprite, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
+			BlockPartFace face = null;
+			// the stuff below seems to change the texture
+			if (side == facing) {
+				face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
+						(float) min, (float) max, (float) max }, 0));
+			} else if (facing.getAxis() == Axis.Z && side.getAxis() == Axis.X) {
+				face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) max,
+						(float) min, 16.0F, (float) max }, 0));
+			} else {
+				face = this.getFace(facing, min, max);
 			}
+			quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, this.nodeSprite, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 		}
 		return quads;
 	}
