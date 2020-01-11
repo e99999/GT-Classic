@@ -86,7 +86,7 @@ public class GTBlockModelTest extends GTBlockBaseConnect implements IGTReaderInf
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTModelTest(state, Ic2Icons.getTextures(GTMod.MODID + "_blocks")[5], getSize());
+		return new GTModelTest(state, Ic2Icons.getTextures(GTMod.MODID + "_blocks")[12], getSize());
 	}
 
 	@SideOnly(Side.CLIENT)

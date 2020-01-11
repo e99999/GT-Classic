@@ -42,45 +42,49 @@ public class GTModelTest extends BaseModel {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	Map<Integer, List<BakedQuad>> comboQuads = new HashMap();
 	IBlockState state;
-	TextureAtlasSprite sprite;
-	int[] sizes;
+	TextureAtlasSprite cableSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[5];
+	TextureAtlasSprite backOfNodeSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[3];
+	TextureAtlasSprite nodeSprite;
+	int[] cableSizes;
 
 	public GTModelTest(IBlockState block, TextureAtlasSprite texture, int[] sizes) {
 		super(Ic2Models.getBlockTransforms());
 		this.state = block;
-		this.sprite = texture;
-		this.sizes = sizes;
+		this.nodeSprite = texture;
+		this.cableSizes = sizes;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void init() {
 		GTBlockBaseConnect wire = (GTBlockBaseConnect) this.state.getBlock();
 		this.setParticalTexture(wire.getParticleTexture(this.state));
-		int min = this.sizes[0];
-		int max = this.sizes[1];
+		int min = this.cableSizes[0];
+		int max = this.cableSizes[1];
 		Map<EnumFacing, BakedQuad> coreQuads = this.generateCoreQuads(wire, min, max);
 		Map<EnumFacing, List<BakedQuad>> sideQuads = new EnumMap(EnumFacing.class);
 		Map<EnumFacing, List<BakedQuad>> anchorQuadList = new EnumMap(EnumFacing.class);
-		EnumFacing[] var7 = EnumFacing.VALUES;
-		int var8 = var7.length;
-		for (int var9 = 0; var9 < var8; ++var9) {
-			EnumFacing side = var7[var9];
+		EnumFacing[] facings = EnumFacing.VALUES;
+		int facingsSize = facings.length;
+		for (int i = 0; i < facingsSize; ++i) {
+			EnumFacing side = facings[i];
 			sideQuads.put(side, this.generateQuadsForSide(wire, side, min, max));
-			anchorQuadList.put(side, this.generateQuadsForAnchor(this.sprite, side, min - 4, max + 4));
+			// This where i mess with the size to make the cover side different than the
+			// cable
+			anchorQuadList.put(side, this.generateQuadsForAnchor(this.cableSprite, side, min - 4, max + 4));
 		}
 		for (int i = 0; i < 64; ++i) {
 			RotationList rotation = RotationList.ofNumber(i);
 			List<BakedQuad> quadList = this.quads[i];
-			Iterator var15 = rotation.iterator();
+			Iterator rotations = rotation.iterator();
 			EnumFacing side;
-			while (var15.hasNext()) {
-				side = (EnumFacing) var15.next();
+			while (rotations.hasNext()) {
+				side = (EnumFacing) rotations.next();
 				quadList.addAll((Collection) sideQuads.get(side));
 				this.anchorQuads[i].addAll((Collection) anchorQuadList.get(side));
 			}
-			var15 = rotation.invert().iterator();
-			while (var15.hasNext()) {
-				side = (EnumFacing) var15.next();
+			rotations = rotation.invert().iterator();
+			while (rotations.hasNext()) {
+				side = (EnumFacing) rotations.next();
 				quadList.add(coreQuads.get(side));
 			}
 		}
@@ -130,6 +134,7 @@ public class GTModelTest extends BaseModel {
 		return PerspectiveMapWrapper.handlePerspective(this, this.getCamera(), cameraTransformType);
 	}
 
+	// Quads for the cable part
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Map<EnumFacing, BakedQuad> generateCoreQuads(GTBlockBaseConnect wire, int min, int max) {
 		Vector3f minF = new Vector3f((float) min, (float) min, (float) min);
@@ -137,15 +142,16 @@ public class GTModelTest extends BaseModel {
 		BlockPartFace face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
 				(float) min, (float) max, (float) max }, 0));
 		Map<EnumFacing, BakedQuad> quads = new EnumMap(EnumFacing.class);
-		EnumFacing[] var8 = EnumFacing.VALUES;
-		int var9 = var8.length;
-		for (int var10 = 0; var10 < var9; ++var10) {
-			EnumFacing side = var8[var10];
+		EnumFacing[] facings = EnumFacing.VALUES;
+		int facingSize = facings.length;
+		for (int i = 0; i < facingSize; ++i) {
+			EnumFacing side = facings[i];
 			quads.put(side, this.getBakery().makeBakedQuad(minF, maxF, face, this.getParticleTexture(), side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 		}
 		return quads;
 	}
 
+	// This is the quads for the "cover"
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<BakedQuad> generateQuadsForAnchor(TextureAtlasSprite sprite, EnumFacing facing, int min, int max) {
 		List<BakedQuad> quads = new ArrayList();
@@ -156,17 +162,17 @@ public class GTModelTest extends BaseModel {
 			EnumFacing side = var7[var9];
 			if (side.getOpposite() != facing) {
 				BlockPartFace face = null;
-				//the stuff below seems to change the texture
+				// the stuff below seems to change the texture
 				if (side == facing) {
-					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
-							(float) min, (float) max, (float) max }, 0));
+					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] 
+							{ (float) min, (float) min, (float) max, (float) max }, 0));
 				} else if (facing.getAxis() == Axis.Z && side.getAxis() == Axis.X) {
-					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) max,
-							(float) min, 16.0F, (float) max}, 0));
+					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] 
+							{ (float) max, (float) min, 16.0F, (float) max }, 0));
 				} else {
 					face = this.getFace(facing, min, max);
 				}
-				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, Ic2Icons.getTextures(GTMod.MODID + "_blocks")[15], side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
+				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, this.nodeSprite, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 			}
 		}
 		return quads;
