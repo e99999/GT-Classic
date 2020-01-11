@@ -5,7 +5,7 @@ import java.util.List;
 
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.common.GTLang;
-import gtclassic.common.tile.datanet.GTTileQuantumChest;
+import gtclassic.common.tile.GTTileQuantumChest;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;

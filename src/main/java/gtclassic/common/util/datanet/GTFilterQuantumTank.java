@@ -1,6 +1,6 @@
 package gtclassic.common.util.datanet;
 
-import gtclassic.common.tile.datanet.GTTileQuantumTank;
+import gtclassic.common.tile.GTTileQuantumTank;
 import ic2.core.inventory.filters.IFilter;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidUtil;

@@ -1,15 +1,15 @@
-package gtclassic.common.tile.datanet;
+package gtclassic.common.tile;
 
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerDigitalChest;
-import gtclassic.common.util.datanet.GTDataNet.DataType;
 import gtclassic.common.util.datanet.GTFilterDigitalChest;
 import ic2.api.network.INetworkClientTileEntityEventListener;
 import ic2.core.IC2;
 import ic2.core.RotationList;
+import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
@@ -25,11 +25,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileDigitalChest extends GTTileOutputNodeBase implements IHasGui, INetworkClientTileEntityEventListener {
+public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, INetworkClientTileEntityEventListener {
 
 	public GTTileDigitalChest() {
 		super(55);
@@ -164,20 +163,5 @@ public class GTTileDigitalChest extends GTTileOutputNodeBase implements IHasGui,
 		if (event == 2) {
 			GTHelperStack.tryCondenseInventory(this, 0, this.inventory.size() - 1);
 		}
-	}
-
-	@Override
-	public DataType dataType() {
-		return DataType.ITEM;
-	}
-
-	@Override
-	public BlockPos inventoryPos() {
-		return this.getPos();
-	}
-
-	@Override
-	public EnumFacing inventoryFacing() {
-		return EnumFacing.UP;
 	}
 }

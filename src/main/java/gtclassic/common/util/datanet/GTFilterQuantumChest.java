@@ -1,7 +1,7 @@
 package gtclassic.common.util.datanet;
 
 import gtclassic.api.helpers.GTHelperStack;
-import gtclassic.common.tile.datanet.GTTileQuantumChest;
+import gtclassic.common.tile.GTTileQuantumChest;
 import ic2.core.inventory.filters.IFilter;
 import net.minecraft.item.ItemStack;
 

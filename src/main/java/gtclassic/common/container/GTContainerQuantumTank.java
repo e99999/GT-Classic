@@ -2,7 +2,7 @@ package gtclassic.common.container;
 
 import gtclassic.GTMod;
 import gtclassic.api.gui.GTGuiCompFluidTank;
-import gtclassic.common.tile.datanet.GTTileQuantumTank;
+import gtclassic.common.tile.GTTileQuantumTank;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotDisplay;

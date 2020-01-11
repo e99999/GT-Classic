@@ -35,7 +35,7 @@ import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.client.model.PerspectiveMapWrapper;
 
-public class GTModelTest extends BaseModel {
+public class GTModelDataNode extends BaseModel {
 
 	List<BakedQuad>[] quads = this.createList(64);
 	List<BakedQuad>[] anchorQuads = this.createList(64);
@@ -47,7 +47,7 @@ public class GTModelTest extends BaseModel {
 	TextureAtlasSprite nodeSprite;
 	int[] cableSizes;
 
-	public GTModelTest(IBlockState block, TextureAtlasSprite texture, int[] sizes) {
+	public GTModelDataNode(IBlockState block, TextureAtlasSprite texture, int[] sizes) {
 		super(Ic2Models.getBlockTransforms());
 		this.state = block;
 		this.nodeSprite = texture;
@@ -95,7 +95,7 @@ public class GTModelTest extends BaseModel {
 		if (side == null) {
 			if (!(state instanceof IC2BlockState)) {
 				// if its in jei/creative tab
-				return this.quads[12];
+				return this.anchorQuads[4];
 			} else {
 				Vec3i vec = (Vec3i) ((IC2BlockState) state).getData();
 				if (vec.getY() > 0) {

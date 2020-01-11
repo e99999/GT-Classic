@@ -37,6 +37,7 @@ import gtclassic.common.tile.GTTileBufferSmall;
 import gtclassic.common.tile.GTTileCabinet;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileChargeOMat;
+import gtclassic.common.tile.GTTileDigitalChest;
 import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileDrum;
@@ -48,6 +49,8 @@ import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileMobRepeller;
 import gtclassic.common.tile.GTTilePlayerDetector;
+import gtclassic.common.tile.GTTileQuantumChest;
+import gtclassic.common.tile.GTTileQuantumTank;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
@@ -57,19 +60,16 @@ import gtclassic.common.tile.datanet.GTTileComputerCube;
 import gtclassic.common.tile.datanet.GTTileConstructorFluid;
 import gtclassic.common.tile.datanet.GTTileConstructorItem;
 import gtclassic.common.tile.datanet.GTTileDataCable;
-import gtclassic.common.tile.datanet.GTTileDigitalChest;
 import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
 import gtclassic.common.tile.datanet.GTTileDigitizerItem;
-import gtclassic.common.tile.datanet.GTTileQuantumChest;
-import gtclassic.common.tile.datanet.GTTileQuantumTank;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable2;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable4;
-import gtclassic.common.util.modeltest.GTBlockModelTest;
-import gtclassic.common.util.modeltest.GTTileModelTest;
+import gtclassic.common.util.modeltest.GTBlockDataNode;
+import gtclassic.common.util.modeltest.GTTileBaseDataNode;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
@@ -148,7 +148,8 @@ public class GTBlocks {
 	public static final GTBlockSuperconductorCable tileSuperconductorCable2x = registerBlock(new GTBlockSuperconductorCable(6, "2"));
 	public static final GTBlockSuperconductorCable tileSuperconductorCable4x = registerBlock(new GTBlockSuperconductorCable(4, "4"));
 	public static final GTBlockDataCable dataCable = registerBlock(new GTBlockDataCable());
-	public static final GTBlockModelTest testModel = registerBlock(new GTBlockModelTest());
+	public static final GTBlockDataNode testModel = registerBlock(new GTBlockDataNode("testnode", 12, GTLang.TEST));
+	public static final GTBlockDataNode testModel2 = registerBlock(new GTBlockDataNode("testnode2", 13, GTLang.TEST));
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid());
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
@@ -231,7 +232,7 @@ public class GTBlocks {
 		registerUtil(GTTileDigitizerFluid.class, "FluidImporter");
 		registerUtil(GTTileConstructorItem.class, "ItemExporter");
 		registerUtil(GTTileConstructorFluid.class, "FluidExporter");
-		registerUtil(GTTileModelTest.class, "TestModel");
+		registerUtil(GTTileBaseDataNode.class, "TestModel");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {

@@ -1,4 +1,4 @@
-package gtclassic.common.tile.datanet;
+package gtclassic.common.tile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import gtclassic.common.container.GTContainerQuantumChest;
 import gtclassic.common.util.datanet.GTDataNet.DataType;
 import gtclassic.common.util.datanet.GTFilterQuantumChest;
 import ic2.core.RotationList;
+import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
@@ -30,7 +31,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileQuantumChest extends GTTileOutputNodeBase implements IHasGui, ITickable, IGTItemContainerTile {
+public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable, IGTItemContainerTile {
 
 	public GTFilterQuantumChest filter = new GTFilterQuantumChest(this);
 	int slotInput = 0;
@@ -239,20 +240,5 @@ public class GTTileQuantumChest extends GTTileOutputNodeBase implements IHasGui,
 
 	public boolean canFit(int count) {
 		return count + this.digitalCount <= Integer.MAX_VALUE;
-	}
-
-	@Override
-	public DataType dataType() {
-		return DataType.ITEM;
-	}
-
-	@Override
-	public BlockPos inventoryPos() {
-		return this.getPos();
-	}
-
-	@Override
-	public EnumFacing inventoryFacing() {
-		return EnumFacing.UP;
 	}
 }

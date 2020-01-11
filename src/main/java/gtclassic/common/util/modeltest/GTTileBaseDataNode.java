@@ -15,7 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 
-public class GTTileModelTest extends TileEntityMachine implements IGTDebuggableTile {
+public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggableTile {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
@@ -24,7 +24,7 @@ public class GTTileModelTest extends TileEntityMachine implements IGTDebuggableT
 	private static final String NBT_CONNECTION = "connection";
 	private static final String NBT_ANCHORS = "anchors";
 
-	public GTTileModelTest() {
+	public GTTileBaseDataNode() {
 		super(0);
 		this.connection = RotationList.EMPTY;
 		this.anchors = RotationList.EMPTY;
