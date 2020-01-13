@@ -4,9 +4,13 @@ import java.util.Map;
 
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import gtclassic.api.interfaces.IGTScrewdriverable;
+import gtclassic.common.util.datanet.GTDataNet;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -15,12 +19,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 
-public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggableTile {
+public class GTTileBaseDataNode extends TileEntityMachine
+		implements IGTDebuggableTile, IGTDataNetObject, IGTScrewdriverable {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
 	@NetworkField(index = 9)
 	public RotationList anchors;
+	public GTTileComputerCube computer;
+	public int channel;
 	private static final String NBT_CONNECTION = "connection";
 	private static final String NBT_ANCHORS = "anchors";
 
@@ -35,6 +42,14 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.anchors = RotationList.ofFacings(EnumFacing.getFront(nbt.getByte("Facing")));
+		this.channel = nbt.getInteger(GTDataNet.NBT_CHANNEL);
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setInteger(GTDataNet.NBT_CHANNEL, this.channel);
+		return nbt;
 	}
 
 	@Override
@@ -60,6 +75,7 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 				| this.anchors.getCode());
 	}
 
+	@Override
 	public void setFacing(EnumFacing face) {
 		super.setFacing(face);
 		this.anchors = RotationList.ofFacings(this.getFacing());
@@ -73,7 +89,12 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return this.getFacing() != facing;
+		return facing != getFacing();
+	}
+
+	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return true;
 	}
 
 	@Override
@@ -113,6 +134,31 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		data.put("Facing: " + this.getFacing(), false);
+		data.put("Node Facing: " + this.getFacing().toString().toUpperCase(), false);
+		if (this.computer != null && this.computer.dataNet != null) {
+			data.put("Connected to network", false);
+		} else {
+			data.put("No network found or network is not powered", false);
+		}
+		data.put("Channel: " + this.channel, false);
+	}
+
+	@Override
+	public boolean onScrewdriver(EntityPlayer player) {
+		boolean actual = false;
+		if (!player.isSneaking()) {
+			this.channel++;
+			this.channel = this.channel > 15 ? 0 : this.channel;
+			actual = true;
+		}
+		if (this.isSimulating()) {
+			IC2.platform.messagePlayer(player, "Channel: " + this.channel);
+			if (actual) {
+			IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+			} else {
+				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+			}
+		}
+		return true;
 	}
 }

@@ -2,6 +2,7 @@ package gtclassic.common.tile.datanet;
 
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
@@ -33,7 +34,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	boolean isOnlyComputer = true;
 	private Processor task = null;
 	private AabbUtil.IBlockFilter filter = new GTBlockFilterDataAll();
-	public HashSet<BlockPos> dataNet = new HashSet<>();
+	public Set<BlockPos> dataNet = new HashSet<>();
 
 	public GTTileComputerCube() {
 		super(0, 512);
@@ -51,11 +52,8 @@ public class GTTileComputerCube extends TileEntityElecMachine
 		if (this.isSimulating() && this.hasNodes()) {
 			for (BlockPos pPos : dataNet) {
 				TileEntity worldTile = world.getTileEntity(pPos);
-				if (worldTile instanceof GTTileBaseInputNode) {
-					((GTTileBaseInputNode) worldTile).computer = null;
-				}
-				if (worldTile instanceof GTTileBaseOutputNode) {
-					((GTTileBaseOutputNode) worldTile).computer = null;
+				if (worldTile instanceof GTTileBaseDataNode) {
+					((GTTileBaseDataNode) worldTile).computer = null;
 				}
 			}
 		}
@@ -140,11 +138,8 @@ public class GTTileComputerCube extends TileEntityElecMachine
 						if (worldTile != this && worldTile instanceof GTTileComputerCube) {
 							((GTTileComputerCube) worldTile).isOnlyComputer = false;
 						}
-						if (worldTile instanceof GTTileBaseInputNode) {
-							((GTTileBaseInputNode) worldTile).computer = this.energy > 0 ? this : null;
-						}
-						if (worldTile instanceof GTTileBaseOutputNode) {
-							((GTTileBaseOutputNode) worldTile).computer = this.energy > 0 ? this : null;
+						if (worldTile instanceof GTTileBaseDataNode) {
+							((GTTileBaseDataNode) worldTile).computer = this.energy > 0 ? this : null;
 						}
 					}
 				}
