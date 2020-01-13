@@ -27,6 +27,9 @@ public class GTFluid extends Fluid {
 		this.temperature = this.mat.hasFlag(GTMaterialFlag.INGOT) ? 2000 : 300;
 		this.mapColor = caluclateMapColor();
 		this.setGaseous(this.flag == GTMaterialFlag.GAS);
+		if (this.mat == GTMaterial.Argon || this.mat == GTMaterial.Neon || this.mat == GTMaterial.Mercury) {
+			this.setLuminosity(15);
+		}
 	}
 
 	public GTMaterial getGTMaterial() {

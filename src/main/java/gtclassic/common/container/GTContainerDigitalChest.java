@@ -3,7 +3,7 @@ package gtclassic.common.container;
 import gtclassic.GTMod;
 import gtclassic.common.gui.GTGuiCompDigitalChest;
 import gtclassic.common.tile.GTTileDigitalChest;
-import gtclassic.common.util.datanet.GTFilterDigitalChest;
+import gtclassic.common.util.GTFilterDigitalChest;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;

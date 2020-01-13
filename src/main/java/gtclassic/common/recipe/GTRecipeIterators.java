@@ -40,7 +40,9 @@ public class GTRecipeIterators {
 	/** Iterates through loaded itemstacks for all mods **/
 	public static void postInit() {
 		createMortarRecipe();
-		createUniversalProcessingRecipes();
+		if (GTConfig.general.addCompressorRecipesForBlocks) {
+			createUniversalProcessingRecipes();
+		}
 		for (Item item : Item.REGISTRY) {
 			NonNullList<ItemStack> items = NonNullList.create();
 			item.getSubItems(CreativeTabs.SEARCH, items);

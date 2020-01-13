@@ -35,6 +35,7 @@ public class GTConfig {
 		public boolean enableDisassembler = true;
 		public boolean harderJetpacks = false;
 		public boolean hideBedrockOresInJei = true;
+		public boolean addCompressorRecipesForBlocks = true;
 	}
 
 	@Comment("World Generation")

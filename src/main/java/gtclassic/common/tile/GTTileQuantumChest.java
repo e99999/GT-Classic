@@ -9,7 +9,7 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerQuantumChest;
-import gtclassic.common.util.datanet.GTFilterQuantumChest;
+import gtclassic.common.util.GTFilterQuantumChest;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;

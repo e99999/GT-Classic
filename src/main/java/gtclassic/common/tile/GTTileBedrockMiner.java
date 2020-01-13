@@ -214,7 +214,6 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 					this.setStackInSlot(i, GTHelperStack.copyWithSize(this.output, count + this.output.getCount()));
 					world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 0.6F, 1.0F);
 					tryDamagePipe();
-					tryRemoveOre();
 					tryExport();
 				}
 				this.useEnergy(EU_COST);
@@ -261,19 +260,6 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 					int count = this.getStackInSlot(j).getCount();
 					this.setStackInSlot(j, GTHelperStack.copyWithSize(GTMaterialGen.getDust(GTMaterial.Tungsten, 1), count
 							+ 1));
-				}
-			}
-		}
-	}
-
-	public void tryRemoveOre() {
-		if (world.rand.nextInt(511) == 0) {
-			for (BlockPos pos : getAreaToCheck()) {
-				Block block = world.getBlockState(pos).getBlock();
-				if (GTBedrockOreHandler.isBedrockOre(block)) {
-					world.setBlockState(pos, Blocks.BEDROCK.getDefaultState());
-					this.output = null;
-					break;
 				}
 			}
 		}

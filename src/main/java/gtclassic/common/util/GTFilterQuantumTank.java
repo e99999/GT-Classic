@@ -1,4 +1,4 @@
-package gtclassic.common.util.datanet;
+package gtclassic.common.util;
 
 import gtclassic.common.tile.GTTileQuantumTank;
 import ic2.core.inventory.filters.IFilter;

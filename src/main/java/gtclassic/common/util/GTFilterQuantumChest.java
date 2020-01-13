@@ -1,4 +1,4 @@
-package gtclassic.common.util.datanet;
+package gtclassic.common.util;
 
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.common.tile.GTTileQuantumChest;

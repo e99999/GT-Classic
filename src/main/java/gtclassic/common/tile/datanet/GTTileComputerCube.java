@@ -129,7 +129,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 					if (!world.isBlockLoaded(tPos)) {
 						continue;
 					}
-					if (world.getBlockState(tPos).getBlock() != GTBlocks.dataCable && !this.dataNet.contains(tPos)) {
+					if (world.getBlockState(tPos).getBlock() != GTBlocks.dataCable) {
 						this.dataNet.add(tPos);
 					}
 				}

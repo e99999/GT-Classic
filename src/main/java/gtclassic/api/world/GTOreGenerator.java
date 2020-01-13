@@ -33,7 +33,7 @@ public class GTOreGenerator {
 		int maxHeight = 10;
 		int heightdiff = maxHeight - minHeight + 1;
 		for (int i = 0; i < GTConfig.generation.bedrockOreWeight; i++) {
-			int var1 = rand.nextInt(4096);
+			int var1 = rand.nextInt(8192);
 			if (var1 == 0) {
 				int x = chunkX * 16 + rand.nextInt(16);
 				int y = 0 + rand.nextInt(heightdiff);
