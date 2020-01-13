@@ -29,25 +29,24 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 	@Override
 	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX,
 			float hitY, float hitZ, EnumHand hand) {
-		TileEntity tileEntity = world.getTileEntity(pos);
 		Block block = world.getBlockState(pos).getBlock();
-		if (player.isSneaking() || !IC2.platform.isSimulating() || hand.equals(EnumHand.OFF_HAND)) {
+		if (player.isSneaking() || hand == EnumHand.OFF_HAND) {
 			return EnumActionResult.PASS;
 		}
-		boolean f = false;
+		if (IC2.platform.isRendering()){
+			return EnumActionResult.SUCCESS;
+		}
+		TileEntity tileEntity = world.getTileEntity(pos);
 		if (tileEntity instanceof IProgressMachine) {
-			f = true;
 			IProgressMachine progress = (IProgressMachine) tileEntity;
 			IC2.platform.messagePlayer(player, "Progress: "
 					+ +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100)) + "%");
 		}
 		if (tileEntity instanceof IGTMultiTileStatus) {
-			f = true;
 			IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;
 			IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.getStructureValid());
 		}
 		if (tileEntity instanceof IGTDebuggableTile) {
-			f = true;
 			LinkedHashMap<String, Boolean> data = new LinkedHashMap<>();
 			IGTDebuggableTile debug = (IGTDebuggableTile) tileEntity;
 			debug.getData(data);
@@ -58,16 +57,11 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 			}
 		}
 		if (GTBedrockOreHandler.isBedrockOre(block)) {
-			f = true;
 			ItemStack resource = GTBedrockOreHandler.getResource(block);
 			String amount = resource.getCount() > 1 ? " x " + resource.getCount() : "";
-			IC2.platform.messagePlayer(player, "Contains: " + GTBedrockOreHandler.getResource(block).getDisplayName()
-					+ amount);
+			IC2.platform.messagePlayer(player, "Contains: " + GTBedrockOreHandler.getResource(block).getDisplayName() + amount);
 		}
-		if (f) {
-			world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			return EnumActionResult.SUCCESS;
-		}
-		return EnumActionResult.FAIL;
+		world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		return EnumActionResult.SUCCESS;
 	}
 }

@@ -4,7 +4,7 @@ import gtclassic.common.util.datanet.GTDataNet.DataType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-public class GTTileConstructorItem extends GTTileOutputNodeBase {
+public class GTTileConstructorItem extends GTTileBaseOutputNode {
 
 	/** Literally just a pointer on the network to where an output pos is **/
 	public GTTileConstructorItem() {

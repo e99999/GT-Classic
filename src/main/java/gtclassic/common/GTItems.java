@@ -23,6 +23,7 @@ import gtclassic.common.item.GTItemMortar;
 import gtclassic.common.item.GTItemReactorHeat;
 import gtclassic.common.item.GTItemReactorRod;
 import gtclassic.common.item.GTItemRockCutter;
+import gtclassic.common.item.GTItemScrewdriver;
 import gtclassic.common.item.GTItemSprayCan;
 import gtclassic.common.item.GTItemSpringBoots;
 import gtclassic.common.item.GTItemSurvivalScanner;
@@ -76,6 +77,7 @@ public class GTItems {
 	public static GTItemTeslaStaff teslaStaff;
 	public static GTItemRockCutter rockCutter;
 	public static GTItemJackHammer jackHammer;
+	public static GTItemScrewdriver screwDriver;
 	public static GTItemSurvivalScanner portableScanner;
 	public static GTItemCreativeScanner debugScanner;
 
@@ -122,6 +124,7 @@ public class GTItems {
 		teslaStaff = createItem(new GTItemTeslaStaff());
 		rockCutter = createItem(new GTItemRockCutter());
 		jackHammer = createItem(new GTItemJackHammer());
+		screwDriver = createItem(new GTItemScrewdriver());
 		portableScanner = createItem(new GTItemSurvivalScanner());
 		debugScanner = createItem(new GTItemCreativeScanner());
 	}

@@ -168,7 +168,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			IGTCoordinateTile coordTile = (IGTCoordinateTile) tileEntity;
 			if (!coordTile.isInterdimensional() && posArr[3] != world.provider.getDimension()) {
 				IC2.platform.messagePlayer(player, "This machine does not support interdimensional communication");
-				return EnumActionResult.PASS;
+				return EnumActionResult.SUCCESS;
 			}
 			if (coordTile.applyCoordinates(new BlockPos(posArr[0], posArr[1], posArr[2]), posArr[3])) {
 				IC2.platform.messagePlayer(player, "Coordinates successfully parsed to machine!");
@@ -176,7 +176,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 		}
 		IC2.platform.messagePlayer(player, "Parsing coordinates to this block failed!");
-		return EnumActionResult.FAIL;
+		return EnumActionResult.SUCCESS;
 	}
 
 	/*
@@ -185,10 +185,10 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 	@SuppressWarnings("deprecation")
 	public static EnumActionResult scanBlock(EntityPlayer player, World world, BlockPos pos, EnumFacing side,
 			float hitX, float hitY, float hitZ, EnumHand hand) {
-		if (!IC2.platform.isSimulating()) {
-			return EnumActionResult.PASS;
+		if (IC2.platform.isRendering()) {
+			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+			return EnumActionResult.SUCCESS;
 		}
-		IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 		if (player.isSneaking()) {
 			return tryParseCoords(world, pos, player, hand);
 		} else {
@@ -198,16 +198,13 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			TileEntity tileEntity = world.getTileEntity(pos);
 			IBlockState state = world.getBlockState(pos);
 			Block block = state.getBlock();
-			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()
-					+ " -----");
-			IC2.platform.messagePlayer(player, "You are facing: "
-					+ player.getHorizontalFacing().toString().toUpperCase());
+			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ() + " -----");
+			IC2.platform.messagePlayer(player, "You are facing: " + player.getHorizontalFacing().toString().toUpperCase());
 			IC2.platform.messagePlayer(player, "You clicked: " + side.toString().toUpperCase());
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
 			if (tileEntity == null) {
 				IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
-				IC2.platform.messagePlayer(player, "Blast Resistance: "
-						+ state.getBlock().getExplosionResistance(null) * 5.0F);
+				IC2.platform.messagePlayer(player, "Blast Resistance: " + state.getBlock().getExplosionResistance(null) * 5.0F);
 			}
 			if (tileEntity instanceof IReactor) {
 				IReactor te5 = (IReactor) tileEntity;
@@ -234,8 +231,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			if (tileEntity instanceof IEnergySink) {
 				IEnergySink euSink = (IEnergySink) tileEntity;
 				IC2.platform.messagePlayer(player, "Input Tier: " + euSink.getSinkTier());
-				IC2.platform.messagePlayer(player, "Input Max: "
-						+ EnergyNet.instance.getPowerFromTier(euSink.getSinkTier()) + " EU");
+				IC2.platform.messagePlayer(player, "Input Max: " + EnergyNet.instance.getPowerFromTier(euSink.getSinkTier())
+						+ " EU");
 			}
 			if (tileEntity instanceof GTTileBaseMachine) {
 				GTTileBaseMachine machine = (GTTileBaseMachine) tileEntity;
@@ -267,8 +264,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			if (GTBedrockOreHandler.isBedrockOre(block)) {
 				ItemStack resource = GTBedrockOreHandler.getResource(block);
 				String amount = resource.getCount() > 1 ? " x " + resource.getCount() : "";
-				IC2.platform.messagePlayer(player, "Contains: "
-						+ GTBedrockOreHandler.getResource(block).getDisplayName() + amount);
+				IC2.platform.messagePlayer(player, "Contains: " + GTBedrockOreHandler.getResource(block).getDisplayName()
+						+ amount);
 			}
 			if (tileEntity instanceof IGTMultiTileStatus) {
 				IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;

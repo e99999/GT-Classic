@@ -11,7 +11,7 @@ import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import net.minecraft.item.ItemStack;
 
-public class GTTileDigitizerItem extends GTTileInputNodeBase {
+public class GTTileDigitizerItem extends GTTileBaseInputNode {
 
 	public ArrayList<ItemStack> blacklist = new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class GTTileDigitizerItem extends GTTileInputNodeBase {
 	}
 
 	@Override
-	public boolean onDataNetTick(GTTileOutputNodeBase node) {
+	public boolean onDataNetTick(GTTileBaseOutputNode node) {
 		if (node.dataType() != DataType.ITEM) {
 			return false;
 		}

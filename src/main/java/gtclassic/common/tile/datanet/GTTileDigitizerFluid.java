@@ -4,7 +4,7 @@ import gtclassic.common.util.datanet.GTDataNet.DataType;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class GTTileDigitizerFluid extends GTTileInputNodeBase {
+public class GTTileDigitizerFluid extends GTTileBaseInputNode {
 
 	/**
 	 * Transmits Fluids from the facing pos to valid output nodes on the network
@@ -14,7 +14,7 @@ public class GTTileDigitizerFluid extends GTTileInputNodeBase {
 	}
 
 	@Override
-	public boolean onDataNetTick(GTTileOutputNodeBase node) {
+	public boolean onDataNetTick(GTTileBaseOutputNode node) {
 		if (node.dataType() != DataType.FLUID) {
 			return false;
 		}

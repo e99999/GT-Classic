@@ -7,25 +7,24 @@ import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.util.datanet.GTDataNet;
 import ic2.core.IC2;
 import ic2.core.block.base.util.info.misc.IWrench;
-import ic2.core.inventory.filters.IFilter;
 import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public abstract class GTTileOutputNodeBase extends GTTileBaseDataNode
-		implements IGTDebuggableTile, IGTDataNetObject, ITickable {
+public abstract class GTTileBaseInputNode extends GTTileBaseDataNode
+		implements ITickable, IGTDebuggableTile, IGTDataNetObject {
 
 	public GTTileComputerCube computer;
 	public int channel;
 
 	/**
-	 * This tile does not move anything, it merely provides the location of an
-	 * output point to input nodes
+	 * This tile actually moves items or fluids, and stores the output node list
 	 **/
-	public GTTileOutputNodeBase(int slots) {
+	public GTTileBaseInputNode(int slots) {
 		super(slots);
 	}
 
@@ -63,27 +62,37 @@ public abstract class GTTileOutputNodeBase extends GTTileBaseDataNode
 		return true;
 	}
 
-	/**
-	 * This returns the position for digitizer/input nodes to check for a valid
-	 * inventory
-	 **/
-	public abstract BlockPos inventoryPos();
-
-	/** This returns the side the above inventory should be interacted with **/
-	public abstract EnumFacing inventoryFacing();
-
-	public abstract GTDataNet.DataType dataType();
-
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
 			this.computer = null;
 		}
+		if (world.getTotalWorldTime() % GTDataNet.TICK_RATE == 0) {
+			if (this.computer == null || this.computer.dataNet == null || this.computer.dataNet.isEmpty()) {
+				return;
+			}
+			if (!world.isBlockLoaded(this.pos.offset(this.getFacing()))) {
+				return;
+			}
+			for (BlockPos nodePos : this.computer.dataNet) {
+				if (!world.isBlockLoaded(nodePos) || nodePos == this.pos) {
+					continue;
+				}
+				TileEntity wTile = world.getTileEntity(nodePos);
+				if (wTile instanceof GTTileBaseOutputNode) {
+					GTTileBaseOutputNode node = (GTTileBaseOutputNode) wTile;
+					if (this.channel != node.channel) {
+						continue;
+					}
+					if (onDataNetTick(node)) {
+						break;
+					}
+				}
+			}
+		}
 	}
 
-	public IFilter inventoryFilter() {
-		return null;
-	}
+	public abstract boolean onDataNetTick(GTTileBaseOutputNode node);
 
 	@Override
 	public void getData(Map<String, Boolean> data) {

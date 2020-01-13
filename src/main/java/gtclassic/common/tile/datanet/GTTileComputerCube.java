@@ -51,11 +51,11 @@ public class GTTileComputerCube extends TileEntityElecMachine
 		if (this.isSimulating() && this.hasNodes()) {
 			for (BlockPos pPos : dataNet) {
 				TileEntity worldTile = world.getTileEntity(pPos);
-				if (worldTile instanceof GTTileInputNodeBase) {
-					((GTTileInputNodeBase) worldTile).computer = null;
+				if (worldTile instanceof GTTileBaseInputNode) {
+					((GTTileBaseInputNode) worldTile).computer = null;
 				}
-				if (worldTile instanceof GTTileOutputNodeBase) {
-					((GTTileOutputNodeBase) worldTile).computer = null;
+				if (worldTile instanceof GTTileBaseOutputNode) {
+					((GTTileBaseOutputNode) worldTile).computer = null;
 				}
 			}
 		}
@@ -140,11 +140,11 @@ public class GTTileComputerCube extends TileEntityElecMachine
 						if (worldTile != this && worldTile instanceof GTTileComputerCube) {
 							((GTTileComputerCube) worldTile).isOnlyComputer = false;
 						}
-						if (worldTile instanceof GTTileInputNodeBase) {
-							((GTTileInputNodeBase) worldTile).computer = this.energy > 0 ? this : null;
+						if (worldTile instanceof GTTileBaseInputNode) {
+							((GTTileBaseInputNode) worldTile).computer = this.energy > 0 ? this : null;
 						}
-						if (worldTile instanceof GTTileOutputNodeBase) {
-							((GTTileOutputNodeBase) worldTile).computer = this.energy > 0 ? this : null;
+						if (worldTile instanceof GTTileBaseOutputNode) {
+							((GTTileBaseOutputNode) worldTile).computer = this.energy > 0 ? this : null;
 						}
 					}
 				}
