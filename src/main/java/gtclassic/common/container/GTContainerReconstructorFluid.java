@@ -3,25 +3,27 @@ package gtclassic.common.container;
 import javax.annotation.Nullable;
 
 import gtclassic.GTMod;
-import gtclassic.common.tile.datanet.GTTileReconstructorItem;
+import gtclassic.common.tile.datanet.GTTileReconstructorFluid;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotDisplay;
-import ic2.core.util.misc.StackUtil;
+import ic2.core.item.misc.ItemDisplayIcon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerReconstructorItem extends ContainerTileComponent<GTTileReconstructorItem> {
+public class GTContainerReconstructorFluid extends ContainerTileComponent<GTTileReconstructorFluid> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/nodebasic.png");
-	GTTileReconstructorItem block;
+	GTTileReconstructorFluid block;
 
-	public GTContainerReconstructorItem(InventoryPlayer player, GTTileReconstructorItem tile) {
+	public GTContainerReconstructorFluid(InventoryPlayer player, GTTileReconstructorFluid tile) {
 		super(tile);
 		block = tile;
 		this.addSlotToContainer(new SlotDisplay(tile, 0, 80, 23));
@@ -54,7 +56,17 @@ public class GTContainerReconstructorItem extends ContainerTileComponent<GTTileR
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
 		if (slotId == 0) {
 			ItemStack stack = player.inventory.getItemStack();
-			this.block.setStackInSlot(slotId, stack.isEmpty() ? ItemStack.EMPTY : StackUtil.copyWithSize(stack, 1));
+			if (stack.isEmpty()) {
+				this.block.setStackInSlot(0, ItemStack.EMPTY);
+				this.block.filter = null;
+				return ItemStack.EMPTY;
+			}
+			if (FluidUtil.getFluidContained(stack) != null) {
+				FluidStack fluidStack = FluidUtil.getFluidContained(stack);
+				FluidStack newStack = new FluidStack(fluidStack.getFluid(), 1000);
+				this.block.setStackInSlot(0, ItemDisplayIcon.createWithFluidStack(newStack));
+				this.block.filter = newStack;
+			}
 			return ItemStack.EMPTY;
 		}
 		return super.slotClick(slotId, dragType, clickTypeIn, player);

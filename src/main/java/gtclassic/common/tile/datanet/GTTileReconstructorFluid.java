@@ -3,31 +3,56 @@ package gtclassic.common.tile.datanet;
 import java.util.Collections;
 import java.util.List;
 
-import gtclassic.common.container.GTContainerReconstructorItem;
+import gtclassic.common.container.GTContainerReconstructorFluid;
 import gtclassic.common.util.datanet.GTDataNet.DataType;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileConstructorItem extends GTTileBaseOutputNode implements IHasGui {
+public class GTTileReconstructorFluid extends GTTileBaseOutputNode implements IHasGui {
+
+	public FluidStack filter;
+	public static final String NBT_FLUIDFILTER = "filter";
 
 	/** Literally just a pointer on the network to where an output pos is **/
-	public GTTileConstructorItem() {
+	public GTTileReconstructorFluid() {
 		super(1);
 	}
 
 	@Override
 	public DataType dataType() {
-		return DataType.ITEM;
+		return DataType.FLUID;
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		if (nbt.hasKey(NBT_FLUIDFILTER)) {
+			Fluid storedFluid = FluidRegistry.getFluid(nbt.getString(NBT_FLUIDFILTER));
+			if (storedFluid != null) {
+				this.filter = new FluidStack(FluidRegistry.getFluid(nbt.getString(NBT_FLUIDFILTER)), 1000);
+			}
+		}
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		if (this.filter != null) {
+			nbt.setString(NBT_FLUIDFILTER, this.filter.getFluid().getName());
+		}
+		return nbt;
 	}
 
 	@Override
@@ -40,8 +65,9 @@ public class GTTileConstructorItem extends GTTileBaseOutputNode implements IHasG
 		return this.getFacing().getOpposite();
 	}
 
-	public IFilter inventoryFilter() {
-		return this.inventory.get(0).isEmpty() ? null : new BasicItemFilter(this.inventory.get(0).copy());
+	@Override
+	public FluidStack tankFilter() {
+		return this.filter;
 	}
 
 	@Override
@@ -57,7 +83,7 @@ public class GTTileConstructorItem extends GTTileBaseOutputNode implements IHasG
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerReconstructorItem(player.inventory, this);
+		return new GTContainerReconstructorFluid(player.inventory, this);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import ic2.core.inventory.filters.IFilter;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fluids.FluidStack;
 
 public abstract class GTTileBaseOutputNode extends GTTileBaseDataNode implements ITickable {
 
@@ -35,6 +36,10 @@ public abstract class GTTileBaseOutputNode extends GTTileBaseDataNode implements
 	}
 
 	public IFilter inventoryFilter() {
+		return null;
+	}
+
+	public FluidStack tankFilter() {
 		return null;
 	}
 }

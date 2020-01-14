@@ -3,10 +3,10 @@ package gtclassic.common.block.datanet;
 import java.util.List;
 
 import gtclassic.common.GTBlocks;
-import gtclassic.common.tile.datanet.GTTileConstructorFluid;
-import gtclassic.common.tile.datanet.GTTileConstructorItem;
 import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
 import gtclassic.common.tile.datanet.GTTileDigitizerItem;
+import gtclassic.common.tile.datanet.GTTileReconstructorFluid;
+import gtclassic.common.tile.datanet.GTTileReconstructorItem;
 import gtclassic.common.util.datanet.GTDataNet;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -31,10 +31,10 @@ public class GTBlockDataNode extends GTBlockBaseDataNode {
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.tileReconstructorItem) {
-			return new GTTileConstructorItem();
+			return new GTTileReconstructorItem();
 		}
 		if (this == GTBlocks.tileReconstructorFluid) {
-			return new GTTileConstructorFluid();
+			return new GTTileReconstructorFluid();
 		}
 		if (this == GTBlocks.tileDigitizerItem) {
 			return new GTTileDigitizerItem();

@@ -57,11 +57,11 @@ import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.tile.datanet.GTTileBaseDataNode;
 import gtclassic.common.tile.datanet.GTTileComputerCube;
-import gtclassic.common.tile.datanet.GTTileConstructorFluid;
-import gtclassic.common.tile.datanet.GTTileConstructorItem;
 import gtclassic.common.tile.datanet.GTTileDataCable;
 import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
 import gtclassic.common.tile.datanet.GTTileDigitizerItem;
+import gtclassic.common.tile.datanet.GTTileReconstructorFluid;
+import gtclassic.common.tile.datanet.GTTileReconstructorItem;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
@@ -225,8 +225,8 @@ public class GTBlocks {
 		registerUtil(GTTileDataCable.class, "DataCable");
 		registerUtil(GTTileDigitizerItem.class, "ItemImporter");
 		registerUtil(GTTileDigitizerFluid.class, "FluidImporter");
-		registerUtil(GTTileConstructorItem.class, "ItemExporter");
-		registerUtil(GTTileConstructorFluid.class, "FluidExporter");
+		registerUtil(GTTileReconstructorItem.class, "ItemExporter");
+		registerUtil(GTTileReconstructorFluid.class, "FluidExporter");
 		registerUtil(GTTileBaseDataNode.class, "TestModel");
 	}
 
