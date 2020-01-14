@@ -13,6 +13,7 @@ public class GTHelperString {
 	private static final String PAINTED_FALSE = "tooltip.gtclassic.paintedfalse";
 	public static final String BEACONBASE = "tooltip.gtclassic.beaconbase";
 	public static final String NOMOBSPAWN = "tooltip.gtclassic.nomobs";
+	private static final String[] TIERS = { "N/A", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "MAX" };
 
 	public static void tooltipPaintable(ItemStack stack, List<String> tooltip) {
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
@@ -24,37 +25,9 @@ public class GTHelperString {
 	}
 
 	public static String getTierString(int tier) {
-		if (tier == 0) {
-			return "N/A";
+		if (tier < 0 || tier > 9) {
+			return TIERS[0];
 		}
-		if (tier == 1) {
-			return "LV";
-		}
-		if (tier == 2) {
-			return "MV";
-		}
-		if (tier == 3) {
-			return "HV";
-		}
-		if (tier == 4) {
-			return "EV";
-		}
-		if (tier == 5) {
-			return "IV";
-		}
-		if (tier == 6) {
-			return "LuV";
-		}
-		if (tier == 7) {
-			return "ZPM";
-		}
-		if (tier == 8) {
-			return "UV";
-		}
-		if (tier == 9) {
-			return "MAX";
-		} else {
-			return "N/A";
-		}
+		return TIERS[tier];
 	}
 }

@@ -198,13 +198,17 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			TileEntity tileEntity = world.getTileEntity(pos);
 			IBlockState state = world.getBlockState(pos);
 			Block block = state.getBlock();
-			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ() + " -----");
-			IC2.platform.messagePlayer(player, "You are facing: " + player.getHorizontalFacing().toString().toUpperCase());
-			IC2.platform.messagePlayer(player, "You clicked: " + side.toString().toUpperCase());
+			IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()
+					+ " -----");
+			// IC2.platform.messagePlayer(player, "You are facing: " +
+			// player.getHorizontalFacing().toString().toUpperCase());
+			// IC2.platform.messagePlayer(player, "You clicked: " +
+			// side.toString().toUpperCase());
 			IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
 			if (tileEntity == null) {
 				IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
-				IC2.platform.messagePlayer(player, "Blast Resistance: " + state.getBlock().getExplosionResistance(null) * 5.0F);
+				IC2.platform.messagePlayer(player, "Blast Resistance: "
+						+ state.getBlock().getExplosionResistance(null) * 5.0F);
 			}
 			if (tileEntity instanceof IReactor) {
 				IReactor te5 = (IReactor) tileEntity;
@@ -231,8 +235,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			if (tileEntity instanceof IEnergySink) {
 				IEnergySink euSink = (IEnergySink) tileEntity;
 				IC2.platform.messagePlayer(player, "Input Tier: " + euSink.getSinkTier());
-				IC2.platform.messagePlayer(player, "Input Max: " + EnergyNet.instance.getPowerFromTier(euSink.getSinkTier())
-						+ " EU");
+				IC2.platform.messagePlayer(player, "Input Max: "
+						+ EnergyNet.instance.getPowerFromTier(euSink.getSinkTier()) + " EU");
 			}
 			if (tileEntity instanceof GTTileBaseMachine) {
 				GTTileBaseMachine machine = (GTTileBaseMachine) tileEntity;
@@ -264,8 +268,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			if (GTBedrockOreHandler.isBedrockOre(block)) {
 				ItemStack resource = GTBedrockOreHandler.getResource(block);
 				String amount = resource.getCount() > 1 ? " x " + resource.getCount() : "";
-				IC2.platform.messagePlayer(player, "Contains: " + GTBedrockOreHandler.getResource(block).getDisplayName()
-						+ amount);
+				IC2.platform.messagePlayer(player, "Contains: "
+						+ GTBedrockOreHandler.getResource(block).getDisplayName() + amount);
 			}
 			if (tileEntity instanceof IGTMultiTileStatus) {
 				IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;

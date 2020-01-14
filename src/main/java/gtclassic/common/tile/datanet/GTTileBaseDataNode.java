@@ -4,23 +4,24 @@ import java.util.Map;
 
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
-import gtclassic.api.interfaces.IGTScrewdriverable;
 import gtclassic.common.util.datanet.GTDataNet;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
-import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.obj.IClickable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
+import net.minecraftforge.fml.relauncher.Side;
 
-public class GTTileBaseDataNode extends TileEntityMachine
-		implements IGTDebuggableTile, IGTDataNetObject, IGTScrewdriverable {
+public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggableTile, IGTDataNetObject, IClickable {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
@@ -144,21 +145,30 @@ public class GTTileBaseDataNode extends TileEntityMachine
 	}
 
 	@Override
-	public boolean onScrewdriver(EntityPlayer player) {
-		boolean actual = false;
-		if (!player.isSneaking()) {
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand var2, EnumFacing var3, Side var4) {
+		if (player.isSneaking()) {
 			this.channel++;
 			this.channel = this.channel > 15 ? 0 : this.channel;
-			actual = true;
-		}
-		if (this.isSimulating()) {
-			IC2.platform.messagePlayer(player, "Channel: " + this.channel);
-			if (actual) {
-			IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
-			} else {
-				IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
+			if (this.isSimulating()) {
+				IC2.platform.messagePlayer(player, "Channel: " + this.channel);
 			}
+			player.playSound(SoundEvents.UI_BUTTON_CLICK, 0.5F, 1.0F);
+			return true;
 		}
-		return true;
+		return false;
 	}
 }

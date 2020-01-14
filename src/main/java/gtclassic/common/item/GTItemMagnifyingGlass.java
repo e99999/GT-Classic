@@ -33,7 +33,7 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 		if (player.isSneaking() || hand == EnumHand.OFF_HAND) {
 			return EnumActionResult.PASS;
 		}
-		if (IC2.platform.isRendering()){
+		if (IC2.platform.isRendering()) {
 			return EnumActionResult.SUCCESS;
 		}
 		TileEntity tileEntity = world.getTileEntity(pos);
@@ -59,7 +59,8 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 		if (GTBedrockOreHandler.isBedrockOre(block)) {
 			ItemStack resource = GTBedrockOreHandler.getResource(block);
 			String amount = resource.getCount() > 1 ? " x " + resource.getCount() : "";
-			IC2.platform.messagePlayer(player, "Contains: " + GTBedrockOreHandler.getResource(block).getDisplayName() + amount);
+			IC2.platform.messagePlayer(player, "Contains: " + GTBedrockOreHandler.getResource(block).getDisplayName()
+					+ amount);
 		}
 		world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		return EnumActionResult.SUCCESS;

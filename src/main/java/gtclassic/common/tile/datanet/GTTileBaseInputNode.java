@@ -30,7 +30,6 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 				if (!world.isBlockLoaded(nodePos) || nodePos == this.pos) {
 					continue;
 				}
-				
 				TileEntity wTile = world.getTileEntity(nodePos);
 				if (wTile instanceof GTTileBaseOutputNode) {
 					GTTileBaseOutputNode node = (GTTileBaseOutputNode) wTile;
