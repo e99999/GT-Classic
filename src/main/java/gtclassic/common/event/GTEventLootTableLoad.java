@@ -1,6 +1,10 @@
 package gtclassic.common.event;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gtclassic.api.material.GTMaterial;
+import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTConfig;
 import net.minecraft.item.ItemStack;
@@ -14,15 +18,27 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class GTEventLootTableLoad {
 
-	private static ItemStack[] lootitems = { GTMaterialGen.getGem(GTMaterial.Ruby, 1),
-			GTMaterialGen.getGem(GTMaterial.Sapphire, 1), GTMaterialGen.getIngot(GTMaterial.Electrum, 1),
-			GTMaterialGen.getIngot(GTMaterial.Platinum, 1), GTMaterialGen.getIngot(GTMaterial.Aluminium, 1) };
 	private static ResourceLocation[] loottable = { LootTableList.CHESTS_ABANDONED_MINESHAFT,
 			LootTableList.CHESTS_DESERT_PYRAMID, LootTableList.CHESTS_END_CITY_TREASURE,
 			LootTableList.CHESTS_IGLOO_CHEST, LootTableList.CHESTS_JUNGLE_TEMPLE, LootTableList.CHESTS_NETHER_BRIDGE,
 			LootTableList.CHESTS_SIMPLE_DUNGEON, LootTableList.CHESTS_STRONGHOLD_CORRIDOR,
 			LootTableList.CHESTS_STRONGHOLD_CROSSING, LootTableList.CHESTS_STRONGHOLD_LIBRARY,
 			LootTableList.CHESTS_VILLAGE_BLACKSMITH, LootTableList.CHESTS_WOODLAND_MANSION };
+	private static List<ItemStack> lootpool = new ArrayList<>();
+
+	public static void init() {
+		for (GTMaterial mat : GTMaterial.values()) {
+			if (mat.hasFlag(GTMaterialFlag.DUST)) {
+				lootpool.add(GTMaterialGen.getDust(mat, 1));
+			}
+			if (mat.hasFlag(GTMaterialFlag.INGOT)) {
+				lootpool.add(GTMaterialGen.getIngot(mat, 1));
+			}
+			if (GTMaterial.isGem(mat)) {
+				lootpool.add(GTMaterialGen.getGem(mat, 1));
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public void onLootTableLoad(LootTableLoadEvent event) {
@@ -31,17 +47,12 @@ public class GTEventLootTableLoad {
 		 * table
 		 */
 		if (GTConfig.general.addLootItems) {
-			for (ItemStack item : lootitems) {
+			for (ItemStack item : lootpool) {
 				for (ResourceLocation table : loottable) {
 					if (event.getName().equals(table)) {
 						event.getTable().getPool("main").addEntry(new LootEntryItem(item.getItem(), 16, 0, new LootFunction[] {}, new LootCondition[0], getStackResourceName(item)));
 					}
 				}
-			}
-			if (event.getName().equals(LootTableList.CHESTS_END_CITY_TREASURE)
-					|| event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)) {
-				ItemStack dustIridium = GTMaterialGen.getDust(GTMaterial.Iridium, 1);
-				event.getTable().getPool("main").addEntry(new LootEntryItem(dustIridium.getItem(), 16, 0, new LootFunction[] {}, new LootCondition[0], getStackResourceName(dustIridium)));
 			}
 		}
 	}

@@ -91,7 +91,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileAutocrafter) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 32 })));
-			tooltip.add("Energy Used Per Craft: 50 EU");
+			tooltip.add("Energy Usage: 50 EU Per Craft");
 		}
 		if (this == GTBlocks.tileChargeOmat) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
@@ -110,10 +110,11 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileBedrockMiner) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
-			tooltip.add("Energy Used Per Operation: 4096 EU");
+			tooltip.add("Energy Usage: 4096 EU Per Operation");
 		}
 		if (this == GTBlocks.tileComputer) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
+			tooltip.add("Energy Usage: 1 EU Per Network Node");
 		}
 		if (this == GTBlocks.tileEnergyTransmitter) {
 			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 512 })));

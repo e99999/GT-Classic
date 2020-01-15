@@ -1,8 +1,9 @@
 # Changelog
 
 # 1.1.0 (Not Released)
+- Changed, loot table being weak sauce, now all ingots and dusts are viable as loot even addons materials.
 - Fixed right clicking with scanners and magnifying glass being inconsistent with an item in the off hand.
-- Working on my pet project the GTC "data net", use a computer cube to control a logistics setup with various types of inputs/outputs.
+- Added, Working on my pet project the GTC "data net", use a computer cube to control a logistics setup with various types of inputs/outputs.
 - Changed bedrock ores are now infinite and 4 x time more rare.
 - Added config option for automatic gem -> block / ingot -> block compressor recipes of all modded materials.
 - Added massive net gain of power for doing helium fusion, it in 1.0.9 I just forgot to put it in the changlog. Power comes out front or back of fusion controller at tier 12.

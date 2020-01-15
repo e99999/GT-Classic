@@ -35,13 +35,15 @@ import net.minecraftforge.client.model.PerspectiveMapWrapper;
 
 public class GTModelWire extends BaseModel {
 
-	List<BakedQuad>[] quads = this.createList(64);
-	List<BakedQuad>[] anchorQuads = this.createList(64);
+	List<BakedQuad>[] quads = this.createList(64); // All possible connection configurations
+	List<BakedQuad>[] anchorQuads = this.createList(64); // All possible anchor configurations
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	Map<Integer, List<BakedQuad>> comboQuads = new HashMap();
+	Map<Integer, List<BakedQuad>> comboQuads = new HashMap();// A sum of the above quad lists
 	IBlockState state;
-	TextureAtlasSprite sprite;
-	int[] sizes;
+	TextureAtlasSprite sprite; // This the texure all sides will use unless stipulated otherwise in the quad
+								// functions
+	int[] sizes; // This is an int array to draw the size of the cable, [0, 16] would be a full
+					// block, [4, 12] would be half a block.
 
 	public GTModelWire(IBlockState block, TextureAtlasSprite texture, int[] sizes) {
 		super(Ic2Models.getBlockTransforms());
@@ -54,41 +56,43 @@ public class GTModelWire extends BaseModel {
 	public void init() {
 		GTBlockBaseConnect wire = (GTBlockBaseConnect) this.state.getBlock();
 		this.setParticalTexture(wire.getParticleTexture(this.state));
-		int min = this.sizes[0];
-		int max = this.sizes[1];
+		int min = this.sizes[0];// low size
+		int max = this.sizes[1];// high size
 		Map<EnumFacing, BakedQuad> coreQuads = this.generateCoreQuads(wire, min, max);
 		Map<EnumFacing, List<BakedQuad>> sideQuads = new EnumMap(EnumFacing.class);
 		Map<EnumFacing, List<BakedQuad>> anchorQuadList = new EnumMap(EnumFacing.class);
-		EnumFacing[] var7 = EnumFacing.VALUES;
-		int var8 = var7.length;
-		for (int var9 = 0; var9 < var8; ++var9) {
-			EnumFacing side = var7[var9];
+		EnumFacing[] facings = EnumFacing.VALUES;
+		int facingsLength = facings.length;
+		for (int i = 0; i < facingsLength; ++i) {
+			EnumFacing side = facings[i];
 			sideQuads.put(side, this.generateQuadsForSide(wire, side, min, max));
 			anchorQuadList.put(side, this.generateQuadsForAnchor(this.sprite, side, min, max));
 		}
-		for (int i = 0; i < 64; ++i) {
-			RotationList rotation = RotationList.ofNumber(i);
-			List<BakedQuad> quadList = this.quads[i];
-			Iterator var15 = rotation.iterator();
+		for (int j = 0; j < 64; ++j) {
+			RotationList rotation = RotationList.ofNumber(j);
+			List<BakedQuad> quadList = this.quads[j];
+			Iterator rotations = rotation.iterator();
 			EnumFacing side;
-			while (var15.hasNext()) {
-				side = (EnumFacing) var15.next();
+			while (rotations.hasNext()) {
+				side = (EnumFacing) rotations.next();
 				quadList.addAll((Collection) sideQuads.get(side));
-				this.anchorQuads[i].addAll((Collection) anchorQuadList.get(side));
+				this.anchorQuads[j].addAll((Collection) anchorQuadList.get(side));
 			}
-			var15 = rotation.invert().iterator();
-			while (var15.hasNext()) {
-				side = (EnumFacing) var15.next();
+			rotations = rotation.invert().iterator();
+			while (rotations.hasNext()) {
+				side = (EnumFacing) rotations.next();
 				quadList.add(coreQuads.get(side));
 			}
 		}
 	}
 
+	// Merges core and anchor quads to create all quads
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {
 		if (side == null) {
 			if (!(state instanceof IC2BlockState)) {
-				// if its in jei/creative tab
+				// if its in jei/creative tab it will default to the int passed below, 12 =
+				// (4+8) (north+south)
 				return this.quads[12];
 			} else {
 				Vec3i vec = (Vec3i) ((IC2BlockState) state).getData();
@@ -128,6 +132,7 @@ public class GTModelWire extends BaseModel {
 		return PerspectiveMapWrapper.handlePerspective(this, this.getCamera(), cameraTransformType);
 	}
 
+	// This is where the basic/core model quads are generated
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Map<EnumFacing, BakedQuad> generateCoreQuads(GTBlockBaseConnect wire, int min, int max) {
 		Vector3f minF = new Vector3f((float) min, (float) min, (float) min);
@@ -144,6 +149,7 @@ public class GTModelWire extends BaseModel {
 		return quads;
 	}
 
+	// This is where anchor quads are generated
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<BakedQuad> generateQuadsForAnchor(TextureAtlasSprite sprite, EnumFacing facing, int min, int max) {
 		List<BakedQuad> quads = new ArrayList();
@@ -152,8 +158,11 @@ public class GTModelWire extends BaseModel {
 		int var8 = var7.length;
 		for (int var9 = 0; var9 < var8; ++var9) {
 			EnumFacing side = var7[var9];
-			if (side.getOpposite() != facing) {
+			if (side.getOpposite() != facing) {// This part keeps the backside of anchors from rendering which the user
+												// would never see
 				BlockPartFace face = null;
+				// Below these just resize the texture of the anchor but not the side of the
+				// actual quads
 				if (side == facing) {
 					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
 							(float) min, (float) max, (float) max }, 0));
@@ -163,12 +172,15 @@ public class GTModelWire extends BaseModel {
 				} else {
 					face = this.getFace(facing, min, max);
 				}
+				// If you would like a different texture for anchors, change the sprite var to
+				// what you want, by default its passing the sprite in the model constructor
 				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, sprite, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 			}
 		}
 		return quads;
 	}
 
+	// This is where the sides connected to things are generated
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private List<BakedQuad> generateQuadsForSide(GTBlockBaseConnect wire, EnumFacing facing, int min, int max) {
 		List<BakedQuad> quads = new ArrayList();
@@ -188,6 +200,8 @@ public class GTModelWire extends BaseModel {
 				} else {
 					face = this.getFace(facing, min, max);
 				}
+				// If you would like a different texture for connected sides, change the sprite
+				// var to what you want
 				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, wire.getTextureFromState(this.state, side), side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 			}
 		}
@@ -212,6 +226,8 @@ public class GTModelWire extends BaseModel {
 		return Pair.of(new Vector3f(min, min, min), new Vector3f(max, max, max));
 	}
 
+	// The zeros passed as the second arg in the BlockPartFace constructor make it
+	// so the face is colorable, make it -1 if you dont want it to be colored
 	private BlockPartFace getFace(EnumFacing facing, int min, int max) {
 		switch (facing) {
 		case DOWN:

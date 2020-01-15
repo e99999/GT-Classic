@@ -80,6 +80,7 @@ public class GTMod {
 		GTItems.registerItems();
 		GTCrops.init();
 		GTOreDict.init();
+		GTEventLootTableLoad.init();
 		MinecraftForge.EVENT_BUS.register(new GTSounds());
 	}
 
