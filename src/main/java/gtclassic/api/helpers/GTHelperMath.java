@@ -25,10 +25,18 @@ public class GTHelperMath {
 	 * @param height - height of the BB
 	 * @return - the centered sum as an AABB
 	 */
-	public static AxisAlignedBB createAABBFromPixels(double width, double height) {
-		double offset = (1.0D - (width / 16.0D)) * .5;
-		double x = width / 16.0D;
-		double y = height / 16.0D;
+	public static AxisAlignedBB createAABBFromPixelsCentered(int width, int height) {
+		double offset = (double)(1.0D - (width / 16.0D)) * .5;
+		double x = (double)width / 16.0D;
+		double y = (double)height / 16.0D;
 		return new AxisAlignedBB(offset, 0.0D, offset, offset + x, y, offset + x);
+	}
+
+	public static AxisAlignedBB createAABBFromPixels(int x, int y, int z, int x2, int y2, int z2) {
+		return new AxisAlignedBB(pixelToDouble(x), pixelToDouble(y), pixelToDouble(z), pixelToDouble(x2), pixelToDouble(y2), pixelToDouble(z2));
+	}
+
+	public static double pixelToDouble(int pixels) {
+		return (double) pixels / 16.0D;
 	}
 }

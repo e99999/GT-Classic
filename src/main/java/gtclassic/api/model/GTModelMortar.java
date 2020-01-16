@@ -32,8 +32,13 @@ public class GTModelMortar extends BaseModel {
 	TextureAtlasSprite bowlSprite = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:blocks/stone");
 	TextureAtlasSprite postSprite = Ic2Models.getIconSafe(Ic2Icons.getTextures("b0")[1]);
 	// just for testing
-	static final AxisAlignedBB AABB_BOTTOMSLAB= GTHelperMath.createAABBFromPixels(16.0D, 4.0D);
-	static final AxisAlignedBB AABB_CENTERPOST = GTHelperMath.createAABBFromPixels(6.0D, 12.0D);
+	static final AxisAlignedBB AABB_BOTTOMLAYER= GTHelperMath.createAABBFromPixelsCentered(12, 1);
+	static final AxisAlignedBB AABB_CENTERPOST = GTHelperMath.createAABBFromPixelsCentered(4, 10);
+	static final AxisAlignedBB AABB_WALL_EAST = GTHelperMath.createAABBFromPixels(12, 1, 4, 14, 6, 14);
+	static final AxisAlignedBB AABB_WALL_SOUTH = GTHelperMath.createAABBFromPixels(2, 1, 12, 12, 6, 14);
+	static final AxisAlignedBB AABB_WALL_NORTH = GTHelperMath.createAABBFromPixels(4, 1, 2, 14, 6, 4);
+	static final AxisAlignedBB AABB_WALL_WEST = GTHelperMath.createAABBFromPixels(2, 1, 2, 4, 6, 12);
+
 
 	public GTModelMortar(IBlockState state) {
 		super(Ic2Models.getBlockTransforms());
@@ -57,8 +62,11 @@ public class GTModelMortar extends BaseModel {
 			sideRotation = ModelRotation.X0_Y0;
 			face = this.createBlockFace(side);
 			//Bottom/main peice
-			this.quads[side.getIndex()].add(this.getBakery().makeBakedQuad(this.getMinBox(side, AABB_BOTTOMSLAB), this.getMaxBox(side, AABB_BOTTOMSLAB), face, bowlSprite, side, sideRotation, (BlockPartRotation) null, false, true));
-			//The shaft... Kreygasm
+			this.quads[side.getIndex()].add(this.getBakery().makeBakedQuad(this.getMinBox(side, AABB_BOTTOMLAYER), this.getMaxBox(side, AABB_BOTTOMLAYER), face, bowlSprite, side, sideRotation, (BlockPartRotation) null, false, true));
+			this.quads[side.getIndex()].add(this.getBakery().makeBakedQuad(this.getMinBox(side, AABB_WALL_EAST), this.getMaxBox(side, AABB_WALL_EAST), face, bowlSprite, side, sideRotation, (BlockPartRotation) null, false, true));
+			this.quads[side.getIndex()].add(this.getBakery().makeBakedQuad(this.getMinBox(side, AABB_WALL_SOUTH), this.getMaxBox(side, AABB_WALL_SOUTH), face, bowlSprite, side, sideRotation, (BlockPartRotation) null, false, true));
+			this.quads[side.getIndex()].add(this.getBakery().makeBakedQuad(this.getMinBox(side, AABB_WALL_NORTH), this.getMaxBox(side, AABB_WALL_NORTH), face, bowlSprite, side, sideRotation, (BlockPartRotation) null, false, true));
+			this.quads[side.getIndex()].add(this.getBakery().makeBakedQuad(this.getMinBox(side, AABB_WALL_WEST), this.getMaxBox(side, AABB_WALL_WEST), face, bowlSprite, side, sideRotation, (BlockPartRotation) null, false, true));
 			this.quads[side.getIndex()].add(this.getBakery().makeBakedQuad(this.getMinBox(side, AABB_CENTERPOST), this.getMaxBox(side, AABB_CENTERPOST), face, postSprite, side, sideRotation, (BlockPartRotation) null, false, true));
 		}
 	}

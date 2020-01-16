@@ -4,6 +4,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBase;
+import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.api.model.GTModelMortar;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.platform.textures.obj.ICustomModeledBlock;
@@ -15,10 +16,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.EntityLiving.SpawnPlacementType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock{
+	
+	static final AxisAlignedBB AABB_MORTAR = GTHelperMath.createAABBFromPixelsCentered(12, 10);
 
 	public GTBlockMortar() {
 		super(Material.ROCK);
@@ -70,5 +74,10 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock{
 	@Override
 	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
 		return false;
+	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+		return AABB_MORTAR;
 	}
 }
