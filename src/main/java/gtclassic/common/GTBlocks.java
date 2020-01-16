@@ -16,6 +16,7 @@ import gtclassic.common.block.GTBlockLightSource;
 import gtclassic.common.block.GTBlockMachine;
 import gtclassic.common.block.GTBlockMachineDirectionable;
 import gtclassic.common.block.GTBlockMiningPipe;
+import gtclassic.common.block.GTBlockMortar;
 import gtclassic.common.block.GTBlockOre;
 import gtclassic.common.block.GTBlockOreBedrock;
 import gtclassic.common.block.GTBlockOrechid;
@@ -146,6 +147,7 @@ public class GTBlocks {
 	public static final GTBlockDataNode tileDigitizerFluid = registerBlock(new GTBlockDataNode("fluiddigitizer", 13, GTLang.FLUID_DIGITIZER));
 	public static final GTBlockDataNode tileReconstructorItem = registerBlock(new GTBlockDataNode("itemreconstructor", 14, GTLang.ITEM_RECONSTRUCTOR));
 	public static final GTBlockDataNode tileReconstructorFluid = registerBlock(new GTBlockDataNode("fluidreconstructor", 15, GTLang.FLUID_RECONTSTRUCTOR));
+	public static final GTBlockMortar mortar = registerBlock(new GTBlockMortar());
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid());
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());

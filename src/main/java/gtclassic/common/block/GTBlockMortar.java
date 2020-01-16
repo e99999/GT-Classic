@@ -1,0 +1,45 @@
+package gtclassic.common.block;
+
+import java.util.List;
+
+import gtclassic.GTMod;
+import gtclassic.api.block.GTBlockBase;
+import gtclassic.api.model.GTModelMortar;
+import ic2.core.platform.textures.models.BaseModel;
+import ic2.core.platform.textures.obj.ICustomModeledBlock;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.util.EnumFacing;
+
+public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock{
+
+	public GTBlockMortar() {
+		super(Material.ROCK);
+		setRegistryName("mortar");
+		setUnlocalizedName(GTMod.MODID + ".mortar");
+		setCreativeTab(GTMod.creativeTabGT);
+		setSoundType(SoundType.METAL);
+		setResistance(10.0F);
+		setHardness(3.0F);
+		setHarvestLevel("pickaxe", 1);
+	}
+
+	@Override
+	public TextureAtlasSprite getTextureFromState(IBlockState var1, EnumFacing var2) {
+		//This is useless once the model is working
+		return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:blocks/stone");
+	}
+
+	@Override
+	public BaseModel getModelFromState(IBlockState state) {
+		return new GTModelMortar(state);
+	}
+
+	@Override
+	public List<IBlockState> getValidModelStates() {
+		return this.getBlockState().getValidStates();
+	}
+}
