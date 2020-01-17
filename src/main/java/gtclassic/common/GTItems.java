@@ -19,7 +19,6 @@ import gtclassic.common.item.GTItemJackHammer;
 import gtclassic.common.item.GTItemLightHelmet;
 import gtclassic.common.item.GTItemLithiumBattery;
 import gtclassic.common.item.GTItemMagnifyingGlass;
-import gtclassic.common.item.GTItemMortar;
 import gtclassic.common.item.GTItemReactorHeat;
 import gtclassic.common.item.GTItemReactorRod;
 import gtclassic.common.item.GTItemRockCutter;
@@ -57,8 +56,6 @@ public class GTItems {
 	public static GTItemComponent superConductor;
 	public static GTItemComponent orbData;
 	public static GTItemDataOrbStorage orbDataStorage;
-	public static GTItemMortar flintMortar;
-	public static GTItemMortar ironMortar;
 	public static GTItemMagnifyingGlass magnifyingGlass;
 	public static GTItemDuctTape ductTape;
 	public static GTItemComponent sprayCanEmpty;
@@ -98,8 +95,6 @@ public class GTItems {
 		superConductor = createItem(new GTItemComponent("superconductor", 10, 0));
 		orbData = createItem(new GTItemComponent("data_orb", 11, 0));
 		orbDataStorage = createItem(new GTItemDataOrbStorage());
-		flintMortar = createItem(new GTItemMortar("flint_mortar", 1, 2, 3));
-		ironMortar = createItem(new GTItemMortar("iron_mortar", 2, 2, 95));
 		magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 		ductTape = createItem(new GTItemDuctTape());
 		sprayCanEmpty = createItem(new GTItemComponent("spray_can_empty", 4, 2));

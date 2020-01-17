@@ -1,6 +1,8 @@
 # Changelog
 
 # 1.1.0 (Not Released)
+- Changed, basic data net stuff is now implemented, using a computer cube as a network manager you can move items and fluids around digitally.
+- Changed item mortars have been replaced with block mortars similar to GT6, there are two types flint and iron, flint has lower chance to actually break the item.
 - Changed, loot table being weak sauce, now all ingots and dusts are viable as loot even addons materials.
 - Fixed right clicking with scanners and magnifying glass being inconsistent with an item in the off hand.
 - Added, Working on my pet project the GTC "data net", use a computer cube to control a logistics setup with various types of inputs/outputs.

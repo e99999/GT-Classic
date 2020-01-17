@@ -80,8 +80,6 @@ public class GTOreDict {
 		ClassicRecipes.oreRegistry.registerValueableOre(GTBlocks.oreRuby, 3);
 		ClassicRecipes.oreRegistry.registerValueableOre(GTBlocks.oreSapphire, 3);
 		// My Stuff
-		OreDictionary.registerOre("craftingToolMortar", new ItemStack(GTItems.flintMortar, 1, OreDictionary.WILDCARD_VALUE));
-		OreDictionary.registerOre("craftingToolMortar", new ItemStack(GTItems.ironMortar, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("craftingToolDuctTape", new ItemStack(GTItems.ductTape, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("dyeBrown", GTMaterialGen.getDust(GTMaterial.BrownDye, 1));
 		OreDictionary.registerOre("circuitMaster", (GTMaterialGen.get(GTItems.circuitEnergy, 1)));

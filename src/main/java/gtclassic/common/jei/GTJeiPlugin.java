@@ -13,6 +13,7 @@ import gtclassic.api.world.GTBedrockOreHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
+import gtclassic.common.block.GTBlockMortar;
 import gtclassic.common.container.GTContainerWorktable;
 import gtclassic.common.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.common.gui.GTGuiMachine.GTMatterFabricatorGui;
@@ -59,6 +60,11 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipes(GTTileMagicEnergyConverter.RECIPE_LIST.getRecipeList(), "gt.magicfuels");
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileMagicEnergyConverter), "gt.magicfuels");
 			registry.addRecipeClickArea(GTMagicEnergyConverterGui.class, 78, 35, 16, 17, "gt.magicfuels");
+			// Mortar
+			registry.handleRecipes(GTRecipeMultiInputList.MultiRecipe.class, GTJeiMortarWrapper::new, "gt.mortar");
+			registry.addRecipes(GTBlockMortar.RECIPE_LIST.getRecipeList(), "gt.mortar");
+			registry.addRecipeCatalyst(GTMaterialGen.get(GTBlocks.flintMortar), "gt.mortar");
+			registry.addRecipeCatalyst(GTMaterialGen.get(GTBlocks.ironMortar), "gt.mortar");
 			// Blacklist
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
@@ -82,6 +88,8 @@ public class GTJeiPlugin implements IModPlugin {
 		registry.addRecipeCategories(new GTJeiUUAmplifierCategory(registry.getJeiHelpers().getGuiHelper(), "gt.uuamplifier", GTBlocks.tileFabricator));
 		// magic fuels
 		registry.addRecipeCategories(new GTJeiMagicFuelCategory(registry.getJeiHelpers().getGuiHelper(), "gt.magicfuels", GTBlocks.tileMagicEnergyConverter));
+		// mortar
+		registry.addRecipeCategories(new GTJeiMortarCategory(registry.getJeiHelpers().getGuiHelper(), "gt.mortar", GTBlocks.ironMortar));
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

@@ -22,7 +22,7 @@ public class GTBlockDataNode extends GTBlockBaseDataNode {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 4; i++) {
 			tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip") + i));
 		}
 	}

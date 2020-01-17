@@ -122,9 +122,9 @@ public class GTRecipe {
 		/** Sulfur Torches **/
 		recipes.addRecipe(GTMaterialGen.get(Blocks.TORCH, 3), "R", "I", 'I', "stickWood", 'R', "dustSulfur");
 		/** Flint Mortar **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.flintMortar), " F ", "BFB", "BBB", 'F', Items.FLINT, 'B', "plankWood");
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.flintMortar), " F ", "BFB", "BBB", 'F', Items.FLINT, 'B', "plankWood");
 		/** Iron Mortar **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.ironMortar, 1), " I ", "BIB", "BBB", 'I', ingotAnyIron, 'B', "stone");
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.ironMortar, 1), " I ", "BIB", "BBB", 'I', ingotAnyIron, 'B', "stone");
 		/** Magnifying Glass **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.magnifyingGlass), " P", "S ", 'P', "paneGlass", 'S', "stickWood");
 		/** Destructo Pack **/
