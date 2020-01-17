@@ -20,24 +20,24 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock{
-	
+public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
+
 	static final AxisAlignedBB AABB_MORTAR = GTHelperMath.createAABBFromPixelsCentered(12, 10);
 
-	public GTBlockMortar() {
-		super(Material.ROCK);
-		setRegistryName("mortar");
-		setUnlocalizedName(GTMod.MODID + ".mortar");
+	public GTBlockMortar(String name, String tool) {
+		super(Material.GROUND);
+		setRegistryName(name);
+		setUnlocalizedName(GTMod.MODID + "." + name);
 		setCreativeTab(GTMod.creativeTabGT);
 		setSoundType(SoundType.METAL);
 		setResistance(10.0F);
-		setHardness(3.0F);
-		setHarvestLevel("pickaxe", 1);
+		setHardness(2.0F);
+		setHarvestLevel(tool, 0);
 	}
 
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState var1, EnumFacing var2) {
-		//This is useless once the model is working
+		// This is useless once the model is working
 		return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:blocks/stone");
 	}
 
@@ -50,7 +50,7 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock{
 	public List<IBlockState> getValidModelStates() {
 		return this.getBlockState().getValidStates();
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -75,7 +75,7 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock{
 	public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, SpawnPlacementType type) {
 		return false;
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return AABB_MORTAR;
