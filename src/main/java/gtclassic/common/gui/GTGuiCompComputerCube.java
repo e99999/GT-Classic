@@ -28,14 +28,10 @@ public class GTGuiCompComputerCube extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawCenteredString("[" + getTime(gui) + "]", 89, 9, Color.lightGray.hashCode());
-		gui.drawCenteredString("G.L.A.D.-OS", 91, 59, Color.cyan.hashCode());
-	}
-
-	public String getTime(GuiIC2 gui) {
-		long time = gui.getPlayer().getEntityWorld().getWorldTime();
-		int hours = (int) ((time / 1000 + 7) % 24);
-		int minutes = (int) (60 * (time % 1000) / 1000);
-		return String.format("%02d:%02d", hours, minutes);
+		gui.drawString("Network Info:", 52, 8, Color.CYAN.hashCode());
+		int count = this.block.nodeCount;
+		gui.drawString("EU: " + this.block.energy, 52, 18, Color.CYAN.hashCode());
+		gui.drawString("Nodes: " + count + "/512", 52, 28, Color.CYAN.hashCode());
+		gui.drawString("Cost: -" + count + " EU/t", 52, 38, Color.CYAN.hashCode());
 	}
 }

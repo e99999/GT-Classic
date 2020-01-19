@@ -1,11 +1,13 @@
 package gtclassic.common.tile.datanet;
 
 import gtclassic.common.util.datanet.GTDataNet;
+import ic2.core.util.obj.IRedstoneTile;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 
-public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements ITickable {
+public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements ITickable, IRedstoneTile {
 
 	/**
 	 * This tile actually moves items or fluids, and stores the output node list
@@ -21,6 +23,9 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 		}
 		if (world.getTotalWorldTime() % GTDataNet.TICK_RATE == 0) {
 			if (this.computer == null || this.computer.dataNet == null || this.computer.dataNet.isEmpty()) {
+				return;
+			}
+			if (world.isBlockPowered(this.getPos())) {
 				return;
 			}
 			if (!world.isBlockLoaded(this.pos.offset(this.getFacing()))) {
@@ -45,4 +50,8 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 	}
 
 	public abstract boolean onDataNetTick(GTTileBaseOutputNode node);
+
+	public boolean canConnectToRedstone(EnumFacing side) {
+		return side != this.getFacing();
+	}
 }

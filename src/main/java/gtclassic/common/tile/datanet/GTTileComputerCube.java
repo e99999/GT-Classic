@@ -35,16 +35,12 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	private Processor task = null;
 	private AabbUtil.IBlockFilter filter = new GTBlockFilterDataAll();
 	public Set<BlockPos> dataNet = new HashSet<>();
+	public int nodeCount = 0;
 
 	public GTTileComputerCube() {
 		super(0, 512);
 		this.maxEnergy = 10000;
-		this.onUnloaded();
-	}
-
-	@Override
-	public boolean canRemoveBlock(EntityPlayer player) {
-		return true;
+		this.addGuiFields(new String[] { "nodeCount" });
 	}
 
 	@Override
@@ -91,6 +87,11 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	}
 
 	@Override
+	public boolean canRemoveBlock(EntityPlayer player) {
+		return true;
+	}
+
+	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return facing != getFacing() && facing.getAxis().isHorizontal();
 	}
@@ -131,7 +132,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 						this.dataNet.add(tPos);
 					}
 				}
-				// checking for other computers, parsing the network to tiles
+				this.nodeCount = 0;
 				if (!dataNet.isEmpty()) {
 					for (BlockPos pPos : dataNet) {
 						TileEntity worldTile = world.getTileEntity(pPos);
@@ -140,9 +141,11 @@ public class GTTileComputerCube extends TileEntityElecMachine
 						}
 						if (worldTile instanceof GTTileBaseDataNode) {
 							((GTTileBaseDataNode) worldTile).computer = this.energy > 0 ? this : null;
+							this.nodeCount++;
 						}
 					}
 				}
+				this.updateGui();
 			}
 			if (world.getTotalWorldTime() % GTDataNet.SEARCH_RATE == 0) {
 				if (!world.isAreaLoaded(pos, 16))
@@ -158,11 +161,15 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	}
 
 	public int getNodeCount() {
-		return this.hasNodes() ? this.dataNet.size() : 0;
+		return this.nodeCount;
 	}
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		data.put("Nodes in network: " + this.getNodeCount(), false);
+	}
+
+	public void updateGui() {
+		this.getNetwork().updateTileGuiField(this, "nodeCount");
 	}
 }
