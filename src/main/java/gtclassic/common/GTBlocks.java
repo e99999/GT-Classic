@@ -14,6 +14,7 @@ import gtclassic.common.block.GTBlockCasing;
 import gtclassic.common.block.GTBlockDrum;
 import gtclassic.common.block.GTBlockLightSource;
 import gtclassic.common.block.GTBlockMachine;
+import gtclassic.common.block.GTBlockMachineCustom;
 import gtclassic.common.block.GTBlockMachineDirectionable;
 import gtclassic.common.block.GTBlockMiningPipe;
 import gtclassic.common.block.GTBlockMortar;
@@ -126,7 +127,7 @@ public class GTBlocks {
 	public static final GTBlockBattery tileBatteryLV = registerBlock(new GTBlockBattery("batteryblocklv", 1, 32, 80000));
 	public static final GTBlockMachineDirectionable tileLESU = registerBlock(new GTBlockMachineDirectionable("lesu", GTLang.LESU, 2));
 	public static final GTBlockMachineDirectionable tileAESU = registerBlock(new GTBlockMachineDirectionable("aesu", GTLang.AESU));
-	public static final GTBlockMachineDirectionable tileIDSU = registerBlock(new GTBlockMachineDirectionable("idsu", GTLang.IDSU));
+	public static final GTBlockMachineCustom tileIDSU = registerBlock(new GTBlockMachineCustom("idsu", GTLang.IDSU));
 	public static final GTBlockMachineDirectionable tileSupercondensator = registerBlock(new GTBlockMachineDirectionable("supercondensator", GTLang.SUPERCONDENSATOR));
 	public static final GTBlockStorage tileWorktable = registerBlock(new GTBlockStorage("worktable", GTLang.WORKTABLE));
 	public static final GTBlockStorage tileCabinet = registerBlock(new GTBlockStorage("cabinet", GTLang.CABINET));
