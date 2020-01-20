@@ -153,13 +153,6 @@ public class GTBlocks {
 	public static final GTBlockMortar ironMortar = registerBlock(new GTBlockMortar("ironmortar", "pickaxe"));
 	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid());
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
-	/** This is where GTBlockTile holds its textures **/
-	protected static final String[] textureTileBasic = { "autocrafter", "chargeomat", "computercube",
-			"industrialcentrifuge", "matterfabricator", "uumassembler", "disassembler", "echotronblock", "digitalchest",
-			"quantumchest", "quantumtank", "playerdetector", "mobrepeller", "energytransmitter", "bedrockminer",
-			"fusionreactor", "lightningrod", "dragoneggenergysiphon", "magicenergyconverter", "magicenergyabsorber",
-			"idsu", "aesu", "lesu", "supercondensator", "cabinet", "drum", "worktable", "translocator",
-			"translocatorfluid", "bufferlarge", "buffersmall", "bufferfluid" };
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {

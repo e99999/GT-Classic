@@ -66,7 +66,7 @@ public class GTBlockBattery extends GTBlockBaseMachine implements IGTItemBlock, 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite[] getIconSheet(int meta) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_" + this.name);
+		return Ic2Icons.getTextures(this.name);
 	}
 
 	@Override

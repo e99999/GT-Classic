@@ -14,25 +14,44 @@ public class GTIcons {
 
 	@SideOnly(Side.CLIENT)
 	public static void loadSprites() {
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_blocks", GTMod.MODID
-				+ ":textures/sprites/sprites_blocks.png", new Sprites.SpriteInfo(16, 1)));
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_items", GTMod.MODID
-				+ ":textures/sprites/sprites_items.png", new Sprites.SpriteInfo(16, 3)));
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_materials", GTMod.MODID
-				+ ":textures/sprites/sprites_materials.png", new Sprites.SpriteInfo(16, 1)));
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_ores", GTMod.MODID
-				+ ":textures/sprites/sprites_ores.png", new Sprites.SpriteInfo(16, 1)));
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_crops", GTMod.MODID
-				+ ":textures/sprites/sprites_crops.png", new Sprites.SpriteInfo(4, 8)));
-		addSprite(new Sprites.SpriteData(GTMod.MODID + "_batteryblocklv", GTMod.MODID
-				+ ":textures/sprites/batteryblocklv.png", new Sprites.SpriteInfo(5, 6)));
-		collectBasicTileSprites();
-		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_blocks", 0, 0, 16, 1));
-		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_items", 0, 0, 16, 3));
-		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_materials", 0, 0, 16, 1));
-		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_crops", 0, 0, 4, 8));
-		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_ores", 0, 0, 16, 1));
-		addTextureEntry(new Sprites.TextureEntry(GTMod.MODID + "_batteryblocklv", 0, 0, 5, 6));
+		addTexture("gtclassic_blocks", 16, 1);
+		addTexture("gtclassic_items", 16, 3);
+		addTexture("gtclassic_materials", 16, 1);
+		addTexture("gtclassic_ores", 16, 1);
+		addTexture("gtclassic_crops", 4, 8);
+		addTexture("batteryblocklv", 5, 6);
+		addTexture("autocrafter");
+		addTexture("chargeomat");
+		addTexture("computercube");
+		addTexture("industrialcentrifuge");
+		addTexture("matterfabricator");
+		addTexture("uumassembler");
+		addTexture("disassembler");
+		addTexture("echotronblock");
+		addTexture("digitalchest");
+		addTexture("quantumchest");
+		addTexture("quantumtank");
+		addTexture("playerdetector");
+		addTexture("mobrepeller");
+		addTexture("energytransmitter");
+		addTexture("bedrockminer");
+		addTexture("fusionreactor");
+		addTexture("lightningrod");
+		addTexture("dragoneggenergysiphon");
+		addTexture("magicenergyconverter");
+		addTexture("magicenergyabsorber");
+		addTexture("idsu");
+		addTexture("aesu");
+		addTexture("lesu");
+		addTexture("supercondensator");
+		addTexture("cabinet");
+		addTexture("drum");
+		addTexture("worktable");
+		addTexture("translocator");
+		addTexture("translocatorfluid");
+		addTexture("bufferlarge");
+		addTexture("buffersmall");
+		addTexture("bufferfluid");
 		if (GTConfig.general.animatedTextures) {
 			addCustomTexture("fusionreactor", 0, 7, location("fusion_top"));
 			addCustomTexture("quantumchest", 0, 3, location("qchest_front"));
@@ -48,15 +67,17 @@ public class GTIcons {
 		}
 	}
 
-	private static ResourceLocation location(String name) {
-		return new ResourceLocation(GTMod.MODID, "animations/" + name);
+	private static void addTexture(String name) {
+		addTexture(name, 1, 12);
 	}
 
-	public static void collectBasicTileSprites() {
-		for (String string : GTBlocks.textureTileBasic) {
-			addSprite(new Sprites.SpriteData(string, GTMod.MODID + ":textures/sprites/" + string
-					+ ".png", new Sprites.SpriteInfo(1, 12)));
-			addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 12));
-		}
+	private static void addTexture(String name, int x, int y) {
+		addSprite(new Sprites.SpriteData(name, GTMod.MODID + ":textures/sprites/" + name
+				+ ".png", new Sprites.SpriteInfo(x, y)));
+		addTextureEntry(new Sprites.TextureEntry(name, 0, 0, x, y));
+	}
+
+	private static ResourceLocation location(String name) {
+		return new ResourceLocation(GTMod.MODID, "animations/" + name);
 	}
 }
