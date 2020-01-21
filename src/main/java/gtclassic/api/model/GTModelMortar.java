@@ -44,7 +44,7 @@ public class GTModelMortar extends BaseModel {
 		super(Ic2Models.getBlockTransforms());
 		this.state = state;
 		this.bowlSprite = state.getBlock() == GTBlocks.ironMortar
-				? Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:blocks/stone_andesite_smooth")
+				? Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:blocks/stone_slab_top")
 				: Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:blocks/planks_oak");
 		this.postSprite = state.getBlock() == GTBlocks.ironMortar
 				? Ic2Models.getIconSafe(Ic2Icons.getTextures("b0")[17])

@@ -117,7 +117,7 @@ public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[5];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[10];
 	}
 
 	@SideOnly(Side.CLIENT)

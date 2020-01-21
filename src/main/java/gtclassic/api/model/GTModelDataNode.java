@@ -42,8 +42,6 @@ public class GTModelDataNode extends BaseModel {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	Map<Integer, List<BakedQuad>> comboQuads = new HashMap();
 	IBlockState state;
-	TextureAtlasSprite cableSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[5];
-	TextureAtlasSprite cableConnectedSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[6];
 	TextureAtlasSprite backOfNodeSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[11];
 	TextureAtlasSprite nodeSprite;
 	int[] cableSizes;
@@ -71,7 +69,7 @@ public class GTModelDataNode extends BaseModel {
 			sideQuads.put(side, this.generateQuadsForSide(wire, side, min, max));
 			// This where i mess with the size to make the cover side different than the
 			// cable
-			anchorQuadList.put(side, this.generateQuadsForAnchor(this.cableSprite, side, min - 3, max + 3));
+			anchorQuadList.put(side, this.generateQuadsForAnchor(this.getParticleTexture(), side, min - 3, max + 3));
 		}
 		for (int i = 0; i < 64; ++i) {
 			RotationList rotation = RotationList.ofNumber(i);
@@ -184,11 +182,11 @@ public class GTModelDataNode extends BaseModel {
 	private List<BakedQuad> generateQuadsForSide(GTBlockBaseConnect wire, EnumFacing facing, int min, int max) {
 		List<BakedQuad> quads = new ArrayList();
 		Pair<Vector3f, Vector3f> position = this.getPosForSide(facing, min, max);
-		EnumFacing[] var7 = EnumFacing.VALUES;
-		int var8 = var7.length;
-		for (int var9 = 0; var9 < var8; ++var9) {
-			EnumFacing side = var7[var9];
-			if (side.getOpposite() != facing) {
+		EnumFacing[] facings = EnumFacing.VALUES;
+		int facingsLength = facings.length;
+		for (int i = 0; i < facingsLength; ++i) {
+			EnumFacing side = facings[i];
+			if (side.getOpposite() != facing && side != facing) {
 				BlockPartFace face = null;
 				if (side == facing) {
 					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
@@ -199,7 +197,7 @@ public class GTModelDataNode extends BaseModel {
 				} else {
 					face = this.getFace(facing, min, max);
 				}
-				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, cableConnectedSprite, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
+				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, this.getParticleTexture(), side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 			}
 		}
 		return quads;

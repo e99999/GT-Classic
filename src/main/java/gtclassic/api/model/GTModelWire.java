@@ -27,7 +27,6 @@ import net.minecraft.client.renderer.block.model.BlockPartRotation;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.block.model.ModelRotation;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.math.Vec3i;
@@ -35,20 +34,17 @@ import net.minecraftforge.client.model.PerspectiveMapWrapper;
 
 public class GTModelWire extends BaseModel {
 
-	List<BakedQuad>[] quads = this.createList(64); // All possible connection configurations
-	List<BakedQuad>[] anchorQuads = this.createList(64); // All possible anchor configurations
+	List<BakedQuad>[] quads = this.createList(64); // All possible connection configuration
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	Map<Integer, List<BakedQuad>> comboQuads = new HashMap();// A sum of the above quad lists
 	IBlockState state;
-	TextureAtlasSprite sprite; // This the texure all sides will use unless stipulated otherwise in the quad
-								// functions
 	int[] sizes; // This is an int array to draw the size of the cable, [0, 16] would be a full
 					// block, [4, 12] would be half a block.
 
-	public GTModelWire(IBlockState block, TextureAtlasSprite texture, int[] sizes) {
+	/** The texture is derived from the block/state itself **/
+	public GTModelWire(IBlockState block, int[] sizes) {
 		super(Ic2Models.getBlockTransforms());
 		this.state = block;
-		this.sprite = texture;
 		this.sizes = sizes;
 	}
 
@@ -60,13 +56,11 @@ public class GTModelWire extends BaseModel {
 		int max = this.sizes[1];// high size
 		Map<EnumFacing, BakedQuad> coreQuads = this.generateCoreQuads(wire, min, max);
 		Map<EnumFacing, List<BakedQuad>> sideQuads = new EnumMap(EnumFacing.class);
-		Map<EnumFacing, List<BakedQuad>> anchorQuadList = new EnumMap(EnumFacing.class);
 		EnumFacing[] facings = EnumFacing.VALUES;
 		int facingsLength = facings.length;
 		for (int i = 0; i < facingsLength; ++i) {
 			EnumFacing side = facings[i];
 			sideQuads.put(side, this.generateQuadsForSide(wire, side, min, max));
-			anchorQuadList.put(side, this.generateQuadsForAnchor(this.sprite, side, min, max));
 		}
 		for (int j = 0; j < 64; ++j) {
 			RotationList rotation = RotationList.ofNumber(j);
@@ -76,7 +70,6 @@ public class GTModelWire extends BaseModel {
 			while (rotations.hasNext()) {
 				side = (EnumFacing) rotations.next();
 				quadList.addAll((Collection) sideQuads.get(side));
-				this.anchorQuads[j].addAll((Collection) anchorQuadList.get(side));
 			}
 			rotations = rotation.invert().iterator();
 			while (rotations.hasNext()) {
@@ -86,7 +79,7 @@ public class GTModelWire extends BaseModel {
 		}
 	}
 
-	// Merges core and anchor quads to create all quads
+	// Merges quads to create all quads
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {
 		if (side == null) {
@@ -100,7 +93,6 @@ public class GTModelWire extends BaseModel {
 					List<BakedQuad> list = (List) this.comboQuads.get(vec.getZ());
 					if (list == null) {
 						list = new ArrayList(this.quads[vec.getX()]);
-						((List) list).addAll(this.anchorQuads[vec.getY()]);
 						this.comboQuads.put(vec.getZ(), list);
 					}
 					return (List) list;
@@ -145,37 +137,6 @@ public class GTModelWire extends BaseModel {
 		for (int var10 = 0; var10 < var9; ++var10) {
 			EnumFacing side = var8[var10];
 			quads.put(side, this.getBakery().makeBakedQuad(minF, maxF, face, this.getParticleTexture(), side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
-		}
-		return quads;
-	}
-
-	// This is where anchor quads are generated
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private List<BakedQuad> generateQuadsForAnchor(TextureAtlasSprite sprite, EnumFacing facing, int min, int max) {
-		List<BakedQuad> quads = new ArrayList();
-		Pair<Vector3f, Vector3f> position = this.getPosForSide(facing, min, max);
-		EnumFacing[] var7 = EnumFacing.VALUES;
-		int var8 = var7.length;
-		for (int var9 = 0; var9 < var8; ++var9) {
-			EnumFacing side = var7[var9];
-			if (side.getOpposite() != facing) {// This part keeps the backside of anchors from rendering which the user
-												// would never see
-				BlockPartFace face = null;
-				// Below these just resize the texture of the anchor but not the side of the
-				// actual quads
-				if (side == facing) {
-					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) min,
-							(float) min, (float) max, (float) max }, 0));
-				} else if (facing.getAxis() == Axis.Z && side.getAxis() == Axis.X) {
-					face = new BlockPartFace((EnumFacing) null, 0, "", new BlockFaceUV(new float[] { (float) max,
-							(float) min, 16.0F, (float) max }, 0));
-				} else {
-					face = this.getFace(facing, min, max);
-				}
-				// If you would like a different texture for anchors, change the sprite var to
-				// what you want, by default its passing the sprite in the model constructor
-				quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, sprite, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
-			}
 		}
 		return quads;
 	}

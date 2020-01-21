@@ -72,7 +72,7 @@ public class GTBlockDataCable extends GTBlockBaseConnect implements IGTReaderInf
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTModelWire(state, Ic2Icons.getTextures(GTMod.MODID + "_blocks")[5], getSize());
+		return new GTModelWire(state, getSize());
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -84,7 +84,7 @@ public class GTBlockDataCable extends GTBlockBaseConnect implements IGTReaderInf
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[5];
+		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[10];
 	}
 
 	@SideOnly(Side.CLIENT)
