@@ -8,6 +8,7 @@ import gtclassic.api.interfaces.IGTColorItem;
 import gtclassic.common.GTIcons;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTJei;
+import gtclassic.common.GTTextures;
 import gtclassic.common.util.render.GTModelLoader;
 import ic2.core.platform.textures.Ic2Icons.SpriteReloadEvent;
 import net.minecraft.block.Block;
@@ -53,6 +54,7 @@ public class GTProxyClient extends GTProxyCommon {
 	@SubscribeEvent
 	public void onIconLoad(SpriteReloadEvent event) {
 		GTIcons.loadSprites();
+		GTTextures.buildSprites();
 	}
 
 	@SubscribeEvent
