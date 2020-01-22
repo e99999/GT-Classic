@@ -14,10 +14,9 @@ import javax.vecmath.Matrix4f;
 import org.apache.commons.lang3.tuple.Pair;
 import org.lwjgl.util.vector.Vector3f;
 
-import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseConnect;
+import gtclassic.common.GTIcons;
 import ic2.core.RotationList;
-import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.Ic2Models;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.util.helpers.BlockStateContainerIC2.IC2BlockState;
@@ -42,7 +41,7 @@ public class GTModelDataNode extends BaseModel {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	Map<Integer, List<BakedQuad>> comboQuads = new HashMap();
 	IBlockState state;
-	TextureAtlasSprite backOfNodeSprite = Ic2Icons.getTextures(GTMod.MODID + "_blocks")[11];
+	TextureAtlasSprite backOfNodeSprite = GTIcons.getTexture(96);
 	TextureAtlasSprite nodeSprite;
 	int[] cableSizes;
 

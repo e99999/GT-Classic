@@ -9,7 +9,6 @@ import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTIcons;
-import gtclassic.common.GTTextures;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
 import gtclassic.common.tile.GTTileBedrockMiner;
@@ -41,7 +40,6 @@ import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
-import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -264,65 +262,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite[] getIconSheet(int meta) {
-		if (this == GTBlocks.tileComputer) {
-			return GTTextures.SET_COMPUTER;
-		}
-		if (this == GTBlocks.tileCentrifuge) {
-			return GTTextures.SET_CENTRIFUGE;
-		}
-		if (this == GTBlocks.tilePlayerDetector) {
-			return GTTextures.SET_PLAYERDETECTOR;
-		}
-		if (this == GTBlocks.tileMobRepeller) {
-			return GTTextures.SET_MOBREPELLER;
-		}
-		if (this == GTBlocks.tileEnergyTransmitter) {
-			return GTTextures.SET_ENERGYTRANSMITTER;
-		}
-		if (this == GTBlocks.tileEchotron) {
-			return GTTextures.SET_ECHOTRON;
-		}
-		if (this == GTBlocks.tileChargeOmat) {
-			return GTIcons.buildFullTexture(3, 19, 3, 3, 3, 3, 3, 20, 3, 3, 3, 3);
-		}
-		if (this == GTBlocks.tileDisassembler) {
-			return GTIcons.buildFullTexture(0, 21, 2, 22, 2, 2, 0, 21, 2, 23, 2, 2);
-		}
-		if (this == GTBlocks.tileBedrockMiner) {
-			return GTIcons.buildFullTexture(24, 25, 2, 22, 2, 2, 24, 26, 2, 23, 2, 2);
-		}
-		if (this == GTBlocks.tileDragonEggEnergySiphon) {
-			return GTIcons.buildFullTexture(27, 29, 27, 27, 27, 27, 28, 29, 28, 28, 28, 28);
-		}
-		if (this == GTBlocks.tileMagicEnergyConverter) {
-			return GTIcons.buildFullTexture(30, 30, 30, 27, 30, 30, 30, 30, 30, 31, 30, 30);
-		}
-		if (this == GTBlocks.tileMagicEnergyAbsorber) {
-			return GTIcons.buildToggleTexture(32, 33);
-		}
-		if (this == GTBlocks.tileFabricator) {
-			return GTIcons.buildToggleTexture(34, 35);
-		}
-		if (this == GTBlocks.tileUUMAssembler) {
-			return GTIcons.buildTexture(36, 37, 38, 38, 38, 38);
-		}
-		if (this == GTBlocks.tileLightningRod) {
-			return GTIcons.buildTexture(41, 44, 41, 41, 41, 41);
-		}
-		if (this == GTBlocks.tileFusionReactor) {
-			return GTIcons.buildFullTexture(39, 46, 47, 47, 42, 42, 39, 46, 47, 47, 43, 43);
-		}
-		if (this == GTBlocks.tileLESU) {
-			return GTIcons.buildTexture(48, 48, 48, 49, 48, 48);
-		}
-		if (this == GTBlocks.tileAESU) {
-			return GTIcons.buildTexture(39, 39, 39, 40, 39, 39);
-		}
-		if (this == GTBlocks.tileIDSU) {
-			return GTIcons.buildTexture(45, 45, 45, 41, 45, 45);
-		}
-		
-		return Ic2Icons.getTextures(this.name);
+		return GTIcons.getTextureData(this);
 	}
 
 	@Override

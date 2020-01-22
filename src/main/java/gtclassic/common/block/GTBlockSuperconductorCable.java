@@ -8,13 +8,13 @@ import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelWire;
 import gtclassic.common.GTBlocks;
+import gtclassic.common.GTIcons;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable2;
 import gtclassic.common.tile.wiring.GTTileSuperconductorCable4;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
-import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.util.helpers.BlockStateContainerIC2;
 import net.minecraft.block.SoundType;
@@ -93,7 +93,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures(GTMod.MODID + "_blocks")[3];
+		return GTIcons.getTexture(53);
 	}
 
 	@SideOnly(Side.CLIENT)
