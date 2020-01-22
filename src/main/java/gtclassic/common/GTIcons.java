@@ -29,14 +29,12 @@ public class GTIcons {
 		addTexture("gtclassic_ores", 16, 1);
 		addTexture("gtclassic_crops", 4, 8);
 		addTexture("batteryblocklv", 5, 6);
-		if (GTConfig.general.animatedTextures) {
-			addCustomTexture("gtclassic_terrain", 0, 4, location("digichest_top"));
-			addCustomTexture("gtclassic_terrain", 11, 0, location("centrifuge_top"));
-			addCustomTexture("gtclassic_terrain", 13, 0, location("centrifuge_side"));
-			addCustomTexture("gtclassic_terrain", 10, 1, location("miner_top"));
-			addCustomTexture("gtclassic_terrain", 15, 2, location("fusion_top"));
-			addCustomTexture("gtclassic_terrain", 13, 2, location("idsu"));
-		}
+		addAnimatedTexture("screen", 0, 4);
+		addAnimatedTexture("screenadv", 15, 2);
+		addAnimatedTexture("centrifuge_top", 11, 0);
+		addAnimatedTexture("centrifuge_side", 13, 0);
+		addAnimatedTexture("miner_top", 10, 1);
+		addAnimatedTexture("idsu", 13, 2);
 		setTexture(GTBlocks.tileComputer, 8, 9);
 		setTexture(GTBlocks.tileCentrifuge, 0, 10, 12, 12, 12, 12, 0, 11, 13, 13, 13, 13);
 		setTexture(GTBlocks.tilePlayerDetector, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15);
@@ -71,64 +69,84 @@ public class GTIcons {
 		setTexture(GTBlocks.tileBufferFluid, 92, 93, 58, 63, 94, 95);
 	}
 
+	/**
+	 * Getting a static single sprite entry
+	 * 
+	 * @param id - the id in gtclassic_terrain
+	 * @return - the sprite at that id
+	 */
 	public static TextureAtlasSprite getTexture(int id) {
 		return Ic2Icons.getTextures("gtclassic_terrain")[id];
 	}
 
+	/**
+	 * Getting a dynamically generated sprite array for a block
+	 * 
+	 * @param block - the block to get sprite data for
+	 * @return - will return the sprite sheet if present or missing gtc texture (set
+	 *         null)
+	 */
 	public static TextureAtlasSprite[] getTextureData(Block block) {
 		return TEXTURE_MAP.containsKey(block) ? buildDyanmicTexture(TEXTURE_MAP.get(block))
 				: buildDyanmicTexture(SET_NULL);
 	}
 
+	/** 
+	 * 
+	 * @param block to make textures for
+	 * @param values the spirte locations for the block texture
+	 */
 	private static void setTexture(Block block, int... values) {
 		TEXTURE_MAP.put(block, values);
 	}
 
-	public static TextureAtlasSprite[] buildDyanmicTexture(int[] arr) {
+	/**
+	 * 
+	 * @param arr size determines style of texture, 2 = off/on all sides, 6 = all side but single state, 12 = all sides full state
+	 * @return the constructed sprite
+	 */
+	private static TextureAtlasSprite[] buildDyanmicTexture(int[] arr) {
 		if (arr.length == 2) {
-			return buildToggleTexture(arr[0], arr[1]);
+			return buildTexture(arr[0], arr[0], arr[0], arr[0], arr[0], arr[0], arr[1], arr[1], arr[1], arr[1], arr[1], arr[1]);
 		}
 		if (arr.length == 6) {
-			return buildTexture(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
+			return buildTexture(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
 		}
 		if (arr.length == 12) {
-			return buildFullTexture(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9], arr[10], arr[11]);
+			return buildTexture(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9], arr[10], arr[11]);
 		}
-		return buildToggleTexture(arr[0], arr[0]);
+		return buildTexture(arr[110], arr[110], arr[110], arr[110], arr[110], arr[110], arr[111], arr[111], arr[111], arr[111], arr[111], arr[111]);
 	}
 
-	public static TextureAtlasSprite[] buildTexture(int bottom, int top, int back, int front, int right, int left) {
-		return buildFullTexture(bottom, top, back, front, right, left, bottom, top, back, front, right, left);
-	}
-
-	public static TextureAtlasSprite[] buildToggleTexture(int off, int on) {
-		return buildFullTexture(off, off, off, off, off, off, on, on, on, on, on, on);
-	}
-
-	public static TextureAtlasSprite[] buildFullTexture(int bottom, int top, int back, int front, int right, int left,
+	/** A really ugly but working way to create a sprite[] **/
+	private static TextureAtlasSprite[] buildTexture(int bottom, int top, int back, int front, int right, int left,
 			int bottomActive, int topActive, int backActive, int frontActive, int rightActive, int leftActive) {
-		return new TextureAtlasSprite[] { Ic2Icons.getTextures("gtclassic_terrain")[bottom],
-				Ic2Icons.getTextures("gtclassic_terrain")[top], Ic2Icons.getTextures("gtclassic_terrain")[back],
-				Ic2Icons.getTextures("gtclassic_terrain")[front], Ic2Icons.getTextures("gtclassic_terrain")[right],
-				Ic2Icons.getTextures("gtclassic_terrain")[left],
-				// active state
-				Ic2Icons.getTextures("gtclassic_terrain")[bottomActive],
-				Ic2Icons.getTextures("gtclassic_terrain")[topActive],
-				Ic2Icons.getTextures("gtclassic_terrain")[backActive],
-				Ic2Icons.getTextures("gtclassic_terrain")[frontActive],
-				Ic2Icons.getTextures("gtclassic_terrain")[rightActive],
-				Ic2Icons.getTextures("gtclassic_terrain")[leftActive] };
+		return new TextureAtlasSprite[] { getTexture(bottom), getTexture(top), getTexture(back), getTexture(front),
+				getTexture(right), getTexture(left), getTexture(bottomActive), getTexture(topActive),
+				getTexture(backActive), getTexture(frontActive), getTexture(rightActive), getTexture(leftActive) };
 	}
 
-	// private texture loader helper
+	/** 
+	 * Loads a sprite sheet
+	 * @param the name of the file
+	 * @param x size
+	 * @param y size
+	 */
 	private static void addTexture(String name, int x, int y) {
 		addSprite(new Sprites.SpriteData(name, GTMod.MODID + ":textures/sprites/" + name
 				+ ".png", new Sprites.SpriteInfo(x, y)));
 		addTextureEntry(new Sprites.TextureEntry(name, 0, 0, x, y));
 	}
 
-	// private texture loader helper
-	private static ResourceLocation location(String name) {
-		return new ResourceLocation(GTMod.MODID, "animations/" + name);
+	/**
+	 * Overwrites a sprite entry with an animated texture
+	 * @param filename
+	 * @param x position to overwrite
+	 * @param y positon to overwrite
+	 */
+	private static void addAnimatedTexture(String filename, int x, int y) {
+		if (GTConfig.general.animatedTextures) {
+			addCustomTexture("gtclassic_terrain", x, y, new ResourceLocation(GTMod.MODID, "animations/" + filename));
+		}
 	}
 }
