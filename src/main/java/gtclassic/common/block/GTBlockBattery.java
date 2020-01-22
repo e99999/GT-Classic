@@ -9,6 +9,7 @@ import gtclassic.api.block.GTBlockBaseMachine;
 import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.common.GTBlocks;
+import gtclassic.common.GTIcons;
 import gtclassic.common.GTLang;
 import gtclassic.common.itemblock.GTItemBlockBattery;
 import gtclassic.common.tile.GTTileBattery;
@@ -16,7 +17,6 @@ import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.item.block.ItemBlockRare;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
-import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.helpers.BlockStateContainerIC2;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IItemContainer;
@@ -66,7 +66,7 @@ public class GTBlockBattery extends GTBlockBaseMachine implements IGTItemBlock, 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite[] getIconSheet(int meta) {
-		return Ic2Icons.getTextures(this.name);
+		return GTIcons.buildTexture(0, 0, 0, 0, 0, 74, 74, 74, 74, 74, 75, 76, 77, 78, 79, 75, 76, 77, 78, 79, 75, 76, 77, 78, 79, 75, 76, 77, 78, 79);
 	}
 
 	@Override

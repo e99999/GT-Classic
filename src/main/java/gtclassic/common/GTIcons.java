@@ -28,7 +28,6 @@ public class GTIcons {
 		addTexture("gtclassic_materials", 16, 1);
 		addTexture("gtclassic_ores", 16, 1);
 		addTexture("gtclassic_crops", 4, 8);
-		addTexture("batteryblocklv", 5, 6);
 		addAnimatedTexture("screen", 0, 4);
 		addAnimatedTexture("screenadv", 15, 2);
 		addAnimatedTexture("centrifuge_top", 11, 0);
@@ -87,13 +86,12 @@ public class GTIcons {
 	 *         null)
 	 */
 	public static TextureAtlasSprite[] getTextureData(Block block) {
-		return TEXTURE_MAP.containsKey(block) ? buildDyanmicTexture(TEXTURE_MAP.get(block))
-				: buildDyanmicTexture(SET_NULL);
+		return TEXTURE_MAP.containsKey(block) ? textureHelper(TEXTURE_MAP.get(block)) : textureHelper(SET_NULL);
 	}
 
-	/** 
+	/**
 	 * 
-	 * @param block to make textures for
+	 * @param block  to make textures for
 	 * @param values the spirte locations for the block texture
 	 */
 	private static void setTexture(Block block, int... values) {
@@ -102,10 +100,11 @@ public class GTIcons {
 
 	/**
 	 * 
-	 * @param arr size determines style of texture, 2 = off/on all sides, 6 = all side but single state, 12 = all sides full state
+	 * @param arr size determines style of texture, 2 = off/on all sides, 6 = all
+	 *            side but single state, 12 = all sides full state
 	 * @return the constructed sprite
 	 */
-	private static TextureAtlasSprite[] buildDyanmicTexture(int[] arr) {
+	private static TextureAtlasSprite[] textureHelper(int[] arr) {
 		if (arr.length == 2) {
 			return buildTexture(arr[0], arr[0], arr[0], arr[0], arr[0], arr[0], arr[1], arr[1], arr[1], arr[1], arr[1], arr[1]);
 		}
@@ -118,19 +117,21 @@ public class GTIcons {
 		return buildTexture(arr[110], arr[110], arr[110], arr[110], arr[110], arr[110], arr[111], arr[111], arr[111], arr[111], arr[111], arr[111]);
 	}
 
-	/** A really ugly but working way to create a sprite[] **/
-	private static TextureAtlasSprite[] buildTexture(int bottom, int top, int back, int front, int right, int left,
-			int bottomActive, int topActive, int backActive, int frontActive, int rightActive, int leftActive) {
-		return new TextureAtlasSprite[] { getTexture(bottom), getTexture(top), getTexture(back), getTexture(front),
-				getTexture(right), getTexture(left), getTexture(bottomActive), getTexture(topActive),
-				getTexture(backActive), getTexture(frontActive), getTexture(rightActive), getTexture(leftActive) };
+	/** How to make a custom texture **/
+	public static TextureAtlasSprite[] buildTexture(int... arr) {
+		TextureAtlasSprite[] texture = new TextureAtlasSprite[arr.length];
+		for (int i = 0; i < arr.length; ++i) {
+			texture[i] = getTexture(arr[i]);
+		}
+		return texture;
 	}
 
-	/** 
+	/**
 	 * Loads a sprite sheet
+	 * 
 	 * @param the name of the file
-	 * @param x size
-	 * @param y size
+	 * @param x   size
+	 * @param y   size
 	 */
 	private static void addTexture(String name, int x, int y) {
 		addSprite(new Sprites.SpriteData(name, GTMod.MODID + ":textures/sprites/" + name
@@ -140,9 +141,10 @@ public class GTIcons {
 
 	/**
 	 * Overwrites a sprite entry with an animated texture
+	 * 
 	 * @param filename
-	 * @param x position to overwrite
-	 * @param y positon to overwrite
+	 * @param x        position to overwrite
+	 * @param y        positon to overwrite
 	 */
 	private static void addAnimatedTexture(String filename, int x, int y) {
 		if (GTConfig.general.animatedTextures) {
