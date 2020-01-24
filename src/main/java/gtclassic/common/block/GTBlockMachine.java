@@ -47,11 +47,9 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -275,24 +273,6 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			return this.getDefaultBlockState().withProperty(active, true);
 		}
 		return this.getStateFromMeta(stack.getMetadata());
-	}
-
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		ItemStack hStack = playerIn.getHeldItemMainhand();
-		TileEntity tile = worldIn.getTileEntity(pos);
-		if (hStack.isEmpty() && tile instanceof GTTilePlayerDetector
-				&& ((GTTilePlayerDetector) tile).canAccess(playerIn.getUniqueID())) {
-			if (playerIn.isSneaking()) {
-				((GTTilePlayerDetector) tile).advanceMode();
-			}
-			if (((TileEntityBlock) tile).isSimulating()) {
-				IC2.platform.messagePlayer(playerIn, "Mode: " + ((GTTilePlayerDetector) tile).getMode());
-			}
-			return true;
-		}
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
 
 	@Override

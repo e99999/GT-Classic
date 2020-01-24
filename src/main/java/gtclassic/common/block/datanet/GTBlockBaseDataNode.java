@@ -8,12 +8,12 @@ import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelDataNode;
-import gtclassic.common.GTIcons;
 import gtclassic.common.tile.datanet.GTTileBaseDataNode;
 import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.util.helpers.BlockStateContainerIC2;
 import net.minecraft.block.SoundType;
@@ -79,6 +79,7 @@ public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements 
 		if (tile instanceof GTTileBaseDataNode) {
 			GTTileBaseDataNode test = (GTTileBaseDataNode) tile;
 			test.anchors = RotationList.ofFacings(test.getFacing());
+			test.connection = RotationList.ofFacings(test.getFacing());
 		}
 	}
 
@@ -105,7 +106,7 @@ public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BaseModel getModelFromState(IBlockState state) {
-		return new GTModelDataNode(state, GTIcons.getTexture(this.id), getSize());
+		return new GTModelDataNode(state, Ic2Icons.getTextures("gtclassic_terrain")[this.id], getSize());
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -117,7 +118,7 @@ public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return GTIcons.getTexture(54);
+		return Ic2Icons.getTextures("gtclassic_terrain")[54];
 	}
 
 	@SideOnly(Side.CLIENT)

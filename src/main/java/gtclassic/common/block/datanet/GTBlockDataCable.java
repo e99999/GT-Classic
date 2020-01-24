@@ -8,10 +8,10 @@ import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelWire;
-import gtclassic.common.GTIcons;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.datanet.GTTileDataCable;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.util.helpers.BlockStateContainerIC2;
 import net.minecraft.block.SoundType;
@@ -84,7 +84,7 @@ public class GTBlockDataCable extends GTBlockBaseConnect implements IGTReaderInf
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return GTIcons.getTexture(54);
+		return Ic2Icons.getTextures("gtclassic_terrain")[54];
 	}
 
 	@SideOnly(Side.CLIENT)

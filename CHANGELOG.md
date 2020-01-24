@@ -1,6 +1,8 @@
 # Changelog
 
 # 1.1.0 (Not Released)
+- Changed the Player Detector to be more up to date, change modes by sneak clicking with a wrench or read modes with a magnifying glass/reader.
+- Changed GTC texture system to be much more dynamic and efficent, should use less ram - doesnt effect gameplay at all for users
 - Changed, basic data net stuff is now implemented, using a computer cube as a network manager you can move items and fluids around digitally.
 - Changed item mortars have been replaced with block mortars similar to GT6, there are two types flint and iron, flint has lower chance to actually break the item.
 - Changed, loot table being weak sauce, now all ingots and dusts are viable as loot even addons materials.

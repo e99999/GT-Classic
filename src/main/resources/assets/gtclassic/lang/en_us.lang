@@ -242,6 +242,7 @@ tooltip.gtclassic.bedrockminer3=Use lubricant to negate damage to pipes
 tooltip.gtclassic.bedrockminer4=Outputs to the top.
 tooltip.gtclassic.playerdetector0=Detects player activity in a radius
 tooltip.gtclassic.playerdetector1=8 to 32 blocks depending on power
+tooltip.gtclassic.playerdetector2=Sneak wrench to toggle modes
 tooltip.gtclassic.mobrepeller0=Stops nasty creatures from spawning
 tooltip.gtclassic.mobrepeller1=16 to 64 blocks depending on power
 tooltip.gtclassic.energytransmitter0=Transmits energy wirelessly within dimensions

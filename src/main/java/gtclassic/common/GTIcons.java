@@ -19,11 +19,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTIcons {
 
 	private static final Map<Block, int[]> TEXTURE_MAP = new HashMap<>();
-	private static final int[] SET_NULL = { 110, 111, 110, 110, 110, 110 };
+	private static final int[] SET_NULL = { 111, 111 };
 
+	/**
+	 * Null texture key: 110 (Black) = The array passed to the texture builder was
+	 * an incorrect size 111 (Red) = The block was not added to the texture map
+	 */
 	@SideOnly(Side.CLIENT)
 	public static void loadSprites() {
-		addTexture("gtclassic_terrain", 16, 16);
+		addTexture("gtclassic_terrain", 16, 7);
 		addTexture("gtclassic_items", 16, 3);
 		addTexture("gtclassic_materials", 16, 1);
 		addTexture("gtclassic_ores", 16, 1);
@@ -69,16 +73,6 @@ public class GTIcons {
 	}
 
 	/**
-	 * Getting a static single sprite entry
-	 * 
-	 * @param id - the id in gtclassic_terrain
-	 * @return - the sprite at that id
-	 */
-	public static TextureAtlasSprite getTexture(int id) {
-		return Ic2Icons.getTextures("gtclassic_terrain")[id];
-	}
-
-	/**
 	 * Getting a dynamically generated sprite array for a block
 	 * 
 	 * @param block - the block to get sprite data for
@@ -114,14 +108,14 @@ public class GTIcons {
 		if (arr.length == 12) {
 			return buildTexture(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8], arr[9], arr[10], arr[11]);
 		}
-		return buildTexture(arr[110], arr[110], arr[110], arr[110], arr[110], arr[110], arr[111], arr[111], arr[111], arr[111], arr[111], arr[111]);
+		return buildTexture(arr[110], arr[110], arr[110], arr[110], arr[110], arr[110], arr[110], arr[110], arr[110], arr[110], arr[110], arr[110]);
 	}
 
 	/** How to make a custom texture **/
 	public static TextureAtlasSprite[] buildTexture(int... arr) {
 		TextureAtlasSprite[] texture = new TextureAtlasSprite[arr.length];
 		for (int i = 0; i < arr.length; ++i) {
-			texture[i] = getTexture(arr[i]);
+			texture[i] = Ic2Icons.getTextures("gtclassic_terrain")[arr[i]];
 		}
 		return texture;
 	}

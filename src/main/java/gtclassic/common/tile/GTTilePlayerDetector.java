@@ -1,14 +1,18 @@
 package gtclassic.common.tile;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import gtclassic.api.helpers.int3;
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
+import ic2.core.block.base.util.info.misc.IWrench;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.block.personal.base.misc.IPersonalInventory;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.obj.IRedstoneProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,7 +21,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 
 public class GTTilePlayerDetector extends TileEntityElecMachine
-		implements IPersonalBlock, ITickable, IRedstoneProvider {
+		implements IPersonalBlock, ITickable, IRedstoneProvider, IGTDebuggableTile {
 
 	double range = 8.0D;
 	AxisAlignedBB areaBB = null;
@@ -39,7 +43,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 	@Override
 	public void update() {
 		checkEnergy();
-		if (world.getTotalWorldTime() % 20 == 0) {
+		if (world.getTotalWorldTime() % 10 == 0) {
 			boolean oldState = this.getActive();
 			boolean newState = checkArea();
 			if (oldState != newState) {
@@ -84,7 +88,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 		}
 	}
 
-	public String getMode() {
+	public String getModeName() {
 		switch (mode) {
 		case 0:
 			return "Any Players";
@@ -155,11 +159,25 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
+		if (player.isSneaking() && player.getHeldItemMainhand().getItem() instanceof IWrench) {
+			this.advanceMode();
+			if (this.isSimulating()) {
+				IC2.platform.messagePlayer(player, this.getModeName());
+				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+			}
+			return false;
+		}
 		return canAccess(player.getUniqueID());
 	}
 
 	@Override
 	public double getWrenchDropRate() {
 		return 1.0D;
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		data.put("Mode: " + this.getModeName(), false);
+		data.put("Range: " + this.range, false);
 	}
 }

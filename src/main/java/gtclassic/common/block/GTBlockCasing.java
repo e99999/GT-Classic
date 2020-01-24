@@ -5,7 +5,7 @@ import java.util.List;
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBase;
 import gtclassic.api.helpers.GTHelperString;
-import gtclassic.common.GTIcons;
+import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -47,7 +47,7 @@ public class GTBlockCasing extends GTBlockBase {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return GTIcons.getTexture(this.id);
+		return Ic2Icons.getTextures("gtclassic_terrain")[this.id];
 	}
 
 	@Override

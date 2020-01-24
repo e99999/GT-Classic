@@ -33,6 +33,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
@@ -52,17 +54,20 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip") + 0));
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getTextureFromState(IBlockState var1, EnumFacing var2) {
 		// This is useless once the model is working
 		return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:blocks/stone");
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BaseModel getModelFromState(IBlockState state) {
 		return new GTModelMortar(state);
 	}

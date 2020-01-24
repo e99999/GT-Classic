@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Random;
 
 import gtclassic.GTMod;
-import gtclassic.common.GTIcons;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Lang;
+import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ITexturedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
@@ -70,7 +70,7 @@ public class GTBlockLightSource extends BlockAir implements ITexturedBlock, ILoc
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return GTIcons.getTexture(0);
+		return Ic2Icons.getTextures("gtclassic_terrain")[111];
 	}
 
 	@Override
