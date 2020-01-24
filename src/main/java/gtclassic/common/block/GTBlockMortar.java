@@ -1,5 +1,6 @@
 package gtclassic.common.block;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gtclassic.GTMod;
@@ -40,6 +41,7 @@ import net.minecraftforge.items.ItemHandlerHelper;
 public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
 
 	static final AxisAlignedBB AABB_MORTAR = GTHelperMath.createAABBFromPixelsCentered(12, 10);
+	public static final List<IRecipeInput> INPUT_LIST = new ArrayList<>();
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.mortar", 1);
 
 	public GTBlockMortar(String name, String tool) {
@@ -82,6 +84,15 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
 			EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack playerStack = player.getHeldItemMainhand();
 		if (playerStack.isEmpty()) {
+			return false;
+		}
+		int matches  = 0;
+		for (IRecipeInput inputMatcher : INPUT_LIST) {
+			if (inputMatcher.matches(playerStack)) {
+				matches++;
+			}
+		}
+		if (matches == 0) {
 			return false;
 		}
 		if (IC2.platform.isSimulating()) {
@@ -134,5 +145,6 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
 
 	public static void addRecipe(IRecipeInput[] inputs, ItemStack... outputs) {
 		GTRecipeMachineHandler.addRecipe(RECIPE_LIST, inputs, GTRecipeMachineHandler.totalEu(RECIPE_LIST, 250), outputs);
+		INPUT_LIST.add(inputs[0]);
 	}
 }

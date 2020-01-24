@@ -44,7 +44,8 @@ public class GTRecipe {
 			new RecipeInputOreDict("ingotElectrum"), new RecipeInputOreDict("ingotPlatinum"),
 			new RecipeInputOreDict("ingotNickel") });
 	static final IRecipeInput ingotAnyIron = new RecipeInputCombined(1, new IRecipeInput[] {
-			new RecipeInputOreDict(ingotRefinedIron), new RecipeInputOreDict("ingotIron") });
+			new RecipeInputOreDict("ingotRefinedIron"), new RecipeInputOreDict("ingotIron"),
+			new RecipeInputOreDict("ingotSteel") });
 	static final IRecipeInput ingotMixed = new RecipeInputCombined(1, new IRecipeInput[] {
 			new RecipeInputOreDict("ingotSilver"), new RecipeInputOreDict("ingotAluminium"),
 			new RecipeInputOreDict("ingotElectrum") });
@@ -343,9 +344,8 @@ public class GTRecipe {
 			/** Redoing Plasma Core **/
 			recipes.overrideRecipe("shaped_item.itemPlasmaCore_-1985082214", Ic2Items.plasmaCore.copy(), "XYX", "YCY", "XYX", 'X', "craftingSuperconductor", 'Y', GTMaterialGen.getIngot(GTMaterial.Tungsten, 1), 'C', Ic2Items.plasmaCell.copy());
 			/** Removing the most ugly cable ever to bless modded mc */
-			GTRecipeCraftingHandler.removeRecipe("ic2", "shaped_item.itemPlasmaCable_449044295");// TODO make sure this
-																									// works if steel
-																									// mode is on
+			int recipeId = IC2.config.getFlag("SteelRecipes") ? 449044295 : 449044295;
+			GTRecipeCraftingHandler.removeRecipe("ic2", "shaped_item.itemPlasmaCable_" + recipeId);
 			/** Quantum Overclocker BS **/
 			recipes.overrideRecipe("shaped_item.quantumOverclockerUpgrade_-1387578587", Ic2Items.quantumOverclockerUpgrade.copy(), "XHX", "HVH", "XSX", 'X', "ingotTechnetium", 'H', GTItems.heatStorageHelium6, 'V', Ic2Items.overClockerUpgrade.copy(), 'S', "craftingSuperconductor");
 			/** PESD Thingy **/
