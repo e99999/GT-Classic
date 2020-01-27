@@ -36,6 +36,7 @@ public class GTConfig {
 		public boolean harderJetpacks = false;
 		public boolean hideBedrockOresInJei = true;
 		public boolean addCompressorRecipesForBlocks = true;
+		public boolean addHydrogenAsLiquidFuel = true;
 	}
 
 	@Comment("World Generation")

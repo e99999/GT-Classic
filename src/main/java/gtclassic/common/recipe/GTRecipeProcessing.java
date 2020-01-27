@@ -3,6 +3,7 @@ package gtclassic.common.recipe;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
+import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -40,9 +41,11 @@ public class GTRecipeProcessing {
 		TileEntityCompressor.addRecipe("dustUranium", 1, GTMaterialGen.getIc2(Ic2Items.uraniumIngot, 1), 0.3F);
 		TileEntityCompressor.addRecipe("dustThorium", 1, GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Sodium), 3800, 8);
-		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Hydrogen), 950, 16);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Methane), 3000, 16);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Fuel), 4000, 30);
+		if (GTConfig.general.addHydrogenAsLiquidFuel) {
+			ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Hydrogen), 950, 16);
+			}
 		ItemStack fullCan = GTMaterialGen.get(GTItems.sprayCan);
 		NBTTagCompound nbt = StackUtil.getNbtData(fullCan);
 		nbt.setInteger("color", 15);

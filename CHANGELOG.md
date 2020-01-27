@@ -1,6 +1,9 @@
 # Changelog
 
-# 1.1.0 (Not Released)
+# 1.1.1 (Not Released)
+- Added config option to disable power from hydrogen, more complex handling can be done with IC2C Tweaker or the IC2C machine recipe configs.
+
+# 1.1.0
 - Changed the Player Detector to be more up to date, change modes by sneak clicking with a wrench or read modes with a magnifying glass/reader.
 - Changed GTC texture system to be much more dynamic and efficent, should use less ram - doesnt effect gameplay at all for users
 - Changed, basic data net stuff is now implemented, using a computer cube as a network manager you can move items and fluids around digitally.

@@ -86,7 +86,7 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
 		if (playerStack.isEmpty()) {
 			return false;
 		}
-		int matches  = 0;
+		int matches = 0;
 		for (IRecipeInput inputMatcher : INPUT_LIST) {
 			if (inputMatcher.matches(playerStack)) {
 				matches++;
