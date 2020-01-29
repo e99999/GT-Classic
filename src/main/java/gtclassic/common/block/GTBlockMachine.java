@@ -16,6 +16,7 @@ import gtclassic.common.tile.GTTileBufferFluid;
 import gtclassic.common.tile.GTTileBufferLarge;
 import gtclassic.common.tile.GTTileBufferSmall;
 import gtclassic.common.tile.GTTileCentrifuge;
+import gtclassic.common.tile.GTTileCharcoalPit;
 import gtclassic.common.tile.GTTileChargeOMat;
 import gtclassic.common.tile.GTTileDigitalChest;
 import gtclassic.common.tile.GTTileDisassembler;
@@ -88,7 +89,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		return !(this == GTBlocks.tilePlayerDetector || this == GTBlocks.tileEchotron
 				|| this == GTBlocks.tileMobRepeller || this == GTBlocks.tileFabricator
 				|| this == GTBlocks.tileEnergyTransmitter || this == GTBlocks.tileDragonEggEnergySiphon
-				|| this == GTBlocks.tileMagicEnergyAbsorber);
+				|| this == GTBlocks.tileMagicEnergyAbsorber || this == GTBlocks.tileCharcoalPit);
 	}
 
 	public boolean hasVertical() {
@@ -191,6 +192,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileEchotron) {
 			return new GTTileEchotron();
 		}
+		if (this == GTBlocks.tileCharcoalPit) {
+			return new GTTileCharcoalPit();
+		}
 		if (this == GTBlocks.tileChargeOmat) {
 			return new GTTileChargeOMat();
 		}
@@ -269,7 +273,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 				|| thisIs(stack, GTBlocks.tileComputer) || thisIs(stack, GTBlocks.tileDisassembler)
 				|| thisIs(stack, GTBlocks.tileDragonEggEnergySiphon) || thisIs(stack, GTBlocks.tileMagicEnergyAbsorber)
 				|| thisIs(stack, GTBlocks.tileMagicEnergyConverter) || thisIs(stack, GTBlocks.tileFusionReactor)
-				|| thisIs(stack, GTBlocks.tileBedrockMiner)) {
+				|| thisIs(stack, GTBlocks.tileBedrockMiner) || thisIs(stack, GTBlocks.tileCharcoalPit)) {
 			return this.getDefaultBlockState().withProperty(active, true);
 		}
 		return this.getStateFromMeta(stack.getMetadata());

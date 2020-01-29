@@ -45,7 +45,7 @@ public class GTRecipeProcessing {
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Fuel), 4000, 30);
 		if (GTConfig.general.addHydrogenAsLiquidFuel) {
 			ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Hydrogen), 950, 16);
-			}
+		}
 		ItemStack fullCan = GTMaterialGen.get(GTItems.sprayCan);
 		NBTTagCompound nbt = StackUtil.getNbtData(fullCan);
 		nbt.setInteger("color", 15);

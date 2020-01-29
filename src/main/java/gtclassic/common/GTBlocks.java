@@ -35,6 +35,7 @@ import gtclassic.common.tile.GTTileBufferLarge;
 import gtclassic.common.tile.GTTileBufferSmall;
 import gtclassic.common.tile.GTTileCabinet;
 import gtclassic.common.tile.GTTileCentrifuge;
+import gtclassic.common.tile.GTTileCharcoalPit;
 import gtclassic.common.tile.GTTileChargeOMat;
 import gtclassic.common.tile.GTTileDigitalChest;
 import gtclassic.common.tile.GTTileDisassembler;
@@ -105,9 +106,12 @@ public class GTBlocks {
 	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 4, 500.0F));
 	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 6, 250.0F));
+	// public static final GTBlockCasing casingQuantum = registerBlock(new
+	// GTBlockCasing("quantum", 46, 1000.0F));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE, 3));
+	public static final GTBlockMachine tileCharcoalPit = registerBlock(new GTBlockMachine("charcoalpit", GTLang.TEST));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
 	public static final GTBlockMachine tileDisassembler = registerBlock(new GTBlockMachine("disassembler", GTLang.DISASSEMBLER));
 	public static final GTBlockMachine tileBedrockMiner = registerBlock(new GTBlockMachine("bedrockminer", GTLang.BEDROCK_MINER, 5));
@@ -189,6 +193,7 @@ public class GTBlocks {
 		registerUtil(GTTileComputerCube.class, "ComputerCube");
 		registerUtil(GTTileAutocrafter.class, "Autocrafter");
 		registerUtil(GTTileDisassembler.class, "Disassembler");
+		registerUtil(GTTileCharcoalPit.class, "CharcoalPit");
 		registerUtil(GTTileBedrockMiner.class, "BedrockMiner");
 		registerUtil(GTTileChargeOMat.class, "ChargeOMat");
 		registerUtil(GTTileMultiLESU.class, "LESU");

@@ -51,7 +51,7 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
 		setCreativeTab(GTMod.creativeTabGT);
 		setSoundType(SoundType.METAL);
 		setResistance(10.0F);
-		setHardness(2.0F);
+		setHardness(1.0F);
 		setHarvestLevel(tool, 0);
 	}
 
