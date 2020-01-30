@@ -8,13 +8,16 @@ import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.util.GTLogBlockFilter;
+import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.helpers.AabbUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
@@ -24,13 +27,33 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileCharcoalPit extends TileEntityMachine implements ITickable, IGTDebuggableTile, IGTDisplayTickTile {
+public class GTTileCharcoalPit extends TileEntityMachine
+		implements ITickable, IProgressMachine, IGTDebuggableTile, IGTDisplayTickTile {
 
-	public List<BlockPos> logPos;
-	public static AabbUtil.IBlockFilter filter = new GTLogBlockFilter();
+	float progress = 0;
+	float recipeOperation = 6000.0F;
+	List<BlockPos> logPos;
+	static AabbUtil.IBlockFilter filter = new GTLogBlockFilter();
 
 	public GTTileCharcoalPit() {
 		super(0);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
+		this.setActive(nbt.getBoolean("active"));
+		this.progress = nbt.getFloat("progress");
+		this.recipeOperation = nbt.getFloat("operation");
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
+		nbt.setBoolean("active", this.getActive());
+		nbt.setFloat("progress", this.progress);
+		nbt.setFloat("operation", recipeOperation);
+		return nbt;
 	}
 
 	@Override
@@ -45,13 +68,18 @@ public class GTTileCharcoalPit extends TileEntityMachine implements ITickable, I
 
 	@Override
 	public void update() {
+		// if active do thing
+		if (this.getActive()) {
+			updateProgress();
+		}
+		// structure check sets to active if true
 		if (world.getTotalWorldTime() % 100 == 0) {
 			if (isLog(pos.down())) {
 				logPos = getLogs();
 			}
 			boolean allSidesCovered = true;
-			boolean hasLogs = logPos != null && !logPos.isEmpty();
-			if (hasLogs) {
+			if (hasLogs()) {
+				// set progress length based on size of list
 				for (BlockPos tPos : logPos) {
 					for (EnumFacing facing : EnumFacing.VALUES) {
 						if (!isCovered(tPos.offset(facing))) {
@@ -60,22 +88,57 @@ public class GTTileCharcoalPit extends TileEntityMachine implements ITickable, I
 					}
 				}
 			}
-			this.setActive(hasLogs && allSidesCovered);
+			boolean canWork = hasLogs() && allSidesCovered;
+			this.setActive(canWork);
+			if (!canWork) {
+				this.progress = 0;
+			}
 		}
 	}
 
-	public boolean isLog(BlockPos pos) {
+	private void updateProgress() {
+		progress = progress + 1.0F;
+		if (progress >= recipeOperation) {
+			if (hasLogs()) {
+				for (BlockPos logs : logPos) {
+					if (isLog(logs)) {
+						world.setBlockState(logs, Ic2States.charcoalBlock);
+					}
+				}
+			}
+			this.progress = 0;
+			this.setActive(false);
+			logPos.clear();
+			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_SAND_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		}
+	}
+
+	private boolean hasLogs() {
+		return logPos != null && !logPos.isEmpty();
+	}
+
+	private boolean isLog(BlockPos pos) {
 		return world.getBlockState(pos).getBlock().isWood(world, pos);
 	}
 
-	public boolean isCovered(BlockPos pos) {
+	private boolean isCovered(BlockPos pos) {
 		return world.getBlockState(pos).getMaterial() == Material.GROUND
 				|| world.getBlockState(pos).getMaterial() == Material.GRASS
 				|| world.getBlockState(pos).getBlock() == GTBlocks.tileCharcoalPit || isLog(pos);
 	}
 
-	public List<BlockPos> getLogs() {
+	private List<BlockPos> getLogs() {
 		return AabbUtil.getTargets(world, this.pos.down(), 256, filter, true, false, RotationList.ALL);
+	}
+
+	@Override
+	public float getProgress() {
+		return progress;
+	}
+
+	@Override
+	public float getMaxProgress() {
+		return recipeOperation;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -101,5 +164,6 @@ public class GTTileCharcoalPit extends TileEntityMachine implements ITickable, I
 	public void getData(Map<String, Boolean> data) {
 		String logs = logPos != null ? "Logs: " + logPos.size() : "No Logs Found";
 		data.put(logs, false);
+		data.put("Progress: " + this.progress + "/" + this.getMaxProgress(), false);
 	}
 }
