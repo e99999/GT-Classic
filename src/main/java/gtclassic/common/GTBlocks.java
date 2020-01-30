@@ -10,6 +10,7 @@ import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.itemblock.GTItemBlockRare;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.block.GTBlockBattery;
+import gtclassic.common.block.GTBlockBurnable;
 import gtclassic.common.block.GTBlockCasing;
 import gtclassic.common.block.GTBlockDrum;
 import gtclassic.common.block.GTBlockLightSource;
@@ -83,6 +84,9 @@ public class GTBlocks {
 	}
 
 	static final List<Block> toRegister = new ArrayList<>();
+	public static final GTBlockBurnable brittleCharcoal = registerBlock(new GTBlockBurnable("brittlecharcoal", 0, 3200));
+	public static final GTBlockBurnable superFuel = registerBlock(new GTBlockBurnable("superfuel", 1, 100000));
+	public static final GTBlockBurnable superFuelMagic = registerBlock(new GTBlockBurnable("superfuelmagic", 1, 150000));
 	public static final GTBlockOreBedrock oreBedrockGold = registerBlock(new GTBlockOreBedrock("Gold", 0));
 	public static final GTBlockOreBedrock oreBedrockIron = registerBlock(new GTBlockOreBedrock("Iron", 1));
 	public static final GTBlockOreBedrock oreBedrockCoal = registerBlock(new GTBlockOreBedrock("Coal", 2));
@@ -111,8 +115,8 @@ public class GTBlocks {
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE, 3));
-	public static final GTBlockMachine tileCharcoalPit = registerBlock(new GTBlockMachine("charcoalpit", GTLang.TEST));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
+	public static final GTBlockMachine tileCharcoalPit = registerBlock(new GTBlockMachine("charcoalpit", GTLang.CHARCOAL_PIT, 5));
 	public static final GTBlockMachine tileDisassembler = registerBlock(new GTBlockMachine("disassembler", GTLang.DISASSEMBLER));
 	public static final GTBlockMachine tileBedrockMiner = registerBlock(new GTBlockMachine("bedrockminer", GTLang.BEDROCK_MINER, 5));
 	public static final GTBlockMachine tileFabricator = registerBlock(new GTBlockMachine("matterfabricator", GTLang.MATTER_FAB, 2));

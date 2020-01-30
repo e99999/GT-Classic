@@ -1,6 +1,7 @@
 # Changelog
 
 # 1.1.1 (Not Released)
+- Added Charcoal Pit/Pile Igniter like in GT5U, can be any shape up to 800 logs in size, logs must be surrounded by dirt or grass.
 - Added config option to disable power from hydrogen, more complex handling can be done with IC2C Tweaker or the IC2C machine recipe configs.
 
 # 1.1.0

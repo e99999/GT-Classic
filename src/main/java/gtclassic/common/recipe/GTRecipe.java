@@ -182,6 +182,9 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAutocrafter), " W ", "CMC", " P ", 'W', Ic2Items.battery.copy(), 'C', "circuitAdvanced", 'M', "workbench", 'P', "machineBlockAdvanced");
 			/** Industrial Centrifuge **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), "RCR", "AEA", "RCR", 'E', Ic2Items.extractor, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C', "circuitAdvanced");
+			/** Charcoal Pit **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCharcoalPit), new Object[] { "IFI", "IBI", "IFI", 'I',
+					"ingotRefinedIron", 'F', Items.FLINT, 'B', Blocks.IRON_BARS });
 			/** Disassemembler stuff with other mods **/
 			Item top = GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)
 					? GTMaterialGen.getModItem(GTHelperMods.TFOREST, "uncrafting_table").getItem()
@@ -216,6 +219,10 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorItem, 1), "PIP", "CMC", "PIP", 'P', anyPiston, 'C', "circuitData", 'M', "ingotSilicon", 'I', "ingotPlatinum");
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorFluid, 1), "PIP", "CMC", "PIP", 'P', Items.BUCKET, 'C', "circuitData", 'M', "ingotSilicon", 'I', "ingotTungsten");
 		}
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), "RCR", "AEA", "RCR", 'E', Ic2Items.extractor, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C', "circuitAdvanced");
+		/** Charcoal Pit **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCharcoalPit), new Object[] { "IFI", "IBI", "IFI", 'I',
+				"plateRefinedIron", 'F', Items.FLINT, 'B', Blocks.IRON_BARS });
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), "WWW", "CIC", "CRC", 'W', "plankWood", 'C', "cobblestone", 'I', ingotAny, 'R', "dustRedstone");

@@ -11,7 +11,6 @@ import gtclassic.common.util.GTLogBlockFilter;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
-import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.helpers.AabbUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -32,7 +31,7 @@ public class GTTileCharcoalPit extends TileEntityMachine
 
 	float progress = 0;
 	float recipeOperation = 6000.0F;
-	List<BlockPos> logPos;
+	List<BlockPos> logPositions;
 	static AabbUtil.IBlockFilter filter = new GTLogBlockFilter();
 
 	public GTTileCharcoalPit() {
@@ -75,12 +74,18 @@ public class GTTileCharcoalPit extends TileEntityMachine
 		// structure check sets to active if true
 		if (world.getTotalWorldTime() % 100 == 0) {
 			if (isLog(pos.down())) {
-				logPos = getLogs();
+				logPositions = getLogs();
+				if (logPositions.size() > 800) {
+					logPositions = logPositions.subList(0, 799);
+				}
 			}
 			boolean allSidesCovered = true;
 			if (hasLogs()) {
-				// set progress length based on size of list
-				for (BlockPos tPos : logPos) {
+				this.recipeOperation = (int) Math.sqrt(logPositions.size() * 240000.0D);
+				if (this.recipeOperation < 1) {
+					this.recipeOperation = 6000.0F;
+				}
+				for (BlockPos tPos : logPositions) {
 					for (EnumFacing facing : EnumFacing.VALUES) {
 						if (!isCovered(tPos.offset(facing))) {
 							allSidesCovered = false;
@@ -100,21 +105,21 @@ public class GTTileCharcoalPit extends TileEntityMachine
 		progress = progress + 1.0F;
 		if (progress >= recipeOperation) {
 			if (hasLogs()) {
-				for (BlockPos logs : logPos) {
+				for (BlockPos logs : logPositions) {
 					if (isLog(logs)) {
-						world.setBlockState(logs, Ic2States.charcoalBlock);
+						world.setBlockState(logs, GTBlocks.brittleCharcoal.getDefaultState());
 					}
 				}
 			}
 			this.progress = 0;
 			this.setActive(false);
-			logPos.clear();
+			logPositions.clear();
 			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_SAND_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
 	}
 
 	private boolean hasLogs() {
-		return logPos != null && !logPos.isEmpty();
+		return logPositions != null && !logPositions.isEmpty();
 	}
 
 	private boolean isLog(BlockPos pos) {
@@ -162,8 +167,11 @@ public class GTTileCharcoalPit extends TileEntityMachine
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		String logs = logPos != null ? "Logs: " + logPos.size() : "No Logs Found";
+		String logs = this.hasLogs() ? "Logs: " + logPositions.size() : "No Logs Found";
 		data.put(logs, false);
-		data.put("Progress: " + this.progress + "/" + this.getMaxProgress(), false);
+		if (this.hasLogs()) {
+			int time = (int) (this.recipeOperation / 20);
+			data.put("Will take " + time + " seconds to burn at this size", false);
+		}
 	}
 }

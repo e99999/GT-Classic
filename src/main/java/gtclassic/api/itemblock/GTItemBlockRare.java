@@ -2,7 +2,9 @@ package gtclassic.api.itemblock;
 
 import java.util.List;
 
+import gtclassic.api.interfaces.IGTBurnableBlock;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
+import gtclassic.common.GTBlocks;
 import ic2.core.item.block.ItemBlockRare;
 import ic2.core.platform.player.PlayerHandler;
 import net.minecraft.block.Block;
@@ -29,6 +31,20 @@ public class GTItemBlockRare extends ItemBlockRare {
 				((IGTReaderInfoBlock) thisBlock).addReaderInformation(stack, worldIn, tooltip, flagIn);
 			}
 		}
+	}
+
+	@Override
+	public int getItemBurnTime(ItemStack itemstack) {
+		if (this.block instanceof IGTBurnableBlock) {
+			return ((IGTBurnableBlock) this.block).getBlockBurnTime(block);
+		}
+		return 0;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		return this.block == GTBlocks.superFuelMagic;
 	}
 
 	@Override
