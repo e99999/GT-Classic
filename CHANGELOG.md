@@ -1,6 +1,7 @@
 # Changelog
 
 # 1.1.1 (Not Released)
+- Added Phosphor Lilys, the Nether counterpart to the Orechid. Nether bedrock ore veins are now 2 x as likely as the overworld as well.
 - Added a Centrifuge recipe for a small amount of Thorium from hydrated coal.
 - Added Super Solid Fuels like in GT5U with insanely long burn times, done through crafting steps in GTC however. 
 - Added Charcoal Pit/Pile Igniter like in GT5U, can be any shape up to 800 logs in size, logs must be surrounded by dirt or grass.

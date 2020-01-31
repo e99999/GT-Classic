@@ -157,7 +157,8 @@ public class GTBlocks {
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockMortar flintMortar = registerBlock(new GTBlockMortar("flintmortar", "axe"));
 	public static final GTBlockMortar ironMortar = registerBlock(new GTBlockMortar("ironmortar", "pickaxe"));
-	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid());
+	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid("orechid", 38));
+	public static final GTBlockOrechid phosphorLily = registerBlock(new GTBlockOrechid("phosphorlily", 39));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 
 	public static void registerBlocks() {

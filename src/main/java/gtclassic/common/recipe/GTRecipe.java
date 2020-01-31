@@ -83,8 +83,6 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.getIc2(Ic2Items.fertilizer, 3), "dustSulfur", "dustPhosphorus", "dustCalcite");
 		/** Clearing Scanner of NBT data **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.portableScanner), GTMaterialGen.get(GTItems.portableScanner));
-		/** Orechid to brown dye **/
-		recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.BrownDye, 1), GTMaterialGen.get(GTBlocks.oreChid));
 		if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
 			/** Gunpowder **/
 			recipes.addShapelessRecipe(GTMaterialGen.get(Items.GUNPOWDER, 5), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
