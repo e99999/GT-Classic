@@ -2,6 +2,10 @@ package gtclassic.common.item;
 
 import gtclassic.GTMod;
 import gtclassic.api.item.GTItemBaseComponent;
+import gtclassic.common.GTItems;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemComponent extends GTItemBaseComponent {
 
@@ -17,5 +21,11 @@ public class GTItemComponent extends GTItemBaseComponent {
 		setRegistryName(this.name.toLowerCase());
 		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public boolean hasEffect(ItemStack stack) {
+		return this == GTItems.fuelBinderMagic ? true : stack.isItemEnchanted();
 	}
 }

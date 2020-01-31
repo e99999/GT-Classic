@@ -96,6 +96,19 @@ public class GTRecipe {
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Electrum, 2), "dustSilver", "dustGold");
 			/** Invar Dust **/
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Invar, 3), "dustIron", "dustIron", "dustNickel");
+			if (GTConfig.general.enableSuperSolidFuels) {
+				/** Super Fuel Binder **/
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.fuelBinder, 6), "pulpWood", "pulpWood", "pulpWood", "pulpWood", "dustSulfur", "dustLithium");
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.fuelBinder, 6), "pulpWood", "pulpWood", "pulpWood", "pulpWood", "dustSulfur", GTMaterialGen.getTube(GTMaterial.Sodium, 1));
+				/** Magic Super Fuel Binder **/
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.fuelBinderMagic, 3), GTMaterialGen.get(GTItems.fuelBinder), "dustEnderEye", GTMaterialGen.getTube(GTMaterial.Mercury, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.fuelBinderMagic, 3), GTMaterialGen.get(GTItems.fuelBinder), Items.BLAZE_POWDER, GTMaterialGen.getTube(GTMaterial.Mercury, 1));
+				/** Solid Super Fuel **/
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuel, 1), "blockCoal", GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				/** Magic Solid Super Fuel **/
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), "blockCoal", GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.getDust(GTMaterial.Sapphire, 1), GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), "blockCoal", GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.getDust(GTMaterial.Emerald, 1), GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+			}
 		}
 	}
 
@@ -183,8 +196,8 @@ public class GTRecipe {
 			/** Industrial Centrifuge **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), "RCR", "AEA", "RCR", 'E', Ic2Items.extractor, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C', "circuitAdvanced");
 			/** Charcoal Pit **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCharcoalPit), new Object[] { "IFI", "IBI", "IFI", 'I',
-					"ingotRefinedIron", 'F', Items.FLINT, 'B', Blocks.IRON_BARS });
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCharcoalPit), new Object[] { "IFI", "IFI", "IFI", 'I',
+					"ingotRefinedIron", 'F', Items.FLINT });
 			/** Disassemembler stuff with other mods **/
 			Item top = GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)
 					? GTMaterialGen.getModItem(GTHelperMods.TFOREST, "uncrafting_table").getItem()
@@ -219,10 +232,6 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorItem, 1), "PIP", "CMC", "PIP", 'P', anyPiston, 'C', "circuitData", 'M', "ingotSilicon", 'I', "ingotPlatinum");
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorFluid, 1), "PIP", "CMC", "PIP", 'P', Items.BUCKET, 'C', "circuitData", 'M', "ingotSilicon", 'I', "ingotTungsten");
 		}
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), "RCR", "AEA", "RCR", 'E', Ic2Items.extractor, 'R', ingotRefinedIron, 'A', "machineBlockAdvanced", 'C', "circuitAdvanced");
-		/** Charcoal Pit **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCharcoalPit), new Object[] { "IFI", "IBI", "IFI", 'I',
-				"plateRefinedIron", 'F', Items.FLINT, 'B', Blocks.IRON_BARS });
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), "WWW", "CIC", "CRC", 'W', "plankWood", 'C', "cobblestone", 'I', ingotAny, 'R', "dustRedstone");

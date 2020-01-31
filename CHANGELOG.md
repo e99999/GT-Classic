@@ -1,8 +1,10 @@
 # Changelog
 
 # 1.1.1 (Not Released)
+- Added a Centrifuge recipe for a small amount of Thorium from hydrated coal.
+- Added Super Solid Fuels like in GT5U with insanely long burn times, done through crafting steps in GTC however. 
 - Added Charcoal Pit/Pile Igniter like in GT5U, can be any shape up to 800 logs in size, logs must be surrounded by dirt or grass.
-- Added config option to disable power from hydrogen, more complex handling can be done with IC2C Tweaker or the IC2C machine recipe configs.
+- Added config option to disable power from hydrogen, more complex handling can be done with IC2C Tweaker.
 
 # 1.1.0
 - Changed the Player Detector to be more up to date, change modes by sneak clicking with a wrench or read modes with a magnifying glass/reader.

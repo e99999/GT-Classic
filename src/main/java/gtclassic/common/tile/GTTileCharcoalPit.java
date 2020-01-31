@@ -133,7 +133,7 @@ public class GTTileCharcoalPit extends TileEntityMachine
 	}
 
 	private List<BlockPos> getLogs() {
-		return AabbUtil.getTargets(world, this.pos.down(), 256, filter, true, false, RotationList.ALL);
+		return AabbUtil.getTargets(world, this.pos, 256, filter, true, false, RotationList.ALL);
 	}
 
 	@Override

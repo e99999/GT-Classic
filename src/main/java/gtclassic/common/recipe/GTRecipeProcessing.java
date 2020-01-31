@@ -34,6 +34,7 @@ public class GTRecipeProcessing {
 		TileEntityMacerator.addRecipe("enderpearl", 1, GTMaterialGen.getDust(GTMaterial.EnderPearl, 1));
 		TileEntityMacerator.addRecipe(GTMaterialGen.get(Items.ENDER_EYE, 1), GTMaterialGen.getDust(GTMaterial.EnderEye, 2));
 		TileEntityMacerator.addRecipe("gemEmerald", 1, GTMaterialGen.getDust(GTMaterial.Emerald, 1));
+		TileEntityMacerator.addRecipe("logWood", 1, GTMaterialGen.getDust(GTMaterial.Wood, 6));
 		TileEntityExtractor.addRecipe("oreRuby", 1, GTMaterialGen.getGem(GTMaterial.Ruby, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, GTMaterialGen.getGem(GTMaterial.Sapphire, 3), 0.1F);
 		TileEntityExtractor.addRecipe(GTMaterialGen.get(GTBlocks.brittleCharcoal), new ItemStack(Items.COAL, 3, 1), 0.1F);

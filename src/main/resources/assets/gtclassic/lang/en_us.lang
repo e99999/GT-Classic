@@ -114,6 +114,7 @@ item.gtclassic.dustNickel.name=Nickel Dust
 item.gtclassic.dustInvar.name=Invar Dust
 item.gtclassic.dustTechnetium.name=Technetium Dust
 item.gtclassic.dustBrownDye.name=Brown Dye Dust
+item.gtclassic.dustWood.name=Wood Pulp
 
 #gems
 item.gtclassic.gemSapphire.name=Sapphire
@@ -171,6 +172,8 @@ item.gtclassic.spring_boots.name=Spring Boots
 item.gtclassic.magnifying_glass.name=Magnifying Glass
 item.gtclassic.spray_can_empty.name=Empty Spray Can
 item.gtclassic.spray_can.name=Spray Can
+item.gtclassic.super_fuel_binder.name=Super Fuel Binder
+item.gtclassic.magic_super_fuel_binder.name=Magic Super Fuel Binder
 
 #crops
 ic2.crop.Bauxia.name=Bauxia
@@ -263,11 +266,11 @@ tooltip.gtclassic.lightningrod0=Psssst its free energy!
 tooltip.gtclassic.lightningrod1=Structure:
 tooltip.gtclassic.lightningrod2=Controller, with 8-255 iron fence rods on top
 tooltip.gtclassic.lightningrod3=Power Out: Front, Back, Left, Right, or Down
-tooltip.gtclassic.charcoalpit0=Converts Logs into Brittle Charcoal blocks,
+tooltip.gtclassic.charcoalpit0=Converts logs into Brittle Charcoal blocks,
 tooltip.gtclassic.charcoalpit1=Must be placed on a log,
 tooltip.gtclassic.charcoalpit2=Logs can be placed in any shape,
 tooltip.gtclassic.charcoalpit3=Logs must be surrounded by dirt or grass,
-tooltip.gtclassic.charcoalpit4=Processes 2-800 logs at a time
+tooltip.gtclassic.charcoalpit4=Processes up to 800 logs at a time
 tooltip.gtclassic.dragoneggenergysiphon0=Harness the teleportation power of the dragon egg!
 tooltip.gtclassic.magicenergyconverter0=A generator running off magic fuel
 tooltip.gtclassic.magicenergyabsorber0=Absorbs magic energy and disenchants items

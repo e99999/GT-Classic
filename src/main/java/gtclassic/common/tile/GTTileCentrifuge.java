@@ -360,6 +360,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addRecipe(GTMaterialGen.getWater(6), 0, totalEu(9000), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.waterCell, 6), 6, totalEu(9000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 6), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
 		addRecipe("dustCoal", 4, 0, totalEu(7500), GTMaterialGen.getDust(GTMaterial.Carbon, 8));
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.hydratedCoalDust, 8), 0, totalEu(22500), GTMaterialGen.getDust(GTMaterial.Carbon, 14), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
 		addRecipe("logRubber", 16, 4, totalEu(25000), GTMaterialGen.getDust(GTMaterial.Carbon, 8), GTMaterialGen.getIc2(Ic2Items.stickyResin, 8), GTMaterialGen.getIc2(Ic2Items.plantBall, 6), GTMaterialGen.getTube(GTMaterial.Methane, 4));
 		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Hydrogen, 4000), 1, totalEu(6000), GTMaterialGen.getTube(GTMaterial.Deuterium, 1));
 		addRecipe(GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), 0, totalEu(6000), GTMaterialGen.get(tube, 3), GTMaterialGen.getTube(GTMaterial.Deuterium, 1));

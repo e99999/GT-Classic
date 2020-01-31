@@ -82,6 +82,7 @@ public class GTOreDict {
 		// My Stuff
 		OreDictionary.registerOre("craftingToolDuctTape", new ItemStack(GTItems.ductTape, 1, OreDictionary.WILDCARD_VALUE));
 		OreDictionary.registerOre("dyeBrown", GTMaterialGen.getDust(GTMaterial.BrownDye, 1));
+		OreDictionary.registerOre("pulpWood", GTMaterialGen.getDust(GTMaterial.Wood, 1));
 		OreDictionary.registerOre("circuitMaster", (GTMaterialGen.get(GTItems.circuitEnergy, 1)));
 		OreDictionary.registerOre("circuitElite", (GTMaterialGen.get(GTItems.circuitData, 1)));
 		OreDictionary.registerOre("circuitStorage", (GTMaterialGen.get(GTItems.chipData, 1)));

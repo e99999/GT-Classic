@@ -58,6 +58,8 @@ public class GTItems {
 	public static GTItemDataOrbStorage orbDataStorage;
 	public static GTItemMagnifyingGlass magnifyingGlass;
 	public static GTItemDuctTape ductTape;
+	public static GTItemComponent fuelBinder;
+	public static GTItemComponent fuelBinderMagic;
 	public static GTItemComponent sprayCanEmpty;
 	public static GTItemSprayCan sprayCan;
 	public static GTItemSpringBoots springBoots;
@@ -97,6 +99,8 @@ public class GTItems {
 		orbDataStorage = createItem(new GTItemDataOrbStorage());
 		magnifyingGlass = createItem(new GTItemMagnifyingGlass());
 		ductTape = createItem(new GTItemDuctTape());
+		fuelBinder = createItem(new GTItemComponent("super_fuel_binder", 2, 2));
+		fuelBinderMagic = createItem(new GTItemComponent("magic_super_fuel_binder", 2, 2));
 		sprayCanEmpty = createItem(new GTItemComponent("spray_can_empty", 4, 2));
 		sprayCan = createItem(new GTItemSprayCan());
 		springBoots = createItem(new GTItemSpringBoots());
