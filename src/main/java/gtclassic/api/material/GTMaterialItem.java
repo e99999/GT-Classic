@@ -10,6 +10,7 @@ import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,6 +32,12 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColo
 	@Override
 	public List<Integer> getValidVariants() {
 		return Arrays.asList(0);
+	}
+
+	@Override
+	public String getItemStackDisplayName(ItemStack stack) {
+		String dust = GTMaterialGen.isMaterialEqual(material, GTMaterial.Wood) && flag.getPrefix().startsWith("dust") ? flag.getPrefix().replaceAll("dust", "pulp") : flag.getPrefix();
+		return I18n.format("part." + dust, I18n.format("material." + material.getDisplayName()).trim());
 	}
 
 	@Override

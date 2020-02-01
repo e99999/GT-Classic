@@ -81,60 +81,48 @@ tile.gtclassic.flintmortar.name=Flint Mortar
 tile.gtclassic.ironmortar.name=Iron Mortar
 tile.gtclassic.sluicebox.name=Sluice Box
 tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
+#flags
+part.dust=%s Dust
+part.pulp=%s Pulp
+part.ingot=%s Ingot
+part.ingothot=Hot %s Ingot
+part.gem=%s
 
-#dust
-item.gtclassic.dustElectrum.name=Electrum Dust
-item.gtclassic.dustEnderEye.name=Eye of Ender Dust
-item.gtclassic.dustTitanium.name=Titanium Dust
-item.gtclassic.dustLazurite.name=Lazurite Dust
-item.gtclassic.dustGreenSapphire.name=Green Sapphire Dust
-item.gtclassic.dustCalcite.name=Calcite Dust
-item.gtclassic.dustPyrite.name=Pyrite Dust
-item.gtclassic.dustIridium.name=Iridium Dust
-item.gtclassic.dustLithium.name=Lithium Dust
-item.gtclassic.dustTungsten.name=Tungsten Dust
-item.gtclassic.dustCarbon.name=Carbon Dust
-item.gtclassic.dustSapphire.name=Sapphire Dust
-item.gtclassic.dustChrome.name=Chrome Dust
-item.gtclassic.dustBauxite.name=Bauxite Dust
-item.gtclassic.dustSodalite.name=Sodalite Dust
-item.gtclassic.dustRuby.name=Ruby Dust
-item.gtclassic.dustEnderPearl.name=Ender Pearl Dust
-item.gtclassic.dustSilicon.name=Silicon Dust
-item.gtclassic.dustAluminium.name=Aluminium Dust
-item.gtclassic.dustFlint.name=Flint Dust
-item.gtclassic.dustEmerald.name=Emerald Dust
-item.gtclassic.dustUranium.name=Uranium Dust
-item.gtclassic.dustThorium.name=Thorium Dust
-item.gtclassic.dustPlutonium.name=Plutonium Dust
-item.gtclassic.dustBasalt.name=Basalt Dust
-item.gtclassic.dustPlatinum.name=Platinum Dust
-item.gtclassic.dustPhosphorus.name=Phosphorus Dust
-item.gtclassic.dustSulfur.name=Sulfur Dust
-item.gtclassic.dustNickel.name=Nickel Dust
-item.gtclassic.dustInvar.name=Invar Dust
-item.gtclassic.dustTechnetium.name=Technetium Dust
-item.gtclassic.dustBrownDye.name=Brown Dye Dust
-item.gtclassic.dustWood.name=Wood Pulp
+#materials
+material.Electrum=Electrum
+material.EnderEye=Eye of Ender
+material.Titanium=Titanium
+material.Lazurite=Lazurite
+material.GreenSapphire=Green Sapphire
+material.Calcite=Calcite
+material.Pyrite=Pyrite
+material.Iridium=Iridium
+material.Lithium=Lithium
+material.Tungsten=Tungsten
+material.Carbon=Carbon
+material.Sapphire=Sapphire
+material.Chrome=Chrome
+material.Bauxite=Bauxite
+material.Sodalite=Sodalite
+material.Ruby=Ruby
+material.EnderPearl=Ender Pearl
+material.Silicon=Silicon
+material.Aluminium=Aluminium
+material.Flint=Flint
+material.Emerald=Emerald
+material.Uranium=Uranium
+material.Thorium=Thorium
+material.Plutonium=Plutonium
+material.Basalt=Basalt
+material.Platinum=Platinum
+material.Phosphorus=Phosphorus
+material.Sulfur=Sulfur
+material.Nickel=Nickel
+material.Invar=Invar
+material.Technetium=Technetium
+material.BrownDye=Brown Dye
+material.Wood=Wood
 
-#gems
-item.gtclassic.gemSapphire.name=Sapphire
-item.gtclassic.gemRuby.name=Ruby
-
-#ingots
-item.gtclassic.ingotElectrum.name=Electrum Ingot
-item.gtclassic.ingotTitanium.name=Titanium Ingot
-item.gtclassic.ingotIridium.name=Iridium Ingot
-item.gtclassic.ingotTungsten.name=Tungsten Ingot
-item.gtclassic.ingotChrome.name=Chrome Ingot
-item.gtclassic.ingotSilicon.name=Silicon Ingot
-item.gtclassic.ingotAluminium.name=Aluminium Ingot
-item.gtclassic.ingotThorium.name=Thorium Ingot
-item.gtclassic.ingotPlutonium.name=Plutonium Ingot
-item.gtclassic.ingotPlatinum.name=Platinum Ingot
-item.gtclassic.ingotNickel.name=Nickel Ingot
-item.gtclassic.ingotInvar.name=Invar Ingot
-item.gtclassic.ingotTechnetium.name=Technetium Ingot
 
 #items
 item.gtclassic.heatstorage_helium_single.name=60k Helium Coolant Cell
