@@ -1,18 +1,5 @@
 #blocks
-tile.gtclassic.blockElectrum.name=Block of Electrum
-tile.gtclassic.blockTitanium.name=Block of Titanium
-tile.gtclassic.blockIridium.name=Block of Iridium
-tile.gtclassic.blockTungsten.name=Block of Tungsten
-tile.gtclassic.blockSapphire.name=Block of Sapphire
-tile.gtclassic.blockChrome.name=Block of Chrome
-tile.gtclassic.blockRuby.name=Block of Ruby
-tile.gtclassic.blockAluminium.name=Block of Aluminium
-tile.gtclassic.blockPlatinum.name=Block of Platinum
-tile.gtclassic.blockThorium.name=Block of Thorium
-tile.gtclassic.blockPlutonium.name=Block of Plutonium
-tile.gtclassic.blockNickel.name=Block of Nickel
-tile.gtclassic.blockInvar.name=Block of Invar
-tile.gtclassic.blockTechnetium.name=Block of Technetium
+
 tile.gtclassic.brittlecharcoal.name=Brittle Charcoal
 tile.gtclassic.superfuel.name=Solid Super Fuel
 tile.gtclassic.superfuelmagic.name=Magic Solid Super Fuel
@@ -87,6 +74,7 @@ part.pulp=%s Pulp
 part.ingot=%s Ingot
 part.ingothot=Hot %s Ingot
 part.gem=%s
+part.block=Block of %s
 
 #materials
 material.Electrum=Electrum
