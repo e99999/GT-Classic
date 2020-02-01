@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
@@ -17,6 +16,7 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,6 +30,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
+
+	private static final String PAINTED_TRUE = "tooltip.gtclassic.paintedtrue";
+	private static final String PAINTED_FALSE = "tooltip.gtclassic.paintedfalse";
 
 	public GTBlockStorage(String name, LocaleComp comp) {
 		super(name, comp);
@@ -46,7 +49,12 @@ public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		GTUtility.tooltipPaintable(stack, tooltip);
+		NBTTagCompound nbt = StackUtil.getNbtData(stack);
+		if (nbt.hasKey("color")) {
+			tooltip.add(I18n.format(PAINTED_TRUE));
+		} else {
+			tooltip.add(I18n.format(PAINTED_FALSE));
+		}
 	}
 
 	@Override

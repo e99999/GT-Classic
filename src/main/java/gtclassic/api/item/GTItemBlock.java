@@ -1,4 +1,4 @@
-package gtclassic.api.itemblock;
+package gtclassic.api.item;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemBlockRare extends ItemBlockRare {
+public class GTItemBlock extends ItemBlockRare {
 
-	public GTItemBlockRare(Block block) {
+	public GTItemBlock(Block block) {
 		super(block);
 	}
 

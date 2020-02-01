@@ -1,4 +1,4 @@
-package gtclassic.api.commands;
+package gtclassic.api.helpers;
 
 import javax.annotation.Nonnull;
 

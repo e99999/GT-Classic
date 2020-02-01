@@ -1,6 +1,6 @@
 package gtclassic.common.recipe;
 
-import gtclassic.api.helpers.GTHelperMods;
+import gtclassic.api.helpers.GTValues;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeCraftingHandler;
@@ -87,7 +87,7 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.get(Items.FIREWORKS, 3), "paper", "dustPhosphorus", true);
 		recipes.addShapelessRecipe(GTMaterialGen.get(Items.FIREWORKS, 3), "paper", "dustPhosphorus", "dustPhosphorus", true);
 		recipes.addShapelessRecipe(GTMaterialGen.get(Items.FIREWORKS, 3), "paper", "dustPhosphorus", "dustPhosphorus", "dustPhosphorus", true);
-		if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
+		if (!Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
 			/** Gunpowder **/
 			recipes.addShapelessRecipe(GTMaterialGen.get(Items.GUNPOWDER, 5), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Nitrogen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 			/** Methane **/
@@ -116,7 +116,7 @@ public class GTRecipe {
 	}
 
 	public static void initItems() {
-		if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
+		if (!Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
 			/** Rock Cutter **/
 			recipes.addRecipe(GTMaterialGen.get(GTItems.rockCutter, 1), "DI ", "DI ", "DCB", new EnchantmentModifier(GTMaterialGen.get(GTItems.rockCutter), Enchantments.SILK_TOUCH).setUsesInput(), 'D', "gemDiamond", 'I', ingotRefinedIron, 'C', "circuitBasic", 'B', Ic2Items.battery.copy());
 			/** Jack Hammer **/
@@ -182,7 +182,7 @@ public class GTRecipe {
 	}
 
 	public static void initBlocks() {
-		if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
+		if (!Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
 			/** Fusion Casing **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingFusion), "CSC", "TMT", "CRC", 'M', "machineBlockElite", 'C', "circuitMaster", 'S', "craftingSuperconductor", 'T', Ic2Items.teslaCoil.copy(), 'R', Ic2Items.reactorReflectorIridium.copy());
 			/** Highly Advanced Machine Casing **/
@@ -202,8 +202,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCharcoalPit), new Object[] { "IFI", "IFI", "IFI", 'I',
 					"ingotRefinedIron", 'F', Items.FLINT });
 			/** Disassemembler stuff with other mods **/
-			Item top = GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)
-					? GTMaterialGen.getModItem(GTHelperMods.TFOREST, "uncrafting_table").getItem()
+			Item top = GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)
+					? GTMaterialGen.getModItem(GTValues.MOD_ID_TFOREST, "uncrafting_table").getItem()
 					: GTMaterialGen.getIc2(Ic2Items.extractor).getItem();
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), "RAR", "ECE", "RWR", 'A', top, 'W', GTBlocks.tileAutocrafter, 'R', ingotRefinedIron, 'E', Ic2Items.insulatedCopperCable.copy(), 'C', "circuitAdvanced");
 			/** Computer Cube **/
@@ -312,7 +312,7 @@ public class GTRecipe {
 	}
 
 	public static void initIC2() {
-		if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
+		if (!Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
 			/** Alt Wind Mill **/
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.windMill, 1), "X X", " Y ", "X X", 'Y', Ic2Items.generator.copy(), 'X', "ingotAluminium");
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.waterMill.copy(), 3), " X ", "XYX", " X ", 'Y', Ic2Items.generator.copy(), 'X', "ingotAluminium");
@@ -407,7 +407,7 @@ public class GTRecipe {
 			recipes.overrideRecipe("shaped_tile.blockSolarGenerator_261816397", GTMaterialGen.getIc2(Ic2Items.solarPanel, 1), "YYY", "XXX", "CVC", 'V', "machineBlockBasic", 'X', "itemSilicon", 'Y', "blockGlass", 'C', Ic2Items.carbonPlate);
 		}
 		if (GTConfig.general.harderJetpacks) {
-			String inputItem = Loader.isModLoaded(GTHelperMods.GTCX) ? "plateStainlessSteel" : "ingotTitanium";
+			String inputItem = Loader.isModLoaded(GTValues.MOD_ID_GTCX) ? "plateStainlessSteel" : "ingotTitanium";
 			int id = IC2.config.getFlag("SteelRecipes") ? -1657838234 : 176647782;
 			recipes.overrideRecipe("shaped_item.itemArmorJetpack_"
 					+ id, StackUtil.copyWithDamage(Ic2Items.jetpack, 18001), "ICI", "IFI", "R R", 'I', inputItem, 'C', "circuitBasic", 'F', Ic2Items.fuelCan.copy(), 'R', "dustRedstone");

@@ -2,11 +2,12 @@ package gtclassic;
 
 import org.apache.logging.log4j.Logger;
 
-import gtclassic.api.commands.GTCommandTeleport;
-import gtclassic.api.helpers.GTHelperMods;
+import gtclassic.api.helpers.GTCommandTeleport;
+import gtclassic.api.helpers.GTValues;
 import gtclassic.api.material.GTMaterialElement;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.world.GTBedrockOreHandler;
+import gtclassic.api.world.GTTwilightForestHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTCreativeTab;
@@ -32,7 +33,6 @@ import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.util.GTIDSUStorageManager;
-import gtclassic.common.worldgen.GTWorldTwilightForest;
 import ic2.core.IC2;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -104,7 +104,6 @@ public class GTMod {
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
 		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
 		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
-		// MinecraftForge.EVENT_BUS.register(new GTEventPlayerTick());
 		IC2.saveManager.registerGlobal("IDSU_Storage", GTIDSUStorageManager.class, false);
 		proxy.init(e);
 	}
@@ -118,8 +117,8 @@ public class GTMod {
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeMods.postInit();
 		GTTileDisassembler.init();
-		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTHelperMods.TFOREST)) {
-			GTWorldTwilightForest.initStalactites();
+		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)) {
+			GTTwilightForestHandler.initStalactites();
 		}
 	}
 

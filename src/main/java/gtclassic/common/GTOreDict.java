@@ -1,6 +1,6 @@
 package gtclassic.common;
 
-import gtclassic.api.helpers.GTHelperMods;
+import gtclassic.api.helpers.GTValues;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
@@ -48,7 +48,7 @@ public class GTOreDict {
 		if (GTConfig.general.oreDictWroughtIron) {
 			OreDictionary.registerOre("ingotWroughtIron", Ic2Items.refinedIronIngot);
 		}
-		if (!Loader.isModLoaded(GTHelperMods.GTCX)) {
+		if (!Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
 			OreDictionary.registerOre("machineBlockBasic", Ic2Items.machine);
 		}
 		OreDictionary.registerOre("machineBlockAdvanced", Ic2Items.advMachine);
@@ -93,7 +93,7 @@ public class GTOreDict {
 		OreDictionary.registerOre("machineBlockElite", (GTMaterialGen.get(GTBlocks.casingHighlyAdvanced, 1)));
 		OreDictionary.registerOre("machineBlockHighlyAdvanced", (GTMaterialGen.get(GTBlocks.casingHighlyAdvanced, 1)));
 		/** Pams Harvestcraft **/
-		if (!Loader.isModLoaded(GTHelperMods.HARVESTCRAFT)) {
+		if (!Loader.isModLoaded(GTValues.MOD_ID_HARVESTCRAFT)) {
 			OreDictionary.registerOre("listAllmeatraw", GTMaterialGen.get(Items.PORKCHOP));
 			OreDictionary.registerOre("listAllmeatcooked", GTMaterialGen.get(Items.COOKED_PORKCHOP));
 			OreDictionary.registerOre("listAllmeatraw", GTMaterialGen.get(Items.BEEF));

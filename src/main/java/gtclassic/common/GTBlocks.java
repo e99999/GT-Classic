@@ -7,7 +7,7 @@ import gtclassic.GTMod;
 import gtclassic.api.color.GTColorItemBlock;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemBlock;
-import gtclassic.api.itemblock.GTItemBlockRare;
+import gtclassic.api.item.GTItemBlock;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.block.GTBlockBattery;
 import gtclassic.common.block.GTBlockBurnable;
@@ -186,7 +186,7 @@ public class GTBlocks {
 		if (block instanceof IGTColorBlock) {
 			return GTColorItemBlock.class;
 		}
-		return GTItemBlockRare.class;
+		return GTItemBlock.class;
 	}
 
 	public static void registerTiles() {

@@ -1,9 +1,9 @@
 package gtclassic.common.container;
 
 import gtclassic.api.helpers.GTHelperStack;
-import gtclassic.api.slot.GTToolSlotFilter;
 import gtclassic.common.gui.GTGuiCompWorktable;
 import gtclassic.common.tile.GTTileWorktable;
+import gtclassic.common.util.GTIFilters;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.gui.GuiIC2;
@@ -37,7 +37,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 	private final World world;
 	private final EntityPlayer player;
 	private GTTileWorktable block;
-	public IFilter toolFilter = new GTToolSlotFilter();
+	public IFilter toolFilter = new GTIFilters.ToolFilter();
 
 	public GTContainerWorktable(InventoryPlayer player, GTTileWorktable tile) {
 		super(tile);

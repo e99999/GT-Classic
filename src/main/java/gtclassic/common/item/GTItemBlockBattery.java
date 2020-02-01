@@ -1,8 +1,8 @@
-package gtclassic.common.itemblock;
+package gtclassic.common.item;
 
 import java.awt.Color;
 
-import gtclassic.api.itemblock.GTItemBlockRare;
+import gtclassic.api.item.GTItemBlock;
 import gtclassic.common.block.GTBlockBattery;
 import ic2.api.classic.item.IDamagelessElectricItem;
 import ic2.api.item.ElectricItem;
@@ -11,7 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-public class GTItemBlockBattery extends GTItemBlockRare implements IDamagelessElectricItem {
+public class GTItemBlockBattery extends GTItemBlock implements IDamagelessElectricItem {
 
 	public int maxCharge;
 	public int transferLimit;

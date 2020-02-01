@@ -1,4 +1,4 @@
-package gtclassic.api.slot;
+package gtclassic.api.gui;
 
 import gtclassic.api.tile.GTTileBaseMachine;
 import ic2.api.classic.tile.IMachine;

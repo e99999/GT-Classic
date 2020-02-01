@@ -1,4 +1,4 @@
-package gtclassic.common.worldgen;
+package gtclassic.api.world;
 
 import gtclassic.GTMod;
 import gtclassic.common.GTBlocks;
@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import twilightforest.world.TFWorld;
 import twilightforest.world.feature.TFGenCaveStalactite;
 
-public class GTWorldTwilightForest {
+public class GTTwilightForestHandler {
 
 	public static void initStalactites() {
 		GTMod.logger.info("Adding ores to Twilight Forest hollow hills");

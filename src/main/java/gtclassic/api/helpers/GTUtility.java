@@ -1,38 +1,34 @@
 package gtclassic.api.helpers;
 
-import java.util.List;
-
-import ic2.core.util.misc.StackUtil;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 
 /**
  * NEVER INCLUDE THIS FILE IN YOUR MOD!!! Just a few Utility Functions I use.
  */
 public class GTUtility {
 
-	/** ### Some Simple String Stuff **/
-	private static final String PAINTED_TRUE = "tooltip.gtclassic.paintedtrue";
-	private static final String PAINTED_FALSE = "tooltip.gtclassic.paintedfalse";
-	public static final String BEACONBASE = "tooltip.gtclassic.beaconbase";
-	public static final String NOMOBSPAWN = "tooltip.gtclassic.nomobs";
-	private static final String[] TIERS = { "N/A", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "MAX" };
-
-	public static void tooltipPaintable(ItemStack stack, List<String> tooltip) {
-		NBTTagCompound nbt = StackUtil.getNbtData(stack);
-		if (nbt.hasKey("color")) {
-			tooltip.add(I18n.format(PAINTED_TRUE));
-		} else {
-			tooltip.add(I18n.format(PAINTED_FALSE));
+	/**
+	 * ### Player Stuff ###
+	 **/
+	/**
+	 * Checks to see if a player is fully equipped in quantum gear
+	 * 
+	 * @param entity - usually the player in this case
+	 * @return
+	 */
+	public static boolean hasFullQuantumSuit(EntityLivingBase entity) {
+		if (!(entity instanceof EntityPlayer)) {
+			return false;
 		}
-	}
-
-	public static String getTierString(int tier) {
-		if (tier < 0 || tier > 9) {
-			return TIERS[0];
+		EntityPlayer player = (EntityPlayer) entity;
+		for (int i = 0; i < 4; i++) {
+			if (!(player.inventory.armorInventory.get(i).getItem() instanceof ItemArmorQuantumSuit)) {
+				return false;
+			}
 		}
-		return TIERS[tier];
+		return true;
 	}
 
 	/**

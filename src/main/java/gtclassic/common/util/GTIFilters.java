@@ -2,11 +2,14 @@ package gtclassic.common.util;
 
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.material.GTMaterialGen;
+import gtclassic.api.tile.GTTileBaseFuelMachine;
 import gtclassic.common.GTItems;
 import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.datanet.GTTileDigitizerItem;
+import ic2.api.item.ICustomDamageItem;
+import ic2.api.item.IElectricItem;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.item.ItemStack;
@@ -124,6 +127,28 @@ public class GTIFilters {
 				}
 			}
 			return false;
+		}
+	}
+
+	public static class ToolFilter implements IFilter {
+
+		@Override
+		public boolean matches(ItemStack stack) {
+			return !stack.isEmpty() && (stack.getItem().isDamageable() || stack.getItem() instanceof IElectricItem
+					|| stack.getItem() instanceof ICustomDamageItem);
+		}
+	}
+
+	public static class FuelMachineFilter implements IFilter {
+
+		GTTileBaseFuelMachine machine;
+
+		public FuelMachineFilter(GTTileBaseFuelMachine machine) {
+			this.machine = machine;
+		}
+
+		public boolean matches(ItemStack stack) {
+			return !stack.isEmpty() && this.machine.isValidInput(stack);
 		}
 	}
 }
