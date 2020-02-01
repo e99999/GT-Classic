@@ -2,8 +2,8 @@ package gtclassic.common.tile.datanet;
 
 import java.util.ArrayList;
 
-import gtclassic.common.util.datanet.GTDataNet.DataType;
-import gtclassic.common.util.datanet.GTFilterItemDigitizer;
+import gtclassic.api.helpers.GTUtility;
+import gtclassic.common.util.GTIFilters;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.filters.InvertedFilter;
@@ -22,7 +22,7 @@ public class GTTileDigitizerItem extends GTTileBaseInputNode {
 
 	@Override
 	public boolean onDataNetTick(GTTileBaseOutputNode node) {
-		if (node.dataType() != DataType.ITEM) {
+		if (node.dataType() != GTUtility.DataType.ITEM) {
 			return false;
 		}
 		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(this.pos.offset(this.getFacing())), true);
@@ -39,7 +39,7 @@ public class GTTileDigitizerItem extends GTTileBaseInputNode {
 				blacklist.clear();
 			}
 			IFilter filter = node.inventoryFilter() != null ? node.inventoryFilter()
-					: new InvertedFilter(new GTFilterItemDigitizer(this));
+					: new InvertedFilter(new GTIFilters.ItemDigitizerFilter(this));
 			ItemStack stack = slave.removeItem(filter, this.getFacing().getOpposite(), 64, false);
 			ItemStack added = nodeTile.addItem(stack, node.inventoryFacing(), true);
 			if (added.getCount() <= 0) {

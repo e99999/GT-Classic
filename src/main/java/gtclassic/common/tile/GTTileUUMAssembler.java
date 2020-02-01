@@ -9,11 +9,11 @@ import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
+import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.container.GTContainerUUMAssembler;
 import gtclassic.common.gui.GTGuiMachine.GTUUMAssemblerGui;
-import gtclassic.common.util.GTFilterUUMAssembler;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -244,8 +244,8 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	}
 
 	public void updateCost() {
-		this.currentCost = GTFilterUUMAssembler.getCost(this.getStackInSlot(11));
-		this.amountPer = GTFilterUUMAssembler.getAmountPer(this.getStackInSlot(11));
+		this.currentCost = getCost(this.getStackInSlot(11));
+		this.amountPer = getAmountPer(this.getStackInSlot(11));
 		updateGui();
 	}
 
@@ -264,6 +264,33 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 
 	public int getAmountPer() {
 		return this.amountPer;
+	}
+
+	public static boolean matches(ItemStack stack) {
+		for (MultiRecipe map : GTTileUUMAssembler.RECIPE_LIST.getRecipeList()) {
+			if (GTHelperStack.isEqual(stack, map.getOutputs().getAllOutputs().get(0))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static int getCost(ItemStack stack) {
+		for (MultiRecipe map : GTTileUUMAssembler.RECIPE_LIST.getRecipeList()) {
+			if (GTHelperStack.isEqual(stack, map.getOutputs().getAllOutputs().get(0))) {
+				return map.getInputs().get(0).getAmount();
+			}
+		}
+		return 0;
+	}
+
+	public static int getAmountPer(ItemStack stack) {
+		for (MultiRecipe map : GTTileUUMAssembler.RECIPE_LIST.getRecipeList()) {
+			if (GTHelperStack.isEqual(stack, map.getOutputs().getAllOutputs().get(0))) {
+				return map.getOutputs().getAllOutputs().get(0).getCount();
+			}
+		}
+		return 0;
 	}
 
 	public static void init() {

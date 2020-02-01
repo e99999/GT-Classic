@@ -5,7 +5,8 @@ import java.util.List;
 
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerTranslocator;
-import gtclassic.common.util.GTFilterTranslocator;
+import gtclassic.common.util.GTIFilters;
+import gtclassic.common.util.GTIFilters.TranslocatorFilter;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -21,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileTranslocator extends GTTileBufferBase implements IHasGui {
 
-	public GTFilterTranslocator filter = new GTFilterTranslocator(this);
+	public GTIFilters.TranslocatorFilter filter = new TranslocatorFilter(this);
 
 	public GTTileTranslocator() {
 		super(9);

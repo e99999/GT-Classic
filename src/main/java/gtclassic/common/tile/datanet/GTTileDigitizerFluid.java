@@ -1,6 +1,6 @@
 package gtclassic.common.tile.datanet;
 
-import gtclassic.common.util.datanet.GTDataNet.DataType;
+import gtclassic.api.helpers.GTUtility;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -16,7 +16,7 @@ public class GTTileDigitizerFluid extends GTTileBaseInputNode {
 
 	@Override
 	public boolean onDataNetTick(GTTileBaseOutputNode node) {
-		if (node.dataType() != DataType.FLUID) {
+		if (node.dataType() != GTUtility.DataType.FLUID) {
 			return false;
 		}
 		IFluidHandler start = FluidUtil.getFluidHandler(world, this.pos.offset(this.getFacing()), getFacing());

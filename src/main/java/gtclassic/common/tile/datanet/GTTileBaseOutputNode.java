@@ -1,6 +1,6 @@
 package gtclassic.common.tile.datanet;
 
-import gtclassic.common.util.datanet.GTDataNet;
+import gtclassic.api.helpers.GTUtility;
 import ic2.core.inventory.filters.IFilter;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -26,11 +26,11 @@ public abstract class GTTileBaseOutputNode extends GTTileBaseDataNode implements
 	/** This returns the side the above inventory should be interacted with **/
 	public abstract EnumFacing inventoryFacing();
 
-	public abstract GTDataNet.DataType dataType();
+	public abstract GTUtility.DataType dataType();
 
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
+		if (world.getTotalWorldTime() % GTUtility.DATA_NET_RESET_RATE == 0) {
 			this.computer = null;
 		}
 	}

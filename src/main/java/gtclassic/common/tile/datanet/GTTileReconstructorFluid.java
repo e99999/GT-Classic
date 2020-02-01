@@ -3,8 +3,8 @@ package gtclassic.common.tile.datanet;
 import java.util.Collections;
 import java.util.List;
 
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.common.container.GTContainerReconstructorFluid;
-import gtclassic.common.util.datanet.GTDataNet.DataType;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
@@ -31,8 +31,8 @@ public class GTTileReconstructorFluid extends GTTileBaseOutputNode implements IH
 	}
 
 	@Override
-	public DataType dataType() {
-		return DataType.FLUID;
+	public GTUtility.DataType dataType() {
+		return GTUtility.DataType.FLUID;
 	}
 
 	@Override

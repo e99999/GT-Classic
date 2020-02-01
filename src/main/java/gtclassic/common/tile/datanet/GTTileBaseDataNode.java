@@ -2,9 +2,9 @@ package gtclassic.common.tile.datanet;
 
 import java.util.Map;
 
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
-import gtclassic.common.util.datanet.GTDataNet;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.RotationList;
@@ -43,13 +43,13 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.anchors = RotationList.ofFacings(EnumFacing.getFront(nbt.getByte("Facing")));
-		this.channel = nbt.getInteger(GTDataNet.NBT_CHANNEL);
+		this.channel = nbt.getInteger(GTUtility.DATA_NET_NBT_CHANNEL);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger(GTDataNet.NBT_CHANNEL, this.channel);
+		nbt.setInteger(GTUtility.DATA_NET_NBT_CHANNEL, this.channel);
 		return nbt;
 	}
 

@@ -1,4 +1,4 @@
-package gtclassic.common.block.datanet;
+package gtclassic.common.block;
 
 import java.util.List;
 import java.util.Random;

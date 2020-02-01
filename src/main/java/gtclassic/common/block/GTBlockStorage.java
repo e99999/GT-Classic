@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import gtclassic.api.helpers.GTHelperString;
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
@@ -46,7 +46,7 @@ public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
-		GTHelperString.tooltipPaintable(stack, tooltip);
+		GTUtility.tooltipPaintable(stack, tooltip);
 	}
 
 	@Override

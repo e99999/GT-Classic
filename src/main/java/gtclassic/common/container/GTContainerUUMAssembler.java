@@ -8,7 +8,6 @@ import gtclassic.api.gui.GTGuiCompBasicString;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.common.gui.GTGuiCompUUMAssembler;
 import gtclassic.common.tile.GTTileUUMAssembler;
-import gtclassic.common.util.GTFilterUUMAssembler;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.gui.GuiIC2;
@@ -88,7 +87,7 @@ public class GTContainerUUMAssembler extends ContainerTileComponent<GTTileUUMAss
 		// Scanning Slot Logic
 		if (slotId == 10) {
 			ItemStack playerStack = StackUtil.copyWithSize(player.inventory.getItemStack(), 1);
-			if (GTFilterUUMAssembler.matches(playerStack)) {
+			if (GTTileUUMAssembler.matches(playerStack)) {
 				for (int i = 0; i < 9; ++i) {
 					// If the Stack is saved already then break
 					ItemStack savedStack = this.block.inventory.get(i);

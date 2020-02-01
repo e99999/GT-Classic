@@ -1,10 +1,8 @@
-package gtclassic.common.block.datanet;
+package gtclassic.api.block;
 
 import java.util.List;
 import java.util.Random;
 
-import gtclassic.GTMod;
-import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelDataNode;
@@ -12,11 +10,9 @@ import gtclassic.common.tile.datanet.GTTileBaseDataNode;
 import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
 import ic2.core.util.helpers.BlockStateContainerIC2;
-import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
@@ -35,20 +31,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements IGTReaderInfoBlock, IGTDataNetObject {
 
 	int size;
-	String name;
 	int id;
 
-	public GTBlockBaseDataNode(String name, int id, LocaleComp comp) {
+	public GTBlockBaseDataNode(int id) {
 		super();
-		this.name = name;
 		this.id = id;
-		setUnlocalizedName(comp);
-		setRegistryName(this.name);
 		this.size = 6;
-		this.setHardness(0.2F);
-		this.setSoundType(SoundType.CLOTH);
-		this.setHarvestLevel("axe", 0);
-		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override

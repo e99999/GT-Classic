@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.container.GTContainerComputerCube;
-import gtclassic.common.util.datanet.GTBlockFilterDataAll;
-import gtclassic.common.util.datanet.GTDataNet;
+import gtclassic.common.util.GTIBlockFilters;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -33,7 +33,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	boolean isOnlyComputer = true;
 	private Processor task = null;
-	private AabbUtil.IBlockFilter filter = new GTBlockFilterDataAll();
+	private AabbUtil.IBlockFilter filter = new GTIBlockFilters.DataNetFilter();
 	public Set<BlockPos> dataNet = new HashSet<>();
 	public int nodeCount = 0;
 
@@ -109,7 +109,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	@Override
 	public void update() {
 		this.setActive(this.isOnlyComputer && this.energy > this.getNodeCount());
-		if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
+		if (world.getTotalWorldTime() % GTUtility.DATA_NET_RESET_RATE == 0) {
 			this.isOnlyComputer = true;
 			this.dataNet.clear();
 		}
@@ -147,7 +147,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 				}
 				this.updateGui();
 			}
-			if (world.getTotalWorldTime() % GTDataNet.SEARCH_RATE == 0) {
+			if (world.getTotalWorldTime() % GTUtility.DATA_NET_SEARCH_RATE == 0) {
 				if (!world.isAreaLoaded(pos, 16))
 					return;
 				task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, true);

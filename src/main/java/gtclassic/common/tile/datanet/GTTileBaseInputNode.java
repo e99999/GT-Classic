@@ -1,6 +1,6 @@
 package gtclassic.common.tile.datanet;
 
-import gtclassic.common.util.datanet.GTDataNet;
+import gtclassic.api.helpers.GTUtility;
 import ic2.core.util.obj.IRedstoneTile;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -18,10 +18,10 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % GTDataNet.RESET_RATE == 0) {
+		if (world.getTotalWorldTime() % GTUtility.DATA_NET_RESET_RATE == 0) {
 			this.computer = null;
 		}
-		if (world.getTotalWorldTime() % GTDataNet.TICK_RATE == 0) {
+		if (world.getTotalWorldTime() % GTUtility.DATA_NET_TICK_RATE == 0) {
 			if (this.computer == null || this.computer.dataNet == null || this.computer.dataNet.isEmpty()) {
 				return;
 			}

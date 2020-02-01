@@ -4,7 +4,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBase;
-import gtclassic.api.helpers.GTHelperString;
+import gtclassic.api.helpers.GTUtility;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -41,7 +41,7 @@ public class GTBlockCasing extends GTBlockBase {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(GTHelperString.NOMOBSPAWN));
+		tooltip.add(I18n.format(GTUtility.NOMOBSPAWN));
 	}
 
 	@SideOnly(Side.CLIENT)

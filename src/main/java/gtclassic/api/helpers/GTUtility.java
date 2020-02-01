@@ -7,8 +7,12 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class GTHelperString {
+/**
+ * NEVER INCLUDE THIS FILE IN YOUR MOD!!! Just a few Utility Functions I use.
+ */
+public class GTUtility {
 
+	/** ### Some Simple String Stuff **/
 	private static final String PAINTED_TRUE = "tooltip.gtclassic.paintedtrue";
 	private static final String PAINTED_FALSE = "tooltip.gtclassic.paintedfalse";
 	public static final String BEACONBASE = "tooltip.gtclassic.beaconbase";
@@ -29,5 +33,25 @@ public class GTHelperString {
 			return TIERS[0];
 		}
 		return TIERS[tier];
+	}
+
+	/**
+	 * ### Data Network Stuff ###
+	 **/
+	/** Tick rate for INPUT NODES to attempt to move items to the OUTPUT NODES **/
+	public static final int DATA_NET_TICK_RATE = 10;
+	/**
+	 * Tick rate for that a network tries to validate itself doing recurrsive checks
+	 **/
+	public static final int DATA_NET_SEARCH_RATE = 128;
+	/** Tick rate for networks to reset and require revalidation **/
+	public static final int DATA_NET_RESET_RATE = 126;
+	public static final String DATA_NET_NBT_CHANNEL = "channel";
+
+	/** Enum for data types **/
+	public enum DataType {
+		ITEM(),
+		FLUID(),
+		REDSTONE();
 	}
 }

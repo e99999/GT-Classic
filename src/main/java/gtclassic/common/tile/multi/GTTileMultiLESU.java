@@ -6,7 +6,7 @@ import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerLESU;
-import gtclassic.common.util.GTLapotronBlockFilter;
+import gtclassic.common.util.GTIBlockFilters;
 import ic2.api.energy.tile.IMultiEnergySource;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
@@ -25,7 +25,7 @@ public class GTTileMultiLESU extends TileEntityElectricBlock
 	private int blockCount;
 	public boolean enabled = true;
 	public static final int BASE_ENERGY = 10000000;
-	public AabbUtil.IBlockFilter filter = new GTLapotronBlockFilter(this);
+	public AabbUtil.IBlockFilter filter = new GTIBlockFilters.LESUCasingFilter(this);
 	public Processor task = null;
 
 	public GTTileMultiLESU() {

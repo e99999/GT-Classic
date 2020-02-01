@@ -3,8 +3,8 @@ package gtclassic.common.tile.datanet;
 import java.util.Collections;
 import java.util.List;
 
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.common.container.GTContainerReconstructorItem;
-import gtclassic.common.util.datanet.GTDataNet.DataType;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -26,8 +26,8 @@ public class GTTileReconstructorItem extends GTTileBaseOutputNode implements IHa
 	}
 
 	@Override
-	public DataType dataType() {
-		return DataType.ITEM;
+	public GTUtility.DataType dataType() {
+		return GTUtility.DataType.ITEM;
 	}
 
 	@Override
