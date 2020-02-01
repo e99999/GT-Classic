@@ -1,4 +1,4 @@
-package gtclassic.common.tile.wiring;
+package gtclassic.api.tile;
 
 import ic2.api.classic.energy.tile.IAnchorConductor;
 import ic2.api.classic.network.adv.NetworkField;
@@ -21,13 +21,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.common.MinecraftForge;
 
-public class GTTileSuperconductorCable extends TileEntityBlock implements IEnergyConductor {
+public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock implements IEnergyConductor {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
 	protected boolean addedToEnergyNet;
 
-	public GTTileSuperconductorCable() {
+	public GTTileBaseSuperconductorCable() {
 		this.connection = RotationList.EMPTY;
 		this.addNetworkFields(new String[] { "connection" });
 	}
@@ -64,21 +64,6 @@ public class GTTileSuperconductorCable extends TileEntityBlock implements IEnerg
 	@Override
 	public double getConductionLoss() {
 		return 0.001D;
-	}
-
-	@Override
-	public double getConductorBreakdownEnergy() {
-		return 134217728.0D;
-	}
-
-	@Override
-	public double getInsulationBreakdownEnergy() {
-		return 134217728.0D;
-	}
-
-	@Override
-	public double getInsulationEnergyAbsorption() {
-		return 134217728.0D;
 	}
 
 	@Override
@@ -139,7 +124,7 @@ public class GTTileSuperconductorCable extends TileEntityBlock implements IEnerg
 	public boolean canConnect(IEnergyTile tile, EnumFacing side) {
 		if (tile instanceof TileEntityCable) {
 			return true;
-		} else if (tile instanceof GTTileSuperconductorCable) {
+		} else if (tile instanceof GTTileBaseSuperconductorCable) {
 			return true;
 		} else if (tile instanceof IAnchorConductor && ((IAnchorConductor) tile).hasAnchor(side.getOpposite())) {
 			return false;

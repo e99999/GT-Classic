@@ -25,7 +25,6 @@ import gtclassic.common.proxy.GTProxyCommon;
 import gtclassic.common.recipe.GTRecipe;
 import gtclassic.common.recipe.GTRecipeIterators;
 import gtclassic.common.recipe.GTRecipeMods;
-import gtclassic.common.recipe.GTRecipeProcessing;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
@@ -87,7 +86,6 @@ public class GTMod {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent e) {
 		GTMaterialElement.init();
-		GTRecipeProcessing.init();
 		GTRecipeIterators.init();
 		GTTileCentrifuge.init();
 		GTTileUUMAssembler.init();
@@ -97,6 +95,7 @@ public class GTMod {
 		GTRecipe.initBlocks();
 		GTRecipe.initCables();
 		GTRecipe.initIC2();
+		GTRecipe.initProcessing();
 		GTBedrockOreHandler.bedrockOresInit();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());

@@ -53,11 +53,11 @@ import gtclassic.common.tile.GTTilePlayerDetector;
 import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
 import gtclassic.common.tile.GTTileSupercondensator;
+import gtclassic.common.tile.GTTileSuperconductorCables;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
-import gtclassic.common.tile.datanet.GTTileBaseDataNode;
 import gtclassic.common.tile.datanet.GTTileComputerCube;
 import gtclassic.common.tile.datanet.GTTileDataCable;
 import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
@@ -67,9 +67,6 @@ import gtclassic.common.tile.datanet.GTTileReconstructorItem;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
-import gtclassic.common.tile.wiring.GTTileSuperconductorCable;
-import gtclassic.common.tile.wiring.GTTileSuperconductorCable2;
-import gtclassic.common.tile.wiring.GTTileSuperconductorCable4;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
@@ -150,9 +147,9 @@ public class GTBlocks {
 	public static final GTBlockDataNode tileDigitizerFluid = registerBlock(new GTBlockDataNode("fluiddigitizer", 98, GTLang.FLUID_DIGITIZER));
 	public static final GTBlockDataNode tileReconstructorItem = registerBlock(new GTBlockDataNode("itemreconstructor", 99, GTLang.ITEM_RECONSTRUCTOR));
 	public static final GTBlockDataNode tileReconstructorFluid = registerBlock(new GTBlockDataNode("fluidreconstructor", 100, GTLang.FLUID_RECONTSTRUCTOR));
-	public static final GTBlockSuperconductorCable tileSuperconductorCable = registerBlock(new GTBlockSuperconductorCable(12, ""));
-	public static final GTBlockSuperconductorCable tileSuperconductorCable2x = registerBlock(new GTBlockSuperconductorCable(6, "2"));
-	public static final GTBlockSuperconductorCable tileSuperconductorCable4x = registerBlock(new GTBlockSuperconductorCable(4, "4"));
+	public static final GTBlockSuperconductorCable tileSuperconductorCableMAX = registerBlock(new GTBlockSuperconductorCable(12, ""));
+	public static final GTBlockSuperconductorCable tileSuperconductorCableIV = registerBlock(new GTBlockSuperconductorCable(6, "2"));
+	public static final GTBlockSuperconductorCable tileSuperconductorCableHV = registerBlock(new GTBlockSuperconductorCable(4, "4"));
 	public static final GTBlockDataCable dataCable = registerBlock(new GTBlockDataCable());
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockMortar flintMortar = registerBlock(new GTBlockMortar("flintmortar", "axe"));
@@ -224,15 +221,14 @@ public class GTBlocks {
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileTranslocatorFluid.class, "TranslocatorFluid");
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
-		registerUtil(GTTileSuperconductorCable.class, "SuperconductorCable");
-		registerUtil(GTTileSuperconductorCable2.class, "SuperconductorCable2");
-		registerUtil(GTTileSuperconductorCable4.class, "SuperconductorCable4");
+		registerUtil(GTTileSuperconductorCables.SuperconductorMAX.class, "SuperconductorCableMAX");
+		registerUtil(GTTileSuperconductorCables.SuperconductorIV.class, "SuperconductorCableIV");
+		registerUtil(GTTileSuperconductorCables.SuperconductorHV.class, "SuperconductorCableHV");
 		registerUtil(GTTileDataCable.class, "DataCable");
 		registerUtil(GTTileDigitizerItem.class, "ItemImporter");
 		registerUtil(GTTileDigitizerFluid.class, "FluidImporter");
 		registerUtil(GTTileReconstructorItem.class, "ItemExporter");
 		registerUtil(GTTileReconstructorFluid.class, "FluidExporter");
-		registerUtil(GTTileBaseDataNode.class, "TestModel");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {

@@ -7,11 +7,10 @@ import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelWire;
+import gtclassic.api.tile.GTTileBaseSuperconductorCable;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
-import gtclassic.common.tile.wiring.GTTileSuperconductorCable;
-import gtclassic.common.tile.wiring.GTTileSuperconductorCable2;
-import gtclassic.common.tile.wiring.GTTileSuperconductorCable4;
+import gtclassic.common.tile.GTTileSuperconductorCables;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.textures.Ic2Icons;
@@ -59,13 +58,13 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 
 	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
-		if (this == GTBlocks.tileSuperconductorCable2x) {
-			return new GTTileSuperconductorCable2();
+		if (this == GTBlocks.tileSuperconductorCableIV) {
+			return new GTTileSuperconductorCables.SuperconductorIV();
 		}
-		if (this == GTBlocks.tileSuperconductorCable4x) {
-			return new GTTileSuperconductorCable4();
+		if (this == GTBlocks.tileSuperconductorCableHV) {
+			return new GTTileSuperconductorCables.SuperconductorHV();
 		}
-		return new GTTileSuperconductorCable();
+		return new GTTileSuperconductorCables.SuperconductorMAX();
 	}
 
 	@Override
@@ -106,8 +105,8 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		try {
 			TileEntity tile = world.getTileEntity(pos);
-			if (tile instanceof GTTileSuperconductorCable) {
-				GTTileSuperconductorCable wire = (GTTileSuperconductorCable) tile;
+			if (tile instanceof GTTileBaseSuperconductorCable) {
+				GTTileBaseSuperconductorCable wire = (GTTileBaseSuperconductorCable) tile;
 				return new BlockStateContainerIC2.IC2BlockState(state, wire.getConnections());
 			}
 		} catch (Exception exception) {
@@ -118,10 +117,10 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
-		if (!(tile instanceof GTTileSuperconductorCable)) {
+		if (!(tile instanceof GTTileBaseSuperconductorCable)) {
 			return new AxisAlignedBB(0.25D, 0.25D, 0.25D, 0.75D, 0.75D, 0.75D);
 		} else {
-			GTTileSuperconductorCable pipe = (GTTileSuperconductorCable) tile;
+			GTTileBaseSuperconductorCable pipe = (GTTileBaseSuperconductorCable) tile;
 			double thickness = this.size / 32.0D;
 			double minX = 0.5D - thickness;
 			double minY = 0.5D - thickness;
@@ -153,13 +152,13 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 
 	@Override
 	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (this == GTBlocks.tileSuperconductorCable) {
+		if (this == GTBlocks.tileSuperconductorCableMAX) {
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));
 		}
-		if (this == GTBlocks.tileSuperconductorCable2x) {
+		if (this == GTBlocks.tileSuperconductorCableIV) {
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32769 })));
 		}
-		if (this == GTBlocks.tileSuperconductorCable4x) {
+		if (this == GTBlocks.tileSuperconductorCableHV) {
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 512 })));
 		}
 		tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));

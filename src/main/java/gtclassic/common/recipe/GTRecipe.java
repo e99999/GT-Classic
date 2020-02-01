@@ -11,6 +11,9 @@ import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
+import ic2.core.block.machine.low.TileEntityCompressor;
+import ic2.core.block.machine.low.TileEntityExtractor;
+import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -22,9 +25,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class GTRecipe {
 
@@ -278,7 +284,7 @@ public class GTRecipe {
 		/** Supercondensator **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSupercondensator, 1), "EAE", "SMS", "EAE", 'E', "circuitMaster", 'S', "craftingSuperconductor", 'A', "batteryUltimate", 'M', "machineBlockAdvanced");
 		/** Superconductor Cable **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable, 4), "MEM", "SSS", "MEM", 'E', "circuitMaster", 'S', "craftingSuperconductor", 'M', Ic2Items.magnet);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 4), "MEM", "SSS", "MEM", 'E', "circuitMaster", 'S', "craftingSuperconductor", 'M', Ic2Items.magnet);
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), "CRC", "JMN", "CBC", 'C', "circuitBasic", 'R', "record", 'J', Blocks.JUKEBOX, 'M', "machineBlockAdvanced", 'N', Blocks.NOTEBLOCK, 'B', Ic2Items.battery);
 		/** Monster Repellator **/
@@ -303,12 +309,12 @@ public class GTRecipe {
 
 	public static void initCables() {
 		/** Superconductor Cable x 2 **/
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 2), GTMaterialGen.get(GTBlocks.tileSuperconductorCable, 1));
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 2), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1));
 		/** Superconductor Cable x 4 **/
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable4x, 2), GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 1));
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable2x, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCable4x, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCable4x, 1));
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCable, 1), "CC", "CC", 'C', GTBlocks.tileSuperconductorCable4x);
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 2), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1));
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), "CC", "CC", 'C', GTBlocks.tileSuperconductorCableHV);
 	}
 
 	public static void initIC2() {
@@ -445,5 +451,47 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Platinum, 1), "  U", "UUU", "UUU", 'U', GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true);
 			recipes.addRecipe(GTMaterialGen.getDust(GTMaterial.Tungsten, 6), "U  ", "UUU", "UUU", 'U', GTMaterialGen.getIc2(Ic2Items.uuMatter, 1), true);
 		}
+	}
+
+	public static void initProcessing() {
+		GameRegistry.addSmelting(GTMaterialGen.get(GTBlocks.oreSheldonite, 1), (GTMaterialGen.getIngot(GTMaterial.Platinum, 1)), 0.1F);
+		maceratorUtil("oreBauxite", 1, GTMaterialGen.getDust(GTMaterial.Bauxite, 4));
+		maceratorUtil("oreIridium", 1, GTMaterialGen.getDust(GTMaterial.Iridium, 2));
+		TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1), GTMaterialGen.getDust(GTMaterial.Iridium, 1));
+		TileEntityMacerator.addRecipe("stoneMarble", 1, GTMaterialGen.getDust(GTMaterial.Calcite, 1));
+		TileEntityMacerator.addRecipe("stoneLimestone", 1, GTMaterialGen.getDust(GTMaterial.Calcite, 1));
+		TileEntityMacerator.addRecipe("stoneBasalt", 1, GTMaterialGen.getDust(GTMaterial.Basalt, 1));
+		TileEntityMacerator.addRecipe(GTMaterialGen.get(Items.FLINT, 1), GTMaterialGen.getDust(GTMaterial.Flint, 1));
+		TileEntityMacerator.addRecipe("enderpearl", 1, GTMaterialGen.getDust(GTMaterial.EnderPearl, 1));
+		TileEntityMacerator.addRecipe(GTMaterialGen.get(Items.ENDER_EYE, 1), GTMaterialGen.getDust(GTMaterial.EnderEye, 2));
+		TileEntityMacerator.addRecipe("gemEmerald", 1, GTMaterialGen.getDust(GTMaterial.Emerald, 1));
+		TileEntityMacerator.addRecipe("logWood", 1, GTMaterialGen.getDust(GTMaterial.Wood, 6));
+		TileEntityMacerator.addRecipe(GTMaterialGen.get(GTBlocks.oreChid), (GTMaterialGen.getDust(GTMaterial.BrownDye, 1)));
+		TileEntityMacerator.addRecipe(GTMaterialGen.get(GTBlocks.phosphorLily), (GTMaterialGen.getDust(GTMaterial.Phosphorus, 1)));
+		TileEntityExtractor.addRecipe("oreRuby", 1, GTMaterialGen.getGem(GTMaterial.Ruby, 3), 0.1F);
+		TileEntityExtractor.addRecipe("oreSapphire", 1, GTMaterialGen.getGem(GTMaterial.Sapphire, 3), 0.1F);
+		TileEntityExtractor.addRecipe(GTMaterialGen.get(GTBlocks.brittleCharcoal), new ItemStack(Items.COAL, 3, 1), 0.1F);
+		TileEntityCompressor.addRecipe("dustEmerald", 1, GTMaterialGen.get(Items.EMERALD, 1));
+		TileEntityCompressor.addRecipe("dustCarbon", 8, GTMaterialGen.getIc2(Ic2Items.carbonFiber, 1));
+		TileEntityCompressor.addRecipe("dustUranium", 1, GTMaterialGen.getIc2(Ic2Items.uraniumIngot, 1), 0.3F);
+		TileEntityCompressor.addRecipe("dustThorium", 1, GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
+		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Sodium), 3800, 8);
+		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Methane), 3000, 16);
+		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Fuel), 4000, 30);
+		if (GTConfig.general.addHydrogenAsLiquidFuel) {
+			ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Hydrogen), 950, 16);
+		}
+		ItemStack fullCan = GTMaterialGen.get(GTItems.sprayCan);
+		NBTTagCompound nbt = StackUtil.getNbtData(fullCan);
+		nbt.setInteger("color", 15);
+		ClassicRecipes.canningMachine.registerCannerItem(GTMaterialGen.get(GTItems.sprayCanEmpty), new RecipeInputItemStack(GTMaterialGen.getTube(GTMaterial.MagicDye, 1)), fullCan);
+	}
+
+	/*
+	 * Adds a macerator recipe while removing duplicates generated by ic2c
+	 */
+	public static void maceratorUtil(String input, int amount, ItemStack output) {
+		TileEntityMacerator.oreBlacklist.add(input);
+		TileEntityMacerator.addRecipe(input, amount, output);
 	}
 }
