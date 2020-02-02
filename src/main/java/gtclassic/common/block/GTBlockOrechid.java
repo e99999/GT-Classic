@@ -68,6 +68,7 @@ public class GTBlockOrechid extends GTBlockBase implements ICustomModeledBlock {
 		return BlockRenderLayer.CUTOUT;
 	}
 
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -121,7 +122,7 @@ public class GTBlockOrechid extends GTBlockBase implements ICustomModeledBlock {
 					&& (soil.getMaterial() == Material.GRASS || soil.getMaterial() == Material.GROUND);
 		}
 		if (this == GTBlocks.phosphorLily) {
-			return super.canPlaceBlockAt(worldIn, pos) && (soil.getBlock() == Blocks.NETHERRACK);
+			return super.canPlaceBlockAt(worldIn, pos) && soil.isFullBlock();
 		}
 		return super.canPlaceBlockAt(worldIn, pos);
 	}

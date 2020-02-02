@@ -5,7 +5,6 @@ import java.util.Random;
 import com.google.common.base.Predicate;
 
 import gtclassic.common.GTBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -104,9 +103,8 @@ public class GTBedrockOreMineable extends WorldGenerator {
 
 	private void generateNetherFlower(World worldIn, BlockPos blockpos) {
 		if (worldIn.rand.nextInt(4) == 0) {
-			for (int j = 0; j < 64; ++j) {
-				Block block = worldIn.getBlockState(blockpos.offset(EnumFacing.UP, j)).getBlock();
-				if (block == Blocks.NETHERRACK) {
+			for (int j = 0; j < 72; ++j) {
+				if (worldIn.getBlockState(blockpos.offset(EnumFacing.UP, j)).isFullBlock()) {
 					BlockPos upPos = blockpos.offset(EnumFacing.UP, j + 1);
 					if (worldIn.getBlockState(upPos).getBlock().isReplaceable(worldIn, upPos)) {
 						worldIn.setBlockState(upPos, GTBlocks.phosphorLily.getDefaultState());

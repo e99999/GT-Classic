@@ -33,7 +33,7 @@ public class GTOreGenerator {
 		int minHeight = 0;
 		int maxHeight = 10;
 		int heightdiff = maxHeight - minHeight + 1;
-		int chance = world.provider.getDimensionType().equals(DimensionType.NETHER) ? 4096 : 8192;
+		int chance = world.provider.getDimensionType().equals(DimensionType.NETHER) ? 2048 : 8192;
 		for (int i = 0; i < GTConfig.generation.bedrockOreWeight; i++) {
 			int var1 = rand.nextInt(chance);
 			if (var1 == 0) {

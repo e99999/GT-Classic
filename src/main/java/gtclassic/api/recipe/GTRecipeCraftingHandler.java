@@ -126,8 +126,6 @@ public class GTRecipeCraftingHandler {
 			}
 			if (object instanceof IRecipeInput) {
 				parsedEntries.add((IRecipeInput) object);
-			} else {
-				GTMod.logger.info("Oi bruv you avin a laugh bruv? Are you fuckin mental m8? You shovin a random object in my var args m8, you fuckin wanker");
 			}
 		}
 		IRecipeInput[] parsedFinal = new IRecipeInput[entries.length];
