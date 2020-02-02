@@ -1,12 +1,20 @@
 package gtclassic.api.recipe;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import gtclassic.GTMod;
+import ic2.api.recipe.IRecipeInput;
 import ic2.core.item.recipe.AdvRecipe;
 import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.item.recipe.AdvShapelessRecipe;
+import ic2.core.item.recipe.entry.RecipeInputCombined;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
@@ -99,5 +107,31 @@ public class GTRecipeCraftingHandler {
 		} catch (IllegalAccessException e) {
 			GTMod.logger.info("Accessed AdvRecipeBase class but access denied");
 		}
+	}
+
+	public static IRecipeInput combineRecipeObjects(Object... entries) {
+		List<IRecipeInput> parsedEntries = new ArrayList<>();
+		for (Object object : entries) {
+			if (object instanceof String) {
+				parsedEntries.add(new RecipeInputOreDict((String) object));
+			}
+			if (object instanceof Block) {
+				parsedEntries.add(new RecipeInputItemStack(new ItemStack((Block) object)));
+			}
+			if (object instanceof Item) {
+				parsedEntries.add(new RecipeInputItemStack(new ItemStack((Item) object)));
+			}
+			if (object instanceof ItemStack) {
+				parsedEntries.add(new RecipeInputItemStack(((ItemStack) object).copy()));
+			}
+			if (object instanceof IRecipeInput) {
+				parsedEntries.add((IRecipeInput) object);
+			} else {
+				GTMod.logger.info("Oi bruv you avin a laugh bruv? Are you fuckin mental m8? You shovin a random object in my var args m8, you fuckin wanker");
+			}
+		}
+		IRecipeInput[] parsedFinal = new IRecipeInput[entries.length];
+		parsedEntries.toArray(parsedFinal);
+		return new RecipeInputCombined(1, parsedFinal);
 	}
 }

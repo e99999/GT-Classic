@@ -49,6 +49,10 @@ public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
+		addColorTooltipInformation(stack, tooltip);
+	}
+
+	public static void addColorTooltipInformation(ItemStack stack, List<String> tooltip) {
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
 		if (nbt.hasKey("color")) {
 			tooltip.add(I18n.format(PAINTED_TRUE));

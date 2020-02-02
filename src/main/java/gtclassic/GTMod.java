@@ -80,7 +80,7 @@ public class GTMod {
 		GTCrops.init();
 		GTOreDict.init();
 		GTEventLootTableLoad.init();
-		MinecraftForge.EVENT_BUS.register(new GTSounds());
+		MinecraftForge.EVENT_BUS.register(GTSounds.class);
 	}
 
 	@Mod.EventHandler
@@ -93,8 +93,10 @@ public class GTMod {
 		GTRecipe.initShapeless();
 		GTRecipe.initItems();
 		GTRecipe.initBlocks();
-		GTRecipe.initCables();
 		GTRecipe.initIC2();
+		GTRecipe.initIC2Circuits();
+		GTRecipe.initIC2Jetpacks();
+		GTRecipe.initIC2Overrides();
 		GTRecipe.initProcessing();
 		GTBedrockOreHandler.bedrockOresInit();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
