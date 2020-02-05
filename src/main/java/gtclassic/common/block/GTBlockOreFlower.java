@@ -30,13 +30,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockOrechid extends GTBlockBase implements ICustomModeledBlock {
+public class GTBlockOreFlower extends GTBlockBase implements ICustomModeledBlock {
 
 	static final String TOOLTIP = "Indicates the presence of a bedrock ore deposit nearby";
 	String name;
 	int id;
 
-	public GTBlockOrechid(String name, int id) {
+	public GTBlockOreFlower(String name, int id) {
 		super(Material.PLANTS);
 		this.name = name;
 		this.id = id;
@@ -48,7 +48,7 @@ public class GTBlockOrechid extends GTBlockBase implements ICustomModeledBlock {
 		setSoundType(SoundType.PLANT);
 		setHarvestLevel("axe", 0);
 		if (id == 39) {
-			this.setLightLevel(2.5F);
+			this.setLightLevel(3.0F);
 		}
 	}
 
@@ -57,6 +57,7 @@ public class GTBlockOrechid extends GTBlockBase implements ICustomModeledBlock {
 		tooltip.add(I18n.format(TOOLTIP));
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState var1, EnumFacing var2) {
 		return Ic2Icons.getTextures(GTMod.MODID + "_items")[this.id];
@@ -68,7 +69,6 @@ public class GTBlockOrechid extends GTBlockBase implements ICustomModeledBlock {
 		return BlockRenderLayer.CUTOUT;
 	}
 
-	
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;

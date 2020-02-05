@@ -196,8 +196,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.dataCable, 6), "RRR", "CIC", "RRR", 'I', GTValues.INGOT_SILICON, 'C', GTValues.CIRCUIT_DATA, 'R', "itemRubber");
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerItem, 1), "CPC", "PMP", "CPC", 'P', GTValues.INPUT_PISTON_ANY, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON);
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerFluid, 1), "CPC", "PMP", "CPC", 'P', Items.BUCKET, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON);
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorItem, 1), "PIP", "CMC", "PIP", 'P', GTValues.INPUT_PISTON_ANY, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INGOT_PLATINUM);
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorFluid, 1), "PIP", "CMC", "PIP", 'P', Items.BUCKET, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INGOT_TUNGSTEN);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorItem, 1), "PIP", "CMC", "PIP", 'P', GTValues.INPUT_PISTON_ANY, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INPUT_INGOT_DIGITAL);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorFluid, 1), "PIP", "CMC", "PIP", 'P', Items.BUCKET, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INPUT_INGOT_DIGITAL);
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {

@@ -1,6 +1,8 @@
 # Changelog
 
 # 1.1.1 (Not Released)
+- Changed lava centrifuging recipe to give Copper intsead of iron like most older GT's.
+- Changed Data Reconstructors using Platinum and Tungsten only, now use the same Chrome/Titanium/Platinum options as the QChest/QTank etc..
 - Added hidden recipe for making fireworks from Phosphorus in addition to Gun Powder.
 - Added Phosphor Lilys, the Nether counterpart to the Orechid. Nether bedrock ore veins are now 4 x as likely as the Overworld as well. Thanks to Globalista Maoista for doing the texture!
 - Added a Centrifuge recipe for a small amount of Thorium from hydrated coal.

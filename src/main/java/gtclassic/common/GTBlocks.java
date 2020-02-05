@@ -21,7 +21,7 @@ import gtclassic.common.block.GTBlockMiningPipe;
 import gtclassic.common.block.GTBlockMortar;
 import gtclassic.common.block.GTBlockOre;
 import gtclassic.common.block.GTBlockOreBedrock;
-import gtclassic.common.block.GTBlockOrechid;
+import gtclassic.common.block.GTBlockOreFlower;
 import gtclassic.common.block.GTBlockQuantumChest;
 import gtclassic.common.block.GTBlockQuantumTank;
 import gtclassic.common.block.GTBlockStorage;
@@ -107,8 +107,7 @@ public class GTBlocks {
 	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 4, 500.0F));
 	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 6, 250.0F));
-	// public static final GTBlockCasing casingQuantum = registerBlock(new
-	// GTBlockCasing("quantum", 46, 1000.0F));
+	public static final GTBlockCasing casingQuantum = registerBlock(new GTBlockCasing("quantum", 46, 1000.0F));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE, 3));
@@ -154,8 +153,8 @@ public class GTBlocks {
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockMortar flintMortar = registerBlock(new GTBlockMortar("flintmortar", "axe"));
 	public static final GTBlockMortar ironMortar = registerBlock(new GTBlockMortar("ironmortar", "pickaxe"));
-	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid("orechid", 38));
-	public static final GTBlockOrechid phosphorLily = registerBlock(new GTBlockOrechid("phosphorlily", 39));
+	public static final GTBlockOreFlower oreChid = registerBlock(new GTBlockOreFlower("orechid", 38));
+	public static final GTBlockOreFlower phosphorLily = registerBlock(new GTBlockOreFlower("phosphorlily", 39));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 
 	public static void registerBlocks() {

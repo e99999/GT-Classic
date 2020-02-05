@@ -12,7 +12,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class GTValues {
-	
+
 	private GTValues() {
 		throw new IllegalStateException("Utility class");
 	}
