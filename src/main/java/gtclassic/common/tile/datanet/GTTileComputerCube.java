@@ -1,5 +1,6 @@
 package gtclassic.common.tile.datanet;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -31,12 +32,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTTileComputerCube extends TileEntityElecMachine
 		implements IHasGui, IGTDebuggableTile, ITickable, IGTDataNetObject {
 
-	boolean isOnlyComputer = true;
-	Processor task = null;
-	static final AabbUtil.IBlockFilter DATA_FILTER = new GTIBlockFilters.DataNetFilter();
-	Set<BlockPos> dataNet = new HashSet<>();
-	int nodeCount = 0;
-	int energyCost = 0;
+	private boolean isOnlyComputer = true;
+	private Processor task = null;
+	private static final AabbUtil.IBlockFilter DATA_FILTER = new GTIBlockFilters.DataNetFilter();
+	private Set<BlockPos> dataNet = new HashSet<>();
+	private int nodeCount = 0;
+	private int energyCost = 0;
 
 	public GTTileComputerCube() {
 		super(0, 2048);
@@ -149,8 +150,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 			}
 			TileEntity tile = world.getTileEntity(resultPos);
 			if (tile != this && tile instanceof GTTileComputerCube) {
-				((GTTileComputerCube) tile).isOnlyComputer = false;
-				((GTTileComputerCube) tile).setActive(false);
+				((GTTileComputerCube) tile).disableComputer();
 			}
 			if (tile instanceof IGTDataNetObject) {
 				this.energyCost = this.energyCost + ((IGTDataNetObject) tile).getCost();
@@ -163,6 +163,11 @@ public class GTTileComputerCube extends TileEntityElecMachine
 		}
 		this.updateGui();
 	}
+	
+	public void disableComputer() {
+		this.isOnlyComputer = false;
+		this.setActive(false);
+	}
 
 	public boolean hasNodes() {
 		return this.dataNet != null && !this.dataNet.isEmpty();
@@ -174,6 +179,14 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	public int getEnergyCost() {
 		return this.energyCost;
+	}
+	
+	public boolean hasDataNetwork() {
+		return this.dataNet != null && !this.dataNet.isEmpty();
+	}
+	
+	public Set<BlockPos> getDataNetwork(){
+		return Collections.unmodifiableSet(this.dataNet);
 	}
 
 	@Override

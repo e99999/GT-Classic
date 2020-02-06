@@ -136,7 +136,7 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		data.put("Node Facing: " + this.getFacing().toString().toUpperCase(), false);
-		if (this.computer != null && this.computer.dataNet != null) {
+		if (this.computer != null && this.computer.hasDataNetwork()) {
 			data.put("Connected to network", false);
 		} else {
 			data.put("No network found or network is not powered", false);

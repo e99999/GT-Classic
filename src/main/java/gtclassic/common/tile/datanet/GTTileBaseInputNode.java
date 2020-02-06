@@ -22,7 +22,7 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 			this.computer = null;
 		}
 		if (world.getTotalWorldTime() % GTUtility.DATA_NET_TICK_RATE == 0) {
-			if (this.computer == null || this.computer.dataNet == null || this.computer.dataNet.isEmpty()) {
+			if (this.computer == null || !this.computer.hasDataNetwork()) {
 				return;
 			}
 			if (world.isBlockPowered(this.getPos())) {
@@ -31,7 +31,7 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 			if (!world.isBlockLoaded(this.pos.offset(this.getFacing()))) {
 				return;
 			}
-			for (BlockPos nodePos : this.computer.dataNet) {
+			for (BlockPos nodePos : this.computer.getDataNetwork()) {
 				if (!world.isBlockLoaded(nodePos) || nodePos == this.pos) {
 					continue;
 				}
