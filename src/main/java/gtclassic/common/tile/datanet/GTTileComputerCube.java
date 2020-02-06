@@ -47,7 +47,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	@Override
 	public void onUnloaded() {
-		if (this.isSimulating() && this.hasNodes()) {
+		if (this.isSimulating() && this.hasDataNetwork()) {
 			for (BlockPos pPos : dataNet) {
 				TileEntity worldTile = world.getTileEntity(pPos);
 				if (worldTile instanceof GTTileBaseDataNode) {
@@ -139,7 +139,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	/**
 	 * Called when a task is completed, parses the task results to the data network
-	 * filtering out cables, simultaneity updates tiles on the newly parsed network./
+	 * filtering out cables, simultaneity updates tiles on the newly parsed network.
 	 */
 	private void onTaskComplete() {
 		this.nodeCount = 0;
@@ -164,13 +164,12 @@ public class GTTileComputerCube extends TileEntityElecMachine
 		this.updateGui();
 	}
 	
+	/**
+	 * Called when multiple computers conflict on a single network
+	 */
 	public void disableComputer() {
 		this.isOnlyComputer = false;
 		this.setActive(false);
-	}
-
-	public boolean hasNodes() {
-		return this.dataNet != null && !this.dataNet.isEmpty();
 	}
 
 	public int getNodeCount() {
@@ -181,10 +180,18 @@ public class GTTileComputerCube extends TileEntityElecMachine
 		return this.energyCost;
 	}
 	
+	/**
+	 * Checks if the data network on this computer is null or empty.
+	 * @return true if data networks exists and has at least one entry.
+	 */
 	public boolean hasDataNetwork() {
 		return this.dataNet != null && !this.dataNet.isEmpty();
 	}
 	
+	/**
+	 * Getter for the network connected to this computer
+	 * @return an unmodifiable BlockPos Set of each node's block position.
+	 */
 	public Set<BlockPos> getDataNetwork(){
 		return Collections.unmodifiableSet(this.dataNet);
 	}

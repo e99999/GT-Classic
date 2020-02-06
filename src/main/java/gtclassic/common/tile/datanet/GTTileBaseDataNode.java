@@ -103,12 +103,12 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 		super.onBlockUpdate(block);
 		if (!this.isRendering()) {
 			RotationList newList = RotationList.EMPTY;
-			EnumFacing[] var3 = EnumFacing.VALUES;
-			int var4 = var3.length;
-			for (int var5 = 0; var5 < var4; ++var5) {
-				EnumFacing dir = var3[var5];
-				BlockPos worldPos = this.pos.offset(dir);
-				if (canConnect(worldPos)) {
+			EnumFacing[] facings = EnumFacing.VALUES;
+			int facingsLength = facings.length;
+			for (int i = 0; i < facingsLength; ++i) {
+				EnumFacing dir = facings[i];
+				BlockPos sidePos = this.pos.offset(dir);
+				if (canConnect(sidePos)) {
 					newList = newList.add(dir);
 				}
 			}
@@ -134,17 +134,6 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	}
 
 	@Override
-	public void getData(Map<String, Boolean> data) {
-		data.put("Node Facing: " + this.getFacing().toString().toUpperCase(), false);
-		if (this.computer != null && this.computer.hasDataNetwork()) {
-			data.put("Connected to network", false);
-		} else {
-			data.put("No network found or network is not powered", false);
-		}
-		data.put("Channel: " + this.channel, false);
-	}
-
-	@Override
 	public boolean hasLeftClick() {
 		return false;
 	}
@@ -156,6 +145,7 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 
 	@Override
 	public void onLeftClick(EntityPlayer var1, Side var2) {
+		// Empty because its unused but required by interface implementation
 	}
 
 	@Override
@@ -175,5 +165,16 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	@Override
 	public int getCost() {
 		return 1;
+	}
+	
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		data.put("Node Facing: " + this.getFacing().toString().toUpperCase(), false);
+		if (this.computer != null && this.computer.hasDataNetwork()) {
+			data.put("Connected to network", false);
+		} else {
+			data.put("No network found or network is not powered", false);
+		}
+		data.put("Channel: " + this.channel, false);
 	}
 }
