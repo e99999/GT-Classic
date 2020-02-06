@@ -119,8 +119,8 @@ public class GTIFilters {
 			if (stack.isEmpty()) {
 				return true;
 			}
-			if (!this.tile.blacklist.isEmpty()) {
-				for (ItemStack bStack : this.tile.blacklist) {
+			if (!this.tile.getBlacklist().isEmpty()) {
+				for (ItemStack bStack : this.tile.getBlacklist()) {
 					if (GTHelperStack.isEqual(bStack, stack.copy())) {
 						return true;
 					}

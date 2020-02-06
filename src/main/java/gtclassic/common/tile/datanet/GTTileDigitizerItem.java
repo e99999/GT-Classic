@@ -1,6 +1,7 @@
 package gtclassic.common.tile.datanet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import gtclassic.api.helpers.GTUtility;
 import gtclassic.common.util.GTIFilters;
@@ -13,7 +14,7 @@ import net.minecraft.item.ItemStack;
 
 public class GTTileDigitizerItem extends GTTileBaseInputNode {
 
-	public ArrayList<ItemStack> blacklist = new ArrayList<>();
+	private ArrayList<ItemStack> blacklist = new ArrayList<>();
 
 	/** Transmits Items from the facing pos to valid output nodes on the network **/
 	public GTTileDigitizerItem() {
@@ -36,7 +37,7 @@ public class GTTileDigitizerItem extends GTTileBaseInputNode {
 		int limit = slave.getSizeInventory(getFacing());
 		for (int i = 0; i < limit; ++i) {
 			if (i == limit - 1) {
-				blacklist.clear();
+				getBlacklist().clear();
 			}
 			IFilter filter = node.inventoryFilter() != null ? node.inventoryFilter()
 					: new InvertedFilter(new GTIFilters.ItemDigitizerFilter(this));
@@ -44,13 +45,20 @@ public class GTTileDigitizerItem extends GTTileBaseInputNode {
 			ItemStack added = nodeTile.addItem(stack, node.inventoryFacing(), true);
 			if (added.getCount() <= 0) {
 				if (!stack.isEmpty()) {
-					blacklist.add(stack);
+					getBlacklist().add(stack);
 				}
 			} else {
 				slave.removeItem(new BasicItemFilter(added), this.getFacing().getOpposite(), added.getCount(), true);
-				blacklist.clear();
+				getBlacklist().clear();
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * @return The current blacklist being used in the iterator
+	 */
+	public List<ItemStack> getBlacklist() {
+		return blacklist;
 	}
 }

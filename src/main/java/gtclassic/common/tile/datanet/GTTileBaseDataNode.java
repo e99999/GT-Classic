@@ -2,6 +2,8 @@ package gtclassic.common.tile.datanet;
 
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
@@ -27,8 +29,8 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	public RotationList connection;
 	@NetworkField(index = 9)
 	public RotationList anchors;
-	public GTTileComputerCube computer;
-	public int channel;
+	private GTTileComputerCube computer;
+	private int channel;
 	private static final String NBT_CONNECTION = "connection";
 	private static final String NBT_ANCHORS = "anchors";
 
@@ -148,6 +150,35 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 		// Empty because its unused but required by interface implementation
 	}
 
+	/**
+	 * Get the computer cube associated with this tile.
+	 * 
+	 * @return GTTileComputer - the computer or null depending on the status
+	 */
+	@Nullable
+	public GTTileComputerCube getComputer() {
+		return this.computer;
+	}
+
+	/**
+	 * Set the computer cube associated with this tile.
+	 * 
+	 * @param GTTileComputer - the computer to set, or can be null if you want to
+	 *                       remove the linked computer
+	 */
+	public void setComputer(@Nullable GTTileComputerCube computer) {
+		this.computer = computer;
+	}
+
+	/**
+	 * Get the channel set for this node
+	 * 
+	 * @return int - the channel
+	 */
+	public int getChannel() {
+		return this.channel;
+	}
+
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand var2, EnumFacing var3, Side var4) {
 		if (player.isSneaking()) {
@@ -166,7 +197,7 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	public int getCost() {
 		return 1;
 	}
-	
+
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		data.put("Node Facing: " + this.getFacing().toString().toUpperCase(), false);

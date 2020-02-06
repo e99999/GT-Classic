@@ -20,6 +20,7 @@ public class GTIcons {
 
 	private static final Map<Block, int[]> TEXTURE_MAP = new HashMap<>();
 	private static final int[] SET_NULL = { 111, 111 };
+	public static final TextureAtlasSprite[] SET_EMPTY = {};
 
 	/**
 	 * Null texture key: 110 (Black) = The array passed to the texture builder was

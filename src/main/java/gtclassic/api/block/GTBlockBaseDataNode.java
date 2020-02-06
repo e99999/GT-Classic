@@ -5,6 +5,7 @@ import java.util.Random;
 
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelDataNode;
+import gtclassic.common.GTIcons;
 import gtclassic.common.tile.datanet.GTTileBaseDataNode;
 import ic2.core.IC2;
 import ic2.core.RotationList;
@@ -99,7 +100,7 @@ public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite[] getIconSheet(int arg0) {
-		return null;
+		return GTIcons.SET_EMPTY;
 	}
 
 	@SideOnly(Side.CLIENT)

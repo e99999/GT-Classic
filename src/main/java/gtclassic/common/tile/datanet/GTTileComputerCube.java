@@ -48,10 +48,10 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	@Override
 	public void onUnloaded() {
 		if (this.isSimulating() && this.hasDataNetwork()) {
-			for (BlockPos pPos : dataNet) {
-				TileEntity worldTile = world.getTileEntity(pPos);
-				if (worldTile instanceof GTTileBaseDataNode) {
-					((GTTileBaseDataNode) worldTile).computer = null;
+			for (BlockPos nodePos : dataNet) {
+				TileEntity tile = world.getTileEntity(nodePos);
+				if (tile instanceof GTTileBaseDataNode) {
+					((GTTileBaseDataNode) tile).setComputer(null);
 				}
 			}
 		}
@@ -109,6 +109,12 @@ public class GTTileComputerCube extends TileEntityElecMachine
 		return 1.0D;
 	}
 
+	public void tryUseEnergy() {
+		if (this.energyCost > 0) {
+			this.useEnergy(this.energyCost);
+		}
+	}
+
 	@Override
 	public void update() {
 		this.setActive(this.isOnlyComputer && this.energy > 0);
@@ -116,10 +122,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 			this.isOnlyComputer = true;
 			this.dataNet.clear();
 		}
-		// set energy drain to node count, this includes itself
-		if (this.energyCost > 0) {
-			this.useEnergy(this.energyCost);
-		}
+		tryUseEnergy();
 		if (this.isOnlyComputer) {
 			if (task != null && world.isAreaLoaded(pos, 16)) {
 				task.update();
@@ -156,49 +159,56 @@ public class GTTileComputerCube extends TileEntityElecMachine
 				this.energyCost = this.energyCost + ((IGTDataNetObject) tile).getCost();
 			}
 			if (tile instanceof GTTileBaseDataNode) {
-				((GTTileBaseDataNode) tile).computer = this.energy > 0 ? this : null;
+				((GTTileBaseDataNode) tile).setComputer(this.energy > 0 ? this : null);
 				this.dataNet.add(resultPos);
 				this.nodeCount++;
 			}
 		}
 		this.updateGui();
 	}
-	
+
 	/**
-	 * Called when multiple computers conflict on a single network
+	 * Called when multiple computers conflict on a single network.
 	 */
 	public void disableComputer() {
 		this.isOnlyComputer = false;
 		this.setActive(false);
 	}
 
+	/**
+	 * Get the amount of nodes on this computers network.
+	 * 
+	 * @return int - the amount of nodes.
+	 */
 	public int getNodeCount() {
 		return this.nodeCount;
 	}
 
+	/**
+	 * Get the current energy cost of maintaining the current network
+	 * 
+	 * @return int - the cost, returns 0 if no network.
+	 */
 	public int getEnergyCost() {
 		return this.energyCost;
 	}
-	
+
 	/**
 	 * Checks if the data network on this computer is null or empty.
+	 * 
 	 * @return true if data networks exists and has at least one entry.
 	 */
 	public boolean hasDataNetwork() {
 		return this.dataNet != null && !this.dataNet.isEmpty();
 	}
-	
+
 	/**
 	 * Getter for the network connected to this computer
+	 * 
 	 * @return an unmodifiable BlockPos Set of each node's block position.
 	 */
-	public Set<BlockPos> getDataNetwork(){
+	public Set<BlockPos> getDataNetwork() {
 		return Collections.unmodifiableSet(this.dataNet);
-	}
-
-	@Override
-	public void getData(Map<String, Boolean> data) {
-		data.put("Nodes in network: " + this.getNodeCount(), false);
 	}
 
 	public void updateGui() {
@@ -209,5 +219,10 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	@Override
 	public int getCost() {
 		return 0;
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		data.put("Nodes in network: " + this.getNodeCount(), false);
 	}
 }

@@ -19,7 +19,7 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % GTUtility.DATA_NET_RESET_RATE == 0) {
-			this.computer = null;
+			this.setComputer(null);
 		}
 		if (world.getTotalWorldTime() % GTUtility.DATA_NET_TICK_RATE == 0) {
 			if (!canWork()) {
@@ -30,14 +30,14 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 	}
 
 	private void iterateDataNetwork() {
-		for (BlockPos nodePos : this.computer.getDataNetwork()) {
+		for (BlockPos nodePos : this.getComputer().getDataNetwork()) {
 			if (!world.isBlockLoaded(nodePos) || nodePos == this.pos) {
 				continue;
 			}
 			TileEntity tile = world.getTileEntity(nodePos);
 			if (tile instanceof GTTileBaseOutputNode) {
 				GTTileBaseOutputNode node = (GTTileBaseOutputNode) tile;
-				if (this.channel != node.channel) {
+				if (this.getChannel() != node.getChannel()) {
 					continue;
 				}
 				if (onDataNetTick(node)) {
@@ -48,14 +48,16 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 	}
 
 	/**
-	 * The logic for what this node should do/look for while all nodes are passed over via iteration.
+	 * The logic for what this node should do/look for while all nodes are passed
+	 * over via iteration.
+	 * 
 	 * @param node - each node on the network gets passed through this arg
 	 * @return - true if a transfer was made, false will keep iterating.
 	 */
 	public abstract boolean onDataNetTick(GTTileBaseOutputNode node);
 
 	public boolean canWork() {
-		if (this.computer == null || !this.computer.hasDataNetwork()) {
+		if (this.getComputer() == null || !this.getComputer().hasDataNetwork()) {
 			return false;
 		}
 		if (!world.isBlockLoaded(this.pos.offset(this.getFacing()))) {
