@@ -50,6 +50,6 @@ public class GTBlockDataNode extends GTBlockBaseDataNode {
 		if (this == GTBlocks.tileDigitizerFluid) {
 			return new GTTileDigitizerFluid();
 		}
-		return new TileEntityBlock();
+		return new GTTileReconstructorItem();
 	}
 }

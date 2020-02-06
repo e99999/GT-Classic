@@ -3,7 +3,6 @@ package gtclassic.api.block;
 import java.util.List;
 import java.util.Random;
 
-import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelDataNode;
 import gtclassic.common.tile.datanet.GTTileBaseDataNode;
@@ -28,7 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements IGTReaderInfoBlock, IGTDataNetObject {
+public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements IGTReaderInfoBlock {
 
 	int size;
 	int id;

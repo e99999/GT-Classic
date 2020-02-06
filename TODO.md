@@ -2,6 +2,7 @@
 - MAJOR STUFF
 - Some sort of tesseract multiblock with the data net
 - Redstone data net nodes
+- Ocean based multis or tiles to get people in the oceans
 
 - MINOR STUFF
 - Fix Speiger's total apathy twoards rotated block textures

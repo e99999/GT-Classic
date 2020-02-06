@@ -171,7 +171,7 @@ public class GTModelDataNode extends BaseModel {
 			} else {
 				face = this.getFace(facing, min, max);
 			}
-			TextureAtlasSprite texture = side == facing.getOpposite() ? this.backOfNodeSprite : this.nodeSprite;
+			TextureAtlasSprite texture = side == facing ? this.nodeSprite : this.backOfNodeSprite;
 			quads.add(this.getBakery().makeBakedQuad((Vector3f) position.getKey(), (Vector3f) position.getValue(), face, texture, side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 		}
 		return quads;

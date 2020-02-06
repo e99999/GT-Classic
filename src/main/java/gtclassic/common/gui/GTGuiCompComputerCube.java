@@ -28,10 +28,11 @@ public class GTGuiCompComputerCube extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString("Network Info:", 52, 8, Color.CYAN.hashCode());
-		int count = this.block.nodeCount;
-		gui.drawString("EU: " + this.block.energy, 52, 18, Color.CYAN.hashCode());
-		gui.drawString("Nodes: " + count + "/512", 52, 28, Color.CYAN.hashCode());
-		gui.drawString("Cost: -" + count + " EU/t", 52, 38, Color.CYAN.hashCode());
+		gui.drawString("Data Network Info:", 11, 8, Color.CYAN.hashCode());
+		int count = this.block.getNodeCount();
+		int drain = this.block.getEnergyCost();
+		gui.drawString("EU: " + this.block.energy, 11, 18, Color.CYAN.hashCode());
+		gui.drawString("Nodes: " + count + "/" + block.maxInput, 11, 28, Color.CYAN.hashCode());
+		gui.drawString("Cost: -" + drain + " EU/t", 11, 38, Color.CYAN.hashCode());
 	}
 }

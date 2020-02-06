@@ -129,7 +129,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			tooltip.add("Energy Usage: 4096 EU Per Operation");
 		}
 		if (this == GTBlocks.tileComputer) {
-			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
+			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
 			tooltip.add("Energy Usage: 1 EU Per Network Node");
 		}
 		if (this == GTBlocks.tileEnergyTransmitter) {

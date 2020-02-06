@@ -171,4 +171,9 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 		}
 		return false;
 	}
+
+	@Override
+	public int getCost() {
+		return 1;
+	}
 }

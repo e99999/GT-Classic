@@ -145,4 +145,9 @@ public class GTBlockDataCable extends GTBlockBaseConnect implements IGTReaderInf
 	@Override
 	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 	}
+
+	@Override
+	public int getCost() {
+		return 0;
+	}
 }

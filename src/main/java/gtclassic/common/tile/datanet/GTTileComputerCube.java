@@ -32,15 +32,16 @@ public class GTTileComputerCube extends TileEntityElecMachine
 		implements IHasGui, IGTDebuggableTile, ITickable, IGTDataNetObject {
 
 	boolean isOnlyComputer = true;
-	private Processor task = null;
-	private AabbUtil.IBlockFilter filter = new GTIBlockFilters.DataNetFilter();
-	public Set<BlockPos> dataNet = new HashSet<>();
-	public int nodeCount = 0;
+	Processor task = null;
+	static final AabbUtil.IBlockFilter DATA_FILTER = new GTIBlockFilters.DataNetFilter();
+	Set<BlockPos> dataNet = new HashSet<>();
+	int nodeCount = 0;
+	int energyCost = 0;
 
 	public GTTileComputerCube() {
-		super(0, 512);
+		super(0, 2048);
 		this.maxEnergy = 10000;
-		this.addGuiFields(new String[] { "nodeCount" });
+		this.addGuiFields(new String[] { "nodeCount", "energyCost" });
 	}
 
 	@Override
@@ -79,6 +80,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	@Override
 	public void onGuiClosed(EntityPlayer entityPlayer) {
+		// Empty because its unused but required by interface implementation
 	}
 
 	@Override
@@ -108,14 +110,14 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	@Override
 	public void update() {
-		this.setActive(this.isOnlyComputer && this.energy > this.getNodeCount());
+		this.setActive(this.isOnlyComputer && this.energy > 0);
 		if (world.getTotalWorldTime() % GTUtility.DATA_NET_RESET_RATE == 0) {
 			this.isOnlyComputer = true;
 			this.dataNet.clear();
 		}
 		// set energy drain to node count, this includes itself
-		if (this.getNodeCount() > 0) {
-			this.useEnergy(this.getNodeCount());
+		if (this.energyCost > 0) {
+			this.useEnergy(this.energyCost);
 		}
 		if (this.isOnlyComputer) {
 			if (task != null && world.isAreaLoaded(pos, 16)) {
@@ -123,37 +125,43 @@ public class GTTileComputerCube extends TileEntityElecMachine
 				if (!task.isFinished()) {
 					return;
 				}
-				// getting all objects but skipping cables as nodes
-				for (BlockPos tPos : task.getResults()) {
-					if (!world.isBlockLoaded(tPos)) {
-						continue;
-					}
-					if (world.getBlockState(tPos).getBlock() != GTBlocks.dataCable) {
-						this.dataNet.add(tPos);
-					}
-				}
-				this.nodeCount = 0;
-				if (!dataNet.isEmpty()) {
-					for (BlockPos pPos : dataNet) {
-						TileEntity worldTile = world.getTileEntity(pPos);
-						if (worldTile != this && worldTile instanceof GTTileComputerCube) {
-							((GTTileComputerCube) worldTile).isOnlyComputer = false;
-						}
-						if (worldTile instanceof GTTileBaseDataNode) {
-							((GTTileBaseDataNode) worldTile).computer = this.energy > 0 ? this : null;
-							this.nodeCount++;
-						}
-					}
-				}
-				this.updateGui();
+				onTaskComplete();
 			}
 			if (world.getTotalWorldTime() % GTUtility.DATA_NET_SEARCH_RATE == 0) {
 				if (!world.isAreaLoaded(pos, 16))
 					return;
-				task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, filter, 64, false, false, true);
+				task = AabbUtil.createBatchTask(world, new BoundingBox(this.pos, 256), this.pos, RotationList.ALL, DATA_FILTER, 64, false, false, true);
 				task.update();
 			}
 		}
+	}
+
+	/**
+	 * Called when a task is completed, parses the task results to the data network
+	 * filtering out cables, simultaneity updates tiles on the newly parsed network./
+	 */
+	private void onTaskComplete() {
+		this.nodeCount = 0;
+		this.energyCost = 0;
+		for (BlockPos resultPos : task.getResults()) {
+			if (!world.isBlockLoaded(resultPos) || world.getBlockState(resultPos).getBlock() == GTBlocks.dataCable) {
+				continue;
+			}
+			TileEntity tile = world.getTileEntity(resultPos);
+			if (tile != this && tile instanceof GTTileComputerCube) {
+				((GTTileComputerCube) tile).isOnlyComputer = false;
+				((GTTileComputerCube) tile).setActive(false);
+			}
+			if (tile instanceof IGTDataNetObject) {
+				this.energyCost = this.energyCost + ((IGTDataNetObject) tile).getCost();
+			}
+			if (tile instanceof GTTileBaseDataNode) {
+				((GTTileBaseDataNode) tile).computer = this.energy > 0 ? this : null;
+				this.dataNet.add(resultPos);
+				this.nodeCount++;
+			}
+		}
+		this.updateGui();
 	}
 
 	public boolean hasNodes() {
@@ -164,6 +172,10 @@ public class GTTileComputerCube extends TileEntityElecMachine
 		return this.nodeCount;
 	}
 
+	public int getEnergyCost() {
+		return this.energyCost;
+	}
+
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		data.put("Nodes in network: " + this.getNodeCount(), false);
@@ -171,5 +183,11 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	public void updateGui() {
 		this.getNetwork().updateTileGuiField(this, "nodeCount");
+		this.getNetwork().updateTileGuiField(this, "energyCost");
+	}
+
+	@Override
+	public int getCost() {
+		return 0;
 	}
 }

@@ -37,9 +37,6 @@ public class GTBlockCasing extends GTBlockBase {
 		setResistance(resistance);
 		setHardness(3.0F);
 		setHarvestLevel("pickaxe", 2);
-		if (id == 46) {
-			setLightLevel(0.5F);
-		}
 	}
 
 	@Override
