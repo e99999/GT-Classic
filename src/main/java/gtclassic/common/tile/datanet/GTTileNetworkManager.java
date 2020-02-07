@@ -10,6 +10,7 @@ import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.container.GTContainerNetworkManager;
 import gtclassic.common.util.GTIBlockFilters;
+import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.RotationList;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
@@ -33,12 +34,13 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 	private Set<BlockPos> dataNet = new HashSet<>();
 	private int nodeCount = 0;
 	private int energyCost = 0;
-	public int energy = 128;
+	@NetworkField(index = 10)
+	public int energy = 0;
+	public int maxEnergy = 512;
 
 	public GTTileNetworkManager() {
 		super(0);
-		// this.maxEnergy = 10000;
-		this.addGuiFields(new String[] { "nodeCount", "energyCost", "energy" });
+		this.addGuiFields(new String[] { "nodeCount", "energyCost", "energy", "isOnlyManager" });
 	}
 
 	@Override
@@ -85,10 +87,23 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 		return false;
 	}
 
-	public void tryUseEnergy() {
-		// if (this.energyCost > 0) {
-		// this.useEnergy(this.energyCost);
-		// }
+	public void tryUseEnergy(int use) {
+		if (use > 0) {
+			this.energy -= use;
+			if (this.energy < 0) {
+				this.energy = 0;
+			}
+			this.getNetwork().updateTileGuiField(this, "energy");
+		}
+	}
+
+	public int getDemandedEnergy() {
+		return this.maxEnergy - this.energy;
+	}
+
+	public void injectEnergy(int amount) {
+		this.energy = this.energy + amount;
+		this.getNetwork().updateTileGuiField(this, "energy");
 	}
 
 	@Override
@@ -97,7 +112,7 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 			this.isOnlyManager = true;
 			this.dataNet.clear();
 		}
-		tryUseEnergy();
+		tryUseEnergy(this.energyCost);
 		if (this.isOnlyManager) {
 			if (task != null && world.isAreaLoaded(pos, 16)) {
 				task.update();
@@ -132,14 +147,25 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 			}
 			if (tile != this && tile instanceof GTTileNetworkManager) {
 				((GTTileNetworkManager) tile).disableManager();
+				this.disableManager();
 			}
 			if (tile != this && tile instanceof GTTileBaseDataNode) {
-				((GTTileBaseDataNode) tile).setDataManager(this.energy > 0 ? this : null);
+				updateNodeStatus((GTTileBaseDataNode) tile);
 				this.dataNet.add(resultPos);
 				this.nodeCount++;
 			}
 		}
 		this.updateGui();
+	}
+
+	public void updateNodeStatus(GTTileBaseDataNode node) {
+		if (node instanceof GTTileDigitizerEnergy) {
+			// if the tile is set to null by the computer it will never be able to power the
+			// network in the first place
+			((GTTileDigitizerEnergy) node).setDataManager(this);
+		} else {
+			node.setDataManager(this.energy > 0 ? this : null);
+		}
 	}
 
 	/**
@@ -166,6 +192,10 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 	public int getEnergyCost() {
 		return this.energyCost;
 	}
+	
+	public boolean isEnabled() {
+		return this.isOnlyManager;
+	}
 
 	/**
 	 * Checks if the data network on this computer is null or empty.
@@ -188,6 +218,8 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 	public void updateGui() {
 		this.getNetwork().updateTileGuiField(this, "nodeCount");
 		this.getNetwork().updateTileGuiField(this, "energyCost");
+		this.getNetwork().updateTileGuiField(this, "energy");
+		this.getNetwork().updateTileGuiField(this, "isOnlyManager");
 	}
 
 	@Override
@@ -198,5 +230,6 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		data.put("Nodes in network: " + this.getNodeCount(), false);
+		data.put("Stored Energy: " + this.energy, false);
 	}
 }

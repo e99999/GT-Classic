@@ -31,8 +31,14 @@ public class GTGuiCompNetworkManager extends GuiComponent {
 		gui.drawString("Data Network Info:", 11, 8, Color.CYAN.hashCode());
 		int count = this.block.getNodeCount();
 		int drain = this.block.getEnergyCost();
-		gui.drawString("EU: " + this.block.energy, 11, 18, Color.CYAN.hashCode());
+		gui.drawString("EU: " + this.block.energy + "/" + this.block.maxEnergy + " EU", 11, 18, Color.CYAN.hashCode());
 		gui.drawString("Nodes: " + count + "/64", 11, 28, Color.CYAN.hashCode());
 		gui.drawString("Cost: -" + drain + " EU/t", 11, 38, Color.CYAN.hashCode());
+		if (this.block.energy < 1) {
+			gui.drawString("Network has no power!", 11, 48, Color.CYAN.hashCode());
+		}
+		if (!this.block.isEnabled()) {
+			gui.drawString("Too many managers!", 11, 58, Color.CYAN.hashCode());
+		}
 	}
 }

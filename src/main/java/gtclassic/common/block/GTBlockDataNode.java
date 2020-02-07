@@ -5,6 +5,7 @@ import java.util.List;
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseDataNode;
 import gtclassic.common.GTBlocks;
+import gtclassic.common.tile.datanet.GTTileDigitizerEnergy;
 import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
 import gtclassic.common.tile.datanet.GTTileDigitizerItem;
 import gtclassic.common.tile.datanet.GTTileNetworkManager;
@@ -44,6 +45,9 @@ public class GTBlockDataNode extends GTBlockBaseDataNode {
 		}
 		if (this == GTBlocks.tileReconstructorFluid) {
 			return new GTTileReconstructorFluid();
+		}
+		if (this == GTBlocks.tileDigitizerEnergy) {
+			return new GTTileDigitizerEnergy();
 		}
 		if (this == GTBlocks.tileDigitizerItem) {
 			return new GTTileDigitizerItem();

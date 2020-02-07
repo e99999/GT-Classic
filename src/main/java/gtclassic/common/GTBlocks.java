@@ -60,6 +60,7 @@ import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.tile.datanet.GTTileDataCable;
+import gtclassic.common.tile.datanet.GTTileDigitizerEnergy;
 import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
 import gtclassic.common.tile.datanet.GTTileDigitizerItem;
 import gtclassic.common.tile.datanet.GTTileNetworkManager;
@@ -145,6 +146,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileTranslocatorFluid = registerBlock(new GTBlockMachine("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
 	public static final GTBlockMachine tileBufferFluid = registerBlock(new GTBlockMachine("bufferfluid", GTLang.BUFFER_FLUID, 2));
 	public static final GTBlockDataNode tileNetworkManager = registerBlock(new GTBlockDataNode("networkmanager", 64, GTLang.NETWORK_MANAGER));
+	public static final GTBlockDataNode tileDigitizerEnergy = registerBlock(new GTBlockDataNode("energydigitizer", 101, GTLang.TEST));
 	public static final GTBlockDataNode tileDigitizerItem = registerBlock(new GTBlockDataNode("itemdigitizer", 97, GTLang.ITEM_DIGITIZER));
 	public static final GTBlockDataNode tileDigitizerFluid = registerBlock(new GTBlockDataNode("fluiddigitizer", 98, GTLang.FLUID_DIGITIZER));
 	public static final GTBlockDataNode tileReconstructorItem = registerBlock(new GTBlockDataNode("itemreconstructor", 99, GTLang.ITEM_RECONSTRUCTOR));
@@ -228,6 +230,7 @@ public class GTBlocks {
 		registerUtil(GTTileSuperconductorCables.SuperconductorHV.class, "SuperconductorCableHV");
 		registerUtil(GTTileDataCable.class, "DataCable");
 		registerUtil(GTTileNetworkManager.class, "NetworkManager");
+		registerUtil(GTTileDigitizerEnergy.class, "EnergyImporter");
 		registerUtil(GTTileDigitizerItem.class, "ItemImporter");
 		registerUtil(GTTileDigitizerFluid.class, "FluidImporter");
 		registerUtil(GTTileReconstructorItem.class, "ItemExporter");
