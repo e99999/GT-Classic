@@ -1,5 +1,6 @@
 # Todo
 - MAJOR STUFF
+- Network energy input node so it can be working again
 - Some sort of tesseract multiblock with the data net
 - Redstone data net nodes
 - Ocean based multis or tiles to get people in the oceans

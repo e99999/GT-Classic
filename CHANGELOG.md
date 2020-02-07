@@ -1,7 +1,7 @@
 # Changelog
 
 # 1.1.1 (Not Released)
-- Changed Computer Cubes now have a max input of 2048 (EV) instead of 512 (HV) to handle upcoming different node types.
+- Changed Bedrock Miner texture thanks to help from CrossVas.
 - Changed lava centrifuging recipe to give Copper intsead of iron like most older GT's.
 - Changed Data Reconstructors using Platinum and Tungsten only, now use the same Chrome/Titanium/Platinum options as the QChest/QTank etc..
 - Added hidden recipe for making fireworks from Phosphorus in addition to Gun Powder.

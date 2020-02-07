@@ -42,10 +42,11 @@ public class GTIcons {
 		addAnimatedTexture("centrifuge_top", 11, 0);
 		addAnimatedTexture("centrifuge_side", 13, 0);
 		addAnimatedTexture("miner_top", 10, 1);
+		addAnimatedTexture("miner_front", 13, 6);
 		addAnimatedTexture("idsu", 13, 2);
 		addAnimatedTexture("idsu2", 14, 2);
 		setTexture(GTBlocks.tileCharcoalPit, 0, 25, 2, 2, 2, 2, 0, 26, 2, 2, 2, 2);
-		setTexture(GTBlocks.tileComputer, 9, 9, 9, 9, 9, 9);
+		setTexture(GTBlocks.tileComputer, 8, 8, 8, 8, 8, 8);
 		setTexture(GTBlocks.tileCentrifuge, 0, 10, 12, 12, 12, 12, 0, 11, 13, 13, 13, 13);
 		setTexture(GTBlocks.tilePlayerDetector, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15);
 		setTexture(GTBlocks.tileMobRepeller, 3, 16, 3, 3, 3, 3, 3, 17, 3, 3, 3, 3);
@@ -53,7 +54,7 @@ public class GTIcons {
 		setTexture(GTBlocks.tileEchotron, 18, 18, 18, 18, 18, 18);
 		setTexture(GTBlocks.tileChargeOmat, 3, 19, 3, 3, 3, 3, 3, 20, 3, 3, 3, 3);
 		setTexture(GTBlocks.tileDisassembler, 0, 21, 2, 22, 2, 2, 0, 21, 2, 23, 2, 2);
-		setTexture(GTBlocks.tileBedrockMiner, 24, 25, 2, 22, 2, 2, 24, 26, 2, 23, 2, 2);
+		setTexture(GTBlocks.tileBedrockMiner, 24, 25, 9, 108, 9, 9, 24, 26, 9, 109, 9, 9);
 		setTexture(GTBlocks.tileDragonEggEnergySiphon, 27, 29, 27, 27, 27, 27, 28, 29, 28, 28, 28, 28);
 		setTexture(GTBlocks.tileMagicEnergyConverter, 30, 30, 30, 27, 30, 30, 30, 30, 30, 31, 30, 30);
 		setTexture(GTBlocks.tileMagicEnergyAbsorber, 32, 33);
