@@ -64,6 +64,7 @@ public class GTGuiCompDirectionalProgress extends MachineProgressComp {
 	}
 
 	public enum Direction {
+
 		UP,
 		DOWN,
 		FORWARD,

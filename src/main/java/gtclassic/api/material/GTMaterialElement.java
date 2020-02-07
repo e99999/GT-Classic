@@ -70,7 +70,7 @@ public class GTMaterialElement {
 	 * Element object constructor where the input and output are the same stack.
 	 * 
 	 * @param number- int atomic number on the periodic table
-	 * @param stack- ItemStack input and fusion output stack
+	 * @param stack-  ItemStack input and fusion output stack
 	 */
 	public GTMaterialElement(int number, ItemStack stack) {
 		this(number, new RecipeInputItemStack(stack), stack);

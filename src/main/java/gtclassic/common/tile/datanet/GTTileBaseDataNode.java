@@ -29,7 +29,7 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	public RotationList connection;
 	@NetworkField(index = 9)
 	public RotationList anchors;
-	private GTTileComputerCube computer;
+	private GTTileNetworkManager manager;
 	private int channel;
 	private static final String NBT_CONNECTION = "connection";
 	private static final String NBT_ANCHORS = "anchors";
@@ -101,6 +101,11 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	}
 
 	@Override
+	public double getWrenchDropRate() {
+		return 1.0D;
+	}
+
+	@Override
 	public void onBlockUpdate(Block block) {
 		super.onBlockUpdate(block);
 		if (!this.isRendering()) {
@@ -151,23 +156,24 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	}
 
 	/**
-	 * Get the computer cube associated with this tile.
+	 * Get the network manager associated with this tile.
 	 * 
-	 * @return GTTileComputer - the computer or null depending on the status
+	 * @return GTTileNetworkManager - the network manager or null depending on the
+	 *         status
 	 */
 	@Nullable
-	public GTTileComputerCube getComputer() {
-		return this.computer;
+	public GTTileNetworkManager getDataManager() {
+		return this.manager;
 	}
 
 	/**
-	 * Set the computer cube associated with this tile.
+	 * Set the network manager associated with this tile.
 	 * 
-	 * @param GTTileComputer - the computer to set, or can be null if you want to
-	 *                       remove the linked computer
+	 * @param GTTileNetworkManager - the network manager to set, or can be null if
+	 *                             you want to remove the linked network manager
 	 */
-	public void setComputer(@Nullable GTTileComputerCube computer) {
-		this.computer = computer;
+	public void setDataManager(@Nullable GTTileNetworkManager manager) {
+		this.manager = manager;
 	}
 
 	/**
@@ -201,7 +207,7 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		data.put("Node Facing: " + this.getFacing().toString().toUpperCase(), false);
-		if (this.computer != null && this.computer.hasDataNetwork()) {
+		if (this.manager != null && this.manager.hasDataNetwork()) {
 			data.put("Connected to network", false);
 		} else {
 			data.put("No network found or network is not powered", false);

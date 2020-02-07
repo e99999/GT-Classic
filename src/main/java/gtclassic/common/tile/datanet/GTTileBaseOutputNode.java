@@ -31,7 +31,7 @@ public abstract class GTTileBaseOutputNode extends GTTileBaseDataNode implements
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % GTUtility.DATA_NET_RESET_RATE == 0) {
-			this.setComputer(null);
+			this.setDataManager(null);
 		}
 	}
 

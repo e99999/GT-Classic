@@ -19,7 +19,7 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % GTUtility.DATA_NET_RESET_RATE == 0) {
-			this.setComputer(null);
+			this.setDataManager(null);
 		}
 		if (world.getTotalWorldTime() % GTUtility.DATA_NET_TICK_RATE == 0) {
 			if (!canWork()) {
@@ -30,7 +30,7 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 	}
 
 	private void iterateDataNetwork() {
-		for (BlockPos nodePos : this.getComputer().getDataNetwork()) {
+		for (BlockPos nodePos : this.getDataManager().getDataNetwork()) {
 			if (!world.isBlockLoaded(nodePos) || nodePos == this.pos) {
 				continue;
 			}
@@ -57,7 +57,7 @@ public abstract class GTTileBaseInputNode extends GTTileBaseDataNode implements 
 	public abstract boolean onDataNetTick(GTTileBaseOutputNode node);
 
 	public boolean canWork() {
-		if (this.getComputer() == null || !this.getComputer().hasDataNetwork()) {
+		if (this.getDataManager() == null || !this.getDataManager().hasDataNetwork()) {
 			return false;
 		}
 		if (!world.isBlockLoaded(this.pos.offset(this.getFacing()))) {

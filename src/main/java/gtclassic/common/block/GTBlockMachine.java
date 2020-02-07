@@ -18,6 +18,7 @@ import gtclassic.common.tile.GTTileBufferSmall;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileCharcoalPit;
 import gtclassic.common.tile.GTTileChargeOMat;
+import gtclassic.common.tile.GTTileComputer;
 import gtclassic.common.tile.GTTileDigitalChest;
 import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
@@ -33,7 +34,6 @@ import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
-import gtclassic.common.tile.datanet.GTTileComputerCube;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
@@ -128,10 +128,6 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
 			tooltip.add("Energy Usage: 4096 EU Per Operation");
 		}
-		if (this == GTBlocks.tileComputer) {
-			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
-			tooltip.add("Energy Usage: 1 EU Per Network Node");
-		}
 		if (this == GTBlocks.tileEnergyTransmitter) {
 			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 512 })));
 			tooltip.add((Ic2InfoLang.electricMaxStorage.getLocalizedFormatted(new Object[] { 1000000 })));
@@ -175,7 +171,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.tileComputer) {
-			return new GTTileComputerCube();
+			return new GTTileComputer();
 		}
 		if (this == GTBlocks.tileCentrifuge) {
 			return new GTTileCentrifuge();
@@ -270,10 +266,10 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		if (thisIs(stack, GTBlocks.tileCentrifuge) || thisIs(stack, GTBlocks.tileFabricator)
-				|| thisIs(stack, GTBlocks.tileComputer) || thisIs(stack, GTBlocks.tileDisassembler)
-				|| thisIs(stack, GTBlocks.tileDragonEggEnergySiphon) || thisIs(stack, GTBlocks.tileMagicEnergyAbsorber)
-				|| thisIs(stack, GTBlocks.tileMagicEnergyConverter) || thisIs(stack, GTBlocks.tileFusionReactor)
-				|| thisIs(stack, GTBlocks.tileBedrockMiner) || thisIs(stack, GTBlocks.tileCharcoalPit)) {
+				|| thisIs(stack, GTBlocks.tileDisassembler) || thisIs(stack, GTBlocks.tileDragonEggEnergySiphon)
+				|| thisIs(stack, GTBlocks.tileMagicEnergyAbsorber) || thisIs(stack, GTBlocks.tileMagicEnergyConverter)
+				|| thisIs(stack, GTBlocks.tileFusionReactor) || thisIs(stack, GTBlocks.tileBedrockMiner)
+				|| thisIs(stack, GTBlocks.tileCharcoalPit)) {
 			return this.getDefaultBlockState().withProperty(active, true);
 		}
 		return this.getStateFromMeta(stack.getMetadata());

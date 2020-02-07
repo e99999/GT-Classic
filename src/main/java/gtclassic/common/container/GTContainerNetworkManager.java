@@ -1,8 +1,8 @@
 package gtclassic.common.container;
 
 import gtclassic.GTMod;
-import gtclassic.common.gui.GTGuiCompComputerCube;
-import gtclassic.common.tile.datanet.GTTileComputerCube;
+import gtclassic.common.gui.GTGuiCompNetworkManager;
+import gtclassic.common.tile.datanet.GTTileNetworkManager;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,14 +11,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerComputerCube extends ContainerTileComponent<GTTileComputerCube> {
+public class GTContainerNetworkManager extends ContainerTileComponent<GTTileNetworkManager> {
 
 	public static ResourceLocation TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/computercube.png");
 
-	public GTContainerComputerCube(InventoryPlayer player, GTTileComputerCube tile) {
+	public GTContainerNetworkManager(InventoryPlayer player, GTTileNetworkManager tile) {
 		super(tile);
 		this.addPlayerInventory(player, 0, 0);
-		this.addComponent(new GTGuiCompComputerCube(tile));
+		this.addComponent(new GTGuiCompNetworkManager(tile));
 	}
 
 	@Override

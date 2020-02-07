@@ -7,42 +7,38 @@ import java.util.Set;
 
 import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTDataNetObject;
-import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.GTBlocks;
-import gtclassic.common.container.GTContainerComputerCube;
+import gtclassic.common.container.GTContainerNetworkManager;
 import gtclassic.common.util.GTIBlockFilters;
 import ic2.core.RotationList;
-import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
-import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.util.helpers.AabbUtil;
 import ic2.core.util.helpers.AabbUtil.BoundingBox;
 import ic2.core.util.helpers.AabbUtil.Processor;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileComputerCube extends TileEntityElecMachine
-		implements IHasGui, IGTDebuggableTile, ITickable, IGTDataNetObject {
+public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui, ITickable {
 
-	private boolean isOnlyComputer = true;
+	private boolean isOnlyManager = true;
 	private Processor task = null;
 	private static final AabbUtil.IBlockFilter DATA_FILTER = new GTIBlockFilters.DataNetFilter();
 	private Set<BlockPos> dataNet = new HashSet<>();
 	private int nodeCount = 0;
 	private int energyCost = 0;
+	public int energy = 128;
 
-	public GTTileComputerCube() {
-		super(0, 2048);
-		this.maxEnergy = 10000;
-		this.addGuiFields(new String[] { "nodeCount", "energyCost" });
+	public GTTileNetworkManager() {
+		super(0);
+		// this.maxEnergy = 10000;
+		this.addGuiFields(new String[] { "nodeCount", "energyCost", "energy" });
 	}
 
 	@Override
@@ -51,7 +47,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 			for (BlockPos nodePos : dataNet) {
 				TileEntity tile = world.getTileEntity(nodePos);
 				if (tile instanceof GTTileBaseDataNode) {
-					((GTTileBaseDataNode) tile).setComputer(null);
+					((GTTileBaseDataNode) tile).setDataManager(null);
 				}
 			}
 		}
@@ -66,12 +62,7 @@ public class GTTileComputerCube extends TileEntityElecMachine
 
 	@Override
 	public ContainerIC2 getGuiContainer(EntityPlayer player) {
-		return new GTContainerComputerCube(player.inventory, this);
-	}
-
-	@Override
-	protected void addSlots(InventoryHandler handler) {
-		// nothing for now
+		return new GTContainerNetworkManager(player.inventory, this);
 	}
 
 	@Override
@@ -90,40 +81,24 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	}
 
 	@Override
-	public boolean canRemoveBlock(EntityPlayer player) {
-		return true;
-	}
-
-	@Override
-	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return facing != getFacing() && facing.getAxis().isHorizontal();
-	}
-
-	@Override
-	public boolean supportsNotify() {
-		return true;
-	}
-
-	@Override
-	public double getWrenchDropRate() {
-		return 1.0D;
+	public boolean hasRightClick() {
+		return false;
 	}
 
 	public void tryUseEnergy() {
-		if (this.energyCost > 0) {
-			this.useEnergy(this.energyCost);
-		}
+		// if (this.energyCost > 0) {
+		// this.useEnergy(this.energyCost);
+		// }
 	}
 
 	@Override
 	public void update() {
-		this.setActive(this.isOnlyComputer && this.energy > 0);
 		if (world.getTotalWorldTime() % GTUtility.DATA_NET_RESET_RATE == 0) {
-			this.isOnlyComputer = true;
+			this.isOnlyManager = true;
 			this.dataNet.clear();
 		}
 		tryUseEnergy();
-		if (this.isOnlyComputer) {
+		if (this.isOnlyManager) {
 			if (task != null && world.isAreaLoaded(pos, 16)) {
 				task.update();
 				if (!task.isFinished()) {
@@ -152,14 +127,14 @@ public class GTTileComputerCube extends TileEntityElecMachine
 				continue;
 			}
 			TileEntity tile = world.getTileEntity(resultPos);
-			if (tile != this && tile instanceof GTTileComputerCube) {
-				((GTTileComputerCube) tile).disableComputer();
-			}
 			if (tile instanceof IGTDataNetObject) {
 				this.energyCost = this.energyCost + ((IGTDataNetObject) tile).getCost();
 			}
-			if (tile instanceof GTTileBaseDataNode) {
-				((GTTileBaseDataNode) tile).setComputer(this.energy > 0 ? this : null);
+			if (tile != this && tile instanceof GTTileNetworkManager) {
+				((GTTileNetworkManager) tile).disableManager();
+			}
+			if (tile != this && tile instanceof GTTileBaseDataNode) {
+				((GTTileBaseDataNode) tile).setDataManager(this.energy > 0 ? this : null);
 				this.dataNet.add(resultPos);
 				this.nodeCount++;
 			}
@@ -170,9 +145,8 @@ public class GTTileComputerCube extends TileEntityElecMachine
 	/**
 	 * Called when multiple computers conflict on a single network.
 	 */
-	public void disableComputer() {
-		this.isOnlyComputer = false;
-		this.setActive(false);
+	public void disableManager() {
+		this.isOnlyManager = false;
 	}
 
 	/**

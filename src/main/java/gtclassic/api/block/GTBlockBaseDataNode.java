@@ -36,7 +36,7 @@ public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements 
 	public GTBlockBaseDataNode(int id) {
 		super();
 		this.id = id;
-		this.size = 6;
+		this.size = 4;
 	}
 
 	@Override

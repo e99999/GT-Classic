@@ -37,7 +37,7 @@ public class GTBlockDataCable extends GTBlockBaseConnect implements IGTReaderInf
 		super();
 		setUnlocalizedName(GTLang.DATACABLE);
 		setRegistryName("datacable");
-		this.size = 6;
+		this.size = 4;
 		this.setHardness(0.2F);
 		this.setSoundType(SoundType.CLOTH);
 		this.setHarvestLevel("axe", 0);

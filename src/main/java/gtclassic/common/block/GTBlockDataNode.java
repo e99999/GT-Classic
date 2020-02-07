@@ -7,6 +7,7 @@ import gtclassic.api.block.GTBlockBaseDataNode;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
 import gtclassic.common.tile.datanet.GTTileDigitizerItem;
+import gtclassic.common.tile.datanet.GTTileNetworkManager;
 import gtclassic.common.tile.datanet.GTTileReconstructorFluid;
 import gtclassic.common.tile.datanet.GTTileReconstructorItem;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -49,6 +50,9 @@ public class GTBlockDataNode extends GTBlockBaseDataNode {
 		}
 		if (this == GTBlocks.tileDigitizerFluid) {
 			return new GTTileDigitizerFluid();
+		}
+		if (this == GTBlocks.tileNetworkManager) {
+			return new GTTileNetworkManager();
 		}
 		return new GTTileReconstructorItem();
 	}

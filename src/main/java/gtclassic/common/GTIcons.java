@@ -22,6 +22,10 @@ public class GTIcons {
 	private static final int[] SET_NULL = { 111, 111 };
 	public static final TextureAtlasSprite[] SET_EMPTY = {};
 
+	private GTIcons() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	/**
 	 * Null texture key: 110 (Black) = The array passed to the texture builder was
 	 * an incorrect size 111 (Red) = The block was not added to the texture map
@@ -41,7 +45,7 @@ public class GTIcons {
 		addAnimatedTexture("idsu", 13, 2);
 		addAnimatedTexture("idsu2", 14, 2);
 		setTexture(GTBlocks.tileCharcoalPit, 0, 25, 2, 2, 2, 2, 0, 26, 2, 2, 2, 2);
-		setTexture(GTBlocks.tileComputer, 8, 9);
+		setTexture(GTBlocks.tileComputer, 9, 9, 9, 9, 9, 9);
 		setTexture(GTBlocks.tileCentrifuge, 0, 10, 12, 12, 12, 12, 0, 11, 13, 13, 13, 13);
 		setTexture(GTBlocks.tilePlayerDetector, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15);
 		setTexture(GTBlocks.tileMobRepeller, 3, 16, 3, 3, 3, 3, 3, 17, 3, 3, 3, 3);

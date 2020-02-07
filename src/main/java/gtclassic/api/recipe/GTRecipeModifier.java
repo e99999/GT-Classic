@@ -5,6 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 public class GTRecipeModifier {
 
 	public static enum ModifierType {
+
 		RECIPE_LENGTH("RecipeTime", "RecipeTimeModifier"),
 		RECIPE_ENERGY("RecipeEnergy", "RecipeEnergyModifier");
 
