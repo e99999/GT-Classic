@@ -192,12 +192,12 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Ic2Items.basicFluidImportUpgrade);
 			/** Fluid Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Items.BUCKET);
-			/** Digital Stuff **/
+			/** Data Net Stuff **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.dataCable, 6), "RRR", "CIC", "RRR", 'I', GTValues.INGOT_SILICON, 'C', GTValues.CIRCUIT_DATA, 'R', "itemRubber");
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerItem, 1), "CPC", "PMP", "CPC", 'P', GTValues.INPUT_PISTON_ANY, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON);
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDigitizerFluid, 1), "CPC", "PMP", "CPC", 'P', Items.BUCKET, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON);
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorItem, 1), "PIP", "CMC", "PIP", 'P', GTValues.INPUT_PISTON_ANY, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INPUT_INGOT_DIGITAL);
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileReconstructorFluid, 1), "PIP", "CMC", "PIP", 'P', Items.BUCKET, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INPUT_INGOT_DIGITAL);
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeItemDigitizer, 1), "CPC", "PMP", "CPC", 'P', GTValues.INPUT_PISTON_ANY, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON);
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeFluidDigitizer, 1), "CPC", "PMP", "CPC", 'P', Items.BUCKET, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON);
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeItemReconstructor, 1), "PIP", "CMC", "PIP", 'P', GTValues.INPUT_PISTON_ANY, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INPUT_INGOT_DIGITAL);
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeFluidReconstructor, 1), "PIP", "CMC", "PIP", 'P', Items.BUCKET, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INPUT_INGOT_DIGITAL);
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {

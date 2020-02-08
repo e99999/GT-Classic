@@ -13,14 +13,14 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 
-public class GTTileDigitizerEnergy extends GTTileBaseDataNode implements IEnergySink, IEUStorage, ITickable {
+public class GTTileNetworkEnergizer extends GTTileBaseDataNode implements IEnergySink, IEUStorage, ITickable {
 
 	@NetworkField(index = 10, override = true)
 	public int energy = 0;
 	private int maxEnergy = 512;
 	private boolean addedToEnet;
 
-	public GTTileDigitizerEnergy() {
+	public GTTileNetworkEnergizer() {
 		super(0);
 		this.addGuiFields(new String[] { "energy" });
 	}

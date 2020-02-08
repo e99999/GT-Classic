@@ -2,10 +2,9 @@ package gtclassic.common.block;
 
 import java.util.List;
 
-import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseDataNode;
 import gtclassic.common.GTBlocks;
-import gtclassic.common.tile.datanet.GTTileDigitizerEnergy;
+import gtclassic.common.tile.datanet.GTTileNetworkEnergizer;
 import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
 import gtclassic.common.tile.datanet.GTTileDigitizerItem;
 import gtclassic.common.tile.datanet.GTTileNetworkManager;
@@ -21,14 +20,16 @@ import net.minecraft.world.World;
 
 public class GTBlockDataNode extends GTBlockBaseDataNode {
 
+	String shortName;
+
 	public GTBlockDataNode(String name, int id, LocaleComp comp) {
 		super(id);
+		this.shortName = name;
 		setUnlocalizedName(comp);
 		setRegistryName(name);
 		this.setHardness(0.2F);
 		this.setSoundType(SoundType.CLOTH);
 		this.setHarvestLevel("axe", 0);
-		setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
@@ -46,8 +47,8 @@ public class GTBlockDataNode extends GTBlockBaseDataNode {
 		if (this == GTBlocks.tileReconstructorFluid) {
 			return new GTTileReconstructorFluid();
 		}
-		if (this == GTBlocks.tileDigitizerEnergy) {
-			return new GTTileDigitizerEnergy();
+		if (this == GTBlocks.tileNetworkEnergizer) {
+			return new GTTileNetworkEnergizer();
 		}
 		if (this == GTBlocks.tileDigitizerItem) {
 			return new GTTileDigitizerItem();
@@ -59,5 +60,9 @@ public class GTBlockDataNode extends GTBlockBaseDataNode {
 			return new GTTileNetworkManager();
 		}
 		return new GTTileReconstructorItem();
+	}
+
+	public String getShortName() {
+		return this.shortName;
 	}
 }

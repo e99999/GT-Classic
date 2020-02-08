@@ -37,6 +37,7 @@ public class GTLang {
 	public static final LocaleComp CABINET = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.cabinet");
 	public static final LocaleComp DRUM = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.drum");
 	public static final LocaleComp NETWORK_MANAGER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.networkmanager");
+	public static final LocaleComp NETWORK_ENERGIZER = new LocaleBlockComp("tile.gtclassic.networkenergizer");
 	public static final LocaleComp ITEM_DIGITIZER = new LocaleBlockComp("tile.gtclassic.itemdigitizer");
 	public static final LocaleComp FLUID_DIGITIZER = new LocaleBlockComp("tile.gtclassic.fluiddigitizer");
 	public static final LocaleComp ITEM_RECONSTRUCTOR = new LocaleBlockComp("tile.gtclassic.itemreconstructor");

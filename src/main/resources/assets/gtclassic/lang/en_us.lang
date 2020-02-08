@@ -73,6 +73,7 @@ tile.gtclassic.buffersmall.name=Small Item Buffer
 tile.gtclassic.translocatorfluid.name=Fluid Translocator
 tile.gtclassic.bufferfluid.name=Fluid Buffer
 tile.gtclassic.networkmanager.name=Network Manager
+tile.gtclassic.networkenergizer.name=Network Energizer
 tile.gtclassic.itemdigitizer.name=Item Digitizer
 tile.gtclassic.fluiddigitizer.name=Fluid Digitizer
 tile.gtclassic.itemreconstructor.name=Item Reconstructor

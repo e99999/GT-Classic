@@ -135,15 +135,18 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 	 * filtering out cables, simultaneity updates tiles on the newly parsed network.
 	 */
 	private void onTaskComplete() {
-		this.nodeCount = 0;
-		this.energyCost = 0;
+		int newCount = 0;
+		int newCost = 0;
 		for (BlockPos resultPos : task.getResults()) {
+			if (newCount > 63) {
+				break;
+			}
 			if (!world.isBlockLoaded(resultPos) || world.getBlockState(resultPos).getBlock() == GTBlocks.dataCable) {
 				continue;
 			}
 			TileEntity tile = world.getTileEntity(resultPos);
 			if (tile instanceof IGTDataNetObject) {
-				this.energyCost = this.energyCost + ((IGTDataNetObject) tile).getCost();
+				newCost = newCost + ((IGTDataNetObject) tile).getCost();
 			}
 			if (tile != this && tile instanceof GTTileNetworkManager) {
 				((GTTileNetworkManager) tile).disableManager();
@@ -152,17 +155,19 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 			if (tile != this && tile instanceof GTTileBaseDataNode) {
 				updateNodeStatus((GTTileBaseDataNode) tile);
 				this.dataNet.add(resultPos);
-				this.nodeCount++;
+				newCount++;
 			}
 		}
+		this.nodeCount = newCount;
+		this.energyCost = newCost;
 		this.updateGui();
 	}
 
 	public void updateNodeStatus(GTTileBaseDataNode node) {
-		if (node instanceof GTTileDigitizerEnergy) {
+		if (node instanceof GTTileNetworkEnergizer) {
 			// if the tile is set to null by the computer it will never be able to power the
 			// network in the first place
-			((GTTileDigitizerEnergy) node).setDataManager(this);
+			((GTTileNetworkEnergizer) node).setDataManager(this);
 		} else {
 			node.setDataManager(this.energy > 0 ? this : null);
 		}
@@ -192,7 +197,7 @@ public class GTTileNetworkManager extends GTTileBaseDataNode implements IHasGui,
 	public int getEnergyCost() {
 		return this.energyCost;
 	}
-	
+
 	public boolean isEnabled() {
 		return this.isOnlyManager;
 	}

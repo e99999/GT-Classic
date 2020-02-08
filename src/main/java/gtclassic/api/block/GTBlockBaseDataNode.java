@@ -135,7 +135,7 @@ public abstract class GTBlockBaseDataNode extends GTBlockBaseConnect implements 
 			return new AxisAlignedBB(0.25D, 0.25D, 0.25D, 0.75D, 0.75D, 0.75D);
 		} else {
 			GTTileBaseDataNode pipe = (GTTileBaseDataNode) tile;
-			double thickness = (this.size + 6) / 32.0D;
+			double thickness = (this.size + 8) / 32.0D;
 			double minX = 0.5D - thickness;
 			double minY = 0.5D - thickness;
 			double minZ = 0.5D - thickness;

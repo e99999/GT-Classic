@@ -68,7 +68,7 @@ public class GTModelDataNode extends BaseModel {
 			sideQuads.put(side, this.generateQuadsForSide(wire, side, min, max));
 			// This where i mess with the size to make the cover side different than the
 			// cable
-			anchorQuadList.put(side, this.generateQuadsForAnchor(this.getParticleTexture(), side, min - 3, max + 3));
+			anchorQuadList.put(side, this.generateQuadsForAnchor(this.getParticleTexture(), side, min - 4, max + 4));
 		}
 		for (int i = 0; i < 64; ++i) {
 			RotationList rotation = RotationList.ofNumber(i);
