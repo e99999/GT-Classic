@@ -194,10 +194,13 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Items.BUCKET);
 			/** Data Net Stuff **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.dataCable, 6), "RRR", "CIC", "RRR", 'I', GTValues.INGOT_SILICON, 'C', GTValues.CIRCUIT_DATA, 'R', "itemRubber");
-			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeItemDigitizer, 1), "CPC", "PMP", "CPC", 'P', GTValues.INPUT_PISTON_ANY, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON);
-			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeFluidDigitizer, 1), "CPC", "PMP", "CPC", 'P', Items.BUCKET, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON);
-			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeItemReconstructor, 1), "PIP", "CMC", "PIP", 'P', GTValues.INPUT_PISTON_ANY, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INPUT_INGOT_DIGITAL);
-			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeFluidReconstructor, 1), "PIP", "CMC", "PIP", 'P', Items.BUCKET, 'C', GTValues.CIRCUIT_DATA, 'M', GTValues.INGOT_SILICON, 'I', GTValues.INPUT_INGOT_DIGITAL);
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeBlank, 2), "II", "II", 'I', "ingotAluminium");
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeNetworkManager, 1), "BS", "CX", 'B', GTItems.nodeBlank, 'C', GTValues.CIRCUIT_ELITE, 'S', GTValues.INGOT_SILICON, 'X', "paneGlass");
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeNetworkEnergizer, 1), "BS", "CX", 'B', GTItems.nodeBlank, 'C', GTValues.CIRCUIT_DATA, 'S', GTValues.INGOT_SILICON, 'X', Ic2Items.glassFiberCable.copy());
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeItemDigitizer, 1), "BS", "CX", 'B', GTItems.nodeBlank, 'C', GTValues.CIRCUIT_DATA, 'S', GTValues.INGOT_SILICON, 'X', Ic2Items.importBasicUpgrade);
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeFluidDigitizer, 1), "BS", "CX", 'B', GTItems.nodeBlank, 'C', GTValues.CIRCUIT_DATA, 'S', GTValues.INGOT_SILICON, 'X', Ic2Items.basicFluidImportUpgrade);
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeItemReconstructor, 1), "BS", "CX", 'B', GTItems.nodeBlank, 'C', GTValues.CIRCUIT_DATA, 'S', GTValues.INGOT_SILICON, 'X', Ic2Items.exportBasicUpgrade);
+			recipes.addRecipe(GTMaterialGen.get(GTItems.nodeFluidReconstructor, 1), "BS", "CX", 'B', GTItems.nodeBlank, 'C', GTValues.CIRCUIT_DATA, 'S', GTValues.INGOT_SILICON, 'X', Ic2Items.basicFluidExportUpgrade);
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {

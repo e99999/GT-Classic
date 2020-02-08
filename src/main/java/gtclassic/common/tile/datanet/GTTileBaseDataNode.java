@@ -1,5 +1,7 @@
 package gtclassic.common.tile.datanet;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -7,15 +9,20 @@ import javax.annotation.Nullable;
 import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTDataNetObject;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import gtclassic.api.material.GTMaterialGen;
+import gtclassic.common.GTBlocks;
+import gtclassic.common.GTItems;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.obj.IClickable;
+import ic2.core.util.obj.IItemContainer;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -23,7 +30,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggableTile, IGTDataNetObject, IClickable {
+public class GTTileBaseDataNode extends TileEntityMachine
+		implements IGTDebuggableTile, IGTDataNetObject, IClickable, IItemContainer {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
@@ -33,6 +41,8 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	private int channel;
 	private static final String NBT_CONNECTION = "connection";
 	private static final String NBT_ANCHORS = "anchors";
+	private static final String NBT_DROP = "drop";
+	private ItemStack drop;
 
 	public GTTileBaseDataNode(int slots) {
 		super(slots);
@@ -46,12 +56,18 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 		super.readFromNBT(nbt);
 		this.anchors = RotationList.ofFacings(EnumFacing.getFront(nbt.getByte("Facing")));
 		this.channel = nbt.getInteger(GTUtility.DATA_NET_NBT_CHANNEL);
+		if (nbt.hasKey(NBT_DROP)) {
+			this.drop = new ItemStack(nbt.getCompoundTag(NBT_DROP));
+		}
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger(GTUtility.DATA_NET_NBT_CHANNEL, this.channel);
+		if (this.drop != null) {
+			nbt.setTag(NBT_DROP, drop.writeToNBT(new NBTTagCompound()));
+		}
 		return nbt;
 	}
 
@@ -183,6 +199,19 @@ public class GTTileBaseDataNode extends TileEntityMachine implements IGTDebuggab
 	 */
 	public int getChannel() {
 		return this.channel;
+	}
+
+	public void setDrop(ItemStack item) {
+		this.drop = item.copy();
+	}
+
+	@Override
+	public List<ItemStack> getDrops() {
+		ArrayList<ItemStack> drops = new ArrayList<>();
+		ItemStack newDrop = drop != null ? drop.copy() : GTMaterialGen.get(GTItems.nodeBlank);
+		drops.add(newDrop);
+		drops.add(new ItemStack(GTBlocks.dataCable));
+		return drops;
 	}
 
 	@Override

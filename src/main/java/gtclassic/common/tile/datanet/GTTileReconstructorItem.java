@@ -1,8 +1,5 @@
 package gtclassic.common.tile.datanet;
 
-import java.util.Collections;
-import java.util.List;
-
 import gtclassic.api.helpers.GTUtility;
 import gtclassic.common.container.GTContainerReconstructorItem;
 import ic2.core.inventory.base.IHasGui;
@@ -12,7 +9,6 @@ import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
@@ -68,10 +64,5 @@ public class GTTileReconstructorItem extends GTTileBaseOutputNode implements IHa
 
 	@Override
 	public void onGuiClosed(EntityPlayer var1) {
-	}
-
-	@Override
-	public List<ItemStack> getDrops() {
-		return Collections.emptyList();
 	}
 }

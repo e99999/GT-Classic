@@ -72,12 +72,6 @@ tile.gtclassic.bufferlarge.name=Large Item Buffer
 tile.gtclassic.buffersmall.name=Small Item Buffer
 tile.gtclassic.translocatorfluid.name=Fluid Translocator
 tile.gtclassic.bufferfluid.name=Fluid Buffer
-tile.gtclassic.networkmanager.name=Network Manager
-tile.gtclassic.networkenergizer.name=Network Energizer
-tile.gtclassic.itemdigitizer.name=Item Digitizer
-tile.gtclassic.fluiddigitizer.name=Fluid Digitizer
-tile.gtclassic.itemreconstructor.name=Item Reconstructor
-tile.gtclassic.fluidreconstructor.name=Fluid Reconstructor
 tile.gtclassic.datacable.name=Data Cable
 tile.gtclassic.flintmortar.name=Flint Mortar
 tile.gtclassic.ironmortar.name=Iron Mortar
@@ -177,6 +171,15 @@ item.gtclassic.spray_can_empty.name=Empty Spray Can
 item.gtclassic.spray_can.name=Spray Can
 item.gtclassic.super_fuel_binder.name=Super Fuel Binder
 item.gtclassic.magic_super_fuel_binder.name=Magic Super Fuel Binder
+
+#items data net
+item.gtclassic.blankcover.name=Blank Cover
+item.gtclassic.networkmanagercover.name=Network Manager
+item.gtclassic.networkenergizercover.name=Network Energizer
+item.gtclassic.itemdigitizercover.name=Item Digitizer
+item.gtclassic.fluiddigitizercover.name=Fluid Digitizer
+item.gtclassic.itemreconstructorcover.name=Item Reconstructor
+item.gtclassic.fluidreconstructorcover.name=Fluid Reconstructor
 
 #crops
 ic2.crop.Bauxia.name=Bauxia

@@ -76,6 +76,7 @@ public class GTItems {
 	public static GTItemTeslaStaff teslaStaff;
 	public static GTItemRockCutter rockCutter;
 	public static GTItemJackHammer jackHammer;
+	public static GTItemComponent nodeBlank;
 	public static GTItemDataNode nodeNetworkManager;
 	public static GTItemDataNode nodeNetworkEnergizer;
 	public static GTItemDataNode nodeItemDigitizer;
@@ -128,6 +129,7 @@ public class GTItems {
 		teslaStaff = createItem(new GTItemTeslaStaff());
 		rockCutter = createItem(new GTItemRockCutter());
 		jackHammer = createItem(new GTItemJackHammer());
+		nodeBlank = createItem(new GTItemComponent("blankcover", 15, 2));
 		nodeNetworkManager = createItem(new GTItemDataNode(GTBlocks.tileNetworkManager, 8, 2));
 		nodeNetworkEnergizer = createItem(new GTItemDataNode(GTBlocks.tileNetworkEnergizer, 9, 2));
 		nodeItemDigitizer = createItem(new GTItemDataNode(GTBlocks.tileDigitizerItem, 10, 2));
