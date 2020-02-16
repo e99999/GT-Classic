@@ -30,6 +30,8 @@ public class GTLang {
 	public static final LocaleComp LESU = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lesu");
 	public static final LocaleComp AESU = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.aesu");
 	public static final LocaleComp IDSU = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.idsu");
+	public static final LocaleComp TESSERACT_MASTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.tesseractmaster");
+	public static final LocaleComp TESSERACT_SLAVE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.tesseractslave");
 	public static final LocaleComp SUPERCONDENSATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.supercondensator");
 	public static final LocaleComp SUPERCONDUCTORCABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.superconductorcable");
 	public static final LocaleComp DATACABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.datacable");
