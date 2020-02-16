@@ -12,8 +12,6 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.block.GTBlockBattery;
 import gtclassic.common.block.GTBlockBurnable;
 import gtclassic.common.block.GTBlockCasing;
-import gtclassic.common.block.GTBlockDataCable;
-import gtclassic.common.block.GTBlockDataNode;
 import gtclassic.common.block.GTBlockDrum;
 import gtclassic.common.block.GTBlockLightSource;
 import gtclassic.common.block.GTBlockMachine;
@@ -59,13 +57,6 @@ import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
-import gtclassic.common.tile.datanet.GTTileDataCable;
-import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
-import gtclassic.common.tile.datanet.GTTileDigitizerItem;
-import gtclassic.common.tile.datanet.GTTileNetworkEnergizer;
-import gtclassic.common.tile.datanet.GTTileNetworkManager;
-import gtclassic.common.tile.datanet.GTTileReconstructorFluid;
-import gtclassic.common.tile.datanet.GTTileReconstructorItem;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
@@ -145,16 +136,9 @@ public class GTBlocks {
 	public static final GTBlockMachine tileBufferSmall = registerBlock(new GTBlockMachine("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachine tileTranslocatorFluid = registerBlock(new GTBlockMachine("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
 	public static final GTBlockMachine tileBufferFluid = registerBlock(new GTBlockMachine("bufferfluid", GTLang.BUFFER_FLUID, 2));
-	public static final GTBlockDataNode tileNetworkManager = registerBlock(new GTBlockDataNode("networkmanager", 64));
-	public static final GTBlockDataNode tileNetworkEnergizer = registerBlock(new GTBlockDataNode("networkenergizer", 101));
-	public static final GTBlockDataNode tileDigitizerItem = registerBlock(new GTBlockDataNode("itemdigitizer", 97));
-	public static final GTBlockDataNode tileDigitizerFluid = registerBlock(new GTBlockDataNode("fluiddigitizer", 98));
-	public static final GTBlockDataNode tileReconstructorItem = registerBlock(new GTBlockDataNode("itemreconstructor", 99));
-	public static final GTBlockDataNode tileReconstructorFluid = registerBlock(new GTBlockDataNode("fluidreconstructor", 100));
 	public static final GTBlockSuperconductorCable tileSuperconductorCableMAX = registerBlock(new GTBlockSuperconductorCable(12, ""));
 	public static final GTBlockSuperconductorCable tileSuperconductorCableIV = registerBlock(new GTBlockSuperconductorCable(6, "2"));
 	public static final GTBlockSuperconductorCable tileSuperconductorCableHV = registerBlock(new GTBlockSuperconductorCable(4, "4"));
-	public static final GTBlockDataCable dataCable = registerBlock(new GTBlockDataCable());
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockMortar flintMortar = registerBlock(new GTBlockMortar("flintmortar", "axe"));
 	public static final GTBlockMortar ironMortar = registerBlock(new GTBlockMortar("ironmortar", "pickaxe"));
@@ -228,13 +212,6 @@ public class GTBlocks {
 		registerUtil(GTTileSuperconductorCables.SuperconductorMAX.class, "SuperconductorCableMAX");
 		registerUtil(GTTileSuperconductorCables.SuperconductorIV.class, "SuperconductorCableIV");
 		registerUtil(GTTileSuperconductorCables.SuperconductorHV.class, "SuperconductorCableHV");
-		registerUtil(GTTileDataCable.class, "DataCable");
-		registerUtil(GTTileNetworkManager.class, "NetworkManager");
-		registerUtil(GTTileNetworkEnergizer.class, "NetworkEnergizer");
-		registerUtil(GTTileDigitizerItem.class, "ItemImporter");
-		registerUtil(GTTileDigitizerFluid.class, "FluidImporter");
-		registerUtil(GTTileReconstructorItem.class, "ItemExporter");
-		registerUtil(GTTileReconstructorFluid.class, "FluidExporter");
 	}
 
 	public static void registerUtil(Class<? extends TileEntity> tile, String name) {

@@ -30,24 +30,4 @@ public class GTUtility {
 		}
 		return true;
 	}
-
-	/**
-	 * ### Data Network Stuff ###
-	 **/
-	/** Tick rate for INPUT NODES to attempt to move items to the OUTPUT NODES **/
-	public static final int DATA_NET_TICK_RATE = 10;
-	/**
-	 * Tick rate for that a network tries to validate itself doing recurrsive checks
-	 **/
-	public static final int DATA_NET_SEARCH_RATE = 128;
-	/** Tick rate for networks to reset and require revalidation **/
-	public static final int DATA_NET_RESET_RATE = 126;
-	public static final String DATA_NET_NBT_CHANNEL = "channel";
-
-	/** Enum for data types **/
-	public enum DataType {
-		ITEM(),
-		FLUID(),
-		REDSTONE();
-	}
 }

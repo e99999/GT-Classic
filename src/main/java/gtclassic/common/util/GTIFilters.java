@@ -7,7 +7,6 @@ import gtclassic.common.GTItems;
 import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
 import gtclassic.common.tile.GTTileTranslocator;
-import gtclassic.common.tile.datanet.GTTileDigitizerItem;
 import ic2.api.item.ICustomDamageItem;
 import ic2.api.item.IElectricItem;
 import ic2.core.inventory.filters.IFilter;
@@ -104,29 +103,6 @@ public class GTIFilters {
 			}
 			return noneEmptyStacks == 0; // If all stacks are empty means no filter. If it is more then 1 stack in the
 											// filter then return false because it didnt match the filter.
-		}
-	}
-
-	public static class ItemDigitizerFilter implements IFilter {
-
-		GTTileDigitizerItem tile;
-
-		public ItemDigitizerFilter(GTTileDigitizerItem tile) {
-			this.tile = tile;
-		}
-
-		public boolean matches(ItemStack stack) {
-			if (stack.isEmpty()) {
-				return true;
-			}
-			if (!this.tile.getBlacklist().isEmpty()) {
-				for (ItemStack bStack : this.tile.getBlacklist()) {
-					if (GTHelperStack.isEqual(bStack, stack.copy())) {
-						return true;
-					}
-				}
-			}
-			return false;
 		}
 	}
 

@@ -7,7 +7,6 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.item.GTItemCloakingDevice;
 import gtclassic.common.item.GTItemComponent;
 import gtclassic.common.item.GTItemCreativeScanner;
-import gtclassic.common.item.GTItemDataNode;
 import gtclassic.common.item.GTItemDataOrbStorage;
 import gtclassic.common.item.GTItemDestructoPack;
 import gtclassic.common.item.GTItemDuctTape;
@@ -76,13 +75,6 @@ public class GTItems {
 	public static GTItemTeslaStaff teslaStaff;
 	public static GTItemRockCutter rockCutter;
 	public static GTItemJackHammer jackHammer;
-	public static GTItemComponent nodeBlank;
-	public static GTItemDataNode nodeNetworkManager;
-	public static GTItemDataNode nodeNetworkEnergizer;
-	public static GTItemDataNode nodeItemDigitizer;
-	public static GTItemDataNode nodeFluidDigitizer;
-	public static GTItemDataNode nodeItemReconstructor;
-	public static GTItemDataNode nodeFluidReconstructor;
 	public static GTItemSurvivalScanner portableScanner;
 	public static GTItemCreativeScanner debugScanner;
 
@@ -129,13 +121,6 @@ public class GTItems {
 		teslaStaff = createItem(new GTItemTeslaStaff());
 		rockCutter = createItem(new GTItemRockCutter());
 		jackHammer = createItem(new GTItemJackHammer());
-		nodeBlank = createItem(new GTItemComponent("blankcover", 15, 2));
-		nodeNetworkManager = createItem(new GTItemDataNode(GTBlocks.tileNetworkManager, 8, 2));
-		nodeNetworkEnergizer = createItem(new GTItemDataNode(GTBlocks.tileNetworkEnergizer, 9, 2));
-		nodeItemDigitizer = createItem(new GTItemDataNode(GTBlocks.tileDigitizerItem, 10, 2));
-		nodeFluidDigitizer = createItem(new GTItemDataNode(GTBlocks.tileDigitizerFluid, 11, 2));
-		nodeItemReconstructor = createItem(new GTItemDataNode(GTBlocks.tileReconstructorItem, 12, 2));
-		nodeFluidReconstructor = createItem(new GTItemDataNode(GTBlocks.tileReconstructorFluid, 13, 2));
 		portableScanner = createItem(new GTItemSurvivalScanner());
 		debugScanner = createItem(new GTItemCreativeScanner());
 	}

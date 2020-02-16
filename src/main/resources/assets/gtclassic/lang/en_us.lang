@@ -172,15 +172,6 @@ item.gtclassic.spray_can.name=Spray Can
 item.gtclassic.super_fuel_binder.name=Super Fuel Binder
 item.gtclassic.magic_super_fuel_binder.name=Magic Super Fuel Binder
 
-#items data net
-item.gtclassic.blankcover.name=Blank Cover
-item.gtclassic.networkmanagercover.name=Network Manager
-item.gtclassic.networkenergizercover.name=Network Energizer
-item.gtclassic.itemdigitizercover.name=Item Digitizer
-item.gtclassic.fluiddigitizercover.name=Fluid Digitizer
-item.gtclassic.itemreconstructorcover.name=Item Reconstructor
-item.gtclassic.fluidreconstructorcover.name=Fluid Reconstructor
-
 #crops
 ic2.crop.Bauxia.name=Bauxia
 ic2.crop.Platina.name=Platina
@@ -301,22 +292,6 @@ tooltip.gtclassic.translocatorfluid1=Pushes them out of the front,
 tooltip.gtclassic.translocatorfluid2=Has single filter for fluids
 tooltip.gtclassic.bufferfluid0=Empties or fills fluid containers,
 tooltip.gtclassic.bufferfluid1=Pushes fluids out of the front
-tooltip.gtclassic.itemdigitizer0=Transfers items into a data net,
-tooltip.gtclassic.itemdigitizer1=Can be toggled with redstone,
-tooltip.gtclassic.itemdigitizer2=Sneak click with an empty hand to change channels,
-tooltip.gtclassic.itemdigitizer3=Network requires a manager to function
-tooltip.gtclassic.fluiddigitizer0=Transfers fluids into a data net,
-tooltip.gtclassic.fluiddigitizer1=Can be toggled with redstone,
-tooltip.gtclassic.fluiddigitizer2=Sneak click with an empty hand to change channels,
-tooltip.gtclassic.fluiddigitizer3=Network requires a manager to function
-tooltip.gtclassic.itemreconstructor0=Moves items from a data network to output facing,
-tooltip.gtclassic.itemreconstructor1=Filter can be set using the GUI,
-tooltip.gtclassic.itemreconstructor2=Sneak click with an empty hand to change channels,
-tooltip.gtclassic.itemreconstructor3=Network requires a manager to function
-tooltip.gtclassic.fluidreconstructor0=Moves fluids from a data network to output facing,
-tooltip.gtclassic.fluidreconstructor1=Filter can be set using the GUI,
-tooltip.gtclassic.fluidreconstructor2=Sneak click with an empty hand to change channels,
-tooltip.gtclassic.fluidreconstructor3=Network requires a manager to function
 tooltip.gtclassic.flintmortar0=Does an "ok" job of turning things to dust...
 tooltip.gtclassic.ironmortar0=Does a great job of turning things to dust!
 
