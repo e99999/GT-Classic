@@ -192,6 +192,10 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Ic2Items.basicFluidImportUpgrade);
 			/** Fluid Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Items.BUCKET);
+			/** Tesseract Generator **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractMaster), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_MASTER, 'E', Blocks.ENDER_CHEST, 'M', GTBlocks.tileComputer);
+			/** Tesseract Terminal **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractSlave), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_ELITE, 'E', Blocks.ENDER_CHEST, 'M', GTValues.MACHINE_ADV);
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {

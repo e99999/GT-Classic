@@ -53,6 +53,8 @@ import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileSuperconductorCables;
+import gtclassic.common.tile.GTTileTesseractMaster;
+import gtclassic.common.tile.GTTileTesseractSlave;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
@@ -123,7 +125,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileAESU = registerBlock(new GTBlockMachine("aesu", GTLang.AESU));
 	public static final GTBlockMachine tileIDSU = registerBlock(new GTBlockMachine("idsu", GTLang.IDSU));
 	public static final GTBlockMachine tileTesseractMaster = registerBlock(new GTBlockMachine("tesseractmaster", GTLang.TESSERACT_MASTER));
-	public static final GTBlockMachine tileTesseractSlave = registerBlock(new GTBlockMachine("tesseractslave", GTLang.TESSERACT_SLAVE));
+	public static final GTBlockMachine tileTesseractSlave = registerBlock(new GTBlockMachine("tesseractslave", GTLang.TESSERACT_SLAVE, 2));
 	public static final GTBlockStorage tileWorktable = registerBlock(new GTBlockStorage("worktable", GTLang.WORKTABLE));
 	public static final GTBlockStorage tileCabinet = registerBlock(new GTBlockStorage("cabinet", GTLang.CABINET));
 	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
@@ -189,6 +191,8 @@ public class GTBlocks {
 		registerUtil(GTTileMultiLESU.class, "LESU");
 		registerUtil(GTTileIDSU.class, "IDSU");
 		registerUtil(GTTileAESU.class, "AESU");
+		registerUtil(GTTileTesseractMaster.class, "TesseractGenerator");
+		registerUtil(GTTileTesseractSlave.class, "TesseractTerminal");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");
 		registerUtil(GTTileSupercondensator.class, "Supercondensator");
 		registerUtil(GTTileMultiFusionReactor.class, "FusionComputer");
@@ -214,7 +218,7 @@ public class GTBlocks {
 		registerUtil(GTTileSuperconductorCables.SuperconductorHV.class, "SuperconductorCableHV");
 	}
 
-	public static void registerUtil(Class<? extends TileEntity> tile, String name) {
+	private static void registerUtil(Class<? extends TileEntity> tile, String name) {
 		GameRegistry.registerTileEntity(tile, new ResourceLocation(GTMod.MODID, "tileEntity" + name));
 	}
 }

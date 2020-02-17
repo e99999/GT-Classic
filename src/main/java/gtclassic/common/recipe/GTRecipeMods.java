@@ -1,6 +1,5 @@
 package gtclassic.common.recipe;
 
-import static ic2.api.classic.recipe.ClassicRecipes.compressor;
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
 import gtclassic.GTMod;
@@ -39,11 +38,6 @@ public class GTRecipeMods {
 		/** EnderIO **/
 		if (GTConfig.modcompat.compatEnderIO && Loader.isModLoaded(GTValues.MOD_ID_ENDERIO)) {
 			GTMod.logger.info("Doing EnderIO Things");
-			// Creating a relationship between Enderio Iron Alloy and Mixed Metal
-			compressor.removeRecipe(input(Ic2Items.mixedMetalIngot.copy()));
-			TileEntityCompressor.addRecipe(Ic2Items.mixedMetalIngot, 1, GTMaterialGen.getModMetaItem(GTValues.MOD_ID_ENDERIO, "item_alloy_ingot", 9, 1));
-			TileEntityCompressor.addRecipe("ingotConstructionAlloy", 1, GTMaterialGen.getIc2(Ic2Items.advancedAlloy, 1));
-			// Macerator
 			TileEntityMacerator.addRecipe("itemPulsatingCrystal", 1, GTMaterialGen.getModMetaItem(GTValues.MOD_ID_ENDERIO, "item_material", 36, 1));
 			TileEntityMacerator.addRecipe("itemVibrantCrystal", 1, GTMaterialGen.getModMetaItem(GTValues.MOD_ID_ENDERIO, "item_material", 35, 1));
 			TileEntityMacerator.addRecipe("itemEnderCrystal", 1, GTMaterialGen.getModMetaItem(GTValues.MOD_ID_ENDERIO, "item_material", 37, 1));
