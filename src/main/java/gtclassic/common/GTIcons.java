@@ -27,8 +27,9 @@ public class GTIcons {
 	}
 
 	/**
-	 * Null texture key: 110 (Black) = The array passed to the texture builder was
-	 * an incorrect size 111 (Red) = The block was not added to the texture map
+	 * Null texture key: 
+	 * 110 (Black) = The array passed to the texture builder was an incorrect size. 
+	 * 111 (Red) = The block was not added to the texture map.
 	 */
 	@SideOnly(Side.CLIENT)
 	public static void loadSprites() {
@@ -42,11 +43,11 @@ public class GTIcons {
 		addAnimatedTexture("centrifuge_top", 11, 0);
 		addAnimatedTexture("centrifuge_side", 13, 0);
 		addAnimatedTexture("miner_top", 10, 1);
-		addAnimatedTexture("miner_front", 13, 6);
+		addAnimatedTexture("miner_front", 9, 0);
 		addAnimatedTexture("idsu", 13, 2);
 		addAnimatedTexture("idsu2", 14, 2);
 		setTexture(GTBlocks.tileCharcoalPit, 0, 25, 2, 2, 2, 2, 0, 26, 2, 2, 2, 2);
-		setTexture(GTBlocks.tileComputer, 8, 8, 8, 8, 8, 8);
+		setTexture(GTBlocks.tileComputer, 54, 54, 54, 54, 54, 54);
 		setTexture(GTBlocks.tileCentrifuge, 0, 10, 12, 12, 12, 12, 0, 11, 13, 13, 13, 13);
 		setTexture(GTBlocks.tilePlayerDetector, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15);
 		setTexture(GTBlocks.tileMobRepeller, 3, 16, 3, 3, 3, 3, 3, 17, 3, 3, 3, 3);
@@ -54,7 +55,7 @@ public class GTIcons {
 		setTexture(GTBlocks.tileEchotron, 18, 18, 18, 18, 18, 18);
 		setTexture(GTBlocks.tileChargeOmat, 3, 19, 3, 3, 3, 3, 3, 20, 3, 3, 3, 3);
 		setTexture(GTBlocks.tileDisassembler, 0, 21, 2, 22, 2, 2, 0, 21, 2, 23, 2, 2);
-		setTexture(GTBlocks.tileBedrockMiner, 24, 25, 2, 108, 2, 2, 24, 26, 2, 109, 2, 2);
+		setTexture(GTBlocks.tileBedrockMiner, 24, 25, 2, 8, 2, 2, 24, 26, 2, 9, 2, 2);
 		setTexture(GTBlocks.tileDragonEggEnergySiphon, 27, 29, 27, 27, 27, 27, 28, 29, 28, 28, 28, 28);
 		setTexture(GTBlocks.tileMagicEnergyConverter, 30, 30, 30, 27, 30, 30, 30, 30, 30, 31, 30, 30);
 		setTexture(GTBlocks.tileMagicEnergyAbsorber, 32, 33);
