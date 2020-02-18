@@ -27,9 +27,8 @@ public class GTIcons {
 	}
 
 	/**
-	 * Null texture key: 
-	 * 110 (Black) = The array passed to the texture builder was an incorrect size. 
-	 * 111 (Red) = The block was not added to the texture map.
+	 * Null texture key: 110 (Black) = The array passed to the texture builder was
+	 * an incorrect size. 111 (Red) = The block was not added to the texture map.
 	 */
 	@SideOnly(Side.CLIENT)
 	public static void loadSprites() {

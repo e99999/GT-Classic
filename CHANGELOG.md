@@ -3,7 +3,7 @@
 # 1.1.1 (Not Released)
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.
 - Removed compat for EnderIO's mixed alloy and ic2c advanced alloy.
-- Added Tesseract Generator and Tesseract Terminal,behavior is like GT4 except you use a Portable Scanner to pair the terminal to the destination Tesseract Generator.
+- Added Tesseract Generator and Tesseract Terminal, behavior is like GT4 except you use a Portable Scanner to pair the terminal to the destination Tesseract Generator.
 - Changed Bedrock Miner texture thanks to help from CrossVas.
 - Changed lava centrifuging recipe to give Copper intsead of iron like most older GT's.
 - Changed Data Reconstructors using Platinum and Tungsten only, now use the same Chrome/Titanium/Platinum options as the QChest/QTank etc..

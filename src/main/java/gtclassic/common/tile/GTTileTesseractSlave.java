@@ -126,7 +126,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 		IFluidHandler start = FluidUtil.getFluidHandler(world, this.getInventoryPos(), this.getInventorySide());
 		IFluidHandler end = FluidUtil.getFluidHandler(DimensionManager.getWorld(this.targetDim), tesseract.getInventoryPos(), tesseract.getInventorySide());
 		boolean canExport = start != null && end != null;
-		if (canExport && FluidUtil.tryFluidTransfer(end, start, 4000, true) != null) {
+		if (canExport && FluidUtil.tryFluidTransfer(end, start, 16000, true) != null) {
 			return;
 		}
 		// Items
