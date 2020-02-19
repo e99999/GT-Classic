@@ -131,6 +131,8 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), " SL", " PS", "P  ", 'L', GTValues.BATTERY_ULTIMATE, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		/** Cloaking Device **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.cloakingDevice, 1), "IPI", "POP", "IPI", 'I', GTValues.INGOT_CHROME, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'O', GTValues.BATTERY_ULTIMATE);
+		/** Forcfield **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.forceField, 1), "IPI", "POP", "IPI", 'I', GTValues.INGOT_TUNGSTEN, 'P', GTValues.CIRCUIT_ELITE, 'O', GTValues.BATTERY_ULTIMATE);
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.echotron, 1), " C ", "CEC", " C ", 'E', GTBlocks.tileEchotron, 'C', GTValues.CIRCUIT_DATA);
 		/** Spring Boots **/

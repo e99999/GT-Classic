@@ -120,12 +120,13 @@ public class GTBlocks {
 	public static final GTBlockMachine tileMagicEnergyAbsorber = registerBlock(new GTBlockMachine("magicenergyabsorber", GTLang.MAGIC_ENERGY_ABSORBER));
 	public static final GTBlockMachine tileFusionReactor = registerBlock(new GTBlockMachine("fusionreactor", GTLang.FUSION_REACTOR, 5));
 	public static final GTBlockMachine tileLightningRod = registerBlock(new GTBlockMachine("lightningrod", GTLang.LIGHTNING_ROD, 3));
+	public static final GTBlockMachine tileTesseractMaster = registerBlock(new GTBlockMachine("tesseractmaster", GTLang.TESSERACT_MASTER));
+	public static final GTBlockMachine tileTesseractSlave = registerBlock(new GTBlockMachine("tesseractslave", GTLang.TESSERACT_SLAVE, 2));
 	public static final GTBlockBattery tileBatteryLV = registerBlock(new GTBlockBattery("batteryblocklv", 1, 32, 80000));
 	public static final GTBlockMachine tileLESU = registerBlock(new GTBlockMachine("lesu", GTLang.LESU, 2));
 	public static final GTBlockMachine tileAESU = registerBlock(new GTBlockMachine("aesu", GTLang.AESU));
 	public static final GTBlockMachine tileIDSU = registerBlock(new GTBlockMachine("idsu", GTLang.IDSU));
-	public static final GTBlockMachine tileTesseractMaster = registerBlock(new GTBlockMachine("tesseractmaster", GTLang.TESSERACT_MASTER));
-	public static final GTBlockMachine tileTesseractSlave = registerBlock(new GTBlockMachine("tesseractslave", GTLang.TESSERACT_SLAVE, 2));
+	public static final GTBlockMachine tileSupercondensator = registerBlock(new GTBlockMachine("supercondensator", GTLang.SUPERCONDENSATOR));
 	public static final GTBlockStorage tileWorktable = registerBlock(new GTBlockStorage("worktable", GTLang.WORKTABLE));
 	public static final GTBlockStorage tileCabinet = registerBlock(new GTBlockStorage("cabinet", GTLang.CABINET));
 	public static final GTBlockDrum tileDrum = registerBlock(new GTBlockDrum());
@@ -137,7 +138,6 @@ public class GTBlocks {
 	public static final GTBlockMachine tileBufferSmall = registerBlock(new GTBlockMachine("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachine tileTranslocatorFluid = registerBlock(new GTBlockMachine("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
 	public static final GTBlockMachine tileBufferFluid = registerBlock(new GTBlockMachine("bufferfluid", GTLang.BUFFER_FLUID, 2));
-	public static final GTBlockMachine tileSupercondensator = registerBlock(new GTBlockMachine("supercondensator", GTLang.SUPERCONDENSATOR));
 	public static final GTBlockSuperconductorCable tileSuperconductorCableMAX = registerBlock(new GTBlockSuperconductorCable(12, ""));
 	public static final GTBlockSuperconductorCable tileSuperconductorCableIV = registerBlock(new GTBlockSuperconductorCable(6, "2"));
 	public static final GTBlockSuperconductorCable tileSuperconductorCableHV = registerBlock(new GTBlockSuperconductorCable(4, "4"));

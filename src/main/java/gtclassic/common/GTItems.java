@@ -19,6 +19,7 @@ import gtclassic.common.item.GTItemJackHammer;
 import gtclassic.common.item.GTItemLightHelmet;
 import gtclassic.common.item.GTItemLithiumBattery;
 import gtclassic.common.item.GTItemMagnifyingGlass;
+import gtclassic.common.item.GTItemForcefield;
 import gtclassic.common.item.GTItemReactorHeat;
 import gtclassic.common.item.GTItemReactorRod;
 import gtclassic.common.item.GTItemRockCutter;
@@ -69,6 +70,7 @@ public class GTItems {
 	public static GTItemLithiumBattery lithiumBattery;
 	public static GTItemEnergyOrb orbEnergy;
 	public static GTItemCloakingDevice cloakingDevice;
+	public static GTItemForcefield forceField;
 	public static GTItemEnergyPack lithiumBatpack;
 	public static GTItemEnergyPack lapotronPack;
 	public static GTItemLightHelmet lightHelment;
@@ -111,6 +113,7 @@ public class GTItems {
 				: createItem(new GTItemLithiumBattery());
 		orbEnergy = doBaubles ? createItem(new GTItemBaublesEnergyOrb()) : createItem(new GTItemEnergyOrb());
 		cloakingDevice = createItem(new GTItemCloakingDevice());
+		forceField = createItem(new GTItemForcefield());
 		lithiumBatpack = doBaubles
 				? createItem(new GTItemBaublesEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128))
 				: createItem(new GTItemEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
