@@ -2,6 +2,7 @@
 
 # 1.1.1 (Not Released)
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.
+- Changed, wireless block setting/getting is now done with a Sensor Card instead of Portable Scanner so you arent changing it all the time debugging a block.
 - Added Redstone Transmitter and Receiver, can send redstone signals wirelessly within dimensions.
 - Added Personal Forcefield Generator, physically repells mobs in a radius around the player.
 - Removed compat for EnderIO's mixed alloy and ic2c advanced alloy.

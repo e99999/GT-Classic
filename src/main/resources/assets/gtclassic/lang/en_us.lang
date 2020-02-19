@@ -172,6 +172,7 @@ item.gtclassic.spray_can_empty.name=Empty Spray Can
 item.gtclassic.spray_can.name=Spray Can
 item.gtclassic.super_fuel_binder.name=Super Fuel Binder
 item.gtclassic.magic_super_fuel_binder.name=Magic Super Fuel Binder
+item.gtclassic.sensor_card.name=Sensor Card
 
 #crops
 ic2.crop.Bauxia.name=Bauxia
@@ -251,7 +252,7 @@ tooltip.gtclassic.playerdetector2=Sneak wrench to toggle modes
 tooltip.gtclassic.mobrepeller0=Stops nasty creatures from spawning
 tooltip.gtclassic.mobrepeller1=16 to 64 blocks depending on power
 tooltip.gtclassic.energytransmitter0=Transmits energy wirelessly within dimensions
-tooltip.gtclassic.energytransmitter1=Use a Portable Scanner to set target position.
+tooltip.gtclassic.energytransmitter1=Use a Sensor Card to set target position.
 tooltip.gtclassic.fusionreactor0=FUUUUUUUU-SION, HAH!
 tooltip.gtclassic.fusionreactor1=Structure:
 tooltip.gtclassic.fusionreactor2=5x1x5 "circular" ring of (24) Fusion Coils,
@@ -280,7 +281,7 @@ tooltip.gtclassic.aesu0=Energy storage with adjustable output
 tooltip.gtclassic.idsu0=Interdimensional Storage Unit
 tooltip.gtclassic.tesseractmaster0=Generates a tesseract for the attached inventory
 tooltip.gtclassic.tesseractslave0=Accesses tesseracts remotely,
-tooltip.gtclassic.tesseractslave1=Use a Portable Scanner to set target tesseract location.
+tooltip.gtclassic.tesseractslave1=Use a Sensor Card to set target tesseract location.
 tooltip.gtclassic.supercondensator0=Transforms extremely high energy sources to a usable level
 tooltip.gtclassic.worktable0=For all kinds of projects
 tooltip.gtclassic.cabinet0=PrEmIuM dOuBlE cHeSt
@@ -299,7 +300,7 @@ tooltip.gtclassic.bufferfluid1=Pushes fluids out of the front
 tooltip.gtclassic.flintmortar0=Does an "ok" job of turning things to dust...
 tooltip.gtclassic.ironmortar0=Does a great job of turning things to dust!
 tooltip.gtclassic.redstonetransmitter0=Transmits redstone wirelessly within dimensions
-tooltip.gtclassic.redstonetransmitter1=Use a Portable Scanner to set receiver position.
+tooltip.gtclassic.redstonetransmitter1=Use a Sensor Card to set receiver position.
 tooltip.gtclassic.redstonereceiver0=Receives redstone signals from transmitters
 
 tooltip.worktable_button1=Shift crafting grid items into player inventory
