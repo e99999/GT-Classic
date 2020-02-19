@@ -2,6 +2,8 @@
 
 # 1.1.1 (Not Released)
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.
+- Added Redstone Transmitter and Receiver, can send redstone signals wirelessly within dimensions.
+- Added Personal Forcefield Generator, physically repells mobs in a radius around the player.
 - Removed compat for EnderIO's mixed alloy and ic2c advanced alloy.
 - Added Tesseract Generator and Tesseract Terminal, behavior is like GT4 except you use a Portable Scanner to pair the terminal to the destination Tesseract Generator.
 - Changed Bedrock Miner texture thanks to help from CrossVas.

@@ -80,6 +80,8 @@ public class GTIcons {
 		setTexture(GTBlocks.tileBufferSmall, 88, 89, 56, 61, 90, 91);
 		setTexture(GTBlocks.tileTranslocatorFluid, 92, 93, 62, 63, 94, 95);
 		setTexture(GTBlocks.tileBufferFluid, 92, 93, 58, 63, 94, 95);
+		setTexture(GTBlocks.tileRedstoneTransmitter, 0, 64, 2, 96, 2, 2, 0, 64, 2, 97, 2, 2);
+		setTexture(GTBlocks.tileRedstoneReceiver, 0, 98, 96, 96, 96, 96, 0, 99, 97, 97, 97, 97);
 	}
 
 	/**

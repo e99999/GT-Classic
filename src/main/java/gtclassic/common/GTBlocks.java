@@ -51,6 +51,8 @@ import gtclassic.common.tile.GTTileMobRepeller;
 import gtclassic.common.tile.GTTilePlayerDetector;
 import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
+import gtclassic.common.tile.GTTileRedstoneReceiver;
+import gtclassic.common.tile.GTTileRedstoneTransmitter;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileSuperconductorCables;
 import gtclassic.common.tile.GTTileTesseractMaster;
@@ -133,6 +135,8 @@ public class GTBlocks {
 	public static final GTBlockMachine tileDigitalChest = registerBlock(new GTBlockMachine("digitalchest", GTLang.DIGITAL_CHEST));
 	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());
 	public static final GTBlockQuantumTank tileQuantumTank = registerBlock(new GTBlockQuantumTank());
+	public static final GTBlockMachine tileRedstoneTransmitter = registerBlock(new GTBlockMachine("redstonetransmitter", GTLang.REDSTONE_TRANSMITTER, 2));
+	public static final GTBlockMachine tileRedstoneReceiver = registerBlock(new GTBlockMachine("redstonereceiver", GTLang.REDSTONE_RECEIVER));
 	public static final GTBlockMachine tileTranslocator = registerBlock(new GTBlockMachine("translocator", GTLang.TRANSLOCATOR, 3));
 	public static final GTBlockMachine tileBufferLarge = registerBlock(new GTBlockMachine("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachine tileBufferSmall = registerBlock(new GTBlockMachine("buffersmall", GTLang.BUFFER_SMALL, 2));
@@ -208,6 +212,8 @@ public class GTBlocks {
 		registerUtil(GTTileCabinet.class, "Cabinet");
 		registerUtil(GTTileDrum.class, "Drum");
 		registerUtil(GTTileBattery.class, "Battery");
+		registerUtil(GTTileRedstoneTransmitter.class, "RedstoneTransmitter");
+		registerUtil(GTTileRedstoneReceiver.class, "RedstoneReceiver");
 		registerUtil(GTTileTranslocator.class, "Translocator");
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");

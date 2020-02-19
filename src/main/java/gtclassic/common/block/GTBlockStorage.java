@@ -133,6 +133,11 @@ public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 	}
 
 	@Override
+	public IBlockState getStateFromStack(ItemStack stack) {
+		return this.getStateFromMeta(stack.getMetadata());
+	}
+
+	@Override
 	public boolean hasFacing() {
 		return this != GTBlocks.tileWorktable;
 	}

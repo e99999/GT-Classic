@@ -75,8 +75,8 @@ tile.gtclassic.bufferfluid.name=Fluid Buffer
 tile.gtclassic.datacable.name=Data Cable
 tile.gtclassic.flintmortar.name=Flint Mortar
 tile.gtclassic.ironmortar.name=Iron Mortar
-tile.gtclassic.sluicebox.name=Sluice Box
-tile.gtclassic.sluiceboxextension.name=Sluice Box Extension
+tile.gtclassic.redstonetransmitter.name=Redstone Transmitter
+tile.gtclassic.redstonereceiver.name=Redstone Receiver
 
 #dust
 item.gtclassic.dustElectrum.name=Electrum Dust
@@ -298,6 +298,9 @@ tooltip.gtclassic.bufferfluid0=Empties or fills fluid containers,
 tooltip.gtclassic.bufferfluid1=Pushes fluids out of the front
 tooltip.gtclassic.flintmortar0=Does an "ok" job of turning things to dust...
 tooltip.gtclassic.ironmortar0=Does a great job of turning things to dust!
+tooltip.gtclassic.redstonetransmitter0=Transmits redstone wirelessly within dimensions
+tooltip.gtclassic.redstonetransmitter1=Use a Portable Scanner to set receiver position.
+tooltip.gtclassic.redstonereceiver0=Receives redstone signals from transmitters
 
 tooltip.worktable_button1=Shift crafting grid items into player inventory
 tooltip.worktable_button2=Shift crafting grid items into main inventory

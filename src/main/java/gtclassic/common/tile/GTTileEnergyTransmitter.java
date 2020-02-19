@@ -40,7 +40,9 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.targetPos = NBTUtil.getPosFromTag(nbt.getCompoundTag(NBT_TARGETPOS));
+		if (nbt.hasKey(NBT_TARGETPOS)) {
+			this.targetPos = NBTUtil.getPosFromTag(nbt.getCompoundTag(NBT_TARGETPOS));
+		}
 	}
 
 	@Override

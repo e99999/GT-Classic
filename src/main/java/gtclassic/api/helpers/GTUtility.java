@@ -20,9 +20,6 @@ import net.minecraft.world.World;
 public class GTUtility {
 
 	/**
-	 * ### Player Stuff ###
-	 **/
-	/**
 	 * Checks to see if a player is fully equipped in quantum gear
 	 * 
 	 * @param entity - usually the player in this case
@@ -42,7 +39,8 @@ public class GTUtility {
 	}
 
 	/**
-	 * Pushes entities away from target within an area, code adapted from EE/ProjectE.
+	 * Pushes entities away from target within an area, code adapted from
+	 * EE/ProjectE.
 	 */
 	public static void repelEntitiesInAABBFromPoint(World world, AxisAlignedBB boundingbox, double x, double y,
 			double z) {

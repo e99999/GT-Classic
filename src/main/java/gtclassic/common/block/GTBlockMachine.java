@@ -4,9 +4,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseMachine;
-import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
-import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTIcons;
 import gtclassic.common.tile.GTTileAESU;
@@ -30,6 +28,8 @@ import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileMobRepeller;
 import gtclassic.common.tile.GTTilePlayerDetector;
+import gtclassic.common.tile.GTTileRedstoneReceiver;
+import gtclassic.common.tile.GTTileRedstoneTransmitter;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileTesseractMaster;
 import gtclassic.common.tile.GTTileTesseractSlave;
@@ -105,6 +105,28 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 				|| this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
 				|| this == GTBlocks.tileTranslocatorFluid || this == GTBlocks.tileBufferFluid
 				|| this == GTBlocks.tileTesseractMaster || this == GTBlocks.tileTesseractSlave;
+	}
+
+	@Override
+	@Deprecated
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof GTTileRedstoneReceiver) {
+			return ((GTTileRedstoneReceiver) tile).getRedstoneLevel();
+		} else {
+			return super.getStrongPower(blockState, blockAccess, pos, side);
+		}
+	}
+
+	@Override
+	@Deprecated
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof GTTileRedstoneReceiver) {
+			return ((GTTileRedstoneReceiver) tile).getRedstoneLevel();
+		} else {
+			return super.getStrongPower(blockState, blockAccess, pos, side);
+		}
 	}
 
 	@Override
@@ -255,6 +277,12 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileTesseractSlave) {
 			return new GTTileTesseractSlave();
 		}
+		if (this == GTBlocks.tileRedstoneTransmitter) {
+			return new GTTileRedstoneTransmitter();
+		}
+		if (this == GTBlocks.tileRedstoneReceiver) {
+			return new GTTileRedstoneReceiver();
+		}
 		if (this == GTBlocks.tileSupercondensator) {
 			return new GTTileSupercondensator();
 		}
@@ -285,17 +313,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		return GTIcons.getTextureData(this);
 	}
 
-	// TODO Redo this to be declared on block construction
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
-		if (thisIs(stack, GTBlocks.tileCentrifuge) || thisIs(stack, GTBlocks.tileFabricator)
-				|| thisIs(stack, GTBlocks.tileDisassembler) || thisIs(stack, GTBlocks.tileDragonEggEnergySiphon)
-				|| thisIs(stack, GTBlocks.tileMagicEnergyAbsorber) || thisIs(stack, GTBlocks.tileMagicEnergyConverter)
-				|| thisIs(stack, GTBlocks.tileFusionReactor) || thisIs(stack, GTBlocks.tileBedrockMiner)
-				|| thisIs(stack, GTBlocks.tileCharcoalPit)) {
-			return this.getDefaultBlockState().withProperty(active, true);
-		}
-		return this.getStateFromMeta(stack.getMetadata());
+		return this.getDefaultBlockState().withProperty(active, true);
 	}
 
 	@Override
@@ -332,9 +352,5 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			return false;
 		}
 		return super.canEntityDestroy(state, world, pos, entity);
-	}
-
-	public boolean thisIs(ItemStack stack, GTBlockMachine block) {
-		return (GTHelperStack.isEqual(stack, GTMaterialGen.get(block)));
 	}
 }

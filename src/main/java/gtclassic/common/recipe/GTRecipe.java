@@ -198,6 +198,10 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractMaster), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_MASTER, 'E', Blocks.ENDER_CHEST, 'M', GTBlocks.tileComputer);
 			/** Tesseract Terminal **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractSlave), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_ELITE, 'E', Blocks.ENDER_CHEST, 'M', GTValues.MACHINE_ADV);
+			/** Redstone Transmitter **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneTransmitter), "TCT", "QMQ", "RER", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_ADVANCED, 'Q', "gemQuartz", 'E', "enderpearl", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
+			/** Redstone Receiver **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneReceiver), "TCT", "QMQ", "RQR", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_BASIC, 'Q', "gemQuartz", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {
