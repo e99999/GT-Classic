@@ -4,26 +4,32 @@ import java.util.Map;
 
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
+import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.obj.IClickable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTTileTesseractSlave extends TileEntityElecMachine
-		implements IGTCoordinateTile, IGTDebuggableTile, ITickable {
+		implements IGTCoordinateTile, IGTDebuggableTile, ITickable, IClickable {
 
 	private BlockPos targetPos;
 	private int targetDim;
@@ -31,7 +37,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	private static final String NBT_TARGETDIM = "targetDim";
 
 	public GTTileTesseractSlave() {
-		super(0, 128);
+		super(1, 128);
 		this.maxEnergy = 10000;
 	}
 
@@ -105,6 +111,15 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	}
 
 	@Override
+	public boolean insertSensorStick(ItemStack card) {
+		if (!this.getStackInSlot(0).isEmpty()) {
+			return false;
+		}
+		this.setStackInSlot(0, card.copy());
+		return true;
+	}
+
+	@Override
 	public void update() {
 		this.handleEnergy();
 		if (this.getActive() && this.targetPos != null) {
@@ -161,6 +176,34 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 		} else {
 			this.setActive(false);
 		}
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer arg0, Side arg1) {
+		// neeeded by interface, unused by tile
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand arg1, EnumFacing arg2, Side arg3) {
+		ItemStack slotStack = this.getStackInSlot(0);
+		if (slotStack.isEmpty() || !player.isSneaking()) {
+			return false;
+		}
+		ItemHandlerHelper.giveItemToPlayer(player, slotStack.copy());
+		slotStack.shrink(1);
+		this.targetPos = null;
+		IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+		return true;
 	}
 
 	@Override

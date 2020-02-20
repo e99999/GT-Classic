@@ -4,18 +4,25 @@ import java.util.Map;
 
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.obj.IClickable;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTTileRedstoneTransmitter extends TileEntityMachine
-		implements IGTCoordinateTile, ITickable, IGTDebuggableTile {
+		implements IGTCoordinateTile, ITickable, IGTDebuggableTile, IClickable {
 
 	private BlockPos targetPos;
 	private static final String NBT_TARGETPOS = "targetPos";
@@ -23,7 +30,7 @@ public class GTTileRedstoneTransmitter extends TileEntityMachine
 	private boolean shouldUpdate;
 
 	public GTTileRedstoneTransmitter() {
-		super(0);
+		super(1);
 	}
 
 	@Override
@@ -120,11 +127,49 @@ public class GTTileRedstoneTransmitter extends TileEntityMachine
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
+		data.put("Redstone Level: " + this.redstoneLevel, true);
 		if (this.targetPos != null) {
-			data.put("Connected to: " + world.getBlockState(targetPos).getBlock().getLocalizedName(), false);
+			data.put("Connected to: " + world.getBlockState(targetPos).getBlock().getLocalizedName(), true);
 		} else {
-			data.put("No Target Block", false);
+			data.put("No Target Block", true);
 		}
-		data.put("Redstone Level: " + this.redstoneLevel, false);
+	}
+
+	@Override
+	public boolean insertSensorStick(ItemStack card) {
+		if (!this.getStackInSlot(0).isEmpty()) {
+			return false;
+		}
+		this.setStackInSlot(0, card.copy());
+		return true;
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer arg0, Side arg1) {
+		// neeeded by interface, unused by tile
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand arg1, EnumFacing arg2, Side arg3) {
+		ItemStack slotStack = this.getStackInSlot(0);
+		if (slotStack.isEmpty() || !player.isSneaking()) {
+			return false;
+		}
+		ItemHandlerHelper.giveItemToPlayer(player, slotStack.copy());
+		slotStack.shrink(1);
+		this.onBlockBreak();
+		this.targetPos = null;
+		IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+		return true;
 	}
 }

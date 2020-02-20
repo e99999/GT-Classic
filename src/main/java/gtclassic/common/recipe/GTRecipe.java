@@ -46,7 +46,7 @@ public class GTRecipe {
 		/** IC2 Fertilizer **/
 		recipes.addShapelessRecipe(GTMaterialGen.getIc2(Ic2Items.fertilizer, 3), GTValues.DUST_SULFUR, GTValues.DUST_PHOSPHORUS, "dustCalcite");
 		/** Clearing Sensor Kit of NBT data **/
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.sensorCard), GTMaterialGen.get(GTItems.sensorCard));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.sensorStick), GTMaterialGen.get(GTItems.sensorStick));
 		/** Fireworks from Phosphorus **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(Items.FIREWORKS, 3), GTValues.PAPER, GTValues.DUST_PHOSPHORUS, true);
 		recipes.addShapelessRecipe(GTMaterialGen.get(Items.FIREWORKS, 3), GTValues.PAPER, GTValues.DUST_PHOSPHORUS, GTValues.DUST_PHOSPHORUS, true);
@@ -63,7 +63,7 @@ public class GTRecipe {
 			/** Invar Dust **/
 			recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Invar, 3), "dustIron", "dustIron", "dustNickel");
 			/** Sensor Card **/
-			recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.sensorCard), GTValues.CIRCUIT_ADVANCED, Ic2Items.frequencyTransmitter.copy());
+			recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.sensorStick), Ic2Items.memoryStick.copy(), Ic2Items.frequencyTransmitter.copy());
 			if (GTConfig.general.enableSuperSolidFuels) {
 				/** Super Fuel Binder **/
 				recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.fuelBinder, 6), GTValues.DUST_WOOD, GTValues.DUST_WOOD, GTValues.DUST_WOOD, GTValues.DUST_WOOD, GTValues.DUST_SULFUR, "dustLithium");

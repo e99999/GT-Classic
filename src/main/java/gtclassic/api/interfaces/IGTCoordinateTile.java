@@ -1,5 +1,6 @@
 package gtclassic.api.interfaces;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 public interface IGTCoordinateTile {
@@ -11,4 +12,6 @@ public interface IGTCoordinateTile {
 	public BlockPos getAppliedPos();
 
 	public int getAppliedDimId();
+
+	public boolean insertSensorStick(ItemStack card);
 }

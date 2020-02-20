@@ -9,31 +9,37 @@ import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
 import ic2.api.energy.EnergyNet;
 import ic2.api.energy.tile.IEnergySink;
+import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.wiring.misc.EntityChargePadAuraFX;
+import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.obj.IClickable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class GTTileEnergyTransmitter extends TileEntityElecMachine
-		implements ITickable, IGTCoordinateTile, IGTDebuggableTile, IGTDisplayTickTile {
+		implements ITickable, IGTCoordinateTile, IGTDebuggableTile, IGTDisplayTickTile, IClickable {
 
 	private BlockPos targetPos;
 	private static final String NBT_TARGETPOS = "targetPos";
 	public static final double EU_LOSS = 0.01D;
 
 	public GTTileEnergyTransmitter() {
-		super(0, 512);
+		super(1, 512);
 		this.maxEnergy = 1000000;
 	}
 
@@ -144,16 +150,53 @@ public class GTTileEnergyTransmitter extends TileEntityElecMachine
 	}
 
 	@Override
+	public boolean insertSensorStick(ItemStack card) {
+		if (!this.getStackInSlot(0).isEmpty()) {
+			return false;
+		}
+		this.setStackInSlot(0, card.copy());
+		return true;
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer arg0, Side arg1) {
+		// neeeded by interface, unused by tile
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand arg1, EnumFacing arg2, Side arg3) {
+		ItemStack slotStack = this.getStackInSlot(0);
+		if (slotStack.isEmpty() || !player.isSneaking()) {
+			return false;
+		}
+		ItemHandlerHelper.giveItemToPlayer(player, slotStack.copy());
+		slotStack.shrink(1);
+		this.targetPos = null;
+		IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+		return true;
+	}
+
+	@Override
 	public void getData(Map<String, Boolean> data) {
 		if (this.targetPos != null) {
 			double distance = getDistanceToTarget(this.pos, targetPos);
 			double loss = distance * EU_LOSS;
 			DecimalFormat df = new DecimalFormat("0.0");
-			data.put("Connected to: " + world.getBlockState(targetPos).getBlock().getLocalizedName(), false);
+			data.put("Connected to: " + world.getBlockState(targetPos).getBlock().getLocalizedName(), true);
 			data.put("Distance to target: " + distance, true);
 			data.put("Total Loss from distance: " + df.format(loss) + "EU", true);
 		} else {
-			data.put("No Target Block", false);
+			data.put("No Target Block", true);
 		}
 	}
 

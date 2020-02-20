@@ -23,7 +23,7 @@ import gtclassic.common.item.GTItemMagnifyingGlass;
 import gtclassic.common.item.GTItemReactorHeat;
 import gtclassic.common.item.GTItemReactorRod;
 import gtclassic.common.item.GTItemRockCutter;
-import gtclassic.common.item.GTItemSensorCard;
+import gtclassic.common.item.GTItemSensorStick;
 import gtclassic.common.item.GTItemSprayCan;
 import gtclassic.common.item.GTItemSpringBoots;
 import gtclassic.common.item.GTItemSurvivalScanner;
@@ -78,7 +78,7 @@ public class GTItems {
 	public static GTItemTeslaStaff teslaStaff;
 	public static GTItemRockCutter rockCutter;
 	public static GTItemJackHammer jackHammer;
-	public static GTItemSensorCard sensorCard;
+	public static GTItemSensorStick sensorStick;
 	public static GTItemSurvivalScanner portableScanner;
 	public static GTItemCreativeScanner debugScanner;
 
@@ -126,7 +126,7 @@ public class GTItems {
 		teslaStaff = createItem(new GTItemTeslaStaff());
 		rockCutter = createItem(new GTItemRockCutter());
 		jackHammer = createItem(new GTItemJackHammer());
-		sensorCard = createItem(new GTItemSensorCard());
+		sensorStick = createItem(new GTItemSensorStick());
 		portableScanner = createItem(new GTItemSurvivalScanner());
 		debugScanner = createItem(new GTItemCreativeScanner());
 	}
