@@ -11,7 +11,7 @@
 - Changed lava centrifuging recipe to give Copper intsead of iron like most older GT's.
 - Changed Data Reconstructors using Platinum and Tungsten only, now use the same Chrome/Titanium/Platinum options as the QChest/QTank etc..
 - Added hidden recipe for making fireworks from Phosphorus in addition to Gun Powder.
-- Added Phosphor Lilys, the Nether counterpart to the Orechid. Nether bedrock ore veins are now 4 x as likely as the Overworld. Thanks to Globalista Maoista for doing the texture!
+- Bedrock veins now only spawn in the overworld.
 - Added a Centrifuge recipe for a small amount of Thorium from hydrated coal.
 - Added Super Solid Fuels like in GT5U with insanely long burn times, done through crafting steps in GTC however. 
 - Added Charcoal Pit/Pile Igniter like in GT5U, can be any shape up to 800 logs in size, logs must be surrounded by dirt or grass.

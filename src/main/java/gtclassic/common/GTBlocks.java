@@ -149,7 +149,6 @@ public class GTBlocks {
 	public static final GTBlockMortar flintMortar = registerBlock(new GTBlockMortar("flintmortar", "axe"));
 	public static final GTBlockMortar ironMortar = registerBlock(new GTBlockMortar("ironmortar", "pickaxe"));
 	public static final GTBlockOreFlower oreChid = registerBlock(new GTBlockOreFlower("orechid", 38));
-	public static final GTBlockOreFlower phosphorLily = registerBlock(new GTBlockOreFlower("phosphorlily", 39));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 
 	public static void registerBlocks() {

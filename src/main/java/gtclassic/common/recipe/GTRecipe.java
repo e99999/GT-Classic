@@ -200,10 +200,6 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractMaster), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_MASTER, 'E', Blocks.ENDER_CHEST, 'M', GTBlocks.tileComputer);
 			/** Tesseract Terminal **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractSlave), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_ELITE, 'E', Blocks.ENDER_CHEST, 'M', GTValues.MACHINE_ADV);
-			/** Redstone Transmitter **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneTransmitter), "TCT", "QMQ", "RER", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_ADVANCED, 'Q', "gemQuartz", 'E', "enderpearl", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
-			/** Redstone Receiver **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneReceiver), "TCT", "QMQ", "RQR", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_BASIC, 'Q', "gemQuartz", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {
@@ -266,6 +262,10 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), "dCd", "TQE", "DBD", 'd', "circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E', GTBlocks.tileAutocrafter, 'D', GTValues.CIRCUIT_ULTIMATE, 'B', GTValues.INPUT_BATTERY_ADVANCED);
 		/** Low Voltage Battery Block **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBatteryLV), " W ", "IRI", "IMI", 'W', Ic2Items.copperCable, 'I', GTValues.INGOT_TIN, 'M', GTValues.MACHINE_BASIC, 'R', "blockRedstone");
+		/** Redstone Transmitter **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneTransmitter), "TCT", "QMQ", "RER", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_ADVANCED, 'Q', "gemQuartz", 'E', "enderpearl", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
+		/** Redstone Receiver **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneReceiver), "TCT", "QMQ", "RQR", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_BASIC, 'Q', "gemQuartz", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
 		/** More recipes for vanilla rails **/
 		if (GTConfig.general.vanillaRailRecipes) {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.GOLDEN_RAIL, 6), "I I", "ISI", "IRI", 'I', "ingotElectrum", 'S', GTValues.STICK_WOOD, 'R', GTValues.DUST_REDSTONE);
@@ -441,7 +441,6 @@ public class GTRecipe {
 		TileEntityMacerator.addRecipe("gemEmerald", 1, GTMaterialGen.getDust(GTMaterial.Emerald, 1));
 		TileEntityMacerator.addRecipe("logWood", 1, GTMaterialGen.getDust(GTMaterial.Wood, 6));
 		TileEntityMacerator.addRecipe(GTMaterialGen.get(GTBlocks.oreChid), (GTMaterialGen.getDust(GTMaterial.BrownDye, 1)));
-		TileEntityMacerator.addRecipe(GTMaterialGen.get(GTBlocks.phosphorLily), (GTMaterialGen.getDust(GTMaterial.Phosphorus, 1)));
 		TileEntityExtractor.addRecipe("oreRuby", 1, GTMaterialGen.getGem(GTMaterial.Ruby, 3), 0.1F);
 		TileEntityExtractor.addRecipe("oreSapphire", 1, GTMaterialGen.getGem(GTMaterial.Sapphire, 3), 0.1F);
 		TileEntityExtractor.addRecipe(GTMaterialGen.get(GTBlocks.brittleCharcoal), new ItemStack(Items.COAL, 3, 1), 0.1F);

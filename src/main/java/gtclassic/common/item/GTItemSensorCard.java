@@ -25,7 +25,7 @@ public class GTItemSensorCard extends GTItemComponent {
 	public static final String BLOCK = "block";
 
 	public GTItemSensorCard() {
-		super("sensor_card", 9, 2);
+		super("sensor_card", 7, 2);
 		this.setMaxStackSize(1);
 	}
 

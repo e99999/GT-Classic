@@ -1,11 +1,9 @@
 package gtclassic.common.block;
 
 import java.util.List;
-import java.util.Random;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBase;
-import gtclassic.common.GTBlocks;
 import ic2.core.block.render.model.ModelSapling;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
@@ -22,7 +20,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -117,14 +114,8 @@ public class GTBlockOreFlower extends GTBlockBase implements ICustomModeledBlock
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
 		IBlockState soil = worldIn.getBlockState(pos.down());
-		if (this == GTBlocks.oreChid) {
-			return super.canPlaceBlockAt(worldIn, pos)
-					&& (soil.getMaterial() == Material.GRASS || soil.getMaterial() == Material.GROUND);
-		}
-		if (this == GTBlocks.phosphorLily) {
-			return super.canPlaceBlockAt(worldIn, pos) && soil.isFullBlock();
-		}
-		return super.canPlaceBlockAt(worldIn, pos);
+		return super.canPlaceBlockAt(worldIn, pos)
+				&& (soil.getMaterial() == Material.GRASS || soil.getMaterial() == Material.GROUND);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -134,21 +125,6 @@ public class GTBlockOreFlower extends GTBlockBase implements ICustomModeledBlock
 		if (worldIn.isAirBlock(pos.down())) {
 			this.dropBlockAsItem(worldIn, pos, state, 0);
 			worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
-		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		if (this == GTBlocks.phosphorLily) {
-			double d0 = (double) pos.getX() + .5 + (rand.nextFloat() * .25F);
-			double d1 = (double) pos.getY() + .4 + (rand.nextFloat() * .5F);
-			double d2 = (double) pos.getZ() + .5 + (rand.nextFloat() * .25F);
-			if (rand.nextFloat() > .25) {
-				worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-			} else {
-				worldIn.spawnParticle(EnumParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-			}
 		}
 	}
 }
