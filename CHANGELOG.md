@@ -1,15 +1,17 @@
 # Changelog
 
-# 1.1.1 (Not Released)
+# 1.1.2 (Not Released)
+- Nothing to see here yet
+
+# 1.1.1
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.
 - Changed, wireless block setting/getting is now done with a Sensor Stick instead of Portable Scanner so you arent changing it all the time debugging a block.
 - Added Redstone Transmitter and Receiver, can send redstone signals wirelessly within dimensions.
 - Added Personal Forcefield Generator, physically repells mobs in a radius around the player.
-- Removed compat for EnderIO's mixed alloy and ic2c advanced alloy.
-- Added Tesseract Generator and Tesseract Terminal, behavior is like GT4 except you use a Portable Scanner to pair the terminal to the destination Tesseract Generator.
+- Removed compat for EnderIO's mixed alloy.
+- Added Tesseract Generator and Tesseract Terminal, behavior is like GT4 except you use a Sensor Stick to pair the Terminal to the destination Tesseract Generator.
 - Changed Bedrock Miner texture thanks to help from CrossVas.
 - Changed lava centrifuging recipe to give Copper intsead of iron like most older GT's.
-- Changed Data Reconstructors using Platinum and Tungsten only, now use the same Chrome/Titanium/Platinum options as the QChest/QTank etc..
 - Added hidden recipe for making fireworks from Phosphorus in addition to Gun Powder.
 - Bedrock veins now only spawn in the overworld.
 - Added a Centrifuge recipe for a small amount of Thorium from hydrated coal.
