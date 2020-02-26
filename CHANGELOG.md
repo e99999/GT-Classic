@@ -1,8 +1,22 @@
 # Changelog
 
-# 1.1.1 (Not Released)
+# 1.1.2 (Not Released)
+- Fixed the Item Translocator converting fluid containers to other fluids when it successfully transfered them.
+- Fixed Item Translocator not inputting into the correct side for the output tile.
+- Changed Disassembler to no longer use TForest uncrafting table and fixed recipe being weird and allowing any Ic2 Machine.
+- Changed Superconductor Item recipe to be more like GT4 using cheaper helium cells and more tungsten vs iridium.
+
+# 1.1.1
+- We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.
+- Changed, wireless block setting/getting is now done with a Sensor Stick instead of Portable Scanner so you arent changing it all the time debugging a block.
+- Added Redstone Transmitter and Receiver, can send redstone signals wirelessly within dimensions.
+- Added Personal Forcefield Generator, physically repells mobs in a radius around the player.
+- Removed compat for EnderIO's mixed alloy.
+- Added Tesseract Generator and Tesseract Terminal, behavior is like GT4 except you use a Sensor Stick to pair the Terminal to the destination Tesseract Generator.
+- Changed Bedrock Miner texture thanks to help from CrossVas.
+- Changed lava centrifuging recipe to give Copper intsead of iron like most older GT's.
 - Added hidden recipe for making fireworks from Phosphorus in addition to Gun Powder.
-- Added Phosphor Lilys, the Nether counterpart to the Orechid. Nether bedrock ore veins are now 2 x as likely as the Overworld as well. Thanks to Globalista Maoista for doing the texture!
+- Bedrock veins now only spawn in the overworld.
 - Added a Centrifuge recipe for a small amount of Thorium from hydrated coal.
 - Added Super Solid Fuels like in GT5U with insanely long burn times, done through crafting steps in GTC however. 
 - Added Charcoal Pit/Pile Igniter like in GT5U, can be any shape up to 800 logs in size, logs must be surrounded by dirt or grass.

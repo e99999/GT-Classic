@@ -3,7 +3,7 @@ package gtclassic.common.container;
 import gtclassic.GTMod;
 import gtclassic.common.gui.GTGuiCompDigitalChest;
 import gtclassic.common.tile.GTTileDigitalChest;
-import gtclassic.common.util.GTFilterDigitalChest;
+import gtclassic.common.util.GTIFilters;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
@@ -23,7 +23,7 @@ public class GTContainerDigitalChest extends ContainerTileComponent<GTTileDigita
 		for (int y = 0; y < 6; ++y) {
 			for (int x = 0; x < 9; ++x) {
 				this.addSlotToContainer(new SlotCustom(tile, x + y * 9, 8 + x * 18, 8
-						+ y * 18, new GTFilterDigitalChest()));
+						+ y * 18, new GTIFilters.DigitalChestFilter()));
 			}
 		}
 		this.addSlotToContainer(new SlotBase(tile, 54, 80, 119));

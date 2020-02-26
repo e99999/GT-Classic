@@ -4,9 +4,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseMachine;
-import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
-import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTIcons;
 import gtclassic.common.tile.GTTileAESU;
@@ -18,6 +16,7 @@ import gtclassic.common.tile.GTTileBufferSmall;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileCharcoalPit;
 import gtclassic.common.tile.GTTileChargeOMat;
+import gtclassic.common.tile.GTTileComputer;
 import gtclassic.common.tile.GTTileDigitalChest;
 import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
@@ -29,11 +28,14 @@ import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileMobRepeller;
 import gtclassic.common.tile.GTTilePlayerDetector;
+import gtclassic.common.tile.GTTileRedstoneReceiver;
+import gtclassic.common.tile.GTTileRedstoneTransmitter;
 import gtclassic.common.tile.GTTileSupercondensator;
+import gtclassic.common.tile.GTTileTesseractMaster;
+import gtclassic.common.tile.GTTileTesseractSlave;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
-import gtclassic.common.tile.datanet.GTTileComputerCube;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
@@ -73,6 +75,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		setHardness(100.0F);
 		setResistance(20.0F);
 		setSoundType(SoundType.METAL);
+		if (name.equals("idsu") || name.contains("tesseract")) {
+			this.setLightLevel(0.5F);
+		}
 	}
 
 	public GTBlockMachine(String name, LocaleComp comp, Material blockMat, int tooltipSize) {
@@ -84,6 +89,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		setSoundType(SoundType.METAL);
 	}
 
+	// TODO Redo this to be declared on block construction
 	@Override
 	public boolean hasFacing() {
 		return !(this == GTBlocks.tilePlayerDetector || this == GTBlocks.tileEchotron
@@ -92,11 +98,35 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 				|| this == GTBlocks.tileMagicEnergyAbsorber || this == GTBlocks.tileCharcoalPit);
 	}
 
+	// TODO Redo this to be declared on block construction
 	public boolean hasVertical() {
 		return this == GTBlocks.tileLESU || this == GTBlocks.tileAESU || this == GTBlocks.tileIDSU
 				|| this == GTBlocks.tileSupercondensator || this == GTBlocks.tileTranslocator
 				|| this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
-				|| this == GTBlocks.tileTranslocatorFluid || this == GTBlocks.tileBufferFluid;
+				|| this == GTBlocks.tileTranslocatorFluid || this == GTBlocks.tileBufferFluid
+				|| this == GTBlocks.tileTesseractMaster || this == GTBlocks.tileTesseractSlave;
+	}
+
+	@Override
+	@Deprecated
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof GTTileRedstoneReceiver) {
+			return ((GTTileRedstoneReceiver) tile).getRedstoneLevel();
+		} else {
+			return super.getStrongPower(blockState, blockAccess, pos, side);
+		}
+	}
+
+	@Override
+	@Deprecated
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		TileEntity tile = blockAccess.getTileEntity(pos);
+		if (tile instanceof GTTileRedstoneReceiver) {
+			return ((GTTileRedstoneReceiver) tile).getRedstoneLevel();
+		} else {
+			return super.getStrongPower(blockState, blockAccess, pos, side);
+		}
 	}
 
 	@Override
@@ -111,6 +141,14 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileChargeOmat) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 2048 })));
+		}
+		if (this == GTBlocks.tileTesseractMaster) {
+			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 128 })));
+			tooltip.add("Energy Usage: 128 EU/t");
+		}
+		if (this == GTBlocks.tileTesseractSlave) {
+			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 128 })));
+			tooltip.add("Energy Usage: 32 EU/t");
 		}
 		if (this == GTBlocks.tileFusionReactor) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 8192 })));
@@ -127,10 +165,6 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileBedrockMiner) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
 			tooltip.add("Energy Usage: 4096 EU Per Operation");
-		}
-		if (this == GTBlocks.tileComputer) {
-			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 512 })));
-			tooltip.add("Energy Usage: 1 EU Per Network Node");
 		}
 		if (this == GTBlocks.tileEnergyTransmitter) {
 			tooltip.add((Ic2InfoLang.electricMaxIn.getLocalizedFormatted(new Object[] { 512 })));
@@ -175,7 +209,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	@Override
 	public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
 		if (this == GTBlocks.tileComputer) {
-			return new GTTileComputerCube();
+			return new GTTileComputer();
 		}
 		if (this == GTBlocks.tileCentrifuge) {
 			return new GTTileCentrifuge();
@@ -237,6 +271,18 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileIDSU) {
 			return new GTTileIDSU();
 		}
+		if (this == GTBlocks.tileTesseractMaster) {
+			return new GTTileTesseractMaster();
+		}
+		if (this == GTBlocks.tileTesseractSlave) {
+			return new GTTileTesseractSlave();
+		}
+		if (this == GTBlocks.tileRedstoneTransmitter) {
+			return new GTTileRedstoneTransmitter();
+		}
+		if (this == GTBlocks.tileRedstoneReceiver) {
+			return new GTTileRedstoneReceiver();
+		}
 		if (this == GTBlocks.tileSupercondensator) {
 			return new GTTileSupercondensator();
 		}
@@ -269,14 +315,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
-		if (thisIs(stack, GTBlocks.tileCentrifuge) || thisIs(stack, GTBlocks.tileFabricator)
-				|| thisIs(stack, GTBlocks.tileComputer) || thisIs(stack, GTBlocks.tileDisassembler)
-				|| thisIs(stack, GTBlocks.tileDragonEggEnergySiphon) || thisIs(stack, GTBlocks.tileMagicEnergyAbsorber)
-				|| thisIs(stack, GTBlocks.tileMagicEnergyConverter) || thisIs(stack, GTBlocks.tileFusionReactor)
-				|| thisIs(stack, GTBlocks.tileBedrockMiner) || thisIs(stack, GTBlocks.tileCharcoalPit)) {
-			return this.getDefaultBlockState().withProperty(active, true);
-		}
-		return this.getStateFromMeta(stack.getMetadata());
+		return this.getDefaultBlockState().withProperty(active, true);
 	}
 
 	@Override
@@ -313,9 +352,5 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			return false;
 		}
 		return super.canEntityDestroy(state, world, pos, entity);
-	}
-
-	public boolean thisIs(ItemStack stack, GTBlockMachine block) {
-		return (GTHelperStack.isEqual(stack, GTMaterialGen.get(block)));
 	}
 }

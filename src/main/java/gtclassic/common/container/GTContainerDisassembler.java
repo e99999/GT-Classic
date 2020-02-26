@@ -2,7 +2,7 @@ package gtclassic.common.container;
 
 import gtclassic.api.gui.GTGuiCompBasicString;
 import gtclassic.api.gui.GTGuiCompMachinePower;
-import gtclassic.api.slot.GTSlotUpgrade;
+import gtclassic.api.gui.GTSlotUpgrade;
 import gtclassic.common.tile.GTTileDisassembler;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;

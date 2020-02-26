@@ -7,7 +7,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
@@ -33,7 +32,7 @@ public class GTOreGenerator {
 		int minHeight = 0;
 		int maxHeight = 10;
 		int heightdiff = maxHeight - minHeight + 1;
-		int chance = world.provider.getDimensionType().equals(DimensionType.NETHER) ? 4096 : 8192;
+		int chance = 8192;
 		for (int i = 0; i < GTConfig.generation.bedrockOreWeight; i++) {
 			int var1 = rand.nextInt(chance);
 			if (var1 == 0) {

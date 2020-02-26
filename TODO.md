@@ -1,8 +1,8 @@
 # Todo
 - Fix Speiger's total apathy twoards rotated block textures
-- Make plasma cable removal work for steel mode
-- Sluice with meduris? If so then mortar block as well.
-- That one probe compat for quantum chest/tank contents and eu stored in machines if reader is present
 - Multiplayer support for Basic Worktable.
-- Come up with uses for Calcium.
-- Convert String references in gui's to localecomps
+- Bug trins about shift clicking not being into the inventory of the worktable
+- More SonarLint warnings starting from base classes outward
+- Fix Hacky way of putting output power in Fusion Reactor
+- Couple more fun items to use
+- Check drum not updating output top or bottom!!!!!

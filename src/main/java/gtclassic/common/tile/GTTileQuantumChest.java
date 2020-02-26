@@ -9,7 +9,7 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerQuantumChest;
-import gtclassic.common.util.GTFilterQuantumChest;
+import gtclassic.common.util.GTIFilters;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.base.IHasGui;
@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, ITickable, IGTItemContainerTile {
 
-	public GTFilterQuantumChest filter = new GTFilterQuantumChest(this);
+	public GTIFilters.QuantumChestFilter filter = new GTIFilters.QuantumChestFilter(this);
 	int slotInput = 0;
 	int slotOutput = 1;
 	int slotDisplay = 2;
@@ -54,7 +54,7 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 		handler.registerDefaultSlotAccess(AccessRule.Export, 1);
 		handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), 0);
 		handler.registerDefaultSlotsForSide(RotationList.UP.invert(), 1);
-		handler.registerInputFilter(new GTFilterQuantumChest(this), slotInput);
+		handler.registerInputFilter(new GTIFilters.QuantumChestFilter(this), slotInput);
 		handler.registerSlotType(SlotType.Input, 0);
 		handler.registerSlotType(SlotType.Output, 1);
 	}

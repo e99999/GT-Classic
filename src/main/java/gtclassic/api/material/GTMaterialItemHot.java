@@ -2,7 +2,7 @@ package gtclassic.api.material;
 
 import java.util.List;
 
-import gtclassic.api.helpers.GTHelperPlayer;
+import gtclassic.api.helpers.GTUtility;
 import ic2.core.item.armor.standart.ItemHazmatArmor;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -33,7 +33,7 @@ public class GTMaterialItemHot extends GTMaterialItem {
 		if (entityIn instanceof EntityLivingBase) {
 			EntityLivingBase player = (EntityLivingBase) entityIn;
 			if (!ItemHazmatArmor.isFullHazmatSuit(player) && !player.isImmuneToFire()
-					&& !GTHelperPlayer.hasFullQuantumSuit(player)) {
+					&& !GTUtility.hasFullQuantumSuit(player)) {
 				entityIn.attackEntityFrom(DamageSource.IN_FIRE, 4.0F);
 			}
 		}

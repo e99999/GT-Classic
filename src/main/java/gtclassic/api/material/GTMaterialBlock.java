@@ -1,7 +1,7 @@
 package gtclassic.api.material;
 
 import gtclassic.GTMod;
-import gtclassic.api.helpers.GTHelperString;
+import gtclassic.api.helpers.GTValues;
 import gtclassic.api.interfaces.IGTColorBlock;
 import ic2.core.platform.lang.ILocaleBlock;
 import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleBlockComp;
@@ -51,8 +51,8 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(GTHelperString.NOMOBSPAWN));
-		tooltip.add(I18n.format(GTHelperString.BEACONBASE));
+		tooltip.add(I18n.format(GTValues.TOOLTIP_NOMOBS));
+		tooltip.add(I18n.format(GTValues.TOOLTIP_BEACON));
 	}
 
 	@Override

@@ -5,7 +5,6 @@ import java.util.Random;
 import com.google.common.base.Predicate;
 
 import gtclassic.common.GTBlocks;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,7 +12,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -69,13 +67,7 @@ public class GTBedrockOreMineable extends WorldGenerator {
 									IBlockState state = worldIn.getBlockState(blockpos);
 									if (state.getBlock().isReplaceableOreGen(state, worldIn, blockpos, this.predicate)) {
 										worldIn.setBlockState(blockpos, this.oreBlock, 2);
-										// TODO this is probably not that great to call every fucking time but works for
-										// now
-										if (worldIn.provider.getDimensionType().equals(DimensionType.NETHER)) {
-											generateNetherFlower(worldIn, blockpos);
-										} else {
-											generateRegularFlower(worldIn, blockpos);
-										}
+										generateOreFlower(worldIn, blockpos);
 									}
 								}
 							}
@@ -87,7 +79,7 @@ public class GTBedrockOreMineable extends WorldGenerator {
 		return true;
 	}
 
-	private void generateRegularFlower(World worldIn, BlockPos blockpos) {
+	private void generateOreFlower(World worldIn, BlockPos blockpos) {
 		if (worldIn.rand.nextInt(4) == 0) {
 			for (int j = 0; j < 100; ++j) {
 				Material material = worldIn.getBlockState(blockpos.offset(EnumFacing.UP, j)).getMaterial();
@@ -97,20 +89,6 @@ public class GTBedrockOreMineable extends WorldGenerator {
 						worldIn.setBlockState(upPos, GTBlocks.oreChid.getDefaultState());
 					}
 					break;
-				}
-			}
-		}
-	}
-
-	private void generateNetherFlower(World worldIn, BlockPos blockpos) {
-		if (worldIn.rand.nextInt(4) == 0) {
-			for (int j = 0; j < 64; ++j) {
-				Block block = worldIn.getBlockState(blockpos.offset(EnumFacing.UP, j)).getBlock();
-				if (block == Blocks.NETHERRACK) {
-					BlockPos upPos = blockpos.offset(EnumFacing.UP, j + 1);
-					if (worldIn.getBlockState(upPos).getBlock().isReplaceable(worldIn, upPos)) {
-						worldIn.setBlockState(upPos, GTBlocks.phosphorLily.getDefaultState());
-					}
 				}
 			}
 		}

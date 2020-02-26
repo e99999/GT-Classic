@@ -7,6 +7,7 @@ import gtclassic.api.world.GTOreGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -40,9 +41,11 @@ public class GTWorldGen implements IWorldGenerator {
 				|| (BiomeDictionary.hasType(biomegenbase, Type.PLAINS))) {
 			GTOreGenerator.generateBasicVein(GTBlocks.oreBauxite, GTConfig.generation.bauxiteGenerate, GTConfig.generation.bauxiteSize, GTConfig.generation.bauxiteWeight, 50, 120, Blocks.STONE, world, random, chunkX, chunkZ);
 		}
-		for (Block block : GTBedrockOreHandler.getBedrockOreMap().keySet()) {
-			if (GTBedrockOreHandler.shouldGTCHandleGeneration(block)) {
-				GTOreGenerator.generateBedrockVein(block, world, random, chunkX, chunkZ);
+		if (world.provider.getDimensionType().equals(DimensionType.OVERWORLD)) {
+			for (Block block : GTBedrockOreHandler.getBedrockOreMap().keySet()) {
+				if (GTBedrockOreHandler.shouldGTCHandleGeneration(block)) {
+					GTOreGenerator.generateBedrockVein(block, world, random, chunkX, chunkZ);
+				}
 			}
 		}
 	}

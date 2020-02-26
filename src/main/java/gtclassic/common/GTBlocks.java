@@ -7,7 +7,7 @@ import gtclassic.GTMod;
 import gtclassic.api.color.GTColorItemBlock;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemBlock;
-import gtclassic.api.itemblock.GTItemBlockRare;
+import gtclassic.api.item.GTItemBlock;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.block.GTBlockBattery;
 import gtclassic.common.block.GTBlockBurnable;
@@ -19,14 +19,12 @@ import gtclassic.common.block.GTBlockMiningPipe;
 import gtclassic.common.block.GTBlockMortar;
 import gtclassic.common.block.GTBlockOre;
 import gtclassic.common.block.GTBlockOreBedrock;
-import gtclassic.common.block.GTBlockOrechid;
+import gtclassic.common.block.GTBlockOreFlower;
 import gtclassic.common.block.GTBlockQuantumChest;
 import gtclassic.common.block.GTBlockQuantumTank;
 import gtclassic.common.block.GTBlockStorage;
 import gtclassic.common.block.GTBlockSuperconductorCable;
 import gtclassic.common.block.GTBlockUUMAssembler;
-import gtclassic.common.block.datanet.GTBlockDataCable;
-import gtclassic.common.block.datanet.GTBlockDataNode;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
 import gtclassic.common.tile.GTTileBattery;
@@ -38,6 +36,7 @@ import gtclassic.common.tile.GTTileCabinet;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileCharcoalPit;
 import gtclassic.common.tile.GTTileChargeOMat;
+import gtclassic.common.tile.GTTileComputer;
 import gtclassic.common.tile.GTTileDigitalChest;
 import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
@@ -52,24 +51,19 @@ import gtclassic.common.tile.GTTileMobRepeller;
 import gtclassic.common.tile.GTTilePlayerDetector;
 import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
+import gtclassic.common.tile.GTTileRedstoneReceiver;
+import gtclassic.common.tile.GTTileRedstoneTransmitter;
 import gtclassic.common.tile.GTTileSupercondensator;
+import gtclassic.common.tile.GTTileSuperconductorCables;
+import gtclassic.common.tile.GTTileTesseractMaster;
+import gtclassic.common.tile.GTTileTesseractSlave;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
-import gtclassic.common.tile.datanet.GTTileBaseDataNode;
-import gtclassic.common.tile.datanet.GTTileComputerCube;
-import gtclassic.common.tile.datanet.GTTileDataCable;
-import gtclassic.common.tile.datanet.GTTileDigitizerFluid;
-import gtclassic.common.tile.datanet.GTTileDigitizerItem;
-import gtclassic.common.tile.datanet.GTTileReconstructorFluid;
-import gtclassic.common.tile.datanet.GTTileReconstructorItem;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
 import gtclassic.common.tile.multi.GTTileMultiLightningRod;
-import gtclassic.common.tile.wiring.GTTileSuperconductorCable;
-import gtclassic.common.tile.wiring.GTTileSuperconductorCable2;
-import gtclassic.common.tile.wiring.GTTileSuperconductorCable4;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.block.Block;
@@ -110,11 +104,9 @@ public class GTBlocks {
 	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 4, 500.0F));
 	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 6, 250.0F));
-	// public static final GTBlockCasing casingQuantum = registerBlock(new
-	// GTBlockCasing("quantum", 46, 1000.0F));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
-	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE, 3));
+	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
 	public static final GTBlockMachine tileCharcoalPit = registerBlock(new GTBlockMachine("charcoalpit", GTLang.CHARCOAL_PIT, 5));
 	public static final GTBlockMachine tileDisassembler = registerBlock(new GTBlockMachine("disassembler", GTLang.DISASSEMBLER));
@@ -130,6 +122,8 @@ public class GTBlocks {
 	public static final GTBlockMachine tileMagicEnergyAbsorber = registerBlock(new GTBlockMachine("magicenergyabsorber", GTLang.MAGIC_ENERGY_ABSORBER));
 	public static final GTBlockMachine tileFusionReactor = registerBlock(new GTBlockMachine("fusionreactor", GTLang.FUSION_REACTOR, 5));
 	public static final GTBlockMachine tileLightningRod = registerBlock(new GTBlockMachine("lightningrod", GTLang.LIGHTNING_ROD, 3));
+	public static final GTBlockMachine tileTesseractMaster = registerBlock(new GTBlockMachine("tesseractmaster", GTLang.TESSERACT_MASTER));
+	public static final GTBlockMachine tileTesseractSlave = registerBlock(new GTBlockMachine("tesseractslave", GTLang.TESSERACT_SLAVE, 2));
 	public static final GTBlockBattery tileBatteryLV = registerBlock(new GTBlockBattery("batteryblocklv", 1, 32, 80000));
 	public static final GTBlockMachine tileLESU = registerBlock(new GTBlockMachine("lesu", GTLang.LESU, 2));
 	public static final GTBlockMachine tileAESU = registerBlock(new GTBlockMachine("aesu", GTLang.AESU));
@@ -141,24 +135,20 @@ public class GTBlocks {
 	public static final GTBlockMachine tileDigitalChest = registerBlock(new GTBlockMachine("digitalchest", GTLang.DIGITAL_CHEST));
 	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());
 	public static final GTBlockQuantumTank tileQuantumTank = registerBlock(new GTBlockQuantumTank());
+	public static final GTBlockMachine tileRedstoneTransmitter = registerBlock(new GTBlockMachine("redstonetransmitter", GTLang.REDSTONE_TRANSMITTER, 2));
+	public static final GTBlockMachine tileRedstoneReceiver = registerBlock(new GTBlockMachine("redstonereceiver", GTLang.REDSTONE_RECEIVER));
 	public static final GTBlockMachine tileTranslocator = registerBlock(new GTBlockMachine("translocator", GTLang.TRANSLOCATOR, 3));
 	public static final GTBlockMachine tileBufferLarge = registerBlock(new GTBlockMachine("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachine tileBufferSmall = registerBlock(new GTBlockMachine("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachine tileTranslocatorFluid = registerBlock(new GTBlockMachine("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
 	public static final GTBlockMachine tileBufferFluid = registerBlock(new GTBlockMachine("bufferfluid", GTLang.BUFFER_FLUID, 2));
-	public static final GTBlockDataNode tileDigitizerItem = registerBlock(new GTBlockDataNode("itemdigitizer", 97, GTLang.ITEM_DIGITIZER));
-	public static final GTBlockDataNode tileDigitizerFluid = registerBlock(new GTBlockDataNode("fluiddigitizer", 98, GTLang.FLUID_DIGITIZER));
-	public static final GTBlockDataNode tileReconstructorItem = registerBlock(new GTBlockDataNode("itemreconstructor", 99, GTLang.ITEM_RECONSTRUCTOR));
-	public static final GTBlockDataNode tileReconstructorFluid = registerBlock(new GTBlockDataNode("fluidreconstructor", 100, GTLang.FLUID_RECONTSTRUCTOR));
-	public static final GTBlockSuperconductorCable tileSuperconductorCable = registerBlock(new GTBlockSuperconductorCable(12, ""));
-	public static final GTBlockSuperconductorCable tileSuperconductorCable2x = registerBlock(new GTBlockSuperconductorCable(6, "2"));
-	public static final GTBlockSuperconductorCable tileSuperconductorCable4x = registerBlock(new GTBlockSuperconductorCable(4, "4"));
-	public static final GTBlockDataCable dataCable = registerBlock(new GTBlockDataCable());
+	public static final GTBlockSuperconductorCable tileSuperconductorCableMAX = registerBlock(new GTBlockSuperconductorCable(12, ""));
+	public static final GTBlockSuperconductorCable tileSuperconductorCableIV = registerBlock(new GTBlockSuperconductorCable(6, "2"));
+	public static final GTBlockSuperconductorCable tileSuperconductorCableHV = registerBlock(new GTBlockSuperconductorCable(4, "4"));
 	public static final GTBlockMiningPipe miningPipe = registerBlock(new GTBlockMiningPipe());
 	public static final GTBlockMortar flintMortar = registerBlock(new GTBlockMortar("flintmortar", "axe"));
 	public static final GTBlockMortar ironMortar = registerBlock(new GTBlockMortar("ironmortar", "pickaxe"));
-	public static final GTBlockOrechid oreChid = registerBlock(new GTBlockOrechid("orechid", 38));
-	public static final GTBlockOrechid phosphorLily = registerBlock(new GTBlockOrechid("phosphorlily", 39));
+	public static final GTBlockOreFlower oreChid = registerBlock(new GTBlockOreFlower("orechid", 38));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
 
 	public static void registerBlocks() {
@@ -186,7 +176,7 @@ public class GTBlocks {
 		if (block instanceof IGTColorBlock) {
 			return GTColorItemBlock.class;
 		}
-		return GTItemBlockRare.class;
+		return GTItemBlock.class;
 	}
 
 	public static void registerTiles() {
@@ -195,15 +185,17 @@ public class GTBlocks {
 		registerUtil(GTTileMobRepeller.class, "MobRepeller");
 		registerUtil(GTTileEnergyTransmitter.class, "EnergyTransmitter");
 		registerUtil(GTTileEchotron.class, "Echotron");
-		registerUtil(GTTileComputerCube.class, "ComputerCube");
 		registerUtil(GTTileAutocrafter.class, "Autocrafter");
 		registerUtil(GTTileDisassembler.class, "Disassembler");
 		registerUtil(GTTileCharcoalPit.class, "CharcoalPit");
 		registerUtil(GTTileBedrockMiner.class, "BedrockMiner");
 		registerUtil(GTTileChargeOMat.class, "ChargeOMat");
+		registerUtil(GTTileComputer.class, "Computer");
 		registerUtil(GTTileMultiLESU.class, "LESU");
 		registerUtil(GTTileIDSU.class, "IDSU");
 		registerUtil(GTTileAESU.class, "AESU");
+		registerUtil(GTTileTesseractMaster.class, "TesseractGenerator");
+		registerUtil(GTTileTesseractSlave.class, "TesseractTerminal");
 		registerUtil(GTTileMultiLightningRod.class, "LightningRod");
 		registerUtil(GTTileSupercondensator.class, "Supercondensator");
 		registerUtil(GTTileMultiFusionReactor.class, "FusionComputer");
@@ -219,23 +211,19 @@ public class GTBlocks {
 		registerUtil(GTTileCabinet.class, "Cabinet");
 		registerUtil(GTTileDrum.class, "Drum");
 		registerUtil(GTTileBattery.class, "Battery");
+		registerUtil(GTTileRedstoneTransmitter.class, "RedstoneTransmitter");
+		registerUtil(GTTileRedstoneReceiver.class, "RedstoneReceiver");
 		registerUtil(GTTileTranslocator.class, "Translocator");
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileTranslocatorFluid.class, "TranslocatorFluid");
 		registerUtil(GTTileBufferFluid.class, "BufferFluid");
-		registerUtil(GTTileSuperconductorCable.class, "SuperconductorCable");
-		registerUtil(GTTileSuperconductorCable2.class, "SuperconductorCable2");
-		registerUtil(GTTileSuperconductorCable4.class, "SuperconductorCable4");
-		registerUtil(GTTileDataCable.class, "DataCable");
-		registerUtil(GTTileDigitizerItem.class, "ItemImporter");
-		registerUtil(GTTileDigitizerFluid.class, "FluidImporter");
-		registerUtil(GTTileReconstructorItem.class, "ItemExporter");
-		registerUtil(GTTileReconstructorFluid.class, "FluidExporter");
-		registerUtil(GTTileBaseDataNode.class, "TestModel");
+		registerUtil(GTTileSuperconductorCables.SuperconductorMAX.class, "SuperconductorCableMAX");
+		registerUtil(GTTileSuperconductorCables.SuperconductorIV.class, "SuperconductorCableIV");
+		registerUtil(GTTileSuperconductorCables.SuperconductorHV.class, "SuperconductorCableHV");
 	}
 
-	public static void registerUtil(Class<? extends TileEntity> tile, String name) {
+	private static void registerUtil(Class<? extends TileEntity> tile, String name) {
 		GameRegistry.registerTileEntity(tile, new ResourceLocation(GTMod.MODID, "tileEntity" + name));
 	}
 }

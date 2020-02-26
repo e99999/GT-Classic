@@ -15,6 +15,7 @@ import gtclassic.common.item.GTItemElectromagnet;
 import gtclassic.common.item.GTItemEnergyOrb;
 import gtclassic.common.item.GTItemEnergyPack;
 import gtclassic.common.item.GTItemFluidTube;
+import gtclassic.common.item.GTItemForcefield;
 import gtclassic.common.item.GTItemJackHammer;
 import gtclassic.common.item.GTItemLightHelmet;
 import gtclassic.common.item.GTItemLithiumBattery;
@@ -22,6 +23,7 @@ import gtclassic.common.item.GTItemMagnifyingGlass;
 import gtclassic.common.item.GTItemReactorHeat;
 import gtclassic.common.item.GTItemReactorRod;
 import gtclassic.common.item.GTItemRockCutter;
+import gtclassic.common.item.GTItemSensorStick;
 import gtclassic.common.item.GTItemSprayCan;
 import gtclassic.common.item.GTItemSpringBoots;
 import gtclassic.common.item.GTItemSurvivalScanner;
@@ -69,12 +71,14 @@ public class GTItems {
 	public static GTItemLithiumBattery lithiumBattery;
 	public static GTItemEnergyOrb orbEnergy;
 	public static GTItemCloakingDevice cloakingDevice;
+	public static GTItemForcefield forceField;
 	public static GTItemEnergyPack lithiumBatpack;
 	public static GTItemEnergyPack lapotronPack;
 	public static GTItemLightHelmet lightHelment;
 	public static GTItemTeslaStaff teslaStaff;
 	public static GTItemRockCutter rockCutter;
 	public static GTItemJackHammer jackHammer;
+	public static GTItemSensorStick sensorStick;
 	public static GTItemSurvivalScanner portableScanner;
 	public static GTItemCreativeScanner debugScanner;
 
@@ -111,6 +115,7 @@ public class GTItems {
 				: createItem(new GTItemLithiumBattery());
 		orbEnergy = doBaubles ? createItem(new GTItemBaublesEnergyOrb()) : createItem(new GTItemEnergyOrb());
 		cloakingDevice = createItem(new GTItemCloakingDevice());
+		forceField = createItem(new GTItemForcefield());
 		lithiumBatpack = doBaubles
 				? createItem(new GTItemBaublesEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128))
 				: createItem(new GTItemEnergyPack(26, "gtclassic:textures/models/armor/lithiumbatpack", 600000, "lithium_batpack", ".lithiumBatpack", 1, 128));
@@ -121,6 +126,7 @@ public class GTItems {
 		teslaStaff = createItem(new GTItemTeslaStaff());
 		rockCutter = createItem(new GTItemRockCutter());
 		jackHammer = createItem(new GTItemJackHammer());
+		sensorStick = createItem(new GTItemSensorStick());
 		portableScanner = createItem(new GTItemSurvivalScanner());
 		debugScanner = createItem(new GTItemCreativeScanner());
 	}

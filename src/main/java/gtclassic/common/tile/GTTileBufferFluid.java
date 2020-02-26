@@ -3,7 +3,7 @@ package gtclassic.common.tile;
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerBufferFluid;
-import gtclassic.common.util.GTFilterFluidCapability;
+import gtclassic.common.util.GTIFilters;
 import ic2.core.RotationList;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasGui;
@@ -55,7 +55,7 @@ public class GTTileBufferFluid extends GTTileBufferBase implements ITankListener
 		handler.registerDefaultSlotsForSide(RotationList.ALL, 1);
 		handler.registerSlotType(SlotType.Input, 0);
 		handler.registerSlotType(SlotType.Output, 1);
-		handler.registerInputFilter(new GTFilterFluidCapability(), 0);
+		handler.registerInputFilter(new GTIFilters.FluidItemFilter(), 0);
 	}
 
 	@Override

@@ -5,10 +5,10 @@ import java.util.List;
 
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerTranslocator;
-import gtclassic.common.util.GTFilterTranslocator;
+import gtclassic.common.util.GTIFilters;
+import gtclassic.common.util.GTIFilters.TranslocatorFilter;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileTranslocator extends GTTileBufferBase implements IHasGui {
 
-	public GTFilterTranslocator filter = new GTFilterTranslocator(this);
+	public GTIFilters.TranslocatorFilter filter = new TranslocatorFilter(this);
 
 	public GTTileTranslocator() {
 		super(9);
@@ -75,11 +75,11 @@ public class GTTileTranslocator extends GTTileBufferBase implements IHasGui {
 			if (stack.isEmpty()) {
 				break;
 			}
-			ItemStack added = out.addItem(stack, getFacing(), true);
+			ItemStack added = out.addItem(stack, getFacing().getOpposite(), true);
 			if (added.getCount() <= 0) {
 				break;
 			}
-			in.removeItem(new BasicItemFilter(added), getFacing(), added.getCount(), true);
+			in.removeItem(new GTIFilters.BetterBasicItemFilter(added), getFacing(), added.getCount(), true);
 		}
 	}
 

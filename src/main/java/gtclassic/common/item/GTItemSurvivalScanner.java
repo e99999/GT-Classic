@@ -11,7 +11,6 @@ import ic2.core.item.base.BasicElectricItem;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -41,11 +40,6 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		GTItemCreativeScanner.genToolTip(stack, worldIn, tooltip, flagIn);
-	}
-
-	@Override
 	public int getRGBDurabilityForDisplay(ItemStack stack) {
 		return Color.CYAN.hashCode();
 	}
@@ -63,7 +57,7 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 			return EnumActionResult.PASS;
 		} else {
 			ElectricItem.manager.use(player.getHeldItemMainhand(), energyCost, (EntityLivingBase) null);
-			return GTItemCreativeScanner.scanBlock(player, world, pos, side, hitX, hitY, hitZ, hand);
+			return GTItemCreativeScanner.scanBlock(player, world, pos, side, hand);
 		}
 	}
 

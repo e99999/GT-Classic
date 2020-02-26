@@ -11,7 +11,7 @@ import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTIcons;
 import gtclassic.common.GTLang;
-import gtclassic.common.itemblock.GTItemBlockBattery;
+import gtclassic.common.item.GTItemBlockBattery;
 import gtclassic.common.tile.GTTileBattery;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityBlock;

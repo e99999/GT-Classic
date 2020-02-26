@@ -5,7 +5,7 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerDigitalChest;
-import gtclassic.common.util.GTFilterDigitalChest;
+import gtclassic.common.util.GTIFilters;
 import ic2.api.network.INetworkClientTileEntityEventListener;
 import ic2.core.IC2;
 import ic2.core.RotationList;
@@ -57,7 +57,7 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IN
 		handler.registerDefaultSlotAccess(AccessRule.Both, array);
 		handler.registerDefaultSlotsForSide(RotationList.ALL, array);
 		handler.registerSlotType(SlotType.Storage, array);
-		handler.registerInputFilter(new GTFilterDigitalChest(), array);
+		handler.registerInputFilter(new GTIFilters.DigitalChestFilter(), array);
 	}
 
 	@Override

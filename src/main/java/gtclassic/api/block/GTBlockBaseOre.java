@@ -91,6 +91,7 @@ public abstract class GTBlockBaseOre extends GTBlockBase implements ILayeredBloc
 	}
 
 	public enum BackgroundSet {
+
 		STONE("minecraft:blocks/stone"),
 		NETHERRACK("minecraft:blocks/netherrack"),
 		ENDSTONE("minecraft:blocks/end_stone"),

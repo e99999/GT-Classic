@@ -7,7 +7,7 @@ import java.util.Random;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
 import gtclassic.common.GTBlocks;
-import gtclassic.common.util.GTLogBlockFilter;
+import gtclassic.common.util.GTIBlockFilters;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
@@ -32,7 +32,7 @@ public class GTTileCharcoalPit extends TileEntityMachine
 	float progress = 0;
 	float recipeOperation = 6000.0F;
 	List<BlockPos> logPositions;
-	static AabbUtil.IBlockFilter filter = new GTLogBlockFilter();
+	static AabbUtil.IBlockFilter filter = new GTIBlockFilters.LogFilter();
 
 	public GTTileCharcoalPit() {
 		super(0);

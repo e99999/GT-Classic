@@ -2,10 +2,10 @@ package gtclassic.api.color;
 
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTColorItem;
-import gtclassic.api.itemblock.GTItemBlockRare;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialBlock;
 import gtclassic.api.material.GTMaterialFlag;
+import gtclassic.api.item.GTItemBlock;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
@@ -15,7 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import javax.annotation.Nonnull;
 import java.awt.Color;
 
-public class GTColorItemBlock extends GTItemBlockRare implements IGTColorItem {
+public class GTColorItemBlock extends GTItemBlock implements IGTColorItem {
 
 	Block block;
 
