@@ -21,7 +21,6 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.Loader;
@@ -99,6 +98,18 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTItems.portableScanner, 1), "PEP", "CFC", "PBP", 'P', GTValues.INGOT_ALUMINIUM, 'E', GTMaterialGen.getIc2(Ic2Items.euReader, 1), 'F', GTMaterialGen.getIc2(Ic2Items.cropAnalyzer, 1), 'C', GTValues.CIRCUIT_ADVANCED, 'B', GTMaterialGen.get(GTItems.lithiumBattery));
 			/** Empty Spray Can **/
 			recipes.addRecipe(GTMaterialGen.get(GTItems.sprayCanEmpty), "R", "C", 'C', Ic2Items.emptyCell, 'R', GTValues.DUST_REDSTONE);
+			/** Data Control Circuit **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.circuitData, 4), "CDC", "DPD", "CDC", 'D', GTValues.CIRCUIT_DATA, 'C', GTValues.CIRCUIT_ADVANCED, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
+			/** Super Conductor **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.superConductor, 4), "CCC", "WPW", "EEE", 'C', GTValues.INPUT_COOLANT_SUPERCONDUCTOTR, 'E', GTValues.CIRCUIT_MASTER, 'W', GTValues.INGOT_TUNGSTEN, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
+			/** Magnifying Glass **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.magnifyingGlass), " P", "S ", 'P', "paneGlass", 'S', GTValues.STICK_WOOD);
+			/** Cloaking Device **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.cloakingDevice, 1), "IPI", "POP", "IPI", 'I', GTValues.INGOT_CHROME, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'O', GTValues.BATTERY_ULTIMATE);
+			/** Forcfield **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.forceField, 1), "IPI", "POP", "IPI", 'I', GTValues.INGOT_TUNGSTEN, 'P', GTValues.CIRCUIT_ELITE, 'O', GTValues.BATTERY_ULTIMATE);
+			/** Electro Magnet **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.electroMagnet, 1), "M M", "WMW", "IBI", 'M', Ic2Items.magnet, 'B', Ic2Items.battery, 'I', GTValues.INGOT_REFINEDIRON, 'W', Ic2Items.copperCable);
 		}
 		/** Test Tube **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.testTube, 32), "G G", "G G", " G ", 'G', GTValues.BLOCK_GLASS);
@@ -108,33 +119,20 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.flintMortar), " F ", "BFB", "BBB", 'F', Items.FLINT, 'B', "plankWood");
 		/** Iron Mortar **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.ironMortar, 1), " I ", "BIB", "BBB", 'I', GTValues.INPUT_INGOT_ANYIRON, 'B', "stone");
-		/** Magnifying Glass **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.magnifyingGlass), " P", "S ", 'P', "paneGlass", 'S', GTValues.STICK_WOOD);
 		/** Destructo Pack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.destructoPack, 1), "CIC", "ILI", "CIC", 'L', GTValues.FS_LAVA, 'C', GTValues.CIRCUIT_BASIC, 'I', GTValues.INGOT_REFINEDIRON);
-		/** Electro Magnet **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.electroMagnet, 1), "M M", "WMW", "IBI", 'M', Ic2Items.magnet, 'B', Ic2Items.battery, 'I', GTValues.INGOT_REFINEDIRON, 'W', Ic2Items.copperCable);
 		/** Helium Coolant **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium1, 1), " I ", "IHI", " I ", 'I', GTValues.INGOT_TIN, 'H', GTMaterialGen.getTube(GTMaterial.Helium, 1));
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium3, 1), "III", "HHH", "III", 'I', GTValues.INGOT_TIN, 'H', GTItems.heatStorageHelium1);
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium6, 1), "IHI", "IPI", "IHI", 'I', GTValues.INGOT_TIN, 'H', GTItems.heatStorageHelium3, 'P', Ic2Items.denseCopperPlate);
 		/** Energy Control Circuit **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.circuitEnergy, 4), "CLC", "LPL", "CLC", 'L', Ic2Items.lapotronCrystal.copy(), 'C', GTValues.CIRCUIT_ADVANCED, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
-		/** Data Control Circuit **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.circuitData, 4), "CDC", "DPD", "CDC", 'D', GTValues.CIRCUIT_DATA, 'C', GTValues.CIRCUIT_ADVANCED, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		/** Lapotronic Energy Orb **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.orbEnergy, 1), "LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(), 'P', GTValues.PLATE_IRIDIUM_ALLOY);
-		/** Super Conductor **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.superConductor, 4), "CCC", "PWP", "EEE", 'C', Ic2Items.reactorCoolantCellSix.copy(), 'E', GTValues.CIRCUIT_MASTER, 'W', GTValues.INGOT_TUNGSTEN, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
-		recipes.addRecipe(GTMaterialGen.get(GTItems.superConductor, 4), "CCC", "PWP", "EEE", 'C', GTItems.heatStorageHelium3, 'E', GTValues.CIRCUIT_MASTER, 'W', GTValues.INGOT_TUNGSTEN, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		/** Lapotron Batpack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.lapotronPack, 1), "ELE", "SBS", "EPE", 'E', GTValues.CIRCUIT_MASTER, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'L', GTValues.BATTERY_ULTIMATE, 'B', GTItems.lithiumBatpack, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		/** Tesla Staff **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), " SL", " PS", "P  ", 'L', GTValues.BATTERY_ULTIMATE, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
-		/** Cloaking Device **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.cloakingDevice, 1), "IPI", "POP", "IPI", 'I', GTValues.INGOT_CHROME, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'O', GTValues.BATTERY_ULTIMATE);
-		/** Forcfield **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.forceField, 1), "IPI", "POP", "IPI", 'I', GTValues.INGOT_TUNGSTEN, 'P', GTValues.CIRCUIT_ELITE, 'O', GTValues.BATTERY_ULTIMATE);
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.echotron, 1), " C ", "CEC", " C ", 'E', GTBlocks.tileEchotron, 'C', GTValues.CIRCUIT_DATA);
 		/** Spring Boots **/
@@ -169,11 +167,8 @@ public class GTRecipe {
 			/** Charcoal Pit **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCharcoalPit), new Object[] { "IFI", "IFI", "IFI", 'I',
 					"ingotRefinedIron", 'F', Items.FLINT });
-			/** Disassemembler stuff with other mods **/
-			Item top = GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)
-					? GTMaterialGen.getModItem(GTValues.MOD_ID_TFOREST, "uncrafting_table").getItem()
-					: GTMaterialGen.getIc2(Ic2Items.extractor).getItem();
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), "RAR", "ECE", "RWR", 'A', top, 'W', GTBlocks.tileAutocrafter, 'R', GTValues.INGOT_REFINEDIRON, 'E', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_ADVANCED);
+			/** Disassemembler  **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), "RAR", "ECE", "RWR", 'A', Ic2Items.extractor.copy(), 'W', GTBlocks.tileAutocrafter, 'R', GTValues.INGOT_REFINEDIRON, 'E', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_ADVANCED);
 			/** Computer Cube **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileComputer, 1), "RGD", "GMG", "DGR", 'D', GTValues.CIRCUIT_ULTIMATE, 'R', GTValues.CIRCUIT_MASTER, 'G', GTValues.BLOCK_GLASS, 'M', GTValues.MACHINE_ADV);
 			/** Digital Chest **/

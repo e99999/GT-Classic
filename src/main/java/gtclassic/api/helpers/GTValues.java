@@ -54,6 +54,7 @@ public class GTValues {
 			INPUT_PISTON_ANY = GTRecipeCraftingHandler.combineRecipeObjects(Blocks.STICKY_PISTON, Blocks.PISTON),
 			INPUT_INGOT_HIGH = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_TUNGSTEN, INGOT_TITANIUM),
 			INPUT_INGOT_DIGITAL = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_CHROME, INGOT_TITANIUM, INGOT_PLATINUM),
+			INPUT_COOLANT_SUPERCONDUCTOTR = GTRecipeCraftingHandler.combineRecipeObjects(Ic2Items.reactorCoolantCellSix, GTItems.heatStorageHelium1),
 			INPUT_BATTERY_ADVANCED = GTRecipeCraftingHandler.combineRecipeObjects(Ic2Items.energyCrystal.copy(), GTItems.lithiumBattery),
 			INPUT_CIRCUIT_BASIC_X2 = new RecipeInputCombined(2, new IRecipeInput[] {
 					new RecipeInputOreDict(CIRCUIT_BASIC) });

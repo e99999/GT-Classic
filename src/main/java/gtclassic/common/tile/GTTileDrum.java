@@ -141,7 +141,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	public void update() {
 		if (this.flow && world.getTotalWorldTime() % 10 == 0 && this.tank.getFluid() != null) {
 			EnumFacing side = updateSideForOutput();
-			IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, this.getPos().offset(side), side);
+			IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, this.getPos().offset(side), side.getOpposite());
 			if (fluidTile != null && FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true) != null) {
 				// empty if transfered method
 			}
