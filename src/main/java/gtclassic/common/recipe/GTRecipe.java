@@ -98,8 +98,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTItems.portableScanner, 1), "PEP", "CFC", "PBP", 'P', GTValues.INGOT_ALUMINIUM, 'E', GTMaterialGen.getIc2(Ic2Items.euReader, 1), 'F', GTMaterialGen.getIc2(Ic2Items.cropAnalyzer, 1), 'C', GTValues.CIRCUIT_ADVANCED, 'B', GTMaterialGen.get(GTItems.lithiumBattery));
 			/** Empty Spray Can **/
 			recipes.addRecipe(GTMaterialGen.get(GTItems.sprayCanEmpty), "R", "C", 'C', Ic2Items.emptyCell, 'R', GTValues.DUST_REDSTONE);
-			/** Data Control Circuit **/
-			recipes.addRecipe(GTMaterialGen.get(GTItems.circuitData, 4), "CDC", "DPD", "CDC", 'D', GTValues.CIRCUIT_DATA, 'C', GTValues.CIRCUIT_ADVANCED, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
+			/** Energy Control Circuit **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.circuitEnergy, 4), "CLC", "LPL", "CLC", 'L', Ic2Items.lapotronCrystal.copy(), 'C', GTValues.CIRCUIT_ADVANCED, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 			/** Super Conductor **/
 			recipes.addRecipe(GTMaterialGen.get(GTItems.superConductor, 4), "CCC", "WPW", "EEE", 'C', GTValues.INPUT_COOLANT_SUPERCONDUCTOTR, 'E', GTValues.CIRCUIT_MASTER, 'W', GTValues.INGOT_TUNGSTEN, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 			/** Magnifying Glass **/
@@ -110,6 +110,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTItems.forceField, 1), "IPI", "POP", "IPI", 'I', GTValues.INGOT_TUNGSTEN, 'P', GTValues.CIRCUIT_ELITE, 'O', GTValues.BATTERY_ULTIMATE);
 			/** Electro Magnet **/
 			recipes.addRecipe(GTMaterialGen.get(GTItems.electroMagnet, 1), "M M", "WMW", "IBI", 'M', Ic2Items.magnet, 'B', Ic2Items.battery, 'I', GTValues.INGOT_REFINEDIRON, 'W', Ic2Items.copperCable);
+			/** Tesla Staff **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), " SL", " PS", "P  ", 'L', GTValues.BATTERY_ULTIMATE, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		}
 		/** Test Tube **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.testTube, 32), "G G", "G G", " G ", 'G', GTValues.BLOCK_GLASS);
@@ -125,14 +127,12 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium1, 1), " I ", "IHI", " I ", 'I', GTValues.INGOT_TIN, 'H', GTMaterialGen.getTube(GTMaterial.Helium, 1));
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium3, 1), "III", "HHH", "III", 'I', GTValues.INGOT_TIN, 'H', GTItems.heatStorageHelium1);
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium6, 1), "IHI", "IPI", "IHI", 'I', GTValues.INGOT_TIN, 'H', GTItems.heatStorageHelium3, 'P', Ic2Items.denseCopperPlate);
-		/** Energy Control Circuit **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.circuitEnergy, 4), "CLC", "LPL", "CLC", 'L', Ic2Items.lapotronCrystal.copy(), 'C', GTValues.CIRCUIT_ADVANCED, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
+		/** Data Control Circuit **/
+		recipes.addRecipe(GTMaterialGen.get(GTItems.circuitData, 4), "CDC", "DPD", "CDC", 'D', GTValues.CIRCUIT_DATA, 'C', GTValues.CIRCUIT_ADVANCED, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		/** Lapotronic Energy Orb **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.orbEnergy, 1), "LLL", "LPL", "LLL", 'L', Ic2Items.lapotronCrystal.copy(), 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		/** Lapotron Batpack **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.lapotronPack, 1), "ELE", "SBS", "EPE", 'E', GTValues.CIRCUIT_MASTER, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'L', GTValues.BATTERY_ULTIMATE, 'B', GTItems.lithiumBatpack, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
-		/** Tesla Staff **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), " SL", " PS", "P  ", 'L', GTValues.BATTERY_ULTIMATE, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.echotron, 1), " C ", "CEC", " C ", 'E', GTBlocks.tileEchotron, 'C', GTValues.CIRCUIT_DATA);
 		/** Spring Boots **/
