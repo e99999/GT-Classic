@@ -9,7 +9,6 @@ import gtclassic.common.util.GTIFilters;
 import gtclassic.common.util.GTIFilters.TranslocatorFilter;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
@@ -76,11 +75,11 @@ public class GTTileTranslocator extends GTTileBufferBase implements IHasGui {
 			if (stack.isEmpty()) {
 				break;
 			}
-			ItemStack added = out.addItem(stack, getFacing(), true);
+			ItemStack added = out.addItem(stack, getFacing().getOpposite(), true);
 			if (added.getCount() <= 0) {
 				break;
 			}
-			in.removeItem(new BasicItemFilter(added), getFacing(), added.getCount(), true);
+			in.removeItem(new GTIFilters.BetterBasicItemFilter(added), getFacing(), added.getCount(), true);
 		}
 	}
 

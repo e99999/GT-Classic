@@ -11,6 +11,8 @@ import ic2.api.item.ICustomDamageItem;
 import ic2.api.item.IElectricItem;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidUtil;
 
@@ -127,4 +129,24 @@ public class GTIFilters {
 			return !stack.isEmpty() && this.machine.isValidInput(stack);
 		}
 	}
+	
+	public static class BetterBasicItemFilter implements IFilter {
+		   ItemStack item;
+
+		   public BetterBasicItemFilter(Item item) {
+		      this(new ItemStack(item));
+		   }
+
+		   public BetterBasicItemFilter(Block block) {
+		      this(new ItemStack(block));
+		   }
+
+		   public BetterBasicItemFilter(ItemStack par1) {
+		      this.item = par1;
+		   }
+
+		   public boolean matches(ItemStack stack) {
+		      return GTHelperStack.isEqual(this.item.copy(), stack);
+		   }
+		}
 }

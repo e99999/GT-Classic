@@ -27,7 +27,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -141,14 +140,19 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	@Override
 	public void update() {
 		if (this.flow && world.getTotalWorldTime() % 10 == 0 && this.tank.getFluid() != null) {
-			boolean isGas = this.tank.getFluid().getFluid().isGaseous();
-			BlockPos direction = isGas ? getPos().up() : getPos().down();
-			EnumFacing side = isGas ? EnumFacing.DOWN : EnumFacing.UP;
-			IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, direction, side);
+			EnumFacing side = updateSideForOutput();
+			IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, this.getPos().offset(side), side);
 			if (fluidTile != null && FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true) != null) {
 				// empty if transfered method
 			}
 		}
+	}
+	
+	private EnumFacing updateSideForOutput() {
+		if (this.tank.getFluid() != null && this.tank.getFluid().getFluid().isGaseous()) {
+			return EnumFacing.UP;
+		}
+		return EnumFacing.DOWN;
 	}
 
 	@Override
