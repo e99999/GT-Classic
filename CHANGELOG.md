@@ -1,10 +1,13 @@
 # Changelog
 
 # 1.1.2 (Not Released)
+- Added a new block, The Block Extender. Allows you to extends side of any tile its attached too for more complex automation. They cannot extend each other.
 - Fixed the Item Translocator converting fluid containers to other fluids when it successfully transfered them.
 - Fixed Item Translocator not inputting into the correct side for the output tile.
 - Changed Disassembler to no longer use TForest uncrafting table and fixed recipe being weird and allowing any Ic2 Machine.
 - Changed Superconductor Item recipe to be more like GT4 using cheaper helium cells and more tungsten vs iridium.
+- Changed Electric Macerator can be crafted with Tungsten ingots in addition to the original diamond recipe.
+- Fixed Drum not auto outputting into the correct side for connected fluid tile.
 
 # 1.1.1
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.

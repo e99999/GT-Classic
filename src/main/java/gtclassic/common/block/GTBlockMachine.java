@@ -10,6 +10,7 @@ import gtclassic.common.GTIcons;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
 import gtclassic.common.tile.GTTileBedrockMiner;
+import gtclassic.common.tile.GTTileBlockExtender;
 import gtclassic.common.tile.GTTileBufferFluid;
 import gtclassic.common.tile.GTTileBufferLarge;
 import gtclassic.common.tile.GTTileBufferSmall;
@@ -104,7 +105,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 				|| this == GTBlocks.tileSupercondensator || this == GTBlocks.tileTranslocator
 				|| this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
 				|| this == GTBlocks.tileTranslocatorFluid || this == GTBlocks.tileBufferFluid
-				|| this == GTBlocks.tileTesseractMaster || this == GTBlocks.tileTesseractSlave;
+				|| this == GTBlocks.tileTesseractMaster || this == GTBlocks.tileTesseractSlave || this == GTBlocks.tileBlockExtender;
 	}
 
 	@Override
@@ -282,6 +283,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileRedstoneReceiver) {
 			return new GTTileRedstoneReceiver();
+		}
+		if (this == GTBlocks.tileBlockExtender) {
+			return new GTTileBlockExtender();
 		}
 		if (this == GTBlocks.tileSupercondensator) {
 			return new GTTileSupercondensator();

@@ -35,6 +35,7 @@ public class GTLang {
 	public static final LocaleComp REDSTONE_TRANSMITTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.redstonetransmitter");
 	public static final LocaleComp REDSTONE_RECEIVER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.redstonereceiver");
 	public static final LocaleComp SUPERCONDENSATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.supercondensator");
+	public static final LocaleComp BLOCK_EXTENDER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.blockextender");
 	public static final LocaleComp SUPERCONDUCTORCABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.superconductorcable");
 	public static final LocaleComp DATACABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.datacable");
 	public static final LocaleComp WORKTABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.worktable");
@@ -46,8 +47,6 @@ public class GTLang {
 	public static final LocaleComp BUFFER_LARGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferlarge");
 	public static final LocaleComp BUFFER_SMALL = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.buffersmall");
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
-	public static final LocaleComp SLUICE_BOX = new LocaleBlockComp("tile.gtclassic.sluicebox");
-	public static final LocaleComp SLUICE_EXT = new LocaleBlockComp("tile.gtclassic.sluiceboxextension");
 	public static final LocaleComp ORE_BEDROCK = new LocaleBlockComp("tile.gtclassic.oreBedrock");
 	public static final LocaleComp TEST = new LocaleBlockComp("tile.gtclassic.test");
 }

@@ -54,7 +54,7 @@ public class GTIcons {
 		setTexture(GTBlocks.tileEchotron, 18, 18, 18, 18, 18, 18);
 		setTexture(GTBlocks.tileChargeOmat, 3, 19, 3, 3, 3, 3, 3, 20, 3, 3, 3, 3);
 		setTexture(GTBlocks.tileDisassembler, 0, 21, 2, 22, 2, 2, 0, 21, 2, 23, 2, 2);
-		setTexture(GTBlocks.tileBedrockMiner, 24, 25, 2, 8, 2, 2, 24, 26, 2, 9, 2, 2);
+		setTexture(GTBlocks.tileBedrockMiner, 100, 25, 2, 8, 2, 2, 100, 26, 2, 9, 2, 2);
 		setTexture(GTBlocks.tileDragonEggEnergySiphon, 27, 29, 27, 27, 27, 27, 28, 29, 28, 28, 28, 28);
 		setTexture(GTBlocks.tileMagicEnergyConverter, 30, 30, 30, 27, 30, 30, 30, 30, 30, 31, 30, 30);
 		setTexture(GTBlocks.tileMagicEnergyAbsorber, 32, 33);
@@ -82,6 +82,7 @@ public class GTIcons {
 		setTexture(GTBlocks.tileBufferFluid, 92, 93, 58, 63, 94, 95);
 		setTexture(GTBlocks.tileRedstoneTransmitter, 0, 64, 2, 96, 2, 2, 0, 64, 2, 97, 2, 2);
 		setTexture(GTBlocks.tileRedstoneReceiver, 0, 98, 96, 96, 96, 96, 0, 99, 97, 97, 97, 97);
+		setTexture(GTBlocks.tileBlockExtender, 100, 101, 55, 102, 102, 102);
 	}
 
 	/**

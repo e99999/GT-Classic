@@ -261,6 +261,8 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneTransmitter), "TCT", "QMQ", "RER", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_ADVANCED, 'Q', "gemQuartz", 'E', "enderpearl", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
 		/** Redstone Receiver **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneReceiver), "TCT", "QMQ", "RQR", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_BASIC, 'Q', "gemQuartz", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
+		/** Block Extender **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBlockExtender), "CHC", "BMB", "CHC", 'C', GTValues.CIRCUIT_ADVANCED, 'H', Blocks.HOPPER, 'M', GTValues.MACHINE_ADV, 'B', Items.BUCKET);
 		/** More recipes for vanilla rails **/
 		if (GTConfig.general.vanillaRailRecipes) {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.GOLDEN_RAIL, 6), "I I", "ISI", "IRI", 'I', "ingotElectrum", 'S', GTValues.STICK_WOOD, 'R', GTValues.DUST_REDSTONE);
@@ -366,7 +368,7 @@ public class GTRecipe {
 			if (GTConfig.general.harderIC2Macerator) {
 				recipes.overrideRecipe("shaped_tile.blockStoneMacerator_-130868445", Ic2Items.stoneMacerator.copy(), "FDF", "DPD", "FBF", 'D', GTValues.GEM_DIAMOND, 'F', Items.FLINT, 'P', Blocks.PISTON, 'B', Blocks.FURNACE);
 				recipes.overrideRecipe("shaped_tile.blockMacerator_127744036", Ic2Items.macerator.copy(), "III", "IMI", "ICI", 'I', GTValues.INGOT_REFINEDIRON, 'M', Ic2Items.stoneMacerator.copy(), 'C', GTValues.CIRCUIT_BASIC);
-				recipes.overrideRecipe("shaped_tile.blockMacerator_2072794668", Ic2Items.macerator.copy(), "FDF", "DMD", "FCF", 'D', GTValues.GEM_DIAMOND, 'F', Items.FLINT, 'M', GTValues.MACHINE_BASIC, 'C', GTValues.CIRCUIT_BASIC);
+				recipes.overrideRecipe("shaped_tile.blockMacerator_2072794668", Ic2Items.macerator.copy(), "FDF", "DMD", "FCF", 'D', GTValues.INPUT_DIAMOND_OR_TUNGSTEN, 'F', Items.FLINT, 'M', GTValues.MACHINE_BASIC, 'C', GTValues.CIRCUIT_BASIC);
 			}
 			if (IC2.config.getFlag("CraftingNuke")) {
 				recipes.overrideRecipe("shaped_tile.blockNuke_-814805840", GTMaterialGen.getIc2(Ic2Items.nuke, 1), "CUC", "RPR", "CUC", 'C', GTValues.CIRCUIT_ADVANCED, 'U', Ic2Items.reactorReEnrichedUraniumRod.copy(), 'P', GTItems.rodPlutonium1, 'R', Ic2Items.reactorReflectorThick.copy());

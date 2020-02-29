@@ -29,6 +29,7 @@ import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
 import gtclassic.common.tile.GTTileBattery;
 import gtclassic.common.tile.GTTileBedrockMiner;
+import gtclassic.common.tile.GTTileBlockExtender;
 import gtclassic.common.tile.GTTileBufferFluid;
 import gtclassic.common.tile.GTTileBufferLarge;
 import gtclassic.common.tile.GTTileBufferSmall;
@@ -135,6 +136,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileDigitalChest = registerBlock(new GTBlockMachine("digitalchest", GTLang.DIGITAL_CHEST));
 	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());
 	public static final GTBlockQuantumTank tileQuantumTank = registerBlock(new GTBlockQuantumTank());
+	public static final GTBlockMachine tileBlockExtender = registerBlock(new GTBlockMachine("blockextender", GTLang.BLOCK_EXTENDER, 2));
 	public static final GTBlockMachine tileRedstoneTransmitter = registerBlock(new GTBlockMachine("redstonetransmitter", GTLang.REDSTONE_TRANSMITTER, 2));
 	public static final GTBlockMachine tileRedstoneReceiver = registerBlock(new GTBlockMachine("redstonereceiver", GTLang.REDSTONE_RECEIVER));
 	public static final GTBlockMachine tileTranslocator = registerBlock(new GTBlockMachine("translocator", GTLang.TRANSLOCATOR, 3));
@@ -211,6 +213,7 @@ public class GTBlocks {
 		registerUtil(GTTileCabinet.class, "Cabinet");
 		registerUtil(GTTileDrum.class, "Drum");
 		registerUtil(GTTileBattery.class, "Battery");
+		registerUtil(GTTileBlockExtender.class, "BlockExtender");
 		registerUtil(GTTileRedstoneTransmitter.class, "RedstoneTransmitter");
 		registerUtil(GTTileRedstoneReceiver.class, "RedstoneReceiver");
 		registerUtil(GTTileTranslocator.class, "Translocator");

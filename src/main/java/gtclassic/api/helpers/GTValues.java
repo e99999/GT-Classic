@@ -56,6 +56,7 @@ public class GTValues {
 			INPUT_INGOT_DIGITAL = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_CHROME, INGOT_TITANIUM, INGOT_PLATINUM),
 			INPUT_COOLANT_SUPERCONDUCTOTR = GTRecipeCraftingHandler.combineRecipeObjects(Ic2Items.reactorCoolantCellSix, GTItems.heatStorageHelium1),
 			INPUT_BATTERY_ADVANCED = GTRecipeCraftingHandler.combineRecipeObjects(Ic2Items.energyCrystal.copy(), GTItems.lithiumBattery),
+			INPUT_DIAMOND_OR_TUNGSTEN = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_TUNGSTEN, GEM_DIAMOND),
 			INPUT_CIRCUIT_BASIC_X2 = new RecipeInputCombined(2, new IRecipeInput[] {
 					new RecipeInputOreDict(CIRCUIT_BASIC) });
 	private static final String[] TIERS = { "N/A", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "MAX" };
