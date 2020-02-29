@@ -13,6 +13,7 @@ import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerMagicEnergyConverter;
 import gtclassic.common.gui.GTGuiMachine.GTMagicEnergyConverterGui;
+import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.energy.tile.IEnergySourceInfo;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
@@ -24,7 +25,9 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.IC2;
 import ic2.core.RotationList;
+import ic2.core.audio.AudioSource;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IEmitterTile;
 import ic2.core.fluid.IC2Tank;
@@ -38,6 +41,7 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,6 +51,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
@@ -70,6 +75,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	int slotDisplay = 2;
 	int fuel = 0;
 	boolean enet = false;
+	public AudioSource audioSource = null;
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.magicfuels");
 
 	public GTTileMagicEnergyConverter() {
@@ -137,6 +143,10 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			this.enet = false;
 		}
+		 if (this.isRendering() && this.audioSource != null) {
+	         IC2.audioManager.removeSources(this);
+	         this.audioSource = null;
+	      }
 		super.onUnloaded();
 	}
 
@@ -243,6 +253,33 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		}
 		return 0;
 	}
+	
+	@Override
+	public void onNetworkUpdate(String field) {
+	      if (field.equals("isActive") && this.isActiveChanged()) {
+	         if (this.audioSource != null && this.audioSource.isRemoved()) {
+	            this.audioSource = null;
+	         }
+
+	         if (this.audioSource == null && this.getOperationSoundFile() != null) {
+	            this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getOperationSoundFile(), true, false, IC2.audioManager.defaultVolume);
+	         }
+
+	         if (this.getActive()) {
+	            if (this.audioSource != null) {
+	               this.audioSource.play();
+	            }
+	         } else if (this.audioSource != null) {
+	            this.audioSource.stop();
+	         }
+	      }
+
+	      super.onNetworkUpdate(field);
+	   }
+
+	public ResourceLocation getOperationSoundFile() {
+      return Ic2Sounds.generatorLoop;
+   }
 
 	public FluidStack getContained() {
 		return this.tank.getFluid();
@@ -347,15 +384,15 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addModRecipe("nacre_fluid"); // Wizardry
 		addRecipe(GTMaterialGen.get(Items.NETHER_WART), 200);
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.terraWart), 300);
-		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL), 8000);
-		addRecipe("dustEnderPearl", 8000);
-		addRecipe(GTMaterialGen.get(Items.ENDER_EYE), 10000);
-		addRecipe("dustEnderEye", 10000);
-		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR), 10000);
-		addRecipe(GTMaterialGen.get(Items.END_CRYSTAL), 20000);
-		addRecipe(GTMaterialGen.get(Items.DRAGON_BREATH), 32000);
-		addRecipe(GTMaterialGen.get(Items.NETHER_STAR), 124000);
-		addRecipe(GTMaterialGen.get(Blocks.BEACON), 124000);
+		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL), 12000);
+		addRecipe("dustEnderPearl", 12000);
+		addRecipe(GTMaterialGen.get(Items.ENDER_EYE), 20000);
+		addRecipe("dustEnderEye", 20000);
+		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR), 30000);
+		addRecipe(GTMaterialGen.get(Items.END_CRYSTAL), 50000);
+		addRecipe(GTMaterialGen.get(Items.DRAGON_BREATH), 48000);
+		addRecipe(GTMaterialGen.get(Items.NETHER_STAR), 2500000);
+		addRecipe(GTMaterialGen.get(Blocks.BEACON), 2500000);
 	}
 
 	public static IRecipeModifier[] value(int amount) {
