@@ -105,7 +105,8 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 				|| this == GTBlocks.tileSupercondensator || this == GTBlocks.tileTranslocator
 				|| this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
 				|| this == GTBlocks.tileTranslocatorFluid || this == GTBlocks.tileBufferFluid
-				|| this == GTBlocks.tileTesseractMaster || this == GTBlocks.tileTesseractSlave || this == GTBlocks.tileBlockExtender;
+				|| this == GTBlocks.tileTesseractMaster || this == GTBlocks.tileTesseractSlave
+				|| this == GTBlocks.tileBlockExtender;
 	}
 
 	@Override

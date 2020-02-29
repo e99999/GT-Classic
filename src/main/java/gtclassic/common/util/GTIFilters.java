@@ -129,24 +129,25 @@ public class GTIFilters {
 			return !stack.isEmpty() && this.machine.isValidInput(stack);
 		}
 	}
-	
+
 	public static class BetterBasicItemFilter implements IFilter {
-		   ItemStack item;
 
-		   public BetterBasicItemFilter(Item item) {
-		      this(new ItemStack(item));
-		   }
+		ItemStack item;
 
-		   public BetterBasicItemFilter(Block block) {
-		      this(new ItemStack(block));
-		   }
-
-		   public BetterBasicItemFilter(ItemStack par1) {
-		      this.item = par1;
-		   }
-
-		   public boolean matches(ItemStack stack) {
-		      return GTHelperStack.isEqual(this.item.copy(), stack);
-		   }
+		public BetterBasicItemFilter(Item item) {
+			this(new ItemStack(item));
 		}
+
+		public BetterBasicItemFilter(Block block) {
+			this(new ItemStack(block));
+		}
+
+		public BetterBasicItemFilter(ItemStack par1) {
+			this.item = par1;
+		}
+
+		public boolean matches(ItemStack stack) {
+			return GTHelperStack.isEqual(this.item.copy(), stack);
+		}
+	}
 }

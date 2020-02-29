@@ -167,7 +167,7 @@ public class GTRecipe {
 			/** Charcoal Pit **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCharcoalPit), new Object[] { "IFI", "IFI", "IFI", 'I',
 					"ingotRefinedIron", 'F', Items.FLINT });
-			/** Disassemembler  **/
+			/** Disassemembler **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), "RAR", "ECE", "RWR", 'A', Ic2Items.extractor.copy(), 'W', GTBlocks.tileAutocrafter, 'R', GTValues.INGOT_REFINEDIRON, 'E', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_ADVANCED);
 			/** Computer Cube **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileComputer, 1), "RGD", "GMG", "DGR", 'D', GTValues.CIRCUIT_ULTIMATE, 'R', GTValues.CIRCUIT_MASTER, 'G', GTValues.BLOCK_GLASS, 'M', GTValues.MACHINE_ADV);
@@ -198,10 +198,12 @@ public class GTRecipe {
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {
+			GTRecipeCraftingHandler.removeRecipe("minecraft", "piston");
 			recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), "WWW", "CIC", "CRC", 'W', "plankWood", 'C', "cobblestone", 'I', GTValues.INPUT_INGOT_ANY, 'R', GTValues.DUST_REDSTONE);
 		}
 		/** Bonus recipe for hopper **/
 		if (GTConfig.general.moreHopperRecipes) {
+			GTRecipeCraftingHandler.removeRecipe("minecraft", "hopper");
 			recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), "I I", "ICI", " I ", 'I', GTValues.INPUT_INGOT_ANY, 'C', GTValues.CHEST_WOOD);
 		}
 		/** Tungsten Mining Pipe **/
@@ -282,8 +284,7 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.waterMill.copy(), 3), " X ", "XYX", " X ", 'Y', Ic2Items.generator.copy(), 'X', GTValues.INGOT_ALUMINIUM);
 			/** Mixed Metal Ingots **/
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.mixedMetalIngot, 3), "III", "BBB", "TTT", 'I', GTValues.INGOT_REFINEDIRON, 'B', GTValues.INGOT_BRONZE, 'T', GTValues.INPUT_INGOT_MIXED);
-			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.mixedMetalIngot, 6), "III", "BBB", "TTT", 'I', GTValues.INGOT_TITANIUM, 'B', GTValues.INGOT_BRONZE, 'T', GTValues.INPUT_INGOT_MIXED);
-			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.mixedMetalIngot, 6), "III", "BBB", "TTT", 'I', GTValues.INGOT_TUNGSTEN, 'B', GTValues.INGOT_BRONZE, 'T', GTValues.INPUT_INGOT_MIXED);
+			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.mixedMetalIngot, 6), "III", "BBB", "TTT", 'I', GTValues.INPUT_INGOT_HIGH, 'B', GTValues.INGOT_BRONZE, 'T', GTValues.INPUT_INGOT_MIXED);
 			/** Alt Reactor Vent **/
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorVent, 1), "IBI", "B B", "IBI", 'I', GTValues.INGOT_ALUMINIUM, 'B', Blocks.IRON_BARS);
 		}

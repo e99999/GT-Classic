@@ -147,7 +147,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 			}
 		}
 	}
-	
+
 	private EnumFacing updateSideForOutput() {
 		if (this.tank.getFluid() != null && this.tank.getFluid().getFluid().isGaseous()) {
 			return EnumFacing.UP;

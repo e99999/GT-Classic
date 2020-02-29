@@ -8,6 +8,9 @@
 - Changed Superconductor Item recipe to be more like GT4 using cheaper helium cells and more tungsten vs iridium.
 - Changed Electric Macerator can be crafted with Tungsten ingots in addition to the original diamond recipe.
 - Fixed Drum not auto outputting into the correct side for connected fluid tile.
+- Added Invar as another possible metal to use in mixed metal.
+- Added Gold as another possible metal to use in basic circuits.
+- Changed, if you use the GTC "more hopper/piston recipes" they now override vanilla ones.
 
 # 1.1.1
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.
