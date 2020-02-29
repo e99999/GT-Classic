@@ -11,6 +11,7 @@
 - Added Invar as another possible metal to use in mixed metal.
 - Added Gold as another possible metal to use in basic circuits.
 - Changed, if you use the GTC "more hopper/piston recipes" they now override vanilla ones.
+- Changed, Magic Energy Absorber now is more like a generator in that it consumes items and generates power over time vs the an instant amount of power.
 
 # 1.1.1
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.
