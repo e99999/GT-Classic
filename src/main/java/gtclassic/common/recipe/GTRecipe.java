@@ -177,20 +177,20 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), "ICI", "MDM", "ICI", 'D', GTValues.CIRCUIT_ULTIMATE, 'I', GTValues.INPUT_INGOT_DIGITAL, 'C', GTValues.CHEST_WOOD, 'M', GTValues.MACHINE_ADV);
 			/** Quantum Tank **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumTank, 1), "ICI", "MDM", "ICI", 'D', GTValues.CIRCUIT_ULTIMATE, 'I', GTValues.INPUT_INGOT_DIGITAL, 'C', Items.BUCKET, 'M', GTValues.MACHINE_ADV);
-			/** Translocator **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Ic2Items.importBasicUpgrade);
-			/** Large Chest Buffer **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', GTValues.CHEST_WOOD);
 			/** Cabinet **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCabinet), "III", "CIC", "III", 'I', GTValues.INPUT_INGOT_MACHINE, 'C', GTValues.CHEST_WOOD);
 			/** Workbench **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileWorktable), "IWI", "III", "ICI", 'I', GTValues.INPUT_INGOT_MACHINE, 'C', GTValues.CHEST_WOOD, 'W', "workbench");
 			/** Drum **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), "I I", "IBI", "IBI", 'I', GTValues.INGOT_REFINEDIRON, 'B', Items.BUCKET);
+			/** Translocator **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_ADV, 'P', GTValues.INPUT_PISTON_ANY);
+			/** Large Chest Buffer **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', GTValues.CHEST_WOOD);
 			/** Fluid Translocator **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Ic2Items.basicFluidImportUpgrade);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_ADV, 'P', Items.BUCKET);
 			/** Fluid Buffer **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Items.BUCKET);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Items.BUCKET);
 			/** Tesseract Generator **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractMaster), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_MASTER, 'E', Blocks.ENDER_CHEST, 'M', GTBlocks.tileComputer);
 			/** Tesseract Terminal **/
@@ -222,8 +222,8 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', Blocks.BEACON, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
 		/** Player Detector **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), " D ", "CcC", " D ", 'D', Blocks.OBSERVER, 'C', GTValues.CIRCUIT_BASIC, 'c', GTValues.MACHINE_ADV);
-		/** Energy Storage **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAESU), "OOO", "OCO", "OOO", 'O', GTValues.BATTERY_ULTIMATE, 'C', GTBlocks.tileComputer);
+		/** AESU **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAESU), "ECE", "EOE", "EME", 'O', GTValues.BATTERY_ULTIMATE, 'C', GTBlocks.tileComputer, 'M', GTValues.MACHINE_ELITE, 'E', GTValues.CIRCUIT_MASTER);
 		/** Large Chest Buffer **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), "SSS", "SCS", "SSS", 'S', GTBlocks.tileBufferSmall, 'C', Ic2Items.upgradeBase.copy());
 		/** Matter Fabricator **/

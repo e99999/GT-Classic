@@ -10,6 +10,7 @@ import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
+import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerMagicEnergyConverter;
 import gtclassic.common.gui.GTGuiMachine.GTMagicEnergyConverterGui;
@@ -143,10 +144,10 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			this.enet = false;
 		}
-		 if (this.isRendering() && this.audioSource != null) {
-	         IC2.audioManager.removeSources(this);
-	         this.audioSource = null;
-	      }
+		if (this.isRendering() && this.audioSource != null) {
+			IC2.audioManager.removeSources(this);
+			this.audioSource = null;
+		}
 		super.onUnloaded();
 	}
 
@@ -253,33 +254,30 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public void onNetworkUpdate(String field) {
-	      if (field.equals("isActive") && this.isActiveChanged()) {
-	         if (this.audioSource != null && this.audioSource.isRemoved()) {
-	            this.audioSource = null;
-	         }
-
-	         if (this.audioSource == null && this.getOperationSoundFile() != null) {
-	            this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getOperationSoundFile(), true, false, IC2.audioManager.defaultVolume);
-	         }
-
-	         if (this.getActive()) {
-	            if (this.audioSource != null) {
-	               this.audioSource.play();
-	            }
-	         } else if (this.audioSource != null) {
-	            this.audioSource.stop();
-	         }
-	      }
-
-	      super.onNetworkUpdate(field);
-	   }
+		if (field.equals("isActive") && this.isActiveChanged()) {
+			if (this.audioSource != null && this.audioSource.isRemoved()) {
+				this.audioSource = null;
+			}
+			if (this.audioSource == null && this.getOperationSoundFile() != null) {
+				this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getOperationSoundFile(), true, false, IC2.audioManager.defaultVolume);
+			}
+			if (this.getActive()) {
+				if (this.audioSource != null) {
+					this.audioSource.play();
+				}
+			} else if (this.audioSource != null) {
+				this.audioSource.stop();
+			}
+		}
+		super.onNetworkUpdate(field);
+	}
 
 	public ResourceLocation getOperationSoundFile() {
-      return Ic2Sounds.generatorLoop;
-   }
+		return Ic2Sounds.generatorLoop;
+	}
 
 	public FluidStack getContained() {
 		return this.tank.getFluid();
@@ -391,8 +389,10 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR), 30000);
 		addRecipe(GTMaterialGen.get(Items.END_CRYSTAL), 50000);
 		addRecipe(GTMaterialGen.get(Items.DRAGON_BREATH), 48000);
+		addRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic), 1000000);
 		addRecipe(GTMaterialGen.get(Items.NETHER_STAR), 2500000);
 		addRecipe(GTMaterialGen.get(Blocks.BEACON), 2500000);
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.plasmaCell), 24000000);
 	}
 
 	public static IRecipeModifier[] value(int amount) {
