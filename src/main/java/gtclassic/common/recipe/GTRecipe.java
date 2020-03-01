@@ -192,9 +192,9 @@ public class GTRecipe {
 			/** Fluid Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Items.BUCKET);
 			/** Tesseract Generator **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractMaster), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_MASTER, 'E', Blocks.ENDER_CHEST, 'M', GTBlocks.tileComputer);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractMaster), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_MASTER, 'E', GTValues.ENDER_CHEST, 'M', GTBlocks.tileComputer);
 			/** Tesseract Terminal **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractSlave), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_ELITE, 'E', Blocks.ENDER_CHEST, 'M', GTValues.MACHINE_ADV);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractSlave), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_ELITE, 'E', GTValues.ENDER_CHEST, 'M', GTValues.MACHINE_ADV);
 		}
 		/** Bonus recipe for piston **/
 		if (GTConfig.general.morePistonRecipes) {
@@ -235,7 +235,7 @@ public class GTRecipe {
 		/** Charge-O-Mat **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileChargeOmat, 1), "RCR", "AEA", "RMR", 'E', GTValues.BATTERY_ULTIMATE, 'R', GTValues.CIRCUIT_MASTER, 'A', GTValues.CHEST_WOOD, 'C', GTBlocks.tileComputer, 'M', GTValues.MACHINE_ADV);
 		/** IDSU **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), "PHP", "HEH", "PHP", 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'H', GTBlocks.tileAESU, 'E', Blocks.ENDER_CHEST);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), "PHP", "HEH", "PHP", 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'H', GTBlocks.tileAESU, 'E', GTValues.ENDER_CHEST);
 		/** LESU **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLESU, 1), " L ", "CBC", " H ", 'L', Ic2Items.transformerLV, 'H', Ic2Items.transformerMV, 'C', GTValues.CIRCUIT_ADVANCED, 'B', GTBlocks.casingLapotron);
 		/** Supercondensator **/

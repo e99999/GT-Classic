@@ -16,6 +16,7 @@
 - Changed the recipes for translocators to not use IC2 upgrades to craft, I found it annoying in play testing myself.
 - Changed AESU recipe to be more like GT4, less of an endless lapis grind.
 - Added UU Matter Plasma as a dynamite magic fuel!
+- Fixed some recipes not using ender chest ore dict
 
 # 1.1.1
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.
