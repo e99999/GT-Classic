@@ -30,6 +30,7 @@ import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
+import gtclassic.common.tile.GTTileTypeFilter;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.util.GTIDSUStorageManager;
@@ -91,6 +92,7 @@ public class GTMod {
 		GTTileCentrifuge.init();
 		GTTileUUMAssembler.init();
 		GTTileMagicEnergyConverter.init();
+		GTTileTypeFilter.init();
 		GTRecipe.initShapeless();
 		GTRecipe.initItems();
 		GTRecipe.initBlocks();

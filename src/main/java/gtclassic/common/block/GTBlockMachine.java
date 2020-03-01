@@ -36,6 +36,7 @@ import gtclassic.common.tile.GTTileTesseractMaster;
 import gtclassic.common.tile.GTTileTesseractSlave;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
+import gtclassic.common.tile.GTTileTypeFilter;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
@@ -106,7 +107,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 				|| this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
 				|| this == GTBlocks.tileTranslocatorFluid || this == GTBlocks.tileBufferFluid
 				|| this == GTBlocks.tileTesseractMaster || this == GTBlocks.tileTesseractSlave
-				|| this == GTBlocks.tileBlockExtender;
+				|| this == GTBlocks.tileBlockExtender || this == GTBlocks.tileTypeFilter;
 	}
 
 	@Override
@@ -200,7 +201,8 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 512 })));
 		}
 		if (this == GTBlocks.tileTranslocator || this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
-				|| this == GTBlocks.tileBufferFluid || this == GTBlocks.tileTranslocatorFluid) {
+				|| this == GTBlocks.tileBufferFluid || this == GTBlocks.tileTranslocatorFluid
+				|| this == GTBlocks.tileTypeFilter) {
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32 })));
 		}
 		if (this == GTBlocks.tileSupercondensator) {
@@ -296,6 +298,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileTranslocator) {
 			return new GTTileTranslocator();
+		}
+		if (this == GTBlocks.tileTypeFilter) {
+			return new GTTileTypeFilter();
 		}
 		if (this == GTBlocks.tileTranslocatorFluid) {
 			return new GTTileTranslocatorFluid();

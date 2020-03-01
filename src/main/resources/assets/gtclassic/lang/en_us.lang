@@ -77,6 +77,7 @@ tile.gtclassic.ironmortar.name=Iron Mortar
 tile.gtclassic.redstonetransmitter.name=Redstone Transmitter
 tile.gtclassic.redstonereceiver.name=Redstone Receiver
 tile.gtclassic.blockextender.name=Block Extender
+tile.gtclassic.typefilter.name=Type Filter
 
 #dust
 item.gtclassic.dustElectrum.name=Electrum Dust
@@ -304,6 +305,7 @@ tooltip.gtclassic.redstonetransmitter1=Install a Sensor Stick to set receiver po
 tooltip.gtclassic.redstonereceiver0=Receives redstone signals from transmitters
 tooltip.gtclassic.blockextender0=Relays attached inventories and tanks
 tooltip.gtclassic.blockextender1=Cannot be attached to other extenders!
+tooltip.gtclassic.typefilter0=Sorts incoming items by ore dict tag
 
 tooltip.worktable_button1=Shift crafting grid items into player inventory
 tooltip.worktable_button2=Shift crafting grid items into main inventory

@@ -60,6 +60,7 @@ import gtclassic.common.tile.GTTileTesseractMaster;
 import gtclassic.common.tile.GTTileTesseractSlave;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
+import gtclassic.common.tile.GTTileTypeFilter;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
@@ -140,6 +141,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileRedstoneTransmitter = registerBlock(new GTBlockMachine("redstonetransmitter", GTLang.REDSTONE_TRANSMITTER, 2));
 	public static final GTBlockMachine tileRedstoneReceiver = registerBlock(new GTBlockMachine("redstonereceiver", GTLang.REDSTONE_RECEIVER));
 	public static final GTBlockMachine tileTranslocator = registerBlock(new GTBlockMachine("translocator", GTLang.TRANSLOCATOR, 3));
+	public static final GTBlockMachine tileTypeFilter = registerBlock(new GTBlockMachine("typefilter", GTLang.TYPE_FILTER));
 	public static final GTBlockMachine tileBufferLarge = registerBlock(new GTBlockMachine("bufferlarge", GTLang.BUFFER_LARGE, 2));
 	public static final GTBlockMachine tileBufferSmall = registerBlock(new GTBlockMachine("buffersmall", GTLang.BUFFER_SMALL, 2));
 	public static final GTBlockMachine tileTranslocatorFluid = registerBlock(new GTBlockMachine("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 3));
@@ -217,6 +219,7 @@ public class GTBlocks {
 		registerUtil(GTTileRedstoneTransmitter.class, "RedstoneTransmitter");
 		registerUtil(GTTileRedstoneReceiver.class, "RedstoneReceiver");
 		registerUtil(GTTileTranslocator.class, "Translocator");
+		registerUtil(GTTileTypeFilter.class, "SmartTranslocator");
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileTranslocatorFluid.class, "TranslocatorFluid");
