@@ -1,7 +1,6 @@
 package gtclassic.common.tile;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +25,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.Tuple;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,8 +34,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	public GTIFilters.TypeFilter filter = new TypeFilter(this);
 	String currentFilter = "null";
 	int currentIndex = 0;
-	static final List<String> FILTERS = new ArrayList<>();
-	static final HashMap<String, ItemStack> DISPLAY_STACKS = new HashMap<>();
+	static final List<Tuple<String, ItemStack>> TYPE_LIST = new ArrayList<>();
 	static final String NBT_FILTER = "currentFilter";
 	static final String NBT_INDEX = "currentIndex";
 
@@ -59,7 +58,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.currentIndex = nbt.getInteger(NBT_INDEX);
-		if (this.currentIndex > FILTERS.size()) {
+		if (this.currentIndex > TYPE_LIST.size()) {
 			this.currentIndex = 0;
 		}
 		this.updateEntry();
@@ -73,23 +72,23 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 		return nbt;
 	}
 
-	public void updateEntry() {
-		this.currentFilter = FILTERS.get(this.currentIndex);
-		this.getNetwork().updateTileGuiField(this, NBT_FILTER);
-		ItemStack key = DISPLAY_STACKS.get(this.currentFilter);
-		if (key == null) {
-			key = ItemStack.EMPTY;
-		}
-		this.setStackInSlot(9, key.copy());
-	}
-
 	public void nextEntry() {
 		int newIndex = this.currentIndex + 1;
-		if (newIndex >= FILTERS.size()) {
+		if (newIndex >= TYPE_LIST.size()) {
 			newIndex = 0;
 		}
 		this.currentIndex = newIndex;
 		updateEntry();
+	}
+
+	public void updateEntry() {
+		this.currentFilter = TYPE_LIST.get(this.currentIndex).getFirst();
+		ItemStack key = TYPE_LIST.get(this.currentIndex).getSecond();
+		this.getNetwork().updateTileGuiField(this, NBT_FILTER);
+		if (key == null) {
+			key = ItemStack.EMPTY;
+		}
+		this.setStackInSlot(9, key.copy());
 	}
 
 	@Override
@@ -132,9 +131,13 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	}
 
 	public static void addOreDictFilter(String entry, ItemStack display) {
-		if (!FILTERS.contains(entry) && entry.length() > 0 && display != null) {
-			FILTERS.add(entry);
-			DISPLAY_STACKS.put(entry, display);
+		if (entry.length() > 0 && display != null) {
+			for (Tuple<String, ItemStack> tuple : TYPE_LIST) {
+				if (tuple.getFirst().equals(entry)) {
+					return;
+				}
+			}
+			TYPE_LIST.add(new Tuple<String, ItemStack>(entry, display));
 		}
 	}
 
@@ -204,7 +207,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	@Override
 	public boolean isInventoryFull() {
 		for (int i = 0; i < 9; ++i) {
-			if (this.inventory.get(i).getCount() < this.inventory.get(i).getMaxStackSize()) {
+			if (this.inventory.get(i).isEmpty()) {
 				return false;
 			}
 		}

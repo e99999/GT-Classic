@@ -81,7 +81,7 @@ public class GTTileBufferLarge extends GTTileBufferBase implements IHasGui {
 	@Override
 	public boolean isInventoryFull() {
 		for (int i = 0; i < 27; ++i) {
-			if (this.inventory.get(i).getCount() < this.inventory.get(i).getMaxStackSize()) {
+			if (this.inventory.get(i).isEmpty()) {
 				return false;
 			}
 		}

@@ -51,17 +51,20 @@ public class GTGuiCompBuffer extends GuiComponent {
 	public void onButtonClick(GuiIC2 gui, GuiButton button) {
 		if (button.id == 0) {
 			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 0);
-			IC2.platform.messagePlayer(this.player.player, "Conducts Power: " + !this.tile.conduct);
+			String conduct = !this.tile.conduct ? "Emit Energy to Outputside" : "Dont emit Energy";
+			IC2.platform.messagePlayer(this.player.player, conduct);
 		}
 		if (this.tile.hasRedstone) {
 			if (button.id == 1) {
 				this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 1);
-				IC2.platform.messagePlayer(this.player.player, "Outputs Redstone If Full: "
-						+ !this.tile.outputRedstone);
+				String redstone = !this.tile.outputRedstone ? "Emit Redstone if slots contain something"
+						: "Dont emit Redstone";
+				IC2.platform.messagePlayer(this.player.player, redstone);
 			}
 			if (button.id == 2) {
 				this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 2);
-				IC2.platform.messagePlayer(this.player.player, "Invert Redstone: " + !this.tile.invertRedstone);
+				String invert = !this.tile.invertRedstone ? "Invert Redstone" : "Dont invert Redstone";
+				IC2.platform.messagePlayer(this.player.player, invert);
 			}
 		}
 	}
@@ -71,11 +74,11 @@ public class GTGuiCompBuffer extends GuiComponent {
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
 			if (mouseX < 25) {
-				tooltips.add(I18n.format("Conduct Power"));
+				tooltips.add(I18n.format("Emit Energy"));
 			}
 			if (this.tile.hasRedstone) {
 				if (GTHelperMath.within(mouseX, 25, 42)) {
-					tooltips.add(I18n.format("Output Redstone If Full"));
+					tooltips.add(I18n.format("Emit Redstone"));
 				}
 				if (GTHelperMath.within(mouseX, 43, 60)) {
 					tooltips.add(I18n.format("Invert Redstone"));
