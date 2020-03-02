@@ -21,7 +21,6 @@ import gtclassic.common.event.GTEventEntityViewRenderEvent;
 import gtclassic.common.event.GTEventItemTooltip;
 import gtclassic.common.event.GTEventLootTableLoad;
 import gtclassic.common.event.GTEventOnLivingFall;
-import gtclassic.common.event.GTEventOreDictRegister;
 import gtclassic.common.event.GTEventPopulateChunk;
 import gtclassic.common.proxy.GTProxyCommon;
 import gtclassic.common.recipe.GTRecipe;
@@ -80,7 +79,6 @@ public class GTMod {
 		GTItems.initItems();
 		GTItems.registerItems();
 		GTCrops.init();
-		MinecraftForge.EVENT_BUS.register(new GTEventOreDictRegister());
 		GTOreDict.init();
 		GTEventLootTableLoad.init();
 		MinecraftForge.EVENT_BUS.register(GTSounds.class);

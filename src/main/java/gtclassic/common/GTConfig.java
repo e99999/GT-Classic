@@ -80,5 +80,6 @@ public class GTConfig {
 		public boolean compatIE = true;
 		public boolean compatThermal = true;
 		public boolean compatTwilightForest = true;
+		public String[] extraTypeFilters = { "empty", "empty", "empty", "empty", "empty" };
 	}
 }

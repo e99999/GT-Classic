@@ -219,7 +219,7 @@ public class GTBlocks {
 		registerUtil(GTTileRedstoneTransmitter.class, "RedstoneTransmitter");
 		registerUtil(GTTileRedstoneReceiver.class, "RedstoneReceiver");
 		registerUtil(GTTileTranslocator.class, "Translocator");
-		registerUtil(GTTileTypeFilter.class, "SmartTranslocator");
+		registerUtil(GTTileTypeFilter.class, "TypeFilter");
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileTranslocatorFluid.class, "TranslocatorFluid");

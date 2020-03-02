@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerTypeFilter;
 import gtclassic.common.util.GTIFilters;
@@ -19,30 +18,29 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.Tuple;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 
 	public GTIFilters.TypeFilter filter = new TypeFilter(this);
-	String currentFilter = "null";
+	String currentFilter;
 	int currentIndex = 0;
-	static final List<Tuple<String, ItemStack>> TYPE_LIST = new ArrayList<>();
+	static final List<String> FILTER_LIST = new ArrayList<>();
 	static final String NBT_FILTER = "currentFilter";
 	static final String NBT_INDEX = "currentIndex";
 
 	public GTTileTypeFilter() {
-		super(10);
+		super(9);
 		this.addGuiFields(NBT_FILTER, NBT_INDEX);
 		this.hasInvertFilter = true;
-		updateEntry();
+		if (currentFilter == null) {
+			this.updateEntry();
+		}
 	}
 
 	@Override
@@ -59,10 +57,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.currentIndex = nbt.getInteger(NBT_INDEX);
-		if (this.currentIndex > TYPE_LIST.size()) {
-			this.currentIndex = 0;
-		}
-		this.updateEntry();
+		this.currentFilter = nbt.getString(NBT_FILTER);
 	}
 
 	@Override
@@ -75,7 +70,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 
 	public void nextEntry() {
 		int newIndex = this.currentIndex + 1;
-		if (newIndex >= TYPE_LIST.size()) {
+		if (newIndex >= FILTER_LIST.size()) {
 			newIndex = 0;
 		}
 		this.currentIndex = newIndex;
@@ -83,13 +78,9 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	}
 
 	public void updateEntry() {
-		this.currentFilter = TYPE_LIST.get(this.currentIndex).getFirst();
-		ItemStack key = TYPE_LIST.get(this.currentIndex).getSecond();
+		this.currentFilter = FILTER_LIST.get(this.currentIndex);
 		this.getNetwork().updateTileGuiField(this, NBT_FILTER);
-		if (key == null) {
-			key = ItemStack.EMPTY;
-		}
-		this.setStackInSlot(9, key.copy());
+		this.getNetwork().updateTileGuiField(this, NBT_INDEX);
 	}
 
 	@Override
@@ -123,22 +114,15 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 		return true;
 	}
 
-	public static void addOreDictFilter(String entry, Block display) {
-		addOreDictFilter(entry, GTMaterialGen.get(display));
+	public static void addOreDictFilter(String... entries) {
+		for (int i = 0; i < entries.length; ++i) {
+			addOreDictFilter(entries[i]);
+		}
 	}
 
-	public static void addOreDictFilter(String entry, Item display) {
-		addOreDictFilter(entry, GTMaterialGen.get(display));
-	}
-
-	public static void addOreDictFilter(String entry, ItemStack display) {
-		if (entry.length() > 0 && display != null) {
-			for (Tuple<String, ItemStack> tuple : TYPE_LIST) {
-				if (tuple.getFirst().equals(entry)) {
-					return;
-				}
-			}
-			TYPE_LIST.add(new Tuple<String, ItemStack>(entry, display));
+	public static void addOreDictFilter(String entry) {
+		if (entry.length() > 0 && !entry.equals("empty") && !FILTER_LIST.contains(entry)) {
+			FILTER_LIST.add(entry);
 		}
 	}
 
@@ -189,22 +173,6 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 		}
 	}
 
-	public String getCurrentFilter() {
-		return this.currentFilter;
-	}
-
-	@Override
-	public List<ItemStack> getDrops() {
-		List<ItemStack> newDrops = new ArrayList<>();
-		for (int i = 0; i < 9; ++i) {
-			if (this.inventory.get(i).isEmpty()) {
-				continue;
-			}
-			newDrops.add(this.inventory.get(i).copy());
-		}
-		return newDrops;
-	}
-
 	@Override
 	public boolean isInventoryFull() {
 		for (int i = 0; i < 9; ++i) {
@@ -213,6 +181,18 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 			}
 		}
 		return true;
+	}
+
+	public String getCurrentFilter() {
+		return this.currentFilter;
+	}
+
+	public int getCurrentIndex() {
+		return this.currentIndex;
+	}
+
+	public static int getFilterListSize() {
+		return FILTER_LIST.size();
 	}
 
 	@Override

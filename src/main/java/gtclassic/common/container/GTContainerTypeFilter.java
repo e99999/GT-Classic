@@ -1,19 +1,13 @@
 package gtclassic.common.container;
 
-import javax.annotation.Nullable;
-
 import gtclassic.GTMod;
 import gtclassic.common.gui.GTGuiCompTypeFilter;
 import gtclassic.common.tile.GTTileTypeFilter;
-import ic2.core.IC2;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotCustom;
-import ic2.core.inventory.slots.SlotDisplay;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,7 +25,6 @@ public class GTContainerTypeFilter extends ContainerTileComponent<GTTileTypeFilt
 				this.addSlotToContainer(new SlotCustom(tile, x + y * 3, 98 + x * 18, 5 + y * 18, this.tile.filter));
 			}
 		}
-		this.addSlotToContainer(new SlotDisplay(tile, 9, 35, 23));
 		this.addComponent(new GTGuiCompTypeFilter(tile, player));
 		this.addPlayerInventory(player);
 	}
@@ -55,18 +48,6 @@ public class GTContainerTypeFilter extends ContainerTileComponent<GTTileTypeFilt
 
 	@Override
 	public int guiInventorySize() {
-		return 10;
-	}
-
-	@Nullable
-	@Override
-	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-		if ((slotId == 9)) {
-			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 4);
-			if (!IC2.platform.isRendering()) {
-				IC2.platform.messagePlayer(player, "Filter: " + this.tile.getCurrentFilter());
-			}
-		}
-		return super.slotClick(slotId, dragType, clickTypeIn, player);
+		return getGuiHolder().slotCount;
 	}
 }

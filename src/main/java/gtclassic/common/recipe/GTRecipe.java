@@ -186,6 +186,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), "I I", "IBI", "IBI", 'I', GTValues.INGOT_REFINEDIRON, 'B', Items.BUCKET);
 			/** Translocator **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_ADV, 'P', GTValues.INPUT_PISTON_ANY);
+			/** Type Fitler **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTypeFilter), "III", "TCB", "III", 'I', GTValues.INPUT_INGOT_MACHINE, 'C', GTValues.CIRCUIT_ADVANCED, 'T', GTBlocks.tileTranslocator, 'B', GTBlocks.tileBufferLarge);
 			/** Large Chest Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', GTValues.CHEST_WOOD);
 			/** Fluid Translocator **/
@@ -450,9 +452,11 @@ public class GTRecipe {
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Sodium), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Methane), 3000, 16);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Fuel), 4000, 30);
-		GTTileTypeFilter.addOreDictFilter("nugget", Items.GOLD_NUGGET);
-		GTTileTypeFilter.addOreDictFilter("ingot", Ic2Items.copperIngot.copy());
-		GTTileTypeFilter.addOreDictFilter("gem", Items.DIAMOND);
+		GTTileTypeFilter.addOreDictFilter("dust", "dustTiny", "dustSmall", "ingot", "ingotHot", "nugget", "plate", "stick", "rod", "gear", "gem", "block", "ore", "crushed", "crushedPurified", "stone", "log", "plank", "treeSapling", "treeLeaves", "dye", "record", "crop", "machine", "circuit", "item");
+		if (GTConfig.modcompat.extraTypeFilters != null && GTConfig.modcompat.extraTypeFilters.length > 0
+				&& GTConfig.modcompat.extraTypeFilters.length < 64) {
+			GTTileTypeFilter.addOreDictFilter(GTConfig.modcompat.extraTypeFilters);
+		}
 		if (GTConfig.general.addHydrogenAsLiquidFuel) {
 			ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Hydrogen), 950, 16);
 		}

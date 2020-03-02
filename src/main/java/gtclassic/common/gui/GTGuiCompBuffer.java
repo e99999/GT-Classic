@@ -99,11 +99,11 @@ public class GTGuiCompBuffer extends GuiComponent {
 		}
 	}
 
-	private int bX(GuiIC2 gui, int position) {
+	public static int bX(GuiIC2 gui, int position) {
 		return gui.getXOffset() + position;
 	}
 
-	private int bY(GuiIC2 gui, int position) {
+	public static int bY(GuiIC2 gui, int position) {
 		return gui.getYOffset() + position;
 	}
 }
