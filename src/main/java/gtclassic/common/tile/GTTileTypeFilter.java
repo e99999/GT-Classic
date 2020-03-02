@@ -1,7 +1,6 @@
 package gtclassic.common.tile;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,13 +11,18 @@ import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerTypeFilter;
 import gtclassic.common.util.GTIFilters;
+import gtclassic.common.util.GTIFilters.TypeFilter;
+import ic2.core.RotationList;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.gui.GuiComponentContainer;
+import ic2.core.inventory.management.AccessRule;
+import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +36,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 
-	String currentFilter = "none";
+	public GTIFilters.TypeFilter filter = new TypeFilter(this);
+	String currentFilter = "null";
 	int currentIndex = 0;
 	static final List<String> FILTERS = new ArrayList<>();
 	static final HashMap<String, ItemStack> DISPLAY_STACKS = new HashMap<>();
@@ -41,8 +46,18 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 
 	public GTTileTypeFilter() {
 		super(10);
-		this.hasRedstone = false;
 		this.addGuiFields(NBT_FILTER, NBT_INDEX);
+		updateEntry();
+	}
+
+	@Override
+	protected void addSlots(InventoryHandler handler) {
+		int[] slots = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+		handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+		handler.registerDefaultSlotAccess(AccessRule.Both, slots);
+		handler.registerDefaultSlotsForSide(RotationList.ALL, slots);
+		handler.registerInputFilter(new GTIFilters.TypeFilter(this), slots);
+		handler.registerSlotType(SlotType.Storage, slots);
 	}
 
 	@Override
@@ -111,15 +126,20 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	}
 
 	public static void init() {
-		addOreDictFilter("none", ItemStack.EMPTY);
-		addOreDictFilter("ore", GTBlocks.oreBauxite);
-		addOreDictFilter("nugget", Items.GOLD_NUGGET);
-		addOreDictFilter("ingot", GTMaterialGen.getIngot(GTMaterial.Platinum, 1));
-		addOreDictFilter("gem", GTMaterialGen.getGem(GTMaterial.Sapphire, 1));
 		addOreDictFilter("dust", GTMaterialGen.getDust(GTMaterial.Pyrite, 1));
+		addOreDictFilter("ingot", GTMaterialGen.getIngot(GTMaterial.Platinum, 1));
+		addOreDictFilter("plate", GTMaterialGen.getIc2(Ic2Items.iridiumPlate, 1));
+		addOreDictFilter("nugget", Items.GOLD_NUGGET);
+		addOreDictFilter("gem", GTMaterialGen.getGem(GTMaterial.Sapphire, 1));
 		addOreDictFilter("block", GTMaterialGen.getMaterialBlock(GTMaterial.Electrum, 1));
+		addOreDictFilter("ore", GTBlocks.oreBauxite);
+		addOreDictFilter("stone", Blocks.STONE);
 		addOreDictFilter("log", Blocks.LOG);
 		addOreDictFilter("plank", Blocks.PLANKS);
+		addOreDictFilter("treeSapling", Blocks.SAPLING);
+		addOreDictFilter("treeLeaves", Blocks.LEAVES);
+		addOreDictFilter("dye", Items.DYE);
+		addOreDictFilter("record", Items.RECORD_STAL);
 	}
 
 	public static void addOreDictFilter(String entry, Block display) {
@@ -131,7 +151,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	}
 
 	public static void addOreDictFilter(String entry, ItemStack display) {
-		if (!FILTERS.contains(entry)) {
+		if (!FILTERS.contains(entry) && entry.length() > 0 && display != null) {
 			FILTERS.add(entry);
 			DISPLAY_STACKS.put(entry, display);
 		}
@@ -148,7 +168,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	@Override
 	public void onBufferTick() {
 		tryImport();
-		// TODO export from internal buffer
+		tryExport();
 	}
 
 	private void tryImport() {
@@ -157,13 +177,9 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 			return;
 		}
 		IItemTransporter out = TransporterManager.manager.getTransporter(this, true);
-		if (out == null) {
-			return;
-		}
 		int limit = out.getSizeInventory(getFacing());
 		for (int i = 0; i < limit; ++i) {
-			// TODO put filter here brother
-			ItemStack stack = in.removeItem(CommonFilters.Anything, getFacing(), 64, false);
+			ItemStack stack = in.removeItem(this.filter, getFacing(), 64, false);
 			if (stack.isEmpty()) {
 				break;
 			}
@@ -175,19 +191,43 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 		}
 	}
 
+	private void tryExport() {
+		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), false);
+		if (slave != null) {
+			for (int i = 0; i < 9; ++i) {
+				int added = slave.addItem(this.getStackInSlot(i).copy(), getFacing().getOpposite(), true).getCount();
+				if (added > 0) {
+					this.getStackInSlot(i).shrink(added);
+					break;
+				}
+			}
+		}
+	}
+
 	public String getCurrentFilter() {
 		return this.currentFilter;
 	}
 
 	@Override
 	public List<ItemStack> getDrops() {
-		// TODO drop internal inventory
-		return Collections.emptyList();
+		List<ItemStack> newDrops = new ArrayList<>();
+		for (int i = 0; i < 9; ++i) {
+			if (this.inventory.get(i).isEmpty()) {
+				continue;
+			}
+			newDrops.add(this.inventory.get(i).copy());
+		}
+		return newDrops;
 	}
 
 	@Override
 	public boolean isInventoryFull() {
-		return false;
+		for (int i = 0; i < 9; ++i) {
+			if (this.inventory.get(i).getCount() < this.inventory.get(i).getMaxStackSize()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override

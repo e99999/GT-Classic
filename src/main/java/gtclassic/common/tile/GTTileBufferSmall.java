@@ -77,6 +77,6 @@ public class GTTileBufferSmall extends GTTileBufferBase implements IHasGui {
 
 	@Override
 	public boolean isInventoryFull() {
-		return this.inventory.get(0).getCount() == 64;
+		return this.inventory.get(0).getCount() == this.inventory.get(0).getMaxStackSize();
 	}
 }

@@ -153,6 +153,18 @@ public class GTHelperStack {
 		return false;
 	}
 
+	/** Checks if an itemstack has an oredict entry **/
+	public static boolean oreDictStartsWith(ItemStack stack, String entry) {
+		if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
+			for (int i = 0; i < OreDictionary.getOreIDs(stack).length; i++) {
+				if (OreDictionary.getOreName(OreDictionary.getOreIDs(stack)[i]).startsWith(entry)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	/** removing smelting recipes code by Muramasa **/
 	public static void removeSmelting(ItemStack resultStack) {
 		ItemStack recipeResult;
