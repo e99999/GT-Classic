@@ -7,6 +7,7 @@ import gtclassic.api.recipe.GTRecipeCraftingHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
+import gtclassic.common.tile.GTTileTypeFilter;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.IC2;
@@ -449,6 +450,9 @@ public class GTRecipe {
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Sodium), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Methane), 3000, 16);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Fuel), 4000, 30);
+		GTTileTypeFilter.addOreDictFilter("nugget", Items.GOLD_NUGGET);
+		GTTileTypeFilter.addOreDictFilter("ingot", Ic2Items.copperIngot.copy());
+		GTTileTypeFilter.addOreDictFilter("gem", Items.DIAMOND);
 		if (GTConfig.general.addHydrogenAsLiquidFuel) {
 			ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Hydrogen), 950, 16);
 		}

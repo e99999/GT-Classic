@@ -194,6 +194,9 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 
 	@Override
 	public int getRedstoneStrenght(EnumFacing paramEnumFacing) {
+		if (!this.outputRedstone) {
+			return 0;
+		}
 		return this.invertRedstone ? 15 - this.redstoneStrength : this.redstoneStrength;
 	}
 

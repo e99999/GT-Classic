@@ -3,7 +3,7 @@ package gtclassic.common.container;
 import javax.annotation.Nullable;
 
 import gtclassic.GTMod;
-import gtclassic.common.gui.GTGuiCompBuffer;
+import gtclassic.common.gui.GTGuiCompTypeFilter;
 import gtclassic.common.tile.GTTileTypeFilter;
 import ic2.core.IC2;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -32,7 +32,7 @@ public class GTContainerTypeFilter extends ContainerTileComponent<GTTileTypeFilt
 			}
 		}
 		this.addSlotToContainer(new SlotDisplay(tile, 9, 35, 23));
-		this.addComponent(new GTGuiCompBuffer(tile, player));
+		this.addComponent(new GTGuiCompTypeFilter(tile, player));
 		this.addPlayerInventory(player);
 	}
 

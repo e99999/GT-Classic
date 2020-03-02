@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
-import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerTypeFilter;
 import gtclassic.common.util.GTIFilters;
@@ -22,12 +20,9 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -64,6 +59,9 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.currentIndex = nbt.getInteger(NBT_INDEX);
+		if (this.currentIndex > FILTERS.size()) {
+			this.currentIndex = 0;
+		}
 		this.updateEntry();
 	}
 
@@ -123,23 +121,6 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	@Override
 	public boolean hasGui(EntityPlayer player) {
 		return true;
-	}
-
-	public static void init() {
-		addOreDictFilter("dust", GTMaterialGen.getDust(GTMaterial.Pyrite, 1));
-		addOreDictFilter("ingot", GTMaterialGen.getIngot(GTMaterial.Platinum, 1));
-		addOreDictFilter("plate", GTMaterialGen.getIc2(Ic2Items.iridiumPlate, 1));
-		addOreDictFilter("nugget", Items.GOLD_NUGGET);
-		addOreDictFilter("gem", GTMaterialGen.getGem(GTMaterial.Sapphire, 1));
-		addOreDictFilter("block", GTMaterialGen.getMaterialBlock(GTMaterial.Electrum, 1));
-		addOreDictFilter("ore", GTBlocks.oreBauxite);
-		addOreDictFilter("stone", Blocks.STONE);
-		addOreDictFilter("log", Blocks.LOG);
-		addOreDictFilter("plank", Blocks.PLANKS);
-		addOreDictFilter("treeSapling", Blocks.SAPLING);
-		addOreDictFilter("treeLeaves", Blocks.LEAVES);
-		addOreDictFilter("dye", Items.DYE);
-		addOreDictFilter("record", Items.RECORD_STAL);
 	}
 
 	public static void addOreDictFilter(String entry, Block display) {

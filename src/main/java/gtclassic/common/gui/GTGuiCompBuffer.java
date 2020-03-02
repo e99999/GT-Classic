@@ -4,14 +4,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.api.gui.GTGuiButton;
+import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.tile.GTTileBufferBase;
 import ic2.core.IC2;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
-import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.math.Box2D;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,14 +26,14 @@ public class GTGuiCompBuffer extends GuiComponent {
 	InventoryPlayer player;
 
 	public GTGuiCompBuffer(GTTileBufferBase tile, InventoryPlayer player) {
-		super(Ic2GuiComp.nullBox);
+		super(new Box2D(7, 62, 96, 18));
 		this.tile = tile;
 		this.player = player;
 	}
 
 	@Override
 	public List<ActionRequest> getNeededRequests() {
-		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.GuiTick);
+		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.GuiTick, ActionRequest.ToolTip);
 	}
 
 	@Override
@@ -49,7 +51,7 @@ public class GTGuiCompBuffer extends GuiComponent {
 	public void onButtonClick(GuiIC2 gui, GuiButton button) {
 		if (button.id == 0) {
 			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 0);
-			IC2.platform.messagePlayer(this.player.player, "Outputs Power: " + !this.tile.conduct);
+			IC2.platform.messagePlayer(this.player.player, "Conducts Power: " + !this.tile.conduct);
 		}
 		if (this.tile.hasRedstone) {
 			if (button.id == 1) {
@@ -60,6 +62,24 @@ public class GTGuiCompBuffer extends GuiComponent {
 			if (button.id == 2) {
 				this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 2);
 				IC2.platform.messagePlayer(this.player.player, "Invert Redstone: " + !this.tile.invertRedstone);
+			}
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
+		if (this.isMouseOver(mouseX, mouseY)) {
+			if (mouseX < 25) {
+				tooltips.add(I18n.format("Conduct Power"));
+			}
+			if (this.tile.hasRedstone) {
+				if (GTHelperMath.within(mouseX, 25, 42)) {
+					tooltips.add(I18n.format("Output Redstone If Full"));
+				}
+				if (GTHelperMath.within(mouseX, 43, 60)) {
+					tooltips.add(I18n.format("Invert Redstone"));
+				}
 			}
 		}
 	}
