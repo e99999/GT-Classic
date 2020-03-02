@@ -41,6 +41,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	public GTTileTypeFilter() {
 		super(10);
 		this.addGuiFields(NBT_FILTER, NBT_INDEX);
+		this.hasInvertFilter = true;
 		updateEntry();
 	}
 
@@ -144,7 +145,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	@Override
 	public void onNetworkEvent(EntityPlayer var1, int event) {
 		super.onNetworkEvent(var1, event);
-		if (event == 3) {
+		if (event == 4) {
 			this.nextEntry();
 		}
 	}

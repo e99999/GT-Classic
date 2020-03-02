@@ -22,11 +22,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GTGuiCompBuffer extends GuiComponent {
 
 	public static final ItemStack cable = GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 1);
+	private static final Box2D BOX = new Box2D(7, 62, 96, 18);
 	GTTileBufferBase tile;
 	InventoryPlayer player;
 
 	public GTGuiCompBuffer(GTTileBufferBase tile, InventoryPlayer player) {
-		super(new Box2D(7, 62, 96, 18));
+		super(BOX);
 		this.tile = tile;
 		this.player = player;
 	}
@@ -43,6 +44,9 @@ public class GTGuiCompBuffer extends GuiComponent {
 		if (this.tile.hasRedstone) {
 			gui.registerButton(new GTGuiButton(1, bX(gui, 25), bY(gui, 60), 18, 20));
 			gui.registerButton(new GTGuiButton(2, bX(gui, 43), bY(gui, 60), 18, 20));
+		}
+		if (this.tile.hasInvertFilter) {
+			gui.registerButton(new GTGuiButton(3, bX(gui, 61), bY(gui, 60), 18, 20));
 		}
 	}
 
@@ -67,6 +71,11 @@ public class GTGuiCompBuffer extends GuiComponent {
 				IC2.platform.messagePlayer(this.player.player, invert);
 			}
 		}
+		if (this.tile.hasInvertFilter && button.id == 3) {
+			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 3);
+			String filter = !this.tile.invertFilter ? "Invert Filter" : "Dont invert Filter";
+			IC2.platform.messagePlayer(this.player.player, filter);
+		}
 	}
 
 	@Override
@@ -74,15 +83,18 @@ public class GTGuiCompBuffer extends GuiComponent {
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
 			if (mouseX < 25) {
-				tooltips.add(I18n.format("Emit Energy"));
+				tooltips.add(I18n.format("button.buffer0"));
 			}
 			if (this.tile.hasRedstone) {
 				if (GTHelperMath.within(mouseX, 25, 42)) {
-					tooltips.add(I18n.format("Emit Redstone"));
+					tooltips.add(I18n.format("button.buffer1"));
 				}
 				if (GTHelperMath.within(mouseX, 43, 60)) {
-					tooltips.add(I18n.format("Invert Redstone"));
+					tooltips.add(I18n.format("button.buffer2"));
 				}
+			}
+			if (this.tile.hasInvertFilter && GTHelperMath.within(mouseX, 61, 78)) {
+				tooltips.add(I18n.format("button.buffer3"));
 			}
 		}
 	}

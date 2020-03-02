@@ -62,7 +62,7 @@ public class GTContainerTypeFilter extends ContainerTileComponent<GTTileTypeFilt
 	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
 		if ((slotId == 9)) {
-			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 3);
+			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 4);
 			if (!IC2.platform.isRendering()) {
 				IC2.platform.messagePlayer(player, "Filter: " + this.tile.getCurrentFilter());
 			}

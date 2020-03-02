@@ -7,23 +7,25 @@ import gtclassic.api.gui.GTGuiButton;
 import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
-import ic2.core.platform.registry.Ic2GuiComp;
+import ic2.core.util.math.Box2D;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTGuiCompMagicEnergyAbsorber extends GuiComponent {
 
 	GTTileMagicEnergyAbsorber block;
+	private static final Box2D BOX = new Box2D(10, 18, 16, 33);
 
 	public GTGuiCompMagicEnergyAbsorber(GTTileMagicEnergyAbsorber tile) {
-		super(Ic2GuiComp.nullBox);
+		super(BOX);
 		this.block = tile;
 	}
 
 	@Override
 	public List<ActionRequest> getNeededRequests() {
-		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.BackgroundDraw);
+		return Arrays.asList(ActionRequest.GuiInit, ActionRequest.ButtonNotify, ActionRequest.BackgroundDraw, ActionRequest.ToolTip);
 	}
 
 	@Override
@@ -52,6 +54,18 @@ public class GTGuiCompMagicEnergyAbsorber extends GuiComponent {
 		}
 		if (this.block.potionMode) {
 			gui.drawTexturedModalRect(gui.getXOffset() + 10, gui.getYOffset() + 35, 176, 0, 17, 17);
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
+		if (this.isMouseOver(mouseX, mouseY)) {
+			if (mouseY < 33) {
+				tooltips.add(I18n.format("button.magicabsorber0"));
+			} else {
+				tooltips.add(I18n.format("button.magicabsorber1"));
+			}
 		}
 	}
 

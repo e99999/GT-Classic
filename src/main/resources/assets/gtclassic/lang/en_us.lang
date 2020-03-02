@@ -307,8 +307,24 @@ tooltip.gtclassic.blockextender0=Relays attached inventories and tanks
 tooltip.gtclassic.blockextender1=Cannot be attached to other extenders!
 tooltip.gtclassic.typefilter0=Sorts incoming items by ore dict tag
 
-tooltip.worktable_button1=Shift crafting grid items into player inventory
-tooltip.worktable_button2=Shift crafting grid items into main inventory
+#button tooltips
+button.sort=Sort Inventory
+button.structure0=Structure is complete!
+button.structure1=Structure is not valid!
+button.digitalchest0=Upload to Chest
+button.digitalchest1=Download to Data Orb
+button.magicabsorber0=Absorb Player XP
+button.magicabsorber1=Absorb Lingering Potions
+button.uum0=Clear Memory
+button.uum1=Scan Item
+button.uum2=Clear Target Item
+button.worktable0=Shift crafting grid items into player inventory
+button.worktable1=Shift crafting grid items into main inventory
+button.buffer0=Emit Energy
+button.buffer1=Emit Redstone
+button.buffer2=Invert Redstone
+button.buffer3=Invert Filter
+
 jei.centrifugeu.name=%s EU
 
 itemGroup.gtclassic=GT-Classic

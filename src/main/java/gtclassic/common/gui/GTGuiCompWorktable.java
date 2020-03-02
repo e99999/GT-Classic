@@ -18,9 +18,10 @@ public class GTGuiCompWorktable extends GuiComponent {
 
 	GTContainerWorktable container;
 	GTTileWorktable block;
+	private static final Box2D BOX = new Box2D(135, 25, 36, 20);
 
 	public GTGuiCompWorktable(GTTileWorktable tile, GTContainerWorktable container) {
-		super(new Box2D(135, 25, 36, 20));
+		super(BOX);
 		this.block = tile;
 		this.container = container;
 	}
@@ -55,9 +56,9 @@ public class GTGuiCompWorktable extends GuiComponent {
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
 			if (mouseX > 153) {
-				tooltips.add(I18n.format("tooltip.worktable_button1"));
+				tooltips.add(I18n.format("button.worktable0"));
 			} else {
-				tooltips.add(I18n.format("tooltip.worktable_button2"));
+				tooltips.add(I18n.format("button.worktable1"));
 			}
 		}
 	}

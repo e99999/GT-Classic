@@ -121,7 +121,8 @@ public class GTIFilters {
 			if (stack.isEmpty()) {
 				return false;
 			}
-			return GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter());
+			return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter())
+					: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter());
 		}
 	}
 

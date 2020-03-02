@@ -38,16 +38,20 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 	public boolean conduct = false;
 	public boolean outputRedstone = false;
 	public boolean invertRedstone = false;
+	public boolean invertFilter = false;
+	public boolean hasInvertFilter = false;
 	public int redstoneStrength = 0;
 	public boolean hasRedstone = true;
 	public static final String NBT_STOREDENERGY = "energy";
 	public static final String NBT_CONDUCT = "conduct";
 	public static final String NBT_OUTPUTREDSTONE = "outputRedstone";
 	public static final String NBT_INVERTREDSTONE = "invertRedstone";
+	public static final String NBT_INVERTFILTER = "invertFilter";
 
 	public GTTileBufferBase(int slots) {
 		super(slots);
-		this.addGuiFields(new String[] { NBT_STOREDENERGY, NBT_CONDUCT, NBT_OUTPUTREDSTONE, NBT_INVERTREDSTONE });
+		this.addGuiFields(new String[] { NBT_STOREDENERGY, NBT_CONDUCT, NBT_OUTPUTREDSTONE, NBT_INVERTREDSTONE,
+				NBT_INVERTFILTER });
 	}
 
 	@Override
@@ -57,6 +61,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 		this.conduct = nbt.getBoolean(NBT_CONDUCT);
 		this.outputRedstone = nbt.getBoolean(NBT_OUTPUTREDSTONE);
 		this.invertRedstone = nbt.getBoolean(NBT_INVERTREDSTONE);
+		this.invertFilter = nbt.getBoolean(NBT_INVERTFILTER);
 	}
 
 	@Override
@@ -66,6 +71,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 		nbt.setBoolean(NBT_CONDUCT, this.conduct);
 		nbt.setBoolean(NBT_OUTPUTREDSTONE, this.outputRedstone);
 		nbt.setBoolean(NBT_INVERTREDSTONE, this.invertRedstone);
+		nbt.setBoolean(NBT_INVERTFILTER, this.invertFilter);
 		return nbt;
 	}
 
@@ -189,6 +195,10 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 				this.getNetwork().updateTileGuiField(this, NBT_INVERTREDSTONE);
 				world.notifyNeighborsOfStateChange(pos, blockType, true);
 			}
+		}
+		if (this.hasInvertFilter) {
+			this.invertFilter = !this.invertFilter;
+			this.getNetwork().updateTileGuiField(this, NBT_INVERTFILTER);
 		}
 	}
 
