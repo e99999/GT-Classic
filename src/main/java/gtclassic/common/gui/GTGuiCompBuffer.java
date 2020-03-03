@@ -62,7 +62,7 @@ public class GTGuiCompBuffer extends GuiComponent {
 			if (button.id == 1) {
 				this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 1);
 				String type = this.tile.isFluid ? "tank" : "slots";
-				String redstone = !this.tile.outputRedstone ? "Emit Redstone if "+ type +" contain something"
+				String redstone = !this.tile.outputRedstone ? "Emit Redstone if " + type + " contain something"
 						: "Dont emit Redstone";
 				IC2.platform.messagePlayer(this.player.player, redstone);
 			}

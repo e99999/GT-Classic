@@ -66,7 +66,7 @@ public class GTIcons {
 		setTexture(GTBlocks.tileAESU, 39, 39, 39, 40, 39, 39);
 		setTexture(GTBlocks.tileIDSU, 45, 45, 45, 41, 45, 45);
 		setTexture(GTBlocks.tileTesseractMaster, 46, 46, 55, 47, 46, 46);
-		setTexture(GTBlocks.tileTesseractSlave, 46, 46, 55, 47, 46, 46);
+		setTexture(GTBlocks.tileTesseractSlave, 46, 46, 46, 47, 46, 46);
 		setTexture(GTBlocks.tileSupercondensator, 50, 50, 50, 51, 50, 50, 51, 51, 51, 50, 51, 51);
 		setTexture(GTBlocks.tileWorktable, 0, 65, 67, 67, 67, 67, 0, 66, 67, 67, 67, 67);
 		setTexture(GTBlocks.tileCabinet, 0, 1, 2, 68, 2, 2);
