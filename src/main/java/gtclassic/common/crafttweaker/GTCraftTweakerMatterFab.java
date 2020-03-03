@@ -6,10 +6,8 @@ import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import gtclassic.api.crafttweaker.GTCraftTweakerActions;
-import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import ic2.api.recipe.IRecipeInput;
-import ic2.core.platform.registry.Ic2Items;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -34,8 +32,7 @@ public class GTCraftTweakerMatterFab {
 
 		@Override
 		public void apply() {
-			GTTileMatterFabricator.addAmplifier(new IRecipeInput[] {
-					input }, GTTileMatterFabricator.value(amplifier), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
+			GTTileMatterFabricator.addAmplifier(input, amplifier);
 		}
 
 		@Override

@@ -22,6 +22,7 @@
 - Fixed buffers not checking the correct stack size to see if an inventory was full, buffers now output redstone if there no empty slots
 - Added mouseover tooltips for every single GTC Gui that has a button.
 - Changed, Fluid Buffer now can output a redstone signal/invert based on the tank.
+- Added a few more Matter Fabricator amplifier items like older gt's, mostly gem dusts/redstone/glowstone etc..
 
 # 1.1.1
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.

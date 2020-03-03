@@ -233,8 +233,10 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 					if ((input1.getNumber() + input2.getNumber() == sum.getNumber()) && input1 != input2
 							&& !usedInputs.contains(hash)) {
 						float ratio = (sum.getNumber() / 100.0F) * 7000000.0F;
-						addRecipe(new IRecipeInput[] { input1.getInput(),
-								input2.getInput() }, totalEu(Math.round(ratio)), sum.getOutput());
+						IRecipeInput recipeInput1 = input1.isFluid() ? input1.getOutputAsInput() : input1.getInput();
+						IRecipeInput recipeInput2 = input2.isFluid() ? input2.getOutputAsInput() : input2.getInput();
+						addRecipe(new IRecipeInput[] { recipeInput1,
+								recipeInput2 }, totalEu(Math.round(ratio)), sum.getOutput());
 						usedInputs.add(hash);
 					}
 				}
