@@ -29,6 +29,7 @@ public class GTTileTranslocatorFluid extends GTTileBufferBase implements IHasGui
 	public GTTileTranslocatorFluid() {
 		super(1);
 		this.hasRedstone = false;
+		this.isFluid = true;
 	}
 
 	@Override

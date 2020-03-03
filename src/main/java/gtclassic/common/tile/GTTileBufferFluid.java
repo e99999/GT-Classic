@@ -43,7 +43,7 @@ public class GTTileBufferFluid extends GTTileBufferBase implements ITankListener
 		this.tank = new IC2Tank(16000);
 		this.tank.addListener(this);
 		this.addGuiFields(NBT_TANK);
-		this.hasRedstone = false;
+		this.isFluid = true;
 	}
 
 	@Override
@@ -161,6 +161,6 @@ public class GTTileBufferFluid extends GTTileBufferBase implements ITankListener
 
 	@Override
 	public boolean isInventoryFull() {
-		return false;
+		return this.tank.getFluid() != null && this.tank.getFluidAmount() > 0;
 	}
 }

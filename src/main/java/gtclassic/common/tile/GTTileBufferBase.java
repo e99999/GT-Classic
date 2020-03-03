@@ -42,6 +42,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 	public boolean hasInvertFilter = false;
 	public int redstoneStrength = 0;
 	public boolean hasRedstone = true;
+	public boolean isFluid = false;
 	public static final String NBT_STOREDENERGY = "energy";
 	public static final String NBT_CONDUCT = "conduct";
 	public static final String NBT_OUTPUTREDSTONE = "outputRedstone";
@@ -261,9 +262,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 			data.put("Stored: " + this.energy + " EU", true);
 		}
 		if (this.hasRedstone) {
-			if (this.outputRedstone) {
-				data.put("Redstone Strength: " + this.redstoneStrength, true);
-			}
+			data.put("Redstone Strength: " + this.redstoneStrength, true);
 			data.put("Inverted Redstone: " + this.invertRedstone, true);
 		}
 		if (this.hasInvertFilter) {
