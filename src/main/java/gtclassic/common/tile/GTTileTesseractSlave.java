@@ -4,9 +4,9 @@ import java.util.Map;
 
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import gtclassic.common.util.GTIFilters;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
-import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
@@ -165,7 +165,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 			if (added.getCount() <= 0) {
 				break;
 			}
-			in.removeItem(new BasicItemFilter(added), this.getInventorySide(), added.getCount(), true);
+			in.removeItem(new GTIFilters.BetterBasicItemFilter(added), this.getInventorySide(), added.getCount(), true);
 		}
 	}
 

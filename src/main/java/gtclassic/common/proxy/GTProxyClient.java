@@ -8,6 +8,7 @@ import gtclassic.api.interfaces.IGTColorItem;
 import gtclassic.common.GTIcons;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTJei;
+import gtclassic.common.event.GTEventItemTooltip;
 import gtclassic.common.util.render.GTModelLoader;
 import ic2.core.platform.textures.Ic2Icons.SpriteReloadEvent;
 import net.minecraft.block.Block;
@@ -48,6 +49,7 @@ public class GTProxyClient extends GTProxyCommon {
 	@Override
 	public void postInit(FMLPostInitializationEvent e) {
 		GTJei.initEntries();
+		MinecraftForge.EVENT_BUS.register(new GTEventItemTooltip());
 	}
 
 	@SubscribeEvent

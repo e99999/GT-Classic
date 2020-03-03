@@ -266,5 +266,8 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 			}
 			data.put("Inverted Redstone: " + this.invertRedstone, true);
 		}
+		if (this.hasInvertFilter) {
+			data.put("Inverted Filter: " + this.invertFilter, true);
+		}
 	}
 }
