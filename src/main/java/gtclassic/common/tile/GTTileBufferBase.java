@@ -197,7 +197,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 				world.notifyNeighborsOfStateChange(pos, blockType, true);
 			}
 		}
-		if (this.hasInvertFilter) {
+		if (this.hasInvertFilter && event == 3) {
 			this.invertFilter = !this.invertFilter;
 			this.getNetwork().updateTileGuiField(this, NBT_INVERTFILTER);
 		}
