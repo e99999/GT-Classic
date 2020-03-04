@@ -198,16 +198,16 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractMaster), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_MASTER, 'E', GTValues.ENDER_CHEST, 'M', GTBlocks.tileComputer);
 			/** Tesseract Terminal **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractSlave), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_ELITE, 'E', GTValues.ENDER_CHEST, 'M', GTValues.MACHINE_ADV);
-		}
-		/** Bonus recipe for piston **/
-		if (GTConfig.general.morePistonRecipes) {
-			GTRecipeCraftingHandler.removeRecipe("minecraft", "piston");
-			recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), "WWW", "CIC", "CRC", 'W', "plankWood", 'C', "cobblestone", 'I', GTValues.INPUT_INGOT_ANY, 'R', GTValues.DUST_REDSTONE);
-		}
-		/** Bonus recipe for hopper **/
-		if (GTConfig.general.moreHopperRecipes) {
-			GTRecipeCraftingHandler.removeRecipe("minecraft", "hopper");
-			recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), "I I", "ICI", " I ", 'I', GTValues.INPUT_INGOT_ANY, 'C', GTValues.CHEST_WOOD);
+			/** Bonus recipe for piston **/
+			if (GTConfig.general.replacePistonRecipe) {
+				GTRecipeCraftingHandler.removeRecipe("minecraft", "piston");
+				recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), "WWW", "CIC", "CRC", 'W', "plankWood", 'C', "cobblestone", 'I', GTValues.INPUT_INGOT_ANYIRONORBRONZE, 'R', GTValues.DUST_REDSTONE);
+			}
+			/** Bonus recipe for hopper **/
+			if (GTConfig.general.replaceHopperRecipe) {
+				GTRecipeCraftingHandler.removeRecipe("minecraft", "hopper");
+				recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), "I I", "ICI", " I ", 'I', GTValues.INPUT_INGOT_ANYIRON, 'C', GTValues.CHEST_WOOD);
+			}
 		}
 		/** Tungsten Mining Pipe **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.miningPipe, 8), "T T", "T T", "TIT", 'T', GTValues.INGOT_TUNGSTEN, 'I', GTValues.GEM_DIAMOND);

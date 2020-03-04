@@ -21,6 +21,12 @@ public class GTTileBlockExtender extends TileEntityMachine {
 	}
 
 	@Override
+	public void setFacing(EnumFacing face) {
+		super.setFacing(face);
+		this.updateTile();
+	}
+
+	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
 		return true;
 	}
@@ -32,13 +38,13 @@ public class GTTileBlockExtender extends TileEntityMachine {
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return cacheTile != null ? cacheTile.hasCapability(capability, this.getFacing().getOpposite())
+		return cacheTile != null && !cacheTile.isInvalid() ? cacheTile.hasCapability(capability, this.getFacing())
 				: super.hasCapability(capability, facing);
 	}
 
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		return cacheTile != null ? cacheTile.getCapability(capability, this.getFacing().getOpposite())
+		return cacheTile != null && !cacheTile.isInvalid() ? cacheTile.getCapability(capability, this.getFacing())
 				: super.getCapability(capability, facing);
 	}
 

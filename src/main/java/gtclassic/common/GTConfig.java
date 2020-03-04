@@ -26,8 +26,8 @@ public class GTConfig {
 		public boolean betterIC2SolarRecipes = true;
 		public boolean gregtechUURecipes = true;
 		public boolean oreDictWroughtIron = true;
-		public boolean moreHopperRecipes = true;
-		public boolean morePistonRecipes = true;
+		public boolean replacePistonRecipe = true;
+		public boolean replaceHopperRecipe = true;
 		public boolean clearerWater = true;
 		public boolean replaceOceanGravelWithSand = true;
 		public boolean caveZombiesSpawnWithPickaxe = true;
@@ -38,6 +38,7 @@ public class GTConfig {
 		public boolean addCompressorRecipesForBlocks = true;
 		public boolean addHydrogenAsLiquidFuel = true;
 		public boolean enableSuperSolidFuels = true;
+		public boolean enableMagnifyingGlassGivesEUTooltips = true;
 	}
 
 	@Comment("World Generation")

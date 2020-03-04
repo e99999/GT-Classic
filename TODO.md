@@ -5,4 +5,3 @@
 - More SonarLint warnings starting from base classes outward
 - Fix Hacky way of putting output power in Fusion Reactor
 - Couple more fun items to use
-- Is sulfur burnable?

@@ -12,7 +12,6 @@
 - Fixed Drum not auto outputting into the correct side for connected fluid tile.
 - Added Invar as another possible metal to use in mixed metal.
 - Added Gold as another possible metal to use in basic circuits.
-- Changed, if you use the GTC "more hopper/piston recipes" they now override vanilla ones.
 - Changed, Magic Energy Absorber now is more like a generator in that it consumes items and generates power over time vs the an instant amount of power.
 - Changed, increased the magic fuel value for some vanilla items.
 - Changed the recipes for translocators to not use IC2 upgrades to craft, I found it annoying in play testing myself.
@@ -23,6 +22,8 @@
 - Added mouseover tooltips for every single GTC Gui that has a button.
 - Changed, Fluid Buffer now can output a redstone signal/invert based on the tank.
 - Added a few more Matter Fabricator amplifier items like older gt's, mostly gem dusts/redstone/glowstone etc..
+- Allows the magnifying glass to see EU reader tooltip info, has a config option that defaults too true
+- Made hopper/piston recipes with gtc less insane, now just use anyIron for hoppers and anyIron + Bronze for pistons. renamed config options
 
 # 1.1.1
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.

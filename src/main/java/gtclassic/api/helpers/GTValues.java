@@ -46,8 +46,8 @@ public class GTValues {
 	/** Stores combine recipe input vars **/
 	public static final IRecipeInput INPUT_INGOT_MACHINE = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_REFINEDIRON, INGOT_ALUMINIUM),
 			INPUT_INGOT_ELECTRIC = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_REFINEDIRON, INGOT_SILICON, INGOT_ALUMINIUM, INGOT_SILVER, INGOT_ELECTRUM, INGOT_PLATINUM, INGOT_GOLD),
-			INPUT_INGOT_ANY = GTRecipeCraftingHandler.combineRecipeObjects("ingotIron", "ingotRefinedIron", "ingotSteel", INGOT_SILVER, INGOT_BRONZE, INGOT_ALUMINIUM, INGOT_ELECTRUM, INGOT_PLATINUM, INGOT_NICKEL, INGOT_INVAR, INGOT_TITANIUM, INGOT_TUNGSTEN, INGOT_CHROME),
 			INPUT_INGOT_ANYIRON = GTRecipeCraftingHandler.combineRecipeObjects("ingotRefinedIron", "ingotIron", "ingotSteel"),
+			INPUT_INGOT_ANYIRONORBRONZE = GTRecipeCraftingHandler.combineRecipeObjects("ingotRefinedIron", "ingotIron", "ingotSteel", INGOT_BRONZE),
 			INPUT_INGOT_MIXED = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_SILVER, INGOT_ALUMINIUM, INGOT_ELECTRUM, INGOT_INVAR),
 			INPUT_CRYSTAL_LOW = GTRecipeCraftingHandler.combineRecipeObjects(GEM_DIAMOND, "gemRuby"),
 			INPUT_CRYSTAL_HIGH = GTRecipeCraftingHandler.combineRecipeObjects("gemSapphire", Ic2Items.energyCrystal.copy()),
