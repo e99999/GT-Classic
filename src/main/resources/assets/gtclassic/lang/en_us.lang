@@ -298,7 +298,7 @@ tooltip.gtclassic.redstonetransmitter1=Install a Sensor Stick to set receiver po
 tooltip.gtclassic.redstonereceiver0=Receives redstone signals from transmitters
 tooltip.gtclassic.blockextender0=Relays attached inventories and tanks
 tooltip.gtclassic.blockextender1=Cannot be attached to other extenders!
-tooltip.gtclassic.typefilter0=Sorts incoming items by ore dict tag
+tooltip.gtclassic.typefilter0=Filters incoming items by ore dict tag
 
 #button tooltips
 button.sort=Sort Inventory

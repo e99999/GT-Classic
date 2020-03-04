@@ -76,7 +76,7 @@ public class GTIcons {
 		setTexture(GTBlocks.tileQuantumTank, 0, 64, 2, 2, 2, 2);
 		setTexture(GTBlocks.tileAutocrafter, 59, 59, 60, 61, 59, 59);
 		setTexture(GTBlocks.tileTranslocator, 80, 81, 60, 61, 82, 83);
-		setTexture(GTBlocks.tileTypeFilter, 54, 54, 60, 61, 54, 54);
+		setTexture(GTBlocks.tileTypeFilter, 54, 54, 54, 61, 54, 54);
 		setTexture(GTBlocks.tileBufferLarge, 84, 85, 57, 61, 86, 87);
 		setTexture(GTBlocks.tileBufferSmall, 88, 89, 56, 61, 90, 91);
 		setTexture(GTBlocks.tileTranslocatorFluid, 92, 93, 62, 63, 94, 95);

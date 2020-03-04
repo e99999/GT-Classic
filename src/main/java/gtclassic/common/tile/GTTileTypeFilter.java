@@ -20,7 +20,6 @@ import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -136,31 +135,6 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 
 	@Override
 	public void onBufferTick() {
-		tryImport();
-		tryExport();
-	}
-
-	private void tryImport() {
-		IItemTransporter in = TransporterManager.manager.getTransporter(world.getTileEntity(getImportTilePos()), true);
-		if (in == null) {
-			return;
-		}
-		IItemTransporter out = TransporterManager.manager.getTransporter(this, true);
-		int limit = out.getSizeInventory(getFacing());
-		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = in.removeItem(this.filter, getFacing(), 64, false);
-			if (stack.isEmpty()) {
-				break;
-			}
-			ItemStack added = out.addItem(stack, getFacing().getOpposite(), true);
-			if (added.getCount() <= 0) {
-				break;
-			}
-			in.removeItem(new GTIFilters.BetterBasicItemFilter(added), getFacing(), added.getCount(), true);
-		}
-	}
-
-	private void tryExport() {
 		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), false);
 		if (slave != null) {
 			for (int i = 0; i < 9; ++i) {

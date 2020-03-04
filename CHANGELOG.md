@@ -2,8 +2,8 @@
 
 # 1.1.2 (Not Released)
 - Added a new block, The Block Extender. Allows you to extends side of any tile its attached too for more complex automation. They cannot extend each other.
-- Added Typer Filter, similar to a translocator but filters using ore dict tags and has an internal output buffer. Additional filters can be added in configs under mod compat.
-- Changed the Tesseract Terminal no longer transfers point to point, but is more like a transdimesional block extender.
+- Added Typer Filter, similar to a buffer but filters input using ore dict tags. Additional filters can be added in configs under mod compat.
+- Changed the Tesseract Terminal no longer transfers point to point, but is more like a transdimensional block extender.
 - Fixed the Item Translocator converting fluid containers to other fluids when it successfully transfered them.
 - Fixed Item Translocator not inputting into the correct side for the output tile.
 - Changed Disassembler to no longer use TForest uncrafting table and fixed recipe being weird and allowing any Ic2 Machine.
