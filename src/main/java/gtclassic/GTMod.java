@@ -17,6 +17,7 @@ import gtclassic.common.GTOreDict;
 import gtclassic.common.GTSounds;
 import gtclassic.common.GTWorldGen;
 import gtclassic.common.event.GTEventCheckSpawn;
+import gtclassic.common.event.GTEventDecorateBiome;
 import gtclassic.common.event.GTEventEntityViewRenderEvent;
 import gtclassic.common.event.GTEventLootTableLoad;
 import gtclassic.common.event.GTEventOnLivingFall;
@@ -105,6 +106,7 @@ public class GTMod {
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
 		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
 		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
+		MinecraftForge.TERRAIN_GEN_BUS.register(new GTEventDecorateBiome());
 		IC2.saveManager.registerGlobal("IDSU_Storage", GTIDSUStorageManager.class, false);
 		proxy.init(e);
 	}

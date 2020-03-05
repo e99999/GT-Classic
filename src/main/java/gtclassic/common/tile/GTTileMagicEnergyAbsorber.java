@@ -7,13 +7,18 @@ import gtclassic.api.helpers.int3;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerMagicEnergyAbsorber;
+import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.energy.tile.IEnergySourceInfo;
 import ic2.api.classic.item.IElectricTool;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.tile.machine.IEUStorage;
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.network.INetworkClientTileEntityEventListener;
+import ic2.core.IC2;
 import ic2.core.RotationList;
+import ic2.core.audio.AudioSource;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IEmitterTile;
 import ic2.core.inventory.base.IHasGui;
@@ -23,6 +28,7 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.enchantment.Enchantment;
@@ -37,8 +43,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.common.MinecraftForge;
 
 public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITickable, IHasGui, IEUStorage,
 		IEmitterTile, IEnergySourceInfo, INetworkClientTileEntityEventListener {
@@ -52,6 +60,7 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 	boolean enet = false;
 	public boolean potionMode = false;
 	public boolean xpMode = false;
+	public AudioSource audioSource = null;
 
 	public GTTileMagicEnergyAbsorber() {
 		super(2);
@@ -92,6 +101,28 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 	}
 
 	@Override
+	public void onLoaded() {
+		super.onLoaded();
+		if (this.isSimulating() && !this.enet) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+			this.enet = true;
+		}
+	}
+
+	@Override
+	public void onUnloaded() {
+		if (this.isSimulating() && this.enet) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+			this.enet = false;
+		}
+		if (this.isRendering() && this.audioSource != null) {
+			IC2.audioManager.removeSources(this);
+			this.audioSource = null;
+		}
+		super.onUnloaded();
+	}
+
+	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return false;
 	}
@@ -127,10 +158,6 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 
 	@Override
 	public void update() {
-		boolean hasPower = this.storage > 0;
-		if ((hasPower) != this.getActive()) {
-			this.setActive(hasPower);
-		}
 		handleTools();
 		handleBooks();
 		if (potionMode) {
@@ -159,6 +186,8 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 				this.setStackInSlot(slotOutput, StackUtil.copyWithSize(inputStack, this.getStackInSlot(slotOutput).getCount()
 						+ 1));
 				inputStack.shrink(1);
+				world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 0.5F, 0.75F
+						+ world.rand.nextFloat());
 			}
 		}
 	}
@@ -184,6 +213,8 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 						this.setStackInSlot(slotOutput, StackUtil.copyWithSize(blankBook, this.getStackInSlot(slotOutput).getCount()
 								+ 1));
 						inputStack.shrink(1);
+						world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 0.5F, 0.75F
+								+ world.rand.nextFloat());
 					}
 				}
 			}
@@ -196,8 +227,11 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 		if (!list.isEmpty()) {
 			if (this.storage + 128 <= this.maxStorage) {
 				this.storage = this.storage + 128;
+				this.setActive(true);
+				return;
 			}
 		}
+		this.setActive(false);
 	}
 
 	public void handlePlayerXP() {
@@ -207,17 +241,21 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 			EntityPlayer activePlayer = players.get(0);
 			int playerXP = getPlayerXP(activePlayer);
 			if (playerXP <= 0) {
+				this.setActive(false);
 				return;
 			}
 			if (this.storage + 128 <= this.maxStorage) {
 				this.storage = this.storage + 128;
+				this.setActive(true);
 				addPlayerXP(activePlayer, -1);
 				if (world.getTotalWorldTime() % 4 == 0) {
 					world.playSound((EntityPlayer) null, this.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.1F, 0.5F
 							+ world.rand.nextFloat());
 				}
+				return;
 			}
 		}
+		this.setActive(false);
 	}
 
 	@Override
@@ -314,13 +352,39 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 	}
 
 	@Override
+	public void onNetworkUpdate(String field) {
+		if (field.equals("isActive") && this.isActiveChanged()) {
+			if (this.audioSource != null && this.audioSource.isRemoved()) {
+				this.audioSource = null;
+			}
+			if (this.audioSource == null && this.getOperationSoundFile() != null) {
+				this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getOperationSoundFile(), true, false, IC2.audioManager.defaultVolume);
+			}
+			if (this.getActive()) {
+				if (this.audioSource != null) {
+					this.audioSource.play();
+				}
+			} else if (this.audioSource != null) {
+				this.audioSource.stop();
+			}
+		}
+		super.onNetworkUpdate(field);
+	}
+
+	public ResourceLocation getOperationSoundFile() {
+		return Ic2Sounds.generatorLoop;
+	}
+
+	@Override
 	public void onNetworkEvent(EntityPlayer var1, int event) {
 		if (event == 1) {
 			this.xpMode = !this.xpMode;
+			this.setActive(false);
 			this.updateGui();
 		}
 		if (event == 2) {
 			this.potionMode = !this.potionMode;
+			this.setActive(false);
 			this.updateGui();
 		}
 	}

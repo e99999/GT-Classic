@@ -25,6 +25,7 @@
 - Added a few more Matter Fabricator amplifier items like older gt's, mostly gem dusts/redstone/glowstone etc..
 - Allows the magnifying glass to see EU reader tooltip info, has a config option that defaults too true
 - Made hopper/piston recipes with gtc less insane, now just use anyIron for hoppers and anyIron + Bronze for pistons. renamed config options
+- Added config option for less grass on world gen like older MC, off by default.
 
 # 1.1.1
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.

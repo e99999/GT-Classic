@@ -39,6 +39,7 @@ public class GTConfig {
 		public boolean addHydrogenAsLiquidFuel = true;
 		public boolean enableSuperSolidFuels = true;
 		public boolean enableMagnifyingGlassGivesEUTooltips = true;
+		public boolean reduceGrassOnWorldGen = false;
 	}
 
 	@Comment("World Generation")
