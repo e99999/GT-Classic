@@ -45,6 +45,7 @@ import gtclassic.common.tile.GTTileDrum;
 import gtclassic.common.tile.GTTileEchotron;
 import gtclassic.common.tile.GTTileEnergyTransmitter;
 import gtclassic.common.tile.GTTileIDSU;
+import gtclassic.common.tile.GTTileItemFilter;
 import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
@@ -142,8 +143,9 @@ public class GTBlocks {
 	public static final GTBlockMachine tileRedstoneReceiver = registerBlock(new GTBlockMachine("redstonereceiver", GTLang.REDSTONE_RECEIVER));
 	public static final GTBlockMachine tileTranslocator = registerBlock(new GTBlockMachine("translocator", GTLang.TRANSLOCATOR, 1));
 	public static final GTBlockMachine tileTypeFilter = registerBlock(new GTBlockMachine("typefilter", GTLang.TYPE_FILTER));
-	public static final GTBlockMachine tileBufferLarge = registerBlock(new GTBlockMachine("bufferlarge", GTLang.BUFFER_LARGE, 1));
+	public static final GTBlockMachine tileItemFilter = registerBlock(new GTBlockMachine("itemfilter", GTLang.ITEM_FILTER));
 	public static final GTBlockMachine tileBufferSmall = registerBlock(new GTBlockMachine("buffersmall", GTLang.BUFFER_SMALL, 1));
+	public static final GTBlockMachine tileBufferLarge = registerBlock(new GTBlockMachine("bufferlarge", GTLang.BUFFER_LARGE, 1));
 	public static final GTBlockMachine tileTranslocatorFluid = registerBlock(new GTBlockMachine("translocatorfluid", GTLang.TRANSLOCATOR_FLUID, 1));
 	public static final GTBlockMachine tileBufferFluid = registerBlock(new GTBlockMachine("bufferfluid", GTLang.BUFFER_FLUID, 1));
 	public static final GTBlockSuperconductorCable tileSuperconductorCableMAX = registerBlock(new GTBlockSuperconductorCable(12, ""));
@@ -220,6 +222,7 @@ public class GTBlocks {
 		registerUtil(GTTileRedstoneReceiver.class, "RedstoneReceiver");
 		registerUtil(GTTileTranslocator.class, "Translocator");
 		registerUtil(GTTileTypeFilter.class, "TypeFilter");
+		registerUtil(GTTileItemFilter.class, "ItemFilter");
 		registerUtil(GTTileBufferSmall.class, "BufferSmall");
 		registerUtil(GTTileBufferLarge.class, "BufferLarge");
 		registerUtil(GTTileTranslocatorFluid.class, "TranslocatorFluid");

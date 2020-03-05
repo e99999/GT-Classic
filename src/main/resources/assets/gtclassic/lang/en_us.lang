@@ -299,7 +299,8 @@ tooltip.gtclassic.redstonetransmitter1=Install a Sensor Stick to set receiver po
 tooltip.gtclassic.redstonereceiver0=Receives redstone signals from transmitters
 tooltip.gtclassic.blockextender0=Relays attached inventories and tanks
 tooltip.gtclassic.blockextender1=Cannot be attached to other extenders!
-tooltip.gtclassic.typefilter0=Filters incoming items by ore dict tag
+tooltip.gtclassic.typefilter0=A Buffer, which uses OrePrefixes to filter
+tooltip.gtclassic.itemfilter0=A Filter, which also buffers Items!
 
 #button tooltips
 button.sort=Sort Inventory
@@ -319,6 +320,7 @@ button.buffer0=Emit Energy
 button.buffer1=Emit Redstone
 button.buffer2=Invert Redstone
 button.buffer3=Invert Filter
+button.buffer4=Ignore Nbt
 
 jei.centrifugeu.name=%s EU
 

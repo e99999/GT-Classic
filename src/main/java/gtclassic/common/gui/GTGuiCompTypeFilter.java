@@ -25,15 +25,15 @@ public class GTGuiCompTypeFilter extends GTGuiCompBuffer {
 	@SideOnly(Side.CLIENT)
 	public void onGuiInit(GuiIC2 gui) {
 		super.onGuiInit(gui);
-		gui.registerButton(new GTGuiButton(4, bX(gui, 34), bY(gui, 20), 18, 20));
+		gui.registerButton(new GTGuiButton(5, bX(gui, 34), bY(gui, 20), 18, 20));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onButtonClick(GuiIC2 gui, GuiButton button) {
 		super.onButtonClick(gui, button);
-		if (button.id == 4) {
-			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 4);
+		if (button.id == 5) {
+			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 5);
 		}
 	}
 

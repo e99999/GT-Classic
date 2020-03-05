@@ -186,8 +186,10 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), "I I", "IBI", "IBI", 'I', GTValues.INGOT_REFINEDIRON, 'B', Items.BUCKET);
 			/** Translocator **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_ADV, 'P', GTValues.INPUT_PISTON_ANY);
-			/** Type Fitler **/
+			/** Type Filter **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTypeFilter), "III", "TCB", "III", 'I', GTValues.INPUT_INGOT_MACHINE, 'C', GTValues.CIRCUIT_ADVANCED, 'T', GTBlocks.tileTranslocator, 'B', GTBlocks.tileBufferLarge);
+			/** Item Filter **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileItemFilter), "III", "TCB", "III", 'I', GTValues.INPUT_INGOT_MACHINE, 'C', GTValues.CIRCUIT_BASIC, 'T', GTBlocks.tileTranslocator, 'B', GTBlocks.tileBufferLarge);
 			/** Large Chest Buffer **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', GTValues.CHEST_WOOD);
 			/** Fluid Translocator **/

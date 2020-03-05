@@ -48,6 +48,9 @@ public class GTGuiCompBuffer extends GuiComponent {
 		if (this.tile.hasInvertFilter) {
 			gui.registerButton(new GTGuiButton(3, bX(gui, 61), bY(gui, 60), 18, 20));
 		}
+		if (this.tile.hasNbtFilter) {
+			gui.registerButton(new GTGuiButton(4, bX(gui, 79), bY(gui, 60), 18, 20));
+		}
 	}
 
 	@Override
@@ -77,6 +80,11 @@ public class GTGuiCompBuffer extends GuiComponent {
 			String filter = !this.tile.invertFilter ? "Invert Filter" : "Dont invert Filter";
 			IC2.platform.messagePlayer(this.player.player, filter);
 		}
+		if (this.tile.hasNbtFilter && button.id == 4) {
+			this.tile.getNetwork().initiateClientTileEntityEvent(this.tile, 4);
+			String nbt = !this.tile.ignoreNbt ? "Ignore Nbt" : "Nbt Has to Match";
+			IC2.platform.messagePlayer(this.player.player, nbt);
+		}
 	}
 
 	@Override
@@ -96,6 +104,9 @@ public class GTGuiCompBuffer extends GuiComponent {
 			}
 			if (this.tile.hasInvertFilter && GTHelperMath.within(mouseX, 61, 78)) {
 				tooltips.add(I18n.format("button.buffer3"));
+			}
+			if (this.tile.hasNbtFilter && GTHelperMath.within(mouseX, 79, 96)) {
+				tooltips.add(I18n.format("button.buffer4"));
 			}
 		}
 	}

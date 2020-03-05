@@ -51,7 +51,7 @@ public class GTValues {
 			INPUT_INGOT_MIXED = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_SILVER, INGOT_ALUMINIUM, INGOT_ELECTRUM, INGOT_INVAR),
 			INPUT_CRYSTAL_LOW = GTRecipeCraftingHandler.combineRecipeObjects(GEM_DIAMOND, "gemRuby"),
 			INPUT_CRYSTAL_HIGH = GTRecipeCraftingHandler.combineRecipeObjects("gemSapphire", Ic2Items.energyCrystal.copy()),
-			INPUT_LAPIS_ANY = GTRecipeCraftingHandler.combineRecipeObjects("gemLapis", "dustLazurite", "dustSodalite"),
+			INPUT_LAPIS_ANY = GTRecipeCraftingHandler.combineRecipeObjects("gemLapis", "dustLazurite"),
 			INPUT_INGOT_SILVER = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_SILVER, INGOT_ELECTRUM),
 			INPUT_PISTON_ANY = GTRecipeCraftingHandler.combineRecipeObjects(Blocks.STICKY_PISTON, Blocks.PISTON),
 			INPUT_INGOT_HIGH = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_TUNGSTEN, INGOT_TITANIUM),

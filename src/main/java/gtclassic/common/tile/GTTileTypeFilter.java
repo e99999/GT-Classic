@@ -127,7 +127,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	@Override
 	public void onNetworkEvent(EntityPlayer var1, int event) {
 		super.onNetworkEvent(var1, event);
-		if (event == 4) {
+		if (event == 5) {
 			this.nextEntry();
 		}
 	}

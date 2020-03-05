@@ -631,6 +631,7 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getItem() instanceof ItemDisplayIcon) {
 				list.remove(i);
+				i--;
 			}
 		}
 		return list;

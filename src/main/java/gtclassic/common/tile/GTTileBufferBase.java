@@ -39,6 +39,8 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 	public boolean invertRedstone = false;
 	public boolean invertFilter = false;
 	public boolean hasInvertFilter = false;
+	public boolean hasNbtFilter = false;
+	public boolean ignoreNbt = false;
 	public int redstoneStrength = 0;
 	public boolean hasRedstone = true;
 	public boolean isFluid = false;
@@ -47,11 +49,12 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 	public static final String NBT_OUTPUTREDSTONE = "outputRedstone";
 	public static final String NBT_INVERTREDSTONE = "invertRedstone";
 	public static final String NBT_INVERTFILTER = "invertFilter";
+	public static final String NBT_IGNORENBT = "ignoreNbt";
 
 	public GTTileBufferBase(int slots) {
 		super(slots);
 		this.addGuiFields(new String[] { NBT_STOREDENERGY, NBT_CONDUCT, NBT_OUTPUTREDSTONE, NBT_INVERTREDSTONE,
-				NBT_INVERTFILTER });
+				NBT_INVERTFILTER, NBT_IGNORENBT });
 	}
 
 	@Override
@@ -62,6 +65,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 		this.outputRedstone = nbt.getBoolean(NBT_OUTPUTREDSTONE);
 		this.invertRedstone = nbt.getBoolean(NBT_INVERTREDSTONE);
 		this.invertFilter = nbt.getBoolean(NBT_INVERTFILTER);
+		this.ignoreNbt = nbt.getBoolean(NBT_IGNORENBT);
 	}
 
 	@Override
@@ -72,6 +76,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 		nbt.setBoolean(NBT_OUTPUTREDSTONE, this.outputRedstone);
 		nbt.setBoolean(NBT_INVERTREDSTONE, this.invertRedstone);
 		nbt.setBoolean(NBT_INVERTFILTER, this.invertFilter);
+		nbt.setBoolean(NBT_IGNORENBT, this.ignoreNbt);
 		return nbt;
 	}
 
@@ -200,6 +205,10 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 			this.invertFilter = !this.invertFilter;
 			this.getNetwork().updateTileGuiField(this, NBT_INVERTFILTER);
 		}
+		if (this.hasNbtFilter && event == 4) {
+			this.ignoreNbt = !this.ignoreNbt;
+			this.getNetwork().updateTileGuiField(this, NBT_IGNORENBT);
+		}
 	}
 
 	@Override
@@ -239,6 +248,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getItem() instanceof ItemDisplayIcon) {
 				list.remove(i);
+				i--;
 			}
 		}
 		return list;
@@ -256,6 +266,9 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 		}
 		if (this.hasInvertFilter) {
 			data.put("Inverted Filter: " + this.invertFilter, true);
+		}
+		if (this.hasNbtFilter) {
+			data.put("Ignore Nbt: " + this.ignoreNbt, true);
 		}
 	}
 }
