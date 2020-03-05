@@ -5,6 +5,7 @@ import java.util.Random;
 
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.helpers.GTHelperStack;
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
@@ -30,8 +31,6 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.inventory.transport.IItemTransporter;
-import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.item.misc.ItemDisplayIcon;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
@@ -214,7 +213,7 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 					this.setStackInSlot(i, GTHelperStack.copyWithSize(this.output, count + this.output.getCount()));
 					world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_STONE_BREAK, SoundCategory.BLOCKS, 0.6F, 1.0F);
 					tryDamagePipe();
-					tryExport();
+					GTUtility.exportFromMachineToSide(this, EnumFacing.UP, getOutputSlots());
 				}
 				this.useEnergy(EU_COST);
 				this.getNetwork().updateTileGuiField(this, "energy");
@@ -295,18 +294,6 @@ public class GTTileBedrockMiner extends TileEntityElecMachine
 	public boolean isMinerProperlySet() {
 		Block block = world.getBlockState(pos.down()).getBlock();
 		return block == Blocks.BEDROCK || GTBedrockOreHandler.isBedrockOre(block);
-	}
-
-	public void tryExport() {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(pos.up()), false);
-		if (slave != null) {
-			for (int i : getOutputSlots()) {
-				int added = slave.addItem(this.getStackInSlot(i).copy(), EnumFacing.DOWN, true).getCount();
-				if (added > 0) {
-					this.getStackInSlot(i).shrink(added);
-				}
-			}
-		}
 	}
 
 	public boolean redstoneEnabled() {

@@ -1,6 +1,7 @@
 package gtclassic.common.tile;
 
 import gtclassic.api.helpers.GTHelperFluid;
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerBufferFluid;
 import gtclassic.common.util.GTIFilters;
@@ -22,10 +23,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -133,11 +132,7 @@ public class GTTileBufferFluid extends GTTileBufferBase implements ITankListener
 
 	@Override
 	public void onBufferTick() {
-		IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, getPos().offset(getFacing()), getFacing().getOpposite());
-		boolean canExport = fluidTile != null && this.tank.getFluid() != null;
-		if (canExport) {
-			FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true);
-		}
+		GTUtility.exportFluidFromMachineToSide(this, this.tank, this.getFacing(), 500);
 	}
 
 	@Override

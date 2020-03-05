@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerTypeFilter;
 import gtclassic.common.util.GTIFilters;
@@ -15,8 +16,6 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.inventory.transport.IItemTransporter;
-import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -114,8 +113,8 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 	}
 
 	public static void addOreDictFilter(String... entries) {
-		for (int i = 0; i < entries.length; ++i) {
-			addOreDictFilter(entries[i]);
+		for (String entry : entries) {
+			addOreDictFilter(entry);
 		}
 	}
 
@@ -135,16 +134,7 @@ public class GTTileTypeFilter extends GTTileBufferBase implements IHasGui {
 
 	@Override
 	public void onBufferTick() {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), false);
-		if (slave != null) {
-			for (int i = 0; i < 9; ++i) {
-				int added = slave.addItem(this.getStackInSlot(i).copy(), getFacing().getOpposite(), true).getCount();
-				if (added > 0) {
-					this.getStackInSlot(i).shrink(added);
-					break;
-				}
-			}
-		}
+		GTUtility.exportFromMachineToSide(this, this.getFacing());
 	}
 
 	@Override

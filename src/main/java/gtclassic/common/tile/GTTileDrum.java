@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import gtclassic.api.helpers.GTHelperFluid;
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
@@ -29,10 +30,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class GTTileDrum extends TileEntityMachine implements ITankListener, IItemContainer, IClickable,
@@ -139,12 +138,9 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 
 	@Override
 	public void update() {
-		if (this.flow && world.getTotalWorldTime() % 10 == 0 && this.tank.getFluid() != null) {
+		if (this.flow && world.getTotalWorldTime() % 10 == 0) {
 			EnumFacing side = updateSideForOutput();
-			IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, this.getPos().offset(side), side.getOpposite());
-			if (fluidTile != null && FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true) != null) {
-				// empty if transfered method
-			}
+			GTUtility.exportFluidFromMachineToSide(this, this.tank, side, 500);
 		}
 	}
 

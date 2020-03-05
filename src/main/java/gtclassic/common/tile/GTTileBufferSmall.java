@@ -1,5 +1,6 @@
 package gtclassic.common.tile;
 
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerBufferSmall;
 import ic2.core.RotationList;
@@ -9,8 +10,6 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.inventory.transport.IItemTransporter;
-import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -64,15 +63,7 @@ public class GTTileBufferSmall extends GTTileBufferBase implements IHasGui {
 
 	@Override
 	public void onBufferTick() {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), false);
-		if (slave != null) {
-			for (int i = 0; i < this.inventory.size(); ++i) {
-				int added = slave.addItem(this.getStackInSlot(i).copy(), getFacing().getOpposite(), true).getCount();
-				if (added > 0) {
-					this.getStackInSlot(i).shrink(added);
-				}
-			}
-		}
+		GTUtility.exportFromMachineToSide(this, this.getFacing());
 	}
 
 	@Override

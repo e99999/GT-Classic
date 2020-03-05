@@ -78,6 +78,7 @@ tile.gtclassic.redstonetransmitter.name=Redstone Transmitter
 tile.gtclassic.redstonereceiver.name=Redstone Receiver
 tile.gtclassic.blockextender.name=Block Extender
 tile.gtclassic.typefilter.name=Type Filter
+tile.gtclassic.itemfilter.name=Item Filter
 
 #dust
 item.gtclassic.dustElectrum.name=Electrum Dust
@@ -302,6 +303,7 @@ tooltip.gtclassic.typefilter0=Filters incoming items by ore dict tag
 
 #button tooltips
 button.sort=Sort Inventory
+button.nopower=Not Enough Power
 button.structure0=Structure is complete!
 button.structure1=Structure is not valid!
 button.digitalchest0=Upload to Chest

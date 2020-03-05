@@ -160,9 +160,8 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 				return;
 			}
 			TileEntity destination = targetWorld.getTileEntity(this.targetPos);
-			if (destination instanceof GTTileTesseractMaster) {
-				GTTileTesseractMaster tesseract = (GTTileTesseractMaster) destination;
-				setTarget(tesseract);
+			if (destination instanceof GTTileTesseractMaster && ((GTTileTesseractMaster) destination).getActive()) {
+				setTarget((GTTileTesseractMaster) destination);
 				return;
 			}
 			setTarget(null);
@@ -229,6 +228,6 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	public void getData(Map<String, Boolean> data) {
 		String status = this.canExtendCapabilites() ? "Connected to Tesseract Generator"
 				: "Failed to connect Tesseract Generator";
-		data.put("Target Destination: " + status, true);
+		data.put(status, true);
 	}
 }

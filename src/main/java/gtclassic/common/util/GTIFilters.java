@@ -118,7 +118,7 @@ public class GTIFilters {
 		}
 
 		public boolean matches(ItemStack stack) {
-			if (stack.isEmpty()) {
+			if (stack.isEmpty() || this.tile.getCurrentFilter() == null) {
 				return false;
 			}
 			return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter())

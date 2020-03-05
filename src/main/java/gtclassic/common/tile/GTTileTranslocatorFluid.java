@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -85,15 +86,20 @@ public class GTTileTranslocatorFluid extends GTTileBufferBase implements IHasGui
 
 	@Override
 	public void onBufferTick() {
-		IFluidHandler start = FluidUtil.getFluidHandler(world, getImportTilePos(), getFacing());
-		IFluidHandler end = FluidUtil.getFluidHandler(world, getExportTilePos(), getFacing().getOpposite());
+		BlockPos importPos = this.pos.offset(this.getFacing().getOpposite());
+		BlockPos exportPos = this.pos.offset(this.getFacing());
+		if (!world.isBlockLoaded(importPos) || !world.isBlockLoaded(exportPos)) {
+			return;
+		}
+		IFluidHandler start = FluidUtil.getFluidHandler(world, importPos, getFacing());
+		IFluidHandler end = FluidUtil.getFluidHandler(world, exportPos, getFacing().getOpposite());
 		boolean canExport = start != null && end != null;
 		if (canExport && filter == null) {
 			FluidUtil.tryFluidTransfer(end, start, 500, true);
 		}
 		if (canExport && filter != null) {
 			FluidStack fake = FluidUtil.tryFluidTransfer(end, start, 500, false);
-			if (fake != null && (fake.getFluid().getName() == filter.getFluid().getName())) {
+			if (fake != null && (fake.getFluid().getName().equals(filter.getFluid().getName()))) {
 				FluidUtil.tryFluidTransfer(end, start, 500, true);
 			}
 		}

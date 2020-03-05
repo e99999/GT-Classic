@@ -22,7 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 
 public abstract class GTTileBufferBase extends TileEntityMachine implements IEnergyConductor, IEnergySink,
@@ -213,17 +212,9 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 
 	public abstract boolean isInventoryFull();
 
-	public BlockPos getImportTilePos() {
-		return this.pos.offset(this.getFacing().getOpposite());
-	}
-
-	public BlockPos getExportTilePos() {
-		return this.pos.offset(this.getFacing());
-	}
-
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 8 == 0) {
+		if (world.getTotalWorldTime() % 10 == 0) {
 			if (this.hasRedstone) {
 				int oldStrength = this.redstoneStrength;
 				if (this.outputRedstone && isInventoryFull()) {
@@ -235,9 +226,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 					world.notifyNeighborsOfStateChange(pos, blockType, true);
 				}
 			}
-			if (world.isBlockLoaded(getImportTilePos()) && world.isBlockLoaded(getExportTilePos())) {
-				onBufferTick();
-			}
+			onBufferTick();
 		}
 	}
 

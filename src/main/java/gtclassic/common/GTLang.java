@@ -45,6 +45,7 @@ public class GTLang {
 	public static final LocaleComp TRANSLOCATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocator");
 	public static final LocaleComp TRANSLOCATOR_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocatorfluid");
 	public static final LocaleComp TYPE_FILTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.typefilter");
+	public static final LocaleComp ITEM_FILTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.itemfilter");
 	public static final LocaleComp BUFFER_LARGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferlarge");
 	public static final LocaleComp BUFFER_SMALL = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.buffersmall");
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
