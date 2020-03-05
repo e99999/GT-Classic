@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -33,11 +34,14 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	private int targetDim;
 	private static final String NBT_TARGETPOS = "targetPos";
 	private static final String NBT_TARGETDIM = "targetDim";
+	private static final String NBT_TARGET = "targetMaster";
+	@NetworkField(index = 8)
 	GTTileTesseractMaster targetMaster;
 
 	public GTTileTesseractSlave() {
 		super(1, 128);
 		this.maxEnergy = 10000;
+		this.addNetworkFields(new String[] { NBT_TARGET });
 	}
 
 	public BlockPos getInventoryPos() {
@@ -193,6 +197,15 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 		if (world.isBlockLoaded(pos)) {
 			world.neighborChanged(pos, Blocks.AIR, pos);
 		}
+		this.getNetwork().updateTileEntityField(this, NBT_TARGET);
+	}
+
+	@Override
+	public void onNetworkUpdate(String field) {
+		if (field.equals(NBT_TARGET)) {
+			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
+		}
+		super.onNetworkUpdate(field);
 	}
 
 	@Override
