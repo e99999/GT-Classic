@@ -411,6 +411,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addRecipe(GTMaterialGen.get(Blocks.SOUL_SAND, 12), 0, totalEu(12000), GTMaterialGen.get(Blocks.SAND, 11), GTMaterialGen.getTube(GTMaterial.Oil, 1));
 		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Oil, 3000), 3, totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
 		addRecipe(GTMaterialGen.getTube(GTMaterial.Oil, 3), 0, totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
+		addRecipe(Ic2Items.plasmaCell, 0, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.uuMatter, 10), Ic2Items.emptyCell.copy());
 		/*
 		 * Recipes solely focused on getting methane from various things
 		 */

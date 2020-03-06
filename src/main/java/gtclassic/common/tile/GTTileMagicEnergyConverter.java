@@ -392,7 +392,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic), 1000000);
 		addRecipe(GTMaterialGen.get(Items.NETHER_STAR), 2500000);
 		addRecipe(GTMaterialGen.get(Blocks.BEACON), 2500000);
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.plasmaCell), 24000000);
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.plasmaCell), 100000000);
 	}
 
 	public static IRecipeModifier[] value(int amount) {

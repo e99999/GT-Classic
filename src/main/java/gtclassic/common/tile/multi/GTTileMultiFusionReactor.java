@@ -242,8 +242,8 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 				}
 			}
 		}
-		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)),
-				input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 1)) }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
+		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.uuMatter, 10)),
+				input(GTMaterialGen.getIc2(Ic2Items.emptyCell, 1)), }, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.plasmaCell, 1));
 	}
 
 	public static IRecipeModifier[] totalEu(int total) {
