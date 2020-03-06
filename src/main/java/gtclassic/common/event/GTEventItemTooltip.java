@@ -6,9 +6,12 @@ import gtclassic.common.GTConfig;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTEventItemTooltip {
 
+	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onTooltipEvent(ItemTooltipEvent event) {
 		if (GTConfig.general.removeIC2Plasmafier

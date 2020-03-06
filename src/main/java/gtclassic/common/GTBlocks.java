@@ -107,7 +107,6 @@ public class GTBlocks {
 	public static final GTBlockCasing casingFusion = registerBlock(new GTBlockCasing("fusion", 4, 500.0F));
 	public static final GTBlockCasing casingLapotron = registerBlock(new GTBlockCasing("lapotron", 5, 100.0F));
 	public static final GTBlockCasing casingHighlyAdvanced = registerBlock(new GTBlockCasing("highlyadvanced", 6, 250.0F));
-	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
@@ -141,6 +140,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileBlockExtender = registerBlock(new GTBlockMachine("blockextender", GTLang.BLOCK_EXTENDER, 2));
 	public static final GTBlockMachine tileRedstoneTransmitter = registerBlock(new GTBlockMachine("redstonetransmitter", GTLang.REDSTONE_TRANSMITTER, 2));
 	public static final GTBlockMachine tileRedstoneReceiver = registerBlock(new GTBlockMachine("redstonereceiver", GTLang.REDSTONE_RECEIVER));
+	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileTranslocator = registerBlock(new GTBlockMachine("translocator", GTLang.TRANSLOCATOR, 1));
 	public static final GTBlockMachine tileTypeFilter = registerBlock(new GTBlockMachine("typefilter", GTLang.TYPE_FILTER));
 	public static final GTBlockMachine tileItemFilter = registerBlock(new GTBlockMachine("itemfilter", GTLang.ITEM_FILTER));
