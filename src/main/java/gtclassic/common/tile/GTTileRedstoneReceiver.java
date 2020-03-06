@@ -37,7 +37,7 @@ public class GTTileRedstoneReceiver extends TileEntityMachine {
 	}
 
 	private void updateNeighbors() {
-		EnumFacing[] sides = EnumFacing.HORIZONTALS;
+		EnumFacing[] sides = EnumFacing.VALUES;
 		int sidesLength = sides.length;
 		for (int i = 0; i < sidesLength; ++i) {
 			EnumFacing side = sides[i];

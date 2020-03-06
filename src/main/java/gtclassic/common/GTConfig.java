@@ -40,6 +40,7 @@ public class GTConfig {
 		public boolean enableSuperSolidFuels = true;
 		public boolean enableMagnifyingGlassGivesEUTooltips = true;
 		public boolean reduceGrassOnWorldGen = false;
+		public boolean oneMagicAbsorberPerEndPortal = true;
 	}
 
 	@Comment("World Generation")
