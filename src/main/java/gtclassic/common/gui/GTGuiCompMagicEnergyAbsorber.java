@@ -35,7 +35,7 @@ public class GTGuiCompMagicEnergyAbsorber extends GuiComponent {
 	public void onGuiInit(GuiIC2 gui) {
 		gui.registerButton((new GTGuiButton(1, bX(gui, 11), bY(gui, 16), 15, 18))); // xp mode
 		gui.registerButton((new GTGuiButton(2, bX(gui, 11), bY(gui, 33), 15, 18))); // potion mode
-		//gui.registerButton((new GTGuiButton(3, bX(gui, 11), bY(gui, 50), 15, 18))); // portal mode
+		gui.registerButton((new GTGuiButton(3, bX(gui, 11), bY(gui, 50), 15, 18))); // portal mode
 	}
 
 	@Override
@@ -67,8 +67,6 @@ public class GTGuiCompMagicEnergyAbsorber extends GuiComponent {
 				gui.drawTexturedModalRect(gui.getXOffset() + 27, gui.getYOffset() + 52, 176, 16, 17, 16);
 			}
 		}
-		//TODO Remove this after release
-		gui.drawTexturedModalRect(gui.getXOffset() + 10, gui.getYOffset() + 52, 200, 0, 34, 16);
 	}
 
 	@Override
@@ -81,10 +79,10 @@ public class GTGuiCompMagicEnergyAbsorber extends GuiComponent {
 			if (GTHelperMath.within(mouseY, 33, 50)) {
 				tooltips.add(I18n.format("button.magicabsorber1"));
 			}
-			//if (GTHelperMath.within(mouseY, 51, 68)) {
-			//	tooltips.add(I18n.format("button.magicabsorber3"));
-			//	tooltips.add(I18n.format("button.magicabsorber4"));
-			//}
+			if (GTHelperMath.within(mouseY, 51, 68)) {
+				tooltips.add(I18n.format("button.magicabsorber3"));
+				tooltips.add(I18n.format("button.magicabsorber4"));
+			}
 		}
 	}
 

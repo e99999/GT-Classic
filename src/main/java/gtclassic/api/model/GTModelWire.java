@@ -136,7 +136,7 @@ public class GTModelWire extends BaseModel {
 		int var9 = var8.length;
 		for (int var10 = 0; var10 < var9; ++var10) {
 			EnumFacing side = var8[var10];
-			quads.put(side, this.getBakery().makeBakedQuad(minF, maxF, face, this.getParticleTexture(), side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
+			quads.put(side, this.getBakery().makeBakedQuad(minF, maxF, face, wire.getTextureFromState(this.state, side), side, ModelRotation.X0_Y0, (BlockPartRotation) null, true, true));
 		}
 		return quads;
 	}

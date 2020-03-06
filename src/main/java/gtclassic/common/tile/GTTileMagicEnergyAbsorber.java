@@ -1,9 +1,12 @@
 package gtclassic.common.tile;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.helpers.int3;
+import gtclassic.api.interfaces.IGTDisplayTickTile;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTLang;
@@ -22,6 +25,7 @@ import ic2.core.RotationList;
 import ic2.core.audio.AudioSource;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IEmitterTile;
+import ic2.core.block.wiring.misc.EntityChargePadAuraFX;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
@@ -31,7 +35,12 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEndPortalFrame;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityAreaEffectCloud;
@@ -50,10 +59,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITickable, IHasGui, IEUStorage,
-		IEmitterTile, IEnergySourceInfo, INetworkClientTileEntityEventListener {
+		IEmitterTile, IEnergySourceInfo, INetworkClientTileEntityEventListener, IGTDisplayTickTile {
 
 	@NetworkField(index = 4)
 	public int storage = 0;
@@ -292,18 +302,45 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 			this.getNetwork().updateTileGuiField(this, NBT_PORTALMODE);
 			// Now that its estabishled your getting cheaty power, less make sure not a
 			// really digusting cheater : )
-			if (this.isAbovePortal && GTConfig.general.oneMagicAbsorberPerEndPortal) {
-				for (BlockPos nearby : getSurroundingBlocks()) {
-					if (nearby.equals(this.pos)) {
-						continue;
-					}
-					if (isThereAnother(nearby)) {
-						world.setBlockToAir(nearby);
-						world.removeTileEntity(nearby);
-						world.createExplosion(null, nearby.getX(), nearby.getY(), nearby.getZ(), 8.0F, true);
-						break;
+			if (this.isAbovePortal) {
+				tryBorkEndPortalFrame();
+				if (GTConfig.general.oneMagicAbsorberPerEndPortal) {
+					for (BlockPos nearby : getSurroundingBlocks(this.pos)) {
+						if (nearby.equals(this.pos)) {
+							continue;
+						}
+						if (isThereAnother(nearby)) {
+							world.setBlockToAir(nearby);
+							world.removeTileEntity(nearby);
+							world.createExplosion(null, nearby.getX(), nearby.getY(), nearby.getZ(), 8.0F, true);
+							break;
+						}
 					}
 				}
+			}
+		}
+	}
+
+	private void tryBorkEndPortalFrame() {
+		if (world.rand.nextInt(300) == 0) {
+			List<BlockPos> surroundings = getSurroundingPortalBlocksAsList(this.pos.offset(EnumFacing.DOWN));
+			if (surroundings.isEmpty()) {
+				return;
+			}
+			BlockPos nearby = surroundings.get(world.rand.nextInt(surroundings.size() - 1));
+			IBlockState nearbyState = world.getBlockState(nearby);
+			if (nearbyState.getBlock() == Blocks.END_PORTAL_FRAME
+					&& nearbyState.getValue(BlockEndPortalFrame.EYE).booleanValue()) {
+				world.setBlockState(nearby, nearbyState.withProperty(BlockEndPortalFrame.EYE, false));
+				for (BlockPos portalPos : surroundings) {
+					if (world.getBlockState(portalPos).getBlock() == Blocks.END_PORTAL) {
+						world.setBlockToAir(portalPos);
+						world.removeTileEntity(portalPos);
+						this.isAbovePortal = false;
+					}
+				}
+				world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 0.5F, 0.5F
+						+ world.rand.nextFloat());
 			}
 		}
 	}
@@ -317,9 +354,21 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 		return false;
 	}
 
-	private Iterable<BlockPos> getSurroundingBlocks() {
+	private Iterable<BlockPos> getSurroundingBlocks(BlockPos checkPos) {
 		int radius = 4;
-		return BlockPos.getAllInBox(pos.offset(EnumFacing.SOUTH, radius).offset(EnumFacing.WEST, radius), pos.offset(EnumFacing.NORTH, radius).offset(EnumFacing.EAST, radius));
+		return BlockPos.getAllInBox(checkPos.offset(EnumFacing.SOUTH, radius).offset(EnumFacing.WEST, radius), checkPos.offset(EnumFacing.NORTH, radius).offset(EnumFacing.EAST, radius));
+	}
+
+	private List<BlockPos> getSurroundingPortalBlocksAsList(BlockPos checkPos) {
+		Iterable<BlockPos> iterate = getSurroundingBlocks(checkPos);
+		List<BlockPos> newList = new ArrayList<>();
+		for (BlockPos entry : iterate) {
+			Block block = world.getBlockState(entry).getBlock();
+			if (block == Blocks.END_PORTAL || block == Blocks.END_PORTAL_FRAME) {
+				newList.add(entry);
+			}
+		}
+		return newList;
 	}
 
 	private boolean isDrawingEnergyFromADarkPlace() {
@@ -464,6 +513,33 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 			this.portalMode = !this.portalMode;
 			this.setActive(false);
 			this.updateGui();
+		}
+	}
+
+	@Override
+	public void randomTickDisplay(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		if (this.isActive && this.portalMode
+				&& worldIn.getBlockState(this.pos.offset(EnumFacing.DOWN)).getBlock() == Blocks.END_PORTAL) {
+			for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+				BlockPos sidePos = pos.offset(facing);
+				if (world.getBlockState(sidePos).isFullBlock()) {
+					continue;
+				}
+				for (int k = 3; k > 0; --k) {
+					ParticleManager er = Minecraft.getMinecraft().effectRenderer;
+					float multPos = (float) (.1 * 2) + 0.9F;
+					double x = (double) ((float) sidePos.getX() + 0.05F + rand.nextFloat() * multPos);
+					double y = (double) ((float) sidePos.getY() + 0.0F + rand.nextFloat() * 0.5F);
+					double z = (double) ((float) sidePos.getZ() + 0.05F + rand.nextFloat() * multPos);
+					double[] velocity = new double[] { 0.0D, 7.6D, 0.0D };
+					if (k < 4) {
+						velocity[2] *= 0.55D;
+					}
+					float foo = rand.nextFloat() * .25F;
+					float[] colour = new float[] { 0.0F, foo, foo };
+					er.addEffect(new EntityChargePadAuraFX(this.world, x, y, z, 8, velocity, colour, false));
+				}
+			}
 		}
 	}
 }

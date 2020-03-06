@@ -6,7 +6,7 @@
 - Nothing here yet
 
 # 1.1.3 (Not Released)
-- Nothing here yet
+- Changed, Magical Energy Absorber can now siphon energy from End Portals with a few very specific behaviors. only one per portal or kaboom time (configurable), if you absorb portals in Overworld Strongholds there is a chance to break the portal and remove an ender eye from the portal frame every so often.
 
 # 1.1.2
 - Added a new block, The Block Extender. Allows you to extends side of any tile its attached too, they cannot extend each other.
