@@ -1,10 +1,16 @@
 # Changelog
+# 1.1.5 (Not Released)
+- Nothing here yet
+
+# 1.1.4 (Not Released)
+- Nothing here yet
+
 # 1.1.3 (Not Released)
 - Nothing here yet
 
 # 1.1.2
-- Added a new block, The Block Extender. Allows you to extends side of any tile its attached too for more complex automation. They cannot extend each other.
-- Added Typer Filter, similar to a buffer but filters input using ore dict tags. Additional filters can be added in configs under mod compat.
+- Added a new block, The Block Extender. Allows you to extends side of any tile its attached too, they cannot extend each other.
+- Added Type Filter, similar to a buffer but filters input using ore dict tags. Additional filters can be added in configs under mod compat.
 - Added Item Filter, just because so much of the code was already implemented, its like a buffer/translocator hybrid from older GT's.
 - Changed the Tesseract Terminal no longer transfers point to point, but is more like a transdimensional block extender.
 - Fixed the Item Translocator converting fluid containers to other fluids when it successfully transfered them.
@@ -15,7 +21,7 @@
 - Fixed Drum not auto outputting into the correct side for connected fluid tile.
 - Added Invar as another possible metal to use in mixed metal.
 - Added Gold as another possible metal to use in basic circuits.
-- Changed, Magic Energy Absorber now is more like a generator in that it consumes items and generates power over time vs the an instant amount of power.
+- Changed, Magic Energy Converter now is more like a generator in that it consumes items and generates power over time vs the an instant amount of power.
 - Changed, increased the magic fuel value for some vanilla items.
 - Changed the recipes for translocators to not use IC2 upgrades to craft, I found it annoying in play testing myself.
 - Changed AESU recipe to be more like GT4, less of an endless lapis grind.
@@ -24,7 +30,7 @@
 - Fixed buffers not checking the correct stack size to see if an inventory was full, buffers now output redstone if there no empty slots
 - Added mouseover tooltips for every single GTC Gui that has a button.
 - Changed, Fluid Buffer now can output a redstone signal/invert based on the tank.
-- Added a few more Matter Fabricator amplifier items like older gt's, mostly gem dusts/redstone/glowstone etc..
+- Added a few more Matter Fabricator amplifier items like older GT's, mostly gem dusts/redstone/glowstone etc..
 - Allows the magnifying glass to see EU reader tooltip info, has a config option that defaults too true
 - Made hopper/piston recipes with gtc less insane, now just use anyIron for hoppers and anyIron + Bronze for pistons. renamed config options
 - Added config option for less grass on world gen like older MC, off by default.
