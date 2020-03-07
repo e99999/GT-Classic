@@ -4,10 +4,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import ic2.api.classic.item.IElectricTool;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GTHelperStack {
@@ -202,5 +208,31 @@ public class GTHelperStack {
 				}
 			}
 		}
+	}
+
+	public static int getBookEnchantmentLevel(ItemStack stack) {
+		if (!stack.isEmpty() && stack.getItem() instanceof ItemEnchantedBook) {
+			NBTTagList nbttaglist = ItemEnchantedBook.getEnchantments(stack);
+			for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+				NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
+				int j = nbttagcompound.getShort("id");
+				Enchantment enchantment = Enchantment.getEnchantmentByID(j);
+				if (enchantment != null) {
+					return nbttagcompound.getShort("lvl");
+				}
+			}
+		}
+		return 0;
+	}
+
+	public static int getItemStackEnchantmentLevel(ItemStack stack) {
+		if (!stack.isEmpty() && stack.isItemEnchanted() && !(stack.getItem() instanceof IElectricTool)) {
+			int level = 0;
+			for (Map.Entry<Enchantment, Integer> entry : EnchantmentHelper.getEnchantments(stack).entrySet()) {
+				level = level + entry.getValue();
+			}
+			return level;
+		}
+		return 0;
 	}
 }

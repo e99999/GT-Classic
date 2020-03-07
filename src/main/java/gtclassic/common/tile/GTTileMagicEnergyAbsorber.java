@@ -1,10 +1,10 @@
 package gtclassic.common.tile;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import gtclassic.api.helpers.GTHelperStack;
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.helpers.int3;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
 import gtclassic.api.material.GTMaterialGen;
@@ -13,7 +13,6 @@ import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerMagicEnergyAbsorber;
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.energy.tile.IEnergySourceInfo;
-import ic2.api.classic.item.IElectricTool;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.energy.event.EnergyTileLoadEvent;
@@ -35,24 +34,17 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEndPortalFrame;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.particle.ParticleManager;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemEnchantedBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
@@ -180,7 +172,7 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 
 	@Override
 	public void update() {
-		structureCheck();
+		checkForEndPortal();
 		if (isConvertingToolItem() || isConvertingBookItem()) {
 			return;
 		}
@@ -201,63 +193,41 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 
 	public boolean isConvertingToolItem() {
 		ItemStack inputStack = this.getStackInSlot(slotInput);
-		if (inputStack.isEmpty()) {
-			return false;
-		}
-		if (inputStack.isItemEnchanted() && !(inputStack.getItem() instanceof IElectricTool)) {
-			int level = 0;
-			for (int i : EnchantmentHelper.getEnchantments(this.getStackInSlot(slotInput)).values()) {
-				level = level + i;
+		int level = GTHelperStack.getItemStackEnchantmentLevel(inputStack);
+		if (level > 0 && !this.isFull()) {
+			int generate = world.rand.nextInt(20000 * level);
+			ItemStack blankTool = inputStack.copy();
+			blankTool.getTagCompound().removeTag("ench");
+			if (!GTHelperStack.canMerge(blankTool, this.getStackInSlot(slotOutput))) {
+				return false;
 			}
-			if (level != 0) {
-				int generate = (int) (20000 * level * world.rand.nextFloat());
-				if (generate + this.storage > this.maxStorage
-						|| !GTHelperStack.canMerge(inputStack, this.getStackInSlot(slotOutput))) {
-					return false;
-				}
-				inputStack.getTagCompound().removeTag("ench");
-				this.storage = this.storage + generate;
-				this.setStackInSlot(slotOutput, StackUtil.copyWithSize(inputStack, this.getStackInSlot(slotOutput).getCount()
-						+ 1));
-				inputStack.shrink(1);
-				world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 0.5F, 0.75F
-						+ world.rand.nextFloat());
-				return true;
-			}
+			this.addEnergy(generate);
+			this.setStackInSlot(slotOutput, StackUtil.copyWithSize(blankTool, this.getStackInSlot(slotOutput).getCount()
+					+ 1));
+			inputStack.shrink(1);
+			world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, 0.75F
+					+ world.rand.nextFloat());
+			return true;
 		}
 		return false;
 	}
 
 	public boolean isConvertingBookItem() {
 		ItemStack inputStack = this.getStackInSlot(slotInput);
-		if (inputStack.isEmpty()) {
-			return false;
-		}
-		if (inputStack.getItem() instanceof ItemEnchantedBook) {
-			NBTTagList nbttaglist = ItemEnchantedBook.getEnchantments(inputStack);
-			for (int i = 0; i < nbttaglist.tagCount(); ++i) {
-				NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
-				int j = nbttagcompound.getShort("id");
-				Enchantment enchantment = Enchantment.getEnchantmentByID(j);
-				if (enchantment != null) {
-					int level = nbttagcompound.getShort("lvl");
-					if (level != 0) {
-						int generate = (int) (20000 * level * world.rand.nextFloat());
-						ItemStack blankBook = GTMaterialGen.get(Items.BOOK);
-						if (generate + this.storage > this.maxStorage
-								|| !GTHelperStack.canMerge(blankBook, this.getStackInSlot(slotOutput))) {
-							return false;
-						}
-						this.storage = this.storage + generate;
-						this.setStackInSlot(slotOutput, StackUtil.copyWithSize(blankBook, this.getStackInSlot(slotOutput).getCount()
-								+ 1));
-						inputStack.shrink(1);
-						world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE, SoundCategory.BLOCKS, 0.5F, 0.75F
-								+ world.rand.nextFloat());
-						return true;
-					}
-				}
+		int level = GTHelperStack.getBookEnchantmentLevel(inputStack);
+		if (level > 0 && !this.isFull()) {
+			int generate = world.rand.nextInt(20000 * level);
+			ItemStack blankBook = GTMaterialGen.get(Items.BOOK);
+			if (!GTHelperStack.canMerge(blankBook, this.getStackInSlot(slotOutput))) {
+				return false;
 			}
+			this.addEnergy(generate);
+			this.setStackInSlot(slotOutput, StackUtil.copyWithSize(blankBook, this.getStackInSlot(slotOutput).getCount()
+					+ 1));
+			inputStack.shrink(1);
+			world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, 0.75F
+					+ world.rand.nextFloat());
+			return true;
 		}
 		return false;
 	}
@@ -265,14 +235,14 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 	public boolean isConvertingXP() {
 		AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).up(1).asBlockPos());
 		List<EntityPlayer> players = (world.getEntitiesWithinAABB(EntityPlayer.class, area));
-		if (!players.isEmpty()) {
+		if (!players.isEmpty() && !this.isFull()) {
 			EntityPlayer activePlayer = players.get(0);
 			int playerXP = getPlayerXP(activePlayer);
 			if (playerXP <= 0) {
 				return false;
 			}
-			if (this.storage + 128 <= this.maxStorage) {
-				this.storage = this.storage + 128;
+			if (!this.isFull()) {
+				this.addEnergy(128);
 				this.setActive(true);
 				addPlayerXP(activePlayer, -1);
 				if (world.getTotalWorldTime() % 4 == 0) {
@@ -288,95 +258,49 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 	public boolean isConvertingPotion() {
 		AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).up(1).asBlockPos());
 		List<EntityAreaEffectCloud> list = world.<EntityAreaEffectCloud>getEntitiesWithinAABB(EntityAreaEffectCloud.class, area);
-		if (!list.isEmpty() && this.storage + 128 <= this.maxStorage) {
-			this.storage = this.storage + 128;
+		if (!list.isEmpty() && !this.isFull()) {
+			this.addEnergy(128);
 			return true;
 		}
 		return false;
-	}
-
-	private void structureCheck() {
-		if (this.portalMode && world.getTotalWorldTime() % 100 == 0) {
-			boolean correctPos = world.getBlockState(this.pos.offset(EnumFacing.DOWN)).getBlock() == Blocks.END_PORTAL;
-			this.isAbovePortal = correctPos;
-			this.getNetwork().updateTileGuiField(this, NBT_PORTALMODE);
-			// Now that its estabishled your getting cheaty power, less make sure not a
-			// really digusting cheater : )
-			if (this.isAbovePortal) {
-				tryBorkEndPortalFrame();
-				if (GTConfig.general.oneMagicAbsorberPerEndPortal) {
-					for (BlockPos nearby : getSurroundingBlocks(this.pos)) {
-						if (nearby.equals(this.pos)) {
-							continue;
-						}
-						if (isThereAnother(nearby)) {
-							world.setBlockToAir(nearby);
-							world.removeTileEntity(nearby);
-							world.createExplosion(null, nearby.getX(), nearby.getY(), nearby.getZ(), 8.0F, true);
-							break;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private void tryBorkEndPortalFrame() {
-		if (world.rand.nextInt(300) == 0) {
-			List<BlockPos> surroundings = getSurroundingPortalBlocksAsList(this.pos.offset(EnumFacing.DOWN));
-			if (surroundings.isEmpty()) {
-				return;
-			}
-			BlockPos nearby = surroundings.get(world.rand.nextInt(surroundings.size() - 1));
-			IBlockState nearbyState = world.getBlockState(nearby);
-			if (nearbyState.getBlock() == Blocks.END_PORTAL_FRAME
-					&& nearbyState.getValue(BlockEndPortalFrame.EYE).booleanValue()) {
-				world.setBlockState(nearby, nearbyState.withProperty(BlockEndPortalFrame.EYE, false));
-				for (BlockPos portalPos : surroundings) {
-					if (world.getBlockState(portalPos).getBlock() == Blocks.END_PORTAL) {
-						world.setBlockToAir(portalPos);
-						world.removeTileEntity(portalPos);
-						this.isAbovePortal = false;
-					}
-				}
-				world.playSound((EntityPlayer) null, this.pos, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 0.5F, 0.5F
-						+ world.rand.nextFloat());
-			}
-		}
-	}
-
-	private boolean isThereAnother(BlockPos pos) {
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile instanceof GTTileMagicEnergyAbsorber) {
-			GTTileMagicEnergyAbsorber absorber = (GTTileMagicEnergyAbsorber) tile;
-			return absorber.portalMode && absorber.isAbovePortal;
-		}
-		return false;
-	}
-
-	private Iterable<BlockPos> getSurroundingBlocks(BlockPos checkPos) {
-		int radius = 4;
-		return BlockPos.getAllInBox(checkPos.offset(EnumFacing.SOUTH, radius).offset(EnumFacing.WEST, radius), checkPos.offset(EnumFacing.NORTH, radius).offset(EnumFacing.EAST, radius));
-	}
-
-	private List<BlockPos> getSurroundingPortalBlocksAsList(BlockPos checkPos) {
-		Iterable<BlockPos> iterate = getSurroundingBlocks(checkPos);
-		List<BlockPos> newList = new ArrayList<>();
-		for (BlockPos entry : iterate) {
-			Block block = world.getBlockState(entry).getBlock();
-			if (block == Blocks.END_PORTAL || block == Blocks.END_PORTAL_FRAME) {
-				newList.add(entry);
-			}
-		}
-		return newList;
 	}
 
 	private boolean isDrawingEnergyFromADarkPlace() {
-		if (this.isAbovePortal && this.storage + 128 <= this.maxStorage) {
-			this.storage = this.storage + 128;
+		if (this.isAbovePortal && !this.isFull()) {
+			this.addEnergy(128);
 			return true;
 		}
 		return false;
+	}
+
+	private void checkForEndPortal() {
+		if (world.getTotalWorldTime() % 100 == 0) {
+			this.isAbovePortal = world.getBlockState(this.pos.offset(EnumFacing.DOWN)).getBlock() == Blocks.END_PORTAL;
+			this.updateGui();
+			if (this.portalMode && this.isAbovePortal) {
+				if (world.rand.nextInt(512) == 0 && GTUtility.tryResetStrongholdPortal(world, pos)) {
+					this.isAbovePortal = false;
+					this.updateGui();
+					return;
+				}
+				if (GTConfig.general.oneMagicAbsorberPerEndPortal
+						&& GTUtility.tryExplodeOtherAbsorbers(this.world, this.pos)) {
+					// TODO something here
+				}
+			}
+		}
+	}
+
+	public boolean isFull() {
+		return this.storage >= this.maxStorage;
+	}
+
+	public void addEnergy(int added) {
+		if (added < 1) {
+			return;
+		}
+		int newAmount = this.storage + added < this.maxStorage ? this.storage + added : this.maxStorage;
+		this.storage = newAmount;
 	}
 
 	@Override
@@ -471,6 +395,7 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 		this.getNetwork().updateTileGuiField(this, NBT_POTIONMODE);
 		this.getNetwork().updateTileGuiField(this, NBT_XPMODE);
 		this.getNetwork().updateTileGuiField(this, NBT_PORTALMODE);
+		this.getNetwork().updateTileGuiField(this, NBT_ABOVEPORTAL);
 	}
 
 	@Override

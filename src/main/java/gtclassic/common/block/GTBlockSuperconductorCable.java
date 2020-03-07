@@ -120,7 +120,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 		if (!(tile instanceof GTTileBaseSuperconductorCable)) {
 			return new AxisAlignedBB(0.25D, 0.25D, 0.25D, 0.75D, 0.75D, 0.75D);
 		} else {
-			GTTileBaseSuperconductorCable pipe = (GTTileBaseSuperconductorCable) tile;
+			GTTileBaseSuperconductorCable cable = (GTTileBaseSuperconductorCable) tile;
 			double thickness = this.size / 32.0D;
 			double minX = 0.5D - thickness;
 			double minY = 0.5D - thickness;
@@ -128,22 +128,22 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 			double maxX = 0.5D + thickness;
 			double maxY = 0.5D + thickness;
 			double maxZ = 0.5D + thickness;
-			if (pipe.connection.contains(EnumFacing.WEST)) {
+			if (cable.connection.contains(EnumFacing.WEST)) {
 				minX = 0.0D;
 			}
-			if (pipe.connection.contains(EnumFacing.DOWN)) {
+			if (cable.connection.contains(EnumFacing.DOWN)) {
 				minY = 0.0D;
 			}
-			if (pipe.connection.contains(EnumFacing.NORTH)) {
+			if (cable.connection.contains(EnumFacing.NORTH)) {
 				minZ = 0.0D;
 			}
-			if (pipe.connection.contains(EnumFacing.EAST)) {
+			if (cable.connection.contains(EnumFacing.EAST)) {
 				maxX = 1.0D;
 			}
-			if (pipe.connection.contains(EnumFacing.UP)) {
+			if (cable.connection.contains(EnumFacing.UP)) {
 				maxY = 1.0D;
 			}
-			if (pipe.connection.contains(EnumFacing.SOUTH)) {
+			if (cable.connection.contains(EnumFacing.SOUTH)) {
 				maxZ = 1.0D;
 			}
 			return new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);

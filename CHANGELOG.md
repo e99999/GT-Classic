@@ -7,6 +7,7 @@
 
 # 1.1.3 (Not Released)
 - Changed, Magical Energy Absorber can now siphon energy from End Portals with a few very specific behaviors. only one per portal or kaboom time (configurable), if you absorb portals in Overworld Strongholds there is a chance to break the portal and remove an ender eye from the portal frame every so often.
+- Fixed Energy Absorber was miscalculating, using the amount of enchants and not the sum of total levels of enchants on a book.
 - Fixed UU-Plasma being the wrong amount, now takes 10 UU to make one cell like IC2.
 - Added very funny centrifuge recipe for getting UU back from UU Plasma Cells, it would take you 8 hours at 16 eu/t.
 - Boosted UU-Plasma magical fuel value because it is now way more expensive to make.
