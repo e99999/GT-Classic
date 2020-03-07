@@ -228,7 +228,7 @@ public class GTRecipe {
 		/** Magic Energy Absorber **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', Blocks.BEACON, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
 		/** Player Detector **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), " D ", "CcC", " D ", 'D', Blocks.OBSERVER, 'C', GTValues.CIRCUIT_BASIC, 'c', GTValues.MACHINE_ADV);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), " D ", "CMC", " D ", 'D', GTValues.CIRCUIT_DATA, 'C', GTValues.CIRCUIT_ADVANCED, 'M', GTValues.MACHINE_ADV);
 		/** AESU **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAESU), "ECE", "EOE", "EME", 'O', GTValues.BATTERY_ULTIMATE, 'C', GTBlocks.tileComputer, 'M', GTValues.MACHINE_ELITE, 'E', GTValues.CIRCUIT_MASTER);
 		/** Large Chest Buffer **/
@@ -259,11 +259,11 @@ public class GTRecipe {
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), "CRC", "JMN", "CBC", 'C', GTValues.CIRCUIT_BASIC, 'R', "record", 'J', Blocks.JUKEBOX, 'M', GTValues.MACHINE_ADV, 'N', Blocks.NOTEBLOCK, 'B', Ic2Items.battery);
 		/** Monster Repellator **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMobRepeller, 1), "SSS", " M ", "CCC", 'S', "gemSapphire", 'M', GTValues.MACHINE_ADV, 'C', GTValues.CIRCUIT_BASIC);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMobRepeller, 1), "PPP", " M ", "CCC", 'P', Items.ENDER_PEARL, 'M', GTValues.MACHINE_ADV, 'C', GTValues.CIRCUIT_DATA);
 		/** Energy Transmitter **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEnergyTransmitter, 1), "STS", "WEW", "SCS", 'S', "gemSapphire", 'T', Ic2Items.teleporter, 'C', GTBlocks.tileComputer, 'E', Ic2Items.transformerMV, 'W', GTValues.CRAFTING_SUPERCONDUCTOR);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEnergyTransmitter, 1), "CTC", "PEP", "CLC", 'P', GTValues.INGOT_PLATINUM, 'T', Ic2Items.teleporter.copy(), 'C', GTValues.CIRCUIT_ELITE, 'E', Ic2Items.transformerMV.copy(), 'L', Ic2Items.lapotronCrystal.copy());
 		/** UU Assembler **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), "dCd", "TQE", "DBD", 'd', "circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E', GTBlocks.tileAutocrafter, 'D', GTValues.CIRCUIT_ULTIMATE, 'B', GTValues.INPUT_BATTERY_ADVANCED);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), "dCd", "TQE", "DBD", 'd', GTValues.CIRCUIT_DATA, 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileQuantumChest, 'E', GTBlocks.tileAutocrafter, 'D', GTValues.CIRCUIT_ULTIMATE, 'B', GTValues.INPUT_BATTERY_ADVANCED);
 		/** Redstone Transmitter **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneTransmitter), "TCT", "QMQ", "RER", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_ADVANCED, 'Q', "gemQuartz", 'E', "enderpearl", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
 		/** Redstone Receiver **/

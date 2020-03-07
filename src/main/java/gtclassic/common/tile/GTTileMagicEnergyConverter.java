@@ -81,7 +81,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 
 	public GTTileMagicEnergyConverter() {
 		super(3);
-		this.tank = new IC2Tank(1000);
+		this.tank = new IC2Tank(16000);
 		this.tank.addListener(this);
 		this.addGuiFields("tank", "fuel");
 	}
@@ -190,17 +190,19 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	public void update() {
 		GTHelperFluid.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
 		processFuelValue();
-		this.setActive(this.fuel > 0 && this.storage < this.maxStorage);
 		if (this.fuel == 0) {
 			processMagicFuel();
 		}
 	}
 
 	private void processFuelValue() {
-		if (this.fuel - 1 >= 0 && this.storage + this.production <= this.maxStorage) {
+		if (this.fuel - 1 >= 0 && this.storage < this.maxStorage) {
 			this.fuel = this.fuel - 1;
-			this.storage = this.storage + this.production;
+			this.addEnergy(this.production);
 			this.getNetwork().updateTileGuiField(this, "fuel");
+			this.setActive(true);
+		} else {
+			this.setActive(false);
 		}
 	}
 
@@ -273,6 +275,14 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 			}
 		}
 		super.onNetworkUpdate(field);
+	}
+
+	public void addEnergy(int added) {
+		if (added < 1) {
+			return;
+		}
+		int newAmount = this.storage + added < this.maxStorage ? this.storage + added : this.maxStorage;
+		this.storage = newAmount;
 	}
 
 	public ResourceLocation getOperationSoundFile() {

@@ -399,6 +399,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		/** New Recipes I added **/
 		addRecipe("stoneGranite", 4, 0, totalEu(24000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Flint, 1), GTMaterialGen.getIc2(Ic2Items.clayDust, 1));
 		addRecipe("stoneDiorite", 16, 0, totalEu(36000), GTMaterialGen.getDust(GTMaterial.Nickel, 1));
+		addRecipe("blockPrismarine", 16, 0, totalEu(24000), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getDust(GTMaterial.Aluminium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 3), GTMaterialGen.getTube(GTMaterial.Oxygen, 8));
 		addRecipe("dustBasalt", 16, 0, totalEu(24000), GTMaterialGen.getDust(GTMaterial.Carbon, 1), GTMaterialGen.getDust(GTMaterial.Emerald, 1), GTMaterialGen.getDust(GTMaterial.Calcite, 3), GTMaterialGen.getDust(GTMaterial.Flint, 8));
 		addRecipe("dustObsidian", 8, 6, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getDust(GTMaterial.Silicon, 2), GTMaterialGen.getTube(GTMaterial.Oxygen, 4));
 		addRecipe(GTMaterialGen.get(Items.QUARTZ, 1), 2, totalEu(8000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));

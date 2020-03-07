@@ -1,8 +1,10 @@
 package gtclassic.common.gui;
 
 import java.awt.Color;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.common.tile.GTTileUUMAssembler;
@@ -31,9 +33,11 @@ public class GTGuiCompUUMAssembler extends GuiComponent {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-		gui.drawString("EU: " + this.block.energy, 12, 18, Color.cyan.hashCode());
+		gui.drawString("EU: "
+				+ NumberFormat.getNumberInstance(Locale.US).format(this.block.energy), 12, 18, Color.cyan.hashCode());
 		int stored = this.block.getStoredUU();
-		gui.drawString("UU: " + stored, 12, 28, Color.cyan.hashCode());
+		gui.drawString("UU: "
+				+ NumberFormat.getNumberInstance(Locale.US).format(stored), 12, 28, Color.cyan.hashCode());
 		int cost = this.block.getCurrentCost();
 		gui.drawString("Cost: " + cost, 12, 38, Color.cyan.hashCode());
 		int per = this.block.getAmountPer();

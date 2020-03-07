@@ -5,6 +5,7 @@ import java.util.Random;
 
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.helpers.GTUtility;
+import gtclassic.api.helpers.PlayerXP;
 import gtclassic.api.helpers.int3;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
 import gtclassic.api.material.GTMaterialGen;
@@ -66,9 +67,11 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 	boolean enet = false;
 	public boolean potionMode = false;
 	public boolean xpMode = false;
+	@NetworkField(index = 5)
 	public boolean portalMode = false;
 	public boolean isAbovePortal = false;
 	public AudioSource audioSource = null;
+	private static final String NBT_ENERGYSTORED = "storage";
 	private static final String NBT_POTIONMODE = "potionMode";
 	private static final String NBT_XPMODE = "xpMode";
 	private static final String NBT_PORTALMODE = "portalMode";
@@ -76,7 +79,8 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 
 	public GTTileMagicEnergyAbsorber() {
 		super(2);
-		this.addGuiFields(NBT_POTIONMODE, NBT_XPMODE, NBT_PORTALMODE, NBT_ABOVEPORTAL);
+		this.addNetworkFields(NBT_PORTALMODE);
+		this.addGuiFields(NBT_POTIONMODE, NBT_XPMODE, NBT_ABOVEPORTAL);
 	}
 
 	@Override
@@ -98,7 +102,7 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.storage = nbt.getInteger("storage");
+		this.storage = nbt.getInteger(NBT_ENERGYSTORED);
 		this.potionMode = nbt.getBoolean(NBT_POTIONMODE);
 		this.xpMode = nbt.getBoolean(NBT_XPMODE);
 		this.portalMode = nbt.getBoolean(NBT_PORTALMODE);
@@ -107,7 +111,7 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("storage", this.storage);
+		nbt.setInteger(NBT_ENERGYSTORED, this.storage);
 		nbt.setBoolean(NBT_POTIONMODE, this.potionMode);
 		nbt.setBoolean(NBT_XPMODE, this.xpMode);
 		nbt.setBoolean(NBT_PORTALMODE, this.portalMode);
@@ -237,14 +241,14 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 		List<EntityPlayer> players = (world.getEntitiesWithinAABB(EntityPlayer.class, area));
 		if (!players.isEmpty() && !this.isFull()) {
 			EntityPlayer activePlayer = players.get(0);
-			int playerXP = getPlayerXP(activePlayer);
+			int playerXP = PlayerXP.getPlayerXP(activePlayer);
 			if (playerXP <= 0) {
 				return false;
 			}
 			if (!this.isFull()) {
 				this.addEnergy(128);
 				this.setActive(true);
-				addPlayerXP(activePlayer, -1);
+				PlayerXP.addPlayerXP(activePlayer, -1);
 				if (world.getTotalWorldTime() % 4 == 0) {
 					world.playSound((EntityPlayer) null, this.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.1F, 0.5F
 							+ world.rand.nextFloat());
@@ -342,59 +346,10 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 		return true;
 	}
 
-	/**
-	 * Thanks to OpenMods/OpenBlocks for being MIT which allows me to use the code
-	 * below
-	 */
-	public static int getPlayerXP(EntityPlayer player) {
-		return (int) (getExperienceForLevel(player.experienceLevel) + (player.experience * player.xpBarCap()));
-	}
-
-	public static void addPlayerXP(EntityPlayer player, int amount) {
-		int experience = getPlayerXP(player) + amount;
-		player.experienceTotal = experience;
-		player.experienceLevel = getLevelForExperience(experience);
-		int expForLevel = getExperienceForLevel(player.experienceLevel);
-		player.experience = (float) (experience - expForLevel) / (float) player.xpBarCap();
-	}
-
-	public static int getLevelForExperience(int targetXp) {
-		int level = 0;
-		while (true) {
-			final int xpToNextLevel = xpBarCap(level);
-			if (targetXp < xpToNextLevel)
-				return level;
-			level++;
-			targetXp -= xpToNextLevel;
-		}
-	}
-
-	public static int getExperienceForLevel(int level) {
-		if (level == 0)
-			return 0;
-		if (level <= 15)
-			return sum(level, 7, 2);
-		if (level <= 30)
-			return 315 + sum(level - 15, 37, 5);
-		return 1395 + sum(level - 30, 112, 9);
-	}
-
-	public static int xpBarCap(int level) {
-		if (level >= 30)
-			return 112 + (level - 30) * 9;
-		if (level >= 15)
-			return 37 + (level - 15) * 5;
-		return 7 + level * 2;
-	}
-
-	private static int sum(int n, int a0, int d) {
-		return n * (2 * a0 + (n - 1) * d) / 2;
-	}
-
 	public void updateGui() {
 		this.getNetwork().updateTileGuiField(this, NBT_POTIONMODE);
 		this.getNetwork().updateTileGuiField(this, NBT_XPMODE);
-		this.getNetwork().updateTileGuiField(this, NBT_PORTALMODE);
+		this.getNetwork().updateTileEntityField(this, NBT_PORTALMODE);
 		this.getNetwork().updateTileGuiField(this, NBT_ABOVEPORTAL);
 	}
 

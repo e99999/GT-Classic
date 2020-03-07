@@ -6,11 +6,15 @@
 - Nothing here yet
 
 # 1.1.3 (Not Released)
-- Changed, Magical Energy Absorber can now siphon energy from End Portals with a few very specific behaviors. only one per portal or kaboom time (configurable), if you absorb portals in Overworld Strongholds there is a chance to break the portal and remove an ender eye from the portal frame every so often.
+- Changed, Magical Energy Absorber can now siphon energy from End Portals with a few very specific behaviors. only one per portal or KABOOM! (configurable). Also if you absorb portals in Overworld Strongholds there is a chance to disable the portal and remove an Ender Eye from the portal frame every so often (roughly one MC day).
 - Fixed Energy Absorber was miscalculating, using the amount of enchants and not the sum of total levels of enchants on a book.
 - Fixed UU-Plasma being the wrong amount, now takes 10 UU to make one cell like IC2.
-- Added very funny centrifuge recipe for getting UU back from UU Plasma Cells, it would take you 8 hours at 16 eu/t.
+- Added very funny centrifuge recipe for getting UU back from UU Plasma Cells, it would take you 8 hours at the default speed.
 - Boosted UU-Plasma magical fuel value because it is now way more expensive to make.
+- Changed the Mob Repeller and Microwave Energy Transmitter recipes to be a little more thought out.
+- Increased the Magic Energy Converter internal tank capacity from 1 to 16 buckets.
+- Added Centrifuge recipe for getting resources from Prismarine, treating it as a potassium feldspar based stone.
+- UU-Matter Assembler now requires a Quantum Chest to craft and has an Integer.Max limit for UU Storage like the original.
 
 # 1.1.2
 - Added a new block, The Block Extender. Allows you to extends side of any tile its attached too, they cannot extend each other.
