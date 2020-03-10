@@ -11,8 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
+import net.minecraft.world.storage.loot.functions.SetCount;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -25,6 +27,7 @@ public class GTEventLootTableLoad {
 			LootTableList.CHESTS_STRONGHOLD_CROSSING, LootTableList.CHESTS_STRONGHOLD_LIBRARY,
 			LootTableList.CHESTS_VILLAGE_BLACKSMITH, LootTableList.CHESTS_WOODLAND_MANSION };
 	private static List<ItemStack> lootpool = new ArrayList<>();
+	private static final LootCondition[] NO_CONDITIONS = new LootCondition[0];
 
 	public static void init() {
 		for (GTMaterial mat : GTMaterial.values()) {
@@ -50,7 +53,8 @@ public class GTEventLootTableLoad {
 			for (ItemStack item : lootpool) {
 				for (ResourceLocation table : loottable) {
 					if (event.getName().equals(table)) {
-						event.getTable().getPool("main").addEntry(new LootEntryItem(item.getItem(), 16, 0, new LootFunction[] {}, new LootCondition[0], getStackResourceName(item)));
+						event.getTable().getPool("main").addEntry(new LootEntryItem(item.getItem(), 16, 0, new LootFunction[] {
+								createCountFunction(1, 6) }, NO_CONDITIONS, getStackResourceName(item)));
 					}
 				}
 			}
@@ -62,5 +66,9 @@ public class GTEventLootTableLoad {
 	 */
 	public static String getStackResourceName(ItemStack item) {
 		return item.getItem().getRegistryName().toString();
+	}
+
+	public static SetCount createCountFunction(float min, float max) {
+		return new SetCount(NO_CONDITIONS, new RandomValueRange(min, max));
 	}
 }

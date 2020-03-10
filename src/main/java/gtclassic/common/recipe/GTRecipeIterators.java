@@ -1,5 +1,6 @@
 package gtclassic.common.recipe;
 
+import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialFlag;
@@ -7,6 +8,7 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
 import gtclassic.common.block.GTBlockMortar;
+import gtclassic.common.item.GTItemJackHammer;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -14,6 +16,8 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -109,6 +113,13 @@ public class GTRecipeIterators {
 				}
 			}
 		}
+		for (Block block : Block.REGISTRY) {
+			if (block.getDefaultState().getMaterial() == Material.ROCK
+					&& !GTHelperStack.oreDictStartsWith(GTMaterialGen.get(block), "ore")) {
+				GTItemJackHammer.rocks.add(block);
+			}
+		}
+		GTMod.logger.info("Jack Hammer stone list populated with " + GTItemJackHammer.rocks.size() + " entries");
 	}
 
 	/** Ran post init **/

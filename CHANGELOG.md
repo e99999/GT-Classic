@@ -10,11 +10,13 @@
 - Fixed Energy Absorber was miscalculating, using the amount of enchants and not the sum of total levels of enchants on a book.
 - Fixed UU-Plasma being the wrong amount, now takes 10 UU to make one cell like IC2.
 - Added very funny centrifuge recipe for getting UU back from UU Plasma Cells, it would take you 8 hours at the default speed.
-- Boosted UU-Plasma magical fuel value because it is now way more expensive to make.
+- Changed, Boosted UU-Plasma magical fuel value because it is now way more expensive to make.
 - Changed the Mob Repeller and Microwave Energy Transmitter recipes to be a little more thought out.
-- Increased the Magic Energy Converter internal tank capacity from 1 to 16 buckets.
+- Changed, Increased the Magic Energy Converter internal tank capacity from 1 to 16 buckets.
 - Added Centrifuge recipe for getting resources from Prismarine, treating it as a potassium feldspar based stone.
-- UU-Matter Assembler now requires a Quantum Chest to craft and has an Integer.Max limit for UU Storage like the original.
+- Changed, UU-Matter Assembler now requires a Quantum Chest to craft and has an Integer.MAX_VALUE limit for UU Storage like the original.
+- Changed, Boosted Loot! items can now spawn in multiples of up to 5 instead of just one.
+- Fixed, Jack Hammer not working with modded stone types, now it detects any block made of stone that is not an ore block.
 
 # 1.1.2
 - Added a new block, The Block Extender. Allows you to extends side of any tile its attached too, they cannot extend each other.
