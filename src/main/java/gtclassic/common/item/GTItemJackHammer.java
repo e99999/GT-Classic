@@ -1,7 +1,6 @@
 package gtclassic.common.item;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -43,7 +42,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, IStaticTexturedItem {
 
-	public static final List<Block> rocks = new ArrayList<>();
+	public static final Set<Block> rocks = new HashSet<>();
 
 	public GTItemJackHammer() {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);

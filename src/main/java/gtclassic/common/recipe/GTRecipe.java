@@ -72,11 +72,11 @@ public class GTRecipe {
 				recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.fuelBinderMagic, 3), GTMaterialGen.get(GTItems.fuelBinder), "dustEnderEye", GTMaterialGen.getTube(GTMaterial.Mercury, 1));
 				recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.fuelBinderMagic, 3), GTMaterialGen.get(GTItems.fuelBinder), Items.BLAZE_POWDER, GTMaterialGen.getTube(GTMaterial.Mercury, 1));
 				/** Solid Super Fuel **/
-				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuel, 1), GTValues.BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuel, 1), GTValues.INPUT_BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.getTube(GTMaterial.Fuel, 1));
 				/** Magic Solid Super Fuel **/
-				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustSapphire", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
-				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustEmerald", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
-				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustThorium", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.INPUT_BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustSapphire", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.INPUT_BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustEmerald", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.INPUT_BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustThorium", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
 			}
 		}
 	}

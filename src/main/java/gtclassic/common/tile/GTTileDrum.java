@@ -58,6 +58,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		return false;
 	}
 
+	@Override
 	public void onTankChanged(IFluidTank tank) {
 	}
 
@@ -133,7 +134,8 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
-		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+		GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+		return true;
 	}
 
 	@Override

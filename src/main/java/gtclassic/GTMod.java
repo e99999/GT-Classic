@@ -21,6 +21,7 @@ import gtclassic.common.event.GTEventDecorateBiome;
 import gtclassic.common.event.GTEventEntityViewRenderEvent;
 import gtclassic.common.event.GTEventItemTooltip;
 import gtclassic.common.event.GTEventLootTableLoad;
+import gtclassic.common.event.GTEventNeighborNotifyEvent;
 import gtclassic.common.event.GTEventOnLivingFall;
 import gtclassic.common.event.GTEventPopulateChunk;
 import gtclassic.common.proxy.GTProxyCommon;
@@ -108,6 +109,9 @@ public class GTMod {
 		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
 		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
 		MinecraftForge.EVENT_BUS.register(new GTEventItemTooltip());
+		if (!Loader.isModLoaded(GTValues.MOD_ID_FASTLEAF)) {
+			MinecraftForge.EVENT_BUS.register(new GTEventNeighborNotifyEvent());
+		}
 		MinecraftForge.TERRAIN_GEN_BUS.register(new GTEventDecorateBiome());
 		IC2.saveManager.registerGlobal("IDSU_Storage", GTIDSUStorageManager.class, false);
 		proxy.init(e);

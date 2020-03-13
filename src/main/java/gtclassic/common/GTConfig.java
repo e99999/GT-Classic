@@ -41,6 +41,7 @@ public class GTConfig {
 		public boolean enableMagnifyingGlassGivesEUTooltips = true;
 		public boolean reduceGrassOnWorldGen = false;
 		public boolean oneMagicAbsorberPerEndPortal = true;
+		public boolean enableQuickerLeafDecay = true;
 	}
 
 	@Comment("World Generation")

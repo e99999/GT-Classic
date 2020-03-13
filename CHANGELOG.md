@@ -17,6 +17,10 @@
 - Changed, UU-Matter Assembler now requires a Quantum Chest to craft and has an Integer.MAX_VALUE limit for UU Storage like the original.
 - Changed, Boosted Loot! items can now spawn in multiples of up to 5 instead of just one.
 - Fixed, Jack Hammer not working with modded stone types, now it detects any block made of stone that is not an ore block.
+- Added leaves decaying faster, can be disabled in the config. Wont load the code if Fast Leaf Decay is loaded.
+- Fixed it so you cant accidently place a fluid block when clicking a full drum with a fluid container.
+- Fixed Clay Dust Centrifuge recipe giving you 2 free tubes.
+- Changed, Super Solid Fuels can now use charcoal in addition to regular coal.
 
 # 1.1.2
 - Added a new block, The Block Extender. Allows you to extends side of any tile its attached too, they cannot extend each other.
