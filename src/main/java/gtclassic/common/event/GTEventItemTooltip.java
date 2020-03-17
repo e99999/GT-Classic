@@ -11,6 +11,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTEventItemTooltip {
 
+	// TODO move to lang ref
+	private static final String TOOLTIP = "Made in a Fusion Reactor with UU-Matter";
+
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onTooltipEvent(ItemTooltipEvent event) {
@@ -19,7 +22,7 @@ public class GTEventItemTooltip {
 			String name = event.getItemStack().getDisplayName();
 			event.getToolTip().clear();
 			event.getToolTip().add(name);
-			event.getToolTip().add("Made in a Fusion Reactor with UU-Matter");
+			event.getToolTip().add(TOOLTIP);
 		}
 	}
 }

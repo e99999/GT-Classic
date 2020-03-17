@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.api.interfaces.IGTMultiTileStatus;
+import gtclassic.common.GTLang;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.util.math.Box2D;
@@ -41,7 +42,8 @@ public class GTGuiCompMultiTileStatus extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
-			tooltips.add(I18n.format(tile.getStructureValid() ? "button.structure0" : "button.structure1"));
+			tooltips.add(I18n.format(tile.getStructureValid() ? GTLang.BUTTON_STRUCUTURE_TRUE
+					: GTLang.BUTTON_STRUCUTURE_FALSE));
 		}
 	}
 }

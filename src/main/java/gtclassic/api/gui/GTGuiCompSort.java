@@ -3,6 +3,7 @@ package gtclassic.api.gui;
 import java.util.Arrays;
 import java.util.List;
 
+import gtclassic.common.GTLang;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -49,7 +50,7 @@ public class GTGuiCompSort extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
-			tooltips.add(I18n.format("button.sort"));
+			tooltips.add(I18n.format(GTLang.BUTTON_SORT));
 		}
 	}
 

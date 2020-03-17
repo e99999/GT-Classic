@@ -6,6 +6,7 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 
 public class GTLang {
 
+	/** Block/Tile References **/
 	public static final LocaleComp AUTOCRAFTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.autocrafter");
 	public static final LocaleComp CHARGE_O_MAT = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.chargeomat");
 	public static final LocaleComp COMPUTER_CUBE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.computercube");
@@ -51,4 +52,30 @@ public class GTLang {
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
 	public static final LocaleComp ORE_BEDROCK = new LocaleBlockComp("tile.gtclassic.oreBedrock");
 	public static final LocaleComp TEST = new LocaleBlockComp("tile.gtclassic.test");
+	/** Buttons **/
+	public static final String BUTTON_TEST = "button.gtclassic.test";
+	public static final String BUTTON_SORT = "button.gtclassic.sort";
+	public static final String BUTTON_NOPOWER = "button.gtclassic.nopower";
+	public static final String BUTTON_STRUCUTURE_TRUE = "button.gtclassic.structure0";
+	public static final String BUTTON_STRUCUTURE_FALSE = "button.gtclassic.structure1";
+	public static final String BUTTON_DIGITALCHEST_UPLOAD = "button.gtclassic.digitalchest0";
+	public static final String BUTTON_DIGITALCHEST_DOWNLOAD = "button.gtclassic.digitalchest1";
+	public static final String BUTTON_MAGICABSORBER_PLAYER = "button.gtclassic.magicabsorber0";
+	public static final String BUTTON_MAGICABSORBER_POTION = "button.gtclassic.magicabsorber1";
+	public static final String BUTTON_MAGICABSORBER_PORTAL = "button.gtclassic.magicabsorber2";
+	public static final String BUTTON_MAGICABSORBER_WARNING = "button.gtclassic.magicabsorber3";
+	public static final String BUTTON_UUM_CLEAR = "button.gtclassic.uum0";
+	public static final String BUTTON_UUM_SCAN = "button.gtclassic.uum1";
+	public static final String BUTTON_UUM_CLEARTARGET = "button.gtclassic.uum2";
+	public static final String BUTTON_WORKTABLE_SHIFTPLAYER = "button.gtclassic.worktable0";
+	public static final String BUTTON_WORKTABLE_SHIFTINV = "button.gtclassic.worktable1";
+	public static final String BUTTON_BUFFER_ENERGY = "button.gtclassic.buffer0";
+	public static final String BUTTON_BUFFER_REDSTONE = "button.gtclassic.buffer1";
+	public static final String BUTTON_BUFFER_INVREDSTONE = "button.gtclassic.buffer2";
+	public static final String BUTTON_BUFFER_INVFILTER = "button.gtclassic.buffer3";
+	public static final String BUTTON_BUFFER_IGNORENBT = "button.gtclassic.buffer4";
+	public static final String BUTTON_AESU_ADD64 = "button.gtclassic.aesu0";
+	public static final String BUTTON_AESU_ADD1 = "button.gtclassic.aesu1";
+	public static final String BUTTON_AESU_SUB1 = "button.gtclassic.aesu2";
+	public static final String BUTTON_AESU_SUB64 = "button.gtclassic.aesu3";
 }

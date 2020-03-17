@@ -5,6 +5,7 @@ import java.util.List;
 
 import gtclassic.api.gui.GTGuiButton;
 import gtclassic.api.helpers.GTHelperMath;
+import gtclassic.common.GTLang;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -56,13 +57,13 @@ public class GTGuiCompDigitalChest extends GuiComponent {
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
 			if (mouseX < 25) {
-				tooltips.add(I18n.format("button.digitalchest0"));
+				tooltips.add(I18n.format(GTLang.BUTTON_DIGITALCHEST_UPLOAD));
 			}
 			if (GTHelperMath.within(mouseX, 25, 42)) {
-				tooltips.add(I18n.format("button.digitalchest1"));
+				tooltips.add(I18n.format(GTLang.BUTTON_DIGITALCHEST_DOWNLOAD));
 			}
 			if (GTHelperMath.within(mouseX, 43, 60)) {
-				tooltips.add(I18n.format("button.sort"));
+				tooltips.add(I18n.format(GTLang.BUTTON_SORT));
 			}
 		}
 	}

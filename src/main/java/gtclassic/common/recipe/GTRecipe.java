@@ -271,7 +271,7 @@ public class GTRecipe {
 		/** Block Extender **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBlockExtender), "CHC", "BMB", "CHC", 'C', GTValues.CIRCUIT_ADVANCED, 'H', Blocks.HOPPER, 'M', GTValues.MACHINE_ADV, 'B', Items.BUCKET);
 		/** More recipes for vanilla rails **/
-		if (GTConfig.general.vanillaRailRecipes) {
+		if (GTConfig.general.vanillaRailRecipes && !Loader.isModLoaded(GTValues.MOD_ID_RC)) {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.GOLDEN_RAIL, 6), "I I", "ISI", "IRI", 'I', "ingotElectrum", 'S', GTValues.STICK_WOOD, 'R', GTValues.DUST_REDSTONE);
 			recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 8), "I I", "ISI", "IRI", 'I', GTValues.INGOT_REFINEDIRON, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', GTValues.DUST_REDSTONE);
 			recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 12), "I I", "ISI", "IRI", 'I', GTValues.INPUT_INGOT_HIGH, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', GTValues.DUST_REDSTONE);

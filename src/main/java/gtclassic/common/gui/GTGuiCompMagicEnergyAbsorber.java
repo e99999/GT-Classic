@@ -6,6 +6,7 @@ import java.util.List;
 import gtclassic.api.gui.GTGuiButton;
 import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.common.GTConfig;
+import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -74,14 +75,14 @@ public class GTGuiCompMagicEnergyAbsorber extends GuiComponent {
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
 			if (mouseY < 33) {
-				tooltips.add(I18n.format("button.magicabsorber0"));
+				tooltips.add(I18n.format(GTLang.BUTTON_MAGICABSORBER_PLAYER));
 			}
 			if (GTHelperMath.within(mouseY, 33, 50)) {
-				tooltips.add(I18n.format("button.magicabsorber1"));
+				tooltips.add(I18n.format(GTLang.BUTTON_MAGICABSORBER_POTION));
 			}
 			if (GTHelperMath.within(mouseY, 51, 68)) {
-				tooltips.add(I18n.format("button.magicabsorber3"));
-				tooltips.add(I18n.format("button.magicabsorber4"));
+				tooltips.add(I18n.format(GTLang.BUTTON_MAGICABSORBER_PORTAL));
+				tooltips.add(I18n.format(GTLang.BUTTON_MAGICABSORBER_WARNING));
 			}
 		}
 	}

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 
 import gtclassic.api.helpers.GTHelperMath;
+import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -49,13 +50,13 @@ public class GTGuiCompUUMAssembler extends GuiComponent {
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
 			if (mouseX < 114) {
-				tooltips.add(I18n.format("button.uum0"));
+				tooltips.add(I18n.format(GTLang.BUTTON_UUM_CLEAR));
 			}
 			if (GTHelperMath.within(mouseX, 115, 130)) {
-				tooltips.add(I18n.format("button.uum1"));
+				tooltips.add(I18n.format(GTLang.BUTTON_UUM_SCAN));
 			}
 			if (mouseX > 130 && this.block.inventory.get(11).isEmpty()) {
-				tooltips.add(I18n.format("button.uum2"));
+				tooltips.add(I18n.format(GTLang.BUTTON_UUM_CLEARTARGET));
 			}
 		}
 	}

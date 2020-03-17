@@ -21,6 +21,7 @@
 - Fixed it so you cant accidently place a fluid block when clicking a full drum with a fluid container.
 - Fixed Clay Dust Centrifuge recipe giving you 2 free tubes.
 - Changed, Super Solid Fuels can now use charcoal in addition to regular coal.
+- Fixed vanilla rail recipes being added if Railcraft was loaded.
 
 # 1.1.2
 - Added a new block, The Block Extender. Allows you to extends side of any tile its attached too, they cannot extend each other.

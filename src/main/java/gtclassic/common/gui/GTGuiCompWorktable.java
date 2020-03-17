@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gtclassic.api.gui.GTGuiButton;
+import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerWorktable;
 import gtclassic.common.tile.GTTileWorktable;
 import ic2.core.inventory.gui.GuiIC2;
@@ -56,9 +57,9 @@ public class GTGuiCompWorktable extends GuiComponent {
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
 			if (mouseX > 153) {
-				tooltips.add(I18n.format("button.worktable0"));
+				tooltips.add(I18n.format(GTLang.BUTTON_WORKTABLE_SHIFTPLAYER));
 			} else {
-				tooltips.add(I18n.format("button.worktable1"));
+				tooltips.add(I18n.format(GTLang.BUTTON_WORKTABLE_SHIFTINV));
 			}
 		}
 	}

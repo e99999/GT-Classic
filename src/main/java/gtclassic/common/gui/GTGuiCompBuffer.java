@@ -5,23 +5,20 @@ import java.util.List;
 
 import gtclassic.api.gui.GTGuiButton;
 import gtclassic.api.helpers.GTHelperMath;
-import gtclassic.api.material.GTMaterialGen;
+import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileBufferBase;
 import ic2.core.IC2;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.math.Box2D;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTGuiCompBuffer extends GuiComponent {
 
-	public static final ItemStack cable = GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 1);
 	private static final Box2D BOX = new Box2D(7, 62, 96, 18);
 	GTTileBufferBase tile;
 	InventoryPlayer player;
@@ -92,21 +89,21 @@ public class GTGuiCompBuffer extends GuiComponent {
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (this.isMouseOver(mouseX, mouseY)) {
 			if (mouseX < 25) {
-				tooltips.add(I18n.format("button.buffer0"));
+				tooltips.add(I18n.format(GTLang.BUTTON_BUFFER_ENERGY));
 			}
 			if (this.tile.hasRedstone) {
 				if (GTHelperMath.within(mouseX, 25, 42)) {
-					tooltips.add(I18n.format("button.buffer1"));
+					tooltips.add(I18n.format(GTLang.BUTTON_BUFFER_REDSTONE));
 				}
 				if (GTHelperMath.within(mouseX, 43, 60)) {
-					tooltips.add(I18n.format("button.buffer2"));
+					tooltips.add(I18n.format(GTLang.BUTTON_BUFFER_INVREDSTONE));
 				}
 			}
 			if (this.tile.hasInvertFilter && GTHelperMath.within(mouseX, 61, 78)) {
-				tooltips.add(I18n.format("button.buffer3"));
+				tooltips.add(I18n.format(GTLang.BUTTON_BUFFER_INVFILTER));
 			}
 			if (this.tile.hasNbtFilter && GTHelperMath.within(mouseX, 79, 96)) {
-				tooltips.add(I18n.format("button.buffer4"));
+				tooltips.add(I18n.format(GTLang.BUTTON_BUFFER_IGNORENBT));
 			}
 		}
 	}
