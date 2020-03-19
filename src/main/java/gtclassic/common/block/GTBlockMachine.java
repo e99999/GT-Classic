@@ -34,6 +34,7 @@ import gtclassic.common.tile.GTTileMobRepeller;
 import gtclassic.common.tile.GTTilePlayerDetector;
 import gtclassic.common.tile.GTTileRedstoneReceiver;
 import gtclassic.common.tile.GTTileRedstoneTransmitter;
+import gtclassic.common.tile.GTTileRockBreaker;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileTesseractMaster;
 import gtclassic.common.tile.GTTileTesseractSlave;
@@ -242,6 +243,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileAutocrafter) {
 			return new GTTileAutocrafter();
+		}
+		if (this == GTBlocks.tileRockBreaker) {
+			return new GTTileRockBreaker();
 		}
 		if (this == GTBlocks.tileDisassembler) {
 			return new GTTileDisassembler();

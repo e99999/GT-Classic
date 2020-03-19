@@ -47,6 +47,7 @@ public class GTLang {
 	public static final LocaleComp TRANSLOCATOR_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocatorfluid");
 	public static final LocaleComp TYPE_FILTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.typefilter");
 	public static final LocaleComp ITEM_FILTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.itemfilter");
+	public static final LocaleComp ROCK_BREAKER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.rockbreaker");
 	public static final LocaleComp BUFFER_LARGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferlarge");
 	public static final LocaleComp BUFFER_SMALL = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.buffersmall");
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
@@ -78,4 +79,5 @@ public class GTLang {
 	public static final String BUTTON_AESU_ADD1 = "button.gtclassic.aesu1";
 	public static final String BUTTON_AESU_SUB1 = "button.gtclassic.aesu2";
 	public static final String BUTTON_AESU_SUB64 = "button.gtclassic.aesu3";
+	public static final String BUTTON_ROCKBREAKER = "button.gtclassic.rockbreaker";
 }

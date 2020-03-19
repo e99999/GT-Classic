@@ -257,9 +257,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		data.put("Emits Energy: " + this.conduct, true);
-		if (this.conduct) {
-			data.put("Stored: " + this.energy + " EU", true);
-		}
+		data.put("Stored: " + this.energy + " EU", true);
 		if (this.hasRedstone) {
 			data.put("Redstone Strength: " + this.redstoneStrength, true);
 			data.put("Inverted Redstone: " + this.invertRedstone, true);

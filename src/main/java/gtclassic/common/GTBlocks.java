@@ -55,6 +55,7 @@ import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
 import gtclassic.common.tile.GTTileRedstoneReceiver;
 import gtclassic.common.tile.GTTileRedstoneTransmitter;
+import gtclassic.common.tile.GTTileRockBreaker;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileSuperconductorCables;
 import gtclassic.common.tile.GTTileTesseractMaster;
@@ -141,6 +142,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tileRedstoneTransmitter = registerBlock(new GTBlockMachine("redstonetransmitter", GTLang.REDSTONE_TRANSMITTER, 2));
 	public static final GTBlockMachine tileRedstoneReceiver = registerBlock(new GTBlockMachine("redstonereceiver", GTLang.REDSTONE_RECEIVER));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
+	public static final GTBlockMachine tileRockBreaker = registerBlock(new GTBlockMachine("rockbreaker", GTLang.ROCK_BREAKER));
 	public static final GTBlockMachine tileTranslocator = registerBlock(new GTBlockMachine("translocator", GTLang.TRANSLOCATOR, 1));
 	public static final GTBlockMachine tileTypeFilter = registerBlock(new GTBlockMachine("typefilter", GTLang.TYPE_FILTER));
 	public static final GTBlockMachine tileItemFilter = registerBlock(new GTBlockMachine("itemfilter", GTLang.ITEM_FILTER));
@@ -192,6 +194,7 @@ public class GTBlocks {
 		registerUtil(GTTileEnergyTransmitter.class, "EnergyTransmitter");
 		registerUtil(GTTileEchotron.class, "Echotron");
 		registerUtil(GTTileAutocrafter.class, "Autocrafter");
+		registerUtil(GTTileRockBreaker.class, "RockBreaker");
 		registerUtil(GTTileDisassembler.class, "Disassembler");
 		registerUtil(GTTileCharcoalPit.class, "CharcoalPit");
 		registerUtil(GTTileBedrockMiner.class, "BedrockMiner");

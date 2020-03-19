@@ -7,6 +7,7 @@
 
 # 1.1.3 (Not Released)
 - Changed, Magical Energy Absorber can now siphon energy from End Portals with a few very specific behaviors. only one per portal or KABOOM! (configurable). Also if you absorb portals in Overworld Strongholds there is a chance to disable the portal and remove an Ender Eye from the portal frame every so often (roughly one MC day).
+- Added the Electric Rock Breaker from other GT's. Place lava and water vertically for Stone, or on either side for Cobble. You can also input Redstone for Obsidian and Quartz for various vanilla stone types.
 - Fixed Energy Absorber was miscalculating, using the amount of enchants and not the sum of total levels of enchants on a book.
 - Fixed UU-Plasma being the wrong amount, now takes 10 UU to make one cell like IC2.
 - Added very funny centrifuge recipe for getting UU back from UU Plasma Cells, it would take you 8 hours at the default speed.

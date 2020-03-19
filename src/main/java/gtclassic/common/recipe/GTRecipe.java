@@ -163,6 +163,8 @@ public class GTRecipe {
 			}
 			/** Electric Craftingtable **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAutocrafter), " W ", "CMC", " P ", 'W', Ic2Items.battery.copy(), 'C', GTValues.CIRCUIT_ADVANCED, 'M', "workbench", 'P', GTValues.MACHINE_ADV);
+			/** Electric Rock Breaker **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRockBreaker), "IDI", "CTC", "IMI", 'I', GTValues.INGOT_INVAR, 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_ADV, 'D', GTValues.INPUT_DIAMOND_OR_TUNGSTEN, 'T', Ic2Items.electricDrill.copy());
 			/** Industrial Centrifuge **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), "RCR", "AEA", "RCR", 'E', Ic2Items.extractor, 'R', GTValues.INGOT_REFINEDIRON, 'A', GTValues.MACHINE_ADV, 'C', GTValues.CIRCUIT_ADVANCED);
 			/** Charcoal Pit **/

@@ -79,6 +79,7 @@ tile.gtclassic.redstonereceiver.name=Redstone Receiver
 tile.gtclassic.blockextender.name=Block Extender
 tile.gtclassic.typefilter.name=Type Filter
 tile.gtclassic.itemfilter.name=Item Filter
+tile.gtclassic.rockbreaker.name=Electric Rock Breaker
 
 #dust
 item.gtclassic.dustElectrum.name=Electrum Dust
@@ -301,6 +302,7 @@ tooltip.gtclassic.blockextender0=Relays attached inventories and tanks
 tooltip.gtclassic.blockextender1=Cannot be attached to other extenders!
 tooltip.gtclassic.typefilter0=A Buffer, which uses OrePrefixes to filter
 tooltip.gtclassic.itemfilter0=A Filter, which also buffers Items!
+tooltip.gtclassic.rockbreaker0=Electric Cobble Generator Mk IV
 
 #button tooltips
 button.gtclassic.test=Test Text
@@ -328,6 +330,7 @@ button.gtclassic.aesu0=+ 64
 button.gtclassic.aesu1=+ 1
 button.gtclassic.aesu2=- 1
 button.gtclassic.aesu3=- 64
+button.gtclassic.rockbreaker=Use Redstone or Quartz to modulate Stone Types.
 
 jei.centrifugeu.name=%s EU
 
