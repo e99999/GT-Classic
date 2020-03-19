@@ -39,6 +39,7 @@ public class GTIcons {
 		addTexture("gtclassic_crops", 4, 8);
 		addAnimatedTexture("screen", 0, 4);
 		addAnimatedTexture("screenadv", 15, 2);
+		addAnimatedTexture("displayscreen", 13, 6);
 		addAnimatedTexture("centrifuge_top", 11, 0);
 		addAnimatedTexture("centrifuge_side", 13, 0);
 		addAnimatedTexture("miner_top", 10, 1);
@@ -86,6 +87,7 @@ public class GTIcons {
 		setTexture(GTBlocks.tileRedstoneReceiver, 24, 27);
 		setTexture(GTBlocks.tileBlockExtender, 96, 97, 55, 98, 98, 98);
 		setTexture(GTBlocks.tileRockBreaker, 53, 53, 53, 61, 53, 53);
+		setTexture(GTBlocks.tileDisplayScreen, 0, 1, 2, 108, 2, 2, 0, 1, 2, 109, 2, 2);
 	}
 
 	/**

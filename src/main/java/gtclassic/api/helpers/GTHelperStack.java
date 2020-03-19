@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class GTHelperStack {
@@ -169,6 +170,17 @@ public class GTHelperStack {
 			}
 		}
 		return false;
+	}
+
+	public static ItemStack getStackFromOreDict(String entry) {
+		ItemStack stack = null;
+		if (OreDictionary.doesOreNameExist(entry)) {
+			NonNullList<ItemStack> list = OreDictionary.getOres(entry, false);
+			if (!list.isEmpty()) {
+				stack = list.get(0);
+			}
+		}
+		return stack;
 	}
 
 	/** removing smelting recipes code by Muramasa **/
