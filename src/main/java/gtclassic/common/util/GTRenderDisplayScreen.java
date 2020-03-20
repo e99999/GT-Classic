@@ -30,7 +30,11 @@ public class GTRenderDisplayScreen extends TileEntitySpecialRenderer<GTTileDispl
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 0.0F);
 			// Here i would grab the information from the tile and iterate the list to make
 			// the text here
-			renderer.drawString(screen.testData, (int) x + 10, (int) y + 8, Color.CYAN.getRGB());
+			int i = 0;
+			for (String text : screen.information.getWrapperList()) {
+				i++;
+				renderer.drawString(text, (int) x + 8, (int) (y - 2) + (10 * i), Color.CYAN.getRGB());
+			}
 			GlStateManager.popMatrix();
 		}
 	}
