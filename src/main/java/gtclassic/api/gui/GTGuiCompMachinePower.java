@@ -5,6 +5,7 @@ import java.util.List;
 
 import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.api.tile.GTTileBaseMachine;
+import gtclassic.common.GTLang;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.registry.Ic2GuiComp;
@@ -50,7 +51,7 @@ public class GTGuiCompMachinePower extends GuiComponent {
 	public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
 		if (GTHelperMath.within(mouseX, this.x, this.x + 18) && GTHelperMath.within(mouseY, this.y, this.y + 18)
 				&& this.block.energy < this.block.energyConsume) {
-			tooltips.add(I18n.format("button.nopower"));
+			tooltips.add(I18n.format(GTLang.BUTTON_NOPOWER));
 		}
 	}
 }

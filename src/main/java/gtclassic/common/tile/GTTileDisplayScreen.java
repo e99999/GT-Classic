@@ -14,9 +14,13 @@ import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.reactor.IReactor;
 import ic2.core.IC2;
+import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.block.crop.TileEntityCrop;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.obj.IClickable;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,6 +30,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -113,30 +121,23 @@ public class GTTileDisplayScreen extends TileEntityMachine
 		if (world.getTotalWorldTime() % 10 == 0) {
 			this.information.getWrapperList().clear();
 			if (this.targetPos != null && world.isBlockLoaded(this.targetPos)) {
-				String name = world.getBlockState(this.targetPos).getBlock().getLocalizedName();
-				this.information.getWrapperList().add(formatTextForScreen(name));
+				IBlockState targetState = world.getBlockState(this.targetPos);
+				Block targetBlock = targetState.getBlock();
+				String name = new ItemStack(targetBlock, 1, targetBlock.getMetaFromState(targetState)).getDisplayName();
+				if (!name.equals("Crop")) {
+					addInfoToScreen(name);
+				}
 				TileEntity tileEntity = world.getTileEntity(this.targetPos);
-				if (tileEntity instanceof TileEntityMachine) {
-					TileEntityMachine machine = (TileEntityMachine) tileEntity;
-					this.information.getWrapperList().add(formatTextForScreen("Active: " + machine.getActive()));
-				}
-				if (tileEntity instanceof IReactor) {
-					IReactor te5 = (IReactor) tileEntity;
-					this.information.getWrapperList().add(formatTextForScreen("Heat: " + te5.getHeat()));
-					this.information.getWrapperList().add(formatTextForScreen("Max: " + te5.getMaxHeat()));
-					this.information.getWrapperList().add(formatTextForScreen("HEM: " + te5.getHeatEffectModifier()));
-					this.information.getWrapperList().add(formatTextForScreen("Output: " + te5.getReactorEnergyOutput()
-							+ " EU"));
-				}
-				if (tileEntity instanceof IProgressMachine) {
-					IProgressMachine progress = (IProgressMachine) tileEntity;
-					this.information.getWrapperList().add(formatTextForScreen("Progress: "
-							+ +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100)) + "%"));
-				}
-				if (tileEntity instanceof IEUStorage) {
-					IEUStorage euStorage = (IEUStorage) tileEntity;
-					this.information.getWrapperList().add(formatNumberForScreen(euStorage.getStoredEU()) + " /");
-					this.information.getWrapperList().add(formatNumberForScreen(euStorage.getMaxEU()) + " EU");
+				IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, this.targetPos, null);
+				collectTileInformation(tileEntity);
+				if (fluidTile != null) {
+					FluidStack fluid = fluidTile.drain(Integer.MAX_VALUE, false);
+					if (fluid != null) {
+						addInfoToScreen(fluid.amount + "Mb of");
+						addInfoToScreen(fluid.getLocalizedName());
+					} else {
+						addInfoToScreen("Tank Empty");
+					}
 				}
 			} else {
 				this.information.getWrapperList().add("No Data");
@@ -145,12 +146,65 @@ public class GTTileDisplayScreen extends TileEntityMachine
 		}
 	}
 
-	public static String formatTextForScreen(String text) {
+	public void collectTileInformation(TileEntity tileEntity) {
+		if (tileEntity instanceof TileEntityElecMachine) {
+			TileEntityMachine machine = (TileEntityMachine) tileEntity;
+			addInfoToScreen(machine.getActive() ? "ON" : "OFF");
+		}
+		if (tileEntity instanceof IReactor) {
+			IReactor te5 = (IReactor) tileEntity;
+			addInfoToScreen("Heat: " + te5.getHeat());
+			addInfoToScreen("Max: " + te5.getMaxHeat());
+			addInfoToScreen("Output: " + formatNumberForScreen((int) te5.getReactorEnergyOutput()) + " EU");
+		}
+		if (tileEntity instanceof IProgressMachine) {
+			IProgressMachine progress = (IProgressMachine) tileEntity;
+			addInfoToScreen("Progress: " + +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100))
+					+ "%");
+		}
+		if (tileEntity instanceof GTTileQuantumChest) {
+			GTTileQuantumChest chest = (GTTileQuantumChest) tileEntity;
+			int count = chest.getQuantumCount();
+			if (count > 0) {
+				addInfoToScreen(chest.getQuantumCount() + " of");
+				addInfoToScreen(chest.display.getDisplayName());
+			} else {
+				addInfoToScreen("Chest Empty");
+			}
+		}
+		if (tileEntity instanceof IEUStorage) {
+			IEUStorage euStorage = (IEUStorage) tileEntity;
+			addInfoToScreen(formatNumberForScreen(euStorage.getStoredEU()) + " /");
+			addInfoToScreen(formatNumberForScreen(euStorage.getMaxEU()) + " EU");
+		}
+		if (tileEntity instanceof IEnergyStorage) {
+			IEnergyStorage feStorage = (IEnergyStorage) tileEntity;
+			addInfoToScreen(formatNumberForScreen(feStorage.getEnergyStored()) + " /");
+			addInfoToScreen(formatNumberForScreen(feStorage.getMaxEnergyStored()) + " FE");
+		}
+		if (tileEntity instanceof TileEntityCrop) {
+			TileEntityCrop te7 = (TileEntityCrop) tileEntity;
+			addInfoToScreen(te7.getCrop().getId());
+			addInfoToScreen("Size: " + te7.getCurrentSize());
+			addInfoToScreen("Growth: " + te7.getStatGrowth());
+			addInfoToScreen("Gain: " + te7.getStatGain());
+			addInfoToScreen("Resistance: " + te7.getStatResistance());
+			addInfoToScreen("Nutrients: " + te7.getTerrainNutrients());
+			addInfoToScreen("Water: " + te7.getTerrainHumidity());
+			addInfoToScreen("Points: " + te7.getGrowthPoints());
+		}
+	}
+
+	public void addInfoToScreen(String text) {
+		this.information.getWrapperList().add(formatTextForScreen(text));
+	}
+
+	private static String formatTextForScreen(String text) {
 		return text.length() > 14 ? text.substring(0, 14) + "..." : text;
 	}
 
-	public static String formatNumberForScreen(int number) {
-		return formatTextForScreen(NumberFormat.getNumberInstance(Locale.US).format(number));
+	private static String formatNumberForScreen(int number) {
+		return NumberFormat.getNumberInstance(Locale.US).format(number);
 	}
 
 	@Override
@@ -220,7 +274,6 @@ public class GTTileDisplayScreen extends TileEntityMachine
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		// 3 and 4 are correct, 5 and 2 are fucked
 		data.put("Facing: " + this.getFacing().toString().toUpperCase(), true);
 		data.put("Facing Int : " + this.facing, true);
 	}
