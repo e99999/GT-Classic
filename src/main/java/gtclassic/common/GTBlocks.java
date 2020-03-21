@@ -12,7 +12,6 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.block.GTBlockBattery;
 import gtclassic.common.block.GTBlockBurnable;
 import gtclassic.common.block.GTBlockCasing;
-import gtclassic.common.block.GTBlockDisplayScreen;
 import gtclassic.common.block.GTBlockDrum;
 import gtclassic.common.block.GTBlockLightSource;
 import gtclassic.common.block.GTBlockMachine;
@@ -141,7 +140,7 @@ public class GTBlocks {
 	public static final GTBlockQuantumChest tileQuantumChest = registerBlock(new GTBlockQuantumChest());
 	public static final GTBlockQuantumTank tileQuantumTank = registerBlock(new GTBlockQuantumTank());
 	public static final GTBlockMachine tileBlockExtender = registerBlock(new GTBlockMachine("blockextender", GTLang.BLOCK_EXTENDER, 2));
-	public static final GTBlockDisplayScreen tileDisplayScreen = registerBlock(new GTBlockDisplayScreen());
+	public static final GTBlockMachine tileDisplayScreen = registerBlock(new GTBlockMachine("displayscreen", GTLang.DISPLAY_SCREEN, 2));
 	public static final GTBlockMachine tileRedstoneTransmitter = registerBlock(new GTBlockMachine("redstonetransmitter", GTLang.REDSTONE_TRANSMITTER, 2));
 	public static final GTBlockMachine tileRedstoneReceiver = registerBlock(new GTBlockMachine("redstonereceiver", GTLang.REDSTONE_RECEIVER));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));

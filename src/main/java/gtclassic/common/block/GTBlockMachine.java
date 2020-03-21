@@ -22,6 +22,7 @@ import gtclassic.common.tile.GTTileChargeOMat;
 import gtclassic.common.tile.GTTileComputer;
 import gtclassic.common.tile.GTTileDigitalChest;
 import gtclassic.common.tile.GTTileDisassembler;
+import gtclassic.common.tile.GTTileDisplayScreen;
 import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileEchotron;
 import gtclassic.common.tile.GTTileEnergyTransmitter;
@@ -288,6 +289,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileTesseractSlave) {
 			return new GTTileTesseractSlave();
+		}
+		if (this == GTBlocks.tileDisplayScreen) {
+			return new GTTileDisplayScreen();
 		}
 		if (this == GTBlocks.tileRedstoneTransmitter) {
 			return new GTTileRedstoneTransmitter();

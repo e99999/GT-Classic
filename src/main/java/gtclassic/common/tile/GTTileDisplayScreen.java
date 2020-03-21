@@ -47,8 +47,8 @@ public class GTTileDisplayScreen extends TileEntityMachine
 	private static final String MB = "Mb of", EMPTY_TANK = "Tank Empty", EMPTY_CHEST = "Chest Empty",
 			NO_DATA = "No Data", CROP = "Crop", ON = "ON", OFF = "OFF", HEAT = "Heat: ", MAX = "Max: ",
 			OUTPUT = "Output: ", EU = " EU", FE = " FE", PROGRESS = "Progress: ", OF = " of", AMP = "%", SLASH = " /",
-			SIZE = "Size: ", GROWTH = "Growth: ", GAIN = "Gain: ", RESISTANCE = "Resistance: ", NUTRIENTS = "Nutrients: ",
-			WATER = "Water: ", POINTS = "Points: ", RAYMOND = "...";
+			SIZE = "Size: ", GROWTH = "Growth: ", GAIN = "Gain: ", RESISTANCE = "Resistance: ",
+			NUTRIENTS = "Nutrients: ", WATER = "Water: ", POINTS = "Points: ", RAYMOND = "...";
 	@NetworkField(index = 3)
 	public GTTextWrapper information = new GTTextWrapper();
 
