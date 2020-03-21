@@ -14,7 +14,7 @@ public class GTRenderDisplayScreen extends TileEntitySpecialRenderer<GTTileDispl
 	@Override
 	public void render(GTTileDisplayScreen screen, double x, double y, double z, float partialTicks, int destroyStage,
 			float alpha) {
-		if (screen != null) {
+		if (screen != null && screen.shouldDraw) {
 			FontRenderer renderer = Minecraft.getMinecraft().fontRenderer;
 			GlStateManager.pushMatrix();
 			if (screen.facing == 3 || screen.facing == 4) {

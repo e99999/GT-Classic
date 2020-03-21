@@ -44,6 +44,7 @@ public class GTTileDisplayScreen extends TileEntityMachine
 	private BlockPos targetPos;
 	private static final String NBT_TARGETPOS = "targetPos";
 	private static final String NBT_INFO = "information";
+	private static final String NBT_DRAW = "shouldDraw";
 	private static final String MB = "Mb of", EMPTY_TANK = "Tank Empty", EMPTY_CHEST = "Chest Empty",
 			NO_DATA = "No Data", CROP = "Crop", ON = "ON", OFF = "OFF", HEAT = "Heat: ", MAX = "Max: ",
 			OUTPUT = "Output: ", EU = " EU", FE = " FE", PROGRESS = "Progress: ", OF = " of", AMP = "%", SLASH = " /",
@@ -51,10 +52,12 @@ public class GTTileDisplayScreen extends TileEntityMachine
 			NUTRIENTS = "Nutrients: ", WATER = "Water: ", POINTS = "Points: ", RAYMOND = "...";
 	@NetworkField(index = 3)
 	public GTTextWrapper information = new GTTextWrapper();
+	@NetworkField(index = 4)
+	public boolean shouldDraw = true;
 
 	public GTTileDisplayScreen() {
 		super(1);
-		this.addNetworkFields(NBT_INFO);
+		this.addNetworkFields(NBT_INFO, NBT_DRAW);
 	}
 
 	@Override
@@ -124,6 +127,7 @@ public class GTTileDisplayScreen extends TileEntityMachine
 	@Override
 	public void update() {
 		if (world.getTotalWorldTime() % 10 == 0) {
+			draw();
 			this.information.getWrapperList().clear();
 			if (this.targetPos != null && world.isBlockLoaded(this.targetPos) && !world.isAirBlock(this.targetPos)) {
 				IBlockState targetState = world.getBlockState(this.targetPos);
@@ -148,6 +152,13 @@ public class GTTileDisplayScreen extends TileEntityMachine
 				this.information.getWrapperList().add(NO_DATA);
 			}
 			this.getNetwork().updateTileEntityField(this, NBT_INFO);
+		}
+	}
+
+	public void draw() {
+		if (!this.shouldDraw) {
+			this.shouldDraw = true;
+			this.getNetwork().updateTileEntityField(this, NBT_DRAW);
 		}
 	}
 
@@ -218,6 +229,13 @@ public class GTTileDisplayScreen extends TileEntityMachine
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void setFacing(EnumFacing face) {
+		super.setFacing(face);
+		this.shouldDraw = false;
+		this.getNetwork().updateTileEntityField(this, NBT_DRAW);
 	}
 
 	@Override
