@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 public class GTBlockDisplayScreen extends GTBlockMachine {
 
 	public GTBlockDisplayScreen() {
-		super("displayscreen", GTLang.DISPLAY_SCREEN);
+		super("displayscreen", GTLang.DISPLAY_SCREEN, 2);
 	}
 
 	@Override

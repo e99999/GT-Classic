@@ -80,6 +80,7 @@ tile.gtclassic.blockextender.name=Block Extender
 tile.gtclassic.typefilter.name=Type Filter
 tile.gtclassic.itemfilter.name=Item Filter
 tile.gtclassic.rockbreaker.name=Electric Rock Breaker
+tile.gtclassic.displayscreen.name=Display Screen
 
 #dust
 item.gtclassic.dustElectrum.name=Electrum Dust
@@ -303,6 +304,9 @@ tooltip.gtclassic.blockextender1=Cannot be attached to other extenders!
 tooltip.gtclassic.typefilter0=A Buffer, which uses OrePrefixes to filter
 tooltip.gtclassic.itemfilter0=A Filter, which also buffers Items!
 tooltip.gtclassic.rockbreaker0=Electric Cobble Generator Mk IV
+tooltip.gtclassic.displayscreen0=Displays Things
+tooltip.gtclassic.displayscreen1=Install a Sensor Stick to set target location.
+
 
 #button tooltips
 button.gtclassic.test=Test Text

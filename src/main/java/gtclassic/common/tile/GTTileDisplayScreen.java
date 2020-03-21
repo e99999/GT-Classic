@@ -44,6 +44,11 @@ public class GTTileDisplayScreen extends TileEntityMachine
 	private BlockPos targetPos;
 	private static final String NBT_TARGETPOS = "targetPos";
 	private static final String NBT_INFO = "information";
+	private static final String MB = "Mb of", EMPTY_TANK = "Tank Empty", EMPTY_CHEST = "Chest Empty",
+			NO_DATA = "No Data", CROP = "Crop", ON = "ON", OFF = "OFF", HEAT = "Heat: ", MAX = "Max: ",
+			OUTPUT = "Output: ", EU = " EU", FE = " FE", PROGRESS = "Progress: ", OF = " of", AMP = "%", SLASH = " /",
+			SIZE = "Size: ", GROWTH = "Growth: ", GAIN = "Gain: ", RESISTANCE = "Resistance: ", NUTRIENTS = "Nutrients: ",
+			WATER = "Water: ", POINTS = "Points: ", RAYMOND = "...";
 	@NetworkField(index = 3)
 	public GTTextWrapper information = new GTTextWrapper();
 
@@ -120,11 +125,11 @@ public class GTTileDisplayScreen extends TileEntityMachine
 	public void update() {
 		if (world.getTotalWorldTime() % 10 == 0) {
 			this.information.getWrapperList().clear();
-			if (this.targetPos != null && world.isBlockLoaded(this.targetPos)) {
+			if (this.targetPos != null && world.isBlockLoaded(this.targetPos) && !world.isAirBlock(this.targetPos)) {
 				IBlockState targetState = world.getBlockState(this.targetPos);
 				Block targetBlock = targetState.getBlock();
 				String name = new ItemStack(targetBlock, 1, targetBlock.getMetaFromState(targetState)).getDisplayName();
-				if (!name.equals("Crop")) {
+				if (!name.equals(CROP)) {
 					addInfoToScreen(name);
 				}
 				TileEntity tileEntity = world.getTileEntity(this.targetPos);
@@ -133,14 +138,14 @@ public class GTTileDisplayScreen extends TileEntityMachine
 				if (fluidTile != null) {
 					FluidStack fluid = fluidTile.drain(Integer.MAX_VALUE, false);
 					if (fluid != null) {
-						addInfoToScreen(fluid.amount + "Mb of");
+						addInfoToScreen(fluid.amount + MB);
 						addInfoToScreen(fluid.getLocalizedName());
 					} else {
-						addInfoToScreen("Tank Empty");
+						addInfoToScreen(EMPTY_TANK);
 					}
 				}
 			} else {
-				this.information.getWrapperList().add("No Data");
+				this.information.getWrapperList().add(NO_DATA);
 			}
 			this.getNetwork().updateTileEntityField(this, NBT_INFO);
 		}
@@ -149,49 +154,48 @@ public class GTTileDisplayScreen extends TileEntityMachine
 	public void collectTileInformation(TileEntity tileEntity) {
 		if (tileEntity instanceof TileEntityElecMachine) {
 			TileEntityMachine machine = (TileEntityMachine) tileEntity;
-			addInfoToScreen(machine.getActive() ? "ON" : "OFF");
+			addInfoToScreen(machine.getActive() ? ON : OFF);
 		}
 		if (tileEntity instanceof IReactor) {
 			IReactor te5 = (IReactor) tileEntity;
-			addInfoToScreen("Heat: " + te5.getHeat());
-			addInfoToScreen("Max: " + te5.getMaxHeat());
-			addInfoToScreen("Output: " + formatNumberForScreen((int) te5.getReactorEnergyOutput()) + " EU");
+			addInfoToScreen(HEAT + te5.getHeat());
+			addInfoToScreen(MAX + te5.getMaxHeat());
+			addInfoToScreen(OUTPUT + formatNumberForScreen((int) te5.getReactorEnergyOutput()) + EU);
 		}
 		if (tileEntity instanceof IProgressMachine) {
 			IProgressMachine progress = (IProgressMachine) tileEntity;
-			addInfoToScreen("Progress: " + +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100))
-					+ "%");
+			addInfoToScreen(PROGRESS + +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100)) + AMP);
 		}
 		if (tileEntity instanceof GTTileQuantumChest) {
 			GTTileQuantumChest chest = (GTTileQuantumChest) tileEntity;
 			int count = chest.getQuantumCount();
 			if (count > 0) {
-				addInfoToScreen(chest.getQuantumCount() + " of");
+				addInfoToScreen(chest.getQuantumCount() + OF);
 				addInfoToScreen(chest.display.getDisplayName());
 			} else {
-				addInfoToScreen("Chest Empty");
+				addInfoToScreen(EMPTY_CHEST);
 			}
 		}
 		if (tileEntity instanceof IEUStorage) {
 			IEUStorage euStorage = (IEUStorage) tileEntity;
-			addInfoToScreen(formatNumberForScreen(euStorage.getStoredEU()) + " /");
-			addInfoToScreen(formatNumberForScreen(euStorage.getMaxEU()) + " EU");
+			addInfoToScreen(formatNumberForScreen(euStorage.getStoredEU()) + SLASH);
+			addInfoToScreen(formatNumberForScreen(euStorage.getMaxEU()) + EU);
 		}
 		if (tileEntity instanceof IEnergyStorage) {
 			IEnergyStorage feStorage = (IEnergyStorage) tileEntity;
-			addInfoToScreen(formatNumberForScreen(feStorage.getEnergyStored()) + " /");
-			addInfoToScreen(formatNumberForScreen(feStorage.getMaxEnergyStored()) + " FE");
+			addInfoToScreen(formatNumberForScreen(feStorage.getEnergyStored()) + SLASH);
+			addInfoToScreen(formatNumberForScreen(feStorage.getMaxEnergyStored()) + FE);
 		}
 		if (tileEntity instanceof TileEntityCrop) {
 			TileEntityCrop te7 = (TileEntityCrop) tileEntity;
 			addInfoToScreen(te7.getCrop().getId());
-			addInfoToScreen("Size: " + te7.getCurrentSize());
-			addInfoToScreen("Growth: " + te7.getStatGrowth());
-			addInfoToScreen("Gain: " + te7.getStatGain());
-			addInfoToScreen("Resistance: " + te7.getStatResistance());
-			addInfoToScreen("Nutrients: " + te7.getTerrainNutrients());
-			addInfoToScreen("Water: " + te7.getTerrainHumidity());
-			addInfoToScreen("Points: " + te7.getGrowthPoints());
+			addInfoToScreen(SIZE + te7.getCurrentSize());
+			addInfoToScreen(GROWTH + te7.getStatGrowth());
+			addInfoToScreen(GAIN + te7.getStatGain());
+			addInfoToScreen(RESISTANCE + te7.getStatResistance());
+			addInfoToScreen(NUTRIENTS + te7.getTerrainNutrients());
+			addInfoToScreen(WATER + te7.getTerrainHumidity());
+			addInfoToScreen(POINTS + te7.getGrowthPoints());
 		}
 	}
 
@@ -200,7 +204,7 @@ public class GTTileDisplayScreen extends TileEntityMachine
 	}
 
 	private static String formatTextForScreen(String text) {
-		return text.length() > 14 ? text.substring(0, 14) + "..." : text;
+		return text.length() > 14 ? text.substring(0, 14) + RAYMOND : text;
 	}
 
 	private static String formatNumberForScreen(int number) {
