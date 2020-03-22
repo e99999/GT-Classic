@@ -198,15 +198,15 @@ public class GTTileDisplayScreen extends TileEntityMachine
 			addInfoToScreen(formatNumberForScreen(feStorage.getMaxEnergyStored()) + FE);
 		}
 		if (tileEntity instanceof TileEntityCrop) {
-			TileEntityCrop te7 = (TileEntityCrop) tileEntity;
-			addInfoToScreen(te7.getCrop().getId());
-			addInfoToScreen(SIZE + te7.getCurrentSize());
-			addInfoToScreen(GROWTH + te7.getStatGrowth());
-			addInfoToScreen(GAIN + te7.getStatGain());
-			addInfoToScreen(RESISTANCE + te7.getStatResistance());
-			addInfoToScreen(NUTRIENTS + te7.getTerrainNutrients());
-			addInfoToScreen(WATER + te7.getTerrainHumidity());
-			addInfoToScreen(POINTS + te7.getGrowthPoints());
+			TileEntityCrop crop = (TileEntityCrop) tileEntity;
+			addInfoToScreen(crop.getCrop().getId());
+			addInfoToScreen(SIZE + crop.getCurrentSize());
+			addInfoToScreen(GROWTH + crop.getStatGrowth());
+			addInfoToScreen(GAIN + crop.getStatGain());
+			addInfoToScreen(RESISTANCE + crop.getStatResistance());
+			addInfoToScreen(NUTRIENTS + crop.getTerrainNutrients());
+			addInfoToScreen(WATER + crop.getTerrainHumidity());
+			addInfoToScreen(POINTS + crop.getGrowthPoints());
 		}
 	}
 

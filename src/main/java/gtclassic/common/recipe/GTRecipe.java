@@ -205,9 +205,7 @@ public class GTRecipe {
 			/** Low Voltage Battery Block **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBatteryLV), " W ", "IRI", "IMI", 'W', Ic2Items.copperCable, 'I', GTValues.INGOT_TIN, 'M', GTValues.MACHINE_BASIC, 'R', "blockRedstone");
 			/** Display Screen **/
-			// recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisplayScreen), "PPP",
-			// "CMC", "BRB", 'P', "paneGlass", 'C', GTValues.CIRCUIT_ADVANCED, 'M',
-			// GTValues.MACHINE_BASIC, 'B', "dyeBlack", 'R', "dustRedstone");
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisplayScreen), "PPP", "CMC", "BRB", 'P', "paneGlass", 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'B', "dyeBlack", 'R', "dustRedstone");
 			/** Bonus recipe for hopper **/
 			if (GTConfig.general.replaceHopperRecipe) {
 				GTRecipeCraftingHandler.removeRecipe("minecraft", "hopper");

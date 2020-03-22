@@ -17,19 +17,12 @@ public class GTRenderDisplayScreen extends TileEntitySpecialRenderer<GTTileDispl
 		if (screen != null && screen.shouldDraw) {
 			FontRenderer renderer = Minecraft.getMinecraft().fontRenderer;
 			GlStateManager.pushMatrix();
-			if (screen.facing == 3 || screen.facing == 4) {
-				screen.applyRotation((float) x, (float) y, (float) z + 0.001F);
-			} else {
-				screen.applyRotation((float) x + 0.001F, (float) y, (float) z);
-			}
+			screen.applyRotation((float) x, (float) y, (float) z);
+			screen.applySize(2.5F, 4D, 4D, -0.001D);
 			int bright = 0xF0;
 			int brightX = bright % 65536;
 			int brightY = bright / 65536;
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, brightX, brightY);
-			GlStateManager.scale(0.01F, 0.01F, 2.5F);
-			GlStateManager.color(1.0F, 1.0F, 1.0F, 0.0F);
-			// Here i would grab the information from the tile and iterate the list to make
-			// the text here
 			int i = 0;
 			for (String text : screen.information.getWrapperList()) {
 				i++;
