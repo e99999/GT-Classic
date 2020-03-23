@@ -30,7 +30,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -47,7 +46,7 @@ public class GTTileDisplayScreen extends TileEntityMachine
 	private static final String NBT_DRAW = "shouldDraw";
 	private static final String MB = "Mb of", EMPTY_TANK = "Tank Empty", EMPTY_CHEST = "Chest Empty",
 			NO_DATA = "No Data", CROP = "Crop", ON = "ON", OFF = "OFF", HEAT = "Heat: ", MAX = "Max: ",
-			OUTPUT = "Output: ", EU = " EU", FE = " FE", PROGRESS = "Progress: ", OF = " of", AMP = "%", SLASH = " /",
+			OUTPUT = "Output: ", EU = " EU", PROGRESS = "Progress: ", OF = " of", AMP = "%", SLASH = " /",
 			SIZE = "Size: ", GROWTH = "Growth: ", GAIN = "Gain: ", RESISTANCE = "Resistance: ",
 			NUTRIENTS = "Nutrients: ", WATER = "Water: ", POINTS = "Points: ", RAYMOND = "...";
 	@NetworkField(index = 3)
@@ -134,7 +133,14 @@ public class GTTileDisplayScreen extends TileEntityMachine
 				Block targetBlock = targetState.getBlock();
 				String name = new ItemStack(targetBlock, 1, targetBlock.getMetaFromState(targetState)).getDisplayName();
 				if (!name.equals(CROP)) {
-					addInfoToScreen(name);
+					if (name.length() > 14) {
+						String[] words = name.split("\\s+");
+						for (String word : words) {
+							addInfoToScreen(word);
+						}
+					} else {
+						addInfoToScreen(name);
+					}
 				}
 				TileEntity tileEntity = world.getTileEntity(this.targetPos);
 				IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, this.targetPos, null);
@@ -191,11 +197,6 @@ public class GTTileDisplayScreen extends TileEntityMachine
 			IEUStorage euStorage = (IEUStorage) tileEntity;
 			addInfoToScreen(formatNumberForScreen(euStorage.getStoredEU()) + SLASH);
 			addInfoToScreen(formatNumberForScreen(euStorage.getMaxEU()) + EU);
-		}
-		if (tileEntity instanceof IEnergyStorage) {
-			IEnergyStorage feStorage = (IEnergyStorage) tileEntity;
-			addInfoToScreen(formatNumberForScreen(feStorage.getEnergyStored()) + SLASH);
-			addInfoToScreen(formatNumberForScreen(feStorage.getMaxEnergyStored()) + FE);
 		}
 		if (tileEntity instanceof TileEntityCrop) {
 			TileEntityCrop crop = (TileEntityCrop) tileEntity;
