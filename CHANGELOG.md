@@ -3,7 +3,10 @@
 - Nothing here yet
 
 # 1.1.4 (Not Released)
-- Nothing here yet
+- Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.
+- Fixed a bug where relogging would cause the Basic Worktable to be stuck "in use" texture.
+- Changed Player Detector and Drum toggle modes to be sneaking with an empty hand instead of with a Wrench.
+- Added ability for IDSU, AESU, and LESU to output redstone level like IC2C EU storage tiles, sneak click with an empty hand to cycle modes.
 
 # 1.1.3
 - Changed, Magical Energy Absorber can now siphon energy from End Portals with a few very specific behaviors. only one per portal or KABOOM! (configurable). Also if you absorb portals in Overworld Strongholds there is a chance to disable the portal and remove an Ender Eye from the portal frame every so often (roughly one MC day).

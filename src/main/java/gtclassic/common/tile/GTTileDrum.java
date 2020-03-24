@@ -15,7 +15,6 @@ import gtclassic.common.GTBlocks;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
-import ic2.core.block.base.util.info.misc.IWrench;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
@@ -100,20 +99,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		this.flow = canFlow;
 	}
 
-	@Override
-	public boolean canRemoveBlock(EntityPlayer player) {
-		if (player.isSneaking() && player.getHeldItemMainhand().getItem() instanceof IWrench) {
-			this.flow = !this.flow;
-			if (this.isSimulating()) {
-				String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
-				IC2.platform.messagePlayer(player, msg);
-				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
-			}
-			return false;
-		}
-		return true;
-	}
-
 	public IC2Tank getTankInstance() {
 		return this.tank;
 	}
@@ -134,7 +119,16 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
-		GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+		if (player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
+			this.flow = !this.flow;
+			if (this.isSimulating()) {
+				String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
+				IC2.platform.messagePlayer(player, msg);
+				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+			}
+		} else {
+			GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+		}
 		return true;
 	}
 

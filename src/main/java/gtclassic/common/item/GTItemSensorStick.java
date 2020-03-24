@@ -66,7 +66,8 @@ public class GTItemSensorStick extends GTItemComponent {
 		return EnumActionResult.SUCCESS;
 	}
 
-	public static EnumActionResult tryParseCoords(IGTCoordinateTile coordTile, World world, EntityPlayer player, EnumHand hand) {
+	public static EnumActionResult tryParseCoords(IGTCoordinateTile coordTile, World world, EntityPlayer player,
+			EnumHand hand) {
 		NBTTagCompound nbt = StackUtil.getNbtData(player.getHeldItem(hand));
 		if (nbt.getIntArray(POS).length == 4) {
 			int[] posArr = nbt.getIntArray(POS);

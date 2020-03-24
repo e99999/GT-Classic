@@ -9,19 +9,21 @@ import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
-import ic2.core.block.base.util.info.misc.IWrench;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.block.personal.base.misc.IPersonalInventory;
-import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.IRedstoneProvider;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class GTTilePlayerDetector extends TileEntityElecMachine
-		implements IPersonalBlock, ITickable, IRedstoneProvider, IGTDebuggableTile {
+		implements IPersonalBlock, ITickable, IRedstoneProvider, IGTDebuggableTile, IClickable {
 
 	double range = 8.0D;
 	AxisAlignedBB areaBB = null;
@@ -159,20 +161,39 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 
 	@Override
 	public boolean canRemoveBlock(EntityPlayer player) {
-		if (player.isSneaking() && player.getHeldItemMainhand().getItem() instanceof IWrench) {
-			this.advanceMode();
-			if (this.isSimulating()) {
-				IC2.platform.messagePlayer(player, this.getModeName());
-				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
-			}
-			return false;
-		}
 		return canAccess(player.getUniqueID());
 	}
 
 	@Override
 	public double getWrenchDropRate() {
 		return 1.0D;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand var2, EnumFacing var3, Side var4) {
+		if (player.isSneaking() && player.getHeldItemMainhand().isEmpty() && this.canAccess(player.getUniqueID())) {
+			this.advanceMode();
+			if (this.isSimulating()) {
+				IC2.platform.messagePlayer(player, this.getModeName());
+			}
+			player.playSound(SoundEvents.UI_BUTTON_CLICK, 1.0F, 1.0F);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
 	}
 
 	@Override

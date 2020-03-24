@@ -4,14 +4,19 @@ import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerAESU;
 import ic2.api.energy.EnergyNet;
+import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.util.obj.IClickable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraftforge.fml.relauncher.Side;
 
-public class GTTileAESU extends TileEntityElectricBlock {
+public class GTTileAESU extends TileEntityElectricBlock implements IClickable {
 
 	public GTTileAESU() {
 		super(4, (int) EnergyNet.instance.getPowerFromTier(4), 100000000);
@@ -68,7 +73,8 @@ public class GTTileAESU extends TileEntityElectricBlock {
 	}
 
 	@Override
-	public void onNetworkEvent(EntityPlayer var1, int event) {
+	public void onNetworkEvent(EntityPlayer player, int event) {
+		super.onNetworkEvent(player, event);
 		if (event == 4) {
 			this.output = GTHelperMath.clip(this.output + 64, 0, 2048);
 			updateGui();
@@ -89,5 +95,33 @@ public class GTTileAESU extends TileEntityElectricBlock {
 
 	public void updateGui() {
 		this.getNetwork().updateTileGuiField(this, "output");
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+		// Needed for interface
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing facing, Side side) {
+		if (player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
+			this.onNetworkEvent(player, 0);
+			if (this.isSimulating()) {
+				IC2.platform.messagePlayer(player, this.getRedstoneMode());
+			}
+			player.playSound(SoundEvents.UI_BUTTON_CLICK, 1.0F, 1.0F);
+			return true;
+		}
+		return false;
 	}
 }
