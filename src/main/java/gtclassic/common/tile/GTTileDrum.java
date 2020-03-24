@@ -59,6 +59,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 
 	@Override
 	public void onTankChanged(IFluidTank tank) {
+		world.updateComparatorOutputLevel(pos, this.blockType);
 	}
 
 	@Override

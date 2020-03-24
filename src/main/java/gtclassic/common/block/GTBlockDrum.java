@@ -2,6 +2,7 @@ package gtclassic.common.block;
 
 import java.util.List;
 
+import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileDrum;
 import ic2.core.block.base.tile.TileEntityBlock;
@@ -66,5 +67,18 @@ public class GTBlockDrum extends GTBlockStorage {
 	@Override
 	public TileEntityBlock createNewTileEntity(World arg0, int arg1) {
 		return new GTTileDrum();
+	}
+
+	@Override
+	@Deprecated
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos){
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof GTTileDrum) {
+			GTTileDrum drum = (GTTileDrum) tile;
+			if (drum.getTankInstance().getFluid() != null) {
+				return GTHelperMath.clip(15 * drum.getTankInstance().getFluidAmount() / 32000, 1, 15);
+			}
+		}
+		return 0;
 	}
 }
