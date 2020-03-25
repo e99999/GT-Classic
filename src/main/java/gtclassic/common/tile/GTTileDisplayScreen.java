@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.lwjgl.opengl.GL11;
 
+import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.common.util.GTTextWrapper;
@@ -31,8 +32,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -133,27 +134,10 @@ public class GTTileDisplayScreen extends TileEntityMachine
 				Block targetBlock = targetState.getBlock();
 				String name = new ItemStack(targetBlock, 1, targetBlock.getMetaFromState(targetState)).getDisplayName();
 				if (!name.equals(CROP)) {
-					if (name.length() > 14) {
-						String[] words = name.split("\\s+");
-						for (String word : words) {
-							addInfoToScreen(word);
-						}
-					} else {
-						addInfoToScreen(name);
-					}
+					addInfoToScreenSplit(name);
 				}
-				TileEntity tileEntity = world.getTileEntity(this.targetPos);
-				IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, this.targetPos, null);
-				collectTileInformation(tileEntity);
-				if (fluidTile != null) {
-					FluidStack fluid = fluidTile.drain(Integer.MAX_VALUE, false);
-					if (fluid != null) {
-						addInfoToScreen(fluid.amount + MB);
-						addInfoToScreen(fluid.getLocalizedName());
-					} else {
-						addInfoToScreen(EMPTY_TANK);
-					}
-				}
+				collectTileInformation();
+				collectFluidTankInformation();
 			} else {
 				this.information.getWrapperList().add(NO_DATA);
 			}
@@ -168,7 +152,8 @@ public class GTTileDisplayScreen extends TileEntityMachine
 		}
 	}
 
-	public void collectTileInformation(TileEntity tileEntity) {
+	public void collectTileInformation() {
+		TileEntity tileEntity = world.getTileEntity(this.targetPos);
 		if (tileEntity instanceof TileEntityElecMachine) {
 			TileEntityMachine machine = (TileEntityMachine) tileEntity;
 			addInfoToScreen(machine.getActive() ? ON : OFF);
@@ -208,6 +193,33 @@ public class GTTileDisplayScreen extends TileEntityMachine
 			addInfoToScreen(NUTRIENTS + crop.getTerrainNutrients());
 			addInfoToScreen(WATER + crop.getTerrainHumidity());
 			addInfoToScreen(POINTS + crop.getGrowthPoints());
+		}
+	}
+
+	public void collectFluidTankInformation() {
+		IFluidHandler fluidTile = GTHelperFluid.getFluidHandler(world, this.targetPos, null);
+		if (fluidTile != null) {
+			IFluidTankProperties[] props = fluidTile.getTankProperties();
+			for (int i = 0; i < props.length; ++i) {
+				FluidStack fluid = props[i].getContents();
+				if (fluid != null) {
+					addInfoToScreen(fluid.amount + MB);
+					addInfoToScreen(fluid.getLocalizedName());
+				} else {
+					addInfoToScreen(EMPTY_TANK);
+				}
+			}
+		}
+	}
+
+	public void addInfoToScreenSplit(String text) {
+		if (text.length() > 14) {
+			String[] words = text.split("\\s+");
+			for (String word : words) {
+				addInfoToScreen(word);
+			}
+		} else {
+			addInfoToScreen(text);
 		}
 	}
 
