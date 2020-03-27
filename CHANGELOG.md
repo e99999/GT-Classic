@@ -8,6 +8,7 @@
 - Changed Player Detector and Drum toggle modes to be sneaking with an empty hand instead of with a Wrench.
 - Added ability for IDSU, AESU, and LESU to output redstone level like IC2C EU storage tiles, sneak click with an empty hand to cycle modes.
 - Added comparator output for the Drum and the Battery Block.
+- Changed, you can now click the Matter Fabricator with a fluid container to empty it into the internal tank.
 
 # 1.1.3
 - Changed, Magical Energy Absorber can now siphon energy from End Portals with a few very specific behaviors. only one per portal or KABOOM! (configurable). Also if you absorb portals in Overworld Strongholds there is a chance to disable the portal and remove an Ender Eye from the portal frame every so often (roughly one MC day).

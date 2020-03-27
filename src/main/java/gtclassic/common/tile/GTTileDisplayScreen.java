@@ -46,7 +46,7 @@ public class GTTileDisplayScreen extends TileEntityMachine
 	private static final String NBT_INFO = "information";
 	private static final String NBT_DRAW = "shouldDraw";
 	private static final String MB = "Mb of", EMPTY_TANK = "Tank Empty", EMPTY_CHEST = "Chest Empty",
-			NO_DATA = "No Data", CROP = "Crop", ON = "ON", OFF = "OFF", HEAT = "Heat: ", MAX = "Max: ",
+			NO_DATA = "No Data", CROP = "Crop", ON = "ON", OFF = "OFF", HEAT = "Heat: ", MAX = "Max: ", TEMP = "Temp: ",
 			OUTPUT = "Output: ", EU = " EU", PROGRESS = "Progress: ", OF = " of", AMP = "%", SLASH = " /",
 			SIZE = "Size: ", GROWTH = "Growth: ", GAIN = "Gain: ", RESISTANCE = "Resistance: ",
 			NUTRIENTS = "Nutrients: ", WATER = "Water: ", POINTS = "Points: ", RAYMOND = "...";
@@ -160,8 +160,9 @@ public class GTTileDisplayScreen extends TileEntityMachine
 		}
 		if (tileEntity instanceof IReactor) {
 			IReactor te5 = (IReactor) tileEntity;
-			addInfoToScreen(HEAT + te5.getHeat());
+			addInfoToScreen(TEMP + te5.getHeat());
 			addInfoToScreen(MAX + te5.getMaxHeat());
+			addInfoToScreen(HEAT + te5.getHeat() / te5.getMaxHeat() + AMP);
 			addInfoToScreen(OUTPUT + formatNumberForScreen((int) te5.getReactorEnergyOutput()) + EU);
 		}
 		if (tileEntity instanceof IProgressMachine) {
@@ -202,7 +203,7 @@ public class GTTileDisplayScreen extends TileEntityMachine
 			IFluidTankProperties[] props = fluidTile.getTankProperties();
 			for (int i = 0; i < props.length; ++i) {
 				FluidStack fluid = props[i].getContents();
-				if (fluid != null) {
+				if (fluid != null && fluid.amount > 0) {
 					addInfoToScreen(fluid.amount + MB);
 					addInfoToScreen(fluid.getLocalizedName());
 				} else {

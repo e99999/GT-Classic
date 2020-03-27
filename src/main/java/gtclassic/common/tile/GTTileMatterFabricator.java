@@ -3,6 +3,7 @@ package gtclassic.common.tile;
 import java.util.Map;
 
 import gtclassic.GTMod;
+import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.material.GTMaterialElement;
 import gtclassic.api.material.GTMaterialGen;
@@ -32,20 +33,23 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class GTTileMatterFabricator extends TileEntityElecMachine
-		implements ITickable, IProgressMachine, IHasGui, ITankListener, IGTDebuggableTile {
+		implements ITickable, IProgressMachine, IHasGui, ITankListener, IClickable, IGTDebuggableTile {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3, 4, 5, 6, 7 };
 	protected static final int[] slotOutputs = { 8 };
@@ -188,6 +192,25 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 
 	public boolean redstoneEnabled() {
 		return this.world.isBlockPowered(this.getPos());
+	}
+	
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 
 	@Override

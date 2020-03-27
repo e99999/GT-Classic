@@ -84,7 +84,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		setFuelSlot(SLOT_FUEL);
 		this.tank = new IC2Tank(16000);
 		this.tank.addListener(this);
-		this.addGuiFields(NBT_TANK);
+		this.addNetworkFields(NBT_TANK);
 		this.maxEnergy = 10000;
 	}
 
