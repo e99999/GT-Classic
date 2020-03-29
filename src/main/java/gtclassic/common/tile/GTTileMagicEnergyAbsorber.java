@@ -54,6 +54,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITickable, IHasGui, IEUStorage,
 		IEmitterTile, IEnergySourceInfo, INetworkClientTileEntityEventListener, IGTDisplayTickTile {
@@ -396,6 +398,7 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine implements ITic
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomTickDisplay(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		if (this.isActive && this.portalMode
