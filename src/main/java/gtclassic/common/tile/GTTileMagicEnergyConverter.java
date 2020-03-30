@@ -43,6 +43,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,6 +52,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -64,7 +66,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTTileMagicEnergyConverter extends TileEntityMachine
-		implements ITankListener, ITickable, IHasGui, IEUStorage, IEmitterTile, IEnergySourceInfo, IGTDebuggableTile {
+		implements ITankListener, ITickable, IHasGui, IEUStorage, IEmitterTile, IEnergySourceInfo, IClickable, IGTDebuggableTile {
 
 	@NetworkField(index = 4)
 	public int storage = 0;
@@ -359,6 +361,25 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	@Override
 	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing facing) {
 		return true;
+	}
+	
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 
 	public static void init() {

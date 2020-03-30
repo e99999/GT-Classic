@@ -130,14 +130,13 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return canExtendCapabilites() ? this.targetMaster.tesseractTile.hasCapability(capability, facing)
-				: super.hasCapability(capability, facing);
+		return canExtendCapabilites() && this.targetMaster.tesseractTile.hasCapability(capability, facing);
 	}
 
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		return canExtendCapabilites() ? this.targetMaster.tesseractTile.getCapability(capability, facing)
-				: super.getCapability(capability, facing);
+				: null;
 	}
 
 	private boolean canExtendCapabilites() {
@@ -149,6 +148,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 			return false;
 		}
 		if (this.targetMaster.tesseractTile.isInvalid()) {
+			setTarget(null);
 			return false;
 		}
 		return this.hasEnergy(32);
