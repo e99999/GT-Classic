@@ -2,7 +2,7 @@
 # 1.1.5 (Not Released)
 - Nothing here yet
 
-# 1.1.4 (Not Released)
+# 1.1.4
 - Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.
 - Note the Display Screens are very basic, and I have not decided how I want to handle lots of things like modular screens or adding information/titles yourself.   
 - Fixed a bug where relogging would cause the Basic Worktable to be stuck "in use" texture.
