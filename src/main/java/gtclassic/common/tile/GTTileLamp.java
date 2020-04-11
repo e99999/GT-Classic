@@ -4,6 +4,7 @@ import gtclassic.api.tile.GTTileBaseRecolorableTile;
 import gtclassic.common.GTBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.EnumSkyBlock;
 
 public class GTTileLamp extends GTTileBaseRecolorableTile implements ITickable {
 
@@ -29,5 +30,14 @@ public class GTTileLamp extends GTTileBaseRecolorableTile implements ITickable {
 			this.setActive(world.isBlockPowered(this.pos));
 		}
 		this.shouldUpdate = false;
+	}
+
+	@Override
+	public void onNetworkUpdate(String field) {
+		super.onNetworkUpdate(field);
+		if (field.equals("isActive")) {
+			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
+			this.world.checkLightFor(EnumSkyBlock.BLOCK, this.getPos());
+		}
 	}
 }
