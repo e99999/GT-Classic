@@ -135,8 +135,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		return canExtendCapabilites() ? this.targetMaster.tesseractTile.getCapability(capability, facing)
-				: null;
+		return canExtendCapabilites() ? this.targetMaster.tesseractTile.getCapability(capability, facing) : null;
 	}
 
 	private boolean canExtendCapabilites() {

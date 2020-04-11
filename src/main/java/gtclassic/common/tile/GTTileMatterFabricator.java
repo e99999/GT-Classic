@@ -193,7 +193,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 	public boolean redstoneEnabled() {
 		return this.world.isBlockPowered(this.getPos());
 	}
-	
+
 	@Override
 	public boolean hasLeftClick() {
 		return false;

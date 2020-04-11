@@ -88,6 +88,7 @@ public class GTIcons {
 		setTexture(GTBlocks.tileBlockExtender, 96, 97, 55, 98, 98, 98);
 		setTexture(GTBlocks.tileRockBreaker, 53, 53, 53, 61, 53, 53);
 		setTexture(GTBlocks.tileDisplayScreen, 0, 1, 2, 108, 2, 2, 0, 1, 2, 109, 2, 2);
+		setTexture(GTBlocks.tileLamp, 99, 100);
 	}
 
 	/**

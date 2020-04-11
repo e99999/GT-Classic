@@ -65,8 +65,8 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileMagicEnergyConverter extends TileEntityMachine
-		implements ITankListener, ITickable, IHasGui, IEUStorage, IEmitterTile, IEnergySourceInfo, IClickable, IGTDebuggableTile {
+public class GTTileMagicEnergyConverter extends TileEntityMachine implements ITankListener, ITickable, IHasGui,
+		IEUStorage, IEmitterTile, IEnergySourceInfo, IClickable, IGTDebuggableTile {
 
 	@NetworkField(index = 4)
 	public int storage = 0;
@@ -362,7 +362,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing facing) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean hasLeftClick() {
 		return false;

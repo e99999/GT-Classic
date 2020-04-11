@@ -71,7 +71,7 @@ public class GTBlockDrum extends GTBlockStorage {
 
 	@Override
 	@Deprecated
-	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos){
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof GTTileDrum) {
 			GTTileDrum drum = (GTTileDrum) tile;
