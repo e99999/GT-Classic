@@ -310,7 +310,7 @@ tooltip.gtclassic.itemfilter0=A Filter, which also buffers Items!
 tooltip.gtclassic.rockbreaker0=Electric Cobble Generator Mk IV
 tooltip.gtclassic.displayscreen0=Displays Things
 tooltip.gtclassic.displayscreen1=Install a Sensor Stick to set target location.
-tooltip.gtclassic.lamp0=Redstone Controlled Lamp
+tooltip.gtclassic.lamp0=Sneak click empty handed to invert
 
 
 #button tooltips
