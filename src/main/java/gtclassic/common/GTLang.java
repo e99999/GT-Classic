@@ -52,6 +52,7 @@ public class GTLang {
 	public static final LocaleComp BUFFER_SMALL = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.buffersmall");
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
 	public static final LocaleComp DISPLAY_SCREEN = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.displayscreen");
+	public static final LocaleComp LAMP = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lamp");
 	public static final LocaleComp ORE_BEDROCK = new LocaleBlockComp("tile.gtclassic.oreBedrock");
 	public static final LocaleComp TEST = new LocaleBlockComp("tile.gtclassic.test");
 	/** Buttons **/

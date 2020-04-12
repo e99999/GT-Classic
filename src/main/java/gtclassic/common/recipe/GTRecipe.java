@@ -206,6 +206,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBatteryLV), " W ", "IRI", "IMI", 'W', Ic2Items.copperCable, 'I', GTValues.INGOT_TIN, 'M', GTValues.MACHINE_BASIC, 'R', "blockRedstone");
 			/** Display Screen **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisplayScreen), "PPP", "CMC", "BRB", 'P', "paneGlass", 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'B', "dyeBlack", 'R', "dustRedstone");
+			/** Redstone Lamp **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLamp, 2), "IPI", "PRP", "IPI", 'P', "paneGlass", 'I', GTValues.INPUT_INGOT_MACHINE, 'R', Blocks.REDSTONE_LAMP);
 			/** Bonus recipe for hopper **/
 			if (GTConfig.general.replaceHopperRecipe) {
 				GTRecipeCraftingHandler.removeRecipe("minecraft", "hopper");

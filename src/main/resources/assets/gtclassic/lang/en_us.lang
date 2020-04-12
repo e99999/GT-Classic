@@ -81,6 +81,7 @@ tile.gtclassic.typefilter.name=Type Filter
 tile.gtclassic.itemfilter.name=Item Filter
 tile.gtclassic.rockbreaker.name=Electric Rock Breaker
 tile.gtclassic.displayscreen.name=Display Screen
+tile.gtclassic.lamp.name=Redstone Controlled Lamp
 
 #dust
 item.gtclassic.dustElectrum.name=Electrum Dust
@@ -173,7 +174,7 @@ item.gtclassic.light_helmet.name=Light Helmet
 item.gtclassic.spring_boots.name=Spring Boots
 item.gtclassic.magnifying_glass.name=Magnifying Glass
 item.gtclassic.spray_can_empty.name=Empty Spray Can
-item.gtclassic.spray_can.name=Spray Can
+item.gtclassic.spray_can.name=Magical Spray Can
 item.gtclassic.super_fuel_binder.name=Super Fuel Binder
 item.gtclassic.magic_super_fuel_binder.name=Magic Super Fuel Binder
 item.gtclassic.sensor_stick.name=Sensor Stick
@@ -309,6 +310,7 @@ tooltip.gtclassic.itemfilter0=A Filter, which also buffers Items!
 tooltip.gtclassic.rockbreaker0=Electric Cobble Generator Mk IV
 tooltip.gtclassic.displayscreen0=Displays Things
 tooltip.gtclassic.displayscreen1=Install a Sensor Stick to set target location.
+tooltip.gtclassic.lamp0=Redstone Controlled Lamp
 
 
 #button tooltips

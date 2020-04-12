@@ -1,6 +1,6 @@
 # Changelog
 # 1.1.5 (Not Released)
-- Nothing here yet
+- Added the Redstone Controlled Lamp from GT4, can be painted different colors and has a variable light level.
 
 # 1.1.4
 - Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.
