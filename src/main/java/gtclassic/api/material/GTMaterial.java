@@ -77,7 +77,7 @@ public class GTMaterial {
 	private int element;
 	private String name, displayName;
 	private int tier;
-	private int mask;
+	private long mask;
 	private Color color;
 	private boolean smeltable;
 
