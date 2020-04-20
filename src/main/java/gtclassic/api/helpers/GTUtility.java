@@ -1,5 +1,7 @@
 package gtclassic.api.helpers;
 
+import java.util.List;
+
 import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.common.util.GTIBlockFilters;
 import gtclassic.common.util.GTIFilters;
@@ -34,8 +36,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-
-import java.util.List;
 
 /**
  * NEVER INCLUDE THIS FILE IN YOUR MOD!!! Just a few Utility Functions I use.
@@ -134,15 +134,14 @@ public class GTUtility {
 	 * @param side    - the EnumFacing to try to import fluids from.
 	 * @param amount  - the amount of fluid to transfer
 	 */
-	public static void importFluidFromMachineToSide(TileEntityMachine machine, IC2Tank tank, EnumFacing side,
-													int amount) {
+	public static void importFluidFromSideToMachine(TileEntityMachine machine, IC2Tank tank, EnumFacing side,
+			int amount) {
 		BlockPos importPos = machine.getPos().offset(side);
 		if (!machine.getWorld().isBlockLoaded(importPos)) {
 			return;
 		}
 		IFluidHandler fluidTile = FluidUtil.getFluidHandler(machine.getWorld(), importPos, side.getOpposite());
-		boolean canImport = (tank.getFluidAmount() == 0 || tank.getFluid() != null) && fluidTile != null;
-		if (canImport) {
+		if (fluidTile != null && tank.getFluidAmount() < tank.getCapacity()) {
 			FluidUtil.tryFluidTransfer(tank, fluidTile, amount, true);
 		}
 	}
