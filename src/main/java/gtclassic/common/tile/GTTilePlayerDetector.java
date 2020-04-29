@@ -151,7 +151,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 
 	@Override
 	public int getRedstoneStrenght(EnumFacing var1) {
-		return this.isActive ? 15 : 0;
+		return this.getActive() ? 15 : 0;
 	}
 
 	@Override

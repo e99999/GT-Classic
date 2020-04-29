@@ -117,28 +117,6 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	}
 
 	@Override
-	@Deprecated
-	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		TileEntity tile = blockAccess.getTileEntity(pos);
-		if (tile instanceof GTTileRedstoneReceiver) {
-			return ((GTTileRedstoneReceiver) tile).getRedstoneLevel();
-		} else {
-			return super.getStrongPower(blockState, blockAccess, pos, side);
-		}
-	}
-
-	@Override
-	@Deprecated
-	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		TileEntity tile = blockAccess.getTileEntity(pos);
-		if (tile instanceof GTTileRedstoneReceiver) {
-			return ((GTTileRedstoneReceiver) tile).getRedstoneLevel();
-		} else {
-			return super.getStrongPower(blockState, blockAccess, pos, side);
-		}
-	}
-
-	@Override
 	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this == GTBlocks.tileCentrifuge || this == GTBlocks.tilePlayerDetector || this == GTBlocks.tileEchotron
 				|| this == GTBlocks.tileMobRepeller || this == GTBlocks.tileDisassembler) {

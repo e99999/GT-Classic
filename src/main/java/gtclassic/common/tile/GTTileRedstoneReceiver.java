@@ -1,11 +1,12 @@
 package gtclassic.common.tile;
 
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.util.obj.IRedstoneProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-public class GTTileRedstoneReceiver extends TileEntityMachine {
+public class GTTileRedstoneReceiver extends TileEntityMachine implements IRedstoneProvider {
 
 	private int redstoneLevel = 0;
 
@@ -48,7 +49,8 @@ public class GTTileRedstoneReceiver extends TileEntityMachine {
 		}
 	}
 
-	public int getRedstoneLevel() {
+	@Override
+	public int getRedstoneStrenght(EnumFacing var1) {
 		return this.redstoneLevel;
 	}
 }
