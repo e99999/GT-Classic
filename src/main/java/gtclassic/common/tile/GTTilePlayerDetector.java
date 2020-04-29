@@ -39,7 +39,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 
 	@Override
 	public boolean supportsNotify() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 			boolean newState = checkArea();
 			if (oldState != newState) {
 				this.setActive(newState);
-				world.notifyNeighborsOfStateChange(pos, blockType, true);
+				world.notifyNeighborsOfStateChange(pos, this.getBlockType(), true);
 			}
 		}
 	}
