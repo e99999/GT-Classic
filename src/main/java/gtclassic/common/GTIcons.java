@@ -55,7 +55,7 @@ public class GTIcons {
 		setTexture(GTBlocks.tileEchotron, 18, 18, 18, 18, 18, 18);
 		setTexture(GTBlocks.tileChargeOmat, 3, 19, 3, 3, 3, 3, 3, 20, 3, 3, 3, 3);
 		setTexture(GTBlocks.tileDisassembler, 0, 21, 2, 22, 2, 2, 0, 21, 2, 23, 2, 2);
-		setTexture(GTBlocks.tileBedrockMiner, 96, 25, 2, 8, 2, 2, 96, 26, 2, 9, 2, 2);
+		setTexture(GTBlocks.tileBedrockMiner, 96, 25, 98, 8, 2, 2, 96, 26, 98, 9, 2, 2);
 		setTexture(GTBlocks.tileDragonEggEnergySiphon, 24, 29, 24, 24, 24, 24, 28, 29, 28, 28, 28, 28);
 		setTexture(GTBlocks.tileMagicEnergyConverter, 30, 30, 30, 24, 30, 30, 30, 30, 30, 31, 30, 30);
 		setTexture(GTBlocks.tileMagicEnergyAbsorber, 32, 33);

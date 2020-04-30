@@ -2,6 +2,7 @@
 # 1.1.5 (Not Released)
 - Added the Redstone Controlled Lamp from GT4, can be painted different colors and has a variable light level.
 - Changed the Bedrock Miner to now try to break a pipe/consume lubricant every mining operation instead of every successful operation.
+- Changed the Bedrock Miner now auto outputs out of the back instead of the top for easier automation with GTC Drums.
 - Fixed crash with Player Detector throwing NPE on block update.
 - Fixed Player Detector and Redstone Receiver not updating adjacent blocks redstone level like stone etc..
 
