@@ -9,6 +9,7 @@ import gtclassic.api.helpers.int3;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.block.personal.base.misc.IPersonalInventory;
@@ -52,7 +53,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 			if (oldState != newState) {
 				this.setActive(newState);
 				world.notifyNeighborsOfStateChange(pos, this.getBlockType(), true);
-				GTUtility.updateNeighborhood(this.world, this.pos, this.getBlockType(), EnumFacing.VALUES);
+				GTUtility.updateNeighborhood(this.world, this.pos, this.getBlockType(), RotationList.ALL);
 			}
 		}
 	}

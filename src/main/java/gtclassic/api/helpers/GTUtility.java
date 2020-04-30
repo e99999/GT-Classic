@@ -254,14 +254,14 @@ public class GTUtility {
 	}
 
 	/**
-	 * A way to update surrounding blocks
+	 * A way to update surrounding blocks. this does not update the original block!
 	 * 
 	 * @param world     - The world to update in
 	 * @param pos       - the block pos the update should originate
 	 * @param blockType - block type which can be null
 	 * @param sides     - the list of sides to iterate an update
 	 */
-	public static void updateNeighbors(World world, BlockPos pos, @Nullable Block blockType, EnumFacing[] sides) {
+	public static void updateNeighbors(World world, BlockPos pos, @Nullable Block blockType, RotationList sides) {
 		if (blockType == null) {
 			blockType = Blocks.AIR;
 		}
@@ -274,17 +274,20 @@ public class GTUtility {
 	}
 
 	/**
-	 * A way to update surrounding blocks and also their surrounding blocks
+	 * A way to update surrounding blocks and also their surrounding blocks. this
+	 * does not update the original block!
 	 * 
 	 * @param world     - The world to update in
 	 * @param pos       - the block pos the update should originate
 	 * @param blockType - block type which can be null
 	 * @param sides     - the list of sides to iterate an update
 	 */
-	public static void updateNeighborhood(World world, BlockPos pos, @Nullable Block blockType, EnumFacing[] sides) {
+	public static void updateNeighborhood(World world, BlockPos pos, @Nullable Block blockType, RotationList sides) {
 		for (EnumFacing side : sides) {
 			if (world.isBlockLoaded(pos.offset(side))) {
-				GTUtility.updateNeighbors(world, pos.offset(side), blockType, EnumFacing.VALUES);
+				GTUtility.updateNeighbors(world, pos.offset(side), blockType, (side.getAxis().isHorizontal()
+						? RotationList.HORIZONTAL.remove(side.rotateY())
+						: RotationList.ALL).remove(side.getOpposite()));
 			}
 		}
 	}

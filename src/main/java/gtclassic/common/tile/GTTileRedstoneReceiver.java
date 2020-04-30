@@ -1,6 +1,7 @@
 package gtclassic.common.tile;
 
 import gtclassic.api.helpers.GTUtility;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.obj.IRedstoneProvider;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +35,7 @@ public class GTTileRedstoneReceiver extends TileEntityMachine implements IRedsto
 			this.redstoneLevel = newLevel;
 			this.setActive(this.redstoneLevel > 0);
 			world.notifyNeighborsOfStateChange(pos, this.getBlockType(), true);
-			GTUtility.updateNeighborhood(this.world, this.pos, this.getBlockType(), EnumFacing.VALUES);
+			GTUtility.updateNeighborhood(this.world, this.pos, this.getBlockType(), RotationList.ALL);
 		}
 	}
 
