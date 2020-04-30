@@ -1,6 +1,9 @@
 # Changelog
 # 1.1.5 (Not Released)
 - Added the Redstone Controlled Lamp from GT4, can be painted different colors and has a variable light level.
+- Changed the Bedrock Miner to now try to break a pipe/consume lubricant every mining operation instead of every successful operation.
+- Fixed crash with Player Detector throwing NPE on block update.
+- Fixed Player Detector and Redstone Receiver not updating adjacent blocks redstone level like stone etc..
 
 # 1.1.4
 - Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.

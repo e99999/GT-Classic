@@ -2,6 +2,8 @@ package gtclassic.api.helpers;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.common.util.GTIBlockFilters;
 import gtclassic.common.util.GTIFilters;
@@ -15,6 +17,7 @@ import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import ic2.core.util.helpers.AabbUtil;
 import ic2.core.util.math.MathUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockEndPortalFrame;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -248,5 +251,41 @@ public class GTUtility {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * A way to update surrounding blocks
+	 * 
+	 * @param world     - The world to update in
+	 * @param pos       - the block pos the update should originate
+	 * @param blockType - block type which can be null
+	 * @param sides     - the list of sides to iterate an update
+	 */
+	public static void updateNeighbors(World world, BlockPos pos, @Nullable Block blockType, EnumFacing[] sides) {
+		if (blockType == null) {
+			blockType = Blocks.AIR;
+		}
+		for (EnumFacing side : sides) {
+			BlockPos newPos = pos.offset(side);
+			if (world.isBlockLoaded(newPos)) {
+				world.neighborChanged(newPos, blockType, pos);
+			}
+		}
+	}
+
+	/**
+	 * A way to update surrounding blocks and also their surrounding blocks
+	 * 
+	 * @param world     - The world to update in
+	 * @param pos       - the block pos the update should originate
+	 * @param blockType - block type which can be null
+	 * @param sides     - the list of sides to iterate an update
+	 */
+	public static void updateNeighborhood(World world, BlockPos pos, @Nullable Block blockType, EnumFacing[] sides) {
+		for (EnumFacing side : sides) {
+			if (world.isBlockLoaded(pos.offset(side))) {
+				GTUtility.updateNeighbors(world, pos.offset(side), blockType, EnumFacing.VALUES);
+			}
+		}
 	}
 }

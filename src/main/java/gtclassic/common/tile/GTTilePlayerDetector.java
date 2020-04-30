@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.helpers.int3;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
@@ -51,6 +52,7 @@ public class GTTilePlayerDetector extends TileEntityElecMachine
 			if (oldState != newState) {
 				this.setActive(newState);
 				world.notifyNeighborsOfStateChange(pos, this.getBlockType(), true);
+				GTUtility.updateNeighborhood(this.world, this.pos, this.getBlockType(), EnumFacing.VALUES);
 			}
 		}
 	}

@@ -1,10 +1,10 @@
 package gtclassic.common.tile;
 
+import gtclassic.api.helpers.GTUtility;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.obj.IRedstoneProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 
 public class GTTileRedstoneReceiver extends TileEntityMachine implements IRedstoneProvider {
 
@@ -33,19 +33,8 @@ public class GTTileRedstoneReceiver extends TileEntityMachine implements IRedsto
 		if (this.redstoneLevel != newLevel && newLevel != -1) {
 			this.redstoneLevel = newLevel;
 			this.setActive(this.redstoneLevel > 0);
-		}
-		this.updateNeighbors();
-	}
-
-	private void updateNeighbors() {
-		EnumFacing[] sides = EnumFacing.VALUES;
-		int sidesLength = sides.length;
-		for (int i = 0; i < sidesLength; ++i) {
-			EnumFacing side = sides[i];
-			BlockPos newPos = this.getPos().offset(side);
-			if (this.world.isBlockLoaded(newPos)) {
-				this.world.neighborChanged(newPos, this.getBlockType(), this.getPos());
-			}
+			world.notifyNeighborsOfStateChange(pos, this.getBlockType(), true);
+			GTUtility.updateNeighborhood(this.world, this.pos, this.getBlockType(), EnumFacing.VALUES);
 		}
 	}
 
