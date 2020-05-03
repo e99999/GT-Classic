@@ -149,7 +149,7 @@ public class GTRecipeIterators {
 				if (OreDictionary.doesOreNameExist(dust)) {
 					list = OreDictionary.getOres(dust, false);
 					if (!list.isEmpty() && !id.contains("Chromium") && !id.contains("Aluminum") && !id.contains("Coal")
-							&& !id.contains("Charcoal")) {
+							&& !id.contains("Charcoal") && !id.contains("Quartz") && !id.contains("Prismarine")) {
 						TileEntityMacerator.addRecipe((String) id, 1, GTHelperStack.copyWithSize((ItemStack) list.get(0), 9), 0.1F);
 					}
 				}
