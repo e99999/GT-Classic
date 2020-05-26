@@ -131,6 +131,10 @@ public class GTIFilters {
 				return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) || GTHelperStack.oreDictStartsWith(stack, "ingotHot")
 						: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) && !GTHelperStack.oreDictStartsWith(stack, "ingotHot");
 			}
+			if (this.tile.getCurrentFilter().equals("crushed")){
+				return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) || GTHelperStack.oreDictStartsWith(stack, "crushedPurified")
+						: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) && !GTHelperStack.oreDictStartsWith(stack, "crushedPurified");
+			}
 			return this.tile.invertFilter != GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter());
 		}
 	}
