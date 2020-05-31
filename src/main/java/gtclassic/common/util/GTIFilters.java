@@ -123,8 +123,19 @@ public class GTIFilters {
 			if (stack.isEmpty() || this.tile.getCurrentFilter() == null) {
 				return false;
 			}
-			return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter())
-					: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter());
+			if (this.tile.getCurrentFilter().equals("dust")){
+				return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) || GTHelperStack.oreDictStartsWith(stack, "dustTiny") || GTHelperStack.oreDictStartsWith(stack, "dustSmall")
+						: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) && !GTHelperStack.oreDictStartsWith(stack, "dustTiny") && !GTHelperStack.oreDictStartsWith(stack, "dustSmall");
+			}
+			if (this.tile.getCurrentFilter().equals("ingot")){
+				return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) || GTHelperStack.oreDictStartsWith(stack, "ingotHot")
+						: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) && !GTHelperStack.oreDictStartsWith(stack, "ingotHot");
+			}
+			if (this.tile.getCurrentFilter().equals("crushed")){
+				return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) || GTHelperStack.oreDictStartsWith(stack, "crushedPurified")
+						: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) && !GTHelperStack.oreDictStartsWith(stack, "crushedPurified");
+			}
+			return this.tile.invertFilter != GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter());
 		}
 	}
 
