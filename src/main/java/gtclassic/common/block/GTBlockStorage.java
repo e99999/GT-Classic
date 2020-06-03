@@ -71,6 +71,8 @@ public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 			IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
 			if (nbt.hasKey("color")) {
 				colorTile.setTileColor(nbt.getInteger("color"));
+			} else {
+				colorTile.setTileColor(16383998);
 			}
 		}
 	}

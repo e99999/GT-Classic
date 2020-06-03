@@ -26,7 +26,6 @@ public abstract class GTTileBaseRecolorableTile extends TileEntityMachine
 
 	public GTTileBaseRecolorableTile(int slots) {
 		super(slots);
-		this.color = 16383998;
 		this.addNetworkFields(new String[] { NBT_COLOR });
 	}
 

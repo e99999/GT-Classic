@@ -5,6 +5,9 @@
 - Changed the Bedrock Miner now auto outputs out of the back instead of the top for easier automation with GTC Drums.
 - Fixed crash with Player Detector throwing NPE on block update.
 - Fixed Player Detector and Redstone Receiver not updating adjacent blocks redstone level like stone etc..
+- Fixed colored tiles being reset to no color on servers.
+- Fixed Type filter allowing similar types to pass through the filter.
+- Added a recipe for compat with other mods unrefined rubber.
 
 # 1.1.4
 - Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.
