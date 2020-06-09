@@ -20,9 +20,10 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+
 public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 
-	private MultiRecipe multiRecipe;
+	protected MultiRecipe multiRecipe;
 
 	public GTJeiMultiRecipeWrapper(MultiRecipe multiRecipe) {
 		this.multiRecipe = multiRecipe;

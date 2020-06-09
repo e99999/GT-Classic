@@ -69,6 +69,9 @@ public class GTJeiPlugin implements IModPlugin {
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTItems.orbDataStorage));
+                        if (Loader.isModLoaded(GTValues.MOD_ID_GTCX)){
+                                blacklist.addIngredientToBlacklist(GTMaterialGen(GTBlocks.tileFusionReactor));
+                        }
 			if (GTConfig.general.hideBedrockOresInJei) {
 				for (Block block : GTBedrockOreHandler.getBedrockOreMap().keySet()) {
 					if (GTBedrockOreHandler.shouldGTCHandleGeneration(block)) {
