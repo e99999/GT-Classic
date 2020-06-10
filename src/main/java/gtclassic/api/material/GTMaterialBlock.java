@@ -33,6 +33,8 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 
 	private GTMaterial material;
 	private GTMaterialFlag flag;
+	private final String unlocalizedFlag;
+	private final String unlocalizedMaterial;
 	LocaleComp comp;
 
 	public GTMaterialBlock(GTMaterial material, GTMaterialFlag flag) {
@@ -40,6 +42,8 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 		this.material = material;
 		this.flag = flag;
 		this.comp = Ic2Lang.nullKey;
+		this.unlocalizedFlag = "part." + flag.getPrefix();
+		this.unlocalizedMaterial = "material." + material.getDisplayName();
 		setRegistryName(this.material.getName() + this.flag.getSuffix());
 		setUnlocalizedName(GTMod.MODID + "." + this.flag.getPrefix() + this.material.getDisplayName());
 		setCreativeTab(GTMod.creativeTabGT);
@@ -58,10 +62,19 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 	@Override
 	public String getLocalizedName() {
 		String key = this.getUnlocalizedName() + ".name";
-		if (I18n.format(key).equals(key)){
-			return I18n.format("part." + flag.getPrefix(), I18n.format("material." + material.getDisplayName()).trim());
+		String localized = I18n.format(key).trim();
+		if (localized.equals(key)){
+			return I18n.format(unlocalizedFlag, I18n.format(unlocalizedMaterial).trim());
 		}
-		return super.getLocalizedName();
+		return localized;
+	}
+
+	public String getUnlocalizedFlag() {
+		return unlocalizedFlag;
+	}
+
+	public String getUnlocalizedMaterial() {
+		return unlocalizedMaterial;
 	}
 
 	@Override

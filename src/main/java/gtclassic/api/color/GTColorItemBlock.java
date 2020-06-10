@@ -2,10 +2,8 @@ package gtclassic.api.color;
 
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTColorItem;
-import gtclassic.api.material.GTMaterial;
-import gtclassic.api.material.GTMaterialBlock;
-import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.item.GTItemBlock;
+import gtclassic.api.material.GTMaterialBlock;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
@@ -28,13 +26,12 @@ public class GTColorItemBlock extends GTItemBlock implements IGTColorItem {
 	@Override
 	public String getItemStackDisplayName(@Nonnull ItemStack stack) {
 		String key = block.getUnlocalizedName() + ".name";
-		if (block instanceof GTMaterialBlock && I18n.format(key).equals(key)){
+		String localized = I18n.format(key).trim();
+		if (block instanceof GTMaterialBlock && localized.equals(key)){
 			GTMaterialBlock block1 = (GTMaterialBlock)block;
-			GTMaterialFlag flag = block1.getFlag();
-			GTMaterial material = block1.getMaterial();
-			return I18n.format("part." + flag.getPrefix(), I18n.format("material." + material.getDisplayName()).trim());
+			return I18n.format(block1.getUnlocalizedFlag(), I18n.format(block1.getUnlocalizedMaterial()).trim());
 		}
-		return super.getItemStackDisplayName(stack);
+		return localized;
 	}
 
 	@Override

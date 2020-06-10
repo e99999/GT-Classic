@@ -20,10 +20,13 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColo
 
 	private GTMaterial material;
 	private GTMaterialFlag flag;
-
+	private final String unlocalizedFlag;
+	private final String unlocalizedMaterial;
 	public GTMaterialItem(GTMaterial material, GTMaterialFlag flag) {
 		this.material = material;
 		this.flag = flag;
+		this.unlocalizedFlag = "part." + flag.getPrefix();
+		this.unlocalizedMaterial = "material." + material.getDisplayName();
 		setRegistryName(this.material.getName() + this.flag.getSuffix());
 		setUnlocalizedName(GTMod.MODID + "." + this.flag.getPrefix() + this.material.getDisplayName());
 		setCreativeTab(GTMod.creativeTabGT);
@@ -37,10 +40,11 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColo
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String key = this.getUnlocalizedNameInefficiently(stack) + ".name";
-		if (I18n.format(key).equals(key)){
-			return I18n.format("part." + flag.getPrefix(), I18n.format("material." + material.getDisplayName()).trim());
+		String localized = I18n.format(key).trim();
+		if (localized.equals(key)){
+			return I18n.format(unlocalizedFlag, I18n.format(unlocalizedMaterial).trim());
 		}
-		return super.getItemStackDisplayName(stack);
+		return localized;
 	}
 
 	@Override
