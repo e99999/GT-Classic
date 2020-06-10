@@ -27,7 +27,8 @@ public class GTColorItemBlock extends GTItemBlock implements IGTColorItem {
 	@Nonnull
 	@Override
 	public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-		if (block instanceof GTMaterialBlock){
+		String key = block.getUnlocalizedName() + ".name";
+		if (block instanceof GTMaterialBlock && I18n.format(key).equals(key)){
 			GTMaterialBlock block1 = (GTMaterialBlock)block;
 			GTMaterialFlag flag = block1.getFlag();
 			GTMaterial material = block1.getMaterial();

@@ -57,7 +57,11 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 
 	@Override
 	public String getLocalizedName() {
-		return I18n.format("part." + flag.getPrefix(), I18n.format("material." + material.getDisplayName()).trim());
+		String key = this.getUnlocalizedName() + ".name";
+		if (I18n.format(key).equals(key)){
+			return I18n.format("part." + flag.getPrefix(), I18n.format("material." + material.getDisplayName()).trim());
+		}
+		return super.getLocalizedName();
 	}
 
 	@Override

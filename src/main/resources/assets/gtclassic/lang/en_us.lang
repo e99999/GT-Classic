@@ -1,5 +1,4 @@
 #blocks
-
 tile.gtclassic.brittlecharcoal.name=Brittle Charcoal
 tile.gtclassic.superfuel.name=Solid Super Fuel
 tile.gtclassic.superfuelmagic.name=Magic Solid Super Fuel
@@ -72,7 +71,6 @@ tile.gtclassic.lamp.name=Redstone Controlled Lamp
 
 #flags
 part.dust=%s Dust
-part.pulp=%s Pulp
 part.ingot=%s Ingot
 part.ingothot=Hot %s Ingot
 part.gem=%s
@@ -112,6 +110,9 @@ material.Invar=Invar
 material.Technetium=Technetium
 material.BrownDye=Brown Dye
 material.Wood=Wood
+
+#material lang overrides
+item.gtclassic.dustWood.name=Wood Pulp
 
 
 #items

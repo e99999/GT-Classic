@@ -1,9 +1,5 @@
 package gtclassic.api.material;
 
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.List;
-
 import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTColorItem;
 import ic2.core.platform.textures.Ic2Icons;
@@ -15,6 +11,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.awt.Color;
+import java.util.Arrays;
+import java.util.List;
 
 public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColorItem, ILayeredItemModel {
 
@@ -36,8 +36,11 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColo
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		String dust = GTMaterialGen.isMaterialEqual(material, GTMaterial.Wood) && flag.getPrefix().startsWith("dust") ? flag.getPrefix().replaceAll("dust", "pulp") : flag.getPrefix();
-		return I18n.format("part." + dust, I18n.format("material." + material.getDisplayName()).trim());
+		String key = this.getUnlocalizedNameInefficiently(stack) + ".name";
+		if (I18n.format(key).equals(key)){
+			return I18n.format("part." + flag.getPrefix(), I18n.format("material." + material.getDisplayName()).trim());
+		}
+		return super.getItemStackDisplayName(stack);
 	}
 
 	@Override
