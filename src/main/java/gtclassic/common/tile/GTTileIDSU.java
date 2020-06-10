@@ -14,16 +14,20 @@ import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.obj.IClickable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraftforge.fml.relauncher.Side;
 
-public class GTTileIDSU extends TileEntityElectricBlock {
+public class GTTileIDSU extends TileEntityElectricBlock implements IClickable {
 
 	int open = 0;
 	@NetworkField(index = 7)
@@ -271,5 +275,33 @@ public class GTTileIDSU extends TileEntityElectricBlock {
 			return;
 		}
 		wrapper.removeEnergy(amount);
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing facing, Side side) {
+		if (player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
+			this.onNetworkEvent(player, 0);
+			if (this.isSimulating()) {
+				IC2.platform.messagePlayer(player, this.getRedstoneMode());
+			}
+			player.playSound(SoundEvents.UI_BUTTON_CLICK, 1.0F, 1.0F);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+		// Needed for interface
 	}
 }

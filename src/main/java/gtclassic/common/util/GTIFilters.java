@@ -4,13 +4,16 @@ import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.tile.GTTileBaseFuelMachine;
 import gtclassic.common.GTItems;
+import gtclassic.common.tile.GTTileItemFilter;
 import gtclassic.common.tile.GTTileQuantumChest;
 import gtclassic.common.tile.GTTileQuantumTank;
 import gtclassic.common.tile.GTTileTranslocator;
+import gtclassic.common.tile.GTTileTypeFilter;
 import ic2.api.item.ICustomDamageItem;
 import ic2.api.item.IElectricItem;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -108,6 +111,68 @@ public class GTIFilters {
 		}
 	}
 
+	public static class TypeFilter implements IFilter {
+
+		GTTileTypeFilter tile;
+
+		public TypeFilter(GTTileTypeFilter tile) {
+			this.tile = tile;
+		}
+
+		public boolean matches(ItemStack stack) {
+			if (stack.isEmpty() || this.tile.getCurrentFilter() == null) {
+				return false;
+			}
+			if (this.tile.getCurrentFilter().equals("dust")){
+				return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) || GTHelperStack.oreDictStartsWith(stack, "dustTiny") || GTHelperStack.oreDictStartsWith(stack, "dustSmall")
+						: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) && !GTHelperStack.oreDictStartsWith(stack, "dustTiny") && !GTHelperStack.oreDictStartsWith(stack, "dustSmall");
+			}
+			if (this.tile.getCurrentFilter().equals("ingot")){
+				return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) || GTHelperStack.oreDictStartsWith(stack, "ingotHot")
+						: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) && !GTHelperStack.oreDictStartsWith(stack, "ingotHot");
+			}
+			if (this.tile.getCurrentFilter().equals("crushed")){
+				return this.tile.invertFilter ? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) || GTHelperStack.oreDictStartsWith(stack, "crushedPurified")
+						: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter()) && !GTHelperStack.oreDictStartsWith(stack, "crushedPurified");
+			}
+			return this.tile.invertFilter != GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter());
+		}
+	}
+
+	public static class ItemFilter implements IFilter {
+
+		GTTileItemFilter tile;
+
+		public ItemFilter(GTTileItemFilter tile) {
+			this.tile = tile;
+		}
+
+		public boolean matches(ItemStack stack) {
+			if (stack.isEmpty()) {
+				return false; // InputStack is null so it does not match.
+			}
+			int noneEmptyStacks = 0; // Stacks that are not empty
+			for (int i = 0; i < 9; i++) {
+				ItemStack inventoryStack = tile.inventory.get(i);
+				if (inventoryStack.isEmpty()) {
+					continue;// Skip because the inventory is empty we dont need to compare it.
+				}
+				noneEmptyStacks++;
+				if (this.tile.invertFilter) {
+					if (!StackUtil.isStackEqual(stack, inventoryStack, false, this.tile.ignoreNbt)) {
+						return true; // Found
+					}
+				} else {
+					if (StackUtil.isStackEqual(stack, inventoryStack, false, this.tile.ignoreNbt)) {
+						return true; // Found
+					}
+				}
+			}
+			return noneEmptyStacks == 0; // If all stacks are empty means no filter. If it is more then 1 stack in the
+											// filter then return false because it didnt match the filter.
+		}
+	}
+
 	public static class ToolFilter implements IFilter {
 
 		@Override
@@ -129,24 +194,25 @@ public class GTIFilters {
 			return !stack.isEmpty() && this.machine.isValidInput(stack);
 		}
 	}
-	
+
 	public static class BetterBasicItemFilter implements IFilter {
-		   ItemStack item;
 
-		   public BetterBasicItemFilter(Item item) {
-		      this(new ItemStack(item));
-		   }
+		ItemStack item;
 
-		   public BetterBasicItemFilter(Block block) {
-		      this(new ItemStack(block));
-		   }
-
-		   public BetterBasicItemFilter(ItemStack par1) {
-		      this.item = par1;
-		   }
-
-		   public boolean matches(ItemStack stack) {
-		      return GTHelperStack.isEqual(this.item.copy(), stack);
-		   }
+		public BetterBasicItemFilter(Item item) {
+			this(new ItemStack(item));
 		}
+
+		public BetterBasicItemFilter(Block block) {
+			this(new ItemStack(block));
+		}
+
+		public BetterBasicItemFilter(ItemStack par1) {
+			this.item = par1;
+		}
+
+		public boolean matches(ItemStack stack) {
+			return GTHelperStack.isEqual(this.item.copy(), stack);
+		}
+	}
 }

@@ -16,6 +16,7 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -61,11 +62,16 @@ public class GTTileTranslocator extends GTTileBufferBase implements IHasGui {
 
 	@Override
 	public void onBufferTick() {
-		IItemTransporter in = TransporterManager.manager.getTransporter(world.getTileEntity(getImportTilePos()), true);
+		BlockPos importPos = this.pos.offset(this.getFacing().getOpposite());
+		BlockPos exportPos = this.pos.offset(this.getFacing());
+		if (!world.isBlockLoaded(importPos) || !world.isBlockLoaded(exportPos)) {
+			return;
+		}
+		IItemTransporter in = TransporterManager.manager.getTransporter(world.getTileEntity(importPos), true);
 		if (in == null) {
 			return;
 		}
-		IItemTransporter out = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), true);
+		IItemTransporter out = TransporterManager.manager.getTransporter(world.getTileEntity(exportPos), true);
 		if (out == null) {
 			return;
 		}

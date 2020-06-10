@@ -8,13 +8,13 @@ import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
+import gtclassic.api.recipe.GTRecipeMachineHandler;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.container.GTContainerUUMAssembler;
 import gtclassic.common.gui.GTGuiMachine.GTUUMAssemblerGui;
-import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
@@ -118,14 +118,14 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 
 	public void tryInputUU() {
 		if (GTHelperStack.isEqual(input(), Ic2Items.uuMatter.copy())) {
-			if (this.digitalCount + input().getCount() <= 3456) {
+			if (this.digitalCount + input().getCount() < Integer.MAX_VALUE) {
 				this.digitalCount = this.digitalCount + input().getCount();
 				input().shrink(input().getCount());
 				this.updateGui();
 				return;
 			}
-			if (this.digitalCount < 3456) {
-				int freespace = 3456 - this.digitalCount;
+			if (this.digitalCount < Integer.MAX_VALUE) {
+				int freespace = Integer.MAX_VALUE - this.digitalCount;
 				int amount = freespace >= input().getCount() ? input().getCount() : freespace;
 				this.digitalCount = this.digitalCount + amount;
 				input().shrink(amount);
@@ -169,6 +169,11 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	@Override
 	public boolean supportsNotify() {
 		return true;
+	}
+
+	@Override
+	public double getWrenchDropRate() {
+		return 1.0D;
 	}
 
 	public void updateGui() {
@@ -235,7 +240,7 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 		for (int i = 0; i < tile.slotCount; ++i) {
 			if (i <= slotMax) {
 				NBTTagCompound data = new NBTTagCompound();
-				((ItemStack) tile.inventory.get(i)).writeToNBT(data);
+				tile.inventory.get(i).writeToNBT(data);
 				data.setInteger("Slot", i);
 				list.appendTag(data);
 			}
@@ -363,32 +368,11 @@ public class GTTileUUMAssembler extends TileEntityElecMachine implements ITickab
 	}
 
 	public static void addUUMAssemblerValue(int uuRequired, ItemStack output) {
-		addUUMAssemblerValue(new IRecipeInput[] {
-				new RecipeInputItemStack(GTMaterialGen.getIc2(Ic2Items.uuMatter, uuRequired)) }, output);
+		addUUMAssemblerValue(new RecipeInputItemStack(GTMaterialGen.getIc2(Ic2Items.uuMatter, uuRequired)), output);
 	}
 
-	private static void addUUMAssemblerValue(IRecipeInput[] inputs, ItemStack... outputs) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
-		addUUMAssemblerValue(inlist, new MachineOutput(null, outlist));
-	}
-
-	private static void addUUMAssemblerValue(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 1);
-	}
-
-	public static void removeRecipe(String id) {
-		RECIPE_LIST.removeRecipe(id);
-	}
-
-	@Override
-	public double getWrenchDropRate() {
-		return 1.0D;
+	public static void addUUMAssemblerValue(IRecipeInput input, ItemStack... outputs) {
+		IRecipeInput[] inputs = { input };
+		GTRecipeMachineHandler.addRecipe(RECIPE_LIST, inputs, null, outputs);
 	}
 }

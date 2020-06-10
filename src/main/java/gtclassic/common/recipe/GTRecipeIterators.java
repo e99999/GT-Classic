@@ -1,5 +1,6 @@
 package gtclassic.common.recipe;
 
+import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialFlag;
@@ -7,6 +8,7 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
 import gtclassic.common.block.GTBlockMortar;
+import gtclassic.common.item.GTItemJackHammer;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -14,6 +16,8 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,45 +31,11 @@ public class GTRecipeIterators {
 
 	/** Iterates through the GregTech Classic mat registry **/
 	public static void init() {
-		/*
-		 * The statements below iterate through the material registry to create recipes
-		 * for the correct corresponding items and blocks.
-		 */
 		for (GTMaterial mat : GTMaterial.values()) {
 			createIngotRecipe(mat);
 			createGemRecipe(mat);
 			createBlockRecipe(mat);
 			createTubeRecipe(mat);
-		}
-	}
-
-	/** Iterates through loaded itemstacks for all mods **/
-	public static void postInit() {
-		createMortarRecipe();
-		if (GTConfig.general.addCompressorRecipesForBlocks) {
-			createUniversalProcessingRecipes();
-		}
-		for (Item item : Item.REGISTRY) {
-			NonNullList<ItemStack> items = NonNullList.create();
-			item.getSubItems(CreativeTabs.SEARCH, items);
-			for (ItemStack stack : items) {
-				if (GTConfig.general.oreDictWroughtIron && GTHelperStack.matchOreDict(stack, "ingotWroughtIron")
-						&& !GTHelperStack.matchOreDict(stack, "ingotRefinedIron")) {
-					OreDictionary.registerOre("ingotRefinedIron", stack);
-				}
-				if (GTHelperStack.matchOreDict(stack, "ingotAluminum")
-						&& !GTHelperStack.matchOreDict(stack, "ingotAluminium")) {
-					OreDictionary.registerOre("ingotAluminium", stack);
-				}
-				if (GTHelperStack.matchOreDict(stack, "dustAluminum")
-						&& !GTHelperStack.matchOreDict(stack, "dustAluminium")) {
-					OreDictionary.registerOre("dustAluminium", stack);
-				}
-				if (GTHelperStack.matchOreDict(stack, "ingotChromium")
-						&& !GTHelperStack.matchOreDict(stack, "ingotChrome")) {
-					OreDictionary.registerOre("ingotChrome", stack);
-				}
-			}
 		}
 	}
 
@@ -115,6 +85,44 @@ public class GTRecipeIterators {
 		}
 	}
 
+	/** Iterates through loaded itemstacks for all mods **/
+	public static void postInit() {
+		createMortarRecipe();
+		if (GTConfig.general.addCompressorRecipesForBlocks) {
+			createUniversalProcessingRecipes();
+		}
+		for (Item item : Item.REGISTRY) {
+			NonNullList<ItemStack> items = NonNullList.create();
+			item.getSubItems(CreativeTabs.SEARCH, items);
+			for (ItemStack stack : items) {
+				if (GTConfig.general.oreDictWroughtIron && GTHelperStack.matchOreDict(stack, "ingotWroughtIron")
+						&& !GTHelperStack.matchOreDict(stack, "ingotRefinedIron")) {
+					OreDictionary.registerOre("ingotRefinedIron", stack);
+				}
+				if (GTHelperStack.matchOreDict(stack, "ingotAluminum")
+						&& !GTHelperStack.matchOreDict(stack, "ingotAluminium")) {
+					OreDictionary.registerOre("ingotAluminium", stack);
+				}
+				if (GTHelperStack.matchOreDict(stack, "dustAluminum")
+						&& !GTHelperStack.matchOreDict(stack, "dustAluminium")) {
+					OreDictionary.registerOre("dustAluminium", stack);
+				}
+				if (GTHelperStack.matchOreDict(stack, "ingotChromium")
+						&& !GTHelperStack.matchOreDict(stack, "ingotChrome")) {
+					OreDictionary.registerOre("ingotChrome", stack);
+				}
+			}
+		}
+		for (Block block : Block.REGISTRY) {
+			if (block.getDefaultState().getMaterial() == Material.ROCK
+					&& !GTHelperStack.oreDictStartsWith(GTMaterialGen.get(block), "ore")) {
+				GTItemJackHammer.rocks.add(block);
+			}
+		}
+		GTMod.logger.info("Jack Hammer stone list populated with " + GTItemJackHammer.rocks.size() + " entries");
+	}
+
+	/** Ran post init **/
 	public static void createMortarRecipe() {
 		// Grabs everything from the ic2 classic macerator list
 		// Separate method so it can be done last in post init
@@ -127,6 +135,7 @@ public class GTRecipeIterators {
 		}
 	}
 
+	/** Ran post init **/
 	public static void createUniversalProcessingRecipes() {
 		String[] oreDict = OreDictionary.getOreNames();
 		int oreDictSize = oreDict.length;
@@ -139,7 +148,8 @@ public class GTRecipeIterators {
 				dust = "dust" + id.substring(5);
 				if (OreDictionary.doesOreNameExist(dust)) {
 					list = OreDictionary.getOres(dust, false);
-					if (!list.isEmpty()) {
+					if (!list.isEmpty() && !id.contains("Chromium") && !id.contains("Aluminum") && !id.contains("Coal")
+							&& !id.contains("Charcoal") && !id.contains("Quartz") && !id.contains("Prismarine")) {
 						TileEntityMacerator.addRecipe((String) id, 1, GTHelperStack.copyWithSize((ItemStack) list.get(0), 9), 0.1F);
 					}
 				}
@@ -150,7 +160,8 @@ public class GTRecipeIterators {
 				block = "block" + id.substring(5);
 				if (OreDictionary.doesOreNameExist(block)) {
 					list = OreDictionary.getOres(block, false);
-					if (!list.isEmpty()) {
+					if (!list.isEmpty() && !id.contains("Copper") && !id.contains("Chromium")
+							&& !id.contains("Aluminum")) {
 						TileEntityCompressor.addRecipe((String) id, 9, GTHelperStack.copyWithSize((ItemStack) list.get(0), 1), 0.1F);
 					}
 				}
@@ -160,7 +171,7 @@ public class GTRecipeIterators {
 				block = "block" + id.substring(3);
 				if (OreDictionary.doesOreNameExist(block)) {
 					list = OreDictionary.getOres(block, false);
-					if (!list.isEmpty()) {
+					if (!list.isEmpty() && !id.contains("Coal") && !id.contains("Quartz")) {
 						TileEntityCompressor.addRecipe((String) id, 9, GTHelperStack.copyWithSize((ItemStack) list.get(0), 1), 0.1F);
 					}
 				}

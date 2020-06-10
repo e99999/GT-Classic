@@ -22,7 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 
 public abstract class GTTileBufferBase extends TileEntityMachine implements IEnergyConductor, IEnergySink,
@@ -38,16 +37,24 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 	public boolean conduct = false;
 	public boolean outputRedstone = false;
 	public boolean invertRedstone = false;
+	public boolean invertFilter = false;
+	public boolean hasInvertFilter = false;
+	public boolean hasNbtFilter = false;
+	public boolean ignoreNbt = false;
 	public int redstoneStrength = 0;
 	public boolean hasRedstone = true;
+	public boolean isFluid = false;
 	public static final String NBT_STOREDENERGY = "energy";
 	public static final String NBT_CONDUCT = "conduct";
 	public static final String NBT_OUTPUTREDSTONE = "outputRedstone";
 	public static final String NBT_INVERTREDSTONE = "invertRedstone";
+	public static final String NBT_INVERTFILTER = "invertFilter";
+	public static final String NBT_IGNORENBT = "ignoreNbt";
 
 	public GTTileBufferBase(int slots) {
 		super(slots);
-		this.addGuiFields(new String[] { NBT_STOREDENERGY, NBT_CONDUCT, NBT_OUTPUTREDSTONE, NBT_INVERTREDSTONE });
+		this.addGuiFields(new String[] { NBT_STOREDENERGY, NBT_CONDUCT, NBT_OUTPUTREDSTONE, NBT_INVERTREDSTONE,
+				NBT_INVERTFILTER, NBT_IGNORENBT });
 	}
 
 	@Override
@@ -57,6 +64,8 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 		this.conduct = nbt.getBoolean(NBT_CONDUCT);
 		this.outputRedstone = nbt.getBoolean(NBT_OUTPUTREDSTONE);
 		this.invertRedstone = nbt.getBoolean(NBT_INVERTREDSTONE);
+		this.invertFilter = nbt.getBoolean(NBT_INVERTFILTER);
+		this.ignoreNbt = nbt.getBoolean(NBT_IGNORENBT);
 	}
 
 	@Override
@@ -66,6 +75,8 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 		nbt.setBoolean(NBT_CONDUCT, this.conduct);
 		nbt.setBoolean(NBT_OUTPUTREDSTONE, this.outputRedstone);
 		nbt.setBoolean(NBT_INVERTREDSTONE, this.invertRedstone);
+		nbt.setBoolean(NBT_INVERTFILTER, this.invertFilter);
+		nbt.setBoolean(NBT_IGNORENBT, this.ignoreNbt);
 		return nbt;
 	}
 
@@ -190,26 +201,29 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 				world.notifyNeighborsOfStateChange(pos, blockType, true);
 			}
 		}
+		if (this.hasInvertFilter && event == 3) {
+			this.invertFilter = !this.invertFilter;
+			this.getNetwork().updateTileGuiField(this, NBT_INVERTFILTER);
+		}
+		if (this.hasNbtFilter && event == 4) {
+			this.ignoreNbt = !this.ignoreNbt;
+			this.getNetwork().updateTileGuiField(this, NBT_IGNORENBT);
+		}
 	}
 
 	@Override
 	public int getRedstoneStrenght(EnumFacing paramEnumFacing) {
+		if (!this.outputRedstone) {
+			return 0;
+		}
 		return this.invertRedstone ? 15 - this.redstoneStrength : this.redstoneStrength;
 	}
 
 	public abstract boolean isInventoryFull();
 
-	public BlockPos getImportTilePos() {
-		return this.pos.offset(this.getFacing().getOpposite());
-	}
-
-	public BlockPos getExportTilePos() {
-		return this.pos.offset(this.getFacing());
-	}
-
 	@Override
 	public void update() {
-		if (world.getTotalWorldTime() % 8 == 0) {
+		if (world.getTotalWorldTime() % 10 == 0) {
 			if (this.hasRedstone) {
 				int oldStrength = this.redstoneStrength;
 				if (this.outputRedstone && isInventoryFull()) {
@@ -221,9 +235,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 					world.notifyNeighborsOfStateChange(pos, blockType, true);
 				}
 			}
-			if (world.isBlockLoaded(getImportTilePos()) && world.isBlockLoaded(getExportTilePos())) {
-				onBufferTick();
-			}
+			onBufferTick();
 		}
 	}
 
@@ -236,6 +248,7 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getItem() instanceof ItemDisplayIcon) {
 				list.remove(i);
+				i--;
 			}
 		}
 		return list;
@@ -243,15 +256,17 @@ public abstract class GTTileBufferBase extends TileEntityMachine implements IEne
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		data.put("Outputs Power: " + this.conduct, true);
-		if (this.conduct) {
-			data.put("Stored: " + this.energy + " EU", true);
-		}
+		data.put("Emits Energy: " + this.conduct, true);
+		data.put("Stored: " + this.energy + " EU", true);
 		if (this.hasRedstone) {
-			if (this.outputRedstone) {
-				data.put("Redstone Strength: " + this.redstoneStrength, true);
-			}
+			data.put("Redstone Strength: " + this.redstoneStrength, true);
 			data.put("Inverted Redstone: " + this.invertRedstone, true);
+		}
+		if (this.hasInvertFilter) {
+			data.put("Inverted Filter: " + this.invertFilter, true);
+		}
+		if (this.hasNbtFilter) {
+			data.put("Ignore Nbt: " + this.ignoreNbt, true);
 		}
 	}
 }

@@ -10,6 +10,7 @@ import gtclassic.api.recipe.GTRecipeCraftingHandler;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
 import gtclassic.common.tile.GTTileCentrifuge;
+import gtclassic.common.tile.GTTileTypeFilter;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
@@ -102,6 +103,7 @@ public class GTRecipeMods {
 			GTMod.logger.info("Doing Forestry Things");
 			GTRecipeCraftingHandler.removeRecipe(GTValues.MOD_ID_FORESTRY, "bronze_ingot");
 			GTTileCentrifuge.addRecipe("gemApatite", 5, 0, GTTileCentrifuge.totalEu(4000), GTMaterialGen.getDust(GTMaterial.Calcite, 4), GTMaterialGen.getDust(GTMaterial.Phosphorus, 1));
+			GTTileTypeFilter.addOreDictFilter("beeComb");
 			GTRecipeForestry.notTheBees();
 		}
 	}

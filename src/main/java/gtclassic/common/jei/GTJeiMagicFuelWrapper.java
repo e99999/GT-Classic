@@ -1,7 +1,9 @@
 package gtclassic.common.jei;
 
 import java.awt.Color;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import ic2.api.classic.recipe.crafting.RecipeInputFluid;
@@ -44,15 +46,10 @@ public class GTJeiMagicFuelWrapper implements IRecipeWrapper {
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		FontRenderer font = minecraft.fontRenderer;
-		if (multiRecipe.getInputs().get(0) instanceof RecipeInputFluid) {
-			font.drawString("Total: 8000 EU", 0, 40, Color.black.getRGB());
-			font.drawString("Per: 1000ml", 0, 50, Color.black.getRGB());
-			font.drawString("Production: 24 EU/t", 0, 60, Color.black.getRGB());
-		} else {
-			font.drawString("Total: 0-" + getEntryValue(multiRecipe.getOutputs()) + " EU", 0, 40, Color.black.getRGB());
-			font.drawString("Per: Item", 0, 50, Color.black.getRGB());
-			font.drawString("Production: Random", 0, 60, Color.black.getRGB());
-		}
+		font.drawString("Total: "
+				+ NumberFormat.getNumberInstance(Locale.US).format(getEntryValue(multiRecipe.getOutputs()))
+				+ " EU", 0, 40, Color.black.getRGB());
+		font.drawString("Production: 24 EU/t", 0, 50, Color.black.getRGB());
 	}
 
 	public MultiRecipe getMultiRecipe() {
@@ -63,6 +60,6 @@ public class GTJeiMagicFuelWrapper implements IRecipeWrapper {
 		if (output == null || output.getMetadata() == null) {
 			return 0;
 		}
-		return (output.getMetadata().getInteger("RecipeTime"));
+		return (output.getMetadata().getInteger("RecipeTime") * 24);
 	}
 }

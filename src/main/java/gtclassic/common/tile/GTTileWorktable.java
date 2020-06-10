@@ -67,6 +67,12 @@ public class GTTileWorktable extends GTTileBaseRecolorableTile
 	}
 
 	@Override
+	public void onLoaded() {
+		super.onLoaded();
+		this.setActive(false);
+	}
+
+	@Override
 	public void onNetworkEvent(EntityPlayer player, int event) {
 		Container container = player.openContainer;
 		if (container instanceof GTContainerWorktable) {

@@ -20,6 +20,7 @@ import ic2.core.item.tool.electric.ItemElectricToolDrill;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -28,7 +29,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -41,6 +41,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, IStaticTexturedItem {
+
+	public static final Set<Block> rocks = new HashSet<>();
 
 	public GTItemJackHammer() {
 		super(0.0F, -3.0F, ToolMaterial.DIAMOND);
@@ -156,7 +158,9 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 			for (BlockPos additionalPos : getTargetBlocks(worldIn, pos, player)) {
 				breakBlock(additionalPos, worldIn, player, stack);
 			}
-			IC2.audioManager.playOnce(player, Ic2Sounds.drillHard);
+			if (IC2.platform.isRendering()) {
+				IC2.audioManager.playOnce(player, Ic2Sounds.drillHard);
+			}
 		}
 		return false;
 	}
@@ -236,7 +240,7 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 	}
 
 	public boolean isValidState(IBlockState blockstate) {
-		return ItemElectricToolDrill.rocks.contains(blockstate) || blockstate.equals(Blocks.END_STONE.getDefaultState())
-				|| blockstate.equals(Blocks.NETHERRACK.getDefaultState());
+		return ItemElectricToolDrill.rocks.contains(blockstate)
+				|| GTItemJackHammer.rocks.contains(blockstate.getBlock());
 	}
 }

@@ -2,15 +2,19 @@ package gtclassic.common.tile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import gtclassic.api.helpers.GTHelperFluid;
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
+import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerMagicEnergyConverter;
 import gtclassic.common.gui.GTGuiMachine.GTMagicEnergyConverterGui;
+import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.energy.tile.IEnergySourceInfo;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
@@ -22,7 +26,9 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.IC2;
 import ic2.core.RotationList;
+import ic2.core.audio.AudioSource;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IEmitterTile;
 import ic2.core.fluid.IC2Tank;
@@ -36,6 +42,8 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +52,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
@@ -55,8 +65,8 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTTileMagicEnergyConverter extends TileEntityMachine
-		implements ITankListener, ITickable, IHasGui, IEUStorage, IEmitterTile, IEnergySourceInfo {
+public class GTTileMagicEnergyConverter extends TileEntityMachine implements ITankListener, ITickable, IHasGui,
+		IEUStorage, IEmitterTile, IEnergySourceInfo, IClickable, IGTDebuggableTile {
 
 	@NetworkField(index = 4)
 	public int storage = 0;
@@ -66,14 +76,16 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	int slotInput = 0;
 	int slotOutput = 1;
 	int slotDisplay = 2;
+	int fuel = 0;
 	boolean enet = false;
+	public AudioSource audioSource = null;
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.magicfuels");
 
 	public GTTileMagicEnergyConverter() {
 		super(3);
-		this.tank = new IC2Tank(1000);
+		this.tank = new IC2Tank(16000);
 		this.tank.addListener(this);
-		this.addGuiFields("tank");
+		this.addGuiFields("tank", "fuel");
 	}
 
 	@Override
@@ -96,6 +108,10 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 	public void onTankChanged(IFluidTank tank) {
 		this.getNetwork().updateTileGuiField(this, "tank");
 		this.inventory.set(2, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
+		if (this.tank.getFluidAmount() == 0) {
+			this.tank.setFluid(null);
+			this.setStackInSlot(slotDisplay, ItemStack.EMPTY);
+		}
 	}
 
 	@Override
@@ -103,6 +119,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		super.readFromNBT(nbt);
 		this.tank.readFromNBT(nbt.getCompoundTag("tank"));
 		this.storage = nbt.getInteger("storage");
+		this.fuel = nbt.getInteger("fuel");
 	}
 
 	@Override
@@ -110,6 +127,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		super.writeToNBT(nbt);
 		this.tank.writeToNBT(this.getTag(nbt, "tank"));
 		nbt.setInteger("storage", this.storage);
+		nbt.setInteger("fuel", this.fuel);
 		return nbt;
 	}
 
@@ -127,6 +145,10 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		if (this.isSimulating() && this.enet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			this.enet = false;
+		}
+		if (this.isRendering() && this.audioSource != null) {
+			IC2.audioManager.removeSources(this);
+			this.audioSource = null;
 		}
 		super.onUnloaded();
 	}
@@ -168,75 +190,63 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 
 	@Override
 	public void update() {
-		boolean hasPower = this.storage > 0;
-		if ((hasPower) != this.getActive()) {
-			this.setActive(hasPower);
-		}
 		GTHelperFluid.doFluidContainerThings(this, this.tank, slotInput, slotOutput);
-		this.emptyCheck();
-		processLiquidMagicFuel();
-		processSolidMagicFuel();
+		processFuelValue();
+		if (this.fuel == 0) {
+			processMagicFuel();
+		}
 	}
 
-	/** Logic for processing of magic liquids **/
-	public void processLiquidMagicFuel() {
-		if (this.tank.getFluid() != null && isMagicLiquidFuel(this.tank.getFluid().getFluid())) {
-			// This tries burn fuel, 3ml at a time to generate 24eu
-			if (this.storage + this.production <= this.maxStorage && this.tank.getFluidAmount() >= 3) {
-				this.tank.setFluid(new FluidStack(this.getContained(), this.tank.getFluid().amount - 3));
-				this.storage = this.storage + this.production;
+	private void processFuelValue() {
+		if (this.fuel - 1 >= 0 && this.storage < this.maxStorage) {
+			this.fuel = this.fuel - 1;
+			this.addEnergy(this.production);
+			this.getNetwork().updateTileGuiField(this, "fuel");
+			this.setActive(true);
+		} else {
+			this.setActive(false);
+		}
+	}
+
+	/** Logic for processing of magic fuels **/
+	private void processMagicFuel() {
+		if (this.tank.getFluid() != null && this.tank.getFluidAmount() >= 1000) {
+			int newFuelFromFluid = getMagicFuelValue(this.tank.getFluid().getFluid());
+			if (newFuelFromFluid > 0 && newFuelFromFluid + this.fuel < Integer.MAX_VALUE) {
+				this.fuel = this.fuel + newFuelFromFluid;
+				this.tank.setFluid(new FluidStack(this.getContained(), this.tank.getFluid().amount - 1000));
 				this.onTankChanged(this.tank);
 				return;
 			}
-			// If there isnt enough, burn the remainder at 1ml to generate 8eu
-			if (this.storage + (this.production / 3) <= this.maxStorage && this.tank.getFluidAmount() > 0) {
-				this.tank.setFluid(new FluidStack(this.getContained(), this.tank.getFluid().amount - 1));
-				this.storage = this.storage + (this.production / 3);
-				this.onTankChanged(this.tank);
-			}
 		}
-	}
-
-	public void processSolidMagicFuel() {
 		if (!this.getStackInSlot(slotInput).isEmpty()) {
-			int energy = getMagicSolidFuelValue(this.getStackInSlot(slotInput));
-			if (energy > 0) {
-				int generate = (int) (energy * world.rand.nextFloat());
-				if (generate + this.storage <= this.maxStorage) {
-					this.storage = this.storage + generate;
-					this.getStackInSlot(slotInput).shrink(1);
-				}
+			int newFuelFromStack = getMagicFuelValue(this.getStackInSlot(slotInput));
+			if (newFuelFromStack > 0 && newFuelFromStack + this.fuel < Integer.MAX_VALUE) {
+				this.fuel = this.fuel + newFuelFromStack;
+				this.getStackInSlot(slotInput).shrink(1);
 			}
-		}
-	}
-
-	/** Helper method because this tile is weird af **/
-	public void emptyCheck() {
-		if (this.tank.getFluidAmount() == 0) {
-			this.tank.setFluid(null);
-			this.setStackInSlot(slotDisplay, ItemStack.EMPTY);
 		}
 	}
 
 	/** Checks for compatible fluids **/
-	public boolean isMagicLiquidFuel(Fluid fluid) {
+	public int getMagicFuelValue(Fluid fluid) {
 		if (RECIPE_LIST.getRecipeList().isEmpty()) {
-			return false;
+			return 0;
 		}
 		for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
 			IRecipeInput input = map.getInput(0);
 			if (input instanceof RecipeInputFluid) {
 				Fluid fluidinput = ((RecipeInputFluid) input).fluid.getFluid();
 				if (fluidinput == fluid) {
-					return true;
+					return map.getOutputs().getMetadata().getInteger("RecipeTime");
 				}
 			}
 		}
-		return false;
+		return 0;
 	}
 
 	/** Checks for compatible ItemStacks **/
-	public int getMagicSolidFuelValue(ItemStack stack) {
+	public int getMagicFuelValue(ItemStack stack) {
 		if (RECIPE_LIST.getRecipeList().isEmpty()) {
 			return 0;
 		}
@@ -247,6 +257,38 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 			}
 		}
 		return 0;
+	}
+
+	@Override
+	public void onNetworkUpdate(String field) {
+		if (field.equals("isActive") && this.isActiveChanged()) {
+			if (this.audioSource != null && this.audioSource.isRemoved()) {
+				this.audioSource = null;
+			}
+			if (this.audioSource == null && this.getOperationSoundFile() != null) {
+				this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getOperationSoundFile(), true, false, IC2.audioManager.defaultVolume);
+			}
+			if (this.getActive()) {
+				if (this.audioSource != null) {
+					this.audioSource.play();
+				}
+			} else if (this.audioSource != null) {
+				this.audioSource.stop();
+			}
+		}
+		super.onNetworkUpdate(field);
+	}
+
+	public void addEnergy(int added) {
+		if (added < 1) {
+			return;
+		}
+		int newAmount = this.storage + added < this.maxStorage ? this.storage + added : this.maxStorage;
+		this.storage = newAmount;
+	}
+
+	public ResourceLocation getOperationSoundFile() {
+		return Ic2Sounds.generatorLoop;
 	}
 
 	public FluidStack getContained() {
@@ -312,9 +354,32 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		return this.production + 1;
 	}
 
+	public int getFuel() {
+		return this.fuel;
+	}
+
 	@Override
 	public boolean emitsEnergyTo(IEnergyAcceptor var1, EnumFacing facing) {
 		return true;
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 
 	public static void init() {
@@ -346,21 +411,24 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 		addModRecipe("liquidantimatter"); // AbsyssalCraft
 		addModRecipe("mana_fluid"); // Wizardry
 		addModRecipe("nacre_fluid"); // Wizardry
-		addRecipe(GTMaterialGen.get(Items.NETHER_WART), 60);
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.terraWart), 80);
-		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL), 8000);
-		addRecipe("dustEnderPearl", 8000);
-		addRecipe(GTMaterialGen.get(Items.ENDER_EYE), 10000);
-		addRecipe("dustEnderEye", 10000);
-		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR), 10000);
-		addRecipe(GTMaterialGen.get(Items.END_CRYSTAL), 20000);
-		addRecipe(GTMaterialGen.get(Items.DRAGON_BREATH), 32000);
-		addRecipe(GTMaterialGen.get(Items.NETHER_STAR), 124000);
-		addRecipe(GTMaterialGen.get(Blocks.BEACON), 124000);
+		addRecipe(GTMaterialGen.get(Items.NETHER_WART), 200);
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.terraWart), 300);
+		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL), 12000);
+		addRecipe("dustEnderPearl", 12000);
+		addRecipe(GTMaterialGen.get(Items.ENDER_EYE), 20000);
+		addRecipe("dustEnderEye", 20000);
+		addRecipe(GTMaterialGen.get(Items.GHAST_TEAR), 30000);
+		addRecipe(GTMaterialGen.get(Items.END_CRYSTAL), 50000);
+		addRecipe(GTMaterialGen.get(Items.DRAGON_BREATH), 48000);
+		addRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic), 1000000);
+		addRecipe(GTMaterialGen.get(Items.NETHER_STAR), 2500000);
+		addRecipe(GTMaterialGen.get(Blocks.BEACON), 2500000);
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.plasmaCell), 100000000);
 	}
 
 	public static IRecipeModifier[] value(int amount) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(amount) };
+		int varAmount = amount > 24 ? amount : 24;
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(varAmount / 24) };
 	}
 
 	public static void addModRecipe(String name) {
@@ -406,5 +474,10 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine
 
 	public static void removeRecipe(String id) {
 		RECIPE_LIST.removeRecipe(id);
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		data.put("Stored Fuel Value: " + this.fuel + "/" + this.fuel * 24 + " EU", true);
 	}
 }

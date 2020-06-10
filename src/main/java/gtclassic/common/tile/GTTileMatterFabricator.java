@@ -1,15 +1,13 @@
 package gtclassic.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import gtclassic.GTMod;
+import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTDebuggableTile;
-import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialElement;
-import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
+import gtclassic.api.recipe.GTRecipeMachineHandler;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
 import gtclassic.common.container.GTContainerMatterFabricator;
@@ -17,10 +15,8 @@ import gtclassic.common.gui.GTGuiMachine.GTMatterFabricatorGui;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
-import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.crafting.RecipeInputFluid;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
-import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
@@ -37,27 +33,30 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class GTTileMatterFabricator extends TileEntityElecMachine
-		implements ITickable, IProgressMachine, IHasGui, ITankListener, IGTDebuggableTile {
+		implements ITickable, IProgressMachine, IHasGui, ITankListener, IClickable, IGTDebuggableTile {
 
 	protected static final int[] slotInputs = { 0, 1, 2, 3, 4, 5, 6, 7 };
 	protected static final int[] slotOutputs = { 8 };
 	@NetworkField(index = 7)
 	float progress = 0;
 	private IC2Tank tank;
-	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.uuamplifier");
+	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.uuamplifier", 1);
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/matterfabricator.png");
 	private static final String NBT_PROGRESS = "progress";
 	private static final String NBT_TANK = "tank";
@@ -145,69 +144,73 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 		return progress;
 	}
 
-	public static void postInit() {
-		/** Collecting ic2 entries **/
-		for (RecipeEntry var : ClassicRecipes.massfabAmplifier.getRecipeMap()) {
-			addAmplifier(new IRecipeInput[] {
-					new RecipeInputItemStack(var.getInput().getInputs().get(0)) }, value(var.getOutput().getMetadata().getInteger("amplification")), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
-		}
-		/** Adding my elements **/
-		for (GTMaterialElement element : GTMaterialElement.getElementList()) {
-			if (!(element.getInput() instanceof RecipeInputOreDict)) {
-				continue;
-			}
-			int value = element.getNumber() * 1000;
-			if (value < 5000) {
-				value = 5000;
-			}
-			if (element.getNumber() != 77) {
-				addAmplifier(new IRecipeInput[] {
-						element.getInput() }, value(value), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
-			}
-		}
-		/** Adding fluid element entries direct from the mat list **/
-		for (GTMaterial mat : GTMaterial.values()) {
-			if ((mat.hasFlag(GTMaterialFlag.FLUID) || mat.hasFlag(GTMaterialFlag.GAS))
-					&& mat.getElementNumber() != -1) {
-				int value = mat.getElementNumber() * 1000;
-				if (value < 5000) {
-					value = 5000;
-				}
-				addAmplifier(new IRecipeInput[] {
-						new RecipeInputFluid(GTMaterialGen.getFluidStack(mat, 1000)) }, value(value), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
-			}
-		}
+	public void updateGui() {
+		this.getNetwork().updateTileGuiField(this, NBT_PROGRESS);
+		this.getNetwork().updateTileGuiField(this, "energy");
 	}
 
-	/**
-	 * Stuff below for actual amp recipes and JEI iterators
-	 **/
-	public static IRecipeModifier[] value(int amount) {
-		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create((amount / 1) - 100) };
+	public boolean hasPower() {
+		return energy >= 5000;
 	}
 
-	public static void addAmplifier(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		for (IRecipeInput input : inputs) {
-			inlist.add(input);
-		}
-		NBTTagCompound mods = new NBTTagCompound();
-		for (IRecipeModifier modifier : modifiers) {
-			modifier.apply(mods);
-		}
-		for (ItemStack output : outputs) {
-			outlist.add(output);
-		}
-		addAmplifier(inlist, new MachineOutput(mods, outlist));
+	@Override
+	public boolean supportsNotify() {
+		return true;
 	}
 
-	static void addAmplifier(List<IRecipeInput> input, MachineOutput output) {
-		RECIPE_LIST.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), 1);
+	@Override
+	public boolean needsInitialRedstoneUpdate() {
+		return true;
 	}
 
-	public static void removeRecipe(String id) {
-		RECIPE_LIST.removeRecipe(id);
+	public ResourceLocation getGuiTexture() {
+		return GUI_LOCATION;
+	}
+
+	public int getMaxEnergy() {
+		return this.maxEnergy;
+	}
+
+	@Override
+	public double getWrenchDropRate() {
+		return 1.0D;
+	}
+
+	@Override
+	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+		return false;
+	}
+
+	@Override
+	public void onTankChanged(IFluidTank tank) {
+		this.getNetwork().updateTileGuiField(this, NBT_TANK);
+	}
+
+	public boolean tankEmpty() {
+		return this.tank.getFluid() == null || this.tank.getFluidAmount() < 1000;
+	}
+
+	public boolean redstoneEnabled() {
+		return this.world.isBlockPowered(this.getPos());
+	}
+
+	@Override
+	public boolean hasLeftClick() {
+		return false;
+	}
+
+	@Override
+	public boolean hasRightClick() {
+		return true;
+	}
+
+	@Override
+	public void onLeftClick(EntityPlayer var1, Side var2) {
+	}
+
+	@Override
+	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
 	}
 
 	@Override
@@ -268,14 +271,6 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 		}
 	}
 
-	public boolean tankEmpty() {
-		return this.tank.getFluid() == null || this.tank.getFluidAmount() < 1000;
-	}
-
-	public boolean redstoneEnabled() {
-		return this.world.isBlockPowered(this.getPos());
-	}
-
 	public void checkProgress() {
 		// If the progress is full, produce a UU-Matter
 		ItemStack output = this.inventory.get(8);
@@ -291,46 +286,50 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 		}
 	}
 
-	public void updateGui() {
-		this.getNetwork().updateTileGuiField(this, NBT_PROGRESS);
-		this.getNetwork().updateTileGuiField(this, "energy");
+	public static void postInit() {
+		/** Collecting ic2 entries **/
+		for (RecipeEntry var : ClassicRecipes.massfabAmplifier.getRecipeMap()) {
+			addAmplifier(var.getInput(), var.getOutput().getMetadata().getInteger("amplification"));
+		}
+		addAmplifier("dustRedstone", 5000);
+		addAmplifier("dustGlowstone", 25000);
+		addAmplifier("dustRuby", 50000);
+		addAmplifier("dustSapphire", 50000);
+		addAmplifier("dustEmerald", 50000);
+		addAmplifier("dustOlivine", 50000);
+		addAmplifier("dustEnderPearl", 50000);
+		addAmplifier("dustEnderEye", 80000);
+		addAmplifier("dustDiamond", 80000);
+		/** Adding my elements **/
+		for (GTMaterialElement element : GTMaterialElement.getElementList()) {
+			int value = element.getAmplifierValue();
+			if (element.getNumber() != 77) {
+				addAmplifier(element.getInput(), value);
+			}
+		}
 	}
 
-	public boolean hasPower() {
-		return energy >= 5000;
+	public static IRecipeModifier[] value(int value) {
+		if (value < 5000) {
+			value = 5000;
+		}
+		return GTRecipeMachineHandler.totalEu(RECIPE_LIST, value);
 	}
 
-	@Override
-	public boolean supportsNotify() {
-		return true;
+	public static void addAmplifier(String input, int value) {
+		addAmplifier(new RecipeInputOreDict(input), value);
 	}
 
-	@Override
-	public boolean needsInitialRedstoneUpdate() {
-		return true;
+	public static void addAmplifier(ItemStack input, int value) {
+		addAmplifier(new RecipeInputItemStack(StackUtil.copyWithSize(input, 1)), value);
 	}
 
-	public ResourceLocation getGuiTexture() {
-		return GUI_LOCATION;
+	public static void addAmplifier(IRecipeInput input, int value) {
+		addAmplifier(new IRecipeInput[] { input }, value(value), GTMaterialGen.getIc2(Ic2Items.uuMatter, 1));
 	}
 
-	public int getMaxEnergy() {
-		return this.maxEnergy;
-	}
-
-	@Override
-	public double getWrenchDropRate() {
-		return 1.0D;
-	}
-
-	@Override
-	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
-		return false;
-	}
-
-	@Override
-	public void onTankChanged(IFluidTank tank) {
-		this.getNetwork().updateTileGuiField(this, NBT_TANK);
+	private static void addAmplifier(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
+		GTRecipeMachineHandler.addRecipe(RECIPE_LIST, inputs, modifiers, outputs);
 	}
 
 	@Override

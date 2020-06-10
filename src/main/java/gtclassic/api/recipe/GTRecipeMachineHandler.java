@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
@@ -23,20 +25,23 @@ public class GTRecipeMachineHandler {
 	 * 
 	 * @param recipeList - the list to use
 	 * @param inputs     - IRecipeInput array of inputs
-	 * @param modifiers  - RecipeModifers can use totalEU method in this same class
+	 * @param modifiers  - RecipeModifers can use totalEU method in this same class,
+	 *                   nullable
 	 * @param outputs    - ItemStack array of outputs
 	 */
-	public static void addRecipe(GTRecipeMultiInputList recipeList, IRecipeInput[] inputs, IRecipeModifier[] modifiers,
-			ItemStack... outputs) {
+	public static void addRecipe(GTRecipeMultiInputList recipeList, @Nullable IRecipeInput[] inputs,
+			IRecipeModifier[] modifiers, ItemStack... outputs) {
 		List<IRecipeInput> inlist = new ArrayList<>();
 		List<ItemStack> outlist = new ArrayList<>();
 		Collections.addAll(inlist, inputs);
 		Collections.addAll(outlist, outputs);
 		NBTTagCompound mods = new NBTTagCompound();
-		for (IRecipeModifier modifier : modifiers) {
-			modifier.apply(mods);
+		if (modifiers != null) {
+			for (IRecipeModifier modifier : modifiers) {
+				modifier.apply(mods);
+			}
 		}
-		addRecipe(recipeList, inlist, new MachineOutput(mods, outlist));
+		addRecipe(recipeList, inlist, new MachineOutput(modifiers != null ? mods : null, outlist));
 	}
 
 	/** Private boiler for the recipe adder above **/

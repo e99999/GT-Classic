@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import gtclassic.api.helpers.GTHelperFluid;
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
@@ -14,7 +15,6 @@ import gtclassic.common.GTBlocks;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityMachine;
-import ic2.core.block.base.util.info.misc.IWrench;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
@@ -29,10 +29,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class GTTileDrum extends TileEntityMachine implements ITankListener, IItemContainer, IClickable,
@@ -59,7 +57,9 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		return false;
 	}
 
+	@Override
 	public void onTankChanged(IFluidTank tank) {
+		world.updateComparatorOutputLevel(pos, this.blockType);
 	}
 
 	@Override
@@ -100,20 +100,6 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		this.flow = canFlow;
 	}
 
-	@Override
-	public boolean canRemoveBlock(EntityPlayer player) {
-		if (player.isSneaking() && player.getHeldItemMainhand().getItem() instanceof IWrench) {
-			this.flow = !this.flow;
-			if (this.isSimulating()) {
-				String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
-				IC2.platform.messagePlayer(player, msg);
-				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
-			}
-			return false;
-		}
-		return true;
-	}
-
 	public IC2Tank getTankInstance() {
 		return this.tank;
 	}
@@ -134,20 +120,27 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
-		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+		if (player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
+			this.flow = !this.flow;
+			if (this.isSimulating()) {
+				String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
+				IC2.platform.messagePlayer(player, msg);
+				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
+			}
+		} else {
+			GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+		}
+		return true;
 	}
 
 	@Override
 	public void update() {
-		if (this.flow && world.getTotalWorldTime() % 10 == 0 && this.tank.getFluid() != null) {
+		if (this.flow && world.getTotalWorldTime() % 10 == 0) {
 			EnumFacing side = updateSideForOutput();
-			IFluidHandler fluidTile = FluidUtil.getFluidHandler(world, this.getPos().offset(side), side.getOpposite());
-			if (fluidTile != null && FluidUtil.tryFluidTransfer(fluidTile, this.tank, 500, true) != null) {
-				// empty if transfered method
-			}
+			GTUtility.exportFluidFromMachineToSide(this, this.tank, side, 500);
 		}
 	}
-	
+
 	private EnumFacing updateSideForOutput() {
 		if (this.tank.getFluid() != null && this.tank.getFluid().getFluid().isGaseous()) {
 			return EnumFacing.UP;

@@ -67,6 +67,12 @@ public class GTItemSprayCan extends Item implements IStaticTexturedItem, IGTColo
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		return true;
+	}
+
+	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
 		if (nbt.hasKey(COLOR)) {

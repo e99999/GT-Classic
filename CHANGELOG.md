@@ -1,10 +1,72 @@
 # Changelog
+# 1.1.5 (Not Released)
+- Added the Redstone Controlled Lamp from GT4, can be painted different colors and has a variable light level.
+- Changed the Bedrock Miner to now try to break a pipe/consume lubricant every mining operation instead of every successful operation.
+- Changed the Bedrock Miner now auto outputs out of the back instead of the top for easier automation with GTC Drums.
+- Fixed crash with Player Detector throwing NPE on block update.
+- Fixed Player Detector and Redstone Receiver not updating adjacent blocks redstone level like stone etc..
+- Fixed colored tiles being reset to no color on servers.
+- Fixed Type filter allowing similar types to pass through the filter.
+- Added a recipe for compat with other mods unrefined rubber.
 
-# 1.1.2 (Not Released)
+# 1.1.4
+- Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.
+- Note the Display Screens are very basic, and I have not decided how I want to handle lots of things like modular screens or adding information/titles yourself.   
+- Fixed a bug where relogging would cause the Basic Worktable to be stuck "in use" texture.
+- Changed Player Detector and Drum toggle modes to be sneaking with an empty hand instead of with a Wrench.
+- Added ability for IDSU, AESU, and LESU to output redstone level like IC2C EU storage tiles, sneak click with an empty hand to cycle modes.
+- Added comparator output for the Drum and the Battery Block.
+- Changed, you can now click the Matter Fabricator with a fluid container to empty it into the internal tank.
+- Changed, you can now click the Magic Energy Converter with a fluid container to empty it into the internal tank.
+- Fixed crash with AE2 particle effect ASM
+- Fixed Tesseract Terminal updating fluid capability but not items, now updates item pipes and stuff if destination is invalid.
+
+# 1.1.3
+- Changed, Magical Energy Absorber can now siphon energy from End Portals with a few very specific behaviors. only one per portal or KABOOM! (configurable). Also if you absorb portals in Overworld Strongholds there is a chance to disable the portal and remove an Ender Eye from the portal frame every so often (roughly one MC day).
+- Added the Electric Rock Breaker from other GT's. Place lava and water vertically for Stone, or on either side for Cobble. You can also input Redstone for Obsidian and Quartz for various vanilla stone types.
+- Fixed Energy Absorber was miscalculating, using the amount of enchants and not the sum of total levels of enchants on a book.
+- Fixed UU-Plasma being the wrong amount, now takes 10 UU to make one cell like IC2.
+- Added very funny centrifuge recipe for getting UU back from UU Plasma Cells, it would take you 8 hours at the default speed.
+- Changed, Boosted UU-Plasma magical fuel value because it is now way more expensive to make.
+- Changed the Mob Repeller and Microwave Energy Transmitter recipes to be a little more thought out.
+- Changed, Increased the Magic Energy Converter internal tank capacity from 1 to 16 buckets.
+- Added Centrifuge recipe for getting resources from Prismarine, treating it as a potassium feldspar based stone.
+- Changed, UU-Matter Assembler now requires a Quantum Chest to craft and has an Integer.MAX_VALUE limit for UU Storage like the original.
+- Changed, Boosted Loot! items can now spawn in multiples of up to 5 instead of just one.
+- Fixed, Jack Hammer not working with modded stone types, now it detects any block made of stone that is not an ore block.
+- Added leaves decaying faster, can be disabled in the config. Wont load the code if Fast Leaf Decay is loaded.
+- Fixed it so you cant accidently place a fluid block when clicking a full drum with a fluid container.
+- Fixed Clay Dust Centrifuge recipe giving you 2 free tubes.
+- Changed, Super Solid Fuels can now use charcoal in addition to regular coal.
+- Fixed vanilla rail recipes being added if Railcraft was loaded.
+
+# 1.1.2
+- Added a new block, The Block Extender. Allows you to extends side of any tile its attached too, they cannot extend each other.
+- Added Type Filter, similar to a buffer but filters input using ore dict tags. Additional filters can be added in configs under mod compat.
+- Added Item Filter, just because so much of the code was already implemented, its like a buffer/translocator hybrid from older GT's.
+- Changed the Tesseract Terminal no longer transfers point to point, but is more like a transdimensional block extender.
 - Fixed the Item Translocator converting fluid containers to other fluids when it successfully transfered them.
 - Fixed Item Translocator not inputting into the correct side for the output tile.
 - Changed Disassembler to no longer use TForest uncrafting table and fixed recipe being weird and allowing any Ic2 Machine.
 - Changed Superconductor Item recipe to be more like GT4 using cheaper helium cells and more tungsten vs iridium.
+- Changed Electric Macerator can be crafted with Tungsten ingots in addition to the original diamond recipe.
+- Fixed Drum not auto outputting into the correct side for connected fluid tile.
+- Added Invar as another possible metal to use in mixed metal.
+- Added Gold as another possible metal to use in basic circuits.
+- Changed, Magic Energy Converter now is more like a generator in that it consumes items and generates power over time vs the an instant amount of power.
+- Changed, increased the magic fuel value for some vanilla items.
+- Changed the recipes for translocators to not use IC2 upgrades to craft, I found it annoying in play testing myself.
+- Changed AESU recipe to be more like GT4, less of an endless lapis grind.
+- Added UU Matter Plasma as a dynamite magic fuel!
+- Fixed some recipes not using ender chest ore dict
+- Fixed buffers not checking the correct stack size to see if an inventory was full, buffers now output redstone if there no empty slots
+- Added mouseover tooltips for every single GTC Gui that has a button.
+- Changed, Fluid Buffer now can output a redstone signal/invert based on the tank.
+- Added a few more Matter Fabricator amplifier items like older GT's, mostly gem dusts/redstone/glowstone etc..
+- Allows the magnifying glass to see EU reader tooltip info, has a config option that defaults too true
+- Made hopper/piston recipes with gtc less insane, now just use anyIron for hoppers and anyIron + Bronze for pistons. renamed config options
+- Added config option for less grass on world gen like older MC, off by default.
+- Added partial Chinese translation by YPXxiao.
 
 # 1.1.1
 - We wrapping this project up on 1.12.2, no data net, no massive open ended time sink projects. Couple more feature additions and then GTC 1.12.2 is done except bug fixes and QOL.

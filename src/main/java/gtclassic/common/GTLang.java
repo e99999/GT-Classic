@@ -6,6 +6,7 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 
 public class GTLang {
 
+	/** Block/Tile References **/
 	public static final LocaleComp AUTOCRAFTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.autocrafter");
 	public static final LocaleComp CHARGE_O_MAT = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.chargeomat");
 	public static final LocaleComp COMPUTER_CUBE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.computercube");
@@ -35,6 +36,7 @@ public class GTLang {
 	public static final LocaleComp REDSTONE_TRANSMITTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.redstonetransmitter");
 	public static final LocaleComp REDSTONE_RECEIVER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.redstonereceiver");
 	public static final LocaleComp SUPERCONDENSATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.supercondensator");
+	public static final LocaleComp BLOCK_EXTENDER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.blockextender");
 	public static final LocaleComp SUPERCONDUCTORCABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.superconductorcable");
 	public static final LocaleComp DATACABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.datacable");
 	public static final LocaleComp WORKTABLE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.worktable");
@@ -43,11 +45,41 @@ public class GTLang {
 	public static final LocaleComp BATTERYBLOCK_LV = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.batteryblocklv");
 	public static final LocaleComp TRANSLOCATOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocator");
 	public static final LocaleComp TRANSLOCATOR_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.translocatorfluid");
+	public static final LocaleComp TYPE_FILTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.typefilter");
+	public static final LocaleComp ITEM_FILTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.itemfilter");
+	public static final LocaleComp ROCK_BREAKER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.rockbreaker");
 	public static final LocaleComp BUFFER_LARGE = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferlarge");
 	public static final LocaleComp BUFFER_SMALL = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.buffersmall");
 	public static final LocaleComp BUFFER_FLUID = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bufferfluid");
-	public static final LocaleComp SLUICE_BOX = new LocaleBlockComp("tile.gtclassic.sluicebox");
-	public static final LocaleComp SLUICE_EXT = new LocaleBlockComp("tile.gtclassic.sluiceboxextension");
+	public static final LocaleComp DISPLAY_SCREEN = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.displayscreen");
+	public static final LocaleComp LAMP = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lamp");
 	public static final LocaleComp ORE_BEDROCK = new LocaleBlockComp("tile.gtclassic.oreBedrock");
 	public static final LocaleComp TEST = new LocaleBlockComp("tile.gtclassic.test");
+	/** Buttons **/
+	public static final String BUTTON_TEST = "button.gtclassic.test";
+	public static final String BUTTON_SORT = "button.gtclassic.sort";
+	public static final String BUTTON_NOPOWER = "button.gtclassic.nopower";
+	public static final String BUTTON_STRUCUTURE_TRUE = "button.gtclassic.structure0";
+	public static final String BUTTON_STRUCUTURE_FALSE = "button.gtclassic.structure1";
+	public static final String BUTTON_DIGITALCHEST_UPLOAD = "button.gtclassic.digitalchest0";
+	public static final String BUTTON_DIGITALCHEST_DOWNLOAD = "button.gtclassic.digitalchest1";
+	public static final String BUTTON_MAGICABSORBER_PLAYER = "button.gtclassic.magicabsorber0";
+	public static final String BUTTON_MAGICABSORBER_POTION = "button.gtclassic.magicabsorber1";
+	public static final String BUTTON_MAGICABSORBER_PORTAL = "button.gtclassic.magicabsorber2";
+	public static final String BUTTON_MAGICABSORBER_WARNING = "button.gtclassic.magicabsorber3";
+	public static final String BUTTON_UUM_CLEAR = "button.gtclassic.uum0";
+	public static final String BUTTON_UUM_SCAN = "button.gtclassic.uum1";
+	public static final String BUTTON_UUM_CLEARTARGET = "button.gtclassic.uum2";
+	public static final String BUTTON_WORKTABLE_SHIFTPLAYER = "button.gtclassic.worktable0";
+	public static final String BUTTON_WORKTABLE_SHIFTINV = "button.gtclassic.worktable1";
+	public static final String BUTTON_BUFFER_ENERGY = "button.gtclassic.buffer0";
+	public static final String BUTTON_BUFFER_REDSTONE = "button.gtclassic.buffer1";
+	public static final String BUTTON_BUFFER_INVREDSTONE = "button.gtclassic.buffer2";
+	public static final String BUTTON_BUFFER_INVFILTER = "button.gtclassic.buffer3";
+	public static final String BUTTON_BUFFER_IGNORENBT = "button.gtclassic.buffer4";
+	public static final String BUTTON_AESU_ADD64 = "button.gtclassic.aesu0";
+	public static final String BUTTON_AESU_ADD1 = "button.gtclassic.aesu1";
+	public static final String BUTTON_AESU_SUB1 = "button.gtclassic.aesu2";
+	public static final String BUTTON_AESU_SUB64 = "button.gtclassic.aesu3";
+	public static final String BUTTON_ROCKBREAKER = "button.gtclassic.rockbreaker";
 }

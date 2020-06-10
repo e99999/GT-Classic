@@ -7,6 +7,7 @@ import gtclassic.api.recipe.GTRecipeCraftingHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
+import gtclassic.common.tile.GTTileTypeFilter;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.IC2;
@@ -71,11 +72,11 @@ public class GTRecipe {
 				recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.fuelBinderMagic, 3), GTMaterialGen.get(GTItems.fuelBinder), "dustEnderEye", GTMaterialGen.getTube(GTMaterial.Mercury, 1));
 				recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.fuelBinderMagic, 3), GTMaterialGen.get(GTItems.fuelBinder), Items.BLAZE_POWDER, GTMaterialGen.getTube(GTMaterial.Mercury, 1));
 				/** Solid Super Fuel **/
-				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuel, 1), GTValues.BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuel, 1), GTValues.INPUT_BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.get(GTItems.fuelBinder), GTMaterialGen.getTube(GTMaterial.Fuel, 1));
 				/** Magic Solid Super Fuel **/
-				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustSapphire", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
-				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustEmerald", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
-				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustThorium", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.INPUT_BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustSapphire", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.INPUT_BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustEmerald", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
+				recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic, 1), GTValues.INPUT_BLOCK_COAL, GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), GTMaterialGen.get(GTItems.fuelBinderMagic), "dustThorium", GTMaterialGen.getTube(GTMaterial.Fuel, 1));
 			}
 		}
 	}
@@ -112,6 +113,10 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTItems.electroMagnet, 1), "M M", "WMW", "IBI", 'M', Ic2Items.magnet, 'B', Ic2Items.battery, 'I', GTValues.INGOT_REFINEDIRON, 'W', Ic2Items.copperCable);
 			/** Tesla Staff **/
 			recipes.addRecipe(GTMaterialGen.get(GTItems.teslaStaff, 1), " SL", " PS", "P  ", 'L', GTValues.BATTERY_ULTIMATE, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
+			/** Spring Boots **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.springBoots, 1), "IBI", "I I", 'B', Ic2Items.compositeBoots.copy(), 'I', GTValues.INGOT_REFINEDIRON);
+			/** Destructo Pack **/
+			recipes.addRecipe(GTMaterialGen.get(GTItems.destructoPack, 1), "CIC", "ILI", "CIC", 'L', GTValues.FS_LAVA, 'C', GTValues.CIRCUIT_BASIC, 'I', GTValues.INGOT_REFINEDIRON);
 		}
 		/** Test Tube **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.testTube, 32), "G G", "G G", " G ", 'G', GTValues.BLOCK_GLASS);
@@ -121,8 +126,6 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.flintMortar), " F ", "BFB", "BBB", 'F', Items.FLINT, 'B', "plankWood");
 		/** Iron Mortar **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.ironMortar, 1), " I ", "BIB", "BBB", 'I', GTValues.INPUT_INGOT_ANYIRON, 'B', "stone");
-		/** Destructo Pack **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.destructoPack, 1), "CIC", "ILI", "CIC", 'L', GTValues.FS_LAVA, 'C', GTValues.CIRCUIT_BASIC, 'I', GTValues.INGOT_REFINEDIRON);
 		/** Helium Coolant **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium1, 1), " I ", "IHI", " I ", 'I', GTValues.INGOT_TIN, 'H', GTMaterialGen.getTube(GTMaterial.Helium, 1));
 		recipes.addRecipe(GTMaterialGen.get(GTItems.heatStorageHelium3, 1), "III", "HHH", "III", 'I', GTValues.INGOT_TIN, 'H', GTItems.heatStorageHelium1);
@@ -135,8 +138,6 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.lapotronPack, 1), "ELE", "SBS", "EPE", 'E', GTValues.CIRCUIT_MASTER, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'L', GTValues.BATTERY_ULTIMATE, 'B', GTItems.lithiumBatpack, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.echotron, 1), " C ", "CEC", " C ", 'E', GTBlocks.tileEchotron, 'C', GTValues.CIRCUIT_DATA);
-		/** Spring Boots **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.springBoots, 1), "IBI", "I I", 'B', Ic2Items.compositeBoots.copy(), 'I', GTValues.INGOT_REFINEDIRON);
 		/** Thorium rods **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium2), "UCU", 'U', GTItems.rodThorium1, 'C', Ic2Items.denseCopperPlate.copy());
 		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium4), " U ", "CCC", " U ", 'U', GTItems.rodThorium2, 'C', Ic2Items.denseCopperPlate.copy());
@@ -162,12 +163,14 @@ public class GTRecipe {
 			}
 			/** Electric Craftingtable **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAutocrafter), " W ", "CMC", " P ", 'W', Ic2Items.battery.copy(), 'C', GTValues.CIRCUIT_ADVANCED, 'M', "workbench", 'P', GTValues.MACHINE_ADV);
+			/** Electric Rock Breaker **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRockBreaker), "IDI", "CTC", "IMI", 'I', GTValues.INGOT_INVAR, 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_ADV, 'D', GTValues.INPUT_DIAMOND_OR_TUNGSTEN, 'T', Ic2Items.electricDrill.copy());
 			/** Industrial Centrifuge **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCentrifuge, 1), "RCR", "AEA", "RCR", 'E', Ic2Items.extractor, 'R', GTValues.INGOT_REFINEDIRON, 'A', GTValues.MACHINE_ADV, 'C', GTValues.CIRCUIT_ADVANCED);
 			/** Charcoal Pit **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCharcoalPit), new Object[] { "IFI", "IFI", "IFI", 'I',
 					"ingotRefinedIron", 'F', Items.FLINT });
-			/** Disassemembler  **/
+			/** Disassemembler **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisassembler, 1), "RAR", "ECE", "RWR", 'A', Ic2Items.extractor.copy(), 'W', GTBlocks.tileAutocrafter, 'R', GTValues.INGOT_REFINEDIRON, 'E', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_ADVANCED);
 			/** Computer Cube **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileComputer, 1), "RGD", "GMG", "DGR", 'D', GTValues.CIRCUIT_ULTIMATE, 'R', GTValues.CIRCUIT_MASTER, 'G', GTValues.BLOCK_GLASS, 'M', GTValues.MACHINE_ADV);
@@ -177,32 +180,44 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumChest, 1), "ICI", "MDM", "ICI", 'D', GTValues.CIRCUIT_ULTIMATE, 'I', GTValues.INPUT_INGOT_DIGITAL, 'C', GTValues.CHEST_WOOD, 'M', GTValues.MACHINE_ADV);
 			/** Quantum Tank **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileQuantumTank, 1), "ICI", "MDM", "ICI", 'D', GTValues.CIRCUIT_ULTIMATE, 'I', GTValues.INPUT_INGOT_DIGITAL, 'C', Items.BUCKET, 'M', GTValues.MACHINE_ADV);
-			/** Translocator **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Ic2Items.importBasicUpgrade);
-			/** Large Chest Buffer **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', GTValues.CHEST_WOOD);
 			/** Cabinet **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileCabinet), "III", "CIC", "III", 'I', GTValues.INPUT_INGOT_MACHINE, 'C', GTValues.CHEST_WOOD);
 			/** Workbench **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileWorktable), "IWI", "III", "ICI", 'I', GTValues.INPUT_INGOT_MACHINE, 'C', GTValues.CHEST_WOOD, 'W', "workbench");
 			/** Drum **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDrum), "I I", "IBI", "IBI", 'I', GTValues.INGOT_REFINEDIRON, 'B', Items.BUCKET);
+			/** Translocator **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocator), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_ADV, 'P', GTValues.INPUT_PISTON_ANY);
+			/** Type Filter **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTypeFilter), "III", "TCB", "III", 'I', GTValues.INPUT_INGOT_MACHINE, 'C', GTValues.CIRCUIT_ADVANCED, 'T', GTBlocks.tileTranslocator, 'B', GTBlocks.tileBufferLarge);
+			/** Item Filter **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileItemFilter), "III", "TCB", "III", 'I', GTValues.INPUT_INGOT_MACHINE, 'C', GTValues.CIRCUIT_BASIC, 'T', GTBlocks.tileTranslocator, 'B', GTBlocks.tileBufferLarge);
+			/** Large Chest Buffer **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', GTValues.CHEST_WOOD);
 			/** Fluid Translocator **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Ic2Items.basicFluidImportUpgrade);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTranslocatorFluid), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_ADV, 'P', Items.BUCKET);
 			/** Fluid Buffer **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CMC", " P ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Items.BUCKET);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferFluid), " W ", "CPC", " M ", 'W', Ic2Items.insulatedCopperCable.copy(), 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'P', Items.BUCKET);
 			/** Tesseract Generator **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractMaster), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_MASTER, 'E', Blocks.ENDER_CHEST, 'M', GTBlocks.tileComputer);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractMaster), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_MASTER, 'E', GTValues.ENDER_CHEST, 'M', GTBlocks.tileComputer);
 			/** Tesseract Terminal **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractSlave), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_ELITE, 'E', Blocks.ENDER_CHEST, 'M', GTValues.MACHINE_ADV);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileTesseractSlave), "ICI", "CEC", "IMI", 'I', GTValues.INGOT_TITANIUM, 'C', GTValues.CIRCUIT_ELITE, 'E', GTValues.ENDER_CHEST, 'M', GTValues.MACHINE_ADV);
+			/** Low Voltage Battery Block **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBatteryLV), " W ", "IRI", "IMI", 'W', Ic2Items.copperCable, 'I', GTValues.INGOT_TIN, 'M', GTValues.MACHINE_BASIC, 'R', "blockRedstone");
+			/** Display Screen **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisplayScreen), "PPP", "CMC", "BRB", 'P', "paneGlass", 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'B', "dyeBlack", 'R', "dustRedstone");
+			/** Redstone Lamp **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLamp, 2), "IPI", "PRP", "IPI", 'P', "paneGlass", 'I', GTValues.INPUT_INGOT_MACHINE, 'R', Blocks.REDSTONE_LAMP);
+			/** Bonus recipe for hopper **/
+			if (GTConfig.general.replaceHopperRecipe) {
+				GTRecipeCraftingHandler.removeRecipe("minecraft", "hopper");
+				recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), "I I", "ICI", " I ", 'I', GTValues.INPUT_INGOT_ANYIRON, 'C', GTValues.CHEST_WOOD);
+			}
 		}
 		/** Bonus recipe for piston **/
-		if (GTConfig.general.morePistonRecipes) {
-			recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), "WWW", "CIC", "CRC", 'W', "plankWood", 'C', "cobblestone", 'I', GTValues.INPUT_INGOT_ANY, 'R', GTValues.DUST_REDSTONE);
-		}
-		/** Bonus recipe for hopper **/
-		if (GTConfig.general.moreHopperRecipes) {
-			recipes.addRecipe(GTMaterialGen.get(Blocks.HOPPER), "I I", "ICI", " I ", 'I', GTValues.INPUT_INGOT_ANY, 'C', GTValues.CHEST_WOOD);
+		if (GTConfig.general.replacePistonRecipe) {
+			GTRecipeCraftingHandler.removeRecipe("minecraft", "piston");
+			recipes.addRecipe(GTMaterialGen.get(Blocks.PISTON), "WWW", "CIC", "CRC", 'W', "plankWood", 'C', "cobblestone", 'I', GTValues.INPUT_INGOT_ANYIRONORBRONZE, 'R', GTValues.DUST_REDSTONE);
 		}
 		/** Tungsten Mining Pipe **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.miningPipe, 8), "T T", "T T", "TIT", 'T', GTValues.INGOT_TUNGSTEN, 'I', GTValues.GEM_DIAMOND);
@@ -219,9 +234,9 @@ public class GTRecipe {
 		/** Magic Energy Absorber **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', Blocks.BEACON, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
 		/** Player Detector **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), " D ", "CcC", " D ", 'D', Blocks.OBSERVER, 'C', GTValues.CIRCUIT_BASIC, 'c', GTValues.MACHINE_ADV);
-		/** Energy Storage **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAESU), "OOO", "OCO", "OOO", 'O', GTValues.BATTERY_ULTIMATE, 'C', GTBlocks.tileComputer);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), " D ", "CMC", " D ", 'D', GTValues.CIRCUIT_DATA, 'C', GTValues.CIRCUIT_ADVANCED, 'M', GTValues.MACHINE_ADV);
+		/** AESU **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAESU), "ECE", "EOE", "EME", 'O', GTValues.BATTERY_ULTIMATE, 'C', GTBlocks.tileComputer, 'M', GTValues.MACHINE_ELITE, 'E', GTValues.CIRCUIT_MASTER);
 		/** Large Chest Buffer **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBufferLarge), "SSS", "SCS", "SSS", 'S', GTBlocks.tileBufferSmall, 'C', Ic2Items.upgradeBase.copy());
 		/** Matter Fabricator **/
@@ -233,7 +248,7 @@ public class GTRecipe {
 		/** Charge-O-Mat **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileChargeOmat, 1), "RCR", "AEA", "RMR", 'E', GTValues.BATTERY_ULTIMATE, 'R', GTValues.CIRCUIT_MASTER, 'A', GTValues.CHEST_WOOD, 'C', GTBlocks.tileComputer, 'M', GTValues.MACHINE_ADV);
 		/** IDSU **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), "PHP", "HEH", "PHP", 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'H', GTBlocks.tileAESU, 'E', Blocks.ENDER_CHEST);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileIDSU, 1), "PHP", "HEH", "PHP", 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'H', GTBlocks.tileAESU, 'E', GTValues.ENDER_CHEST);
 		/** LESU **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLESU, 1), " L ", "CBC", " H ", 'L', Ic2Items.transformerLV, 'H', Ic2Items.transformerMV, 'C', GTValues.CIRCUIT_ADVANCED, 'B', GTBlocks.casingLapotron);
 		/** Supercondensator **/
@@ -250,19 +265,19 @@ public class GTRecipe {
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), "CRC", "JMN", "CBC", 'C', GTValues.CIRCUIT_BASIC, 'R', "record", 'J', Blocks.JUKEBOX, 'M', GTValues.MACHINE_ADV, 'N', Blocks.NOTEBLOCK, 'B', Ic2Items.battery);
 		/** Monster Repellator **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMobRepeller, 1), "SSS", " M ", "CCC", 'S', "gemSapphire", 'M', GTValues.MACHINE_ADV, 'C', GTValues.CIRCUIT_BASIC);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMobRepeller, 1), "PPP", " M ", "CCC", 'P', Items.ENDER_PEARL, 'M', GTValues.MACHINE_ADV, 'C', GTValues.CIRCUIT_DATA);
 		/** Energy Transmitter **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEnergyTransmitter, 1), "STS", "WEW", "SCS", 'S', "gemSapphire", 'T', Ic2Items.teleporter, 'C', GTBlocks.tileComputer, 'E', Ic2Items.transformerMV, 'W', GTValues.CRAFTING_SUPERCONDUCTOR);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEnergyTransmitter, 1), "CTC", "PEP", "CLC", 'P', GTValues.INGOT_PLATINUM, 'T', Ic2Items.teleporter.copy(), 'C', GTValues.CIRCUIT_ELITE, 'E', Ic2Items.transformerMV.copy(), 'L', Ic2Items.lapotronCrystal.copy());
 		/** UU Assembler **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), "dCd", "TQE", "DBD", 'd', "circuitElite", 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileCabinet, 'E', GTBlocks.tileAutocrafter, 'D', GTValues.CIRCUIT_ULTIMATE, 'B', GTValues.INPUT_BATTERY_ADVANCED);
-		/** Low Voltage Battery Block **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBatteryLV), " W ", "IRI", "IMI", 'W', Ic2Items.copperCable, 'I', GTValues.INGOT_TIN, 'M', GTValues.MACHINE_BASIC, 'R', "blockRedstone");
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), "dCd", "TQE", "DBD", 'd', GTValues.CIRCUIT_DATA, 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileQuantumChest, 'E', GTBlocks.tileAutocrafter, 'D', GTValues.CIRCUIT_ULTIMATE, 'B', GTValues.INPUT_BATTERY_ADVANCED);
 		/** Redstone Transmitter **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneTransmitter), "TCT", "QMQ", "RER", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_ADVANCED, 'Q', "gemQuartz", 'E', "enderpearl", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
 		/** Redstone Receiver **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneReceiver), "TCT", "QMQ", "RQR", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_BASIC, 'Q', "gemQuartz", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
+		/** Block Extender **/
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBlockExtender), "CHC", "BMB", "CHC", 'C', GTValues.CIRCUIT_ADVANCED, 'H', Blocks.HOPPER, 'M', GTValues.MACHINE_ADV, 'B', Items.BUCKET);
 		/** More recipes for vanilla rails **/
-		if (GTConfig.general.vanillaRailRecipes) {
+		if (GTConfig.general.vanillaRailRecipes && !Loader.isModLoaded(GTValues.MOD_ID_RC)) {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.GOLDEN_RAIL, 6), "I I", "ISI", "IRI", 'I', "ingotElectrum", 'S', GTValues.STICK_WOOD, 'R', GTValues.DUST_REDSTONE);
 			recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 8), "I I", "ISI", "IRI", 'I', GTValues.INGOT_REFINEDIRON, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', GTValues.DUST_REDSTONE);
 			recipes.addRecipe(GTMaterialGen.get(Blocks.DETECTOR_RAIL, 12), "I I", "ISI", "IRI", 'I', GTValues.INPUT_INGOT_HIGH, 'S', Blocks.STONE_PRESSURE_PLATE, 'R', GTValues.DUST_REDSTONE);
@@ -280,8 +295,7 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.waterMill.copy(), 3), " X ", "XYX", " X ", 'Y', Ic2Items.generator.copy(), 'X', GTValues.INGOT_ALUMINIUM);
 			/** Mixed Metal Ingots **/
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.mixedMetalIngot, 3), "III", "BBB", "TTT", 'I', GTValues.INGOT_REFINEDIRON, 'B', GTValues.INGOT_BRONZE, 'T', GTValues.INPUT_INGOT_MIXED);
-			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.mixedMetalIngot, 6), "III", "BBB", "TTT", 'I', GTValues.INGOT_TITANIUM, 'B', GTValues.INGOT_BRONZE, 'T', GTValues.INPUT_INGOT_MIXED);
-			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.mixedMetalIngot, 6), "III", "BBB", "TTT", 'I', GTValues.INGOT_TUNGSTEN, 'B', GTValues.INGOT_BRONZE, 'T', GTValues.INPUT_INGOT_MIXED);
+			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.mixedMetalIngot, 6), "III", "BBB", "TTT", 'I', GTValues.INPUT_INGOT_HIGH, 'B', GTValues.INGOT_BRONZE, 'T', GTValues.INPUT_INGOT_MIXED);
 			/** Alt Reactor Vent **/
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorVent, 1), "IBI", "B B", "IBI", 'I', GTValues.INGOT_ALUMINIUM, 'B', Blocks.IRON_BARS);
 		}
@@ -366,7 +380,7 @@ public class GTRecipe {
 			if (GTConfig.general.harderIC2Macerator) {
 				recipes.overrideRecipe("shaped_tile.blockStoneMacerator_-130868445", Ic2Items.stoneMacerator.copy(), "FDF", "DPD", "FBF", 'D', GTValues.GEM_DIAMOND, 'F', Items.FLINT, 'P', Blocks.PISTON, 'B', Blocks.FURNACE);
 				recipes.overrideRecipe("shaped_tile.blockMacerator_127744036", Ic2Items.macerator.copy(), "III", "IMI", "ICI", 'I', GTValues.INGOT_REFINEDIRON, 'M', Ic2Items.stoneMacerator.copy(), 'C', GTValues.CIRCUIT_BASIC);
-				recipes.overrideRecipe("shaped_tile.blockMacerator_2072794668", Ic2Items.macerator.copy(), "FDF", "DMD", "FCF", 'D', GTValues.GEM_DIAMOND, 'F', Items.FLINT, 'M', GTValues.MACHINE_BASIC, 'C', GTValues.CIRCUIT_BASIC);
+				recipes.overrideRecipe("shaped_tile.blockMacerator_2072794668", Ic2Items.macerator.copy(), "FDF", "DMD", "FCF", 'D', GTValues.INPUT_DIAMOND_OR_TUNGSTEN, 'F', Items.FLINT, 'M', GTValues.MACHINE_BASIC, 'C', GTValues.CIRCUIT_BASIC);
 			}
 			if (IC2.config.getFlag("CraftingNuke")) {
 				recipes.overrideRecipe("shaped_tile.blockNuke_-814805840", GTMaterialGen.getIc2(Ic2Items.nuke, 1), "CUC", "RPR", "CUC", 'C', GTValues.CIRCUIT_ADVANCED, 'U', Ic2Items.reactorReEnrichedUraniumRod.copy(), 'P', GTItems.rodPlutonium1, 'R', Ic2Items.reactorReflectorThick.copy());
@@ -446,6 +460,11 @@ public class GTRecipe {
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Sodium), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Methane), 3000, 16);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Fuel), 4000, 30);
+		GTTileTypeFilter.addOreDictFilter("dust", "dustTiny", "dustSmall", "ingot", "ingotHot", "nugget", "plate", "stick", "rod", "gear", "gem", "block", "ore", "crushed", "crushedPurified", "stone", "log", "plank", "treeSapling", "treeLeaves", "dye", "record", "crop", "machine", "circuit", "item");
+		if (GTConfig.modcompat.extraTypeFilters != null && GTConfig.modcompat.extraTypeFilters.length > 0
+				&& GTConfig.modcompat.extraTypeFilters.length < 64) {
+			GTTileTypeFilter.addOreDictFilter(GTConfig.modcompat.extraTypeFilters);
+		}
 		if (GTConfig.general.addHydrogenAsLiquidFuel) {
 			ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Hydrogen), 950, 16);
 		}

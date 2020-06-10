@@ -3,6 +3,7 @@ package gtclassic.common.container;
 import javax.annotation.Nullable;
 
 import gtclassic.GTMod;
+import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.common.gui.GTGuiCompBuffer;
 import gtclassic.common.tile.GTTileTranslocator;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -53,13 +54,13 @@ public class GTContainerTranslocator extends ContainerTileComponent<GTTileTransl
 
 	@Override
 	public int guiInventorySize() {
-		return 10;
+		return getGuiHolder().slotCount;
 	}
 
 	@Nullable
 	@Override
 	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-		if ((slotId >= 0) && (slotId <= 8)) {
+		if (GTHelperMath.within(slotId, 0, 8)) {
 			ItemStack stack = player.inventory.getItemStack();
 			this.block.setStackInSlot(slotId, stack.isEmpty() ? ItemStack.EMPTY : StackUtil.copyWithSize(stack, 1));
 			return ItemStack.EMPTY;

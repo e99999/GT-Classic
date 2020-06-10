@@ -6,7 +6,11 @@ import java.util.Map;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.world.GTBedrockOreHandler;
+import gtclassic.common.GTConfig;
+import ic2.api.classic.item.IEUReader;
 import ic2.api.classic.tile.machine.IProgressMachine;
+import ic2.api.energy.EnergyNet;
+import ic2.api.energy.tile.IEnergySink;
 import ic2.core.IC2;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +24,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class GTItemMagnifyingGlass extends GTItemComponent {
+public class GTItemMagnifyingGlass extends GTItemComponent implements IEUReader {
 
 	public GTItemMagnifyingGlass() {
 		super("magnifying_glass", 3, 2);
@@ -37,6 +41,12 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 			return EnumActionResult.SUCCESS;
 		}
 		TileEntity tileEntity = world.getTileEntity(pos);
+		if (GTConfig.general.enableMagnifyingGlassGivesEUTooltips && tileEntity instanceof IEnergySink) {
+			IEnergySink euSink = (IEnergySink) tileEntity;
+			IC2.platform.messagePlayer(player, "Input Tier: " + euSink.getSinkTier());
+			IC2.platform.messagePlayer(player, "Input Max: " + EnergyNet.instance.getPowerFromTier(euSink.getSinkTier())
+					+ " EU");
+		}
 		if (tileEntity instanceof IProgressMachine) {
 			IProgressMachine progress = (IProgressMachine) tileEntity;
 			IC2.platform.messagePlayer(player, "Progress: "
@@ -64,5 +74,10 @@ public class GTItemMagnifyingGlass extends GTItemComponent {
 		}
 		world.playSound(null, player.getPosition(), SoundEvents.ENTITY_VILLAGER_AMBIENT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		return EnumActionResult.SUCCESS;
+	}
+
+	@Override
+	public boolean isEUReader(ItemStack var1) {
+		return GTConfig.general.enableMagnifyingGlassGivesEUTooltips;
 	}
 }

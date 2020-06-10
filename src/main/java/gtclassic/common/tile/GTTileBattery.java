@@ -133,6 +133,7 @@ public class GTTileBattery extends TileEntityBlock
 		if (newState != state) {
 			this.state = newState;
 			this.getNetwork().updateTileEntityField(this, "state");
+			world.updateComparatorOutputLevel(pos, this.blockType);
 		}
 	}
 

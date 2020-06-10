@@ -6,6 +6,7 @@ import java.util.Random;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseMachine;
+import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.api.interfaces.IGTItemBlock;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.common.GTBlocks;
@@ -206,6 +207,19 @@ public class GTBlockBattery extends GTBlockBaseMachine implements IGTItemBlock, 
 
 	@Override
 	public int quantityDropped(Random random) {
+		return 0;
+	}
+
+	@Override
+	@Deprecated
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof GTTileBattery) {
+			GTTileBattery battery = (GTTileBattery) tile;
+			if (battery.energy > 0) {
+				return GTHelperMath.clip(15 * battery.energy / battery.maxEnergy, 1, 15);
+			}
+		}
 		return 0;
 	}
 }

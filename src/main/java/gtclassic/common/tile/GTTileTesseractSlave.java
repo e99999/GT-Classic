@@ -2,17 +2,17 @@ package gtclassic.common.tile;
 
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import gtclassic.api.interfaces.IGTCoordinateTile;
 import gtclassic.api.interfaces.IGTDebuggableTile;
+import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
-import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.filters.CommonFilters;
-import ic2.core.inventory.transport.IItemTransporter;
-import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.obj.IClickable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -23,8 +23,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.items.ItemHandlerHelper;
 
@@ -35,10 +34,14 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	private int targetDim;
 	private static final String NBT_TARGETPOS = "targetPos";
 	private static final String NBT_TARGETDIM = "targetDim";
+	private static final String NBT_TARGET = "targetMaster";
+	@NetworkField(index = 8)
+	GTTileTesseractMaster targetMaster;
 
 	public GTTileTesseractSlave() {
 		super(1, 128);
 		this.maxEnergy = 10000;
+		this.addNetworkFields(new String[] { NBT_TARGET });
 	}
 
 	public BlockPos getInventoryPos() {
@@ -120,62 +123,88 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	}
 
 	@Override
+	public void onLoaded() {
+		super.onLoaded();
+		updateConnections();
+	}
+
+	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		return canExtendCapabilites() && this.targetMaster.tesseractTile.hasCapability(capability, facing);
+	}
+
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		return canExtendCapabilites() ? this.targetMaster.tesseractTile.getCapability(capability, facing) : null;
+	}
+
+	private boolean canExtendCapabilites() {
+		if (this.targetMaster == null || this.targetMaster.tesseractTile == null) {
+			return false;
+		}
+		if (this.targetMaster.isInvalid()) {
+			setTarget(null);
+			return false;
+		}
+		if (this.targetMaster.tesseractTile.isInvalid()) {
+			setTarget(null);
+			return false;
+		}
+		return this.hasEnergy(32);
+	}
+
+	@Override
 	public void update() {
 		this.handleEnergy();
-		if (this.getActive() && this.targetPos != null) {
+		if (world.getTotalWorldTime() % 20 == 0 && this.targetPos != null) {
 			WorldServer targetWorld = DimensionManager.getWorld(this.targetDim);
 			if (targetWorld == null) {
+				setTarget(null);
 				return;
 			}
 			TileEntity destination = targetWorld.getTileEntity(this.targetPos);
-			if (destination instanceof GTTileTesseractMaster) {
-				GTTileTesseractMaster output = (GTTileTesseractMaster) destination;
-				if (!output.getActive()) {
-					return;
-				}
-				onTesseractTick(output);
+			if (destination instanceof GTTileTesseractMaster && ((GTTileTesseractMaster) destination).getActive()) {
+				setTarget((GTTileTesseractMaster) destination);
+				return;
 			}
-		}
-	}
-
-	private void onTesseractTick(GTTileTesseractMaster tesseract) {
-		// Fluids
-		IFluidHandler start = FluidUtil.getFluidHandler(world, this.getInventoryPos(), this.getInventorySide());
-		IFluidHandler end = FluidUtil.getFluidHandler(DimensionManager.getWorld(this.targetDim), tesseract.getInventoryPos(), tesseract.getInventorySide());
-		boolean canExport = start != null && end != null;
-		if (canExport && FluidUtil.tryFluidTransfer(end, start, 16000, true) != null) {
-			return;
-		}
-		// Items
-		IItemTransporter in = TransporterManager.manager.getTransporter(world.getTileEntity(this.getInventoryPos()), true);
-		if (in == null) {
-			return;
-		}
-		IItemTransporter out = TransporterManager.manager.getTransporter(world.getTileEntity(tesseract.getInventoryPos()), true);
-		if (out == null) {
-			return;
-		}
-		int limit = in.getSizeInventory(this.getInventorySide());
-		for (int i = 0; i < limit; ++i) {
-			ItemStack stack = in.removeItem(CommonFilters.Anything, this.getInventorySide(), 64, false);
-			if (stack.isEmpty()) {
-				break;
-			}
-			ItemStack added = out.addItem(stack, tesseract.getInventorySide(), true);
-			if (added.getCount() <= 0) {
-				break;
-			}
-			in.removeItem(new BasicItemFilter(added), this.getInventorySide(), added.getCount(), true);
+			setTarget(null);
 		}
 	}
 
 	private void handleEnergy() {
-		if (this.energy >= 32) {
-			this.setActive(true);
+		if (this.hasEnergy(32) && this.targetMaster != null && !this.targetMaster.isInvalid()) {
 			this.useEnergy(32);
-		} else {
-			this.setActive(false);
+			return;
 		}
+		setTarget(null);
+	}
+
+	private void setTarget(@Nullable GTTileTesseractMaster newTargetMaster) {
+		if (newTargetMaster != this.targetMaster) {
+			this.targetMaster = newTargetMaster;
+			this.updateConnections();
+		}
+	}
+
+	public void updateConnections() {
+		for (EnumFacing facing : EnumFacing.VALUES) {
+			BlockPos sidedPos = pos.offset(facing);
+			if (world.isBlockLoaded(sidedPos)) {
+				world.neighborChanged(sidedPos, Blocks.AIR, pos);
+			}
+		}
+		if (world.isBlockLoaded(pos)) {
+			world.neighborChanged(pos, Blocks.AIR, pos);
+		}
+		this.getNetwork().updateTileEntityField(this, NBT_TARGET);
+	}
+
+	@Override
+	public void onNetworkUpdate(String field) {
+		if (field.equals(NBT_TARGET)) {
+			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
+		}
+		super.onNetworkUpdate(field);
 	}
 
 	@Override
@@ -201,6 +230,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 		}
 		ItemHandlerHelper.giveItemToPlayer(player, slotStack.copy());
 		slotStack.shrink(1);
+		setTarget(null);
 		this.targetPos = null;
 		IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
 		return true;
@@ -208,8 +238,8 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		String status = this.targetPos != null ? "Pos: " + this.targetPos.toString() + "Dimension: " + this.targetDim
-				: "None";
-		data.put("Target Destination: " + status, true);
+		String status = this.canExtendCapabilites() ? "Connected to Tesseract Generator"
+				: "Failed to connect Tesseract Generator";
+		data.put(status, true);
 	}
 }

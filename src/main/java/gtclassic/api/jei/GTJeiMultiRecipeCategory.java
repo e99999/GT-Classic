@@ -38,7 +38,7 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 	}
 
 	protected int getHeight() {
-		int baseHeight = this.name == "gt.fusion" ? 100 : 90;
+		int baseHeight = this.name.equals("gt.fusion") ? 100 : 90;
 		int extraHeight = GTConfig.general.debugMode ? 10 : 0;
 		return baseHeight + extraHeight;
 	}

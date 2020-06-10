@@ -1,5 +1,6 @@
 package gtclassic.common.tile;
 
+import gtclassic.api.helpers.GTUtility;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerBufferLarge;
 import ic2.core.RotationList;
@@ -9,8 +10,6 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.inventory.transport.IItemTransporter;
-import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
@@ -66,22 +65,13 @@ public class GTTileBufferLarge extends GTTileBufferBase implements IHasGui {
 
 	@Override
 	public void onBufferTick() {
-		IItemTransporter slave = TransporterManager.manager.getTransporter(world.getTileEntity(getExportTilePos()), false);
-		if (slave != null) {
-			for (int i = 0; i < this.inventory.size(); ++i) {
-				int added = slave.addItem(this.getStackInSlot(i).copy(), getFacing().getOpposite(), true).getCount();
-				if (added > 0) {
-					this.getStackInSlot(i).shrink(added);
-					break;
-				}
-			}
-		}
+		GTUtility.exportFromMachineToSide(this, this.getFacing());
 	}
 
 	@Override
 	public boolean isInventoryFull() {
 		for (int i = 0; i < 27; ++i) {
-			if (this.inventory.get(i).getCount() < 64) {
+			if (this.inventory.get(i).isEmpty()) {
 				return false;
 			}
 		}

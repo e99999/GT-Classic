@@ -33,7 +33,7 @@ public class GTJeiMagicFuelCategory implements IRecipeCategory<GTJeiMagicFuelWra
 	}
 
 	private int getHeight() {
-		return GTConfig.general.debugMode ? 80 : 70;
+		return GTConfig.general.debugMode ? 70 : 60;
 	}
 
 	@Override

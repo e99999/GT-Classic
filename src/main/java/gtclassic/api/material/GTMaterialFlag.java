@@ -16,7 +16,7 @@ public class GTMaterialFlag {
 	public static GTMaterialFlag NULL = new GTMaterialFlag("", -1, false);
 	public static GTMaterialFlag MAGICDYE = new GTMaterialFlag("_magicdye", -1, true);
 	private static int LAST_INTERNAL_ID;
-	private int mask;
+	private long mask;
 	private String suffix;
 	private String texture;
 	private int id;
@@ -28,7 +28,10 @@ public class GTMaterialFlag {
 	}
 
 	public GTMaterialFlag(String suffix, String texture, int id, boolean layered, String modid) {
-		this.mask = 1 << LAST_INTERNAL_ID++;
+		if (LAST_INTERNAL_ID >= 63) {
+			throw new IllegalArgumentException("GregTech Classic material flags overloaded! Limit is 64");
+		}
+		this.mask = 1L << LAST_INTERNAL_ID++;
 		this.suffix = suffix;
 		this.texture = texture;
 		this.id = id;
@@ -40,7 +43,7 @@ public class GTMaterialFlag {
 		return texture;
 	}
 
-	public int getMask() {
+	public long getMask() {
 		return mask;
 	}
 

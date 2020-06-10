@@ -4,12 +4,15 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseMachine;
+import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
+import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTIcons;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
 import gtclassic.common.tile.GTTileBedrockMiner;
+import gtclassic.common.tile.GTTileBlockExtender;
 import gtclassic.common.tile.GTTileBufferFluid;
 import gtclassic.common.tile.GTTileBufferLarge;
 import gtclassic.common.tile.GTTileBufferSmall;
@@ -19,10 +22,12 @@ import gtclassic.common.tile.GTTileChargeOMat;
 import gtclassic.common.tile.GTTileComputer;
 import gtclassic.common.tile.GTTileDigitalChest;
 import gtclassic.common.tile.GTTileDisassembler;
+import gtclassic.common.tile.GTTileDisplayScreen;
 import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileEchotron;
 import gtclassic.common.tile.GTTileEnergyTransmitter;
 import gtclassic.common.tile.GTTileIDSU;
+import gtclassic.common.tile.GTTileItemFilter;
 import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
@@ -30,11 +35,13 @@ import gtclassic.common.tile.GTTileMobRepeller;
 import gtclassic.common.tile.GTTilePlayerDetector;
 import gtclassic.common.tile.GTTileRedstoneReceiver;
 import gtclassic.common.tile.GTTileRedstoneTransmitter;
+import gtclassic.common.tile.GTTileRockBreaker;
 import gtclassic.common.tile.GTTileSupercondensator;
 import gtclassic.common.tile.GTTileTesseractMaster;
 import gtclassic.common.tile.GTTileTesseractSlave;
 import gtclassic.common.tile.GTTileTranslocator;
 import gtclassic.common.tile.GTTileTranslocatorFluid;
+import gtclassic.common.tile.GTTileTypeFilter;
 import gtclassic.common.tile.GTTileUUMAssembler;
 import gtclassic.common.tile.multi.GTTileMultiFusionReactor;
 import gtclassic.common.tile.multi.GTTileMultiLESU;
@@ -104,29 +111,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 				|| this == GTBlocks.tileSupercondensator || this == GTBlocks.tileTranslocator
 				|| this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
 				|| this == GTBlocks.tileTranslocatorFluid || this == GTBlocks.tileBufferFluid
-				|| this == GTBlocks.tileTesseractMaster || this == GTBlocks.tileTesseractSlave;
-	}
-
-	@Override
-	@Deprecated
-	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		TileEntity tile = blockAccess.getTileEntity(pos);
-		if (tile instanceof GTTileRedstoneReceiver) {
-			return ((GTTileRedstoneReceiver) tile).getRedstoneLevel();
-		} else {
-			return super.getStrongPower(blockState, blockAccess, pos, side);
-		}
-	}
-
-	@Override
-	@Deprecated
-	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		TileEntity tile = blockAccess.getTileEntity(pos);
-		if (tile instanceof GTTileRedstoneReceiver) {
-			return ((GTTileRedstoneReceiver) tile).getRedstoneLevel();
-		} else {
-			return super.getStrongPower(blockState, blockAccess, pos, side);
-		}
+				|| this == GTBlocks.tileTesseractMaster || this == GTBlocks.tileTesseractSlave
+				|| this == GTBlocks.tileBlockExtender || this == GTBlocks.tileTypeFilter
+				|| this == GTBlocks.tileItemFilter;
 	}
 
 	@Override
@@ -198,7 +185,8 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 512 })));
 		}
 		if (this == GTBlocks.tileTranslocator || this == GTBlocks.tileBufferSmall || this == GTBlocks.tileBufferLarge
-				|| this == GTBlocks.tileBufferFluid || this == GTBlocks.tileTranslocatorFluid) {
+				|| this == GTBlocks.tileBufferFluid || this == GTBlocks.tileTranslocatorFluid
+				|| this == GTBlocks.tileTypeFilter || this == GTBlocks.tileItemFilter) {
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32 })));
 		}
 		if (this == GTBlocks.tileSupercondensator) {
@@ -234,6 +222,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileAutocrafter) {
 			return new GTTileAutocrafter();
+		}
+		if (this == GTBlocks.tileRockBreaker) {
+			return new GTTileRockBreaker();
 		}
 		if (this == GTBlocks.tileDisassembler) {
 			return new GTTileDisassembler();
@@ -277,11 +268,17 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		if (this == GTBlocks.tileTesseractSlave) {
 			return new GTTileTesseractSlave();
 		}
+		if (this == GTBlocks.tileDisplayScreen) {
+			return new GTTileDisplayScreen();
+		}
 		if (this == GTBlocks.tileRedstoneTransmitter) {
 			return new GTTileRedstoneTransmitter();
 		}
 		if (this == GTBlocks.tileRedstoneReceiver) {
 			return new GTTileRedstoneReceiver();
+		}
+		if (this == GTBlocks.tileBlockExtender) {
+			return new GTTileBlockExtender();
 		}
 		if (this == GTBlocks.tileSupercondensator) {
 			return new GTTileSupercondensator();
@@ -291,6 +288,12 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileTranslocator) {
 			return new GTTileTranslocator();
+		}
+		if (this == GTBlocks.tileTypeFilter) {
+			return new GTTileTypeFilter();
+		}
+		if (this == GTBlocks.tileItemFilter) {
+			return new GTTileItemFilter();
 		}
 		if (this == GTBlocks.tileTranslocatorFluid) {
 			return new GTTileTranslocatorFluid();
@@ -315,7 +318,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 
 	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
-		return this.getDefaultBlockState().withProperty(active, true);
+		return !GTHelperStack.isEqual(stack, GTMaterialGen.get(GTBlocks.tileChargeOmat))
+				? this.getDefaultBlockState().withProperty(active, true)
+				: super.getStateFromStack(stack);
 	}
 
 	@Override

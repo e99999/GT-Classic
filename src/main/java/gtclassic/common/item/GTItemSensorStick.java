@@ -33,7 +33,7 @@ public class GTItemSensorStick extends GTItemComponent {
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
 		if (nbt.getIntArray(POS).length == 4) {
-			tooltip.add("Sneak click to install Sensor Stick into machine");
+			tooltip.add("Click a valid block to install Sensor Stick into machine");
 			int[] pos = nbt.getIntArray(POS);
 			tooltip.add(TextFormatting.YELLOW + I18n.format("Last Scanned: "));
 			if (nbt.getString(BLOCK) != null) {
@@ -53,8 +53,9 @@ public class GTItemSensorStick extends GTItemComponent {
 			IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
 			return EnumActionResult.SUCCESS;
 		}
-		if (player.isSneaking()) {
-			return tryParseCoords(world, pos, player, hand);
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (tileEntity instanceof IGTCoordinateTile) {
+			return tryParseCoords((IGTCoordinateTile) tileEntity, world, player, hand);
 		} else {
 			NBTTagCompound nbt = StackUtil.getOrCreateNbtData(player.getHeldItem(hand));
 			nbt.setIntArray(POS, new int[] { pos.getX(), pos.getY(), pos.getZ(), world.provider.getDimension() });
@@ -65,12 +66,11 @@ public class GTItemSensorStick extends GTItemComponent {
 		return EnumActionResult.SUCCESS;
 	}
 
-	public static EnumActionResult tryParseCoords(World world, BlockPos pos, EntityPlayer player, EnumHand hand) {
-		TileEntity tileEntity = world.getTileEntity(pos);
+	public static EnumActionResult tryParseCoords(IGTCoordinateTile coordTile, World world, EntityPlayer player,
+			EnumHand hand) {
 		NBTTagCompound nbt = StackUtil.getNbtData(player.getHeldItem(hand));
-		if (tileEntity instanceof IGTCoordinateTile && nbt.getIntArray(POS).length == 4) {
+		if (nbt.getIntArray(POS).length == 4) {
 			int[] posArr = nbt.getIntArray(POS);
-			IGTCoordinateTile coordTile = (IGTCoordinateTile) tileEntity;
 			if (!coordTile.isInterdimensional() && posArr[3] != world.provider.getDimension()) {
 				IC2.platform.messagePlayer(player, "This machine does not support interdimensional communication");
 				return EnumActionResult.SUCCESS;

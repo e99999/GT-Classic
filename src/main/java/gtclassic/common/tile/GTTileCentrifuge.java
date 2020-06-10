@@ -84,7 +84,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		setFuelSlot(SLOT_FUEL);
 		this.tank = new IC2Tank(16000);
 		this.tank.addListener(this);
-		this.addGuiFields(NBT_TANK);
+		this.addNetworkFields(NBT_TANK);
 		this.maxEnergy = 10000;
 	}
 
@@ -387,8 +387,9 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addRecipe(GTMaterialGen.get(Blocks.SAND, 32), 1, totalEu(50000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 		addRecipe(BLOCK_RED_SAND, 1, totalEu(50000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getIc2(Ic2Items.clayDust), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
 		addRecipe("dustFlint", 8, 1, totalEu(5000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
-		addRecipe("dustClay", 7, 0, totalEu(19000), GTMaterialGen.getDust(GTMaterial.Lithium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 2), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getTube(GTMaterial.Sodium, 2));
+		addRecipe("dustClay", 7, 2, totalEu(19000), GTMaterialGen.getDust(GTMaterial.Lithium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 2), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getTube(GTMaterial.Sodium, 2));
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.stickyResin, 8), 0, totalEu(12500), GTMaterialGen.getIc2(Ic2Items.rubber, 28), GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 2), GTMaterialGen.getIc2(Ic2Items.plantBall, 2));
+		addRecipe("itemRawRubber", 8, 0, totalEu(12500), GTMaterialGen.getIc2(Ic2Items.rubber, 28));
 		addRecipe("dustGlowstone", 16, 1, totalEu(25000), GTMaterialGen.get(Items.REDSTONE, 8), GTMaterialGen.getIc2(Ic2Items.goldDust, 8), GTMaterialGen.getTube(GTMaterial.Helium, 1));
 		addRecipe("dustRedstone", 10, 3, totalEu(35000), GTMaterialGen.getTube(GTMaterial.Mercury, 3), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getDust(GTMaterial.Pyrite, 5), GTMaterialGen.getDust(GTMaterial.Ruby, 1));
 		addRecipe("dustNetherrack", 64, 0, totalEu(50000), GTMaterialGen.get(Items.GOLD_NUGGET, 4), GTMaterialGen.get(Items.REDSTONE, 4), GTMaterialGen.get(Items.GUNPOWDER, 8), GTMaterialGen.getIc2(Ic2Items.coalDust, 4), GTMaterialGen.getDust(GTMaterial.Sulfur, 4), GTMaterialGen.getDust(GTMaterial.Phosphorus, 2));
@@ -399,6 +400,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		/** New Recipes I added **/
 		addRecipe("stoneGranite", 4, 0, totalEu(24000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Flint, 1), GTMaterialGen.getIc2(Ic2Items.clayDust, 1));
 		addRecipe("stoneDiorite", 16, 0, totalEu(36000), GTMaterialGen.getDust(GTMaterial.Nickel, 1));
+		addRecipe("blockPrismarine", 16, 0, totalEu(24000), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getDust(GTMaterial.Aluminium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 3), GTMaterialGen.getTube(GTMaterial.Oxygen, 8));
 		addRecipe("dustBasalt", 16, 0, totalEu(24000), GTMaterialGen.getDust(GTMaterial.Carbon, 1), GTMaterialGen.getDust(GTMaterial.Emerald, 1), GTMaterialGen.getDust(GTMaterial.Calcite, 3), GTMaterialGen.getDust(GTMaterial.Flint, 8));
 		addRecipe("dustObsidian", 8, 6, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getDust(GTMaterial.Silicon, 2), GTMaterialGen.getTube(GTMaterial.Oxygen, 4));
 		addRecipe(GTMaterialGen.get(Items.QUARTZ, 1), 2, totalEu(8000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
@@ -411,6 +413,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addRecipe(GTMaterialGen.get(Blocks.SOUL_SAND, 12), 0, totalEu(12000), GTMaterialGen.get(Blocks.SAND, 11), GTMaterialGen.getTube(GTMaterial.Oil, 1));
 		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Oil, 3000), 3, totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
 		addRecipe(GTMaterialGen.getTube(GTMaterial.Oil, 3), 0, totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
+		addRecipe(Ic2Items.plasmaCell, 0, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.uuMatter, 10), Ic2Items.emptyCell.copy());
 		/*
 		 * Recipes solely focused on getting methane from various things
 		 */

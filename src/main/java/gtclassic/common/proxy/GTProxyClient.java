@@ -8,6 +8,8 @@ import gtclassic.api.interfaces.IGTColorItem;
 import gtclassic.common.GTIcons;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTJei;
+import gtclassic.common.tile.GTTileDisplayScreen;
+import gtclassic.common.util.GTRenderDisplayScreen;
 import gtclassic.common.util.render.GTModelLoader;
 import ic2.core.platform.textures.Ic2Icons.SpriteReloadEvent;
 import net.minecraft.block.Block;
@@ -20,6 +22,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -43,6 +46,7 @@ public class GTProxyClient extends GTProxyCommon {
 		registerTintedBlocks();
 		registerTintedItems();
 		MinecraftForge.EVENT_BUS.register(this);
+		this.onRegisterRender();
 	}
 
 	@Override
@@ -63,6 +67,10 @@ public class GTProxyClient extends GTProxyCommon {
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/gasflowing"));
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/magicdye"));
 		event.getMap().registerSprite(new ResourceLocation(GTMod.MODID, "fluids/magicdyeflowing"));
+	}
+
+	public void onRegisterRender() {
+		ClientRegistry.bindTileEntitySpecialRenderer(GTTileDisplayScreen.class, new GTRenderDisplayScreen());
 	}
 
 	@SubscribeEvent

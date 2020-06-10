@@ -77,7 +77,7 @@ public abstract class GTBlockBaseMachine extends BlockMultiID {
 		if (tile instanceof TileEntityElectricBlock) {
 			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
 		} else {
-			return super.getStrongPower(blockState, blockAccess, pos, side);
+			return super.getCommonPower(blockState, blockAccess, pos, side);
 		}
 	}
 
@@ -88,7 +88,7 @@ public abstract class GTBlockBaseMachine extends BlockMultiID {
 		if (tile instanceof TileEntityElectricBlock) {
 			return ((TileEntityElectricBlock) tile).isEmittingRedstone() ? 15 : 0;
 		} else {
-			return super.getWeakPower(blockState, blockAccess, pos, side);
+			return super.getCommonPower(blockState, blockAccess, pos, side);
 		}
 	}
 
