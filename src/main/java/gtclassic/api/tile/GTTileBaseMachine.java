@@ -7,6 +7,7 @@ import gtclassic.common.GTItems;
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.crafting.RecipeInputFluid;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IStackOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
@@ -42,6 +43,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -665,6 +667,10 @@ public abstract class GTTileBaseMachine extends TileEntityElecMachine
 
 	public static IRecipeInput input(String name, int amount) {
 		return new RecipeInputOreDict(name, amount);
+	}
+
+	public static IRecipeInput input(FluidStack input) {
+		return new RecipeInputFluid(input);
 	}
 
 	public static IRecipeInput tubes(int amount) {
