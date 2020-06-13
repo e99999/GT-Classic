@@ -34,6 +34,11 @@ public class GTCraftTweakerMaterial {
         this.material = new GTMaterial(displayName, r, g, b, flags1);
     }
 
+    @ZenConstructor
+    public GTCraftTweakerMaterial(GTMaterial material){
+        this.material = material;
+    }
+
     @ZenMethod
     public GTCraftTweakerMaterial setElement(int element){
         this.material.setElement(element);
@@ -53,7 +58,7 @@ public class GTCraftTweakerMaterial {
     }
 
     @ZenMethod
-    public static void addFlagsToMaterial(String materialName, String... flags){
+    public GTCraftTweakerMaterial addFlags(String[] flags){
         List<GTMaterialFlag> flagList = new ArrayList<>();
         for (String string : flags){
             if (GTMaterialFlag.hasFlag(string)){
@@ -61,11 +66,17 @@ public class GTCraftTweakerMaterial {
             }
         }
         GTMaterialFlag[] flags1 = flagList.toArray(new GTMaterialFlag[0]);
-        if (GTMaterial.hasMaterial(materialName)){
-            GTMaterial addTo = GTMaterial.get(materialName);
-            addTo.addFlags(flags1);
+        this.material.addFlags(flags1);
+        return this;
+    }
+
+    @ZenMethod
+    public static GTCraftTweakerMaterial getMaterial(String name){
+        if (GTMaterial.hasMaterial(name)){
+            return new GTCraftTweakerMaterial((GTMaterial.get(name)));
         } else {
-            CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > Material " + materialName + " does not Exist!");
+            CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > Material " + name + " does not Exist!");
+            return null;
         }
     }
 
