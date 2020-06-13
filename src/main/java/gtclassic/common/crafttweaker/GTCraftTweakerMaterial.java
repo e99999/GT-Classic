@@ -24,6 +24,10 @@ public class GTCraftTweakerMaterial {
             CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > Material " + displayName + " already Exists!");
             return;
         }
+        if (flags.length == 0){
+            CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > Material " + displayName + " must have at least one flag!");
+            return;
+        }
         List<GTMaterialFlag> flagList = new ArrayList<>();
         for (String string : flags){
             if (GTMaterialFlag.hasFlag(string)){
