@@ -141,6 +141,16 @@ public class GTMaterial {
 		return this;
 	}
 
+	public GTMaterial setElement(int element){
+		this.element = element;
+		return this;
+	}
+
+	public GTMaterial setTier(int tier){
+		this.tier = tier;
+		return this;
+	}
+
 	public GTMaterial setSmeltable(boolean smeltable) {
 		this.smeltable = smeltable;
 		return this;
@@ -178,7 +188,7 @@ public class GTMaterial {
 	}
 
 	/** Map Get **/
-	public GTMaterial get(String name) {
+	public static GTMaterial get(String name) {
 		// This is where you could do error handling if you want
 		return generatedMap.get(name);
 	}
@@ -186,5 +196,9 @@ public class GTMaterial {
 	/** Helper for looping **/
 	public static Collection<GTMaterial> values() {
 		return generatedMap.values();
+	}
+
+	public static boolean hasMaterial(String name){
+		return generatedMap.containsKey(name);
 	}
 }

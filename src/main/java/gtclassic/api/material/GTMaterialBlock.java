@@ -1,8 +1,5 @@
 package gtclassic.api.material;
 
-import java.awt.Color;
-import java.util.List;
-
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.interfaces.IGTColorBlock;
@@ -16,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -28,6 +26,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.awt.Color;
+import java.util.List;
 
 public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBlock, ILocaleBlock {
 
@@ -68,6 +69,9 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
+		if (flag.isCrafttweaker()){
+			return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(flag.getTexture());
+		}
 		return Ic2Icons.getTextures(flag.getTexture())[flag.getTextureID()];
 	}
 

@@ -1,19 +1,20 @@
 package gtclassic.api.material;
 
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.List;
-
 import gtclassic.GTMod;
 import gtclassic.api.interfaces.IGTColorItem;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.awt.Color;
+import java.util.Arrays;
+import java.util.List;
 
 public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColorItem, ILayeredItemModel {
 
@@ -60,6 +61,9 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColo
 
 	@Override
 	public TextureAtlasSprite getTexture(int index, ItemStack var2) {
+		if (flag.isCrafttweaker()){
+			return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(flag.getTexture());
+		}
 		return Ic2Icons.getTextures(flag.getTexture())[flag.getTextureID() + index];
 	}
 
