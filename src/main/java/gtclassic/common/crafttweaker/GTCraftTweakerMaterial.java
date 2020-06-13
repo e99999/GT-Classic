@@ -19,7 +19,7 @@ public class GTCraftTweakerMaterial {
     private GTMaterial material;
 
     @ZenConstructor
-    public GTCraftTweakerMaterial(String displayName, int r, int g, int b, String... flags){
+    public GTCraftTweakerMaterial(String displayName, int r, int g, int b, String[] flags){
         if (GTMaterial.hasMaterial(displayName)){
             CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > Material " + displayName + " already Exists!");
             return;
