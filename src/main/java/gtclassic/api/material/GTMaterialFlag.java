@@ -92,4 +92,8 @@ public class GTMaterialFlag {
 	public static GTMaterialFlag getFlag(String prefix){
 		return FLAG_MAP.get(prefix);
 	}
+
+	public static int getMapSize(){
+		return FLAG_MAP.size();
+	}
 }

@@ -87,6 +87,10 @@ public class GTCraftTweakerMaterial {
 
     @ZenMethod
     public static void createFlag(String suffix, String domain, String path, boolean layered, boolean block){
+        if (GTMaterialFlag.getMapSize() == 64){
+            CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > Max count of Material Flags already reached!");
+            return;
+        }
         String prefix = suffix.replace("_", "");
         if (GTMaterialFlag.hasFlag(prefix)){
             CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > Material Flag " + suffix + " already Exists!");
