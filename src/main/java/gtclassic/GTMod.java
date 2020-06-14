@@ -76,7 +76,7 @@ public class GTMod {
 		proxy.preInit(event);
 		logger.info("Hello from GregTech Classic!");
 		GTBlocks.registerTiles();
-		if (Loader.isModLoaded("crafttweaker")){
+		if (Loader.isModLoaded(GTValues.MOD_ID_CT)){
 			GTCraftTweakerLoader.preInit();
 		}
 		GTMaterialGen.initFlags();

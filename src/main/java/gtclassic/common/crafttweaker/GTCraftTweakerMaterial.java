@@ -5,6 +5,7 @@ import crafttweaker.annotations.ZenRegister;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
+import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenConstructor;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -86,11 +87,16 @@ public class GTCraftTweakerMaterial {
 
     @ZenMethod
     public static void createFlag(String suffix, String domain, String path, boolean layered, boolean block){
-        if (GTMaterialFlag.hasFlag(suffix.replace("_", ""))){
+        String prefix = suffix.replace("_", "");
+        if (GTMaterialFlag.hasFlag(prefix)){
             CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > Material Flag " + suffix + " already Exists!");
             return;
         }
-        GTMaterialFlag flag = new GTMaterialFlag(suffix,  domain + ":" + path, 0, layered, domain).setCraftweaker(true);
+        GTCraftTweakerLoader.flagTextureMap.put(prefix, new ResourceLocation(domain, path));
+        if (layered){
+            GTCraftTweakerLoader.flagTextureMap.put(prefix + 1, new ResourceLocation(domain, path + 1));
+        }
+        GTMaterialFlag flag = new GTMaterialFlag(suffix, domain + "_" + prefix, 0, layered, domain).setCraftweaker(true);
         if (block) {
             GTMaterialGen.addBlockFlag(flag);
         } else {
