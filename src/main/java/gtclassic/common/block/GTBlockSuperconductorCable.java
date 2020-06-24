@@ -1,8 +1,5 @@
 package gtclassic.common.block;
 
-import java.util.List;
-import java.util.Random;
-
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseConnect;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
@@ -15,6 +12,7 @@ import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
+import ic2.core.platform.textures.obj.ILayeredBlockModel;
 import ic2.core.util.helpers.BlockStateContainerIC2;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -31,7 +29,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IGTReaderInfoBlock {
+import java.util.List;
+import java.util.Random;
+
+public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IGTReaderInfoBlock, ILayeredBlockModel {
 
 	int size;
 
@@ -162,5 +163,32 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 512 })));
 		}
 		tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));
+	}
+
+	@Override
+	public boolean isLayered(IBlockState iBlockState) {
+		return true;
+	}
+
+	@Override
+	public int getLayers(IBlockState state) {
+		return state.getValue(active) ? 2 : 1;
+	}
+
+	@Override
+	public AxisAlignedBB getRenderBox(IBlockState iBlockState, int i) {
+		double thickness = this.size / 32.0D;
+		double minX = 0.5D - thickness;
+		double minY = 0.5D - thickness;
+		double minZ = 0.5D - thickness;
+		double maxX = 0.5D + thickness;
+		double maxY = 0.5D + thickness;
+		double maxZ = 0.5D + thickness;
+		return new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);
+	}
+
+	@Override
+	public TextureAtlasSprite getLayerTexture(IBlockState state, EnumFacing enumFacing, int i) {
+		return  i == 0 ? this.getTextureFromState(state, enumFacing) : Ic2Icons.getTextures("gtclassic_terrain")[101];
 	}
 }
