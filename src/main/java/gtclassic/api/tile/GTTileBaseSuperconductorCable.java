@@ -87,12 +87,14 @@ public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock impl
 			this.color = 16383998;
 		}
 		this.anchors = RotationList.ofNumber(nbt.getByte("Anchors"));
+		this.isActive = nbt.getBoolean("active");
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setInteger(NBT_COLOR, this.color);
+		nbt.setBoolean("active", isActive);
 		nbt.setByte("Anchors", (byte)this.anchors.getCode());
 		return nbt;
 	}
@@ -270,7 +272,7 @@ public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock impl
 		this.color = color;
 		if (this.isColored() && !isActive){
 			this.setActive(true);
-		} else if (isActive){
+		} else if (!this.isColored() && isActive){
 			this.setActive(false);
 		}
 		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
