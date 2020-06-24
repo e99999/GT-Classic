@@ -17,7 +17,6 @@ import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.models.BaseModel;
-import ic2.core.platform.textures.obj.ILayeredBlockModel;
 import ic2.core.util.helpers.BlockStateContainerIC2;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
@@ -46,7 +45,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IGTReaderInfoBlock, ILayeredBlockModel, IGTColorBlock {
+public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IGTReaderInfoBlock,  IGTColorBlock {
 
 	int size;
 
@@ -117,8 +116,8 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-		return Ic2Icons.getTextures("gtclassic_terrain")[52];
+	public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing enumFacing) {
+		return Ic2Icons.getTextures("gtclassic_terrain")[state.getValue(active) ? 101 : 52];
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -216,36 +215,6 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 512 })));
 		}
 		tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));
-	}
-
-	@Override
-	public boolean isLayered(IBlockState iBlockState) {
-		return true;
-	}
-
-	@Override
-	public int getLayers(IBlockState state) {
-		return state.getValue(active) ? 2 : 1;
-	}
-
-	@Override
-	public AxisAlignedBB getRenderBox(IBlockState iBlockState, int i) {
-		double thickness = this.size / 32.0D;
-		double minX = 0.5D - thickness;
-		double minY = 0.5D - thickness;
-		double minZ = 0.5D - thickness;
-		double maxX = 0.5D + thickness;
-		double maxY = 0.5D + thickness;
-		double maxZ = 0.5D + thickness;
-		return new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);
-	}
-
-	@Override
-	public TextureAtlasSprite getLayerTexture(IBlockState state, EnumFacing enumFacing, int i) {
-		if (state.getValue(active)){
-			return Ic2Icons.getTextures("gtclassic_terrain")[101 + i];
-		}
-		return  this.getTextureFromState(state, enumFacing);
 	}
 
 	@Override
