@@ -181,22 +181,22 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 			double maxX = 0.5D + thickness;
 			double maxY = 0.5D + thickness;
 			double maxZ = 0.5D + thickness;
-			if (cable.connection.contains(EnumFacing.WEST)) {
+			if (cable.connection.contains(EnumFacing.WEST) || cable.anchors.contains(EnumFacing.WEST)) {
 				minX = 0.0D;
 			}
-			if (cable.connection.contains(EnumFacing.DOWN)) {
+			if (cable.connection.contains(EnumFacing.DOWN) || cable.anchors.contains(EnumFacing.DOWN)) {
 				minY = 0.0D;
 			}
-			if (cable.connection.contains(EnumFacing.NORTH)) {
+			if (cable.connection.contains(EnumFacing.NORTH) || cable.anchors.contains(EnumFacing.NORTH)) {
 				minZ = 0.0D;
 			}
-			if (cable.connection.contains(EnumFacing.EAST)) {
+			if (cable.connection.contains(EnumFacing.EAST) || cable.anchors.contains(EnumFacing.EAST)) {
 				maxX = 1.0D;
 			}
-			if (cable.connection.contains(EnumFacing.UP)) {
+			if (cable.connection.contains(EnumFacing.UP) || cable.anchors.contains(EnumFacing.UP)) {
 				maxY = 1.0D;
 			}
-			if (cable.connection.contains(EnumFacing.SOUTH)) {
+			if (cable.connection.contains(EnumFacing.SOUTH) || cable.anchors.contains(EnumFacing.SOUTH)) {
 				maxZ = 1.0D;
 			}
 			return new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);
