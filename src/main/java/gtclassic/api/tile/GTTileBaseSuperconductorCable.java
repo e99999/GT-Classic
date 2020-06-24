@@ -17,20 +17,24 @@ import ic2.api.network.INetworkTileEntityEventListener;
 import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.block.wiring.BlockCable;
 import ic2.core.block.wiring.tile.TileEntityCable;
 import ic2.core.energy.EnergyNetLocal;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -51,11 +55,13 @@ public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock impl
 	public int color;
 	private int prevColor = 0;
 	private static final String NBT_COLOR = "color";
+	int size;
 
-	public GTTileBaseSuperconductorCable() {
+	public GTTileBaseSuperconductorCable(int size) {
 		this.color = 16383998;
 		this.connection = RotationList.EMPTY;
 		this.anchors = RotationList.EMPTY;
+		this.size = size;
 		this.addNetworkFields("connection", "anchor", NBT_COLOR);
 	}
 
@@ -260,6 +266,29 @@ public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock impl
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public boolean hasSpecialAction(EntityPlayer player, EnumFacing facing, Vec3d hit) {
+		EnumFacing side = (new BlockCable.ClickHelper(hit, (float) (this.size / 16.0D))).getFacing(facing);
+		return side != null && this.anchors.contains(side);
+	}
+
+	@Override
+	public EnumActionResult doSpecialAction(EntityPlayer player, EnumFacing facing, Vec3d hit) {
+		EnumFacing side = (new BlockCable.ClickHelper(hit, (float) (this.size / 16.0D))).getFacing(facing);
+		if (this.isRendering()) {
+			return EnumActionResult.PASS;
+		} else if (side != null && this.removeAnchor(side)) {
+			ItemStack pipe = Ic2Items.miningPipe.copy();
+			if (!player.inventory.addItemStackToInventory(pipe)) {
+				player.dropItem(pipe, true);
+			}
+
+			return EnumActionResult.SUCCESS;
+		} else {
+			return super.doSpecialAction(player, facing, hit);
+		}
 	}
 
 	@Override

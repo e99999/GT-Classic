@@ -10,6 +10,7 @@ public class GTTileSuperconductorCables {
 	public static class SuperconductorMAX extends GTTileBaseSuperconductorCable {
 
 		public SuperconductorMAX() {
+			super(12);
 		}
 
 		@Override
@@ -42,6 +43,7 @@ public class GTTileSuperconductorCables {
 	public static class SuperconductorIV extends GTTileBaseSuperconductorCable {
 
 		public SuperconductorIV() {
+			super(6);
 		}
 
 		@Override
@@ -74,6 +76,7 @@ public class GTTileSuperconductorCables {
 	public static class SuperconductorHV extends GTTileBaseSuperconductorCable {
 
 		public SuperconductorHV() {
+			super(4);
 		}
 
 		@Override
