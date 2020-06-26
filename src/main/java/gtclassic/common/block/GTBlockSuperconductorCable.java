@@ -99,7 +99,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 
 	private int[] getSize() {
 		int var = (16 - this.size) / 2;
-		return new int[] { 0 + var, 16 - var };
+		return new int[] {var, 16 - var };
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -127,12 +127,6 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	}
 
 	@Override
-	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
-		state = this.getActualState(state, worldIn, pos);
-		super.harvestBlock(worldIn, player, pos, state, te, stack);
-	}
-
-	@Override
 	public IBlockState getStateFromStack(ItemStack stack) {
 		NBTTagCompound nbt = StackUtil.getOrCreateNbtData(stack);
 		boolean isActive = nbt.hasKey("color");
@@ -145,8 +139,8 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 		ItemStack stack = super.getPickBlock(state, target, world, pos, player);
 		NBTTagCompound nbt = StackUtil.getOrCreateNbtData(stack);
 		TileEntity tile = world.getTileEntity(pos);
-		if (tile instanceof IGTRecolorableStorageTile){
-			IGTRecolorableStorageTile cable = (IGTRecolorableStorageTile) tile;
+		if (tile instanceof GTTileBaseSuperconductorCable){
+			GTTileBaseSuperconductorCable cable = (GTTileBaseSuperconductorCable) tile;
 			if (cable.isColored()){
 				nbt.setInteger("color", cable.getTileColor().getRGB());
 			}

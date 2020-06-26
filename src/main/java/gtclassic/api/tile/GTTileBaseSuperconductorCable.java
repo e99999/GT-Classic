@@ -166,7 +166,7 @@ public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock impl
 			for (int var5 = 0; var5 < var4; ++var5) {
 				EnumFacing dir = var3[var5];
 				IEnergyTile tile = EnergyNet.instance.getSubTile(this.getWorld(), this.getPos().offset(dir));
-				if (tile == null || !(tile instanceof IEnergyAcceptor) && !(tile instanceof IEnergyEmitter)) {
+				if (!(tile instanceof IEnergyAcceptor) && !(tile instanceof IEnergyEmitter)) {
 					tile = EnergyNet.instance.getTile(this.getWorld(), this.getPos().offset(dir));
 				}
 				if (tile != null && this.canConnect(tile, dir)) {

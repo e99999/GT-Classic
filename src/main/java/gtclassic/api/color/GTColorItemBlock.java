@@ -24,7 +24,7 @@ public class GTColorItemBlock extends GTItemBlock implements IGTColorItem {
 	public Color getColor(ItemStack stack, int index) {
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
 		if (block instanceof GTBlockSuperconductorCable){
-			if (nbt.hasKey("color") && index == 0){
+			if (nbt.hasKey("color")){
 				return new Color(nbt.getInteger("color"));
 			} else {
 				return Color.WHITE;

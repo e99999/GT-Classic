@@ -146,10 +146,10 @@ public class GTModelLayeredAnchoredWire extends BaseModel {
         BlockPartFace face = new BlockPartFace(null, layer, "", new BlockFaceUV(new float[] { (float) min,
                 (float) min, (float) max, (float) max }, 0));
         Map<EnumFacing, BakedQuad> quads = new EnumMap(EnumFacing.class);
-        EnumFacing[] var8 = EnumFacing.VALUES;
-        int var9 = var8.length;
-        for (int var10 = 0; var10 < var9; ++var10) {
-            EnumFacing side = var8[var10];
+        EnumFacing[] facings = EnumFacing.VALUES;
+        int length = facings.length;
+        for (int i = 0; i < length; ++i) {
+            EnumFacing side = facings[i];
             TextureAtlasSprite sprite = wire instanceof ILayeredBlockModel ? ((ILayeredBlockModel)wire).getLayerTexture(this.state, side, layer) : this.getParticleTexture();
             quads.put(side, this.getBakery().makeBakedQuad(minF, maxF, face, sprite, side, ModelRotation.X0_Y0, null, true, true));
         }
@@ -161,10 +161,10 @@ public class GTModelLayeredAnchoredWire extends BaseModel {
     private List<BakedQuad> generateQuadsForAnchor(TextureAtlasSprite sprite, EnumFacing facing, int min, int max) {
         List<BakedQuad> quads = new ArrayList();
         Pair<Vector3f, Vector3f> position = this.getPosForSide(facing, min, max);
-        EnumFacing[] var7 = EnumFacing.VALUES;
-        int var8 = var7.length;
-        for (int var9 = 0; var9 < var8; ++var9) {
-            EnumFacing side = var7[var9];
+        EnumFacing[] facings = EnumFacing.VALUES;
+        int length = facings.length;
+        for (int i = 0; i < length; ++i) {
+            EnumFacing side = facings[i];
             if (side.getOpposite() != facing) {// This part keeps the backside of anchors from rendering which the user
                 // would never see
                 BlockPartFace face = null;
