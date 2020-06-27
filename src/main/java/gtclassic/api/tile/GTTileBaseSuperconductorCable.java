@@ -64,7 +64,7 @@ public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock impl
 		this.connection = RotationList.EMPTY;
 		this.anchors = RotationList.EMPTY;
 		this.size = size;
-		this.addNetworkFields("connection", "anchor", NBT_COLOR);
+		this.addNetworkFields("connection", "anchors", NBT_COLOR);
 	}
 
 	@Override
