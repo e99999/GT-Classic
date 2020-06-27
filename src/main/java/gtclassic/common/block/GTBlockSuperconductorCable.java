@@ -82,6 +82,19 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	}
 
 	@Override
+	public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof GTTileBaseSuperconductorCable) {
+			GTTileBaseSuperconductorCable colorTile = (GTTileBaseSuperconductorCable) tile;
+			colorTile.setTileColor(color.getColorValue());
+			IBlockState state = tile.getWorld().getBlockState(tile.getPos());
+			world.notifyBlockUpdate(pos, state, state, 2);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public Color getColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, Block block, int index) {
 		if (index == 0){
 			if (worldIn != null && state != null && state.getValue(active)) {
@@ -94,19 +107,6 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 			return Color.WHITE;
 		}
 		return Color.WHITE;
-	}
-
-	@Override
-	public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color) {
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile instanceof GTTileBaseSuperconductorCable) {
-			GTTileBaseSuperconductorCable colorTile = (GTTileBaseSuperconductorCable) tile;
-			colorTile.setTileColor(color.getColorValue());
-			IBlockState state = tile.getWorld().getBlockState(tile.getPos());
-			world.notifyBlockUpdate(pos, state, state, 2);
-			return true;
-		}
-		return false;
 	}
 
 	@Override
@@ -144,9 +144,6 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	@Override
 	public IBlockState getDefaultBlockState() {
 		IBlockState state = this.getDefaultState().withProperty(active, false);
-		if (this.hasFacing()) {
-			state = state.withProperty(allFacings, EnumFacing.NORTH);
-		}
 
 		return state;
 	}
