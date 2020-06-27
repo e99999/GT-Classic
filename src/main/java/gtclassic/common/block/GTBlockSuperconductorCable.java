@@ -21,6 +21,8 @@ import ic2.core.util.helpers.BlockStateContainerIC2;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
@@ -61,6 +63,53 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	}
 
 	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainerIC2(this, active);
+	}
+
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
+								ItemStack stack) {
+		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+		TileEntity tile = worldIn.getTileEntity(pos);
+		NBTTagCompound nbt = StackUtil.getNbtData(stack);
+		if (tile instanceof IGTRecolorableStorageTile) {
+			IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
+			if (nbt.hasKey("color")) {
+				colorTile.setTileColor(nbt.getInteger("color"));
+			}
+		}
+	}
+
+	@Override
+	public Color getColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, Block block, int index) {
+		if (index == 0){
+			if (worldIn != null && state != null && state.getValue(active)) {
+				TileEntity tile = worldIn.getTileEntity(pos);
+				if (tile instanceof IGTRecolorableStorageTile) {
+					IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
+					return colorTile.getTileColor();
+				}
+			}
+			return Color.WHITE;
+		}
+		return Color.WHITE;
+	}
+
+	@Override
+	public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof GTTileBaseSuperconductorCable) {
+			GTTileBaseSuperconductorCable colorTile = (GTTileBaseSuperconductorCable) tile;
+			colorTile.setTileColor(color.getColorValue());
+			IBlockState state = tile.getWorld().getBlockState(tile.getPos());
+			world.notifyBlockUpdate(pos, state, state, 2);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
 	public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
 		return true;
 	}
@@ -79,6 +128,56 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 			return new GTTileSuperconductorCables.SuperconductorHV();
 		}
 		return new GTTileSuperconductorCables.SuperconductorMAX();
+	}
+
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof GTTileBaseSuperconductorCable) {
+			GTTileBaseSuperconductorCable cable = (GTTileBaseSuperconductorCable)tile;
+			return state.withProperty(active, cable.getActive());
+		} else {
+			return super.getActualState(state, worldIn, pos);
+		}
+	}
+
+	@Override
+	public IBlockState getDefaultBlockState() {
+		IBlockState state = this.getDefaultState().withProperty(active, false);
+		if (this.hasFacing()) {
+			state = state.withProperty(allFacings, EnumFacing.NORTH);
+		}
+
+		return state;
+	}
+
+	@Override
+	public List<IBlockState> getValidStateList() {
+		IBlockState def = this.getDefaultState();
+		List<IBlockState> states = new ArrayList<>();
+		states.add(def.withProperty(active, true));
+		states.add(def.withProperty(active, false));
+
+		return states;
+	}
+
+	@Override
+	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+		try {
+			TileEntity tile = world.getTileEntity(pos);
+			if (tile instanceof GTTileBaseSuperconductorCable) {
+				GTTileBaseSuperconductorCable wire = (GTTileBaseSuperconductorCable) tile;
+				return new BlockStateContainerIC2.IC2BlockState(state, wire.getConnections());
+			}
+		} catch (Exception exception) {
+		}
+		return super.getExtendedState(state, world, pos);
+	}
+
+	@Override
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
+		state = this.getActualState(state, worldIn, pos);
+		super.harvestBlock(worldIn, player, pos, state, te, stack);
 	}
 
 	@Override
@@ -149,16 +248,8 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	}
 
 	@Override
-	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-		try {
-			TileEntity tile = world.getTileEntity(pos);
-			if (tile instanceof GTTileBaseSuperconductorCable) {
-				GTTileBaseSuperconductorCable wire = (GTTileBaseSuperconductorCable) tile;
-				return new BlockStateContainerIC2.IC2BlockState(state, wire.getConnections());
-			}
-		} catch (Exception exception) {
-		}
-		return super.getExtendedState(state, world, pos);
+	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+		return BlockFaceShape.UNDEFINED;
 	}
 
 	@Override
@@ -211,47 +302,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 		tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));
 	}
 
-	@Override
-	public Color getColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, Block block, int index) {
-		if (index == 0){
-			if (worldIn != null && state != null && state.getValue(active)) {
-				TileEntity tile = worldIn.getTileEntity(pos);
-				if (tile instanceof IGTRecolorableStorageTile) {
-					IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
-					return colorTile.getTileColor();
-				}
-			}
-			return Color.WHITE;
-		}
-		return Color.WHITE;
-	}
 
-	@Override
-	public boolean recolorBlock(World world, BlockPos pos, EnumFacing side, EnumDyeColor color) {
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile instanceof GTTileBaseSuperconductorCable) {
-			GTTileBaseSuperconductorCable colorTile = (GTTileBaseSuperconductorCable) tile;
-			colorTile.setTileColor(color.getColorValue());
-			IBlockState state = tile.getWorld().getBlockState(tile.getPos());
-			world.notifyBlockUpdate(pos, state, state, 2);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer,
-								ItemStack stack) {
-		super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
-		TileEntity tile = worldIn.getTileEntity(pos);
-		NBTTagCompound nbt = StackUtil.getNbtData(stack);
-		if (tile instanceof IGTRecolorableStorageTile) {
-			IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
-			if (nbt.hasKey("color")) {
-				colorTile.setTileColor(nbt.getInteger("color"));
-			}
-		}
-	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
