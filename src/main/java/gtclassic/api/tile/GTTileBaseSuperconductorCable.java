@@ -1,5 +1,6 @@
 package gtclassic.api.tile;
 
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
 import gtclassic.api.material.GTMaterialGen;
@@ -41,8 +42,9 @@ import net.minecraftforge.common.MinecraftForge;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock implements IEnergyConductorColored, IGTRecolorableStorageTile, INetworkTileEntityEventListener, IAnchorConductor, IGTItemContainerTile {
+public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock implements IEnergyConductorColored, IGTRecolorableStorageTile, INetworkTileEntityEventListener, IAnchorConductor, IGTItemContainerTile, IGTDebuggableTile {
 
 	@NetworkField(index = 8)
 	public RotationList connection;
@@ -103,6 +105,24 @@ public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock impl
 		nbt.setBoolean("active", isActive);
 		nbt.setByte("Anchors", (byte)this.anchors.getCode());
 		return nbt;
+	}
+
+	@Override
+	public void onNetworkUpdate(String field) {
+		super.onNetworkUpdate(field);
+		if (orString(field, "anchors", "color", "connection")) {
+			this.prevColor = this.color;
+			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
+		}
+	}
+
+	public boolean orString(String compare, String... strings){
+		for (String string : strings){
+			if (compare.equals(string)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -221,24 +241,6 @@ public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock impl
 
 	public boolean canInteractWithAPICable(IEnergyConductorColored cable) {
 		return this.getConductorColor() == WireColor.Blank || cable.getConductorColor() == WireColor.Blank || this.getConductorColor() == cable.getConductorColor();
-	}
-
-	@Override
-	public void onNetworkUpdate(String field) {
-		super.onNetworkUpdate(field);
-		if (orString(field, "anchors", "color", "connection")) {
-			this.prevColor = this.color;
-			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
-		}
-	}
-
-	public boolean orString(String compare, String... strings){
-		for (String string : strings){
-			if (compare.equals(string)){
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public abstract Block getBlockDrop();
@@ -405,6 +407,13 @@ public abstract class GTTileBaseSuperconductorCable extends TileEntityBlock impl
 				return;
 			default:
 				IC2.platform.displayError("An unknown event type was received over multiplayer.\nThis could happen due to corrupted data or a bug.\n\n(Technical information: event ID " + event + ", tile entity below)\nT: " + this + " (" + this.getPos() + ")");
+		}
+	}
+
+	@Override
+	public void getData(Map<String, Boolean> data) {
+		for (EnumFacing facing : anchors){
+			data.put("Anchor on side" + facing.getName(), true);
 		}
 	}
 }
