@@ -1,5 +1,6 @@
 package gtclassic;
 
+import gtclassic.common.event.GTEventTextureStorage;
 import org.apache.logging.log4j.Logger;
 
 import gtclassic.api.helpers.GTCommandTeleport;
@@ -109,6 +110,7 @@ public class GTMod {
 		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
 		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
 		MinecraftForge.EVENT_BUS.register(new GTEventItemTooltip());
+		MinecraftForge.EVENT_BUS.register(new GTEventTextureStorage());
 		if (!Loader.isModLoaded(GTValues.MOD_ID_FASTLEAF)) {
 			MinecraftForge.EVENT_BUS.register(new GTEventNeighborNotifyEvent());
 		}

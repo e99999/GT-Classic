@@ -1,28 +1,19 @@
 package gtclassic.common.block;
 
-import gtclassic.GTMod;
-import gtclassic.api.block.GTBlockBaseConnect;
-import gtclassic.api.interfaces.IGTColorBlock;
-import gtclassic.api.interfaces.IGTItemContainerTile;
+import gtclassic.api.block.GTBlockBaseCable;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
-import gtclassic.api.model.GTModelLayeredAnchoredWire;
+import gtclassic.api.interfaces.IGTTextureStorageTile;
 import gtclassic.api.tile.GTTileBaseSuperconductorCable;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileSuperconductorCables;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.block.wiring.BlockCable;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.platform.textures.models.BaseModel;
-import ic2.core.util.helpers.BlockStateContainerIC2;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.util.ITooltipFlag;
@@ -33,8 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -43,11 +32,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IGTReaderInfoBlock,  IGTColorBlock {
+public class GTBlockSuperconductorCable extends GTBlockBaseCable implements IGTReaderInfoBlock {
 
 	int size;
 
@@ -56,15 +43,6 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 		setUnlocalizedName(GTLang.SUPERCONDUCTORCABLE);
 		setRegistryName("superconductorcable" + suffix);
 		this.size = size;
-		this.setHardness(0.2F);
-		this.setSoundType(SoundType.CLOTH);
-		this.setHarvestLevel("axe", 0);
-		setCreativeTab(GTMod.creativeTabGT);
-	}
-
-	@Override
-	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainerIC2(this, active);
 	}
 
 	@Override
@@ -86,7 +64,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 		TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof GTTileBaseSuperconductorCable) {
 			GTTileBaseSuperconductorCable colorTile = (GTTileBaseSuperconductorCable) tile;
-			colorTile.setTileColor(color.getColorValue());
+			colorTile.setTileColor(color.getColorValue(), side);
 			IBlockState state = tile.getWorld().getBlockState(tile.getPos());
 			world.notifyBlockUpdate(pos, state, state, 2);
 			return true;
@@ -96,27 +74,33 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 
 	@Override
 	public Color getColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, Block block, int index) {
-		if (index == 0){
-			if (worldIn != null && state != null && state.getValue(active)) {
+		if (state != null && state.getValue(FOAMED) > 0){
+			if (worldIn != null) {
 				TileEntity tile = worldIn.getTileEntity(pos);
-				if (tile instanceof IGTRecolorableStorageTile) {
-					IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
-					return colorTile.getTileColor();
+				if (tile instanceof IGTTextureStorageTile && state.getValue(FOAMED) > 1) {
+					IGTTextureStorageTile colorTile = (IGTTextureStorageTile) tile;
+					int dir = index / 50;
+					int tintIndex = index % 50;
+					int[] colors = colorTile.getStorage().getEntry(dir).getColorMultiplier();
+					if (tintIndex >= colors.length){
+						return Color.WHITE;
+					}
+					return new Color(colors[tintIndex]);
 				}
 			}
-			return Color.WHITE;
+		} else{
+			if (index == 0){
+				if (worldIn != null && state != null && state.getValue(active) && state.getValue(FOAMED) == 0) {
+					TileEntity tile = worldIn.getTileEntity(pos);
+					if (tile instanceof IGTRecolorableStorageTile) {
+						IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
+						return colorTile.getTileColor();
+					}
+				}
+				return Color.WHITE;
+			}
 		}
 		return Color.WHITE;
-	}
-
-	@Override
-	public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player) {
-		return true;
-	}
-
-	@Override
-	public boolean hasFacing() {
-		return false;
 	}
 
 	@Override
@@ -131,83 +115,8 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	}
 
 	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileBaseSuperconductorCable) {
-			GTTileBaseSuperconductorCable cable = (GTTileBaseSuperconductorCable)tile;
-			return state.withProperty(active, cable.getActive());
-		} else {
-			return super.getActualState(state, worldIn, pos);
-		}
-	}
-
-	@Override
-	public IBlockState getDefaultBlockState() {
-		IBlockState state = this.getDefaultState().withProperty(active, false);
-
-		return state;
-	}
-
-	@Override
-	public List<IBlockState> getValidStateList() {
-		IBlockState def = this.getDefaultState();
-		List<IBlockState> states = new ArrayList<>();
-		states.add(def.withProperty(active, true));
-		states.add(def.withProperty(active, false));
-
-		return states;
-	}
-
-	@Override
-	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-		try {
-			TileEntity tile = world.getTileEntity(pos);
-			if (tile instanceof GTTileBaseSuperconductorCable) {
-				GTTileBaseSuperconductorCable wire = (GTTileBaseSuperconductorCable) tile;
-				return new BlockStateContainerIC2.IC2BlockState(state, wire.getConnections());
-			}
-		} catch (Exception exception) {
-		}
-		return super.getExtendedState(state, world, pos);
-	}
-
-	@Override
-	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
-		state = this.getActualState(state, worldIn, pos);
-		super.harvestBlock(worldIn, player, pos, state, te, stack);
-	}
-
-	@Override
-	public int quantityDropped(Random random) {
-		return 1;
-	}
-
-	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		List<ItemStack> list = new ArrayList<>();
-		TileEntity te = this.getLocalTile() == null ? world.getTileEntity(pos) : this.getLocalTile();
-		if (te instanceof IGTItemContainerTile){
-			list.addAll(((IGTItemContainerTile) te).getDrops());
-			return list;
-		}
-		return super.getDrops(world, pos, state, fortune);
-	}
-
-	private int[] getSize() {
-		int var = (16 - this.size) / 2;
-		return new int[] {var, 16 - var };
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public BaseModel getModelFromState(IBlockState state) {
-		return new GTModelLayeredAnchoredWire(state, Ic2Icons.getTextures("bcable")[277], getSize());
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public TextureAtlasSprite[] getIconSheet(int arg0) {
-		return null;
+	public int getThickness(IBlockState state) {
+		return size;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -233,10 +142,20 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		state = this.getActualState(state, world, pos);
 		ItemStack stack = super.getPickBlock(state, target, world, pos, player);
+		if (state.getValue(FOAMED) == 1){
+			return Ic2Items.constructionFoam;
+		}
 		NBTTagCompound nbt = StackUtil.getOrCreateNbtData(stack);
 		TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof GTTileBaseSuperconductorCable){
 			GTTileBaseSuperconductorCable cable = (GTTileBaseSuperconductorCable) tile;
+			if (cable.foamed > 0) {
+				try {
+					IBlockState realState = cable.storage.getEntry(target.sideHit.getIndex()).getModelState();
+					return realState.getBlock().getPickBlock(realState, target, world, pos, player);
+				} catch (Exception ignored) {
+				}
+			}
 			if (cable.isColored()){
 				nbt.setInteger("color", cable.getTileColor().getRGB());
 			}
@@ -245,80 +164,16 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	}
 
 	@Override
-	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-		return BlockFaceShape.UNDEFINED;
-	}
-
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-		TileEntity tile = world.getTileEntity(pos);
-		if (!(tile instanceof GTTileBaseSuperconductorCable)) {
-			return new AxisAlignedBB(0.25D, 0.25D, 0.25D, 0.75D, 0.75D, 0.75D);
-		} else {
-			GTTileBaseSuperconductorCable cable = (GTTileBaseSuperconductorCable) tile;
-			double thickness = this.size / 32.0D;
-			double minX = 0.5D - thickness;
-			double minY = 0.5D - thickness;
-			double minZ = 0.5D - thickness;
-			double maxX = 0.5D + thickness;
-			double maxY = 0.5D + thickness;
-			double maxZ = 0.5D + thickness;
-			if (cable.connection.contains(EnumFacing.WEST) || cable.anchors.contains(EnumFacing.WEST)) {
-				minX = 0.0D;
-			}
-			if (cable.connection.contains(EnumFacing.DOWN) || cable.anchors.contains(EnumFacing.DOWN)) {
-				minY = 0.0D;
-			}
-			if (cable.connection.contains(EnumFacing.NORTH) || cable.anchors.contains(EnumFacing.NORTH)) {
-				minZ = 0.0D;
-			}
-			if (cable.connection.contains(EnumFacing.EAST) || cable.anchors.contains(EnumFacing.EAST)) {
-				maxX = 1.0D;
-			}
-			if (cable.connection.contains(EnumFacing.UP) || cable.anchors.contains(EnumFacing.UP)) {
-				maxY = 1.0D;
-			}
-			if (cable.connection.contains(EnumFacing.SOUTH) || cable.anchors.contains(EnumFacing.SOUTH)) {
-				maxZ = 1.0D;
-			}
-			return new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);
-		}
-	}
-
-	@Override
 	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this == GTBlocks.tileSuperconductorCableMAX) {
-			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));
+			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(134217728)));
 		}
 		if (this == GTBlocks.tileSuperconductorCableIV) {
-			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32769 })));
+			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(32769)));
 		}
 		if (this == GTBlocks.tileSuperconductorCableHV) {
-			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 512 })));
+			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(512)));
 		}
-		tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));
-	}
-
-
-
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof GTTileBaseSuperconductorCable) {
-			GTTileBaseSuperconductorCable cable = (GTTileBaseSuperconductorCable) tile;
-			ItemStack stack = playerIn.getHeldItem(hand);
-
-			if (StackUtil.isStackEqual(stack, Ic2Items.miningPipe)) {
-				EnumFacing rotation = (new BlockCable.ClickHelper(hitX, hitY, hitZ, (float) this.size / 16)).getFacing(facing);
-				if (rotation != null && cable.addAnchor(rotation)) {
-					if (!playerIn.capabilities.isCreativeMode) {
-						stack.shrink(1);
-					}
-
-					return true;
-				}
-			}
-		}
-		return false;
+		tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(0.001)));
 	}
 }
