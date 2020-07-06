@@ -1,5 +1,6 @@
 package gtclassic;
 
+import gtclassic.common.crafttweaker.GTCraftTweakerLoader;
 import org.apache.logging.log4j.Logger;
 
 import gtclassic.api.helpers.GTCommandTeleport;
@@ -75,6 +76,9 @@ public class GTMod {
 		proxy.preInit(event);
 		logger.info("Hello from GregTech Classic!");
 		GTBlocks.registerTiles();
+		if (Loader.isModLoaded(GTValues.MOD_ID_CT)){
+			GTCraftTweakerLoader.preInit();
+		}
 		GTMaterialGen.initFlags();
 		GTMaterialGen.init();
 		GTBlocks.registerBlocks();
