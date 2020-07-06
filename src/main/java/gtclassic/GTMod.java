@@ -1,6 +1,5 @@
 package gtclassic;
 
-import gtclassic.common.event.GTEventTextureStorage;
 import org.apache.logging.log4j.Logger;
 
 import gtclassic.api.helpers.GTCommandTeleport;
@@ -17,6 +16,7 @@ import gtclassic.common.GTItems;
 import gtclassic.common.GTOreDict;
 import gtclassic.common.GTSounds;
 import gtclassic.common.GTWorldGen;
+import gtclassic.common.crafttweaker.GTCraftTweakerLoader;
 import gtclassic.common.event.GTEventCheckSpawn;
 import gtclassic.common.event.GTEventDecorateBiome;
 import gtclassic.common.event.GTEventEntityViewRenderEvent;
@@ -25,6 +25,7 @@ import gtclassic.common.event.GTEventLootTableLoad;
 import gtclassic.common.event.GTEventNeighborNotifyEvent;
 import gtclassic.common.event.GTEventOnLivingFall;
 import gtclassic.common.event.GTEventPopulateChunk;
+import gtclassic.common.event.GTEventTextureStorage;
 import gtclassic.common.proxy.GTProxyCommon;
 import gtclassic.common.recipe.GTRecipe;
 import gtclassic.common.recipe.GTRecipeIterators;
@@ -76,6 +77,9 @@ public class GTMod {
 		proxy.preInit(event);
 		logger.info("Hello from GregTech Classic!");
 		GTBlocks.registerTiles();
+		if (Loader.isModLoaded(GTValues.MOD_ID_CT)){
+			GTCraftTweakerLoader.preInit();
+		}
 		GTMaterialGen.initFlags();
 		GTMaterialGen.init();
 		GTBlocks.registerBlocks();

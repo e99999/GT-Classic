@@ -1,20 +1,23 @@
 package gtclassic.common;
 
-import static ic2.core.platform.textures.Ic2Icons.addCustomTexture;
-import static ic2.core.platform.textures.Ic2Icons.addSprite;
-import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import gtclassic.GTMod;
+import gtclassic.api.helpers.GTValues;
+import gtclassic.common.crafttweaker.GTCraftTweakerLoader;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.Sprites;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static ic2.core.platform.textures.Ic2Icons.addCustomTexture;
+import static ic2.core.platform.textures.Ic2Icons.addSprite;
+import static ic2.core.platform.textures.Ic2Icons.addTextureEntry;
 
 public class GTIcons {
 
@@ -89,6 +92,9 @@ public class GTIcons {
 		setTexture(GTBlocks.tileRockBreaker, 53, 53, 53, 61, 53, 53);
 		setTexture(GTBlocks.tileDisplayScreen, 0, 1, 2, 108, 2, 2, 0, 1, 2, 109, 2, 2);
 		setTexture(GTBlocks.tileLamp, 99, 100);
+		if (Loader.isModLoaded(GTValues.MOD_ID_CT)){
+			GTCraftTweakerLoader.initIcons();
+		}
 	}
 
 	/**
