@@ -230,6 +230,7 @@ tooltip.gtclassic.paintedtrue=Can be painted white to remove color
 tooltip.gtclassic.paintedfalse=Can be painted different colors
 tooltip.gtclassic.beaconbase=Can be used as a beacon base
 tooltip.gtclassic.nomobs=Mobs cannot spawn on this block
+tooltip.gtclassic.euReaderNeeded=Need eu reader/gt scanner in the hotbar or eu reader attached to a helmet to see eu related tooltips
 
 #machine tooltips
 tooltip.gtclassic.autocrafter0=Automatic Crafting Table Mk III

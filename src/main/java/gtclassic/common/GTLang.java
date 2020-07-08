@@ -55,6 +55,10 @@ public class GTLang {
 	public static final LocaleComp LAMP = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lamp");
 	public static final LocaleComp ORE_BEDROCK = new LocaleBlockComp("tile.gtclassic.oreBedrock");
 	public static final LocaleComp TEST = new LocaleBlockComp("tile.gtclassic.test");
+
+	/** Tooltips **/
+	public static final LocaleComp EU_READER_NEEDED = new LangComponentHolder.LocaleItemInfoComp("tooltip.gtclassic.euReaderNeeded");
+
 	/** Buttons **/
 	public static final String BUTTON_TEST = "button.gtclassic.test";
 	public static final String BUTTON_SORT = "button.gtclassic.sort";

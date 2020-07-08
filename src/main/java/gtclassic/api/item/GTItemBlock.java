@@ -1,10 +1,9 @@
 package gtclassic.api.item;
 
-import java.util.List;
-
 import gtclassic.api.interfaces.IGTBurnableBlock;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.common.GTBlocks;
+import gtclassic.common.GTLang;
 import ic2.core.item.block.ItemBlockRare;
 import ic2.core.platform.player.PlayerHandler;
 import net.minecraft.block.Block;
@@ -13,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class GTItemBlock extends ItemBlockRare {
 
@@ -25,10 +26,12 @@ public class GTItemBlock extends ItemBlockRare {
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 		PlayerHandler handler = PlayerHandler.getClientPlayerHandler();
-		if (handler.hasEUReader()) {
-			Block thisBlock = this.getBlock();
-			if (thisBlock instanceof IGTReaderInfoBlock) {
+		Block thisBlock = this.getBlock();
+		if (thisBlock instanceof IGTReaderInfoBlock) {
+			if (handler.hasEUReader()) {
 				((IGTReaderInfoBlock) thisBlock).addReaderInformation(stack, worldIn, tooltip, flagIn);
+			} else {
+				tooltip.add(GTLang.EU_READER_NEEDED.getLocalized());
 			}
 		}
 	}
