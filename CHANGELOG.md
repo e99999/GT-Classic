@@ -11,6 +11,7 @@
 - Added a recipe for compat with other mods unrefined rubber.
 - Fixed Redstone Ore being mine able with the Jack Hammer.
 - Fixed Superconductor not being able to handle it's stated max value thanks to Trinsdar.
+- Added processing support for Thermal Foundation's destabilized redstone.
 
 # 1.1.4
 - Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.

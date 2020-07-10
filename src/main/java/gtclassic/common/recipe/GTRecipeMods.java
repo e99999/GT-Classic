@@ -90,6 +90,8 @@ public class GTRecipeMods {
 			// Oil sand stuff
 			GTTileCentrifuge.addRecipe("oreClathrateOilSand", 2, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModMetaItem(GTValues.MOD_ID_THERMAL, "material", 892, 6), GTMaterialGen.getModMetaItem(GTValues.MOD_ID_THERMAL, "material", 833, 1));
 			GTTileCentrifuge.addRecipe("oreClathrateOilShale", 2, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModMetaItem(GTValues.MOD_ID_THERMAL, "material", 892, 6), GTMaterialGen.get(Items.FLINT));
+			GTTileCentrifuge.addRecipe("oreClathrateRedstone", 1, 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("redstone", 1));
+			GTTileCentrifuge.addRecipe(GTMaterialGen.getModdedTube("redstone", 1) , 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.get(Items.REDSTONE, 8));
 			// Macerator Stuff
 			TileEntityMacerator.addRecipe("oreClathrateRedstone", 1, GTMaterialGen.getModMetaItem(GTValues.MOD_ID_THERMAL, "material", 893, 3));
 			TileEntityMacerator.addRecipe("oreClathrateGlowstone", 1, GTMaterialGen.getModMetaItem(GTValues.MOD_ID_THERMAL, "material", 894, 3));
