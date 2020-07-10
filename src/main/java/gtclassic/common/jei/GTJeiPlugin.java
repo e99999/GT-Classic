@@ -1,5 +1,7 @@
 package gtclassic.common.jei;
 
+import javax.annotation.Nonnull;
+
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.jei.GTJeiEntry;
 import gtclassic.api.jei.GTJeiHandler;
@@ -30,8 +32,6 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
-
-import javax.annotation.Nonnull;
 
 @JEIPlugin
 public class GTJeiPlugin implements IModPlugin {
@@ -71,7 +71,7 @@ public class GTJeiPlugin implements IModPlugin {
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTItems.orbDataStorage));
-			if (Loader.isModLoaded(GTValues.MOD_ID_GTCX)){
+			if (Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
 				blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.tileFusionReactor));
 			}
 			if (GTConfig.general.hideBedrockOresInJei) {
