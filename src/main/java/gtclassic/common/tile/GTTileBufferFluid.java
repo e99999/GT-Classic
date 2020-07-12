@@ -132,7 +132,7 @@ public class GTTileBufferFluid extends GTTileBufferBase implements ITankListener
 
 	@Override
 	public void onBufferTick() {
-		GTUtility.exportFluidFromMachineToSide(this, this.tank, this.getFacing(), 500);
+		GTUtility.exportFluidFromMachineToSide(this, this.tank, this.getFacing(), 10000);
 	}
 
 	@Override
