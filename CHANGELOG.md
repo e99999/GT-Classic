@@ -11,7 +11,7 @@
 - Added a recipe for compat with other mods unrefined rubber.
 - Fixed Redstone Ore being mine able with the Jack Hammer.
 - Fixed Superconductor not being able to handle it's stated max value thanks to Trinsdar.
-- Added processing support for Thermal Foundation's destabilized redstone.
+- Change processing for Thermal Foundation's Glowstone, Ender, Oilshale, and Destabalized Redstone.
 - Changed Fluid Buffer and Fluid Translocator throughput by 20X to handle GTCX Turbines and Thermal Boiler.
 
 # 1.1.4
