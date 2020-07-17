@@ -14,6 +14,7 @@
 - Change processing for Thermal Foundation's Glowstone, Ender, Oilshale, and Destabalized Redstone.
 - Changed Fluid Buffer and Fluid Translocator throughput by 20X to handle GTCX Turbines and Thermal Boiler.
 - Added ability to disable/enable Tesseracts via redstone.
+- Fixed some issues with colored blocks on servers.
 
 # 1.1.4
 - Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.
