@@ -1,9 +1,5 @@
 package gtclassic.common.block;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
@@ -20,6 +16,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -28,6 +25,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 
@@ -92,12 +93,34 @@ public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 		TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof IGTRecolorableStorageTile) {
 			IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
-			colorTile.setTileColor(color.getColorValue());
+			colorTile.setTileColor(getColorFromEnumDyeColor(color));
 			IBlockState state = tile.getWorld().getBlockState(tile.getPos());
 			world.notifyBlockUpdate(pos, state, state, 2);
 			return true;
 		}
 		return false;
+	}
+
+	public int getColorFromEnumDyeColor(EnumDyeColor color){
+		switch (color.getDyeDamage()){
+			case 0: return 1908001;
+			case 1: return 11546150;
+			case 2: return 6192150;
+			case 3: return 8606770;
+			case 4: return 3949738;
+			case 5: return 8991416;
+			case 6: return 1481884;
+			case 7: return 10329495;
+			case 8: return 4673362;
+			case 9: return 15961002;
+			case 10: return 8439583;
+			case 11: return 16701501;
+			case 12: return 3847130;
+			case 13: return 13061821;
+			case 14: return 16351261;
+			case 15: return 16383998;
+			default: throw new IllegalArgumentException("Unknown Color Dye Damage"); // should never be reached
+		}
 	}
 
 	@Override
