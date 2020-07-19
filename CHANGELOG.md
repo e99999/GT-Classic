@@ -15,6 +15,8 @@
 - Changed Fluid Buffer and Fluid Translocator throughput by 20X to handle GTCX Turbines and Thermal Boiler.
 - Added ability to disable/enable Tesseracts via redstone.
 - Fixed some issues with colored blocks on servers.
+- Changed all Fusion recipes now have a net gain instead of just Helium.
+- Change JEI for Fusion now shows total gain instead of just cost and output.
 
 # 1.1.4
 - Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.
