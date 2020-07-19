@@ -1,5 +1,8 @@
 package gtclassic.api.material;
 
+import java.awt.Color;
+import java.util.List;
+
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.interfaces.IGTColorBlock;
@@ -25,9 +28,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.awt.Color;
-import java.util.List;
 
 public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBlock, ILocaleBlock {
 

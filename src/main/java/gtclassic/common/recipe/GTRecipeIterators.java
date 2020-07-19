@@ -19,6 +19,7 @@ import ic2.core.block.machine.low.TileEntityMacerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -115,7 +116,8 @@ public class GTRecipeIterators {
 		}
 		for (Block block : Block.REGISTRY) {
 			if (block.getDefaultState().getMaterial() == Material.ROCK
-					&& !GTHelperStack.oreDictStartsWith(GTMaterialGen.get(block), "ore")) {
+					&& !GTHelperStack.oreDictStartsWith(GTMaterialGen.get(block), "ore")
+					&& !block.equals(Blocks.LIT_REDSTONE_ORE)) {
 				GTItemJackHammer.rocks.add(block);
 			}
 		}

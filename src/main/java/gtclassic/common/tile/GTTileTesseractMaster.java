@@ -61,7 +61,7 @@ public class GTTileTesseractMaster extends TileEntityElecMachine implements ITic
 	}
 
 	private void handleEnergy() {
-		if (this.energy >= 128 && tesseractTile != null) {
+		if (this.energy >= 128 && tesseractTile != null && !this.world.isBlockPowered(this.getPos())) {
 			this.setActive(true);
 			this.useEnergy(128);
 		} else {

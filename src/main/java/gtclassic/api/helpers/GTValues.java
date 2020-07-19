@@ -8,6 +8,7 @@ import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -68,5 +69,12 @@ public class GTValues {
 	/** Get the name of a tier via its int value **/
 	public static String getTierString(int tier) {
 		return (tier < 0 || tier > 9) ? TIERS[0] : TIERS[tier];
+	}
+
+	private static final int[] COLORS = { 1908001, 11546150, 6192150, 8606770, 3949738, 8991416, 1481884, 10329495,
+			4673362, 15961002, 8439583, 16701501, 3847130, 13061821, 16351261, 16383998 };
+
+	public static int getColorFromEnumDyeColor(EnumDyeColor color) {
+		return COLORS[color.getDyeDamage()];
 	}
 }

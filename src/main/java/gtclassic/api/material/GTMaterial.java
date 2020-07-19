@@ -141,12 +141,12 @@ public class GTMaterial {
 		return this;
 	}
 
-	public GTMaterial setElement(int element){
+	public GTMaterial setElement(int element) {
 		this.element = element;
 		return this;
 	}
 
-	public GTMaterial setTier(int tier){
+	public GTMaterial setTier(int tier) {
 		this.tier = tier;
 		return this;
 	}
@@ -198,7 +198,7 @@ public class GTMaterial {
 		return generatedMap.values();
 	}
 
-	public static boolean hasMaterial(String name){
+	public static boolean hasMaterial(String name) {
 		return generatedMap.containsKey(name);
 	}
 }

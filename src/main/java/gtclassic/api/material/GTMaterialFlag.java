@@ -1,9 +1,9 @@
 package gtclassic.api.material;
 
-import gtclassic.GTMod;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import gtclassic.GTMod;
 
 public class GTMaterialFlag {
 
@@ -43,12 +43,12 @@ public class GTMaterialFlag {
 		this.layered = layered;
 		this.modid = modid;
 		this.crafttweaker = false;
-		if (!suffix.isEmpty()){
+		if (!suffix.isEmpty()) {
 			FLAG_MAP.put(this.getPrefix(), this);
 		}
 	}
 
-	public GTMaterialFlag setCraftweaker(boolean craftweaker){
+	public GTMaterialFlag setCraftweaker(boolean craftweaker) {
 		this.crafttweaker = true;
 		return this;
 	}
@@ -85,15 +85,15 @@ public class GTMaterialFlag {
 		return this.modid;
 	}
 
-	public static boolean hasFlag(String prefix){
+	public static boolean hasFlag(String prefix) {
 		return FLAG_MAP.containsKey(prefix);
 	}
 
-	public static GTMaterialFlag getFlag(String prefix){
+	public static GTMaterialFlag getFlag(String prefix) {
 		return FLAG_MAP.get(prefix);
 	}
 
-	public static int getMapSize(){
+	public static int getMapSize() {
 		return FLAG_MAP.size();
 	}
 }

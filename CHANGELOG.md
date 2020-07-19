@@ -1,5 +1,6 @@
 # Changelog
 # 1.1.5 (Not Released)
+- Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.
 - Added the Redstone Controlled Lamp from GT4, can be painted different colors and has a variable light level.
 - Changed the Bedrock Miner to now try to break a pipe/consume lubricant every mining operation instead of every successful operation.
 - Changed the Bedrock Miner now auto outputs out of the back instead of the top for easier automation with GTC Drums.
@@ -8,6 +9,12 @@
 - Fixed colored tiles being reset to no color on servers.
 - Fixed Type filter allowing similar types to pass through the filter.
 - Added a recipe for compat with other mods unrefined rubber.
+- Fixed Redstone Ore being mine able with the Jack Hammer.
+- Fixed Superconductor not being able to handle it's stated max value thanks to Trinsdar.
+- Change processing for Thermal Foundation's Glowstone, Ender, Oilshale, and Destabalized Redstone.
+- Changed Fluid Buffer and Fluid Translocator throughput by 20X to handle GTCX Turbines and Thermal Boiler.
+- Added ability to disable/enable Tesseracts via redstone.
+- Fixed some issues with colored blocks on servers.
 
 # 1.1.4
 - Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.

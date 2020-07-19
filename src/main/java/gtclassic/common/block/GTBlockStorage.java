@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.api.helpers.GTValues;
 import gtclassic.api.interfaces.IGTColorBlock;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.api.interfaces.IGTRecolorableStorageTile;
@@ -92,7 +93,7 @@ public class GTBlockStorage extends GTBlockMachine implements IGTColorBlock {
 		TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof IGTRecolorableStorageTile) {
 			IGTRecolorableStorageTile colorTile = (IGTRecolorableStorageTile) tile;
-			colorTile.setTileColor(color.getColorValue());
+			colorTile.setTileColor(GTValues.getColorFromEnumDyeColor(color));
 			IBlockState state = tile.getWorld().getBlockState(tile.getPos());
 			world.notifyBlockUpdate(pos, state, state, 2);
 			return true;

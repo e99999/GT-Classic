@@ -5,5 +5,3 @@
 
 # Bugs
 - Try to reduce lag when setting the recipe in an autocrafter
-- Recipe for destablized redstone
-- centrifuge destablized redstone ore stuff for like 6-8 buckets?
