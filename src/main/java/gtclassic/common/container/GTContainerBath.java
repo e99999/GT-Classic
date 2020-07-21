@@ -5,6 +5,7 @@ import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
+import ic2.core.inventory.slots.SlotDisplay;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
@@ -31,6 +32,7 @@ public class GTContainerBath extends ContainerTileComponent<GTTileBath> {
 				this.addSlotToContainer(new SlotOutput(player.player, tile, 6 + x + y * 3, 107 + x * 18, 17 + y * 18));
 			}
 		}
+		this.addSlotToContainer(new SlotDisplay(tile, 12, 35, 62));
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, GTContainerBath.machineProgressBox, GTContainerBath.machineProgressPos));
 	}
