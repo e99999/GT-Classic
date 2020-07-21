@@ -8,9 +8,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
+import gtclassic.common.GTItems;
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.crafting.RecipeInputFluid;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IStackOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
@@ -28,6 +31,9 @@ import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
+import ic2.core.item.recipe.entry.RecipeInputCombined;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,6 +42,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 
 public abstract class GTTileBasePassiveMachine extends TileEntityMachine
 		implements ITickable, IProgressMachine, IHasGui, INetworkTileEntityEventListener {
@@ -115,7 +122,7 @@ public abstract class GTTileBasePassiveMachine extends TileEntityMachine
 				progress = 0;
 				getNetwork().updateTileGuiField(this, "progress");
 			}
-			// setActive(false);
+			setActive(false);
 		}
 		updateComparators();
 	}
@@ -421,5 +428,30 @@ public abstract class GTTileBasePassiveMachine extends TileEntityMachine
 	protected void addComparators(ComparatorManager manager) {
 		super.addComparators(manager);
 		manager.addComparatorMode(new ComparatorProgress(this));
+	}
+
+	/*
+	 * the 2 methods below are utilities for making recipes in all tiles extended
+	 * off this class
+	 */
+	public static IRecipeInput input(ItemStack stack) {
+		return new RecipeInputItemStack(stack);
+	}
+
+	public static IRecipeInput input(String name, int amount) {
+		return new RecipeInputOreDict(name, amount);
+	}
+
+	public static IRecipeInput input(FluidStack input) {
+		return new RecipeInputFluid(input);
+	}
+
+	public static IRecipeInput tubes(int amount) {
+		return new RecipeInputItemStack(GTMaterialGen.get(GTItems.testTube, amount));
+	}
+
+	public static IRecipeInput metal(String type, int amount) {
+		return new RecipeInputCombined(amount, new IRecipeInput[] { new RecipeInputOreDict("ingot" + type, amount),
+				new RecipeInputOreDict("dust" + type, amount), });
 	}
 }

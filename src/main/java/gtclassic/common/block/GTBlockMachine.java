@@ -11,6 +11,7 @@ import gtclassic.common.GTBlocks;
 import gtclassic.common.GTIcons;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
+import gtclassic.common.tile.GTTileBath;
 import gtclassic.common.tile.GTTileBedrockMiner;
 import gtclassic.common.tile.GTTileBlockExtender;
 import gtclassic.common.tile.GTTileBufferFluid;
@@ -201,6 +202,9 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileCentrifuge) {
 			return new GTTileCentrifuge();
+		}
+		if (this == GTBlocks.tileBath) {
+			return new GTTileBath();
 		}
 		if (this == GTBlocks.tilePlayerDetector) {
 			return new GTTilePlayerDetector();

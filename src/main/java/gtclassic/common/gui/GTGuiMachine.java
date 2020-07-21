@@ -12,6 +12,13 @@ public class GTGuiMachine {
 		}
 	}
 
+	public static class GTBathGui extends MachineGui {
+
+		public GTBathGui(ContainerComponent<?> container) {
+			super(container);
+		}
+	}
+
 	public static class GTMatterFabricatorGui extends MachineGui {
 
 		public GTMatterFabricatorGui(ContainerComponent<?> container) {

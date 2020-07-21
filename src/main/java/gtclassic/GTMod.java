@@ -29,6 +29,7 @@ import gtclassic.common.proxy.GTProxyCommon;
 import gtclassic.common.recipe.GTRecipe;
 import gtclassic.common.recipe.GTRecipeIterators;
 import gtclassic.common.recipe.GTRecipeMods;
+import gtclassic.common.tile.GTTileBath;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileDisassembler;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
@@ -95,6 +96,7 @@ public class GTMod {
 		GTMaterialElement.init();
 		GTRecipeIterators.init();
 		GTTileCentrifuge.init();
+		GTTileBath.init();
 		GTTileUUMAssembler.init();
 		GTTileMagicEnergyConverter.init();
 		GTRecipe.initShapeless();
