@@ -16,9 +16,7 @@ import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
-import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
-import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.item.recipe.upgrades.EnchantmentModifier;
 import ic2.core.item.recipe.upgrades.FlagModifier;
 import ic2.core.platform.registry.Ic2Items;
@@ -149,7 +147,7 @@ public class GTRecipe {
 
 	public static void rodUtil(ItemStack single, ItemStack dual, ItemStack quad, ItemStack isotope, ItemStack reEnriched, ItemStack nearDepleted, ItemStack ingredient) {
 		ItemStack emptyRod = getEmptyRod();
-		IRecipeInput coal = new RecipeInputCombined(1, new RecipeInputOreDict("dustCoal"), new RecipeInputOreDict("dustCharcoal"));
+		IRecipeInput coal = GTRecipeCraftingHandler.combineRecipeObjects("dustCoal","dustCharcoal", "dustCarbon");
 		/** re enriched to single **/
 		recipes.addShapelessRecipe(single, coal, reEnriched);
 		/** near depleted **/
