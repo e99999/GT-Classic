@@ -1,6 +1,5 @@
 package gtclassic.common.container;
 
-import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.common.gui.GTGuiCompWorktable;
 import gtclassic.common.tile.GTTileWorktable;
@@ -36,7 +35,40 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 
 		@Override
 		public ItemStack decrStackSize(int index, int count) {
-			GTMod.logger.info("Removing Stack from slot " + index);
+			int currentCount = count;
+			for (int i = 1; i < 17; i++) {
+				Slot slot = getSlot(i);
+				ItemStack stack = slot.getStack();
+				if (stack.isEmpty()) {
+					continue;
+				}
+				ItemStack craftingStack = this.getStackInSlot(index);
+				if (GTHelperStack.isEqual(stack, craftingStack) && craftingStack.getCount() < craftingStack.getMaxStackSize()){
+					int room = craftingStack.getMaxStackSize() - craftingStack.getCount();
+					if (room < 0) room = 0;
+					if (room == 0){
+						break;
+					}
+					if (room < currentCount){
+						currentCount = room;
+					}
+					if (stack.getCount() >= currentCount){
+						craftingStack.grow(currentCount);
+						stack.shrink(currentCount);
+						currentCount = 0;
+						if (stack.getCount() == 0){
+							setStackInSlot(i, ItemStack.EMPTY);
+						}
+					} else {
+						currentCount -= stack.getCount();
+						craftingStack.grow(stack.getCount());
+						setStackInSlot(i, ItemStack.EMPTY);
+					}
+				}
+				if (currentCount == 0){
+					break;
+				}
+			}
 			return super.decrStackSize(index, count);
 		}
 	};
