@@ -1,6 +1,7 @@
 package gtclassic.common.container;
 
 import gtclassic.api.helpers.GTHelperStack;
+import gtclassic.common.container.inventory.GTInventoryCraftResult;
 import gtclassic.common.gui.GTGuiCompWorktable;
 import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.util.GTIFilters;
@@ -9,10 +10,10 @@ import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotCustom;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
@@ -36,43 +37,58 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		@Override
 		public ItemStack decrStackSize(int index, int count) {
 			int currentCount = count;
-			for (int i = 1; i < 17; i++) {
-				Slot slot = getSlot(i);
-				ItemStack stack = slot.getStack();
-				if (stack.isEmpty()) {
-					continue;
-				}
-				ItemStack craftingStack = this.getStackInSlot(index);
-				if (GTHelperStack.isEqual(stack, craftingStack) && craftingStack.getCount() < craftingStack.getMaxStackSize()){
-					int room = craftingStack.getMaxStackSize() - craftingStack.getCount();
-					if (room < 0) room = 0;
-					if (room == 0){
-						break;
+			ItemStack craftingStackCopy = this.getStackInSlot(index).copy();
+			ItemStack craftingStack = super.decrStackSize(index, count);
+			ItemStack craftingSlotStack = this.getStackInSlot(index);
+			if (craftResult.crafted && !GuiScreen.isShiftKeyDown()){
+				for (int i = 1; i < 17; i++) {
+					Slot slot = getSlot(i);
+					ItemStack stack = slot.getStack();
+					if (stack.isEmpty()) {
+						continue;
 					}
-					if (room < currentCount){
-						currentCount = room;
-					}
-					if (stack.getCount() >= currentCount){
-						craftingStack.grow(currentCount);
-						stack.shrink(currentCount);
-						currentCount = 0;
-						if (stack.getCount() == 0){
+					if (GTHelperStack.isEqual(stack, craftingStackCopy) && craftingSlotStack.getCount() < craftingStackCopy.getMaxStackSize()){
+						int room = craftingStackCopy.getMaxStackSize() - craftingSlotStack.getCount();
+						if (room < 0) room = 0;
+						if (room == 0){
+							break;
+						}
+						if (room < currentCount){
+							currentCount = room;
+						}
+						if (stack.getCount() >= currentCount){
+							if (craftingSlotStack.isEmpty()){
+								this.setInventorySlotContents(index, GTHelperStack.copyWithSize(stack, currentCount));
+							} else {
+								this.setInventorySlotContents(index, GTHelperStack.copyWithSize(stack, craftingSlotStack.getCount() + currentCount));
+							}
+							stack.shrink(currentCount);
+							currentCount = 0;
+							if (stack.getCount() == 0){
+								setStackInSlot(i, ItemStack.EMPTY);
+							}
+						} else {
+							currentCount -= stack.getCount();
+							if (craftingSlotStack.isEmpty()){
+								this.setInventorySlotContents(index, GTHelperStack.copyWithSize(stack, stack.getCount()));
+							} else {
+								this.setInventorySlotContents(index, GTHelperStack.copyWithSize(stack, craftingSlotStack.getCount() + stack.getCount()));
+							}
 							setStackInSlot(i, ItemStack.EMPTY);
 						}
-					} else {
-						currentCount -= stack.getCount();
-						craftingStack.grow(stack.getCount());
-						setStackInSlot(i, ItemStack.EMPTY);
+					}
+					if (currentCount == 0){
+						break;
 					}
 				}
-				if (currentCount == 0){
-					break;
+				if (index == 8){
+					craftResult.setCrafted(false);
 				}
 			}
-			return super.decrStackSize(index, count);
+			return craftingStack;
 		}
 	};
-	public InventoryCraftResult craftResult = new InventoryCraftResult();
+	public GTInventoryCraftResult craftResult = new GTInventoryCraftResult();
 	private final World world;
 	private final EntityPlayer player;
 	private GTTileWorktable block;
