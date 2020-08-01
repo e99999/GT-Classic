@@ -3,8 +3,6 @@ package gtclassic.common.container.inventory;
 import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.common.container.GTContainerWorktable;
 import gtclassic.common.tile.GTTileWorktable;
-import ic2.core.IC2;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -31,7 +29,7 @@ public class GTInventoryCrafting extends InventoryCrafting {
         ItemStack craftingStack = super.decrStackSize(index, count);
         ItemStack craftingSlotStack = this.getStackInSlot(index);
         boolean pulled = false;
-        if (containerWorktable.craftResult.crafted && (IC2.platform.isSimulating() || !GuiScreen.isShiftKeyDown())){
+        if (containerWorktable.craftResult.crafted){
             for (int i = 1; i < 17; i++) {
                 Slot slot = containerWorktable.getSlot(i);
                 ItemStack stack = slot.getStack();
