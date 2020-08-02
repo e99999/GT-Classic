@@ -5,3 +5,5 @@
 
 # Bugs
 - Try to reduce lag when setting the recipe in an autocrafter
+- Optimize the Charge-O-Mat, Matter Fab, and Bedrock Miner
+- Try to reduce minor lag caused by fluid handler tiles
