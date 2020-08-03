@@ -9,6 +9,7 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 
 	public boolean lastState;
 	public boolean firstCheck = true;
+	private int tickOffset = 0;
 
 	/**
 	 * Constructor for a GTC Multi-block Machine.
@@ -37,10 +38,18 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	}
 
 	@Override
+	public void onLoaded() {
+		super.onLoaded();
+		if (this.isSimulating()) {
+			this.tickOffset = world.rand.nextInt(128);
+		}
+	}
+
+	@Override
 	public boolean canWork() {
 		boolean superCall = super.canWork();
 		if (superCall) {
-			if (world.getTotalWorldTime() % 256 == 0 || firstCheck) {
+			if (world.getTotalWorldTime() % (128 + this.tickOffset) == 0 || firstCheck) {
 				lastState = checkStructure();
 				firstCheck = false;
 				this.getNetwork().updateTileGuiField(this, "lastState");
@@ -65,5 +74,10 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	@Override
 	public boolean getStructureValid() {
 		return lastState;
+	}
+	
+	public int getTickOffset() {
+		//TODO check this with the scanner
+		return this.tickOffset;
 	}
 }
