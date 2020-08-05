@@ -153,10 +153,7 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 	public void onRecipeComplete() {
 		if (this.lastRecipe != null && this.lastRecipe != GTRecipeMultiInputList.INVALID_RECIPE) {
 			int rTime = lastRecipe.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
-			if (rTime < 3000) {
-				return;
-			}
-			int euOutput = rTime * 32000;
+			int euOutput = rTime * 12000;
 			if (this.energyOut + euOutput >= 134217728) {
 				this.energyOut = 134217728;
 			} else {

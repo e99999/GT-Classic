@@ -1,5 +1,8 @@
 # Changelog
-# 1.1.5 (Not Released)
+# 1.1.6 (Not Released)
+- Nothing to see here yet
+
+# 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.
 - Added the Redstone Controlled Lamp from GT4, can be painted different colors and has a variable light level.
 - Changed the Bedrock Miner to now try to break a pipe/consume lubricant every mining operation instead of every successful operation.
@@ -15,6 +18,8 @@
 - Changed Fluid Buffer and Fluid Translocator throughput by 20X to handle GTCX Turbines and Thermal Boiler.
 - Added ability to disable/enable Tesseracts via redstone.
 - Fixed some issues with colored blocks on servers.
+- Changed all Fusion recipes now have a net gain instead of just Helium.
+- Change JEI for Fusion now shows net gain instead of just cost and output.
 
 # 1.1.4
 - Added a very basic Nuclear Control style Display Screen, just single block form. Use a sensor stick to set block to read, will automatically parse useful information.

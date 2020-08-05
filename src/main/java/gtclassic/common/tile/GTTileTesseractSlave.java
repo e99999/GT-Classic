@@ -172,7 +172,8 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	}
 
 	private void handleEnergy() {
-		if (this.hasEnergy(32) && this.targetMaster != null && !this.targetMaster.isInvalid() && !this.world.isBlockPowered(this.getPos())) {
+		if (this.hasEnergy(32) && this.targetMaster != null && !this.targetMaster.isInvalid()
+				&& !this.world.isBlockPowered(this.getPos())) {
 			this.useEnergy(32);
 			return;
 		}

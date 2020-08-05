@@ -61,6 +61,16 @@ public class GTRecipeMachineHandler {
 	}
 
 	/**
+	 * Creates literal recipe length
+	 * 
+	 * @param total - time (must be above 100)
+	 * @return
+	 */
+	public static IRecipeModifier[] totalTime(int total) {
+		return new IRecipeModifier[] { ModifierType.RECIPE_LENGTH.create(total - 100) };
+	}
+
+	/**
 	 * Removing a recipe from a GTC Recipe List
 	 * 
 	 * @param recipeList - recipe list to modify

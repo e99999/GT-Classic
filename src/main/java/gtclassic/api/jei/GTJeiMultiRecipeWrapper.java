@@ -60,15 +60,16 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 		font.drawString("Tier: "
 				+ GTValues.getTierString(EnergyNet.instance.getTierFromPower(multiRecipe.getMachineEu())), 0, 60, Color.black.getRGB());
 		font.drawString("Usage: " + multiRecipe.getMachineEu() + " EU/t", 0, 70, Color.black.getRGB());
-		font.drawString("Cost: "
-				+ NumberFormat.getNumberInstance(Locale.US).format(getEntryTicks(multiRecipe.getOutputs())
-						* multiRecipe.getMachineEu())
+		int cost = getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu();
+		font.drawString("Cost: " + NumberFormat.getNumberInstance(Locale.US).format(cost)
 				+ " EU", 0, 80, Color.black.getRGB());
-		if (multiRecipe.getMachineEu() == 8192 && getEntryTicks(multiRecipe.getOutputs()) > 3000) {
+		// TODO make this check specifically for fusion, as soon as someone makes a
+		// machine at 8192EU it will trigger this
+		if (multiRecipe.getMachineEu() == 8192) {
 			extraHeight = 10;
-			font.drawString("Output: "
-					+ NumberFormat.getNumberInstance(Locale.US).format(getEntryTicks(multiRecipe.getOutputs()) * 32000)
-					+ " EU Out", 0, 90, Color.black.getRGB());
+			int gain = (getEntryTicks(multiRecipe.getOutputs()) * 12000) - cost;
+			font.drawString("Gain: " + NumberFormat.getNumberInstance(Locale.US).format(gain)
+					+ " EU", 0, 90, Color.black.getRGB());
 		}
 		if (GTConfig.general.debugMode) {
 			font.drawString("Recipe Id: " + multiRecipe.getRecipeID(), 0, 90 + extraHeight, Color.black.getRGB());

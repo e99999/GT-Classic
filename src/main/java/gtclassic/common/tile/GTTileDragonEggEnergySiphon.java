@@ -6,18 +6,17 @@ import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IEmitterTile;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 
-public class GTTileDragonEggEnergySiphon extends TileEntityMachine implements ITickable, IEnergySource, IEmitterTile {
+public class GTTileDragonEggEnergySiphon extends TileEntityMachine implements IEnergySource, IEmitterTile {
 
 	protected double production = 128.0D;
 	int storage;
 	boolean enet = false;
-	public static GTTileDragonEggEnergySiphon activeSiphon;
 
 	public GTTileDragonEggEnergySiphon() {
 		super(0);
@@ -35,12 +34,12 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine implements IT
 
 	@Override
 	public void drawEnergy(double amount) {
-		this.storage = (int) ((double) this.storage - amount);
+
 	}
 
 	@Override
 	public double getOfferedEnergy() {
-		return (double) this.storage;
+		return this.getActive() ? this.production : 0.0D;
 	}
 
 	@Override
@@ -55,6 +54,7 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine implements IT
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.enet = true;
 		}
+		this.checkForEgg();
 	}
 
 	@Override
@@ -67,13 +67,12 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine implements IT
 	}
 
 	@Override
-	public void update() {
-		if (world.getTotalWorldTime() % 10 == 0) {
-			this.setActive(world.getBlockState(pos.up()).equals(Blocks.DRAGON_EGG.getDefaultState()));
-		}
-		if (this.isActive) {
-			this.storage = 128;
-		}
+	public void onBlockUpdate(Block block) {
+		this.checkForEgg();
+	}
+
+	private void checkForEgg() {
+		this.setActive(world.getBlockState(pos.up()).equals(Blocks.DRAGON_EGG.getDefaultState()));
 	}
 
 	@Override

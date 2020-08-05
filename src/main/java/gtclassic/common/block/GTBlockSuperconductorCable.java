@@ -128,6 +128,18 @@ public class GTBlockSuperconductorCable extends GTBlockBaseCable implements IGTR
 
 	@SideOnly(Side.CLIENT)
 	@Override
+	public TextureAtlasSprite[] getIconSheet(int arg0) {
+		return null;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
+		return Ic2Icons.getTextures("gtclassic_materials")[12];
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
 	public TextureAtlasSprite getParticleTexture(IBlockState state) {
 		return this.getTextureFromState(state, EnumFacing.SOUTH);
 	}

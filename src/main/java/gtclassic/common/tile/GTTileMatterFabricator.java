@@ -216,7 +216,6 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 	@Override
 	public void update() {
 		this.setActive(hasPower() && !redstoneEnabled());
-		// Below i try to iterate the input slots to check for valid amplifier
 		ItemStack output = this.inventory.get(8);
 		// Redstone check last because its the most CPU intensive.
 		if (hasPower() && output.getCount() < output.getMaxStackSize() && !redstoneEnabled()) {
