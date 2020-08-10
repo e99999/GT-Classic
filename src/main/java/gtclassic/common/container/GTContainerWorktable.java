@@ -1,6 +1,8 @@
 package gtclassic.common.container;
 
 import gtclassic.api.helpers.GTHelperStack;
+import gtclassic.common.container.inventory.GTInventoryCraftResult;
+import gtclassic.common.container.inventory.GTInventoryCrafting;
 import gtclassic.common.gui.GTGuiCompWorktable;
 import gtclassic.common.tile.GTTileWorktable;
 import gtclassic.common.util.GTIFilters;
@@ -12,8 +14,6 @@ import ic2.core.inventory.slots.SlotCustom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCraftResult;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
@@ -23,17 +23,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable> {
+public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable>{
 
-	private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3) {
-
-		@Override
-		public void setInventorySlotContents(int index, ItemStack stack) {
-			super.setInventorySlotContents(index, stack);
-			block.craftingInventory.set(index, stack);
-		}
-	};
-	public InventoryCraftResult craftResult = new InventoryCraftResult();
+	private GTInventoryCrafting craftMatrix;
+	public GTInventoryCraftResult craftResult = new GTInventoryCraftResult();
 	private final World world;
 	private final EntityPlayer player;
 	private GTTileWorktable block;
@@ -41,17 +34,12 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 
 	public GTContainerWorktable(InventoryPlayer player, GTTileWorktable tile) {
 		super(tile);
+		craftMatrix = new GTInventoryCrafting(this, tile);
 		this.block = tile;
 		this.world = player.player.getEntityWorld();
 		this.player = player.player;
 		// crafting output slot
 		this.addSlotToContainer(new SlotCrafting(this.player, craftMatrix, craftResult, 0, 136, 46));// slot 0
-		// crafting slots
-		for (int i = 0; i < 3; ++i) {
-			for (int j = 0; j < 3; ++j) {
-				this.addSlotToContainer(new Slot(craftMatrix, (j + i * 3), 82 + j * 18, 28 + i * 18));
-			}
-		}
 		// main inventory
 		int k;
 		for (k = 0; k < 4; ++k) {
@@ -59,6 +47,13 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 				this.addSlotToContainer(new SlotBase(tile, (k + l * 4) + 1, 8 + l * 18, 8 + k * 18));
 			}
 		}
+		// crafting slots
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 3; ++j) {
+				this.addSlotToContainer(new Slot(craftMatrix, (j + i * 3), 82 + j * 18, 28 + i * 18));
+			}
+		}
+
 		// tool slots
 		for (k = 0; k < 5; k++) {
 			this.addSlotToContainer(new SlotCustom(tile, k + 17, 82 + (k * 18), 8, toolFilter));
@@ -80,7 +75,7 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 	public void onButtonClick(int event) {
 		if (event == 2) {
 			if (block.inUse) {
-				for (int j = 1; j < 10; j++) {
+				for (int j = 17; j < 26; j++) {
 					Slot slot = getSlot(j);
 					ItemStack stack = slot.getStack();
 					if (stack.isEmpty()) {
@@ -96,13 +91,13 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 		}
 		if (event == 1) {
 			if (block.inUse) {
-				for (int j = 1; j < 10; j++) {
+				for (int j = 17; j < 26; j++) {
 					Slot slot = getSlot(j);
 					ItemStack stack = slot.getStack();
 					if (stack.isEmpty()) {
 						continue;
 					}
-					insert(j, stack, 10, 25);
+					insert(j, stack, 1, 16);
 				}
 			}
 		}

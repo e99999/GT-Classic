@@ -1,7 +1,5 @@
 package gtclassic.common.jei;
 
-import javax.annotation.Nonnull;
-
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.jei.GTJeiEntry;
 import gtclassic.api.jei.GTJeiHandler;
@@ -15,7 +13,6 @@ import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
 import gtclassic.common.block.GTBlockMortar;
-import gtclassic.common.container.GTContainerWorktable;
 import gtclassic.common.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.common.gui.GTGuiMachine.GTMatterFabricatorGui;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
@@ -27,11 +24,12 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
-import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
+
+import javax.annotation.Nonnull;
 
 @JEIPlugin
 public class GTJeiPlugin implements IModPlugin {
@@ -49,7 +47,7 @@ public class GTJeiPlugin implements IModPlugin {
 			}
 			// More Vanilla Crafting
 			IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
-			recipeTransferRegistry.addRecipeTransferHandler(GTContainerWorktable.class, VanillaRecipeCategoryUid.CRAFTING, 1, 9, 10, 58);
+			recipeTransferRegistry.addRecipeTransferHandler(new GTRecipeTransferInfo());
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileWorktable), new String[] { "minecraft.crafting" });
 			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileAutocrafter), new String[] { "minecraft.crafting" });
 			// Amplifier
