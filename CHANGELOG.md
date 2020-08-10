@@ -3,7 +3,7 @@
 - Added better performance of all multiblock structures, GTCX automatically gets this as well.
 - Added better performance of some basic tiles.
 - Fixed miscalculation with matter fab resulting in half of the output of UU.
-- GT Worktables now pull items from storage thanks to Trinsdar.
+- Added GT Worktables now pull items from storage thanks to Trinsdar.
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.
