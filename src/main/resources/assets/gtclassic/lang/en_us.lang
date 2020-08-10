@@ -35,7 +35,6 @@ tile.gtclassic.lightsource.name=Light Source
 
 #tiles
 tile.gtclassic.autocrafter.name=Electric Craftingtable
-tile.gtclassic.bath.name=Bath
 tile.gtclassic.disassembler.name=Disassembler
 tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.computercube.name=Computer Cube
@@ -238,8 +237,6 @@ tooltip.gtclassic.chargeomat0=Charges all the things
 tooltip.gtclassic.computercube0=Now with more dedotated WAM!
 tooltip.gtclassic.drum0=Portable tank, capacity of 32 buckets
 tooltip.gtclassic.drum1=Sneak click empty handed to toggle output
-tooltip.gtclassic.bath0=For bathing stuff in other stuff
-tooltip.gtclassic.bath1=Does not need power or fuel to function.
 tooltip.gtclassic.echotronblock0=Reveals entities using echo location
 tooltip.gtclassic.digitalchest0=Uploads and downloads contents to data orbs
 tooltip.gtclassic.quantumchest0=2 Milliards, uhh I mean billion, items to store here!

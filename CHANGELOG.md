@@ -1,6 +1,8 @@
 # Changelog
 # 1.1.6 (Not Released)
-- Nothing to see here yet
+- Added better performance of all multiblock structures, GTCX automatically gets this as well.
+- Added better performance of some basic tiles.
+- Fixed miscalculation with matter fab resulting in half of the output of UU.
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.
