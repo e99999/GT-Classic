@@ -1,5 +1,7 @@
 package gtclassic.common.jei;
 
+import javax.annotation.Nonnull;
+
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.jei.GTJeiEntry;
 import gtclassic.api.jei.GTJeiHandler;
@@ -28,8 +30,6 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
-
-import javax.annotation.Nonnull;
 
 @JEIPlugin
 public class GTJeiPlugin implements IModPlugin {
