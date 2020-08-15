@@ -11,6 +11,7 @@ import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.obj.IClickable;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -37,6 +38,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	private static final String NBT_TARGET = "targetMaster";
 	@NetworkField(index = 8)
 	GTTileTesseractMaster targetMaster;
+	private int redstoneLevel = -1;
 
 	public GTTileTesseractSlave() {
 		super(1, 128);
@@ -126,6 +128,12 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	public void onLoaded() {
 		super.onLoaded();
 		updateConnections();
+		updateRedstoneLevel();
+	}
+
+	@Override
+	public void onBlockUpdate(Block block) {
+		updateRedstoneLevel();
 	}
 
 	@Override
@@ -172,9 +180,8 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	}
 
 	private void handleEnergy() {
-		if (this.hasEnergy(32) && this.targetMaster != null && !this.targetMaster.isInvalid()
-				&& !this.world.isBlockPowered(this.getPos())) {
-			this.useEnergy(32);
+		if (this.hasEnergy(1) && this.targetMaster != null && !this.targetMaster.isInvalid() && this.redstoneLevel < 1) {
+			this.useEnergy(1);
 			return;
 		}
 		setTarget(null);
@@ -200,12 +207,20 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 		this.getNetwork().updateTileEntityField(this, NBT_TARGET);
 	}
 
+	public void updateRedstoneLevel() {
+		this.redstoneLevel = world.getRedstonePower(this.pos.offset(this.getFacing()), this.getFacing());
+	}
+
 	@Override
 	public void onNetworkUpdate(String field) {
 		if (field.equals(NBT_TARGET)) {
 			this.world.markBlockRangeForRenderUpdate(this.getPos(), this.getPos());
 		}
 		super.onNetworkUpdate(field);
+	}
+
+	public boolean isFacingPowered() {
+		return world.getRedstonePower(this.pos.offset(this.getFacing()), this.getFacing()) > 0;
 	}
 
 	@Override
@@ -242,5 +257,6 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 		String status = this.canExtendCapabilites() ? "Connected to Tesseract Generator"
 				: "Failed to connect Tesseract Generator";
 		data.put(status, true);
+		data.put("Redstone Level: " + this.redstoneLevel, true);
 	}
 }

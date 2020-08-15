@@ -31,8 +31,8 @@ public class GTCraftTweakerActions {
 	public static IRecipeInput of(IIngredient ingredient) {
 		if (ingredient instanceof IItemStack) {
 			return of((IItemStack) ingredient);
-		} else if (ingredient instanceof ILiquidStack){
-			return new RecipeInputFluid(CraftTweakerMC.getLiquidStack((ILiquidStack)ingredient));
+		} else if (ingredient instanceof ILiquidStack) {
+			return new RecipeInputFluid(CraftTweakerMC.getLiquidStack((ILiquidStack) ingredient));
 		} else if (ingredient instanceof IOreDictEntry) {
 			return new RecipeInputOreDict(((IOreDictEntry) ingredient).getName(), ingredient.getAmount());
 		} else {

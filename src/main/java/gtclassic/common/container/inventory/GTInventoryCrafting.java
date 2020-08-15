@@ -8,6 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 public class GTInventoryCrafting extends InventoryCrafting {
+
 	GTContainerWorktable containerWorktable;
 	GTTileWorktable worktable;
 

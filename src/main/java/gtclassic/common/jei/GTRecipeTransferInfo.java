@@ -9,6 +9,7 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferInfo;
 import net.minecraft.inventory.Slot;
 
 public class GTRecipeTransferInfo implements IRecipeTransferInfo<GTContainerWorktable> {
+
 	@Override
 	public Class<GTContainerWorktable> getContainerClass() {
 		return GTContainerWorktable.class;

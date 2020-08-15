@@ -4,6 +4,7 @@ import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.item.ItemStack;
 
 public class GTInventoryCraftResult extends InventoryCraftResult {
+
 	public boolean crafted = false;
 
 	@Override

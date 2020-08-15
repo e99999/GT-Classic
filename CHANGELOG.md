@@ -4,6 +4,8 @@
 - Added better performance of some basic tiles.
 - Fixed miscalculation with matter fab resulting in half of the output of UU.
 - Added GT Worktables now pull items from storage thanks to Trinsdar.
+- Fixed Tesseracts checking all sides for redstone power to disable, now only checks front.
+- Changed Tesseracts use less power, 64 EU/t for the Generator and 1 EU/t for the Terminal. (Will be 8eu for interdimensional before release).
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.

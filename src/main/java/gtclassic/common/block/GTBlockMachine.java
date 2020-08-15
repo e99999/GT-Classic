@@ -131,11 +131,11 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 		}
 		if (this == GTBlocks.tileTesseractMaster) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 128 })));
-			tooltip.add("Energy Usage: 128 EU/t");
+			tooltip.add("Energy Usage: 64 EU/t");
 		}
 		if (this == GTBlocks.tileTesseractSlave) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 128 })));
-			tooltip.add("Energy Usage: 32 EU/t");
+			tooltip.add("Energy Usage: 1 EU/t");
 		}
 		if (this == GTBlocks.tileFusionReactor) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 8192 })));

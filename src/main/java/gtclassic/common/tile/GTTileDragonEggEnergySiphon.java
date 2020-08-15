@@ -34,7 +34,6 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine implements IE
 
 	@Override
 	public void drawEnergy(double amount) {
-
 	}
 
 	@Override

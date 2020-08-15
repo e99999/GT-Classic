@@ -53,7 +53,6 @@ public class GTContainerWorktable extends ContainerTileComponent<GTTileWorktable
 				this.addSlotToContainer(new Slot(craftMatrix, (j + i * 3), 82 + j * 18, 28 + i * 18));
 			}
 		}
-
 		// tool slots
 		for (k = 0; k < 5; k++) {
 			this.addSlotToContainer(new SlotCustom(tile, k + 17, 82 + (k * 18), 8, toolFilter));

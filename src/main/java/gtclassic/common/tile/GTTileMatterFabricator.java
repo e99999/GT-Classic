@@ -218,7 +218,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 		this.setActive(hasPower() && !redstoneEnabled());
 		ItemStack output = this.inventory.get(8);
 		// Redstone check last because its the most CPU intensive.
-		if (hasPower() && output.getCount() < output.getMaxStackSize() && !redstoneEnabled()) {
+		if (this.getActive() && output.getCount() < output.getMaxStackSize()) {
 			if (!processFluids()) {
 				processItems();
 			}
@@ -231,7 +231,6 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 		if (tankEmpty()) {
 			return false;
 		}
-
 		for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
 			IRecipeInput input = map.getInput(0);
 			// Checking for fluids here
