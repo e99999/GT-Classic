@@ -9,6 +9,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -45,6 +46,10 @@ public class GTValues {
 	/** Generic fluidstack holders **/
 	public static final FluidStack FS_WATER = new FluidStack(FluidRegistry.WATER, 1000),
 			FS_LAVA = new FluidStack(FluidRegistry.LAVA, 1000);
+
+	/** Empty itemstack array for centirfuge recipes **/
+	public static final ItemStack[] EMPTY = new ItemStack[]{};
+
 	/** Stores combine recipe input vars **/
 	public static final IRecipeInput INPUT_INGOT_MACHINE = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_REFINEDIRON, INGOT_ALUMINIUM),
 			INPUT_INGOT_ELECTRIC = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_REFINEDIRON, INGOT_SILICON, INGOT_ALUMINIUM, INGOT_SILVER, INGOT_ELECTRUM, INGOT_PLATINUM, INGOT_GOLD),

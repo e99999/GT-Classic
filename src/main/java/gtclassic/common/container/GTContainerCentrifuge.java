@@ -20,32 +20,39 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GTContainerCentrifuge extends ContainerTileComponent<GTTileCentrifuge> {
 
-	public static final Box2D machineProgressBox = new Box2D(78, 23, 20, 18);
+	public static final Box2D machineProgressBox = new Box2D(69, 24, 20, 18);
 	public static final Vec2i machineProgressPos = new Vec2i(176, 0);
 
 	public GTContainerCentrifuge(InventoryPlayer player, GTTileCentrifuge tile) {
 		super(tile);
-		this.addSlotToContainer(new SlotCustom(tile, 0, 35, 25, tile.filter));
-		this.addSlotToContainer(new SlotCustom(tile, 1, 53, 25, tile.filter));
+		for (int x = 0; x < 2; ++x) {
+			this.addSlotToContainer(new SlotCustom(tile, x, 26 + x * 18, 17, tile.filter));
+		}
+
 		for (int y = 0; y < 2; ++y) {
 			for (int x = 0; x < 3; ++x) {
-				this.addSlotToContainer(new SlotOutput(player.player, tile, 2 + x + y * 3, 107 + x * 18, 17 + y * 18));
+				this.addSlotToContainer(new SlotOutput(player.player, tile, 2 + x + y * 3, 98 + x * 18, 8 + y * 18));
+			}
+		}for (int y = 0; y < 2; ++y) {
+			for (int x = 0; x < 3; ++x) {
+				this.addSlotToContainer(new SlotDisplay(tile, 8 + x + y * 3, 98 + x * 18, 44 + y * 18));
 			}
 		}
-		this.addSlotToContainer(new SlotDisplay(tile, 8, 35, 62));
-		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 9, 8, 62));
+		this.addSlotToContainer(new SlotDisplay(tile, 14, 35, 36));
+		this.addSlotToContainer(new SlotDischarge(tile, Integer.MAX_VALUE, 15, 8, 62));
 		for (int i = 0; i < 4; ++i) {
-			this.addSlotToContainer(new GTSlotUpgrade(tile, 10 + i, 62 + (i * 18), 62));
+			this.addSlotToContainer(new GTSlotUpgrade(tile, 16 + i, 26 + (i * 18), 62));
 		}
+		this.addComponent(new GTGuiCompMachinePower(tile, 75, 40));
 		this.addPlayerInventory(player);
 		this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
-		this.addComponent(new GTGuiCompMachinePower(tile));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onGuiLoaded(GuiIC2 gui) {
 		gui.dissableInvName();
+		gui.disableName();
 	}
 
 	@Override

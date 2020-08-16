@@ -1,17 +1,10 @@
 package gtclassic.common.tile;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Predicate;
-
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialGen;
+import gtclassic.api.recipe.GTFluidMachineOutput;
 import gtclassic.api.recipe.GTRecipeMachineHandler;
 import gtclassic.api.recipe.GTRecipeMultiInputList;
 import gtclassic.api.recipe.GTRecipeMultiInputList.MultiRecipe;
@@ -30,6 +23,7 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.util.output.MultiSlotOutput;
 import ic2.core.fluid.IC2Tank;
+import ic2.core.fluid.LayeredFluidTank;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -58,21 +52,50 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
+import org.jetbrains.annotations.Nullable;
 
-public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener, IClickable {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
-	public static final int SLOT_FUEL = 9;
-	public static final int SLOT_TANK = 8;
-	public static final String NBT_TANK = "tank";
+import static gtclassic.api.helpers.GTValues.EMPTY;
+
+public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener, IClickable, IFluidHandler {
+
+	public static final int SLOT_FUEL = 15;
+	public static final int SLOT_TANK = 14;
+	public static final String NBT_TANK_IN = "inputTank";
+	public static final String NBT_TANK_OUT = "outputTank";
 	protected static final int[] SLOT_INPUTS = { 0, 1 };
 	protected static final int[] SLOT_OUTPUTS = { 2, 3, 4, 5, 6, 7 };
+	public static final List<Fluid> VALID_FLUIDS = new ArrayList<>();
 	@NetworkField(index = 13)
-	private IC2Tank tank;
+	private IC2Tank inputTank = new IC2Tank(32000){
+		@Override
+		public boolean canFillFluidType(FluidStack fluid) {
+			return super.canFillFluidType(fluid) && VALID_FLUIDS.contains(fluid.getFluid());
+		}
+	};
+	@NetworkField(index = 14)
+	private final LayeredFluidTank outputTank = new LayeredFluidTank(96000);
 	public IFilter filter = new MachineFilter(this);
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/industrialcentrifuge.png");
 	private static final int EU_TICK = 16;
@@ -80,11 +103,11 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 	protected static final ItemStack BLOCK_RED_SAND = new ItemStack(Blocks.SAND, 32, 1);
 
 	public GTTileCentrifuge() {
-		super(10, 4, EU_TICK, 100, 32);
+		super(16, 4, EU_TICK, 100, 32);
 		setFuelSlot(SLOT_FUEL);
-		this.tank = new IC2Tank(16000);
-		this.tank.addListener(this);
-		this.addNetworkFields(NBT_TANK);
+		this.inputTank.addListener(this);
+		this.outputTank.addListener(this);
+		this.addNetworkFields(NBT_TANK_IN);
 		this.maxEnergy = 10000;
 	}
 
@@ -112,21 +135,31 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 
 	@Override
 	public void onTankChanged(IFluidTank tank) {
-		this.getNetwork().updateTileGuiField(this, NBT_TANK);
-		this.setStackInSlot(SLOT_TANK, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
+		this.getNetwork().updateTileGuiField(this, NBT_TANK_IN);
+		this.setStackInSlot(SLOT_TANK, ItemDisplayIcon.createWithFluidStack(this.inputTank.getFluid()));
+		for (int i = 0; i < 6; i++) {
+			if (i < outputTank.getTankProperties().length) {
+				this.setStackInSlot( 8 + i, ItemDisplayIcon.createWithFluidStack(this.outputTank.getTankProperties()[i].getContents()));
+			} else {
+				this.setStackInSlot(8 + i, ItemStack.EMPTY);
+			}
+		}
+		this.getNetwork().updateTileGuiField(this, NBT_TANK_OUT);
 		shouldCheckRecipe = true;
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.tank.readFromNBT(nbt.getCompoundTag(NBT_TANK));
+		this.inputTank.readFromNBT(nbt.getCompoundTag(NBT_TANK_IN));
+		this.outputTank.readFromNBT(nbt.getCompoundTag(NBT_TANK_OUT));
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		this.tank.writeToNBT(this.getTag(nbt, NBT_TANK));
+		this.inputTank.writeToNBT(this.getTag(nbt, NBT_TANK_IN));
+		this.outputTank.writeToNBT(this.getTag(nbt, NBT_TANK_OUT));
 		return nbt;
 	}
 
@@ -134,8 +167,16 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 	public void process(MultiRecipe recipe) {
 		MachineOutput output = recipe.getOutputs().copy();
 		for (ItemStack stack : output.getRecipeOutput(getWorld().rand, getTileData())) {
-			outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
+			if (!(stack.getItem() instanceof ItemDisplayIcon)){
+				outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
+			}
 			onRecipeComplete();
+		}
+		if (output instanceof GTFluidMachineOutput){
+			GTFluidMachineOutput fluidOutput = (GTFluidMachineOutput) output;
+			for (FluidStack fluid : fluidOutput.getFluids()){
+				outputTank.fill(fluid, true);
+			}
 		}
 		NBTTagCompound nbt = recipe.getOutputs().getMetadata();
 		boolean shiftContainers = nbt != null && nbt.getBoolean(MOVE_CONTAINER_TAG);
@@ -145,7 +186,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		for (Iterator<IRecipeInput> keyIter = recipeKeys.iterator(); keyIter.hasNext();) {
 			IRecipeInput key = keyIter.next();
 			if (key instanceof RecipeInputFluid && !fluidExtracted) {
-				tank.drainInternal(((RecipeInputFluid) key).fluid, true);
+				inputTank.drainInternal(((RecipeInputFluid) key).fluid, true);
 				fluidExtracted = true;
 				keyIter.remove();
 				continue;
@@ -208,9 +249,8 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		}
 		// Check if previous recipe is valid
 		List<ItemStack> inputs = getInputs();
-		FluidStack fluid = tank.getFluid();
 		if (lastRecipe != null) {
-			lastRecipe = checkRecipe(lastRecipe, fluid, StackUtil.copyList(inputs)) ? lastRecipe : null;
+			lastRecipe = checkRecipe(lastRecipe, StackUtil.copyList(inputs)) ? lastRecipe : null;
 			if (lastRecipe == null) {
 				progress = 0;
 			}
@@ -221,7 +261,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 
 				@Override
 				public boolean test(MultiRecipe t) {
-					return checkRecipe(t, fluid, StackUtil.copyList(inputs));
+					return checkRecipe(t, StackUtil.copyList(inputs));
 				}
 			});
 		}
@@ -230,6 +270,44 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 			return null;
 		}
 		applyRecipeEffect(lastRecipe.getOutputs());
+		if (lastRecipe.getOutputs() instanceof GTFluidMachineOutput){
+			GTFluidMachineOutput output = (GTFluidMachineOutput) lastRecipe.getOutputs();
+			applyRecipeEffect(output);
+			int empty = 0;
+			int[] outputSlots = getOutputSlots();
+			for (int slot : outputSlots) {
+				if (getStackInSlot(slot).isEmpty()) {
+					empty++;
+				}
+			}
+			if (empty == outputSlots.length && outputTank.getFluidAmount() == 0){
+				return lastRecipe;
+			}
+			int totalAmount = 0;
+			for (FluidStack fluid : output.getFluids()){
+				totalAmount += fluid.amount;
+			}
+			if (outputTank.getFluidAmount() + totalAmount <= outputTank.getCapacity()){
+				for (ItemStack outputItem : lastRecipe.getOutputs().getAllOutputs()) {
+					if (!(outputItem.getItem() instanceof ItemDisplayIcon)){
+						for (int outputSlot : outputSlots) {
+							if (inventory.get(outputSlot).isEmpty()) {
+								return lastRecipe;
+							}
+							if (StackUtil.isStackEqual(inventory.get(outputSlot), outputItem, false, true)) {
+								if (inventory.get(outputSlot).getCount()
+										+ outputItem.getCount() <= inventory.get(outputSlot).getMaxStackSize()) {
+									return lastRecipe;
+								}
+							}
+						}
+					} else {
+						return lastRecipe;
+					}
+				}
+			}
+			return null;
+		}
 		int empty = 0;
 		int[] outputSlots = getOutputSlots();
 		for (int slot : outputSlots) {
@@ -256,7 +334,9 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		return null;
 	}
 
-	public boolean checkRecipe(MultiRecipe entry, FluidStack inputFluid, List<ItemStack> inputs) {
+	@Override
+	public boolean checkRecipe(MultiRecipe entry, List<ItemStack> inputs) {
+		FluidStack fluid = inputTank.getFluid();
 		boolean hasCheckedFluid = false;
 		List<IRecipeInput> recipeKeys = new LinkedList<IRecipeInput>(entry.getInputs());
 		for (Iterator<IRecipeInput> keyIter = recipeKeys.iterator(); keyIter.hasNext();) {
@@ -264,10 +344,11 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 			if (key instanceof RecipeInputFluid) {
 				if (!hasCheckedFluid) {
 					hasCheckedFluid = true;
-					if (inputFluid != null && inputFluid.containsFluid(((RecipeInputFluid) key).fluid)) {
+					if (fluid != null && fluid.containsFluid(((RecipeInputFluid) key).fluid)) {
 						keyIter.remove();
 					}
 				}
+				continue;
 			}
 			int toFind = key.getAmount();
 			for (Iterator<ItemStack> inputIter = inputs.iterator(); inputIter.hasNext();) {
@@ -297,8 +378,8 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY
-				? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.tank)
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && facing != null
+				? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this)
 				: super.getCapability(capability, facing);
 	}
 
@@ -353,67 +434,59 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 
 	public static void init() {
 		Item tube = GTItems.testTube;
-		addCustomRecipe(GTMaterialGen.getTube(GTMaterial.Oxygen, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 2), totalEu(5000), GTMaterialGen.getIc2(Ic2Items.airCell, 2), GTMaterialGen.get(tube, 1));
-		addRecipe(new IRecipeInput[] { input(GTMaterialGen.getIc2(Ic2Items.airCell, 16)),
-				tubes(16) }, totalEu(1000000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTMaterialGen.getTube(GTMaterial.Nitrogen, 9), GTMaterialGen.getTube(GTMaterial.Oxygen, 4), GTMaterialGen.getTube(GTMaterial.Helium, 1), GTMaterialGen.getTube(GTMaterial.Neon, 1), GTMaterialGen.getTube(GTMaterial.Argon, 1));
-		addRecipe(GTMaterialGen.getFluidStack("water", 6000), 6, totalEu(9000), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
-		addRecipe(GTMaterialGen.getWater(6), 0, totalEu(9000), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.waterCell, 6), 6, totalEu(9000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 6), GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
-		addRecipe("dustCoal", 4, 0, totalEu(7500), GTMaterialGen.getDust(GTMaterial.Carbon, 8));
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.hydratedCoalDust, 8), 0, totalEu(22500), GTMaterialGen.getDust(GTMaterial.Carbon, 14), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
-		addRecipe("logRubber", 16, 4, totalEu(25000), GTMaterialGen.getDust(GTMaterial.Carbon, 8), GTMaterialGen.getIc2(Ic2Items.stickyResin, 8), GTMaterialGen.getIc2(Ic2Items.plantBall, 6), GTMaterialGen.getTube(GTMaterial.Methane, 4));
-		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Hydrogen, 4000), 1, totalEu(6000), GTMaterialGen.getTube(GTMaterial.Deuterium, 1));
-		addRecipe(GTMaterialGen.getTube(GTMaterial.Hydrogen, 4), 0, totalEu(6000), GTMaterialGen.get(tube, 3), GTMaterialGen.getTube(GTMaterial.Deuterium, 1));
-		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Deuterium, 4000), 1, totalEu(6000), GTMaterialGen.getTube(GTMaterial.Tritium, 1));
-		addRecipe(GTMaterialGen.getTube(GTMaterial.Deuterium, 4), 0, totalEu(6000), GTMaterialGen.get(tube, 3), GTMaterialGen.getTube(GTMaterial.Tritium, 1));
-		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Helium, 16000), 1, totalEu(18000), GTMaterialGen.getTube(GTMaterial.Helium3, 1));
-		addRecipe(GTMaterialGen.getTube(GTMaterial.Helium, 16), 0, totalEu(18000), GTMaterialGen.get(tube, 15), GTMaterialGen.getTube(GTMaterial.Helium3, 1));
-		addRecipe("dustRuby", 9, 3, totalEu(25000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Chrome, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 3));
-		addRecipe("dustSapphire", 8, 3, totalEu(20000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getTube(GTMaterial.Oxygen, 3));
-		addRecipe("dustEmerald", 29, 12, totalEu(30000), GTMaterialGen.getTube(GTMaterial.Oxygen, 9), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getTube(GTMaterial.Beryllium, 3), GTMaterialGen.getDust(GTMaterial.Silicon, 6));
-		addRecipe("dustEnderPearl", 16, 16, totalEu(65000), GTMaterialGen.getTube(GTMaterial.Chlorine, 6), GTMaterialGen.getTube(GTMaterial.Nitrogen, 5), GTMaterialGen.getTube(GTMaterial.Beryllium, 1), GTMaterialGen.getTube(GTMaterial.Potassium, 4));
-		addRecipe("dustEnderEye", 16, 0, totalEu(35000), GTMaterialGen.getDust(GTMaterial.EnderPearl, 8), GTMaterialGen.get(Items.BLAZE_POWDER, 8));
-		addRecipe("dustLazurite", 28, 16, totalEu(295000), GTMaterialGen.getTube(GTMaterial.Sodium, 8), GTMaterialGen.getDust(GTMaterial.Aluminium, 6), GTMaterialGen.getDust(GTMaterial.Silicon, 6), GTMaterialGen.getTube(GTMaterial.Calcium, 8));
-		addRecipe("dustPyrite", 2, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.ironDust, 1));
-		addRecipe("dustCalcite", 10, 5, totalEu(50000), GTMaterialGen.getTube(GTMaterial.Calcium, 2), GTMaterialGen.getDust(GTMaterial.Carbon, 2), GTMaterialGen.getTube(GTMaterial.Oxygen, 3));
-		addRecipe("dustSodalite", 11, 5, totalEu(115000), GTMaterialGen.getTube(GTMaterial.Chlorine, 1), GTMaterialGen.getTube(GTMaterial.Sodium, 4), GTMaterialGen.getDust(GTMaterial.Aluminium, 3), GTMaterialGen.getDust(GTMaterial.Silicon, 3));
-		addRecipe("dustBauxite", 24, 16, totalEu(250000), GTMaterialGen.getTube(GTMaterial.Oxygen, 6), GTMaterialGen.getDust(GTMaterial.Aluminium, 16), GTMaterialGen.getDust(GTMaterial.Titanium, 1), GTMaterialGen.getTube(GTMaterial.Hydrogen, 10));
-		addRecipe(GTMaterialGen.get(Items.MAGMA_CREAM, 1), 0, totalEu(2500), GTMaterialGen.get(Items.BLAZE_POWDER, 1), GTMaterialGen.get(Items.SLIME_BALL, 1));
-		addRecipe("dirt", 64, 0, totalEu(50000), GTMaterialGen.get(Blocks.SAND, 32), GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 2), GTMaterialGen.getIc2(Ic2Items.plantBall, 2), GTMaterialGen.get(Items.CLAY_BALL, 2));
-		addRecipe("grass", 64, 0, totalEu(50000), GTMaterialGen.get(Blocks.SAND, 32), GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 2), GTMaterialGen.getIc2(Ic2Items.plantBall, 4), GTMaterialGen.get(Items.CLAY_BALL, 2));
-		addRecipe(GTMaterialGen.get(Blocks.MYCELIUM, 64), 0, totalEu(62500), GTMaterialGen.get(Blocks.SAND, 32), GTMaterialGen.get(Blocks.BROWN_MUSHROOM, 16), GTMaterialGen.get(Blocks.RED_MUSHROOM, 16), GTMaterialGen.get(Items.CLAY_BALL, 8));
-		addRecipe("gemLapis", 64, 0, totalEu(125000), GTMaterialGen.getDust(GTMaterial.Sodalite, 8), GTMaterialGen.getDust(GTMaterial.Lazurite, 48), GTMaterialGen.getDust(GTMaterial.Pyrite, 4), GTMaterialGen.getDust(GTMaterial.Calcite, 4));
-		addRecipe(GTMaterialGen.get(Items.BLAZE_POWDER, 8), 0, totalEu(15000), GTMaterialGen.getIc2(Ic2Items.coalDust, 2), GTMaterialGen.get(Items.GUNPOWDER, 1));
-		addRecipe(GTMaterialGen.get(Blocks.SAND, 32), 1, totalEu(50000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
-		addRecipe(BLOCK_RED_SAND, 1, totalEu(50000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getIc2(Ic2Items.clayDust), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
-		addRecipe("dustFlint", 8, 1, totalEu(5000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 1));
-		addRecipe("dustClay", 7, 2, totalEu(19000), GTMaterialGen.getDust(GTMaterial.Lithium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 2), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getTube(GTMaterial.Sodium, 2));
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.stickyResin, 8), 0, totalEu(12500), GTMaterialGen.getIc2(Ic2Items.rubber, 28), GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 2), GTMaterialGen.getIc2(Ic2Items.plantBall, 2));
-		addRecipe("itemRawRubber", 8, 0, totalEu(12500), GTMaterialGen.getIc2(Ic2Items.rubber, 28));
-		addRecipe("dustGlowstone", 16, 1, totalEu(25000), GTMaterialGen.get(Items.REDSTONE, 8), GTMaterialGen.getIc2(Ic2Items.goldDust, 8), GTMaterialGen.getTube(GTMaterial.Helium, 1));
-		addRecipe("dustRedstone", 10, 3, totalEu(35000), GTMaterialGen.getTube(GTMaterial.Mercury, 3), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getDust(GTMaterial.Pyrite, 5), GTMaterialGen.getDust(GTMaterial.Ruby, 1));
-		addRecipe("dustNetherrack", 64, 0, totalEu(50000), GTMaterialGen.get(Items.GOLD_NUGGET, 4), GTMaterialGen.get(Items.REDSTONE, 4), GTMaterialGen.get(Items.GUNPOWDER, 8), GTMaterialGen.getIc2(Ic2Items.coalDust, 4), GTMaterialGen.getDust(GTMaterial.Sulfur, 4), GTMaterialGen.getDust(GTMaterial.Phosphorus, 2));
-		addRecipe(GTMaterialGen.getFluidStack("lava", 16000), 0, totalEu(75000), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
-		addRecipe(GTMaterialGen.getLava(16), 0, totalEu(75000), GTMaterialGen.get(tube, 16), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
-		addRecipe(GTMaterialGen.getIc2(Ic2Items.lavaCell, 16), 0, totalEu(75000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
-		addRecipe("endstone", 64, 8, totalEu(100000), GTMaterialGen.get(Blocks.SAND, 48), GTMaterialGen.getTube(GTMaterial.Helium3, 4), GTMaterialGen.getTube(GTMaterial.Helium, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1));
+		addCustomRecipe(GTMaterialGen.getIc2(Ic2Items.emptyCell, 2), GTMaterialGen.getFluidStack(GTMaterial.Oxygen), totalEu(5000), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.airCell, 2)});
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.airCell, 16), totalEu(1000000), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.emptyCell, 16)}, GTMaterialGen.getFluidStack(GTMaterial.Nitrogen, 9000), GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 4000), GTMaterialGen.getFluidStack(GTMaterial.Helium), GTMaterialGen.getFluidStack(GTMaterial.Neon), GTMaterialGen.getFluidStack(GTMaterial.Argon));
+		addRecipe(GTMaterialGen.getFluidStack("water", 6000), totalEu(9000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Hydrogen, 4000), GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 2000));
+		addRecipe("dustCoal", 4, totalEu(7500), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Carbon, 8)});
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.hydratedCoalDust, 8), totalEu(22500), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Carbon, 14), GTMaterialGen.getDust(GTMaterial.Thorium, 1)});
+		addRecipe("logRubber", 16, totalEu(25000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Carbon, 8), GTMaterialGen.getIc2(Ic2Items.stickyResin, 8), GTMaterialGen.getIc2(Ic2Items.plantBall, 6)}, GTMaterialGen.getFluidStack(GTMaterial.Methane, 4000));
+		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Hydrogen, 4000), totalEu(6000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Deuterium));
+		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Deuterium, 4000), totalEu(6000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Tritium));
+		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Helium, 16000), totalEu(18000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Helium3));
+		addRecipe("dustRuby", 9, totalEu(25000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Chrome, 1)}, GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 3000));
+		addRecipe("dustSapphire", 8, totalEu(20000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Aluminium, 2)}, GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 3000));
+		addRecipe("dustEmerald", 29, totalEu(30000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Silicon, 6)}, GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 9000), GTMaterialGen.getFluidStack(GTMaterial.Beryllium, 3000));
+		addRecipe("dustEnderPearl", 16, totalEu(65000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Chlorine, 6000), GTMaterialGen.getFluidStack(GTMaterial.Nitrogen, 5000), GTMaterialGen.getFluidStack(GTMaterial.Beryllium), GTMaterialGen.getFluidStack(GTMaterial.Potassium, 4000));
+		addRecipe("dustEnderEye", 16, totalEu(35000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.EnderPearl, 8), GTMaterialGen.get(Items.BLAZE_POWDER, 8)});
+		addRecipe("dustLazurite", 28, totalEu(295000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Aluminium, 6), GTMaterialGen.getDust(GTMaterial.Silicon, 6)}, GTMaterialGen.getFluidStack(GTMaterial.Sodium, 8000), GTMaterialGen.getFluidStack(GTMaterial.Calcium, 8000));
+		addRecipe("dustPyrite", 2, totalEu(5000), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.ironDust, 1)});
+		addRecipe("dustCalcite", 10, totalEu(50000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Carbon, 2)}, GTMaterialGen.getFluidStack(GTMaterial.Calcium, 2), GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 3));
+		addRecipe("dustSodalite", 11, totalEu(115000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Aluminium, 3), GTMaterialGen.getDust(GTMaterial.Silicon, 3)}, GTMaterialGen.getFluidStack(GTMaterial.Chlorine), GTMaterialGen.getFluidStack(GTMaterial.Sodium, 4000));
+		addRecipe("dustBauxite", 24, totalEu(250000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Aluminium, 16), GTMaterialGen.getDust(GTMaterial.Titanium, 1)}, GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 6000), GTMaterialGen.getFluidStack(GTMaterial.Hydrogen, 10000));
+		addRecipe(GTMaterialGen.get(Items.MAGMA_CREAM, 1), totalEu(2500), new ItemStack[]{GTMaterialGen.get(Items.BLAZE_POWDER, 1), GTMaterialGen.get(Items.SLIME_BALL, 1)});
+		addRecipe("dirt", 64, totalEu(50000), new ItemStack[]{GTMaterialGen.get(Blocks.SAND, 32), GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 2), GTMaterialGen.getIc2(Ic2Items.plantBall, 2), GTMaterialGen.get(Items.CLAY_BALL, 2)});
+		addRecipe("grass", 64, totalEu(50000), new ItemStack[]{GTMaterialGen.get(Blocks.SAND, 32), GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 2), GTMaterialGen.getIc2(Ic2Items.plantBall, 4), GTMaterialGen.get(Items.CLAY_BALL, 2)});
+		addRecipe(GTMaterialGen.get(Blocks.MYCELIUM, 64), totalEu(62500), new ItemStack[]{GTMaterialGen.get(Blocks.SAND, 32), GTMaterialGen.get(Blocks.BROWN_MUSHROOM, 16), GTMaterialGen.get(Blocks.RED_MUSHROOM, 16), GTMaterialGen.get(Items.CLAY_BALL, 8)});
+		addRecipe("gemLapis", 64, totalEu(125000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Sodalite, 8), GTMaterialGen.getDust(GTMaterial.Lazurite, 48), GTMaterialGen.getDust(GTMaterial.Pyrite, 4), GTMaterialGen.getDust(GTMaterial.Calcite, 4)});
+		addRecipe(GTMaterialGen.get(Items.BLAZE_POWDER, 8), totalEu(15000), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.coalDust, 2), GTMaterialGen.get(Items.GUNPOWDER, 1)});
+		addRecipe(GTMaterialGen.get(Blocks.SAND, 32), totalEu(50000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Silicon, 1)}, GTMaterialGen.getFluidStack(GTMaterial.Oxygen));
+		addRecipe(BLOCK_RED_SAND, totalEu(50000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getIc2(Ic2Items.clayDust)}, GTMaterialGen.getFluidStack(GTMaterial.Oxygen));
+		addRecipe("dustFlint", 8, totalEu(5000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Silicon, 1)}, GTMaterialGen.getFluidStack(GTMaterial.Oxygen));
+		addRecipe("dustClay", 7, totalEu(19000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Lithium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 2), GTMaterialGen.getDust(GTMaterial.Aluminium, 2)}, GTMaterialGen.getFluidStack(GTMaterial.Sodium, 2000));
+		addRecipe(GTMaterialGen.getIc2(Ic2Items.stickyResin, 8), totalEu(12500), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.rubber, 28), GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 2), GTMaterialGen.getIc2(Ic2Items.plantBall, 2)});
+		addRecipe("itemRawRubber", 8, totalEu(12500), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.rubber, 28)});
+		addRecipe("dustGlowstone", 16, totalEu(25000), new ItemStack[]{GTMaterialGen.get(Items.REDSTONE, 8), GTMaterialGen.getIc2(Ic2Items.goldDust, 8)}, GTMaterialGen.getFluidStack(GTMaterial.Helium));
+		addRecipe("dustRedstone", 10, totalEu(35000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getDust(GTMaterial.Pyrite, 5), GTMaterialGen.getDust(GTMaterial.Ruby, 1)}, GTMaterialGen.getFluidStack(GTMaterial.Mercury, 3000));
+		addRecipe("dustNetherrack", 64, totalEu(50000), new ItemStack[]{GTMaterialGen.get(Items.GOLD_NUGGET, 4), GTMaterialGen.get(Items.REDSTONE, 4), GTMaterialGen.get(Items.GUNPOWDER, 8), GTMaterialGen.getIc2(Ic2Items.coalDust, 4), GTMaterialGen.getDust(GTMaterial.Sulfur, 4), GTMaterialGen.getDust(GTMaterial.Phosphorus, 2)});
+		addRecipe(GTMaterialGen.getFluidStack("lava", 16000), totalEu(75000), new ItemStack[]{GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1)});
+		addRecipe("endstone", 64, totalEu(100000), new ItemStack[]{GTMaterialGen.get(Blocks.SAND, 48), GTMaterialGen.getDust(GTMaterial.Tungsten, 1)}, GTMaterialGen.getFluidStack(GTMaterial.Helium3, 4000), GTMaterialGen.getFluidStack(GTMaterial.Helium, 4000));
 		/** New Recipes I added **/
-		addRecipe("stoneGranite", 4, 0, totalEu(24000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Flint, 1), GTMaterialGen.getIc2(Ic2Items.clayDust, 1));
-		addRecipe("stoneDiorite", 16, 0, totalEu(36000), GTMaterialGen.getDust(GTMaterial.Nickel, 1));
-		addRecipe("blockPrismarine", 16, 0, totalEu(24000), GTMaterialGen.getTube(GTMaterial.Potassium, 1), GTMaterialGen.getDust(GTMaterial.Aluminium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 3), GTMaterialGen.getTube(GTMaterial.Oxygen, 8));
-		addRecipe("dustBasalt", 16, 0, totalEu(24000), GTMaterialGen.getDust(GTMaterial.Carbon, 1), GTMaterialGen.getDust(GTMaterial.Emerald, 1), GTMaterialGen.getDust(GTMaterial.Calcite, 3), GTMaterialGen.getDust(GTMaterial.Flint, 8));
-		addRecipe("dustObsidian", 8, 6, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getDust(GTMaterial.Silicon, 2), GTMaterialGen.getTube(GTMaterial.Oxygen, 4));
-		addRecipe(GTMaterialGen.get(Items.QUARTZ, 1), 2, totalEu(8000), GTMaterialGen.getDust(GTMaterial.Silicon, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 2));
-		addRecipe(GTMaterialGen.get(Blocks.MAGMA, 64), 64, totalEu(3000), GTMaterialGen.getLava(64));
-		addRecipe("dustElectrum", 2, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.silverDust, 1), GTMaterialGen.getIc2(Ic2Items.goldDust, 1));
-		addRecipe("dustInvar", 3, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getDust(GTMaterial.Nickel, 1));
-		addRecipe("dustBronze", 4, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.tinDust, 1), GTMaterialGen.getIc2(Ic2Items.copperDust, 3));
-		addRecipe("dustPlatinum", 9, 0, totalEu(135000), GTMaterialGen.getDust(GTMaterial.Iridium, 1), GTMaterialGen.getDust(GTMaterial.Nickel, 2));
-		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 16), 4, totalEu(6000), GTMaterialGen.getTube(GTMaterial.Methane, 4), GTMaterialGen.get(Items.LEATHER, 4), GTMaterialGen.get(Items.SLIME_BALL, 1));
-		addRecipe(GTMaterialGen.get(Blocks.SOUL_SAND, 12), 0, totalEu(12000), GTMaterialGen.get(Blocks.SAND, 11), GTMaterialGen.getTube(GTMaterial.Oil, 1));
-		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Oil, 3000), 3, totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
-		addRecipe(GTMaterialGen.getTube(GTMaterial.Oil, 3), 0, totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
-		addRecipe(Ic2Items.plasmaCell, 0, totalEu(10000000), GTMaterialGen.getIc2(Ic2Items.uuMatter, 10), Ic2Items.emptyCell.copy());
+		addRecipe("stoneGranite", 4, totalEu(24000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Flint, 1), GTMaterialGen.getIc2(Ic2Items.clayDust, 1)});
+		addRecipe("stoneDiorite", 16, totalEu(36000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Nickel, 1)});
+		addRecipe("blockPrismarine", 16, totalEu(24000),new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Aluminium, 1), GTMaterialGen.getDust(GTMaterial.Silicon, 3)}, GTMaterialGen.getFluidStack(GTMaterial.Potassium), GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 8));
+		addRecipe("dustBasalt", 16, totalEu(24000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Carbon, 1), GTMaterialGen.getDust(GTMaterial.Emerald, 1), GTMaterialGen.getDust(GTMaterial.Calcite, 3), GTMaterialGen.getDust(GTMaterial.Flint, 8)});
+		addRecipe("dustObsidian", 8, totalEu(5000), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getDust(GTMaterial.Silicon, 2)}, GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 4000));
+		addRecipe(GTMaterialGen.get(Items.QUARTZ, 1), totalEu(8000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Silicon, 1)}, GTMaterialGen.getFluidStack(GTMaterial.Oxygen, 2000));
+		addRecipe(GTMaterialGen.get(Blocks.MAGMA, 64), totalEu(3000), EMPTY, GTMaterialGen.getFluidStack("lava",64000));
+		addRecipe("dustElectrum", 2, totalEu(5000), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.silverDust, 1), GTMaterialGen.getIc2(Ic2Items.goldDust, 1)});
+		addRecipe("dustInvar", 3, totalEu(5000), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getDust(GTMaterial.Nickel, 1)});
+		addRecipe("dustBronze", 4, totalEu(5000), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.tinDust, 1), GTMaterialGen.getIc2(Ic2Items.copperDust, 3)});
+		addRecipe("dustPlatinum", 9, totalEu(135000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Iridium, 1), GTMaterialGen.getDust(GTMaterial.Nickel, 2)});
+		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 16), totalEu(6000), new ItemStack[]{GTMaterialGen.get(Items.LEATHER, 4), GTMaterialGen.get(Items.SLIME_BALL, 1)}, GTMaterialGen.getFluidStack(GTMaterial.Methane, 4));
+		addRecipe(GTMaterialGen.get(Blocks.SOUL_SAND, 12), totalEu(12000), new ItemStack[]{GTMaterialGen.get(Blocks.SAND, 11)}, GTMaterialGen.getFluidStack(GTMaterial.Oil));
+		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Oil, 3000), totalEu(96000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Fuel, 2000), GTMaterialGen.getFluidStack(GTMaterial.Lubricant));
+		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Oil, 3), totalEu(96000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Fuel, 2000), GTMaterialGen.getFluidStack(GTMaterial.Lubricant));
+		addRecipe(Ic2Items.plasmaCell, totalEu(10000000), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.uuMatter, 10), Ic2Items.emptyCell.copy()});
 		/*
 		 * Recipes solely focused on getting methane from various things
 		 */
@@ -441,60 +514,108 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addMethaneRecipe(GTMaterialGen.getIc2(Ic2Items.compressedPlantBall, 4));
 	}
 
+	public static void addCustomRecipe(ItemStack stack, FluidStack fluid, IRecipeModifier[] modifiers,
+			ItemStack[] outputs, FluidStack... fluidOutputs) {
+		addRecipe(new IRecipeInput[] { new RecipeInputItemStack(stack),
+				new RecipeInputFluid(fluid), }, modifiers, outputs, fluidOutputs);
+	}
+
+	public static void addCustomRecipe(String input, int amount, FluidStack fluid, IRecipeModifier[] modifiers,
+			ItemStack[] outputs, FluidStack... fluidOutputs) {
+		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
+				new RecipeInputFluid(fluid), }, modifiers, outputs, fluidOutputs);
+	}
+
 	public static void addCustomRecipe(ItemStack stack0, ItemStack stack1, IRecipeModifier[] modifiers,
-			ItemStack... outputs) {
+									   ItemStack[] outputs, FluidStack... fluidOutputs) {
 		addRecipe(new IRecipeInput[] { new RecipeInputItemStack(stack0),
-				new RecipeInputItemStack(stack1), }, modifiers, outputs);
+				new RecipeInputItemStack(stack1), }, modifiers, outputs, fluidOutputs);
 	}
 
 	public static void addCustomRecipe(String input, int amount, ItemStack stack, IRecipeModifier[] modifiers,
-			ItemStack... outputs) {
+									   ItemStack[] outputs, FluidStack... fluidOutputs) {
 		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
-				new RecipeInputItemStack(stack), }, modifiers, outputs);
+				new RecipeInputItemStack(stack), }, modifiers, outputs, fluidOutputs);
 	}
 
 	public static void addMethaneRecipe(ItemStack stack) {
-		addRecipe(stack, 1, totalEu(36000), GTMaterialGen.getTube(GTMaterial.Methane, 1));
+		addRecipe(stack, totalEu(36000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Methane));
 	}
 
 	public static void addMethaneRecipe(String input, int amount) {
-		addRecipe(input, amount, 1, totalEu(36000), GTMaterialGen.getTube(GTMaterial.Methane, 1));
+		addRecipe(input, amount, totalEu(36000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Methane));
 	}
 
-	public static void addRecipe(ItemStack stack, int cells, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		if (cells > 0) {
-			addRecipe(new IRecipeInput[] { new RecipeInputItemStack(stack),
-					new RecipeInputItemStack(GTMaterialGen.get(GTItems.testTube, cells)) }, modifiers, outputs);
-		} else {
-			addRecipe(new IRecipeInput[] { new RecipeInputItemStack(stack) }, modifiers, outputs);
-		}
+	public static void addRecipe(ItemStack stack, IRecipeModifier[] modifiers, ItemStack[] outputs, FluidStack... fluidOutputs) {
+		addRecipe(new IRecipeInput[] { new RecipeInputItemStack(stack) }, modifiers, outputs, fluidOutputs);
 	}
 
-	public static void addRecipe(String input, int amount, int cells, IRecipeModifier[] modifiers,
-			ItemStack... outputs) {
-		if (cells > 0) {
-			addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount),
-					new RecipeInputItemStack(GTMaterialGen.get(GTItems.testTube, cells)) }, modifiers, outputs);
-		} else {
-			addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount) }, modifiers, outputs);
-		}
+	public static void addRecipe(String input, int amount, IRecipeModifier[] modifiers,
+			ItemStack[] outputs, FluidStack... fluidOutputs) {
+		addRecipe(new IRecipeInput[] { new RecipeInputOreDict(input, amount) }, modifiers, outputs, fluidOutputs);
 	}
 
-	public static void addRecipe(FluidStack fluid, int cells, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		if (cells > 0) {
-			addRecipe(new IRecipeInput[] { new RecipeInputFluid(fluid),
-					new RecipeInputItemStack(GTMaterialGen.get(GTItems.testTube, cells)) }, modifiers, outputs);
-		} else {
-			addRecipe(new IRecipeInput[] { new RecipeInputFluid(fluid) }, modifiers, outputs);
-		}
+	public static void addRecipe(FluidStack fluid, IRecipeModifier[] modifiers, ItemStack[] outputs, FluidStack... fluidOutputs) {
+		addRecipe(new IRecipeInput[] { new RecipeInputFluid(fluid) }, modifiers, outputs, fluidOutputs);
 	}
 
 	public static IRecipeModifier[] totalEu(int total) {
 		return GTRecipeMachineHandler.totalEu(RECIPE_LIST, total);
 	}
 
-	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack... outputs) {
-		GTRecipeMachineHandler.addRecipe(RECIPE_LIST, inputs, modifiers, outputs);
+	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack[] outputs, FluidStack[] fluidOutputs) {
+		List<IRecipeInput> inlist = new ArrayList<>();
+		List<ItemStack> outlist = new ArrayList<>();
+		List<FluidStack> fluidOutlist = new ArrayList<>();
+		for (IRecipeInput input : inputs) {
+			inlist.add(input);
+		}
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifiers) {
+			modifier.apply(mods);
+		}
+		for (ItemStack output : outputs) {
+			outlist.add(output);
+		}
+		for (FluidStack output : fluidOutputs){
+			fluidOutlist.add(output);
+		}
+		MachineOutput output = fluidOutputs.length > 0 ? outputs.length > 0 ? new GTFluidMachineOutput(mods, outlist, fluidOutlist) : new GTFluidMachineOutput(mods, fluidOutlist) : new MachineOutput(mods, outlist);
+		addRecipe(inlist, output);
+	}
+
+	public static void addRecipe(IRecipeInput[] inputs, IRecipeModifier[] modifiers, ItemStack[] outputs, FluidStack[] fluidOutputs, String recipeId) {
+		List<IRecipeInput> inlist = new ArrayList<>();
+		List<ItemStack> outlist = new ArrayList<>();
+		List<FluidStack> fluidOutlist = new ArrayList<>();
+		for (IRecipeInput input : inputs) {
+			inlist.add(input);
+		}
+		NBTTagCompound mods = new NBTTagCompound();
+		for (IRecipeModifier modifier : modifiers) {
+			modifier.apply(mods);
+		}
+		for (ItemStack output : outputs) {
+			outlist.add(output);
+		}
+		for (FluidStack output : fluidOutputs){
+			fluidOutlist.add(output);
+		}
+		MachineOutput output = fluidOutputs.length > 0 ? outputs.length > 0 ? new GTFluidMachineOutput(mods, outlist, fluidOutlist) : new GTFluidMachineOutput(mods, fluidOutlist) : new MachineOutput(mods, outlist);
+		addRecipe(inlist, output, recipeId);
+	}
+
+	static void addRecipe(List<IRecipeInput> input, MachineOutput output){
+		addRecipe(input, output, (output instanceof GTFluidMachineOutput ? ((GTFluidMachineOutput)output).getFluids().get(0).getUnlocalizedName() : output.getAllOutputs().get(0).getUnlocalizedName()));
+	}
+
+	static void addRecipe(List<IRecipeInput> input, MachineOutput output, String recipeID) {
+		for (IRecipeInput in : input){
+			if (in instanceof RecipeInputFluid && !VALID_FLUIDS.contains(((RecipeInputFluid)in).fluid.getFluid())){
+				VALID_FLUIDS.add(((RecipeInputFluid)in).fluid.getFluid());
+			}
+		}
+		RECIPE_LIST.addRecipe(input, output, (output instanceof GTFluidMachineOutput ? ((GTFluidMachineOutput)output).getFluids().get(0).getUnlocalizedName() : output.getAllOutputs().get(0).getUnlocalizedName()), EU_TICK);
 	}
 
 	@Override
@@ -513,6 +634,48 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 
 	@Override
 	public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
-		return GTHelperFluid.doClickableFluidContainerThings(player, hand, world, pos, this.tank);
+		return GTHelperFluid.doClickableFluidContainerEmptyThings(player, hand, world, pos, this.inputTank) || doClickableFluidContainerFillThings(player, hand, this.getWorld(), this.getPos(), this.outputTank);
+	}
+
+	public static boolean doClickableFluidContainerFillThings(EntityPlayer player, EnumHand hand, World world, BlockPos pos, LayeredFluidTank tank) {
+		ItemStack playerStack = player.getHeldItem(hand);
+		if (!playerStack.isEmpty()) {
+			FluidActionResult result = FluidUtil.tryFillContainer(playerStack, tank, tank.getCapacity(), player, true);
+			if (result.isSuccess()) {
+				playerStack.shrink(1);
+				ItemStack resultStack = result.getResult();
+				if (!resultStack.isEmpty() && !player.inventory.addItemStackToInventory(resultStack)) {
+					player.dropItem(resultStack, false);
+				}
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public IFluidTankProperties[] getTankProperties() {
+		List<IFluidTankProperties> combined = new ArrayList<>();
+		Stream.of(inputTank.getTankProperties(), outputTank.getTankProperties()).flatMap(Stream::of).forEach(combined::add);
+		return combined.toArray(new IFluidTankProperties[0]);
+	}
+
+	@Override
+	public int fill(FluidStack resource, boolean doFill) {
+		return inputTank.fill(resource, doFill);
+	}
+
+	@Nullable
+	@Override
+	public FluidStack drain(FluidStack resource, boolean doDrain) {
+		return outputTank.drain(resource, doDrain);
+	}
+
+	@Nullable
+	@Override
+	public FluidStack drain(int maxDrain, boolean doDrain) {
+		return outputTank.drain(maxDrain, doDrain);
 	}
 }

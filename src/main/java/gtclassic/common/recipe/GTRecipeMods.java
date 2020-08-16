@@ -1,7 +1,5 @@
 package gtclassic.common.recipe;
 
-import static ic2.api.classic.recipe.ClassicRecipes.macerator;
-
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.material.GTMaterial;
@@ -22,13 +20,17 @@ import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Loader;
+
+import static gtclassic.api.helpers.GTValues.EMPTY;
+import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
 public class GTRecipeMods {
 
 	public static void postInit() {
 		/** Stuff for people too slow to handle ore dict at the right time **/
-		GTTileCentrifuge.addRecipe("dustDiamond", 1, 0, GTTileCentrifuge.totalEu(100000), GTMaterialGen.getDust(GTMaterial.Carbon, 64));
+		GTTileCentrifuge.addRecipe("dustDiamond", 1, GTTileCentrifuge.totalEu(100000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Carbon, 64)});
 		if (GTConfig.modcompat.compatBuildcraft && Loader.isModLoaded(GTValues.MOD_ID_BUILDCRAFT)) {
 			// Classic GT Quarry stuff
 			GTRecipeCraftingHandler.removeRecipe(GTValues.MOD_ID_BUILDCRAFT, "quarry");
@@ -55,9 +57,9 @@ public class GTRecipeMods {
 			GTMod.logger.info("Doing IC2 Extras Things");
 			TileEntityMacerator.addRecipe("crushedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 			TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
-			GTTileCentrifuge.addRecipe("dustUranium", 22, 0, GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "uranium238", 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
-			GTTileCentrifuge.addRecipe("dustThorium", 4, 0, GTTileCentrifuge.totalEu(5000), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "thorium232dust", 2));
-			GTTileCentrifuge.addRecipe("dustThorium232", 2, 0, GTTileCentrifuge.totalEu(5000), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "thorium230dust", 1));
+			GTTileCentrifuge.addRecipe("dustUranium", 22, GTTileCentrifuge.totalEu(250000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "uranium238", 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4)});
+			GTTileCentrifuge.addRecipe("dustThorium", 4, GTTileCentrifuge.totalEu(5000), new ItemStack[]{GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "thorium232dust", 2)});
+			GTTileCentrifuge.addRecipe("dustThorium232", 2, GTTileCentrifuge.totalEu(5000), new ItemStack[]{GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "thorium230dust", 1)});
 			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodThorium1, 1), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "emptyfuelrod"), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
 			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "emptyfuelrod"), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 		} else {
@@ -66,15 +68,15 @@ public class GTRecipeMods {
 			TileEntityMacerator.addRecipe("oreUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 2));
 			TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.uraniumDrop, 1), GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 			TileEntityCompressor.addRecipe("dustPlutonium", 1, GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
-			GTTileCentrifuge.addCustomRecipe("dustUranium", 22, GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getIc2(Ic2Items.reactorUraniumRodSingle, 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorNearDepletedUraniumRod, 1), 0, GTTileCentrifuge.totalEu(2500), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
+			GTTileCentrifuge.addCustomRecipe("dustUranium", 22, GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTTileCentrifuge.totalEu(250000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getIc2(Ic2Items.reactorUraniumRodSingle, 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4)});
+			GTTileCentrifuge.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorNearDepletedUraniumRod, 1), GTTileCentrifuge.totalEu(2500), new ItemStack[]{GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 1)});
 			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodThorium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
 			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 		}
 		/** Immersive Engineering **/
 		if (GTConfig.modcompat.compatIE && Loader.isModLoaded(GTValues.MOD_ID_IE)) {
 			GTMod.logger.info("Doing Immersive Engineering Things");
-			GTTileCentrifuge.addRecipe("dustCoke", 8, 0, GTTileCentrifuge.totalEu(7500), GTMaterialGen.getModMetaItem(GTValues.MOD_ID_IE, "material", 18, 1));
+			GTTileCentrifuge.addRecipe("dustCoke", 8, GTTileCentrifuge.totalEu(7500), new ItemStack[]{GTMaterialGen.getModMetaItem(GTValues.MOD_ID_IE, "material", 18, 1)});
 		}
 		/** Thermal Mods **/
 		if (GTConfig.modcompat.compatThermal && Loader.isModLoaded(GTValues.MOD_ID_THERMAL)) {
@@ -90,20 +92,17 @@ public class GTRecipeMods {
 			addFluidGeneratorRecipe("tree_oil", 50000, 8);
 			addFluidGeneratorRecipe("refined_biofuel", 100000, 10);
 			// Oil sand stuff
-			GTTileCentrifuge.addRecipe("oreClathrateOilSand", 1, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
-			GTTileCentrifuge.addRecipe("oreClathrateOilShale", 1, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("crude_oil", 3000), 3, GTTileCentrifuge.totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getModdedTube("crude_oil", 3), 0, GTTileCentrifuge.totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
+			FluidStack oil = Loader.isModLoaded("thermalexpansion") ? GTMaterialGen.getFluidStack("crude_oil", 1000) : GTMaterialGen.getFluidStack(GTMaterial.Oil);
+			GTTileCentrifuge.addRecipe("oreClathrateOilSand", 1, GTTileCentrifuge.totalEu(8000), EMPTY, oil);
+			GTTileCentrifuge.addRecipe("oreClathrateOilShale", 1, GTTileCentrifuge.totalEu(8000), EMPTY, oil);
+			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("crude_oil", 3000), GTTileCentrifuge.totalEu(96000), EMPTY, GTMaterialGen.getFluidStack(GTMaterial.Fuel, 2000), GTMaterialGen.getFluidStack(GTMaterial.Lubricant));
 			// Thermal fluids and ores
-			GTTileCentrifuge.addRecipe("oreClathrateRedstone", 1, 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("redstone", 1));
-			GTTileCentrifuge.addRecipe("oreClathrateGlowstone", 1, 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("glowstone", 1));
-			GTTileCentrifuge.addRecipe("oreClathrateEnder", 1, 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("ender", 1));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getModdedTube("redstone", 1), 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.get(Items.REDSTONE, 8), GTMaterialGen.get(GTItems.testTube, 1));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("redstone", 1000), 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.get(Items.REDSTONE, 8));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getModdedTube("glowstone", 1), 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.get(Items.GLOWSTONE_DUST, 3), GTMaterialGen.get(GTItems.testTube, 1));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("glowstone", 1000), 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.get(Items.GLOWSTONE_DUST, 3));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getModdedTube("ender", 1), 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getDust(GTMaterial.EnderPearl, 3), GTMaterialGen.get(GTItems.testTube, 1));
-			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("ender", 1000), 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getDust(GTMaterial.EnderPearl, 3));
+			GTTileCentrifuge.addRecipe("oreClathrateRedstone", 1, GTTileCentrifuge.totalEu(8000), EMPTY, GTMaterialGen.getFluidStack("redstone", 1000));
+			GTTileCentrifuge.addRecipe("oreClathrateGlowstone", 1, GTTileCentrifuge.totalEu(8000), EMPTY, GTMaterialGen.getFluidStack("glowstone", 1000));
+			GTTileCentrifuge.addRecipe("oreClathrateEnder", 1, GTTileCentrifuge.totalEu(8000), EMPTY, GTMaterialGen.getFluidStack("ender", 1000));
+			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("redstone", 1000), GTTileCentrifuge.totalEu(8000), new ItemStack[]{GTMaterialGen.get(Items.REDSTONE, 8)});
+			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("glowstone", 1000), GTTileCentrifuge.totalEu(8000), new ItemStack[]{GTMaterialGen.get(Items.GLOWSTONE_DUST, 3)});
+			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("ender", 1000), GTTileCentrifuge.totalEu(8000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.EnderPearl, 3)});
 			// Macerator Stuff
 			TileEntityMacerator.addRecipe("oreClathrateOilShale", 1, GTMaterialGen.getModMetaItem(GTValues.MOD_ID_THERMAL, "material", 892, 3));
 			TileEntityMacerator.addRecipe("oreClathrateRedstone", 1, GTMaterialGen.getModMetaItem(GTValues.MOD_ID_THERMAL, "material", 893, 3));
@@ -117,7 +116,7 @@ public class GTRecipeMods {
 		if (GTConfig.modcompat.compatForestry && Loader.isModLoaded(GTValues.MOD_ID_FORESTRY)) {
 			GTMod.logger.info("Doing Forestry Things");
 			GTRecipeCraftingHandler.removeRecipe(GTValues.MOD_ID_FORESTRY, "bronze_ingot");
-			GTTileCentrifuge.addRecipe("gemApatite", 5, 0, GTTileCentrifuge.totalEu(4000), GTMaterialGen.getDust(GTMaterial.Calcite, 4), GTMaterialGen.getDust(GTMaterial.Phosphorus, 1));
+			GTTileCentrifuge.addRecipe("gemApatite", 5, GTTileCentrifuge.totalEu(4000), new ItemStack[]{GTMaterialGen.getDust(GTMaterial.Calcite, 4), GTMaterialGen.getDust(GTMaterial.Phosphorus, 1)});
 			GTTileTypeFilter.addOreDictFilter("beeComb");
 			GTRecipeForestry.notTheBees();
 		}

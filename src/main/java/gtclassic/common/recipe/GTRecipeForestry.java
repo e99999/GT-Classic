@@ -1,8 +1,5 @@
 package gtclassic.common.recipe;
 
-import java.lang.reflect.Field;
-import java.util.Set;
-
 import forestry.api.recipes.ICentrifugeRecipe;
 import forestry.factory.recipes.CentrifugeRecipeManager;
 import gtclassic.GTMod;
@@ -10,6 +7,9 @@ import gtclassic.common.tile.GTTileCentrifuge;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
 import net.minecraft.item.ItemStack;
+
+import java.lang.reflect.Field;
+import java.util.Set;
 
 public class GTRecipeForestry {
 
@@ -43,7 +43,7 @@ public class GTRecipeForestry {
 			// recipe output atm
 			if (size > 0) {
 				ItemStack[] outputs = entry.getAllProducts().keySet().toArray(new ItemStack[size]);
-				GTTileCentrifuge.addRecipe(input, 0, totalTime(1000), outputs);
+				GTTileCentrifuge.addRecipe(input, totalTime(1000), outputs);
 			}
 		}
 	}
