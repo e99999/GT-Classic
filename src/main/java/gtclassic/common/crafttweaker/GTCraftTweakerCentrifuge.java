@@ -69,7 +69,8 @@ public class GTCraftTweakerCentrifuge {
 		@Override
 		public void apply() {
 			if (totalEu > 0) {
-				GTTileCentrifuge.addRecipe(input, GTTileCentrifuge.totalEu(totalEu), output, fluidOutput);
+				String recipeId = fluidOutput.length == 0 ? output[0].getUnlocalizedName() : fluidOutput[0].getUnlocalizedName();
+				GTTileCentrifuge.addRecipe(input, GTTileCentrifuge.totalEu(totalEu), output, fluidOutput, recipeId + "_ct");
 			} else {
 				CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > "
 						+ "Eu amount must be greater then 0!!");
