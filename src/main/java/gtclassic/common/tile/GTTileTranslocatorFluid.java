@@ -98,10 +98,7 @@ public class GTTileTranslocatorFluid extends GTTileBufferBase implements IHasGui
 			FluidUtil.tryFluidTransfer(end, start, 10000, true);
 		}
 		if (canExport && filter != null) {
-			FluidStack fake = FluidUtil.tryFluidTransfer(end, start, 10000, false);
-			if (fake != null && (fake.getFluid().getName().equals(filter.getFluid().getName()))) {
-				FluidUtil.tryFluidTransfer(end, start, 10000, true);
-			}
+			FluidUtil.tryFluidTransfer(end, start, new FluidStack(filter, 10000), true);
 		}
 	}
 
