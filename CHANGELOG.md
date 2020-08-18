@@ -6,6 +6,9 @@
 - Added GT Worktables now pull items from storage thanks to Trinsdar.
 - Fixed Tesseracts checking all sides for redstone power to disable, now only checks front.
 - Changed Tesseracts use less power, 64 EU/t for the Generator and 1 EU/t for the Terminal. (Will be 8eu for interdimensional before release).
+- Changed recipes for IC2C Ocean Generator and Wave Generator because they are very OP.
+- Changed LESU casing blocks a lot cheaper to craft.
+- Added crushedCentrifued Ore from IC2 Extras to Type Filter.
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.

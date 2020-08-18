@@ -90,8 +90,8 @@ public class GTRecipeMods {
 			addFluidGeneratorRecipe("tree_oil", 50000, 8);
 			addFluidGeneratorRecipe("refined_biofuel", 100000, 10);
 			// Oil sand stuff
-			GTTileCentrifuge.addRecipe("oreClathrateOilSand", 1, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
-			GTTileCentrifuge.addRecipe("oreClathrateOilShale", 1, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
+			GTTileCentrifuge.addRecipe("oreClathrateOilSand", 1, 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
+			GTTileCentrifuge.addRecipe("oreClathrateOilShale", 1, 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
 			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("crude_oil", 3000), 3, GTTileCentrifuge.totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
 			GTTileCentrifuge.addRecipe(GTMaterialGen.getModdedTube("crude_oil", 3), 0, GTTileCentrifuge.totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
 			// Thermal fluids and ores

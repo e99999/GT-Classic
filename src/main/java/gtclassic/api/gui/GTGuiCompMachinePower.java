@@ -28,7 +28,7 @@ public class GTGuiCompMachinePower extends GuiComponent {
 	public GTGuiCompMachinePower(GTTileBaseMachine tile, int x, int y) {
 		this(tile, x, y, 176, 54);
 	}
-	
+
 	public GTGuiCompMachinePower(GTTileBaseMachine tile, int x, int y, int fu, int bar) {
 		super(Ic2GuiComp.nullBox);
 		this.block = tile;
@@ -47,7 +47,7 @@ public class GTGuiCompMachinePower extends GuiComponent {
 	@SideOnly(Side.CLIENT)
 	public void drawBackground(GuiIC2 gui, int mouseX, int mouseY, float particalTicks) {
 		if (this.block.energy < this.block.energyConsume) {
-			gui.drawTexturedModalRect(gui.getXOffset() + this.x, gui.getYOffset() + this.y, this.fu , this.bar, 18, 18);
+			gui.drawTexturedModalRect(gui.getXOffset() + this.x, gui.getYOffset() + this.y, this.fu, this.bar, 18, 18);
 		}
 	}
 

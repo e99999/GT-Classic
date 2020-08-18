@@ -180,7 +180,8 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	}
 
 	private void handleEnergy() {
-		if (this.hasEnergy(1) && this.targetMaster != null && !this.targetMaster.isInvalid() && this.redstoneLevel < 1) {
+		if (this.hasEnergy(1) && this.targetMaster != null && !this.targetMaster.isInvalid()
+				&& this.redstoneLevel < 1) {
 			this.useEnergy(1);
 			return;
 		}
