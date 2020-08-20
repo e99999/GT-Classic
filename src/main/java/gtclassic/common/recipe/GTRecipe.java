@@ -230,7 +230,7 @@ public class GTRecipe {
 		/** Dragon Egg Energy Siphon **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'B', GTValues.BATTERY_ULTIMATE, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', Ic2Items.teslaCoil.copy());
 		/** Magic Energy Converter **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CTC", "IBI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Blocks.BEACON, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INGOT_PLATINUM, 'T', Ic2Items.teslaCoil.copy());
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CTC", "IBI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Items.END_CRYSTAL, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INGOT_PLATINUM, 'T', Ic2Items.teslaCoil.copy());
 		/** Magic Energy Absorber **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', Blocks.BEACON, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
 		/** Player Detector **/
@@ -300,8 +300,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorVent, 1), "IBI", "B B", "IBI", 'I', GTValues.INGOT_ALUMINIUM, 'B', Blocks.IRON_BARS);
 		}
 		/** More Luminator Recipes **/
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), "III", "GHG", "GGG", 'G', GTValues.BLOCK_GLASS, 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Helium, 1), 'C', Ic2Items.insulatedCopperCable.copy());
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), "III", "GHG", "GGG", 'G', GTValues.BLOCK_GLASS, 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Mercury, 1), 'C', Ic2Items.insulatedCopperCable.copy());
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), "III", "GHG", "GGG", 'G', GTValues.BLOCK_GLASS, 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Neon, 1), 'C', Ic2Items.insulatedCopperCable.copy());
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), "III", "GHG", "GGG", 'G', GTValues.BLOCK_GLASS, 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Argon, 1), 'C', Ic2Items.insulatedCopperCable.copy());
 		/** Overclocker helium coolant recipes **/
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), "CCC", "WEW", 'C', GTMaterialGen.get(GTItems.heatStorageHelium1), 'W', Ic2Items.insulatedCopperCable.copy(), 'E', Ic2Items.electricCircuit.copy());
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 6), "CCC", "WEW", 'C', GTMaterialGen.get(GTItems.heatStorageHelium3), 'W', GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 3), 'E', GTMaterialGen.getIc2(Ic2Items.electricCircuit, 3));
