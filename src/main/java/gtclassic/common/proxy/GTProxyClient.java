@@ -8,7 +8,6 @@ import gtclassic.api.interfaces.IGTColorItem;
 import gtclassic.common.GTIcons;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTJei;
-import gtclassic.common.event.GTEventCapeRenderer;
 import gtclassic.common.tile.GTTileDisplayScreen;
 import gtclassic.common.util.GTRenderDisplayScreen;
 import gtclassic.common.util.render.GTModelLoader;
@@ -47,7 +46,7 @@ public class GTProxyClient extends GTProxyCommon {
 		registerTintedBlocks();
 		registerTintedItems();
 		MinecraftForge.EVENT_BUS.register(this);
-		//MinecraftForge.EVENT_BUS.register(new GTEventCapeRenderer());
+		// MinecraftForge.EVENT_BUS.register(new GTEventCapeRenderer());
 		this.onRegisterRender();
 	}
 

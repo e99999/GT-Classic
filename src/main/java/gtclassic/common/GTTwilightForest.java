@@ -1,17 +1,28 @@
-package gtclassic.api.world;
+package gtclassic.common;
 
 import gtclassic.GTMod;
-import gtclassic.common.GTBlocks;
-import gtclassic.common.GTConfig;
+import gtclassic.api.helpers.GTValues;
+import gtclassic.common.event.GTEventLootTableLoad;
 import ic2.core.IC2;
 import ic2.core.platform.registry.Ic2States;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootTableList;
 import twilightforest.world.TFWorld;
 import twilightforest.world.feature.TFGenCaveStalactite;
 
-public class GTTwilightForestHandler {
+public class GTTwilightForest {
+
+	private static final String[] TFOREST_LOOTTABLES = { "hill_1", "hill_2", "hill_3", "hedge_maze", "labyrinth_room",
+			"labyrinth_dead_end", "tower_room", "tower_library", "basement", "labyrinth_vault", "darktower_cache",
+			"darktower_key", "tree_cache", "stronghold_cache", "stronghold_room", "aurora_cache", "aurora_room",
+			"troll_garden", "troll_vault" };
 
 	public static void initStalactites() {
+		/*
+		 * Dont feel like adding IMC so im calling it directly, just needed to make my
+		 * mod loaded after TForest or this gets reset
+		 */
 		GTMod.logger.info("Adding ores to Twilight Forest hollow hills");
 		if (GTConfig.generation.iridiumGenerate) {
 			TFGenCaveStalactite.addStalactite(3, GTBlocks.oreIridium.getDefaultState(), 0.5F, 4, 16, 30);
@@ -40,6 +51,22 @@ public class GTTwilightForestHandler {
 		if (IC2.config.getFlag("WorldGenOreUranium")) {
 			TFGenCaveStalactite.addStalactite(3, Ic2States.uraniumOre, 0.5F, 3, 12, 15);
 		}
+	}
+
+	public static void initLootTables() {
+		/* Iterates the above array and grabs them from the forge loottable */
+		for (ResourceLocation loc : LootTableList.getAll()) {
+			for (String name : TFOREST_LOOTTABLES) {
+				if (loc.getResourceDomain().equals(GTValues.MOD_ID_TFOREST) && loc.getResourcePath().contains(name)) {
+					GTEventLootTableLoad.addTable(loc, "common");
+					GTMod.logger.info("Added GT Loot to Twilight Forest loot table: " + name);
+				}
+			}
+		}
+	}
+
+	public static void initRecipes() {
+		/* Recipes specific to TForest mod compat */
 	}
 
 	public static boolean isTwilightForest(World world) {

@@ -7,7 +7,6 @@ import gtclassic.api.helpers.GTValues;
 import gtclassic.api.material.GTMaterialElement;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.world.GTBedrockOreHandler;
-import gtclassic.api.world.GTTwilightForestHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTCreativeTab;
@@ -15,6 +14,7 @@ import gtclassic.common.GTCrops;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTOreDict;
 import gtclassic.common.GTSounds;
+import gtclassic.common.GTTwilightForest;
 import gtclassic.common.GTWorldGen;
 import gtclassic.common.crafttweaker.GTCraftTweakerLoader;
 import gtclassic.common.event.GTEventCheckSpawn;
@@ -86,7 +86,6 @@ public class GTMod {
 		GTItems.registerItems();
 		GTCrops.init();
 		GTOreDict.init();
-		GTEventLootTableLoad.init();
 		MinecraftForge.EVENT_BUS.register(GTSounds.class);
 	}
 
@@ -108,7 +107,6 @@ public class GTMod {
 		GTBedrockOreHandler.bedrockOresInit();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
-		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
 		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
 		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
@@ -131,8 +129,12 @@ public class GTMod {
 		GTRecipeMods.postInit();
 		GTTileDisassembler.init();
 		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)) {
-			GTTwilightForestHandler.initStalactites();
+			GTTwilightForest.initStalactites();
+			GTTwilightForest.initLootTables();
+			GTTwilightForest.initRecipes();
 		}
+		GTEventLootTableLoad.init();
+		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
 	}
 
 	@SubscribeEvent

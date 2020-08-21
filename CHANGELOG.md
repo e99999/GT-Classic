@@ -11,6 +11,10 @@
 - Added crushedCentrifued Ore from IC2 Extras to Type Filter.
 - Changed Magic Energy Converter slightly easier to craft.
 - Added comparator output for Quantum Tanks.
+- Removed extremely rare materials like Osmium from loot table, you can still get Iridium.
+- Removed Uranium and Plutonium from loot table cause radiation.
+- Added GTC loot to Twilight Forest loot tables.
+
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.

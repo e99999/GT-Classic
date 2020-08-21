@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class GTEventCapeRenderer extends RenderPlayer {
 
-	private final static ResourceLocation mCape = new ResourceLocation(GTMod.MODID ,"textures/GregTechCape.png");
+	private final static ResourceLocation mCape = new ResourceLocation(GTMod.MODID, "textures/GregTechCape.png");
 
 	public GTEventCapeRenderer() {
 		super(Minecraft.getMinecraft().getRenderManager());
@@ -27,7 +27,7 @@ public class GTEventCapeRenderer extends RenderPlayer {
 		if (aPlayer.isInvisible()) {
 			return;
 		}
-		//check if the player has disabled capes client side as well
+		// check if the player has disabled capes client side as well
 		try {
 			ResourceLocation tResource = mCape;
 //            if (aPlayer.getDisplayName().toString().equalsIgnoreCase("Friedi4321")) {
