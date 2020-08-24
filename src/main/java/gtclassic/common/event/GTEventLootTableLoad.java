@@ -8,7 +8,6 @@ import java.util.Map;
 import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
-import gtclassic.common.GTConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntryItem;
@@ -65,13 +64,11 @@ public class GTEventLootTableLoad {
 		 * Iterates both the stack array and resource location array to create a 2d
 		 * table, at this point Tforest tables have been loaded
 		 */
-		if (GTConfig.general.addLootItems) {
-			for (ItemStack item : LOOT_POOL) {
-				for (Map.Entry<ResourceLocation, String> entry : LOOT_TABLE.entrySet()) {
-					if (event.getName().equals(entry.getKey())) {
-						event.getTable().getPool(entry.getValue()).addEntry(new LootEntryItem(item.getItem(), 16, 0, new LootFunction[] {
-								createCountFunction(1, 6) }, NO_CONDITIONS, getStackResourceName(item)));
-					}
+		for (ItemStack item : LOOT_POOL) {
+			for (Map.Entry<ResourceLocation, String> entry : LOOT_TABLE.entrySet()) {
+				if (event.getName().equals(entry.getKey())) {
+					event.getTable().getPool(entry.getValue()).addEntry(new LootEntryItem(item.getItem(), 16, 0, new LootFunction[] {
+							createCountFunction(1, 6) }, NO_CONDITIONS, getStackResourceName(item)));
 				}
 			}
 		}

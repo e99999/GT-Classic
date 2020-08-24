@@ -3,7 +3,7 @@
 - Added better performance of all multiblock structures, GTCX automatically gets this as well.
 - Added better performance of some basic tiles.
 - Fixed miscalculation with matter fab resulting in half of the output of UU.
-- Added GT Worktables now pull items from storage thanks to Trinsdar.
+- Added GT Worktables now pull items from internal storage, thanks to Trinsdar.
 - Fixed Tesseracts checking all sides for redstone power to disable, now only checks front.
 - Changed Tesseracts use less power, 64 EU/t for the Generator and 1 EU/t for the Terminal.
 - Changed recipes for IC2C Ocean Generator and Wave Generator because they are very OP.
@@ -14,7 +14,10 @@
 - Removed extremely rare materials like Osmium from loot table, you can still get Iridium.
 - Removed Uranium and Plutonium from loot table cause radiation.
 - Added GTC loot to Twilight Forest loot tables.
-
+- Changed increased the durability of Crumble Horn, Peacock Fan, Ore Magnet, and Giant Pick from TForest like GT6.
+- Added some processing recipes for TForest in GTC and IC2C machines.
+- Added ability for GT Scanners to be nuclear thermometers as well as EU scanners
+- Changed Beryllium from a fluid to a solid as it should be, recipe to convert from fluid to solid in the Centrifuge.
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.

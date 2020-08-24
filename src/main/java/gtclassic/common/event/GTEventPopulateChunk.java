@@ -1,10 +1,10 @@
 package gtclassic.common.event;
 
-import gtclassic.common.GTConfig;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.BiomeDictionary;
@@ -28,32 +28,30 @@ public class GTEventPopulateChunk {
 	 */
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public void onEvent(PopulateChunkEvent.Post event) {
-		if (!event.getWorld().provider.getDimensionType().equals(DimensionType.OVERWORLD)) {
+		World world = event.getWorld();
+		if (!world.provider.getDimensionType().equals(DimensionType.OVERWORLD)) {
 			return;
 		}
-		if (GTConfig.general.replaceOceanGravelWithSand) {
-			Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
-			for (int x = 0; x < 16; ++x) {
-				for (int z = 0; z < 16; ++z) {
-					Biome biomegenbase = event.getWorld().getBiome(new BlockPos(chunk.x * 16 + x, 128, chunk.z * 16
-							+ z));
-					if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN)
-							|| BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
-						for (int y = 30; y < 60; ++y) {
-							if (chunk.getBlockState(x, y, z).getBlock() == BLOCK_GRAVEL) {
-								chunk.setBlockState(new BlockPos(x, y, z), BLOCK_SAND.getDefaultState());
-							}
+		Chunk chunk = world.getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
+		for (int x = 0; x < 16; ++x) {
+			for (int z = 0; z < 16; ++z) {
+				Biome biomegenbase = world.getBiome(new BlockPos(chunk.x * 16 + x, 128, chunk.z * 16 + z));
+				if (BiomeDictionary.hasType(biomegenbase, Type.OCEAN)
+						|| BiomeDictionary.hasType(biomegenbase, Type.BEACH)) {
+					for (int y = 30; y < 60; ++y) {
+						if (chunk.getBlockState(x, y, z).getBlock() == BLOCK_GRAVEL) {
+							chunk.setBlockState(new BlockPos(x, y, z), BLOCK_SAND.getDefaultState());
 						}
 					}
 				}
 			}
-			chunk.markDirty();
 		}
+		chunk.markDirty();
 //		if (GTConfig.general.redSandInForestsAndPlains) {
-//			Chunk chunk = event.getWorld().getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
+//			Chunk chunk = world.getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
 //			for (int x = 0; x < 16; ++x) {
 //				for (int z = 0; z < 16; ++z) {
-//					Biome biomegenbase = event.getWorld().getBiome(new BlockPos(chunk.x * 16 + x, 128, chunk.z * 16
+//					Biome biomegenbase = world.getBiome(new BlockPos(chunk.x * 16 + x, 128, chunk.z * 16
 //							+ z));
 //					if (BiomeDictionary.hasType(biomegenbase, Type.FOREST)
 //							|| BiomeDictionary.hasType(biomegenbase, Type.PLAINS)) {

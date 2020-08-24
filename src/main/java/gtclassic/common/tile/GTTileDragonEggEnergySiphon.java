@@ -1,5 +1,6 @@
 package gtclassic.common.tile;
 
+import gtclassic.api.helpers.GTUtility;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
@@ -8,7 +9,6 @@ import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IEmitterTile;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -29,7 +29,7 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine implements IE
 
 	@Override
 	public int getOutput() {
-		return (int) this.production;
+		return 128;
 	}
 
 	@Override
@@ -71,7 +71,9 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine implements IE
 	}
 
 	private void checkForEgg() {
-		this.setActive(world.getBlockState(pos.up()).equals(Blocks.DRAGON_EGG.getDefaultState()));
+		int trophyValue = GTUtility.getTrophyProductionValue(world, pos.up());
+		this.production = trophyValue;
+		this.setActive(this.production > 0);
 	}
 
 	@Override

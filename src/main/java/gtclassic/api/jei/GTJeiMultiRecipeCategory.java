@@ -27,11 +27,12 @@ public class GTJeiMultiRecipeCategory implements IRecipeCategory<GTJeiMultiRecip
 	protected String name, displayName;
 	protected ResourceLocation backgroundTexture;
 	private IDrawable background, progress;
+	public static final ResourceLocation DEFAULT_TEXTURE = new ResourceLocation(GTMod.MODID, "textures/gui/default.png");
 
 	public GTJeiMultiRecipeCategory(IGuiHelper helper, String name, Block block) {
 		this.name = name;
 		displayName = new ItemStack(block).getDisplayName().replace(" Controller", "");
-		backgroundTexture = new ResourceLocation(GTMod.MODID, "textures/gui/default.png");
+		backgroundTexture = DEFAULT_TEXTURE;
 		background = helper.createDrawable(backgroundTexture, 16, 16, 144, getHeight());
 		IDrawableStatic progressPic = helper.createDrawable(backgroundTexture, 176, 0, 20, 18);
 		progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);

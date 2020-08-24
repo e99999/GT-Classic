@@ -417,7 +417,7 @@ public class GTRecipe {
 			recipes.overrideRecipe("shaped_tile.oceanGenerator_-1674978904", Ic2Items.oceanGenerator.copy(), "XYX", "CVC", "XYX", 'X', GTValues.INGOT_TITANIUM, 'Y', GTValues.PLATE_IRIDIUM_ALLOY, 'C', Ic2Items.turbineBlade.copy(), 'V', Ic2Items.waveGenerator.copy());
 		}
 		/** Thick Reflector Recipe **/
-		recipes.overrideRecipe("shaped_item.reactorReflectorThick_-1313142365", Ic2Items.reactorReflectorThick.copy(), " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GTMaterialGen.getTube(GTMaterial.Beryllium, 1));
+		recipes.overrideRecipe("shaped_item.reactorReflectorThick_-1313142365", Ic2Items.reactorReflectorThick.copy(), " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GTValues.INGOT_BERYLLIUM);
 		/** MFE with Lithium Batteries **/
 		recipes.overrideRecipe("shaped_tile.blockMFE_-1307270245", Ic2Items.mfe.copy(), "XYX", "YCY", "XYX", 'C', GTValues.MACHINE_BASIC, 'Y', GTValues.INPUT_BATTERY_ADVANCED, 'X', Ic2Items.doubleInsulatedGoldCable.copy());
 		recipes.overrideRecipe("shaped_tile.blockMFE_2004107975", Ic2Items.mfe.copy(), "XYX", "YCY", "XYX", 'C', GTValues.MACHINE_BASIC, 'Y', GTValues.INPUT_BATTERY_ADVANCED, 'X', GTMaterialGen.getIc2(Ic2Items.doubleInsulatedBronzeCable, 4));

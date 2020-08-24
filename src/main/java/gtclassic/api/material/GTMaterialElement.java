@@ -25,7 +25,8 @@ public class GTMaterialElement {
 		addElement(92, "dustUranium", GTMaterialGen.getDust(GTMaterial.Uranium, 1));
 		for (GTMaterial mat : GTMaterial.values()) {
 			if (mat.getElementNumber() > 0 && mat.getElementNumber() < 300) {
-				if (mat.hasFlag(GTMaterialFlag.FLUID) || mat.hasFlag(GTMaterialFlag.GAS)) {
+				if ((mat.hasFlag(GTMaterialFlag.FLUID) || mat.hasFlag(GTMaterialFlag.GAS))
+						&& !mat.equals(GTMaterial.Beryllium)) {
 					addElement(mat.getElementNumber(), GTMaterialGen.getFluid(mat));
 				} else if (mat.hasFlag(GTMaterialFlag.DUST)) {
 					addElement(mat.getElementNumber(), "dust" + mat.getDisplayName(), GTMaterialGen.getDust(mat, 1));

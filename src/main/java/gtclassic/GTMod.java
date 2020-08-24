@@ -108,13 +108,21 @@ public class GTMod {
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
-		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
-		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
-		MinecraftForge.EVENT_BUS.register(new GTEventItemTooltip());
-		if (!Loader.isModLoaded(GTValues.MOD_ID_FASTLEAF)) {
+		if (GTConfig.general.clearerWater) {
+			MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
+		}
+		if (GTConfig.general.replaceOceanGravelWithSand) {
+			MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
+		}
+		if (GTConfig.general.removeIC2Plasmafier) {
+			MinecraftForge.EVENT_BUS.register(new GTEventItemTooltip());
+		}
+		if (GTConfig.general.enableQuickerLeafDecay && !Loader.isModLoaded(GTValues.MOD_ID_FASTLEAF)) {
 			MinecraftForge.EVENT_BUS.register(new GTEventNeighborNotifyEvent());
 		}
-		MinecraftForge.TERRAIN_GEN_BUS.register(new GTEventDecorateBiome());
+		if (GTConfig.general.reduceGrassOnWorldGen) {
+			MinecraftForge.TERRAIN_GEN_BUS.register(new GTEventDecorateBiome());
+		}
 		IC2.saveManager.registerGlobal("IDSU_Storage", GTIDSUStorageManager.class, false);
 		proxy.init(e);
 	}
@@ -133,8 +141,10 @@ public class GTMod {
 			GTTwilightForest.initLootTables();
 			GTTwilightForest.initRecipes();
 		}
-		GTEventLootTableLoad.init();
-		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
+		if (GTConfig.general.addLootItems) {
+			GTEventLootTableLoad.init();
+			MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
+		}
 	}
 
 	@SubscribeEvent

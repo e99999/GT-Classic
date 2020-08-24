@@ -10,6 +10,7 @@ import gtclassic.api.interfaces.IGTMultiTileStatus;
 import gtclassic.api.tile.GTTileBaseMachine;
 import gtclassic.api.world.GTBedrockOreHandler;
 import ic2.api.classic.item.IEUReader;
+import ic2.api.classic.item.IThermometer;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.energy.EnergyNet;
@@ -44,7 +45,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader {
+public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader, IThermometer {
 
 	public static final String POS = "pos";
 	public static final String BLOCK = "block";
@@ -229,5 +230,10 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader 
 			}
 		}
 		return EnumActionResult.SUCCESS;
+	}
+
+	@Override
+	public boolean isThermometer(ItemStack arg0) {
+		return true;
 	}
 }

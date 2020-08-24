@@ -41,7 +41,8 @@ public class GTValues {
 			CHEST_WOOD = "chestWood", DUCT_TAPE = "craftingToolDuctTape", DUST_GLOWSTONE = "dustGlowstone",
 			INGOT_PLATINUM = "ingotPlatinum", INGOT_BRONZE = "ingotBronze", INGOT_SILICON = "itemSilicon",
 			INGOT_ELECTRUM = "ingotElectrum", INGOT_SILVER = "ingotSilver", INGOT_INVAR = "ingotInvar",
-			INGOT_NICKEL = "ingotNickel", INGOT_GOLD = "ingotGold", ENDER_CHEST = "chestEnder";
+			INGOT_NICKEL = "ingotNickel", INGOT_GOLD = "ingotGold", ENDER_CHEST = "chestEnder",
+			INGOT_BERYLLIUM = "ingotBeryllium";
 	/** Generic fluidstack holders **/
 	public static final FluidStack FS_WATER = new FluidStack(FluidRegistry.WATER, 1000),
 			FS_LAVA = new FluidStack(FluidRegistry.LAVA, 1000);
