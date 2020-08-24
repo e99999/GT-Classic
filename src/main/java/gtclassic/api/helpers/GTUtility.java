@@ -257,12 +257,22 @@ public class GTUtility {
 		return false;
 	}
 
+	/**
+	 * Gets the eu per tick value of a given "trophy"
+	 * 
+	 * @param world - the World param to pass
+	 * @param pos   - the BlockPos to check
+	 * @return - 0 if nothing of value, or the production int
+	 */
 	public static int getTrophyProductionValue(World world, BlockPos pos) {
 		if (world.isAirBlock(pos)) {
 			return 0;
 		}
 		if (world.getBlockState(pos).equals(Blocks.DRAGON_EGG.getDefaultState())) {
 			return 128;
+		}
+		if (GTConfig.general.energySiphonJustSucksEggs) {
+			return 0;
 		}
 		// put any blockstates above this tile call
 		TileEntity tile = world.getTileEntity(pos);

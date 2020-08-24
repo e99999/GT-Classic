@@ -4,6 +4,7 @@ import gtclassic.GTMod;
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.event.GTEventLootTableLoad;
+import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityExtractor;
@@ -91,6 +92,16 @@ public class GTTwilightForest {
 		TileEntityExtractor.addRecipe(GTMaterialGen.getModMetaItem(GTValues.MOD_ID_TFOREST, "root", 1, 1), GTMaterialGen.getModItem(GTValues.MOD_ID_TFOREST, "liveroot", 3));
 		GTTileMagicEnergyConverter.addRecipe(GTMaterialGen.getModItem(GTValues.MOD_ID_TFOREST, "transformation_powder"), 36000);
 		GTTileMagicEnergyConverter.addRecipe(GTMaterialGen.getModItem(GTValues.MOD_ID_TFOREST, "borer_essence"), 32000);
+		if (!GTConfig.general.energySiphonJustSucksEggs) {
+			GTTileDragonEggEnergySiphon.addFakeRecipe(GTMaterialGen.getModMetaItem(GTValues.MOD_ID_TFOREST, "trophy", 0, 1), TROPHY_PRODUCTION[0]);
+			GTTileDragonEggEnergySiphon.addFakeRecipe(GTMaterialGen.getModMetaItem(GTValues.MOD_ID_TFOREST, "trophy", 1, 1), TROPHY_PRODUCTION[1]);
+			GTTileDragonEggEnergySiphon.addFakeRecipe(GTMaterialGen.getModMetaItem(GTValues.MOD_ID_TFOREST, "trophy", 8, 1), TROPHY_PRODUCTION[8]);
+			GTTileDragonEggEnergySiphon.addFakeRecipe(GTMaterialGen.getModMetaItem(GTValues.MOD_ID_TFOREST, "trophy", 6, 1), TROPHY_PRODUCTION[6]);
+			GTTileDragonEggEnergySiphon.addFakeRecipe(GTMaterialGen.getModMetaItem(GTValues.MOD_ID_TFOREST, "trophy", 2, 1), TROPHY_PRODUCTION[2]);
+			GTTileDragonEggEnergySiphon.addFakeRecipe(GTMaterialGen.getModMetaItem(GTValues.MOD_ID_TFOREST, "trophy", 4, 1), TROPHY_PRODUCTION[4]);
+			GTTileDragonEggEnergySiphon.addFakeRecipe(GTMaterialGen.getModMetaItem(GTValues.MOD_ID_TFOREST, "trophy", 3, 1), TROPHY_PRODUCTION[3]);
+			GTTileDragonEggEnergySiphon.addFakeRecipe(GTMaterialGen.getModMetaItem(GTValues.MOD_ID_TFOREST, "trophy", 5, 1), TROPHY_PRODUCTION[5]);
+		}
 		/* Increasing durability of some items from TForest like GT6 */
 		if (GTConfig.general.enableBetterTwilightDurability) {
 			TFItems.crumble_horn.setMaxDamage(10000);
