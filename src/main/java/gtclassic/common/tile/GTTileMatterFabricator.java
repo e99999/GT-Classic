@@ -313,6 +313,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 		addAmplifier("dustEnderPearl", 50000);
 		addAmplifier("dustEnderEye", 80000);
 		addAmplifier("dustDiamond", 80000);
+		addAmplifier("dustUUAmplifier", 100000);
 		/** Adding my elements **/
 		for (GTMaterialElement element : GTMaterialElement.getElementList()) {
 			int value = element.getAmplifierValue();

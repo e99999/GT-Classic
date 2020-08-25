@@ -11,6 +11,7 @@ import gtclassic.api.tile.GTTileBaseMachine;
 import gtclassic.api.world.GTBedrockOreHandler;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.classic.item.IThermometer;
+import ic2.api.classic.reactor.ISteamReactor;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.energy.EnergyNet;
@@ -162,6 +163,11 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 			IC2.platform.messagePlayer(player, "Max Heat: " + te5.getMaxHeat());
 			IC2.platform.messagePlayer(player, "HEM: " + te5.getHeatEffectModifier());
 			IC2.platform.messagePlayer(player, "Output: " + te5.getReactorEnergyOutput() + " EU");
+		}
+		if (tileEntity instanceof ISteamReactor) {
+			ISteamReactor steamyBoy = (ISteamReactor) tileEntity;
+			IC2.platform.messagePlayer(player, "Water: " + steamyBoy.getWaterTank().getFluidAmount() + "mB");
+			IC2.platform.messagePlayer(player, "Steam: " + steamyBoy.getSteamTank().getFluidAmount() + "mB");
 		}
 		if (tileEntity instanceof IPersonalBlock) {
 			IPersonalBlock te6 = (IPersonalBlock) tileEntity;

@@ -119,6 +119,7 @@ item.gtclassic.dustTechnetium.name=Technetium Dust
 item.gtclassic.dustBrownDye.name=Brown Dye Dust
 item.gtclassic.dustWood.name=Wood Pulp
 item.gtclassic.dustBeryllium.name=Beryllium Dust
+item.gtclassic.dustUUAmplifier.name=UU-Amplifier Dust
 
 #gems
 item.gtclassic.gemSapphire.name=Sapphire
@@ -190,6 +191,7 @@ ic2.crop.Sapphirum.name=Sapphirum
 ic2.crop.GodOfThunder.name=God of Thunder
 ic2.crop.Titania.name=Titania
 ic2.crop.Scheelinium.name=Scheelinium
+ic2.crop.Transformium.name=Transformium
 
 #fluids
 fluid.hydrogen=Hydrogen

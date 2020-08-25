@@ -72,6 +72,7 @@ public class GTMaterial {
 	public static final GTMaterial Tritium = new GTMaterial("Tritium", 255, 0, 0, gas);
 	public static final GTMaterial Tungsten = new GTMaterial(74, "Tungsten", 3, 50, 50, 50, metalAll);
 	public static final GTMaterial Uranium = new GTMaterial("Uranium", 2, 50, 240, 50, dust);
+	public static final GTMaterial UUAmplifier = new GTMaterial("UUAmplifier", 5, 96, 0, 128, dust);
 	public static final GTMaterial Wood = new GTMaterial("Wood", 137, 103, 39, dust);
 	/** Instance Members **/
 	private int element;
