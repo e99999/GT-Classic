@@ -13,6 +13,7 @@ tile.gtclassic.blockPlutonium.name=Block of Plutonium
 tile.gtclassic.blockNickel.name=Block of Nickel
 tile.gtclassic.blockInvar.name=Block of Invar
 tile.gtclassic.blockTechnetium.name=Block of Technetium
+tile.gtclassic.blockBeryllium.name=Block of Beryllium
 tile.gtclassic.brittlecharcoal.name=Brittle Charcoal
 tile.gtclassic.superfuel.name=Solid Super Fuel
 tile.gtclassic.superfuelmagic.name=Magic Solid Super Fuel
@@ -35,7 +36,6 @@ tile.gtclassic.lightsource.name=Light Source
 
 #tiles
 tile.gtclassic.autocrafter.name=Electric Craftingtable
-tile.gtclassic.bath.name=Bath
 tile.gtclassic.disassembler.name=Disassembler
 tile.gtclassic.chargeomat.name=Charge-O-Mat
 tile.gtclassic.computercube.name=Computer Cube
@@ -53,7 +53,7 @@ tile.gtclassic.bedrockminer.name=Bedrock Miner
 tile.gtclassic.fusionreactor.name=Fusion Reactor
 tile.gtclassic.lightningrod.name=Lightning Rod
 tile.gtclassic.charcoalpit.name=Charcoal Pile Igniter
-tile.gtclassic.dragoneggenergysiphon.name=Dragon Egg Energy Siphon
+tile.gtclassic.dragoneggenergysiphon.name=Trophy Energy Siphon
 tile.gtclassic.magicenergyconverter.name=Magic Energy Converter
 tile.gtclassic.magicenergyabsorber.name=Magic Energy Absorber
 tile.gtclassic.aesu.name=AESU
@@ -118,6 +118,8 @@ item.gtclassic.dustInvar.name=Invar Dust
 item.gtclassic.dustTechnetium.name=Technetium Dust
 item.gtclassic.dustBrownDye.name=Brown Dye Dust
 item.gtclassic.dustWood.name=Wood Pulp
+item.gtclassic.dustBeryllium.name=Beryllium Dust
+item.gtclassic.dustUUAmplifier.name=UU-Amplifier Dust
 
 #gems
 item.gtclassic.gemSapphire.name=Sapphire
@@ -137,6 +139,7 @@ item.gtclassic.ingotPlatinum.name=Platinum Ingot
 item.gtclassic.ingotNickel.name=Nickel Ingot
 item.gtclassic.ingotInvar.name=Invar Ingot
 item.gtclassic.ingotTechnetium.name=Technetium Ingot
+item.gtclassic.ingotBeryllium.name=Beryllium Ingot
 
 #items
 item.gtclassic.heatstorage_helium_single.name=60k Helium Coolant Cell
@@ -194,6 +197,7 @@ ic2.crop.Sapphirum.name=Sapphirum
 ic2.crop.GodOfThunder.name=God of Thunder
 ic2.crop.Titania.name=Titania
 ic2.crop.Scheelinium.name=Scheelinium
+ic2.crop.Transformium.name=Transformium
 
 #fluids
 fluid.hydrogen=Hydrogen
@@ -244,8 +248,6 @@ tooltip.gtclassic.chargeomat0=Charges all the things
 tooltip.gtclassic.computercube0=Now with more dedotated WAM!
 tooltip.gtclassic.drum0=Portable tank, capacity of 32 buckets
 tooltip.gtclassic.drum1=Sneak click empty handed to toggle output
-tooltip.gtclassic.bath0=For bathing stuff in other stuff
-tooltip.gtclassic.bath1=Does not need power or fuel to function.
 tooltip.gtclassic.echotronblock0=Reveals entities using echo location
 tooltip.gtclassic.digitalchest0=Uploads and downloads contents to data orbs
 tooltip.gtclassic.quantumchest0=2 Milliards, uhh I mean billion, items to store here!
@@ -282,7 +284,8 @@ tooltip.gtclassic.charcoalpit1=Must be placed on a log,
 tooltip.gtclassic.charcoalpit2=Logs can be placed in any shape,
 tooltip.gtclassic.charcoalpit3=Logs must be surrounded by dirt or grass,
 tooltip.gtclassic.charcoalpit4=Processes up to 800 logs at a time
-tooltip.gtclassic.dragoneggenergysiphon0=Harness the teleportation power of the dragon egg!
+tooltip.gtclassic.dragoneggenergysiphon0=Harness the power of violent conquests!
+tooltip.gtclassic.dragoneggenergysiphon1=Trophy must be on top of the Siphon.
 tooltip.gtclassic.magicenergyconverter0=A generator running off magic fuel
 tooltip.gtclassic.magicenergyabsorber0=Absorbs magic energy and disenchants items
 tooltip.gtclassic.batteryblock0=Can be used as a battery item or block,

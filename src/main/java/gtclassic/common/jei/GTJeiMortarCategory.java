@@ -1,6 +1,7 @@
 package gtclassic.common.jei;
 
 import gtclassic.GTMod;
+import gtclassic.api.jei.GTJeiMultiRecipeCategory;
 import ic2.api.recipe.IRecipeInput;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -21,7 +22,7 @@ public class GTJeiMortarCategory implements IRecipeCategory<GTJeiMortarWrapper> 
 	public GTJeiMortarCategory(IGuiHelper helper, String name, Block block) {
 		this.name = name;
 		displayName = "Mortar";
-		backgroundTexture = new ResourceLocation(GTMod.MODID, "textures/gui/default.png");
+		backgroundTexture = GTJeiMultiRecipeCategory.DEFAULT_TEXTURE;
 		background = helper.createDrawable(backgroundTexture, 16, 16, 144, 40);
 	}
 

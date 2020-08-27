@@ -143,8 +143,10 @@ public class GTIFilters {
 				return this.tile.invertFilter
 						? !GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter())
 								|| GTHelperStack.oreDictStartsWith(stack, "crushedPurified")
+								|| GTHelperStack.oreDictStartsWith(stack, "crushedCentrifuged")
 						: GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter())
-								&& !GTHelperStack.oreDictStartsWith(stack, "crushedPurified");
+								&& !GTHelperStack.oreDictStartsWith(stack, "crushedPurified")
+								&& !GTHelperStack.oreDictStartsWith(stack, "crushedCentrifuged");
 			}
 			return this.tile.invertFilter != GTHelperStack.oreDictStartsWith(stack, this.tile.getCurrentFilter());
 		}

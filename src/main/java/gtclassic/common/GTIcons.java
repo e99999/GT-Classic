@@ -52,7 +52,6 @@ public class GTIcons {
 		setTexture(GTBlocks.tileCharcoalPit, 0, 25, 2, 2, 2, 2, 0, 26, 2, 2, 2, 2);
 		setTexture(GTBlocks.tileComputer, 7, 7, 7, 7, 7, 7);
 		setTexture(GTBlocks.tileCentrifuge, 0, 10, 12, 12, 12, 12, 0, 11, 13, 13, 13, 13);
-		setTexture(GTBlocks.tileBath, 0, 1, 2, 8, 2, 2, 0, 1, 2, 52, 2, 2);
 		setTexture(GTBlocks.tilePlayerDetector, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15);
 		setTexture(GTBlocks.tileMobRepeller, 3, 16, 3, 3, 3, 3, 3, 17, 3, 3, 3, 3);
 		setTexture(GTBlocks.tileEnergyTransmitter, 16, 17);

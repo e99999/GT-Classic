@@ -59,7 +59,7 @@ public abstract class GTTileBasePassiveMachine extends TileEntityMachine
 	public GTRecipeMultiInputList.MultiRecipe lastRecipe;
 	public boolean shouldCheckRecipe;
 	public AudioSource audioSource;
-	LinkedList<IStackOutput> outputs = new LinkedList<>();
+	protected LinkedList<IStackOutput> outputs = new LinkedList<>();
 
 	public GTTileBasePassiveMachine(int slots, int maxProgress) {
 		super(slots);

@@ -42,6 +42,8 @@ public class GTConfig {
 		public boolean reduceGrassOnWorldGen = false;
 		public boolean oneMagicAbsorberPerEndPortal = true;
 		public boolean enableQuickerLeafDecay = true;
+		public boolean enableBetterTwilightDurability = true;
+		public boolean energySiphonJustSucksEggs = false;
 	}
 
 	@Comment("World Generation")

@@ -1,6 +1,7 @@
 package gtclassic.common.jei;
 
 import gtclassic.GTMod;
+import gtclassic.api.jei.GTJeiMultiRecipeCategory;
 import gtclassic.api.recipe.GTFluidMachineOutput;
 import gtclassic.common.GTConfig;
 import ic2.api.classic.recipe.crafting.RecipeInputFluid;
@@ -31,7 +32,7 @@ public class GTJeiUUAmplifierCategory implements IRecipeCategory<GTJeiUUAmplifie
 	public GTJeiUUAmplifierCategory(IGuiHelper helper, String name, Block block) {
 		this.name = name;
 		displayName = "UU-Matter Amplification";
-		backgroundTexture = new ResourceLocation(GTMod.MODID, "textures/gui/default.png");
+		backgroundTexture = GTJeiMultiRecipeCategory.DEFAULT_TEXTURE;
 		background = helper.createDrawable(backgroundTexture, 16, 16, 144, getHeight());
 		IDrawableStatic progressPic = helper.createDrawable(backgroundTexture, 176, 0, 20, 18);
 		progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);

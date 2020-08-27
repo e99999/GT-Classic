@@ -3,6 +3,7 @@ package gtclassic.common.tile;
 import java.util.Collections;
 import java.util.List;
 
+import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.common.GTLang;
 import gtclassic.common.container.GTContainerTranslocatorFluid;
 import ic2.core.inventory.base.IHasGui;
@@ -91,8 +92,8 @@ public class GTTileTranslocatorFluid extends GTTileBufferBase implements IHasGui
 		if (!world.isBlockLoaded(importPos) || !world.isBlockLoaded(exportPos)) {
 			return;
 		}
-		IFluidHandler start = FluidUtil.getFluidHandler(world, importPos, getFacing());
-		IFluidHandler end = FluidUtil.getFluidHandler(world, exportPos, getFacing().getOpposite());
+		IFluidHandler start = GTHelperFluid.getFluidHandler(world, importPos, getFacing());
+		IFluidHandler end = GTHelperFluid.getFluidHandler(world, exportPos, getFacing().getOpposite());
 		boolean canExport = start != null && end != null;
 		if (canExport && filter == null) {
 			FluidUtil.tryFluidTransfer(end, start, 10000, true);

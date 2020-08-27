@@ -25,7 +25,6 @@ public class GTLang {
 	public static final LocaleComp FUSION_REACTOR = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.fusionreactor");
 	public static final LocaleComp LIGHTNING_ROD = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.lightningrod");
 	public static final LocaleComp CHARCOAL_PIT = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.charcoalpit");
-	public static final LocaleComp BATH = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.bath");
 	public static final LocaleComp DRAGON_EGG_ENERGY_SIPHON = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.dragoneggenergysiphon");
 	public static final LocaleComp MAGIC_ENERGY_CONVERTER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.magicenergyconverter");
 	public static final LocaleComp MAGIC_ENERGY_ABSORBER = new LangComponentHolder.LocaleBlockComp("tile.gtclassic.magicenergyabsorber");

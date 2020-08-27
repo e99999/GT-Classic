@@ -46,6 +46,7 @@ public class GTProxyClient extends GTProxyCommon {
 		registerTintedBlocks();
 		registerTintedItems();
 		MinecraftForge.EVENT_BUS.register(this);
+		// MinecraftForge.EVENT_BUS.register(new GTEventCapeRenderer());
 		this.onRegisterRender();
 	}
 
