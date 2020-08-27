@@ -1,12 +1,15 @@
 package gtclassic.common.util;
 
-import java.awt.Color;
-
 import gtclassic.common.GTItems;
 import ic2.core.item.reactor.uranTypes.UranBaseType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Lang;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.item.ItemStack;
+
+import java.awt.Color;
+
+import static ic2.core.item.reactor.uranTypes.IUranium.RodType.IsotopicRod;
 
 public class GTUranPlutonium extends UranBaseType {
 
@@ -56,8 +59,7 @@ public class GTUranPlutonium extends UranBaseType {
 
 	@Override
 	public ItemStack getNewIsotopicRod() {
-		// TODO Auto-generated method stub
-		return null;
+		return StackUtil.copyWithDamage(this.getRodType(IsotopicRod), this.getMaxDurability() - 1);
 	}
 
 	@Override
@@ -79,11 +81,17 @@ public class GTUranPlutonium extends UranBaseType {
 	public short getRodID(RodType type) {
 		switch (type) {
 		case SingleRod:
-			return 1219;
+			return 1222;
 		case DualRod:
-			return 1220;
+			return 1223;
 		case QuadRod:
-			return 1221;
+			return 1224;
+		case IsotopicRod:
+			return 1225;
+		case NearDepletedRod:
+			return 1226;
+		case ReEnrichedRod:
+			return 1227;
 		default:
 			return 0;
 		}
@@ -98,6 +106,12 @@ public class GTUranPlutonium extends UranBaseType {
 			return new ItemStack(GTItems.rodPlutonium2).copy();
 		case QuadRod:
 			return new ItemStack(GTItems.rodPlutonium4).copy();
+		case IsotopicRod:
+			return new ItemStack(GTItems.isotopicRodPlutonium).copy();
+		case NearDepletedRod:
+			return new ItemStack(GTItems.nearDepletedRodPlutonium).copy();
+		case ReEnrichedRod:
+			return new ItemStack(GTItems.reEnrichedRodPlutonium).copy();
 		default:
 			return ItemStack.EMPTY;
 		}
