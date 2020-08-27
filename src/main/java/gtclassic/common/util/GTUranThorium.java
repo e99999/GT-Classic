@@ -21,7 +21,7 @@ public class GTUranThorium extends UranBaseType {
 
 	@Override
 	public float getExplosionEffectModifier() {
-		return 2.0f;
+		return 0.5f;
 	}
 
 	@Override
