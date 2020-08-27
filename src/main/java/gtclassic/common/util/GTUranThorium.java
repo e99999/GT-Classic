@@ -26,7 +26,7 @@ public class GTUranThorium extends UranBaseType {
 
 	@Override
 	public float getHeatModifier() {
-		return 1.0f;
+		return 0.25f;
 	}
 
 	@Override
