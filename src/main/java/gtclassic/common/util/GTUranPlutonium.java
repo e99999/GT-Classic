@@ -1,15 +1,15 @@
 package gtclassic.common.util;
 
+import static ic2.core.item.reactor.uranTypes.IUranium.RodType.IsotopicRod;
+
+import java.awt.Color;
+
 import gtclassic.common.GTItems;
 import ic2.core.item.reactor.uranTypes.UranBaseType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.item.ItemStack;
-
-import java.awt.Color;
-
-import static ic2.core.item.reactor.uranTypes.IUranium.RodType.IsotopicRod;
 
 public class GTUranPlutonium extends UranBaseType {
 

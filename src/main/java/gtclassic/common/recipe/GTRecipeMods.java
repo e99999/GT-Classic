@@ -1,5 +1,7 @@
 package gtclassic.common.recipe;
 
+import static ic2.api.classic.recipe.ClassicRecipes.macerator;
+
 import gtclassic.GTMod;
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.material.GTMaterial;
@@ -21,8 +23,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
-
-import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
 public class GTRecipeMods {
 

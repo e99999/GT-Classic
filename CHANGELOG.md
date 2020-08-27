@@ -20,8 +20,8 @@
 - Added Steam Reactor internal tanks info to GT Scanner.
 - Changed Beryllium from a fluid to a solid as it should be, recipe to convert from fluid to solid in the Centrifuge.
 - Changed the Dragon Egg Energy Siphon to a Trophy Energy Siphon which can make power from more sources (configurable).
-- Added a special new crop!
 - Changed the explosion strength and heat output of Thorium based Reactors by factor of 0.25!
+- Added Isotopic, Near Depleted, Depleted, and Re-Enriched variants of Thorium and Plutonium Rods.
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.

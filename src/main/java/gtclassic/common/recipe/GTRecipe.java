@@ -11,7 +11,6 @@ import gtclassic.common.item.GTItemReactorRod;
 import gtclassic.common.tile.GTTileTypeFilter;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
-import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityExtractor;
@@ -141,36 +140,8 @@ public class GTRecipe {
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.echotron, 1), " C ", "CEC", " C ", 'E', GTBlocks.tileEchotron, 'C', GTValues.CIRCUIT_DATA);
 		/** Rod recipes **/
-		rodUtil(GTMaterialGen.get(GTItems.rodThorium1), GTMaterialGen.get(GTItems.rodThorium2), GTMaterialGen.get(GTItems.rodThorium4), GTItemReactorRod.getUran(0).getNewIsotopicRod(), GTMaterialGen.get(GTItems.reEnrichedRodThorium), GTMaterialGen.get(GTItems.nearDepletedRodThorium), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
-		rodUtil(GTMaterialGen.get(GTItems.rodPlutonium1), GTMaterialGen.get(GTItems.rodPlutonium2), GTMaterialGen.get(GTItems.rodPlutonium4), GTItemReactorRod.getUran(1).getNewIsotopicRod(), GTMaterialGen.get(GTItems.reEnrichedRodPlutonium), GTMaterialGen.get(GTItems.nearDepletedRodPlutonium), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
-	}
-
-	public static void rodUtil(ItemStack single, ItemStack dual, ItemStack quad, ItemStack isotope, ItemStack reEnriched, ItemStack nearDepleted, ItemStack ingredient) {
-		ItemStack emptyRod = getEmptyRod();
-		IRecipeInput coal = GTRecipeCraftingHandler.combineRecipeObjects("dustCoal","dustCharcoal", "dustCarbon");
-		/** re enriched to single **/
-		recipes.addShapelessRecipe(single, coal, reEnriched);
-		/** near depleted **/
-		recipes.addRecipe(StackUtil.copyWithSize(nearDepleted, 8), "RRR", "RIR", "RRR", 'R', emptyRod, 'I', ingredient);
-		if (!Loader.isModLoaded(GTValues.MOD_ID_GTCX)){
-			/** single to dual **/
-			recipes.addRecipe(dual, "RPR", 'R', single, 'P', Ic2Items.denseCopperPlate);
-			/** dual to quad **/
-			recipes.addRecipe(quad, " R ", "PPP", " R ", 'R', dual, 'P', Ic2Items.denseCopperPlate);
-			/** single to quad **/
-			recipes.addRecipe(quad, "RPR", "PPP", "RPR", 'R', single, 'P', Ic2Items.denseCopperPlate);
-		}
-		/** near depleted to isotope **/
-		recipes.addShapelessRecipe(isotope, nearDepleted, coal);
-		if (!IC2.config.getFlag("HardEnrichedUran")) {
-			/** single **/
-			recipes.addShapelessRecipe(single, emptyRod, ingredient);
-			ClassicRecipes.canningMachine.registerCannerItem(emptyRod, new RecipeInputItemStack(ingredient), single);
-		}
-	}
-
-	static ItemStack getEmptyRod(){
-		return GTConfig.modcompat.compatIc2Extras && Loader.isModLoaded(GTValues.MOD_ID_IC2_EXTRAS) ? GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "emptyfuelrod") : Ic2Items.emptyCell.copy();
+		GTRecipeCraftingHandler.rodUtil(GTMaterialGen.get(GTItems.rodThorium1), GTMaterialGen.get(GTItems.rodThorium2), GTMaterialGen.get(GTItems.rodThorium4), GTItemReactorRod.getUran(0).getNewIsotopicRod(), GTMaterialGen.get(GTItems.reEnrichedRodThorium), GTMaterialGen.get(GTItems.nearDepletedRodThorium), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
+		GTRecipeCraftingHandler.rodUtil(GTMaterialGen.get(GTItems.rodPlutonium1), GTMaterialGen.get(GTItems.rodPlutonium2), GTMaterialGen.get(GTItems.rodPlutonium4), GTItemReactorRod.getUran(1).getNewIsotopicRod(), GTMaterialGen.get(GTItems.reEnrichedRodPlutonium), GTMaterialGen.get(GTItems.nearDepletedRodPlutonium), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 	}
 
 	public static void initBlocks() {

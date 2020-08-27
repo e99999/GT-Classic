@@ -1,5 +1,8 @@
 package gtclassic.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.item.GTItemCloakingDevice;
 import gtclassic.common.item.GTItemComponent;
@@ -33,9 +36,6 @@ import gtclassic.common.item.baubles.GTItemBaublesLithiumBattery;
 import ic2.core.IC2;
 import ic2.core.util.obj.plugins.IBaublesPlugin;
 import net.minecraft.item.Item;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GTItems {
 

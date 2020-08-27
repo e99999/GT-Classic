@@ -1,5 +1,8 @@
 package gtclassic.common.item;
 
+import java.util.Collections;
+import java.util.List;
+
 import gtclassic.GTMod;
 import gtclassic.common.util.GTUranPlutonium;
 import gtclassic.common.util.GTUranThorium;
@@ -13,9 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Collections;
-import java.util.List;
-
 public class GTItemReactorRod extends ItemUraniumRodBase {
 
 	String title;
@@ -27,7 +27,7 @@ public class GTItemReactorRod extends ItemUraniumRodBase {
 	/**
 	 * Constructor for GTC Reactor Rod.
 	 * 
-	 * @param title   - String name for the rod item
+	 * @param title  - String name for the rod item
 	 * @param id     - int for texture entry, determines the uran type as well
 	 * @param amount - amount for rod type, single 1, dual 2, quad 4
 	 */
@@ -35,7 +35,7 @@ public class GTItemReactorRod extends ItemUraniumRodBase {
 		this.title = "rod_" + title;
 		this.id = id;
 		this.amount = amount;
-		if (id == 16){
+		if (id == 16) {
 			init();
 		}
 		setUranium();
@@ -44,14 +44,14 @@ public class GTItemReactorRod extends ItemUraniumRodBase {
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
-	public static void init(){
+	public static void init() {
 		urans = new IUranium[2];
 		urans[0] = new GTUranThorium();
 		urans[1] = new GTUranPlutonium();
 	}
 
-	public static IUranium getUran(int index){
-		if (index > 1){
+	public static IUranium getUran(int index) {
+		if (index > 1) {
 			return urans[0];
 		}
 		return urans[index];
