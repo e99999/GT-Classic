@@ -42,7 +42,7 @@ public class GTValues {
 			INGOT_PLATINUM = "ingotPlatinum", INGOT_BRONZE = "ingotBronze", INGOT_SILICON = "itemSilicon",
 			INGOT_ELECTRUM = "ingotElectrum", INGOT_SILVER = "ingotSilver", INGOT_INVAR = "ingotInvar",
 			INGOT_NICKEL = "ingotNickel", INGOT_GOLD = "ingotGold", ENDER_CHEST = "chestEnder",
-			INGOT_BERYLLIUM = "ingotBeryllium";
+			INGOT_BERYLLIUM = "ingotBeryllium", INGOT_PLUTONIUM239 = "ingotPlutonium239";
 	/** Generic fluidstack holders **/
 	public static final FluidStack FS_WATER = new FluidStack(FluidRegistry.WATER, 1000),
 			FS_LAVA = new FluidStack(FluidRegistry.LAVA, 1000);

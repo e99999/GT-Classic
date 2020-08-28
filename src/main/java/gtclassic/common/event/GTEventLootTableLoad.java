@@ -40,6 +40,7 @@ public class GTEventLootTableLoad {
 		/* Blacklisting some materials from loot */
 		addMaterialToLootBlacklist(GTMaterial.Technetium);
 		addMaterialToLootBlacklist(GTMaterial.Plutonium);
+		addMaterialToLootBlacklist(GTMaterial.Plutonium239);
 		addMaterialToLootBlacklist(GTMaterial.Uranium);
 		/* Iterates the material list and SHOTGUNS it all into the lootpool */
 		for (GTMaterial mat : GTMaterial.values()) {
