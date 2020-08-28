@@ -39,7 +39,7 @@ public class GTItemIsotopicRod extends ItemDepletedUraniumRodBase {
 	}
 
 	public void setUranium() {
-		if (this.id == 44) {
+		if (this.title.contains("plutonium")) {
 			this.uran = GTItemReactorRod.getUran(1);
 		} else {
 			this.uran = GTItemReactorRod.getUran(0);
