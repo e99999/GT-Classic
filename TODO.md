@@ -3,6 +3,7 @@
 - Multiplayer support for Basic Worktable.
 - Redo Forge Fluid Transfer method to account for speigers dumb multi tanks
 - FIX STUPID RECIPE DUPE/ERROR LOADING WARNINGS
+- Make custom recipe modifer for fusion power out
 
 # Bugs
 - Try to reduce lag when setting the recipe in an autocrafter

@@ -35,7 +35,6 @@ public class GTConfig {
 		public boolean enableDisassembler = true;
 		public boolean harderJetpacks = false;
 		public boolean hideBedrockOresInJei = true;
-		public boolean addCompressorRecipesForBlocks = true;
 		public boolean addHydrogenAsLiquidFuel = true;
 		public boolean enableSuperSolidFuels = true;
 		public boolean enableMagnifyingGlassGivesEUTooltips = true;
