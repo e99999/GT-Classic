@@ -14,6 +14,7 @@ public class GTCrops {
 		registerCrop(4, GTMaterial.Thorium, "GodOfThunder", 4, "Radioactive", "Metal", "Coal", "Thorium", "Leaves");
 		registerCrop(5, GTMaterial.Titanium, "Titania", 5, "Metal", "Heavy", "Titanium", "Leaves");
 		registerCrop(6, GTMaterial.Tungsten, "Scheelinium", 6, "Metal", "Hard", "Tungsten", "Leaves");
+		registerCrop(7, GTMaterial.UUAmplifier, "Transformium", 4, "Transform", "Coal", "Reed");
 	}
 
 	/** Private method only for GTClassic **/

@@ -28,7 +28,6 @@ import gtclassic.common.block.GTBlockSuperconductorCable;
 import gtclassic.common.block.GTBlockUUMAssembler;
 import gtclassic.common.tile.GTTileAESU;
 import gtclassic.common.tile.GTTileAutocrafter;
-import gtclassic.common.tile.GTTileBath;
 import gtclassic.common.tile.GTTileBattery;
 import gtclassic.common.tile.GTTileBedrockMiner;
 import gtclassic.common.tile.GTTileBlockExtender;
@@ -115,7 +114,6 @@ public class GTBlocks {
 	public static final GTBlockMachine tileChargeOmat = registerBlock(new GTBlockMachine("chargeomat", GTLang.CHARGE_O_MAT));
 	public static final GTBlockMachine tileComputer = registerBlock(new GTBlockMachine("computercube", GTLang.COMPUTER_CUBE));
 	public static final GTBlockMachine tileCentrifuge = registerBlock(new GTBlockMachine("industrialcentrifuge", GTLang.INDUSTRIAL_CENTRIFUGE));
-	public static final GTBlockMachine tileBath = registerBlock(new GTBlockMachine("bath", GTLang.BATH, 2));
 	public static final GTBlockMachine tileCharcoalPit = registerBlock(new GTBlockMachine("charcoalpit", GTLang.CHARCOAL_PIT, 5));
 	public static final GTBlockMachine tileDisassembler = registerBlock(new GTBlockMachine("disassembler", GTLang.DISASSEMBLER));
 	public static final GTBlockMachine tileBedrockMiner = registerBlock(new GTBlockMachine("bedrockminer", GTLang.BEDROCK_MINER, 5));
@@ -125,7 +123,7 @@ public class GTBlocks {
 	public static final GTBlockMachine tilePlayerDetector = registerBlock(new GTBlockMachine("playerdetector", GTLang.PLAYER_DETECTOR, 3));
 	public static final GTBlockMachine tileMobRepeller = registerBlock(new GTBlockMachine("mobrepeller", GTLang.MOB_REPELLER, 2));
 	public static final GTBlockMachine tileEnergyTransmitter = registerBlock(new GTBlockMachine("energytransmitter", GTLang.ENERGY_TRANSMITTER, 2));
-	public static final GTBlockMachine tileDragonEggEnergySiphon = registerBlock(new GTBlockMachine("dragoneggenergysiphon", GTLang.DRAGON_EGG_ENERGY_SIPHON));
+	public static final GTBlockMachine tileDragonEggEnergySiphon = registerBlock(new GTBlockMachine("dragoneggenergysiphon", GTLang.DRAGON_EGG_ENERGY_SIPHON, 2));
 	public static final GTBlockMachine tileMagicEnergyConverter = registerBlock(new GTBlockMachine("magicenergyconverter", GTLang.MAGIC_ENERGY_CONVERTER));
 	public static final GTBlockMachine tileMagicEnergyAbsorber = registerBlock(new GTBlockMachine("magicenergyabsorber", GTLang.MAGIC_ENERGY_ABSORBER));
 	public static final GTBlockMachine tileFusionReactor = registerBlock(new GTBlockMachine("fusionreactor", GTLang.FUSION_REACTOR, 5));
@@ -196,7 +194,6 @@ public class GTBlocks {
 
 	public static void registerTiles() {
 		registerUtil(GTTileCentrifuge.class, "IndustrialCentrifuge");
-		registerUtil(GTTileBath.class, "Bath");
 		registerUtil(GTTilePlayerDetector.class, "PlayerDetector");
 		registerUtil(GTTileMobRepeller.class, "MobRepeller");
 		registerUtil(GTTileEnergyTransmitter.class, "EnergyTransmitter");

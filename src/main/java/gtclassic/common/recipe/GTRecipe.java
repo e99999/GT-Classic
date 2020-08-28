@@ -7,6 +7,7 @@ import gtclassic.api.recipe.GTRecipeCraftingHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
+import gtclassic.common.item.GTItemReactorRod;
 import gtclassic.common.tile.GTTileTypeFilter;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
@@ -138,14 +139,9 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTItems.lapotronPack, 1), "ELE", "SBS", "EPE", 'E', GTValues.CIRCUIT_MASTER, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'L', GTValues.BATTERY_ULTIMATE, 'B', GTItems.lithiumBatpack, 'P', GTValues.PLATE_IRIDIUM_ALLOY);
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTItems.echotron, 1), " C ", "CEC", " C ", 'E', GTBlocks.tileEchotron, 'C', GTValues.CIRCUIT_DATA);
-		/** Thorium rods **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium2), "UCU", 'U', GTItems.rodThorium1, 'C', Ic2Items.denseCopperPlate.copy());
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium4), " U ", "CCC", " U ", 'U', GTItems.rodThorium2, 'C', Ic2Items.denseCopperPlate.copy());
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodThorium4), "UCU", "CCC", "UCU", 'U', GTItems.rodThorium1, 'C', Ic2Items.denseCopperPlate.copy());
-		/** Plutonium Rod **/
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium2), "UCU", 'U', GTItems.rodPlutonium1, 'C', Ic2Items.denseCopperPlate.copy());
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium4), " U ", "CCC", " U ", 'U', GTItems.rodPlutonium2, 'C', Ic2Items.denseCopperPlate.copy());
-		recipes.addRecipe(GTMaterialGen.get(GTItems.rodPlutonium4), "UCU", "CCC", "UCU", 'U', GTItems.rodPlutonium1, 'C', Ic2Items.denseCopperPlate.copy());
+		/** Rod recipes **/
+		GTRecipeCraftingHandler.rodUtil(GTMaterialGen.get(GTItems.rodThorium1), GTMaterialGen.get(GTItems.rodThorium2), GTMaterialGen.get(GTItems.rodThorium4), GTItemReactorRod.getUran(0).getNewIsotopicRod(), GTMaterialGen.get(GTItems.reEnrichedRodThorium), GTMaterialGen.get(GTItems.nearDepletedRodThorium), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
+		GTRecipeCraftingHandler.rodUtil(GTMaterialGen.get(GTItems.rodPlutonium1), GTMaterialGen.get(GTItems.rodPlutonium2), GTMaterialGen.get(GTItems.rodPlutonium4), GTItemReactorRod.getUran(1).getNewIsotopicRod(), GTMaterialGen.get(GTItems.reEnrichedRodPlutonium), GTMaterialGen.get(GTItems.nearDepletedRodPlutonium), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 	}
 
 	public static void initBlocks() {
@@ -222,7 +218,7 @@ public class GTRecipe {
 		/** Tungsten Mining Pipe **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.miningPipe, 8), "T T", "T T", "TIT", 'T', GTValues.INGOT_TUNGSTEN, 'I', GTValues.GEM_DIAMOND);
 		/** LESU Casing **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLapotron), "BBB", "BCB", "BBB", 'B', "blockLapis", 'C', GTValues.CIRCUIT_BASIC);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.casingLapotron), "BBB", "BCB", "BBB", 'B', "gemLapis", 'C', GTValues.CIRCUIT_BASIC);
 		/** Lightning Rod **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), "EAE", "ASA", "EAE", 'E', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'A', GTValues.MACHINE_ELITE);
 		/** Bedrock Miner **/
@@ -230,7 +226,7 @@ public class GTRecipe {
 		/** Dragon Egg Energy Siphon **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'B', GTValues.BATTERY_ULTIMATE, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', Ic2Items.teslaCoil.copy());
 		/** Magic Energy Converter **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CTC", "IBI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Blocks.BEACON, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INGOT_PLATINUM, 'T', Ic2Items.teslaCoil.copy());
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CTC", "IBI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Items.END_CRYSTAL, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INGOT_PLATINUM, 'T', Ic2Items.teslaCoil.copy());
 		/** Magic Energy Absorber **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', Blocks.BEACON, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
 		/** Player Detector **/
@@ -300,8 +296,8 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorVent, 1), "IBI", "B B", "IBI", 'I', GTValues.INGOT_ALUMINIUM, 'B', Blocks.IRON_BARS);
 		}
 		/** More Luminator Recipes **/
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), "III", "GHG", "GGG", 'G', GTValues.BLOCK_GLASS, 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Helium, 1), 'C', Ic2Items.insulatedCopperCable.copy());
-		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), "III", "GHG", "GGG", 'G', GTValues.BLOCK_GLASS, 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Mercury, 1), 'C', Ic2Items.insulatedCopperCable.copy());
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), "III", "GHG", "GGG", 'G', GTValues.BLOCK_GLASS, 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Neon, 1), 'C', Ic2Items.insulatedCopperCable.copy());
+		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.luminator, 16), "III", "GHG", "GGG", 'G', GTValues.BLOCK_GLASS, 'I', "ingotSilver", 'H', GTMaterialGen.getTube(GTMaterial.Argon, 1), 'C', Ic2Items.insulatedCopperCable.copy());
 		/** Overclocker helium coolant recipes **/
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 2), "CCC", "WEW", 'C', GTMaterialGen.get(GTItems.heatStorageHelium1), 'W', Ic2Items.insulatedCopperCable.copy(), 'E', Ic2Items.electricCircuit.copy());
 		recipes.addRecipe(GTMaterialGen.getIc2(Ic2Items.overClockerUpgrade, 6), "CCC", "WEW", 'C', GTMaterialGen.get(GTItems.heatStorageHelium3), 'W', GTMaterialGen.getIc2(Ic2Items.insulatedCopperCable, 3), 'E', GTMaterialGen.getIc2(Ic2Items.electricCircuit, 3));
@@ -412,9 +408,12 @@ public class GTRecipe {
 			 * This will make the highest teir wrench craftable after the regular wrench
 			 **/
 			recipes.overrideRecipe("shaped_item.precisionWrench_-1943783685", Ic2Items.precisionWrench.copy(), "XRX", "CVC", "XYX", (new FlagModifier(Ic2Items.precisionWrench.copy(), "Lossless", true)).setUsesInput(), 'X', Ic2Items.advancedCircuit.copy(), 'C', GTValues.INGOT_TUNGSTEN, 'Y', Ic2Items.electricWrench.copy(), 'V', Ic2Items.iridiumPlate.copy(), 'R', GTItems.rockCutter);
+			/** Dummy OP IC2C Water Gen Nerfs **/
+			recipes.overrideRecipe("shaped_tile.waveGenerator_1752336958", Ic2Items.waveGenerator.copy(), "XYB", "XVC", "XYB", 'X', GTValues.INGOT_ALUMINIUM, 'Y', Ic2Items.advancedAlloy.copy(), 'V', Ic2Items.turbineBlade.copy(), 'B', GTValues.CIRCUIT_ADVANCED, 'C', Ic2Items.waterMill.copy());
+			recipes.overrideRecipe("shaped_tile.oceanGenerator_-1674978904", Ic2Items.oceanGenerator.copy(), "XYX", "CVC", "XYX", 'X', GTValues.INGOT_TITANIUM, 'Y', GTValues.PLATE_IRIDIUM_ALLOY, 'C', Ic2Items.turbineBlade.copy(), 'V', Ic2Items.waveGenerator.copy());
 		}
 		/** Thick Reflector Recipe **/
-		recipes.overrideRecipe("shaped_item.reactorReflectorThick_-1313142365", Ic2Items.reactorReflectorThick.copy(), " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GTMaterialGen.getTube(GTMaterial.Beryllium, 1));
+		recipes.overrideRecipe("shaped_item.reactorReflectorThick_-1313142365", Ic2Items.reactorReflectorThick.copy(), " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GTValues.INGOT_BERYLLIUM);
 		/** MFE with Lithium Batteries **/
 		recipes.overrideRecipe("shaped_tile.blockMFE_-1307270245", Ic2Items.mfe.copy(), "XYX", "YCY", "XYX", 'C', GTValues.MACHINE_BASIC, 'Y', GTValues.INPUT_BATTERY_ADVANCED, 'X', Ic2Items.doubleInsulatedGoldCable.copy());
 		recipes.overrideRecipe("shaped_tile.blockMFE_2004107975", Ic2Items.mfe.copy(), "XYX", "YCY", "XYX", 'C', GTValues.MACHINE_BASIC, 'Y', GTValues.INPUT_BATTERY_ADVANCED, 'X', GTMaterialGen.getIc2(Ic2Items.doubleInsulatedBronzeCable, 4));
@@ -460,7 +459,7 @@ public class GTRecipe {
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Sodium), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Methane), 3000, 16);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Fuel), 4000, 30);
-		GTTileTypeFilter.addOreDictFilter("dust", "dustTiny", "dustSmall", "ingot", "ingotHot", "nugget", "plate", "stick", "rod", "gear", "gem", "block", "ore", "crushed", "crushedPurified", "stone", "log", "plank", "treeSapling", "treeLeaves", "dye", "record", "crop", "machine", "circuit", "item");
+		GTTileTypeFilter.addOreDictFilter("dust", "dustTiny", "dustSmall", "ingot", "ingotHot", "nugget", "plate", "stick", "rod", "gear", "gem", "block", "ore", "crushed", "crushedPurified", "crushedCentrifuged", "stone", "log", "plank", "treeSapling", "treeLeaves", "dye", "record", "crop", "machine", "circuit", "item");
 		if (GTConfig.modcompat.extraTypeFilters != null && GTConfig.modcompat.extraTypeFilters.length > 0
 				&& GTConfig.modcompat.extraTypeFilters.length < 64) {
 			GTTileTypeFilter.addOreDictFilter(GTConfig.modcompat.extraTypeFilters);

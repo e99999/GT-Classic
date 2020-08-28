@@ -1,6 +1,7 @@
 package gtclassic.common.jei;
 
 import gtclassic.GTMod;
+import gtclassic.api.jei.GTJeiMultiRecipeCategory;
 import gtclassic.common.GTConfig;
 import ic2.api.classic.recipe.crafting.RecipeInputFluid;
 import ic2.api.recipe.IRecipeInput;
@@ -26,7 +27,7 @@ public class GTJeiMagicFuelCategory implements IRecipeCategory<GTJeiMagicFuelWra
 	public GTJeiMagicFuelCategory(IGuiHelper helper, String name, Block block) {
 		this.name = name;
 		displayName = "Magic Fuel";
-		backgroundTexture = new ResourceLocation(GTMod.MODID, "textures/gui/default.png");
+		backgroundTexture = GTJeiMultiRecipeCategory.DEFAULT_TEXTURE;
 		background = helper.createDrawable(backgroundTexture, 16, 16, 144, getHeight());
 		IDrawableStatic progressPic = helper.createDrawable(backgroundTexture, 176, 0, 20, 18);
 		progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);

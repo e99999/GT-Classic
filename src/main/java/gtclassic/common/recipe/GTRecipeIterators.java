@@ -6,7 +6,6 @@ import gtclassic.api.material.GTMaterial;
 import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTConfig;
-import gtclassic.common.GTItems;
 import gtclassic.common.block.GTBlockMortar;
 import gtclassic.common.item.GTItemJackHammer;
 import ic2.api.classic.recipe.ClassicRecipes;
@@ -14,7 +13,6 @@ import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
-import ic2.core.block.machine.low.TileEntityExtractor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -36,7 +34,6 @@ public class GTRecipeIterators {
 			createIngotRecipe(mat);
 			createGemRecipe(mat);
 			createBlockRecipe(mat);
-			createTubeRecipe(mat);
 		}
 	}
 
@@ -78,20 +75,9 @@ public class GTRecipeIterators {
 		}
 	}
 
-	public static void createTubeRecipe(GTMaterial mat) {
-		for (GTMaterialFlag fluidFlag : GTMaterialGen.getFluidFlagList()) {
-			if (mat.hasFlag(fluidFlag)) {
-				TileEntityExtractor.addRecipe(GTMaterialGen.getTube(mat, 1), GTMaterialGen.get(GTItems.testTube));
-			}
-		}
-	}
-
 	/** Iterates through loaded itemstacks for all mods **/
 	public static void postInit() {
 		createMortarRecipe();
-		if (GTConfig.general.addCompressorRecipesForBlocks) {
-			createUniversalProcessingRecipes();
-		}
 		for (Item item : Item.REGISTRY) {
 			NonNullList<ItemStack> items = NonNullList.create();
 			item.getSubItems(CreativeTabs.SEARCH, items);
@@ -133,50 +119,6 @@ public class GTRecipeIterators {
 					&& entry.getOutput().getAllOutputs().get(0).getCount() == 1) {
 				IRecipeInput[] in = { entry.getInput() };
 				GTBlockMortar.addRecipe(in, entry.getOutput().getAllOutputs().get(0));
-			}
-		}
-	}
-
-	/** Ran post init **/
-	public static void createUniversalProcessingRecipes() {
-		String[] oreDict = OreDictionary.getOreNames();
-		int oreDictSize = oreDict.length;
-		for (int i = 0; i < oreDictSize; ++i) {
-			String id = oreDict[i];
-			String dust;
-			NonNullList<ItemStack> list;
-			// block to dust iterator
-			if (id.startsWith("block")) {
-				dust = "dust" + id.substring(5);
-				if (OreDictionary.doesOreNameExist(dust)) {
-					list = OreDictionary.getOres(dust, false);
-					if (!list.isEmpty() && !id.contains("Chromium") && !id.contains("Aluminum") && !id.contains("Coal")
-							&& !id.contains("Charcoal") && !id.contains("Quartz") && !id.contains("Prismarine")) {
-						TileEntityMacerator.addRecipe((String) id, 1, GTHelperStack.copyWithSize((ItemStack) list.get(0), 9), 0.1F);
-					}
-				}
-			}
-			// ingot to block iterator
-			String block;
-			if (id.startsWith("ingot")) {
-				block = "block" + id.substring(5);
-				if (OreDictionary.doesOreNameExist(block)) {
-					list = OreDictionary.getOres(block, false);
-					if (!list.isEmpty() && !id.contains("Copper") && !id.contains("Chromium")
-							&& !id.contains("Aluminum")) {
-						TileEntityCompressor.addRecipe((String) id, 9, GTHelperStack.copyWithSize((ItemStack) list.get(0), 1), 0.1F);
-					}
-				}
-			} else
-			// gems to block iterator
-			if (id.startsWith("gem")) {
-				block = "block" + id.substring(3);
-				if (OreDictionary.doesOreNameExist(block)) {
-					list = OreDictionary.getOres(block, false);
-					if (!list.isEmpty() && !id.contains("Coal") && !id.contains("Quartz")) {
-						TileEntityCompressor.addRecipe((String) id, 9, GTHelperStack.copyWithSize((ItemStack) list.get(0), 1), 0.1F);
-					}
-				}
 			}
 		}
 	}

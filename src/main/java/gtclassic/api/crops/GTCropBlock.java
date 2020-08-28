@@ -1,5 +1,7 @@
 package gtclassic.api.crops;
 
+import gtclassic.api.material.GTMaterial;
+import gtclassic.api.material.GTMaterialFlag;
 import gtclassic.api.material.GTMaterialGen;
 import ic2.api.crops.CropProperties;
 import ic2.api.crops.ICropTile;
@@ -57,9 +59,14 @@ public class GTCropBlock extends CropCardBase {
 
 	@Override
 	public boolean canGrow(ICropTile cropTile) {
-		String name = this.entry.getMaterial().getDisplayName();
-		return cropTile.getCurrentSize() < 3 || cropTile.getCurrentSize() == 3
-				&& (cropTile.isBlockBelow("ore" + name) || cropTile.isBlockBelow("block" + name));
+		GTMaterial mat = this.entry.getMaterial();
+		String name = mat.getDisplayName();
+		boolean size = cropTile.getCurrentSize() < 4;
+		boolean below = cropTile.isBlockBelow("ore" + name) || cropTile.isBlockBelow("block" + name);
+		if (GTMaterial.isGem(mat) || mat.hasFlag(GTMaterialFlag.INGOT)) {
+			return size && below;
+		}
+		return size;
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import gtclassic.common.GTConfig;
+import gtclassic.common.GTTwilightForest;
 import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
 import gtclassic.common.util.GTIBlockFilters;
 import gtclassic.common.util.GTIFilters;
@@ -31,6 +33,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -39,6 +42,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fml.common.Loader;
 
 /**
  * NEVER INCLUDE THIS FILE IN YOUR MOD!!! Just a few Utility Functions I use.
@@ -251,6 +255,49 @@ public class GTUtility {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Gets the eu per tick value of a given "trophy"
+	 * 
+	 * @param world - the World param to pass
+	 * @param pos   - the BlockPos to check
+	 * @return - 0 if nothing of value, or the production int
+	 */
+	public static int getTrophyProductionValue(World world, BlockPos pos) {
+		if (world.isAirBlock(pos)) {
+			return 0;
+		}
+		if (world.getBlockState(pos).equals(Blocks.DRAGON_EGG.getDefaultState())) {
+			return 128;
+		}
+		if (GTConfig.general.energySiphonJustSucksEggs) {
+			return 0;
+		}
+		// put any blockstates above this tile call
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile == null) {
+			return 0;
+		}
+		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)) {
+			int value = GTTwilightForest.getTrophyProduction(world, pos);
+			if (value > 0) {
+				return value;
+			}
+		}
+		if (tile instanceof TileEntitySkull) {
+			if (tile instanceof TileEntitySkull) {
+				TileEntitySkull trophy = (TileEntitySkull) tile;
+				int type = trophy.getSkullType();
+				if (type == 1) {
+					return 1;
+				}
+				if (type == 5) {
+					return 8;
+				}
+			}
+		}
+		return 0;
 	}
 
 	/**

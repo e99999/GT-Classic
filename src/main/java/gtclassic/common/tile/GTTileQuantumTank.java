@@ -72,6 +72,7 @@ public class GTTileQuantumTank extends TileEntityMachine
 	public void onTankChanged(IFluidTank tank) {
 		this.getNetwork().updateTileGuiField(this, NBT_TANK);
 		this.inventory.set(2, ItemDisplayIcon.createWithFluidStack(this.tank.getFluid()));
+		world.updateComparatorOutputLevel(pos, this.blockType);
 	}
 
 	@Override

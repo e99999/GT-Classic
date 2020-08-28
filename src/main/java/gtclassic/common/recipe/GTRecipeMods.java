@@ -58,8 +58,6 @@ public class GTRecipeMods {
 			GTTileCentrifuge.addRecipe("dustUranium", 22, 0, GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "uranium238", 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
 			GTTileCentrifuge.addRecipe("dustThorium", 4, 0, GTTileCentrifuge.totalEu(5000), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "thorium232dust", 2));
 			GTTileCentrifuge.addRecipe("dustThorium232", 2, 0, GTTileCentrifuge.totalEu(5000), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "thorium230dust", 1));
-			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodThorium1, 1), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "emptyfuelrod"), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
-			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "emptyfuelrod"), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 		} else {
 			// If Ic2 Extras is not loaded, run regular recipes
 			macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
@@ -68,8 +66,6 @@ public class GTRecipeMods {
 			TileEntityCompressor.addRecipe("dustPlutonium", 1, GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 			GTTileCentrifuge.addCustomRecipe("dustUranium", 22, GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTTileCentrifuge.totalEu(250000), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getIc2(Ic2Items.reactorUraniumRodSingle, 16), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
 			GTTileCentrifuge.addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorNearDepletedUraniumRod, 1), 0, GTTileCentrifuge.totalEu(2500), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
-			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodThorium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
-			GTRecipe.recipes.addShapelessRecipe(GTMaterialGen.get(GTItems.rodPlutonium1, 1), GTMaterialGen.getIc2(Ic2Items.emptyCell, 1), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
 		}
 		/** Immersive Engineering **/
 		if (GTConfig.modcompat.compatIE && Loader.isModLoaded(GTValues.MOD_ID_IE)) {
@@ -90,8 +86,8 @@ public class GTRecipeMods {
 			addFluidGeneratorRecipe("tree_oil", 50000, 8);
 			addFluidGeneratorRecipe("refined_biofuel", 100000, 10);
 			// Oil sand stuff
-			GTTileCentrifuge.addRecipe("oreClathrateOilSand", 1, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
-			GTTileCentrifuge.addRecipe("oreClathrateOilShale", 1, 0, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
+			GTTileCentrifuge.addRecipe("oreClathrateOilSand", 1, 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
+			GTTileCentrifuge.addRecipe("oreClathrateOilShale", 1, 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));
 			GTTileCentrifuge.addRecipe(GTMaterialGen.getFluidStack("crude_oil", 3000), 3, GTTileCentrifuge.totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
 			GTTileCentrifuge.addRecipe(GTMaterialGen.getModdedTube("crude_oil", 3), 0, GTTileCentrifuge.totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));
 			// Thermal fluids and ores

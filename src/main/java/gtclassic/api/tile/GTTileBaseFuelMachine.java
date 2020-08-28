@@ -62,7 +62,7 @@ public abstract class GTTileBaseFuelMachine extends TileEntityMachine
 	public GTRecipeMultiInputList.MultiRecipe lastRecipe;
 	public boolean shouldCheckRecipe;
 	public AudioSource audioSource;
-	LinkedList<IStackOutput> outputs = new LinkedList<>();
+	protected LinkedList<IStackOutput> outputs = new LinkedList<>();
 
 	public GTTileBaseFuelMachine(int slots, int maxProgress, int fuelPerTick) {
 		super(slots);

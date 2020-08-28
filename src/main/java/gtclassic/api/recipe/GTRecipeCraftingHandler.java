@@ -6,13 +6,20 @@ import java.util.List;
 import java.util.Set;
 
 import gtclassic.GTMod;
+import gtclassic.api.helpers.GTValues;
+import gtclassic.api.material.GTMaterialGen;
+import gtclassic.common.GTConfig;
+import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.IC2;
 import ic2.core.item.recipe.AdvRecipe;
 import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.item.recipe.AdvShapelessRecipe;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -107,6 +114,49 @@ public class GTRecipeCraftingHandler {
 		} catch (IllegalAccessException e) {
 			GTMod.logger.info("Accessed AdvRecipeBase class but access denied");
 		}
+	}
+
+	/**
+	 * A Utility Method by Trinsdar for automatically constructing nuclear fuel rod
+	 * recipes.
+	 * 
+	 * @param single       - Single Rod ItemStack
+	 * @param dual         - Dual Rod ItemStack
+	 * @param quad         - Quad Rod ItemStack
+	 * @param isotope      - Isotopic Rod ItemStack
+	 * @param reEnriched   - ReEnchrinched Rod ItemStack
+	 * @param nearDepleted - Near Depleated Rod ItemStack
+	 * @param ingredient   - Material to craft basic rod ItemStack
+	 */
+	public static void rodUtil(ItemStack single, ItemStack dual, ItemStack quad, ItemStack isotope,
+			ItemStack reEnriched, ItemStack nearDepleted, ItemStack ingredient) {
+		ItemStack emptyRod = getEmptyRod();
+		IRecipeInput coal = GTRecipeCraftingHandler.combineRecipeObjects("dustCoal", "dustCharcoal", "dustCarbon");
+		/** re enriched to single **/
+		ClassicRecipes.advCrafting.addShapelessRecipe(single, coal, reEnriched);
+		/** near depleted **/
+		ClassicRecipes.advCrafting.addRecipe(StackUtil.copyWithSize(nearDepleted, 8), "RRR", "RIR", "RRR", 'R', emptyRod, 'I', ingredient);
+		if (!Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
+			/** single to dual **/
+			ClassicRecipes.advCrafting.addRecipe(dual, "RPR", 'R', single, 'P', Ic2Items.denseCopperPlate);
+			/** dual to quad **/
+			ClassicRecipes.advCrafting.addRecipe(quad, " R ", "PPP", " R ", 'R', dual, 'P', Ic2Items.denseCopperPlate);
+			/** single to quad **/
+			ClassicRecipes.advCrafting.addRecipe(quad, "RPR", "PPP", "RPR", 'R', single, 'P', Ic2Items.denseCopperPlate);
+		}
+		/** near depleted to isotope **/
+		ClassicRecipes.advCrafting.addShapelessRecipe(isotope, nearDepleted, coal);
+		if (!IC2.config.getFlag("HardEnrichedUran")) {
+			/** single **/
+			ClassicRecipes.advCrafting.addShapelessRecipe(single, emptyRod, ingredient);
+			ClassicRecipes.canningMachine.registerCannerItem(emptyRod, new RecipeInputItemStack(ingredient), single);
+		}
+	}
+
+	static ItemStack getEmptyRod() {
+		return GTConfig.modcompat.compatIc2Extras && Loader.isModLoaded(GTValues.MOD_ID_IC2_EXTRAS)
+				? GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "emptyfuelrod")
+				: Ic2Items.emptyCell.copy();
 	}
 
 	public static IRecipeInput combineRecipeObjects(Object... entries) {

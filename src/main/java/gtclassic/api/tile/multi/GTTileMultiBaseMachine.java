@@ -75,9 +75,9 @@ public abstract class GTTileMultiBaseMachine extends GTTileBaseMachine implement
 	public boolean getStructureValid() {
 		return lastState;
 	}
-	
+
 	public int getTickOffset() {
-		//TODO check this with the scanner
+		// TODO check this with the scanner
 		return this.tickOffset;
 	}
 }

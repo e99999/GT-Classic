@@ -7,7 +7,6 @@ import gtclassic.api.helpers.GTValues;
 import gtclassic.api.material.GTMaterialElement;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.world.GTBedrockOreHandler;
-import gtclassic.api.world.GTTwilightForestHandler;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTCreativeTab;
@@ -15,6 +14,7 @@ import gtclassic.common.GTCrops;
 import gtclassic.common.GTItems;
 import gtclassic.common.GTOreDict;
 import gtclassic.common.GTSounds;
+import gtclassic.common.GTTwilightForest;
 import gtclassic.common.GTWorldGen;
 import gtclassic.common.crafttweaker.GTCraftTweakerLoader;
 import gtclassic.common.event.GTEventCheckSpawn;
@@ -30,9 +30,9 @@ import gtclassic.common.proxy.GTProxyCommon;
 import gtclassic.common.recipe.GTRecipe;
 import gtclassic.common.recipe.GTRecipeIterators;
 import gtclassic.common.recipe.GTRecipeMods;
-import gtclassic.common.tile.GTTileBath;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileDisassembler;
+import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileUUMAssembler;
@@ -88,7 +88,6 @@ public class GTMod {
 		GTItems.registerItems();
 		GTCrops.init();
 		GTOreDict.init();
-		GTEventLootTableLoad.init();
 		MinecraftForge.EVENT_BUS.register(GTSounds.class);
 	}
 
@@ -97,7 +96,6 @@ public class GTMod {
 		GTMaterialElement.init();
 		GTRecipeIterators.init();
 		GTTileCentrifuge.init();
-		GTTileBath.init();
 		GTTileUUMAssembler.init();
 		GTTileMagicEnergyConverter.init();
 		GTRecipe.initShapeless();
@@ -111,16 +109,23 @@ public class GTMod {
 		GTBedrockOreHandler.bedrockOresInit();
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
-		MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
-		MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
-		MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
-		MinecraftForge.EVENT_BUS.register(new GTEventItemTooltip());
 		MinecraftForge.EVENT_BUS.register(new GTEventTextureStorage());
-		if (!Loader.isModLoaded(GTValues.MOD_ID_FASTLEAF)) {
+		if (GTConfig.general.clearerWater) {
+			MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
+		}
+		if (GTConfig.general.replaceOceanGravelWithSand) {
+			MinecraftForge.EVENT_BUS.register(new GTEventPopulateChunk());
+		}
+		if (GTConfig.general.removeIC2Plasmafier) {
+			MinecraftForge.EVENT_BUS.register(new GTEventItemTooltip());
+		}
+		if (GTConfig.general.enableQuickerLeafDecay && !Loader.isModLoaded(GTValues.MOD_ID_FASTLEAF)) {
 			MinecraftForge.EVENT_BUS.register(new GTEventNeighborNotifyEvent());
 		}
-		MinecraftForge.TERRAIN_GEN_BUS.register(new GTEventDecorateBiome());
+		if (GTConfig.general.reduceGrassOnWorldGen) {
+			MinecraftForge.TERRAIN_GEN_BUS.register(new GTEventDecorateBiome());
+		}
 		IC2.saveManager.registerGlobal("IDSU_Storage", GTIDSUStorageManager.class, false);
 		proxy.init(e);
 	}
@@ -134,8 +139,15 @@ public class GTMod {
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeMods.postInit();
 		GTTileDisassembler.init();
+		GTTileDragonEggEnergySiphon.initFakeRecipes();
 		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)) {
-			GTTwilightForestHandler.initStalactites();
+			GTTwilightForest.initStalactites();
+			GTTwilightForest.initLootTables();
+			GTTwilightForest.initRecipes();
+		}
+		if (GTConfig.general.addLootItems) {
+			GTEventLootTableLoad.init();
+			MinecraftForge.EVENT_BUS.register(new GTEventLootTableLoad());
 		}
 	}
 

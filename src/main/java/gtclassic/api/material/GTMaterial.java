@@ -25,7 +25,7 @@ public class GTMaterial {
 	public static final GTMaterial Argon = new GTMaterial(18, "Argon", 255, 100, 255, gas);
 	public static final GTMaterial Bauxite = new GTMaterial("Bauxite", 200, 100, 0, dust);
 	public static final GTMaterial Basalt = new GTMaterial("Basalt", 30, 20, 20, dust);
-	public static final GTMaterial Beryllium = new GTMaterial(4, "Beryllium", 30, 80, 50, fluid);
+	public static final GTMaterial Beryllium = new GTMaterial(4, "Beryllium", 30, 80, 50, fluid, dust, ingot, blockMetal);
 	public static final GTMaterial BrownDye = new GTMaterial("BrownDye", 150, 75, 0, dust);
 	public static final GTMaterial Calcite = new GTMaterial("Calcite", 250, 230, 220, dust);
 	public static final GTMaterial Calcium = new GTMaterial(20, "Calcium", 155, 96, 80, fluid);
@@ -72,6 +72,7 @@ public class GTMaterial {
 	public static final GTMaterial Tritium = new GTMaterial("Tritium", 255, 0, 0, gas);
 	public static final GTMaterial Tungsten = new GTMaterial(74, "Tungsten", 3, 50, 50, 50, metalAll);
 	public static final GTMaterial Uranium = new GTMaterial("Uranium", 2, 50, 240, 50, dust);
+	public static final GTMaterial UUAmplifier = new GTMaterial("UUAmplifier", 5, 96, 0, 128, dust);
 	public static final GTMaterial Wood = new GTMaterial("Wood", 137, 103, 39, dust);
 	/** Instance Members **/
 	private int element;

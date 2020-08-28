@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 public class GTTileTesseractMaster extends TileEntityElecMachine implements ITickable, IGTDebuggableTile {
 
 	TileEntity tesseractTile;
+	private int redstoneLevel = -1;
 
 	public GTTileTesseractMaster() {
 		super(0, 128);
@@ -61,9 +62,9 @@ public class GTTileTesseractMaster extends TileEntityElecMachine implements ITic
 	}
 
 	private void handleEnergy() {
-		if (this.energy >= 128 && tesseractTile != null && !this.world.isBlockPowered(this.getPos())) {
+		if (this.energy >= 64 && tesseractTile != null && this.redstoneLevel < 1) {
 			this.setActive(true);
-			this.useEnergy(128);
+			this.useEnergy(64);
 		} else {
 			this.setActive(false);
 		}
@@ -74,6 +75,7 @@ public class GTTileTesseractMaster extends TileEntityElecMachine implements ITic
 		if (tesseractTile instanceof GTTileBlockExtender || tesseractTile instanceof GTTileTesseractSlave) {
 			tesseractTile = null;
 		}
+		this.redstoneLevel = world.getRedstonePower(this.pos.offset(this.getFacing()), this.getFacing());
 	}
 
 	@Override
@@ -81,5 +83,6 @@ public class GTTileTesseractMaster extends TileEntityElecMachine implements ITic
 		String status = this.energy >= 128 && this.tesseractTile != null ? "Tesseract is being generated"
 				: "Not enough power to generate tesseract or missing tile";
 		data.put(status, true);
+		data.put("Redstone Level: " + this.redstoneLevel, true);
 	}
 }

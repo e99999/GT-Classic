@@ -3,6 +3,7 @@ package gtclassic.common.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.api.helpers.GTHelperMath;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileQuantumTank;
@@ -88,5 +89,18 @@ public class GTBlockQuantumTank extends GTBlockMachine {
 				}
 			}
 		}
+	}
+
+	@Override
+	@Deprecated
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof GTTileQuantumTank) {
+			GTTileQuantumTank tank = (GTTileQuantumTank) tile;
+			if (tank.getTankInstance().getFluid() != null) {
+				return GTHelperMath.clip(15 * tank.getTankInstance().getFluidAmount() / Integer.MAX_VALUE, 1, 15);
+			}
+		}
+		return 0;
 	}
 }

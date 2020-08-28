@@ -6,6 +6,7 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import ic2.api.classic.item.IEUReader;
+import ic2.api.classic.item.IThermometer;
 import ic2.api.item.ElectricItem;
 import ic2.core.item.base.BasicElectricItem;
 import ic2.core.platform.textures.Ic2Icons;
@@ -22,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticTexturedItem, IEUReader {
+public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticTexturedItem, IEUReader, IThermometer {
 
 	double energyCost = 100;
 
@@ -78,5 +79,10 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 	@Override
 	public int getTextureEntry(int var1) {
 		return 0;
+	}
+
+	@Override
+	public boolean isThermometer(ItemStack arg0) {
+		return true;
 	}
 }

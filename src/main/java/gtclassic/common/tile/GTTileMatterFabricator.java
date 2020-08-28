@@ -218,13 +218,19 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 		this.setActive(hasPower() && !redstoneEnabled());
 		ItemStack output = this.inventory.get(8);
 		// Redstone check last because its the most CPU intensive.
-		if (hasPower() && output.getCount() < output.getMaxStackSize() && !redstoneEnabled()) {
-			// Checking ItemStacks first because it reduces iteration.
-			checkRecipe();
+		if (this.getActive() && output.getCount() < output.getMaxStackSize()) {
+			if (!processFluids()) {
+				processItems();
+			}
 		}
 	}
 
-	public void checkRecipe() {
+	public boolean processFluids() {
+		boolean didWork = false;
+		// If the tank doesnt have enough fluid for a recipe just skip this logic
+		if (tankEmpty()) {
+			return false;
+		}
 		for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
 			IRecipeInput input = map.getInput(0);
 			// Checking for fluids here
@@ -236,21 +242,29 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 				if (sameFluid && enoughFluid && energy - uuValue >= 0) {
 					this.tank.drain(1000, true);
 					energy -= uuValue;
-					progress += uuValue;
+					progress += uuValue * 2;
 					updateGui();
 					checkProgress();
-					return;
+					didWork = true;
 				}
 			}
-			// Doing a input Check this way because it allows the RecipeInput to define what
-			// it compares with.
-			// Not the inhouse ItemStack compare.
-			for (int i = 0; i < 8; ++i) {
-				ItemStack stack = inventory.get(i);
-				if (stack.isEmpty()) {
-					// If stack is null then we do not need to check the recipe list for it.
-					continue;
-				}
+		}
+		return didWork;
+	}
+
+	public void processItems() {
+		// Checking ItemStacks first because it reduces iteration.
+		for (int i = 0; i < 8; ++i) {
+			ItemStack stack = inventory.get(i);
+			if (stack.isEmpty()) {
+				// If stack is null then we do not need to check the recipe list for it.
+				continue;
+			}
+			for (MultiRecipe map : RECIPE_LIST.getRecipeList()) {
+				IRecipeInput input = map.getInput(0);
+				// Doing a input Check this way because it allows the RecipeInput to define what
+				// it compares with.
+				// Not the inhouse ItemStack compare.
 				if (input.matches(stack) && stack.getCount() >= input.getAmount()) {
 					int uuValue = map.getOutputs().getMetadata().getInteger("RecipeTime") + 100;
 					if (energy - uuValue < 0) {
@@ -261,7 +275,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 					}
 					stack.shrink(input.getAmount()); // Allowing multi item usage
 					energy -= uuValue;
-					progress += uuValue;
+					progress += uuValue * 2;
 					updateGui();
 					checkProgress();
 					return;
@@ -299,6 +313,7 @@ public class GTTileMatterFabricator extends TileEntityElecMachine
 		addAmplifier("dustEnderPearl", 50000);
 		addAmplifier("dustEnderEye", 80000);
 		addAmplifier("dustDiamond", 80000);
+		addAmplifier("dustUUAmplifier", 100000);
 		/** Adding my elements **/
 		for (GTMaterialElement element : GTMaterialElement.getElementList()) {
 			int value = element.getAmplifierValue();

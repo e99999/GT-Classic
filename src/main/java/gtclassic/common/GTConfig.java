@@ -35,13 +35,14 @@ public class GTConfig {
 		public boolean enableDisassembler = true;
 		public boolean harderJetpacks = false;
 		public boolean hideBedrockOresInJei = true;
-		public boolean addCompressorRecipesForBlocks = true;
 		public boolean addHydrogenAsLiquidFuel = true;
 		public boolean enableSuperSolidFuels = true;
 		public boolean enableMagnifyingGlassGivesEUTooltips = true;
 		public boolean reduceGrassOnWorldGen = false;
 		public boolean oneMagicAbsorberPerEndPortal = true;
 		public boolean enableQuickerLeafDecay = true;
+		public boolean enableBetterTwilightDurability = true;
+		public boolean energySiphonJustSucksEggs = false;
 	}
 
 	@Comment("World Generation")
