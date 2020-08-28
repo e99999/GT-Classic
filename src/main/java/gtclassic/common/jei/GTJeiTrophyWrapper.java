@@ -44,8 +44,9 @@ public class GTJeiTrophyWrapper implements IRecipeWrapper {
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		FontRenderer font = minecraft.fontRenderer;
-		font.drawString("Production: " + getEntryValue(multiRecipe.getOutputs())
-				+ " EU/t", 0, 40, Color.black.getRGB());
+		int production = getEntryValue(multiRecipe.getOutputs());
+		String data = production == 999 ? "8 EU/t per level" : production + " EU/t";
+		font.drawString("Production: " + data, 0, 40, Color.black.getRGB());
 	}
 
 	public MultiRecipe getMultiRecipe() {

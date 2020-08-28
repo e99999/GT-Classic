@@ -368,8 +368,9 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addRecipe(GTMaterialGen.getTube(GTMaterial.Deuterium, 4), 0, totalEu(6000), GTMaterialGen.get(tube, 3), GTMaterialGen.getTube(GTMaterial.Tritium, 1));
 		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Helium, 16000), 1, totalEu(18000), GTMaterialGen.getTube(GTMaterial.Helium3, 1));
 		addRecipe(GTMaterialGen.getTube(GTMaterial.Helium, 16), 0, totalEu(18000), GTMaterialGen.get(tube, 15), GTMaterialGen.getTube(GTMaterial.Helium3, 1));
-		addCustomRecipe("dustUranium", 22, GTRecipeCraftingHandler.getEmptyRod(16), totalEu(250000), GTMaterialGen.getIc2(Ic2Items.reactorUraniumRodSingle, 16),GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
+		addCustomRecipe("dustUranium", 22, GTRecipeCraftingHandler.getEmptyRod(16), totalEu(250000), GTMaterialGen.getIc2(Ic2Items.reactorUraniumRodSingle, 16), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Plutonium, 1), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.reactorReEnrichedUraniumRod, 3), 0, totalEu(88000), GTRecipeCraftingHandler.getEmptyRod(3), GTMaterialGen.getDust(GTMaterial.Thorium, 2), GTMaterialGen.getDust(GTMaterial.Plutonium239, 1));
+		addRecipe(GTMaterialGen.get(GTItems.reEnrichedRodPlutonium, 1), 0, totalEu(22000), GTRecipeCraftingHandler.getEmptyRod(1), GTMaterialGen.getDust(GTMaterial.Plutonium239, 1));
 		addRecipe("dustPlutonium239", 12, 0, totalEu(100000), GTMaterialGen.getDust(GTMaterial.Technetium, 1));
 		addRecipe("dustRuby", 9, 3, totalEu(25000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Chrome, 1), GTMaterialGen.getTube(GTMaterial.Oxygen, 3));
 		addRecipe("dustSapphire", 8, 3, totalEu(20000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getTube(GTMaterial.Oxygen, 3));

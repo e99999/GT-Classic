@@ -5,6 +5,7 @@ import java.util.Random;
 
 import gtclassic.GTMod;
 import gtclassic.api.block.GTBlockBaseConnect;
+import gtclassic.api.helpers.GTValues;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
 import gtclassic.api.model.GTModelWire;
 import gtclassic.api.tile.GTTileBaseSuperconductorCable;
@@ -19,6 +20,7 @@ import ic2.core.util.helpers.BlockStateContainerIC2;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -54,6 +56,18 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 	@Override
 	public boolean hasFacing() {
 		return false;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		if (this.equals(GTBlocks.tileSuperconductorCableBEACON)) {
+			tooltip.add(I18n.format(GTValues.TOOLTIP_BEACON));
+		}
+	}
+
+	@Override
+	public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
+		return this.equals(GTBlocks.tileSuperconductorCableBEACON);
 	}
 
 	@Override
@@ -152,7 +166,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 
 	@Override
 	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		if (this == GTBlocks.tileSuperconductorCableMAX) {
+		if (this == GTBlocks.tileSuperconductorCableMAX || this == GTBlocks.tileSuperconductorCableBEACON) {
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));
 		}
 		if (this == GTBlocks.tileSuperconductorCableIV) {

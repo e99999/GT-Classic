@@ -22,7 +22,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class GTBlockDrum extends GTBlockStorage {
 
 	public GTBlockDrum() {
-		super("drum", GTLang.DRUM, Material.GROUND, 2);
+		super("drum", GTLang.DRUM, Material.CIRCUITS, 2);
 		setHardness(0.5F);
 	}
 

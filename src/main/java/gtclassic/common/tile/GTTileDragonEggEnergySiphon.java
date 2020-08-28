@@ -27,18 +27,22 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 public class GTTileDragonEggEnergySiphon extends TileEntityMachine
-		implements IEnergySource, IEmitterTile, IGTDisplayTickTile {
+		implements IEnergySource, IEmitterTile, IGTDisplayTickTile, ITickable {
 
 	protected double production = 128.0D;
 	int storage;
 	boolean enet = false;
+	private int tickOffset = 0;
 	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.trophies");
 
 	public GTTileDragonEggEnergySiphon() {
@@ -75,6 +79,9 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 		if (this.isSimulating() && !this.enet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.enet = true;
+		}
+		if (this.isSimulating()) {
+			this.tickOffset = world.rand.nextInt(128);
 		}
 		this.checkForEgg();
 	}
@@ -114,6 +121,7 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 		if (!GTConfig.general.energySiphonJustSucksEggs) {
 			addFakeRecipe(new ItemStack(Items.SKULL, 1, 1), 1);
 			addFakeRecipe(new ItemStack(Items.SKULL, 1, 5), 8);
+			addFakeRecipe(new ItemStack(Blocks.BEACON), 999);
 		}
 	}
 
@@ -137,6 +145,18 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 	private static void addFakeRecipe(List<IRecipeInput> input, MachineOutput output) {
 		if (!input.isEmpty()) {
 			RECIPE_LIST.addRecipe(input, output, input.get(0).getInputs().get(0).getUnlocalizedName(), 128);
+		}
+	}
+
+	@Override
+	public void update() {
+		if (world.getTotalWorldTime() % (248 + this.tickOffset) == 0 && this.getActive()
+				&& world.getBlockState(this.pos.up()).getBlock().equals(Blocks.BEACON)) {
+			TileEntity tile = world.getTileEntity(pos.up());
+			if (tile instanceof TileEntityBeacon) {
+				TileEntityBeacon beacon = (TileEntityBeacon) tile;
+				this.production = GTUtility.getBeaconProductionValue(beacon);
+			}
 		}
 	}
 

@@ -26,6 +26,7 @@
 - Removed bloated processing recipes for blocks to dusts etc.. in IC2C machines.
 - Removed centrifuging wet coal to get some Thorium recipe.
 - Removed Ic2 Extras compat recipes so it can handle it itself.
+- Added full block variant of Max level Superconductor Cable, for nefarious beacon things.
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.
