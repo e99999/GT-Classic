@@ -204,6 +204,12 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDisplayScreen), "PPP", "CMC", "BRB", 'P', "paneGlass", 'C', GTValues.CIRCUIT_BASIC, 'M', GTValues.MACHINE_BASIC, 'B', "dyeBlack", 'R', "dustRedstone");
 			/** Redstone Lamp **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLamp, 2), "IPI", "PRP", "IPI", 'P', "paneGlass", 'I', GTValues.INPUT_INGOT_MACHINE, 'R', Blocks.REDSTONE_LAMP);
+			/** Dragon Egg Energy Siphon **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'B', GTValues.INGOT_PLUTONIUM239, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', Ic2Items.teslaCoil.copy());
+			/** Magic Energy Converter **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CBC", "ITI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Ic2Items.teleporter, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INGOT_PLATINUM, 'T', GTValues.INGOT_PLUTONIUM239);
+			/** Magic Energy Absorber **/
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTValues.INGOT_BERYLLIUM, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
 			/** Bonus recipe for hopper **/
 			if (GTConfig.general.replaceHopperRecipe) {
 				GTRecipeCraftingHandler.removeRecipe("minecraft", "hopper");
@@ -223,12 +229,6 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLightningRod, 1), "EAE", "ASA", "EAE", 'E', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'A', GTValues.MACHINE_ELITE);
 		/** Bedrock Miner **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileBedrockMiner, 1), "PCP", "MDE", "PTP", 'P', GTBlocks.miningPipe, 'C', GTValues.CIRCUIT_ADVANCED, 'M', Ic2Items.macerator, 'D', Ic2Items.diamondDrill, 'E', Ic2Items.extractor, 'T', Ic2Items.miner);
-		/** Dragon Egg Energy Siphon **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'B', GTValues.INGOT_PLUTONIUM239, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', Ic2Items.teslaCoil.copy());
-		/** Magic Energy Converter **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CBC", "ITI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Ic2Items.teleporter, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INGOT_PLATINUM, 'T', GTValues.INGOT_PLUTONIUM239);
-		/** Magic Energy Absorber **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTValues.INGOT_BERYLLIUM, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
 		/** Player Detector **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tilePlayerDetector, 1), " D ", "CMC", " D ", 'D', GTValues.CIRCUIT_DATA, 'C', GTValues.CIRCUIT_ADVANCED, 'M', GTValues.MACHINE_ADV);
 		/** AESU **/
