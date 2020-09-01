@@ -409,6 +409,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine implements ITa
 		addModRecipe("liquidantimatter"); // AbsyssalCraft
 		addModRecipe("mana_fluid"); // Wizardry
 		addModRecipe("nacre_fluid"); // Wizardry
+		addRecipe("dustBeryllium", 9000);
 		addRecipe(GTMaterialGen.get(Items.NETHER_WART), 200);
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.terraWart), 300);
 		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL), 12000);

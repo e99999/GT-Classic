@@ -11,7 +11,6 @@ import gtclassic.api.tile.GTTileBaseMachine;
 import gtclassic.api.world.GTBedrockOreHandler;
 import ic2.api.classic.item.IEUReader;
 import ic2.api.classic.item.IThermometer;
-import ic2.api.classic.reactor.ISteamReactor;
 import ic2.api.classic.tile.machine.IEUStorage;
 import ic2.api.classic.tile.machine.IProgressMachine;
 import ic2.api.energy.EnergyNet;
@@ -21,6 +20,7 @@ import ic2.api.item.ElectricItem;
 import ic2.api.reactor.IReactor;
 import ic2.api.tile.IEnergyStorage;
 import ic2.core.IC2;
+import ic2.core.block.base.tile.TileEntityReactorChamberBase;
 import ic2.core.block.crop.TileEntityCrop;
 import ic2.core.block.personal.base.misc.IPersonalBlock;
 import ic2.core.item.base.ItemBatteryBase;
@@ -146,9 +146,9 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 			IC2.audioManager.playOnce(player, Ic2Sounds.scannerUse);
 			return EnumActionResult.SUCCESS;
 		}
-		TileEntity tileEntity = world.getTileEntity(pos);
 		IBlockState state = world.getBlockState(pos);
 		Block block = state.getBlock();
+		TileEntity tileEntity = world.getTileEntity(pos);
 		IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()
 				+ " -----");
 		IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
@@ -164,10 +164,15 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 			IC2.platform.messagePlayer(player, "HEM: " + te5.getHeatEffectModifier());
 			IC2.platform.messagePlayer(player, "Output: " + te5.getReactorEnergyOutput() + " EU");
 		}
-		if (tileEntity instanceof ISteamReactor) {
-			ISteamReactor steamyBoy = (ISteamReactor) tileEntity;
-			IC2.platform.messagePlayer(player, "Water: " + steamyBoy.getWaterTank().getFluidAmount() + "mB");
-			IC2.platform.messagePlayer(player, "Steam: " + steamyBoy.getSteamTank().getFluidAmount() + "mB");
+		if (tileEntity instanceof TileEntityReactorChamberBase) {
+			TileEntityReactorChamberBase chamber = (TileEntityReactorChamberBase) tileEntity;
+			IReactor reactor = chamber.getReactorInstance();
+			if (reactor != null) {
+				IC2.platform.messagePlayer(player, "Reactor Heat: " + reactor.getHeat());
+				IC2.platform.messagePlayer(player, "Max Heat: " + reactor.getMaxHeat());
+				IC2.platform.messagePlayer(player, "HEM: " + reactor.getHeatEffectModifier());
+				IC2.platform.messagePlayer(player, "Output: " + reactor.getReactorEnergyOutput() + " EU");
+			}
 		}
 		if (tileEntity instanceof IPersonalBlock) {
 			IPersonalBlock te6 = (IPersonalBlock) tileEntity;

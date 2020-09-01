@@ -63,6 +63,7 @@ public class GTValues {
 			INPUT_BATTERY_ADVANCED = GTRecipeCraftingHandler.combineRecipeObjects(Ic2Items.energyCrystal.copy(), GTItems.lithiumBattery),
 			INPUT_DIAMOND_OR_TUNGSTEN = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_TUNGSTEN, GEM_DIAMOND),
 			INPUT_BLOCK_COAL = GTRecipeCraftingHandler.combineRecipeObjects(BLOCK_COAL, BLOCK_CHARCOAL),
+			INPUT_INGOT_MAGIC = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_PLATINUM, "ingotDraconium", "ingotKnightmetal", "ingotThaumium", "ingotManasteel"),
 			INPUT_CIRCUIT_BASIC_X2 = new RecipeInputCombined(2, new IRecipeInput[] {
 					new RecipeInputOreDict(CIRCUIT_BASIC) });
 	private static final String[] TIERS = { "N/A", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "MAX" };

@@ -205,11 +205,12 @@ public class GTRecipe {
 			/** Redstone Lamp **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLamp, 2), "IPI", "PRP", "IPI", 'P', "paneGlass", 'I', GTValues.INPUT_INGOT_MACHINE, 'R', Blocks.REDSTONE_LAMP);
 			/** Dragon Egg Energy Siphon **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'B', GTValues.INGOT_PLUTONIUM239, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', Ic2Items.teslaCoil.copy());
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'B', GTValues.BATTERY_ULTIMATE, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', Ic2Items.teslaCoil.copy());
 			/** Magic Energy Converter **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CBC", "ITI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Ic2Items.teleporter, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INGOT_PLATINUM, 'T', GTValues.INGOT_PLUTONIUM239);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CTC", "IBI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Blocks.BEACON, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INPUT_INGOT_MAGIC, 'T', Ic2Items.teleporter.copy());
 			/** Magic Energy Absorber **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTValues.INGOT_BERYLLIUM, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', Blocks.BEACON, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
+			/** Player Detector **/
 			/** Bonus recipe for hopper **/
 			if (GTConfig.general.replaceHopperRecipe) {
 				GTRecipeCraftingHandler.removeRecipe("minecraft", "hopper");
@@ -414,9 +415,9 @@ public class GTRecipe {
 			/** Dummy OP IC2C Water Gen Nerfs **/
 			recipes.overrideRecipe("shaped_tile.waveGenerator_1752336958", Ic2Items.waveGenerator.copy(), "XYB", "XVC", "XYB", 'X', GTValues.INGOT_ALUMINIUM, 'Y', Ic2Items.advancedAlloy.copy(), 'V', Ic2Items.turbineBlade.copy(), 'B', GTValues.CIRCUIT_ADVANCED, 'C', Ic2Items.waterMill.copy());
 			recipes.overrideRecipe("shaped_tile.oceanGenerator_-1674978904", Ic2Items.oceanGenerator.copy(), "XYX", "CVC", "XYX", 'X', GTValues.INGOT_TITANIUM, 'Y', GTValues.PLATE_IRIDIUM_ALLOY, 'C', Ic2Items.turbineBlade.copy(), 'V', Ic2Items.waveGenerator.copy());
+			/** Thick Reflector Recipe **/
+			recipes.overrideRecipe("shaped_item.reactorReflectorThick_-1313142365", Ic2Items.reactorReflectorThick.copy(), " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GTValues.INGOT_BERYLLIUM);
 		}
-		/** Thick Reflector Recipe **/
-		recipes.overrideRecipe("shaped_item.reactorReflectorThick_-1313142365", Ic2Items.reactorReflectorThick.copy(), " P ", "PBP", " P ", 'P', Ic2Items.reactorReflector, 'B', GTValues.INGOT_BERYLLIUM);
 		/** MFE with Lithium Batteries **/
 		recipes.overrideRecipe("shaped_tile.blockMFE_-1307270245", Ic2Items.mfe.copy(), "XYX", "YCY", "XYX", 'C', GTValues.MACHINE_BASIC, 'Y', GTValues.INPUT_BATTERY_ADVANCED, 'X', Ic2Items.doubleInsulatedGoldCable.copy());
 		recipes.overrideRecipe("shaped_tile.blockMFE_2004107975", Ic2Items.mfe.copy(), "XYX", "YCY", "XYX", 'C', GTValues.MACHINE_BASIC, 'Y', GTValues.INPUT_BATTERY_ADVANCED, 'X', GTMaterialGen.getIc2(Ic2Items.doubleInsulatedBronzeCable, 4));
@@ -460,7 +461,6 @@ public class GTRecipe {
 		TileEntityCompressor.addRecipe("dustUranium", 1, GTMaterialGen.getIc2(Ic2Items.uraniumIngot, 1), 0.3F);
 		TileEntityCompressor.addRecipe("dustThorium", 1, GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
 		TileEntityCompressor.addRecipe("dustPlutonium", 1, GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
-		TileEntityCompressor.addRecipe("dustPlutonium239", 1, GTMaterialGen.getIngot(GTMaterial.Plutonium239, 1));
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Sodium), 3800, 8);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Methane), 3000, 16);
 		ClassicRecipes.fluidGenerator.addEntry(GTMaterialGen.getFluid(GTMaterial.Fuel), 4000, 30);

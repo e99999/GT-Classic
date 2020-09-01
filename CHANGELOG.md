@@ -15,14 +15,11 @@
 - Added GTC loot to Twilight Forest loot tables.
 - Changed increased the durability of Crumble Horn, Peacock Fan, Ore Magnet, and Giant Pick from TForest like GT6 (configurable).
 - Added some processing recipes for TForest in GTC and IC2C machines.
-- Added ability for GT Scanners to be nuclear thermometers as well as EU scanners
-- Added Steam Reactor internal tanks info to GT Scanner.
+- Added ability for GT Scanners to be nuclear thermometers as well as EU scanners, as well as scan through chamber blocks to read the core.
 - Changed Beryllium from a fluid to a solid as it should be, recipe to convert from fluid to solid in the Centrifuge.
 - Changed the Dragon Egg Energy Siphon to a Trophy Energy Siphon which can make power from more sources (configurable).
-- Changed Magic Energy blocks now require Plutonium-239 a byproduct of using Uranium rods in a reactor.
 - Changed the explosion strength and heat output of Thorium based Reactors by factor of 0.25!
 - Added Isotopic, Near Depleted, Depleted, and Re-Enriched variants of Thorium and Plutonium Rods.
-- Added recipe for obtaining Technetium pre-fusion by centrifuging Plutonium-239.
 - Removed bloated processing recipes for blocks to dusts etc.. in IC2C machines.
 - Removed centrifuging wet coal to get some Thorium recipe.
 - Removed Ic2 Extras compat recipes so it can handle it itself.
