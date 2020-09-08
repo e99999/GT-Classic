@@ -286,6 +286,19 @@ public class GTRecipe {
 			recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 8), "IRI", "ISI", "IRI", 'I', GTValues.INGOT_REFINEDIRON, 'S', Blocks.REDSTONE_TORCH, 'R', GTValues.STICK_WOOD);
 			recipes.addRecipe(GTMaterialGen.get(Blocks.ACTIVATOR_RAIL, 16), "IRI", "ISI", "IRI", 'I', GTValues.INPUT_INGOT_HIGH, 'S', Blocks.REDSTONE_TORCH, 'R', GTValues.STICK_WOOD);
 		}
+		/** Slabs back to stone blocks **/
+		if (GTConfig.general.vanillaSlabsBackToBlocks) {
+			recipes.addRecipe(new ItemStack(Blocks.STONE), "X", "X", 'X', new ItemStack(Blocks.STONE_SLAB, 1, 0));
+			recipes.addRecipe(new ItemStack(Blocks.COBBLESTONE), "X", "X", 'X', new ItemStack(Blocks.STONE_SLAB, 1, 3));
+			recipes.addRecipe(new ItemStack(Blocks.BRICK_BLOCK), "X", "X", 'X', new ItemStack(Blocks.STONE_SLAB, 1, 4));
+			recipes.addRecipe(new ItemStack(Blocks.NETHER_BRICK), "X", "X", 'X', new ItemStack(Blocks.STONE_SLAB, 1, 6));
+			recipes.addRecipe(new ItemStack(Blocks.PLANKS, 1, 0), "X", "X", 'X', new ItemStack(Blocks.WOODEN_SLAB, 1, 0));
+			recipes.addRecipe(new ItemStack(Blocks.PLANKS, 1, 1), "X", "X", 'X', new ItemStack(Blocks.WOODEN_SLAB, 1, 1));
+			recipes.addRecipe(new ItemStack(Blocks.PLANKS, 1, 2), "X", "X", 'X', new ItemStack(Blocks.WOODEN_SLAB, 1, 2));
+			recipes.addRecipe(new ItemStack(Blocks.PLANKS, 1, 3), "X", "X", 'X', new ItemStack(Blocks.WOODEN_SLAB, 1, 3));
+			recipes.addRecipe(new ItemStack(Blocks.PLANKS, 1, 4), "X", "X", 'X', new ItemStack(Blocks.WOODEN_SLAB, 1, 4));
+			recipes.addRecipe(new ItemStack(Blocks.PLANKS, 1, 5), "X", "X", 'X', new ItemStack(Blocks.WOODEN_SLAB, 1, 5));
+		}
 	}
 
 	public static void initIC2() {

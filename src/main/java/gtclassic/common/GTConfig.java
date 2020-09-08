@@ -43,6 +43,7 @@ public class GTConfig {
 		public boolean enableQuickerLeafDecay = true;
 		public boolean enableBetterTwilightDurability = true;
 		public boolean energySiphonJustSucksEggs = false;
+		public boolean vanillaSlabsBackToBlocks = true;
 	}
 
 	@Comment("World Generation")

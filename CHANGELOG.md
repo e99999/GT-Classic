@@ -24,6 +24,7 @@
 - Removed centrifuging wet coal to get some Thorium recipe.
 - Removed Ic2 Extras compat recipes so it can handle it itself.
 - Added full block variant of Max level Superconductor Cable, for nefarious beacon things.
+- Added a few recipes for turning vanilla slabs back to blocks (configurable).
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.
