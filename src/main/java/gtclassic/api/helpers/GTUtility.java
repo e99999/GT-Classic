@@ -33,6 +33,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
@@ -279,6 +280,10 @@ public class GTUtility {
 		if (tile == null) {
 			return 0;
 		}
+		if (tile instanceof TileEntityBeacon) {
+			TileEntityBeacon beacon = (TileEntityBeacon) tile;
+			return getBeaconProductionValue(beacon);
+		}
 		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)) {
 			int value = GTTwilightForest.getTrophyProduction(world, pos);
 			if (value > 0) {
@@ -298,6 +303,14 @@ public class GTUtility {
 			}
 		}
 		return 0;
+	}
+
+	public static int getBeaconProductionValue(TileEntityBeacon beacon) {
+		int beaconLevel = beacon.getLevels();
+		if (beaconLevel > 0) {
+			return GTHelperMath.clip(8 + (beaconLevel * 8), 8, 128);
+		}
+		return 8;
 	}
 
 	/**

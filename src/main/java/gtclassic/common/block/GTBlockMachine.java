@@ -117,6 +117,11 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 	}
 
 	@Override
+	public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
+		return this.equals(GTBlocks.tileDragonEggEnergySiphon);
+	}
+
+	@Override
 	public void addReaderInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (this == GTBlocks.tileCentrifuge || this == GTBlocks.tilePlayerDetector || this == GTBlocks.tileEchotron
 				|| this == GTBlocks.tileMobRepeller || this == GTBlocks.tileDisassembler) {

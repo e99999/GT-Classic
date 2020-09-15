@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import gtclassic.GTMod;
+import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTConfig;
@@ -130,7 +131,7 @@ public class GTRecipeCraftingHandler {
 	 */
 	public static void rodUtil(ItemStack single, ItemStack dual, ItemStack quad, ItemStack isotope,
 			ItemStack reEnriched, ItemStack nearDepleted, ItemStack ingredient) {
-		ItemStack emptyRod = getEmptyRod();
+		ItemStack emptyRod = getEmptyRod(1);
 		IRecipeInput coal = GTRecipeCraftingHandler.combineRecipeObjects("dustCoal", "dustCharcoal", "dustCarbon");
 		/** re enriched to single **/
 		ClassicRecipes.advCrafting.addShapelessRecipe(single, coal, reEnriched);
@@ -153,10 +154,10 @@ public class GTRecipeCraftingHandler {
 		}
 	}
 
-	static ItemStack getEmptyRod() {
+	public static ItemStack getEmptyRod(int amount) {
 		return GTConfig.modcompat.compatIc2Extras && Loader.isModLoaded(GTValues.MOD_ID_IC2_EXTRAS)
-				? GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "emptyfuelrod")
-				: Ic2Items.emptyCell.copy();
+				? GTMaterialGen.getModItem(GTValues.MOD_ID_IC2_EXTRAS, "emptyfuelrod", amount)
+				: GTHelperStack.copyWithSize(Ic2Items.emptyCell, amount);
 	}
 
 	public static IRecipeInput combineRecipeObjects(Object... entries) {

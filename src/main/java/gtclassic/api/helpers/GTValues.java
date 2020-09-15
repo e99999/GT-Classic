@@ -42,7 +42,7 @@ public class GTValues {
 			INGOT_PLATINUM = "ingotPlatinum", INGOT_BRONZE = "ingotBronze", INGOT_SILICON = "itemSilicon",
 			INGOT_ELECTRUM = "ingotElectrum", INGOT_SILVER = "ingotSilver", INGOT_INVAR = "ingotInvar",
 			INGOT_NICKEL = "ingotNickel", INGOT_GOLD = "ingotGold", ENDER_CHEST = "chestEnder",
-			INGOT_BERYLLIUM = "ingotBeryllium";
+			INGOT_BERYLLIUM = "ingotBeryllium", INGOT_PLUTONIUM239 = "ingotPlutonium239";
 	/** Generic fluidstack holders **/
 	public static final FluidStack FS_WATER = new FluidStack(FluidRegistry.WATER, 1000),
 			FS_LAVA = new FluidStack(FluidRegistry.LAVA, 1000);
@@ -63,6 +63,7 @@ public class GTValues {
 			INPUT_BATTERY_ADVANCED = GTRecipeCraftingHandler.combineRecipeObjects(Ic2Items.energyCrystal.copy(), GTItems.lithiumBattery),
 			INPUT_DIAMOND_OR_TUNGSTEN = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_TUNGSTEN, GEM_DIAMOND),
 			INPUT_BLOCK_COAL = GTRecipeCraftingHandler.combineRecipeObjects(BLOCK_COAL, BLOCK_CHARCOAL),
+			INPUT_INGOT_MAGIC = GTRecipeCraftingHandler.combineRecipeObjects(INGOT_PLATINUM, "ingotDraconium", "ingotKnightmetal", "ingotThaumium", "ingotManasteel"),
 			INPUT_CIRCUIT_BASIC_X2 = new RecipeInputCombined(2, new IRecipeInput[] {
 					new RecipeInputOreDict(CIRCUIT_BASIC) });
 	private static final String[] TIERS = { "N/A", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "MAX" };

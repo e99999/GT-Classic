@@ -21,8 +21,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class GTBlockBaseConnect extends BlockMultiID implements ICustomModeledBlock {
 
+	public GTBlockBaseConnect(Material materialIn) {
+		super(materialIn);
+	}
+
 	public GTBlockBaseConnect() {
-		super(Material.IRON);
+		this(Material.IRON);
 	}
 
 	@Override

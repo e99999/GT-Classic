@@ -47,7 +47,6 @@ import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -384,7 +383,6 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine implements ITa
 
 	public static void init() {
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Mercury));
-		addRecipe(GTMaterialGen.getFluid(GTMaterial.Beryllium));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Neon));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.Argon));
 		addRecipe(GTMaterialGen.getFluid(GTMaterial.MagicDye));
@@ -411,6 +409,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine implements ITa
 		addModRecipe("liquidantimatter"); // AbsyssalCraft
 		addModRecipe("mana_fluid"); // Wizardry
 		addModRecipe("nacre_fluid"); // Wizardry
+		addRecipe("dustBeryllium", 9000);
 		addRecipe(GTMaterialGen.get(Items.NETHER_WART), 200);
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.terraWart), 300);
 		addRecipe(GTMaterialGen.get(Items.ENDER_PEARL), 12000);
@@ -422,7 +421,6 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine implements ITa
 		addRecipe(GTMaterialGen.get(Items.DRAGON_BREATH), 48000);
 		addRecipe(GTMaterialGen.get(GTBlocks.superFuelMagic), 1000000);
 		addRecipe(GTMaterialGen.get(Items.NETHER_STAR), 2500000);
-		addRecipe(GTMaterialGen.get(Blocks.BEACON), 2500000);
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.plasmaCell), 100000000);
 	}
 
