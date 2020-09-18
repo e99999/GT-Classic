@@ -159,19 +159,19 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 		}
 		if (tileEntity instanceof IReactor) {
 			IReactor te5 = (IReactor) tileEntity;
-			IC2.platform.messagePlayer(player, "Reactor Heat: " + te5.getHeat());
+			IC2.platform.messagePlayer(player, "Current Heat: " + te5.getHeat());
 			IC2.platform.messagePlayer(player, "Max Heat: " + te5.getMaxHeat());
 			IC2.platform.messagePlayer(player, "HEM: " + te5.getHeatEffectModifier());
-			IC2.platform.messagePlayer(player, "Output: " + te5.getReactorEnergyOutput() + " EU");
+			IC2.platform.messagePlayer(player, "Output: " + te5.getReactorEUEnergyOutput() + " EU");
 		}
 		if (tileEntity instanceof TileEntityReactorChamberBase) {
 			TileEntityReactorChamberBase chamber = (TileEntityReactorChamberBase) tileEntity;
 			IReactor reactor = chamber.getReactorInstance();
 			if (reactor != null) {
-				IC2.platform.messagePlayer(player, "Reactor Heat: " + reactor.getHeat());
+				IC2.platform.messagePlayer(player, "Current Heat: " + reactor.getHeat());
 				IC2.platform.messagePlayer(player, "Max Heat: " + reactor.getMaxHeat());
 				IC2.platform.messagePlayer(player, "HEM: " + reactor.getHeatEffectModifier());
-				IC2.platform.messagePlayer(player, "Output: " + reactor.getReactorEnergyOutput() + " EU");
+				IC2.platform.messagePlayer(player, "Output: " + reactor.getReactorEUEnergyOutput() + " EU");
 			}
 		}
 		if (tileEntity instanceof IPersonalBlock) {

@@ -15,9 +15,12 @@
 - Added GTC loot to Twilight Forest loot tables.
 - Changed increased the durability of Crumble Horn, Peacock Fan, Ore Magnet, and Giant Pick from TForest like GT6 (configurable).
 - Added some processing recipes for TForest in GTC and IC2C machines.
-- Added ability for GT Scanners to be nuclear thermometers as well as EU scanners, as well as scan through chamber blocks to read the core.
+- Added ability for GT Scanners to be nuclear thermometers.
+- Added ability for GT Scanners to scan through reactor chamber/wall blocks.
+- Added, using a sensor card on a reactor wall in a display screen will now show just the heat because its just the wall, scan the core!
+- Fixed GT Scanners not getting the correct EU output for Reactors.
 - Changed Beryllium from a fluid to a solid as it should be, recipe to convert from fluid to solid in the Centrifuge.
-- Changed the Dragon Egg Energy Siphon to a Trophy Energy Siphon which can make power from more sources (configurable).
+- Changed the Dragon Egg Energy Siphon to a Trophy Energy Siphon which can make power from more sources (configurable). Support for Open Blocks coming next update!
 - Changed the explosion strength and heat output of Thorium based Reactors by factor of 0.25!
 - Added Isotopic, Near Depleted, Depleted, and Re-Enriched variants of Thorium and Plutonium Rods.
 - Removed bloated processing recipes for blocks to dusts etc.. in IC2C machines.
@@ -25,6 +28,8 @@
 - Removed Ic2 Extras compat recipes so it can handle it itself.
 - Added full block variant of Max level Superconductor Cable, for nefarious beacon things.
 - Added a few recipes for turning vanilla slabs back to blocks (configurable).
+- Fixed Pyrite missing Sulfur from centrifuge recipe.
+- Added warning message for GTCX (configurable).
 
 # 1.1.5
 - Added ability to add materials to GTC via Craft Tweaker thanks to Trinsdar.

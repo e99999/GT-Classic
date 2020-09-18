@@ -17,6 +17,7 @@ import ic2.api.reactor.IReactor;
 import ic2.core.IC2;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.block.base.tile.TileEntityReactorChamberBase;
 import ic2.core.block.crop.TileEntityCrop;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.obj.IClickable;
@@ -163,7 +164,14 @@ public class GTTileDisplayScreen extends TileEntityMachine
 			addInfoToScreen(TEMP + te5.getHeat());
 			addInfoToScreen(MAX + te5.getMaxHeat());
 			addInfoToScreen(HEAT + te5.getHeat() / te5.getMaxHeat() + AMP);
-			addInfoToScreen(OUTPUT + formatNumberForScreen((int) te5.getReactorEnergyOutput()) + EU);
+			addInfoToScreen(OUTPUT + formatNumberForScreen((int) te5.getReactorEUEnergyOutput()) + EU);
+		}
+		if (tileEntity instanceof TileEntityReactorChamberBase) {
+			TileEntityReactorChamberBase chamber = (TileEntityReactorChamberBase) tileEntity;
+			IReactor reactor = chamber.getReactorInstance();
+			if (reactor != null) {
+				addInfoToScreen(TEMP + reactor.getHeat());
+			}
 		}
 		if (tileEntity instanceof IProgressMachine) {
 			IProgressMachine progress = (IProgressMachine) tileEntity;
