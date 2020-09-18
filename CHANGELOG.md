@@ -1,5 +1,8 @@
 # Changelog
-# 1.1.6 (Not Released)
+# 1.1.7 (Not Released)
+- Nothing to see here yet.
+
+# 1.1.6
 - Added better performance of all multiblock structures, GTCX automatically gets this as well.
 - Added better performance of some basic tiles.
 - Fixed miscalculation with matter fab resulting in half of the output of UU.
