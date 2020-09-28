@@ -1,6 +1,6 @@
 # Changelog
 # 1.1.7 (Not Released)
-- Nothing to see here yet.
+- Fixed Electric Autocrafter dropping holo slots on wrenching.
 
 # 1.1.6
 - Added better performance of all multiblock structures, GTCX automatically gets this as well.

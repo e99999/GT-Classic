@@ -6,12 +6,15 @@ import java.util.List;
 
 import gtclassic.GTMod;
 import ic2.api.classic.item.IEUReader;
+import ic2.api.classic.item.IElectricTool;
 import ic2.api.classic.item.IThermometer;
 import ic2.api.item.ElectricItem;
 import ic2.core.item.base.BasicElectricItem;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -23,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticTexturedItem, IEUReader, IThermometer {
+public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticTexturedItem, IEUReader, IThermometer, IElectricTool {
 
 	double energyCost = 100;
 
@@ -84,5 +87,20 @@ public class GTItemSurvivalScanner extends BasicElectricItem implements IStaticT
 	@Override
 	public boolean isThermometer(ItemStack arg0) {
 		return true;
+	}
+
+	@Override
+	public EnumEnchantmentType getType(ItemStack var1) {
+		return null;
+	}
+
+	@Override
+	public boolean isSpecialSupported(ItemStack var1, Enchantment var2) {
+		return false;
+	}
+
+	@Override
+	public boolean isExcluded(ItemStack var1, Enchantment var2) {
+		return false;
 	}
 }

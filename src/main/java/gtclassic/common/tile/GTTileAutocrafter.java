@@ -34,6 +34,7 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 	protected static final int[] slotInputs = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 	protected static final int[] slotContainer = { 9, 10, 11, 12, 13, 14, 15, 16, 17 };
 	protected static final int[] slotOutputs = { 28 };
+	protected static final int[] slotReal = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 28};
 	public List<ItemStack> currentRecipe = new ArrayList<>();
 	public CraftingRecipe craftingThingy = new CraftingRecipe();
 
@@ -174,6 +175,18 @@ public class GTTileAutocrafter extends TileEntityElecMachine implements ITickabl
 				}
 			}
 		}
+	}
+	
+	@Override
+	public List<ItemStack> getDrops() {
+		List<ItemStack> drops = super.getDrops();
+		drops.clear();
+		for (int slot : slotReal) {
+			if (!this.inventory.get(slot).isEmpty()) {
+				drops.add(this.inventory.get(slot).copy());
+			}
+		}
+		return drops;
 	}
 
 	@Override
