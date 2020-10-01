@@ -34,7 +34,7 @@ public class GTMaterialItemHot extends GTMaterialItem {
 			EntityLivingBase player = (EntityLivingBase) entityIn;
 			if (!ItemHazmatArmor.isFullHazmatSuit(player) && !player.isImmuneToFire()
 					&& !GTUtility.hasFullQuantumSuit(player)) {
-				entityIn.attackEntityFrom(DamageSource.IN_FIRE, 4.0F);
+				entityIn.attackEntityFrom(DamageSource.ON_FIRE, 1.0F);
 			}
 		}
 	}
