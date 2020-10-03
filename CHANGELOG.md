@@ -1,6 +1,7 @@
 # Changelog
 # 1.1.7 (Not Released)
-- Fixed Electric Autocrafter dropping holo slots on wrenching.
+- Fixed Electric Autocrafter dropping simulated item slots on wrenching.
+- Changed Thorium rod durability from 12500 to 32000.
 
 # 1.1.6
 - Added better performance of all multiblock structures, GTCX automatically gets this as well.

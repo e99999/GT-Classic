@@ -49,7 +49,7 @@ public class GTUranThorium extends UranBaseType {
 
 	@Override
 	public int getMaxDurability() {
-		return 12500;
+		return 32000;
 	}
 
 	@Override
