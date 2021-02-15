@@ -1,0 +1,362 @@
+# Translation by Amegasquad, Skyine918
+# Amegasquad: weffdev@gmail.com
+# Amegasquad: https://github.com/amegasterr
+
+#blocks
+tile.gtclassic.blockElectrum.name=Блок электрума
+tile.gtclassic.blockTitanium.name=Блок титана
+tile.gtclassic.blockIridium.name=Блок иридия
+tile.gtclassic.blockTungsten.name=Блок вольфрама
+tile.gtclassic.blockSapphire.name=Блок сапфиров
+tile.gtclassic.blockChrome.name=Блок хрома
+tile.gtclassic.blockRuby.name=Блок рубинов
+tile.gtclassic.blockAluminium.name=Блок алюминия
+tile.gtclassic.blockPlatinum.name=Блок платины
+tile.gtclassic.blockThorium.name=Блок тория
+tile.gtclassic.blockPlutonium.name=Блок плутония
+tile.gtclassic.blockNickel.name=Блок никеля
+tile.gtclassic.blockInvar.name=Блок инвара
+tile.gtclassic.blockTechnetium.name=Блок технеция
+tile.gtclassic.blockBeryllium.name=Блок бериллия
+tile.gtclassic.brittlecharcoal.name=Блок сгоревшей древесины
+tile.gtclassic.superfuel.name=Блок супер топлива
+tile.gtclassic.superfuelmagic.name=Блок магического супер топлива
+
+#ore
+tile.gtclassic.oreIridium.name=Иридиевая руда
+tile.gtclassic.oreSheldonite.name=Шелдонитовая руда
+tile.gtclassic.oreRuby.name=Рубиновая руда
+tile.gtclassic.oreSapphire.name=Сапфировая руда
+tile.gtclassic.oreBauxite.name=Бокситовая руда
+tile.gtclassic.oreBedrock.name=Бедроковая Руда
+
+#blocks
+tile.gtclassic.fusion.name=Катушка термоядерного реактора
+tile.gtclassic.lapotron.name=Лазуротроновый блок
+tile.gtclassic.highlyadvanced.name=Высокотехнологичный машинный корпус
+tile.gtclassic.orechid.name=Рудорхидея
+tile.gtclassic.tungstenminingpipe.name=Вольфрамовая буровая труба
+tile.gtclassic.lightsource.name=Источник света
+
+#tiles
+tile.gtclassic.autocrafter.name=Электрический авто-верстак
+tile.gtclassic.disassembler.name=Разборочный механизм
+tile.gtclassic.chargeomat.name=Автомат зарядки
+tile.gtclassic.computercube.name=Компьютерный куб
+tile.gtclassic.industrialcentrifuge.name=Индустриальная центрифуга
+tile.gtclassic.matterfabricator.name=Генератор материи
+tile.gtclassic.uumassembler.name=Трансформатор материи
+tile.gtclassic.echotronblock.name=Эхотрон
+tile.gtclassic.digitalchest.name=Цифровой сундук
+tile.gtclassic.quantumchest.name=Квантовый сундук
+tile.gtclassic.quantumtank.name=Квантовый танкер
+tile.gtclassic.playerdetector.name=Детектор игроков
+tile.gtclassic.mobrepeller.name=Отпугиватель монстров
+tile.gtclassic.energytransmitter.name=Передатчик микроволновой энергии
+tile.gtclassic.bedrockminer.name=Бедроковый шахтёр
+tile.gtclassic.fusionreactor.name=Термоядерный реактор
+tile.gtclassic.lightningrod.name=Молниеотвод
+tile.gtclassic.charcoalpit.name=Зажигатель древесного угля
+tile.gtclassic.dragoneggenergysiphon.name=Cифон энергии трофеев
+tile.gtclassic.magicenergyconverter.name=Преобразователь магической энергии
+tile.gtclassic.magicenergyabsorber.name=Поглотитель магической энергии
+tile.gtclassic.aesu.name=РЭХ
+tile.gtclassic.idsu.name=МПЭХ
+tile.gtclassic.lesu.name=ЛЭХ
+tile.gtclassic.tesseractmaster.name=Генератор Тессеракта
+tile.gtclassic.tesseractslave.name=Терминал Тессеракта
+tile.gtclassic.batteryblocklv.name=Блок батарей низкого напряжения
+tile.gtclassic.supercondensator.name=Суперконденсатор
+tile.gtclassic.superconductorcable.name=Сверхпроводник
+tile.gtclassic.worktable.name=Рабочий стол
+tile.gtclassic.cabinet.name=Шкафчик
+tile.gtclassic.drum.name=Бочка
+tile.gtclassic.translocator.name=Транслокатор предметов
+tile.gtclassic.bufferlarge.name=Большой предметный буфер
+tile.gtclassic.buffersmall.name=Малый предметный буфер
+tile.gtclassic.translocatorfluid.name=Транслокатор жидкостей
+tile.gtclassic.bufferfluid.name=Жидкостный буфер
+tile.gtclassic.datacable.name=Кабель для передачи данных
+tile.gtclassic.flintmortar.name=Кремневая ступка
+tile.gtclassic.ironmortar.name=Железная ступка
+tile.gtclassic.redstonetransmitter.name=Передатчик редстоун сигнала
+tile.gtclassic.redstonereceiver.name=Приемник редстоун сигнала
+tile.gtclassic.blockextender.name=Расширитель блоков
+tile.gtclassic.typefilter.name=Фильтр (по типам)
+tile.gtclassic.itemfilter.name=Предметный фильтр
+tile.gtclassic.rockbreaker.name=Электрический генератор булыжника
+tile.gtclassic.displayscreen.name=Экран монитора
+tile.gtclassic.lamp.name=Редстоун лампа
+
+#dust
+item.gtclassic.dustElectrum.name=Пыль электрума
+item.gtclassic.dustEnderEye.name=Пыль ока эндера
+item.gtclassic.dustTitanium.name=Пыль титана
+item.gtclassic.dustLazurite.name=Пыль лазурита
+item.gtclassic.dustGreenSapphire.name=Пыль зеленого сапфира
+item.gtclassic.dustCalcite.name=Пыль кальцита
+item.gtclassic.dustPyrite.name=Пыль пирита
+item.gtclassic.dustIridium.name=Пыль иридия
+item.gtclassic.dustLithium.name=Пыль лития
+item.gtclassic.dustTungsten.name=Пыль вольфрама
+item.gtclassic.dustCarbon.name=Пыль углерода
+item.gtclassic.dustSapphire.name=Пыль сапфира
+item.gtclassic.dustChrome.name=Пыль хрома
+item.gtclassic.dustBauxite.name=Пыль боксита
+item.gtclassic.dustSodalite.name=Пыль содалита
+item.gtclassic.dustRuby.name=Пыль рубина
+item.gtclassic.dustEnderPearl.name=Пыль эндер жемчуга
+item.gtclassic.dustSilicon.name=Пыль кремния
+item.gtclassic.dustAluminium.name=Пыль алюминия
+item.gtclassic.dustFlint.name=Пыль кремня
+item.gtclassic.dustEmerald.name=Пыль изумруда
+item.gtclassic.dustUranium.name=Пыль урана
+item.gtclassic.dustThorium.name=Пыль тория
+item.gtclassic.dustPlutonium.name=Пыль плутония
+item.gtclassic.dustBasalt.name=Пыль базальта
+item.gtclassic.dustPlatinum.name=Пыль платины
+item.gtclassic.dustPhosphorus.name=Пыль фосфора
+item.gtclassic.dustSulfur.name=Серная пыль
+item.gtclassic.dustNickel.name=Пыль никеля
+item.gtclassic.dustInvar.name=Пыль инвара
+item.gtclassic.dustTechnetium.name=Пыль технеция
+item.gtclassic.dustBrownDye.name=Пыль коричневого красителя
+item.gtclassic.dustWood.name=Древесная пыль
+item.gtclassic.dustBeryllium.name=Пыль бериллия
+item.gtclassic.dustUUAmplifier.name=Пыль материи
+
+#gems
+item.gtclassic.gemSapphire.name=Сапфир
+item.gtclassic.gemRuby.name=Рубин
+
+#ingots
+item.gtclassic.ingotElectrum.name=Слиток электрума
+item.gtclassic.ingotTitanium.name=Слиток титана
+item.gtclassic.ingotIridium.name=Слиток иридия
+item.gtclassic.ingotTungsten.name=Слиток вольфрама
+item.gtclassic.ingotChrome.name=Слиток хрома
+item.gtclassic.ingotSilicon.name=Слиток кремния
+item.gtclassic.ingotAluminium.name=Слиток алюминия
+item.gtclassic.ingotThorium.name=Слиток тория
+item.gtclassic.ingotPlutonium.name=Слиток плутония
+item.gtclassic.ingotPlatinum.name=Слиток платины
+item.gtclassic.ingotNickel.name=Слиток никеля
+item.gtclassic.ingotInvar.name=Слиток инвара
+item.gtclassic.ingotTechnetium.name=Слиток технеция
+item.gtclassic.ingotBeryllium.name=Слиток бериллия
+
+#items
+item.gtclassic.heatstorage_helium_single.name=Охлаждающая капсула с гелием 60k
+item.gtclassic.heatstorage_helium_triple.name=Охлаждающая капсула с гелием 180k
+item.gtclassic.heatstorage_helium_six.name=Охлаждающая капсула с гелием 360k
+item.gtclassic.rod_thorium_single.name=Ториумовый ТВЭЛ
+item.gtclassic.rod_thorium_double.name=Спареный ториумовый ТВЭЛ
+item.gtclassic.rod_thorium_quad.name=Счетверенный ториумовый ТВЭЛ
+item.gtclassic.rod_plutonium_single.name=Плутониевый ТВЭЛ
+item.gtclassic.rod_plutonium_double.name=Спареный плутониевый ТВЭЛ
+item.gtclassic.rod_plutonium_quad.name=Счетверенный плутониевый ТВЭЛ
+item.gtclassic.isotopic_rod_thorium.name=Обедненный ториумовый ТВЭЛ
+item.gtclassic.isotopic_rod_plutonium.name=Обедненный плутониевый ТВЭЛ
+item.gtclassic.near_depleted_rod_thorium.name=Исчерпаный ториумовый ТВЭЛl
+item.gtclassic.near_depleted_rod_plutonium.name=Исчерпаный плутониевый ТВЭЛ
+item.gtclassic.re_enriched_rod_thorium.name=Низкообогащенный ториумовый ТВЭЛ
+item.gtclassic.re_enriched_rod_plutonium.name=Низкообогащенный плутониевый ТВЭЛ
+item.gtclassic.energy_circuit.name=Схема потока энергии
+item.gtclassic.data_circuit.name=Схема управления данными
+item.gtclassic.data_chip.name=Схема хранения данных
+item.gtclassic.superconductor.name=Сверхпроводник
+item.gtclassic.data_orb.name=Сфера данных
+item.gtclassic.data_orb_storage.name=Сфера данных
+item.gtclassic.ductTape.name=Усовершенствованная армированная клейкая лента Braintech Aerospace FAL-84
+item.gtclassic.lithiumBattery.name=Литиумовая батарея
+item.gtclassic.energyOrb.name=Лазуратроновая энерго-сфера
+item.gtclassic.lithiumBatpack.name=Литиумовый энерго-ранец
+item.gtclassic.lapotronPack.name=Лазуротроновый энерго-ранец
+item.gtclassic.test_tube.name=Пробирка
+item.gtclassic.destructo_pack.name=Уничтожитель
+item.gtclassic.crafting_tablet.name=Планшет крафта
+item.gtclassic.electromagnet.name=Электромагнит
+item.gtclassic.tesla_staff.name=Посох теслы
+item.gtclassic.rockcutter.name=Каменный резак
+item.gtclassic.jackhammer.name=Пневматический бурильный молоток
+item.gtclassic.portable_scanner.name=Портативный сканнер
+item.gtclassic.debug_scanner.name=Сканер отладки
+item.gtclassic.echotron.name=Эхотрон
+item.gtclassic.cloaking_device.name=Устройство маскировки
+item.gtclassic.forcefield.name=Генератор личного силового поля
+item.gtclassic.light_helmet.name=Налобный фонарь
+item.gtclassic.spring_boots.name=Пружинные ботинки
+item.gtclassic.magnifying_glass.name=Лупа
+item.gtclassic.spray_can_empty.name=Пустой баллончик
+item.gtclassic.spray_can.name=Магический балончик
+item.gtclassic.super_fuel_binder.name=Реагент для супер топлива
+item.gtclassic.magic_super_fuel_binder.name=Магический реагент для супер топлива
+item.gtclassic.sensor_stick.name=Сенсорный адаптер
+
+#crops
+ic2.crop.Bauxia.name=Bauxia
+ic2.crop.Platina.name=Platina
+ic2.crop.Rubeus.name=Rubeus
+ic2.crop.Sapphirum.name=Sapphirum
+ic2.crop.GodOfThunder.name=Бог грома
+ic2.crop.Titania.name=Titania
+ic2.crop.Scheelinium.name=Scheelinium
+ic2.crop.Transformium.name=Transformium
+
+#fluids
+fluid.hydrogen=Водород
+fluid.tritium=Тритий
+fluid.helium3=Гелий-3
+fluid.helium=Гелий
+fluid.deuterium=Тяжелый водород
+fluid.beryllium=Бериллий
+fluid.oxygen=Кислород
+fluid.sodium=Натрий
+fluid.methane=Метан
+fluid.potassium=Калий
+fluid.mercury=Меркурий
+fluid.calcium=Кальций
+fluid.nitrogen=Азот
+fluid.chlorine=Хлор
+fluid.oil=Нефть
+fluid.neon=Неон
+fluid.argon=Аргон
+fluid.lubricant=Смазка
+fluid.fuel=Топливо
+fluid.magicdye=Невероятная волшебная краска
+
+#ore tooltips
+tooltip.gtclassic.oreIridium=Генерируется с очень маленьким шансом на любой высоте в любом биоме
+tooltip.gtclassic.oreSheldonite=Генерируется на высоте 10-30 в ТРОПИЧЕСКИХ биомах
+tooltip.gtclassic.oreRuby=Генерируется на высоте 0-48 В ЖАРКИХ биомах
+tooltip.gtclassic.oreSapphire=Генерируется на высоте 0-48 в ОКЕНИЧЕСКИХ биомах
+tooltip.gtclassic.oreBauxite=Генерируется на высоте 50-120 В ЛЕСНЫХ/РАВНИННЫХ биомах
+
+#item tooltips
+tooltip.gtclassic.destructo_pack=Портативное мусорное ведро
+tooltip.gtclassic.electromagnet=Превратитесь в ходячий вакуум!
+tooltip.gtclassic.tesla_staff=П Е Р Е З А Р Я Ж Е Н
+tooltip.gtclassic.jackhammer=Копает 3х3 любую каменную породу
+tooltip.gtclassic.cloaking_device=Поле невидимости
+tooltip.gtclassic.spring_boots=QwerTech набирает обороты
+
+#generic tooltips
+tooltip.gtclassic.paintedtrue=Перекрашивание механизма в белый убирает цвет
+tooltip.gtclassic.paintedfalse=Может быть окрашен в разные цвета
+tooltip.gtclassic.beaconbase=Может быть использован как основание маяка
+tooltip.gtclassic.nomobs=Мобы не могут появляться на данном блоке
+
+#machine tooltips
+tooltip.gtclassic.autocrafter0=Авто-Верстак Mk III
+tooltip.gtclassic.chargeomat0=Заряжает всё и вся
+tooltip.gtclassic.computercube0=Теперь еще более преданный WAM!
+tooltip.gtclassic.drum0=Портативный бак на 32 ведра
+tooltip.gtclassic.drum1=Шифт-клик пустой рукой, чтобы переключить вывод
+tooltip.gtclassic.echotronblock0=Показывает существ с помощью эхо-локатора
+tooltip.gtclassic.digitalchest0=Выгружает и загружает информацию в сферы данных
+tooltip.gtclassic.quantumchest0=Тут можно хранить два миллиарда вещей! Ой, я хотел сказать два билиона...
+tooltip.gtclassic.quantumtank0=Вместимостью 488.28125 чанков!
+tooltip.gtclassic.matterfabricator0=Готов производить материю настолько быстро, насколько вы способны снабжать его ресурсами!
+tooltip.gtclassic.matterfabricator1=Теперь улучшен внутренним баком для жидкостей!
+tooltip.gtclassic.uumassembler0=Устали от ручного крафта из материи? Вы нашли то, что искали.
+tooltip.gtclassic.industrialcentrifuge0=Крутит и крутит
+tooltip.gtclassic.disassembler0=Разбирает с 80% шансом возвращения ресурсов
+tooltip.gtclassic.bedrockminer0=Копает бедроковые руды радиусом в 5 блоков от него
+tooltip.gtclassic.bedrockminer1=Должен стоять на бедроковой руде
+tooltip.gtclassic.bedrockminer2=Требует вольфрамовые буровые трубы для работы
+tooltip.gtclassic.bedrockminer3=Используйте смазку, чтобы предотвратить повреждение труб
+tooltip.gtclassic.bedrockminer4=Выталкивает руду с верхней стороны.
+tooltip.gtclassic.playerdetector0=Обнаруживает активность игрока в определенном радиусе
+tooltip.gtclassic.playerdetector1=Дальность действия: 8 не заряженый, 32 заряженый.
+tooltip.gtclassic.playerdetector2=Шифт-клик пустой рукой, чтобы сменить режим
+tooltip.gtclassic.mobrepeller0=Предотвращает спавн агрессивных мобов
+tooltip.gtclassic.mobrepeller1=В радиусе: 16 не заряженый, 64 заряженый.
+tooltip.gtclassic.energytransmitter0=Беспроводная передача энергии между мирами.
+tooltip.gtclassic.energytransmitter1=Используйте сенсорный адаптер, чтобы установить целевую точку.
+tooltip.gtclassic.fusionreactor0=ФУУУУУУЗИОН-КА, ДА!
+tooltip.gtclassic.fusionreactor1=Структура:
+tooltip.gtclassic.fusionreactor2=5x1x5 "круговое" кольцо из (24) Катушек термоядерного реактора,
+tooltip.gtclassic.fusionreactor3=Контроллер в центре кольца
+tooltip.gtclassic.fusionreactor4=Вход энергии: Слева, Справа, Сверху или снизу
+tooltip.gtclassic.fusionreactor5=Выход энергии: Спереди или сзади
+tooltip.gtclassic.lightningrod0=Бззззсс это же бесплатная энергия!
+tooltip.gtclassic.lightningrod1=Структура:
+tooltip.gtclassic.lightningrod2=Контроллер с 8-255 Железного забора над ним
+tooltip.gtclassic.lightningrod3=Вывод энергии: Спереди, Сзади, Слева, Справа или же Снизу
+tooltip.gtclassic.charcoalpit0=Преобразует бревна в блоки хрупкого древесного угля,
+tooltip.gtclassic.charcoalpit1=Должен стоять над бревнами,
+tooltip.gtclassic.charcoalpit2=Бревна могут быть любой формы,
+tooltip.gtclassic.charcoalpit3=Бревна должны быть окружены землей или травой,
+tooltip.gtclassic.charcoalpit4=Обработка до 800 бревен за раз
+tooltip.gtclassic.dragoneggenergysiphon0=Используйте силу захваченных трофеев!
+tooltip.gtclassic.dragoneggenergysiphon1=Трофей должен быть расположен над сифоном.
+tooltip.gtclassic.magicenergyconverter0=Генератор, работающий на магическом топливе
+tooltip.gtclassic.magicenergyabsorber0=Поглощает магическую энергию и снимает зачарования с предметов
+tooltip.gtclassic.batteryblock0=Может использоваться как аккумулятор или энергохранилище,
+tooltip.gtclassic.batteryblock1=Принимает энергию с любой стороны, кроме верхней,
+tooltip.gtclassic.batteryblock2=Отдает энергию только с верхней стороны
+tooltip.gtclassic.lesu0=Модульное энерго-хранилище
+tooltip.gtclassic.lesu1=Шифт-клик пустой рукой, чтобы включить режимы редстоуна
+tooltip.gtclassic.lesu2=Вход энергии: слева, справа, сзади, сверху или снизу
+tooltip.gtclassic.lesu3=Выход энергии: спереди
+tooltip.gtclassic.aesu0=Энерго-хранилище с регулируемым выводом
+tooltip.gtclassic.aesu1=Шифт-клик пустой рукой, чтобы включить режимы редстоуна
+tooltip.gtclassic.idsu0=МПЭХ
+tooltip.gtclassic.idsu1=Шифт-клик пустой рукой, чтобы включить режимы редстоуна
+tooltip.gtclassic.tesseractmaster0=Создает тессеракт для прикрепленного инвентаря
+tooltip.gtclassic.tesseractslave0=Доступ к тессерактам удаленно,
+tooltip.gtclassic.tesseractslave1=Используйте сенсорный адаптер, чтобы установить доступ к тессеракту.
+tooltip.gtclassic.supercondensator0=Трансформирует невероятно большое напряжение к применимому уровню
+tooltip.gtclassic.worktable0=Применим для любых проектов
+tooltip.gtclassic.cabinet0=ПрЕмИуМ дВоЙнОй СуНдУк
+tooltip.gtclassic.translocator0=Перемещает предметы из точки А в точку Б
+tooltip.gtclassic.buffersmall0=Небольшая настраиваемая Воронка со встроенным энергопроводом
+tooltip.gtclassic.bufferlarge0=Буфер размером с сундук!
+tooltip.gtclassic.translocatorfluid0=Перемещает жидкости из точки А в точку Б
+tooltip.gtclassic.bufferfluid0=Буфер для управления жидкостями
+tooltip.gtclassic.flintmortar0=Приемлемо измельчает предметы...
+tooltip.gtclassic.ironmortar0=Превосходно измельчает предметы!
+tooltip.gtclassic.redstonetransmitter0=Беспроводная передача редстоун сигнала между мирами.
+tooltip.gtclassic.redstonetransmitter1=Используйте сенсорный адаптер, чтобы установить точку приема.
+tooltip.gtclassic.redstonereceiver0=Получает редстоун сигнал от передатчиков.
+tooltip.gtclassic.blockextender0=Передаёт содержимое прилегающих инвентарей и баков
+tooltip.gtclassic.blockextender1=Не может быть подключен к другим расширителям!
+tooltip.gtclassic.typefilter0=Буфер, который использует OrePrefixes для фильтрации
+tooltip.gtclassic.itemfilter0=Фильтр, который также сохраняет предметы в буфере!
+tooltip.gtclassic.rockbreaker0=Електрический генератор булыжника Mk IV
+tooltip.gtclassic.displayscreen0=Показывает разные, интересные штуки
+tooltip.gtclassic.displayscreen1=Используйте сенсорный адаптер, чтобы задать цель дисплея.
+tooltip.gtclassic.lamp0=Шифт-клик пустой рукой чтобы инвертировать
+
+
+#button tooltips
+button.gtclassic.test=Тестовый текст
+button.gtclassic.sort=Отсортировать инвентарь
+button.gtclassic.nopower=Не хватает энергии
+button.gtclassic.structure0=Структура готова!
+button.gtclassic.structure1=Структура неправильная!
+button.gtclassic.digitalchest0=Выгрузка в сундук
+button.gtclassic.digitalchest1=Закачка на сферу данных
+button.gtclassic.magicabsorber0=Впитывать опыт игрока
+button.gtclassic.magicabsorber1=Впитывать оставшиеся зелья
+button.gtclassic.magicabsorber2=Впитывать энергию портала края
+button.gtclassic.magicabsorber3=Предупреждение: максимум один поглотитель на один портал!
+button.gtclassic.uum0=Очистить память
+button.gtclassic.uum1=Сканировать предмет
+button.gtclassic.uum2=Очистить целевой элемент
+button.gtclassic.worktable0=Перенести предметы с сетки крафта в инвентарь игрока
+button.gtclassic.worktable1=Перенести предметы с сетки крафта в инвентарь стола
+button.gtclassic.buffer0=Испускать энергию
+button.gtclassic.buffer1=Испускать редстоун сигнал
+button.gtclassic.buffer2=Инвертировать редстоун сигнал
+button.gtclassic.buffer3=Инвертировать фильтр
+button.gtclassic.buffer4=Игнорировать NBT
+button.gtclassic.aesu0=+ 64
+button.gtclassic.aesu1=+ 1
+button.gtclassic.aesu2=- 1
+button.gtclassic.aesu3=- 64
+button.gtclassic.rockbreaker=Используйте редстоун или кварц для модуляции типов камня.
+
+jei.centrifugeu.name=%s EU
+
+itemGroup.gtclassic=GT-Classic
