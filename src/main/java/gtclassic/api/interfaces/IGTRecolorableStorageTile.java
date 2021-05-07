@@ -1,12 +1,18 @@
 package gtclassic.api.interfaces;
 
+import net.minecraft.util.EnumFacing;
+
 import java.awt.Color;
 
 public interface IGTRecolorableStorageTile {
 
-	public void setTileColor(int color);
+	void setTileColor(int color);
 
-	public Color getTileColor();
+	default void setTileColor(int color, EnumFacing facing){
+		setTileColor(color);
+	}
 
-	public boolean isColored();
+	Color getTileColor();
+
+	boolean isColored();
 }

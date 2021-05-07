@@ -26,6 +26,7 @@ import gtclassic.common.event.GTEventNeighborNotifyEvent;
 import gtclassic.common.event.GTEventOnLivingFall;
 import gtclassic.common.event.GTEventPlayerLogin;
 import gtclassic.common.event.GTEventPopulateChunk;
+import gtclassic.common.event.GTEventTextureStorage;
 import gtclassic.common.proxy.GTProxyCommon;
 import gtclassic.common.recipe.GTRecipe;
 import gtclassic.common.recipe.GTRecipeIterators;
@@ -110,6 +111,7 @@ public class GTMod {
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
+		MinecraftForge.EVENT_BUS.register(new GTEventTextureStorage());
 		if (GTConfig.general.clearerWater) {
 			MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
 		}

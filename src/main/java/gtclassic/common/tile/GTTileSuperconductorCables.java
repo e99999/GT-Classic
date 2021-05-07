@@ -1,6 +1,8 @@
 package gtclassic.common.tile;
 
 import gtclassic.api.tile.GTTileBaseSuperconductorCable;
+import gtclassic.common.GTBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
 public class GTTileSuperconductorCables {
@@ -8,6 +10,7 @@ public class GTTileSuperconductorCables {
 	public static class SuperconductorMAX extends GTTileBaseSuperconductorCable {
 
 		public SuperconductorMAX() {
+			super(12);
 		}
 
 		@Override
@@ -29,12 +32,18 @@ public class GTTileSuperconductorCables {
 		public void removeConductor() {
 			this.world.setBlockToAir(this.getPos());
 			this.world.setBlockState(this.getPos(), Blocks.FIRE.getDefaultState());
+		}
+
+		@Override
+		public Block getBlockDrop() {
+			return GTBlocks.tileSuperconductorCableMAX;
 		}
 	}
 
 	public static class SuperconductorIV extends GTTileBaseSuperconductorCable {
 
 		public SuperconductorIV() {
+			super(6);
 		}
 
 		@Override
@@ -56,12 +65,18 @@ public class GTTileSuperconductorCables {
 		public void removeConductor() {
 			this.world.setBlockToAir(this.getPos());
 			this.world.setBlockState(this.getPos(), Blocks.FIRE.getDefaultState());
+		}
+
+		@Override
+		public Block getBlockDrop() {
+			return GTBlocks.tileSuperconductorCableIV;
 		}
 	}
 
 	public static class SuperconductorHV extends GTTileBaseSuperconductorCable {
 
 		public SuperconductorHV() {
+			super(4);
 		}
 
 		@Override
@@ -83,6 +98,11 @@ public class GTTileSuperconductorCables {
 		public void removeConductor() {
 			this.world.setBlockToAir(this.getPos());
 			this.world.setBlockState(this.getPos(), Blocks.FIRE.getDefaultState());
+		}
+
+		@Override
+		public Block getBlockDrop() {
+			return GTBlocks.tileSuperconductorCableHV;
 		}
 	}
 }
