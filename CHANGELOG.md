@@ -1,5 +1,5 @@
 # Changelog
-# 1.1.7 (Not Released)
+# 1.1.7
 - Fixed Electric Autocrafter dropping simulated item slots on wrenching.
 - Changed Thorium rod durability from 12500 to 32000.
 
