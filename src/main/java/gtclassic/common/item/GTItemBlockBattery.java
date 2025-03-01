@@ -27,7 +27,7 @@ public class GTItemBlockBattery extends GTItemBlock implements IDamagelessElectr
 		}
 		this.setNoRepair();
 		this.setHasSubtypes(true);
-		this.setCreativeTab(block.getCreativeTabToDisplayOn());
+		this.setCreativeTab(block.getCreativeTab());
 	}
 
 	@Override

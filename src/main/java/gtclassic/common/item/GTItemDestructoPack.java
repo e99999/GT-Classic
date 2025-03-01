@@ -31,12 +31,12 @@ public class GTItemDestructoPack extends ItemIC2 implements IHandHeldInventory {
 		this.maxStackSize = 1;
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setRegistryName("destructo_pack");
-		this.setUnlocalizedName(GTMod.MODID + ".destructo_pack");
+		this.setTranslationKey(GTMod.MODID + ".destructo_pack");
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
+		tooltip.add(I18n.format(this.getTranslationKey().replace("item", "tooltip")));
 	}
 
 	@Override

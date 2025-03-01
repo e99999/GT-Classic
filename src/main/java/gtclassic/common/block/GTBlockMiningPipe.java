@@ -21,7 +21,7 @@ public class GTBlockMiningPipe extends BlockMiningPipe implements IGTColorBlock 
 	public GTBlockMiningPipe() {
 		this.comp = Ic2Lang.nullKey;
 		setRegistryName("tungstenminingpipe");
-		setUnlocalizedName(GTMod.MODID + ".tungstenminingpipe");
+		setTranslationKey(GTMod.MODID + ".tungstenminingpipe");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 
@@ -30,15 +30,15 @@ public class GTBlockMiningPipe extends BlockMiningPipe implements IGTColorBlock 
 		return this.comp;
 	}
 
-	public Block setUnlocalizedName(LocaleComp name) {
+	public Block setTranslationKey(LocaleComp name) {
 		this.comp = name;
-		return super.setUnlocalizedName(name.getUnlocalized());
+		return super.setTranslationKey(name.getUnlocalized());
 	}
 
 	@Override
-	public Block setUnlocalizedName(String name) {
+	public Block setTranslationKey(String name) {
 		this.comp = new LocaleBlockComp("tile." + name);
-		return super.setUnlocalizedName(name);
+		return super.setTranslationKey(name);
 	}
 
 	@Override

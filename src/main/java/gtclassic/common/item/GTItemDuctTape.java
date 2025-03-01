@@ -27,7 +27,7 @@ public class GTItemDuctTape extends Item implements IStaticTexturedItem {
 
 	public GTItemDuctTape() {
 		this.setRegistryName("duct_tape");
-		this.setUnlocalizedName(GTMod.MODID + ".ductTape");
+		this.setTranslationKey(GTMod.MODID + ".ductTape");
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(255);

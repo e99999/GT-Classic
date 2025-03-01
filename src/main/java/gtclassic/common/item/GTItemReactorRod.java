@@ -40,7 +40,7 @@ public class GTItemReactorRod extends ItemUraniumRodBase {
 		}
 		setUranium();
 		setRegistryName(this.title);
-		setUnlocalizedName(GTMod.MODID + "." + this.title);
+		setTranslationKey(GTMod.MODID + "." + this.title);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

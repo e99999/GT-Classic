@@ -33,7 +33,7 @@ public class GTItemReactorHeat extends ItemReactorHeatStorageBase implements ISt
 		this.id = id;
 		this.durability = durability;
 		setRegistryName("heatstorage_" + this.title);
-		setUnlocalizedName(GTMod.MODID + ".heatstorage_" + this.title);
+		setTranslationKey(GTMod.MODID + ".heatstorage_" + this.title);
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

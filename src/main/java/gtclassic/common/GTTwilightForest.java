@@ -79,7 +79,7 @@ public class GTTwilightForest {
 		/* Iterates the above array and grabs them from the forge loottable */
 		for (ResourceLocation loc : LootTableList.getAll()) {
 			for (String name : TFOREST_LOOTTABLES) {
-				if (loc.getResourceDomain().equals(GTValues.MOD_ID_TFOREST) && loc.getResourcePath().contains(name)) {
+				if (loc.getNamespace().equals(GTValues.MOD_ID_TFOREST) && loc.getPath().contains(name)) {
 					GTEventLootTableLoad.addTable(loc, "common");
 					GTMod.logger.info("Added GT Loot to Twilight Forest loot table: " + name);
 				}

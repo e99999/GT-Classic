@@ -19,7 +19,7 @@ public class GTItemComponent extends GTItemBaseComponent {
 	public GTItemComponent(String name, int x, int y) {
 		super(name, x, y, GTMod.MODID + "_items");
 		setRegistryName(this.name.toLowerCase());
-		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
+		setTranslationKey(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

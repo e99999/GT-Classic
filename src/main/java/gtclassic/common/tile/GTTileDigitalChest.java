@@ -112,7 +112,7 @@ public class GTTileDigitalChest extends TileEntityMachine implements IHasGui, IN
 			}
 			NBTTagCompound nbt = StackUtil.getNbtData(dataSlot());
 			NBTTagList list = nbt.getTagList("Items", 10);
-			if (list.hasNoTags()) {
+			if (list.isEmpty()) {
 				IC2.platform.messagePlayer(player, "Read Failed: No data to read");
 				return;
 			}

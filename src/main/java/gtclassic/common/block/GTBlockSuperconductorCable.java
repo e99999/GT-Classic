@@ -39,7 +39,7 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 
 	public GTBlockSuperconductorCable(int size, String suffix) {
 		super();
-		setUnlocalizedName(GTLang.SUPERCONDUCTORCABLE);
+		setTranslationKey(GTLang.SUPERCONDUCTORCABLE);
 		setRegistryName("superconductorcable" + suffix);
 		this.size = size;
 		this.setHardness(0.2F);

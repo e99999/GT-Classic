@@ -41,7 +41,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 		this.operationEnergyCost = 2000000;
 		this.tier = 4;
 		this.setRegistryName("tesla_staff");
-		this.setUnlocalizedName(GTMod.MODID + ".tesla_staff");
+		this.setTranslationKey(GTMod.MODID + ".tesla_staff");
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
@@ -68,7 +68,7 @@ public class GTItemTeslaStaff extends ItemElectricTool implements IStaticTexture
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.DARK_AQUA + I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
+		tooltip.add(TextFormatting.DARK_AQUA + I18n.format(this.getTranslationKey().replace("item", "tooltip")));
 	}
 
 	@Override

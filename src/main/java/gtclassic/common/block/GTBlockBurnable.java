@@ -30,7 +30,7 @@ public class GTBlockBurnable extends GTBlockBase implements IGTBurnableBlock {
 		this.type = type;
 		this.burnTime = burnTime;
 		setRegistryName(this.name.toLowerCase());
-		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
+		setTranslationKey(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setSoundType(SoundType.STONE);
 		setHardness(1.0F);

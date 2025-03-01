@@ -46,7 +46,7 @@ public class GTRecipeMachineHandler {
 
 	/** Private boiler for the recipe adder above **/
 	private static void addRecipe(GTRecipeMultiInputList recipeList, List<IRecipeInput> input, MachineOutput output) {
-		recipeList.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName(), recipeList.energy);
+		recipeList.addRecipe(input, output, output.getAllOutputs().get(0).getTranslationKey(), recipeList.energy);
 	}
 
 	/**

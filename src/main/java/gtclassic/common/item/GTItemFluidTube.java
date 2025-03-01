@@ -50,7 +50,7 @@ public class GTItemFluidTube extends Item {
 	public GTItemFluidTube() {
 		setMaxStackSize(64);
 		setRegistryName("test_tube");
-		setUnlocalizedName(GTMod.MODID + "." + "test_tube");
+		setTranslationKey(GTMod.MODID + "." + "test_tube");
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

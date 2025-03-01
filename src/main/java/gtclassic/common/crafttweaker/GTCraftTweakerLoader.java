@@ -27,14 +27,14 @@ public class GTCraftTweakerLoader {
 	public static void initIcons() {
 		for (String string : flagTextureMap.keySet()) {
 			ResourceLocation location = flagTextureMap.get(string);
-			addTexture(location.getResourceDomain() + "_" + string, location);
+			addTexture(location.getNamespace() + "_" + string, location);
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	private static void addTexture(String name, ResourceLocation location) {
-		addSprite(new Sprites.SpriteData(name, location.getResourceDomain() + ":" + "textures/"
-				+ location.getResourcePath() + ".png", new Sprites.SpriteInfo(1, 1)));
+		addSprite(new Sprites.SpriteData(name, location.getNamespace() + ":" + "textures/"
+				+ location.getPath() + ".png", new Sprites.SpriteInfo(1, 1)));
 		addTextureEntry(new Sprites.TextureEntry(name, 0, 0, 1, 1));
 	}
 }

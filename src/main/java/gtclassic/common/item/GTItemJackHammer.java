@@ -51,13 +51,13 @@ public class GTItemJackHammer extends ItemElectricTool implements IMiningDrill, 
 		this.maxCharge = 10000;
 		this.transferLimit = 100;
 		this.setRegistryName("jackhammer");
-		this.setUnlocalizedName(GTMod.MODID + "." + "jackhammer");
+		this.setTranslationKey(GTMod.MODID + "." + "jackhammer");
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
+		tooltip.add(I18n.format(this.getTranslationKey().replace("item", "tooltip")));
 	}
 
 	@Override

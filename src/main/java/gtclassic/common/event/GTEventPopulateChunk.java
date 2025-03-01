@@ -32,7 +32,7 @@ public class GTEventPopulateChunk {
 		if (!world.provider.getDimensionType().equals(DimensionType.OVERWORLD)) {
 			return;
 		}
-		Chunk chunk = world.getChunkFromChunkCoords(event.getChunkX(), event.getChunkZ());
+		Chunk chunk = world.getChunk(event.getChunkX(), event.getChunkZ());
 		for (int x = 0; x < 16; ++x) {
 			for (int z = 0; z < 16; ++z) {
 				Biome biomegenbase = world.getBiome(new BlockPos(chunk.x * 16 + x, 128, chunk.z * 16 + z));

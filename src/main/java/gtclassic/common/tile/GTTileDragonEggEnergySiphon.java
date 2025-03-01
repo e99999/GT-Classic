@@ -144,7 +144,7 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 
 	private static void addFakeRecipe(List<IRecipeInput> input, MachineOutput output) {
 		if (!input.isEmpty()) {
-			RECIPE_LIST.addRecipe(input, output, input.get(0).getInputs().get(0).getUnlocalizedName(), 128);
+			RECIPE_LIST.addRecipe(input, output, input.get(0).getInputs().get(0).getTranslationKey(), 128);
 		}
 	}
 

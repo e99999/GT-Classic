@@ -47,7 +47,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
 		this.setRegistryName("electromagnet");
-		this.setUnlocalizedName(GTMod.MODID + ".electromagnet");
+		this.setTranslationKey(GTMod.MODID + ".electromagnet");
 		this.maxCharge = 10000;
 		this.transferLimit = 100;
 		this.tier = 1;
@@ -56,7 +56,7 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
+		tooltip.add(I18n.format(this.getTranslationKey().replace("item", "tooltip")));
 	}
 
 	@Override
@@ -129,8 +129,8 @@ public class GTItemElectromagnet extends BasicElectricItem implements IAdvancedT
 	public ModelResourceLocation createResourceLocationForStack(ItemStack stack) {
 		int damage = stack.getItemDamage();
 		ResourceLocation location = this.getRegistryName();
-		String name = stack.getUnlocalizedName();
-		this.model[damage] = new ModelResourceLocation(location.getResourceDomain()
+		String name = stack.getTranslationKey();
+		this.model[damage] = new ModelResourceLocation(location.getNamespace()
 				+ name.substring(name.indexOf(".") + 1) + damage, "inventory");
 		return this.model[damage];
 	}

@@ -35,7 +35,7 @@ public abstract class GTBlockBaseMachine extends BlockMultiID {
 	public GTBlockBaseMachine(Material materialIn, LocaleComp comp, int tooltipSize) {
 		super(materialIn);
 		this.tooltipSize = tooltipSize;
-		setUnlocalizedName(comp);
+		setTranslationKey(comp);
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public abstract class GTBlockBaseMachine extends BlockMultiID {
 			return;
 		}
 		for (int i = 0; i < this.tooltipSize; i++) {
-			tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip") + i));
+			tooltip.add(I18n.format(this.getTranslationKey().replace("tile", "tooltip") + i));
 		}
 	}
 

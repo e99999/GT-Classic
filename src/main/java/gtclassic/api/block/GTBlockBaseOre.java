@@ -86,7 +86,7 @@ public abstract class GTBlockBaseOre extends GTBlockBase implements ILayeredBloc
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 

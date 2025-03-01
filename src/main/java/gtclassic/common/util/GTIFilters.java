@@ -31,7 +31,7 @@ public class GTIFilters {
 			if (GTHelperStack.isEqual(stack, GTMaterialGen.getIc2(Ic2Items.personalSafe))) {
 				return false;
 			}
-			if (stack.getUnlocalizedName().contains("tile.shulker")) {
+			if (stack.getTranslationKey().contains("tile.shulker")) {
 				return false;
 			}
 			return true;

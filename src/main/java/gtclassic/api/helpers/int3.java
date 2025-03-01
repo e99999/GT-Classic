@@ -105,8 +105,7 @@ public class int3 {
 	public int3 offset(int n, EnumFacing facing) {
 		if (n == 0 || facing == null)
 			return this;
-		return set(getX() + facing.getFrontOffsetX() * n, getY() + facing.getFrontOffsetY() * n, getZ()
-				+ facing.getFrontOffsetZ() * n);
+		return set(getX() + facing.getXOffset() * n, getY() + facing.getYOffset() * n, getZ() + facing.getZOffset() * n);
 	}
 
 	public BlockPos asBlockPos() {

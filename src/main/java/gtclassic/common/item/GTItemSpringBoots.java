@@ -26,13 +26,13 @@ public class GTItemSpringBoots extends ItemCompositeArmor {
 	public GTItemSpringBoots() {
 		super(15, EntityEquipmentSlot.FEET);
 		this.setRegistryName("spring_boots");
-		this.setUnlocalizedName(GTMod.MODID + "." + "spring_boots");
+		this.setTranslationKey(GTMod.MODID + "." + "spring_boots");
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(TextFormatting.ITALIC + I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
+		tooltip.add(TextFormatting.ITALIC + I18n.format(this.getTranslationKey().replace("item", "tooltip")));
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
