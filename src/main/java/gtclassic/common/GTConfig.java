@@ -44,7 +44,7 @@ public class GTConfig {
 		public boolean enableBetterTwilightDurability = true;
 		public boolean energySiphonJustSucksEggs = false;
 		public boolean vanillaSlabsBackToBlocks = true;
-		public boolean enableGTCXWarning = true;
+		//public boolean enableGTCXWarning = true;
 	}
 
 	@Comment("World Generation")

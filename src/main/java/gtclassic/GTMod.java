@@ -24,7 +24,6 @@ import gtclassic.common.event.GTEventItemTooltip;
 import gtclassic.common.event.GTEventLootTableLoad;
 import gtclassic.common.event.GTEventNeighborNotifyEvent;
 import gtclassic.common.event.GTEventOnLivingFall;
-import gtclassic.common.event.GTEventPlayerLogin;
 import gtclassic.common.event.GTEventPopulateChunk;
 import gtclassic.common.proxy.GTProxyCommon;
 import gtclassic.common.recipe.GTRecipe;
@@ -125,9 +124,9 @@ public class GTMod {
 		if (GTConfig.general.reduceGrassOnWorldGen) {
 			MinecraftForge.TERRAIN_GEN_BUS.register(new GTEventDecorateBiome());
 		}
-		if (GTConfig.general.enableGTCXWarning && Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
-			MinecraftForge.EVENT_BUS.register(new GTEventPlayerLogin());
-		}
+		//if (GTConfig.general.enableGTCXWarning && Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
+		//	MinecraftForge.EVENT_BUS.register(new GTEventPlayerLogin());
+		//}
 		IC2.saveManager.registerGlobal("IDSU_Storage", GTIDSUStorageManager.class, false);
 		proxy.init(e);
 	}

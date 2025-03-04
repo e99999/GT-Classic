@@ -257,6 +257,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	public void getData(Map<String, Boolean> data) {
 		String status = this.canExtendCapabilites() ? "Connected to Tesseract Generator"
 				: "Failed to connect Tesseract Generator";
+		//if this has no power say "Needs power to connect"
 		data.put(status, true);
 		data.put("Redstone Level: " + this.redstoneLevel, true);
 	}
