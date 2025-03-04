@@ -41,7 +41,7 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 		this.flag = flag;
 		this.comp = Ic2Lang.nullKey;
 		setRegistryName(this.material.getName() + this.flag.getSuffix());
-		setUnlocalizedName(GTMod.MODID + "." + this.flag.getPrefix() + this.material.getDisplayName());
+		setTranslationKey(GTMod.MODID + "." + this.flag.getPrefix() + this.material.getDisplayName());
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(5.0F);
 		setResistance(15.0F);
@@ -103,14 +103,14 @@ public class GTMaterialBlock extends Block implements ITexturedBlock, IGTColorBl
 		return this.comp;
 	}
 
-	public Block setUnlocalizedName(LocaleComp name) {
+	public Block setTranslationKey(LocaleComp name) {
 		this.comp = name;
-		return super.setUnlocalizedName(name.getUnlocalized());
+		return super.setTranslationKey(name.getUnlocalized());
 	}
 
 	@Override
-	public Block setUnlocalizedName(String name) {
+	public Block setTranslationKey(String name) {
 		this.comp = new LocaleBlockComp("tile." + name);
-		return super.setUnlocalizedName(name);
+		return super.setTranslationKey(name);
 	}
 }

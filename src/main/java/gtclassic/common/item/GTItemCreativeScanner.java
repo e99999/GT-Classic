@@ -55,7 +55,7 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 		super(0);
 		this.setRightClick();
 		setRegistryName("debug_scanner");
-		setUnlocalizedName(GTMod.MODID + ".debug_scanner");
+		setTranslationKey(GTMod.MODID + ".debug_scanner");
 		setCreativeTab(GTMod.creativeTabGT);
 		this.maxCharge = Integer.MAX_VALUE;
 		this.transferLimit = Integer.MAX_VALUE;

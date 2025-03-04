@@ -18,7 +18,7 @@ public class GTItemForcefield extends GTItemBaseToggleItem implements IStaticTex
 	public GTItemForcefield() {
 		super(4, 10000000, 1000);
 		this.setRegistryName("forcefield");
-		this.setUnlocalizedName(GTMod.MODID + "." + "forcefield");
+		this.setTranslationKey(GTMod.MODID + "." + "forcefield");
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 

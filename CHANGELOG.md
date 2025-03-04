@@ -1,4 +1,11 @@
 # Changelog
+# 1.2.1
+- Fixed so GT Classic can run on the latest Forge and IC2C, ported fixes from Rongmario's Vintage Gregtech fork. 
+- Removed GTCX/VGTX warning message on player login and associated config option.
+- No other changes to this version other than fixes.
+- If you want GTC to be exactly as I left it this is the version to play, possible futures updates will bring small changes and updates.
+- Any future versions will still remain compatible with GTCX/VGTX.
+
 # 1.1.7
 - Fixed Electric Autocrafter dropping simulated item slots on wrenching.
 - Changed Thorium rod durability from 12500 to 32000.

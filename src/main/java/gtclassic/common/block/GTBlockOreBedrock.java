@@ -23,7 +23,7 @@ public class GTBlockOreBedrock extends GTBlockBaseOre {
 		this.name = name;
 		this.id = id;
 		setRegistryName(this.name.toLowerCase() + "_bedrockore");
-		setUnlocalizedName(GTLang.ORE_BEDROCK);
+		setTranslationKey(GTLang.ORE_BEDROCK);
 		setCreativeTab(GTMod.creativeTabGT);
 		setBlockUnbreakable();
 		setResistance(6000000.0F);

@@ -38,7 +38,7 @@ public class GTBlockOreFlower extends GTBlockBase implements ICustomModeledBlock
 		this.name = name;
 		this.id = id;
 		setRegistryName(this.name.toLowerCase());
-		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
+		setTranslationKey(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(0.8F);
 		setResistance(0.2F);
@@ -62,7 +62,7 @@ public class GTBlockOreFlower extends GTBlockBase implements ICustomModeledBlock
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

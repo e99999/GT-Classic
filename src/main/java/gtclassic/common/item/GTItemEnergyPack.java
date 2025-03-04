@@ -32,7 +32,7 @@ public class GTItemEnergyPack extends ItemIC2AdvArmorBase implements IDamageless
 		this.texture = tex;
 		this.maxEnergy = max;
 		this.setRegistryName(reg);
-		this.setUnlocalizedName(GTMod.MODID + unl);
+		this.setTranslationKey(GTMod.MODID + unl);
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.tier = lvl; // 1;
 		this.transferlimit = limit;

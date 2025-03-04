@@ -25,7 +25,7 @@ public class GTItemEchotron extends GTItemBaseToggleItem implements IStaticTextu
 	public GTItemEchotron() {
 		super(1, 1000, 10);
 		this.setRegistryName("echotron");
-		this.setUnlocalizedName(GTMod.MODID + "." + "echotron");
+		this.setTranslationKey(GTMod.MODID + "." + "echotron");
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.toggleSound = Ic2Sounds.cutterUse;
 	}

@@ -243,6 +243,6 @@ public class GTTileDisassembler extends GTTileBaseMachine {
 
 	public static boolean canItemBeReturned(ItemStack stack) {
 		return !GTHelperStack.isEqual(stack, Ic2Items.uuMatter.copy()) && !stack.isItemStackDamageable()
-				&& !stack.getUnlocalizedName().contains("bucket");
+				&& !stack.getTranslationKey().contains("bucket");
 	}
 }

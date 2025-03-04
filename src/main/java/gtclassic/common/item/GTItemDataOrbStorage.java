@@ -25,7 +25,7 @@ public class GTItemDataOrbStorage extends GTItemComponent {
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
 		NBTTagList list = nbt.getTagList("Items", 10);
-		if (list.hasNoTags()) {
+		if (list.isEmpty()) {
 			tooltip.add(I18n.format("No Data Stored... How did you get this?"));
 			return;
 		}

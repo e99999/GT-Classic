@@ -24,7 +24,7 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColo
 		this.material = material;
 		this.flag = flag;
 		setRegistryName(this.material.getName() + this.flag.getSuffix());
-		setUnlocalizedName(GTMod.MODID + "." + this.flag.getPrefix() + this.material.getDisplayName());
+		setTranslationKey(GTMod.MODID + "." + this.flag.getPrefix() + this.material.getDisplayName());
 		setCreativeTab(GTMod.creativeTabGT);
 	}
 

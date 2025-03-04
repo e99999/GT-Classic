@@ -41,7 +41,7 @@ public class GTItemSprayCan extends Item implements IStaticTexturedItem, IGTColo
 
 	public GTItemSprayCan() {
 		this.setRegistryName("spray_can");
-		this.setUnlocalizedName(GTMod.MODID + "." + "spray_can");
+		this.setTranslationKey(GTMod.MODID + "." + "spray_can");
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.setMaxDamage(127);
 		this.setMaxStackSize(1);

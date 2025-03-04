@@ -18,7 +18,7 @@ public class GTItemEnergyOrb extends ItemBatteryBase {
 		super(0);
 		this.setRightClick();
 		this.setRegistryName("energy_orb");
-		this.setUnlocalizedName(GTMod.MODID + ".energyOrb");
+		this.setTranslationKey(GTMod.MODID + ".energyOrb");
 		this.maxCharge = 10000000;
 		this.transferLimit = 1000;
 		this.tier = 4;

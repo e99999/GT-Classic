@@ -31,7 +31,7 @@ public class GTBlockCasing extends GTBlockBase {
 		this.name = name;
 		this.id = id;
 		setRegistryName(this.name.toLowerCase());
-		setUnlocalizedName(GTMod.MODID + "." + this.name.toLowerCase());
+		setTranslationKey(GTMod.MODID + "." + this.name.toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setSoundType(SoundType.METAL);
 		setResistance(resistance);

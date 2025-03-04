@@ -466,7 +466,7 @@ public class GTTileMagicEnergyConverter extends TileEntityMachine implements ITa
 
 	private static void addRecipe(List<IRecipeInput> input, MachineOutput output) {
 		if (!input.isEmpty()) {
-			RECIPE_LIST.addRecipe(input, output, input.get(0).getInputs().get(0).getUnlocalizedName(), 24);
+			RECIPE_LIST.addRecipe(input, output, input.get(0).getInputs().get(0).getTranslationKey(), 24);
 		}
 	}
 

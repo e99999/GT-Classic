@@ -30,7 +30,7 @@ public class GTBlockOre extends GTBlockBaseOre {
 		this.name = name;
 		this.id = id;
 		setRegistryName(this.name.toLowerCase() + "_ore");
-		setUnlocalizedName(GTMod.MODID + ".ore" + this.name.substring(0, 1).toUpperCase()
+		setTranslationKey(GTMod.MODID + ".ore" + this.name.substring(0, 1).toUpperCase()
 				+ this.name.substring(1).toLowerCase());
 		setCreativeTab(GTMod.creativeTabGT);
 		setHardness(hardness);
@@ -40,7 +40,7 @@ public class GTBlockOre extends GTBlockBaseOre {
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip")));
+		tooltip.add(I18n.format(this.getTranslationKey().replace("tile", "tooltip")));
 	}
 
 	@Override

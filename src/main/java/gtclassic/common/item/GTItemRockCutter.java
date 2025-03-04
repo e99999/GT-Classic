@@ -41,7 +41,7 @@ public class GTItemRockCutter extends ItemElectricTool implements IMiningDrill, 
 		this.maxCharge = 10000;
 		this.transferLimit = 100;
 		this.setRegistryName("rockcutter");
-		this.setUnlocalizedName(GTMod.MODID + "." + "rockcutter");
+		this.setTranslationKey(GTMod.MODID + "." + "rockcutter");
 		this.setCreativeTab(GTMod.creativeTabGT);
 	}
 

@@ -19,7 +19,7 @@ public class GTItemLithiumBattery extends ItemBatteryBase {
 		super(0);
 		this.setRightClick();
 		this.setRegistryName("lithium_battery");
-		this.setUnlocalizedName(GTMod.MODID + ".lithiumBattery");
+		this.setTranslationKey(GTMod.MODID + ".lithiumBattery");
 		this.maxCharge = 100000;
 		this.transferLimit = 128;
 		this.tier = 1;

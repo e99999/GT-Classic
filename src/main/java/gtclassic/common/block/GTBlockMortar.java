@@ -47,7 +47,7 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
 	public GTBlockMortar(String name, String tool) {
 		super(Material.GROUND);
 		setRegistryName(name);
-		setUnlocalizedName(GTMod.MODID + "." + name);
+		setTranslationKey(GTMod.MODID + "." + name);
 		setCreativeTab(GTMod.creativeTabGT);
 		setSoundType(SoundType.METAL);
 		setResistance(10.0F);
@@ -58,7 +58,7 @@ public class GTBlockMortar extends GTBlockBase implements ICustomModeledBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(this.getUnlocalizedName().replace("tile", "tooltip") + 0));
+		tooltip.add(I18n.format(this.getTranslationKey().replace("tile", "tooltip") + 0));
 	}
 
 	@Override

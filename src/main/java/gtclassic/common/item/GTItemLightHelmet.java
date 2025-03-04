@@ -30,7 +30,7 @@ public class GTItemLightHelmet extends ItemIC2AdvArmorBase implements IDamageles
 	public GTItemLightHelmet() {
 		super(-1, EntityEquipmentSlot.HEAD);
 		this.setRegistryName("light_helmet");
-		this.setUnlocalizedName(GTMod.MODID + "." + "light_helmet");
+		this.setTranslationKey(GTMod.MODID + "." + "light_helmet");
 		this.setCreativeTab(GTMod.creativeTabGT);
 		setMaxDamage(0);
 	}

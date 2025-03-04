@@ -35,7 +35,7 @@ public class GTItemIsotopicRod extends ItemDepletedUraniumRodBase {
 		setUranium();
 		setRegistryName(this.title);
 		setCreativeTab(GTMod.creativeTabGT);
-		setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + GTMod.MODID + "." + this.title));
+		setTranslationKey(new LangComponentHolder.LocaleItemComp("item." + GTMod.MODID + "." + this.title));
 	}
 
 	public void setUranium() {

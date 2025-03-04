@@ -27,14 +27,14 @@ public class GTItemCloakingDevice extends GTItemBaseToggleItem implements IStati
 	public GTItemCloakingDevice() {
 		super(4, 10000000, 1000);
 		this.setRegistryName("cloaking_device");
-		this.setUnlocalizedName(GTMod.MODID + "." + "cloaking_device");
+		this.setTranslationKey(GTMod.MODID + "." + "cloaking_device");
 		this.setCreativeTab(GTMod.creativeTabGT);
 		this.toggleSound = GTSounds.CLOAK;
 	}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-		tooltip.add(I18n.format(this.getUnlocalizedName().replace("item", "tooltip")));
+		tooltip.add(I18n.format(this.getTranslationKey().replace("item", "tooltip")));
 	}
 
 	@Override

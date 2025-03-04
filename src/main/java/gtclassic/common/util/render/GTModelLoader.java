@@ -27,12 +27,12 @@ public class GTModelLoader implements ICustomModelLoader {
 
 	@Override
 	public boolean accepts(ResourceLocation loc) {
-		return loc.getResourceDomain().equals(GTMod.MODID) && modelLookup.containsKey(loc.getResourcePath());
+		return loc.getNamespace().equals(GTMod.MODID) && modelLookup.containsKey(loc.getPath());
 	}
 
 	@Override
 	public IModel loadModel(ResourceLocation modelLoc) {
-		IModel model = modelLookup.get(modelLoc.getResourcePath());
+		IModel model = modelLookup.get(modelLoc.getPath());
 		return model != null ? model : ModelLoaderRegistry.getMissingModel();
 	}
 }
