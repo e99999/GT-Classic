@@ -1,6 +1,6 @@
 # Changelog
 # 1.2.2
-- The magical unf**kening!
+- The magical unf**kening and tooltips update!
 - Similar to later GT's the Dragon Egg/Trophy Energy Siphon has been deprecated and its functionallity now resides in the Magic Energy Absorber.
 - Any existing Siphons in the world will automatically be converted to Magic Energy Absorbers once loaded or placed.
 - The Magic Energy Absorber now generates a flat rate 128EU per tick with ANY valid trophy instead of a variable rate, can use any Twilight Forest trophy or Dragon Egg. It can now longer draw power from active beacons.
@@ -8,6 +8,8 @@
 - Magic Energy Absorber and Magic Energy Converter have slightly easier recipes, the converter no longer needs a Beacon to craft but the Absorber still does.
 - Superconductor cable full block is no longer a valid beacon base to account for the Absorber (previously trophy siphon) no longer allowing power from beacons.
 - Superconductor cable full block recipe is now just the previous/max tier cable + iron scaffolding because it offers no benefit other than being a full block now.
+- Personal Forcefield no longer repells passive/friendly creatures, only hostile ones.
+- Increased range of Echotron item and machine from 16 and 32 blocks to 24 and 48.
 
 # 1.2.1
 - Fixed so GT Classic can run on the latest Forge and IC2C, ported fixes from Rongmario's Vintage Gregtech fork. 

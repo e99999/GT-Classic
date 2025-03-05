@@ -34,7 +34,7 @@ public class GTItemEchotron extends GTItemBaseToggleItem implements IStaticTextu
 	public boolean onItemActive(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected) {
 		if (worldIn.getTotalWorldTime() % 100 == 0) {
 			entityIn.playSound(GTSounds.SONAR, 1.0F, 1.0F);
-			AxisAlignedBB area = new AxisAlignedBB(entityIn.getPosition()).grow(16);
+			AxisAlignedBB area = new AxisAlignedBB(entityIn.getPosition()).grow(24.0D);
 			List<Entity> list = entityIn.world.getEntitiesInAABBexcluding(entityIn, area, null);
 			if (!list.isEmpty()) {
 				for (Entity thing : list) {

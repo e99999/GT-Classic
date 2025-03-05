@@ -14,7 +14,6 @@
 - Redstone transmitter tooltip should explain need to connect to redstone reciever, and no need for power
 - Possibly make redstone transmitter tiles and screens work interdimensionally
 - Better tooltips for tesseracts
-- Increase range of echotron slightly
 - Add tooltips for most items/tools
 - Add icon for EU output in magic fuel generator recipes? (maybe)
 - Add Gregorius-Tree lol (use oak tree as base)

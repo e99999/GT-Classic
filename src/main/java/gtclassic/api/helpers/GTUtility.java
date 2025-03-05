@@ -16,12 +16,9 @@ import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.item.EntityArmorStand;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -57,30 +54,23 @@ public class GTUtility {
 	}
 
 	/**
-	 * Pushes entities away from target within an area, code adapted from
+	 * Pushes hostile entities away from target within an area, code adapted from
 	 * EE/ProjectE.
 	 */
-	public static void repelEntitiesInAABBFromPoint(World world, AxisAlignedBB boundingbox, double x, double y,
+	public static void repelHostileEntitiesInAABBFromPoint(World world, AxisAlignedBB boundingbox, double x, double y,
 			double z) {
 		List<Entity> list = world.getEntitiesWithinAABB(Entity.class, boundingbox);
 		if (list.isEmpty()) {
 			return;
 		}
 		for (Entity entity : list) {
-			if ((entity instanceof EntityLiving) || (entity instanceof IProjectile)) {
-				if (entity instanceof EntityArrow && ((EntityArrow) entity).onGround) {
-					continue;
-				}
-				if (entity instanceof EntityArmorStand) {
-					continue;
-				}
+			if (entity instanceof EntityMob) {
 				Vec3d p = new Vec3d(x, y, z);
 				Vec3d t = new Vec3d(entity.posX, entity.posY, entity.posZ);
 				double distance = p.distanceTo(t) + 0.1D;
 				Vec3d r = new Vec3d(t.x - p.x, t.y - p.y, t.z - p.z);
 				entity.motionX += r.x / 1.5D / distance;
 				entity.motionY += r.y / 1.5D / distance;
-				entity.motionZ += r.z / 1.5D / distance;
 			}
 		}
 	}
