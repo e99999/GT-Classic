@@ -255,8 +255,8 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1));
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), "CC", "CC", 'C', GTBlocks.tileSuperconductorCableHV);
 		/** Superconductor Cable Beacon **/
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1));
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 4), GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), Ic2Items.ironScaffold);
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1));
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), "CRC", "JMN", "CBC", 'C', GTValues.CIRCUIT_BASIC, 'R', "record", 'J', Blocks.JUKEBOX, 'M', GTValues.MACHINE_ADV, 'N', Blocks.NOTEBLOCK, 'B', Ic2Items.battery);
 		/** Monster Repellator **/

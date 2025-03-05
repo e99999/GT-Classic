@@ -1,4 +1,10 @@
 # Changelog
+# 1.2.2
+- The magical unf**kening!
+- 
+- Superconductor cable full block is no longer a valid beacon base to account for magic absorber (previously trophy siphon) no longer allowing power from beacons.
+- Superconductor cable full block recipe is now just the previous/max tier cable + iron scaffolding because it offers no benefit other than being a full block now.
+
 # 1.2.1
 - Fixed so GT Classic can run on the latest Forge and IC2C, ported fixes from Rongmario's Vintage Gregtech fork. 
 - Removed GTCX/VGTX warning message on player login and associated config option.
