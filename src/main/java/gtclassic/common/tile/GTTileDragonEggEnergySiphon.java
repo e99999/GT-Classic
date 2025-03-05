@@ -4,6 +4,7 @@ import java.util.Random;
 
 import gtclassic.api.helpers.GTValues;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
+import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTTwilightForest;
 import ic2.api.energy.event.EnergyTileLoadEvent;
@@ -16,6 +17,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -65,7 +67,16 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.enet = true;
 		}
-		this.checkForEgg();
+		//this.checkForEgg();
+		if (this.isSimulating()) {
+			world.removeTileEntity(pos);
+		}
+		world.setBlockState(pos, GTBlocks.tileMagicEnergyAbsorber.getDefaultBlockState());
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof GTTileMagicEnergyAbsorber) {
+			GTTileMagicEnergyAbsorber absorber = (GTTileMagicEnergyAbsorber) tile;
+			absorber.onLoaded();
+		}
 	}
 
 	@Override

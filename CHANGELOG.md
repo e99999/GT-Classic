@@ -1,8 +1,12 @@
 # Changelog
 # 1.2.2
 - The magical unf**kening!
-- 
-- Superconductor cable full block is no longer a valid beacon base to account for magic absorber (previously trophy siphon) no longer allowing power from beacons.
+- Similar to later GT's the Dragon Egg/Trophy Energy Siphon has been deprecated and its functionallity now resides in the Magic Energy Absorber.
+- Any existing Siphons in the world will automatically be converted to Magic Energy Absorbers once loaded or placed.
+- The Magic Energy Absorber now generates a flat rate 128EU per tick with ANY valid trophy instead of a variable rate, can use any Twilight Forest trophy or Dragon Egg. It can now longer draw power from active beacons.
+- The Magic Energy Absorber no longer has wacky functions no one to my knowledge ever used i.e absorbing enchanted tools and books or the feature I added to absord lingering potions or draw energy from end portals.
+- Magic Energy Absorber and Magic Energy Converter have slightly easier recipes, the converter no longer needs a Beacon to craft but the Absorber still does.
+- Superconductor cable full block is no longer a valid beacon base to account for the Absorber (previously trophy siphon) no longer allowing power from beacons.
 - Superconductor cable full block recipe is now just the previous/max tier cable + iron scaffolding because it offers no benefit other than being a full block now.
 
 # 1.2.1

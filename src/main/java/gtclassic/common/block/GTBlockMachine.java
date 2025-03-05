@@ -164,9 +164,7 @@ public class GTBlockMachine extends GTBlockBaseMachine implements IGTReaderInfoB
 			tooltip.add((Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] { 24.0 })));
 		}
 		if (this == GTBlocks.tileMagicEnergyAbsorber) {
-			tooltip.add((Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] {
-					Ic2InfoLang.electricTransferRateVariable.getLocalized() })));
-			tooltip.add((Ic2InfoLang.euOutput.getLocalizedFormatted(new Object[] { 128 })));
+			tooltip.add((Ic2InfoLang.electricProduction.getLocalizedFormatted(new Object[] { 128.0 })));
 		}
 		if (this == GTBlocks.tileFabricator) {
 			tooltip.add((Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(new Object[] { 134217728 })));

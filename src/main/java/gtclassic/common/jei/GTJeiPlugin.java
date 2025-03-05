@@ -69,6 +69,7 @@ public class GTJeiPlugin implements IModPlugin {
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTItems.orbDataStorage));
+			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon));
 			if (Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
 				blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.tileFusionReactor));
 			}
