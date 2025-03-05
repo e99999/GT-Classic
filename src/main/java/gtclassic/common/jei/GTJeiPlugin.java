@@ -17,7 +17,6 @@ import gtclassic.common.GTItems;
 import gtclassic.common.block.GTBlockMortar;
 import gtclassic.common.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.common.gui.GTGuiMachine.GTMatterFabricatorGui;
-import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import ic2.jeiIntigration.SubModul;
@@ -66,10 +65,6 @@ public class GTJeiPlugin implements IModPlugin {
 			registry.addRecipes(GTBlockMortar.RECIPE_LIST.getRecipeList(), "gt.mortar");
 			registry.addRecipeCatalyst(GTMaterialGen.get(GTBlocks.flintMortar), "gt.mortar");
 			registry.addRecipeCatalyst(GTMaterialGen.get(GTBlocks.ironMortar), "gt.mortar");
-			// Trophy Energy Sources
-			registry.handleRecipes(MultiRecipe.class, GTJeiTrophyWrapper::new, "gt.trophies");
-			registry.addRecipes(GTTileDragonEggEnergySiphon.RECIPE_LIST.getRecipeList(), "gt.trophies");
-			registry.addRecipeCatalyst(new ItemStack(GTBlocks.tileDragonEggEnergySiphon), "gt.trophies");
 			// Blacklist
 			IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
@@ -98,8 +93,6 @@ public class GTJeiPlugin implements IModPlugin {
 		registry.addRecipeCategories(new GTJeiMagicFuelCategory(registry.getJeiHelpers().getGuiHelper(), "gt.magicfuels", GTBlocks.tileMagicEnergyConverter));
 		// mortar
 		registry.addRecipeCategories(new GTJeiMortarCategory(registry.getJeiHelpers().getGuiHelper(), "gt.mortar", GTBlocks.ironMortar));
-		// trophies
-		registry.addRecipeCategories(new GTJeiTrophyCategory(registry.getJeiHelpers().getGuiHelper(), "gt.trophies", GTBlocks.tileDragonEggEnergySiphon));
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

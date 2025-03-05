@@ -31,7 +31,6 @@ import gtclassic.common.recipe.GTRecipeIterators;
 import gtclassic.common.recipe.GTRecipeMods;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileDisassembler;
-import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileUUMAssembler;
@@ -140,7 +139,6 @@ public class GTMod {
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeMods.postInit();
 		GTTileDisassembler.init();
-		GTTileDragonEggEnergySiphon.initFakeRecipes();
 		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)) {
 			GTTwilightForest.initStalactites();
 			GTTwilightForest.initLootTables();

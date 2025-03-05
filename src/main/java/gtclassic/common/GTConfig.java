@@ -42,7 +42,6 @@ public class GTConfig {
 		public boolean oneMagicAbsorberPerEndPortal = true;
 		public boolean enableQuickerLeafDecay = true;
 		public boolean enableBetterTwilightDurability = true;
-		public boolean energySiphonJustSucksEggs = false;
 		public boolean vanillaSlabsBackToBlocks = true;
 		//public boolean enableGTCXWarning = true;
 	}
