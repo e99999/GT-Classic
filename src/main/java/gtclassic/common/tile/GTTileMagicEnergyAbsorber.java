@@ -18,13 +18,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 
 public class GTTileMagicEnergyAbsorber extends TileEntityMachine
-		implements IEnergySource, IEmitterTile, IGTDisplayTickTile {
+		implements IEnergySource, IEmitterTile, IGTDisplayTickTile, ITickable {
 
 	protected double production = 128.0D;
 	int storage;
@@ -46,11 +47,12 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine
 
 	@Override
 	public void drawEnergy(double amount) {
+		this.storage = (int)(this.storage - amount);
 	}
 
 	@Override
 	public double getOfferedEnergy() {
-		return this.getActive() ? this.production : 0.0D;
+		return this.storage;
 	}
 
 	@Override
@@ -81,11 +83,19 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine
 	public void onBlockUpdate(Block block) {
 		this.checkForEgg();
 	}
+	
+
+	@Override
+	public void update() {
+		if (getActive()) {
+			this.storage = (int) this.production;
+		}
+	}
 
 	private void checkForEgg() {
 		boolean canAbsorb = isValidAbsorberBlock(world, pos.up());
-		this.production = canAbsorb ? 128 : 0;
-		this.setActive(this.production > 0);
+		//this.production = canAbsorb ? 128 : 0;
+		this.setActive(canAbsorb);
 	}
 	
 	/**
@@ -134,4 +144,5 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine
 			}
 		}
 	}
+
 }
