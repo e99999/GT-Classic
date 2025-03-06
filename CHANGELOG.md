@@ -9,7 +9,6 @@
 - Magic Energy Absorber and Magic Energy Converter have slightly easier recipes, the converter no longer needs a Beacon to craft but the Absorber still does.
 - Superconductor cable full block is no longer a valid beacon base to account for the Absorber (previously trophy siphon) no longer allowing power from beacons.
 - Superconductor cable full block recipe is now just the previous/max tier cable + iron scaffolding because it offers no benefit other than being a full block now.
-- Personal Forcefield no longer repells passive/friendly creatures, only hostile ones.
 - Increased range of Echotron item and machine from 16 and 32 blocks to 24 and 48.
 
 # 1.2.1

@@ -34,7 +34,7 @@ public class GTItemForcefield extends GTItemBaseToggleItem implements IStaticTex
 
 	@Override
 	public boolean onItemActive(ItemStack stack, World worldIn, Entity entityIn, int slot, boolean selected) {
-		GTUtility.repelHostileEntitiesInAABBFromPoint(worldIn, entityIn.getEntityBoundingBox().grow(8.0D), entityIn.lastTickPosX, entityIn.lastTickPosY, entityIn.lastTickPosZ);
+		GTUtility.repelEntitiesInAABBFromPoint(worldIn, entityIn.getEntityBoundingBox().grow(8.0D), entityIn.lastTickPosX, entityIn.lastTickPosY, entityIn.lastTickPosZ);
 		return true;
 	}
 }
