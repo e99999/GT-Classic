@@ -57,10 +57,6 @@ public class GTUtility {
 	}
 
 	/**
-	 * Pushes hostile entities away from target within an area, code adapted from
-	 * EE/ProjectE.
-	 */
-	/**
 	 * Pushes entities away from target within an area, code adapted from
 	 * EE/ProjectE.
 	 */
