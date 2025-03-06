@@ -2,7 +2,8 @@
 # 1.2.2
 - The magical unf**kening and tooltips update!
 - Similar to later GT's the Dragon Egg/Trophy Energy Siphon has been deprecated and its functionallity now resides in the Magic Energy Absorber.
-- Any existing Siphons in the world will automatically be converted to Magic Energy Absorbers once loaded or placed.
+- Any existing Siphons in the world will automatically be converted to Magic Energy Absorbers once loaded or placed (This is a config option just incase - read below)
+- WARNING!!! I HAVE ONLY TESTED SIPHON REPLACEMENT IN SSP IF YOU ARE WORRIED ABOUT POTENTIONAL ISSUES MAKE A BACKUP OR TURN OFF 'replaceOldSiphonWithNewAbsorber` IN THE CONFIG!
 - The Magic Energy Absorber now generates a flat rate 128EU per tick with ANY valid trophy instead of a variable rate, can use any Twilight Forest trophy or Dragon Egg. It can now longer draw power from active beacons.
 - The Magic Energy Absorber no longer has wacky functions no one to my knowledge ever used i.e absorbing enchanted tools and books or the feature I added to absord lingering potions or draw energy from end portals.
 - Magic Energy Absorber and Magic Energy Converter have slightly easier recipes, the converter no longer needs a Beacon to craft but the Absorber still does.

@@ -62,20 +62,20 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 
 	@Override
 	public void onLoaded() {
-		super.onLoaded();
-		if (this.isSimulating() && !this.enet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			this.enet = true;
-		}
-		//this.checkForEgg();
-		if (this.isSimulating()) {
-			world.removeTileEntity(pos);
-		}
-		world.setBlockState(pos, GTBlocks.tileMagicEnergyAbsorber.getDefaultBlockState());
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile instanceof GTTileMagicEnergyAbsorber) {
-			GTTileMagicEnergyAbsorber absorber = (GTTileMagicEnergyAbsorber) tile;
-			absorber.onLoaded();
+		if (GTConfig.general.replaceOldSiphonWithNewAbsorber) {
+			world.setBlockState(pos, GTBlocks.tileMagicEnergyAbsorber.getDefaultBlockState());
+			TileEntity tile = world.getTileEntity(pos);
+			if (tile instanceof GTTileMagicEnergyAbsorber) {
+				GTTileMagicEnergyAbsorber absorber = (GTTileMagicEnergyAbsorber) tile;
+				absorber.onLoaded();
+			}
+		} else {
+			super.onLoaded();
+			if (this.isSimulating() && !this.enet) {
+				MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+				this.enet = true;
+			}
+			this.checkForEgg();
 		}
 	}
 

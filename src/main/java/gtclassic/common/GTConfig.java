@@ -39,10 +39,10 @@ public class GTConfig {
 		public boolean enableSuperSolidFuels = true;
 		public boolean enableMagnifyingGlassGivesEUTooltips = true;
 		public boolean reduceGrassOnWorldGen = false;
-		public boolean oneMagicAbsorberPerEndPortal = true;
 		public boolean enableQuickerLeafDecay = true;
 		public boolean enableBetterTwilightDurability = true;
 		public boolean vanillaSlabsBackToBlocks = true;
+		public boolean replaceOldSiphonWithNewAbsorber = true;
 		//public boolean enableGTCXWarning = true;
 	}
 
