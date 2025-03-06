@@ -2,11 +2,9 @@ package gtclassic.common.tile;
 
 import java.util.Random;
 
-import gtclassic.api.helpers.GTValues;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
 import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
-import gtclassic.common.GTTwilightForest;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
@@ -16,14 +14,12 @@ import ic2.core.block.base.util.info.misc.IEmitterTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Loader;
 
 public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 		implements IEnergySource, IEmitterTile, IGTDisplayTickTile {
@@ -94,29 +90,9 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 	}
 
 	private void checkForEgg() {
-		boolean canAbsorb = isValidAbsorberBlock(world, pos.up());
+		boolean canAbsorb = GTTileMagicEnergyAbsorber.isValidAbsorberBlock(world, pos.up());
 		this.production = canAbsorb ? 128 : 0;
 		this.setActive(this.production > 0);
-	}
-	
-	/**
-	 * Returns if a block is a valid generator for magical energy absorbing
-	 * 
-	 * @param world - the World param to pass
-	 * @param pos   - the BlockPos to check
-	 * @return - true or false
-	 */
-	public static boolean isValidAbsorberBlock(World world, BlockPos pos) {
-		if (world.isAirBlock(pos)) {
-			return false;
-		}
-		if (world.getBlockState(pos).equals(Blocks.DRAGON_EGG.getDefaultState())) {
-			return true;
-		}
-		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)) {
-			return GTTwilightForest.isValidTwilightForestAbsorberBlock(world, pos);
-		}
-		return false;
 	}
 
 	@Override
