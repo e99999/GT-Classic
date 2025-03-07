@@ -94,7 +94,6 @@ public class GTTileMagicEnergyAbsorber extends TileEntityMachine
 
 	private void checkForEgg() {
 		boolean canAbsorb = isValidAbsorberBlock(world, pos.up());
-		//this.production = canAbsorb ? 128 : 0;
 		this.setActive(canAbsorb);
 	}
 	

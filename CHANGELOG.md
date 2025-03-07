@@ -1,15 +1,14 @@
 # Changelog
 # 1.2.2
-- The magical unf**kening and tooltips update!
-- Similar to later GT's the Dragon Egg/Trophy Energy Siphon has been deprecated and its functionallity now resides in the Magic Energy Absorber.
-- Any existing Siphons in the world will automatically be converted to Magic Energy Absorbers once loaded or placed (This is a config option just incase - read below)
-- WARNING!!! I HAVE ONLY TESTED SIPHON REPLACEMENT IN SSP IF YOU ARE WORRIED ABOUT POTENTIONAL ISSUES MAKE A BACKUP OR TURN OFF 'replaceOldSiphonWithNewAbsorber` IN THE CONFIG!
-- The Magic Energy Absorber now generates a flat rate 128EU per tick with ANY valid trophy instead of a variable rate, can use any Twilight Forest trophy or Dragon Egg. It can now longer draw power from active beacons.
-- The Magic Energy Absorber no longer has wacky functions no one to my knowledge ever used i.e absorbing enchanted tools and books or the feature I added to absord lingering potions or draw energy from end portals.
-- Magic Energy Absorber and Magic Energy Converter have slightly easier recipes, the converter no longer needs a Beacon to craft but the Absorber still does.
-- Superconductor cable full block is no longer a valid beacon base to account for the Absorber (previously trophy siphon) no longer allowing power from beacons.
-- Superconductor cable full block recipe is now just the previous/max tier cable + iron scaffolding because it offers no benefit other than being a full block now.
-- Increased range of Echotron item and machine from 16 and 32 blocks to 24 and 48.
+- Changed the Dragon Egg/Trophy Energy Siphon. It has been deprecated, and its functionallity now resides in the Magic Energy Absorber (Similar to later GT's).
+- Warning: existing Siphons in the world will automatically be converted to Magic Energy Absorbers once loaded or placed (This is a config option just incase - read below)
+- Warning: I have only tested siphon replacement in SSP if you are worried about potentional issues make a backup or turn off 'replaceOldSiphonWithNewAbsorber` in the config!
+- Changed the Magic Energy Absorber now generates a flat rate 128EU per tick with ANY valid trophy instead of a variable rate, can use any Twilight Forest trophy or Dragon Egg. Power from active beacons has been removed.
+- Changed the Magic Energy Absorber no longer has wacky functions no one to my knowledge ever used i.e absorbing enchanted tools and books/absord lingering potions/drawing energy from end portals.
+- Changed Magic Energy Absorber and Magic Energy Converter have slightly easier recipes, the converter no longer needs a Beacon to craft but the Absorber still does.
+- Changed Superconductor cable full block is no longer a valid beacon base to account for the Absorber (previously trophy siphon) no longer allowing power from beacons.
+- Changed Superconductor cable full block recipe is now just the previous/max tier cable + iron scaffolding because it offers no benefit other than being a full block now.
+- Changed range of Echotron item and machine from 16 and 32 blocks to 24 and 48.
 
 # 1.2.1
 - Fixed so GT Classic can run on the latest Forge and IC2C, ported fixes from Rongmario's Vintage Gregtech fork. 
