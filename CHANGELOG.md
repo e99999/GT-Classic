@@ -1,6 +1,6 @@
 # Changelog
 # 1.2.2
-- Changed the Dragon Egg/Trophy Energy Siphon. It has been deprecated, and its functionallity now resides in the Magic Energy Absorber (Similar to later GT's).
+- Removed the Dragon Egg/Trophy Energy Siphon. It has been deprecated, and its functionallity now resides in the Magic Energy Absorber (Similar to later GT's).
 - Warning: existing Siphons in the world will automatically be converted to Magic Energy Absorbers once loaded or placed (This is a config option just incase - read below)
 - Warning: I have only tested siphon replacement in SSP if you are worried about potentional issues make a backup or turn off 'replaceOldSiphonWithNewAbsorber` in the config!
 - Changed the Magic Energy Absorber now generates a flat rate 128EU per tick with ANY valid trophy instead of a variable rate, can use any Twilight Forest trophy or Dragon Egg. Power from active beacons has been removed.

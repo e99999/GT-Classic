@@ -11,4 +11,4 @@ Downloads are available on curse! https://www.curseforge.com/minecraft/mc-mods/g
 The mod is released and finished, however I am considering a few more small updates.
 
 # Issues
-Please report any issues you find to the issue tracker on this repository. Include as much information as possible including version and steps to reproduce.
+Please report any issues you find to the issue tracker on this repository. Please provide as much information as possible including version and steps to reproduce.
