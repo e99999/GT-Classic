@@ -1,34 +1,20 @@
 package gtclassic.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import gtclassic.api.helpers.GTUtility;
 import gtclassic.api.interfaces.IGTDisplayTickTile;
-import gtclassic.api.material.GTMaterialGen;
-import gtclassic.api.recipe.GTRecipeMultiInputList;
+import gtclassic.common.GTBlocks;
 import gtclassic.common.GTConfig;
-import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
-import ic2.api.classic.recipe.RecipeModifierHelpers.ModifierType;
-import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
-import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.block.base.util.info.misc.IEmitterTile;
-import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
@@ -42,8 +28,6 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 	protected double production = 128.0D;
 	int storage;
 	boolean enet = false;
-	private int tickOffset = 0;
-	public static final GTRecipeMultiInputList RECIPE_LIST = new GTRecipeMultiInputList("gt.trophies");
 
 	public GTTileDragonEggEnergySiphon() {
 		super(0);
@@ -61,11 +45,12 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 
 	@Override
 	public void drawEnergy(double amount) {
+		this.storage = (int)(this.storage - amount);
 	}
 
 	@Override
 	public double getOfferedEnergy() {
-		return this.getActive() ? this.production : 0.0D;
+		return this.storage;
 	}
 
 	@Override
@@ -75,15 +60,21 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 
 	@Override
 	public void onLoaded() {
-		super.onLoaded();
-		if (this.isSimulating() && !this.enet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			this.enet = true;
+		if (GTConfig.general.replaceOldSiphonWithNewAbsorber) {
+			world.setBlockState(pos, GTBlocks.tileMagicEnergyAbsorber.getDefaultBlockState());
+			TileEntity tile = world.getTileEntity(pos);
+			if (tile instanceof GTTileMagicEnergyAbsorber) {
+				GTTileMagicEnergyAbsorber absorber = (GTTileMagicEnergyAbsorber) tile;
+				absorber.onLoaded();
+			}
+		} else {
+			super.onLoaded();
+			if (this.isSimulating() && !this.enet) {
+				MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+				this.enet = true;
+			}
+			this.checkForEgg();
 		}
-		if (this.isSimulating()) {
-			this.tickOffset = world.rand.nextInt(128);
-		}
-		this.checkForEgg();
 	}
 
 	@Override
@@ -99,11 +90,17 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 	public void onBlockUpdate(Block block) {
 		this.checkForEgg();
 	}
+	
+	@Override
+	public void update() {
+		if (getActive()) {
+			this.storage = (int) this.production;
+		}
+	}
 
 	private void checkForEgg() {
-		int trophyValue = GTUtility.getTrophyProductionValue(world, pos.up());
-		this.production = trophyValue;
-		this.setActive(this.production > 0);
+		boolean canAbsorb = GTTileMagicEnergyAbsorber.isValidAbsorberBlock(world, pos.up());
+		this.setActive(canAbsorb);
 	}
 
 	@Override
@@ -114,50 +111,6 @@ public class GTTileDragonEggEnergySiphon extends TileEntityMachine
 	@Override
 	public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
 		return false;
-	}
-
-	public static void initFakeRecipes() {
-		addFakeRecipe(GTMaterialGen.get(Blocks.DRAGON_EGG), 128);
-		if (!GTConfig.general.energySiphonJustSucksEggs) {
-			addFakeRecipe(new ItemStack(Items.SKULL, 1, 1), 1);
-			addFakeRecipe(new ItemStack(Items.SKULL, 1, 5), 8);
-			addFakeRecipe(new ItemStack(Blocks.BEACON), 999);
-		}
-	}
-
-	public static void addFakeRecipe(ItemStack stack, int energyPerTick) {
-		addFakeRecipe(new RecipeInputItemStack(stack), new IRecipeModifier[] {
-				ModifierType.RECIPE_LENGTH.create(energyPerTick) });
-	}
-
-	private static void addFakeRecipe(IRecipeInput input, IRecipeModifier[] modifiers) {
-		List<IRecipeInput> inlist = new ArrayList<>();
-		List<ItemStack> outlist = new ArrayList<>();
-		NBTTagCompound mods = new NBTTagCompound();
-		for (IRecipeModifier modifier : modifiers) {
-			modifier.apply(mods);
-		}
-		inlist.add(input);
-		outlist.add(GTMaterialGen.get(Items.REDSTONE));
-		addFakeRecipe(inlist, new MachineOutput(mods, outlist));
-	}
-
-	private static void addFakeRecipe(List<IRecipeInput> input, MachineOutput output) {
-		if (!input.isEmpty()) {
-			RECIPE_LIST.addRecipe(input, output, input.get(0).getInputs().get(0).getTranslationKey(), 128);
-		}
-	}
-
-	@Override
-	public void update() {
-		if (world.getTotalWorldTime() % (248 + this.tickOffset) == 0 && this.getActive()
-				&& world.getBlockState(this.pos.up()).getBlock().equals(Blocks.BEACON)) {
-			TileEntity tile = world.getTileEntity(pos.up());
-			if (tile instanceof TileEntityBeacon) {
-				TileEntityBeacon beacon = (TileEntityBeacon) tile;
-				this.production = GTUtility.getBeaconProductionValue(beacon);
-			}
-		}
 	}
 
 	@Override

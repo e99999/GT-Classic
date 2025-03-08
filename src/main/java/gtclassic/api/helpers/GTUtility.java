@@ -4,10 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import gtclassic.common.GTConfig;
-import gtclassic.common.GTTwilightForest;
-import gtclassic.common.tile.GTTileMagicEnergyAbsorber;
-import gtclassic.common.util.GTIBlockFilters;
 import gtclassic.common.util.GTIFilters;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
@@ -17,11 +13,8 @@ import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
-import ic2.core.util.helpers.AabbUtil;
 import ic2.core.util.math.MathUtil;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockEndPortalFrame;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -30,20 +23,14 @@ import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityBeacon;
-import net.minecraft.tileentity.TileEntitySkull;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fml.common.Loader;
 
 /**
  * NEVER INCLUDE THIS FILE IN YOUR MOD!!! Just a few Utility Functions I use.
@@ -204,113 +191,6 @@ public class GTUtility {
 		if (canExport) {
 			FluidUtil.tryFluidTransfer(fluidTile, tank, amount, true);
 		}
-	}
-
-	public static boolean tryResetStrongholdPortal(World world, BlockPos pos) {
-		List<BlockPos> portalBlockPos = AabbUtil.getTargets(world, pos, 5, new GTIBlockFilters.EndPortalFilter(), false, false, RotationList.ALL);
-		if (portalBlockPos.isEmpty()) {
-			return false;
-		}
-		BlockPos selectedPos = portalBlockPos.get(world.rand.nextInt(portalBlockPos.size() - 1));
-		IBlockState nearbyState = world.getBlockState(selectedPos);
-		if (resetEndPortalFrame(world, selectedPos, nearbyState)) {
-			boolean found = false;
-			for (BlockPos portalPos : portalBlockPos) {
-				if (world.getBlockState(portalPos).getBlock() == Blocks.END_PORTAL) {
-					world.setBlockToAir(portalPos);
-					world.removeTileEntity(portalPos);
-					found = true;
-				}
-			}
-			return found;
-		}
-		return false;
-	}
-
-	public static boolean resetEndPortalFrame(World world, BlockPos pos, IBlockState portalFrameState) {
-		if (portalFrameState.getBlock() == Blocks.END_PORTAL_FRAME
-				&& portalFrameState.getValue(BlockEndPortalFrame.EYE).booleanValue()) {
-			world.setBlockState(pos, portalFrameState.withProperty(BlockEndPortalFrame.EYE, false));
-			world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundCategory.BLOCKS, 0.5F, 0.5F
-					+ world.rand.nextFloat());
-			return true;
-		}
-		return false;
-	}
-
-	public static boolean tryExplodeOtherAbsorbers(World world, BlockPos checkPos) {
-		Iterable<BlockPos> surroundingPos = BlockPos.getAllInBox(checkPos.offset(EnumFacing.SOUTH, 4).offset(EnumFacing.WEST, 4), checkPos.offset(EnumFacing.NORTH, 4).offset(EnumFacing.EAST, 4));
-		for (BlockPos absorberPos : surroundingPos) {
-			if (absorberPos.equals(checkPos)) {
-				continue;
-			}
-			TileEntity tile = world.getTileEntity(absorberPos);
-			if (tile instanceof GTTileMagicEnergyAbsorber) {
-				GTTileMagicEnergyAbsorber absorber = (GTTileMagicEnergyAbsorber) tile;
-				if (absorber.portalMode && absorber.isAbovePortal) {
-					world.setBlockToAir(absorberPos);
-					world.removeTileEntity(absorberPos);
-					world.createExplosion(null, absorberPos.getX(), absorberPos.getY(), absorberPos.getZ(), 8.0F, true);
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Gets the eu per tick value of a given "trophy"
-	 * 
-	 * @param world - the World param to pass
-	 * @param pos   - the BlockPos to check
-	 * @return - 0 if nothing of value, or the production int
-	 */
-	public static int getTrophyProductionValue(World world, BlockPos pos) {
-		if (world.isAirBlock(pos)) {
-			return 0;
-		}
-		if (world.getBlockState(pos).equals(Blocks.DRAGON_EGG.getDefaultState())) {
-			return 128;
-		}
-		if (GTConfig.general.energySiphonJustSucksEggs) {
-			return 0;
-		}
-		// put any blockstates above this tile call
-		TileEntity tile = world.getTileEntity(pos);
-		if (tile == null) {
-			return 0;
-		}
-		if (tile instanceof TileEntityBeacon) {
-			TileEntityBeacon beacon = (TileEntityBeacon) tile;
-			return getBeaconProductionValue(beacon);
-		}
-		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)) {
-			int value = GTTwilightForest.getTrophyProduction(world, pos);
-			if (value > 0) {
-				return value;
-			}
-		}
-		if (tile instanceof TileEntitySkull) {
-			if (tile instanceof TileEntitySkull) {
-				TileEntitySkull trophy = (TileEntitySkull) tile;
-				int type = trophy.getSkullType();
-				if (type == 1) {
-					return 1;
-				}
-				if (type == 5) {
-					return 8;
-				}
-			}
-		}
-		return 0;
-	}
-
-	public static int getBeaconProductionValue(TileEntityBeacon beacon) {
-		int beaconLevel = beacon.getLevels();
-		if (beaconLevel > 0) {
-			return GTHelperMath.clip(8 + (beaconLevel * 8), 8, 128);
-		}
-		return 8;
 	}
 
 	/**

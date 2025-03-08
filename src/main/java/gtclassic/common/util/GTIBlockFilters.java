@@ -6,7 +6,6 @@ import ic2.core.util.helpers.AabbUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -91,23 +90,5 @@ public class GTIBlockFilters {
 			return false;
 		}
 	}
-
-	public static class EndPortalFilter implements AabbUtil.IBlockFilter {
-
-		@Override
-		public boolean forceChunkLoad() {
-			return false;
-		}
-
-		@Override
-		public boolean isValidBlock(IBlockState state) {
-			return state.getBlock() == Blocks.END_PORTAL || state.getBlock() == Blocks.END_PORTAL_FRAME;
-		}
-
-		@Override
-		public boolean isValidBlock(World world, BlockPos pos) {
-			return world.getBlockState(pos).getBlock() == Blocks.END_PORTAL
-					|| world.getBlockState(pos).getBlock() == Blocks.END_PORTAL_FRAME;
-		}
-	}
+	
 }

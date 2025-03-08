@@ -43,7 +43,7 @@ public class GTTileEchotron extends TileEntityElecMachine implements IPersonalBl
 	public void update() {
 		if (world.getTotalWorldTime() % 100 == 0 && this.energy >= 10 && !redstoneEnabled()) {
 			world.playSound((EntityPlayer) null, this.pos, GTSounds.SONAR, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).asBlockPos()).grow(32.0D);
+			AxisAlignedBB area = new AxisAlignedBB(new int3(pos, getFacing()).asBlockPos()).grow(48.0D);
 			List<Entity> list = world.getEntitiesInAABBexcluding(world.getPlayerEntityByUUID(this.owner), area, null);
 			if (!list.isEmpty()) {
 				for (Entity thing : list) {

@@ -31,7 +31,6 @@ import gtclassic.common.recipe.GTRecipeIterators;
 import gtclassic.common.recipe.GTRecipeMods;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileDisassembler;
-import gtclassic.common.tile.GTTileDragonEggEnergySiphon;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
 import gtclassic.common.tile.GTTileUUMAssembler;
@@ -58,7 +57,7 @@ public class GTMod {
 
 	public static final String MODID = "gtclassic";
 	public static final String MODNAME = "GregTech Classic";
-	public static final String MODVERSION = "1.2.1";
+	public static final String MODVERSION = "1.2.2";
 	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;before:gtc_expansion@[0.0.9,);after:twilightforest@[3.9.984,)";
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
 	@SidedProxy(clientSide = MODID + ".common.proxy.GTProxyClient", serverSide = MODID + ".common.proxy.GTProxyServer")
@@ -140,7 +139,6 @@ public class GTMod {
 		GTTileMultiFusionReactor.postInit();
 		GTRecipeMods.postInit();
 		GTTileDisassembler.init();
-		GTTileDragonEggEnergySiphon.initFakeRecipes();
 		if (GTConfig.modcompat.compatTwilightForest && Loader.isModLoaded(GTValues.MOD_ID_TFOREST)) {
 			GTTwilightForest.initStalactites();
 			GTTwilightForest.initLootTables();

@@ -205,7 +205,7 @@ public class GTRecipe {
 			/** Redstone Lamp **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileLamp, 2), "IPI", "PRP", "IPI", 'P', "paneGlass", 'I', GTValues.INPUT_INGOT_MACHINE, 'R', Blocks.REDSTONE_LAMP);
 			/** Magic Energy Converter **/
-			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CTC", "IBI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Blocks.BEACON, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INPUT_INGOT_MAGIC, 'T', Ic2Items.teleporter.copy());
+			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyConverter, 1), "CTC", "IBI", "CLC", 'C', GTValues.CIRCUIT_ADVANCED, 'B', Items.END_CRYSTAL, 'L', Ic2Items.lapotronCrystal.copy(), 'I', GTValues.INPUT_INGOT_MAGIC, 'T', Ic2Items.teleporter.copy());
 			/** Bonus recipe for hopper **/
 			if (GTConfig.general.replaceHopperRecipe) {
 				GTRecipeCraftingHandler.removeRecipe("minecraft", "hopper");
@@ -255,8 +255,8 @@ public class GTRecipe {
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1));
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), "CC", "CC", 'C', GTBlocks.tileSuperconductorCableHV);
 		/** Superconductor Cable Beacon **/
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1));
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 4), GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), Ic2Items.ironScaffold);
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1));
 		/** Echotron **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEchotron, 1), "CRC", "JMN", "CBC", 'C', GTValues.CIRCUIT_BASIC, 'R', "record", 'J', Blocks.JUKEBOX, 'M', GTValues.MACHINE_ADV, 'N', Blocks.NOTEBLOCK, 'B', Ic2Items.battery);
 		/** Monster Repellator **/
@@ -265,10 +265,8 @@ public class GTRecipe {
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileEnergyTransmitter, 1), "CTC", "PEP", "CLC", 'P', GTValues.INGOT_PLATINUM, 'T', Ic2Items.teleporter.copy(), 'C', GTValues.CIRCUIT_ELITE, 'E', Ic2Items.transformerMV.copy(), 'L', Ic2Items.lapotronCrystal.copy());
 		/** UU Assembler **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileUUMAssembler, 1), "dCd", "TQE", "DBD", 'd', GTValues.CIRCUIT_DATA, 'C', GTBlocks.tileComputer, 'T', Ic2Items.teleporter, 'Q', GTBlocks.tileQuantumChest, 'E', GTBlocks.tileAutocrafter, 'D', GTValues.CIRCUIT_ULTIMATE, 'B', GTValues.INPUT_BATTERY_ADVANCED);
-		/** Trophy Energy Siphon **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'B', GTValues.BATTERY_ULTIMATE, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', Ic2Items.teslaCoil.copy());
 		/** Magic Energy Absorber **/
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CTC", "PSP", "CBC", 'C', GTValues.CIRCUIT_MASTER, 'S', Blocks.BEACON, 'B', GTBlocks.tileMagicEnergyConverter, 'P', GTValues.PLATE_IRIDIUM_ALLOY, 'T', GTValues.CRAFTING_SUPERCONDUCTOR);
+		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileMagicEnergyAbsorber, 1), "CBC", "PSP", "CTC", 'C', GTValues.CIRCUIT_MASTER, 'S', Blocks.BEACON, 'B', GTValues.CRAFTING_SUPERCONDUCTOR, 'P', GTValues.INPUT_INGOT_MAGIC, 'T', Ic2Items.teleporter);
 		/** Redstone Transmitter **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileRedstoneTransmitter), "TCT", "QMQ", "RER", 'T', Blocks.REDSTONE_TORCH, 'C', GTValues.CIRCUIT_ADVANCED, 'Q', "gemQuartz", 'E', "enderpearl", 'M', GTValues.MACHINE_BASIC, 'R', Items.COMPARATOR);
 		/** Redstone Receiver **/
