@@ -188,6 +188,8 @@ item.gtclassic.spray_can.name=Magical Spray Can
 item.gtclassic.super_fuel_binder.name=Super Fuel Binder
 item.gtclassic.magic_super_fuel_binder.name=Magic Super Fuel Binder
 item.gtclassic.sensor_stick.name=Sensor Stick
+item.gtclassic.ultimate_armor.name=Ultimate Armor
+
 
 #crops
 ic2.crop.Bauxia.name=Bauxia
@@ -222,11 +224,14 @@ fluid.fuel=Fuel
 fluid.magicdye=Incredible Magic Dye
 
 #ore tooltips
-tooltip.gtclassic.oreIridium=Spawns rarely at all heights in any biome
-tooltip.gtclassic.oreSheldonite=Spawns between Y level 10-30 in JUNGLE biomes
-tooltip.gtclassic.oreRuby=Spawns between Y level 0 - 48 in HOT biomes
-tooltip.gtclassic.oreSapphire=Spawns between Y level 0 - 48 in OCEAN biomes
-tooltip.gtclassic.oreBauxite=Spawns between Y level 50 - 120 in FOREST/PLAINS biomes
+tooltip.gtclassic.oreIridium0=Spawns rarely at all heights in any biome
+tooltip.gtclassic.oreSheldonite0=Spawns between Y level 10-30 in JUNGLE biomes
+tooltip.gtclassic.oreSheldonite1=Contains: Platinum
+tooltip.gtclassic.oreRuby0=Spawns between Y level 0 - 48 in HOT biomes
+tooltip.gtclassic.oreRuby1=Contains: Chrome
+tooltip.gtclassic.oreSapphire0=Spawns between Y level 0 - 48 in OCEAN biomes
+tooltip.gtclassic.oreBauxite0=Spawns between Y level 50 - 120 in FOREST/PLAINS biomes
+tooltip.gtclassic.oreBauxite1=Contains: Aluminum and Titanium
 
 #item tooltips
 tooltip.gtclassic.destructo_pack=Mobile trash can
@@ -235,6 +240,8 @@ tooltip.gtclassic.tesla_staff=O V E R C H A R G E D
 tooltip.gtclassic.jackhammer=Mines 3x3 of any stone block
 tooltip.gtclassic.cloaking_device=Invisibility Field
 tooltip.gtclassic.spring_boots=QwerTech intensifies
+tooltip.gtclassic.ultimate_armor0=Pinnacle of GregTech fashion!
+tooltip.gtclassic.ultimate_armor1=One chestplate to rule them all
 
 #generic tooltips
 tooltip.gtclassic.paintedtrue=Can be painted white to remove color
@@ -251,7 +258,9 @@ tooltip.gtclassic.drum1=Sneak click empty handed to toggle output
 tooltip.gtclassic.echotronblock0=Reveals entities using echo location
 tooltip.gtclassic.digitalchest0=Uploads and downloads contents to data orbs
 tooltip.gtclassic.quantumchest0=2 Milliards, uhh I mean billion, items to store here!
+tooltip.gtclassic.quantumchest1=Will save its contents when picked up
 tooltip.gtclassic.quantumtank0=With a capacity of 488.28125 Chunks!
+tooltip.gtclassic.quantumtank1=Will save its contents when picked up
 tooltip.gtclassic.matterfabricator0=Creates UU as fast as you can supply it.
 tooltip.gtclassic.matterfabricator1=Now upgraded with internal tank for fluids!!!
 tooltip.gtclassic.uumassembler0=Sick of hand crafting with UU? Look no further.
@@ -268,13 +277,15 @@ tooltip.gtclassic.playerdetector2=Sneak click empty handed to toggle mode
 tooltip.gtclassic.mobrepeller0=Stops nasty creatures from spawning,
 tooltip.gtclassic.mobrepeller1=Range: 16 unpowered, 64 powered.
 tooltip.gtclassic.energytransmitter0=Transmits energy wirelessly within dimensions
-tooltip.gtclassic.energytransmitter1=Install a Sensor Stick to set target position.
-tooltip.gtclassic.fusionreactor0=FUUUUUUUU-SION, HAH!
+tooltip.gtclassic.energytransmitter1=Can transmit EU to any block or machine
+tooltip.gtclassic.energytransmitter2=Install a Sensor Stick to set target position.
+tooltip.gtclassic.fusionreactor0=Fuses elements and generates power!
 tooltip.gtclassic.fusionreactor1=Structure:
 tooltip.gtclassic.fusionreactor2=5x1x5 "circular" ring of (24) Fusion Coils,
 tooltip.gtclassic.fusionreactor3=Controller centered in the ring
 tooltip.gtclassic.fusionreactor4=Power In: Left, Right, Up, or Down
 tooltip.gtclassic.fusionreactor5=Power Out: Front or Back
+tooltip.gtclassic.fusionreactor6=EU output requires Supercondensator!
 tooltip.gtclassic.lightningrod0=Psssst its free energy!
 tooltip.gtclassic.lightningrod1=Structure:
 tooltip.gtclassic.lightningrod2=Controller, with 8-255 iron fence rods on top
@@ -299,11 +310,12 @@ tooltip.gtclassic.lesu2=Power In: Back, Left, Right, Up, or Down
 tooltip.gtclassic.lesu3=Power Out: Front
 tooltip.gtclassic.aesu0=Energy storage with adjustable output
 tooltip.gtclassic.aesu1=Sneak click empty handed to toggle redstone modes
-tooltip.gtclassic.idsu0=Interdimensional Storage Unit
+tooltip.gtclassic.idsu0=Interdimensional Energy Storage Unit
 tooltip.gtclassic.idsu1=Sneak click empty handed to toggle redstone modes
-tooltip.gtclassic.tesseractmaster0=Generates a tesseract for the attached inventory
-tooltip.gtclassic.tesseractslave0=Accesses tesseracts remotely,
-tooltip.gtclassic.tesseractslave1=Install a Sensor Stick to set target tesseract location.
+tooltip.gtclassic.tesseractmaster0=Generates a tesseract field for the block behind it,
+tooltip.gtclassic.tesseractmaster1=Allowing transfer of items or fluids to the block within the field.
+tooltip.gtclassic.tesseractslave0=Accesses tesseract fields remotely within or between dimensions.
+tooltip.gtclassic.tesseractslave1=Install a Sensor Stick set to a Tesseract Generator to connect.
 tooltip.gtclassic.supercondensator0=Transforms extremely high energy sources to a usable level
 tooltip.gtclassic.worktable0=For all kinds of projects
 tooltip.gtclassic.cabinet0=PrEmIuM dOuBlE cHeSt
@@ -315,7 +327,9 @@ tooltip.gtclassic.bufferfluid0=A Buffer for managing fluids
 tooltip.gtclassic.flintmortar0=Does an "ok" job of turning things to dust...
 tooltip.gtclassic.ironmortar0=Does a great job of turning things to dust!
 tooltip.gtclassic.redstonetransmitter0=Transmits redstone wirelessly within dimensions
-tooltip.gtclassic.redstonetransmitter1=Install a Sensor Stick to set receiver position.
+tooltip.gtclassic.redstonetransmitter1=Can only transmit to Redstone Receivers
+tooltip.gtclassic.redstonetransmitter2=Does not need power to function
+tooltip.gtclassic.redstonetransmitter3=Install a Sensor Stick to set receiver position.
 tooltip.gtclassic.redstonereceiver0=Receives redstone signals from transmitters
 tooltip.gtclassic.blockextender0=Relays attached inventories and tanks
 tooltip.gtclassic.blockextender1=Cannot be attached to other extenders!

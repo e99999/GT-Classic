@@ -39,6 +39,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	@NetworkField(index = 8)
 	GTTileTesseractMaster targetMaster;
 	private int redstoneLevel = -1;
+	private int demand = 1;
 
 	public GTTileTesseractSlave() {
 		super(1, 128);
@@ -158,7 +159,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 			setTarget(null);
 			return false;
 		}
-		return this.hasEnergy(32);
+		return this.hasEnergy(demand) && this.redstoneLevel < 1;
 	}
 
 	@Override
@@ -180,9 +181,9 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	}
 
 	private void handleEnergy() {
-		if (this.hasEnergy(1) && this.targetMaster != null && !this.targetMaster.isInvalid()
+		if (this.hasEnergy(demand) && this.targetMaster != null && !this.targetMaster.isInvalid()
 				&& this.redstoneLevel < 1) {
-			this.useEnergy(1);
+			this.useEnergy(demand);
 			return;
 		}
 		setTarget(null);
@@ -255,10 +256,19 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 
 	@Override
 	public void getData(Map<String, Boolean> data) {
-		String status = this.canExtendCapabilites() ? "Connected to Tesseract Generator"
-				: "Failed to connect Tesseract Generator";
-		//if this has no power say "Needs power to connect"
+		// TODO make the strings static vars
+		boolean running = this.canExtendCapabilites();
+		String status = running ? "Connected successfully with a tesseract field" : "Failed to connect with Tesseract Generator";
 		data.put(status, true);
+		int level = this.redstoneLevel;
+		if (!running) {
+			if (!this.hasEnergy(demand)) {
+				data.put("No Power!!!", true);
+			}
+			if (level > 0) {
+				data.put("Redstone has disabled this machine", true);
+			}
+		}
 		data.put("Redstone Level: " + this.redstoneLevel, true);
 	}
 }

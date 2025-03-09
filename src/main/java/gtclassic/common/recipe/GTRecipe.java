@@ -142,6 +142,9 @@ public class GTRecipe {
 		/** Rod recipes **/
 		GTRecipeCraftingHandler.rodUtil(GTMaterialGen.get(GTItems.rodThorium1), GTMaterialGen.get(GTItems.rodThorium2), GTMaterialGen.get(GTItems.rodThorium4), GTItemReactorRod.getUran(0).getNewIsotopicRod(), GTMaterialGen.get(GTItems.reEnrichedRodThorium), GTMaterialGen.get(GTItems.nearDepletedRodThorium), GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
 		GTRecipeCraftingHandler.rodUtil(GTMaterialGen.get(GTItems.rodPlutonium1), GTMaterialGen.get(GTItems.rodPlutonium2), GTMaterialGen.get(GTItems.rodPlutonium4), GTItemReactorRod.getUran(1).getNewIsotopicRod(), GTMaterialGen.get(GTItems.reEnrichedRodPlutonium), GTMaterialGen.get(GTItems.nearDepletedRodPlutonium), GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
+		/** Ultimate Armor **/
+		String techMat = Loader.isModLoaded(GTValues.MOD_ID_GTCX) ? "plateTechnetium" : "ingotTechnetium";
+		recipes.addRecipe(GTMaterialGen.get(GTItems.ultimateArmor, 1), "IHI", "LCL", "PLS", 'I', techMat, 'H', GTMaterialGen.getIc2(Ic2Items.quantumHelmet), 'L', GTMaterialGen.get(GTItems.orbEnergy), 'C', GTMaterialGen.getIc2(Ic2Items.quantumNuclearJetplate), 'P', GTMaterialGen.getIc2(Ic2Items.quantumLeggings), 'S', GTMaterialGen.getIc2(Ic2Items.quantumBoots));	
 	}
 
 	public static void initBlocks() {

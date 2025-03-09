@@ -123,8 +123,14 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 		if (player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
 			this.flow = !this.flow;
 			if (this.isSimulating()) {
-				String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
+				String msg = this.flow ? "Auto output enabled" : "Auto output disabled";
+				FluidStack fluid = this.tank.getFluid();
 				IC2.platform.messagePlayer(player, msg);
+				if (fluidNotNull(fluid)) {
+					IC2.platform.messagePlayer(player, getFluidDirection(fluid));
+				} else {
+					IC2.platform.messagePlayer(player, "Empty");
+				}
 				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
 			}
 		} else {
@@ -140,6 +146,15 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 			GTUtility.exportFluidFromMachineToSide(this, this.tank, side, 500);
 		}
 	}
+	
+	public String getFluidDirection(FluidStack fluid) {
+		return fluid.getFluid().isGaseous() ? "Is gaseous will flow upward if set to output"
+				: "Is fluid will flow downward if set to output";
+	}
+	
+	public Boolean fluidNotNull(FluidStack fluid) {
+		return fluid != null;
+	}
 
 	private EnumFacing updateSideForOutput() {
 		if (this.tank.getFluid() != null && this.tank.getFluid().getFluid().isGaseous()) {
@@ -151,16 +166,16 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 	@Override
 	public void getData(Map<String, Boolean> data) {
 		FluidStack fluid = this.tank.getFluid();
-		boolean fluidNotNull = fluid != null;
-		if (fluidNotNull) {
-			String type = fluid.getFluid().isGaseous() ? "Is gaseous will flow upward" : "Is fluid will flow downward";
+		String msg = this.flow ? "Will output automatically" : "Will not output automatically";
+		if (fluidNotNull(fluid)) {
 			data.put(fluid.amount + "mB of " + fluid.getLocalizedName(), false);
-			data.put(type, false);
+			data.put(msg, false);
+			data.put(getFluidDirection(fluid), false);
 		} else {
 			data.put("Empty", false);
+			data.put(msg, false);
 		}
-		String msg = this.flow ? "Will fill adjacent tanks" : "Wont fill adjacent tanks";
-		data.put(msg, false);
+		
 	}
 
 	@Override

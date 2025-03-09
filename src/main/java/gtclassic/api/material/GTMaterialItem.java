@@ -38,6 +38,12 @@ public class GTMaterialItem extends Item implements IStaticTexturedItem, IGTColo
 	public TextureAtlasSprite getTexture(int i) {
 		return Ic2Icons.getTextures(flag.getTexture())[flag.getTextureID()];
 	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public boolean hasEffect(ItemStack stack) {
+		return this.material == GTMaterial.Technetium;
+	}
 
 	@Override
 	public Color getColor(ItemStack stack, int index) {

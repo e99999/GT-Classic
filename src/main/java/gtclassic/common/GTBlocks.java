@@ -122,13 +122,13 @@ public class GTBlocks {
 	public static final GTBlockMachine tileEchotron = registerBlock(new GTBlockMachine("echotronblock", GTLang.ECHOTRON));
 	public static final GTBlockMachine tilePlayerDetector = registerBlock(new GTBlockMachine("playerdetector", GTLang.PLAYER_DETECTOR, 3));
 	public static final GTBlockMachine tileMobRepeller = registerBlock(new GTBlockMachine("mobrepeller", GTLang.MOB_REPELLER, 2));
-	public static final GTBlockMachine tileEnergyTransmitter = registerBlock(new GTBlockMachine("energytransmitter", GTLang.ENERGY_TRANSMITTER, 2));
+	public static final GTBlockMachine tileEnergyTransmitter = registerBlock(new GTBlockMachine("energytransmitter", GTLang.ENERGY_TRANSMITTER, 3));
 	public static final GTBlockMachine tileDragonEggEnergySiphon = registerBlock(new GTBlockMachine("dragoneggenergysiphon", GTLang.DRAGON_EGG_ENERGY_SIPHON, 2));
 	public static final GTBlockMachine tileMagicEnergyConverter = registerBlock(new GTBlockMachine("magicenergyconverter", GTLang.MAGIC_ENERGY_CONVERTER));
 	public static final GTBlockMachine tileMagicEnergyAbsorber = registerBlock(new GTBlockMachine("magicenergyabsorber", GTLang.MAGIC_ENERGY_ABSORBER, 3));
-	public static final GTBlockMachine tileFusionReactor = registerBlock(new GTBlockMachine("fusionreactor", GTLang.FUSION_REACTOR, 5));
+	public static final GTBlockMachine tileFusionReactor = registerBlock(new GTBlockMachine("fusionreactor", GTLang.FUSION_REACTOR, 7));
 	public static final GTBlockMachine tileLightningRod = registerBlock(new GTBlockMachine("lightningrod", GTLang.LIGHTNING_ROD, 3));
-	public static final GTBlockMachine tileTesseractMaster = registerBlock(new GTBlockMachine("tesseractmaster", GTLang.TESSERACT_MASTER));
+	public static final GTBlockMachine tileTesseractMaster = registerBlock(new GTBlockMachine("tesseractmaster", GTLang.TESSERACT_MASTER, 2));
 	public static final GTBlockMachine tileTesseractSlave = registerBlock(new GTBlockMachine("tesseractslave", GTLang.TESSERACT_SLAVE, 2));
 	public static final GTBlockBattery tileBatteryLV = registerBlock(new GTBlockBattery("batteryblocklv", 1, 32, 80000));
 	public static final GTBlockMachine tileLESU = registerBlock(new GTBlockMachine("lesu", GTLang.LESU, 3));
@@ -143,7 +143,7 @@ public class GTBlocks {
 	public static final GTBlockQuantumTank tileQuantumTank = registerBlock(new GTBlockQuantumTank());
 	public static final GTBlockMachine tileBlockExtender = registerBlock(new GTBlockMachine("blockextender", GTLang.BLOCK_EXTENDER, 2));
 	public static final GTBlockMachine tileDisplayScreen = registerBlock(new GTBlockMachine("displayscreen", GTLang.DISPLAY_SCREEN, 2));
-	public static final GTBlockMachine tileRedstoneTransmitter = registerBlock(new GTBlockMachine("redstonetransmitter", GTLang.REDSTONE_TRANSMITTER, 2));
+	public static final GTBlockMachine tileRedstoneTransmitter = registerBlock(new GTBlockMachine("redstonetransmitter", GTLang.REDSTONE_TRANSMITTER, 4));
 	public static final GTBlockMachine tileRedstoneReceiver = registerBlock(new GTBlockMachine("redstonereceiver", GTLang.REDSTONE_RECEIVER));
 	public static final GTBlockMachine tileAutocrafter = registerBlock(new GTBlockMachine("autocrafter", GTLang.AUTOCRAFTER));
 	public static final GTBlockMachine tileRockBreaker = registerBlock(new GTBlockMachine("rockbreaker", GTLang.ROCK_BREAKER));

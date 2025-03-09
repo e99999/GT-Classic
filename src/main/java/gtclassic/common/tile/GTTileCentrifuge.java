@@ -411,6 +411,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addRecipe("dustInvar", 3, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.ironDust, 2), GTMaterialGen.getDust(GTMaterial.Nickel, 1));
 		addRecipe("dustBronze", 4, 0, totalEu(5000), GTMaterialGen.getIc2(Ic2Items.tinDust, 1), GTMaterialGen.getIc2(Ic2Items.copperDust, 3));
 		addRecipe("dustPlatinum", 9, 0, totalEu(135000), GTMaterialGen.getDust(GTMaterial.Iridium, 1), GTMaterialGen.getDust(GTMaterial.Nickel, 2));
+		addRecipe("dustRareEarth", 8, 0, totalEu(32000), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
 		addRecipe(GTMaterialGen.get(Items.ROTTEN_FLESH, 12), 4, totalEu(6000), GTMaterialGen.getTube(GTMaterial.Methane, 4), GTMaterialGen.get(Items.LEATHER, 6), GTMaterialGen.get(Items.SLIME_BALL, 1));
 		addRecipe(GTMaterialGen.get(Blocks.SOUL_SAND, 12), 0, totalEu(12000), GTMaterialGen.get(Blocks.SAND, 11), GTMaterialGen.getTube(GTMaterial.Oil, 1));
 		addRecipe(GTMaterialGen.getFluidStack(GTMaterial.Oil, 3000), 3, totalEu(96000), GTMaterialGen.getTube(GTMaterial.Fuel, 2), GTMaterialGen.getTube(GTMaterial.Lubricant, 1));

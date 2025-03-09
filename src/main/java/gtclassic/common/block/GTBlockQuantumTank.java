@@ -31,7 +31,7 @@ public class GTBlockQuantumTank extends GTBlockMachine {
 	int slotDisplay = 2;
 
 	public GTBlockQuantumTank() {
-		super("quantumtank", GTLang.QUANTUM_TANK);
+		super("quantumtank", GTLang.QUANTUM_TANK, 2);
 	}
 
 	@Override

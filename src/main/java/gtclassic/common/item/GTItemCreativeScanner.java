@@ -42,6 +42,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -149,11 +150,11 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 		IBlockState state = world.getBlockState(pos);
 		Block block = state.getBlock();
 		TileEntity tileEntity = world.getTileEntity(pos);
-		IC2.platform.messagePlayer(player, "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()
+		IC2.platform.messagePlayer(player, TextFormatting.BLUE + "-----X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ()
 				+ " -----");
-		IC2.platform.messagePlayer(player, "" + state.getBlock().getLocalizedName());
+		IC2.platform.messagePlayer(player,TextFormatting.YELLOW + "" + state.getBlock().getLocalizedName());
 		if (tileEntity == null) {
-			IC2.platform.messagePlayer(player, "Hardness: " + state.getBlock().getBlockHardness(state, world, pos));
+			IC2.platform.messagePlayer(player, "Hardness: " + state.getBlockHardness(world, pos));
 			IC2.platform.messagePlayer(player, "Blast Resistance: "
 					+ state.getBlock().getExplosionResistance(null) * 5.0F);
 		}
@@ -212,14 +213,14 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 		}
 		if (tileEntity instanceof IEnergySource) {
 			IEnergySource euSource = (IEnergySource) tileEntity;
-			IC2.platform.messagePlayer(player, "Output Source Tier: " + euSource.getSourceTier());
-			IC2.platform.messagePlayer(player, "Output Source Max: "
-					+ EnergyNet.instance.getPowerFromTier(euSource.getSourceTier()) + " EU");
-			IC2.platform.messagePlayer(player, "Output Source Actual: " + euSource.getOfferedEnergy() + " EU");
+			IC2.platform.messagePlayer(player, "Output Tier: " + euSource.getSourceTier());
+			IC2.platform.messagePlayer(player, "Output Max: "
+					+ (int)EnergyNet.instance.getPowerFromTier(euSource.getSourceTier()) + " EU");
+			IC2.platform.messagePlayer(player, "Output Stored: " + (int)euSource.getOfferedEnergy() + " EU");
 		}
 		if (tileEntity instanceof IProgressMachine) {
 			IProgressMachine progress = (IProgressMachine) tileEntity;
-			IC2.platform.messagePlayer(player, "Progress: "
+			IC2.platform.messagePlayer(player,TextFormatting.ITALIC + "Progress: "
 					+ +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100)) + "%");
 		}
 		if (GTBedrockOreHandler.isBedrockOre(block)) {
@@ -230,7 +231,8 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 		}
 		if (tileEntity instanceof IGTMultiTileStatus) {
 			IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;
-			IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.getStructureValid());
+			boolean isValid = multi.getStructureValid();
+			IC2.platform.messagePlayer(player, (isValid ? TextFormatting.GREEN : TextFormatting.RED) +  "Correct Strucuture: " + isValid);
 		}
 		if (tileEntity instanceof IGTDebuggableTile) {
 			LinkedHashMap<String, Boolean> data = new LinkedHashMap<>();

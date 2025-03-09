@@ -30,6 +30,7 @@ import gtclassic.common.item.GTItemSprayCan;
 import gtclassic.common.item.GTItemSpringBoots;
 import gtclassic.common.item.GTItemSurvivalScanner;
 import gtclassic.common.item.GTItemTeslaStaff;
+import gtclassic.common.item.GTItemUltimateArmor;
 import gtclassic.common.item.baubles.GTItemBaublesEnergyOrb;
 import gtclassic.common.item.baubles.GTItemBaublesEnergyPack;
 import gtclassic.common.item.baubles.GTItemBaublesLithiumBattery;
@@ -87,6 +88,7 @@ public class GTItems {
 	public static GTItemRockCutter rockCutter;
 	public static GTItemJackHammer jackHammer;
 	public static GTItemSensorStick sensorStick;
+	public static GTItemUltimateArmor ultimateArmor;
 	public static GTItemSurvivalScanner portableScanner;
 	public static GTItemCreativeScanner debugScanner;
 
@@ -141,6 +143,7 @@ public class GTItems {
 		rockCutter = createItem(new GTItemRockCutter());
 		jackHammer = createItem(new GTItemJackHammer());
 		sensorStick = createItem(new GTItemSensorStick());
+		ultimateArmor = createItem(new GTItemUltimateArmor());
 		portableScanner = createItem(new GTItemSurvivalScanner());
 		debugScanner = createItem(new GTItemCreativeScanner());
 	}

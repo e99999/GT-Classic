@@ -23,6 +23,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 
 	protected MultiRecipe multiRecipe;
+	private Color darkGreen = new Color(0, 156, 14);
 
 	public GTJeiMultiRecipeWrapper(MultiRecipe multiRecipe) {
 		this.multiRecipe = multiRecipe;
@@ -61,15 +62,18 @@ public class GTJeiMultiRecipeWrapper implements IRecipeWrapper {
 				+ GTValues.getTierString(EnergyNet.instance.getTierFromPower(multiRecipe.getMachineEu())), 0, 60, Color.black.getRGB());
 		font.drawString("Usage: " + multiRecipe.getMachineEu() + " EU/t", 0, 70, Color.black.getRGB());
 		int cost = getEntryTicks(multiRecipe.getOutputs()) * multiRecipe.getMachineEu();
+		//Hacky check that assumes its a fusion recipe if the machine uses 8192 per tick
+		boolean assumingItsFusion = multiRecipe.getMachineEu() == 8192;
+		int costColor = assumingItsFusion ? Color.red.getRGB() : Color.black.getRGB();
 		font.drawString("Cost: " + NumberFormat.getNumberInstance(Locale.US).format(cost)
-				+ " EU", 0, 80, Color.black.getRGB());
-		// TODO make this check specifically for fusion, as soon as someone makes a
-		// machine at 8192EU it will trigger this
-		if (multiRecipe.getMachineEu() == 8192) {
+				+ " EU", 0, 80, costColor);
+		
+		if (assumingItsFusion) {
 			extraHeight = 10;
-			int gain = (getEntryTicks(multiRecipe.getOutputs()) * 12000) - cost;
-			font.drawString("Gain: " + NumberFormat.getNumberInstance(Locale.US).format(gain)
-					+ " EU", 0, 90, Color.black.getRGB());
+			// removing the cost part below to show GROSS gain instead of NET gain !!!
+			int gain = (getEntryTicks(multiRecipe.getOutputs()) * 12000); // - cost;
+			font.drawString("Output: " + NumberFormat.getNumberInstance(Locale.US).format(gain)
+					+ " EU", 0, 90, darkGreen.getRGB());
 		}
 		if (GTConfig.general.debugMode) {
 			font.drawString("Recipe Id: " + multiRecipe.getRecipeID(), 0, 90 + extraHeight, Color.black.getRGB());

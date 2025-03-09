@@ -28,7 +28,7 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 	int slotDisplay = 2;
 
 	public GTBlockQuantumChest() {
-		super("quantumchest", GTLang.QUANTUM_CHEST);
+		super("quantumchest", GTLang.QUANTUM_CHEST, 2);
 	}
 
 	@Override

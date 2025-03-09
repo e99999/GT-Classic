@@ -13,6 +13,7 @@ import ic2.api.energy.EnergyNet;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.core.IC2;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public class GTItemMagnifyingGlass extends GTItemComponent implements IEUReader {
@@ -40,6 +42,8 @@ public class GTItemMagnifyingGlass extends GTItemComponent implements IEUReader 
 		if (IC2.platform.isRendering()) {
 			return EnumActionResult.SUCCESS;
 		}
+		IBlockState state = world.getBlockState(pos);
+		IC2.platform.messagePlayer(player,TextFormatting.YELLOW + "" + state.getBlock().getLocalizedName());
 		TileEntity tileEntity = world.getTileEntity(pos);
 		if (GTConfig.general.enableMagnifyingGlassGivesEUTooltips && tileEntity instanceof IEnergySink) {
 			IEnergySink euSink = (IEnergySink) tileEntity;
@@ -49,12 +53,13 @@ public class GTItemMagnifyingGlass extends GTItemComponent implements IEUReader 
 		}
 		if (tileEntity instanceof IProgressMachine) {
 			IProgressMachine progress = (IProgressMachine) tileEntity;
-			IC2.platform.messagePlayer(player, "Progress: "
+			IC2.platform.messagePlayer(player, TextFormatting.ITALIC + "Progress: "
 					+ +(Math.round((progress.getProgress() / progress.getMaxProgress()) * 100)) + "%");
 		}
 		if (tileEntity instanceof IGTMultiTileStatus) {
 			IGTMultiTileStatus multi = (IGTMultiTileStatus) tileEntity;
-			IC2.platform.messagePlayer(player, "Correct Strucuture: " + multi.getStructureValid());
+			boolean isValid = multi.getStructureValid();
+			IC2.platform.messagePlayer(player, (isValid ? TextFormatting.GREEN : TextFormatting.RED) +  "Correct Strucuture: " + isValid);
 		}
 		if (tileEntity instanceof IGTDebuggableTile) {
 			LinkedHashMap<String, Boolean> data = new LinkedHashMap<>();

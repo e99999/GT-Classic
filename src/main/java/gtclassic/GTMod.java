@@ -24,6 +24,8 @@ import gtclassic.common.event.GTEventItemTooltip;
 import gtclassic.common.event.GTEventLootTableLoad;
 import gtclassic.common.event.GTEventNeighborNotifyEvent;
 import gtclassic.common.event.GTEventOnLivingFall;
+import gtclassic.common.event.GTEventOnPlayerTick;
+import gtclassic.common.event.GTEventPlayerLogin;
 import gtclassic.common.event.GTEventPopulateChunk;
 import gtclassic.common.proxy.GTProxyCommon;
 import gtclassic.common.recipe.GTRecipe;
@@ -58,7 +60,7 @@ public class GTMod {
 	public static final String MODID = "gtclassic";
 	public static final String MODNAME = "GregTech Classic";
 	public static final String MODVERSION = "1.2.2";
-	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;before:gtc_expansion@[0.0.9,);after:twilightforest@[3.9.984,)";
+	public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;before:gtc_expansion@[0.3.2,);after:twilightforest@[3.9.984,)";
 	public static final CreativeTabs creativeTabGT = new GTCreativeTab(MODID);
 	@SidedProxy(clientSide = MODID + ".common.proxy.GTProxyClient", serverSide = MODID + ".common.proxy.GTProxyServer")
 	public static GTProxyCommon proxy;
@@ -108,6 +110,8 @@ public class GTMod {
 		GameRegistry.registerWorldGenerator(new GTWorldGen(), 0);
 		MinecraftForge.EVENT_BUS.register(new GTEventOnLivingFall());
 		MinecraftForge.EVENT_BUS.register(new GTEventCheckSpawn());
+		MinecraftForge.EVENT_BUS.register(new GTEventOnPlayerTick());
+		MinecraftForge.EVENT_BUS.register(new GTEventPlayerLogin());
 		if (GTConfig.general.clearerWater) {
 			MinecraftForge.EVENT_BUS.register(new GTEventEntityViewRenderEvent());
 		}
@@ -123,9 +127,6 @@ public class GTMod {
 		if (GTConfig.general.reduceGrassOnWorldGen) {
 			MinecraftForge.TERRAIN_GEN_BUS.register(new GTEventDecorateBiome());
 		}
-		//if (GTConfig.general.enableGTCXWarning && Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
-		//	MinecraftForge.EVENT_BUS.register(new GTEventPlayerLogin());
-		//}
 		IC2.saveManager.registerGlobal("IDSU_Storage", GTIDSUStorageManager.class, false);
 		proxy.init(e);
 	}

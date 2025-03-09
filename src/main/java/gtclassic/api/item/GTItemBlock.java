@@ -4,11 +4,15 @@ import java.util.List;
 
 import gtclassic.api.interfaces.IGTBurnableBlock;
 import gtclassic.api.interfaces.IGTReaderInfoBlock;
+import gtclassic.api.material.GTMaterial;
+import gtclassic.api.material.GTMaterialFlag;
+import gtclassic.api.material.GTMaterialGen;
 import gtclassic.common.GTBlocks;
 import ic2.core.item.block.ItemBlockRare;
 import ic2.core.platform.player.PlayerHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -44,7 +48,13 @@ public class GTItemBlock extends ItemBlockRare {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean hasEffect(ItemStack stack) {
-		return this.block == GTBlocks.superFuelMagic;
+		return this.block == GTBlocks.superFuelMagic || this.block == GTMaterialGen.getBlock(GTMaterial.Technetium, GTMaterialFlag.BLOCKMETAL);
+	}
+	
+	@Override
+	public EnumRarity getRarity(ItemStack thisItem) {
+		boolean isMagicMachine = this.block == GTBlocks.tileMagicEnergyAbsorber || this.block == GTBlocks.tileMagicEnergyConverter;
+		return isMagicMachine ? EnumRarity.EPIC : EnumRarity.COMMON;
 	}
 
 	@Override

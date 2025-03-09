@@ -33,7 +33,14 @@ public class GTItemSensorStick extends GTItemComponent {
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		NBTTagCompound nbt = StackUtil.getNbtData(stack);
 		if (nbt.getIntArray(POS).length == 4) {
-			tooltip.add("Click a valid block to install Sensor Stick into machine");
+			//TODO make these static vars instead of generating new strings every call dummy
+			tooltip.add("Click a valid machine to install Sensor Stick");
+			tooltip.add("Sneak click to uninstall from machine");
+			tooltip.add(TextFormatting.DARK_GREEN+ "Valid machines:");
+			tooltip.add(TextFormatting.DARK_AQUA+ I18n.format("tile.gtclassic.energytransmitter.name"));
+			tooltip.add(TextFormatting.DARK_AQUA+ I18n.format("tile.gtclassic.tesseractslave.name"));
+			tooltip.add(TextFormatting.DARK_AQUA+ I18n.format("tile.gtclassic.displayscreen.name"));
+			tooltip.add(TextFormatting.DARK_AQUA+ I18n.format("tile.gtclassic.redstonetransmitter.name"));
 			int[] pos = nbt.getIntArray(POS);
 			tooltip.add(TextFormatting.YELLOW + I18n.format("Last Scanned: "));
 			if (nbt.getString(BLOCK) != null) {
