@@ -28,6 +28,7 @@
 - Added tooltips to ores to make it even easier to see what they are a source of.
 - Added a recipe to get a small amount of Thorium from centrifuging rare earth.
 - Added tooltips to make it clear that Quantum Chests and Tanks will keep their inventory/storage when picked up.
+- Fixed IDSU having a 30% chance to break when wrenched, it is now 0% (like all other GTC machines).
 
 # 1.2.1
 - Fixed so GT Classic can run on the latest Forge and IC2C, ported fixes from Rongmario's Vintage Gregtech fork. 

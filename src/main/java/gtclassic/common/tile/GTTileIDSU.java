@@ -103,7 +103,7 @@ public class GTTileIDSU extends TileEntityElectricBlock implements IClickable {
 
 	@Override
 	public double getWrenchDropRate() {
-		return 0.70D;
+		return 1.0D;
 	}
 
 	@Override
