@@ -193,30 +193,32 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 		if (tileEntity instanceof IEnergySink) {
 			IEnergySink euSink = (IEnergySink) tileEntity;
 			IC2.platform.messagePlayer(player, "Input Tier: " + euSink.getSinkTier());
-			IC2.platform.messagePlayer(player, "Input Max: " + EnergyNet.instance.getPowerFromTier(euSink.getSinkTier())
+			IC2.platform.messagePlayer(player, "Input Max: " + (int)EnergyNet.instance.getPowerFromTier(euSink.getSinkTier())
 					+ " EU");
 		}
 		if (tileEntity instanceof GTTileBaseMachine) {
 			GTTileBaseMachine machine = (GTTileBaseMachine) tileEntity;
-			IC2.platform.messagePlayer(player, "Usage: " + (double) machine.defaultEnergyConsume + " EU Per Tick");
+			IC2.platform.messagePlayer(player, "Usage: " + machine.defaultEnergyConsume + " EU Per Tick");
 		}
 		if (tileEntity instanceof IEUStorage) {
 			IEUStorage euStorage = (IEUStorage) tileEntity;
 			IC2.platform.messagePlayer(player, "Stored: " + euStorage.getStoredEU() + " EU");
 			IC2.platform.messagePlayer(player, "Storage Max: " + euStorage.getMaxEU() + " EU");
 		}
+		boolean displaySource = true;
 		if (tileEntity instanceof IEnergyStorage) {
 			IEnergyStorage te4 = (IEnergyStorage) tileEntity;
 			IC2.platform.messagePlayer(player, "Output Tier: "
 					+ EnergyNet.instance.getTierFromPower(te4.getOutputEnergyUnitsPerTick()));
 			IC2.platform.messagePlayer(player, "Output: " + te4.getOutputEnergyUnitsPerTick() + " EU");
+			displaySource = false;
 		}
-		if (tileEntity instanceof IEnergySource) {
+		if (displaySource && tileEntity instanceof IEnergySource) {
 			IEnergySource euSource = (IEnergySource) tileEntity;
 			IC2.platform.messagePlayer(player, "Output Tier: " + euSource.getSourceTier());
 			IC2.platform.messagePlayer(player, "Output Max: "
 					+ (int)EnergyNet.instance.getPowerFromTier(euSource.getSourceTier()) + " EU");
-			IC2.platform.messagePlayer(player, "Output Stored: " + (int)euSource.getOfferedEnergy() + " EU");
+			IC2.platform.messagePlayer(player, "Output Offered: " + (int)euSource.getOfferedEnergy() + " EU");
 		}
 		if (tileEntity instanceof IProgressMachine) {
 			IProgressMachine progress = (IProgressMachine) tileEntity;
