@@ -66,17 +66,17 @@ public class GTTileSuperconductorCables {
 
 		@Override
 		public double getConductorBreakdownEnergy() {
-			return 513.0D;
+			return 8193.0D;
 		}
 
 		@Override
 		public double getInsulationBreakdownEnergy() {
-			return 513.0D;
+			return 8193.0D;
 		}
 
 		@Override
 		public double getInsulationEnergyAbsorption() {
-			return 513.0D;
+			return 8193.0D;
 		}
 
 		@Override

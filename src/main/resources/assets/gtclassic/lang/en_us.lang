@@ -83,6 +83,7 @@ tile.gtclassic.itemfilter.name=Item Filter
 tile.gtclassic.rockbreaker.name=Electric Rock Breaker
 tile.gtclassic.displayscreen.name=Display Screen
 tile.gtclassic.lamp.name=Redstone Controlled Lamp
+tile.gtclassic.multiblockguide.name=Multiblock Guide
 
 #dust
 item.gtclassic.dustElectrum.name=Electrum Dust
@@ -280,9 +281,9 @@ tooltip.gtclassic.energytransmitter0=Transmits energy wirelessly within dimensio
 tooltip.gtclassic.energytransmitter1=Can transmit EU to any block or machine
 tooltip.gtclassic.energytransmitter2=Install a Sensor Stick to set target position.
 tooltip.gtclassic.fusionreactor0=Fuses elements and generates power!
-tooltip.gtclassic.fusionreactor1=Structure:
-tooltip.gtclassic.fusionreactor2=5x1x5 "circular" ring of (24) Fusion Coils,
-tooltip.gtclassic.fusionreactor3=Controller centered in the ring
+tooltip.gtclassic.fusionreactor1=Multiblock Structure:
+tooltip.gtclassic.fusionreactor2=Will create a visual guide when placed,
+tooltip.gtclassic.fusionreactor3=Requires 24 Fusion Coils
 tooltip.gtclassic.fusionreactor4=Power In: Left, Right, Up, or Down
 tooltip.gtclassic.fusionreactor5=Power Out: Front or Back
 tooltip.gtclassic.fusionreactor6=EU output requires Supercondensator!

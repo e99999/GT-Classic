@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -33,7 +34,12 @@ public class GTBlockDrum extends GTBlockStorage {
 			nbt = StackUtil.getNbtData(stack);
 			if (nbt.hasKey("Fluid")) {
 				FluidStack fluid = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("Fluid"));
-				tooltip.add(I18n.format(fluid.amount + "mB of " + fluid.getLocalizedName()));
+				tooltip.add(TextFormatting.YELLOW + I18n.format(fluid.amount + "mB of " + fluid.getLocalizedName()));
+			}
+			if (nbt.hasKey("flow")) {
+				tooltip.add(TextFormatting.BOLD + I18n.format("Auto output enabled"));
+			} else {
+				tooltip.add(TextFormatting.BOLD + I18n.format("Auto output disabled"));
 			}
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);

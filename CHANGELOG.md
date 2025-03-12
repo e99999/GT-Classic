@@ -9,10 +9,13 @@
 - Changed Magic Absorber and Converter now have purple names, cause everyone knows magic = purple duh.
 - Changed Superconductor cable full block is no longer a valid beacon base to account for the Absorber (previously trophy siphon) no longer allowing power from beacons.
 - Changed Superconductor cable full block recipe is now just the previous/max tier cable + iron scaffolding because it offers no benefit other than being a full block now.
+- Changed Superconductor cable lowest tier is now 8192 instead of 512 because 512 is useless and the old school GT skill "hole" to manage power at 8192 doesnt exist anymore with newer IC2C's.
+- Changed Superconductor cable step down and step up crafting is now 4x instead of 2x because it makes more sense with the EU values each has.
 - Changed range of Echotron item and machine from 16 and 32 blocks to 24 and 48.
-- Added 'Ulitmate Armor' - similiar to the old Ultimate Cheat Armor but actually craftable as an endgame goal, provides creative flight and a whole host of other goodies.
+- Added 'Ulitmate Armor' similiar to the old Ultimate Cheat Armor but actually craftable as an endgame goal, provides creative flight and a whole host of other goodies.
 - Changed the version of GTCX required to run properly or else bad stuff might happen with the new armor, you will need the latest (0.3.2) to launch.
 - Changed Technitium to have the enchanted glowly texture overlay because its the most end game metal in the mod and its also the most boring looking by default.
+- Added in world multiblock guide for Fusion Reactor which will appear when placed and dissapear when the structure is complete or the Fusion Reactor is removed.
 - Changed Fusion recipes in JEI so you can see that you are actually gaining power with each fusion recipe instead of only displaying the net gain .
 - Changed Fusion tooltip to make it clear you need a Supercondensator to step down the power to a usable level (high tier Superconductor cable obviously still works to move the power around).
 - Fixed Scanners not displaying extremely high amounts of power correctly.
@@ -22,13 +25,15 @@
 - Changed the information that Scanners provide when scanning Tesseracts to explain exactly why they not working
 - Added particles that appear above the block Tesseract Generators are connected too when the tesseract field is correctly generated.
 - Fixed an issue with Tesseract Terminals that prevented them from being disabled with redstone.
-- Changed the power required to generate a tesseract field with a Tesseract Generator from 64 to TODO DECIDE ON THIS AMOUNT
 - Changed Redstone Transmitter tooltip to make it more obvious it can only connect to Redstone Receivers.
 - Changed Microwave Energy Transmitter tooltip to make it more obvious that it can be connect and transmit to ANY tile that supports EU.
 - Added tooltips to ores to make it even easier to see what they are a source of.
 - Added a recipe to get a small amount of Thorium from centrifuging rare earth.
 - Added tooltips to make it clear that Quantum Chests and Tanks will keep their inventory/storage when picked up.
 - Fixed IDSU having a 30% chance to break when wrenched, it is now 0% (like all other GTC machines).
+- Changed IC2C items and machines that have removals toggled on in the GTC config will now be removed from JEI (Mass Fab, Plasmafier, and Plasma Cable)(all on by default).
+- Changed IC2C HV Solar Panel recipe to not need IV-Transformer if IC2C Plasmafier is removed because that would put it past fusion which seems excessive.
+- Changed Drum tooltips and magnifying glass/scanner info to be clearer and more useful.
 
 # 1.2.1
 - Fixed so GT Classic can run on the latest Forge and IC2C, ported fixes from Rongmario's Vintage Gregtech fork. 

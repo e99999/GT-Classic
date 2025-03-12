@@ -124,13 +124,7 @@ public class GTTileDrum extends TileEntityMachine implements ITankListener, IIte
 			this.flow = !this.flow;
 			if (this.isSimulating()) {
 				String msg = this.flow ? "Auto output enabled" : "Auto output disabled";
-				FluidStack fluid = this.tank.getFluid();
 				IC2.platform.messagePlayer(player, msg);
-				if (fluidNotNull(fluid)) {
-					IC2.platform.messagePlayer(player, getFluidDirection(fluid));
-				} else {
-					IC2.platform.messagePlayer(player, "Empty");
-				}
 				IC2.audioManager.playOnce(player, Ic2Sounds.wrenchUse);
 			}
 		} else {

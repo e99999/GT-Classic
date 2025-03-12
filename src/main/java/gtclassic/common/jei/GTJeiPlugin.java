@@ -19,6 +19,7 @@ import gtclassic.common.gui.GTGuiMachine.GTMagicEnergyConverterGui;
 import gtclassic.common.gui.GTGuiMachine.GTMatterFabricatorGui;
 import gtclassic.common.tile.GTTileMagicEnergyConverter;
 import gtclassic.common.tile.GTTileMatterFabricator;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
@@ -70,6 +71,17 @@ public class GTJeiPlugin implements IModPlugin {
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.lightSource));
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTItems.orbDataStorage));
 			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.tileDragonEggEnergySiphon));
+			blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.multiBlockGuide));
+			//Hiding removed IC2C Stuff
+			if (GTConfig.general.removeIC2PlasmaCable) {
+				blacklist.addIngredientToBlacklist(GTMaterialGen.getIc2(Ic2Items.plasmaCable));
+			}
+			if (GTConfig.general.removeIC2Plasmafier) {
+				blacklist.addIngredientToBlacklist(GTMaterialGen.getIc2(Ic2Items.plasmafier));
+			}
+			if (GTConfig.general.removeIC2MassFab) {
+				blacklist.addIngredientToBlacklist(GTMaterialGen.getIc2(Ic2Items.massfabricator));
+			}
 			if (Loader.isModLoaded(GTValues.MOD_ID_GTCX)) {
 				blacklist.addIngredientToBlacklist(GTMaterialGen.get(GTBlocks.tileFusionReactor));
 			}

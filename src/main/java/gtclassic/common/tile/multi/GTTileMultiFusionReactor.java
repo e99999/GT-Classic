@@ -51,6 +51,7 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 	public static final ResourceLocation GUI_LOCATION = new ResourceLocation(GTMod.MODID, "textures/gui/fusionreactor.png");
 	public String status;
 	IBlockState coilState = GTBlocks.casingFusion.getDefaultState();
+	IBlockState guideState = GTBlocks.multiBlockGuide.getDefaultState();
 	@NetworkField(index = 13)
 	public int energyOut = 0;
 
@@ -98,6 +99,12 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 		nbt.setString("status", this.status);
 		nbt.setInteger("energyOut", this.energyOut);
 		return nbt;
+	}
+	
+	@Override
+	public void onUnloaded() {
+		super.onUnloaded();
+		this.handleGuideBlocks(true);
 	}
 
 	@Override
@@ -179,15 +186,64 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 				&& isCoil(dir.right(1)) && isCoil(dir.forward(1)) && isCoil(dir.right(1)) && isCoil(dir.forward(1)))) {
 			this.status = "No";
 			this.getNetwork().updateTileGuiField(this, "status");
+			this.handleGuideBlocks(false);
 			return false;
 		}
 		this.status = "Yes";
 		this.getNetwork().updateTileGuiField(this, "status");
 		return true;
 	}
+	
+	public void handleGuideBlocks(boolean remove) {
+		int3 dir = new int3(getPos(), getFacing());
+		// first line
+		handleGuide(dir.forward(3), remove);
+		handleGuide(dir.right(1), remove);
+		handleGuide(dir.back(1), remove);
+		handleGuide(dir.right(1), remove);
+		// second line
+		handleGuide(dir.back(1), remove);
+		handleGuide(dir.right(1), remove);
+		handleGuide(dir.back(1), remove);
+		handleGuide(dir.back(1), remove);
+		// third line
+		handleGuide(dir.left(1), remove);
+		handleGuide(dir.back(1), remove);
+		handleGuide(dir.left(1), remove);
+		handleGuide(dir.back(1), remove);
+		// fourth
+		handleGuide(dir.left(1), remove);
+		handleGuide(dir.left(1), remove);
+		handleGuide(dir.forward(1), remove);
+		handleGuide(dir.left(1), remove);
+		// fifth
+		handleGuide(dir.forward(1), remove);
+		handleGuide(dir.left(1), remove);
+		handleGuide(dir.forward(1), remove);
+		handleGuide(dir.forward(1), remove);
+		// sixth
+		handleGuide(dir.right(1), remove);
+		handleGuide(dir.forward(1), remove);
+		handleGuide(dir.right(1), remove);
+		handleGuide(dir.forward(1), remove);
+	}
 
 	public boolean isCoil(int3 pos) {
 		return world.getBlockState(pos.asBlockPos()) == coilState;
+	}
+	
+	public void handleGuide(int3 pos, boolean remove) {
+		if (remove) {
+			boolean isBlockCoil = world.getBlockState(pos.asBlockPos()) == guideState;
+			if (isBlockCoil) {
+				world.setBlockToAir(pos.asBlockPos());
+			}
+		} else {
+			boolean isAir = world.isAirBlock(pos.asBlockPos());
+			if (isAir) {
+				world.setBlockState(pos.asBlockPos(), guideState);
+			}
+		}
 	}
 
 	@Override

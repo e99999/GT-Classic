@@ -157,8 +157,9 @@ public class GTRecipe {
 			/** Fusion Computer **/
 			if (GTConfig.general.removeIC2Plasmafier) {
 				recipes.overrideRecipe("shaped_tile.blockPlasmafier_679353211", GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), "ESE", "LCL", "ESE", 'E', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'L', GTValues.BATTERY_ULTIMATE, 'C', GTBlocks.tileComputer);
+				recipes.overrideRecipe("shaped_tile.blockSolarHV_-965625513", Ic2Items.hvSolarPanel.copy(), "SSS", "STS", "SSS", 'S', Ic2Items.mvSolarPanel.copy(), 'T', Ic2Items.transformerHV.copy());
 			} else {
-				recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), "ESE", "LCL", "ESE", 'E', GTValues.CIRCUIT_MASTER, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'L', GTValues.BATTERY_ULTIMATE, 'C', GTBlocks.tileComputer);
+				recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileFusionReactor, 1), "ESE", "LCL", "ESE", 'E', GTValues.CIRCUIT_MASTER, 'S', GTBlocks.tileSupercondensator, 'L', GTValues.BATTERY_ULTIMATE, 'C', GTBlocks.tileComputer);
 			}
 			/** Electric Craftingtable **/
 			recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileAutocrafter), " W ", "CMC", " P ", 'W', Ic2Items.battery.copy(), 'C', GTValues.CIRCUIT_ADVANCED, 'M', "workbench", 'P', GTValues.MACHINE_ADV);
@@ -251,13 +252,12 @@ public class GTRecipe {
 		/** Superconductor Cable **/
 		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 4), "MEM", "SSS", "MEM", 'E', GTValues.CIRCUIT_MASTER, 'S', GTValues.CRAFTING_SUPERCONDUCTOR, 'M', Ic2Items.magnet);
 		/** Superconductor Cable x 2 **/
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 2), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1));
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 4), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1));
 		/** Superconductor Cable x 4 **/
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 2), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1));
-		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1));
-		recipes.addRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), "CC", "CC", 'C', GTBlocks.tileSuperconductorCableHV);
-		/** Superconductor Cable Beacon **/
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 4), GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1));
+		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableIV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableHV, 1));
+		/** Superconductor Cable Full Block **/
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), Ic2Items.ironScaffold);
 		recipes.addShapelessRecipe(GTMaterialGen.get(GTBlocks.tileSuperconductorCableMAX, 1), GTMaterialGen.get(GTBlocks.tileSuperconductorCableBEACON, 1));
 		/** Echotron **/
@@ -408,7 +408,11 @@ public class GTRecipe {
 			recipes.overrideRecipe("shaped_item.itemPlasmaCore_-1985082214", Ic2Items.plasmaCore.copy(), "XYX", "YCY", "XYX", 'X', GTValues.CRAFTING_SUPERCONDUCTOR, 'Y', GTMaterialGen.getIngot(GTMaterial.Tungsten, 1), 'C', Ic2Items.plasmaCell.copy());
 			/** Removing the most ugly cable ever to bless modded mc */
 			int recipeId = IC2.config.getFlag(IC2_STEEL_MODE) ? -1869742241 : 449044295;
-			GTRecipeCraftingHandler.removeRecipe("ic2", "shaped_item.itemPlasmaCable_" + recipeId);
+			if (GTConfig.general.removeIC2PlasmaCable) {
+				GTRecipeCraftingHandler.removeRecipe("ic2", "shaped_item.itemPlasmaCable_" + recipeId);
+			} else {
+				recipes.overrideRecipe("shaped_item.itemPlasmaCable_" + recipeId, Ic2Items.plasmaCable.copy(), "YYY", "XCX", "YYY", 'X', GTValues.CRAFTING_SUPERCONDUCTOR, 'Y', GTMaterialGen.getIngot(GTMaterial.Tungsten, 1), 'C', Ic2Items.plasmaCore.copy());
+			}
 			/** Quantum Overclocker BS **/
 			recipes.overrideRecipe("shaped_item.quantumOverclockerUpgrade_-1387578587", Ic2Items.quantumOverclockerUpgrade.copy(), "XHX", "HVH", "XSX", 'X', "ingotTechnetium", 'H', GTItems.heatStorageHelium6, 'V', Ic2Items.overClockerUpgrade.copy(), 'S', GTValues.CRAFTING_SUPERCONDUCTOR);
 			/** PESD Thingy **/

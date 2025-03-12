@@ -19,6 +19,7 @@ public class GTConfig {
 		public boolean preventMobSpawnsCloseToSpawn = true;
 		public boolean removeIC2MassFab = true;
 		public boolean removeIC2Plasmafier = true;
+		public boolean removeIC2PlasmaCable = true;
 		public boolean addBasicCircuitRecipes = true;
 		public boolean addAdvCircuitRecipes = true;
 		public boolean vanillaRailRecipes = true;

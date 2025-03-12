@@ -40,6 +40,7 @@ public class GTIcons {
 		addTexture("gtclassic_materials", 16, 1);
 		addTexture("gtclassic_ores", 16, 1);
 		addTexture("gtclassic_crops", 4, 8);
+		addTexture("gtclassic_transparent", 1, 1);
 		addAnimatedTexture("screen", 0, 4);
 		addAnimatedTexture("screenadv", 15, 2);
 		addAnimatedTexture("displayscreen", 13, 6);

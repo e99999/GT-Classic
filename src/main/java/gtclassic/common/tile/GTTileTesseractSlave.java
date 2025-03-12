@@ -39,7 +39,7 @@ public class GTTileTesseractSlave extends TileEntityElecMachine
 	@NetworkField(index = 8)
 	GTTileTesseractMaster targetMaster;
 	private int redstoneLevel = -1;
-	private int demand = 1;
+	private int demand = 8;
 
 	public GTTileTesseractSlave() {
 		super(1, 128);

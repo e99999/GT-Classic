@@ -18,6 +18,7 @@ import gtclassic.common.block.GTBlockLightSource;
 import gtclassic.common.block.GTBlockMachine;
 import gtclassic.common.block.GTBlockMiningPipe;
 import gtclassic.common.block.GTBlockMortar;
+import gtclassic.common.block.GTBlockMultiBlockGuide;
 import gtclassic.common.block.GTBlockOre;
 import gtclassic.common.block.GTBlockOreBedrock;
 import gtclassic.common.block.GTBlockOreFlower;
@@ -164,6 +165,7 @@ public class GTBlocks {
 	public static final GTBlockMortar ironMortar = registerBlock(new GTBlockMortar("ironmortar", "pickaxe"));
 	public static final GTBlockOreFlower oreChid = registerBlock(new GTBlockOreFlower("orechid", 38));
 	public static final GTBlockLightSource lightSource = registerBlock(new GTBlockLightSource());
+	public static final GTBlockMultiBlockGuide multiBlockGuide = registerBlock(new GTBlockMultiBlockGuide());
 
 	public static void registerBlocks() {
 		for (Block block : GTMaterialGen.blockMap.values()) {

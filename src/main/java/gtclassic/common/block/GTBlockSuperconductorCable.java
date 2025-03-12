@@ -156,10 +156,10 @@ public class GTBlockSuperconductorCable extends GTBlockBaseConnect implements IG
 			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 134217728 })));
 		}
 		if (this == GTBlocks.tileSuperconductorCableIV) {
-			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32769 })));
+			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 32768 })));
 		}
 		if (this == GTBlocks.tileSuperconductorCableHV) {
-			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 512 })));
+			tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(new Object[] { 8192 })));
 		}
 		tooltip.add((Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(new Object[] { 0.001 })));
 	}
