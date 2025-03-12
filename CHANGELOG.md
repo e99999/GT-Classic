@@ -18,6 +18,7 @@
 - Added in world multiblock guide for Fusion Reactor which will appear when placed and dissapear when the structure is complete or the Fusion Reactor is removed.
 - Changed Fusion recipes in JEI so you can see that you are actually gaining power with each fusion recipe instead of only displaying the net gain .
 - Changed Fusion tooltip to make it clear you need a Supercondensator to step down the power to a usable level (high tier Superconductor cable obviously still works to move the power around).
+- Changed Fusion GUI to be more informative now that it doesnt need to contain the icon representing the multiblock.
 - Fixed Scanners not displaying extremely high amounts of power correctly.
 - Changed Sensor Stick tooltips to display better information as I thought the process was a little confusing returning to the mod myself.
 - Changed the tooltips for Sensor Sticks to explain how they can be used after have scanned a block
@@ -34,6 +35,7 @@
 - Changed IC2C items and machines that have removals toggled on in the GTC config will now be removed from JEI (Mass Fab, Plasmafier, and Plasma Cable)(all on by default).
 - Changed IC2C HV Solar Panel recipe to not need IV-Transformer if IC2C Plasmafier is removed because that would put it past fusion which seems excessive.
 - Changed Drum tooltips and magnifying glass/scanner info to be clearer and more useful.
+- Added a tiny amount of platinum from endstone incase jungle RNG is not on your side.
 
 # 1.2.1
 - Fixed so GT Classic can run on the latest Forge and IC2C, ported fixes from Rongmario's Vintage Gregtech fork. 

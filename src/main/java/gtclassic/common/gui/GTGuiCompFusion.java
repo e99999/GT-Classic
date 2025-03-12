@@ -34,10 +34,15 @@ public class GTGuiCompFusion extends GuiComponent {
 		if (progress > 100) {
 			progress = 100;
 		}
-		gui.drawString("In:"
-				+ NumberFormat.getNumberInstance(Locale.US).format(this.block.energy), 10, 7, Color.cyan.hashCode());
-		gui.drawString("Coils: " + this.block.status, 10, 17, Color.cyan.hashCode());
-		gui.drawString("Progress: " + Math.round(progress) + "%", 10, 27, Color.cyan.hashCode());
+		gui.drawString("EU:", 10, 8, Color.cyan.hashCode());
+		gui.drawString(NumberFormat.getNumberInstance(Locale.US).format(this.block.energy), 25, 8, this.block.energy > 0 ? Color.cyan.hashCode(): Color.red.hashCode());
+		Boolean struct = this.block.lastState;
+		gui.drawString("Multiblock: ", 10, 18, Color.cyan.hashCode());
+		gui.drawString(struct ? "Correct" : "Incorrect", 10, 28, struct ? Color.green.hashCode() : Color.red.hashCode());
+		gui.drawString("Progress: ", 10, 38, Color.cyan.hashCode());
+		gui.drawString(Math.round(progress) + "%", 61, 38, Color.cyan.hashCode());
+		gui.drawString("EU Out:", 10, 48, Color.cyan.hashCode());
+		gui.drawString(NumberFormat.getNumberInstance(Locale.US).format(this.block.energyOut), 10, 58, Color.cyan.hashCode());
 	}
 
 	@Override

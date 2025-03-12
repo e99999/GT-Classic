@@ -59,7 +59,7 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 		super(3, 0, 8192, 8192);
 		maxEnergy = 100000000;
 		this.status = "No";
-		this.addGuiFields(new String[] { "status" });
+		this.addGuiFields(new String[] { "status", "energyOut" });
 	}
 
 	@Override
@@ -167,6 +167,7 @@ public class GTTileMultiFusionReactor extends GTTileMultiBaseMachine implements 
 				this.energyOut = this.energyOut + euOutput;
 			}
 		}
+		this.getNetwork().updateTileGuiField(this, "energyOut");
 	}
 
 	@Override

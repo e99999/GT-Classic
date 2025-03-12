@@ -226,11 +226,13 @@ fluid.magicdye=Incredible Magic Dye
 
 #ore tooltips
 tooltip.gtclassic.oreIridium0=Spawns rarely at all heights in any biome
+tooltip.gtclassic.oreIridium1=Contains: Iridium
 tooltip.gtclassic.oreSheldonite0=Spawns between Y level 10-30 in JUNGLE biomes
-tooltip.gtclassic.oreSheldonite1=Contains: Platinum
+tooltip.gtclassic.oreSheldonite1=Contains: Platinum, Iridium, and Nickel
 tooltip.gtclassic.oreRuby0=Spawns between Y level 0 - 48 in HOT biomes
-tooltip.gtclassic.oreRuby1=Contains: Chrome
+tooltip.gtclassic.oreRuby1=Contains: Ruby, Chrome, and Aluminum
 tooltip.gtclassic.oreSapphire0=Spawns between Y level 0 - 48 in OCEAN biomes
+tooltip.gtclassic.oreSapphire1=Contains: Sapphire and Aluminum
 tooltip.gtclassic.oreBauxite0=Spawns between Y level 50 - 120 in FOREST/PLAINS biomes
 tooltip.gtclassic.oreBauxite1=Contains: Aluminum and Titanium
 

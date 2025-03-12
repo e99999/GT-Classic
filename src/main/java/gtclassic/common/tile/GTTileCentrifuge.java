@@ -398,7 +398,7 @@ public class GTTileCentrifuge extends GTTileBaseMachine implements ITankListener
 		addRecipe(GTMaterialGen.getFluidStack("lava", 16000), 0, totalEu(75000), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
 		addRecipe(GTMaterialGen.getLava(16), 0, totalEu(75000), GTMaterialGen.get(tube, 16), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
 		addRecipe(GTMaterialGen.getIc2(Ic2Items.lavaCell, 16), 0, totalEu(75000), GTMaterialGen.getIc2(Ic2Items.emptyCell, 16), GTMaterialGen.getIngot(GTMaterial.Electrum, 1), GTMaterialGen.getIc2(Ic2Items.copperIngot, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Basalt, 1));
-		addRecipe("endstone", 64, 8, totalEu(100000), GTMaterialGen.get(Blocks.SAND, 48), GTMaterialGen.getTube(GTMaterial.Helium3, 4), GTMaterialGen.getTube(GTMaterial.Helium, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1));
+		addRecipe("endstone", 64, 8, totalEu(100000), GTMaterialGen.get(Blocks.SAND, 48), GTMaterialGen.getTube(GTMaterial.Helium3, 4), GTMaterialGen.getTube(GTMaterial.Helium, 4), GTMaterialGen.getDust(GTMaterial.Tungsten, 1), GTMaterialGen.getDust(GTMaterial.Platinum, 1));
 		/** New Recipes I added **/
 		addRecipe("stoneGranite", 4, 0, totalEu(24000), GTMaterialGen.getDust(GTMaterial.Aluminium, 2), GTMaterialGen.getDust(GTMaterial.Flint, 1), GTMaterialGen.getIc2(Ic2Items.clayDust, 1));
 		addRecipe("stoneDiorite", 16, 0, totalEu(36000), GTMaterialGen.getDust(GTMaterial.Nickel, 1));

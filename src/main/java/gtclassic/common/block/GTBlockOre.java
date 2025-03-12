@@ -42,9 +42,7 @@ public class GTBlockOre extends GTBlockBaseOre {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format(this.getTranslationKey().replace("tile", "tooltip") + "0"));
-		if (!this.equals(GTBlocks.oreIridium) && !this.equals(GTBlocks.oreSapphire)) {
-			tooltip.add(TextFormatting.ITALIC + I18n.format(this.getTranslationKey().replace("tile", "tooltip") + "1"));
-		}
+		tooltip.add(TextFormatting.ITALIC + I18n.format(this.getTranslationKey().replace("tile", "tooltip") + "1"));
 	}
 
 	@Override
