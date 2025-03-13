@@ -12,7 +12,6 @@
 - Add Gregorius-Tree lol (use oak tree as base)
 - Thorium "Pebble" Bed Reactor (single block) input Thorium + Helium + Water = power
 - Concrete Mixer - cheap and low power option for automating concrete production
-- Fix Quantum Chest so it doesnt drop the input or output stack.
 - Fix flying onplayerlogin with an extra boolean to see if the player was flying instead of forcing the player to fly
 
 # Maybe-do

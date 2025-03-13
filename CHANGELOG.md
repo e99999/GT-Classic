@@ -35,7 +35,8 @@
 - Changed IC2C items and machines that have removals toggled on in the GTC config will now be removed from JEI (Mass Fab, Plasmafier, and Plasma Cable)(all on by default).
 - Changed IC2C HV Solar Panel recipe to not need IV-Transformer if IC2C Plasmafier is removed because that would put it past fusion which seems excessive.
 - Changed Drum tooltips and magnifying glass/scanner info to be clearer and more useful.
-- Added a tiny amount of platinum from endstone incase jungle RNG is not on your side.
+- Added a tiny amount of platinum from centrifuging endstone incase jungle RNG is not on your side.
+- Fixed Quantum Chests dropping its output slot on wrenching, it will now save its output slot along with the quantum inventory so nothing drops and will show in the tooltip.
 
 # 1.2.1
 - Fixed so GT Classic can run on the latest Forge and IC2C, ported fixes from Rongmario's Vintage Gregtech fork. 

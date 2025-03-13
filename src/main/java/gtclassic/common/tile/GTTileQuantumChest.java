@@ -40,6 +40,8 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	ItemStack display;
 	public static final String NBT_DIGITALCOUNT = "digitalCount";
 	public static final String NBT_DISPLAYITEM = "display";
+	
+	public static final String NBT_OUT_STACK = "outStack";
 
 	public GTTileQuantumChest() {
 		super(3);
@@ -96,9 +98,12 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	public List<ItemStack> getDrops() {
 		List<ItemStack> list = new ArrayList<>();
 		ItemStack stack = GTMaterialGen.get(GTBlocks.tileQuantumChest);
-		if (this.display != null && this.digitalCount > 0) {
-			StackUtil.getOrCreateNbtData(stack).setTag(NBT_DISPLAYITEM, display.writeToNBT(new NBTTagCompound()));
+		if (this.getStackInSlot(slotDisplay) != null && this.digitalCount > 0) {
+			StackUtil.getOrCreateNbtData(stack).setTag(NBT_DISPLAYITEM, this.getStackInSlot(slotDisplay).writeToNBT(new NBTTagCompound()));
 			StackUtil.getOrCreateNbtData(stack).setInteger(NBT_DIGITALCOUNT, this.digitalCount);
+		}
+		if (this.getStackInSlot(slotOutput) != null) {
+			StackUtil.getOrCreateNbtData(stack).setTag(NBT_OUT_STACK, this.getStackInSlot(slotOutput).writeToNBT(new NBTTagCompound()));
 		}
 		list.add(stack);
 		list.addAll(getInventoryDrops());
@@ -109,7 +114,6 @@ public class GTTileQuantumChest extends TileEntityMachine implements IHasGui, IT
 	public List<ItemStack> getInventoryDrops() {
 		List<ItemStack> list = new ArrayList<>();
 		list.add(this.getStackInSlot(slotInput));
-		list.add(this.getStackInSlot(slotOutput));
 		return list;
 	}
 

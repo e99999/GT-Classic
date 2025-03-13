@@ -182,7 +182,7 @@ public class GTTileDisplayScreen extends TileEntityMachine
 			int count = chest.getQuantumCount();
 			if (count > 0) {
 				addInfoToScreen(chest.getQuantumCount() + OF);
-				addInfoToScreen(chest.display.getDisplayName());
+				addInfoToScreen(chest.getStackInSlot(2).getDisplayName());
 			} else {
 				addInfoToScreen(EMPTY_CHEST);
 			}

@@ -3,6 +3,7 @@ package gtclassic.common.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import gtclassic.api.helpers.GTHelperStack;
 import gtclassic.api.interfaces.IGTItemContainerTile;
 import gtclassic.common.GTLang;
 import gtclassic.common.tile.GTTileQuantumChest;
@@ -39,12 +40,30 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		if (stack.hasTagCompound()) {
+			ItemStack qStack = null;
+			ItemStack oStack = null;
+			int sumAmount = 0;
+			int quantumAmount = 0;
 			NBTTagCompound nbt;
 			nbt = StackUtil.getNbtData(stack);
 			if (nbt.hasKey(GTTileQuantumChest.NBT_DISPLAYITEM) && nbt.hasKey(GTTileQuantumChest.NBT_DIGITALCOUNT)) {
-				tooltip.add(TextFormatting.AQUA + I18n.format((nbt.getInteger(GTTileQuantumChest.NBT_DIGITALCOUNT))
-						+ " of "
-						+ StackUtil.copyWithSize(new ItemStack(nbt.getCompoundTag(GTTileQuantumChest.NBT_DISPLAYITEM)), 1).getDisplayName()));
+				qStack = new ItemStack(nbt.getCompoundTag(GTTileQuantumChest.NBT_DISPLAYITEM));
+				quantumAmount = nbt.getInteger(GTTileQuantumChest.NBT_DIGITALCOUNT);
+			}
+			if (nbt.hasKey(GTTileQuantumChest.NBT_OUT_STACK)) {
+				oStack = new ItemStack(nbt.getCompoundTag(GTTileQuantumChest.NBT_OUT_STACK));
+			}
+			if (qStack != null && oStack != null && GTHelperStack.isEqual(qStack, oStack)){
+				sumAmount = quantumAmount + oStack.getCount();
+				tooltip.add(TextFormatting.AQUA +I18n.format(sumAmount + " of " + qStack.getDisplayName()));
+				super.addInformation(stack, worldIn, tooltip, flagIn);
+				return;
+			}
+			if (qStack != null) {
+				tooltip.add(TextFormatting.AQUA +I18n.format(quantumAmount + " of " + qStack.getDisplayName()));
+			}
+			if (oStack != null) {
+				tooltip.add(TextFormatting.AQUA +I18n.format(oStack.getCount() + " of " + oStack.getDisplayName()));
 			}
 		}
 		super.addInformation(stack, worldIn, tooltip, flagIn);
@@ -81,6 +100,9 @@ public class GTBlockQuantumChest extends GTBlockMachine {
 			GTTileQuantumChest chest = (GTTileQuantumChest) tile;
 			if (stack.hasTagCompound()) {
 				nbt = StackUtil.getNbtData(stack);
+				if (nbt.hasKey(GTTileQuantumChest.NBT_OUT_STACK)){
+					chest.setStackInSlot(slotOutput, new ItemStack(nbt.getCompoundTag(GTTileQuantumChest.NBT_OUT_STACK)));
+				}
 				if (nbt.hasKey(GTTileQuantumChest.NBT_DISPLAYITEM) && nbt.hasKey(GTTileQuantumChest.NBT_DIGITALCOUNT)) {
 					chest.setDigtialCount(nbt.getInteger(GTTileQuantumChest.NBT_DIGITALCOUNT));
 					chest.setStackInSlot(slotDisplay, StackUtil.copyWithSize(new ItemStack(nbt.getCompoundTag(GTTileQuantumChest.NBT_DISPLAYITEM)), 1));
