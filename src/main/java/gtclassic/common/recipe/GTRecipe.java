@@ -458,6 +458,8 @@ public class GTRecipe {
 
 	public static void initProcessing() {
 		GameRegistry.addSmelting(GTMaterialGen.get(GTBlocks.oreSheldonite, 1), (GTMaterialGen.getIngot(GTMaterial.Platinum, 1)), 0.1F);
+		GameRegistry.addSmelting(GTMaterialGen.get(GTBlocks.oreRuby, 1), (GTMaterialGen.getGem(GTMaterial.Ruby, 1)), 0.1F);
+		GameRegistry.addSmelting(GTMaterialGen.get(GTBlocks.oreSapphire, 1), (GTMaterialGen.getGem(GTMaterial.Sapphire, 1)), 0.1F);
 		maceratorUtil("oreBauxite", 1, GTMaterialGen.getDust(GTMaterial.Bauxite, 4));
 		maceratorUtil("oreIridium", 1, GTMaterialGen.getDust(GTMaterial.Iridium, 2));
 		TileEntityMacerator.addRecipe(GTMaterialGen.getIc2(Ic2Items.iridiumOre, 1), GTMaterialGen.getDust(GTMaterial.Iridium, 1));

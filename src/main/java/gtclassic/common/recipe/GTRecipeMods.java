@@ -9,6 +9,7 @@ import gtclassic.api.material.GTMaterialGen;
 import gtclassic.api.recipe.GTRecipeCraftingHandler;
 import gtclassic.common.GTConfig;
 import gtclassic.common.GTItems;
+import gtclassic.common.block.GTBlockOre;
 import gtclassic.common.tile.GTTileCentrifuge;
 import gtclassic.common.tile.GTTileTypeFilter;
 import ic2.api.classic.recipe.ClassicRecipes;
@@ -20,6 +21,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 
@@ -28,6 +30,20 @@ public class GTRecipeMods {
 	public static void postInit() {
 		/** Stuff for people too slow to handle ore dict at the right time **/
 		GTTileCentrifuge.addRecipe("dustDiamond", 1, 0, GTTileCentrifuge.totalEu(100000), GTMaterialGen.getDust(GTMaterial.Carbon, 64));
+		//handle any mods creosote TBD if GTCX needs to not be loaded for this
+		Fluid creosote = FluidRegistry.getFluid("creosote");
+		if (creosote != null) {
+			addFluidGeneratorRecipe("creosote", 5000, 10);
+		}
+		/** Project Red - very very basic **/
+		if (GTConfig.modcompat.compatProjectRed && Loader.isModLoaded("projectred-exploration")) {
+			GTBlockOre.isProjectRedLoaded = true;
+			GTMod.logger.info("Doing Project Red Things");
+			macerator.removeRecipe(new RecipeInputOreDict("oreElectrotine"));
+			TileEntityMacerator.addRecipe("oreElectrotine", 1, GTMaterialGen.getModMetaItem("projectred-core", "resource_item", 105, 16));
+			
+		}
+		/**Buildcraft**/
 		if (GTConfig.modcompat.compatBuildcraft && Loader.isModLoaded(GTValues.MOD_ID_BUILDCRAFT)) {
 			// Classic GT Quarry stuff
 			GTRecipeCraftingHandler.removeRecipe(GTValues.MOD_ID_BUILDCRAFT, "quarry");
@@ -70,12 +86,11 @@ public class GTRecipeMods {
 			// Adding thermal stuff to fluid gen
 			addFluidGeneratorRecipe("crude_oil", 15000, 15);
 			addFluidGeneratorRecipe("petrotheum", 50000, 12);
-			addFluidGeneratorRecipe("creosote", 5000, 8);
 			addFluidGeneratorRecipe("coal", 50000, 10);
 			addFluidGeneratorRecipe("refined_oil", 150000, 24);
 			addFluidGeneratorRecipe("refined_fuel", 200000, 32);
-			addFluidGeneratorRecipe("seed_oil", 6000, 6);
-			addFluidGeneratorRecipe("tree_oil", 50000, 8);
+			addFluidGeneratorRecipe("seed_oil", 6000, 10);
+			addFluidGeneratorRecipe("tree_oil", 50000, 10);
 			addFluidGeneratorRecipe("refined_biofuel", 100000, 10);
 			// Oil sand stuff
 			GTTileCentrifuge.addRecipe("oreClathrateOilSand", 1, 1, GTTileCentrifuge.totalEu(8000), GTMaterialGen.getModdedTube("crude_oil", 1));

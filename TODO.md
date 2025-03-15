@@ -3,14 +3,10 @@
 - I plan todo a casual playthrough myself, any changes will be QOL or singular fun additions, no huge overhauls, no giant webs of coding.
 - Centrifuge progress bar looks like 1 pixel to high on the y axis maybe?
 - Computer Cube should be an in game Wiki for tiles. (Someday not soon, add compat for mods if that GTCX guy uses GTC???)
-- Project E compat (post fusion) (highly likely)
-- Avartia compat (post fusion) (not looking likely)
 - Maybe make more viables ways of exploring to progress vs straight mining in caves.
-- Dramtically reduce power it takes to generate a tesseract, and better tooltips
 - Possibly make redstone transmitter tiles and screens work interdimensionally
 - Add tooltips for most items/tools
 - Add Gregorius-Tree lol (use oak tree as base)
-- Thorium "Pebble" Bed Reactor (single block) input Thorium + Helium + Water = power
 - Concrete Mixer - cheap and low power option for automating concrete production
 - Fix flying onplayerlogin with an extra boolean to see if the player was flying instead of forcing the player to fly
 

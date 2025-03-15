@@ -25,6 +25,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class GTItemMagnifyingGlass extends GTItemComponent implements IEUReader {
 
@@ -45,6 +48,15 @@ public class GTItemMagnifyingGlass extends GTItemComponent implements IEUReader 
 		IBlockState state = world.getBlockState(pos);
 		IC2.platform.messagePlayer(player,TextFormatting.YELLOW + "" + state.getBlock().getLocalizedName());
 		TileEntity tileEntity = world.getTileEntity(pos);
+		//tell us about the biome for people looking for ores
+		if (tileEntity == null) {
+			StringBuilder result = new StringBuilder();
+			Biome biome = world.getBiome(pos);	
+			for (Type types : BiomeDictionary.getTypes(biome)) {
+				result.append(types.toString() + " ");
+			}
+			IC2.platform.messagePlayer(player, "This is a " + result.toString() + "biome");
+		}
 		if (GTConfig.general.enableMagnifyingGlassGivesEUTooltips && tileEntity instanceof IEnergySink) {
 			IEnergySink euSink = (IEnergySink) tileEntity;
 			IC2.platform.messagePlayer(player, "Input Tier: " + euSink.getSinkTier());

@@ -25,6 +25,7 @@ public class GTBlockOre extends GTBlockBaseOre {
 
 	String name;
 	int id;
+	public static boolean isProjectRedLoaded = false;
 
 	public GTBlockOre(String name, int id, float hardness, int level) {
 		super(GTBlockBaseOre.BackgroundSet.STONE);
@@ -43,6 +44,9 @@ public class GTBlockOre extends GTBlockBaseOre {
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		tooltip.add(I18n.format(this.getTranslationKey().replace("tile", "tooltip") + "0"));
 		tooltip.add(TextFormatting.ITALIC + I18n.format(this.getTranslationKey().replace("tile", "tooltip") + "1"));
+		if (isProjectRedLoaded && this.equals(GTBlocks.oreSapphire)) {
+			tooltip.add(TextFormatting.ITALIC + I18n.format(this.getTranslationKey().replace("tile", "tooltip") + "2"));
+		}
 	}
 
 	@Override
@@ -57,6 +61,12 @@ public class GTBlockOre extends GTBlockBaseOre {
 		}
 		if (this.equals(GTBlocks.oreSapphire)) {
 			drops.add(GTMaterialGen.getGem(GTMaterial.Sapphire, 1 + bonus));
+			if (isProjectRedLoaded) {
+				int rng = RANDOM.nextInt(30);
+				if (rng <= (fortune + 2)) {
+					drops.add(GTMaterialGen.getModMetaItem("projectred-core", "resource_item", 202, 1));
+				}
+			}
 		}
 		if (this.equals(GTBlocks.oreBauxite)) {
 			drops.add(GTMaterialGen.get(GTBlocks.oreBauxite));

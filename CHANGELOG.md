@@ -37,6 +37,10 @@
 - Changed Drum tooltips and magnifying glass/scanner info to be clearer and more useful.
 - Added a tiny amount of platinum from centrifuging endstone incase jungle RNG is not on your side.
 - Fixed Quantum Chests dropping its output slot on wrenching, it will now save its output slot along with the quantum inventory so nothing drops and will show in the tooltip.
+- Added basic Project Red compat, you can disable ALL of Project Red ore except for Electrotine when using GTC. Peridot will sometimes drop from mining Sapphire ore (drop chance influenced by Fortune).
+- Added missing recipes of smelting gem ores into one gem, I dont know why youd do this but the recipes should still exist.
+- Added more definitions to the biome specific spawning rules that Ruby and Sapphire follow, Ruby will spawn anywhere hot/dry/wasteland. Sapphire will spawn anywhere ocean/beach/river.
+- Added ability for scanners and the magnifying glass to show some biome info if you need helping locating correct biomes for ores.
 
 # 1.2.1
 - Fixed so GT Classic can run on the latest Forge and IC2C, ported fixes from Rongmario's Vintage Gregtech fork. 

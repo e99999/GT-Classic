@@ -90,7 +90,6 @@ item.gtclassic.dustElectrum.name=Electrum Dust
 item.gtclassic.dustEnderEye.name=Eye of Ender Dust
 item.gtclassic.dustTitanium.name=Titanium Dust
 item.gtclassic.dustLazurite.name=Lazurite Dust
-item.gtclassic.dustGreenSapphire.name=Green Sapphire Dust
 item.gtclassic.dustCalcite.name=Calcite Dust
 item.gtclassic.dustPyrite.name=Pyrite Dust
 item.gtclassic.dustIridium.name=Iridium Dust
@@ -229,12 +228,13 @@ tooltip.gtclassic.oreIridium0=Spawns rarely at all heights in any biome
 tooltip.gtclassic.oreIridium1=Contains: Iridium
 tooltip.gtclassic.oreSheldonite0=Spawns between Y level 10-30 in JUNGLE biomes
 tooltip.gtclassic.oreSheldonite1=Contains: Platinum, Iridium, and Nickel
-tooltip.gtclassic.oreRuby0=Spawns between Y level 0 - 48 in HOT biomes
-tooltip.gtclassic.oreRuby1=Contains: Ruby, Chrome, and Aluminum
-tooltip.gtclassic.oreSapphire0=Spawns between Y level 0 - 48 in OCEAN biomes
-tooltip.gtclassic.oreSapphire1=Contains: Sapphire and Aluminum
+tooltip.gtclassic.oreRuby0=Spawns between Y level 0 - 48 in HOT/DRY biomes
+tooltip.gtclassic.oreRuby1=Contains: Ruby, Chrome, and Aluminium
+tooltip.gtclassic.oreSapphire0=Spawns between Y level 0 - 48 in OCEAN/RIVER biomes
+tooltip.gtclassic.oreSapphire1=Contains: Sapphire and Aluminium
+tooltip.gtclassic.oreSapphire2=Has a chance to drop Peridot
 tooltip.gtclassic.oreBauxite0=Spawns between Y level 50 - 120 in FOREST/PLAINS biomes
-tooltip.gtclassic.oreBauxite1=Contains: Aluminum and Titanium
+tooltip.gtclassic.oreBauxite1=Contains: Aluminium and Titanium
 
 #item tooltips
 tooltip.gtclassic.destructo_pack=Mobile trash can

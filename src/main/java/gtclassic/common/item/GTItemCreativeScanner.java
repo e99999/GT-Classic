@@ -44,6 +44,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -157,6 +160,13 @@ public class GTItemCreativeScanner extends ItemBatteryBase implements IEUReader,
 			IC2.platform.messagePlayer(player, "Hardness: " + state.getBlockHardness(world, pos));
 			IC2.platform.messagePlayer(player, "Blast Resistance: "
 					+ state.getBlock().getExplosionResistance(null) * 5.0F);
+			//tell us about the biome for people looking for ores
+			StringBuilder result = new StringBuilder();
+			Biome biome = world.getBiome(pos);	
+			for (Type types : BiomeDictionary.getTypes(biome)) {
+				result.append(types.toString() + " ");
+			}
+			IC2.platform.messagePlayer(player,TextFormatting.GREEN+ "Biome Data: " + result.toString());
 		}
 		if (tileEntity instanceof IReactor) {
 			IReactor te5 = (IReactor) tileEntity;
